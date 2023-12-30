@@ -1,0 +1,967 @@
+:toc:
+
+= Classes related to fields and enemies
+
+== Classes
+
+'''
+
+=== Top-level
+
+[source]
+----
+
+cResource
+	struct __cppobj cResource : MtObject
+	{
+	  unsigned __int32 mMagicID : 16;
+	  unsigned __int32 mMagicTag : 16;
+	  MT_CHAR mPath[64];
+	  s32 mRefCount;
+	  u32 mAttr;
+	  unsigned __int32 mState : 8;
+	  unsigned __int32 mQuality : 3;
+	  unsigned __int32 mTag : 21;
+	  u32 mSize;
+	  u64 mID;
+	  u32 _padding0;
+	  u32 _padding1;
+	};
+	cResource::MyDTI::newInstance
+	cResource::cResource
+	cResource::_cResource
+	cResource::_cResource_0
+	cResource::clear
+	cResource::getUpdateTime
+	cResource::createUI
+	cResource::createProperty
+	cResource::addRef
+	cResource::release
+	cResource::compact
+	cResource::create
+	cResource::loadEnd
+	cResource::save
+	cResource::convert
+	cResource::convertEx
+	cResource::getExt
+	cResource::load
+	cResource::getPath
+	cResource::setPath
+	cResource::getTag
+	cResource::setTag
+	cResource::getState
+	cResource::setState
+	cResource::getQuality
+	cResource::setQuality
+	cResource::getDTI
+cUIResource
+	struct __cppobj cUIResource : MtObject
+	cUIResource::MyDTI::newInstance
+	cUIResource::createUI
+	cUIResource::createProperty
+	cUIResource::_cUIResource
+	cUIResource::_cUIResource_0
+	cUIResource::getDTI
+
+
+----
+
+'''
+
+===  ext: FAL => arcPath: etc\FieldArea\field_area_list.fal (x1)
+
+[source]
+----
+
+rFieldAreaList
+	struct __cppobj __attribute__((aligned(8))) rFieldAreaList : cResource
+	  rFieldAreaList::cFieldAreaInfo *mpArray;
+	  u32 mArrayNum;
+	rFieldAreaList::MyDTI::newInstance
+	u32 __fastcall rFieldAreaList::getDispFieldAreaNum(const rFieldAreaList *this, u32 landId, u32 areaId);
+	u32 __fastcall rFieldAreaList::getDispFieldAreaId(const rFieldAreaList *this, u32 landId, u32 areaId, u32 idx);
+	const rFieldAreaList::cFieldAreaInfo *__fastcall rFieldAreaList::getFieldAreaInfo(const rFieldAreaList *this, u32 fieldAreaId);
+	const rFieldAreaList::cFieldAreaInfo *__fastcall rFieldAreaList::getFieldAreaInfoFromStageNo(const rFieldAreaList *this, s32 stageNo);
+	u32 __fastcall rFieldAreaList::getFieldAreaIdFromBelongStage(const rFieldAreaList *this, s32 stageNo);
+	u32 __fastcall rFieldAreaList::getFieldAreaIdFromStageList(const rFieldAreaList *this, s32 stageNo);
+	s32 __fastcall rFieldAreaList::getStageNoFromFieldAreaId(const rFieldAreaList *this, u32 idx, u32 stageNo);
+	rFieldAreaList::_rFieldAreaList
+	rFieldAreaList::_rFieldAreaList_0
+	rFieldAreaList::load
+	rFieldAreaList::save
+	rFieldAreaList::getDTI
+	rFieldAreaList::getExt
+rFieldAreaList::cFieldAreaInfo
+	struct __cppobj rFieldAreaList::cFieldAreaInfo : MtObject
+	  rFieldAreaList::cFieldAreaInfo::StageNoArray mStageNoList;
+	  rFieldAreaList::cFieldAreaInfo::StageNoArray mBelongStageNoList;
+	  u32 mFieldAreaId;
+	  u32 mGmdIdx;
+	  u32 mVersionId;
+	  u16 mLandId;
+	  u16 mAreaId;
+	rFieldAreaList::cFieldAreaInfo::MyDTI::newInstance
+	rFieldAreaList::cFieldAreaInfo::getStageNoList
+	rFieldAreaList::cFieldAreaInfo::getGMDIndex
+	rFieldAreaList::cFieldAreaInfo::_cFieldAreaInfo
+	rFieldAreaList::cFieldAreaInfo::_cFieldAreaInfo_0
+	rFieldAreaList::cFieldAreaInfo::createProperty
+	rFieldAreaList::cFieldAreaInfo::createUI
+	rFieldAreaList::cFieldAreaInfo::getDTI
+rFieldAreaList::cFieldAreaInfo::cStageNo
+	struct __cppobj __attribute__((aligned(8))) rFieldAreaList::cFieldAreaInfo::cStageNo : MtObject
+	  s32 mStageNo;
+	rFieldAreaList::cFieldAreaInfo::cStageNo::MyDTI::newInstance
+	rFieldAreaList::cFieldAreaInfo::cStageNo::createProperty
+	rFieldAreaList::cFieldAreaInfo::cStageNo::getDTI
+
+
+----
+
+'''
+
+===  ext: FMD => arcPath: various (x106)
+
+[source]
+----
+
+rFieldMapData
+	struct __cppobj __attribute__((aligned(8))) rFieldMapData : cResource
+	  rFieldMapData::Data *mpArrayData;
+	  u32 mArrayDataNum;
+	enum rFieldMapData::$F9375665840BA39A9E1ED9DB62A03801 : __int32
+	  TYPE_NONE_10 = 0x0,
+	  TYPE_DUMMY1 = 0x1,
+	  TYPE_DUMMY2 = 0x2,
+	  TYPE_OM_ETC = 0x3,
+	  TYPE_SCE_DOOR = 0x4,
+	  TYPE_MAP = 0x5,
+	  TYPE_MAP_ICON = 0x6,
+	  TYPE_TEXT = 0x7,
+	  TYPE_BASE = 0x8,
+	  TYPE_WELL = 0x9,
+	  TYPE_CATACOMB = 0xA,
+	  TYPE_CAVE = 0xB,
+	  TYPE_WATER_LINE = 0xC,
+	  TYPE_ELF_RUIN = 0xD,
+	  TYPE_SHRINE = 0xE,
+	  TYPE_BASEMENT = 0xF,
+	  TYPE_OUTPOST = 0x10,
+	  TYPE_DDOR = 0x11,
+	  TYPE_AREA_WARP = 0x12,
+	  TYPE_MAX_5 = 0x13,
+	rFieldMapData::MyDTI::newInstance
+	rFieldMapData::_rFieldMapData
+	rFieldMapData::_rFieldMapData_0
+	rFieldMapData::load
+	void __fastcall rFieldMapData::setupSpotMsgId(rFieldMapData *this);
+	rFieldMapData::getDTI
+	rFieldMapData::getExt
+	rFieldMapData::getData
+	rFieldMapData::getDataNum
+rFieldMapData::Data
+	struct __cppobj rFieldMapData::Data : MtObject
+	  u32 mType;
+	  s32 mMessId;
+	  u32 mSpotMessId;
+	  u32 mID;
+	  MtFloat2 mPoint;
+	  __attribute__((aligned(16))) MtVector3 mWorldPos;
+	  bool mDispWideMap;
+	  u32 mVersion;
+	  u32 mQuestId;
+	rFieldMapData::Data::MyDTI::newInstance
+	rFieldMapData::Data::createProperty
+	rFieldMapData::Data::load
+	rFieldMapData::Data::_Data
+	rFieldMapData::Data::_Data_0
+	rFieldMapData::Data::getDTI
+
+
+----
+
+'''
+
+===  ext: FMI => arcPath: etc\FieldArea\FieldArea00*_marker_*.fmi / quest\*\fa00*_marker_*.fmi (x363)
+
+[source]
+----
+
+rFieldAreaMarkerInfo
+	struct __cppobj __attribute__((aligned(8))) rFieldAreaMarkerInfo : cResource
+	  rFieldAreaMarkerInfo::MarkerInfoArray mMarkerInfoList;
+	enum rFieldAreaMarkerInfo::RES_TYPE : __int32
+	  RES_TYPE_NPC_0 = 0x0,
+	  RES_TYPE_SCE_HIT_0 = 0x1, // ??: rScenario sce
+	  RES_TYPE_RETURNAREA_0 = 0x2,
+	  RES_TYPE_OM_0 = 0x3, // ??: rOmKey omk, rOmLoadList oll, rOmParam omp, rOmParamEx ompe, rOmParamPart ompp
+	  RES_TYPE_NUM_0 = 0x4,
+	rFieldAreaMarkerInfo::MyDTI::newInstance
+	MT_CTSTR __fastcall rFieldAreaMarkerInfo::getFileResId(u32 type);
+	rFieldAreaMarkerInfo::getMarkerInfoList
+	rFieldAreaMarkerInfo::_rFieldAreaMarkerInfo
+	rFieldAreaMarkerInfo::_rFieldAreaMarkerInfo_0
+	rFieldAreaMarkerInfo::load
+	rFieldAreaMarkerInfo::save
+	rFieldAreaMarkerInfo::getDTI
+	rFieldAreaMarkerInfo::getExt
+rFieldAreaMarkerInfo::cMarkerInfo
+	struct __cppobj rFieldAreaMarkerInfo::cMarkerInfo : MtObject
+	  __attribute__((aligned(16))) MtVector3 mPos;
+	  u32 mGroupNo;
+	  u32 mUniqueId;
+	rFieldAreaMarkerInfo::cMarkerInfo::MyDTI::newInstance
+	rFieldAreaMarkerInfo::cMarkerInfo::_cMarkerInfo
+	rFieldAreaMarkerInfo::cMarkerInfo::_cMarkerInfo_0
+	rFieldAreaMarkerInfo::cMarkerInfo::createProperty
+	rFieldAreaMarkerInfo::cMarkerInfo::load
+	rFieldAreaMarkerInfo::cMarkerInfo::save
+	rFieldAreaMarkerInfo::cMarkerInfo::getDTI
+
+
+----
+
+'''
+
+===  ext: FAA => arcPath: etc\FieldArea\FieldArea00*_adjoin.faa (x8)
+
+[source]
+----
+
+rFieldAreaAdjoinList
+	struct __cppobj __attribute__((aligned(4))) rFieldAreaAdjoinList : cResource
+	  rFieldAreaAdjoinList::cAdjoinInfo *mpArray;
+	  s16 mFieldAreaId;
+	rFieldAreaAdjoinList::MyDTI::newInstance
+	rFieldAreaAdjoinList::getFieldAreaId
+	rFieldAreaAdjoinList::cAdjoinInfo *__fastcall rFieldAreaAdjoinList::getNextStageAdjoinInfo(const rFieldAreaAdjoinList *this, s32 destinationStageNo, u8 priority);
+	u32 __fastcall rFieldAreaAdjoinList::getNextStageAdjoinInfoNum(const rFieldAreaAdjoinList *this, s32 destinationStageNo);
+	rFieldAreaAdjoinList::_rFieldAreaAdjoinList
+	rFieldAreaAdjoinList::_rFieldAreaAdjoinList_0
+	rFieldAreaAdjoinList::load
+	rFieldAreaAdjoinList::save
+	rFieldAreaAdjoinList::getDTI
+	rFieldAreaAdjoinList::getExt
+rFieldAreaAdjoinList::cAdjoinInfo
+	struct __cppobj __attribute__((aligned(4))) rFieldAreaAdjoinList::cAdjoinInfo : MtObject
+	  MtTypedArray<rFieldAreaAdjoinList::cAdjoinInfo::cVector3> mPositions;
+	  s16 mDestinationStageNo;
+	  s16 mNextStageNo;
+	  u8 mPriority;
+	rFieldAreaAdjoinList::cAdjoinInfo::MyDTI::newInstance
+	rFieldAreaAdjoinList::cAdjoinInfo::_cAdjoinInfo
+	rFieldAreaAdjoinList::cAdjoinInfo::_cAdjoinInfo_0
+	rFieldAreaAdjoinList::cAdjoinInfo::createProperty
+	rFieldAreaAdjoinList::cAdjoinInfo::getDTI
+rFieldAreaAdjoinList::cAdjoinInfo::cVector3
+	struct __cppobj rFieldAreaAdjoinList::cAdjoinInfo::cVector3 : MtObject
+	  u32 mFlagId;
+	rFieldAreaAdjoinList::cAdjoinInfo::cVector3::MyDTI::newInstance
+	rFieldAreaAdjoinList::cAdjoinInfo::cVector3::createProperty
+	rFieldAreaAdjoinList::cAdjoinInfo::cVector3::getDTI
+
+
+----
+
+'''
+
+===  ext: STS => arcPath: param\stage_to_spot.sts (x1)
+
+[source]
+----
+
+rStageToSpot
+	struct __cppobj __attribute__((aligned(8))) rStageToSpot : rTbl2<cStageToSpot>
+	rStageToSpot::loadData
+	rStageToSpot::MyDTI::newInstance
+	rStageToSpot::getDTI
+	rStageToSpot::getExt
+	rStageToSpot::getDataVersion
+rTbl2<cStageToSpot>
+	struct __cppobj __attribute__((aligned(8))) rTbl2<cStageToSpot> : rTbl2Base
+	  cStageToSpot *mpData;
+	  u32 mDataNum;
+	rTbl2_cStageToSpot_::load
+	rTbl2_cStageToSpot_::getData
+	rTbl2_cStageToSpot_::getData_0
+	rTbl2_cStageToSpot_::getDataNum
+	rTbl2_cStageToSpot_::loadCore
+	rTbl2_cStageToSpot_::_rTbl2
+	rTbl2_cStageToSpot_::_rTbl2_0
+cStageToSpot
+	struct __cppobj __attribute__((aligned(8))) cStageToSpot : MtObject
+	  u32 mStageNo;
+	  u32 mSpotId;
+	  u8 mRecommendLevel;
+	cStageToSpot::MyDTI::newInstance
+	cStageToSpot::createProperty
+	cStageToSpot::_cStageToSpot
+	cStageToSpot::_cStageToSpot_0
+	cStageToSpot::getDTI
+
+
+----
+
+'''
+
+===  ext: MSL => arcPath: scr\msd\mapSpotStageList.msl (x1)
+
+[source]
+----
+
+rMapSpotStageList
+	struct __cppobj __attribute__((aligned(8))) rMapSpotStageList : cResource
+	  rMapSpotStageList::Data *mpArray;
+	rMapSpotStageList::getDTI
+	rMapSpotStageList::getExt
+	rMapSpotStageList::getName
+	rMapSpotStageList::getData
+	rMapSpotStageList::getDataNum
+	rMapSpotStageList::MyDTI::newInstance
+	rMapSpotStageList::_rMapSpotStageList
+	rMapSpotStageList::_rMapSpotStageList_0
+	rMapSpotStageList::load
+rMapSpotStageList::Data
+	struct __cppobj __attribute__((aligned(8))) rMapSpotStageList::Data : MtObject
+	rMapSpotStageList::Data::MyDTI::newInstance
+	rMapSpotStageList::Data::createProperty
+	rMapSpotStageList::Data::createUI
+	rMapSpotStageList::Data::_Data
+	rMapSpotStageList::Data::_Data_0
+	rMapSpotStageList::Data::getDTI
+
+
+----
+
+'''
+
+===  ext: AMS => arcPath: ui\00_param\master\am_spot_*.ams (x21)
+
+[source]
+----
+
+rAreaMasterSpotData
+	struct __cppobj __attribute__((aligned(8))) rAreaMasterSpotData : rTbl2<cAreaMasterSpotData>
+	rAreaMasterSpotData::MyDTI::newInstance
+	rAreaMasterSpotData::loadData
+	rAreaMasterSpotData::getDTI
+	rAreaMasterSpotData::getExt
+	rAreaMasterSpotData::getDataVersion
+rTbl2<cAreaMasterSpotData>
+	struct __cppobj __attribute__((aligned(8))) rTbl2<cAreaMasterSpotData> : rTbl2Base
+	  cAreaMasterSpotData *mpData;
+	rTbl2_cAreaMasterSpotData_::load
+	rTbl2_cAreaMasterSpotData_::getData
+	rTbl2_cAreaMasterSpotData_::getData_0
+	rTbl2_cAreaMasterSpotData_::getDataNum
+	rTbl2_cAreaMasterSpotData_::loadCore
+	rTbl2_cAreaMasterSpotData_::_rTbl2
+	rTbl2_cAreaMasterSpotData_::_rTbl2_0
+cAreaMasterSpotData
+	struct __cppobj __attribute__((aligned(8))) cAreaMasterSpotData : cUIResource
+	  u32 mCategoryNo;
+	  u32 mMessageId;
+	  s32 mStageNoMap;
+	  f32 mPosX;
+	  f32 mPosY;
+	  f32 mPosZ;
+	  u16 mImageId;
+	  u8 mKeyType;
+	  u8 mMaskType;
+	  bool mPosHide;
+	enum cAreaMasterSpotData::$47FF2109BAE95A83292D224230A1C2AC : __int32
+	  DATA_VERSION_12 = 0x7,
+	cAreaMasterSpotData::MyDTI::newInstance
+	cAreaMasterSpotData::getDTI
+
+
+----
+
+'''
+
+===  ext: AMSD => arcPath: ui\00_param\master\am_spot_detail_*.amsd (x21)
+
+[source]
+----
+
+rAreaMasterSpotDetailData
+	struct __cppobj __attribute__((aligned(8))) rAreaMasterSpotDetailData : rTbl2<cAreaMasterSpotDetailData>
+	rAreaMasterSpotDetailData::MyDTI::newInstance
+	rAreaMasterSpotDetailData::loadData
+	rAreaMasterSpotDetailData::getDTI
+	rAreaMasterSpotDetailData::getExt
+	rAreaMasterSpotDetailData::getDataVersion
+rTbl2<cAreaMasterSpotDetailData>
+	struct __cppobj __attribute__((aligned(8))) rTbl2<cAreaMasterSpotDetailData> : rTbl2Base
+	  cAreaMasterSpotDetailData *mpData;
+	rTbl2_cAreaMasterSpotDetailData_::load
+	rTbl2_cAreaMasterSpotDetailData_::getData
+	rTbl2_cAreaMasterSpotDetailData_::getData_0
+	rTbl2_cAreaMasterSpotDetailData_::getDataNum
+	rTbl2_cAreaMasterSpotDetailData_::loadCore
+	rTbl2_cAreaMasterSpotDetailData_::allocData
+	rTbl2_cAreaMasterSpotDetailData_::_rTbl2
+	rTbl2_cAreaMasterSpotDetailData_::_rTbl2_0
+cAreaMasterSpotDetailData
+	struct __cppobj cAreaMasterSpotDetailData : cUIResource
+	  MtTypedArray<cSpotItemData> mItemArray;
+	  MtTypedArray<cSpotEnemyData> mEnemyArray;
+	enum cAreaMasterSpotDetailData::$D56CF44760299651F5A13C41299C88B8 : __int32
+	  DATA_VERSION_14 = 0x4,
+	cAreaMasterSpotDetailData::MyDTI::newInstance
+	cAreaMasterSpotDetailData::getDTI
+	struct __cppobj __attribute__((aligned(8))) cSpotEnemyData : cUIResource
+	  u32 mEnemyGroupId;
+	  u32 mEnemyNamedId;
+	  u16 mLevel;
+	  u8 mRank;
+	cSpotEnemyData::MyDTI::newInstance
+	cSpotEnemyData::getDTI
+
+
+----
+
+'''
+
+===  ext: ARI => arcPath: scr\area_list.ari (x1)
+
+[source]
+----
+
+rAreaInfoStage
+	struct __cppobj rAreaInfoStage : cResource
+	  MtTypedArray<rAreaInfoStage::cAreaInfoStage> mAreaInfoStage;
+	rAreaInfoStage::MyDTI::newInstance
+	rAreaInfoStage::_rAreaInfoStage
+	rAreaInfoStage::_rAreaInfoStage_0
+	rAreaInfoStage::createProperty
+	rAreaInfoStage::save
+	rAreaInfoStage::load
+	rAreaInfoStage::getDTI
+	rAreaInfoStage::getExt
+cAreaInfoStage
+	struct __cppobj rAreaInfoStage::cAreaInfoStage : MtObject
+	  u32 mAreaId;
+	rAreaInfoStage::cAreaInfoStage::getDTI
+	rAreaInfoStage::cAreaInfoStage::MyDTI::newInstance
+	rAreaInfoStage::cAreaInfoStage::_cAreaInfoStage
+	rAreaInfoStage::cAreaInfoStage::_cAreaInfoStage_0
+	rAreaInfoStage::cAreaInfoStage::createProperty
+
+
+----
+
+'''
+
+===  ext: ARS => arcPath: scr\area_stage_list.ars (x1)
+
+[source]
+----
+
+rAreaInfo
+	struct __cppobj rAreaInfo : cResource
+	  MtTypedArray<rAreaInfo::cAreaInfo> mAreaInfo;
+	rAreaInfo::getDTI	
+	rAreaInfo::getExt	
+	rAreaInfo::MyDTI::newInstance	
+	rAreaInfo::_rAreaInfo	
+	rAreaInfo::_rAreaInfo_0	
+	rAreaInfo::createProperty	
+	rAreaInfo::save	
+	rAreaInfo::load	
+cAreaInfo
+	struct __cppobj __attribute__((aligned(8))) rAreaInfo::cAreaInfo : MtObject
+	  s32 mPosX;
+	  s32 mPosY;
+	
+	rAreaInfo::cAreaInfo::getDTI	
+	rAreaInfo::cAreaInfo::MyDTI::newInstance	
+	rAreaInfo::cAreaInfo::_cAreaInfo	
+	rAreaInfo::cAreaInfo::_cAreaInfo_0	
+	rAreaInfo::cAreaInfo::createProperty	
+
+
+----
+
+'''
+
+===  ext: MSD => arcPath: scr\msd\st*.msd (x28)
+
+[source]
+----
+
+rMapSpotData
+	struct __cppobj __attribute__((aligned(8))) rMapSpotData : cResource
+	  rMapSpotData::Data *mpArray;
+	rMapSpotData::getDTI
+	rMapSpotData::getExt
+	rMapSpotData::getName
+	rMapSpotData::getData
+	rMapSpotData::getDataNum
+	rMapSpotData::MyDTI::newInstance
+	rMapSpotData::_rMapSpotData
+	rMapSpotData::_rMapSpotData_0
+	rMapSpotData::load
+	void __fastcall rMapSpotData::setupSpotMsgId(rMapSpotData *this);
+rMapSpotData::Data
+	struct __cppobj rMapSpotData::Data : MtObject
+	  u32 mMessId;
+	  s32 mFloorNo;
+	  s32 mGroupNo;
+	  bool mFloorCheck;
+	rMapSpotData::Data::MyDTI::newInstance
+	rMapSpotData::Data::createProperty
+	rMapSpotData::Data::createUI
+	rMapSpotData::Data::_Data
+	rMapSpotData::Data::_Data_0
+	rMapSpotData::Data::getDTI
+
+
+----
+
+'''
+
+===  ext: EMG => arcPath: param\enemy_group.emg (x1)
+
+[source]
+----
+
+rEnemyGroup
+	struct __cppobj __attribute__((aligned(8))) rEnemyGroup : rTbl2<cEnemyGroup>
+	bool __fastcall rEnemyGroup::loadData(rEnemyGroup *this, MtDataReader *in, cEnemyGroup *pData);
+	rEnemyGroup::MyDTI::newInstance
+	rEnemyGroup::getDTI
+	rEnemyGroup::getExt
+	rEnemyGroup::getDataVersion
+rTbl2<cEnemyGroup>
+	struct __cppobj __attribute__((aligned(8))) rTbl2<cEnemyGroup> : rTbl2Base
+	  cEnemyGroup *mpData;
+	rTbl2_cEnemyGroup_::load
+	rTbl2_cEnemyGroup_::getData
+	rTbl2_cEnemyGroup_::getData_0
+	rTbl2_cEnemyGroup_::getDataNum
+	rTbl2_cEnemyGroup_::loadCore
+	rTbl2_cEnemyGroup_::deleteData
+	rTbl2_cEnemyGroup_::_rTbl2
+	rTbl2_cEnemyGroup_::_rTbl2_0
+cEnemyGroup
+	struct __cppobj cEnemyGroup : MtObject
+	  u32 mMsgIndex;
+	  MtTypedArray<cEnemyGroup::cEmList> mEmList;
+	cEnemyGroup::MyDTI::newInstance
+	cEnemyGroup::_cEnemyGroup
+	cEnemyGroup::_cEnemyGroup_0
+	cEnemyGroup::createProperty
+	cEnemyGroup::getDTI
+cEnemyGroup::cEmList
+	struct __cppobj __attribute__((aligned(8))) cEnemyGroup::cEmList : MtObject
+	  u32 mEmId;
+	cEnemyGroup::cEmList::MyDTI::newInstance
+	cEnemyGroup::cEmList::createProperty
+
+
+----
+
+'''
+
+===  ext: SLT => arcPath: scr\stage_list.slt (1x)
+
+[source]
+----
+
+rStageList
+	struct __cppobj __attribute__((aligned(8))) rStageList : cResource
+	  rStageList::Info *mpArrayInfo;
+	  u32 mArrayInfoNum;
+	rStageList::MyDTI::newInstance
+	rStageList::_rStageList
+	rStageList::_rStageList_0
+	rStageList::load
+	rStageList::save
+	rStageList::isLobby
+	rStageList::searchInfo
+	rStageList::isField
+	rStageList::getStageType
+	rStageList::getStageMsgId
+	rStageList::getVersion
+	rStageList::getDTI
+	rStageList::getExt
+	rStageList::getInfo
+	rStageList::getNum
+rStageList::Info
+	struct __cppobj __attribute__((aligned(8))) rStageList::Info : MtObject
+	rStageList::Info::MyDTI::newInstance
+	rStageList::Info::getDTI
+	rStageList::Info::createProperty
+	rStageList::Info::createUI
+
+
+----
+
+'''
+
+===  ext: SMP => arcPath: param\stage_map.smp (x1)
+
+[source]
+----
+
+rStageMap
+	struct __cppobj __attribute__((aligned(8))) rStageMap : rTbl2<cStageMap>
+	rStageMap::MyDTI::newInstance
+	rStageMap::loadData
+	rStageMap::isField
+	rStageMap::isPartsStage
+	rStageMap::getPartsNum
+	rStageMap::getPartsSizeZLength
+	rStageMap::getPartsOffsetY
+	rStageMap::getPartsFileName
+	rStageMap::getPartsConnectPos
+rTbl2<cStageMap>
+	struct __cppobj __attribute__((aligned(8))) rTbl2<cStageMap> : rTbl2Base
+	  cStageMap *mpData;
+	rTbl2_cStageMap_::load
+	rTbl2_cStageMap_::getData
+	rTbl2_cStageMap_::getData_0
+	rTbl2_cStageMap_::getDataNum
+	rTbl2_cStageMap_::loadCore
+	rTbl2_cStageMap_::deleteData
+	rTbl2_cStageMap_::_rTbl2
+	rTbl2_cStageMap_::_rTbl2_0
+cStageMap
+	struct __cppobj cStageMap : MtObject
+	  u16 mStageNo;
+	  u16 mPartsNum;
+	  f32 mOffsetY;
+	  u32 mStageFlag;
+	  MtTypedArray<cStageMap::cParam> mParamList;
+	cStageMap::MyDTI::newInstance
+	cStageMap::_cStageMap
+	cStageMap::_cStageMap_0
+	cStageMap::createProperty
+	cStageMap::getDTI
+cStageMap::cParam
+	struct __cppobj cStageMap::cParam : MtObject
+	  u32 mAreaNo;
+	  f32 mSize;
+	  MtString mModelName;
+	  __attribute__((aligned(16))) MtVector3 mConnectPos;
+	cStageMap::cParam::load
+	cStageMap::cParam::MyDTI::newInstance
+	cStageMap::cParam::createProperty
+	cStageMap::cParam::getDTI
+
+
+----
+
+'''
+
+===  ext: STI => arcPath: scr\st*\etc\st*.sti (x479)
+
+[source]
+----
+
+rStageInfo
+	struct __cppobj rStageInfo : cResource
+	  rScheduler *mprModel;
+	  rScheduler *mprFilter;
+	  rCollision *mprScrSbc[3];
+	  rCollision *mprEffSbc[3];
+	  rNavigationMesh *mprNaviMesh;
+	  rAIPathConsecutive *mprWayPoint;
+	  rOccluderEx *mprOCC;
+	  rStartPos *mprStartPos;
+	  rCameraParamList *mprCmrPrmLstFld;
+	  rCameraParamList *mprCmrPrmLstEvt;
+	  f32 mAng;
+	  u32 mFlag;
+	  f32 mDayNightLightChgFrame;
+	  f32 mDayNightFogChgFrame;
+	  u32 mSceLoadFlag;
+	  f32 mGrassVisiblePercentMulValue;
+	  f32 mGrassFadeBeginDistance;
+	  f32 mGrassFadeEndDistance;
+	  rZone *mprSoundZone[3];
+	  f32 mEqLength[4];
+	  res_ptr<rSoundAreaInfo> mprSoundInfo;
+	  bool mIsCraftStage;
+	  MT_CHAR mAnotherMapName[16];
+	  u16 mPerformanceFlag;
+	  res_ptr<rScheduler> mprEffectSchdl;
+	  res_ptr<rScheduler> mprLanternSchdl;
+	  res_ptr<rLocationData> mprLocation;
+	  res_ptr<rWeatherStageInfo> mpWeatherStageInfo;
+	  res_ptr<rWeatherParamInfoTbl> mpWeatherParamInfoTbl;
+	  res_ptr<rScheduler> mpStageLightSchdl;
+	  res_ptr<rZone> mpZoneList[4];
+	  res_ptr<rZone> mpZoneIndoorScr;
+	  res_ptr<rZone> mpZoneIndoorEfc;
+	  res_ptr<rWeatherParamEfcInfo> mpWeatherParamEfcInfo;
+	  res_ptr<rWeatherEffectParam> mpWep;
+	  res_ptr<rEffectProvider> mprEpv;
+	  s32 mEpvIndexAlways;
+	  s32 mEpvIndexDay;
+	  s32 mEpvIndexNight;
+	  s32 mSkyInfiniteLightGroupType;
+	  res_ptr<rZone> mpZoneUnitCtrl[3];
+	  res_ptr<rZone> mpZoneStatus;
+	enum rStageInfo::LOAD_FLAG : __int32
+	  LOAD_FLAG_SCE_DOOR = 0x1,
+	  LOAD_FLAG_SCE_FSM = 0x2,
+	  LOAD_FLAG_TREE = 0x4,
+	rStageInfo::MyDTI::newInstance
+	rStageInfo::_rStageInfo
+	rStageInfo::_rStageInfo_0
+	rStageInfo::createProperty
+	rStageInfo::setScrScheduler
+	rStageInfo::setFltScheduler
+	rStageInfo::setScrSbc
+	rStageInfo::setEffSbc
+	rStageInfo::setNaviMesh
+	rStageInfo::setWayPoint
+	rStageInfo::setOCC
+	rStageInfo::setStartPos
+	rStageInfo::setCmrPrmLstFld
+	rStageInfo::setCmrPrmLstEvt
+	rStageInfo::getAnotherMapName
+	rStageInfo::setAnotherMapName
+	rStageInfo::createUI
+	rStageInfo::load
+	rStageInfo::save
+	rStageInfo::clear
+	rStageInfo::getZone
+	rStageInfo::getZoneUnitCtrl
+	rStageInfo::getScrScheduler
+	rStageInfo::getFltScheduler
+	rStageInfo::getScrSbc
+	rStageInfo::getScrSbcNum
+	rStageInfo::setScrSbcNum
+	rStageInfo::getEffSbc
+	rStageInfo::getEffSbcNum
+	rStageInfo::setEffSbcNum
+	rStageInfo::getNaviMesh
+	rStageInfo::getWayPoint
+	rStageInfo::getOCC
+	rStageInfo::getStartPos
+	rStageInfo::getCmrPrmLstFld
+	rStageInfo::getCmrPrmLstEvt
+	rStageInfo::getZoneIndoorScr
+	rStageInfo::setZoneIndoorScr
+	rStageInfo::getSndZoneOcclusion
+	rStageInfo::setSndZoneOcclusion
+	rStageInfo::getSndZoneGenerator
+	rStageInfo::setSndZoneGenerator
+	rStageInfo::getSndZoneTrigger
+	rStageInfo::setSndZoneTrigger
+	rStageInfo::getDTI
+	rStageInfo::getExt
+
+
+----
+
+'''
+
+===  ext: LOT => arcPath: scr\st*\etc\st*_*m*n_s*.lot (x25567); it looks like layouts are an important part of building areas
+
+[source]
+----
+
+rLayout
+	struct __cppobj __attribute__((aligned(8))) rLayout : cResource
+	  rLayout::SetInfo *mpArray;
+	  u8 mIndex[256];
+	  u32 mSetInfoNeedNums[22];
+	  void *mpSetInfoBuffer;
+	  MtArray mSetInfoSingleNewArray;
+	  rLayout::TYPE mLotType;
+	  nLayout::stLayoutID mLayoutID;
+	  nLayout::stSplitID mSplitID;
+	enum rLayout::TYPE : __int32
+	  TYPE_SCR = 0x0,
+	  TYPE_PLAN = 0x1,
+	  TYPE_ENEMY = 0x2,
+	  TYPE_NPC = 0x3,
+	  TYPE_TARGET = 0x4,
+	  TYPE_NUM = 0x5,
+rLayout::SetInfo
+	struct __cppobj rLayout::SetInfo : MtObject
+	  s32 mID;
+	  cSetInfo *mpInfo;
+rLayout::SetInfoBuffer
+	struct rLayout::SetInfoBuffer
+	  cSetInfoEnemy *pSetInfoEnemy;
+	  cSetInfoNpc *pSetInfoNpc;
+	  cSetInfoGeneralPoint *pSetInfoGeneralPoint;
+	  cSetInfoOm *pSetInfoOm;
+	  cSetInfoOmBoard *pSetInfoOmBoard;
+	  cSetInfoOmBowlOfLife *pSetInfoOmBowlOfLife;
+	  cSetInfoOmCtrl *pSetInfoOmCtrl;
+	  cSetInfoOmDoor *pSetInfoOmDoor;
+	  cSetInfoOmElfSW *pSetInfoOmElfSW;
+	  cSetInfoOmFall *pSetInfoOmFall;
+	  cSetInfoOmGather *pSetInfoOmGather;
+	  cSetInfoOmTreasureBox *pSetInfoOmTreasureBox;
+	  cSetInfoOmHakuryuu *pSetInfoOmHakuryuu;
+	  cSetInfoOmHeal *pSetInfoOmHeal;
+	  cSetInfoOmLadder *pSetInfoOmLadder;
+	  cSetInfoOmLever *pSetInfoOmLever;
+	  cSetInfoOmNav *pSetInfoOmNav;
+	  cSetInfoOmRange *pSetInfoOmRange;
+	  cSetInfoOmText *pSetInfoOmText;
+	  cSetInfoOmWall *pSetInfoOmWall;
+	  cSetInfoOmWarp *pSetInfoOmWarp;
+	  cSetInfoOmBadStatus *pSetInfoOmBadStatus;
+	  MtArray *pSetInfoSingleNewArray;
+	  u32 AvailNums[22];
+
+
+----
+
+'''
+
+===  ext: GPL => arcPath: scr\st*\etc\st*_s.gpl (x3354)
+
+[source]
+----
+
+rLayoutGroupParamList
+	struct __cppobj rLayoutGroupParamList : cResource
+	  u32 mGroupList[512];
+	  u32 mGroupNum;
+	  cGroupParam *mpGroupParamBuff;
+	  nLayoutGroupParam::NativeAllocInfo mAllocInfo;
+cGroupParam
+	struct __cppobj cGroupParam : MtObject
+	  MtArray mLayoutDataList;
+	  cGroupParam::$6C7D54FCBDDAA49A8719FD877E9B9C87 _anon_0;
+	  cGroupParam::stLoadCondition mLoadCondition;
+	  cGroupParam::$FAD8F0059ACDAEC1D363C9539746D397 _anon_1;
+	  cGroupParam::GuardData mGuardData;
+	  u32 mLoadStageNo;
+	  u32 mLoadVersionNo;
+	  cGroupParam::stSetCondition mSetCondition;
+	  MtTypedArray<AreaHitShape> mAreaHitShapeList;
+	  MtVector3 mMarkerPos;
+	  MtVector3 mPartsOffset;
+	  u32 mLayer;
+	  __attribute__((aligned(16))) MtSphere mLoadArea;
+	  bool mIsLoadLotRes;
+	  bool mIsKillAreaInside;
+	  cGroupParam::stDeleteCondition mDeleteCondition;
+	  MtTypedArray<cGroupParam::cLifeArea> mLifeAreaArray;
+	  cGroupParam::KILL_AREA_TYPE mKillAreaType;
+	  MtTypedArray<AreaHitShape> mKillAreaList;
+	  MtTypedArray<cAreaHit> mAreaHitList;
+	  cGroupParam::$35CE81FB48026E11FDAE13B7D9EC1E36 _anon_2;
+	  u32 mAlivePriorityCnt;
+	  u32 mAreaHitUseCount;
+	  bool mIsDieStageBoss;
+	  MtTypedArray<cGroupParam::cID> mLayoutIDArray;
+	  MtArray mSetInfoList;
+	  u32 mRandomSeed;
+	  bool mIsRequestList;
+	  bool mIsSetupList;
+	  bool mIsResetList;
+	  MtArray mResetContextList;
+	  u8 mDriftType;
+	  u32 mSubGroupRequestBit;
+	  u32 mSubGroupSetupBit;
+	  MtArray mDropItemList;
+	  bool mIsRequestDrop;
+	  bool mIsSetupDrop;
+	  nDDOUtility::cArray<CNamedEnemyParamClient,5> mNameEnemyParams;
+	  f32 mResetTimer;
+	  bool mIsDestroy;
+	  u32 mGroupQuestId;
+	enum cGroupParam::KILL_AREA_TYPE : __int32
+	  KILL_AREA_ALL = 0x0,
+	  KILL_AREA_SHAPE = 0x1,
+	enum cGroupParam::DROP_TYPE : __int32
+	  SET_TYPE_DROP = 0x0,
+	  SET_TYPE_AREA = 0x1,
+	enum cGroupParam::$7EF64FB26C9238F2DED649EB0AF04AB0 : __int32
+	  OM_DRIFT_NONE = 0x0,
+	  OM_DRIFT_EXIST = 0x1,
+	  OM_DRIFT_NOT_EXIST = 0x2,
+	enum cGroupParam::$CF6EC2446F1F12790F1FC2AB10AA0CDE : __int32
+	  INVALID_NONE = 0x0,
+	  INVALID_DEMO_LOT = 0x1,
+	  INVALID_KILL_AREA = 0x2,
+	  INVALID_SIMPLE_EV = 0x4,
+	  INVALID_RESET = 0x8,
+	  INVALID_LAYOUT = 0x10,
+	  INVALID_RAND = 0x20,
+	  INVALID_STAGE = 0x40,
+	  INVALID_VERSION = 0x80,
+	  INVALID_OMIT = 0x100,
+cGroupParam::EmSetInfo
+	struct __cppobj cGroupParam::EmSetInfo : MtObject
+	  CDataStageLayoutEnemyPresetEnemyInfoClient mPresetInfo;
+	  u32 mHmRandom;
+	  u32 mMontageRandom;
+	  f32 mRepopTimer;
+	  u32 mSubGroupId;
+	  u32 mLayerNo;
+	  s32 mTblIndex;
+	  bool mIsWaitGather;
+	  u32 mOmUID;
+CDataStageLayoutEnemyPoint
+	struct __cppobj __attribute__((aligned(4))) CDataStageLayoutEnemyPoint : CPacketDataBase
+	  u32 m_ulID;
+	  u8 m_ucType;
+	  u8 m_ucSubGroupID;
+	typedef MtTypedArray<CDataStageLayoutEnemyPoint> StageLayoutEnemyPointVec;
+	CDataStageLayoutEnemyPoint::getDTI
+	CDataStageLayoutEnemyPoint::MyDTI::newInstance
+cLayoutSet
+	struct __cppobj __attribute__((aligned(8))) cLayoutSet : MtObject
+	  rLayout *mpRsrc;
+	  bool mIsNoSet;
+	  bool mIsAutoSet;
+	  bool mIsBlocking;
+	  bool mIsRsrcUsage;
+	  bool mIsSetup;
+	  bool mIsDeleted;
+	  bool mIsAutoSetComplete;
+	  bool mUnitSetResourceComplete;
+	  bool mUnitScrollSbcComplete;
+	  s32 mAreaNo;
+	  MtArray mUnitArray;
+	  MtTypedArray<cLayoutSet::cUnitData> mUnitDataArray;
+	  MtString mUnitName;
+	  cGroupParam *mpGroupParam;
+	  u32 mAreaHitBit;
+	  u32 mSubGroupBit;
+	  u32 mAppearBit;
+CDataStageLayoutEnemyGroupPreset
+	struct __cppobj __attribute__((aligned(8))) CDataStageLayoutEnemyGroupPreset : CPacketDataBase
+	  u32 m_ulPresetID;
+	  u32 m_ulQuestLayoutFlagID;
+	  u32 m_ulQuestID;
+	  u32 m_ulSetConditionTimesId;
+	  u32 m_ulSetConditionWeathersId;
+	  u32 m_ulSetConditionMoonsId;
+	  u32 m_ulSetConditionMinAreaRank;
+	  u32 m_ulProb;
+CDataStageLayoutEnemyGroup
+	struct __cppobj __attribute__((aligned(8))) CDataStageLayoutEnemyGroup : CPacketDataBase
+	  u32 m_ulGroupID;
+	  u32 m_ulAreaID;
+	  StageLayoutEnemyPointVec m_PointList;
+	  StageLayoutEnemyGroupPresetVec m_PresetList;
+	  CGatheringEnemyLinkData m_GatherLink;
+	  b8 m_bIsTraningGroup;
+
+
+----
+
+'''
+
+== Classes of interest
+
+* cStageCtrl
+* CDataStageLayoutEnemyPresetEnemyInfoClient
+* CDataLayoutEnemyData
+* cLayoutSetEnemy
+* CDataStageLayoutID
+* CDataGatheringEnemySetData
+* CDataGatheringEnemyLinkData

@@ -1,0 +1,17 @@
+Wireshark Filters
+
+login filter
+data.len eq 98 && tcp.port eq 52100 && tcp.window_size eq 130560
+
+server_select filter: 
+data.len eq 98 && tcp.port eq 52000 && tcp.window_size eq 130560
+
+game filter:
+data.len eq 98 && tcp.port eq 52000 && tcp.window_size eq 65792
+
+Alternative:
+frame.len eq 360
+-> find sequence 360 -> 54 > 392 -> 152
+sequence #1 => login
+sequence #2 => server_select
+sequence #3 => game
