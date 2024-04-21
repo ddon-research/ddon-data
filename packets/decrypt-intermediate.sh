@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-for f in $(realpath decrypted_intermediate/*); do
+for f in $(realpath decrypted_intermediate/*.yaml); do
 	if [[ $f =~ (stream[0-9]+).*tcp-stream-([0-9]+) ]]; then
 		export streamName="${BASH_REMATCH[1]}"
 		export tcpStreamNumber="${BASH_REMATCH[2]}"
@@ -9,7 +9,7 @@ for f in $(realpath decrypted_intermediate/*); do
 		echo "file=$f"
 		echo "streamName=$streamName, tcpStreamNumber=$tcpStreamNumber, decryptionKey=$decryptionKey"
 		
-		./Arrowgene.Ddon.Cli packet "${f}" "${decryptionKey}"
+		./Arrowgene.Ddon.Cli packet --utf8-dump "${f}" "${decryptionKey}"
 	fi
 done
 
