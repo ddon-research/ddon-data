@@ -9,7 +9,7 @@ for f in $(realpath decrypted_intermediate/*.yaml); do
 		echo "file=$f"
 		echo "streamName=$streamName, tcpStreamNumber=$tcpStreamNumber, decryptionKey=$decryptionKey"
 		
-		./Arrowgene.Ddon.Cli packet --utf8-dump "${f}" "${decryptionKey}"
+		./Arrowgene.Ddon.Cli packet --utf8-dump "${f}" --key="${decryptionKey}"
 	fi
 done
 
