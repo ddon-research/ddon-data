@@ -1,0 +1,40 @@
+:toc:
+:toclevels: 1
+:toc-placement!:
+
+= How to extract images from the DDON client files
+
+toc::[]
+
+== Prerequisites
+
+* Ensure you have an unpacked DDON client and ensure it contains the `native*/*rom` folder structure
+** `nativePS3/ps3_rom` (PS3)
+** `nativePC/rom` (PC)
+** `nativePS4/ps4_rom` (PS4)
+* Ensure you have the http://www.fluffyquack.com/tools/[ARCtool] by Fluffy Quack which supports ARC -> TEX  extraction
+* Ensure you have https://imagemagick.org/script/download.php[ImageMagick] which supports DDS -> PNG conversion
+
+== Steps
+
+1. Find a suitable "root" directory from which you want to start extracting all textures from, e.g. `rom/ui`
+2. Recursively extract TEX & DDS files via ARCtool
+** Example: Windows, Git Bash, Drive `D:`
++
+[source,bash]
+----
+for file in $(find "$(pwd | sed 's/\/d/D:/')" -type f -name '*.arc'); do "/d/research/ARCtool/ARCtool.exe" -ddo -texRE6 -alwayscomp -pc -v 7 "$file"; done;
+----
+3. Recursively convert DDS to PNG via ImageMagick
+** Example 1: Windows, Git Bash, Drive `D:`
++
+[source,bash]
+----
+for file in $(find "$(pwd | sed 's/\/d/D:/')" -type f -name '*.dds'); do magick convert $file "$(dirname "$file")/$(basename "$file" .dds).png"; done
+----
+** Example 2: Additionally create an `_png` folder for each folder
++
+[source,bash]
+----
+for d in $(find "$(pwd | sed 's/\/d/D:/')" -maxdepth 1 -mindepth 1 -type d); do (mkdir -p "${d}_png"; for file in $(find ${d} -type f -name '*.dds'); do magick convert "$file" "${d}_png/$(basename "$file" .dds).png"; done;) done;
+----
