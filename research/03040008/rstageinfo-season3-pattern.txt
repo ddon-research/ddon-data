@@ -1,5 +1,3 @@
-#include <std/core.pat>
-
 struct MtVector3
 {
   float x;
@@ -7,187 +5,212 @@ struct MtVector3
   float z;
 };
 
-struct rStageInfo
+struct MtAABB
 {
-  //s32 mStageNo;
-  
-  //char SchedulerModelType[];
-  //if(SchedulerModelType[0] > 1)
-	char SchedulerModelPath[];
-  
-  
-  char SchedulerFilterType[]; 
-  if(SchedulerFilterType[0]>1)
-    char SchedulerFilterPath[];
+  MtVector3 minpos;
+  MtVector3 maxpos;
+};
 
-  //char CollisionScrSbcType1[];
-  //if(CollisionScrSbcType1[0]>1)
-    char CollisionScrSbcPath1[];
- 
-  //char CollisionEffSbcType1[];
-  //if(CollisionEffSbcType1[0]>1)
-    char CollisionEffSbcPath1[];
-  
-  //char CollisionScrSbcType2[];
-  //if(CollisionScrSbcType2[0]>1)
-    char CollisionScrSbcPath2[];
-  
-  //char CollisionEffSbcType2[];
-  //if(CollisionEffSbcType2[0]>1)
-      char CollisionEffSbcPath2[];
-  
-  //char CollisionScrSbcType3[];
-  //if(CollisionScrSbcType3[0]>1)
-      char CollisionScrSbcPath3[];
-  
-  //char CollisionEffSbcType3[];
-  //if(CollisionEffSbcType3[0]>1)
-      char CollisionEffSbcPath3[];
-  
-  char NavigationMeshNaviMeshType[];
-  if(NavigationMeshNaviMeshType[0]>1)
-      char NavigationMeshNaviMeshPath[];
-  
-  //char AIPathConsecutiverWayPointType[];
-  //if(AIPathConsecutiverWayPointType[0]>1)
-  //  char AIPathConsecutiverWayPointPath[];
+struct MtColor
+{
+  u8 r;
+  u8 g;
+  u8 b;
+  u8 a;
+};
 
-  char OccluderExOCCType[];
-  if(OccluderExOCCType[0]>1)
-      char OccluderExOCCPath[];
+
+struct cResPathEx
+{
+	u64 ResId;
+};
+
+struct rStageCustom_Area
+{
+  s8 mAreaNo;
+  u8 mFilterNo;
+  s32 mGroupNo;
+};
+
+struct rStageCustomParts_Info
+{
+  char mModel[];
+  char mScrSbc1[];
+  char mEffSbc1[];  
+  char mScrSbc2[];
+  char mEffSbc2[];  
+  char mScrSbc3[];
+  char mEffSbc3[];
+  char mLight[];
+  char mNaviMesh[];
+  char mEpv[];
+  char mOccluder[];
   
-  char StartPosStartPosType[];
-  if(StartPosStartPosType[0]>1)
-      char StartPosStartPosPath[];
-  
-  //char CameraParamListCmrPrmLstFldType[];
-  //if(CameraParamListCmrPrmLstFldType[0]>1)
-  //    char CameraParamListCmrPrmLstFldPath[];
-  
-  //char CameraParamListCmrPrmLstEvtType[];
-  //if(CameraParamListCmrPrmLstEvtType[0]>1)  
-    char CameraParamListCmrPrmLstEvtPath[];
-  
-  MtVector3 mPos;
-  float mAng;
-  
-  u32 mSceLoadFlag;  
-  u32 mFlag;
-  
-  //char WeatherStageInfoResourceType[];
-  //if(WeatherStageInfoResourceType[0]>1)
-      char WeatherStageInfoResourcePath[];
-      
-  //char WeatherParamInfoTblType[];
-  //if(WeatherParamInfoTblType[0]>1)
-    char WeatherParamInfoTblPath[];
-    
-  //char WeatherParamEfcInfoType[];
-  //if(WeatherParamEfcInfoType[0]>1) 
-	char WeatherParamEfcInfoPath[];
-  
-  //char WeatherEffectParamType[];
-  //if(WeatherEffectParamType[0]>1)
-	char WeatherEffectParamPath[];
-  
-  char SchedulerStageLightSchdlType[];  
-  if(SchedulerStageLightSchdlType[0]>1)
-	char SchedulerStageLightSchdlPath[];  
-  
-  //char EffectProviderType[];
-  //if(EffectProviderType[0]>1)
-	char EffectProviderPath[];
-      
+  u16 mAreaNo;
+  u16 mType;
+  u32 mSize;
+  float mOffsetZ;
   s32 mEpvIndexAlways;
   s32 mEpvIndexDay;
   s32 mEpvIndexNight;
+  MtColor mColor;
+
+  cResPathEx mEfcColorZone;
+  cResPathEx mEfcCtrlZone;
+  cResPathEx mIndoorZoneScr;
+  cResPathEx mIndoorZoneEfc;
+  cResPathEx mLightAndFogZone;
+  cResPathEx mSoundAreaInfo;
+  cResPathEx mZoneUnitCtrl[3];
+  cResPathEx mZoneStatus;
   
-  char ZoneListType0[];
-  if(ZoneListType0[0]>1)
-	char ZoneListPath0[];
-  
-  char ZoneListType1[];
-  if(ZoneListType1[0]>1)
-	char ZoneListPath1[];
-  
-  char ZoneListType2[];
-  if(ZoneListType2[0]>1)
-	char ZoneListPath2[];
-  
-  char ZoneListType3[];
-  if(ZoneListType3[0]>1)
-	char ZoneListPath3[];
-  
-  char ZoneIndoorScrType[];
-  if(ZoneIndoorScrType[0]>1)
-	char ZoneIndoorScrPath[];
-  
-  char ZoneIndoorEfcType[];
-  if(ZoneIndoorEfcType[0]>1)
-	char ZoneIndoorEfcPath[];
-      
-  float mDayNightLightChgFrame;
-  float mDayNightFogChgFrame;
+  //char mComment[];
+};
 
-  s32 mSkyInfiniteLightGroupType;
-  
-  char ZoneUnitCtrlType0[];
-  if(ZoneUnitCtrlType0[0]>1)
-	char ZoneUnitCtrlPath0[];
+struct nZone_ShapeInfoBase
+{
+  float mDecay;
+  bool mIsNativeData;
+};
 
-  char ZoneUnitCtrlType1[];
-  if(ZoneUnitCtrlType1[0]>1)
-	char ZoneUnitCtrlPath1[];
+struct AreaHitShape
+{
+  char mName[];
+  float mCheckAngle;
+  float mCheckRange;
+  float mCheckToward;
+  bool mAngleFlag;
+  bool mTowardFlag;
+  bool mIsDeleteZone;
+  nZone_ShapeInfoBase mpZone;//*
+  MtAABB mZoneBoundingBox;
+};
 
-  char ZoneUnitCtrlType2[];
-  if(ZoneUnitCtrlType2[0]>1)
-	char ZoneUnitCtrlPath2[];
-  
-  char ZoneStatusType[];
-  if(ZoneStatusType[0]>1)
-	char ZoneStatusPath[];
 
-  char SoundZoneType0[];
-  if(SoundZoneType0[0]>1)
-	char SoundZonePath0[];
-  
-  char SoundZoneType1[];
-  if(SoundZoneType1[0]>1)
-	char SoundZonePath1[];
-  
-  char SoundZoneType2[];
-  if(SoundZoneType2[0]>1)
-	char SoundZonePath2[];
+struct rStageCustomPartsEx_AreaParam
+{
+  bool mUseAllFilter;
+  s32 mFilterNo;
+  s32 mPatternNo;
+  u32 num;
+  AreaHitShape mAreaHitShapeList[1];
+//  char mComment[];
+};
 
-  float mEqLength[4];
+struct rStageCustomPartsEx_InfoEx : rStageCustomParts_Info
+{
+  u32 mAddVersion;
+  u32 num;
+  rStageCustomPartsEx_AreaParam mAreaParamList[1];
+};
 
-  //char SoundAreaInfoSoundInfoType[];
-  //if(SoundAreaInfoSoundInfoType[0]>1)
-	char SoundAreaInfoSoundInfoPath[];
 
-  //char SchedulerEffectSchdlType[];
-  //if(SchedulerEffectSchdlType[0]>1)
-	char SchedulerEffectSchdlPath[];
+struct rStageCustomParts_Filter
+{
+  char mFilter[];
+};
 
-  //char SchedulerLanternSchdlType[];
-  //if(SchedulerLanternSchdlType[0]>1)
-	char SchedulerLanternSchdlPath[];
 
-  bool mIsCraftStage;
+struct rStageCustomParts_Param
+{
+  float mDelta;
+  float mOffsetY;
+};
 
-  char LocationDataLocationType[];
-  if(LocationDataLocationType[0]>1)
-	char LocationDataLocationPath[];
-
-  float mGrassVisiblePercentMulValue;
-  float mGrassFadeBeginDistance;
-  float mGrassFadeEndDistance;
-
-  u16 mPerformanceFlag;
-    char mAnotherMapName[];
-  bool unknown;
-
+struct rStageCustomParts
+{
+  rStageCustomParts_Param mParam;
+  u32 mArrayInfoNum;  
+  rStageCustomParts_Info mpArrayInfo[mArrayInfoNum];//*
+  u32 mArrayFilterNum;
+  rStageCustomParts_Filter mpArrayFilter[mArrayFilterNum];//*
 
 };
 
-rStageInfo rstageinfo_at_0x08 @ 0x08;
+struct rStageCustomPartsEx_Pattern
+{
+  s32 mColorFogNo;
+  s32 mHemiSphLightNo;
+  s32 mInfiLightNo;
+  char mComment[];
+};
+
+struct cDayNightColorFogParam
+{
+  float mHeightStart;
+  float mHeightEnd;
+  float mHeightDensity;
+  MtVector3 mHeightColor;
+  float mStart;
+  float mEnd;
+  float mDensity;
+  MtVector3 mColor;
+  float mDiffuseBlendFactor;
+  bool mIsEnable;
+  float mSupplementFrame;
+  s32 mId;
+  u32 mKind;
+};
+
+struct rStageCustomPartsEx_ColorFog
+{
+  cDayNightColorFogParam mBase;
+  cDayNightColorFogParam mNight;
+  char mComment[];
+};
+
+struct rStageCustomPartsEx_HemiSphLight
+{
+  MtVector3 mLightColor;
+  MtVector3 mRevColor;
+  MtVector3 mNightColor;
+  MtVector3 mNightRevColor;
+  char mComment[];
+};
+
+struct rStageCustomPartsEx_InfiLight
+{
+  MtVector3 mLightColor;
+  MtVector3 mNightColor;
+  char mComment[];
+};
+
+
+
+struct rStageCustomPartsEx
+{
+  rStageCustomParts_Param mParam;
+  u32 mArrayInfoNum;  
+  rStageCustomParts_Info mpArrayInfo[1];//*
+  //rStageCustomPartsEx_AreaParam AreaParam[1];
+
+  //rStageCustom_Area mpArrayArea[mArrayInfoNum];//*
+  //u32 mArrayFilterNum;
+  //rStageCustomParts_Filter mpArrayFilter[mArrayFilterNum];//*
+
+
+  //float mChangeFrame;
+
+  //u32 mArrayPatternNum;
+  //rStageCustomPartsEx_Pattern mpArrayPattern;
+  //u32 mArrayColorFogNum;  
+  //rStageCustomPartsEx_ColorFog mpArrayColorFog;
+  //u32 mArrayHemiSphLightNum;  
+ // rStageCustomPartsEx_HemiSphLight mpArrayHemiSphLight;
+ // u32 mArrayInfiLightNum;
+ // rStageCustomPartsEx_InfiLight mpArrayInfiLight;
+};
+
+struct rStageCustom
+{
+  //rStageCustomParts mprParts;//*
+  char PartsType[];
+  char PartsPath[];
+
+  u32 mArrayAreaNum;  
+  rStageCustom_Area mpArrayArea[mArrayAreaNum];//*
+
+};
+
+
+rStageCustomPartsEx rstagecustompartsex_at_0x08 @ 0x08;
