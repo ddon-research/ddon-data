@@ -1,0 +1,216 @@
+struct MtVector3
+{
+  float x;
+  float y;
+  float z;
+};
+
+struct MtAABB
+{
+  MtVector3 minpos;
+  MtVector3 maxpos;
+};
+
+struct MtColor
+{
+  u8 r;
+  u8 g;
+  u8 b;
+  u8 a;
+};
+
+
+struct cResPathEx
+{
+	u64 ResId;
+};
+
+struct rStageCustom_Area
+{
+  s8 mAreaNo;
+  u8 mFilterNo;
+  s32 mGroupNo;
+};
+
+struct rStageCustomParts_Info
+{
+  char mModel[];
+  char mScrSbc1[];
+  char mEffSbc1[];  
+  char mScrSbc2[];
+  char mEffSbc2[];  
+  char mScrSbc3[];
+  char mEffSbc3[];
+  char mLight[];
+  char mNaviMesh[];
+  char mEpv[];
+  char mOccluder[];
+  
+  u16 mAreaNo;
+  u16 mType;
+  u32 mSize;
+  float mOffsetZ;
+  s32 mEpvIndexAlways;
+  s32 mEpvIndexDay;
+  s32 mEpvIndexNight;
+  MtColor mColor;
+
+  cResPathEx mEfcColorZone;
+  cResPathEx mEfcCtrlZone;
+  cResPathEx mIndoorZoneScr;
+  cResPathEx mIndoorZoneEfc;
+  cResPathEx mLightAndFogZone;
+  cResPathEx mSoundAreaInfo;
+  cResPathEx mZoneUnitCtrl[3];
+  cResPathEx mZoneStatus;
+  
+  //char mComment[];
+};
+
+struct nZone_ShapeInfoBase
+{
+  float mDecay;
+  bool mIsNativeData;
+};
+
+struct AreaHitShape
+{
+  char mName[];
+  float mCheckAngle;
+  float mCheckRange;
+  float mCheckToward;
+  bool mAngleFlag;
+  bool mTowardFlag;
+  bool mIsDeleteZone;
+  nZone_ShapeInfoBase mpZone;//*
+  MtAABB mZoneBoundingBox;
+};
+
+
+struct rStageCustomPartsEx_AreaParam
+{
+  bool mUseAllFilter;
+  s32 mFilterNo;
+  s32 mPatternNo;
+  u32 num;
+  AreaHitShape mAreaHitShapeList[1];
+//  char mComment[];
+};
+
+struct rStageCustomPartsEx_InfoEx : rStageCustomParts_Info
+{
+  u32 mAddVersion;
+  u32 num;
+  rStageCustomPartsEx_AreaParam mAreaParamList[1];
+};
+
+
+struct rStageCustomParts_Filter
+{
+  char mFilter[];
+};
+
+
+struct rStageCustomParts_Param
+{
+  float mDelta;
+  float mOffsetY;
+};
+
+struct rStageCustomParts
+{
+  rStageCustomParts_Param mParam;
+  u32 mArrayInfoNum;  
+  rStageCustomParts_Info mpArrayInfo[mArrayInfoNum];//*
+  u32 mArrayFilterNum;
+  rStageCustomParts_Filter mpArrayFilter[mArrayFilterNum];//*
+
+};
+
+struct rStageCustomPartsEx_Pattern
+{
+  s32 mColorFogNo;
+  s32 mHemiSphLightNo;
+  s32 mInfiLightNo;
+  char mComment[];
+};
+
+struct cDayNightColorFogParam
+{
+  float mHeightStart;
+  float mHeightEnd;
+  float mHeightDensity;
+  MtVector3 mHeightColor;
+  float mStart;
+  float mEnd;
+  float mDensity;
+  MtVector3 mColor;
+  float mDiffuseBlendFactor;
+  bool mIsEnable;
+  float mSupplementFrame;
+  s32 mId;
+  u32 mKind;
+};
+
+struct rStageCustomPartsEx_ColorFog
+{
+  cDayNightColorFogParam mBase;
+  cDayNightColorFogParam mNight;
+  char mComment[];
+};
+
+struct rStageCustomPartsEx_HemiSphLight
+{
+  MtVector3 mLightColor;
+  MtVector3 mRevColor;
+  MtVector3 mNightColor;
+  MtVector3 mNightRevColor;
+  char mComment[];
+};
+
+struct rStageCustomPartsEx_InfiLight
+{
+  MtVector3 mLightColor;
+  MtVector3 mNightColor;
+  char mComment[];
+};
+
+
+
+struct rStageCustomPartsEx
+{
+  rStageCustomParts_Param mParam;
+  u32 mArrayInfoNum;  
+  rStageCustomParts_Info mpArrayInfo[1];//*
+  //rStageCustomPartsEx_AreaParam AreaParam[1];
+
+  //rStageCustom_Area mpArrayArea[mArrayInfoNum];//*
+  //u32 mArrayFilterNum;
+  //rStageCustomParts_Filter mpArrayFilter[mArrayFilterNum];//*
+
+
+  //float mChangeFrame;
+
+  //u32 mArrayPatternNum;
+  //rStageCustomPartsEx_Pattern mpArrayPattern;
+  //u32 mArrayColorFogNum;  
+  //rStageCustomPartsEx_ColorFog mpArrayColorFog;
+  //u32 mArrayHemiSphLightNum;  
+ // rStageCustomPartsEx_HemiSphLight mpArrayHemiSphLight;
+ // u32 mArrayInfiLightNum;
+ // rStageCustomPartsEx_InfiLight mpArrayInfiLight;
+};
+
+struct rStageCustom
+{
+  //rStageCustomParts mprParts;//*
+  char PartsType[];
+  char PartsPath[];
+
+  u32 mArrayAreaNum;  
+  rStageCustom_Area mpArrayArea[mArrayAreaNum];//*
+
+};
+
+
+rStageCustomPartsEx rstagecustompartsex_at_0x08 @ 0x08;
