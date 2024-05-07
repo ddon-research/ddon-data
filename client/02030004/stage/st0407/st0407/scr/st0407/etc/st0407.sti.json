@@ -113,35 +113,12 @@
   "PerformanceFlag" : 65391,
   "AnotherMapName" : "",
   "flag" : 16,
-  "dayNightLightChgFrame" : 20.0,
-  "schedulerLanternSchdl" : {
+  "grassVisiblePercentMulValue" : 1.0,
+  "schedulerStageLightSchdl" : {
     "Type" : "rScheduler",
-    "Path" : "effect\\sdl\\la\\s_la_cm"
+    "Path" : "scr\\rm\\rm107\\sdl\\rm107_l00"
   },
-  "weatherStageInfo" : {
-    "Type" : "rWeatherStageInfo",
-    "Path" : "scr\\sky\\w_st_def"
-  },
-  "navigationMeshNaviMesh" : {
-    "Type" : "rNavigationMesh",
-    "Path" : "scr\\rm\\rm107\\etc\\rm107_nav"
-  },
-  "collisionScrSbc0" : {
-    "Type" : "rCollision",
-    "Path" : "scr\\rm\\rm107\\collision\\rm107_00_h00"
-  },
-  "startPosStartPos" : {
-    "Type" : "rStartPos",
-    "Path" : "scr\\st0407\\etc\\st0407"
-  },
-  "dayNightFogChgFrame" : 20.0,
-  "skyInfiniteLightGroup" : 2,
-  "schedulerEffectSchdl" : {
-    "Type" : "rScheduler",
-    "Path" : "effect\\sdl\\li\\s_li_cm"
-  },
-  "grassFadeBeginDistance" : 3000.0,
-  "grassFadeEndDistance" : 5000.0,
+  "stageNo" : 407,
   "weatherParamInfoTbl" : {
     "Type" : "rWeatherParamInfoTbl",
     "Path" : "scr\\sky\\w_param_def_noSunny_s"
@@ -150,11 +127,46 @@
     "Type" : "rWeatherParamEfcInfo",
     "Path" : "effect\\wep\\w_st0407"
   },
+  "dayNightLightChgFrame" : 20.0,
+  "grassFadeEndDistance" : 5000.0,
+  "weatherStageInfo" : {
+    "Type" : "rWeatherStageInfo",
+    "Path" : "scr\\sky\\w_st_def"
+  },
+  "skyInfiniteLightGroup" : 2,
+  "dayNightFogChgFrame" : 20.0,
+  "startPosStartPos" : {
+    "Type" : "rStartPos",
+    "Path" : "scr\\st0407\\etc\\st0407"
+  },
   "collisionEffSbc0" : {
     "Type" : "rCollision",
     "Path" : "scr\\rm\\rm107\\collision\\rm107_00_e00"
   },
-  "epvIndexNight" : 2,
+  "schedulerEffectSchdl" : {
+    "Type" : "rScheduler",
+    "Path" : "effect\\sdl\\li\\s_li_cm"
+  },
+  "collisionScrSbc0" : {
+    "Type" : "rCollision",
+    "Path" : "scr\\rm\\rm107\\collision\\rm107_00_h00"
+  },
+  "navigationMeshNaviMesh" : {
+    "Type" : "rNavigationMesh",
+    "Path" : "scr\\rm\\rm107\\etc\\rm107_nav"
+  },
+  "grassFadeBeginDistance" : 3000.0,
+  "schedulerLanternSchdl" : {
+    "Type" : "rScheduler",
+    "Path" : "effect\\sdl\\la\\s_la_cm"
+  },
+  "performanceFlag" : 65391,
+  "effectProvider" : {
+    "Type" : "rEffectProvider",
+    "Path" : "effect\\epv\\st\\st\\st0407\\p_st0407_00"
+  },
+  "epvIndexDay" : 1,
+  "sceLoadFlag" : 0,
   "zoneUnitCtrl" : [ {
     "Type" : "rZone",
     "Path" : "scr\\rm\\rm107\\etc\\rm107_om00"
@@ -165,18 +177,20 @@
     "Type" : "rZone",
     "Path" : "scr\\rm\\rm107\\etc\\rm107_scr00"
   } ],
-  "eqLength" : [ 1200.0, 2000.0, 2800.0, 4000.0 ],
-  "performanceFlag" : 65391,
-  "anotherMapName" : "",
-  "effectProvider" : {
-    "Type" : "rEffectProvider",
-    "Path" : "effect\\epv\\st\\st\\st0407\\p_st0407_00"
+  "epvIndexAlways" : 0,
+  "zoneIndoorScr" : {
+    "Type" : "rZone",
+    "Path" : "scr\\rm\\rm107\\etc\\rm107_indoor00"
   },
   "locationData" : {
     "Type" : "rLocationData",
     "Path" : "scr\\st0407\\etc\\st0407"
   },
-  "epvIndexAlways" : 0,
+  "zoneList" : [ {
+    "Type" : "rZone",
+    "Path" : "effect\\zon\\st\\c_st0407_00"
+  }, null, null, null ],
+  "epvIndexNight" : 2,
   "soundZone" : [ {
     "Type" : "rZone",
     "Path" : "sound\\se\\st\\st0407\\occ_st0407"
@@ -187,36 +201,22 @@
     "Type" : "rZone",
     "Path" : "sound\\se\\st\\st0407\\tri_st0407"
   } ],
-  "epvIndexDay" : 1,
-  "schedulerModel" : {
-    "Type" : "rScheduler",
-    "Path" : "scr\\rm\\rm107\\sdl\\rm107_m00"
-  },
-  "sceLoadFlag" : 0,
+  "eqLength" : [ 1200.0, 2000.0, 2800.0, 4000.0 ],
+  "anotherMapName" : "",
   "soundAreaInfo" : {
     "Type" : "rSoundAreaInfo",
     "Path" : "sound\\etc\\st0407\\st0407"
   },
-  "zoneIndoorScr" : {
-    "Type" : "rZone",
-    "Path" : "scr\\rm\\rm107\\etc\\rm107_indoor00"
-  },
   "isCraftStage" : false,
-  "zoneList" : [ {
-    "Type" : "rZone",
-    "Path" : "effect\\zon\\st\\c_st0407_00"
-  }, null, null, null ],
-  "stageNo" : 407,
-  "ang" : 0.0,
+  "schedulerModel" : {
+    "Type" : "rScheduler",
+    "Path" : "scr\\rm\\rm107\\sdl\\rm107_m00"
+  },
   "pos" : {
     "X" : 0.0,
     "Y" : 0.0,
     "Z" : 0.0
   },
-  "schedulerStageLightSchdl" : {
-    "Type" : "rScheduler",
-    "Path" : "scr\\rm\\rm107\\sdl\\rm107_l00"
-  },
-  "grassVisiblePercentMulValue" : 1.0,
+  "ang" : 0.0,
   "fileSize" : 956
 }
