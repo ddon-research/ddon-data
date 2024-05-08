@@ -104,64 +104,90 @@
   "PerformanceFlag" : 65391,
   "AnotherMapName" : "",
   "flag" : 0,
+  "stageNo" : 210,
+  "ang" : 0.0,
+  "pos" : {
+    "X" : 0.0,
+    "Y" : 0.0,
+    "Z" : 0.0
+  },
   "grassVisiblePercentMulValue" : 0.5,
   "schedulerStageLightSchdl" : {
     "Type" : "rScheduler",
     "Path" : "scr\\lb\\lb010\\sdl\\lb010_l00"
   },
-  "stageNo" : 210,
-  "weatherParamInfoTbl" : {
-    "Type" : "rWeatherParamInfoTbl",
-    "Path" : "scr\\sky\\w_param_def_m"
-  },
-  "weatherParamEfcInfo" : {
-    "Type" : "rWeatherParamEfcInfo",
-    "Path" : "effect\\wep\\w_sky_def"
-  },
   "dayNightLightChgFrame" : 20.0,
-  "grassFadeEndDistance" : 5000.0,
-  "weatherStageInfo" : {
-    "Type" : "rWeatherStageInfo",
-    "Path" : "scr\\sky\\w_st_def"
-  },
-  "skyInfiniteLightGroup" : 2,
   "dayNightFogChgFrame" : 20.0,
-  "startPosStartPos" : {
-    "Type" : "rStartPos",
-    "Path" : "scr\\st0210\\etc\\st0210"
-  },
-  "collisionEffSbc0" : {
-    "Type" : "rCollision",
-    "Path" : "scr\\lb\\lb010\\collision\\lb010_00_e00"
-  },
-  "schedulerEffectSchdl" : {
+  "schedulerLanternSchdl" : {
     "Type" : "rScheduler",
-    "Path" : "effect\\sdl\\li\\s_li_cm"
+    "Path" : "effect\\sdl\\la\\s_la_cm"
   },
   "collisionScrSbc0" : {
     "Type" : "rCollision",
     "Path" : "scr\\lb\\lb010\\collision\\lb010_00_h00"
   },
+  "weatherStageInfo" : {
+    "Type" : "rWeatherStageInfo",
+    "Path" : "scr\\sky\\w_st_def"
+  },
+  "weatherParamEfcInfo" : {
+    "Type" : "rWeatherParamEfcInfo",
+    "Path" : "effect\\wep\\w_sky_def"
+  },
+  "grassFadeBeginDistance" : 3000.0,
   "navigationMeshNaviMesh" : {
     "Type" : "rNavigationMesh",
     "Path" : "scr\\lb\\lb010\\etc\\lb010_nav"
   },
-  "grassFadeBeginDistance" : 3000.0,
-  "schedulerLanternSchdl" : {
+  "schedulerEffectSchdl" : {
     "Type" : "rScheduler",
-    "Path" : "effect\\sdl\\la\\s_la_cm"
+    "Path" : "effect\\sdl\\li\\s_li_cm"
   },
-  "performanceFlag" : 65391,
-  "occluderExOCC" : {
-    "Type" : "rOccluderEx",
-    "Path" : "scr\\lb\\lb010\\etc\\st210"
+  "grassFadeEndDistance" : 5000.0,
+  "weatherParamInfoTbl" : {
+    "Type" : "rWeatherParamInfoTbl",
+    "Path" : "scr\\sky\\w_param_def_m"
   },
+  "collisionEffSbc0" : {
+    "Type" : "rCollision",
+    "Path" : "scr\\lb\\lb010\\collision\\lb010_00_e00"
+  },
+  "skyInfiniteLightGroup" : 2,
+  "startPosStartPos" : {
+    "Type" : "rStartPos",
+    "Path" : "scr\\st0210\\etc\\st0210"
+  },
+  "soundAreaInfo" : {
+    "Type" : "rSoundAreaInfo",
+    "Path" : "sound\\etc\\st0210\\st0210"
+  },
+  "zoneList" : [ {
+    "Type" : "rZone",
+    "Path" : "effect\\zon\\st\\c_st0210_00"
+  }, null, null, null ],
   "effectProvider" : {
     "Type" : "rEffectProvider",
     "Path" : "effect\\epv\\st\\st\\st0210\\p_st0210_00"
   },
   "epvIndexDay" : 1,
-  "sceLoadFlag" : 2,
+  "eqLength" : [ 1200.0, 2000.0, 2800.0, 4000.0 ],
+  "anotherMapName" : "",
+  "isCraftStage" : false,
+  "occluderExOCC" : {
+    "Type" : "rOccluderEx",
+    "Path" : "scr\\lb\\lb010\\etc\\st210"
+  },
+  "epvIndexAlways" : 0,
+  "epvIndexNight" : 2,
+  "schedulerModel" : {
+    "Type" : "rScheduler",
+    "Path" : "scr\\lb\\lb010\\sdl\\lb010_m00"
+  },
+  "performanceFlag" : 65391,
+  "zoneIndoorScr" : {
+    "Type" : "rZone",
+    "Path" : "scr\\lb\\lb010\\etc\\lb010_indoor00"
+  },
   "zoneUnitCtrl" : [ {
     "Type" : "rZone",
     "Path" : "scr\\lb\\lb010\\etc\\lb010_om00"
@@ -172,33 +198,7 @@
     "Type" : "rZone",
     "Path" : "scr\\lb\\lb010\\etc\\lb010_scr00"
   } ],
-  "epvIndexAlways" : 0,
-  "zoneIndoorScr" : {
-    "Type" : "rZone",
-    "Path" : "scr\\lb\\lb010\\etc\\lb010_indoor00"
-  },
-  "zoneList" : [ {
-    "Type" : "rZone",
-    "Path" : "effect\\zon\\st\\c_st0210_00"
-  }, null, null, null ],
-  "epvIndexNight" : 2,
   "soundZone" : [ null, null, null ],
-  "eqLength" : [ 1200.0, 2000.0, 2800.0, 4000.0 ],
-  "anotherMapName" : "",
-  "soundAreaInfo" : {
-    "Type" : "rSoundAreaInfo",
-    "Path" : "sound\\etc\\st0210\\st0210"
-  },
-  "isCraftStage" : false,
-  "schedulerModel" : {
-    "Type" : "rScheduler",
-    "Path" : "scr\\lb\\lb010\\sdl\\lb010_m00"
-  },
-  "pos" : {
-    "X" : 0.0,
-    "Y" : 0.0,
-    "Z" : 0.0
-  },
-  "ang" : 0.0,
+  "sceLoadFlag" : 2,
   "fileSize" : 843
 }
