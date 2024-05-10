@@ -1,16 +1,19 @@
-struct MtVector3{
+struct MtVector3
+{
   float x;
   float y;
   float z;
 };
-struct MtVector4{
+struct MtVector4
+{
   float x;
   float y;
   float z;
   float w;
 };
 
-struct MtFloat3{
+struct MtFloat3
+{
   float x;
   float y;
   float z;
@@ -27,10 +30,9 @@ struct MtOBB
   MtVector3 extent;
 };
 
-
-
-struct MtString{
- char string[];
+struct MtString
+{
+  char string[];
 };
 
 struct cSetInfoCoord544
@@ -80,9 +82,6 @@ struct cSetInfoNpc
   cSetInfoCharacter544 prnt;
 };
 
-
-
-
 struct rLayoutSetInfo
 {
   s32 mID;
@@ -113,9 +112,6 @@ struct cSetInfoEnemyV2
   u32 unknown;
   cSetInfoCharacter544 prnt;
 };
-
-
-
 
 struct cSetInfoOmOld
 {
@@ -175,11 +171,10 @@ struct cSetInfoOmUnknown30
   cSetInfoOmOld InfoOm;
 };
 
-
 struct cSetInfoOmUnknown46
 {
   u32 unknownStageNo;
-  u32 QuestId;  
+  u32 QuestId;
   u32 unknown1;
   u32 unknown2;
 
@@ -201,7 +196,6 @@ struct cSetInfoOmUnknown31
   cSetInfoOmOld InfoOm;
 };
 
-
 struct cSetInfoOmUnknown33
 {
   u32 unknown1;
@@ -211,7 +205,6 @@ struct cSetInfoOmUnknown33
 
   cSetInfoOmOld InfoOm;
 };
-
 
 struct cSetInfoOmUnknown34
 {
@@ -231,7 +224,6 @@ struct cSetInfoOmUnknown45
   cSetInfoOmOld InfoOm;
 };
 
-
 struct cSetInfoOmUnknown47
 {
   u32 unknown1;
@@ -241,13 +233,11 @@ struct cSetInfoOmUnknown47
   cSetInfoOmOld InfoOm;
 };
 
-
 struct cSetInfoOmUnknown48
 {
   u32 unknown;
   cSetInfoOmOld InfoOm;
 };
-
 
 struct cSetInfoOmUnknown51
 {
@@ -381,11 +371,11 @@ struct cSetInfoOmOldDoor
   u16 mKind1;
   u16 mGroup1;
   u16 mID1;
-  
+
   u16 mKind2;
   u16 mGroup2;
   u16 mID2;
-  
+
   u16 mKind3;
   u16 mGroup3;
   u16 mID3;
@@ -398,15 +388,15 @@ struct cSetInfoUnknown32
   u16 mKind1;
   u16 mGroup1;
   u16 mID1;
-  
+
   u16 mKind2;
   u16 mGroup2;
   u16 mID2;
-  
+
   u16 mKind3;
   u16 mGroup3;
   u16 mID3;
-  
+
   float Unknown1;
   float Unknown2;
   u32 Unknown3;
@@ -455,10 +445,10 @@ struct cSetInfoOmWarpNewV3
 
 struct SetInfoNum
 {
-  u32 numSetInfoEnemy; //e
-  u32 numSetInfoNpc; //n
-  u32 numSetInfoGeneralPoint; //t
-  u32 numSetInfoOm; //s
+  u32 numSetInfoEnemy;        // e
+  u32 numSetInfoNpc;          // n
+  u32 numSetInfoGeneralPoint; // t
+  u32 numSetInfoOm;           // s
   u32 numSetInfoOmBoard;
   u32 numSetInfoOmBowlOfLife;
   u32 numSetInfoOmCtrl;
@@ -482,21 +472,19 @@ struct SetInfoNum
 struct rLayout
 {
   SetInfoNum mSetInfoNeedNums;
-  
-  u32 arrayNum; 
-  
+
+  u32 arrayNum;
+
   rLayoutSetInfo h1;
-
 };
 
-struct rLayoutHeader{
-    u32 magicNumber;
-    u32 version;
-	rLayout layout;
+struct rLayoutHeader
+{
+  u32 magicNumber;
+  u32 version;
+  rLayout layout;
 };
 
+rLayoutHeader rlayoutheader_at_0x00 @0x00;
 
-rLayoutHeader rlayoutheader_at_0x00 @ 0x00;
-
-
-cSetInfoOmOld csetinfoomold_at_0x75 @ 0x75;
+cSetInfoOmOld csetinfoomold_at_0x75 @0x75;

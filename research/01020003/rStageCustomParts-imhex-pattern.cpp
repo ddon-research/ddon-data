@@ -5,7 +5,6 @@ struct MtVector3
   float z;
 };
 
-
 struct MtColor
 {
   u8 r;
@@ -25,16 +24,16 @@ struct rStageCustomParts_Info
 {
   char mModel[];
   char mScrSbc1[];
-  char mEffSbc1[];  
+  char mEffSbc1[];
   char mScrSbc2[];
-  char mEffSbc2[];  
+  char mEffSbc2[];
   char mScrSbc3[];
   char mEffSbc3[];
   char mLight[];
   char mNaviMesh[];
   char mEpv[];
   char mOccluder[];
-  
+
   u16 mAreaNo;
   u16 mType;
   u32 mSize;
@@ -52,7 +51,7 @@ struct rStageCustomParts_Info
   u64 mSoundAreaInfo;
   u64 mZoneUnitCtrl[3];
   u64 mZoneStatus;
-  
+
   char mComment[];
 };
 
@@ -70,10 +69,10 @@ struct rStageCustomParts_Param
 struct rStageCustomParts
 {
   rStageCustomParts_Param mParam;
-  u32 mArrayInfoNum;  
-  rStageCustomParts_Info mpArrayInfo[mArrayInfoNum];//*
+  u32 mArrayInfoNum;
+  rStageCustomParts_Info mpArrayInfo[mArrayInfoNum]; //*
   u32 mArrayFilterNum;
-  rStageCustomParts_Filter mpArrayFilter[mArrayFilterNum];//*
+  rStageCustomParts_Filter mpArrayFilter[mArrayFilterNum]; //*
 };
 
-rStageCustomParts rstagecustomparts_at_0x08 @ 0x08;
+rStageCustomParts rstagecustomparts_at_0x08 @0x08;

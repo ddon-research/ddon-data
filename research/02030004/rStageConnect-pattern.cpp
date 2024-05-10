@@ -25,7 +25,7 @@ struct rStageConnect
 {
   u32 mConnectorNum;
   rStageConnect_Data mpConnectorArray[mConnectorNum];
-  
+
   u32 mConnectionNum;
   rStageConnect_Connect mpConnectionArray[mConnectionNum];
 };

@@ -13,7 +13,7 @@ struct cOmParam
   u64 cResPath_rModel_mrModel;
   u64 cResPath_rObjCollision_mrObjCollision;
   u64 cResPath_rMotionList_mrMotionList;
-  u64 cResPath_rSoundMotionSe_mrSoundMotionSe;  
+  u64 cResPath_rSoundMotionSe_mrSoundMotionSe;
   u32 mUnitDTIID;
   u32 mUseComponent;
   u32 mOmSetType;
@@ -27,7 +27,7 @@ struct cOmParam
   s32 mFxIndex2;
   s32 mSeIndex2;
   s32 mFxIndex3;
-  s32 mSeIndex3;    
+  s32 mSeIndex3;
   u64 cResPath_rSwingModel_mrSwingModel;
   u64 cResPath_rDeformWeightMap_mrSoftBody;
   u64 cResPath_rRigidBody_mrRigidBody;
@@ -40,11 +40,11 @@ struct cOmParam
   u64 cResPath_rJointInfo_mrJointInfo;
   u32 mDetailBehavior;
   u32 mMapIcon;
-  
+
   float mKillLength;
   bool mbUseNightColor;
   MtVector3 mNightColor;
-  
+
   float mRigidTime;
   float mRigidForce;
   float mRigidOfsY;
@@ -59,7 +59,7 @@ struct cOmParam
   bool mbAtk;
   u32 mShotGroup;
   s32 mWepType;
-  
+
   u32 mArcTagID;
   s32 mTargetJntNo;
   float mOffSeLength;
@@ -68,13 +68,13 @@ struct cOmParam
   u32 mColliOffFrame;
   u32 mBlinkType;
   u64 cResPath_rCollision_mrCollision[4];
-  u32 mVersion;  
+  u32 mVersion;
 };
 
 struct rOmParam
 {
-  u32 mArrayNum;  
+  u32 mArrayNum;
   cOmParam mArray[1747];
 };
 
-rOmParam romparam_at_0x08 @ 0x08;
+rOmParam romparam_at_0x08 @0x08;

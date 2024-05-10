@@ -7,12 +7,11 @@ struct rStageCustom_Area
 
 struct rStageCustom
 {
-  //rStageCustomParts mprParts;//*
+  // rStageCustomParts mprParts;//*
   char PartsType[];
   char PartsPath[];
 
-  u32 mArrayAreaNum;  
-  rStageCustom_Area mpArrayArea[mArrayAreaNum];//*
-
+  u32 mArrayAreaNum;
+  rStageCustom_Area mpArrayArea[mArrayAreaNum]; //*
 };
-rStageCustom rstagecustom_at_0x08 @ 0x08;
+rStageCustom rstagecustom_at_0x08 @0x08;

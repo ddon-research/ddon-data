@@ -1,11 +1,13 @@
-struct MtFloat3{
+struct MtFloat3
+{
   float x;
   float y;
   float z;
 };
 
-struct MtString{
- char string[];
+struct MtString
+{
+  char string[];
 };
 
 struct cSetInfoCoord544
@@ -58,10 +60,6 @@ struct cSetInfoEnemy
   bool mReturnPoint2nd;
   cSetInfoCharacter544 prnt;
 };
-
-
-
-
 
 struct rLayoutSetInfo
 {
@@ -116,8 +114,6 @@ struct cSetInfoOmCtrl
   cSetInfoOm InfoOm;
 };
 
-
-
 struct cSetInfoOmBlock
 {
   u32 QuestID;
@@ -154,13 +150,12 @@ struct cSetInfoOmWarp
   cSetInfoOm InfoOm;
 };
 
-
 struct SetInfoNum
 {
-  u32 numSetInfoEnemy; //e
-  u32 numSetInfoNpc; //n
-  u32 numSetInfoGeneralPoint; //t
-  u32 numSetInfoOm; //s
+  u32 numSetInfoEnemy;        // e
+  u32 numSetInfoNpc;          // n
+  u32 numSetInfoGeneralPoint; // t
+  u32 numSetInfoOm;           // s
   u32 numSetInfoOmBoard;
   u32 numSetInfoOmBowlOfLife;
   u32 numSetInfoOmCtrl;
@@ -184,18 +179,18 @@ struct SetInfoNum
 struct rLayout
 {
   SetInfoNum mSetInfoNeedNums;
-  
-  u32 arrayNum; 
+
+  u32 arrayNum;
 
   rLayoutSetInfo h1;
   cSetInfoOmCtrl ctrl;
 };
 
-struct rLayoutHeader{
-    u32 magicNumber;
-    u32 version;
-	rLayout layout;
+struct rLayoutHeader
+{
+  u32 magicNumber;
+  u32 version;
+  rLayout layout;
 };
 
-
-rLayoutHeader rlayoutheader_at_0x00 @ 0x00;
+rLayoutHeader rlayoutheader_at_0x00 @0x00;

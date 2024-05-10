@@ -5,9 +5,10 @@ struct MtVector3
   float z;
 };
 
-struct TypedResourcePointer {
-    char Type[];
-    if(Type[0]>1)
+struct TypedResourcePointer
+{
+  char Type[];
+  if (Type[0] > 1)
     char Path[];
 };
 
@@ -25,4 +26,4 @@ struct rWeatherStageInfo
   MtVector3 EnvMapBaseColor[2];
   float EnvMapBlendColorScale[2];
 };
-rWeatherStageInfo rweatherstageinfo_at_0x08 @ 0x08;
+rWeatherStageInfo rweatherstageinfo_at_0x08 @0x08;

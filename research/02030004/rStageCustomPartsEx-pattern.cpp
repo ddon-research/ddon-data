@@ -1,3 +1,10 @@
+struct MtVector2
+{
+  float x;
+
+  float z;
+};
+
 struct MtVector3
 {
   float x;
@@ -12,7 +19,6 @@ struct MtVector4
   float z;
   float w;
 };
-
 
 struct MtColor
 {
@@ -57,29 +63,28 @@ struct cDayNightColorFogParam
   float mHeightStart;
   float mHeightEnd;
   float mHeightDensity;
-  
+
   MtVector3 mHeightColor;
-  
+
   float mStart;
   float mEnd;
   float mDensity;
-  
+
   MtVector3 mColor;
-  
+
   float mDiffuseBlendFactor;
-  //bool mIsEnable;
-  //float mSupplementFrame;
-  //s32 mId;
-  //u32 mKind;
+  // bool mIsEnable;
+  // float mSupplementFrame;
+  // s32 mId;
+  // u32 mKind;
 };
 
 struct rStageCustomPartsEx_ColorFog
 {
   cDayNightColorFogParam mBase;
   cDayNightColorFogParam mNight;
-  //char mComment[];
+  // char mComment[];
 };
-
 
 struct rStageCustomPartsEx_HemiSphLight
 {
@@ -87,14 +92,14 @@ struct rStageCustomPartsEx_HemiSphLight
   MtVector3 mRevColor;
   MtVector3 mNightColor;
   MtVector3 mNightRevColor;
-  //char mComment[];
+  // char mComment[];
 };
 
 struct rStageCustomPartsEx_InfiLight
 {
   MtVector3 mLightColor;
   MtVector3 mNightColor;
-  //char mComment[];
+  // char mComment[];
 };
 
 struct rStageCustomPartsEx_Pattern
@@ -102,13 +107,13 @@ struct rStageCustomPartsEx_Pattern
   s32 mColorFogNo;
   s32 mHemiSphLightNo;
   s32 mInfiLightNo;
-  //char mComment[];
+  // char mComment[];
 };
 
 struct nZone_ShapeInfoBase
 {
   float mDecay;
-  //bool mIsNativeData;
+  // bool mIsNativeData;
 };
 
 struct nZone_ShapeInfoSphere : nZone_ShapeInfoBase
@@ -126,13 +131,13 @@ struct nZone_ShapeInfoOBB : nZone_ShapeInfoBase
 
 struct nZone_ShapeInfoAABB : nZone_ShapeInfoBase
 {
-  MtAABB mAABB;
+  MtAABB AABB;
   float mDecayY;
   float mDecayZ;
   bool mIsEnableExtendedDecay;
 };
 
-struct  nZone_ShapeInfoCone : nZone_ShapeInfoBase
+struct nZone_ShapeInfoCone : nZone_ShapeInfoBase
 {
   float mHeight;
   float mTopRadius;
@@ -155,7 +160,6 @@ struct nZone_ShapeInfoArea : nZone_ShapeInfoBase
   MtVector3 mConcaveCrossPos;
 };
 
-
 struct AreaHitShape
 {
   char mName[];
@@ -164,31 +168,50 @@ struct AreaHitShape
   float mCheckToward;
   bool mAngleFlag;
   bool mTowardFlag;
-    
-  //bool mIsDeleteZone;
-  u8 type;
-  
-  if(type==0){
-  //NOOP
-  }
-  else if(type==1){//area 
-    nZone_ShapeInfoArea mpZone;
-  }else if(type==2){//sphere  
-  nZone_ShapeInfoSphere mpZone;
-  }else if(type==3){//cylinder 
-    nZone_ShapeInfoCylinder mpZone;
-  }else if(type==6){//cone 
-   nZone_ShapeInfoCone mpZone;
-  }else if(type==8){//AABB 
-  nZone_ShapeInfoAABB mpZone;
-  }
-  else if(type==9){// OBB 
-    nZone_ShapeInfoOBB mpZone;
-  } else{
-    nZone_ShapeInfoBase mpZone;//*
-  }
 
-  MtAABB mZoneBoundingBox;
+  // bool mIsDeleteZone;
+  u8 type;
+
+  if (type == 0)
+  {
+    // NOOP
+  }
+  else if (type == 1)
+  { // area
+    nZone_ShapeInfoArea mpZone;
+  }
+  else if (type == 2)
+  { // sphere
+    nZone_ShapeInfoSphere mpZone;
+  }
+  else if (type == 3)
+  { // cylinder
+    nZone_ShapeInfoCylinder mpZone;
+  }
+  else if (type == 6)
+  { // cone
+    nZone_ShapeInfoCone mpZone;
+  }
+  else if (type == 8)
+  { // AABB
+    nZone_ShapeInfoAABB mpZone;
+  }
+  else if (type == 9)
+  { // OBB
+    nZone_ShapeInfoOBB mpZone;
+  }
+  else
+  {
+    nZone_ShapeInfoBase mpZone; //*
+  }
+  if (type != 8)
+  {
+    MtAABB mZoneBoundingBox;
+  }
+  else
+  {
+    MtVector3 minpos;
+  }
 };
 
 struct rStageCustomPartsEx_AreaParam
@@ -198,32 +221,23 @@ struct rStageCustomPartsEx_AreaParam
   s32 mPatternNo;
   u32 num;
   AreaHitShape mAreaHitShapeList[num];
-  //char mComment[];
+  // char mComment[];
 };
-
-struct rStageCustom_Area
-{
-  s8 mAreaNo;
-  u8 mFilterNo;
-  s32 mGroupNo;
-};
-
-
 
 struct rStageCustomPartsEx_InfoEx
 {
   char mModel[];
   char mScrSbc1[];
-  char mEffSbc1[];  
+  char mEffSbc1[];
   char mScrSbc2[];
-  char mEffSbc2[];  
+  char mEffSbc2[];
   char mScrSbc3[];
   char mEffSbc3[];
   char mLight[];
   char mNaviMesh[];
   char mEpv[];
   char mOccluder[];
-  
+
   u16 mAreaNo;
   u16 mType;
   u32 mSize;
@@ -241,12 +255,13 @@ struct rStageCustomPartsEx_InfoEx
   u64 mSoundAreaInfo;
   u64 mZoneUnitCtrl[3];
   u64 mZoneStatus;
-  
+
   char mComment[];
-  
+
   u32 mAddVersion;
-  if(mAddVersion>0){
-    //u32 num;
+  if (mAddVersion > 0)
+  {
+    // u32 num;
     rStageCustomPartsEx_AreaParam mAreaParamList[mAddVersion];
   }
 };
@@ -265,14 +280,14 @@ struct rStageCustomParts_Param
 struct rStageCustomPartsEx
 {
   rStageCustomParts_Param mParam;
-  u32 mArrayInfoNum;  
+  u32 mArrayInfoNum;
   rStageCustomPartsEx_InfoEx mpArrayInfo[mArrayInfoNum];
   u32 mArrayFilterNum;
   rStageCustomParts_Filter mpArrayFilter[mArrayFilterNum];
-  
-  u32 mArrayColorFogNum;  
+
+  u32 mArrayColorFogNum;
   rStageCustomPartsEx_ColorFog mpArrayColorFog[mArrayColorFogNum];
-  u32 mArrayHemiSphLightNum;  
+  u32 mArrayHemiSphLightNum;
   rStageCustomPartsEx_HemiSphLight mpArrayHemiSphLight[mArrayHemiSphLightNum];
   u32 mArrayInfiLightNum;
   rStageCustomPartsEx_InfiLight mpArrayInfiLight[mArrayInfiLightNum];
@@ -280,4 +295,4 @@ struct rStageCustomPartsEx
   rStageCustomPartsEx_Pattern mpArrayPattern[mArrayPatternNum];
 };
 
-rStageCustomPartsEx rstagecustomparts_at_0x08 @ 0x08;
+rStageCustomPartsEx rstagecustomparts_at_0x08 @0x08;
