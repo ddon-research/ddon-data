@@ -1,0 +1,13 @@
+Based on a set of conversion rules I will provide please replace the C++ field definitions with Java method invocations:
+
+Here are the conversion rules:
+Replace lines starting with "bool" with "fileReader.readBoolean(),"
+Replace lines starting with "u16" with "fileReader.readUnsignedShort(),"
+Replace lines starting with "u32" with "fileReader.readUnsignedInteger(),"
+Replace lines starting with "s32" with "fileReader.readSignedInteger(),"
+Replace lines starting with "u64" with "fileReader.readUnsignedLong(),"
+Replace lines starting with "f32" with "fileReader.readFloat(),"
+If the line additionally ends on an array definition with a size, replace instead with "fileReader.readFixedLengthArray(<arraysize>, FileReader::<method>)" where <arraysize is the identified size and <method> is the previously identified method replacement
+Replace lines starting with "c" followed by some string string with "fileReader.readArray(fileReader.read<entityname>())," where <entityname> is the previously identified string
+
+Here are the C++ field definitions:
