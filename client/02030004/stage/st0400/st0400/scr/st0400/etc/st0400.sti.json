@@ -1,5 +1,5 @@
 {
-  "@class" : "org.sehkah.ddon.tools.extractor.lib.logic.entity.season2.stage.StageInfo",
+  "@class" : "org.sehkah.ddon.tools.extractor.lib.logic.resource.entity.season2.stage.StageInfo",
   "fileHeader" : {
     "magicString" : "sti\u0000",
     "magicBytesLength" : 4,
@@ -128,87 +128,6 @@
     "Y" : 0.0,
     "Z" : 0.0
   },
-  "grassVisiblePercentMulValue" : 1.0,
-  "schedulerStageLightSchdl" : {
-    "Type" : "rScheduler",
-    "Path" : "scr\\rm\\rm105\\sdl\\rm105_l00"
-  },
-  "cameraParamListEvt" : {
-    "Type" : "rCameraParamList",
-    "Path" : "scr\\st0400\\etc\\st0400_evt"
-  },
-  "dayNightLightChgFrame" : 20.0,
-  "dayNightFogChgFrame" : 20.0,
-  "schedulerLanternSchdl" : {
-    "Type" : "rScheduler",
-    "Path" : "effect\\sdl\\la\\s_la_cm"
-  },
-  "collisionScrSbc0" : {
-    "Type" : "rCollision",
-    "Path" : "scr\\rm\\rm105\\collision\\rm105_00_h00"
-  },
-  "weatherStageInfo" : {
-    "Type" : "rWeatherStageInfo",
-    "Path" : "scr\\sky\\w_st_def"
-  },
-  "weatherParamEfcInfo" : {
-    "Type" : "rWeatherParamEfcInfo",
-    "Path" : "effect\\wep\\w_sky_rm105"
-  },
-  "grassFadeBeginDistance" : 3000.0,
-  "navigationMeshNaviMesh" : {
-    "Type" : "rNavigationMesh",
-    "Path" : "scr\\rm\\rm105\\etc\\rm105_nav"
-  },
-  "schedulerEffectSchdl" : {
-    "Type" : "rScheduler",
-    "Path" : "effect\\sdl\\li\\s_li_cm"
-  },
-  "grassFadeEndDistance" : 5000.0,
-  "weatherParamInfoTbl" : {
-    "Type" : "rWeatherParamInfoTbl",
-    "Path" : "scr\\sky\\w_param_def_m"
-  },
-  "collisionEffSbc0" : {
-    "Type" : "rCollision",
-    "Path" : "scr\\rm\\rm105\\collision\\rm105_00_e00"
-  },
-  "skyInfiniteLightGroup" : 1,
-  "startPosStartPos" : {
-    "Type" : "rStartPos",
-    "Path" : "scr\\st0400\\etc\\st0400"
-  },
-  "soundAreaInfo" : {
-    "Type" : "rSoundAreaInfo",
-    "Path" : "sound\\etc\\st0400\\st0400"
-  },
-  "zoneList" : [ {
-    "Type" : "rZone",
-    "Path" : "effect\\zon\\st\\c_st0400_00"
-  }, null, null, null ],
-  "effectProvider" : {
-    "Type" : "rEffectProvider",
-    "Path" : "effect\\epv\\st\\st\\st0400\\p_st0400_00"
-  },
-  "epvIndexDay" : 1,
-  "eqLength" : [ 1200.0, 2000.0, 2800.0, 4000.0 ],
-  "anotherMapName" : "",
-  "isCraftStage" : false,
-  "occluderExOCC" : {
-    "Type" : "rOccluderEx",
-    "Path" : "scr\\rm\\rm105\\etc\\rm105_occ00"
-  },
-  "epvIndexAlways" : 0,
-  "epvIndexNight" : 2,
-  "schedulerModel" : {
-    "Type" : "rScheduler",
-    "Path" : "scr\\rm\\rm105\\sdl\\rm105_m00"
-  },
-  "performanceFlag" : 65391,
-  "zoneStatus" : {
-    "Type" : "rZone",
-    "Path" : "scr\\rm\\rm105\\etc\\rm105_wet00"
-  },
   "zoneUnitCtrl" : [ {
     "Type" : "rZone",
     "Path" : "scr\\rm\\rm105\\etc\\rm105_om00_st400"
@@ -219,6 +138,17 @@
     "Type" : "rZone",
     "Path" : "scr\\rm\\rm105\\etc\\rm105_scr00"
   } ],
+  "isCraftStage" : false,
+  "locationData" : {
+    "Type" : "rLocationData",
+    "Path" : "scr\\st0400\\etc\\st0400"
+  },
+  "performanceFlag" : 65391,
+  "anotherMapName" : "",
+  "zoneList" : [ {
+    "Type" : "rZone",
+    "Path" : "effect\\zon\\st\\c_st0400_00"
+  }, null, null, null ],
   "soundZone" : [ {
     "Type" : "rZone",
     "Path" : "sound\\se\\st\\st0400\\occ_st0400"
@@ -229,10 +159,80 @@
     "Type" : "rZone",
     "Path" : "sound\\se\\st\\st0400\\tri_st0400"
   } ],
-  "locationData" : {
-    "Type" : "rLocationData",
-    "Path" : "scr\\st0400\\etc\\st0400"
+  "schedulerModel" : {
+    "Type" : "rScheduler",
+    "Path" : "scr\\rm\\rm105\\sdl\\rm105_m00"
+  },
+  "effectProvider" : {
+    "Type" : "rEffectProvider",
+    "Path" : "effect\\epv\\st\\st\\st0400\\p_st0400_00"
+  },
+  "eqLength" : [ 1200.0, 2000.0, 2800.0, 4000.0 ],
+  "epvIndexAlways" : 0,
+  "epvIndexNight" : 2,
+  "occluderExOCC" : {
+    "Type" : "rOccluderEx",
+    "Path" : "scr\\rm\\rm105\\etc\\rm105_occ00"
+  },
+  "zoneStatus" : {
+    "Type" : "rZone",
+    "Path" : "scr\\rm\\rm105\\etc\\rm105_wet00"
+  },
+  "epvIndexDay" : 1,
+  "soundAreaInfo" : {
+    "Type" : "rSoundAreaInfo",
+    "Path" : "sound\\etc\\st0400\\st0400"
   },
   "sceLoadFlag" : 1,
+  "schedulerStageLightSchdl" : {
+    "Type" : "rScheduler",
+    "Path" : "scr\\rm\\rm105\\sdl\\rm105_l00"
+  },
+  "grassVisiblePercentMulValue" : 1.0,
+  "schedulerLanternSchdl" : {
+    "Type" : "rScheduler",
+    "Path" : "effect\\sdl\\la\\s_la_cm"
+  },
+  "collisionScrSbc0" : {
+    "Type" : "rCollision",
+    "Path" : "scr\\rm\\rm105\\collision\\rm105_00_h00"
+  },
+  "weatherParamInfoTbl" : {
+    "Type" : "rWeatherParamInfoTbl",
+    "Path" : "scr\\sky\\w_param_def_m"
+  },
+  "grassFadeEndDistance" : 5000.0,
+  "startPosStartPos" : {
+    "Type" : "rStartPos",
+    "Path" : "scr\\st0400\\etc\\st0400"
+  },
+  "skyInfiniteLightGroup" : 1,
+  "grassFadeBeginDistance" : 3000.0,
+  "dayNightFogChgFrame" : 20.0,
+  "navigationMeshNaviMesh" : {
+    "Type" : "rNavigationMesh",
+    "Path" : "scr\\rm\\rm105\\etc\\rm105_nav"
+  },
+  "collisionEffSbc0" : {
+    "Type" : "rCollision",
+    "Path" : "scr\\rm\\rm105\\collision\\rm105_00_e00"
+  },
+  "cameraParamListEvt" : {
+    "Type" : "rCameraParamList",
+    "Path" : "scr\\st0400\\etc\\st0400_evt"
+  },
+  "weatherParamEfcInfo" : {
+    "Type" : "rWeatherParamEfcInfo",
+    "Path" : "effect\\wep\\w_sky_rm105"
+  },
+  "weatherStageInfo" : {
+    "Type" : "rWeatherStageInfo",
+    "Path" : "scr\\sky\\w_st_def"
+  },
+  "dayNightLightChgFrame" : 20.0,
+  "schedulerEffectSchdl" : {
+    "Type" : "rScheduler",
+    "Path" : "effect\\sdl\\li\\s_li_cm"
+  },
   "fileSize" : 1036
 }

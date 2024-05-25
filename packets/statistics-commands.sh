@@ -1,3 +1,5 @@
+#!/bin/bash
+
 grep -h -e "C2S" * | perl -p -e "s/Server|Client //g;" -e "s/Pcap.*//g;" -e "s/#\d+//g;" -e "s/\s+/ /" | sort | uniq > ../decrypted-tcp-streams-unique-c2s-packets.txt
 grep -h -e "S2C" * | perl -p -e "s/Server|Client //g;" -e "s/Pcap.*//g;" -e "s/#\d+//g;" -e "s/\s+/ /" | sort | uniq > ../decrypted-tcp-streams-unique-s2c-packets.txt
 grep -h -e "L2C" * | perl -p -e "s/Server|Client //g;" -e "s/Pcap.*//g;" -e "s/#\d+//g;" -e "s/\s+/ /" | sort | uniq > ../decrypted-tcp-streams-unique-l2c-packets.txt

@@ -1,5 +1,5 @@
 {
-  "@class" : "org.sehkah.ddon.tools.extractor.lib.logic.entity.season3.stage.StageInfo",
+  "@class" : "org.sehkah.ddon.tools.extractor.lib.logic.resource.entity.season3.stage.StageInfo",
   "fileHeader" : {
     "magicString" : "sti\u0000",
     "magicBytesLength" : 4,
@@ -106,25 +106,84 @@
   "PerformanceFlag" : 65391,
   "AnotherMapName" : "",
   "Unknown" : false,
-  "flag" : 16,
   "unknown" : false,
+  "flag" : 16,
+  "collisionScrSbc0" : {
+    "Path" : "scr\\rm\\rm111\\collision\\rm111_00_h00"
+  },
+  "collisionEffSbc0" : {
+    "Path" : "scr\\rm\\rm111\\collision\\rm111_00_e00"
+  },
+  "collisionEffSbc1" : {
+    "Path" : "scr\\rm\\rm111\\collision\\rm111_01_e00"
+  },
+  "collisionScrSbc1" : {
+    "Path" : "scr\\rm\\rm111\\collision\\rm111_01_h00"
+  },
+  "schedulerEffectSchdl" : {
+    "Path" : "effect\\sdl\\li\\s_li_cm"
+  },
+  "grassFadeBeginDistance" : 3000.0,
+  "dayNightFogChgFrame" : 20.0,
+  "weatherStageInfo" : {
+    "Path" : "scr\\sky\\w_st_def"
+  },
+  "grassFadeEndDistance" : 5000.0,
+  "skyInfiniteLightGroup" : 2,
+  "cameraParamListEvt" : {
+    "Path" : "scr\\st0424\\etc\\st0424_evt"
+  },
+  "dayNightLightChgFrame" : 20.0,
+  "navigationMeshNaviMesh" : {
+    "Type" : "rNavigationMesh",
+    "Path" : "scr\\rm\\rm111\\etc\\rm111_00_nav"
+  },
+  "weatherParamEfcInfo" : {
+    "Path" : "effect\\wep\\w_st0411"
+  },
+  "schedulerLanternSchdl" : {
+    "Path" : "effect\\sdl\\la\\s_la_cm"
+  },
+  "weatherParamInfoTbl" : {
+    "Path" : "scr\\sky\\w_param_def_l"
+  },
+  "startPosStartPos" : {
+    "Type" : "rStartPos",
+    "Path" : "scr\\st0424\\etc\\st0424"
+  },
   "grassVisiblePercentMulValue" : 1.0,
   "schedulerStageLightSchdl" : {
     "Type" : "rScheduler",
     "Path" : "scr\\rm\\rm111\\sdl\\rm111_l00"
   },
   "soundZone" : [ null, null, null ],
+  "soundAreaInfo" : {
+    "Path" : "sound\\etc\\st0424\\st0424"
+  },
   "schedulerFilter" : {
     "Type" : "rScheduler",
     "Path" : "scr\\rm\\rm111\\sdl\\rm111_f00"
   },
-  "isCraftStage" : false,
-  "schedulerModel" : {
-    "Path" : "scr\\rm\\rm111\\sdl\\rm111_m00"
+  "sceLoadFlag" : 0,
+  "zoneList" : [ {
+    "Type" : "rZone",
+    "Path" : "effect\\zon\\st\\c_st0411_00"
+  }, null, {
+    "Type" : "rZone",
+    "Path" : "effect\\zon\\st\\e_st0411_00"
+  }, null ],
+  "occluderExOCC" : {
+    "Type" : "rOccluderEx",
+    "Path" : "scr\\rm\\rm111\\etc\\rm111_occ01"
   },
+  "eqLength" : [ 1200.0, 2000.0, 2800.0, 4000.0 ],
   "effectProvider" : {
     "Path" : "effect\\epv\\st\\st\\st0411\\p_st0411_00"
   },
+  "schedulerModel" : {
+    "Path" : "scr\\rm\\rm111\\sdl\\rm111_m00"
+  },
+  "isCraftStage" : false,
   "epvIndexAlways" : 0,
   "epvIndexNight" : 2,
   "zoneIndoorScr" : {
@@ -139,72 +198,13 @@
     "Path" : "scr\\rm\\rm111\\etc\\rm111_scr00"
   } ],
   "epvIndexDay" : 1,
-  "occluderExOCC" : {
-    "Type" : "rOccluderEx",
-    "Path" : "scr\\rm\\rm111\\etc\\rm111_occ01"
-  },
-  "sceLoadFlag" : 0,
-  "eqLength" : [ 1200.0, 2000.0, 2800.0, 4000.0 ],
-  "soundAreaInfo" : {
-    "Path" : "sound\\etc\\st0424\\st0424"
-  },
   "performanceFlag" : 65391,
   "anotherMapName" : "",
-  "zoneList" : [ {
-    "Type" : "rZone",
-    "Path" : "effect\\zon\\st\\c_st0411_00"
-  }, null, {
-    "Type" : "rZone",
-    "Path" : "effect\\zon\\st\\e_st0411_00"
-  }, null ],
   "pos" : {
     "X" : 0.0,
     "Y" : 0.0,
     "Z" : 0.0
   },
   "ang" : 0.0,
-  "collisionScrSbc0" : {
-    "Path" : "scr\\rm\\rm111\\collision\\rm111_00_h00"
-  },
-  "collisionEffSbc0" : {
-    "Path" : "scr\\rm\\rm111\\collision\\rm111_00_e00"
-  },
-  "collisionScrSbc1" : {
-    "Path" : "scr\\rm\\rm111\\collision\\rm111_01_h00"
-  },
-  "collisionEffSbc1" : {
-    "Path" : "scr\\rm\\rm111\\collision\\rm111_01_e00"
-  },
-  "navigationMeshNaviMesh" : {
-    "Type" : "rNavigationMesh",
-    "Path" : "scr\\rm\\rm111\\etc\\rm111_00_nav"
-  },
-  "startPosStartPos" : {
-    "Type" : "rStartPos",
-    "Path" : "scr\\st0424\\etc\\st0424"
-  },
-  "cameraParamListEvt" : {
-    "Path" : "scr\\st0424\\etc\\st0424_evt"
-  },
-  "weatherStageInfo" : {
-    "Path" : "scr\\sky\\w_st_def"
-  },
-  "weatherParamInfoTbl" : {
-    "Path" : "scr\\sky\\w_param_def_l"
-  },
-  "schedulerLanternSchdl" : {
-    "Path" : "effect\\sdl\\la\\s_la_cm"
-  },
-  "grassFadeEndDistance" : 5000.0,
-  "weatherParamEfcInfo" : {
-    "Path" : "effect\\wep\\w_st0411"
-  },
-  "grassFadeBeginDistance" : 3000.0,
-  "dayNightLightChgFrame" : 20.0,
-  "skyInfiniteLightGroup" : 2,
-  "schedulerEffectSchdl" : {
-    "Path" : "effect\\sdl\\li\\s_li_cm"
-  },
-  "dayNightFogChgFrame" : 20.0,
   "fileSize" : 830
 }

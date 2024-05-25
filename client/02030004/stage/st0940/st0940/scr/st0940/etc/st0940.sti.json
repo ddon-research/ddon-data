@@ -1,5 +1,5 @@
 {
-  "@class" : "org.sehkah.ddon.tools.extractor.lib.logic.entity.season2.stage.StageInfo",
+  "@class" : "org.sehkah.ddon.tools.extractor.lib.logic.resource.entity.season2.stage.StageInfo",
   "fileHeader" : {
     "magicString" : "sti\u0000",
     "magicBytesLength" : 4,
@@ -107,17 +107,54 @@
     "Y" : 0.0,
     "Z" : 0.0
   },
-  "grassVisiblePercentMulValue" : 1.0,
+  "zoneUnitCtrl" : [ {
+    "Type" : "rZone",
+    "Path" : "scr\\rm\\rm004\\etc\\rm004_om02"
+  }, {
+    "Type" : "rZone",
+    "Path" : "scr\\rm\\rm004\\etc\\rm004_light02"
+  }, null ],
+  "isCraftStage" : false,
+  "performanceFlag" : 65535,
+  "anotherMapName" : "",
+  "zoneList" : [ {
+    "Type" : "rZone",
+    "Path" : "effect\\zon\\st\\c_st0940_00"
+  }, null, null, {
+    "Type" : "rZone",
+    "Path" : "scr\\rm\\rm004\\etc\\rm004_laf00"
+  } ],
+  "soundZone" : [ null, null, null ],
+  "schedulerModel" : {
+    "Type" : "rScheduler",
+    "Path" : "scr\\rm\\rm004\\sdl\\rm004_m02"
+  },
+  "effectProvider" : {
+    "Type" : "rEffectProvider",
+    "Path" : "effect\\epv\\st\\st\\st0940\\p_st0940_00"
+  },
+  "eqLength" : [ 1200.0, 2000.0, 2800.0, 4000.0 ],
+  "schedulerFilter" : {
+    "Type" : "rScheduler",
+    "Path" : "scr\\rm\\rm004\\sdl\\rm004_f02"
+  },
+  "epvIndexAlways" : 0,
+  "epvIndexNight" : 2,
+  "occluderExOCC" : {
+    "Type" : "rOccluderEx",
+    "Path" : "scr\\rm\\rm004\\etc\\st940"
+  },
+  "epvIndexDay" : 1,
+  "soundAreaInfo" : {
+    "Type" : "rSoundAreaInfo",
+    "Path" : "sound\\etc\\st0940\\st0940"
+  },
+  "sceLoadFlag" : 2,
   "schedulerStageLightSchdl" : {
     "Type" : "rScheduler",
     "Path" : "scr\\rm\\rm004\\sdl\\rm004_l02"
   },
-  "cameraParamListEvt" : {
-    "Type" : "rCameraParamList",
-    "Path" : "scr\\st0940\\etc\\st0940_evt"
-  },
-  "dayNightLightChgFrame" : 20.0,
-  "dayNightFogChgFrame" : 20.0,
+  "grassVisiblePercentMulValue" : 1.0,
   "schedulerLanternSchdl" : {
     "Type" : "rScheduler",
     "Path" : "effect\\sdl\\la\\s_la_cm"
@@ -126,71 +163,34 @@
     "Type" : "rCollision",
     "Path" : "scr\\rm\\rm004\\collision\\rm004_00_h02"
   },
-  "weatherStageInfo" : {
-    "Type" : "rWeatherStageInfo",
-    "Path" : "scr\\sky\\w_st_no_sky"
-  },
-  "grassFadeBeginDistance" : 3000.0,
-  "navigationMeshNaviMesh" : {
-    "Type" : "rNavigationMesh",
-    "Path" : "scr\\rm\\rm004\\etc\\rm004_02_nav"
-  },
-  "schedulerEffectSchdl" : {
-    "Type" : "rScheduler",
-    "Path" : "effect\\sdl\\li\\s_li_cm"
-  },
   "grassFadeEndDistance" : 5000.0,
-  "collisionEffSbc0" : {
-    "Type" : "rCollision",
-    "Path" : "scr\\rm\\rm004\\collision\\rm004_00_e02"
-  },
-  "skyInfiniteLightGroup" : 2,
   "startPosStartPos" : {
     "Type" : "rStartPos",
     "Path" : "scr\\st0940\\etc\\st0940"
   },
-  "soundAreaInfo" : {
-    "Type" : "rSoundAreaInfo",
-    "Path" : "sound\\etc\\st0940\\st0940"
+  "skyInfiniteLightGroup" : 2,
+  "grassFadeBeginDistance" : 3000.0,
+  "dayNightFogChgFrame" : 20.0,
+  "navigationMeshNaviMesh" : {
+    "Type" : "rNavigationMesh",
+    "Path" : "scr\\rm\\rm004\\etc\\rm004_02_nav"
   },
-  "zoneList" : [ {
-    "Type" : "rZone",
-    "Path" : "effect\\zon\\st\\c_st0940_00"
-  }, null, null, {
-    "Type" : "rZone",
-    "Path" : "scr\\rm\\rm004\\etc\\rm004_laf00"
-  } ],
-  "effectProvider" : {
-    "Type" : "rEffectProvider",
-    "Path" : "effect\\epv\\st\\st\\st0940\\p_st0940_00"
+  "collisionEffSbc0" : {
+    "Type" : "rCollision",
+    "Path" : "scr\\rm\\rm004\\collision\\rm004_00_e02"
   },
-  "epvIndexDay" : 1,
-  "eqLength" : [ 1200.0, 2000.0, 2800.0, 4000.0 ],
-  "anotherMapName" : "",
-  "isCraftStage" : false,
-  "occluderExOCC" : {
-    "Type" : "rOccluderEx",
-    "Path" : "scr\\rm\\rm004\\etc\\st940"
+  "cameraParamListEvt" : {
+    "Type" : "rCameraParamList",
+    "Path" : "scr\\st0940\\etc\\st0940_evt"
   },
-  "epvIndexAlways" : 0,
-  "epvIndexNight" : 2,
-  "schedulerModel" : {
+  "weatherStageInfo" : {
+    "Type" : "rWeatherStageInfo",
+    "Path" : "scr\\sky\\w_st_no_sky"
+  },
+  "dayNightLightChgFrame" : 20.0,
+  "schedulerEffectSchdl" : {
     "Type" : "rScheduler",
-    "Path" : "scr\\rm\\rm004\\sdl\\rm004_m02"
+    "Path" : "effect\\sdl\\li\\s_li_cm"
   },
-  "performanceFlag" : 65535,
-  "schedulerFilter" : {
-    "Type" : "rScheduler",
-    "Path" : "scr\\rm\\rm004\\sdl\\rm004_f02"
-  },
-  "zoneUnitCtrl" : [ {
-    "Type" : "rZone",
-    "Path" : "scr\\rm\\rm004\\etc\\rm004_om02"
-  }, {
-    "Type" : "rZone",
-    "Path" : "scr\\rm\\rm004\\etc\\rm004_light02"
-  }, null ],
-  "soundZone" : [ null, null, null ],
-  "sceLoadFlag" : 2,
   "fileSize" : 808
 }
