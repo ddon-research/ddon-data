@@ -108,8 +108,8 @@ fn getClassPropTotal(ClassHeader classHeader)
 struct Header
 {
 	ClassHeader classHeader;
-	MtString fieldNames[62]; // adjust as needed
-	padding[2];				 // adjust as needed
+	MtString fieldNames[46]; // adjust as needed
+							 // padding[2];				 // adjust as needed
 };
 
 struct cSetInfoCoord544
@@ -173,9 +173,25 @@ struct cSetInfoNpc : cSetInfoCoord544
 	u32;
 	bool mIsAttand;
 	u32;
+	bool mUseAttendComponent;
+	u32;
 	bool mDisableTouchAction;
 	u32;
 	bool mDispElseQuestTalk;
+	u32;
+	bool mForceSwitchGreeting;
+	u32;
+	u32 mTalkStateId;
+	u32;
+	bool mUseLiteMotion;
+	u32;
+	bool mIsNoSetOnPS3;
+	u32;
+	bool mUseJobParamEx;
+	u32;
+	bool mDispOnWeapon;
+	u32;
+	s16 mInitEffectType;
 };
 
 struct cSetInfoOm : cSetInfoCoord544
@@ -252,22 +268,24 @@ struct cSetInfoOmWarp : cSetInfoOm
 
 struct cSetInfoOmBowlOfLife : cSetInfoOm
 {
-	u32 mStageNoNum;
-	u32 mStageNo[3];
-	u32 mStartPosNoNum;
-	u32 mStartPosNo[3];
-	u32 mQuestNoNum;
-	u32 mQuestNo[3];
-	u32 mFlagNoNum;
-	u32 mFlagNo[3];
-	u32 mSpotIdNum;
-	u32 mSpotId[3];
 	u32;
-	u32 mTextType;
+	bool mbWaitBowlOfLife;
 	u32;
-	u32 mTextQuestNo;
+	bool mbFullBowlOfLife;
 	u32;
-	u32 mTextNo;
+	bool mbSetEM;
+	u32;
+	bool mbInvisible;
+	u32;
+	bool mIsQuest;
+	u32;
+	u32 mQuestId;
+	u32;
+	u16 mKind;
+	u32;
+	u16 mGroup;
+	u32;
+	u16 mID;
 };
 
 struct cSetInfoOmDoor : cSetInfoOm
@@ -435,7 +453,7 @@ struct cQuestStage
 
 	u32;
 	MtArray mQuestGrpArr;
-	cQuestGroup mQuestGrp[6];
+	cQuestGroup mQuestGrp[mQuestGrpArr.mLength];
 };
 
 struct cResource
