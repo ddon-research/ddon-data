@@ -1,0 +1,667 @@
+#pragma pattern_limit 3200000
+#pragma array_limit 3200000
+
+#pragma endian big
+
+#define b8 bool
+
+#define MtTypedArray MtTypedArr
+#define CDataQuestDefine CQuestDefine
+#define CDataQuestProgressWork CQuestProgressWork
+#define CDataQuestAnnounce CQuestAnnounce
+#define CDataQuestId CQuestId
+#define CDataExpiredQuestList CExpiredQuestList
+#define CDataWorldManageQuestOrderList CWorldManageQuestOrderList
+#define CDataQuestOrderList CQuestOrderList
+#define CDataQuestLog CQuestLog
+#define CDataRewardItem CRewardItem
+#define CDataMainQuestOrderList CMainQuestOrderList
+#define CDataSetQuestDetail CSetQuestDetail
+#define CDataQuestList CQuestList
+#define CDataLightQuestDetail CLightQuestDetail
+
+enum COMMAND_CHECK_LIST : u16
+{
+    COMMAND_CHECK_TALK_NPC = 0x1,
+    COMMAND_CHECK_DIE_ENEMY = 0x2,
+    COMMAND_CHECK_SCE_HIT_IN = 0x3,
+    COMMAND_CHECK_HAVE_ITEM = 0x4,
+    COMMAND_CHECK_DELIVER_ITEM = 0x5,
+    COMMAND_CHECK_EM_DIE_LIGHT = 0x6,
+    COMMAND_CHECK_QST_FLAG_ON = 0x7,
+    COMMAND_CHECK_QST_FLAG_OFF = 0x8,
+    COMMAND_CHECK_MY_QST_FLAG_ON = 0x9,
+    COMMAND_CHECK_MY_QST_FLAG_OFF = 0xA,
+    COMMAND_CHECK_PADDING_00 = 0xB,
+    COMMAND_CHECK_PADDING_01 = 0xC,
+    COMMAND_CHECK_PADDING_02 = 0xD,
+    COMMAND_CHECK_STAGE_NO = 0xE,
+    COMMAND_CHECK_EVENT_END = 0xF,
+    COMMAND_CHECK_PRT = 0x10,
+    COMMAND_CHECK_CLEARCOUNT = 0x11,
+    COMMAND_CHECK_SCE_FLAG_ON = 0x12,
+    COMMAND_CHECK_SCE_FLAG_OFF = 0x13,
+    COMMAND_CHECK_TOUCH_ACT_TO_NPC = 0x14,
+    COMMAND_CHECK_ORDER_DECIDE = 0x15,
+    COMMAND_CHECK_IS_END_CYCLE = 0x16,
+    COMMAND_CHECK_IS_INTERRUPT_CYCLE = 0x17,
+    COMMAND_CHECK_IS_FAILED_CYCLE = 0x18,
+    COMMAND_CHECK_IS_END_RESULT = 0x19,
+    COMMAND_CHECK_NPC_TALK_AND_ORDER_UI = 0x1A,
+    COMMAND_CHECK_NPC_TOUCH_AND_ORDER_UI = 0x1B,
+    COMMAND_CHECK_STAGE_NO_NOT_EQ = 0x1C,
+    COMMAND_CHECK_WARLEVEL = 0x1D,
+    COMMAND_CHECK_TALK_NPC_WITHOUT_MARKER = 0x1E,
+    COMMAND_CHECK_HAVE_MONEY = 0x1F,
+    COMMAND_CHECK_SET_QUEST_CLEAR_NUM = 0x20,
+    COMMAND_CHECK_MAKE_CRAFT = 0x21,
+    COMMAND_CHECK_PLAY_EMOTION = 0x22,
+    COMMAND_CHECK_IS_END_TIMER = 0x23,
+    COMMAND_CHECK_IS_ENEMY_FOUND = 0x24,
+    COMMAND_CHECK_RANDOM_EQ = 0x25,
+    COMMAND_CHECK_RANDOM_NOT_EQ = 0x26,
+    COMMAND_CHECK_RANDOM_LESS = 0x27,
+    COMMAND_CHECK_RANDOM_NOT_GREATER = 0x28,
+    COMMAND_CHECK_RANDOM_GREATER = 0x29,
+    COMMAND_CHECK_RANDOM_NOT_LESS = 0x2A,
+    COMMAND_CHECK_CLEARCOUNT_02 = 0x2B,
+    COMMAND_CHECK_INGAME_TIME_RANGE_EQ = 0x2C,
+    COMMAND_CHECK_INGAME_TIME_RANGE_NOT_EQ = 0x2D,
+    COMMAND_CHECK_PL_HP = 0x2E,
+    COMMAND_CHECK_EM_HP_NOT_LESS = 0x2F,
+    COMMAND_CHECK_EM_HP_LESS = 0x30,
+    COMMAND_CHECK_WEATHER_EQ = 0x31,
+    COMMAND_CHECK_WEATHER_NOT_EQ = 0x32,
+    COMMAND_CHECK_PL_JOB_EQ = 0x33,
+    COMMAND_CHECK_PL_JOB_NOT_EQ = 0x34,
+    COMMAND_CHECK_PL_SEX_EQ = 0x35,
+    COMMAND_CHECK_PL_SEX_NOT_EQ = 0x36,
+    COMMAND_CHECK_SCE_HIT_OUT = 0x37,
+    COMMAND_CHECK_WAIT_ORDER = 0x38,
+    COMMAND_CHECK_OM_SET_TOUCH = 0x39,
+    COMMAND_CHECK_OM_RELEASE_TOUCH = 0x3A,
+    COMMAND_CHECK_JOB_LEVEL_NOT_LESS = 0x3B,
+    COMMAND_CHECK_JOB_LEVEL_LESS = 0x3C,
+    COMMAND_CHECK_MY_QST_FLAG_ON_FROM_FSM = 0x3D,
+    COMMAND_CHECK_SCE_HIT_IN_WITHOUT_MARKER = 0x3E,
+    COMMAND_CHECK_SCE_HIT_OUT_WITHOUT_MARKER = 0x3F,
+    COMMAND_CHECK_KEY_ITEM_POINT = 0x40,
+    COMMAND_CHECK_IS_NOT_END_TIMER = 0x41,
+    COMMAND_CHECK_IS_MAIN_QUEST_CLEAR = 0x42,
+    COMMAND_CHECK_DOGMA_ORB = 0x43,
+    COMMAND_CHECK_IS_ENEMY_FOUND_FOR_ORDER = 0x44,
+    COMMAND_CHECK_IS_TUTORIAL_FLAG_ON = 0x45,
+    COMMAND_CHECK_QUEST_OM_SET_TOUCH = 0x46,
+    COMMAND_CHECK_QUEST_OM_RELEASE_TOUCH = 0x47,
+    COMMAND_CHECK_NEW_TALK_NPC = 0x48,
+    COMMAND_CHECK_NEW_TALK_NPC_WITHOUT_MARKER = 0x49,
+    COMMAND_CHECK_IS_TUTORIAL_QUEST_CLEAR = 0x4A,
+    COMMAND_CHECK_IS_MAIN_QUEST_ORDER = 0x4B,
+    COMMAND_CHECK_IS_TUTORIAL_QUEST_ORDER = 0x4C,
+    COMMAND_CHECK_IS_TOUCH_PAWN_DUNGEON_OM = 0x4D,
+    COMMAND_CHECK_IS_OPEN_DOOR_OM_QUEST_SET = 0x4E,
+    COMMAND_CHECK_EM_DIE_FOR_RANDOM_DUNGEON = 0x4F,
+    COMMAND_CHECK_NPC_HP_NOT_LESS = 0x50,
+    COMMAND_CHECK_NPC_HP_LESS = 0x51,
+    COMMAND_CHECK_IS_ENEMY_FOUND_WITHOUT_MARKER = 0x52,
+    COMMAND_CHECK_IS_EVENT_BOARD_ACCEPTED = 0x53,
+    COMMAND_CHECK_WORLD_MANAGE_QUEST_FLAG_ON = 0x54,
+    COMMAND_CHECK_WORLD_MANAGE_QUEST_FLAG_OFF = 0x55,
+    COMMAND_CHECK_TOUCH_EVENT_BOARD = 0x56,
+    COMMAND_CHECK_OPEN_ENTRY_RAID_BOSS = 0x57,
+    COMMAND_CHECK_OEPN_ENTRY_FORT_DEFENSE = 0x58,
+    COMMAND_CHECK_DIE_PLAYER = 0x59,
+    COMMAND_CHECK_PARTY_NUM_NOT_LESS_WTIHOUT_PAWN = 0x5A,
+    COMMAND_CHECK_PARTY_NUM_NOT_LESS_WITH_PAWN = 0x5B,
+    COMMAND_CHECK_LOST_MAIN_PAWN = 0x5C,
+    COMMAND_CHECK_SP_TALK_NPC = 0x5D,
+    COMMAND_CHECK_OEPN_JOB_MASTER = 0x5E,
+    COMMAND_CHECK_TOUCH_RIM_STONE = 0x5F,
+    COMMAND_CHECK_GET_ACHIEVEMENT = 0x60,
+    COMMAND_CHECK_DUMMY_NOT_PROGRESS = 0x61,
+    COMMAND_CHECK_DIE_RAID_BOSS = 0x62,
+    COMMAND_CHECK_CYCLE_TIMER_ZERO = 0x63,
+    COMMAND_CHECK_CYCLE_TIMER = 0x64,
+    COMMAND_CHECK_QUEST_NPC_TALK_AND_ORDER_UI = 0x65,
+    COMMAND_CHECK_QUEST_NPC_TOUCH_AND_ORDER_UI = 0x66,
+    COMMAND_CHECK_IS_FOUND_RAID_BOSS = 0x67,
+    COMMAND_CHECK_QUEST_OM_SET_TOUCH_WITHOUT_MARKER = 0x68,
+    COMMAND_CHECK_QUEST_OM_RELEASE_TOUCH_WITHOUT_MARKER = 0x69,
+    COMMAND_CHECK_TUTORIAL_TALK_NPC = 0x6A,
+    COMMAND_CHECK_IS_LOGIN = 0x6B,
+    COMMAND_CHECK_IS_PLAY_END_FIRST_SEASON_END_CREDIT = 0x6C,
+    COMMAND_CHECK_IS_KILLED_TARGET_ENEMY_SET_GROUP = 0x6D,
+    COMMAND_CHECK_IS_KILLED_TARGET_EM_SET_GRP_NO_MARKER = 0x6E,
+    COMMAND_CHECK_IS_LEFT_CYCLE_TIMER = 0x6F,
+    COMMAND_CHECK_OM_END_TEXT = 0x70,
+    COMMAND_CHECK_QUEST_OM_END_TEXT = 0x71,
+    COMMAND_CHECK_OPEN_AREA_MASTER = 0x72,
+    COMMAND_CHECK_HAVE_ITEM_ALL_BAG = 0x73,
+    COMMAND_CHECK_OPEN_NEWSPAPER = 0x74,
+    COMMAND_CHECK_OPEN_QUEST_BOARD = 0x75,
+    COMMAND_CHECK_STAGE_NO_WITHOUT_MARKER = 0x76,
+    COMMAND_CHECK_TALK_QUEST_NPC_UNIT_MARKER = 0x77,
+    COMMAND_CHECK_TOUCH_QUEST_NPC_UNIT_MARKER = 0x78,
+    COMMAND_CHECK_IS_EXIST_SECOND_PAWN = 0x79,
+    COMMAND_CHECK_IS_ORDER_JOB_TUTORIAL_QUEST = 0x7A,
+    COMMAND_CHECK_IS_OPEN_WAREHOUSE = 0x7B,
+    COMMAND_CHECK_IS_MYQUEST_LAYOUT_FLAG_ON = 0x7C,
+    COMMAND_CHECK_IS_MYQUEST_LAYOUT_FLAG_OFF = 0x7D,
+    COMMAND_CHECK_IS_OPEN_WAREHOUSE_REWARD = 0x7E,
+    COMMAND_CHECK_IS_ORDER_LIGHT_QUEST = 0x7F,
+    COMMAND_CHECK_IS_ORDER_WORLD_QUEST = 0x80,
+    COMMAND_CHECK_IS_LOST_MAIN_PAWN = 0x81,
+    COMMAND_CHECK_IS_FULL_ORDER_QUEST = 0x82,
+    COMMAND_CHECK_IS_BAD_STATUS = 0x83,
+    COMMAND_CHECK_CHECK_AREA_RANK = 0x84,
+    COMMAND_CHECK_PADDING_133 = 0x85,
+    COMMAND_CHECK_ENABLE_PARTY_WARP = 0x86,
+    COMMAND_CHECK_IS_HUGEBLE = 0x87,
+    COMMAND_CHECK_IS_DOWN_ENEMY = 0x88,
+    COMMAND_CHECK_OPEN_AREA_MASTER_SUPPLIES = 0x89,
+    COMMAND_CHECK_OPEN_ENTRY_BOARD = 0x8A,
+    COMMAND_CHECK_NOTICE_INTERRUPT_CONTENTS = 0x8B,
+    COMMAND_CHECK_OPEN_RETRY_SELECT = 0x8C,
+    COMMAND_CHECK_IS_PL_WEAKENING = 0x8D,
+    COMMAND_CHECK_NOTICE_PARTY_INVITE = 0x8E,
+    COMMAND_CHECK_IS_KILLED_AREA_BOSS = 0x8F,
+    COMMAND_CHECK_IS_PARTY_REWARD = 0x90,
+    COMMAND_CHECK_IS_FULL_BAG = 0x91,
+    COMMAND_CHECK_OPEN_CRAFT_EXAM = 0x92,
+    COMMAND_CHECK_LEVEL_UP_CRAFT = 0x93,
+    COMMAND_CHECK_IS_CLEAR_LIGHT_QUEST = 0x94,
+    COMMAND_CHECK_OPEN_JOB_MASTER_REWARD = 0x95,
+    COMMAND_CHECK_TOUCH_ACT_QUEST_NPC = 0x96,
+    COMMAND_CHECK_IS_LEADER_AND_JOIN_PAWN = 0x97,
+    COMMAND_CHECK_IS_ACCEPT_LIGHT_QUEST = 0x98,
+    COMMAND_CHECK_IS_RELEASE_WARP_POINT = 0x99,
+    COMMAND_CHECK_IS_SET_PLAYER_SKILL = 0x9A,
+    COMMAND_CHECK_IS_ORDER_MY_QUEST = 0x9B,
+    COMMAND_CHECK_IS_NOT_ORDER_MY_QUEST = 0x9C,
+    COMMAND_CHECK_HAS_MYPAWN = 0x9D,
+    COMMAND_CHECK_IS_FAVORITE_WARP_POINT = 0x9E,
+    COMMAND_CHECK_CRAFT = 0x9F,
+    COMMAND_CHECK_IS_KILLED_TARGET_ENEMY_SET_GROUP_GM_MAIN = 0xA0,
+    COMMAND_CHECK_IS_KILLED_TARGET_ENEMY_SET_GROUP_GM_SUB = 0xA1,
+    COMMAND_CHECK_HAS_USED_KEY = 0xA2,
+    COMMAND_CHECK_IS_CYCLE_FLAG_OFF_PERIOD = 0xA3,
+    COMMAND_CHECK_IS_ENEMY_FOUND_GM_MAIN = 0xA4,
+    COMMAND_CHECK_IS_ENEMY_FOUND_GM_SUB = 0xA5,
+    COMMAND_CHECK_IS_LOGIN_BUG_FIXED_ONLY = 0xA6,
+    COMMAND_CHECK_IS_SEARCH_CLAN = 0xA7,
+    COMMAND_CHECK_IS_OPEN_AREA_LIST_UI = 0xA8,
+    COMMAND_CHECK_IS_RELEASE_WARP_POINT_ANYONE = 0xA9,
+    COMMAND_CHECK_DEVIDE_PLAYER = 0xAA,
+    COMMAND_CHECK_NOW_PHASE = 0xAB,
+    COMMAND_CHECK_IS_RELEASE_PORTAL = 0xAC,
+    COMMAND_CHECK_IS_GET_APPRAISE_ITEM = 0xAD,
+    COMMAND_CHECK_IS_SET_PARTNER_PAWN = 0xAE,
+    COMMAND_CHECK_IS_PRESENT_PARTNER_PAWN = 0xAF,
+    COMMAND_CHECK_IS_RELEASE_MY_ROOM = 0xB0,
+    COMMAND_CHECK_IS_EXIST_DIVIDE_PLAYER = 0xB1,
+    COMMAND_CHECK_NOT_DIVIDE_PLAYER = 0xB2,
+    COMMAND_CHECK_IS_GATHER_PARTY_IN_STAGE = 0xB3,
+    COMMAND_CHECK_IS_FINISHED_ENEMY_DIVIDE_ACTION = 0xB4,
+    COMMAND_CHECK_IS_OPEN_DOOR_OM_QUEST_SET_NO_MARKER = 0xB5,
+    COMMAND_CHECK_IS_FINISHED_EVENT_ORDER_NUM = 0xB6,
+    COMMAND_CHECK_IS_PRESENT_PARTNER_PAWN_NO_MARKER = 0xB7,
+    COMMAND_CHECK_IS_OM_BROKEN_LAYOUT = 0xB8,
+    COMMAND_CHECK_IS_OM_BROKEN_QUEST = 0xB9,
+    COMMAND_CHECK_IS_HOLDING_PERIOD_CYCLE_CONTENTS = 0xBA,
+    COMMAND_CHECK_IS_NOT_HOLDING_PERIOD_CYCLE_CONTENTS = 0xBB,
+    COMMAND_CHECK_IS_RESET_INSTANCE_AREA = 0xBC,
+    COMMAND_CHECK_CHECK_MOON_AGE = 0xBD,
+    COMMAND_CHECK_IS_ORDER_PAWN_QUEST = 0xBE,
+    COMMAND_CHECK_IS_TAKE_PICTURES = 0xBF,
+    COMMAND_CHECK_IS_STAGE_FOR_MAIN_QUEST = 0xC0,
+    COMMAND_CHECK_IS_RELEASE_PAWN_EXPEDITION = 0xC1,
+    COMMAND_CHECK_OPEN_PP_MODE = 0xC2,
+    COMMAND_CHECK_PP_NOT_LESS = 0xC3,
+    COMMAND_CHECK_OPEN_PP_SHOP = 0xC4,
+    COMMAND_CHECK_TOUCH_CLAN_BOARD = 0xC5,
+    COMMAND_CHECK_IS_ONE_OFF_GATHER = 0xC6,
+    COMMAND_CHECK_IS_OM_BROKEN_LAYOUT_NO_MARKER = 0xC7,
+    COMMAND_CHECK_IS_OM_BROKEN_QUEST_NO_MARKER = 0xC8,
+    COMMAND_CHECK_KEY_ITEM_POINT_EQ = 0xC9,
+    COMMAND_CHECK_IS_EMOTION = 0xCA,
+    COMMAND_CHECK_IS_EQUIP_COLOR = 0xCB,
+    COMMAND_CHECK_IS_EQUIP = 0xCC,
+    COMMAND_CHECK_IS_TAKE_PICTURES_NPC = 0xCD,
+    COMMAND_CHECK_SAY_MESSAGE = 0xCE,
+    COMMAND_CHECK_IS_TAKE_PICTURES_WITHOUT_PAWN = 0xCF,
+    COMMAND_CHECK_IS_LINKAGE_ENEMY_FLAG = 0xD0,
+    COMMAND_CHECK_IS_LINKAGE_ENEMY_FLAG_OFF = 0xD1,
+    COMMAND_CHECK_IS_RELEASE_SECRET_ROOM = 0xD2
+};
+
+enum QUEST_ANNOUNCE_TYPE : u32
+{
+    QUEST_ANNOUNCE_TYPE_ACCEPT = 0x0,
+    QUEST_ANNOUNCE_TYPE_CLEAR = 0x1,
+    QUEST_ANNOUNCE_TYPE_FAILED = 0x2,
+    QUEST_ANNOUNCE_TYPE_UPDATE = 0x3,
+    QUEST_ANNOUNCE_TYPE_DISCOVERED = 0x4,
+    QUEST_ANNOUNCE_TYPE_CAUTION = 0x5,
+    QUEST_ANNOUNCE_TYPE_START = 0x6,
+    QUEST_ANNOUNCE_TYPE_EX_UPDATE = 0x7,
+    QUEST_ANNOUNCE_TYPE_END = 0x8,
+    QUEST_ANNOUNCE_TYPE_STAGE_START = 0x9,
+    QUEST_ANNOUNCE_TYPE_STAGE_CLEAR = 0xA,
+    QUEST_ANNOUNCE_TYPE_CANCEL = 0xB,
+};
+
+enum ORDER_CONDITION_TYPE : u32
+{
+    ORDER_CONDITION_TYPE_NONE = 0x0,
+    ORDER_CONDITION_TYPE_MAX_LEVEL = 0x1,
+    ORDER_CONDITION_TYPE_JOB_LEVEL = 0x2,
+    ORDER_CONDITION_TYPE_SOLO = 0x3,
+    ORDER_CONDITION_TYPE_MAIN_QUEST_CLEAR = 0x6,
+    ORDER_CONDITION_TYPE_TUTORIAL_QUEST_CLEAR = 0x7,
+    ORDER_CONDITION_TYPE_END_QUEST_CLEAR = 0x8,
+    ORDER_CONDITION_TYPE_AREAMASTER_RANK = 0x9,
+    ORDER_CONDITION_TYPE_SOLO_WITH_PAWN = 0xA,
+    ORDER_CONDITION_TYPE_TUTOR_QUEST_GROUP_01 = 0xB,
+    ORDER_CONDITION_TYPE_TUTOR_QUEST_GROUP_02 = 0xC,
+    ORDER_CONDITION_TYPE_PARTNER_PAWN = 0xE,
+};
+
+struct MtTypedArr<T>
+{
+    u32 arraySize;
+    T arr[arraySize];
+};
+
+struct CPacket
+{
+    u8 group;
+    u16 id;
+    u8 subId;
+    u8 source;
+    u32 packetcounter;
+};
+
+struct CDataQuestDefine
+{
+    u8 m_ucOrderMaxNum;
+    u8 m_ucChargeAddOrderNum;
+    u8 m_ucRewardBoxMaxNum;
+    u16 m_usCycleContentsPlaydataRemainDay;
+};
+
+struct CDataAreaRank
+{
+    u32 m_unAreaID;
+    u32 m_unRank;
+};
+
+struct CDataQuestAnnounce
+{
+    QUEST_ANNOUNCE_TYPE m_unAnnounceNo;
+};
+
+struct CDataQuestProgressWork
+{
+    u32 m_unCommandNo;
+    s32 m_nWork01;
+    s32 m_nWork02;
+    s32 m_nWork03;
+    s32 m_nWork04;
+};
+
+struct CDataPriorityQuest
+{
+    u32 m_unQuestScheduleId;
+    u32 m_unQuestId;
+    MtTypedArray<CDataQuestAnnounce> m_QuestAnnounceList;
+    MtTypedArray<CDataQuestProgressWork> m_WorkList;
+};
+
+struct CDataQuestId
+{
+    u32 m_unQuestId;
+};
+
+struct CDataExpiredQuestList
+{
+    u32 m_unQuestScheduleId;
+    u32 m_unQuestId;
+};
+
+struct CDataQuestTalkInfo
+{
+    u32 Unknown;
+    u32 m_unTalkNo;
+    u16 m_usNpcId;
+    b8 m_bIsOneOnly;
+};
+
+struct CDataQuestLog
+{
+    MtTypedArray<CDataQuestAnnounce> m_QuestAnnounceList;
+    MtTypedArray<CDataQuestTalkInfo> m_QuestTalkInfoList;
+};
+
+struct CDataRewardItem
+{
+    u32 m_unItemId;
+    u16 m_usNum;
+};
+
+struct CDataQuestFlag
+{
+    u32 m_unFlagId;
+};
+
+struct CDataQuestLayoutFlag
+{
+    u32 m_unFlagId;
+};
+
+struct CDataQuestCommand
+{
+    u16 m_usCommand;
+    s32 m_nParam01;
+    s32 m_nParam02;
+    s32 m_nParam03;
+    s32 m_nParam04;
+};
+
+struct CDataQuestCommandCheck
+{
+    COMMAND_CHECK_LIST m_usCommand;
+    s32 m_nParam01;
+    s32 m_nParam02;
+    s32 m_nParam03;
+    s32 m_nParam04;
+};
+
+struct CDataQuestProcessState
+{
+    u16 m_usProcessNo;
+    u16 m_usSequenceNo;
+    u16 m_usBlockNo;
+    MtTypedArray<CDataQuestProgressWork> m_WorkList;
+    MtTypedArray<MtTypedArray<CDataQuestCommandCheck>> m_CheckCommandList;
+    MtTypedArray<CDataQuestCommand> m_ResultCommandList;
+};
+
+struct CDataQuestOrderConditionParam
+{
+    ORDER_CONDITION_TYPE m_unType;
+    s32 m_nParam01;
+    s32 m_nParam02;
+};
+
+struct CDataQuestEnemyInfo
+{
+    u32 m_unGroupId;
+    u32 Unknown;
+    u16 m_usLv;
+    b8 m_bIsPartyRecommend;
+};
+
+struct CDataQuestSetInfo
+{
+    u32 m_unStageNo;
+    u32 m_unGroupId;
+};
+
+struct CDataQuestLayoutFlagSetInfo
+{
+    u32 m_unLayoutFlagNo;
+    MtTypedArray<CDataQuestSetInfo> m_SetInfoList;
+};
+
+enum WalletType : u8
+{
+    Gold = 0x01,                    // G
+    RiftPoints = 0x02,              // R
+    BloodOrbs = 0x03,               // BO
+    SilverTickets = 0x04,           // 枚
+    GoldenGemstones = 0x05,         // 個
+    RentalPoints = 0x06,            // RP
+    ResetJobPoints = 0x07,          // JP_RESET => No icon, not testable, unsure
+    ResetCraftSkills = 0x08,        // CP_RESET => No icon, not testable, unsure
+    HighOrbs = 0x09,                // HO
+    DominionPoints = 0xA,           // DP
+    AdventurePassPoints = 0xB,      // BP
+    UnknownTickets = 0xC,           // 枚
+    CustomMadeServiceTickets = 0xD, // 枚 Evoticket => not testable, unsure
+    GoldenDragonMark = 0xE,         // 個
+    SilverDragonMark = 0xF,         // 個
+    RedDragonMark = 0x10            // 個
+};
+
+struct CDataWalletPoint
+{
+    WalletType m_ucType;
+    u32 m_unValue;
+};
+
+struct CDataQuestExp
+{
+    u16 ExpRatio;
+    u32 m_unValue;
+};
+
+struct CDataUnknown
+{
+    u32 unknown1;
+    u64 unknown2;
+};
+
+struct CDataDeliveredItem
+{
+    u32 m_unItemId;
+    u16 m_usItemNum;
+    u16 m_usNeedNum;
+};
+
+struct CDataDeliveredItemSeason3 : CDataDeliveredItem
+{
+    u16 unknown;
+};
+
+struct CDataQuestOrderList
+{
+    u32 m_unKeyId;
+    u32 m_unQuestScheduleId;
+    u32 m_unQuestId;
+    u32 m_unAreaId;
+    u32 m_unBaseLevel;
+    u16 m_usContentJoinItemRank;
+
+    MtTypedArray<CDataWalletPoint> m_unBaseGold;
+    MtTypedArray<CDataQuestExp> m_unBaseExp;
+
+    u32 m_unOrderNpcId;
+    u32 m_unNameMsgId;
+    u32 m_unDetailMsgId;
+
+    u32 Unknown1;
+    u32 Unknown2;
+
+    u64 m_ullOrderDate;
+    u64 m_ullEndDistributionDate;
+
+    MtTypedArray<CDataRewardItem> m_FixedRewardItemList;
+    MtTypedArray<CDataRewardItem> m_FixedRewardSelectItemList;
+
+    u32 unknownArray1Num;
+    u32 unknownArray1[unknownArray1Num];
+
+    CQuestLog m_QuestLog;
+    MtTypedArray<CDataQuestFlag> m_QuestFlagList;
+    MtTypedArray<CDataQuestLayoutFlag> m_QuestLayoutFlagList;
+    MtTypedArray<CDataQuestProcessState> m_QuestProcessStateList;
+    MtTypedArray<CDataQuestOrderConditionParam> m_QuestOrderConditionParamList;
+    MtTypedArray<CDataQuestEnemyInfo> m_QuestEnemyInfoList;
+    MtTypedArray<CDataQuestLayoutFlagSetInfo> m_QuestLayoutFlagSetInfoList;
+
+    u32 unknownArray2Num;
+    CDataUnknown unknownArray2[unknownArray2Num];
+
+    u32 probablyDeliveryItemArrayNum;
+    CDataDeliveredItemSeason3 probablyDeliveryItemArray[probablyDeliveryItemArrayNum];
+
+    b8 m_bIsClientOrder;
+    b8 m_bIsEnable;
+    b8 m_bCanProgress;
+};
+
+struct CDataWorldManageQuestOrderList
+{
+    CQuestOrderList m_Param;
+    u8 m_ucIsTutorialGuide;
+};
+
+struct CDataTimeLimitedQuestOrderList
+{
+    CQuestOrderList m_Param;
+};
+
+struct CDataLotQuestOrderList
+{
+    CQuestOrderList m_Param;
+    u8 m_ucLotQuestType;
+};
+
+struct CDataTutorialQuestOrderList
+{
+    CQuestOrderList m_Param;
+    u8 m_ucEnableCancel;
+};
+
+struct CDataMainQuestOrderList
+{
+    CQuestOrderList m_Param;
+};
+
+struct CDataSetQuestDetail
+{
+    u32 m_unImageId;
+    u32 m_unClearCount;
+    u32 m_unClearCharacterNum;
+    u32 m_unBaseAreaPoint;
+    u16 m_usUndiscoveryGoldRatio;
+    u16 m_usUndiscoveryExpRatio;
+    u16 m_usUndiscoveryRimRatio;
+    u16 m_usLeaderCompleteNum;
+    u16 m_usRepeatRewardType;
+    u8 m_ucRepeatRewardValue;
+    u8 m_ucRepeatRewardCompleteNum;
+    u8 m_ucRandomRewardNum;
+    u8 m_ucChargeRewardNum;
+    u8 m_ucProgressBonusNum;
+    b8 m_bIsDiscovery;
+};
+
+struct CDataDeliveryItem
+{
+    u32 m_unItemId;
+    u16 m_usNum;
+};
+
+struct CDataQuestList
+{
+    u32 m_unKeyId;
+    u32 m_unQuestScheduleId;
+    u32 m_unQuestId;
+    u32 m_unBaseLevel;
+    u16 m_usContentJoinItemRank;
+    u32 m_unBaseGold;
+    u32 m_unBaseExp;
+    u32 m_unBaseRim;
+    u32 m_unOrderNpcId;
+    u32 m_unNameMsgId;
+    u32 m_unDetailMsgId;
+    u64 m_ullEndDistributionDate;
+    MtTypedArray<CDataRewardItem> m_FixedRewardItemList;
+    MtTypedArray<CDataRewardItem> m_FixedRewardSelectItemList;
+    MtTypedArray<CDataQuestOrderConditionParam> m_QuestOrderConditionParamList;
+    CQuestLog m_QuestLog;
+    MtTypedArray<CDataQuestFlag> m_QuestFlagList;
+    MtTypedArray<CDataQuestLayoutFlag> m_QuestLayoutFlagList;
+    MtTypedArray<CDataQuestProcessState> m_QuestProcessStateList;
+    MtTypedArray<CDataQuestEnemyInfo> m_QuestEnemyInfoList;
+    MtTypedArray<CDataQuestLayoutFlagSetInfo> m_QuestLayoutFlagSetInfoList;
+    MtTypedArray<CDataDeliveryItem> m_DeliveryItemList;
+    b8 m_bIsClientOrder;
+};
+
+struct CDataSetQuestList
+{
+    CQuestList m_Param;
+    CSetQuestDetail m_Detail;
+};
+
+struct CDataSetQuestOrderList
+{
+    u32 m_unDistributeId;
+    CQuestOrderList m_Param;
+    CSetQuestDetail m_Detail;
+};
+
+struct CDataLightQuestDetail
+{
+    u32 m_unAreaId;
+    u32 m_unBaseAreaPoint;
+    u32 m_unGetCP;
+    u32 m_unOrderLimit;
+    u32 m_unClearNum;
+    u32 m_unBoardType;
+};
+
+struct CDataLightQuestOrderList
+{
+    CQuestOrderList m_Param;
+    CLightQuestDetail m_Detail;
+};
+
+struct CDataS2CQuestJoinLobbyQuestInfoNtcUnk0Unk1
+{
+    u32 Unk0;
+    s32 Unk1;
+    s32 Unk2;
+    MtTypedArray<u32> Unk3;
+    bool Unk4;
+    MtTypedArray<CDataQuestOrderList> Unk5;
+};
+
+struct CDataS2CQuestJoinLobbyQuestInfoNtcUnk0
+{
+    CDataQuestOrderList Unk0;
+    u32 Unk1;
+    u8 Unk2;
+};
+
+struct CDataS2CQuestJoinLobbyQuestInfoNtcUnk1
+{
+    u32 Unk0;
+    MtTypedArray<CDataS2CQuestJoinLobbyQuestInfoNtcUnk0Unk1> Unk1;
+};
+
+struct CPacket_S2C_JOIN_LOBBY_QUEST_INFO_NOTICE : CPacket
+{
+    // u32 m_usError;
+    MtTypedArray<CDataLightQuestOrderList> m_LightQuestOrderList;
+    MtTypedArray<CDataSetQuestOrderList> m_SetQuestOrderList;
+    MtTypedArray<CDataMainQuestOrderList> m_MainQuestOrderList;
+    MtTypedArray<CDataTutorialQuestOrderList> m_TutorialQuestOrderList;
+    MtTypedArray<CDataLotQuestOrderList> m_LotQuestOrderList;
+
+    MtTypedArray<CDataS2CQuestJoinLobbyQuestInfoNtcUnk0> Unk0;
+    MtTypedArray<CDataS2CQuestJoinLobbyQuestInfoNtcUnk1> Unk1;
+
+    MtTypedArray<CDataTimeLimitedQuestOrderList> m_TimeLimitedQuestOrderList;
+    MtTypedArray<CDataWorldManageQuestOrderList> m_WorldManageQuestOrderList;
+    MtTypedArray<CDataExpiredQuestList> m_ExpiredQuestList;
+    MtTypedArray<CDataQuestId> m_MainQuestIdList;
+    MtTypedArray<CDataQuestId> m_TutorialQuestIdList;
+    MtTypedArray<CDataPriorityQuest> m_PriorityQuestList;
+    MtTypedArray<CDataAreaRank> m_AreaRankList;
+    CQuestDefine m_QuestDefine;
+};
+
+CPacket_S2C_JOIN_LOBBY_QUEST_INFO_NOTICE cpacket_s2c_join_lobby_quest_info_notice_at_0x00 @0x00;
