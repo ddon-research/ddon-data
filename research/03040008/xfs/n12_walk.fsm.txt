@@ -1,0 +1,138 @@
+XFS (v1)
+version = 15
+type = 2
+int1 = 261
+structCount = 19
+startOffset = 2840
+
+[STRUCT0000] rAIFSM
+Hash = 1723094544
+Name = mQuality; Type = u32; unknown = 145; Size = 4
+Name = mOwnerObjectName; Type = string; unknown = 0; Size = 4
+Name = mpRootCluster; Type = classref; unknown = 0; Size = 4
+Name = mpConditionTree; Type = classref; unknown = 0; Size = 4
+Name = mFSMAttribute; Type = u32; unknown = 0; Size = 4
+Name = mLastEditType; Type = u32; unknown = 0; Size = 4
+
+[STRUCT0001] cAIFSMCluster
+Hash = 411468038
+Name = mId; Type = u32; unknown = 0; Size = 4
+Name = mOwnerNodeUniqueId; Type = u32; unknown = 0; Size = 4
+Name = mInitialStateId; Type = u32; unknown = 0; Size = 4
+Name = mpNodeList; Type = classref; unknown = 160; Size = 4
+
+[STRUCT0002] cAIFSMNode
+Hash = 1345706237
+Name = mName; Type = string; unknown = 0; Size = 4
+Name = mId; Type = u32; unknown = 0; Size = 4
+Name = mUniqueId; Type = u32; unknown = 0; Size = 4
+Name = mOwnerId; Type = u32; unknown = 0; Size = 4
+Name = mpSubCluster; Type = classref; unknown = 0; Size = 4
+Name = mpLinkList; Type = classref; unknown = 160; Size = 4
+Name = mpProcessList; Type = classref; unknown = 160; Size = 4
+Name = mUIPos; Type = u32; unknown = 0; Size = 4
+Name = mColorType; Type = u8; unknown = 0; Size = 1
+Name = mSetting; Type = u32; unknown = 0; Size = 4
+Name = mUserAttribute; Type = u32; unknown = 0; Size = 4
+Name = mExistConditionTrainsitionFromAll; Type = bool; unknown = 0; Size = 1
+Name = mConditionTrainsitionFromAllId; Type = u32; unknown = 0; Size = 4
+
+[STRUCT0003] cAIFSMLink
+Hash = 1676061001
+Name = mName; Type = string; unknown = 0; Size = 4
+Name = mDestinationNodeId; Type = u32; unknown = 0; Size = 4
+Name = mExistCondition; Type = bool; unknown = 0; Size = 1
+Name = mConditionId; Type = u32; unknown = 0; Size = 4
+
+[STRUCT0004] cAIFSMNodeProcess
+Hash = 1620948288
+Name = mContainerName; Type = string; unknown = 0; Size = 4
+Name = mCategoryName; Type = string; unknown = 0; Size = 4
+Name = mpParameter; Type = classref; unknown = 0; Size = 4
+
+[STRUCT0005] cFSMOrderParamIsMyQuestFlag
+Hash = 966170031
+Name = mQuestId; Type = u32; unknown = 0; Size = 4
+Name = mFlagNo; Type = u32; unknown = 0; Size = 4
+Name = mArrayIdx; Type = u32; unknown = 0; Size = 4
+
+[STRUCT0006]
+Hash = 1874526888
+Name = mMsgType; Type = u32; unknown = 0; Size = 4
+Name = mQstNo; Type = u32; unknown = 0; Size = 4
+Name = mMsgNo; Type = u32; unknown = 0; Size = 4
+Name = mMsgDispTime; Type = f32; unknown = 0; Size = 4
+Name = mMsgWaitTime; Type = f32; unknown = 0; Size = 4
+Name = mIsUseSerial; Type = bool; unknown = 0; Size = 1
+Name = mIsHideMessage; Type = bool; unknown = 0; Size = 1
+
+[STRUCT0007] cFSMUnit::cParamSetGoto
+Hash = 803327210
+Name = mTargetPos; Type = vector3; unknown = 0; Size = 16
+Name = mRunType; Type = u8; unknown = 0; Size = 1
+Name = mStopBorder; Type = f32; unknown = 0; Size = 4
+Name = mIsSetDir; Type = bool; unknown = 0; Size = 1
+Name = mIsPathFinding; Type = bool; unknown = 0; Size = 1
+Name = mDir; Type = vector3; unknown = 0; Size = 16
+Name = mSpeed; Type = f32; unknown = 0; Size = 4
+
+[STRUCT0008] cFSMUnit::cParamSetDisableTouchAction
+Hash = 1300480206
+Name = mIsDisableTouch; Type = bool; unknown = 0; Size = 1
+
+[STRUCT0009] cFSMUnit::cParamSetWait
+Hash = 7279503
+Name = mIsSetDir; Type = bool; unknown = 0; Size = 1
+Name = mDir; Type = vector3; unknown = 0; Size = 16
+Name = mSpeed; Type = f32; unknown = 0; Size = 4
+
+[STRUCT0010] cFSMUnit::cParamSetHeadCtrl
+Hash = 386719503
+Name = mHeadCtrl; Type = s16; unknown = 0; Size = 2
+
+[STRUCT0011] rAIConditionTree
+Hash = 2019452450
+Name = mQuality; Type = u32; unknown = 145; Size = 4
+Name = mpTreeList; Type = classref; unknown = 160; Size = 4
+
+[STRUCT0012] rAIConditionTree::TreeInfo
+Hash = 1455101785
+Name = mName; Type = class; unknown = 0; Size = 4
+Name = mpRootNode; Type = classref; unknown = 0; Size = 4
+
+[STRUCT0013] cAIDEnum
+Hash = 740917853
+Name = mId; Type = u32; unknown = 0; Size = 4
+
+[STRUCT0014] rAIConditionTree::OperationNode
+Hash = 473071737
+Name = mpChildList; Type = classref; unknown = 160; Size = 4
+Name = mOperator; Type = u32; unknown = 0; Size = 4
+
+[STRUCT0015] rAIConditionTree::VariableNode
+Hash = 1033179304
+Name = mpChildList; Type = classref; unknown = 160; Size = 4
+Name = mVariable; Type = class; unknown = 0; Size = 4
+Name = mIsBitNo; Type = bool; unknown = 0; Size = 1
+Name = mIsArray; Type = bool; unknown = 0; Size = 1
+Name = mIsDynamicIndex; Type = bool; unknown = 0; Size = 1
+Name = mIndex; Type = u32; unknown = 0; Size = 4
+Name = mIndexVariable; Type = class; unknown = 0; Size = 4
+Name = mUseEnumIndex; Type = bool; unknown = 0; Size = 1
+Name = mIndexEnum; Type = class; unknown = 0; Size = 4
+
+[STRUCT0016] rAIConditionTree::VariableNode::VariableInfo
+Hash = 1042257449
+Name = mPropertyName; Type = string; unknown = 0; Size = 4
+Name = mOwnerName; Type = string; unknown = 0; Size = 4
+Name = mIsSingletonOwner; Type = bool; unknown = 0; Size = 1
+
+[STRUCT0017] nAI::EnumProp
+Hash = 1748142764
+Name = mName; Type = string; unknown = 0; Size = 4
+Name = mEnumName; Type = string; unknown = 0; Size = 4
+
+[STRUCT0018] rAIConditionTree::ConstF32Node
+Hash = 124158962
+Name = mpChildList; Type = classref; unknown = 160; Size = 4
+Name = mValue; Type = f32; unknown = 0; Size = 4
