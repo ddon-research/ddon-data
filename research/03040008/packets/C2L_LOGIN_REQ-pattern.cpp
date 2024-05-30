@@ -17,8 +17,8 @@ struct CPacket
 
 struct CPacket_C2L_LOGIN_REQ : CPacket
 {
-    MtString m_wstrOnetimeToken;
-    u8 m_ucPlatform;
+    MtString OnetimeToken;
+    u8 Platform;
 };
 
-CPacket_C2L_LOGIN_REQ cpacket_c2l_login_req_at_0x00 @0x00;
+CPacket_C2L_LOGIN_REQ C2L_LOGIN_REQ @0x00;

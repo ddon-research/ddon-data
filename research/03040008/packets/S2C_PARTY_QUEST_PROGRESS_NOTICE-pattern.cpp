@@ -268,74 +268,74 @@ struct CPacket
 
 struct CDataRewardItem
 {
-    u32 m_unItemId;
-    u16 m_usNum;
+    u32 ItemId;
+    u16 Num;
 };
 
 struct CDataQuestFlag
 {
-    u32 m_unFlagId;
+    u32 FlagId;
 };
 
 struct CDataQuestAnnounce
 {
-    QUEST_ANNOUNCE_TYPE m_unAnnounceNo;
+    QUEST_ANNOUNCE_TYPE AnnounceNo;
 };
 
 struct CDataQuestTalkInfo
 {
     u32 Unknown;
-    u32 m_unTalkNo;
-    u16 m_usNpcId;
-    b8 m_bIsOneOnly;
+    u32 TalkNo;
+    u16 NpcId;
+    b8 IsOneOnly;
 };
 
 struct CDataQuestLog
 {
-    MtTypedArray<CDataQuestAnnounce> m_QuestAnnounceList;
-    MtTypedArray<CDataQuestTalkInfo> m_QuestTalkInfoList;
+    MtTypedArray<CDataQuestAnnounce> QuestAnnounceList;
+    MtTypedArray<CDataQuestTalkInfo> QuestTalkInfoList;
 };
 
 struct CDataQuestLayoutFlag
 {
-    u32 m_unFlagId;
+    u32 FlagId;
 };
 
 struct CDataQuestProgressWork
 {
-    u32 m_unCommandNo;
-    s32 m_nWork01;
-    s32 m_nWork02;
-    s32 m_nWork03;
-    s32 m_nWork04;
+    u32 CommandNo;
+    s32 Work01;
+    s32 Work02;
+    s32 Work03;
+    s32 Work04;
 };
 
 struct CDataQuestCommand
 {
-    u16 m_usCommand;
-    s32 m_nParam01;
-    s32 m_nParam02;
-    s32 m_nParam03;
-    s32 m_nParam04;
+    u16 Command;
+    s32 Param01;
+    s32 Param02;
+    s32 Param03;
+    s32 Param04;
 };
 
 struct CDataQuestCommandCheck
 {
-    COMMAND_CHECK_LIST m_usCommand;
-    s32 m_nParam01;
-    s32 m_nParam02;
-    s32 m_nParam03;
-    s32 m_nParam04;
+    COMMAND_CHECK_LIST Command;
+    s32 Param01;
+    s32 Param02;
+    s32 Param03;
+    s32 Param04;
 };
 
 struct CDataQuestProcessState
 {
-    u16 m_usProcessNo;
-    u16 m_usSequenceNo;
-    u16 m_usBlockNo;
-    MtTypedArray<CDataQuestProgressWork> m_WorkList;
-    MtTypedArray<MtTypedArray<CDataQuestCommandCheck>> m_CheckCommandList;
-    MtTypedArray<CDataQuestCommand> m_ResultCommandList;
+    u16 ProcessNo;
+    u16 SequenceNo;
+    u16 BlockNo;
+    MtTypedArray<CDataQuestProgressWork> WorkList;
+    MtTypedArray<MtTypedArray<CDataQuestCommandCheck>> CheckCommandList;
+    MtTypedArray<CDataQuestCommand> ResultCommandList;
 };
 
 enum ORDER_CONDITION_TYPE : u32
@@ -356,36 +356,36 @@ enum ORDER_CONDITION_TYPE : u32
 
 struct CDataQuestOrderConditionParam
 {
-    ORDER_CONDITION_TYPE m_unType;
-    s32 m_nParam01;
-    s32 m_nParam02;
+    ORDER_CONDITION_TYPE Type;
+    s32 Param01;
+    s32 Param02;
 };
 
 struct CDataQuestEnemyInfo
 {
-    u32 m_unGroupId;
+    u32 GroupId;
     u32 Unknown;
-    u16 m_usLv;
-    b8 m_bIsPartyRecommend;
+    u16 Lv;
+    b8 IsPartyRecommend;
 };
 
 struct CDataQuestSetInfo
 {
-    u32 m_unStageNo;
-    u32 m_unGroupId;
+    u32 StageNo;
+    u32 GroupId;
 };
 
 struct CDataQuestLayoutFlagSetInfo
 {
-    u32 m_unLayoutFlagNo;
-    MtTypedArray<CDataQuestSetInfo> m_SetInfoList;
+    u32 LayoutFlagNo;
+    MtTypedArray<CDataQuestSetInfo> SetInfoList;
 };
 
 struct CDataDeliveredItem
 {
-    u32 m_unItemId;
-    u16 m_usItemNum;
-    u16 m_usNeedNum;
+    u32 ItemId;
+    u16 ItemNum;
+    u16 NeedNum;
 };
 
 struct CDataDeliveredItemSeason3 : CDataDeliveredItem
@@ -415,14 +415,14 @@ enum WalletType : u8
 
 struct CDataWalletPoint
 {
-    WalletType m_ucType;
-    u32 m_unValue;
+    WalletType Type;
+    u32 Value;
 };
 
 struct CDataQuestExp
 {
     u16 ExpRatio;
-    u32 m_unValue;
+    u32 Value;
 };
 
 struct CDataUnknown
@@ -433,100 +433,96 @@ struct CDataUnknown
 
 struct CDataQuestOrderList
 {
-    u32 m_unKeyId;
-    u32 m_unQuestScheduleId;
-    u32 m_unQuestId;
-    u32 m_unAreaId;
-    u32 m_unBaseLevel;
-    u16 m_usContentJoinItemRank;
+    u32 KeyId;
+    u32 QuestScheduleId;
+    u32 QuestId;
+    u32 AreaId;
+    u32 BaseLevel;
+    u16 ContentJoinItemRank;
 
-    MtTypedArray<CDataWalletPoint> m_unBaseGold;
-    MtTypedArray<CDataQuestExp> m_unBaseExp;
+    MtTypedArray<CDataWalletPoint> BaseGold;
+    MtTypedArray<CDataQuestExp> BaseExp;
 
-    u32 m_unOrderNpcId;
-    u32 m_unNameMsgId;
-    u32 m_unDetailMsgId;
+    u32 OrderNpcId;
+    u32 NameMsgId;
+    u32 DetailMsgId;
 
     u32 Unknown1;
     u32 Unknown2;
 
-    u64 m_ullOrderDate;
-    u64 m_ullEndDistributionDate;
+    u64 OrderDate;
+    u64 EndDistributionDate;
 
-    MtTypedArray<CDataRewardItem> m_FixedRewardItemList;
-    MtTypedArray<CDataRewardItem> m_FixedRewardSelectItemList;
+    MtTypedArray<CDataRewardItem> FixedRewardItemList;
+    MtTypedArray<CDataRewardItem> FixedRewardSelectItemList;
 
-    u32 unknownArray1Num;
-    u32 unknownArray1[unknownArray1Num];
+    MtTypedArray<u32> Unknown3;
 
-    CQuestLog m_QuestLog;
-    MtTypedArray<CDataQuestFlag> m_QuestFlagList;
-    MtTypedArray<CDataQuestLayoutFlag> m_QuestLayoutFlagList;
-    MtTypedArray<CDataQuestProcessState> m_QuestProcessStateList;
-    MtTypedArray<CDataQuestOrderConditionParam> m_QuestOrderConditionParamList;
-    MtTypedArray<CDataQuestEnemyInfo> m_QuestEnemyInfoList;
-    MtTypedArray<CDataQuestLayoutFlagSetInfo> m_QuestLayoutFlagSetInfoList;
+    CQuestLog QuestLog;
+    MtTypedArray<CDataQuestFlag> QuestFlagList;
+    MtTypedArray<CDataQuestLayoutFlag> QuestLayoutFlagList;
+    MtTypedArray<CDataQuestProcessState> QuestProcessStateList;
+    MtTypedArray<CDataQuestOrderConditionParam> QuestOrderConditionParamList;
+    MtTypedArray<CDataQuestEnemyInfo> QuestEnemyInfoList;
+    MtTypedArray<CDataQuestLayoutFlagSetInfo> QuestLayoutFlagSetInfoList;
 
-    u32 unknownArray2Num;
-    CDataUnknown unknownArray2[unknownArray2Num];
+    MtTypedArray<CDataUnknown> Unknown4;
+    MtTypedArray<CDataDeliveredItemSeason3> DeliveryItemArray;
 
-    u32 probablyDeliveryItemArrayNum;
-    CDataDeliveredItemSeason3 probablyDeliveryItemArray[probablyDeliveryItemArrayNum];
-
-    b8 m_bIsClientOrder;
-    b8 m_bIsEnable;
-    b8 m_bCanProgress;
+    b8 IsClientOrder;
+    b8 IsEnable;
+    b8 CanProgress;
 };
 
 struct CDataQuestIdScheduleId
 {
-    u32 m_unQuestId;
-    u32 m_unQuestScheduleId;
+    u32 QuestId;
+    u32 QuestScheduleId;
 };
 
 struct CDataDeliveredItemRecord
 {
-    u32 m_unCharacterId;
-    u32 m_unQuestScheduleId;
-    u16 m_usProcessNo;
-    MtTypedArray<CDataDeliveredItem> m_DeliveredItemList;
+    u32 CharacterId;
+    u32 QuestScheduleId;
+    u16 ProcessNo;
+    MtTypedArray<CDataDeliveredItem> DeliveredItemList;
 };
 
 struct CDataQuestKeyItemPoint
 {
-    u8 m_ucPointID;
-    u16 m_usPoint;
+    u8 PointID;
+    u16 Point;
 };
 
 struct CDataQuestKeyItemPointRecord
 {
-    u32 m_unQuestScheduleId;
-    u16 m_usProcessNo;
-    MtTypedArray<CDataQuestKeyItemPoint> m_QuestKeyItemPointList;
+    u32 QuestScheduleId;
+    u16 ProcessNo;
+    MtTypedArray<CDataQuestKeyItemPoint> QuestKeyItemPointList;
 };
 
 struct CDataPartyQuestProgressInfo
 {
-    u32 m_QuestOrderListNum;
-    CDataQuestOrderList m_QuestOrderList[m_QuestOrderListNum];
+    u32 QuestOrderListNum;
+    CDataQuestOrderList QuestOrderList[QuestOrderListNum];
 
-    MtTypedArray<CDataQuestIdScheduleId> m_SoloQuestOrderList;
-    MtTypedArray<CDataDeliveredItemRecord> m_DeliveredItemRecordList;
-    MtTypedArray<CDataQuestKeyItemPointRecord> m_QuestKeyItemPointRecordList;
+    MtTypedArray<CDataQuestIdScheduleId> SoloQuestOrderList;
+    MtTypedArray<CDataDeliveredItemRecord> DeliveredItemRecordList;
+    MtTypedArray<CDataQuestKeyItemPointRecord> QuestKeyItemPointRecordList;
 };
 
 struct CPacket_S2C_GET_PARTY_QUEST_PROGRESS_INFO_RES : CPacket
 {
-    u32 m_usError;
-    s32 m_nResult;
-    CPartyQuestProgressInfo m_PartyQuestProgressInfo;
+    u32 Error;
+    s32 Result;
+    CPartyQuestProgressInfo PartyQuestProgressInfo;
 };
 
 struct CPacket_S2C_PARTY_QUEST_PROGRESS_NOTICE : CPacket
 {
-    u32 m_usError;
-    u32 m_unProgressCharacterId;
-    CPartyQuestProgressInfo m_PartyQuestProgressInfo;
+    u32 Error;
+    u32 ProgressCharacterId;
+    CPartyQuestProgressInfo PartyQuestProgressInfo;
 };
 
-CPacket_S2C_GET_PARTY_QUEST_PROGRESS_INFO_RES cpacket_s2c_get_party_quest_progress_info_res_at_0x00 @0x00;
+CPacket_S2C_PARTY_QUEST_PROGRESS_NOTICE S2C_PARTY_QUEST_PROGRESS_NOTICE @0x00;

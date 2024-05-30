@@ -80,4 +80,4 @@ struct CPacket_S2C_GET_CYCLE_CONTENTS_STATE_LIST_RES : CPacket
     MtTypedArray<CDataCycleContentsStateList> CycleContentsStateList;
 };
 
-CPacket_S2C_GET_CYCLE_CONTENTS_STATE_LIST_RES cpacket_s2c_get_cycle_contents_state_list_res_at_0x00 @0x00;
+CPacket_S2C_GET_CYCLE_CONTENTS_STATE_LIST_RES S2C_GET_CYCLE_CONTENTS_STATE_LIST_RES @0x00;

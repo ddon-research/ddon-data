@@ -1,6 +1,8 @@
 #pragma endian big
 
 #define f32 float
+#define HP_DATATYPE u64
+#define f64 double
 
 enum nNetMsgData_nGame_NET_MSG_ID_GAME : u16
 {
@@ -110,13 +112,13 @@ enum nNetMsgData_nCtrl_NET_MSG_ID : u16
     NET_MSG_ID_PERIODIC_INTERFACE = 0x1D,
     NET_MSG_ID_PERIODIC_BOTTOM = 0x1E,
     NET_MSG_ID_CATCH_REQUEST = 0x1E,
-    NET_MSG_ID_CAUGHT_RESULT = 0x1F, //=> cContextInterface_isCaughtResult
+    NET_MSG_ID_CAUGHT_RESULT = 0x1F, //=> cContextInterface::isCaughtResult
     NET_MSG_ID_ACT_CAUGHT = 0x20,
-    NET_MSG_ID_OM_PUT = 0x21,     //=> cContextInterface_getIsOmReleasePut
-    NET_MSG_ID_OM_THROW = 0x22,   //=> cContextInterface_getIsOmReleaseThrow
-    NET_MSG_ID_SHL_DELETE = 0x23, //=> cContextInterface_getShlDelte
-    NET_MSG_ID_SHL_SHOT = 0x24,   //=> cContextInterface_isShotReqNoAct
-    NET_MSG_ID_STICK_SHL = 0x25,  //=>cContextInterface_requestShlStickInfoContext
+    NET_MSG_ID_OM_PUT = 0x21,     //=> cContextInterface::getIsOmReleasePut
+    NET_MSG_ID_OM_THROW = 0x22,   //=> cContextInterface::getIsOmReleaseThrow
+    NET_MSG_ID_SHL_DELETE = 0x23, //=> cContextInterface::getShlDelte
+    NET_MSG_ID_SHL_SHOT = 0x24,   //=> cContextInterface::isShotReqNoAct
+    NET_MSG_ID_STICK_SHL = 0x25,  //=>cContextInterface::requestShlStickInfoContext
     NET_MSG_SHL_SLAVE_KILL_SEND = 0x26,
     NET_MSG_SHL_KILL_SYNC = 0x27,
     NET_MSG_STATE_LIVE = 0x28,
@@ -125,7 +127,7 @@ enum nNetMsgData_nCtrl_NET_MSG_ID : u16
     NET_MSG_ID_SLAVE_DAMAGE = 0x2B,
     NET_MSG_ID_ACT_RESCUE = 0x2C,
     NET_MSG_ID_ACT_RESCUE_ONLY = 0x2D,
-    NET_MSG_ID_ENEMYSTATUS_CTRL = 0x2E, //=> cContextInterface_setEnemyStatusChange
+    NET_MSG_ID_ENEMYSTATUS_CTRL = 0x2E, //=> cContextInterface::setEnemyStatusChange
     NET_MSG_ID_ENEMYWAITTING = 0x2F,
     NET_MSG_ID_ENEMYSTARTWAIT = 0x30,
     NET_MSG_ID_CORE_POINT = 0x31,
@@ -198,6 +200,14 @@ enum RPC_ID : u32
     sGame = 1010,
     sSetManager = 1030,
 
+};
+
+struct MtVector3
+{
+    f32 x;
+    f32 y;
+    f32 z;
+    f32 pad_;
 };
 
 struct nNetMsgData_Head_stMsgHead
@@ -321,19 +331,6 @@ struct nNetMsgData_GameNormal_stMsgGameNormalData_STAGE
     // based on NET_MSG_ID a different object has to be deserialized
     s32 mStageNo;
     s32 mStartPosNo;
-    // u8 mReviveStock;
-    // s32 mFlagNum;
-    // nNetMsgData_GameNormal_stFlagData mpFlagData[mFlagNum];
-    // u32 mPawnMsgNum;
-    // nNetMsgData_GameNormal_stPawnMsg mpPawnMsg[mPawnMsg];
-    // u32 mEmDieNum;
-    // nNetMsgData_GameNormal_stEmDieData mpEmDieData[mEmDieNum];
-    // u32 mDoorNum;
-    // nNetMsgData_GameNormal_stDoorData mpDoorData[mDoorNum];
-    // u32 mFreeMarkerNum;
-    // nNetMsgData_GameNormal_stFreeMarker mpFreeMarker[mFreeMarkerNum];
-    // u32 mPawnOrderMemberIndex;
-    // u32 mPawnOrderNo;
 };
 
 struct nNetMsgData_GameBase_stMsgGameBaseData
@@ -371,6 +368,49 @@ struct nNetMsg_cNetMsgCtrlAction : nNetMsg_cNetMsgCtrlBase
     // nNetMsgData_CtrlAction_stMsgCtrlActionData mpMsgCtrlActionData;
 };
 
+struct nNetMsgData_stNetPos
+{
+    f64 x;
+    f32 y;
+    f64 z;
+};
+
+struct nObjCondition_stOcdActiveMsg
+{
+    u8 mOcdUIDMsg;
+    u8 mOcdActiveLvMsg;
+    bool mIsStandby;
+};
+
+struct nNetMsgData_CtrlAction_stMsgCtrlActionData_ACT_NORMAL
+{
+    // bool mIsEnemy;
+    // bool mIsCharacter;
+    // bool mIsHuman;
+    // bool mIsEnemyLarge;
+    nNetMsgData_stNetPos mPos;
+    f32 mMoveSpeed;
+    f32 mMoveAngle;
+    f32 mAngleY;
+    u32 mActNo;
+    //u8 mActReqPrio;
+    //u16 mActAtkAdjustUniqueId;
+    //u32 mActFreeWork;
+    //HP_DATATYPE mHp;
+    //u16 mUseRegionBit;
+    //u64 mRegionRateBit;
+    //HP_DATATYPE mHpWhite;
+    //u32 mStamina;
+    //u16 mCommonWork;
+    //u16 mCustomWork;
+    //u32 mOcdActiveMsgNum;
+};
+
+struct nNetMsg_cNetMsgCtrlAction_ACT_NORMAL : nNetMsg_cNetMsgCtrlBase
+{
+    nNetMsgData_CtrlAction_stMsgCtrlActionData_ACT_NORMAL mpMsgCtrlActionData;
+};
+
 struct CPacket_C2S_LOBBY_DATA_MSG_REQ : CPacket
 {
 
@@ -384,8 +424,11 @@ struct CPacket_C2S_LOBBY_DATA_MSG_REQ : CPacket
     u32 RpcId;
 
     NET_MSG_DTI netMsgDTI;
-    if (netMsgDTI == NET_MSG_DTI::cNetMsgCtrlAction)
+    if (netMsgDTI == NET_MSG_DTI::cNetMsgCtrlAction){
         nNetMsgData_nCtrl_NET_MSG_ID msgId;
+        //if (msgId == nNetMsgData_nCtrl_NET_MSG_ID::NET_MSG_ID_ACT_NORMAL)
+        //    nNetMsg_cNetMsgCtrlAction_ACT_NORMAL msg;
+    }
 
     if (netMsgDTI == NET_MSG_DTI::cNetMsgToolNormal)
     {

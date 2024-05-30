@@ -26,88 +26,88 @@ struct CPacket
 
 struct CDataJobBaseInfo
 {
-    u8 m_ucJob;
-    u8 m_ucLv;
+    u8 Job;
+    u8 Lv;
 };
 
 struct CDataCharacterName
 {
-    MtString m_wstrFirstName;
-    MtString m_wstrLastName;
+    MtString FirstName;
+    MtString LastName;
 };
 
 struct CDataCommunityCharacterBaseInfo
 {
-    u32 m_unCharacterID;
-    CCharacterName m_CharacterName;
-    MtString m_wstrClanName;
+    u32 CharacterID;
+    CCharacterName CharacterName;
+    MtString ClanName;
 };
 
 struct CDataCharacterListElement
 {
-    CCommunityCharacterBaseInfo m_BaseInfo;
-    u16 m_usServerID;
-    u8 m_ucOnlineStatus;
-    CJobBaseInfo m_CurrentJobInfo;
-    CJobBaseInfo m_EntryJobInfo;
-    MtString m_wstrMatchingPlofile;
+    CCommunityCharacterBaseInfo BaseInfo;
+    u16 ServerID;
+    u8 OnlineStatus;
+    CJobBaseInfo CurrentJobInfo;
+    CJobBaseInfo EntryJobInfo;
+    MtString MatchingPlofile;
     u8 unknown;
 };
 
 struct CDataClanMemberInfo
 {
-    u32 m_unRank;
-    s64 m_llCreated;
-    s64 m_llLastLoginTime;
-    s64 m_llLeaveTime;
-    u32 m_unPermission;
-    CCharacterListElement m_CharacterListElement;
+    u32 Rank;
+    s64 Created;
+    s64 LastLoginTime;
+    s64 LeaveTime;
+    u32 Permission;
+    CCharacterListElement CharacterListElement;
 };
 
 struct CDataClanServerParam
 {
-    u32 m_unID;
-    u16 m_usLv;
-    u16 m_usMemberNum;
-    CClanMemberInfo m_MasterInfo;
-    b8 m_bIsSystemRestriction;
-    b8 m_bIsClanBaseRelease;
-    b8 m_bCanClanBaseRelease;
-    u32 m_unTotalClanPoint;
-    u32 m_unMoneyClanPoint;
-    u32 m_unNextClanPoint;
+    u32 ID;
+    u16 Lv;
+    u16 MemberNum;
+    CClanMemberInfo MasterInfo;
+    b8 IsSystemRestriction;
+    b8 IsClanBaseRelease;
+    b8 CanClanBaseRelease;
+    u32 TotalClanPoint;
+    u32 MoneyClanPoint;
+    u32 NextClanPoint;
 };
 
 struct CDataClanUserParam
 {
-    MtString m_wstrName;
-    MtString m_wstrShortName;
-    u8 m_ucEmblemMarkType;
-    u8 m_ucEmblemBaseType;
-    u8 m_ucEmblemBaseMainColor;
-    u8 m_ucEmblemBaseSubColor;
-    u32 m_unMotto;
-    u32 m_unActiveDays;
-    u32 m_unActiveTime;
-    u32 m_unCharacteristic;
-    b8 m_bIsPublish;
-    MtString m_wstrComment;
-    MtString m_wstrBoardMessage;
-    s64 m_llCreated;
+    MtString Name;
+    MtString ShortName;
+    u8 EmblemMarkType;
+    u8 EmblemBaseType;
+    u8 EmblemBaseMainColor;
+    u8 EmblemBaseSubColor;
+    u32 Motto;
+    u32 ActiveDays;
+    u32 ActiveTime;
+    u32 Characteristic;
+    b8 IsPublish;
+    MtString Comment;
+    MtString BoardMessage;
+    s64 Created;
 };
 
 struct CDataClanParam
 {
-    CClanUserParam m_ClanUserParam;
-    CClanServerParam m_ClanServerParam;
+    CClanUserParam ClanUserParam;
+    CClanServerParam ClanServerParam;
 };
 
 struct CPacket_S2C_CLAN_GET_MY_INFO_RES : CPacket
 {
-    u32 m_usError;
-    s32 m_nResult;
-    CClanParam m_CreateParam;
-    s64 m_llLeaveTime;
-    u8 pad[11];
+    u32 Error;
+    s32 Result;
+    CClanParam CreateParam;
+    s64 LeaveTime;
 };
-CPacket_S2C_CLAN_GET_MY_INFO_RES cpacket_s2c_clan_get_my_info_res_at_0x00 @0x00;
+
+CPacket_S2C_CLAN_GET_MY_INFO_RES S2C_CLAN_GET_MY_INFO_RES @0x00;

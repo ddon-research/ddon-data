@@ -13,4 +13,4 @@ struct CPacket_C2S_CLAN_GET_MY_INFO_REQ : CPacket
 {
 };
 
-CPacket_C2S_CLAN_GET_MY_INFO_REQ cpacket_c2s_clan_get_my_info_req_at_0x00 @0x00;
+CPacket_C2S_CLAN_GET_MY_INFO_REQ C2S_CLAN_GET_MY_INFO_REQ @0x00;
