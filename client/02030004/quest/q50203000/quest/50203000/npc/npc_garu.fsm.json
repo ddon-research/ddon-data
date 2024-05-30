@@ -1,0 +1,273 @@
+{
+  "@class" : "org.sehkah.ddon.tools.extractor.lib.logic.resource.entity.season2.quest.AIFSM",
+  "fileHeader" : {
+    "magicString" : "XFS\u0000",
+    "magicBytesLength" : 4,
+    "versionNumber" : 131087,
+    "versionBytesLength" : 4
+  },
+  "ownerObjectName" : "cFSMUnit",
+  "rootCluster" : {
+    "Id" : 0,
+    "OwnerNodeUniqueId" : 0,
+    "InitialStateId" : 0,
+    "NodeList" : [ {
+      "Name" : "s0001",
+      "Id" : 0,
+      "UniqueId" : 633994494,
+      "OwnerId" : 0,
+      "LinkListNum" : 2,
+      "LinkList" : [ {
+        "Name" : "s0001_t0000",
+        "DestinationNodeId" : 5,
+        "ExistCondition" : true,
+        "ConditionId" : 0
+      }, {
+        "Name" : "s0001_t0001",
+        "DestinationNodeId" : 5,
+        "ExistCondition" : true,
+        "ConditionId" : 6
+      } ],
+      "ProcessListNum" : 4,
+      "ProcessList" : [ {
+        "ContainerName" : "SetAction",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "actionType" : 1
+        }
+      }, {
+        "ContainerName" : "SetDispMiniMap",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "isDispMiniMap" : true
+        }
+      }, {
+        "ContainerName" : "SetDisableTouchAction",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "isDisableTouch" : true
+        }
+      }, {
+        "ContainerName" : "checkMyQuestFlag",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "arrayIdx" : 0,
+          "flagNo" : 2404,
+          "questId" : 50203000
+        }
+      } ],
+      "UIPos" : {
+        "UIPosX" : 853,
+        "UIPosY" : 588
+      },
+      "ColorType" : 0,
+      "Setting" : 1,
+      "UserAttribute" : 0,
+      "ExistConditionTrainsitionFromAll" : false,
+      "ConditionTrainsitionFromAllId" : 0
+    }, {
+      "Name" : "担当ザコ戦闘",
+      "Id" : 1,
+      "UniqueId" : 2411738229,
+      "OwnerId" : 0,
+      "LinkListNum" : 1,
+      "LinkList" : [ {
+        "Name" : "ザコ戦闘_t0000",
+        "DestinationNodeId" : 4,
+        "ExistCondition" : true,
+        "ConditionId" : 1
+      } ],
+      "ProcessListNum" : 3,
+      "ProcessList" : [ {
+        "ContainerName" : "SetChangeThink",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "isInvincible" : true,
+          "think" : 1
+        }
+      }, {
+        "ContainerName" : "SetHeadCtrl",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "headCtrl" : 0
+        }
+      }, {
+        "ContainerName" : "checkMyQuestFlag",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "arrayIdx" : 0,
+          "flagNo" : 2404,
+          "questId" : 50203000
+        }
+      } ],
+      "UIPos" : {
+        "UIPosX" : 1125,
+        "UIPosY" : 585
+      },
+      "ColorType" : 0,
+      "Setting" : 1,
+      "UserAttribute" : 0,
+      "ExistConditionTrainsitionFromAll" : false,
+      "ConditionTrainsitionFromAllId" : 0
+    }, {
+      "Name" : "追従",
+      "Id" : 2,
+      "UniqueId" : 3467569053,
+      "OwnerId" : 0,
+      "LinkListNum" : 1,
+      "LinkList" : [ {
+        "Name" : "勝利したので追従_t0000",
+        "DestinationNodeId" : 3,
+        "ExistCondition" : true,
+        "ConditionId" : 2
+      } ],
+      "ProcessListNum" : 3,
+      "ProcessList" : [ {
+        "ContainerName" : "SetGotoTarget",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "enableNoFall" : true,
+          "isPathFinding" : true,
+          "isSetBorder" : true,
+          "isUseWarp" : true,
+          "runType" : 1,
+          "stopBorder" : 350.0,
+          "targetId" : -1,
+          "targetType" : 0,
+          "warpDist" : 2000.0
+        }
+      }, {
+        "ContainerName" : "SetHeadCtrl",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "headCtrl" : 1
+        }
+      }, {
+        "ContainerName" : "checkMyQuestFlag",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "arrayIdx" : 0,
+          "flagNo" : 2403,
+          "questId" : 50203000
+        }
+      } ],
+      "UIPos" : {
+        "UIPosX" : 1083,
+        "UIPosY" : 782
+      },
+      "ColorType" : 0,
+      "Setting" : 1,
+      "UserAttribute" : 0,
+      "ExistConditionTrainsitionFromAll" : false,
+      "ConditionTrainsitionFromAllId" : 0
+    }, {
+      "Name" : "接敵したので戦闘思考",
+      "Id" : 3,
+      "UniqueId" : 415177835,
+      "OwnerId" : 0,
+      "LinkListNum" : 1,
+      "LinkList" : [ {
+        "Name" : "接敵したので戦闘思考_t0000",
+        "DestinationNodeId" : 4,
+        "ExistCondition" : true,
+        "ConditionId" : 3
+      } ],
+      "ProcessListNum" : 3,
+      "ProcessList" : [ {
+        "ContainerName" : "SetAction",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "actionType" : 0
+        }
+      }, {
+        "ContainerName" : "SetChangeThink",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "isInvincible" : true,
+          "think" : 1
+        }
+      }, {
+        "ContainerName" : "SetHeadCtrl",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "headCtrl" : 0
+        }
+      } ],
+      "UIPos" : {
+        "UIPosX" : 1486,
+        "UIPosY" : 781
+      },
+      "ColorType" : 0,
+      "Setting" : 1,
+      "UserAttribute" : 0,
+      "ExistConditionTrainsitionFromAll" : false,
+      "ConditionTrainsitionFromAllId" : 0
+    }, {
+      "Name" : "リセット",
+      "Id" : 4,
+      "UniqueId" : 3694641212,
+      "OwnerId" : 0,
+      "LinkListNum" : 1,
+      "LinkList" : [ {
+        "Name" : "s0000_t0000",
+        "DestinationNodeId" : 2,
+        "ExistCondition" : true,
+        "ConditionId" : 4
+      } ],
+      "ProcessListNum" : 2,
+      "ProcessList" : [ {
+        "ContainerName" : "SetAction",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "actionType" : 1
+        }
+      }, {
+        "ContainerName" : "SetChangeThink",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "isInvincible" : true,
+          "think" : 0
+        }
+      } ],
+      "UIPos" : {
+        "UIPosX" : 1303,
+        "UIPosY" : 583
+      },
+      "ColorType" : 0,
+      "Setting" : 1,
+      "UserAttribute" : 0,
+      "ExistConditionTrainsitionFromAll" : false,
+      "ConditionTrainsitionFromAllId" : 0
+    }, {
+      "Name" : "s0002",
+      "Id" : 5,
+      "UniqueId" : 635938227,
+      "OwnerId" : 0,
+      "LinkListNum" : 1,
+      "LinkList" : [ {
+        "Name" : "s0002_t0000",
+        "DestinationNodeId" : 1,
+        "ExistCondition" : true,
+        "ConditionId" : 5
+      } ],
+      "ProcessListNum" : 1,
+      "ProcessList" : [ {
+        "ContainerName" : "SetAction",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "actionType" : 0
+        }
+      } ],
+      "UIPos" : {
+        "UIPosX" : 998,
+        "UIPosY" : 586
+      },
+      "ColorType" : 0,
+      "Setting" : 1,
+      "UserAttribute" : 0,
+      "ExistConditionTrainsitionFromAll" : false,
+      "ConditionTrainsitionFromAllId" : 0
+    } ]
+  },
+  "fileSize" : 6404
+}

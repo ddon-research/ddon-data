@@ -19,6 +19,7 @@ else
 	for f in decrypted_raw/**/*"${filter}"*; do
 		mkdir -p ./decrypted_json/$(dirname $f)
 		echo $f
+		#imhex --pl format --help
 		imhex --pl format --pattern "${pattern}" --input $f --output ./decrypted_json/$(dirname $f)/$(basename $f).json
 	done
 fi
