@@ -332,9 +332,14 @@ struct nNetMsgData_GameNormal_stMsgGameNormalData
     // u32 mPawnOrderNo;
 };
 
+struct nNetMsgData_GameNormal_stMsgGameNormalData_SET_EM_DIE
+{
+    u32 mEmDieNum;
+    nNetMsgData_GameNormal_stEmDieData mpEmDieData[mEmDieNum];
+};
+
 struct nNetMsgData_GameNormal_stMsgGameNormalData_STAGE
 {
-    // based on NET_MSG_ID a different object has to be deserialized
     s32 mStageNo;
     s32 mStartPosNo;
 };
@@ -351,12 +356,17 @@ struct nNetMsg_cNetMsgGameBase : nNetMsg_cNetMsgBase
 
 struct nNetMsg_cNetMsgGameNormal : nNetMsg_cNetMsgGameBase
 {
-    nNetMsgData_GameNormal_stMsgGameNormalData mpMsgGameNormalData; //*
+    nNetMsgData_GameNormal_stMsgGameNormalData mpMsgGameNormalData;
 };
 
 struct nNetMsg_cNetMsgGameNormal_STAGE : nNetMsg_cNetMsgGameBase
 {
-    nNetMsgData_GameNormal_stMsgGameNormalData_STAGE mpMsgGameNormalData; //*
+    nNetMsgData_GameNormal_stMsgGameNormalData_STAGE mpMsgGameNormalData;
+};
+
+struct nNetMsg_cNetMsgGameNormal_SET_EM_DIE : nNetMsg_cNetMsgGameBase
+{
+    nNetMsgData_GameNormal_stMsgGameNormalData_SET_EM_DIE mpMsgGameNormalData;
 };
 
 struct nNetMsgData_CtrlBase_stMsgCtrlBaseData
@@ -448,6 +458,8 @@ struct CPacket_C2S_SEND_BINARY_MSG_ALL_NOTICE : CPacket
         nNetMsgData_nGame_NET_MSG_ID_GAME msgId;
         if (msgId == nNetMsgData_nGame_NET_MSG_ID_GAME::NET_MSG_ID_GAME_STAGE)
             nNetMsg_cNetMsgGameNormal_STAGE msg;
+        if (msgId == nNetMsgData_nGame_NET_MSG_ID_GAME::NET_MSG_ID_GAME_SET_EM_DIE)
+            nNetMsg_cNetMsgGameNormal_SET_EM_DIE msg;
     }
 
     if (netMsgDTI == NET_MSG_DTI::cNetMsgGameEasy)
