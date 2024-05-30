@@ -433,6 +433,12 @@ enum WalletType : u8
     RedDragonMark = 0x10            // 個
 };
 
+enum ExpType : u8 {
+   ExperiencePoints = 0x1,
+   ClanPoints = 0x2, // unconfirmed?
+   PlayPoints = 0x3
+};
+
 struct CDataWalletPoint
 {
     WalletType Type;
@@ -441,7 +447,8 @@ struct CDataWalletPoint
 
 struct CDataQuestExp
 {
-    u16 ExpRatio;
+    u8 Unk0;
+    ExpType Type;
     u32 Value;
 };
 
@@ -625,11 +632,15 @@ struct CDataS2CQuestJoinLobbyQuestInfoNtcUnk0Unk1
     MtTypedArray<CDataQuestOrderList> Unk5;
 };
 
-struct CDataS2CQuestJoinLobbyQuestInfoNtcUnk1
-{
-    CDataQuestOrderList Unk0;
+struct CDataWildHuntQuestDetail {
     u32 Unk1;
     u8 Unk2;
+};
+
+struct CDataWildHuntQuestOrderList
+{
+    CDataQuestOrderList Param;
+    CDataWildHuntQuestDetail Detail;
 };
 
 struct CDataS2CQuestJoinLobbyQuestInfoNtcUnk0
@@ -648,7 +659,7 @@ struct CPacket_S2C_JOIN_LOBBY_QUEST_INFO_NOTICE : CPacket
     MtTypedArray<CDataLotQuestOrderList> LotQuestOrderList;
 
     MtTypedArray<CDataS2CQuestJoinLobbyQuestInfoNtcUnk0> Unk0;
-    MtTypedArray<CDataS2CQuestJoinLobbyQuestInfoNtcUnk1> Unk1;
+    MtTypedArray<CDataWildHuntQuestOrderList> WildHuntQuestOrderList;
 
     MtTypedArray<CDataTimeLimitedQuestOrderList> TimeLimitedQuestOrderList;
     MtTypedArray<CDataWorldManageQuestOrderList> WorldManageQuestOrderList;

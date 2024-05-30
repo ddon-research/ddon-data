@@ -3,7 +3,7 @@ shopt -s nullglob
 
 filter=$1 #S2C_QUEST_JOIN_LOBBY_QUEST_INFO_NTC,LOBBY_DATA_MSG
 pattern=../research/03040008/packets/$2-pattern.cpp #S2C_JOIN_LOBBY_QUEST_INFO_NOTICE,C2S_LOBBY_DATA_MSG_REQ
-maxParallelProcs=1
+maxParallelProcs=$3
 
 if [[ ! -f "${pattern}" ]]; then
 	echo "ERROR: pattern file could not be found"

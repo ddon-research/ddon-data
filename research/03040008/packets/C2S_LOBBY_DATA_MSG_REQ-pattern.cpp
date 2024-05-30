@@ -452,4 +452,4 @@ struct CPacket_C2S_LOBBY_DATA_MSG_REQ : CPacket
         nNetMsgData_nGame_NET_MSG_ID_GAME_EASY msgId;
 };
 
-CPacket_C2S_LOBBY_DATA_MSG_REQ cpacket_c2s_lobby_data_msg_req_at_0x00 @0x00;
+CPacket_C2S_LOBBY_DATA_MSG_REQ C2S_LOBBY_DATA_MSG_REQ @0x00;

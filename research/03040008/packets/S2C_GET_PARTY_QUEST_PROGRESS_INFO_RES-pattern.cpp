@@ -413,6 +413,12 @@ enum WalletType : u8
     RedDragonMark = 0x10            // 個
 };
 
+enum ExpType : u8 {
+   ExperiencePoints = 0x1,
+   ClanPoints = 0x2, // unconfirmed?
+   PlayPoints = 0x3
+};
+
 struct CDataWalletPoint
 {
     WalletType Type;
@@ -421,7 +427,8 @@ struct CDataWalletPoint
 
 struct CDataQuestExp
 {
-    u16 ExpRatio;
+    u8 Unk0;
+    ExpType Type;
     u32 Value;
 };
 
