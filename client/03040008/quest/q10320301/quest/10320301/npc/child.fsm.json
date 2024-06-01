@@ -1,0 +1,978 @@
+{
+  "@class" : "org.sehkah.ddon.tools.extractor.lib.logic.resource.entity.season2.quest.AIFSM",
+  "FileHeader" : {
+    "MagicString" : "XFS\u0000",
+    "MagicBytesLength" : 4,
+    "VersionNumber" : 131087,
+    "VersionBytesLength" : 4
+  },
+  "OwnerObjectName" : "cFSMUnit",
+  "RootCluster" : {
+    "Id" : 0,
+    "OwnerNodeUniqueId" : 0,
+    "InitialStateId" : 0,
+    "NodeList" : [ {
+      "Name" : "共闘開始前",
+      "Id" : 0,
+      "UniqueId" : 3805224950,
+      "OwnerId" : 0,
+      "LinkListNum" : 1,
+      "LinkList" : [ {
+        "Name" : "共闘開始前_t0000",
+        "DestinationNodeId" : 1,
+        "ExistCondition" : true,
+        "ConditionId" : 0
+      } ],
+      "ProcessListNum" : 2,
+      "ProcessList" : [ {
+        "ContainerName" : "checkMyQuestFlag",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "ArrayIdx" : 0,
+          "FlagNo" : 4620,
+          "QuestId" : 10320301
+        }
+      }, {
+        "ContainerName" : "SetWait",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "Dir" : {
+            "X" : 1.0,
+            "Y" : 0.0,
+            "Z" : 0.0
+          },
+          "IsSetDir" : false,
+          "Speed" : 0.087266
+        }
+      } ],
+      "UIPos" : {
+        "UIPosX" : 408,
+        "UIPosY" : 443
+      },
+      "ColorType" : 0,
+      "Setting" : 1,
+      "UserAttribute" : 0,
+      "ExistConditionTrainsitionFromAll" : false,
+      "ConditionTrainsitionFromAllId" : 0
+    }, {
+      "Name" : "移動",
+      "Id" : 1,
+      "UniqueId" : 1529479993,
+      "OwnerId" : 0,
+      "LinkListNum" : 1,
+      "LinkList" : [ {
+        "Name" : "戦闘_t0000",
+        "DestinationNodeId" : 4,
+        "ExistCondition" : true,
+        "ConditionId" : 1
+      } ],
+      "ProcessListNum" : 3,
+      "ProcessList" : [ {
+        "ContainerName" : "SetGoto",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "Dir" : {
+            "X" : 1.0,
+            "Y" : 0.0,
+            "Z" : 0.0
+          },
+          "IsPathFinding" : true,
+          "IsSetDir" : false,
+          "RunType" : 2,
+          "Speed" : 0.087266,
+          "StopBorder" : 50.0,
+          "TargetPos" : {
+            "X" : 11232.747,
+            "Y" : -142.07742,
+            "Z" : -15786.613
+          }
+        }
+      }, {
+        "ContainerName" : "SetDisableTouchAction",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "IsDisableTouch" : true
+        }
+      }, {
+        "ContainerName" : "SetDispMiniMap",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "IsDispMiniMap" : true
+        }
+      } ],
+      "UIPos" : {
+        "UIPosX" : 485,
+        "UIPosY" : 441
+      },
+      "ColorType" : 0,
+      "Setting" : 1,
+      "UserAttribute" : 0,
+      "ExistConditionTrainsitionFromAll" : false,
+      "ConditionTrainsitionFromAllId" : 0
+    }, {
+      "Name" : "s0000",
+      "Id" : 2,
+      "UniqueId" : 2859335948,
+      "OwnerId" : 0,
+      "LinkListNum" : 2,
+      "LinkList" : [ {
+        "Name" : "s0000_t0000",
+        "DestinationNodeId" : 5,
+        "ExistCondition" : true,
+        "ConditionId" : 2
+      }, {
+        "Name" : "s0000_t0001",
+        "DestinationNodeId" : 3,
+        "ExistCondition" : true,
+        "ConditionId" : 8
+      } ],
+      "ProcessListNum" : 2,
+      "ProcessList" : [ {
+        "ContainerName" : "SetGoto",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "Dir" : {
+            "X" : 1.0,
+            "Y" : 0.0,
+            "Z" : 0.0
+          },
+          "IsPathFinding" : true,
+          "IsSetDir" : false,
+          "RunType" : 2,
+          "Speed" : 0.087266,
+          "StopBorder" : 50.0,
+          "TargetPos" : {
+            "X" : 16273.327,
+            "Y" : 400.0001,
+            "Z" : -10696.284
+          }
+        }
+      }, {
+        "ContainerName" : "checkMyQuestFlag",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "ArrayIdx" : 0,
+          "FlagNo" : 4658,
+          "QuestId" : 10320301
+        }
+      } ],
+      "UIPos" : {
+        "UIPosX" : 650,
+        "UIPosY" : 448
+      },
+      "ColorType" : 0,
+      "Setting" : 1,
+      "UserAttribute" : 0,
+      "ExistConditionTrainsitionFromAll" : false,
+      "ConditionTrainsitionFromAllId" : 0
+    }, {
+      "Name" : "s0001",
+      "Id" : 3,
+      "UniqueId" : 1145962861,
+      "OwnerId" : 0,
+      "LinkListNum" : 0,
+      "LinkList" : [ ],
+      "ProcessListNum" : 1,
+      "ProcessList" : [ {
+        "ContainerName" : "SetWait",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "Dir" : {
+            "X" : 1.0,
+            "Y" : 0.0,
+            "Z" : 0.0
+          },
+          "IsSetDir" : false,
+          "Speed" : 0.087266
+        }
+      } ],
+      "UIPos" : {
+        "UIPosX" : 707,
+        "UIPosY" : 597
+      },
+      "ColorType" : 0,
+      "Setting" : 1,
+      "UserAttribute" : 0,
+      "ExistConditionTrainsitionFromAll" : false,
+      "ConditionTrainsitionFromAllId" : 0
+    }, {
+      "Name" : "s0002",
+      "Id" : 4,
+      "UniqueId" : 3753447533,
+      "OwnerId" : 0,
+      "LinkListNum" : 1,
+      "LinkList" : [ {
+        "Name" : "s0002_t0000",
+        "DestinationNodeId" : 2,
+        "ExistCondition" : true,
+        "ConditionId" : 3
+      } ],
+      "ProcessListNum" : 3,
+      "ProcessList" : [ {
+        "ContainerName" : "SetWait",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "Dir" : {
+            "X" : 1.0,
+            "Y" : 0.0,
+            "Z" : 0.0
+          },
+          "IsSetDir" : false,
+          "Speed" : 0.087266
+        }
+      }, {
+        "ContainerName" : "checkMyQuestFlag",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "ArrayIdx" : 3,
+          "FlagNo" : 4621,
+          "QuestId" : 10320301
+        }
+      }, {
+        "ContainerName" : "SetDisableTouchAction",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "IsDisableTouch" : false
+        }
+      } ],
+      "UIPos" : {
+        "UIPosX" : 564,
+        "UIPosY" : 444
+      },
+      "ColorType" : 0,
+      "Setting" : 1,
+      "UserAttribute" : 0,
+      "ExistConditionTrainsitionFromAll" : false,
+      "ConditionTrainsitionFromAllId" : 0
+    }, {
+      "Name" : "s0003",
+      "Id" : 5,
+      "UniqueId" : 2579757219,
+      "OwnerId" : 0,
+      "LinkListNum" : 2,
+      "LinkList" : [ {
+        "Name" : "s0003_t0000",
+        "DestinationNodeId" : 9,
+        "ExistCondition" : true,
+        "ConditionId" : 4
+      }, {
+        "Name" : "s0003_t0001",
+        "DestinationNodeId" : 3,
+        "ExistCondition" : true,
+        "ConditionId" : 9
+      } ],
+      "ProcessListNum" : 2,
+      "ProcessList" : [ {
+        "ContainerName" : "SetGoto",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "Dir" : {
+            "X" : 1.0,
+            "Y" : 0.0,
+            "Z" : 0.0
+          },
+          "IsPathFinding" : true,
+          "IsSetDir" : false,
+          "RunType" : 2,
+          "Speed" : 0.087266,
+          "StopBorder" : 50.0,
+          "TargetPos" : {
+            "X" : 15914.848,
+            "Y" : 400.0002,
+            "Z" : -9827.096
+          }
+        }
+      }, {
+        "ContainerName" : "checkMyQuestFlag",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "ArrayIdx" : 0,
+          "FlagNo" : 4658,
+          "QuestId" : 10320301
+        }
+      } ],
+      "UIPos" : {
+        "UIPosX" : 863,
+        "UIPosY" : 506
+      },
+      "ColorType" : 0,
+      "Setting" : 1,
+      "UserAttribute" : 0,
+      "ExistConditionTrainsitionFromAll" : false,
+      "ConditionTrainsitionFromAllId" : 0
+    }, {
+      "Name" : "s0004",
+      "Id" : 6,
+      "UniqueId" : 3267227479,
+      "OwnerId" : 0,
+      "LinkListNum" : 2,
+      "LinkList" : [ {
+        "Name" : "s0004_t0000",
+        "DestinationNodeId" : 11,
+        "ExistCondition" : true,
+        "ConditionId" : 5
+      }, {
+        "Name" : "s0004_t0001",
+        "DestinationNodeId" : 3,
+        "ExistCondition" : true,
+        "ConditionId" : 10
+      } ],
+      "ProcessListNum" : 2,
+      "ProcessList" : [ {
+        "ContainerName" : "SetGoto",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "Dir" : {
+            "X" : 1.0,
+            "Y" : 0.0,
+            "Z" : 0.0
+          },
+          "IsPathFinding" : false,
+          "IsSetDir" : false,
+          "RunType" : 2,
+          "Speed" : 0.087266,
+          "StopBorder" : 50.0,
+          "TargetPos" : {
+            "X" : 10702.806,
+            "Y" : -153.80838,
+            "Z" : -15921.008
+          }
+        }
+      }, {
+        "ContainerName" : "checkMyQuestFlag",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "ArrayIdx" : 0,
+          "FlagNo" : 4658,
+          "QuestId" : 10320301
+        }
+      } ],
+      "UIPos" : {
+        "UIPosX" : 671,
+        "UIPosY" : 795
+      },
+      "ColorType" : 0,
+      "Setting" : 1,
+      "UserAttribute" : 0,
+      "ExistConditionTrainsitionFromAll" : false,
+      "ConditionTrainsitionFromAllId" : 0
+    }, {
+      "Name" : "s0005",
+      "Id" : 7,
+      "UniqueId" : 524436875,
+      "OwnerId" : 0,
+      "LinkListNum" : 2,
+      "LinkList" : [ {
+        "Name" : "s0005_t0000",
+        "DestinationNodeId" : 8,
+        "ExistCondition" : true,
+        "ConditionId" : 6
+      }, {
+        "Name" : "s0005_t0001",
+        "DestinationNodeId" : 3,
+        "ExistCondition" : true,
+        "ConditionId" : 11
+      } ],
+      "ProcessListNum" : 2,
+      "ProcessList" : [ {
+        "ContainerName" : "SetGoto",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "Dir" : {
+            "X" : 1.0,
+            "Y" : 0.0,
+            "Z" : 0.0
+          },
+          "IsPathFinding" : true,
+          "IsSetDir" : false,
+          "RunType" : 2,
+          "Speed" : 0.087266,
+          "StopBorder" : 50.0,
+          "TargetPos" : {
+            "X" : 6446.7817,
+            "Y" : 369.90472,
+            "Z" : -13335.332
+          }
+        }
+      }, {
+        "ContainerName" : "checkMyQuestFlag",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "ArrayIdx" : 0,
+          "FlagNo" : 4658,
+          "QuestId" : 10320301
+        }
+      } ],
+      "UIPos" : {
+        "UIPosX" : 440,
+        "UIPosY" : 768
+      },
+      "ColorType" : 0,
+      "Setting" : 1,
+      "UserAttribute" : 0,
+      "ExistConditionTrainsitionFromAll" : false,
+      "ConditionTrainsitionFromAllId" : 0
+    }, {
+      "Name" : "s0006",
+      "Id" : 8,
+      "UniqueId" : 3103223739,
+      "OwnerId" : 0,
+      "LinkListNum" : 2,
+      "LinkList" : [ {
+        "Name" : "s0006_t0000",
+        "DestinationNodeId" : 16,
+        "ExistCondition" : true,
+        "ConditionId" : 7
+      }, {
+        "Name" : "s0006_t0001",
+        "DestinationNodeId" : 3,
+        "ExistCondition" : true,
+        "ConditionId" : 12
+      } ],
+      "ProcessListNum" : 2,
+      "ProcessList" : [ {
+        "ContainerName" : "SetGoto",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "Dir" : {
+            "X" : 1.0,
+            "Y" : 0.0,
+            "Z" : 0.0
+          },
+          "IsPathFinding" : true,
+          "IsSetDir" : false,
+          "RunType" : 2,
+          "Speed" : 0.087266,
+          "StopBorder" : 50.0,
+          "TargetPos" : {
+            "X" : 6514.9995,
+            "Y" : 388.95966,
+            "Z" : -11226.372
+          }
+        }
+      }, {
+        "ContainerName" : "checkMyQuestFlag",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "ArrayIdx" : 0,
+          "FlagNo" : 4658,
+          "QuestId" : 10320301
+        }
+      } ],
+      "UIPos" : {
+        "UIPosX" : 346,
+        "UIPosY" : 720
+      },
+      "ColorType" : 0,
+      "Setting" : 1,
+      "UserAttribute" : 0,
+      "ExistConditionTrainsitionFromAll" : false,
+      "ConditionTrainsitionFromAllId" : 0
+    }, {
+      "Name" : "s0004",
+      "Id" : 9,
+      "UniqueId" : 453413519,
+      "OwnerId" : 0,
+      "LinkListNum" : 2,
+      "LinkList" : [ {
+        "Name" : "s0004_t0000",
+        "DestinationNodeId" : 13,
+        "ExistCondition" : true,
+        "ConditionId" : 13
+      }, {
+        "Name" : "s0004_t0001",
+        "DestinationNodeId" : 3,
+        "ExistCondition" : true,
+        "ConditionId" : 17
+      } ],
+      "ProcessListNum" : 2,
+      "ProcessList" : [ {
+        "ContainerName" : "SetGoto",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "Dir" : {
+            "X" : 1.0,
+            "Y" : 0.0,
+            "Z" : 0.0
+          },
+          "IsPathFinding" : true,
+          "IsSetDir" : false,
+          "RunType" : 2,
+          "Speed" : 0.087266,
+          "StopBorder" : 50.0,
+          "TargetPos" : {
+            "X" : 14523.023,
+            "Y" : 400.00027,
+            "Z" : -8017.1406
+          }
+        }
+      }, {
+        "ContainerName" : "checkMyQuestFlag",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "ArrayIdx" : 0,
+          "FlagNo" : 4658,
+          "QuestId" : 10320301
+        }
+      } ],
+      "UIPos" : {
+        "UIPosX" : 967,
+        "UIPosY" : 609
+      },
+      "ColorType" : 0,
+      "Setting" : 1,
+      "UserAttribute" : 0,
+      "ExistConditionTrainsitionFromAll" : false,
+      "ConditionTrainsitionFromAllId" : 0
+    }, {
+      "Name" : "s0004",
+      "Id" : 10,
+      "UniqueId" : 2399035511,
+      "OwnerId" : 0,
+      "LinkListNum" : 2,
+      "LinkList" : [ {
+        "Name" : "s0004_t0000",
+        "DestinationNodeId" : 6,
+        "ExistCondition" : true,
+        "ConditionId" : 14
+      }, {
+        "Name" : "s0004_t0001",
+        "DestinationNodeId" : 3,
+        "ExistCondition" : true,
+        "ConditionId" : 18
+      } ],
+      "ProcessListNum" : 2,
+      "ProcessList" : [ {
+        "ContainerName" : "SetGoto",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "Dir" : {
+            "X" : 1.0,
+            "Y" : 0.0,
+            "Z" : 0.0
+          },
+          "IsPathFinding" : true,
+          "IsSetDir" : false,
+          "RunType" : 2,
+          "Speed" : 0.087266,
+          "StopBorder" : 50.0,
+          "TargetPos" : {
+            "X" : 10894.152,
+            "Y" : 400.00006,
+            "Z" : -7305.022
+          }
+        }
+      }, {
+        "ContainerName" : "checkMyQuestFlag",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "ArrayIdx" : 0,
+          "FlagNo" : 4658,
+          "QuestId" : 10320301
+        }
+      } ],
+      "UIPos" : {
+        "UIPosX" : 773,
+        "UIPosY" : 753
+      },
+      "ColorType" : 0,
+      "Setting" : 1,
+      "UserAttribute" : 0,
+      "ExistConditionTrainsitionFromAll" : false,
+      "ConditionTrainsitionFromAllId" : 0
+    }, {
+      "Name" : "s0004",
+      "Id" : 11,
+      "UniqueId" : 1470593630,
+      "OwnerId" : 0,
+      "LinkListNum" : 2,
+      "LinkList" : [ {
+        "Name" : "s0004_t0000",
+        "DestinationNodeId" : 7,
+        "ExistCondition" : true,
+        "ConditionId" : 15
+      }, {
+        "Name" : "s0004_t0001",
+        "DestinationNodeId" : 3,
+        "ExistCondition" : true,
+        "ConditionId" : 19
+      } ],
+      "ProcessListNum" : 2,
+      "ProcessList" : [ {
+        "ContainerName" : "SetGoto",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "Dir" : {
+            "X" : 1.0,
+            "Y" : 0.0,
+            "Z" : 0.0
+          },
+          "IsPathFinding" : false,
+          "IsSetDir" : false,
+          "RunType" : 2,
+          "Speed" : 0.087266,
+          "StopBorder" : 50.0,
+          "TargetPos" : {
+            "X" : 6693.0645,
+            "Y" : -132.22156,
+            "Z" : -16388.24
+          }
+        }
+      }, {
+        "ContainerName" : "checkMyQuestFlag",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "ArrayIdx" : 0,
+          "FlagNo" : 4658,
+          "QuestId" : 10320301
+        }
+      } ],
+      "UIPos" : {
+        "UIPosX" : 585,
+        "UIPosY" : 700
+      },
+      "ColorType" : 0,
+      "Setting" : 1,
+      "UserAttribute" : 0,
+      "ExistConditionTrainsitionFromAll" : false,
+      "ConditionTrainsitionFromAllId" : 0
+    }, {
+      "Name" : "s0004",
+      "Id" : 12,
+      "UniqueId" : 2707725398,
+      "OwnerId" : 0,
+      "LinkListNum" : 2,
+      "LinkList" : [ {
+        "Name" : "s0004_t0000",
+        "DestinationNodeId" : 2,
+        "ExistCondition" : true,
+        "ConditionId" : 16
+      }, {
+        "Name" : "s0004_t0001",
+        "DestinationNodeId" : 3,
+        "ExistCondition" : true,
+        "ConditionId" : 20
+      } ],
+      "ProcessListNum" : 2,
+      "ProcessList" : [ {
+        "ContainerName" : "SetGoto",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "Dir" : {
+            "X" : 1.0,
+            "Y" : 0.0,
+            "Z" : 0.0
+          },
+          "IsPathFinding" : false,
+          "IsSetDir" : false,
+          "RunType" : 2,
+          "Speed" : 0.087266,
+          "StopBorder" : 50.0,
+          "TargetPos" : {
+            "X" : 14871.051,
+            "Y" : 218.324,
+            "Z" : -16382.599
+          }
+        }
+      }, {
+        "ContainerName" : "checkMyQuestFlag",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "ArrayIdx" : 0,
+          "FlagNo" : 4658,
+          "QuestId" : 10320301
+        }
+      } ],
+      "UIPos" : {
+        "UIPosX" : 574,
+        "UIPosY" : 525
+      },
+      "ColorType" : 0,
+      "Setting" : 1,
+      "UserAttribute" : 0,
+      "ExistConditionTrainsitionFromAll" : false,
+      "ConditionTrainsitionFromAllId" : 0
+    }, {
+      "Name" : "s0004",
+      "Id" : 13,
+      "UniqueId" : 1373458052,
+      "OwnerId" : 0,
+      "LinkListNum" : 2,
+      "LinkList" : [ {
+        "Name" : "s0004_t0000",
+        "DestinationNodeId" : 3,
+        "ExistCondition" : true,
+        "ConditionId" : 21
+      }, {
+        "Name" : "s0004_t0001",
+        "DestinationNodeId" : 10,
+        "ExistCondition" : true,
+        "ConditionId" : 22
+      } ],
+      "ProcessListNum" : 2,
+      "ProcessList" : [ {
+        "ContainerName" : "SetGoto",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "Dir" : {
+            "X" : 1.0,
+            "Y" : 0.0,
+            "Z" : 0.0
+          },
+          "IsPathFinding" : true,
+          "IsSetDir" : false,
+          "RunType" : 2,
+          "Speed" : 0.087266,
+          "StopBorder" : 50.0,
+          "TargetPos" : {
+            "X" : 13753.169,
+            "Y" : 400.00027,
+            "Z" : -7253.971
+          }
+        }
+      }, {
+        "ContainerName" : "checkMyQuestFlag",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "ArrayIdx" : 0,
+          "FlagNo" : 4658,
+          "QuestId" : 10320301
+        }
+      } ],
+      "UIPos" : {
+        "UIPosX" : 910,
+        "UIPosY" : 746
+      },
+      "ColorType" : 0,
+      "Setting" : 1,
+      "UserAttribute" : 0,
+      "ExistConditionTrainsitionFromAll" : false,
+      "ConditionTrainsitionFromAllId" : 0
+    }, {
+      "Name" : "s0004",
+      "Id" : 14,
+      "UniqueId" : 3716248194,
+      "OwnerId" : 0,
+      "LinkListNum" : 2,
+      "LinkList" : [ {
+        "Name" : "s0004_t0000",
+        "DestinationNodeId" : 17,
+        "ExistCondition" : true,
+        "ConditionId" : 23
+      }, {
+        "Name" : "s0004_t0001",
+        "DestinationNodeId" : 3,
+        "ExistCondition" : true,
+        "ConditionId" : 24
+      } ],
+      "ProcessListNum" : 2,
+      "ProcessList" : [ {
+        "ContainerName" : "SetGoto",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "Dir" : {
+            "X" : 1.0,
+            "Y" : 0.0,
+            "Z" : 0.0
+          },
+          "IsPathFinding" : true,
+          "IsSetDir" : false,
+          "RunType" : 2,
+          "Speed" : 0.087266,
+          "StopBorder" : 50.0,
+          "TargetPos" : {
+            "X" : 8451.299,
+            "Y" : -107.38324,
+            "Z" : -11104.339
+          }
+        }
+      }, {
+        "ContainerName" : "checkMyQuestFlag",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "ArrayIdx" : 0,
+          "FlagNo" : 4658,
+          "QuestId" : 10320301
+        }
+      } ],
+      "UIPos" : {
+        "UIPosX" : 405,
+        "UIPosY" : 526
+      },
+      "ColorType" : 0,
+      "Setting" : 1,
+      "UserAttribute" : 0,
+      "ExistConditionTrainsitionFromAll" : false,
+      "ConditionTrainsitionFromAllId" : 0
+    }, {
+      "Name" : "s0004",
+      "Id" : 15,
+      "UniqueId" : 3297648578,
+      "OwnerId" : 0,
+      "LinkListNum" : 2,
+      "LinkList" : [ {
+        "Name" : "s0004_t0000",
+        "DestinationNodeId" : 14,
+        "ExistCondition" : true,
+        "ConditionId" : 26
+      }, {
+        "Name" : "s0004_t0001",
+        "DestinationNodeId" : 3,
+        "ExistCondition" : true,
+        "ConditionId" : 28
+      } ],
+      "ProcessListNum" : 2,
+      "ProcessList" : [ {
+        "ContainerName" : "SetGoto",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "Dir" : {
+            "X" : 1.0,
+            "Y" : 0.0,
+            "Z" : 0.0
+          },
+          "IsPathFinding" : true,
+          "IsSetDir" : false,
+          "RunType" : 2,
+          "Speed" : 0.087266,
+          "StopBorder" : 50.0,
+          "TargetPos" : {
+            "X" : 8019.426,
+            "Y" : -0.301758,
+            "Z" : -11281.726
+          }
+        }
+      }, {
+        "ContainerName" : "checkMyQuestFlag",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "ArrayIdx" : 0,
+          "FlagNo" : 4658,
+          "QuestId" : 10320301
+        }
+      } ],
+      "UIPos" : {
+        "UIPosX" : 322,
+        "UIPosY" : 573
+      },
+      "ColorType" : 0,
+      "Setting" : 1,
+      "UserAttribute" : 0,
+      "ExistConditionTrainsitionFromAll" : false,
+      "ConditionTrainsitionFromAllId" : 0
+    }, {
+      "Name" : "s0004",
+      "Id" : 16,
+      "UniqueId" : 3629993502,
+      "OwnerId" : 0,
+      "LinkListNum" : 2,
+      "LinkList" : [ {
+        "Name" : "s0004_t0000",
+        "DestinationNodeId" : 15,
+        "ExistCondition" : true,
+        "ConditionId" : 25
+      }, {
+        "Name" : "s0004_t0001",
+        "DestinationNodeId" : 3,
+        "ExistCondition" : true,
+        "ConditionId" : 27
+      } ],
+      "ProcessListNum" : 2,
+      "ProcessList" : [ {
+        "ContainerName" : "SetGoto",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "Dir" : {
+            "X" : 1.0,
+            "Y" : 0.0,
+            "Z" : 0.0
+          },
+          "IsPathFinding" : true,
+          "IsSetDir" : false,
+          "RunType" : 2,
+          "Speed" : 0.087266,
+          "StopBorder" : 50.0,
+          "TargetPos" : {
+            "X" : 7025.3286,
+            "Y" : 379.28784,
+            "Z" : -11091.611
+          }
+        }
+      }, {
+        "ContainerName" : "checkMyQuestFlag",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "ArrayIdx" : 0,
+          "FlagNo" : 4658,
+          "QuestId" : 10320301
+        }
+      } ],
+      "UIPos" : {
+        "UIPosX" : 431,
+        "UIPosY" : 651
+      },
+      "ColorType" : 0,
+      "Setting" : 1,
+      "UserAttribute" : 0,
+      "ExistConditionTrainsitionFromAll" : false,
+      "ConditionTrainsitionFromAllId" : 0
+    }, {
+      "Name" : "s0004",
+      "Id" : 17,
+      "UniqueId" : 1062769644,
+      "OwnerId" : 0,
+      "LinkListNum" : 2,
+      "LinkList" : [ {
+        "Name" : "s0004_t0000",
+        "DestinationNodeId" : 12,
+        "ExistCondition" : true,
+        "ConditionId" : 29
+      }, {
+        "Name" : "s0004_t0001",
+        "DestinationNodeId" : 3,
+        "ExistCondition" : true,
+        "ConditionId" : 30
+      } ],
+      "ProcessListNum" : 2,
+      "ProcessList" : [ {
+        "ContainerName" : "SetGoto",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "Dir" : {
+            "X" : 1.0,
+            "Y" : 0.0,
+            "Z" : 0.0
+          },
+          "IsPathFinding" : true,
+          "IsSetDir" : false,
+          "RunType" : 2,
+          "Speed" : 0.087266,
+          "StopBorder" : 50.0,
+          "TargetPos" : {
+            "X" : 9700.583,
+            "Y" : -107.3833,
+            "Z" : -11195.907
+          }
+        }
+      }, {
+        "ContainerName" : "checkMyQuestFlag",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "ArrayIdx" : 0,
+          "FlagNo" : 4658,
+          "QuestId" : 10320301
+        }
+      } ],
+      "UIPos" : {
+        "UIPosX" : 494,
+        "UIPosY" : 521
+      },
+      "ColorType" : 0,
+      "Setting" : 1,
+      "UserAttribute" : 0,
+      "ExistConditionTrainsitionFromAll" : false,
+      "ConditionTrainsitionFromAllId" : 0
+    } ]
+  },
+  "FileSize" : 15257
+}

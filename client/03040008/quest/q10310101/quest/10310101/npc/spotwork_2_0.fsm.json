@@ -1,0 +1,134 @@
+{
+  "@class" : "org.sehkah.ddon.tools.extractor.lib.logic.resource.entity.season2.quest.AIFSM",
+  "FileHeader" : {
+    "MagicString" : "XFS\u0000",
+    "MagicBytesLength" : 4,
+    "VersionNumber" : 131087,
+    "VersionBytesLength" : 4
+  },
+  "OwnerObjectName" : "cFSMUnit",
+  "RootCluster" : {
+    "Id" : 0,
+    "OwnerNodeUniqueId" : 0,
+    "InitialStateId" : 2,
+    "NodeList" : [ {
+      "Name" : "移動",
+      "Id" : 0,
+      "UniqueId" : 1182830475,
+      "OwnerId" : 0,
+      "LinkListNum" : 1,
+      "LinkList" : [ {
+        "Name" : "ランダム制御１_t0000",
+        "DestinationNodeId" : 1,
+        "ExistCondition" : true,
+        "ConditionId" : 0
+      } ],
+      "ProcessListNum" : 2,
+      "ProcessList" : [ {
+        "ContainerName" : "SetGoto",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "Dir" : {
+            "X" : 0.872495,
+            "Y" : 0.47306,
+            "Z" : -0.122336
+          },
+          "IsPathFinding" : true,
+          "IsSetDir" : false,
+          "RunType" : 1,
+          "Speed" : 0.087266,
+          "StopBorder" : 50.0,
+          "TargetPos" : {
+            "X" : -108308.96,
+            "Y" : 19165.658,
+            "Z" : -157159.55
+          }
+        }
+      }, {
+        "ContainerName" : "SetDisableTouchAction",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "IsDisableTouch" : true
+        }
+      } ],
+      "UIPos" : {
+        "UIPosX" : 319,
+        "UIPosY" : 520
+      },
+      "ColorType" : 0,
+      "Setting" : 1,
+      "UserAttribute" : 0,
+      "ExistConditionTrainsitionFromAll" : false,
+      "ConditionTrainsitionFromAllId" : 0
+    }, {
+      "Name" : "採取開始",
+      "Id" : 1,
+      "UniqueId" : 1676398679,
+      "OwnerId" : 0,
+      "LinkListNum" : 0,
+      "LinkList" : [ ],
+      "ProcessListNum" : 1,
+      "ProcessList" : [ {
+        "ContainerName" : "MainQstFlagOn",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "FlagNo" : 3972,
+          "QuestId" : 10310101
+        }
+      } ],
+      "UIPos" : {
+        "UIPosX" : 320,
+        "UIPosY" : 616
+      },
+      "ColorType" : 0,
+      "Setting" : 1,
+      "UserAttribute" : 0,
+      "ExistConditionTrainsitionFromAll" : false,
+      "ConditionTrainsitionFromAllId" : 0
+    }, {
+      "Name" : "s0000",
+      "Id" : 2,
+      "UniqueId" : 680890681,
+      "OwnerId" : 0,
+      "LinkListNum" : 1,
+      "LinkList" : [ {
+        "Name" : "s0000_t0000",
+        "DestinationNodeId" : 0,
+        "ExistCondition" : true,
+        "ConditionId" : 1
+      } ],
+      "ProcessListNum" : 2,
+      "ProcessList" : [ {
+        "ContainerName" : "checkMyQuestFlag",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "ArrayIdx" : 0,
+          "FlagNo" : 3971,
+          "QuestId" : 10310101
+        }
+      }, {
+        "ContainerName" : "SetWait",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "Dir" : {
+            "X" : 1.0,
+            "Y" : 0.0,
+            "Z" : 0.0
+          },
+          "IsSetDir" : false,
+          "Speed" : 0.087266
+        }
+      } ],
+      "UIPos" : {
+        "UIPosX" : 318,
+        "UIPosY" : 423
+      },
+      "ColorType" : 0,
+      "Setting" : 1,
+      "UserAttribute" : 0,
+      "ExistConditionTrainsitionFromAll" : false,
+      "ConditionTrainsitionFromAllId" : 0
+    } ]
+  },
+  "FileSize" : 3898
+}

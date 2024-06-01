@@ -1,0 +1,1142 @@
+{
+  "@class" : "org.sehkah.ddon.tools.extractor.lib.logic.resource.entity.season2.quest.AIFSM",
+  "FileHeader" : {
+    "MagicString" : "XFS\u0000",
+    "MagicBytesLength" : 4,
+    "VersionNumber" : 131087,
+    "VersionBytesLength" : 4
+  },
+  "OwnerObjectName" : "cFSMUnit",
+  "RootCluster" : {
+    "Id" : 0,
+    "OwnerNodeUniqueId" : 0,
+    "InitialStateId" : 22,
+    "NodeList" : [ {
+      "Name" : "採取開始",
+      "Id" : 0,
+      "UniqueId" : 1412767845,
+      "OwnerId" : 0,
+      "LinkListNum" : 1,
+      "LinkList" : [ {
+        "Name" : "開始_t0001",
+        "DestinationNodeId" : 1,
+        "ExistCondition" : true,
+        "ConditionId" : 0
+      } ],
+      "ProcessListNum" : 5,
+      "ProcessList" : [ {
+        "ContainerName" : "checkMyQuestFlag",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "ArrayIdx" : 0,
+          "FlagNo" : 3749,
+          "QuestId" : 10300300
+        }
+      }, {
+        "ContainerName" : "SetDisableTouchAction",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "IsDisableTouch" : false
+        }
+      }, {
+        "ContainerName" : "SetWait",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "Dir" : {
+            "X" : 1.0,
+            "Y" : 0.0,
+            "Z" : 0.0
+          },
+          "IsSetDir" : false,
+          "Speed" : 0.087266
+        }
+      }, {
+        "ContainerName" : "SetAttend",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "IsAttend" : true
+        }
+      }, {
+        "ContainerName" : "MainQstFlagOn",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "FlagNo" : 3747,
+          "QuestId" : 10300300
+        }
+      } ],
+      "UIPos" : {
+        "UIPosX" : 640,
+        "UIPosY" : 616
+      },
+      "ColorType" : 0,
+      "Setting" : 1,
+      "UserAttribute" : 0,
+      "ExistConditionTrainsitionFromAll" : false,
+      "ConditionTrainsitionFromAllId" : 0
+    }, {
+      "Name" : "移動",
+      "Id" : 1,
+      "UniqueId" : 1182830475,
+      "OwnerId" : 0,
+      "LinkListNum" : 1,
+      "LinkList" : [ {
+        "Name" : "ランダム制御１_t0000",
+        "DestinationNodeId" : 2,
+        "ExistCondition" : true,
+        "ConditionId" : 1
+      } ],
+      "ProcessListNum" : 4,
+      "ProcessList" : [ {
+        "ContainerName" : "SetGoto",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "Dir" : {
+            "X" : 0.872495,
+            "Y" : 0.47306,
+            "Z" : -0.122336
+          },
+          "IsPathFinding" : true,
+          "IsSetDir" : false,
+          "RunType" : 1,
+          "Speed" : 0.087266,
+          "StopBorder" : 50.0,
+          "TargetPos" : {
+            "X" : 6197.2847,
+            "Y" : 7187.4644,
+            "Z" : -44663.543
+          }
+        }
+      }, {
+        "ContainerName" : "SetDisableTouchAction",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "IsDisableTouch" : true
+        }
+      }, {
+        "ContainerName" : "CallMessage",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "IsHideMessage" : false,
+          "IsUseSerial" : true,
+          "MsgDispTime" : 5.0,
+          "MsgNo" : 26722,
+          "MsgType" : 1,
+          "MsgWaitTime" : 0.0,
+          "QuestId" : 10300300
+        }
+      }, {
+        "ContainerName" : "SetAttend",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "IsAttend" : true
+        }
+      } ],
+      "UIPos" : {
+        "UIPosX" : 640,
+        "UIPosY" : 704
+      },
+      "ColorType" : 0,
+      "Setting" : 1,
+      "UserAttribute" : 0,
+      "ExistConditionTrainsitionFromAll" : false,
+      "ConditionTrainsitionFromAllId" : 0
+    }, {
+      "Name" : "採取行動開始",
+      "Id" : 2,
+      "UniqueId" : 1676398679,
+      "OwnerId" : 0,
+      "LinkListNum" : 1,
+      "LinkList" : [ {
+        "Name" : "gasagoso_t0000",
+        "DestinationNodeId" : 3,
+        "ExistCondition" : true,
+        "ConditionId" : 2
+      } ],
+      "ProcessListNum" : 2,
+      "ProcessList" : [ {
+        "ContainerName" : "SetMotion",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "BankNo" : 19,
+          "Dir" : {
+            "X" : 1.0,
+            "Y" : 0.0,
+            "Z" : 0.0
+          },
+          "EndFrame" : 0.0,
+          "FingerHokan" : 5.0,
+          "FingerMotionNo" : 0,
+          "FingerSpeed" : 1.0,
+          "Hokan" : 5.0,
+          "IsCallVoice" : true,
+          "IsDisableFall" : false,
+          "IsDispItem" : false,
+          "IsLoop" : true,
+          "IsNullAngleFix" : false,
+          "IsNullTransFix" : false,
+          "IsNullTransOff" : false,
+          "IsSetDir" : false,
+          "IsSetEndFrame" : false,
+          "IsUseFingerMotion" : false,
+          "MotNo" : 0,
+          "MotSpeed" : 1.0,
+          "MotionSeOffBank" : -1,
+          "Speed" : 0.087266,
+          "StartFrame" : 0.0
+        }
+      }, {
+        "ContainerName" : "CallMessage",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "IsHideMessage" : false,
+          "IsUseSerial" : true,
+          "MsgDispTime" : 5.0,
+          "MsgNo" : 26723,
+          "MsgType" : 1,
+          "MsgWaitTime" : 0.0,
+          "QuestId" : 10300300
+        }
+      } ],
+      "UIPos" : {
+        "UIPosX" : 640,
+        "UIPosY" : 792
+      },
+      "ColorType" : 0,
+      "Setting" : 1,
+      "UserAttribute" : 0,
+      "ExistConditionTrainsitionFromAll" : false,
+      "ConditionTrainsitionFromAllId" : 0
+    }, {
+      "Name" : "採取完了",
+      "Id" : 3,
+      "UniqueId" : 1902018489,
+      "OwnerId" : 0,
+      "LinkListNum" : 1,
+      "LinkList" : [ {
+        "Name" : "がさごそ終わり_t0000",
+        "DestinationNodeId" : 9,
+        "ExistCondition" : true,
+        "ConditionId" : 3
+      } ],
+      "ProcessListNum" : 3,
+      "ProcessList" : [ {
+        "ContainerName" : "SetMotion",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "BankNo" : 19,
+          "Dir" : {
+            "X" : 1.0,
+            "Y" : 0.0,
+            "Z" : 0.0
+          },
+          "EndFrame" : 0.0,
+          "FingerHokan" : 5.0,
+          "FingerMotionNo" : 0,
+          "FingerSpeed" : 1.0,
+          "Hokan" : 5.0,
+          "IsCallVoice" : true,
+          "IsDisableFall" : false,
+          "IsDispItem" : false,
+          "IsLoop" : false,
+          "IsNullAngleFix" : false,
+          "IsNullTransFix" : false,
+          "IsNullTransOff" : false,
+          "IsSetDir" : false,
+          "IsSetEndFrame" : false,
+          "IsUseFingerMotion" : false,
+          "MotNo" : 1,
+          "MotSpeed" : 1.0,
+          "MotionSeOffBank" : -1,
+          "Speed" : 0.087266,
+          "StartFrame" : 0.0
+        }
+      }, {
+        "ContainerName" : "MainQstFlagOn",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "FlagNo" : 3640,
+          "QuestId" : 10300103
+        }
+      }, {
+        "ContainerName" : "CallMessage",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "IsHideMessage" : false,
+          "IsUseSerial" : true,
+          "MsgDispTime" : 5.0,
+          "MsgNo" : 26768,
+          "MsgType" : 1,
+          "MsgWaitTime" : 0.0,
+          "QuestId" : 10300300
+        }
+      } ],
+      "UIPos" : {
+        "UIPosX" : 640,
+        "UIPosY" : 880
+      },
+      "ColorType" : 0,
+      "Setting" : 1,
+      "UserAttribute" : 0,
+      "ExistConditionTrainsitionFromAll" : false,
+      "ConditionTrainsitionFromAllId" : 0
+    }, {
+      "Name" : "行動完了",
+      "Id" : 4,
+      "UniqueId" : 3387037916,
+      "OwnerId" : 0,
+      "LinkListNum" : 0,
+      "LinkList" : [ ],
+      "ProcessListNum" : 4,
+      "ProcessList" : [ {
+        "ContainerName" : "MainQstFlagOn",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "FlagNo" : 3750,
+          "QuestId" : 10300300
+        }
+      }, {
+        "ContainerName" : "SetDisableTouchAction",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "IsDisableTouch" : false
+        }
+      }, {
+        "ContainerName" : "SetWait",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "Dir" : {
+            "X" : 1.0,
+            "Y" : 0.0,
+            "Z" : 0.0
+          },
+          "IsSetDir" : false,
+          "Speed" : 0.087266
+        }
+      }, {
+        "ContainerName" : "CallMessage",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "IsHideMessage" : false,
+          "IsUseSerial" : true,
+          "MsgDispTime" : 5.0,
+          "MsgNo" : 26724,
+          "MsgType" : 1,
+          "MsgWaitTime" : 0.0,
+          "QuestId" : 10300300
+        }
+      } ],
+      "UIPos" : {
+        "UIPosX" : 1040,
+        "UIPosY" : 968
+      },
+      "ColorType" : 0,
+      "Setting" : 1,
+      "UserAttribute" : 0,
+      "ExistConditionTrainsitionFromAll" : false,
+      "ConditionTrainsitionFromAllId" : 0
+    }, {
+      "Name" : "採取再開",
+      "Id" : 5,
+      "UniqueId" : 3836745432,
+      "OwnerId" : 0,
+      "LinkListNum" : 1,
+      "LinkList" : [ {
+        "Name" : "ランダム制御１_t0000",
+        "DestinationNodeId" : 6,
+        "ExistCondition" : true,
+        "ConditionId" : 4
+      } ],
+      "ProcessListNum" : 3,
+      "ProcessList" : [ {
+        "ContainerName" : "SetGoto",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "Dir" : {
+            "X" : 0.872495,
+            "Y" : 0.47306,
+            "Z" : -0.122336
+          },
+          "IsPathFinding" : true,
+          "IsSetDir" : false,
+          "RunType" : 1,
+          "Speed" : 0.087266,
+          "StopBorder" : 50.0,
+          "TargetPos" : {
+            "X" : 7468.223,
+            "Y" : 7674.0195,
+            "Z" : -43827.324
+          }
+        }
+      }, {
+        "ContainerName" : "callAnnounce",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "MsgNo" : 100337,
+          "QuestId" : 10300103,
+          "Type" : 1
+        }
+      }, {
+        "ContainerName" : "CallMessage",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "IsHideMessage" : false,
+          "IsUseSerial" : true,
+          "MsgDispTime" : 5.0,
+          "MsgNo" : 26722,
+          "MsgType" : 1,
+          "MsgWaitTime" : 0.0,
+          "QuestId" : 10300300
+        }
+      } ],
+      "UIPos" : {
+        "UIPosX" : 720,
+        "UIPosY" : 968
+      },
+      "ColorType" : 0,
+      "Setting" : 1,
+      "UserAttribute" : 0,
+      "ExistConditionTrainsitionFromAll" : false,
+      "ConditionTrainsitionFromAllId" : 0
+    }, {
+      "Name" : "採取行動開始",
+      "Id" : 6,
+      "UniqueId" : 1544319421,
+      "OwnerId" : 0,
+      "LinkListNum" : 1,
+      "LinkList" : [ {
+        "Name" : "gasagoso_t0000",
+        "DestinationNodeId" : 7,
+        "ExistCondition" : true,
+        "ConditionId" : 5
+      } ],
+      "ProcessListNum" : 2,
+      "ProcessList" : [ {
+        "ContainerName" : "SetMotion",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "BankNo" : 0,
+          "Dir" : {
+            "X" : 1.0,
+            "Y" : 0.0,
+            "Z" : 0.0
+          },
+          "EndFrame" : 0.0,
+          "FingerHokan" : 5.0,
+          "FingerMotionNo" : 0,
+          "FingerSpeed" : 1.0,
+          "Hokan" : 5.0,
+          "IsCallVoice" : true,
+          "IsDisableFall" : false,
+          "IsDispItem" : false,
+          "IsLoop" : true,
+          "IsNullAngleFix" : false,
+          "IsNullTransFix" : false,
+          "IsNullTransOff" : false,
+          "IsSetDir" : false,
+          "IsSetEndFrame" : false,
+          "IsUseFingerMotion" : false,
+          "MotNo" : 150,
+          "MotSpeed" : 1.0,
+          "MotionSeOffBank" : -1,
+          "Speed" : 0.087266,
+          "StartFrame" : 0.0
+        }
+      }, {
+        "ContainerName" : "CallMessage",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "IsHideMessage" : false,
+          "IsUseSerial" : true,
+          "MsgDispTime" : 5.0,
+          "MsgNo" : 26723,
+          "MsgType" : 1,
+          "MsgWaitTime" : 0.0,
+          "QuestId" : 10300300
+        }
+      } ],
+      "UIPos" : {
+        "UIPosX" : 800,
+        "UIPosY" : 968
+      },
+      "ColorType" : 0,
+      "Setting" : 1,
+      "UserAttribute" : 0,
+      "ExistConditionTrainsitionFromAll" : false,
+      "ConditionTrainsitionFromAllId" : 0
+    }, {
+      "Name" : "採取完了",
+      "Id" : 7,
+      "UniqueId" : 1320803923,
+      "OwnerId" : 0,
+      "LinkListNum" : 1,
+      "LinkList" : [ {
+        "Name" : "がさごそ終わり_t0000",
+        "DestinationNodeId" : 8,
+        "ExistCondition" : true,
+        "ConditionId" : 6
+      } ],
+      "ProcessListNum" : 2,
+      "ProcessList" : [ {
+        "ContainerName" : "SetMotion",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "BankNo" : 19,
+          "Dir" : {
+            "X" : 1.0,
+            "Y" : 0.0,
+            "Z" : 0.0
+          },
+          "EndFrame" : 0.0,
+          "FingerHokan" : 5.0,
+          "FingerMotionNo" : 0,
+          "FingerSpeed" : 1.0,
+          "Hokan" : 5.0,
+          "IsCallVoice" : true,
+          "IsDisableFall" : false,
+          "IsDispItem" : false,
+          "IsLoop" : false,
+          "IsNullAngleFix" : false,
+          "IsNullTransFix" : false,
+          "IsNullTransOff" : false,
+          "IsSetDir" : false,
+          "IsSetEndFrame" : false,
+          "IsUseFingerMotion" : false,
+          "MotNo" : 1,
+          "MotSpeed" : 1.0,
+          "MotionSeOffBank" : -1,
+          "Speed" : 0.087266,
+          "StartFrame" : 0.0
+        }
+      }, {
+        "ContainerName" : "CallMessage",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "IsHideMessage" : false,
+          "IsUseSerial" : true,
+          "MsgDispTime" : 5.0,
+          "MsgNo" : 26768,
+          "MsgType" : 1,
+          "MsgWaitTime" : 0.0,
+          "QuestId" : 10300300
+        }
+      } ],
+      "UIPos" : {
+        "UIPosX" : 880,
+        "UIPosY" : 968
+      },
+      "ColorType" : 0,
+      "Setting" : 1,
+      "UserAttribute" : 0,
+      "ExistConditionTrainsitionFromAll" : false,
+      "ConditionTrainsitionFromAllId" : 0
+    }, {
+      "Name" : "移動（マーカー場所）",
+      "Id" : 8,
+      "UniqueId" : 640656967,
+      "OwnerId" : 0,
+      "LinkListNum" : 1,
+      "LinkList" : [ {
+        "Name" : "ランダム制御１_t0000",
+        "DestinationNodeId" : 4,
+        "ExistCondition" : true,
+        "ConditionId" : 7
+      } ],
+      "ProcessListNum" : 2,
+      "ProcessList" : [ {
+        "ContainerName" : "SetGoto",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "Dir" : {
+            "X" : 0.872495,
+            "Y" : 0.47306,
+            "Z" : -0.122336
+          },
+          "IsPathFinding" : true,
+          "IsSetDir" : false,
+          "RunType" : 1,
+          "Speed" : 0.087266,
+          "StopBorder" : 50.0,
+          "TargetPos" : {
+            "X" : 6789.329,
+            "Y" : 7405.404,
+            "Z" : -43417.28
+          }
+        }
+      }, {
+        "ContainerName" : "AddAttendPoint",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "Point" : 50
+        }
+      } ],
+      "UIPos" : {
+        "UIPosX" : 960,
+        "UIPosY" : 968
+      },
+      "ColorType" : 0,
+      "Setting" : 1,
+      "UserAttribute" : 0,
+      "ExistConditionTrainsitionFromAll" : false,
+      "ConditionTrainsitionFromAllId" : 0
+    }, {
+      "Name" : "魔物出現時",
+      "Id" : 9,
+      "UniqueId" : 1717181856,
+      "OwnerId" : 0,
+      "LinkListNum" : 1,
+      "LinkList" : [ {
+        "Name" : "魔物出現時_t0000",
+        "DestinationNodeId" : 5,
+        "ExistCondition" : true,
+        "ConditionId" : 8
+      } ],
+      "ProcessListNum" : 5,
+      "ProcessList" : [ {
+        "ContainerName" : "SetGotoTarget",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "EnableNoFall" : false,
+          "IsPathFinding" : true,
+          "IsSetBorder" : true,
+          "IsUseWarp" : false,
+          "RunType" : 1,
+          "StopBorder" : 350.0,
+          "TargetId" : -1,
+          "TargetType" : 0,
+          "WarpDist" : 3500.0
+        }
+      }, {
+        "ContainerName" : "callAnnounce",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "MsgNo" : 100336,
+          "QuestId" : 10300103,
+          "Type" : 1
+        }
+      }, {
+        "ContainerName" : "checkMyQuestFlag",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "ArrayIdx" : 0,
+          "FlagNo" : 3641,
+          "QuestId" : 10300103
+        }
+      }, {
+        "ContainerName" : "CallMessage",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "IsHideMessage" : false,
+          "IsUseSerial" : true,
+          "MsgDispTime" : 5.0,
+          "MsgNo" : 0,
+          "MsgType" : 1,
+          "MsgWaitTime" : 0.0,
+          "QuestId" : 10300300
+        }
+      }, {
+        "ContainerName" : "AddAttendPoint",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "Point" : 50
+        }
+      } ],
+      "UIPos" : {
+        "UIPosX" : 720,
+        "UIPosY" : 880
+      },
+      "ColorType" : 0,
+      "Setting" : 1,
+      "UserAttribute" : 0,
+      "ExistConditionTrainsitionFromAll" : false,
+      "ConditionTrainsitionFromAllId" : 0
+    }, {
+      "Name" : "ランダム判定",
+      "Id" : 10,
+      "UniqueId" : 2549768524,
+      "OwnerId" : 0,
+      "LinkListNum" : 2,
+      "LinkList" : [ {
+        "Name" : "s0000_t0000",
+        "DestinationNodeId" : 11,
+        "ExistCondition" : true,
+        "ConditionId" : 9
+      }, {
+        "Name" : "s0000_t0001",
+        "DestinationNodeId" : 0,
+        "ExistCondition" : true,
+        "ConditionId" : 10
+      } ],
+      "ProcessListNum" : 2,
+      "ProcessList" : [ {
+        "ContainerName" : "RandomChoice",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "ParamRandomChoiceParamList" : [ {
+            "IsEnable" : true,
+            "Index" : 1,
+            "Weight" : 5
+          }, {
+            "IsEnable" : true,
+            "Index" : 2,
+            "Weight" : 5
+          }, {
+            "IsEnable" : false,
+            "Index" : 3,
+            "Weight" : 0
+          }, {
+            "IsEnable" : false,
+            "Index" : 4,
+            "Weight" : 0
+          } ]
+        }
+      }, {
+        "ContainerName" : "SetAttend",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "IsAttend" : true
+        }
+      } ],
+      "UIPos" : {
+        "UIPosX" : 480,
+        "UIPosY" : 528
+      },
+      "ColorType" : 0,
+      "Setting" : 1,
+      "UserAttribute" : 0,
+      "ExistConditionTrainsitionFromAll" : false,
+      "ConditionTrainsitionFromAllId" : 0
+    }, {
+      "Name" : "イベント開始",
+      "Id" : 11,
+      "UniqueId" : 743546790,
+      "OwnerId" : 0,
+      "LinkListNum" : 3,
+      "LinkList" : [ {
+        "Name" : "イベント開始_t0000",
+        "DestinationNodeId" : 12,
+        "ExistCondition" : true,
+        "ConditionId" : 11
+      }, {
+        "Name" : "イベント開始_t0001",
+        "DestinationNodeId" : 14,
+        "ExistCondition" : true,
+        "ConditionId" : 12
+      }, {
+        "Name" : "イベント開始_t0002",
+        "DestinationNodeId" : 15,
+        "ExistCondition" : true,
+        "ConditionId" : 13
+      } ],
+      "ProcessListNum" : 4,
+      "ProcessList" : [ {
+        "ContainerName" : "SetWait",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "Dir" : {
+            "X" : 1.0,
+            "Y" : 0.0,
+            "Z" : 0.0
+          },
+          "IsSetDir" : false,
+          "Speed" : 0.087266
+        }
+      }, {
+        "ContainerName" : "MainQstFlagOn",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "FlagNo" : 3748,
+          "QuestId" : 10300300
+        }
+      }, {
+        "ContainerName" : "SelectedChoiceTalk",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "Index" : 0
+        }
+      }, {
+        "ContainerName" : "SetAttend",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "IsAttend" : true
+        }
+      } ],
+      "UIPos" : {
+        "UIPosX" : 560,
+        "UIPosY" : 440
+      },
+      "ColorType" : 0,
+      "Setting" : 1,
+      "UserAttribute" : 0,
+      "ExistConditionTrainsitionFromAll" : false,
+      "ConditionTrainsitionFromAllId" : 0
+    }, {
+      "Name" : "選択肢1",
+      "Id" : 12,
+      "UniqueId" : 1098978547,
+      "OwnerId" : 0,
+      "LinkListNum" : 1,
+      "LinkList" : [ {
+        "Name" : "選択肢1_t0000",
+        "DestinationNodeId" : 13,
+        "ExistCondition" : true,
+        "ConditionId" : 14
+      } ],
+      "ProcessListNum" : 1,
+      "ProcessList" : [ {
+        "ContainerName" : "AddAttendPoint",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "Point" : 200
+        }
+      } ],
+      "UIPos" : {
+        "UIPosX" : 640,
+        "UIPosY" : 352
+      },
+      "ColorType" : 0,
+      "Setting" : 1,
+      "UserAttribute" : 0,
+      "ExistConditionTrainsitionFromAll" : false,
+      "ConditionTrainsitionFromAllId" : 0
+    }, {
+      "Name" : "s0001",
+      "Id" : 13,
+      "UniqueId" : 818518511,
+      "OwnerId" : 0,
+      "LinkListNum" : 0,
+      "LinkList" : [ ],
+      "ProcessListNum" : 2,
+      "ProcessList" : [ {
+        "ContainerName" : "MainQstFlagOn",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "FlagNo" : 3750,
+          "QuestId" : 10300300
+        }
+      }, {
+        "ContainerName" : "SetWait",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "Dir" : {
+            "X" : 1.0,
+            "Y" : 0.0,
+            "Z" : 0.0
+          },
+          "IsSetDir" : false,
+          "Speed" : 0.087266
+        }
+      } ],
+      "UIPos" : {
+        "UIPosX" : 800,
+        "UIPosY" : 352
+      },
+      "ColorType" : 0,
+      "Setting" : 1,
+      "UserAttribute" : 0,
+      "ExistConditionTrainsitionFromAll" : false,
+      "ConditionTrainsitionFromAllId" : 0
+    }, {
+      "Name" : "選択肢2",
+      "Id" : 14,
+      "UniqueId" : 886901190,
+      "OwnerId" : 0,
+      "LinkListNum" : 1,
+      "LinkList" : [ {
+        "Name" : "s0002_t0000",
+        "DestinationNodeId" : 13,
+        "ExistCondition" : true,
+        "ConditionId" : 15
+      } ],
+      "ProcessListNum" : 1,
+      "ProcessList" : [ {
+        "ContainerName" : "AddAttendPoint",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "Point" : 100
+        }
+      } ],
+      "UIPos" : {
+        "UIPosX" : 720,
+        "UIPosY" : 440
+      },
+      "ColorType" : 0,
+      "Setting" : 1,
+      "UserAttribute" : 0,
+      "ExistConditionTrainsitionFromAll" : false,
+      "ConditionTrainsitionFromAllId" : 0
+    }, {
+      "Name" : "選択肢3",
+      "Id" : 15,
+      "UniqueId" : 4291197465,
+      "OwnerId" : 0,
+      "LinkListNum" : 1,
+      "LinkList" : [ {
+        "Name" : "s0003_t0000",
+        "DestinationNodeId" : 13,
+        "ExistCondition" : true,
+        "ConditionId" : 16
+      } ],
+      "ProcessListNum" : 1,
+      "ProcessList" : [ {
+        "ContainerName" : "AddAttendPoint",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "Point" : 0
+        }
+      } ],
+      "UIPos" : {
+        "UIPosX" : 720,
+        "UIPosY" : 528
+      },
+      "ColorType" : 0,
+      "Setting" : 1,
+      "UserAttribute" : 0,
+      "ExistConditionTrainsitionFromAll" : false,
+      "ConditionTrainsitionFromAllId" : 0
+    }, {
+      "Name" : "ゲージ０",
+      "Id" : 16,
+      "UniqueId" : 3990935989,
+      "OwnerId" : 0,
+      "LinkListNum" : 1,
+      "LinkList" : [ {
+        "Name" : "護衛ゲージ０時_t0000",
+        "DestinationNodeId" : 19,
+        "ExistCondition" : true,
+        "ConditionId" : 20
+      } ],
+      "ProcessListNum" : 2,
+      "ProcessList" : [ {
+        "ContainerName" : "callAnnounce",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "MsgNo" : 100379,
+          "QuestId" : 10300300,
+          "Type" : 1
+        }
+      }, {
+        "ContainerName" : "setFSMFreeFlagOn",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "FlagNo" : 2
+        }
+      } ],
+      "UIPos" : {
+        "UIPosX" : 880,
+        "UIPosY" : 704
+      },
+      "ColorType" : 0,
+      "Setting" : 1,
+      "UserAttribute" : 0,
+      "ExistConditionTrainsitionFromAll" : true,
+      "ConditionTrainsitionFromAllId" : 17
+    }, {
+      "Name" : "護衛離脱時",
+      "Id" : 17,
+      "UniqueId" : 1432141520,
+      "OwnerId" : 0,
+      "LinkListNum" : 1,
+      "LinkList" : [ {
+        "Name" : "護衛離脱時_t0000",
+        "DestinationNodeId" : 18,
+        "ExistCondition" : true,
+        "ConditionId" : 21
+      } ],
+      "ProcessListNum" : 2,
+      "ProcessList" : [ {
+        "ContainerName" : "callAnnounce",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "MsgNo" : 100378,
+          "QuestId" : 10300300,
+          "Type" : 1
+        }
+      }, {
+        "ContainerName" : "setFSMFreeFlagOn",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "FlagNo" : 1
+        }
+      } ],
+      "UIPos" : {
+        "UIPosX" : 880,
+        "UIPosY" : 616
+      },
+      "ColorType" : 0,
+      "Setting" : 1,
+      "UserAttribute" : 0,
+      "ExistConditionTrainsitionFromAll" : true,
+      "ConditionTrainsitionFromAllId" : 18
+    }, {
+      "Name" : "護衛離脱確定",
+      "Id" : 18,
+      "UniqueId" : 1206456638,
+      "OwnerId" : 0,
+      "LinkListNum" : 0,
+      "LinkList" : [ ],
+      "ProcessListNum" : 1,
+      "ProcessList" : [ {
+        "ContainerName" : "MainQstFlagOn",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "FlagNo" : 3791,
+          "QuestId" : 10300300
+        }
+      } ],
+      "UIPos" : {
+        "UIPosX" : 960,
+        "UIPosY" : 616
+      },
+      "ColorType" : 0,
+      "Setting" : 1,
+      "UserAttribute" : 0,
+      "ExistConditionTrainsitionFromAll" : false,
+      "ConditionTrainsitionFromAllId" : 0
+    }, {
+      "Name" : "護衛離脱確定",
+      "Id" : 19,
+      "UniqueId" : 4283790939,
+      "OwnerId" : 0,
+      "LinkListNum" : 0,
+      "LinkList" : [ ],
+      "ProcessListNum" : 1,
+      "ProcessList" : [ {
+        "ContainerName" : "MainQstFlagOn",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "FlagNo" : 3791,
+          "QuestId" : 10300300
+        }
+      } ],
+      "UIPos" : {
+        "UIPosX" : 960,
+        "UIPosY" : 704
+      },
+      "ColorType" : 0,
+      "Setting" : 1,
+      "UserAttribute" : 0,
+      "ExistConditionTrainsitionFromAll" : false,
+      "ConditionTrainsitionFromAllId" : 0
+    }, {
+      "Name" : "護衛離脱時",
+      "Id" : 20,
+      "UniqueId" : 1652707042,
+      "OwnerId" : 0,
+      "LinkListNum" : 1,
+      "LinkList" : [ {
+        "Name" : "護衛離脱時_t0000",
+        "DestinationNodeId" : 21,
+        "ExistCondition" : true,
+        "ConditionId" : 22
+      } ],
+      "ProcessListNum" : 2,
+      "ProcessList" : [ {
+        "ContainerName" : "callAnnounce",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "MsgNo" : 100378,
+          "QuestId" : 10300300,
+          "Type" : 1
+        }
+      }, {
+        "ContainerName" : "setFSMFreeFlagOn",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "FlagNo" : 0
+        }
+      } ],
+      "UIPos" : {
+        "UIPosX" : 880,
+        "UIPosY" : 528
+      },
+      "ColorType" : 0,
+      "Setting" : 1,
+      "UserAttribute" : 0,
+      "ExistConditionTrainsitionFromAll" : true,
+      "ConditionTrainsitionFromAllId" : 19
+    }, {
+      "Name" : "護衛離脱確定",
+      "Id" : 21,
+      "UniqueId" : 3661506951,
+      "OwnerId" : 0,
+      "LinkListNum" : 0,
+      "LinkList" : [ ],
+      "ProcessListNum" : 1,
+      "ProcessList" : [ {
+        "ContainerName" : "MainQstFlagOn",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "FlagNo" : 3791,
+          "QuestId" : 10300300
+        }
+      } ],
+      "UIPos" : {
+        "UIPosX" : 960,
+        "UIPosY" : 528
+      },
+      "ColorType" : 0,
+      "Setting" : 1,
+      "UserAttribute" : 0,
+      "ExistConditionTrainsitionFromAll" : false,
+      "ConditionTrainsitionFromAllId" : 0
+    }, {
+      "Name" : "行動開始",
+      "Id" : 22,
+      "UniqueId" : 1055155713,
+      "OwnerId" : 0,
+      "LinkListNum" : 1,
+      "LinkList" : [ {
+        "Name" : "ランダム判定_t0000",
+        "DestinationNodeId" : 10,
+        "ExistCondition" : true,
+        "ConditionId" : 23
+      } ],
+      "ProcessListNum" : 4,
+      "ProcessList" : [ {
+        "ContainerName" : "MainQstFlagOn",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "FlagNo" : 3676,
+          "QuestId" : 10300300
+        }
+      }, {
+        "ContainerName" : "checkMyQuestFlag",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "ArrayIdx" : 0,
+          "FlagNo" : 3789,
+          "QuestId" : 10300300
+        }
+      }, {
+        "ContainerName" : "SetAttend",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "IsAttend" : false
+        }
+      }, {
+        "ContainerName" : "SetAttendComp",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "Max" : 1000,
+          "InitRate" : 0.3,
+          "OverLv" : 82,
+          "UnderLv" : 81,
+          "PointHigh" : 300,
+          "PointMiddle" : 200,
+          "PointLow" : 100,
+          "DamageInterval" : 1.5
+        }
+      } ],
+      "UIPos" : {
+        "UIPosX" : 400,
+        "UIPosY" : 528
+      },
+      "ColorType" : 0,
+      "Setting" : 1,
+      "UserAttribute" : 0,
+      "ExistConditionTrainsitionFromAll" : false,
+      "ConditionTrainsitionFromAllId" : 0
+    } ]
+  },
+  "FileSize" : 18846
+}

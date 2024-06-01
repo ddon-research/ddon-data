@@ -1,0 +1,317 @@
+{
+  "@class" : "org.sehkah.ddon.tools.extractor.lib.logic.resource.entity.season2.quest.AIFSM",
+  "FileHeader" : {
+    "MagicString" : "XFS\u0000",
+    "MagicBytesLength" : 4,
+    "VersionNumber" : 131087,
+    "VersionBytesLength" : 4
+  },
+  "OwnerObjectName" : "cFSMUnit",
+  "RootCluster" : {
+    "Id" : 0,
+    "OwnerNodeUniqueId" : 0,
+    "InitialStateId" : 1,
+    "NodeList" : [ {
+      "Name" : "s0002",
+      "Id" : 0,
+      "UniqueId" : 4219470960,
+      "OwnerId" : 0,
+      "LinkListNum" : 1,
+      "LinkList" : [ {
+        "Name" : "s0002_t0000",
+        "DestinationNodeId" : 2,
+        "ExistCondition" : true,
+        "ConditionId" : 0
+      } ],
+      "ProcessListNum" : 2,
+      "ProcessList" : [ {
+        "ContainerName" : "SetWait",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "Dir" : {
+            "X" : 1.0,
+            "Y" : 0.0,
+            "Z" : 0.0
+          },
+          "IsSetDir" : false,
+          "Speed" : 0.087266
+        }
+      }, {
+        "ContainerName" : "checkMyQuestFlag",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "ArrayIdx" : 0,
+          "FlagNo" : 3781,
+          "QuestId" : 10300300
+        }
+      } ],
+      "UIPos" : {
+        "UIPosX" : 480,
+        "UIPosY" : 616
+      },
+      "ColorType" : 0,
+      "Setting" : 1,
+      "UserAttribute" : 0,
+      "ExistConditionTrainsitionFromAll" : false,
+      "ConditionTrainsitionFromAllId" : 0
+    }, {
+      "Name" : "s0001",
+      "Id" : 1,
+      "UniqueId" : 2050811151,
+      "OwnerId" : 0,
+      "LinkListNum" : 1,
+      "LinkList" : [ {
+        "Name" : "s0001_t0000",
+        "DestinationNodeId" : 0,
+        "ExistCondition" : true,
+        "ConditionId" : 1
+      } ],
+      "ProcessListNum" : 1,
+      "ProcessList" : [ {
+        "ContainerName" : "CallMessage",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "IsHideMessage" : false,
+          "IsUseSerial" : true,
+          "MsgDispTime" : 5.0,
+          "MsgNo" : 26725,
+          "MsgType" : 1,
+          "MsgWaitTime" : 0.0,
+          "QuestId" : 10300300
+        }
+      } ],
+      "UIPos" : {
+        "UIPosX" : 480,
+        "UIPosY" : 528
+      },
+      "ColorType" : 0,
+      "Setting" : 1,
+      "UserAttribute" : 0,
+      "ExistConditionTrainsitionFromAll" : false,
+      "ConditionTrainsitionFromAllId" : 0
+    }, {
+      "Name" : "s0003",
+      "Id" : 2,
+      "UniqueId" : 3259086272,
+      "OwnerId" : 0,
+      "LinkListNum" : 0,
+      "LinkList" : [ ],
+      "ProcessListNum" : 2,
+      "ProcessList" : [ {
+        "ContainerName" : "AddAttendPoint",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "Point" : 300
+        }
+      }, {
+        "ContainerName" : "SetWait",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "Dir" : {
+            "X" : 1.0,
+            "Y" : 0.0,
+            "Z" : 0.0
+          },
+          "IsSetDir" : false,
+          "Speed" : 0.087266
+        }
+      } ],
+      "UIPos" : {
+        "UIPosX" : 480,
+        "UIPosY" : 792
+      },
+      "ColorType" : 0,
+      "Setting" : 1,
+      "UserAttribute" : 0,
+      "ExistConditionTrainsitionFromAll" : false,
+      "ConditionTrainsitionFromAllId" : 0
+    }, {
+      "Name" : "ゲージ０",
+      "Id" : 3,
+      "UniqueId" : 1679183256,
+      "OwnerId" : 0,
+      "LinkListNum" : 1,
+      "LinkList" : [ {
+        "Name" : "護衛ゲージ０時_t0000",
+        "DestinationNodeId" : 6,
+        "ExistCondition" : true,
+        "ConditionId" : 5
+      } ],
+      "ProcessListNum" : 2,
+      "ProcessList" : [ {
+        "ContainerName" : "callAnnounce",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "MsgNo" : 100379,
+          "QuestId" : 10300300,
+          "Type" : 1
+        }
+      }, {
+        "ContainerName" : "setFSMFreeFlagOn",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "FlagNo" : 2
+        }
+      } ],
+      "UIPos" : {
+        "UIPosX" : 640,
+        "UIPosY" : 704
+      },
+      "ColorType" : 0,
+      "Setting" : 1,
+      "UserAttribute" : 0,
+      "ExistConditionTrainsitionFromAll" : true,
+      "ConditionTrainsitionFromAllId" : 2
+    }, {
+      "Name" : "護衛離脱時",
+      "Id" : 4,
+      "UniqueId" : 3702139645,
+      "OwnerId" : 0,
+      "LinkListNum" : 1,
+      "LinkList" : [ {
+        "Name" : "護衛離脱時_t0000",
+        "DestinationNodeId" : 5,
+        "ExistCondition" : true,
+        "ConditionId" : 6
+      } ],
+      "ProcessListNum" : 2,
+      "ProcessList" : [ {
+        "ContainerName" : "callAnnounce",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "MsgNo" : 100378,
+          "QuestId" : 10300300,
+          "Type" : 1
+        }
+      }, {
+        "ContainerName" : "setFSMFreeFlagOn",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "FlagNo" : 1
+        }
+      } ],
+      "UIPos" : {
+        "UIPosX" : 640,
+        "UIPosY" : 616
+      },
+      "ColorType" : 0,
+      "Setting" : 1,
+      "UserAttribute" : 0,
+      "ExistConditionTrainsitionFromAll" : true,
+      "ConditionTrainsitionFromAllId" : 3
+    }, {
+      "Name" : "護衛離脱確定",
+      "Id" : 5,
+      "UniqueId" : 3458172179,
+      "OwnerId" : 0,
+      "LinkListNum" : 0,
+      "LinkList" : [ ],
+      "ProcessListNum" : 1,
+      "ProcessList" : [ {
+        "ContainerName" : "MainQstFlagOn",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "FlagNo" : 3791,
+          "QuestId" : 10300300
+        }
+      } ],
+      "UIPos" : {
+        "UIPosX" : 720,
+        "UIPosY" : 616
+      },
+      "ColorType" : 0,
+      "Setting" : 1,
+      "UserAttribute" : 0,
+      "ExistConditionTrainsitionFromAll" : false,
+      "ConditionTrainsitionFromAllId" : 0
+    }, {
+      "Name" : "護衛離脱確定",
+      "Id" : 6,
+      "UniqueId" : 1990451830,
+      "OwnerId" : 0,
+      "LinkListNum" : 0,
+      "LinkList" : [ ],
+      "ProcessListNum" : 1,
+      "ProcessList" : [ {
+        "ContainerName" : "MainQstFlagOn",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "FlagNo" : 3791,
+          "QuestId" : 10300300
+        }
+      } ],
+      "UIPos" : {
+        "UIPosX" : 720,
+        "UIPosY" : 704
+      },
+      "ColorType" : 0,
+      "Setting" : 1,
+      "UserAttribute" : 0,
+      "ExistConditionTrainsitionFromAll" : false,
+      "ConditionTrainsitionFromAllId" : 0
+    }, {
+      "Name" : "護衛離脱時",
+      "Id" : 7,
+      "UniqueId" : 3950303951,
+      "OwnerId" : 0,
+      "LinkListNum" : 1,
+      "LinkList" : [ {
+        "Name" : "護衛離脱時_t0000",
+        "DestinationNodeId" : 8,
+        "ExistCondition" : true,
+        "ConditionId" : 7
+      } ],
+      "ProcessListNum" : 2,
+      "ProcessList" : [ {
+        "ContainerName" : "callAnnounce",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "MsgNo" : 100378,
+          "QuestId" : 10300300,
+          "Type" : 1
+        }
+      }, {
+        "ContainerName" : "setFSMFreeFlagOn",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "FlagNo" : 0
+        }
+      } ],
+      "UIPos" : {
+        "UIPosX" : 640,
+        "UIPosY" : 528
+      },
+      "ColorType" : 0,
+      "Setting" : 1,
+      "UserAttribute" : 0,
+      "ExistConditionTrainsitionFromAll" : true,
+      "ConditionTrainsitionFromAllId" : 4
+    }, {
+      "Name" : "護衛離脱確定",
+      "Id" : 8,
+      "UniqueId" : 1405664682,
+      "OwnerId" : 0,
+      "LinkListNum" : 0,
+      "LinkList" : [ ],
+      "ProcessListNum" : 1,
+      "ProcessList" : [ {
+        "ContainerName" : "MainQstFlagOn",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "FlagNo" : 3791,
+          "QuestId" : 10300300
+        }
+      } ],
+      "UIPos" : {
+        "UIPosX" : 720,
+        "UIPosY" : 528
+      },
+      "ColorType" : 0,
+      "Setting" : 1,
+      "UserAttribute" : 0,
+      "ExistConditionTrainsitionFromAll" : false,
+      "ConditionTrainsitionFromAllId" : 0
+    } ]
+  },
+  "FileSize" : 7367
+}

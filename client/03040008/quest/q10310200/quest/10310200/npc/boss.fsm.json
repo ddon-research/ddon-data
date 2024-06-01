@@ -1,0 +1,524 @@
+{
+  "@class" : "org.sehkah.ddon.tools.extractor.lib.logic.resource.entity.season2.quest.AIFSM",
+  "FileHeader" : {
+    "MagicString" : "XFS\u0000",
+    "MagicBytesLength" : 4,
+    "VersionNumber" : 131087,
+    "VersionBytesLength" : 4
+  },
+  "OwnerObjectName" : "cFSMUnit",
+  "RootCluster" : {
+    "Id" : 0,
+    "OwnerNodeUniqueId" : 0,
+    "InitialStateId" : 0,
+    "NodeList" : [ {
+      "Name" : "初期位置",
+      "Id" : 0,
+      "UniqueId" : 1193392204,
+      "OwnerId" : 0,
+      "LinkListNum" : 1,
+      "LinkList" : [ {
+        "Name" : "初期位置_t0000",
+        "DestinationNodeId" : 4,
+        "ExistCondition" : true,
+        "ConditionId" : 1
+      } ],
+      "ProcessListNum" : 4,
+      "ProcessList" : [ {
+        "ContainerName" : "SetWait",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "Dir" : {
+            "X" : 1.0,
+            "Y" : 0.0,
+            "Z" : 0.0
+          },
+          "IsSetDir" : false,
+          "Speed" : 0.087266
+        }
+      }, {
+        "ContainerName" : "SetAttend",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "IsAttend" : true
+        }
+      }, {
+        "ContainerName" : "SetAttendComp",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "Max" : 1000,
+          "InitRate" : 1.0,
+          "OverLv" : 90,
+          "UnderLv" : 89,
+          "PointHigh" : 200,
+          "PointMiddle" : 150,
+          "PointLow" : 100,
+          "DamageInterval" : 1.5
+        }
+      }, {
+        "ContainerName" : "SetDisableTouchAction",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "IsDisableTouch" : true
+        }
+      } ],
+      "UIPos" : {
+        "UIPosX" : 1760,
+        "UIPosY" : 1936
+      },
+      "ColorType" : 0,
+      "Setting" : 1,
+      "UserAttribute" : 0,
+      "ExistConditionTrainsitionFromAll" : false,
+      "ConditionTrainsitionFromAllId" : 0
+    }, {
+      "Name" : "戦闘",
+      "Id" : 1,
+      "UniqueId" : 850406266,
+      "OwnerId" : 0,
+      "LinkListNum" : 2,
+      "LinkList" : [ {
+        "Name" : "戦闘_t0000",
+        "DestinationNodeId" : 2,
+        "ExistCondition" : true,
+        "ConditionId" : 0
+      }, {
+        "Name" : "戦闘_t0001",
+        "DestinationNodeId" : 6,
+        "ExistCondition" : true,
+        "ConditionId" : 5
+      } ],
+      "ProcessListNum" : 3,
+      "ProcessList" : [ {
+        "ContainerName" : "SetChangeThink",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "IsInvincible" : false,
+          "Think" : 1
+        }
+      }, {
+        "ContainerName" : "SetDisableTouchAction",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "IsDisableTouch" : true
+        }
+      }, {
+        "ContainerName" : "setFSMFreeFlagOff",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "FlagNo" : 0
+        }
+      } ],
+      "UIPos" : {
+        "UIPosX" : 2000,
+        "UIPosY" : 1936
+      },
+      "ColorType" : 0,
+      "Setting" : 1,
+      "UserAttribute" : 0,
+      "ExistConditionTrainsitionFromAll" : false,
+      "ConditionTrainsitionFromAllId" : 0
+    }, {
+      "Name" : "通知(再セット)",
+      "Id" : 2,
+      "UniqueId" : 1408107192,
+      "OwnerId" : 0,
+      "LinkListNum" : 0,
+      "LinkList" : [ ],
+      "ProcessListNum" : 2,
+      "ProcessList" : [ {
+        "ContainerName" : "MainQstFlagOn",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "FlagNo" : 4153,
+          "QuestId" : 10310200
+        }
+      }, {
+        "ContainerName" : "SetDisableTouchAction",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "IsDisableTouch" : false
+        }
+      } ],
+      "UIPos" : {
+        "UIPosX" : 2080,
+        "UIPosY" : 1936
+      },
+      "ColorType" : 0,
+      "Setting" : 1,
+      "UserAttribute" : 0,
+      "ExistConditionTrainsitionFromAll" : false,
+      "ConditionTrainsitionFromAllId" : 0
+    }, {
+      "Name" : "失敗へ",
+      "Id" : 3,
+      "UniqueId" : 4216732917,
+      "OwnerId" : 0,
+      "LinkListNum" : 0,
+      "LinkList" : [ ],
+      "ProcessListNum" : 2,
+      "ProcessList" : [ {
+        "ContainerName" : "MainQstFlagOn",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "FlagNo" : 4153,
+          "QuestId" : 10310200
+        }
+      }, {
+        "ContainerName" : "CallNpcMessage",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "MsgNo" : 27204,
+          "QuestId" : 0,
+          "Type" : 2
+        }
+      } ],
+      "UIPos" : {
+        "UIPosX" : 1840,
+        "UIPosY" : 2200
+      },
+      "ColorType" : 0,
+      "Setting" : 9,
+      "UserAttribute" : 0,
+      "ExistConditionTrainsitionFromAll" : true,
+      "ConditionTrainsitionFromAllId" : 2
+    }, {
+      "Name" : "GoGoソネル",
+      "Id" : 4,
+      "UniqueId" : 3264387569,
+      "OwnerId" : 0,
+      "LinkListNum" : 1,
+      "LinkList" : [ {
+        "Name" : "GoGoソネル_t0000",
+        "DestinationNodeId" : 5,
+        "ExistCondition" : true,
+        "ConditionId" : 3
+      } ],
+      "ProcessListNum" : 2,
+      "ProcessList" : [ {
+        "ContainerName" : "SetGoto",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "Dir" : {
+            "X" : 1.0,
+            "Y" : 0.0,
+            "Z" : 0.0
+          },
+          "IsPathFinding" : false,
+          "IsSetDir" : false,
+          "RunType" : 1,
+          "Speed" : 0.087266,
+          "StopBorder" : 50.0,
+          "TargetPos" : {
+            "X" : -102611.164,
+            "Y" : 19629.51,
+            "Z" : -163924.67
+          }
+        }
+      }, {
+        "ContainerName" : "CallNpcMessage",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "MsgNo" : 27225,
+          "QuestId" : 0,
+          "Type" : 2
+        }
+      } ],
+      "UIPos" : {
+        "UIPosX" : 1840,
+        "UIPosY" : 2112
+      },
+      "ColorType" : 0,
+      "Setting" : 1,
+      "UserAttribute" : 0,
+      "ExistConditionTrainsitionFromAll" : false,
+      "ConditionTrainsitionFromAllId" : 0
+    }, {
+      "Name" : "GoGoソネル2",
+      "Id" : 5,
+      "UniqueId" : 1071894088,
+      "OwnerId" : 0,
+      "LinkListNum" : 1,
+      "LinkList" : [ {
+        "Name" : "GoGoソネル2_t0000",
+        "DestinationNodeId" : 1,
+        "ExistCondition" : true,
+        "ConditionId" : 4
+      } ],
+      "ProcessListNum" : 1,
+      "ProcessList" : [ {
+        "ContainerName" : "SetGoto",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "Dir" : {
+            "X" : 1.0,
+            "Y" : 0.0,
+            "Z" : 0.0
+          },
+          "IsPathFinding" : false,
+          "IsSetDir" : false,
+          "RunType" : 1,
+          "Speed" : 0.087266,
+          "StopBorder" : 50.0,
+          "TargetPos" : {
+            "X" : -99626.375,
+            "Y" : 20060.4,
+            "Z" : -163442.55
+          }
+        }
+      } ],
+      "UIPos" : {
+        "UIPosX" : 1920,
+        "UIPosY" : 2024
+      },
+      "ColorType" : 0,
+      "Setting" : 1,
+      "UserAttribute" : 0,
+      "ExistConditionTrainsitionFromAll" : false,
+      "ConditionTrainsitionFromAllId" : 0
+    }, {
+      "Name" : "ソネルテキスト",
+      "Id" : 6,
+      "UniqueId" : 589644062,
+      "OwnerId" : 0,
+      "SubCluster" : {
+        "Id" : 0,
+        "OwnerNodeUniqueId" : 589644062,
+        "InitialStateId" : 0,
+        "NodeList" : [ {
+          "Name" : "s0002",
+          "Id" : 0,
+          "UniqueId" : 1897542292,
+          "OwnerId" : 0,
+          "LinkListNum" : 5,
+          "LinkList" : [ {
+            "Name" : "s0002_t0000",
+            "DestinationNodeId" : 1,
+            "ExistCondition" : true,
+            "ConditionId" : 7
+          }, {
+            "Name" : "s0002_t0001",
+            "DestinationNodeId" : 3,
+            "ExistCondition" : true,
+            "ConditionId" : 9
+          }, {
+            "Name" : "s0002_t0002",
+            "DestinationNodeId" : 4,
+            "ExistCondition" : true,
+            "ConditionId" : 10
+          }, {
+            "Name" : "s0002_t0003",
+            "DestinationNodeId" : 5,
+            "ExistCondition" : true,
+            "ConditionId" : 11
+          }, {
+            "Name" : "s0002_t0004",
+            "DestinationNodeId" : 5,
+            "ExistCondition" : true,
+            "ConditionId" : 15
+          } ],
+          "ProcessListNum" : 1,
+          "ProcessList" : [ {
+            "ContainerName" : "RandomChoice",
+            "CategoryName" : "cAIFSMProcessContainer",
+            "Parameter" : {
+              "ParamRandomChoiceParamList" : [ {
+                "IsEnable" : true,
+                "Index" : 1,
+                "Weight" : 10
+              }, {
+                "IsEnable" : true,
+                "Index" : 2,
+                "Weight" : 10
+              }, {
+                "IsEnable" : true,
+                "Index" : 3,
+                "Weight" : 10
+              }, {
+                "IsEnable" : true,
+                "Index" : 4,
+                "Weight" : 10
+              } ]
+            }
+          } ],
+          "UIPos" : {
+            "UIPosX" : 240,
+            "UIPosY" : 176
+          },
+          "ColorType" : 0,
+          "Setting" : 1,
+          "UserAttribute" : 0,
+          "ExistConditionTrainsitionFromAll" : false,
+          "ConditionTrainsitionFromAllId" : 0
+        }, {
+          "Name" : "s0003",
+          "Id" : 1,
+          "UniqueId" : 3188238101,
+          "OwnerId" : 0,
+          "LinkListNum" : 1,
+          "LinkList" : [ {
+            "Name" : "s0003_t0000",
+            "DestinationNodeId" : 2,
+            "ExistCondition" : true,
+            "ConditionId" : 8
+          } ],
+          "ProcessListNum" : 1,
+          "ProcessList" : [ {
+            "ContainerName" : "CallNpcMessage",
+            "CategoryName" : "cAIFSMProcessContainer",
+            "Parameter" : {
+              "MsgNo" : 27210,
+              "QuestId" : 0,
+              "Type" : 2
+            }
+          } ],
+          "UIPos" : {
+            "UIPosX" : 240,
+            "UIPosY" : 264
+          },
+          "ColorType" : 0,
+          "Setting" : 1,
+          "UserAttribute" : 0,
+          "ExistConditionTrainsitionFromAll" : false,
+          "ConditionTrainsitionFromAllId" : 0
+        }, {
+          "Name" : "s0004",
+          "Id" : 2,
+          "UniqueId" : 1194107322,
+          "OwnerId" : 0,
+          "LinkListNum" : 0,
+          "LinkList" : [ ],
+          "ProcessListNum" : 1,
+          "ProcessList" : [ {
+            "ContainerName" : "setFSMFreeFlagOn",
+            "CategoryName" : "cAIFSMProcessContainer",
+            "Parameter" : {
+              "FlagNo" : 0
+            }
+          } ],
+          "UIPos" : {
+            "UIPosX" : 240,
+            "UIPosY" : 352
+          },
+          "ColorType" : 0,
+          "Setting" : 1,
+          "UserAttribute" : 0,
+          "ExistConditionTrainsitionFromAll" : false,
+          "ConditionTrainsitionFromAllId" : 0
+        }, {
+          "Name" : "s0005",
+          "Id" : 3,
+          "UniqueId" : 1058459438,
+          "OwnerId" : 0,
+          "LinkListNum" : 1,
+          "LinkList" : [ {
+            "Name" : "s0005_t0000",
+            "DestinationNodeId" : 2,
+            "ExistCondition" : true,
+            "ConditionId" : 12
+          } ],
+          "ProcessListNum" : 1,
+          "ProcessList" : [ {
+            "ContainerName" : "CallNpcMessage",
+            "CategoryName" : "cAIFSMProcessContainer",
+            "Parameter" : {
+              "MsgNo" : 27211,
+              "QuestId" : 0,
+              "Type" : 2
+            }
+          } ],
+          "UIPos" : {
+            "UIPosX" : 320,
+            "UIPosY" : 264
+          },
+          "ColorType" : 0,
+          "Setting" : 1,
+          "UserAttribute" : 0,
+          "ExistConditionTrainsitionFromAll" : false,
+          "ConditionTrainsitionFromAllId" : 0
+        }, {
+          "Name" : "s0006",
+          "Id" : 4,
+          "UniqueId" : 2066711156,
+          "OwnerId" : 0,
+          "LinkListNum" : 1,
+          "LinkList" : [ {
+            "Name" : "s0006_t0000",
+            "DestinationNodeId" : 2,
+            "ExistCondition" : true,
+            "ConditionId" : 13
+          } ],
+          "ProcessListNum" : 1,
+          "ProcessList" : [ {
+            "ContainerName" : "CallNpcMessage",
+            "CategoryName" : "cAIFSMProcessContainer",
+            "Parameter" : {
+              "MsgNo" : 27212,
+              "QuestId" : 0,
+              "Type" : 2
+            }
+          } ],
+          "UIPos" : {
+            "UIPosX" : 400,
+            "UIPosY" : 264
+          },
+          "ColorType" : 0,
+          "Setting" : 1,
+          "UserAttribute" : 0,
+          "ExistConditionTrainsitionFromAll" : false,
+          "ConditionTrainsitionFromAllId" : 0
+        }, {
+          "Name" : "s0007",
+          "Id" : 5,
+          "UniqueId" : 1488012721,
+          "OwnerId" : 0,
+          "LinkListNum" : 1,
+          "LinkList" : [ {
+            "Name" : "s0007_t0000",
+            "DestinationNodeId" : 2,
+            "ExistCondition" : true,
+            "ConditionId" : 14
+          } ],
+          "ProcessListNum" : 1,
+          "ProcessList" : [ {
+            "ContainerName" : "CallNpcMessage",
+            "CategoryName" : "cAIFSMProcessContainer",
+            "Parameter" : {
+              "MsgNo" : 27213,
+              "QuestId" : 0,
+              "Type" : 2
+            }
+          } ],
+          "UIPos" : {
+            "UIPosX" : 480,
+            "UIPosY" : 264
+          },
+          "ColorType" : 0,
+          "Setting" : 1,
+          "UserAttribute" : 0,
+          "ExistConditionTrainsitionFromAll" : false,
+          "ConditionTrainsitionFromAllId" : 0
+        } ]
+      },
+      "LinkListNum" : 1,
+      "LinkList" : [ {
+        "Name" : "s0000_t0000",
+        "DestinationNodeId" : 1,
+        "ExistCondition" : true,
+        "ConditionId" : 6
+      } ],
+      "ProcessListNum" : 0,
+      "ProcessList" : [ ],
+      "UIPos" : {
+        "UIPosX" : 2000,
+        "UIPosY" : 1760
+      },
+      "ColorType" : 0,
+      "Setting" : 1,
+      "UserAttribute" : 0,
+      "ExistConditionTrainsitionFromAll" : false,
+      "ConditionTrainsitionFromAllId" : 0
+    } ]
+  },
+  "FileSize" : 9831
+}

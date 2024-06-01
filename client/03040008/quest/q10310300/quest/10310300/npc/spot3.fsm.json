@@ -1,0 +1,935 @@
+{
+  "@class" : "org.sehkah.ddon.tools.extractor.lib.logic.resource.entity.season2.quest.AIFSM",
+  "FileHeader" : {
+    "MagicString" : "XFS\u0000",
+    "MagicBytesLength" : 4,
+    "VersionNumber" : 131087,
+    "VersionBytesLength" : 4
+  },
+  "OwnerObjectName" : "cFSMUnit",
+  "RootCluster" : {
+    "Id" : 0,
+    "OwnerNodeUniqueId" : 0,
+    "InitialStateId" : 0,
+    "NodeList" : [ {
+      "Name" : "スニーク",
+      "Id" : 0,
+      "UniqueId" : 1421939555,
+      "OwnerId" : 0,
+      "SubCluster" : {
+        "Id" : 0,
+        "OwnerNodeUniqueId" : 1421939555,
+        "InitialStateId" : 0,
+        "NodeList" : [ {
+          "Name" : "初期待機",
+          "Id" : 0,
+          "UniqueId" : 3688297534,
+          "OwnerId" : 0,
+          "LinkListNum" : 1,
+          "LinkList" : [ {
+            "Name" : "初期待機_t0000",
+            "DestinationNodeId" : 8,
+            "ExistCondition" : true,
+            "ConditionId" : 0
+          } ],
+          "ProcessListNum" : 7,
+          "ProcessList" : [ {
+            "ContainerName" : "SetWait",
+            "CategoryName" : "cAIFSMProcessContainer",
+            "Parameter" : {
+              "Dir" : {
+                "X" : 1.0,
+                "Y" : 0.0,
+                "Z" : 0.0
+              },
+              "IsSetDir" : false,
+              "Speed" : 0.087266
+            }
+          }, {
+            "ContainerName" : "SetAttend",
+            "CategoryName" : "cAIFSMProcessContainer",
+            "Parameter" : {
+              "IsAttend" : true
+            }
+          }, {
+            "ContainerName" : "SetAttendComp",
+            "CategoryName" : "cAIFSMProcessContainer",
+            "Parameter" : {
+              "Max" : 10000,
+              "InitRate" : 1.0,
+              "OverLv" : 90,
+              "UnderLv" : 89,
+              "PointHigh" : 200,
+              "PointMiddle" : 200,
+              "PointLow" : 200,
+              "DamageInterval" : 1.5
+            }
+          }, {
+            "ContainerName" : "checkMyQuestFlag",
+            "CategoryName" : "cAIFSMProcessContainer",
+            "Parameter" : {
+              "ArrayIdx" : 0,
+              "FlagNo" : 4042,
+              "QuestId" : 10310300
+            }
+          }, {
+            "ContainerName" : "SetDisableTouchAction",
+            "CategoryName" : "cAIFSMProcessContainer",
+            "Parameter" : {
+              "IsDisableTouch" : false
+            }
+          }, {
+            "ContainerName" : "CallNpcMessage",
+            "CategoryName" : "cAIFSMProcessContainer",
+            "Parameter" : {
+              "MsgNo" : 27187,
+              "QuestId" : 0,
+              "Type" : 2
+            }
+          }, {
+            "ContainerName" : "SetMotion",
+            "CategoryName" : "cAIFSMProcessContainer",
+            "Parameter" : {
+              "BankNo" : 19,
+              "Dir" : {
+                "X" : 1.0,
+                "Y" : 0.0,
+                "Z" : 0.0
+              },
+              "EndFrame" : 0.0,
+              "FingerHokan" : 5.0,
+              "FingerMotionNo" : 0,
+              "FingerSpeed" : 1.0,
+              "Hokan" : 5.0,
+              "IsCallVoice" : true,
+              "IsDisableFall" : false,
+              "IsDispItem" : false,
+              "IsLoop" : true,
+              "IsNullAngleFix" : false,
+              "IsNullTransFix" : false,
+              "IsNullTransOff" : false,
+              "IsSetDir" : false,
+              "IsSetEndFrame" : false,
+              "IsUseFingerMotion" : false,
+              "MotNo" : 2,
+              "MotSpeed" : 1.0,
+              "MotionSeOffBank" : -1,
+              "Speed" : 0.087266,
+              "StartFrame" : 0.0
+            }
+          } ],
+          "UIPos" : {
+            "UIPosX" : 1360,
+            "UIPosY" : 1955
+          },
+          "ColorType" : 0,
+          "Setting" : 1,
+          "UserAttribute" : 0,
+          "ExistConditionTrainsitionFromAll" : false,
+          "ConditionTrainsitionFromAllId" : 0
+        }, {
+          "Name" : "エモートで移動",
+          "Id" : 1,
+          "UniqueId" : 3037131685,
+          "OwnerId" : 0,
+          "LinkListNum" : 1,
+          "LinkList" : [ {
+            "Name" : "エモートで移動_t0000",
+            "DestinationNodeId" : 2,
+            "ExistCondition" : true,
+            "ConditionId" : 2
+          } ],
+          "ProcessListNum" : 2,
+          "ProcessList" : [ {
+            "ContainerName" : "SetGoto",
+            "CategoryName" : "cAIFSMProcessContainer",
+            "Parameter" : {
+              "Dir" : {
+                "X" : 1.0,
+                "Y" : 0.0,
+                "Z" : 0.0
+              },
+              "IsPathFinding" : false,
+              "IsSetDir" : false,
+              "RunType" : 1,
+              "Speed" : 0.087266,
+              "StopBorder" : 50.0,
+              "TargetPos" : {
+                "X" : -91650.61,
+                "Y" : 20390.557,
+                "Z" : -160172.4
+              }
+            }
+          }, {
+            "ContainerName" : "SetDisableTouchAction",
+            "CategoryName" : "cAIFSMProcessContainer",
+            "Parameter" : {
+              "IsDisableTouch" : true
+            }
+          } ],
+          "UIPos" : {
+            "UIPosX" : 1680,
+            "UIPosY" : 1955
+          },
+          "ColorType" : 0,
+          "Setting" : 1,
+          "UserAttribute" : 0,
+          "ExistConditionTrainsitionFromAll" : false,
+          "ConditionTrainsitionFromAllId" : 0
+        }, {
+          "Name" : "着いたらFlagOn",
+          "Id" : 2,
+          "UniqueId" : 2414822128,
+          "OwnerId" : 0,
+          "LinkListNum" : 1,
+          "LinkList" : [ {
+            "Name" : "着いたらFlagOn_t0000",
+            "DestinationNodeId" : 10,
+            "ExistCondition" : true,
+            "ConditionId" : 5
+          } ],
+          "ProcessListNum" : 6,
+          "ProcessList" : [ {
+            "ContainerName" : "SetWait",
+            "CategoryName" : "cAIFSMProcessContainer",
+            "Parameter" : {
+              "Dir" : {
+                "X" : 1.0,
+                "Y" : 0.0,
+                "Z" : 0.0
+              },
+              "IsSetDir" : false,
+              "Speed" : 0.087266
+            }
+          }, {
+            "ContainerName" : "MainQstFlagOn",
+            "CategoryName" : "cAIFSMProcessContainer",
+            "Parameter" : {
+              "FlagNo" : 4041,
+              "QuestId" : 10310300
+            }
+          }, {
+            "ContainerName" : "checkMyQuestFlag",
+            "CategoryName" : "cAIFSMProcessContainer",
+            "Parameter" : {
+              "ArrayIdx" : 0,
+              "FlagNo" : 4038,
+              "QuestId" : 10310300
+            }
+          }, {
+            "ContainerName" : "SetDisableTouchAction",
+            "CategoryName" : "cAIFSMProcessContainer",
+            "Parameter" : {
+              "IsDisableTouch" : false
+            }
+          }, {
+            "ContainerName" : "CallNpcMessage",
+            "CategoryName" : "cAIFSMProcessContainer",
+            "Parameter" : {
+              "MsgNo" : 25303,
+              "QuestId" : 0,
+              "Type" : 2
+            }
+          }, {
+            "ContainerName" : "SetMotion",
+            "CategoryName" : "cAIFSMProcessContainer",
+            "Parameter" : {
+              "BankNo" : 19,
+              "Dir" : {
+                "X" : 1.0,
+                "Y" : 0.0,
+                "Z" : 0.0
+              },
+              "EndFrame" : 0.0,
+              "FingerHokan" : 5.0,
+              "FingerMotionNo" : 0,
+              "FingerSpeed" : 1.0,
+              "Hokan" : 5.0,
+              "IsCallVoice" : true,
+              "IsDisableFall" : false,
+              "IsDispItem" : false,
+              "IsLoop" : true,
+              "IsNullAngleFix" : false,
+              "IsNullTransFix" : false,
+              "IsNullTransOff" : false,
+              "IsSetDir" : false,
+              "IsSetEndFrame" : false,
+              "IsUseFingerMotion" : false,
+              "MotNo" : 2,
+              "MotSpeed" : 1.0,
+              "MotionSeOffBank" : -1,
+              "Speed" : 0.087266,
+              "StartFrame" : 0.0
+            }
+          } ],
+          "UIPos" : {
+            "UIPosX" : 1760,
+            "UIPosY" : 1955
+          },
+          "ColorType" : 0,
+          "Setting" : 1,
+          "UserAttribute" : 0,
+          "ExistConditionTrainsitionFromAll" : false,
+          "ConditionTrainsitionFromAllId" : 0
+        }, {
+          "Name" : "スニークポイントへの移動",
+          "Id" : 3,
+          "UniqueId" : 248593983,
+          "OwnerId" : 0,
+          "LinkListNum" : 1,
+          "LinkList" : [ {
+            "Name" : "スニークポイントへの移動_t0000",
+            "DestinationNodeId" : 9,
+            "ExistCondition" : true,
+            "ConditionId" : 3
+          } ],
+          "ProcessListNum" : 2,
+          "ProcessList" : [ {
+            "ContainerName" : "SetGoto",
+            "CategoryName" : "cAIFSMProcessContainer",
+            "Parameter" : {
+              "Dir" : {
+                "X" : 1.0,
+                "Y" : 0.0,
+                "Z" : 0.0
+              },
+              "IsPathFinding" : false,
+              "IsSetDir" : false,
+              "RunType" : 1,
+              "Speed" : 0.087266,
+              "StopBorder" : 50.0,
+              "TargetPos" : {
+                "X" : -89939.81,
+                "Y" : 20398.455,
+                "Z" : -163763.0
+              }
+            }
+          }, {
+            "ContainerName" : "SetDisableTouchAction",
+            "CategoryName" : "cAIFSMProcessContainer",
+            "Parameter" : {
+              "IsDisableTouch" : true
+            }
+          } ],
+          "UIPos" : {
+            "UIPosX" : 1440,
+            "UIPosY" : 1955
+          },
+          "ColorType" : 0,
+          "Setting" : 1,
+          "UserAttribute" : 0,
+          "ExistConditionTrainsitionFromAll" : false,
+          "ConditionTrainsitionFromAllId" : 0
+        }, {
+          "Name" : "待機",
+          "Id" : 4,
+          "UniqueId" : 3892520339,
+          "OwnerId" : 0,
+          "LinkListNum" : 1,
+          "LinkList" : [ {
+            "Name" : "待機_t0000",
+            "DestinationNodeId" : 7,
+            "ExistCondition" : true,
+            "ConditionId" : 4
+          } ],
+          "ProcessListNum" : 5,
+          "ProcessList" : [ {
+            "ContainerName" : "SetWait",
+            "CategoryName" : "cAIFSMProcessContainer",
+            "Parameter" : {
+              "Dir" : {
+                "X" : 1.0,
+                "Y" : 0.0,
+                "Z" : 0.0
+              },
+              "IsSetDir" : false,
+              "Speed" : 0.087266
+            }
+          }, {
+            "ContainerName" : "checkMyQuestFlag",
+            "CategoryName" : "cAIFSMProcessContainer",
+            "Parameter" : {
+              "ArrayIdx" : 0,
+              "FlagNo" : 4040,
+              "QuestId" : 10310300
+            }
+          }, {
+            "ContainerName" : "SetDisableTouchAction",
+            "CategoryName" : "cAIFSMProcessContainer",
+            "Parameter" : {
+              "IsDisableTouch" : false
+            }
+          }, {
+            "ContainerName" : "CallNpcMessage",
+            "CategoryName" : "cAIFSMProcessContainer",
+            "Parameter" : {
+              "MsgNo" : 27238,
+              "QuestId" : 0,
+              "Type" : 2
+            }
+          }, {
+            "ContainerName" : "SetMotion",
+            "CategoryName" : "cAIFSMProcessContainer",
+            "Parameter" : {
+              "BankNo" : 19,
+              "Dir" : {
+                "X" : 1.0,
+                "Y" : 0.0,
+                "Z" : 0.0
+              },
+              "EndFrame" : 0.0,
+              "FingerHokan" : 5.0,
+              "FingerMotionNo" : 0,
+              "FingerSpeed" : 1.0,
+              "Hokan" : 5.0,
+              "IsCallVoice" : true,
+              "IsDisableFall" : false,
+              "IsDispItem" : false,
+              "IsLoop" : true,
+              "IsNullAngleFix" : false,
+              "IsNullTransFix" : false,
+              "IsNullTransOff" : false,
+              "IsSetDir" : false,
+              "IsSetEndFrame" : false,
+              "IsUseFingerMotion" : false,
+              "MotNo" : 18,
+              "MotSpeed" : 1.0,
+              "MotionSeOffBank" : -1,
+              "Speed" : 0.087266,
+              "StartFrame" : 0.0
+            }
+          } ],
+          "UIPos" : {
+            "UIPosX" : 1520,
+            "UIPosY" : 1955
+          },
+          "ColorType" : 0,
+          "Setting" : 1,
+          "UserAttribute" : 0,
+          "ExistConditionTrainsitionFromAll" : false,
+          "ConditionTrainsitionFromAllId" : 0
+        }, {
+          "Name" : "攻城塔へ",
+          "Id" : 5,
+          "UniqueId" : 3202516297,
+          "OwnerId" : 0,
+          "LinkListNum" : 1,
+          "LinkList" : [ {
+            "Name" : "攻城塔へ_t0000",
+            "DestinationNodeId" : 6,
+            "ExistCondition" : true,
+            "ConditionId" : 6
+          } ],
+          "ProcessListNum" : 2,
+          "ProcessList" : [ {
+            "ContainerName" : "SetGoto",
+            "CategoryName" : "cAIFSMProcessContainer",
+            "Parameter" : {
+              "Dir" : {
+                "X" : 1.0,
+                "Y" : 0.0,
+                "Z" : 0.0
+              },
+              "IsPathFinding" : false,
+              "IsSetDir" : false,
+              "RunType" : 1,
+              "Speed" : 0.087266,
+              "StopBorder" : 50.0,
+              "TargetPos" : {
+                "X" : -92062.91,
+                "Y" : 20572.285,
+                "Z" : -157040.5
+              }
+            }
+          }, {
+            "ContainerName" : "SetDisableTouchAction",
+            "CategoryName" : "cAIFSMProcessContainer",
+            "Parameter" : {
+              "IsDisableTouch" : true
+            }
+          } ],
+          "UIPos" : {
+            "UIPosX" : 1840,
+            "UIPosY" : 1955
+          },
+          "ColorType" : 0,
+          "Setting" : 1,
+          "UserAttribute" : 0,
+          "ExistConditionTrainsitionFromAll" : false,
+          "ConditionTrainsitionFromAllId" : 0
+        }, {
+          "Name" : "攻城塔待機",
+          "Id" : 6,
+          "UniqueId" : 159385947,
+          "OwnerId" : 0,
+          "LinkListNum" : 0,
+          "LinkList" : [ ],
+          "ProcessListNum" : 4,
+          "ProcessList" : [ {
+            "ContainerName" : "SetWait",
+            "CategoryName" : "cAIFSMProcessContainer",
+            "Parameter" : {
+              "Dir" : {
+                "X" : 1.0,
+                "Y" : 0.0,
+                "Z" : 0.0
+              },
+              "IsSetDir" : false,
+              "Speed" : 0.087266
+            }
+          }, {
+            "ContainerName" : "MainQstFlagOn",
+            "CategoryName" : "cAIFSMProcessContainer",
+            "Parameter" : {
+              "FlagNo" : 4044,
+              "QuestId" : 10310300
+            }
+          }, {
+            "ContainerName" : "SetDisableTouchAction",
+            "CategoryName" : "cAIFSMProcessContainer",
+            "Parameter" : {
+              "IsDisableTouch" : false
+            }
+          }, {
+            "ContainerName" : "CallNpcMessage",
+            "CategoryName" : "cAIFSMProcessContainer",
+            "Parameter" : {
+              "MsgNo" : 27190,
+              "QuestId" : 0,
+              "Type" : 2
+            }
+          } ],
+          "UIPos" : {
+            "UIPosX" : 1920,
+            "UIPosY" : 1955
+          },
+          "ColorType" : 0,
+          "Setting" : 1,
+          "UserAttribute" : 0,
+          "ExistConditionTrainsitionFromAll" : false,
+          "ConditionTrainsitionFromAllId" : 0
+        }, {
+          "Name" : "位置補正",
+          "Id" : 7,
+          "UniqueId" : 169773852,
+          "OwnerId" : 0,
+          "LinkListNum" : 1,
+          "LinkList" : [ {
+            "Name" : "位置補正_t0000",
+            "DestinationNodeId" : 1,
+            "ExistCondition" : true,
+            "ConditionId" : 7
+          } ],
+          "ProcessListNum" : 2,
+          "ProcessList" : [ {
+            "ContainerName" : "SetGoto",
+            "CategoryName" : "cAIFSMProcessContainer",
+            "Parameter" : {
+              "Dir" : {
+                "X" : 1.0,
+                "Y" : 0.0,
+                "Z" : 0.0
+              },
+              "IsPathFinding" : false,
+              "IsSetDir" : false,
+              "RunType" : 1,
+              "Speed" : 0.087266,
+              "StopBorder" : 50.0,
+              "TargetPos" : {
+                "X" : -90537.805,
+                "Y" : 20430.605,
+                "Z" : -159977.19
+              }
+            }
+          }, {
+            "ContainerName" : "SetDisableTouchAction",
+            "CategoryName" : "cAIFSMProcessContainer",
+            "Parameter" : {
+              "IsDisableTouch" : true
+            }
+          } ],
+          "UIPos" : {
+            "UIPosX" : 1600,
+            "UIPosY" : 1955
+          },
+          "ColorType" : 0,
+          "Setting" : 1,
+          "UserAttribute" : 0,
+          "ExistConditionTrainsitionFromAll" : false,
+          "ConditionTrainsitionFromAllId" : 0
+        }, {
+          "Name" : "s0000",
+          "Id" : 8,
+          "UniqueId" : 210722605,
+          "OwnerId" : 0,
+          "LinkListNum" : 1,
+          "LinkList" : [ {
+            "Name" : "s0000_t0000",
+            "DestinationNodeId" : 3,
+            "ExistCondition" : true,
+            "ConditionId" : 12
+          } ],
+          "ProcessListNum" : 2,
+          "ProcessList" : [ {
+            "ContainerName" : "SetMotion",
+            "CategoryName" : "cAIFSMProcessContainer",
+            "Parameter" : {
+              "BankNo" : 19,
+              "Dir" : {
+                "X" : 1.0,
+                "Y" : 0.0,
+                "Z" : 0.0
+              },
+              "EndFrame" : 0.0,
+              "FingerHokan" : 5.0,
+              "FingerMotionNo" : 0,
+              "FingerSpeed" : 1.0,
+              "Hokan" : 5.0,
+              "IsCallVoice" : true,
+              "IsDisableFall" : false,
+              "IsDispItem" : false,
+              "IsLoop" : true,
+              "IsNullAngleFix" : false,
+              "IsNullTransFix" : false,
+              "IsNullTransOff" : false,
+              "IsSetDir" : false,
+              "IsSetEndFrame" : false,
+              "IsUseFingerMotion" : false,
+              "MotNo" : 3,
+              "MotSpeed" : 1.0,
+              "MotionSeOffBank" : -1,
+              "Speed" : 0.087266,
+              "StartFrame" : 0.0
+            }
+          }, {
+            "ContainerName" : "SetDisableTouchAction",
+            "CategoryName" : "cAIFSMProcessContainer",
+            "Parameter" : {
+              "IsDisableTouch" : true
+            }
+          } ],
+          "UIPos" : {
+            "UIPosX" : 1360,
+            "UIPosY" : 1867
+          },
+          "ColorType" : 0,
+          "Setting" : 1,
+          "UserAttribute" : 0,
+          "ExistConditionTrainsitionFromAll" : false,
+          "ConditionTrainsitionFromAllId" : 0
+        }, {
+          "Name" : "s0001",
+          "Id" : 9,
+          "UniqueId" : 3054057238,
+          "OwnerId" : 0,
+          "LinkListNum" : 1,
+          "LinkList" : [ {
+            "Name" : "s0001_t0000",
+            "DestinationNodeId" : 4,
+            "ExistCondition" : true,
+            "ConditionId" : 13
+          } ],
+          "ProcessListNum" : 1,
+          "ProcessList" : [ {
+            "ContainerName" : "SetGoto",
+            "CategoryName" : "cAIFSMProcessContainer",
+            "Parameter" : {
+              "Dir" : {
+                "X" : 1.0,
+                "Y" : 0.0,
+                "Z" : 0.0
+              },
+              "IsPathFinding" : false,
+              "IsSetDir" : false,
+              "RunType" : 1,
+              "Speed" : 0.087266,
+              "StopBorder" : 50.0,
+              "TargetPos" : {
+                "X" : -90137.34,
+                "Y" : 20464.947,
+                "Z" : -159771.6
+              }
+            }
+          } ],
+          "UIPos" : {
+            "UIPosX" : 1441,
+            "UIPosY" : 1867
+          },
+          "ColorType" : 0,
+          "Setting" : 1,
+          "UserAttribute" : 0,
+          "ExistConditionTrainsitionFromAll" : false,
+          "ConditionTrainsitionFromAllId" : 0
+        }, {
+          "Name" : "s0003",
+          "Id" : 10,
+          "UniqueId" : 826382969,
+          "OwnerId" : 0,
+          "LinkListNum" : 1,
+          "LinkList" : [ {
+            "Name" : "s0003_t0000",
+            "DestinationNodeId" : 5,
+            "ExistCondition" : true,
+            "ConditionId" : 14
+          } ],
+          "ProcessListNum" : 2,
+          "ProcessList" : [ {
+            "ContainerName" : "SetMotion",
+            "CategoryName" : "cAIFSMProcessContainer",
+            "Parameter" : {
+              "BankNo" : 19,
+              "Dir" : {
+                "X" : 1.0,
+                "Y" : 0.0,
+                "Z" : 0.0
+              },
+              "EndFrame" : 0.0,
+              "FingerHokan" : 5.0,
+              "FingerMotionNo" : 0,
+              "FingerSpeed" : 1.0,
+              "Hokan" : 5.0,
+              "IsCallVoice" : true,
+              "IsDisableFall" : false,
+              "IsDispItem" : false,
+              "IsLoop" : true,
+              "IsNullAngleFix" : false,
+              "IsNullTransFix" : false,
+              "IsNullTransOff" : false,
+              "IsSetDir" : false,
+              "IsSetEndFrame" : false,
+              "IsUseFingerMotion" : false,
+              "MotNo" : 3,
+              "MotSpeed" : 1.0,
+              "MotionSeOffBank" : -1,
+              "Speed" : 0.087266,
+              "StartFrame" : 0.0
+            }
+          }, {
+            "ContainerName" : "SetDisableTouchAction",
+            "CategoryName" : "cAIFSMProcessContainer",
+            "Parameter" : {
+              "IsDisableTouch" : true
+            }
+          } ],
+          "UIPos" : {
+            "UIPosX" : 1760,
+            "UIPosY" : 2043
+          },
+          "ColorType" : 0,
+          "Setting" : 1,
+          "UserAttribute" : 0,
+          "ExistConditionTrainsitionFromAll" : false,
+          "ConditionTrainsitionFromAllId" : 0
+        } ]
+      },
+      "LinkListNum" : 2,
+      "LinkList" : [ {
+        "Name" : "スニーク_t0000",
+        "DestinationNodeId" : 4,
+        "ExistCondition" : true,
+        "ConditionId" : 1
+      }, {
+        "Name" : "スニーク_t0001",
+        "DestinationNodeId" : 4,
+        "ExistCondition" : true,
+        "ConditionId" : 10
+      } ],
+      "ProcessListNum" : 2,
+      "ProcessList" : [ {
+        "ContainerName" : "checkMyQuestFlag",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "ArrayIdx" : 0,
+          "FlagNo" : 4031,
+          "QuestId" : 10310300
+        }
+      }, {
+        "ContainerName" : "SetAttendComp",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "Max" : 1000,
+          "InitRate" : 1.0,
+          "OverLv" : 90,
+          "UnderLv" : 89,
+          "PointHigh" : 200,
+          "PointMiddle" : 200,
+          "PointLow" : 200,
+          "DamageInterval" : 1.5
+        }
+      } ],
+      "UIPos" : {
+        "UIPosX" : 1360,
+        "UIPosY" : 1408
+      },
+      "ColorType" : 0,
+      "Setting" : 1,
+      "UserAttribute" : 0,
+      "ExistConditionTrainsitionFromAll" : false,
+      "ConditionTrainsitionFromAllId" : 0
+    }, {
+      "Name" : "失敗",
+      "Id" : 1,
+      "UniqueId" : 242229830,
+      "OwnerId" : 0,
+      "LinkListNum" : 0,
+      "LinkList" : [ ],
+      "ProcessListNum" : 1,
+      "ProcessList" : [ {
+        "ContainerName" : "MainQstFlagOn",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "FlagNo" : 4130,
+          "QuestId" : 10310300
+        }
+      } ],
+      "UIPos" : {
+        "UIPosX" : 1680,
+        "UIPosY" : 1408
+      },
+      "ColorType" : 0,
+      "Setting" : 1,
+      "UserAttribute" : 0,
+      "ExistConditionTrainsitionFromAll" : false,
+      "ConditionTrainsitionFromAllId" : 0
+    }, {
+      "Name" : "アナウンス待ち",
+      "Id" : 2,
+      "UniqueId" : 4218420026,
+      "OwnerId" : 0,
+      "LinkListNum" : 1,
+      "LinkList" : [ {
+        "Name" : "アナウンス待ち_t0000",
+        "DestinationNodeId" : 3,
+        "ExistCondition" : true,
+        "ConditionId" : 9
+      } ],
+      "ProcessListNum" : 4,
+      "ProcessList" : [ {
+        "ContainerName" : "SetWait",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "Dir" : {
+            "X" : 1.0,
+            "Y" : 0.0,
+            "Z" : 0.0
+          },
+          "IsSetDir" : false,
+          "Speed" : 0.087266
+        }
+      }, {
+        "ContainerName" : "SetMotion",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "BankNo" : 8,
+          "Dir" : {
+            "X" : 1.0,
+            "Y" : 0.0,
+            "Z" : 0.0
+          },
+          "EndFrame" : 0.0,
+          "FingerHokan" : 5.0,
+          "FingerMotionNo" : 0,
+          "FingerSpeed" : 1.0,
+          "Hokan" : 5.0,
+          "IsCallVoice" : true,
+          "IsDisableFall" : false,
+          "IsDispItem" : false,
+          "IsLoop" : true,
+          "IsNullAngleFix" : false,
+          "IsNullTransFix" : false,
+          "IsNullTransOff" : false,
+          "IsSetDir" : false,
+          "IsSetEndFrame" : false,
+          "IsUseFingerMotion" : false,
+          "MotNo" : 1,
+          "MotSpeed" : 1.0,
+          "MotionSeOffBank" : -1,
+          "Speed" : 0.087266,
+          "StartFrame" : 0.0
+        }
+      }, {
+        "ContainerName" : "SetAttend",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "IsAttend" : true
+        }
+      }, {
+        "ContainerName" : "AddAttendPoint",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "Point" : -1000
+        }
+      } ],
+      "UIPos" : {
+        "UIPosX" : 1440,
+        "UIPosY" : 1408
+      },
+      "ColorType" : 0,
+      "Setting" : 1,
+      "UserAttribute" : 0,
+      "ExistConditionTrainsitionFromAll" : false,
+      "ConditionTrainsitionFromAllId" : 0
+    }, {
+      "Name" : "失敗演出",
+      "Id" : 3,
+      "UniqueId" : 807225810,
+      "OwnerId" : 0,
+      "LinkListNum" : 1,
+      "LinkList" : [ {
+        "Name" : "失敗演出_t0000",
+        "DestinationNodeId" : 1,
+        "ExistCondition" : true,
+        "ConditionId" : 8
+      } ],
+      "ProcessListNum" : 1,
+      "ProcessList" : [ {
+        "ContainerName" : "callAnnounce",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "MsgNo" : 100473,
+          "QuestId" : 10310300,
+          "Type" : 1
+        }
+      } ],
+      "UIPos" : {
+        "UIPosX" : 1600,
+        "UIPosY" : 1408
+      },
+      "ColorType" : 0,
+      "Setting" : 1,
+      "UserAttribute" : 0,
+      "ExistConditionTrainsitionFromAll" : false,
+      "ConditionTrainsitionFromAllId" : 0
+    }, {
+      "Name" : "失敗フロー初期化",
+      "Id" : 4,
+      "UniqueId" : 1907221838,
+      "OwnerId" : 0,
+      "LinkListNum" : 1,
+      "LinkList" : [ {
+        "Name" : "失敗フロー初期化_t0000",
+        "DestinationNodeId" : 2,
+        "ExistCondition" : true,
+        "ConditionId" : 11
+      } ],
+      "ProcessListNum" : 1,
+      "ProcessList" : [ {
+        "ContainerName" : "SetAttend",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "Parameter" : {
+          "IsAttend" : true
+        }
+      } ],
+      "UIPos" : {
+        "UIPosX" : 1440,
+        "UIPosY" : 1584
+      },
+      "ColorType" : 0,
+      "Setting" : 1,
+      "UserAttribute" : 0,
+      "ExistConditionTrainsitionFromAll" : false,
+      "ConditionTrainsitionFromAllId" : 0
+    } ]
+  },
+  "FileSize" : 14051
+}
