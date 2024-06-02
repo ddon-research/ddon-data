@@ -6,7 +6,6 @@
     "VersionNumber" : 131087,
     "VersionBytesLength" : 4
   },
-  "OwnerObjectName" : "cFSMUnit",
   "RootCluster" : {
     "Id" : 0,
     "OwnerNodeUniqueId" : 0,
@@ -66,7 +65,8 @@
             "Z" : 0.0
           },
           "TargetSetId" : 0,
-          "TargetType" : 0
+          "TargetType" : 0,
+          "TargetTypeName" : "TARGET_POSITION"
         }
       } ],
       "UIPos" : {
@@ -102,7 +102,8 @@
         "CategoryName" : "cAIFSMProcessContainer",
         "Parameter" : {
           "IsInvincible" : true,
-          "Think" : 1
+          "Think" : 1,
+          "ThinkType" : "THINK_PLAYER"
         }
       }, {
         "ContainerName" : "checkMyQuestFlag",
@@ -140,13 +141,15 @@
         "CategoryName" : "cAIFSMProcessContainer",
         "Parameter" : {
           "IsInvincible" : true,
-          "Think" : 0
+          "Think" : 0,
+          "ThinkType" : "THINK_NONE"
         }
       }, {
         "ContainerName" : "SetAction",
         "CategoryName" : "cAIFSMProcessContainer",
         "Parameter" : {
-          "ActionType" : 1
+          "ActionType" : 1,
+          "ActionTypeName" : "ACTTYPE_PAY_SWORN"
         }
       }, {
         "ContainerName" : "SetDisableTouchAction",
@@ -269,7 +272,8 @@
         "CategoryName" : "cAIFSMProcessContainer",
         "Parameter" : {
           "IsInvincible" : true,
-          "Think" : 1
+          "Think" : 1,
+          "ThinkType" : "THINK_PLAYER"
         }
       }, {
         "ContainerName" : "SetDisableTouchAction",
@@ -457,5 +461,6 @@
       "ConditionTrainsitionFromAllId" : 0
     } ]
   },
+  "OwnerObjectName" : "cFSMUnit",
   "FileSize" : 8254
 }

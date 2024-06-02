@@ -6,7 +6,6 @@
     "VersionNumber" : 131087,
     "VersionBytesLength" : 4
   },
-  "OwnerObjectName" : "cFSMUnit",
   "RootCluster" : {
     "Id" : 0,
     "OwnerNodeUniqueId" : 0,
@@ -65,6 +64,7 @@
               "MsgDispTime" : 5.0,
               "MsgNo" : 18198,
               "MsgType" : 1,
+              "MsgTypeName" : "MSG_TYPE_QUEST",
               "MsgWaitTime" : 0.0,
               "QuestId" : 60200104
             }
@@ -100,6 +100,7 @@
               "MsgDispTime" : 5.0,
               "MsgNo" : 18199,
               "MsgType" : 1,
+              "MsgTypeName" : "MSG_TYPE_QUEST",
               "MsgWaitTime" : 0.0,
               "QuestId" : 60200104
             }
@@ -135,6 +136,7 @@
               "MsgDispTime" : 5.0,
               "MsgNo" : 18195,
               "MsgType" : 1,
+              "MsgTypeName" : "MSG_TYPE_QUEST",
               "MsgWaitTime" : 0.0,
               "QuestId" : 60200104
             }
@@ -170,6 +172,7 @@
               "MsgDispTime" : 5.0,
               "MsgNo" : 18196,
               "MsgType" : 1,
+              "MsgTypeName" : "MSG_TYPE_QUEST",
               "MsgWaitTime" : 0.0,
               "QuestId" : 60200104
             }
@@ -205,6 +208,7 @@
               "MsgDispTime" : 5.0,
               "MsgNo" : 18197,
               "MsgType" : 1,
+              "MsgTypeName" : "MSG_TYPE_QUEST",
               "MsgWaitTime" : 0.0,
               "QuestId" : 60200104
             }
@@ -331,6 +335,7 @@
               "MsgDispTime" : 5.0,
               "MsgNo" : 18203,
               "MsgType" : 1,
+              "MsgTypeName" : "MSG_TYPE_QUEST",
               "MsgWaitTime" : 0.0,
               "QuestId" : 60200104
             }
@@ -366,6 +371,7 @@
               "MsgDispTime" : 5.0,
               "MsgNo" : 18204,
               "MsgType" : 1,
+              "MsgTypeName" : "MSG_TYPE_QUEST",
               "MsgWaitTime" : 0.0,
               "QuestId" : 60200104
             }
@@ -401,6 +407,7 @@
               "MsgDispTime" : 5.0,
               "MsgNo" : 18200,
               "MsgType" : 1,
+              "MsgTypeName" : "MSG_TYPE_QUEST",
               "MsgWaitTime" : 0.0,
               "QuestId" : 60200104
             }
@@ -436,6 +443,7 @@
               "MsgDispTime" : 5.0,
               "MsgNo" : 18201,
               "MsgType" : 1,
+              "MsgTypeName" : "MSG_TYPE_QUEST",
               "MsgWaitTime" : 0.0,
               "QuestId" : 60200104
             }
@@ -471,6 +479,7 @@
               "MsgDispTime" : 5.0,
               "MsgNo" : 18202,
               "MsgType" : 1,
+              "MsgTypeName" : "MSG_TYPE_QUEST",
               "MsgWaitTime" : 0.0,
               "QuestId" : 60200104
             }
@@ -509,7 +518,8 @@
         "CategoryName" : "cAIFSMProcessContainer",
         "Parameter" : {
           "IsInvincible" : true,
-          "Think" : 1
+          "Think" : 1,
+          "ThinkType" : "THINK_PLAYER"
         }
       }, {
         "ContainerName" : "checkMyQuestFlag",
@@ -553,7 +563,8 @@
         "CategoryName" : "cAIFSMProcessContainer",
         "Parameter" : {
           "IsInvincible" : true,
-          "Think" : 0
+          "Think" : 0,
+          "ThinkType" : "THINK_NONE"
         }
       }, {
         "ContainerName" : "SetHeadCtrl",
@@ -594,7 +605,8 @@
         "ContainerName" : "SetAction",
         "CategoryName" : "cAIFSMProcessContainer",
         "Parameter" : {
-          "ActionType" : 1
+          "ActionType" : 1,
+          "ActionTypeName" : "ACTTYPE_PAY_SWORN"
         }
       }, {
         "ContainerName" : "SetHeadCtrl",
@@ -685,7 +697,8 @@
         "CategoryName" : "cAIFSMProcessContainer",
         "Parameter" : {
           "IsInvincible" : true,
-          "Think" : 0
+          "Think" : 0,
+          "ThinkType" : "THINK_NONE"
         }
       }, {
         "ContainerName" : "SetHeadCtrl",
@@ -793,7 +806,8 @@
         "CategoryName" : "cAIFSMProcessContainer",
         "Parameter" : {
           "IsInvincible" : true,
-          "Think" : 1
+          "Think" : 1,
+          "ThinkType" : "THINK_PLAYER"
         }
       }, {
         "ContainerName" : "checkMyQuestFlag",
@@ -837,7 +851,8 @@
         "CategoryName" : "cAIFSMProcessContainer",
         "Parameter" : {
           "IsInvincible" : true,
-          "Think" : 0
+          "Think" : 0,
+          "ThinkType" : "THINK_NONE"
         }
       }, {
         "ContainerName" : "SetHeadCtrl",
@@ -922,7 +937,8 @@
         "CategoryName" : "cAIFSMProcessContainer",
         "Parameter" : {
           "IsInvincible" : true,
-          "Think" : 0
+          "Think" : 0,
+          "ThinkType" : "THINK_NONE"
         }
       }, {
         "ContainerName" : "SetHeadCtrl",
@@ -957,7 +973,8 @@
         "ContainerName" : "SetAction",
         "CategoryName" : "cAIFSMProcessContainer",
         "Parameter" : {
-          "ActionType" : 0
+          "ActionType" : 0,
+          "ActionTypeName" : "ACTTYPE_DRAWN_SWORD"
         }
       }, {
         "ContainerName" : "SetDispMiniMap",
@@ -1007,5 +1024,6 @@
       "ConditionTrainsitionFromAllId" : 0
     } ]
   },
+  "OwnerObjectName" : "cFSMUnit",
   "FileSize" : 16652
 }
