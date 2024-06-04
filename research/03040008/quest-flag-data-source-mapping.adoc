@@ -1,0 +1,50 @@
+Search via regex in ddon-data: `" : 7860($|,)`
+
+* QstTalkChg => MSS with NPC ID, Condition (=Flag)
+* QstLayoutFlagOn => QST files with comment, NPC ID, Condition (=Flag)
+* WorldManageLayoutFlagOn => UNKNOWN
+* MyQstFlagOn => UNKNOWN, partially in NPC-FSM
+* SceHitInWithoutMarker => 
+* IsLinkageEnemyFlag => rLinkageEnemy undecoded, maybe? No debug symbols..
+
+```
+// nativePC\rom\event\st0451\st0451ev020\event\st0451\ev020\fsm
+QuestManager.CheckCommand.EventEnd(StageNo.LookoutCastle1, 20)
+
+// enemy_group => ID: 341 => ENEMY_NAME_341 => "War-Ready Goremanticore"
+quest.QuestEnemyInfoList.Add(new CDataQuestEnemyInfo() { GroupId = 341, Lv = 100, IsPartyRecommend = true });
+
+// These correspond with QstTalkChg items in CDataQuestProcessState[0].ResultCommandList
+
+// => NpcId: 1, GroupSerial: 22449 ddon-data\client\03040008\quest\q00030260\ui\00_message\quest\q00030260.mss.json
+quest.QuestTalkInfoList.Add(new CDataQuestTalkInfo(NpcId.TheWhiteDragon, 22449));
+
+// => "before and after being injected" NpcId: 501, Condition: 7860 ddon-data\client\03040008\quest\q00030260\quest\00030260\q00030260_st0201.qst.json
+quest.QuestLayoutFlagList.Add(new CDataQuestLayoutFlag() { FlagId = 7860 }); // This makes Lise, Gurdolin and Elliot appear in the audience chamber
+
+// "Gillian between 5 and 6." NpcId: 30, Condition: 8013 ddon-data\client\03040008\quest\q00030260\quest\00030260\q00030260_st0139.qst.json
+quest.QuestLayoutFlagList.Add(new CDataQuestLayoutFlag() { FlagId = 8013 });
+
+//=> Glitter points (text display) Condition: 8202 ddon-data\client\03040008\quest\q70033001\quest\70033001\q70033001_st1100.qst.json
+QuestManager.ResultCommand.WorldManageLayoutFlagOff(8202, 70033001),
+
+//=> It could be your last, so I want to tell you everything. Condition: 7904 \quest\q00030260\quest\00030260\q00030260_st1101.qst.json
+QuestManager.ResultCommand.QstLayoutFlagOn(7904), 
+
+//=> FlagNo: 4830
+// ddon-data\client\03040008\quest\q00030260\quest\00030260\npc\n0030.fsm.json
+// ddon-data\client\03040008\quest\q00030260\quest\00030260\npc\n0031.fsm.json
+QuestManager.ResultCommand.MyQstFlagOn(4830), 
+
+//=> エリオット / Eriotto Condition: 8063 ddon-data\client\03040008\quest\q00030260\quest\00030260\q00030260_st1100.qst.json
+QuestManager.ResultCommand.QstLayoutFlagOff(8063),
+
+//=> リズ / Rizu Condition: 8064 ddon-data\client\03040008\quest\q00030260\quest\00030260\q00030260_st1100.qst.json
+QuestManager.ResultCommand.QstLayoutFlagOff(8064),
+
+//=> ガルドリン / Garudorin Condition: 8062 ddon-data\client\03040008\quest\q00030260\quest\00030260\q00030260_st1100.qst.json
+QuestManager.ResultCommand.QstLayoutFlagOff(8062),
+
+//=> メイロワジリアン / Meirowazilian Condition: 7861 ddon-data\client\03040008\quest\q00030260\quest\00030260\q00030260_st0451.qst.json
+QuestManager.ResultCommand.QstLayoutFlagOff(7861),
+```
