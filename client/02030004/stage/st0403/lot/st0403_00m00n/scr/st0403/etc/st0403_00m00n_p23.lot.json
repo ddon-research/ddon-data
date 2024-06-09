@@ -1,19 +1,14 @@
 {
-  "@class" : "org.sehkah.ddon.tools.extractor.lib.logic.resource.entity.season2.stage.Layout",
-  "FileHeader" : {
-    "MagicString" : "lot\u0000",
-    "MagicBytesLength" : 4,
-    "VersionNumber" : 117,
-    "VersionBytesLength" : 4
-  },
+  "@class" : "org.sehkah.ddon.tools.extractor.season2.logic.resource.entity.stage.Layout",
   "Array" : [ {
-    "ID" : 0,
-    "Type" : 12,
-    "TypeName" : "SetInfoOmLever",
+    "@class" : "org.sehkah.ddon.tools.extractor.season2.logic.resource.entity.stage.LayoutSetInfo",
+    "Id" : 0,
     "Info" : {
+      "@class" : "org.sehkah.ddon.tools.extractor.season2.logic.resource.entity.stage.SetInfoOmLever",
       "CamEvNo" : 90,
       "FsmcamEvResId" : 0,
       "InfoOm" : {
+        "@class" : "org.sehkah.ddon.tools.extractor.season2.logic.resource.entity.stage.SetInfoOm",
         "AreaMasterNo" : 0,
         "AreaReleaseNo" : 0,
         "AreaReleaseOFF" : false,
@@ -26,24 +21,25 @@
         "EnableSyncLight" : false,
         "EnableZone" : false,
         "InfoCoord" : {
-          "Name" : "om522190",
-          "UnitID" : 522190,
-          "Position" : {
-            "X" : 523.98773,
-            "Y" : -4413.9375,
-            "Z" : 11511.559
-          },
+          "@class" : "org.sehkah.ddon.tools.extractor.season2.logic.resource.entity.stage.SetInfoCoord",
           "Angle" : {
             "X" : -0.0,
             "Y" : 1.570796,
             "Z" : 0.0
           },
+          "AreaHitNo" : -1,
+          "Name" : "om522190",
+          "Position" : {
+            "X" : 523.98773,
+            "Y" : -4413.9375,
+            "Z" : 11511.559
+          },
           "Scale" : {
             "X" : 1.0,
             "Y" : 1.0,
             "Z" : 1.0
           },
-          "AreaHitNo" : -1
+          "UnitID" : 522190
         },
         "InitMtnNo" : 0,
         "IsBreakLink" : false,
@@ -56,15 +52,18 @@
         "WarpPointId" : 0
       },
       "ReqLever" : false
-    }
+    },
+    "Type" : 12,
+    "TypeName" : "SetInfoOmLever"
   }, {
-    "ID" : 1,
-    "Type" : 9,
-    "TypeName" : "SetInfoOmCtrl",
+    "@class" : "org.sehkah.ddon.tools.extractor.season2.logic.resource.entity.stage.LayoutSetInfo",
+    "Id" : 1,
     "Info" : {
+      "@class" : "org.sehkah.ddon.tools.extractor.season2.logic.resource.entity.stage.SetInfoOmCtrl",
       "AddGroupNo" : -1,
       "AddSubGroupNo" : -1,
       "InfoOm" : {
+        "@class" : "org.sehkah.ddon.tools.extractor.season2.logic.resource.entity.stage.SetInfoOm",
         "AreaMasterNo" : 0,
         "AreaReleaseNo" : 0,
         "AreaReleaseOFF" : false,
@@ -77,24 +76,25 @@
         "EnableSyncLight" : false,
         "EnableZone" : true,
         "InfoCoord" : {
+          "@class" : "org.sehkah.ddon.tools.extractor.season2.logic.resource.entity.stage.SetInfoCoord",
+          "Angle" : {
+            "X" : 0.0,
+            "Y" : 0.0,
+            "Z" : 0.0
+          },
+          "AreaHitNo" : -1,
           "Name" : "om522550",
-          "UnitID" : 522550,
           "Position" : {
             "X" : 428.54553,
             "Y" : -4210.771,
             "Z" : 11850.426
           },
-          "Angle" : {
-            "X" : 0.0,
-            "Y" : 0.0,
-            "Z" : 0.0
-          },
           "Scale" : {
             "X" : 1.0,
             "Y" : 1.0,
             "Z" : 1.0
           },
-          "AreaHitNo" : -1
+          "UnitID" : 522550
         },
         "InitMtnNo" : 0,
         "IsBreakLink" : false,
@@ -109,48 +109,55 @@
       "IsQuest" : false,
       "KeyItemNo" : 0,
       "LinkParam" : [ {
-        "Kind" : 3,
+        "@class" : "org.sehkah.ddon.tools.extractor.season2.logic.resource.entity.stage.SetInfoOmCtrlLinkParam",
+        "CamEvNo" : -1,
+        "FsmcamResID" : 0,
         "Group" : 23,
-        "ID" : 0,
-        "Transition" : 1,
-        "State" : 2,
-        "CamEvNo" : -1,
-        "FSMCamResID" : 0
-      }, {
+        "Id" : 0,
         "Kind" : 3,
+        "State" : 2,
+        "Transition" : 1
+      }, {
+        "@class" : "org.sehkah.ddon.tools.extractor.season2.logic.resource.entity.stage.SetInfoOmCtrlLinkParam",
+        "CamEvNo" : -1,
+        "FsmcamResID" : 0,
         "Group" : 22,
-        "ID" : 5,
-        "Transition" : 0,
+        "Id" : 5,
+        "Kind" : 3,
         "State" : 0,
-        "CamEvNo" : -1,
-        "FSMCamResID" : 0
+        "Transition" : 0
       }, {
-        "Kind" : 0,
-        "Group" : 0,
-        "ID" : 0,
-        "Transition" : 0,
-        "State" : 0,
+        "@class" : "org.sehkah.ddon.tools.extractor.season2.logic.resource.entity.stage.SetInfoOmCtrlLinkParam",
         "CamEvNo" : -1,
-        "FSMCamResID" : 0
+        "FsmcamResID" : 0,
+        "Group" : 0,
+        "Id" : 0,
+        "Kind" : 0,
+        "State" : 0,
+        "Transition" : 0
       }, {
-        "Kind" : 0,
-        "Group" : 0,
-        "ID" : 0,
-        "Transition" : 0,
-        "State" : 0,
+        "@class" : "org.sehkah.ddon.tools.extractor.season2.logic.resource.entity.stage.SetInfoOmCtrlLinkParam",
         "CamEvNo" : -1,
-        "FSMCamResID" : 0
+        "FsmcamResID" : 0,
+        "Group" : 0,
+        "Id" : 0,
+        "Kind" : 0,
+        "State" : 0,
+        "Transition" : 0
       } ],
       "QuestId" : 0
-    }
+    },
+    "Type" : 9,
+    "TypeName" : "SetInfoOmCtrl"
   }, {
-    "ID" : 2,
-    "Type" : 12,
-    "TypeName" : "SetInfoOmLever",
+    "@class" : "org.sehkah.ddon.tools.extractor.season2.logic.resource.entity.stage.LayoutSetInfo",
+    "Id" : 2,
     "Info" : {
+      "@class" : "org.sehkah.ddon.tools.extractor.season2.logic.resource.entity.stage.SetInfoOmLever",
       "CamEvNo" : 91,
       "FsmcamEvResId" : 0,
       "InfoOm" : {
+        "@class" : "org.sehkah.ddon.tools.extractor.season2.logic.resource.entity.stage.SetInfoOm",
         "AreaMasterNo" : 0,
         "AreaReleaseNo" : 0,
         "AreaReleaseOFF" : false,
@@ -163,24 +170,25 @@
         "EnableSyncLight" : false,
         "EnableZone" : true,
         "InfoCoord" : {
-          "Name" : "om522190",
-          "UnitID" : 522190,
-          "Position" : {
-            "X" : -4284.07,
-            "Y" : -1891.1407,
-            "Z" : 4781.937
-          },
+          "@class" : "org.sehkah.ddon.tools.extractor.season2.logic.resource.entity.stage.SetInfoCoord",
           "Angle" : {
             "X" : -0.0,
             "Y" : -1.585857,
             "Z" : 0.0
+          },
+          "AreaHitNo" : -1,
+          "Name" : "om522190",
+          "Position" : {
+            "X" : -4284.07,
+            "Y" : -1891.1407,
+            "Z" : 4781.937
           },
           "Scale" : {
             "X" : 1.0,
             "Y" : 1.0,
             "Z" : 1.0
           },
-          "AreaHitNo" : -1
+          "UnitID" : 522190
         },
         "InitMtnNo" : 0,
         "IsBreakLink" : false,
@@ -193,15 +201,18 @@
         "WarpPointId" : 0
       },
       "ReqLever" : false
-    }
+    },
+    "Type" : 12,
+    "TypeName" : "SetInfoOmLever"
   }, {
-    "ID" : 3,
-    "Type" : 9,
-    "TypeName" : "SetInfoOmCtrl",
+    "@class" : "org.sehkah.ddon.tools.extractor.season2.logic.resource.entity.stage.LayoutSetInfo",
+    "Id" : 3,
     "Info" : {
+      "@class" : "org.sehkah.ddon.tools.extractor.season2.logic.resource.entity.stage.SetInfoOmCtrl",
       "AddGroupNo" : -1,
       "AddSubGroupNo" : -1,
       "InfoOm" : {
+        "@class" : "org.sehkah.ddon.tools.extractor.season2.logic.resource.entity.stage.SetInfoOm",
         "AreaMasterNo" : 0,
         "AreaReleaseNo" : 0,
         "AreaReleaseOFF" : false,
@@ -214,24 +225,25 @@
         "EnableSyncLight" : false,
         "EnableZone" : true,
         "InfoCoord" : {
-          "Name" : "om522550",
-          "UnitID" : 522550,
-          "Position" : {
-            "X" : -4478.639,
-            "Y" : -1891.1407,
-            "Z" : 4452.208
-          },
+          "@class" : "org.sehkah.ddon.tools.extractor.season2.logic.resource.entity.stage.SetInfoCoord",
           "Angle" : {
             "X" : 0.0,
             "Y" : 0.0,
             "Z" : 0.0
+          },
+          "AreaHitNo" : -1,
+          "Name" : "om522550",
+          "Position" : {
+            "X" : -4478.639,
+            "Y" : -1891.1407,
+            "Z" : 4452.208
           },
           "Scale" : {
             "X" : 1.0,
             "Y" : 1.0,
             "Z" : 1.0
           },
-          "AreaHitNo" : -1
+          "UnitID" : 522550
         },
         "InitMtnNo" : 0,
         "IsBreakLink" : false,
@@ -246,41 +258,53 @@
       "IsQuest" : false,
       "KeyItemNo" : 0,
       "LinkParam" : [ {
-        "Kind" : 3,
+        "@class" : "org.sehkah.ddon.tools.extractor.season2.logic.resource.entity.stage.SetInfoOmCtrlLinkParam",
+        "CamEvNo" : -1,
+        "FsmcamResID" : 0,
         "Group" : 23,
-        "ID" : 2,
-        "Transition" : 1,
-        "State" : 2,
-        "CamEvNo" : -1,
-        "FSMCamResID" : 0
-      }, {
+        "Id" : 2,
         "Kind" : 3,
+        "State" : 2,
+        "Transition" : 1
+      }, {
+        "@class" : "org.sehkah.ddon.tools.extractor.season2.logic.resource.entity.stage.SetInfoOmCtrlLinkParam",
+        "CamEvNo" : -1,
+        "FsmcamResID" : 0,
         "Group" : 20,
-        "ID" : 28,
-        "Transition" : 0,
+        "Id" : 28,
+        "Kind" : 3,
         "State" : 0,
-        "CamEvNo" : -1,
-        "FSMCamResID" : 0
+        "Transition" : 0
       }, {
-        "Kind" : 0,
-        "Group" : 0,
-        "ID" : 0,
-        "Transition" : 0,
-        "State" : 0,
+        "@class" : "org.sehkah.ddon.tools.extractor.season2.logic.resource.entity.stage.SetInfoOmCtrlLinkParam",
         "CamEvNo" : -1,
-        "FSMCamResID" : 0
+        "FsmcamResID" : 0,
+        "Group" : 0,
+        "Id" : 0,
+        "Kind" : 0,
+        "State" : 0,
+        "Transition" : 0
       }, {
-        "Kind" : 0,
-        "Group" : 0,
-        "ID" : 0,
-        "Transition" : 0,
-        "State" : 0,
+        "@class" : "org.sehkah.ddon.tools.extractor.season2.logic.resource.entity.stage.SetInfoOmCtrlLinkParam",
         "CamEvNo" : -1,
-        "FSMCamResID" : 0
+        "FsmcamResID" : 0,
+        "Group" : 0,
+        "Id" : 0,
+        "Kind" : 0,
+        "State" : 0,
+        "Transition" : 0
       } ],
       "QuestId" : 0
-    }
+    },
+    "Type" : 9,
+    "TypeName" : "SetInfoOmCtrl"
   } ],
-  "SetInfoNeedNums" : [ 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0 ],
-  "FileSize" : 768
+  "FileHeader" : {
+    "MagicBytesLength" : 4,
+    "MagicString" : "lot\u0000",
+    "VersionBytesLength" : 4,
+    "VersionNumber" : 117
+  },
+  "FileSize" : 768,
+  "SetInfoNeedNums" : [ 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0 ]
 }

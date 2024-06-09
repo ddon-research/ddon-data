@@ -1,24 +1,27 @@
 {
-  "@class" : "org.sehkah.ddon.tools.extractor.lib.logic.resource.entity.season2.quest.QuestList",
+  "@class" : "org.sehkah.ddon.tools.extractor.season2.logic.resource.entity.quest.QuestList",
   "FileHeader" : {
-    "MagicString" : "XFS\u0000",
     "MagicBytesLength" : 4,
-    "VersionNumber" : 7667727,
-    "VersionBytesLength" : 4
+    "MagicString" : "XFS\u0000",
+    "VersionBytesLength" : 4,
+    "VersionNumber" : 7667727
   },
+  "FileSize" : 1809,
   "QuestStageList" : [ {
-    "StageNo" : 100,
+    "@class" : "org.sehkah.ddon.tools.extractor.season2.logic.resource.entity.quest.QuestStage",
     "QuestGrp" : [ {
-      "GroupNo" : 1,
+      "@class" : "org.sehkah.ddon.tools.extractor.season2.logic.resource.entity.quest.QuestGroup",
       "Comment" : "",
       "Condition" : 3702,
       "EraseCondition" : 0,
+      "GroupNo" : 1,
       "QuestSet" : [ {
-        "OmID" : 0,
-        "UnitNo" : 1,
+        "@class" : "org.sehkah.ddon.tools.extractor.season2.logic.resource.entity.quest.QuestSet",
         "Comment" : "Npc",
         "Kind" : 5,
+        "OmID" : 0,
         "SetInfo" : {
+          "@class" : "org.sehkah.ddon.tools.extractor.season2.logic.resource.entity.quest.QuestSetInfoNpc",
           "ClothType" : 0,
           "DefNPCMotCategory" : 0,
           "DefNPCMotNo" : -1,
@@ -27,11 +30,12 @@
           "DisableTouchAction" : false,
           "DispElseQuestTalk" : false,
           "FsmResource" : {
-            "FSMName" : "",
-            "FSMType" : 0
+            "@class" : "org.sehkah.ddon.tools.extractor.season2.logic.resource.entity.quest.FSMRelate",
+            "Fsmname" : "",
+            "Fsmtype" : 0
           },
           "InfoCharacter" : {
-            "@class" : "org.sehkah.ddon.tools.extractor.lib.logic.resource.entity.season2.quest.QuestSetInfoCoord",
+            "@class" : "org.sehkah.ddon.tools.extractor.season2.logic.resource.entity.quest.QuestSetInfoCoord",
             "Angle" : {
               "X" : 0.0,
               "Y" : 0.767945,
@@ -59,9 +63,10 @@
           "Lantern" : 0,
           "NpcId" : 4735,
           "ThinkIndex" : 0
-        }
+        },
+        "UnitNo" : 1
       } ]
-    } ]
-  } ],
-  "FileSize" : 1809
+    } ],
+    "StageNo" : 100
+  } ]
 }

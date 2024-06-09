@@ -1,39 +1,45 @@
 {
-  "@class" : "org.sehkah.ddon.tools.extractor.lib.logic.entity.season3.marker.DungeonMarker",
-  "fileHeader" : {
-    "magicString" : "DMI\u0000",
-    "magicBytesLength" : 4,
-    "versionNumber" : 1,
-    "versionBytesLength" : 4
+  "@class" : "org.sehkah.ddon.tools.extractor.season2.logic.resource.entity.marker.DungeonMarker",
+  "FileHeader" : {
+    "MagicBytesLength" : 4,
+    "MagicString" : "DMI\u0000",
+    "VersionBytesLength" : 4,
+    "VersionNumber" : 1
   },
-  "warpInfoList" : [ {
-    "GroupNo" : -1,
-    "TargetStageNo" : 840,
-    "TargetGroupNo" : 0,
-    "PosIndex" : [ {
-      "Index" : 0
-    } ]
-  }, {
-    "GroupNo" : -1,
-    "TargetStageNo" : 840,
-    "TargetGroupNo" : 1,
-    "PosIndex" : [ {
-      "Index" : 1
-    } ]
-  } ],
-  "positionList" : [ {
+  "FileSize" : 64,
+  "PositionList" : [ {
+    "@class" : "org.sehkah.ddon.tools.extractor.season2.logic.resource.entity.marker.DungeonMarkerPosition",
     "Pos" : {
       "X" : 2572.0,
       "Y" : 800.0,
       "Z" : -606.0
     }
   }, {
+    "@class" : "org.sehkah.ddon.tools.extractor.season2.logic.resource.entity.marker.DungeonMarkerPosition",
     "Pos" : {
       "X" : 3453.0,
       "Y" : 51.0,
       "Z" : -13503.0
     }
   } ],
-  "warpStageNo" : 840,
-  "fileSize" : 64
+  "WarpInfoList" : [ {
+    "@class" : "org.sehkah.ddon.tools.extractor.season2.logic.resource.entity.marker.DungeonMarkerWarpInfo",
+    "GroupNo" : -1,
+    "PosIndex" : [ {
+      "@class" : "org.sehkah.ddon.tools.extractor.season2.logic.resource.entity.marker.DungeonMarkerWarpInfoIndex",
+      "Index" : 0
+    } ],
+    "TargetGroupNo" : 0,
+    "TargetStageNo" : 840
+  }, {
+    "@class" : "org.sehkah.ddon.tools.extractor.season2.logic.resource.entity.marker.DungeonMarkerWarpInfo",
+    "GroupNo" : -1,
+    "PosIndex" : [ {
+      "@class" : "org.sehkah.ddon.tools.extractor.season2.logic.resource.entity.marker.DungeonMarkerWarpInfoIndex",
+      "Index" : 1
+    } ],
+    "TargetGroupNo" : 1,
+    "TargetStageNo" : 840
+  } ],
+  "WarpStageNo" : 840
 }

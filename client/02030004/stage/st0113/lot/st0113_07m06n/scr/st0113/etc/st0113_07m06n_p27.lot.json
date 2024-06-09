@@ -1,16 +1,10 @@
 {
-  "@class" : "org.sehkah.ddon.tools.extractor.lib.logic.resource.entity.season2.stage.Layout",
-  "FileHeader" : {
-    "MagicString" : "lot\u0000",
-    "MagicBytesLength" : 4,
-    "VersionNumber" : 117,
-    "VersionBytesLength" : 4
-  },
+  "@class" : "org.sehkah.ddon.tools.extractor.season2.logic.resource.entity.stage.Layout",
   "Array" : [ {
-    "ID" : 5,
-    "Type" : 0,
-    "TypeName" : "SetInfoOm",
+    "@class" : "org.sehkah.ddon.tools.extractor.season2.logic.resource.entity.stage.LayoutSetInfo",
+    "Id" : 5,
     "Info" : {
+      "@class" : "org.sehkah.ddon.tools.extractor.season2.logic.resource.entity.stage.SetInfoOm",
       "AreaMasterNo" : 0,
       "AreaReleaseNo" : 0,
       "AreaReleaseOFF" : false,
@@ -23,24 +17,25 @@
       "EnableSyncLight" : false,
       "EnableZone" : true,
       "InfoCoord" : {
-        "Name" : "om522422",
-        "UnitID" : 522422,
-        "Position" : {
-          "X" : 15906.043,
-          "Y" : 4428.278,
-          "Z" : -7439.1167
-        },
+        "@class" : "org.sehkah.ddon.tools.extractor.season2.logic.resource.entity.stage.SetInfoCoord",
         "Angle" : {
           "X" : 0.0,
           "Y" : -0.523599,
           "Z" : 0.0
+        },
+        "AreaHitNo" : -1,
+        "Name" : "om522422",
+        "Position" : {
+          "X" : 15906.043,
+          "Y" : 4428.278,
+          "Z" : -7439.1167
         },
         "Scale" : {
           "X" : 1.0,
           "Y" : 1.0,
           "Z" : 1.0
         },
-        "AreaHitNo" : -1
+        "UnitID" : 522422
       },
       "InitMtnNo" : 0,
       "IsBreakLink" : false,
@@ -51,13 +46,16 @@
       "OpenFlag" : false,
       "QuestFlag" : 0,
       "WarpPointId" : 0
-    }
+    },
+    "Type" : 0,
+    "TypeName" : "SetInfoOm"
   }, {
-    "ID" : 10,
-    "Type" : 15,
-    "TypeName" : "SetInfoOmWall",
+    "@class" : "org.sehkah.ddon.tools.extractor.season2.logic.resource.entity.stage.LayoutSetInfo",
+    "Id" : 10,
     "Info" : {
+      "@class" : "org.sehkah.ddon.tools.extractor.season2.logic.resource.entity.stage.SetInfoOmWall",
       "InfoOm" : {
+        "@class" : "org.sehkah.ddon.tools.extractor.season2.logic.resource.entity.stage.SetInfoOm",
         "AreaMasterNo" : 0,
         "AreaReleaseNo" : 0,
         "AreaReleaseOFF" : false,
@@ -70,25 +68,26 @@
         "EnableSyncLight" : false,
         "EnableZone" : false,
         "InfoCoord" : {
-          "Name" : "om522540",
-          "UnitID" : 522540,
-          "UnitIDType" : "OM_ID_STRUCTURE_WALL1",
-          "Position" : {
-            "X" : 15789.454,
-            "Y" : 1200.0,
-            "Z" : -909.2033
-          },
+          "@class" : "org.sehkah.ddon.tools.extractor.season2.logic.resource.entity.stage.SetInfoCoord",
           "Angle" : {
             "X" : 0.0,
             "Y" : 3.141592,
             "Z" : 0.0
+          },
+          "AreaHitNo" : -1,
+          "Name" : "om522540",
+          "Position" : {
+            "X" : 15789.454,
+            "Y" : 1200.0,
+            "Z" : -909.2033
           },
           "Scale" : {
             "X" : 1.0,
             "Y" : 1.0,
             "Z" : 1.0
           },
-          "AreaHitNo" : -1
+          "UnitID" : 522540,
+          "UnitIDType" : "OM_ID_STRUCTURE_WALL1"
         },
         "InitMtnNo" : 0,
         "IsBreakLink" : false,
@@ -103,28 +102,28 @@
       "NavOBB" : {
         "Coord" : {
           "M1" : {
+            "W" : 0.0,
             "X" : 1.0,
             "Y" : 0.0,
-            "Z" : 0.0,
-            "W" : 0.0
+            "Z" : 0.0
           },
           "M2" : {
+            "W" : 0.0,
             "X" : 0.0,
             "Y" : 1.0,
-            "Z" : 0.0,
-            "W" : 0.0
+            "Z" : 0.0
           },
           "M3" : {
+            "W" : 0.0,
             "X" : 0.0,
             "Y" : 0.0,
-            "Z" : 1.0,
-            "W" : 0.0
+            "Z" : 1.0
           },
           "M4" : {
+            "W" : 1.0,
             "X" : 0.0,
             "Y" : 0.0,
-            "Z" : 0.0,
-            "W" : 1.0
+            "Z" : 0.0
           }
         },
         "Extent" : {
@@ -134,8 +133,16 @@
         }
       },
       "WallType" : 0
-    }
+    },
+    "Type" : 15,
+    "TypeName" : "SetInfoOmWall"
   } ],
-  "SetInfoNeedNums" : [ 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0 ],
-  "FileSize" : 380
+  "FileHeader" : {
+    "MagicBytesLength" : 4,
+    "MagicString" : "lot\u0000",
+    "VersionBytesLength" : 4,
+    "VersionNumber" : 117
+  },
+  "FileSize" : 380,
+  "SetInfoNeedNums" : [ 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0 ]
 }

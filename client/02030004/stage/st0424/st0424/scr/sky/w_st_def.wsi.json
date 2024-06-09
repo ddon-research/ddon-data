@@ -1,18 +1,5 @@
 {
-  "@class" : "org.sehkah.ddon.tools.extractor.lib.logic.resource.entity.season3.stage.WeatherStageInfo",
-  "FileHeader" : {
-    "MagicString" : "WSI_",
-    "MagicBytesLength" : 4,
-    "VersionNumber" : 7,
-    "VersionBytesLength" : 4
-  },
-  "StarTwinkleAmplitude" : 0.3,
-  "EnvMapBlendColorScale" : [ 0.8, 0.05 ],
-  "StarrySkyIntensity" : 3.0,
-  "StarCatalog" : {
-    "Type" : "rStarCatalog",
-    "Path" : "scr\\sky\\ddstar"
-  },
+  "@class" : "org.sehkah.ddon.tools.extractor.common.logic.resource.entity.stage.WeatherStageInfo",
   "EnvMapBaseColor" : [ {
     "X" : 0.3,
     "Y" : 0.3,
@@ -22,26 +9,45 @@
     "Y" : 1.0,
     "Z" : 1.0
   } ],
-  "StarSize" : 4.5,
-  "RefSkyRes" : {
-    "Type" : "rSky",
-    "Path" : "scr\\sky\\st_all_sky_F"
+  "EnvMapBlendColorScale" : [ 0.8, 0.05 ],
+  "FileHeader" : {
+    "MagicBytesLength" : 4,
+    "MagicString" : "WSI_",
+    "VersionBytesLength" : 4,
+    "VersionNumber" : 7
   },
-  "StarModel" : {
-    "Type" : "rModel",
-    "Path" : "scr\\sky\\star_all"
-  },
+  "FileSize" : 215,
   "ModelScheduler" : {
-    "Type" : "rScheduler",
-    "Path" : "scr\\sky\\st_model_sdl"
+    "@class" : "org.sehkah.ddon.tools.extractor.common.logic.resource.entity.stage.StageResourcePointer",
+    "Path" : "scr\\sky\\st_model_sdl",
+    "Type" : "rScheduler"
   },
-  "StarTex" : {
-    "Type" : "rTexture",
-    "Path" : "scr\\sky\\hoshi2_BM"
+  "RefSkyRes" : {
+    "@class" : "org.sehkah.ddon.tools.extractor.common.logic.resource.entity.stage.StageResourcePointer",
+    "Path" : "scr\\sky\\st_all_sky_F",
+    "Type" : "rSky"
   },
   "SkyRes" : {
-    "Type" : "rSky",
-    "Path" : "scr\\sky\\st_all_sky_F"
+    "@class" : "org.sehkah.ddon.tools.extractor.common.logic.resource.entity.stage.StageResourcePointer",
+    "Path" : "scr\\sky\\st_all_sky_F",
+    "Type" : "rSky"
   },
-  "FileSize" : 215
+  "StarCatalog" : {
+    "@class" : "org.sehkah.ddon.tools.extractor.common.logic.resource.entity.stage.StageResourcePointer",
+    "Path" : "scr\\sky\\ddstar",
+    "Type" : "rStarCatalog"
+  },
+  "StarModel" : {
+    "@class" : "org.sehkah.ddon.tools.extractor.common.logic.resource.entity.stage.StageResourcePointer",
+    "Path" : "scr\\sky\\star_all",
+    "Type" : "rModel"
+  },
+  "StarSize" : 4.5,
+  "StarTex" : {
+    "@class" : "org.sehkah.ddon.tools.extractor.common.logic.resource.entity.stage.StageResourcePointer",
+    "Path" : "scr\\sky\\hoshi2_BM",
+    "Type" : "rTexture"
+  },
+  "StarTwinkleAmplitude" : 0.3,
+  "StarrySkyIntensity" : 3.0
 }
