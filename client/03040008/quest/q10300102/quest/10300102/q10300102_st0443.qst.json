@@ -1,24 +1,27 @@
 {
-  "@class" : "org.sehkah.ddon.tools.extractor.lib.logic.resource.entity.season3.quest.QuestList",
+  "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.QuestList",
   "FileHeader" : {
-    "MagicString" : "XFS\u0000",
     "MagicBytesLength" : 4,
-    "VersionNumber" : 9043983,
-    "VersionBytesLength" : 4
+    "MagicString" : "XFS\u0000",
+    "VersionBytesLength" : 4,
+    "VersionNumber" : 9043983
   },
+  "FileSize" : 2206,
   "QuestStageList" : [ {
-    "StageNo" : 443,
+    "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.QuestStage",
     "QuestGrp" : [ {
-      "GroupNo" : 0,
+      "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.QuestGroup",
       "Comment" : "ティネス砦内（スタート）",
       "Condition" : 6745,
       "EraseCondition" : 6745,
+      "GroupNo" : 0,
       "QuestSet" : [ {
-        "OmID" : 0,
-        "UnitNo" : 0,
+        "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.QuestSet",
         "Comment" : "Npc（キャリー）",
         "Kind" : 5,
+        "OmID" : 0,
         "SetInfo" : {
+          "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.QuestSetInfoNpc",
           "ClothType" : 1,
           "DefNPCMotCategory" : 1,
           "DefNPCMotNo" : 28,
@@ -29,11 +32,12 @@
           "DispOnWeapon" : false,
           "ForceSwitchGreeting" : false,
           "FsmResource" : {
-            "FSMName" : "",
-            "FSMType" : 0
+            "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.FSMRelate",
+            "Fsmname" : "",
+            "Fsmtype" : 0
           },
           "InfoCharacter" : {
-            "@class" : "org.sehkah.ddon.tools.extractor.lib.logic.resource.entity.season3.quest.QuestSetInfoCoord",
+            "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.QuestSetInfoCoord",
             "Angle" : {
               "X" : 0.0,
               "Y" : 2.565634,
@@ -67,9 +71,10 @@
           "UseAttendComponent" : false,
           "UseJobParamEx" : false,
           "UseLiteMotion" : false
-        }
+        },
+        "UnitNo" : 0
       } ]
-    } ]
-  } ],
-  "FileSize" : 2206
+    } ],
+    "StageNo" : 443
+  } ]
 }

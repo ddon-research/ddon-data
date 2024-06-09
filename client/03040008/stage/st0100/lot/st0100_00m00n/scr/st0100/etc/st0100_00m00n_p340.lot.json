@@ -1,16 +1,10 @@
 {
-  "@class" : "org.sehkah.ddon.tools.extractor.lib.logic.resource.entity.season3.stage.Layout",
-  "FileHeader" : {
-    "MagicString" : "lot\u0000",
-    "MagicBytesLength" : 4,
-    "VersionNumber" : 138,
-    "VersionBytesLength" : 4
-  },
+  "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.stage.Layout",
   "Array" : [ {
-    "ID" : 0,
-    "Type" : 40,
-    "TypeName" : "SetInfoOmOld",
+    "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.stage.LayoutSetInfo",
+    "Id" : 0,
     "Info" : {
+      "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.stage.SetInfoOmOld",
       "AreaMasterNo" : 0,
       "AreaReleaseNo" : 0,
       "AreaReleaseOFF" : false,
@@ -23,24 +17,25 @@
       "EnableSyncLight" : false,
       "EnableZone" : true,
       "InfoCoord" : {
-        "Name" : "om520120",
-        "UnitID" : 520120,
-        "Position" : {
-          "X" : -222029.22,
-          "Y" : -6.552143,
-          "Z" : -11317.227
-        },
+        "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.stage.SetInfoCoord",
         "Angle" : {
           "X" : 0.224344,
           "Y" : -1.730137,
           "Z" : -0.18645
+        },
+        "AreaHitNo" : -1,
+        "Name" : "om520120",
+        "Position" : {
+          "X" : -222029.22,
+          "Y" : -6.552143,
+          "Z" : -11317.227
         },
         "Scale" : {
           "X" : 1.0,
           "Y" : 1.0,
           "Z" : 1.0
         },
-        "AreaHitNo" : -1
+        "UnitID" : 520120
       },
       "InitMtnNo" : 0,
       "IsBreakLink" : false,
@@ -51,15 +46,18 @@
       "OpenFlag" : false,
       "QuestFlag" : 0,
       "WarpPointId" : 0
-    }
+    },
+    "Type" : 40,
+    "TypeName" : "SetInfoOmOld"
   }, {
-    "ID" : 1,
-    "Type" : 4,
-    "TypeName" : "SetInfoOmGather",
+    "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.stage.LayoutSetInfo",
+    "Id" : 1,
     "Info" : {
+      "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.stage.SetInfoOmGather",
       "GatheringType" : 16,
       "GatheringTypeName" : "OM_GATHER_DRAGON",
       "InfoOm" : {
+        "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.stage.SetInfoOmOld",
         "AreaMasterNo" : 0,
         "AreaReleaseNo" : 0,
         "AreaReleaseOFF" : false,
@@ -72,15 +70,15 @@
         "EnableSyncLight" : false,
         "EnableZone" : true,
         "InfoCoord" : {
-          "Name" : "om520170",
-          "UnitID" : 520170,
-          "UnitIDType" : "OM_ID_GATHER_TWINKLE",
-          "Position" : {
+          "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.stage.SetInfoCoord",
+          "Angle" : {
             "X" : 0.0,
             "Y" : 0.0,
             "Z" : 0.0
           },
-          "Angle" : {
+          "AreaHitNo" : -1,
+          "Name" : "om520170",
+          "Position" : {
             "X" : 0.0,
             "Y" : 0.0,
             "Z" : 0.0
@@ -90,7 +88,8 @@
             "Y" : 1.0,
             "Z" : 1.0
           },
-          "AreaHitNo" : -1
+          "UnitID" : 520170,
+          "UnitIDType" : "OM_ID_GATHER_TWINKLE"
         },
         "InitMtnNo" : 0,
         "IsBreakLink" : false,
@@ -104,8 +103,16 @@
       },
       "IsGatherEnemy" : false,
       "ItemListID" : 942
-    }
+    },
+    "Type" : 4,
+    "TypeName" : "SetInfoOmGather"
   } ],
-  "SetInfoNeedNums" : [ 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
-  "FileSize" : 309
+  "FileHeader" : {
+    "MagicBytesLength" : 4,
+    "MagicString" : "lot\u0000",
+    "VersionBytesLength" : 4,
+    "VersionNumber" : 138
+  },
+  "FileSize" : 309,
+  "SetInfoNeedNums" : [ 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
 }
