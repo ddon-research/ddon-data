@@ -1,79 +1,110 @@
 {
-  "@class" : "org.sehkah.ddon.tools.extractor.lib.logic.resource.entity.season2.quest.AIFSM",
-  "FileHeader" : {
-    "MagicString" : "XFS\u0000",
-    "MagicBytesLength" : 4,
-    "VersionNumber" : 131087,
-    "VersionBytesLength" : 4
+  "@class" : "org.sehkah.ddon.tools.extractor.season2.logic.resource.entity.quest.AIFSM",
+  "ConditionTree" : {
+    "@class" : "org.sehkah.ddon.tools.extractor.season2.logic.resource.entity.quest.AIConditionTree",
+    "TreeList" : [ {
+      "@class" : "org.sehkah.ddon.tools.extractor.season2.logic.resource.entity.quest.AIConditionTreeTreeInfo",
+      "Name" : {
+        "@class" : "org.sehkah.ddon.tools.extractor.season2.logic.resource.entity.quest.AIDEnum",
+        "Id" : 0
+      },
+      "RootNode" : {
+        "@class" : "org.sehkah.ddon.tools.extractor.season2.logic.resource.entity.quest.AIConditionTreeOperationNode",
+        "ChildList" : [ ],
+        "Operator" : 0
+      }
+    } ]
   },
+  "FileHeader" : {
+    "MagicBytesLength" : 4,
+    "MagicString" : "XFS\u0000",
+    "VersionBytesLength" : 4,
+    "VersionNumber" : 131087
+  },
+  "FileSize" : 2350,
+  "Fsmattribute" : 3,
+  "LastEditType" : 0,
+  "OwnerObjectName" : "cFSMOrder",
   "RootCluster" : {
+    "@class" : "org.sehkah.ddon.tools.extractor.season2.logic.resource.entity.quest.AIFSMCluster",
     "Id" : 0,
-    "OwnerNodeUniqueId" : 0,
     "InitialStateId" : 0,
     "NodeList" : [ {
-      "Name" : "s0000",
+      "@class" : "org.sehkah.ddon.tools.extractor.season2.logic.resource.entity.quest.AIFSMNode",
+      "ColorType" : 0,
+      "ConditionTrainsitionFromAllId" : 0,
+      "ExistConditionTrainsitionFromAll" : false,
       "Id" : 0,
-      "UniqueId" : 3991781916,
-      "OwnerId" : 0,
-      "LinkListNum" : 1,
       "LinkList" : [ {
-        "Name" : "s0000_t0000",
+        "@class" : "org.sehkah.ddon.tools.extractor.season2.logic.resource.entity.quest.AIFSMLink",
+        "ConditionId" : 0,
         "DestinationNodeId" : 1,
         "ExistCondition" : true,
-        "ConditionId" : 0
+        "Name" : "s0000_t0000"
       } ],
-      "ProcessListNum" : 1,
+      "LinkListNum" : 1,
+      "Name" : "s0000",
+      "OwnerId" : 0,
       "ProcessList" : [ {
-        "ContainerName" : "CallFsmEvent",
+        "@class" : "org.sehkah.ddon.tools.extractor.season2.logic.resource.entity.quest.AIFSMNodeProcess",
         "CategoryName" : "cAIFSMProcessContainer",
+        "ContainerName" : "CallFsmEvent",
         "Parameter" : {
+          "@class" : "org.sehkah.ddon.tools.extractor.season2.logic.resource.entity.quest.FSMOrderParamCallEvent",
           "EventNo" : 0,
           "NpcArray" : [ {
+            "@class" : "org.sehkah.ddon.tools.extractor.season2.logic.resource.entity.quest.FSMOrderParamCallEventNpcId",
             "NpcId" : 5
           }, {
+            "@class" : "org.sehkah.ddon.tools.extractor.season2.logic.resource.entity.quest.FSMOrderParamCallEventNpcId",
             "NpcId" : 14
           }, {
+            "@class" : "org.sehkah.ddon.tools.extractor.season2.logic.resource.entity.quest.FSMOrderParamCallEventNpcId",
             "NpcId" : 3
           }, {
+            "@class" : "org.sehkah.ddon.tools.extractor.season2.logic.resource.entity.quest.FSMOrderParamCallEventNpcId",
             "NpcId" : 6
           }, {
+            "@class" : "org.sehkah.ddon.tools.extractor.season2.logic.resource.entity.quest.FSMOrderParamCallEventNpcId",
             "NpcId" : 6000
           } ],
           "StageNo" : 408
         }
       } ],
-      "UIPos" : {
-        "UIPosX" : 413,
-        "UIPosY" : 297
-      },
-      "ColorType" : 0,
-      "Setting" : 1,
-      "UserAttribute" : 0,
-      "ExistConditionTrainsitionFromAll" : false,
-      "ConditionTrainsitionFromAllId" : 0
-    }, {
-      "Name" : "s0001",
-      "Id" : 1,
-      "UniqueId" : 1431414137,
-      "OwnerId" : 0,
-      "LinkListNum" : 0,
-      "LinkList" : [ ],
       "ProcessListNum" : 1,
-      "ProcessList" : [ {
-        "ContainerName" : "Finish",
-        "CategoryName" : "cAIFSMProcessContainer"
-      } ],
-      "UIPos" : {
-        "UIPosX" : 540,
-        "UIPosY" : 298
-      },
-      "ColorType" : 0,
       "Setting" : 1,
-      "UserAttribute" : 0,
+      "Uipos" : {
+        "@class" : "org.sehkah.ddon.tools.extractor.season2.logic.resource.entity.quest.AIFSMNodeUIPos",
+        "UiposX" : 413,
+        "UiposY" : 297
+      },
+      "UniqueId" : 3991781916,
+      "UserAttribute" : 0
+    }, {
+      "@class" : "org.sehkah.ddon.tools.extractor.season2.logic.resource.entity.quest.AIFSMNode",
+      "ColorType" : 0,
+      "ConditionTrainsitionFromAllId" : 0,
       "ExistConditionTrainsitionFromAll" : false,
-      "ConditionTrainsitionFromAllId" : 0
-    } ]
-  },
-  "OwnerObjectName" : "cFSMOrder",
-  "FileSize" : 2350
+      "Id" : 1,
+      "LinkList" : [ ],
+      "LinkListNum" : 0,
+      "Name" : "s0001",
+      "OwnerId" : 0,
+      "ProcessList" : [ {
+        "@class" : "org.sehkah.ddon.tools.extractor.season2.logic.resource.entity.quest.AIFSMNodeProcess",
+        "CategoryName" : "cAIFSMProcessContainer",
+        "ContainerName" : "Finish"
+      } ],
+      "ProcessListNum" : 1,
+      "Setting" : 1,
+      "Uipos" : {
+        "@class" : "org.sehkah.ddon.tools.extractor.season2.logic.resource.entity.quest.AIFSMNodeUIPos",
+        "UiposX" : 540,
+        "UiposY" : 298
+      },
+      "UniqueId" : 1431414137,
+      "UserAttribute" : 0
+    } ],
+    "OwnerNodeUniqueId" : 0
+  }
 }
