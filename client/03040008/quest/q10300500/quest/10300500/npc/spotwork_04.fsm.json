@@ -1,27 +1,39 @@
 {
-  "@class" : "org.sehkah.ddon.tools.extractor.lib.logic.resource.entity.season2.quest.AIFSM",
-  "FileHeader" : {
-    "MagicString" : "XFS\u0000",
-    "MagicBytesLength" : 4,
-    "VersionNumber" : 131087,
-    "VersionBytesLength" : 4
+  "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIFSM",
+  "ConditionTree" : {
+    "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIConditionTree",
+    "TreeList" : [ ]
   },
+  "FileHeader" : {
+    "MagicBytesLength" : 4,
+    "MagicString" : "XFS\u0000",
+    "VersionBytesLength" : 4,
+    "VersionNumber" : 131087
+  },
+  "FileSize" : 1521,
+  "Fsmattribute" : 3,
+  "LastEditType" : 0,
+  "OwnerObjectName" : "cFSMUnit",
   "RootCluster" : {
+    "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIFSMCluster",
     "Id" : 0,
-    "OwnerNodeUniqueId" : 0,
     "InitialStateId" : 0,
     "NodeList" : [ {
-      "Name" : "s0001",
+      "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIFSMNode",
+      "ColorType" : 0,
+      "ConditionTrainsitionFromAllId" : 0,
+      "ExistConditionTrainsitionFromAll" : false,
       "Id" : 0,
-      "UniqueId" : 4231030053,
-      "OwnerId" : 0,
-      "LinkListNum" : 0,
       "LinkList" : [ ],
-      "ProcessListNum" : 1,
+      "LinkListNum" : 0,
+      "Name" : "s0001",
+      "OwnerId" : 0,
       "ProcessList" : [ {
-        "ContainerName" : "SetWait",
+        "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIFSMNodeProcess",
         "CategoryName" : "cAIFSMProcessContainer",
+        "ContainerName" : "SetWait",
         "Parameter" : {
+          "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.FSMUnitParamSetWait",
           "Dir" : {
             "X" : 1.0,
             "Y" : 0.0,
@@ -31,17 +43,16 @@
           "Speed" : 0.087266
         }
       } ],
-      "UIPos" : {
-        "UIPosX" : 880,
-        "UIPosY" : 440
-      },
-      "ColorType" : 0,
+      "ProcessListNum" : 1,
       "Setting" : 1,
-      "UserAttribute" : 0,
-      "ExistConditionTrainsitionFromAll" : false,
-      "ConditionTrainsitionFromAllId" : 0
-    } ]
-  },
-  "OwnerObjectName" : "cFSMUnit",
-  "FileSize" : 1521
+      "Uipos" : {
+        "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIFSMNodeUIPos",
+        "UiposX" : 880,
+        "UiposY" : 440
+      },
+      "UniqueId" : 4231030053,
+      "UserAttribute" : 0
+    } ],
+    "OwnerNodeUniqueId" : 0
+  }
 }

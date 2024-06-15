@@ -1,46 +1,656 @@
 {
-  "@class" : "org.sehkah.ddon.tools.extractor.lib.logic.resource.entity.season2.quest.AIFSM",
-  "FileHeader" : {
-    "MagicString" : "XFS\u0000",
-    "MagicBytesLength" : 4,
-    "VersionNumber" : 131087,
-    "VersionBytesLength" : 4
+  "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIFSM",
+  "ConditionTree" : {
+    "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIConditionTree",
+    "TreeList" : [ {
+      "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIConditionTreeTreeInfo",
+      "Name" : {
+        "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIDEnum",
+        "Id" : 0
+      },
+      "RootNode" : {
+        "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIConditionTreeOperationNode",
+        "ChildList" : [ {
+          "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIConditionTreeVariableNode",
+          "ChildList" : [ ],
+          "Index" : 0,
+          "IndexEnum" : {
+            "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIEnumProp",
+            "EnumName" : "",
+            "Name" : ""
+          },
+          "IndexVariable" : {
+            "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIConditionTreeVariableNodeVariableInfo",
+            "IsSingletonOwner" : false,
+            "OwnerName" : "",
+            "PropertyName" : ""
+          },
+          "IsArray" : false,
+          "IsBitNo" : false,
+          "IsDynamicIndex" : false,
+          "UseEnumIndex" : false,
+          "Variable" : {
+            "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIConditionTreeVariableNodeVariableInfo",
+            "IsSingletonOwner" : false,
+            "OwnerName" : "cFSMUnit",
+            "PropertyName" : "IsMyQuestFlag"
+          }
+        } ],
+        "Operator" : 1
+      }
+    }, {
+      "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIConditionTreeTreeInfo",
+      "Name" : {
+        "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIDEnum",
+        "Id" : 1
+      },
+      "RootNode" : {
+        "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIConditionTreeOperationNode",
+        "ChildList" : [ {
+          "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIConditionTreeOperationNode",
+          "ChildList" : [ {
+            "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIConditionTreeVariableNode",
+            "ChildList" : [ ],
+            "Index" : 0,
+            "IndexEnum" : {
+              "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIEnumProp",
+              "EnumName" : "",
+              "Name" : ""
+            },
+            "IndexVariable" : {
+              "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIConditionTreeVariableNodeVariableInfo",
+              "IsSingletonOwner" : false,
+              "OwnerName" : "",
+              "PropertyName" : ""
+            },
+            "IsArray" : false,
+            "IsBitNo" : false,
+            "IsDynamicIndex" : false,
+            "UseEnumIndex" : false,
+            "Variable" : {
+              "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIConditionTreeVariableNodeVariableInfo",
+              "IsSingletonOwner" : false,
+              "OwnerName" : "cFSMUnit",
+              "PropertyName" : "IsMyQuestFlag"
+            }
+          } ],
+          "Operator" : 1
+        }, {
+          "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIConditionTreeOperationNode",
+          "ChildList" : [ {
+            "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIConditionTreeVariableNode",
+            "ChildList" : [ ],
+            "Index" : 0,
+            "IndexEnum" : {
+              "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIEnumProp",
+              "EnumName" : "",
+              "Name" : ""
+            },
+            "IndexVariable" : {
+              "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIConditionTreeVariableNodeVariableInfo",
+              "IsSingletonOwner" : false,
+              "OwnerName" : "",
+              "PropertyName" : ""
+            },
+            "IsArray" : false,
+            "IsBitNo" : false,
+            "IsDynamicIndex" : false,
+            "UseEnumIndex" : false,
+            "Variable" : {
+              "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIConditionTreeVariableNodeVariableInfo",
+              "IsSingletonOwner" : false,
+              "OwnerName" : "cFSMUnit",
+              "PropertyName" : "DistToInitPos"
+            }
+          }, {
+            "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIConditionTreeConstF32Node",
+            "ChildList" : [ ],
+            "Value" : 1000.0
+          } ],
+          "Operator" : 5
+        } ],
+        "Operator" : 16
+      }
+    }, {
+      "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIConditionTreeTreeInfo",
+      "Name" : {
+        "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIDEnum",
+        "Id" : 2
+      },
+      "RootNode" : {
+        "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIConditionTreeOperationNode",
+        "ChildList" : [ {
+          "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIConditionTreeOperationNode",
+          "ChildList" : [ {
+            "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIConditionTreeVariableNode",
+            "ChildList" : [ ],
+            "Index" : 2,
+            "IndexEnum" : {
+              "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIEnumProp",
+              "EnumName" : "",
+              "Name" : ""
+            },
+            "IndexVariable" : {
+              "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIConditionTreeVariableNodeVariableInfo",
+              "IsSingletonOwner" : false,
+              "OwnerName" : "",
+              "PropertyName" : ""
+            },
+            "IsArray" : true,
+            "IsBitNo" : false,
+            "IsDynamicIndex" : false,
+            "UseEnumIndex" : false,
+            "Variable" : {
+              "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIConditionTreeVariableNodeVariableInfo",
+              "IsSingletonOwner" : false,
+              "OwnerName" : "cFSMUnit",
+              "PropertyName" : "IsFSMFreeFlag"
+            }
+          } ],
+          "Operator" : 2
+        }, {
+          "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIConditionTreeOperationNode",
+          "ChildList" : [ {
+            "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIConditionTreeVariableNode",
+            "ChildList" : [ ],
+            "Index" : 0,
+            "IndexEnum" : {
+              "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIEnumProp",
+              "EnumName" : "",
+              "Name" : ""
+            },
+            "IndexVariable" : {
+              "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIConditionTreeVariableNodeVariableInfo",
+              "IsSingletonOwner" : false,
+              "OwnerName" : "",
+              "PropertyName" : ""
+            },
+            "IsArray" : false,
+            "IsBitNo" : false,
+            "IsDynamicIndex" : false,
+            "UseEnumIndex" : false,
+            "Variable" : {
+              "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIConditionTreeVariableNodeVariableInfo",
+              "IsSingletonOwner" : false,
+              "OwnerName" : "cFSMUnit",
+              "PropertyName" : "GetAttengGaugeRate"
+            }
+          }, {
+            "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIConditionTreeConstS32Node",
+            "ChildList" : [ ],
+            "IsBitNo" : false,
+            "Value" : 0
+          } ],
+          "Operator" : 6
+        } ],
+        "Operator" : 16
+      }
+    }, {
+      "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIConditionTreeTreeInfo",
+      "Name" : {
+        "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIDEnum",
+        "Id" : 3
+      },
+      "RootNode" : {
+        "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIConditionTreeOperationNode",
+        "ChildList" : [ {
+          "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIConditionTreeOperationNode",
+          "ChildList" : [ {
+            "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIConditionTreeVariableNode",
+            "ChildList" : [ ],
+            "Index" : 0,
+            "IndexEnum" : {
+              "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIEnumProp",
+              "EnumName" : "",
+              "Name" : ""
+            },
+            "IndexVariable" : {
+              "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIConditionTreeVariableNodeVariableInfo",
+              "IsSingletonOwner" : false,
+              "OwnerName" : "",
+              "PropertyName" : ""
+            },
+            "IsArray" : false,
+            "IsBitNo" : false,
+            "IsDynamicIndex" : false,
+            "UseEnumIndex" : false,
+            "Variable" : {
+              "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIConditionTreeVariableNodeVariableInfo",
+              "IsSingletonOwner" : false,
+              "OwnerName" : "cFSMUnit",
+              "PropertyName" : "DistToPlayer"
+            }
+          }, {
+            "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIConditionTreeConstF32Node",
+            "ChildList" : [ ],
+            "Value" : 7500.0
+          } ],
+          "Operator" : 8
+        }, {
+          "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIConditionTreeOperationNode",
+          "ChildList" : [ {
+            "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIConditionTreeVariableNode",
+            "ChildList" : [ ],
+            "Index" : 1,
+            "IndexEnum" : {
+              "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIEnumProp",
+              "EnumName" : "",
+              "Name" : ""
+            },
+            "IndexVariable" : {
+              "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIConditionTreeVariableNodeVariableInfo",
+              "IsSingletonOwner" : false,
+              "OwnerName" : "",
+              "PropertyName" : ""
+            },
+            "IsArray" : true,
+            "IsBitNo" : false,
+            "IsDynamicIndex" : false,
+            "UseEnumIndex" : false,
+            "Variable" : {
+              "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIConditionTreeVariableNodeVariableInfo",
+              "IsSingletonOwner" : false,
+              "OwnerName" : "cFSMUnit",
+              "PropertyName" : "IsFSMFreeFlag"
+            }
+          } ],
+          "Operator" : 2
+        } ],
+        "Operator" : 16
+      }
+    }, {
+      "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIConditionTreeTreeInfo",
+      "Name" : {
+        "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIDEnum",
+        "Id" : 4
+      },
+      "RootNode" : {
+        "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIConditionTreeOperationNode",
+        "ChildList" : [ {
+          "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIConditionTreeOperationNode",
+          "ChildList" : [ {
+            "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIConditionTreeVariableNode",
+            "ChildList" : [ ],
+            "Index" : 0,
+            "IndexEnum" : {
+              "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIEnumProp",
+              "EnumName" : "",
+              "Name" : ""
+            },
+            "IndexVariable" : {
+              "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIConditionTreeVariableNodeVariableInfo",
+              "IsSingletonOwner" : false,
+              "OwnerName" : "",
+              "PropertyName" : ""
+            },
+            "IsArray" : false,
+            "IsBitNo" : false,
+            "IsDynamicIndex" : false,
+            "UseEnumIndex" : false,
+            "Variable" : {
+              "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIConditionTreeVariableNodeVariableInfo",
+              "IsSingletonOwner" : false,
+              "OwnerName" : "cFSMUnit",
+              "PropertyName" : "DistToInitPos"
+            }
+          }, {
+            "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIConditionTreeConstF32Node",
+            "ChildList" : [ ],
+            "Value" : 15000.0
+          } ],
+          "Operator" : 8
+        }, {
+          "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIConditionTreeOperationNode",
+          "ChildList" : [ {
+            "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIConditionTreeVariableNode",
+            "ChildList" : [ ],
+            "Index" : 0,
+            "IndexEnum" : {
+              "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIEnumProp",
+              "EnumName" : "",
+              "Name" : ""
+            },
+            "IndexVariable" : {
+              "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIConditionTreeVariableNodeVariableInfo",
+              "IsSingletonOwner" : false,
+              "OwnerName" : "",
+              "PropertyName" : ""
+            },
+            "IsArray" : true,
+            "IsBitNo" : false,
+            "IsDynamicIndex" : false,
+            "UseEnumIndex" : false,
+            "Variable" : {
+              "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIConditionTreeVariableNodeVariableInfo",
+              "IsSingletonOwner" : false,
+              "OwnerName" : "cFSMUnit",
+              "PropertyName" : "IsFSMFreeFlag"
+            }
+          } ],
+          "Operator" : 2
+        } ],
+        "Operator" : 16
+      }
+    }, {
+      "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIConditionTreeTreeInfo",
+      "Name" : {
+        "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIDEnum",
+        "Id" : 5
+      },
+      "RootNode" : {
+        "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIConditionTreeOperationNode",
+        "ChildList" : [ {
+          "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIConditionTreeVariableNode",
+          "ChildList" : [ ],
+          "Index" : 0,
+          "IndexEnum" : {
+            "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIEnumProp",
+            "EnumName" : "",
+            "Name" : ""
+          },
+          "IndexVariable" : {
+            "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIConditionTreeVariableNodeVariableInfo",
+            "IsSingletonOwner" : false,
+            "OwnerName" : "",
+            "PropertyName" : ""
+          },
+          "IsArray" : false,
+          "IsBitNo" : false,
+          "IsDynamicIndex" : false,
+          "UseEnumIndex" : false,
+          "Variable" : {
+            "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIConditionTreeVariableNodeVariableInfo",
+            "IsSingletonOwner" : false,
+            "OwnerName" : "cFSMUnit",
+            "PropertyName" : "CountState"
+          }
+        }, {
+          "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIConditionTreeConstF32Node",
+          "ChildList" : [ ],
+          "Value" : 5.0
+        } ],
+        "Operator" : 8
+      }
+    }, {
+      "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIConditionTreeTreeInfo",
+      "Name" : {
+        "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIDEnum",
+        "Id" : 6
+      },
+      "RootNode" : {
+        "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIConditionTreeOperationNode",
+        "ChildList" : [ {
+          "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIConditionTreeVariableNode",
+          "ChildList" : [ ],
+          "Index" : 0,
+          "IndexEnum" : {
+            "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIEnumProp",
+            "EnumName" : "",
+            "Name" : ""
+          },
+          "IndexVariable" : {
+            "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIConditionTreeVariableNodeVariableInfo",
+            "IsSingletonOwner" : false,
+            "OwnerName" : "",
+            "PropertyName" : ""
+          },
+          "IsArray" : false,
+          "IsBitNo" : false,
+          "IsDynamicIndex" : false,
+          "UseEnumIndex" : false,
+          "Variable" : {
+            "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIConditionTreeVariableNodeVariableInfo",
+            "IsSingletonOwner" : false,
+            "OwnerName" : "cFSMUnit",
+            "PropertyName" : "CountState"
+          }
+        }, {
+          "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIConditionTreeConstF32Node",
+          "ChildList" : [ ],
+          "Value" : 5.0
+        } ],
+        "Operator" : 8
+      }
+    }, {
+      "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIConditionTreeTreeInfo",
+      "Name" : {
+        "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIDEnum",
+        "Id" : 7
+      },
+      "RootNode" : {
+        "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIConditionTreeOperationNode",
+        "ChildList" : [ {
+          "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIConditionTreeVariableNode",
+          "ChildList" : [ ],
+          "Index" : 0,
+          "IndexEnum" : {
+            "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIEnumProp",
+            "EnumName" : "",
+            "Name" : ""
+          },
+          "IndexVariable" : {
+            "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIConditionTreeVariableNodeVariableInfo",
+            "IsSingletonOwner" : false,
+            "OwnerName" : "",
+            "PropertyName" : ""
+          },
+          "IsArray" : false,
+          "IsBitNo" : false,
+          "IsDynamicIndex" : false,
+          "UseEnumIndex" : false,
+          "Variable" : {
+            "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIConditionTreeVariableNodeVariableInfo",
+            "IsSingletonOwner" : false,
+            "OwnerName" : "cFSMUnit",
+            "PropertyName" : "CountState"
+          }
+        }, {
+          "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIConditionTreeConstF32Node",
+          "ChildList" : [ ],
+          "Value" : 5.0
+        } ],
+        "Operator" : 8
+      }
+    }, {
+      "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIConditionTreeTreeInfo",
+      "Name" : {
+        "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIDEnum",
+        "Id" : 8
+      },
+      "RootNode" : {
+        "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIConditionTreeOperationNode",
+        "ChildList" : [ {
+          "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIConditionTreeVariableNode",
+          "ChildList" : [ ],
+          "Index" : 0,
+          "IndexEnum" : {
+            "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIEnumProp",
+            "EnumName" : "",
+            "Name" : ""
+          },
+          "IndexVariable" : {
+            "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIConditionTreeVariableNodeVariableInfo",
+            "IsSingletonOwner" : false,
+            "OwnerName" : "",
+            "PropertyName" : ""
+          },
+          "IsArray" : false,
+          "IsBitNo" : false,
+          "IsDynamicIndex" : false,
+          "UseEnumIndex" : false,
+          "Variable" : {
+            "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIConditionTreeVariableNodeVariableInfo",
+            "IsSingletonOwner" : false,
+            "OwnerName" : "cFSMUnit",
+            "PropertyName" : "IsEndSetMotion"
+          }
+        } ],
+        "Operator" : 1
+      }
+    }, {
+      "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIConditionTreeTreeInfo",
+      "Name" : {
+        "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIDEnum",
+        "Id" : 9
+      },
+      "RootNode" : {
+        "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIConditionTreeOperationNode",
+        "ChildList" : [ {
+          "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIConditionTreeVariableNode",
+          "ChildList" : [ ],
+          "Index" : 0,
+          "IndexEnum" : {
+            "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIEnumProp",
+            "EnumName" : "",
+            "Name" : ""
+          },
+          "IndexVariable" : {
+            "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIConditionTreeVariableNodeVariableInfo",
+            "IsSingletonOwner" : false,
+            "OwnerName" : "",
+            "PropertyName" : ""
+          },
+          "IsArray" : false,
+          "IsBitNo" : false,
+          "IsDynamicIndex" : false,
+          "UseEnumIndex" : false,
+          "Variable" : {
+            "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIConditionTreeVariableNodeVariableInfo",
+            "IsSingletonOwner" : false,
+            "OwnerName" : "cFSMUnit",
+            "PropertyName" : "IsMyQuestFlag"
+          }
+        } ],
+        "Operator" : 1
+      }
+    }, {
+      "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIConditionTreeTreeInfo",
+      "Name" : {
+        "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIDEnum",
+        "Id" : 10
+      },
+      "RootNode" : {
+        "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIConditionTreeOperationNode",
+        "ChildList" : [ {
+          "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIConditionTreeVariableNode",
+          "ChildList" : [ ],
+          "Index" : 0,
+          "IndexEnum" : {
+            "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIEnumProp",
+            "EnumName" : "",
+            "Name" : ""
+          },
+          "IndexVariable" : {
+            "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIConditionTreeVariableNodeVariableInfo",
+            "IsSingletonOwner" : false,
+            "OwnerName" : "",
+            "PropertyName" : ""
+          },
+          "IsArray" : false,
+          "IsBitNo" : false,
+          "IsDynamicIndex" : false,
+          "UseEnumIndex" : false,
+          "Variable" : {
+            "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIConditionTreeVariableNodeVariableInfo",
+            "IsSingletonOwner" : false,
+            "OwnerName" : "cFSMUnit",
+            "PropertyName" : "IsMyQuestFlag"
+          }
+        } ],
+        "Operator" : 1
+      }
+    }, {
+      "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIConditionTreeTreeInfo",
+      "Name" : {
+        "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIDEnum",
+        "Id" : 11
+      },
+      "RootNode" : {
+        "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIConditionTreeOperationNode",
+        "ChildList" : [ {
+          "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIConditionTreeVariableNode",
+          "ChildList" : [ ],
+          "Index" : 0,
+          "IndexEnum" : {
+            "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIEnumProp",
+            "EnumName" : "",
+            "Name" : ""
+          },
+          "IndexVariable" : {
+            "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIConditionTreeVariableNodeVariableInfo",
+            "IsSingletonOwner" : false,
+            "OwnerName" : "",
+            "PropertyName" : ""
+          },
+          "IsArray" : false,
+          "IsBitNo" : false,
+          "IsDynamicIndex" : false,
+          "UseEnumIndex" : false,
+          "Variable" : {
+            "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIConditionTreeVariableNodeVariableInfo",
+            "IsSingletonOwner" : false,
+            "OwnerName" : "cFSMUnit",
+            "PropertyName" : "IsStopUnit"
+          }
+        } ],
+        "Operator" : 1
+      }
+    } ]
   },
+  "FileHeader" : {
+    "MagicBytesLength" : 4,
+    "MagicString" : "XFS\u0000",
+    "VersionBytesLength" : 4,
+    "VersionNumber" : 131087
+  },
+  "FileSize" : 12026,
+  "Fsmattribute" : 3,
+  "LastEditType" : 0,
+  "OwnerObjectName" : "cFSMUnit",
   "RootCluster" : {
+    "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIFSMCluster",
     "Id" : 0,
-    "OwnerNodeUniqueId" : 0,
     "InitialStateId" : 0,
     "NodeList" : [ {
-      "Name" : "魔物出現時",
+      "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIFSMNode",
+      "ColorType" : 0,
+      "ConditionTrainsitionFromAllId" : 0,
+      "ExistConditionTrainsitionFromAll" : false,
       "Id" : 0,
-      "UniqueId" : 4263793586,
-      "OwnerId" : 0,
-      "LinkListNum" : 1,
       "LinkList" : [ {
-        "Name" : "開始_t0001",
+        "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIFSMLink",
+        "ConditionId" : 0,
         "DestinationNodeId" : 7,
         "ExistCondition" : true,
-        "ConditionId" : 0
+        "Name" : "開始_t0001"
       } ],
-      "ProcessListNum" : 4,
+      "LinkListNum" : 1,
+      "Name" : "魔物出現時",
+      "OwnerId" : 0,
       "ProcessList" : [ {
-        "ContainerName" : "checkMyQuestFlag",
+        "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIFSMNodeProcess",
         "CategoryName" : "cAIFSMProcessContainer",
+        "ContainerName" : "checkMyQuestFlag",
         "Parameter" : {
+          "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.FSMOrderParamIsMyQuestFlag",
           "ArrayIdx" : 0,
           "FlagNo" : 3719,
           "QuestId" : 10300500
         }
       }, {
-        "ContainerName" : "SetDisableTouchAction",
+        "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIFSMNodeProcess",
         "CategoryName" : "cAIFSMProcessContainer",
+        "ContainerName" : "SetDisableTouchAction",
         "Parameter" : {
+          "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.FSMUnitParamSetDisableTouchAction",
           "IsDisableTouch" : false
         }
       }, {
-        "ContainerName" : "CallMessage",
+        "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIFSMNodeProcess",
         "CategoryName" : "cAIFSMProcessContainer",
+        "ContainerName" : "CallMessage",
         "Parameter" : {
+          "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.FSMBaseParamCallMessage",
           "IsHideMessage" : false,
           "IsUseSerial" : true,
           "MsgDispTime" : 5.0,
@@ -51,9 +661,11 @@
           "QuestId" : 10300500
         }
       }, {
-        "ContainerName" : "SetMotion",
+        "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIFSMNodeProcess",
         "CategoryName" : "cAIFSMProcessContainer",
+        "ContainerName" : "SetMotion",
         "Parameter" : {
+          "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.FSMUnitParamSetMotion",
           "BankNo" : 19,
           "Dir" : {
             "X" : 1.0,
@@ -82,162 +694,37 @@
           "StartFrame" : 0.0
         }
       } ],
-      "UIPos" : {
-        "UIPosX" : 8880,
-        "UIPosY" : 6424
-      },
-      "ColorType" : 0,
+      "ProcessListNum" : 4,
       "Setting" : 1,
-      "UserAttribute" : 0,
-      "ExistConditionTrainsitionFromAll" : false,
-      "ConditionTrainsitionFromAllId" : 0
-    }, {
-      "Name" : "後方移動",
-      "Id" : 1,
-      "UniqueId" : 1184380119,
-      "OwnerId" : 0,
-      "SubCluster" : {
-        "Id" : 0,
-        "OwnerNodeUniqueId" : 1184380119,
-        "InitialStateId" : 0,
-        "NodeList" : [ {
-          "Name" : "s0002",
-          "Id" : 0,
-          "UniqueId" : 3662160976,
-          "OwnerId" : 0,
-          "LinkListNum" : 1,
-          "LinkList" : [ {
-            "Name" : "s0002_t0000",
-            "DestinationNodeId" : 1,
-            "ExistCondition" : true,
-            "ConditionId" : 9
-          } ],
-          "ProcessListNum" : 1,
-          "ProcessList" : [ {
-            "ContainerName" : "checkMyQuestFlag",
-            "CategoryName" : "cAIFSMProcessContainer",
-            "Parameter" : {
-              "ArrayIdx" : 0,
-              "FlagNo" : 3720,
-              "QuestId" : 10300500
-            }
-          } ],
-          "UIPos" : {
-            "UIPosX" : 10240,
-            "UIPosY" : 5016
-          },
-          "ColorType" : 0,
-          "Setting" : 1,
-          "UserAttribute" : 0,
-          "ExistConditionTrainsitionFromAll" : false,
-          "ConditionTrainsitionFromAllId" : 0
-        }, {
-          "Name" : "魔物出現時",
-          "Id" : 1,
-          "UniqueId" : 2561096834,
-          "OwnerId" : 0,
-          "LinkListNum" : 1,
-          "LinkList" : [ {
-            "Name" : "s0003_t0000",
-            "DestinationNodeId" : 2,
-            "ExistCondition" : true,
-            "ConditionId" : 10
-          } ],
-          "ProcessListNum" : 3,
-          "ProcessList" : [ {
-            "ContainerName" : "callAnnounce",
-            "CategoryName" : "cAIFSMProcessContainer",
-            "Parameter" : {
-              "MsgNo" : 100348,
-              "QuestId" : 10300500,
-              "Type" : 1,
-              "TypeName" : "TYPE_QUEST"
-            }
-          }, {
-            "ContainerName" : "CallMessage",
-            "CategoryName" : "cAIFSMProcessContainer",
-            "Parameter" : {
-              "IsHideMessage" : false,
-              "IsUseSerial" : true,
-              "MsgDispTime" : 5.0,
-              "MsgNo" : 26640,
-              "MsgType" : 1,
-              "MsgTypeName" : "MSG_TYPE_QUEST",
-              "MsgWaitTime" : 0.0,
-              "QuestId" : 10300500
-            }
-          }, {
-            "ContainerName" : "checkMyQuestFlag",
-            "CategoryName" : "cAIFSMProcessContainer",
-            "Parameter" : {
-              "ArrayIdx" : 0,
-              "FlagNo" : 3721,
-              "QuestId" : 10300500
-            }
-          } ],
-          "UIPos" : {
-            "UIPosX" : 10400,
-            "UIPosY" : 5016
-          },
-          "ColorType" : 0,
-          "Setting" : 1,
-          "UserAttribute" : 0,
-          "ExistConditionTrainsitionFromAll" : false,
-          "ConditionTrainsitionFromAllId" : 0
-        }, {
-          "Name" : "魔物討伐時",
-          "Id" : 2,
-          "UniqueId" : 1959531260,
-          "OwnerId" : 0,
-          "LinkListNum" : 0,
-          "LinkList" : [ ],
-          "ProcessListNum" : 2,
-          "ProcessList" : [ {
-            "ContainerName" : "CallMessage",
-            "CategoryName" : "cAIFSMProcessContainer",
-            "Parameter" : {
-              "IsHideMessage" : false,
-              "IsUseSerial" : true,
-              "MsgDispTime" : 5.0,
-              "MsgNo" : 26613,
-              "MsgType" : 1,
-              "MsgTypeName" : "MSG_TYPE_QUEST",
-              "MsgWaitTime" : 0.0,
-              "QuestId" : 10300500
-            }
-          }, {
-            "ContainerName" : "callAnnounce",
-            "CategoryName" : "cAIFSMProcessContainer",
-            "Parameter" : {
-              "MsgNo" : 100349,
-              "QuestId" : 10300500,
-              "Type" : 1,
-              "TypeName" : "TYPE_QUEST"
-            }
-          } ],
-          "UIPos" : {
-            "UIPosX" : 10480,
-            "UIPosY" : 5016
-          },
-          "ColorType" : 0,
-          "Setting" : 1,
-          "UserAttribute" : 0,
-          "ExistConditionTrainsitionFromAll" : false,
-          "ConditionTrainsitionFromAllId" : 0
-        } ]
+      "Uipos" : {
+        "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIFSMNodeUIPos",
+        "UiposX" : 8880,
+        "UiposY" : 6424
       },
-      "LinkListNum" : 1,
+      "UniqueId" : 4263793586,
+      "UserAttribute" : 0
+    }, {
+      "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIFSMNode",
+      "ColorType" : 0,
+      "ConditionTrainsitionFromAllId" : 0,
+      "ExistConditionTrainsitionFromAll" : false,
+      "Id" : 1,
       "LinkList" : [ {
-        "Name" : "後方移動_t0000",
+        "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIFSMLink",
+        "ConditionId" : 1,
         "DestinationNodeId" : 8,
         "ExistCondition" : true,
-        "ConditionId" : 1
+        "Name" : "後方移動_t0000"
       } ],
-      "ProcessListNum" : 3,
+      "LinkListNum" : 1,
+      "Name" : "後方移動",
+      "OwnerId" : 0,
       "ProcessList" : [ {
-        "ContainerName" : "SetGotoTarget",
+        "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIFSMNodeProcess",
         "CategoryName" : "cAIFSMProcessContainer",
+        "ContainerName" : "SetGotoTarget",
         "Parameter" : {
+          "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.FSMUnitParamSetGotoTarget",
           "EnableNoFall" : true,
           "IsPathFinding" : true,
           "IsSetBorder" : true,
@@ -249,54 +736,217 @@
           "WarpDist" : 1500.0
         }
       }, {
-        "ContainerName" : "SetDisableTouchAction",
+        "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIFSMNodeProcess",
         "CategoryName" : "cAIFSMProcessContainer",
+        "ContainerName" : "SetDisableTouchAction",
         "Parameter" : {
+          "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.FSMUnitParamSetDisableTouchAction",
           "IsDisableTouch" : true
         }
       }, {
-        "ContainerName" : "checkMyQuestFlag",
+        "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIFSMNodeProcess",
         "CategoryName" : "cAIFSMProcessContainer",
+        "ContainerName" : "checkMyQuestFlag",
         "Parameter" : {
+          "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.FSMOrderParamIsMyQuestFlag",
           "ArrayIdx" : 0,
           "FlagNo" : 3721,
           "QuestId" : 10300500
         }
       } ],
-      "UIPos" : {
-        "UIPosX" : 8880,
-        "UIPosY" : 6600
-      },
-      "ColorType" : 0,
-      "Setting" : 1,
-      "UserAttribute" : 0,
-      "ExistConditionTrainsitionFromAll" : false,
-      "ConditionTrainsitionFromAllId" : 0
-    }, {
-      "Name" : "ペコ場所帰還時",
-      "Id" : 2,
-      "UniqueId" : 1900463333,
-      "OwnerId" : 0,
-      "LinkListNum" : 0,
-      "LinkList" : [ ],
       "ProcessListNum" : 3,
+      "Setting" : 1,
+      "SubCluster" : {
+        "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIFSMCluster",
+        "Id" : 0,
+        "InitialStateId" : 0,
+        "NodeList" : [ {
+          "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIFSMNode",
+          "ColorType" : 0,
+          "ConditionTrainsitionFromAllId" : 0,
+          "ExistConditionTrainsitionFromAll" : false,
+          "Id" : 0,
+          "LinkList" : [ {
+            "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIFSMLink",
+            "ConditionId" : 9,
+            "DestinationNodeId" : 1,
+            "ExistCondition" : true,
+            "Name" : "s0002_t0000"
+          } ],
+          "LinkListNum" : 1,
+          "Name" : "s0002",
+          "OwnerId" : 0,
+          "ProcessList" : [ {
+            "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIFSMNodeProcess",
+            "CategoryName" : "cAIFSMProcessContainer",
+            "ContainerName" : "checkMyQuestFlag",
+            "Parameter" : {
+              "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.FSMOrderParamIsMyQuestFlag",
+              "ArrayIdx" : 0,
+              "FlagNo" : 3720,
+              "QuestId" : 10300500
+            }
+          } ],
+          "ProcessListNum" : 1,
+          "Setting" : 1,
+          "Uipos" : {
+            "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIFSMNodeUIPos",
+            "UiposX" : 10240,
+            "UiposY" : 5016
+          },
+          "UniqueId" : 3662160976,
+          "UserAttribute" : 0
+        }, {
+          "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIFSMNode",
+          "ColorType" : 0,
+          "ConditionTrainsitionFromAllId" : 0,
+          "ExistConditionTrainsitionFromAll" : false,
+          "Id" : 1,
+          "LinkList" : [ {
+            "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIFSMLink",
+            "ConditionId" : 10,
+            "DestinationNodeId" : 2,
+            "ExistCondition" : true,
+            "Name" : "s0003_t0000"
+          } ],
+          "LinkListNum" : 1,
+          "Name" : "魔物出現時",
+          "OwnerId" : 0,
+          "ProcessList" : [ {
+            "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIFSMNodeProcess",
+            "CategoryName" : "cAIFSMProcessContainer",
+            "ContainerName" : "callAnnounce",
+            "Parameter" : {
+              "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.FSMOrderParamCallAnnounce",
+              "MsgNo" : 100348,
+              "QuestId" : 10300500,
+              "Type" : 1,
+              "TypeName" : "TYPE_QUEST"
+            }
+          }, {
+            "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIFSMNodeProcess",
+            "CategoryName" : "cAIFSMProcessContainer",
+            "ContainerName" : "CallMessage",
+            "Parameter" : {
+              "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.FSMBaseParamCallMessage",
+              "IsHideMessage" : false,
+              "IsUseSerial" : true,
+              "MsgDispTime" : 5.0,
+              "MsgNo" : 26640,
+              "MsgType" : 1,
+              "MsgTypeName" : "MSG_TYPE_QUEST",
+              "MsgWaitTime" : 0.0,
+              "QuestId" : 10300500
+            }
+          }, {
+            "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIFSMNodeProcess",
+            "CategoryName" : "cAIFSMProcessContainer",
+            "ContainerName" : "checkMyQuestFlag",
+            "Parameter" : {
+              "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.FSMOrderParamIsMyQuestFlag",
+              "ArrayIdx" : 0,
+              "FlagNo" : 3721,
+              "QuestId" : 10300500
+            }
+          } ],
+          "ProcessListNum" : 3,
+          "Setting" : 1,
+          "Uipos" : {
+            "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIFSMNodeUIPos",
+            "UiposX" : 10400,
+            "UiposY" : 5016
+          },
+          "UniqueId" : 2561096834,
+          "UserAttribute" : 0
+        }, {
+          "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIFSMNode",
+          "ColorType" : 0,
+          "ConditionTrainsitionFromAllId" : 0,
+          "ExistConditionTrainsitionFromAll" : false,
+          "Id" : 2,
+          "LinkList" : [ ],
+          "LinkListNum" : 0,
+          "Name" : "魔物討伐時",
+          "OwnerId" : 0,
+          "ProcessList" : [ {
+            "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIFSMNodeProcess",
+            "CategoryName" : "cAIFSMProcessContainer",
+            "ContainerName" : "CallMessage",
+            "Parameter" : {
+              "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.FSMBaseParamCallMessage",
+              "IsHideMessage" : false,
+              "IsUseSerial" : true,
+              "MsgDispTime" : 5.0,
+              "MsgNo" : 26613,
+              "MsgType" : 1,
+              "MsgTypeName" : "MSG_TYPE_QUEST",
+              "MsgWaitTime" : 0.0,
+              "QuestId" : 10300500
+            }
+          }, {
+            "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIFSMNodeProcess",
+            "CategoryName" : "cAIFSMProcessContainer",
+            "ContainerName" : "callAnnounce",
+            "Parameter" : {
+              "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.FSMOrderParamCallAnnounce",
+              "MsgNo" : 100349,
+              "QuestId" : 10300500,
+              "Type" : 1,
+              "TypeName" : "TYPE_QUEST"
+            }
+          } ],
+          "ProcessListNum" : 2,
+          "Setting" : 1,
+          "Uipos" : {
+            "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIFSMNodeUIPos",
+            "UiposX" : 10480,
+            "UiposY" : 5016
+          },
+          "UniqueId" : 1959531260,
+          "UserAttribute" : 0
+        } ],
+        "OwnerNodeUniqueId" : 1184380119
+      },
+      "Uipos" : {
+        "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIFSMNodeUIPos",
+        "UiposX" : 8880,
+        "UiposY" : 6600
+      },
+      "UniqueId" : 1184380119,
+      "UserAttribute" : 0
+    }, {
+      "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIFSMNode",
+      "ColorType" : 0,
+      "ConditionTrainsitionFromAllId" : 0,
+      "ExistConditionTrainsitionFromAll" : false,
+      "Id" : 2,
+      "LinkList" : [ ],
+      "LinkListNum" : 0,
+      "Name" : "ペコ場所帰還時",
+      "OwnerId" : 0,
       "ProcessList" : [ {
-        "ContainerName" : "MainQstFlagOn",
+        "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIFSMNodeProcess",
         "CategoryName" : "cAIFSMProcessContainer",
+        "ContainerName" : "MainQstFlagOn",
         "Parameter" : {
+          "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.FSMOrderParamFlagQuest",
           "FlagNo" : 3722,
           "QuestId" : 10300500
         }
       }, {
-        "ContainerName" : "SetDisableTouchAction",
+        "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIFSMNodeProcess",
         "CategoryName" : "cAIFSMProcessContainer",
+        "ContainerName" : "SetDisableTouchAction",
         "Parameter" : {
+          "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.FSMUnitParamSetDisableTouchAction",
           "IsDisableTouch" : false
         }
       }, {
-        "ContainerName" : "SetMotion",
+        "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIFSMNodeProcess",
         "CategoryName" : "cAIFSMProcessContainer",
+        "ContainerName" : "SetMotion",
         "Parameter" : {
+          "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.FSMUnitParamSetMotion",
           "BankNo" : 19,
           "Dir" : {
             "X" : 1.0,
@@ -325,195 +975,231 @@
           "StartFrame" : 0.0
         }
       } ],
-      "UIPos" : {
-        "UIPosX" : 8880,
-        "UIPosY" : 6776
-      },
-      "ColorType" : 0,
+      "ProcessListNum" : 3,
       "Setting" : 1,
-      "UserAttribute" : 0,
-      "ExistConditionTrainsitionFromAll" : false,
-      "ConditionTrainsitionFromAllId" : 0
+      "Uipos" : {
+        "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIFSMNodeUIPos",
+        "UiposX" : 8880,
+        "UiposY" : 6776
+      },
+      "UniqueId" : 1900463333,
+      "UserAttribute" : 0
     }, {
-      "Name" : "ゲージ０",
+      "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIFSMNode",
+      "ColorType" : 0,
+      "ConditionTrainsitionFromAllId" : 2,
+      "ExistConditionTrainsitionFromAll" : true,
       "Id" : 3,
-      "UniqueId" : 292947794,
-      "OwnerId" : 0,
-      "LinkListNum" : 1,
       "LinkList" : [ {
-        "Name" : "護衛ゲージ０時_t0000",
+        "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIFSMLink",
+        "ConditionId" : 5,
         "DestinationNodeId" : 6,
         "ExistCondition" : true,
-        "ConditionId" : 5
+        "Name" : "護衛ゲージ０時_t0000"
       } ],
-      "ProcessListNum" : 3,
+      "LinkListNum" : 1,
+      "Name" : "ゲージ０",
+      "OwnerId" : 0,
       "ProcessList" : [ {
-        "ContainerName" : "callAnnounce",
+        "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIFSMNodeProcess",
         "CategoryName" : "cAIFSMProcessContainer",
+        "ContainerName" : "callAnnounce",
         "Parameter" : {
+          "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.FSMOrderParamCallAnnounce",
           "MsgNo" : 100351,
           "QuestId" : 10300500,
           "Type" : 1,
           "TypeName" : "TYPE_QUEST"
         }
       }, {
-        "ContainerName" : "setFSMFreeFlagOn",
+        "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIFSMNodeProcess",
         "CategoryName" : "cAIFSMProcessContainer",
+        "ContainerName" : "setFSMFreeFlagOn",
         "Parameter" : {
+          "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.FSMUnitParamSetFSMFreeFlagOn",
           "FlagNo" : 2
         }
       }, {
-        "ContainerName" : "CallNpcMessage",
+        "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIFSMNodeProcess",
         "CategoryName" : "cAIFSMProcessContainer",
+        "ContainerName" : "CallNpcMessage",
         "Parameter" : {
+          "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.FSMBaseParamCallNpcMessage",
           "MsgNo" : 26234,
           "QuestId" : 0,
           "Type" : 2
         }
       } ],
-      "UIPos" : {
-        "UIPosX" : 9040,
-        "UIPosY" : 6600
-      },
-      "ColorType" : 0,
+      "ProcessListNum" : 3,
       "Setting" : 1,
-      "UserAttribute" : 0,
-      "ExistConditionTrainsitionFromAll" : true,
-      "ConditionTrainsitionFromAllId" : 2
+      "Uipos" : {
+        "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIFSMNodeUIPos",
+        "UiposX" : 9040,
+        "UiposY" : 6600
+      },
+      "UniqueId" : 292947794,
+      "UserAttribute" : 0
     }, {
-      "Name" : "護衛離脱時",
+      "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIFSMNode",
+      "ColorType" : 0,
+      "ConditionTrainsitionFromAllId" : 3,
+      "ExistConditionTrainsitionFromAll" : true,
       "Id" : 4,
-      "UniqueId" : 3145715673,
-      "OwnerId" : 0,
-      "LinkListNum" : 1,
       "LinkList" : [ {
-        "Name" : "護衛離脱時_t0000",
+        "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIFSMLink",
+        "ConditionId" : 6,
         "DestinationNodeId" : 6,
         "ExistCondition" : true,
-        "ConditionId" : 6
+        "Name" : "護衛離脱時_t0000"
       } ],
-      "ProcessListNum" : 3,
+      "LinkListNum" : 1,
+      "Name" : "護衛離脱時",
+      "OwnerId" : 0,
       "ProcessList" : [ {
-        "ContainerName" : "callAnnounce",
+        "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIFSMNodeProcess",
         "CategoryName" : "cAIFSMProcessContainer",
+        "ContainerName" : "callAnnounce",
         "Parameter" : {
+          "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.FSMOrderParamCallAnnounce",
           "MsgNo" : 100350,
           "QuestId" : 10300500,
           "Type" : 1,
           "TypeName" : "TYPE_QUEST"
         }
       }, {
-        "ContainerName" : "setFSMFreeFlagOn",
+        "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIFSMNodeProcess",
         "CategoryName" : "cAIFSMProcessContainer",
+        "ContainerName" : "setFSMFreeFlagOn",
         "Parameter" : {
+          "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.FSMUnitParamSetFSMFreeFlagOn",
           "FlagNo" : 1
         }
       }, {
-        "ContainerName" : "CallNpcMessage",
+        "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIFSMNodeProcess",
         "CategoryName" : "cAIFSMProcessContainer",
+        "ContainerName" : "CallNpcMessage",
         "Parameter" : {
+          "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.FSMBaseParamCallNpcMessage",
           "MsgNo" : 26253,
           "QuestId" : 0,
           "Type" : 2
         }
       } ],
-      "UIPos" : {
-        "UIPosX" : 9040,
-        "UIPosY" : 6512
-      },
-      "ColorType" : 0,
+      "ProcessListNum" : 3,
       "Setting" : 1,
-      "UserAttribute" : 0,
-      "ExistConditionTrainsitionFromAll" : true,
-      "ConditionTrainsitionFromAllId" : 3
+      "Uipos" : {
+        "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIFSMNodeUIPos",
+        "UiposX" : 9040,
+        "UiposY" : 6512
+      },
+      "UniqueId" : 3145715673,
+      "UserAttribute" : 0
     }, {
-      "Name" : "護衛離脱時",
+      "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIFSMNode",
+      "ColorType" : 0,
+      "ConditionTrainsitionFromAllId" : 4,
+      "ExistConditionTrainsitionFromAll" : true,
       "Id" : 5,
-      "UniqueId" : 2652147717,
-      "OwnerId" : 0,
-      "LinkListNum" : 1,
       "LinkList" : [ {
-        "Name" : "護衛離脱時_t0000",
+        "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIFSMLink",
+        "ConditionId" : 7,
         "DestinationNodeId" : 6,
         "ExistCondition" : true,
-        "ConditionId" : 7
+        "Name" : "護衛離脱時_t0000"
       } ],
-      "ProcessListNum" : 3,
+      "LinkListNum" : 1,
+      "Name" : "護衛離脱時",
+      "OwnerId" : 0,
       "ProcessList" : [ {
-        "ContainerName" : "callAnnounce",
+        "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIFSMNodeProcess",
         "CategoryName" : "cAIFSMProcessContainer",
+        "ContainerName" : "callAnnounce",
         "Parameter" : {
+          "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.FSMOrderParamCallAnnounce",
           "MsgNo" : 100350,
           "QuestId" : 10300500,
           "Type" : 1,
           "TypeName" : "TYPE_QUEST"
         }
       }, {
-        "ContainerName" : "setFSMFreeFlagOn",
+        "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIFSMNodeProcess",
         "CategoryName" : "cAIFSMProcessContainer",
+        "ContainerName" : "setFSMFreeFlagOn",
         "Parameter" : {
+          "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.FSMUnitParamSetFSMFreeFlagOn",
           "FlagNo" : 0
         }
       }, {
-        "ContainerName" : "CallNpcMessage",
+        "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIFSMNodeProcess",
         "CategoryName" : "cAIFSMProcessContainer",
+        "ContainerName" : "CallNpcMessage",
         "Parameter" : {
+          "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.FSMBaseParamCallNpcMessage",
           "MsgNo" : 26244,
           "QuestId" : 0,
           "Type" : 2
         }
       } ],
-      "UIPos" : {
-        "UIPosX" : 9040,
-        "UIPosY" : 6424
-      },
-      "ColorType" : 0,
+      "ProcessListNum" : 3,
       "Setting" : 1,
-      "UserAttribute" : 0,
-      "ExistConditionTrainsitionFromAll" : true,
-      "ConditionTrainsitionFromAllId" : 4
+      "Uipos" : {
+        "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIFSMNodeUIPos",
+        "UiposX" : 9040,
+        "UiposY" : 6424
+      },
+      "UniqueId" : 2652147717,
+      "UserAttribute" : 0
     }, {
-      "Name" : "失敗確定",
+      "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIFSMNode",
+      "ColorType" : 0,
+      "ConditionTrainsitionFromAllId" : 0,
+      "ExistConditionTrainsitionFromAll" : false,
       "Id" : 6,
-      "UniqueId" : 648607584,
-      "OwnerId" : 0,
-      "LinkListNum" : 0,
       "LinkList" : [ ],
-      "ProcessListNum" : 1,
+      "LinkListNum" : 0,
+      "Name" : "失敗確定",
+      "OwnerId" : 0,
       "ProcessList" : [ {
-        "ContainerName" : "MainQstFlagOn",
+        "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIFSMNodeProcess",
         "CategoryName" : "cAIFSMProcessContainer",
+        "ContainerName" : "MainQstFlagOn",
         "Parameter" : {
+          "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.FSMOrderParamFlagQuest",
           "FlagNo" : 3712,
           "QuestId" : 10300500
         }
       } ],
-      "UIPos" : {
-        "UIPosX" : 9120,
-        "UIPosY" : 6424
-      },
-      "ColorType" : 0,
+      "ProcessListNum" : 1,
       "Setting" : 1,
-      "UserAttribute" : 0,
-      "ExistConditionTrainsitionFromAll" : false,
-      "ConditionTrainsitionFromAllId" : 0
+      "Uipos" : {
+        "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIFSMNodeUIPos",
+        "UiposX" : 9120,
+        "UiposY" : 6424
+      },
+      "UniqueId" : 648607584,
+      "UserAttribute" : 0
     }, {
-      "Name" : "立ち上がり",
+      "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIFSMNode",
+      "ColorType" : 0,
+      "ConditionTrainsitionFromAllId" : 0,
+      "ExistConditionTrainsitionFromAll" : false,
       "Id" : 7,
-      "UniqueId" : 337831483,
-      "OwnerId" : 0,
-      "LinkListNum" : 1,
       "LinkList" : [ {
-        "Name" : "s0000_t0000",
+        "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIFSMLink",
+        "ConditionId" : 8,
         "DestinationNodeId" : 1,
         "ExistCondition" : true,
-        "ConditionId" : 8
+        "Name" : "s0000_t0000"
       } ],
-      "ProcessListNum" : 2,
+      "LinkListNum" : 1,
+      "Name" : "立ち上がり",
+      "OwnerId" : 0,
       "ProcessList" : [ {
-        "ContainerName" : "SetMotion",
+        "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIFSMNodeProcess",
         "CategoryName" : "cAIFSMProcessContainer",
+        "ContainerName" : "SetMotion",
         "Parameter" : {
+          "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.FSMUnitParamSetMotion",
           "BankNo" : 19,
           "Dir" : {
             "X" : 1.0,
@@ -542,38 +1228,45 @@
           "StartFrame" : 0.0
         }
       }, {
-        "ContainerName" : "SetDisableTouchAction",
+        "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIFSMNodeProcess",
         "CategoryName" : "cAIFSMProcessContainer",
+        "ContainerName" : "SetDisableTouchAction",
         "Parameter" : {
+          "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.FSMUnitParamSetDisableTouchAction",
           "IsDisableTouch" : true
         }
       } ],
-      "UIPos" : {
-        "UIPosX" : 8880,
-        "UIPosY" : 6512
-      },
-      "ColorType" : 0,
+      "ProcessListNum" : 2,
       "Setting" : 1,
-      "UserAttribute" : 0,
-      "ExistConditionTrainsitionFromAll" : false,
-      "ConditionTrainsitionFromAllId" : 0
+      "Uipos" : {
+        "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIFSMNodeUIPos",
+        "UiposX" : 8880,
+        "UiposY" : 6512
+      },
+      "UniqueId" : 337831483,
+      "UserAttribute" : 0
     }, {
-      "Name" : "s0000",
+      "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIFSMNode",
+      "ColorType" : 0,
+      "ConditionTrainsitionFromAllId" : 0,
+      "ExistConditionTrainsitionFromAll" : false,
       "Id" : 8,
-      "UniqueId" : 2017144975,
-      "OwnerId" : 0,
-      "LinkListNum" : 1,
       "LinkList" : [ {
-        "Name" : "s0000_t0000",
+        "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIFSMLink",
+        "ConditionId" : 11,
         "DestinationNodeId" : 2,
         "ExistCondition" : true,
-        "ConditionId" : 11
+        "Name" : "s0000_t0000"
       } ],
-      "ProcessListNum" : 1,
+      "LinkListNum" : 1,
+      "Name" : "s0000",
+      "OwnerId" : 0,
       "ProcessList" : [ {
-        "ContainerName" : "SetGoto",
+        "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIFSMNodeProcess",
         "CategoryName" : "cAIFSMProcessContainer",
+        "ContainerName" : "SetGoto",
         "Parameter" : {
+          "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.FSMUnitParamSetGoto",
           "Dir" : {
             "X" : 1.0,
             "Y" : 0.0,
@@ -591,17 +1284,16 @@
           }
         }
       } ],
-      "UIPos" : {
-        "UIPosX" : 8880,
-        "UIPosY" : 6688
-      },
-      "ColorType" : 0,
+      "ProcessListNum" : 1,
       "Setting" : 1,
-      "UserAttribute" : 0,
-      "ExistConditionTrainsitionFromAll" : false,
-      "ConditionTrainsitionFromAllId" : 0
-    } ]
-  },
-  "OwnerObjectName" : "cFSMUnit",
-  "FileSize" : 12026
+      "Uipos" : {
+        "@class" : "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.quest.AIFSMNodeUIPos",
+        "UiposX" : 8880,
+        "UiposY" : 6688
+      },
+      "UniqueId" : 2017144975,
+      "UserAttribute" : 0
+    } ],
+    "OwnerNodeUniqueId" : 0
+  }
 }
