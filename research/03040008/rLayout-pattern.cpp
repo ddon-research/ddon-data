@@ -70,15 +70,22 @@ struct cSetInfoNpc
   bool mDisableScrAdj;
   bool mDisableLedgerFinger;
   bool mIsForceListTalk;
+
   bool mIsAttand;
+  bool UseAttendComponent;
   bool mDisableTouchAction;
+
+  u32 TalkStateId;
+
   bool mDispElseQuestTalk;
-  s16 unknown1;
-  s16 unknown2;
-  s16 unknown3;
-  s16 unknown4;
-  s16 unknown5;
-  s16 unknown6;
+  bool ForceSwitchGreeting;
+  bool UseLiteMotion;
+
+  bool IsNoSetOnPS3;
+  bool UseJobParamEx;
+  bool DispOnWeapon;
+
+  s16 InitEffectType;
   cSetInfoCharacter544 prnt;
 };
 
@@ -486,5 +493,3 @@ struct rLayoutHeader
 };
 
 rLayoutHeader rlayoutheader_at_0x00 @0x00;
-
-cSetInfoOmOld csetinfoomold_at_0x75 @0x75;
