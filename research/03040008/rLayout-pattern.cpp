@@ -207,8 +207,6 @@ struct cSetInfoOmUnknown33
 {
   u32 unknown1;
   u32 unknown2;
-  u32 unknown3;
-  u32 unknown4;
 
   cSetInfoOmOld InfoOm;
 };
@@ -483,6 +481,7 @@ struct rLayout
   u32 arrayNum;
 
   rLayoutSetInfo h1;
+  cSetInfoOmUnknown33 s1;
 };
 
 struct rLayoutHeader
