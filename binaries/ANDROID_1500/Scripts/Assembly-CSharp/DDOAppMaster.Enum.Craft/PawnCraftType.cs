@@ -1,0 +1,10 @@
+namespace DDOAppMaster.Enum.Craft;
+
+public enum PawnCraftType
+{
+	PAWN_CRAFT_TYPE_NONE = 0,
+	PAWN_CRAFT_TYPE_TOP = 1,
+	PAWN_CRAFT_TYPE_MAIN = 1,
+	PAWN_CRAFT_TYPE_SUPPORT = 2,
+	PAWN_CRAFT_TYPE_MAX = 3
+}

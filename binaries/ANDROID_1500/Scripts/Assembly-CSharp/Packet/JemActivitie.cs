@@ -1,0 +1,14 @@
+namespace Packet;
+
+public enum JemActivitie
+{
+	INVALID,
+	LOGIN_BONUS,
+	ADVENT_BONUS,
+	MANAGEMENT_BONUS,
+	MANAGEMENT_APOLOGY,
+	SEND_MAIL,
+	CRAFT_ITEM,
+	BAZAAR_BUY,
+	BAZAAR_SELL
+}

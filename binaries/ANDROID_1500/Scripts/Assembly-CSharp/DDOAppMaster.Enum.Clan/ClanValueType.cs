@@ -1,0 +1,8 @@
+namespace DDOAppMaster.Enum.Clan;
+
+public enum ClanValueType
+{
+	CLAN_VALUE_TYPE_NONE,
+	CLAN_VALUE_TYPE_CLAN_POINT_MONEY,
+	CLAN_VALUE_TYPE_CLAN_POINT_TOTAL
+}
