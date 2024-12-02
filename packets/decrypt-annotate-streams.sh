@@ -9,7 +9,7 @@ for f in $(realpath encrypted_streams/*.yaml); do
 		echo "file=$f"
 		echo "streamName=$streamName, tcpStreamNumber=$tcpStreamNumber, decryptionKey=$decryptionKey"
 		
-		"Arrowgene.Ddon.Cli" packet "${f}" --key="${decryptionKey}" --byte-dump=, --byte-dump-prefix=0x --structure-dump --utf8-dump
+		"/c/Users/morph/Documents/GitHub/Sehkah/Arrowgene.DragonsDogmaOnline/Arrowgene.Ddon.Cli/bin/Debug/net6.0/Arrowgene.Ddon.Cli.exe" packet "${f}" --key="${decryptionKey}" --byte-dump=, --byte-dump-prefix=0x --structure-dump --utf8-dump
 	fi
 done
 
