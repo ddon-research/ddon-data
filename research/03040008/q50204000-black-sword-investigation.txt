@@ -1,0 +1,67 @@
+cEndContentsManager
+
+Quest unlock
+	https://h1g.jp/dd-on/?%E7%B0%A1%E6%98%93%E5%85%A8%E4%BD%93%E3%83%95%E3%83%AD%E3%83%BC%E3%83%81%E3%83%A3%E3%83%BC%E3%83%88
+	https://h1g.jp/dd-on/?%E3%82%A8%E3%82%AF%E3%82%B9%E3%83%88%E3%83%AA%E3%83%BC%E3%83%A0%E3%83%9F%E3%83%83%E3%82%B7%E3%83%A7%E3%83%B3
+
+	Lvl 75 Writhing Shadow 蠢きし影 60200011 => unlock Onset of Darkness 降臨せし闇 50204002
+	Lvl 80 Onset of Darkness 50204002 降臨せし闇 + >IR67 => unlock Recurrence of Darkness 闇の再動 50204000
+	Lvl 80 Recurrence of Darkness 闇の再動 + >IR72 => unlock Onset of Darkness: Restricted Stage 降臨せし闇・限界域
+
+
+Recurrence of Darkness https://h1g.jp/dd-on/?%E9%97%87%E3%81%AE%E5%86%8D%E5%8B%95
+Quest Name: 闇の再動
+Tutorial guide 335 "Recurrence of Darkness" is an Extreme Mission where up to four party members are required to destroy ten swords of the Black Knight, whose presence has been confirmed once again at the "Core Tree".
+
+rEndContentsSortieInfo QuestId 50204000
+
+Connected stages to quest name:
+	始まりの洞 Hollow of Beginnings 881/383 => p21 lot: warp-related, flag 2587, leads to all of the branches, all warps share the same flag and quest ID
+	始まりの洞　集いの間　Hollow of Beginnings: Gathering Area 882/384
+	追憶の枝 Branch of Remembrance 885/387 => p31 lot: one way, door; p34 lot: one way; p37 lot: one way, door; p40 lot:
+	懐旧の枝 Branch of Nostalgia 886/388
+		=> https://youtu.be/gvORwXlUABw?si=kqDqPh6NhPFUrf-v&t=477
+	悔恨の枝 Branch of Remorse 887/389
+	静慮の枝 Branch of Contemplation 888/390
+
+OMs
+	Red warp crystal is probably OM ID 510471 D:\DDON_03040008\nativePC\rom\om\om510471 + OM ID 510447 D:\DDON_03040008\nativePC\rom\om\om510447
+		510471 & 510447 are both controllable warps with hard-coded bit flag handling for context data with "input & 0xFFFF7FC1 | 0x800C" in the client
+	Black knight sword om523000 D:\DDON_03040008\nativePC\rom\om\om523000 => occurs exactly 14 times across 885/886/887/888 lot files, which matches up with the guide here:  https://grabyaass.blog.jp/archives/2520569.html
+		Special om collision handling hard-coded in the client for 523000
+	黒剣１ / Black Knight Sword 1 "modified" om523900, referenced in q00030410 st0121,st0434,st0435 & q00030420 st1021, st1106
+
+EMs 黒剣 / Black Sword
+	om523000
+		EM030118 / 196888 / 524 "darkness_boss_hard.lup", purple color D:\DDON_03040008\nativePC\rom\EM\EM030118\obj\em\em030118\model
+		EM080505 / 525573 / 525 "darkness_boss_normal.lup", purple color D:\DDON_03040008\nativePC\rom\EM\EM080505\obj\em\EmLvUp
+
+Different stage quest flags associated with the different Branches for warping/doors:
+	stage 881: 2587
+	stage 886: 2683, 2684, 2685
+	stage 886: 2686, 2687, 2688, 
+	stage 887: 2689, 2690, 2691, 2713
+	stage 888: 2692, 2693, 2694, 2695, 2696
+
+Warps:
+	Hollow of Beginnings, warp via foggy door to the left to transition from 881 -> 885
+
+	After defeating the trash mobs, door:
+	
+
+	Red spiked warp crystal as barrier before boss area #1	
+	https://youtu.be/gvORwXlUABw?si=YP1ihAKu5yhYBIp6&t=87
+	
+	After defeating the first black knight, door:
+	https://youtu.be/gvORwXlUABw?si=uaLbxbx4ZVEM6JO7&t=285
+
+	Red spiky warp crystal as barrier before boss area #2
+	https://youtu.be/gvORwXlUABw?si=5IPEiQVYBsT5DB85&t=390
+	
+Summary of investigation:
+- s2 client barely has any references to any extreme mission content, just to the generic machinery via cEndContentsManager
+- there might be checks for the list of cleared quests necessary to access the quest via 60200011 & 50204002
+- there are quest flags that must be set for all intermediate warps for every involved stage (doors + red crystals)
+- the black sword EMs are probably related to "onset of darkness" which has a normal & hard mode, and not related to the breakable black swords
+- the black swords are of type "SetInfoOmBreakTarget" in the lot files and break after 50 hits, i.e. they are part of the stage
+=> best guess would be to check how the breakable stage parts in e.g. dragon's roost/pit were spawned

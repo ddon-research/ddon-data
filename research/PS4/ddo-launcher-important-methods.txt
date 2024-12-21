@@ -1,0 +1,234 @@
+__int64 __fastcall main(__int64 argc, const char **argv)
+{
+  __int64 v2; // rax
+  sApp *v3; // rbx
+  __int64 v5[2]; // [rsp+0h] [rbp-840h] BYREF
+  char v6[2056]; // [rsp+10h] [rbp-830h] BYREF
+  __int64 v7; // [rsp+818h] [rbp-28h]
+
+  v7 = **(_QWORD **)&_stack_chk_guard;
+  v2 = scePthreadSelf(argc);
+  scePthreadSetaffinity(v2, 1LL);
+  v3 = (sApp *)sApp::operator_new(0x2850uLL, 0x10u);
+  sApp::sApp(v3, 0LL);
+  MtMemoryAllocator::allocateDefaultMemory();
+  MtMemoryAllocator::setDefaultAppAllocator();
+  sApp::init(v3, &stru_10D56D8, argc, argv);
+  sApp::execute(v3);
+  if ( v3 )
+    (*((void (__fastcall **)(sApp *))v3->_vptr$MtObject + 1))(v3);
+  if ( isRunGame )
+  {
+    executeGame();
+  }
+  else if ( isNeedReboot )
+  {
+    memset(v6, 0LL, 2050LL);
+    v5[0] = (__int64)v6;
+    v5[1] = 0LL;
+    memset(byte_10D48A0, 0LL, sizeof(byte_10D48A0));
+    sprintf(byte_10D48A0, "/app0%s", "/ddo_launcherORBIS.elf");
+    printf("self_path = \"%s\"\n", byte_10D48A0);
+    sceSystemServiceLoadExec(byte_10D48A0, v5);
+  }
+  return 0LL;
+}
+
+void __fastcall sApp::init(sApp *this, const MtDTI *dti, s32 argc, const char **argv)
+{
+  int v6; // eax
+  unsigned int v7; // r15d
+  s32 v9; // rax^4
+  __m256 v10; // [rsp+0h] [rbp-E0h] BYREF
+  __int64 v11; // [rsp+20h] [rbp-C0h]
+  __m256 v12; // [rsp+40h] [rbp-A0h] BYREF
+  __m256 v13; // [rsp+60h] [rbp-80h] BYREF
+  __int64 v14; // [rsp+80h] [rbp-60h]
+  __int64 v15; // [rsp+88h] [rbp-58h]
+  __int64 v16; // [rsp+A8h] [rbp-38h]
+
+  v16 = **(_QWORD **)&_stack_chk_guard;
+  __asm
+  {
+    vxorps  ymm0, ymm0, ymm0
+    vmovaps [rsp+0E0h+var_A0], ymm0
+    vmovaps [rsp+0E0h+var_E0], ymm0
+  }
+  v11 = 0LL;
+  sceAppContentInitialize(&v12, &v10, argc, argv);
+  *(_QWORD *)&this->mUserDefinedParam[2] = 0LL;
+  *(_QWORD *)this->mUserDefinedParam = 0LL;
+  sceAppContentAppParamGetInt(1LL, this->mUserDefinedParam);
+  sceAppContentAppParamGetInt(2LL, &this->mUserDefinedParam[1]);
+  sceAppContentAppParamGetInt(3LL, &this->mUserDefinedParam[2]);
+  sceAppContentAppParamGetInt(4LL, &this->mUserDefinedParam[3]);
+  v6 = sceVideoOutOpen(255LL, 0LL, 0LL, 0LL);
+  v7 = v6;
+  if ( v6 < 0 )
+    goto LABEL_4;
+  __asm
+  {
+    vxorps  ymm0, ymm0, ymm0
+    vmovaps [rsp+0E0h+var_80], ymm0
+  }
+  v15 = 0LL;
+  v14 = 0LL;
+  if ( (int)sceVideoOutGetResolutionStatus((unsigned int)v6, &v13) < 0
+    || (v9 = LODWORD(v13.m256_f32[1]),
+        this->mPS4Resolution._anon_0._anon_0.w = LODWORD(v13.m256_f32[0]),
+        this->mPS4Resolution._anon_0._anon_0.h = v9,
+        (int)sceVideoOutClose(v7) < 0) )
+  {
+LABEL_4:
+    this->mPS4Resolution = stru_11182F8;
+  }
+  this->mpMain = (sMain *)(*((__int64 (__fastcall **)(const MtDTI *))dti->_vptr$MtDTI + 2))(dti);
+}
+
+void __fastcall sApp::execute(sApp *this)
+{
+  while ( !this->mpMain->mExit )
+  {
+    sRender::resetDevice(qword_111F008);
+    (*((void (__fastcall **)(sMain *))this->mpMain->_vptr$MtObject + 7))(this->mpMain);
+  }
+}
+
+s32 __fastcall aLauncher::execGame(aLauncher *this)
+{
+  sBrowser *v1; // r12
+  MtString::STRING *value; // rax
+  char *str; // rbx
+  __int64 v4; // rax
+  MtString::STRING *v5; // rax
+  char *v6; // rbx
+  __int64 v7; // rax
+  MtString::STRING *v8; // rax
+  char *v9; // rbx
+  __int64 v10; // rax
+  const char *LatestVer; // rax
+
+  memset(gLoginServerHost, 0LL, sizeof(gLoginServerHost));
+  v1 = qword_10D4EE0;
+  value = qword_10D4EE0->mLoginServerHost.value;
+  str = (char *)value->str;
+  if ( !value )
+    str = &byte_F1FD0E;
+  v4 = strlen(str);
+  memcpy(gLoginServerHost, str, v4 + 1);
+  gLoginServerPort = v1->mLoginServerPort;
+  *(_QWORD *)&gOnetimeToken[56] = 0LL;
+  *(_QWORD *)&gOnetimeToken[48] = 0LL;
+  *(_QWORD *)&gOnetimeToken[40] = 0LL;
+  *(_QWORD *)&gOnetimeToken[32] = 0LL;
+  *(_QWORD *)&gOnetimeToken[24] = 0LL;
+  *(_QWORD *)&gOnetimeToken[16] = 0LL;
+  *(_QWORD *)&gOnetimeToken[8] = 0LL;
+  *(_QWORD *)gOnetimeToken = 0LL;
+  v5 = v1->mOnetimeToken.value;
+  v6 = (char *)v5->str;
+  if ( !v5 )
+    v6 = &byte_F1FD0E;
+  v7 = strlen(v6);
+  memcpy(gOnetimeToken, v6, v7 + 1);
+  memset(gDLServerURL, 0LL, sizeof(gDLServerURL));
+  v8 = v1->mDLServerURL.value;
+  v9 = (char *)v8->str;
+  if ( !v8 )
+    v9 = &byte_F1FD0E;
+  v10 = strlen(v9);
+  memcpy(gDLServerURL, v9, v10 + 1);
+  *(_QWORD *)&gLauncherVersion[56] = 0LL;
+  *(_QWORD *)&gLauncherVersion[48] = 0LL;
+  *(_QWORD *)&gLauncherVersion[40] = 0LL;
+  *(_QWORD *)&gLauncherVersion[32] = 0LL;
+  *(_QWORD *)&gLauncherVersion[24] = 0LL;
+  *(_QWORD *)&gLauncherVersion[16] = 0LL;
+  *(_QWORD *)&gLauncherVersion[8] = 0LL;
+  *(_QWORD *)gLauncherVersion = 0LL;
+  snprintf(gLauncherVersion, 63LL, "%02X.%02X.%03X.%08X.%01X", 2LL, 0LL, 3LL, 538314009, 0);
+  *(_QWORD *)&gResourceVersion[56] = 0LL;
+  *(_QWORD *)&gResourceVersion[48] = 0LL;
+  *(_QWORD *)&gResourceVersion[40] = 0LL;
+  *(_QWORD *)&gResourceVersion[32] = 0LL;
+  *(_QWORD *)&gResourceVersion[24] = 0LL;
+  *(_QWORD *)&gResourceVersion[16] = 0LL;
+  *(_QWORD *)&gResourceVersion[8] = 0LL;
+  *(_QWORD *)gResourceVersion = 0LL;
+  LatestVer = sBrowser::getLatestVer(qword_10D4EE0);
+  snprintf(gResourceVersion, 63LL, "%s", LatestVer);
+  isRunGame = 1;
+  sMain::exit(qword_111EE00);
+  return 2;
+}
+
+void __fastcall sMain::exit(sMain *this)
+{
+  this->mExit = 1;
+}
+
+bool __cdecl executeGame()
+{
+  __int64 v1; // rax
+  __int64 v2; // rax
+  __int64 v4; // rax
+  __int64 v5; // rax
+  __int64 v6; // rax
+  __int64 v7; // rax
+  __int64 spawn_argv[2]; // [rsp+0h] [rbp-C50h] BYREF
+  MT_CHAR portStr[16]; // [rsp+10h] [rbp-C40h] BYREF
+  int commandLine[516]; // [rsp+20h] [rbp-C30h] BYREF
+  char myPath[1024]; // [rsp+830h] [rbp-420h] BYREF
+  __int64 v13; // [rsp+C30h] [rbp-20h]
+
+  v13 = **(_QWORD **)&_stack_chk_guard;
+  memset(myPath, 0LL, sizeof(myPath));
+  memset(commandLine, 0LL, 2050LL);
+  LOWORD(commandLine[0]) = 34;
+  strcat(commandLine, myPath);
+  v1 = strlen(commandLine);
+  *((_BYTE *)commandLine + v1 + 2) = 0;
+  *(_WORD *)((char *)commandLine + v1) = 8736;
+  v2 = strlen(commandLine);
+  *(_WORD *)((char *)&commandLine[1] + v2) = 61; // =
+  *(int *)((char *)commandLine + v2) = 1919181921;
+  strcat(commandLine, gLoginServerHost);
+  *(_WORD *)((char *)commandLine + strlen(commandLine)) = 32; // whitespace
+  __asm
+  {
+    vxorps  xmm0, xmm0, xmm0
+    vmovaps xmmword ptr [rbp+portStr], xmm0
+  }
+  sprintf(portStr, "%d", gLoginServerPort);
+  v4 = strlen(commandLine);
+  *(_WORD *)((char *)&commandLine[1] + v4) = 61;
+  *(int *)((char *)commandLine + v4) = 1953656688;
+  strcat(commandLine, portStr);
+  *(_WORD *)((char *)commandLine + strlen(commandLine)) = 32;
+  v5 = strlen(commandLine);
+  *((_BYTE *)&commandLine[1] + v5 + 2) = 0;
+  *(_WORD *)((char *)&commandLine[1] + v5) = 15726;
+  *(int *)((char *)commandLine + v5) = 1701539700;
+  strcat(commandLine, gOnetimeToken);
+  *(_WORD *)((char *)commandLine + strlen(commandLine)) = 32;
+  *(int *)((char *)commandLine + strlen(commandLine)) = 4017220;
+  strcat(commandLine, gDLServerURL);
+  *(_WORD *)((char *)commandLine + strlen(commandLine)) = 32;
+  v6 = strlen(commandLine);
+  *(_WORD *)((char *)&commandLine[1] + v6) = 61;
+  *(int *)((char *)commandLine + v6) = 1919243852;
+  strcat(commandLine, gLauncherVersion);
+  *(_WORD *)((char *)commandLine + strlen(commandLine)) = 32;
+  v7 = strlen(commandLine);
+  *(_WORD *)((char *)&commandLine[1] + v7) = 61;
+  *(int *)((char *)commandLine + v7) = 1919243858;
+  strcat(commandLine, gResourceVersion);
+  *(_WORD *)((char *)commandLine + strlen(commandLine)) = 34;
+  spawn_argv[0] = (__int64)commandLine;
+  spawn_argv[1] = 0LL;
+  memset(byte_10D44A0, 0LL, sizeof(byte_10D44A0));
+  sprintf(byte_10D44A0, "/app0%s", "/DDOORBIS.elf");
+  printf("self_path = \"%s\"\n", byte_10D44A0);
+  sceSystemServiceLoadExec(byte_10D44A0, spawn_argv);
+  return 0;
+}
