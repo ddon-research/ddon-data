@@ -1,10 +1,3 @@
-struct MtVector2
-{
-  float x;
-
-  float z;
-};
-
 struct MtVector3
 {
   float x;
@@ -204,14 +197,8 @@ struct AreaHitShape
   {
     nZone_ShapeInfoBase mpZone; //*
   }
-  if (type != 8)
-  {
-    MtAABB mZoneBoundingBox;
-  }
-  else
-  {
-    MtVector3 minpos;
-  }
+
+  MtAABB mZoneBoundingBox;
 };
 
 struct rStageCustomPartsEx_AreaParam
@@ -222,6 +209,13 @@ struct rStageCustomPartsEx_AreaParam
   u32 num;
   AreaHitShape mAreaHitShapeList[num];
   // char mComment[];
+};
+
+struct rStageCustom_Area
+{
+  s8 mAreaNo;
+  u8 mFilterNo;
+  s32 mGroupNo;
 };
 
 struct rStageCustomPartsEx_InfoEx

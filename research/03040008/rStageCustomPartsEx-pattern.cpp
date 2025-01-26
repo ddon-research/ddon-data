@@ -1,3 +1,10 @@
+struct MtVector2
+{
+  float x;
+
+  float z;
+};
+
 struct MtVector3
 {
   float x;
@@ -124,7 +131,7 @@ struct nZone_ShapeInfoOBB : nZone_ShapeInfoBase
 
 struct nZone_ShapeInfoAABB : nZone_ShapeInfoBase
 {
-  MtAABB mAABB;
+  MtAABB AABB;
   float mDecayY;
   float mDecayZ;
   bool mIsEnableExtendedDecay;
@@ -197,8 +204,14 @@ struct AreaHitShape
   {
     nZone_ShapeInfoBase mpZone; //*
   }
-
-  MtAABB mZoneBoundingBox;
+  if (type != 8)
+  {
+    MtAABB mZoneBoundingBox;
+  }
+  else
+  {
+    MtVector3 minpos;
+  }
 };
 
 struct rStageCustomPartsEx_AreaParam
@@ -209,13 +222,6 @@ struct rStageCustomPartsEx_AreaParam
   u32 num;
   AreaHitShape mAreaHitShapeList[num];
   // char mComment[];
-};
-
-struct rStageCustom_Area
-{
-  s8 mAreaNo;
-  u8 mFilterNo;
-  s32 mGroupNo;
 };
 
 struct rStageCustomPartsEx_InfoEx
