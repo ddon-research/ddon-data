@@ -19,3 +19,12 @@ jq '.npcLedgerList[] | select(. | .NpcName == "Sebastian")' client/03040008/npc/
 # Find specific shop ID
 jq '.npcLedgerList[] | select(.InstitutionList[] | .FunctionName == "Shop" and .FunctionParam == 230)' client/02030004/npc/npc_common/etc/npc/npc.nll.json
 jq '.npcLedgerList[] | select(.InstitutionList[] | (.FunctionName | contains("Shop")) and .FunctionParam == 230)' client/03040008/npc/npc_common/etc/npc/npc.nll.json
+
+jq -r '.NpcLedgerList.[]
+       | select(.NpcClassName.En | contains("Area Master"))
+       | "\(.NpcId), \(.NpcName.En)"' npc.nll.json
+
+
+find 03040008/stage -type f -name "*_n*.lot.json" -exec jq -r '.AreaName.En as $AreaNameEn | .StageName.En as $StageNameEn | .Array[] | [.Info.NpcId, .Info.NpcName.En, .Info.NpcName.Jp, .Info.InfoCharacter.Position.X, .Info.InfoCharacter.Position.Y, .Info.InfoCharacter.Position.Z, $AreaNameEn, $StageNameEn] | @csv' {} + > 03040008-layout-npc-location.csv
+
+find 02030004/stage -type f -name "*_n*.lot.json" -exec jq -r '.AreaName.En as $AreaNameEn | .StageName.En as $StageNameEn | .Array[] | [.Info.NpcId, .Info.NpcName.En, .Info.NpcName.Jp, .Info.InfoCharacter.Position.X, .Info.InfoCharacter.Position.Y, .Info.InfoCharacter.Position.Z, $AreaNameEn, $StageNameEn] | @csv' {} + > 02030004-layout-npc-location.csv
