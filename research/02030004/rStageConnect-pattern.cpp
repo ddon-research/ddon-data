@@ -1,3 +1,13 @@
+struct MtObject
+{
+};
+
+struct cResource
+{
+    char magicString[4];
+    u32 magicVersion;
+};
+
 struct MtVector3
 {
   float x;
@@ -9,8 +19,8 @@ struct rStageConnect_Connect
 {
   s16 mStart;
   s16 mGoal;
-  s16 mIndex[6];
   u32 mIndexNum;
+  s16 mIndex[6];
 };
 
 struct rStageConnect_Data
@@ -21,7 +31,7 @@ struct rStageConnect_Data
   u32 mMapGroup;
 };
 
-struct rStageConnect
+struct rStageConnect : cResource
 {
   u32 mConnectorNum;
   rStageConnect_Data mpConnectorArray[mConnectorNum];
@@ -29,3 +39,5 @@ struct rStageConnect
   u32 mConnectionNum;
   rStageConnect_Connect mpConnectionArray[mConnectionNum];
 };
+
+rStageConnect rstageconnect_at_0x00 @ 0x00;
