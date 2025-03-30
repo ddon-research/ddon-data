@@ -180,3 +180,74 @@ Reset Progress” is used when a party member drops out of the game and you want
 === Translation
 * https://github.com/riftcrystal/DDON-Translation
 * https://github.com/Sapphiratelaemara/DDON-translation
+
+=== Backing up old wikis
+
+Currently playing around with various settings and tools to back up pages beyond the Wayback Machine / Internet Archive, as it doesn't properly do recursive back ups by default (only does the initial outgoing links it finds on the first URL you provide).
+
+I ended up with Browsertrix and like how this is open source and neatly packages a website as a standalone thing (they use the same standardized web archive format IA uses), completely rewriting all links and resources with minimal effort: https://crawler.docs.browsertrix.com/user-guide/
+
+Replay WACZ via
+Web client: https://replayweb.page/
+Desktop client: https://github.com/webrecorder/replayweb.page/releases/tag/v2.2.5):
+
+WARC extraction to get to HTML pages:
+https://github.com/chfoo/warcat-rs
+https://warcat-rs.readthedocs.io/en/latest/usage_examples.html#extract-everything
+Extract the WACZ via 7-zip or unzip then use warcat to extract the warc.gz file in the archive folder:
+warcat extract --input "archive\rec-06e7f4f19938-20250122204822175-0.warc.gz"
+
+Site: https://wikiwiki.jp/blacktea/
+WACZ: https://drive.google.com/file/d/1VGy-iiM2dKIyjRnmaqMtqQEaItwI_ika/view?usp=sharing
+Command: docker run -v $PWD/crawls:/crawls/ -it webrecorder/browsertrix-crawler crawl --waitUntil networkidle0 --extraHops 0 --scopeType prefix --blockAds --generateCDX --generateWACZ --text final-to-warc --collection wikiwiki-blacktea --sitemap https://wikiwiki.jp/blacktea/sitemap.txt --url https://wikiwiki.jp/blacktea/ --scopeExcludeRx "wikiwiki.jp/blacktea/\?.*" 
+The reason I decided against wget and other alternatives: I've fiddled around with various wget settings or python-based scripts/libraries etc., but ultimately I couldn't get them to properly parse either sitemaps or they tend to go "too far" or "not far enough" as far as mirroring all the resources and then fail to rewrite the resources, requiring you to host complex web servers with rewrite modules or manually fix links etc. But for the record I was playing around with these commands:
+
+Example:
+wget --user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36 Edg/124.0.0.0" --local-encoding=UTF-8 --wait=1 --random-wait --force-directories --adjust-extension --mirror --page-requisites --span-hosts --restrict-file-names=windows --convert-links -e robots=off --no-parent -D dragonsdogma.com https://www.dragonsdogma.com/
+ 
+I intend to create backups for the known useful wikis we have found so far that are at risk to be lost.
+Site: https://seiyria.com/ddon-faq/ 
+WACZ: https://drive.google.com/file/d/1jIs-1n5GVZO78kx6TUfiZfuqKICQ7sW7/view?usp=sharing
+Command: docker run -v $PWD/crawls:/crawls/ -it webrecorder/browsertrix-crawler crawl --waitUntil networkidle0 --extraHops 0 --scopeType prefix --blockAds --generateCDX --generateWACZ --text final-to-warc --collection seiyria-ddon-faq --url https://seiyria.com/ddon-faq/ --scopeIncludeRx "seiyria.com/ddon-.*" 
+
+Sam — 23/01/2025 07:37
+Site: https://site-1173478-1301-337.mystrikingly.com/ 
+WACZ: https://drive.google.com/file/d/1gV3tJ9FDNy9WKH9ggkdU54Py1hljUCDk/view?usp=sharing
+Command: docker run -v $PWD/crawls:/crawls/ -it webrecorder/browsertrix-crawler crawl --waitUntil networkidle0 --extraHops 0 --scopeType prefix --blockAds --generateCDX --generateWACZ --text final-to-warc --collection mystrikingly-ddon --sitemap https://site-1173478-1301-337.mystrikingly.com/sitemap.xml --url https://site-1173478-1301-337.mystrikingly.com/ --scopeIncludeRx "site\-1173478\-1301\-337\.(my)?strikingly\.com\/" 
+Site: http://ddon.wikidot.com/
+WACZ: https://drive.google.com/file/d/1fE5wzJjY30TLoxQtOl5AICJWuCyg3-0K/view?usp=sharing
+Command: docker run -v $PWD/crawls:/crawls/ -it webrecorder/browsertrix-crawler crawl --waitUntil networkidle0 --extraHops 0 --scopeType prefix --blockAds --generateCDX --generateWACZ --text final-to-warc --collection wikidot --sitemap http://ddon.wikidot.com/sitemap.xml --url http://ddon.wikidot.com/ 
+
+Sam — 25/01/2025 15:12
+Site: https://donutland.jp/edl/lestips/
+WACZ: https://drive.google.com/file/d/1xMPRtiCr3Mxu5sgxL0oZD98SFhc0zLDB/view?usp=sharing
+Notes: The web replayer (desktop version doesn't work at all) has some issues with the font, so you have to click on the URLs once, navigate back and then it should load properly.
+Command: docker run -v $PWD/crawls:/crawls/ -it webrecorder/browsertrix-crawler crawl --waitUntil networkidle0 --extraHops 0 --scopeType prefix --blockAds --generateCDX --generateWACZ --text final-to-warc --collection donutland-lestips --url https://donutland.jp/edl/lestips/ 
+
+Sam — 27/01/2025 12:41
+Site: https://h1g.jp/dd-on/
+WACZ: https://drive.google.com/file/d/15wRaR8aXdE2GI7FVmWDpL_KkX_ZltCvj/view?usp=sharing
+Notes: 7GB in size, web player won't load it, desktop client works fine.
+Command: docker run -v $PWD/crawls:/crawls/ -it webrecorder/browsertrix-crawler crawl --waitUntil networkidle0 --extraHops 0 --scopeType prefix --blockAds --generateCDX --generateWACZ --text final-to-warc --collection h1g-dd-on --url https://h1g.jp/dd-on/ --scopeExcludeRx "h1g\.jp\/dd-on\/(\?(cmd|plugin)|.*RecentDeleted)" 
+
+Sam — 28/01/2025 19:37
+Site: https://ddon38.jp/
+WACZ: https://drive.google.com/file/d/1-GSQsSrkpjhojVQyu7PUwUx_THposWVB/view?usp=sharing
+Command: docker run -v $PWD/crawls:/crawls/ -it webrecorder/browsertrix-crawler crawl --waitUntil networkidle0 --extraHops 0 --scopeType prefix --blockAds --generateCDX --generateWACZ --text final-to-warc --collection ddon38 --sitemap https://ddon38.jp/sitemaps.xml --url https://ddon38.jp/
+
+Sam — 29/01/2025 18:11
+Site: https://rilassato.net/category/ddon/
+WACZ: https://drive.google.com/file/d/11MGLfpuY3Uw1Ct1VtYZRZ70SCaIEnhgi/view?usp=sharing
+Command: docker run -v $PWD/crawls:/crawls/ -it webrecorder/browsertrix-crawler crawl --waitUntil networkidle0 --extraHops 0 --scopeType prefix --blockAds --generateCDX --generateWACZ --text final-to-warc --collection rilassato --sitemap https://rilassato.net/sitemap.xml --url https://rilassato.net/category/ddon/ --scopeIncludeRx "rilassato\.net\/((category\/ddon\/.*)|((wp|ddon)\/.*))"
+
+Sam — 29/01/2025 18:53
+Site: https://www.4gamer.net/games/289/G028968/
+WACZ: https://drive.google.com/file/d/1TI6lgIY29792kK5V2ZZfzgBr4PTfDNTP/view?usp=sharing
+Note: Their article index/search is some weird PHP mess that the webrecorder managed to capture but it's somewhat unusable, it's easier to use the "Resources" search in the replayer app and filter on "HTML" & "Contains" with "G028968".
+Command: docker run -v $PWD/crawls:/crawls/ -it webrecorder/browsertrix-crawler crawl --waitUntil networkidle0 --extraHops 0 --scopeType prefix --blockAds --generateCDX --generateWACZ --text final-to-warc --collection 4gamer-ddon --url https://www.4gamer.net/games/289/G028968/ --scopeIncludeRx "(module\.)?4gamer\.net\/((games\/289\/G028968\/.*)|((script|js|tags|image|img|css)\/.*))" 
+
+Sam — 30/01/2025 11:25
+Site: https://dogmaonlineyyy.wiki.fc2.com/
+WACZ: https://drive.google.com/file/d/1r_jE7rF6IacRgHx1q0e_6mHigtNC_RCw/view?usp=sharing
+Note: This is one of the few wikis that normally requires a JP VPN to visit/backup.
+Command: docker run -v $PWD/crawls:/crawls/ -it webrecorder/browsertrix-crawler crawl --waitUntil networkidle0 --extraHops 0 --scopeType prefix --blockAds --generateCDX --generateWACZ --text final-to-warc --collection fc2-dogmaonlineyyy --sitemap https://dogmaonlineyyy.wiki.fc2.com/sitemap.xml --url https://dogmaonlineyyy.wiki.fc2.com/ --scopeExcludeRx "dogmaonlineyyy\.wiki\.fc2\.com\/dd-on\/(\?(cmd|plugin)|.*RecentDeleted)"

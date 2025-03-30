@@ -101,27 +101,27 @@ struct nDraw_Texture
     if (header.bits.format == nDraw_FORMAT_TYPE::FORMAT_BC1_UNORM_SRGB)
     {
       u8 data0[(header.bits.width / 2) * header.bits.height] @header.offsets[0];
-      if (header.offsets[1])
+      if (header.bits.level_count >1)
       {
         u8 data1[(header.bits.width / 4) * (header.bits.height / 2)] @header.offsets[1];
       }
-      if (header.offsets[2])
+      if (header.bits.level_count >2)
       {
         u8 data1[(header.bits.width / 8) * (header.bits.height / 4)] @header.offsets[2];
       }
-      if (header.offsets[3])
+      if (header.bits.level_count >3)
       {
         u8 data1[(header.bits.width / 16) * (header.bits.height / 8)] @header.offsets[3];
       }
-      if (header.offsets[4])
+      if (header.bits.level_count >4)
       {
         u8 data1[(header.bits.width / 32) * (header.bits.height / 16)] @header.offsets[4];
       }
-      if (header.offsets[5])
+      if (header.bits.level_count >5)
       {
         u8 data1[(header.bits.width / 64) * (header.bits.height / 32)] @header.offsets[5];
       }
-      if (header.offsets[6])
+      if (header.bits.level_count >6)
       {
         u8 data1[(header.bits.width / 128) * (header.bits.height / 64)] @header.offsets[6];
       }
@@ -129,35 +129,35 @@ struct nDraw_Texture
     if (header.bits.format == nDraw_FORMAT_TYPE::FORMAT_BC3_UNORM_SRGB || header.bits.format == nDraw_FORMAT_TYPE::FORMAT_BCX_NM2)
     {
       u8 data0[header.bits.width * header.bits.height] @header.offsets[0];
-      if (header.offsets[1])
+      if (header.bits.level_count >1)
       {
         u8 data1[(header.bits.width >> 1) * (header.bits.height >> 1)] @header.offsets[1];
       }
-      if (header.offsets[2])
+      if (header.bits.level_count >2)
       {
         u8 data2[(header.bits.width >> 2) * (header.bits.height >> 2)] @header.offsets[2];
       }
-      if (header.offsets[3])
+      if (header.bits.level_count >3)
       {
         u8 data3[(header.bits.width >> 3) * (header.bits.height >> 3)] @header.offsets[3];
       }
-      if (header.offsets[4])
+      if (header.bits.level_count >4)
       {
         u8 data4[(header.bits.width >> 4) * (header.bits.height >> 4)] @header.offsets[4];
       }
-      if (header.offsets[5])
+      if (header.bits.level_count >5)
       {
         u8 data5[(header.bits.width >> 5) * (header.bits.height >> 5)] @header.offsets[5];
       }
-      if (header.offsets[6])
+      if (header.levelCount >6)
       {
         u8 data6[(header.bits.width >> 6) * (header.bits.height >> 6)] @header.offsets[6];
       }
-      if (header.offsets[7])
+      if (header.bits.level_count >7)
       {
         u8 data7[(header.bits.width >> 7) * (header.bits.height >> 7)] @header.offsets[7];
       }
-      if (header.mipLevelCount > 8)
+      if (header.bits.level_count > 8)
       {
         u8 data8[(header.bits.width >> 8) * (header.bits.height >> 8)] @header.offsets[8];
       }
@@ -201,8 +201,8 @@ struct rTexture_HEADER
 {
   rTexture_HEADER_bits bits;
   bool hasSphericalHarmonicsFactors = (bits.version & 0xF0000000) == 0x60000000 [[export]];
-  u32 mipLevelCount = bits.array_count * bits.level_count[[export]];
-  u32 offsets[mipLevelCount];
+  u32 miplevel_count = bits.array_count * bits.level_count[[export]];
+  u32 offsets[miplevel_count];
 };
 
 struct rTexture : cResource

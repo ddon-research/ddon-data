@@ -18,19 +18,24 @@ struct MtTypedArray<T> : MtArray
     T arr[mLength];
 };
 
-struct rPackageQuestInfo_cPackageQuestInfo : MtObject
+struct cPackageQuestClientInfo : MtObject
 {
-    //see package_quest.gmd for quest names
-    u32 mPackageNo;
-    u32 mContentInfoIdx;  
-    u32 mGatherNpcId;
-    u32 mGatherInfoIdx;
-    u32 mGatherStartPos;
+    u32 mNpcId;
+    u32 mClientMessageIdx;
+};
+
+struct cPackageQuestInfo : MtObject
+{
+    // see package_quest.gmd for quest names
+    u32 mPackageId;
+    u32 ContentInfoIdx;
+    cPackageQuestClientInfo mClientInfo;
+    u32 mHistoryMessageIdx;
 };
 
 struct rPackageQuestInfo : cResource
 {
-    MtTypedArray<rPackageQuestInfo_cPackageQuestInfo> mPackageQuestInfo;
+    MtTypedArray<cPackageQuestInfo> mPackageQuestInfo;
 };
 
 rPackageQuestInfo rPackagequestinfo_at_0x00 @0x00;
