@@ -36,7 +36,7 @@ struct rTbl2<T> : rTbl2Base
 
 struct cItemEquipJobInfo : MtObject
 {
-    JobFlag Unknown;
+    JobFlag IsUseJob;
 };
 struct rItemEquipJobInfoList : rTbl2<cItemEquipJobInfo>
 {
