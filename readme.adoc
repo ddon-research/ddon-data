@@ -5,26 +5,133 @@ toc::[]
 
 == About
 
-Personal data dumps, exports, and research regarding the DDON client.
+This repository hosts packet and client reverse engineering data for Dragon's Dogma Online (DDON).
+
+Work here centers around:
+
+- Understanding client binaries via disassembly/dumps (IDA/Ghidra) to recover packet structures, resource formats, symbols, and helper methods.
+- Extracting client resource files to JSON for analysis and cross-referencing.
+- Deduplicating, and decrypting network traffic to derive message formats and protocol behavior.
 
 '''
 
-== What can you find where?
+== Repository layout
 
 === binaries
 
-A collection of Ghidra data dumps for the DDON executables.
+Disassembly/dump artifacts for DDON client executables across platforms/versions (e.g., PS4 variants).
+
+- Contents include debug symbols, generated headers, and sometimes decompiled methods relevant to reading/writing packets and client resources.
+- Source of truth when defining field layouts, enums, and serialization order for both packets and file formats.
 
 === client
 
-A collection of JSON exports of the client resource files.
+JSON exports of client resource files, produced with `ddon-extractor`.
+
+- Tooling: https://github.com/ddon-research/ddon-extractor
+- You’ll find per-version directories (e.g., `03040008/`) plus summary CSV/TXT files such as:
+	- `*-headers.csv`: collected header IDs and names
+	- `*-resources.csv` and `*-resources-exclusive.csv`: resource inventories
+	- `*-layout-npc-location.csv`: example domain data extracted
+	- `*-extensions.txt`: file extension statistics
+	- `Benchmark*.csv`: occasional timing/stat summaries for extraction
+
+=== packets
+
+Artifacts and tooling around network captures and decryption.
+
+- `encrypted_streams/`: Wireshark-exported YAML TCP streams, cleaned and deduplicated per flow.
+- `decrypted_annotated/`, `decrypted_json/`, `decrypted_raw/`: outputs from decrypting and post-processing streams via the server emulator CLI.
+- `keys/`: scripts and CSVs documenting brute-forced decryption keys.
+	- Script: `packets/keys/decrypt-pcapng-streams-all-in-one.sh` (see workflow below)
+	- CSV outputs contain the capture, TCP stream index, first-packet header snippet, and the discovered key (time/depth metadata included).
+- Support scripts (shell/jq/ImHex export helpers) used during labeling, statistics, and visualization.
 
 === research
 
-A collection of thoughts, scripts etc.
+Notes, patterns, and helper scripts collected over time, including early groundwork from multiple contributors.
+
+- ImHex patterns for client resources and packets.
+- Wireshark Lua dissector drafts, filter cheat-sheets, and analysis helpers.
+- Misc. utilities and one-off experiments (e.g., DDS patterning, texture research, NPC shop queries).
 
 === Season 1 and Season 2 data
 
-The other season client dumps have been split off, see:
+Earlier season client dumps now live in separate repositories:
+
 - https://github.com/ddon-research/ddon-data-s1
 - https://github.com/ddon-research/ddon-data-s2
+
+'''
+
+== Toolchain and references
+
+- Disassemblers: IDA and/or Ghidra (binaries folder contains prepared dumps and headers)
+- Packet capture/analysis: Wireshark and `tshark`
+- Decryption (CLI): Arrowgene server emulator
+	- Repo: https://github.com/sebastian-heinz/Arrowgene.DragonsDogmaOnline
+	- Binary used here: `Arrowgene.Ddon.Cli`
+- Key bruteforcing: performance-tuned fork and original
+	- Fork: https://github.com/ddon-research/ddon_common_key_bruteforce
+	- Original: https://github.com/Andoryuuta/ddon_common_key_bruteforce
+- Client resource extraction: https://github.com/ddon-research/ddon-extractor
+- Patterning/inspection: ImHex (patterns in `research/`)
+
+'''
+
+== Typical workflows
+
+=== 1) Client resource extraction (JSON)
+
+1. Use `ddon-extractor` on the client installation to dump resource files to JSON.
+2. Place or reference the exported JSON under `client/<version>/` (e.g., `client/03040008/`).
+3. Aggregate statistics and indices (headers, extensions, resource lists) are stored alongside as CSV/TXT for quick lookup.
+
+Outputs are intended for correlation against packet structures and for building higher-level datasets (NPCs, items, layouts, etc.).
+
+=== 2) Packet capture → keys → decryption → analysis
+
+Pipeline overview:
+
+1. Capture network traffic (PCAPNG) during gameplay.
+2. Export and clean TCP streams (YAML) — the repo keeps curated/cleaned streams under `packets/encrypted_streams/` and decrypted derivatives under `packets/decrypted_*`.
+3. Brute-force per-session common keys from the first packet in each stream.
+4. Decrypt streams using the Arrowgene CLI and parse/label messages.
+
+Prerequisites for automation script:
+
+- `tshark` in PATH
+- `Arrowgene.Ddon.Cli` in the current working directory
+- `ddon_common_key_bruteforce` in the current working directory
+
+Automation script (bash): `packets/keys/decrypt-pcapng-streams-all-in-one.sh`
+
+- Purpose: for each PCAPNG, identify candidate first packets, brute-force keys within a bounded time/depth, then decrypt entire TCP streams.
+- Usage:
+
+	- Single file:
+		- `./decrypt-pcapng-streams-all-in-one.sh <capture.pcapng> [output_dir]`
+	- Folder (batch):
+		- `./decrypt-pcapng-streams-all-in-one.sh <folder_with_pcaps> [output_dir]`
+
+- Behavior:
+	- Detects first packets in each stream via `tshark` filters (login, game-select, game) keyed on size/window heuristics and the `0x0060` marker.
+	- Extracts the first 32 bytes after the size indicator as candidate header.
+	- Runs `ddon_common_key_bruteforce` with an expected-plaintext heuristic (`0100000234000000` for login; `2C00000234000000` for game-select/game) to discover the common key.
+	- On success, saves YAML for the stream (`tshark -z follow,tcp,yaml`) and decrypts it with `Arrowgene.Ddon.Cli packet <yaml> <key>`.
+	- Logs per-stream results to CSV with time/depth metadata for the discovered key. Defaults to `decrypted/` output folder; creates `*-keys.csv` per file, or `keys-all-in-one.csv` for batches.
+
+Notes:
+
+- The script is written for bash. On Windows, run via WSL or Git Bash. Ensure the required binaries are available inside that environment.
+- Known key search bounds are tuned for typical sessions (up to ~15k depth and ~40s wall-time). Adjust as needed for rare cases.
+- Filters are empirical and may include occasional false positives; manual review of ambiguous streams is recommended.
+
+'''
+
+== Credits and notes
+
+- Thanks to the original authors and contributors across the DDON community for early research.
+- This repository maintains historical backups of early notes and ImHex patterns to preserve context and aid ongoing efforts.
+
+Legal/ethical note: All data is provided for research, interoperability, and educational purposes.
