@@ -1,0 +1,52 @@
+= Parallel CLI Runner README
+:toc:
+:toclevels: 3
+:icons: font
+:doctype: book
+
+[[purpose]]
+== Purpose
+This script runs a C# CLI (Arrowgene.Ddon.Cli.exe) against many YAML files produced from pcapng/pcap streams.
+It runs multiple CLI instances in parallel, captures per-job logs.
+
+[[requirements]]
+== Requirements
+
+* GNU bash (recommended)
+* coreutils: find, sed, grep, awk
+* Optional but recommended: flock
+* The target CLI binary (configured via `CLI_PATH` in the script)
+
+
+[[config]]
+== Configuration
+Top-of-script variables you will change or override via environment:
+
+* `CLI_PATH` — path to Arrowgene.Ddon.Cli.exe (update for your build)
+* `KEYS_FILE` — default `keys/keys-all-in-one.csv`
+* `STREAM_DIR` — default `encrypted_streams`
+* `MAX_JOBS` — maximum concurrent CLI processes (env override). Defaults to detected CPU count.
+
+Notes:
+
+* The script creates a temporary directory (`mktemp -d`) for per-job logs and removes it on exit. To persist logs, set `tmpdir` to a permanent location and remove the `trap` that deletes it.
+
+[[usage]]
+== Usage
+
+Run normally: `./run-parallel-packet.sh`
+
+Run with tuned parallelism: `MAX_JOBS=6 ./run-parallel-packet.sh`
+
+Per-job output (abbreviated):
+
+* `==== JOB DONE: stream85_tcp11 (exit 0) ====`
+* `file=...`
+* `streamName=...`
+
+[[concurrency]]
+== Concurrency tuning
+
+* Default: `MAX_JOBS` defaults to the number of logical CPUs.
+* If CLI is I/O-bound, increasing `MAX_JOBS` can help. If CPU-bound, set `MAX_JOBS` to the number of physical cores or fewer.
+* Test with small values first; reduce `MAX_JOBS` if the machine becomes unresponsive.

@@ -41,18 +41,19 @@ struct CDataCycleContentsRank
     u8 Unknown2;
 };
 
-struct CDataCycleContentsUnknownDetail
+struct CDataQuestEnemyInfo
 {
-    bool Unknown1;
-    u32 StageNo;
-    bool Unknown2;
+    u32 GroupId;
+    u32 Unk0;
+    u16 Lv;
+    bool IsPartyRecommend;
 };
 
-struct CDataCycleContentsUnknown
+struct CDataCycleContentsUnk
 {
     u32 StageNo;
-    bool Unknown1;
-    CDataCycleContentsUnknownDetail Unknown2;
+    u64 Unk1;
+    u64 Unk2;
 };
 
 struct CDataCycleContentsNews
@@ -68,8 +69,8 @@ struct CDataCycleContentsNews
     u32 TotalPoint;
     u32 PlayNum;
     b8 IsCreateRanking;
-    MtTypedArray<CDataCycleContentsUnknown> CycleContentsUnknownList;
-    u32 Unknown1;
+    MtTypedArray<CDataQuestEnemyInfo> EnemyInfo;
+    MtTypedArray<CDataCycleContentsUnk> Unk0;
     u64 Begin1;
     u64 Interval1;
     u64 Interval2;
@@ -82,6 +83,7 @@ struct CPacket_S2C_GET_CYCLE_CONTENTS_NEWS_LIST_RES : CPacket
 {
     u32 Error;
     s32 Result;
+
     MtTypedArray<CDataCycleContentsNews> CycleContentsNewsList;
 };
 
