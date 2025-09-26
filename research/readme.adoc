@@ -1,0 +1,336 @@
+= Dragon's Dogma Online Resource Decoding Guide
+:toc:
+:toc-title: Table of Contents
+:toc-placement: preamble
+:sectnums:
+:sectanchors:
+:source-highlighter: rouge
+:icons: font
+
+This guide explains how to decode resource files from Dragon's Dogma Online client data using PS4 debug symbols and ImHex pattern definitions.
+
+== Prerequisites
+
+Before starting, ensure you have:
+
+* Basic knowledge of C/C++ programming concepts
+* Understanding of reverse engineering fundamentals  
+* https://imhex.werwolv.net/[ImHex] hex editor installed
+* Access to PS4 IDA dumps in the `binaries/` folder of this repository
+
+== Overview
+
+The process involves three main steps:
+
+1. **Find struct definitions** - Locate header file struct definitions in PS4 debug symbols
+2. **Identify load/save functions** - Extract pseudo code for resource loading functions
+3. **Create ImHex patterns** - Map the information to ImHex pattern definitions
+
+Thanks to the PS4 debug symbols, you don't need to reverse engineer 90% of resource files from scratch.
+
+== Available Debug Symbols
+
+Debug symbols are available in the `binaries/` folder for different game versions:
+
+* Version 0.2.4 (beta) through v2.2.5 (Season 2)
+* Different folder names correspond to different game seasons
+* No debug symbols available for Season 3
+
+=== Version Compatibility Scenarios
+
+When working with resources across different seasons, you may encounter:
+
+[cols="2,3"]
+|===
+|Scenario |Description
+
+|**No changes**
+|Resource definition remains identical across seasons _(best case)_
+
+|**Minor changes**  
+|Only added or removed some attributes _(manageable)_
+
+|**Major changes**
+|Significant structural modifications _(challenging)_
+
+|**Removed resources**
+|Resource exists in S1-S2 but removed in S3 _(e.g., `rPlayerExpTable`)_
+
+|**New resources**
+|Resource only exists in S3 _(e.g., Mandragora-related resources like `rMandraActionParam`)_
+|===
+
+== Getting Started
+
+=== Step 1: Identify Target Resource
+
+. Check currently supported file extensions in https://github.com/ddon-research/ddon-extractor/blob/develop/docs/deserialization/supported-file-extensions.csv[ddon-extractor documentation]
+
+. Compare with resources listed in client resource dumps (e.g., `03040008-resources.csv`)
+
+. Select an unsupported resource to decode
+
+=== Step 2: Version Strategy
+
+The ultimate goal is decoding Season 3 resources. Follow this approach:
+
+. **Start with Season 2 data** - Use the latest Season 2 debug symbols as your foundation
+. **Check version numbers** - Compare resource versions between Season 2 and Season 3
+. **Choose decoding strategy**:
+   - **Similar versions**: Use debug symbols directly, extend patterns as needed
+   - **Different versions**: Requires trial-and-error approach with game context clues
+
+== Practical Example: rLandInfo Resource
+
+This section demonstrates the complete process using the `rLandInfo` resource, which differs between Season 2 and Season 3.
+
+=== Step 1: Extract Struct Definitions
+
+. **Search for the main struct** - Perform a full text search for `rLandInfo` in the IDA header dump (`DDOORBIS.elf.h`)
+
+. **Examine the class hierarchy**:
++
+[source,cpp]
+----
+struct __cppobj rLandInfo : cResource
+{
+  MtTypedArray<rLandInfo::cLandInfo> mLandInfo;
+};
+----
+
+. **Find nested struct definitions**:
++
+[source,cpp]
+----
+struct __cppobj rLandInfo::cLandInfo : MtObject
+{
+  u32 mLandId;
+  MtTypedArray<rLandInfo::cLandInfo::cLandAreaInfo> mAreaArray;
+};
+----
++
+[source,cpp]
+----
+struct __cppobj __attribute__((aligned(8))) rLandInfo::cLandInfo::cLandAreaInfo : MtObject
+{
+  u32 mAreaId;
+};
+----
+
+At this point, you have the complete high-level structure: the resource contains an array of land info objects, each with a land ID and an array of area info objects containing area IDs.
+
+=== Step 2: Analyze Load Functions
+
+. **Locate the main load function** - Search for `rLandInfo::load` in the IDA function dump (`DDOORBIS.elf.c`)
++
+[TIP]
+====
+Load functions might be located on nested struct classes (e.g., `rLandInfo::cLandInfo::load`) especially for array-based resources.
+====
+
+. **Examine the load function**:
++
+[source,cpp]
+----
+bool __fastcall rLandInfo::load(rLandInfo *this, MtStream *in)
+{
+  bool v2;
+  MtDataReader r;
+  __int64 v5;
+
+  v5 = **(_QWORD **)&_stack_chk_guard;
+  MtDataReader::MtDataReader(&r, in, 0x1000u);
+  if ( (*((unsigned int (__fastcall **)(MtDataReader *))r._vptr$MtDataReader + 3))(&r) == 4800844 )
+  {
+    if ( (*((unsigned int (__fastcall **)(MtDataReader *))r._vptr$MtDataReader + 3))(&r) == 2 )
+    {
+      nDDOIO::readMtArray_rLandInfo::cLandInfo_(&r, &this->mLandInfo);
+      v2 = 1;
+    }
+    else
+    {
+      v2 = 0;
+    }
+  }
+  else
+  {
+    v2 = 0;
+  }
+  MtDataReader::_MtDataReader(&r);
+  return v2;
+}
+----
+
+=== Step 3: Decode Header Information
+
+Resource headers typically contain:
+
+* **Magic string** - First 4 bytes represent a shorthand of the resource name
+* **Version number** - Next 4 bytes indicate the format version
+
+For `rLandInfo`:
+
+* `4800844` (decimal) = `0x4C414900` (hex) = `LAI\0` (ASCII)
+* Version number is `2` for Season 2
+
+=== Step 4: Analyze Array Loading
+
+The verbose array loading function can be understood by focusing on `MtDataReader` calls:
+
+[source,cpp]
+----
+void __fastcall nDDOIO::readMtArray_rLandInfo::cLandInfo_(MtDataReader *r, MtTypedArray<rLandInfo::cLandInfo> *ar)
+{
+[...]
+}
+----
+
+The data flow is: read array → read u32 land IDs → read nested array → read u32 area IDs.
+
+=== Step 5: Create Initial ImHex Pattern
+
+Based on the struct analysis, create the Season 2 pattern:
+
+[source,cpp]
+----
+struct MtObject
+{
+};
+
+struct cResource
+{
+    char magicString[];
+    u32 magicVersion;
+};
+
+struct MtArray
+{
+    u32 mLength;
+};
+
+struct MtTypedArray<T> : MtArray
+{
+    T arr[mLength];
+};
+
+struct rLandInfo_cLandInfo_cLandAreaInfo : MtObject
+{
+    u32 mAreaId;
+};
+
+struct rLandInfo_cLandInfo : MtObject
+{
+    u32 mLandId;
+    MtTypedArray<rLandInfo_cLandInfo_cLandAreaInfo> mAreaArray;
+};
+
+struct rLandInfo : cResource
+{
+    MtTypedArray<rLandInfo_cLandInfo> mLandInfo;
+};
+
+rLandInfo rlandinfo_at_0x00 @0x00;
+----
+
+=== Step 6: Test and Locate Files
+
+. **Find resource file paths**:
+   - Season 2: Check `02030004.csv` → `nativePC\rom\game_common\scr\land_list.lai`
+   - Season 3: `nativePC\rom\base\scr\land_list.lai`
+
+. **Load in ImHex** - Test the pattern on both Season 2 and Season 3 files
+
+. **Identify version differences** - Season 3 shows version `4` instead of `2`
+
+=== Step 7: Debug Season 3 Compatibility
+
+When applying the Season 2 pattern to Season 3 files, you may encounter errors like:
+
+----
+Array grew past set limit of 65536
+----
+
+This indicates structural differences requiring pattern adjustments.
+
+=== Step 8: Trial and Error Approach
+
+. **Disable automatic arrays** - Replace `MtTypedArray` with manual length reading:
++
+[source,cpp]
+----
+struct rLandInfo_cLandInfo : MtObject
+{
+    u32 mLandId;
+    //MtTypedArray<rLandInfo_cLandInfo_cLandAreaInfo> mAreaArray;
+    u32 mAreaArrayLen;
+    rLandInfo_cLandInfo_cLandAreaInfo mAreaArray[0];
+};
+
+struct rLandInfo : cResource
+{
+    //MtTypedArray<rLandInfo_cLandInfo> mLandInfo;
+    u32 mLandInfoLen;
+    rLandInfo_cLandInfo mLandInfo[0];
+};
+----
+
+. **Analyze array boundaries** - Compare Season 2 vs Season 3 data:
+   - Season 2: 3 lands, first land (Lestania) has 12 areas
+   - Season 3: 10 lands with different area distributions
+
+. **Export for analysis** - Use ImHex to export decoded data as JSON for better visualization:
++
+[source,json]
+----
+{
+    "rlandinfo_at_0x00": {
+        "magicString": "LAI%00",
+        "magicVersion": 2,
+        "mLandInfo": {
+            "mLength": 3,
+            "arr": [
+                {
+                    "mLandId": 1,
+                    "mAreaArray": {
+                        "mLength": 12,
+                        "arr": [
+                            {"mAreaId": 1}, {"mAreaId": 2}, 
+                            // ... areas 3-12 ...
+                        ]
+                    }
+                }
+                // ... other lands ...
+            ]
+        }
+    }
+}
+----
+
+=== Step 9: Final Season 3 Pattern
+
+Through iterative testing, the final Season 3 pattern includes two additional fields:
+
+[source,cpp]
+----
+struct rLandInfo_cLandInfo_cLandAreaInfo : MtObject
+{
+    u32 mAreaId;
+};
+
+struct rLandInfo_cLandInfo : MtObject
+{
+    u32 mLandId;
+    bool mIsDispNews;    // New in Season 3
+    u8 mGameMode;        // New in Season 3  
+    MtTypedArray<rLandInfo_cLandInfo_cLandAreaInfo> mAreaArray;
+};
+
+struct rLandInfo : cResource
+{
+    MtTypedArray<rLandInfo_cLandInfo> mLandInfo;
+};
+
+rLandInfo rlandinfo_at_0x00 @0x00;
+----
+
+The two new attributes (`mIsDispNews` boolean and `mGameMode` byte) can be identified by observing the ImHex preview while adjusting the pattern.
