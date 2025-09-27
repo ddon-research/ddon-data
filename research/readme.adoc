@@ -18,427 +18,221 @@ Before starting, ensure you have:
 * https://imhex.werwolv.net/[ImHex] hex editor installed
 * Access to PS4 IDA dumps in the `binaries/` folder of this repository
 
-== Overview
+=== For Automated Analysis (Recommended)
 
-The process involves three main steps:
-
-1. **Find struct definitions** - Locate header file struct definitions in PS4 debug symbols
-2. **Identify load/save functions** - Extract pseudo code for resource loading functions
-3. **Create ImHex patterns** - Map the information to ImHex pattern definitions
-
-Thanks to the PS4 debug symbols, you don't need to reverse engineer 90% of resource files from scratch.
-
-== Available Debug Symbols
-
-Debug symbols are available in the `binaries/` folder for different game versions:
-
-* Version 0.2.4 (beta) through v2.2.5 (Season 2)
-* Different folder names correspond to different game seasons
-* No debug symbols available for Season 3
-
-=== Version Compatibility Scenarios
-
-When working with resources across different seasons, you may encounter:
-
-[cols="2,3"]
-|===
-|Scenario |Description
-
-|**No changes**
-|Resource definition remains identical across seasons _(best case)_
-
-|**Minor changes**  
-|Only added or removed some attributes _(manageable)_
-
-|**Major changes**
-|Significant structural modifications _(challenging)_
-
-|**Removed resources**
-|Resource exists in S1-S2 but removed in S3 _(e.g., `rPlayerExpTable`)_
-
-|**New resources**
-|Resource only exists in S3 _(e.g., Mandragora-related resources like `rMandraActionParam`)_
-|===
+* **PyGhidra** - Python interface for headless Ghidra execution
+* **Ghidra 11.4+** - With PS4 DDON project already imported
+* **Configured `.env` file** - Located in `research/ghidra/` with paths and settings
+* **Bash environment** - WSL, Git Bash, or native Linux/macOS for running shell scripts
 
 == Getting Started
 
-=== Step 1: Identify Target Resource
+=== 1. Identify Target Resource
 
-. Check currently supported file extensions in https://github.com/ddon-research/ddon-extractor/blob/develop/docs/deserialization/supported-file-extensions.csv[ddon-extractor documentation]
+Check unsupported extensions in https://github.com/ddon-research/ddon-extractor/blob/develop/docs/deserialization/supported-file-extensions.csv[ddon-extractor documentation] and compare with resource dumps (e.g., `03040008-resources.csv`).
 
-. Compare with resources listed in client resource dumps (e.g., `03040008-resources.csv`)
+=== 2. Extract Resource Structure  
 
-. Select an unsupported resource to decode
+Use Ghidra automation to get struct definitions and load function analysis:
 
-=== Step 2: Version Strategy
+[source,bash]
+----
+cd research/ghidra
+# Get struct definitions
+./run_ghidra_analysis.sh dwarf "rResourceName" "DDOORBIS.elf" > struct_output.txt
 
-The ultimate goal is decoding Season 3 resources. Follow this approach:
+# Get load function with magic numbers
+./run_ghidra_analysis.sh function "rResourceName::load" "DDOORBIS.elf" > function_output.txt
+----
 
-. **Start with Season 2 data** - Use the latest Season 2 debug symbols as your foundation
-. **Check version numbers** - Compare resource versions between Season 2 and Season 3
-. **Choose decoding strategy**:
-   - **Similar versions**: Use debug symbols directly, extend patterns as needed
-   - **Different versions**: Requires trial-and-error approach with game context clues
+=== 3. Create ImHex Pattern
 
-== Practical Example: rLandInfo Resource
+Convert Ghidra output to ImHex pattern format in `research/<version>/rResourceName-pattern.cpp`.
 
-This section demonstrates the complete process using the `rLandInfo` resource, which differs between Season 2 and Season 3.
+=== 4. Test and Iterate
 
-=== Step 1: Extract Struct Definitions
+Validate patterns with ImHex CLI and adapt for Season 3 differences:
 
-. **Search for the main struct** - Perform a full text search for `rLandInfo` in the IDA header dump (`DDOORBIS.elf.h`)
+[source,bash]
+----
+# Test pattern
+imhex --pl format --pattern rResourceName-pattern.cpp --input resource.ext
 
-. **Examine the class hierarchy**:
-+
+# Batch validation 
+./validate_pattern.sh rResourceName-pattern.cpp test_files/ "field1,field2"
+----
+
+== Practical Example: rLandInfo
+
+This demonstrates the complete workflow using `rLandInfo`, which has structural differences between Season 2 and Season 3.
+
+=== Struct Analysis with Ghidra
+
+Running the DWARF symbol explorer on `rLandInfo`:
+
+[source,bash]
+----
+./run_ghidra_analysis.sh dwarf "rLandInfo" "DDOORBIS.elf"
+----
+
+**Output (key structures)**:
 [source,cpp]
 ----
-struct __cppobj rLandInfo : cResource
-{
+struct rLandInfo : public cResource {
   MtTypedArray<rLandInfo::cLandInfo> mLandInfo;
 };
-----
 
-. **Find nested struct definitions**:
-+
-[source,cpp]
-----
-struct __cppobj rLandInfo::cLandInfo : MtObject
-{
+struct rLandInfo::cLandInfo : public MtObject {
   u32 mLandId;
   MtTypedArray<rLandInfo::cLandInfo::cLandAreaInfo> mAreaArray;
 };
-----
-+
-[source,cpp]
-----
-struct __cppobj __attribute__((aligned(8))) rLandInfo::cLandInfo::cLandAreaInfo : MtObject
-{
+
+struct rLandInfo::cLandInfo::cLandAreaInfo : public MtObject {
   u32 mAreaId;
 };
 ----
 
-At this point, you have the complete high-level structure: the resource contains an array of land info objects, each with a land ID and an array of area info objects containing area IDs.
+The structure shows a hierarchical array: lands contain arrays of area info objects.
 
-=== Step 2: Analyze Load Functions
+=== Load Function Analysis
 
-. **Locate the main load function** - Search for `rLandInfo::load` in the IDA function dump (`DDOORBIS.elf.c`)
-+
-[TIP]
-====
-Load functions might be located on nested struct classes (e.g., `rLandInfo::cLandInfo::load`) especially for array-based resources.
-====
+Running the function analyzer reveals the binary format:
 
-. **Examine the load function**:
-+
+[source,bash]
+----
+./run_ghidra_analysis.sh function "rLandInfo::load" "DDOORBIS.elf"
+----
+
+**Key findings**:
+- Magic number: `4800844` = `0x4C414900` = `"LAI\0"`  
+- Season 2 version: `2`, Season 3 version: `4`
+- Binary layout: magic → version → array data
+
+=== ImHex Pattern Development
+
+**Season 2 Base Pattern**:
 [source,cpp]
 ----
-bool __fastcall rLandInfo::load(rLandInfo *this, MtStream *in)
-{
-  bool v2;
-  MtDataReader r;
-  __int64 v5;
+struct MtObject { };
 
-  v5 = **(_QWORD **)&_stack_chk_guard;
-  MtDataReader::MtDataReader(&r, in, 0x1000u);
-  if ( (*((unsigned int (__fastcall **)(MtDataReader *))r._vptr$MtDataReader + 3))(&r) == 4800844 )
-  {
-    if ( (*((unsigned int (__fastcall **)(MtDataReader *))r._vptr$MtDataReader + 3))(&r) == 2 )
-    {
-      nDDOIO::readMtArray_rLandInfo::cLandInfo_(&r, &this->mLandInfo);
-      v2 = 1;
-    }
-    else
-    {
-      v2 = 0;
-    }
-  }
-  else
-  {
-    v2 = 0;
-  }
-  MtDataReader::_MtDataReader(&r);
-  return v2;
-}
-----
-
-=== Step 3: Decode Header Information
-
-Resource headers typically contain:
-
-* **Magic string** - First 4 bytes represent a shorthand of the resource name
-* **Version number** - Next 4 bytes indicate the format version
-
-For `rLandInfo`:
-
-* `4800844` (decimal) = `0x4C414900` (hex) = `LAI\0` (ASCII)
-* Version number is `2` for Season 2
-
-=== Step 4: Analyze Array Loading
-
-The verbose array loading function can be understood by focusing on `MtDataReader` calls:
-
-[source,cpp]
-----
-void __fastcall nDDOIO::readMtArray_rLandInfo::cLandInfo_(MtDataReader *r, MtTypedArray<rLandInfo::cLandInfo> *ar)
-{
-[...]
-}
-----
-
-The data flow is: read array → read u32 land IDs → read nested array → read u32 area IDs.
-
-=== Step 5: Create Initial ImHex Pattern
-
-Based on the struct analysis, create the Season 2 pattern:
-
-[source,cpp]
-----
-struct MtObject
-{
-};
-
-struct cResource
-{
-    char magicString[];
+struct cResource {
+    char magicString[4];
     u32 magicVersion;
 };
 
-struct MtArray
-{
-    u32 mLength;
-};
-
-struct MtTypedArray<T> : MtArray
-{
-    T arr[mLength];
-};
-
-struct rLandInfo_cLandInfo_cLandAreaInfo : MtObject
-{
+struct rLandInfo_cLandInfo_cLandAreaInfo : MtObject {
     u32 mAreaId;
 };
 
-struct rLandInfo_cLandInfo : MtObject
-{
+struct rLandInfo_cLandInfo : MtObject {
     u32 mLandId;
     MtTypedArray<rLandInfo_cLandInfo_cLandAreaInfo> mAreaArray;
 };
 
-struct rLandInfo : cResource
-{
+struct rLandInfo : cResource {
     MtTypedArray<rLandInfo_cLandInfo> mLandInfo;
 };
 
 rLandInfo rlandinfo_at_0x00 @0x00;
 ----
 
-=== Step 6: Test and Locate Files
-
-. **Find resource file paths**:
-   - Season 2: Check `02030004.csv` → `nativePC\rom\game_common\scr\land_list.lai`
-   - Season 3: `nativePC\rom\base\scr\land_list.lai`
-
-. **Load in ImHex** - Test the pattern on both Season 2 and Season 3 files
-
-. **Identify version differences** - Season 3 shows version `4` instead of `2`
-
-=== Step 7: Debug Season 3 Compatibility
-
-When applying the Season 2 pattern to Season 3 files, you may encounter errors like:
-
-----
-Array grew past set limit of 65536
-----
-
-This indicates structural differences requiring pattern adjustments.
-
-=== Step 8: Trial and Error Approach
-
-. **Disable automatic arrays** - Replace `MtTypedArray` with manual length reading:
-+
+**Season 3 Adaptation**:
+Through iterative testing, Season 3 adds two fields to `cLandInfo`:
 [source,cpp]
 ----
-struct rLandInfo_cLandInfo : MtObject
-{
-    u32 mLandId;
-    //MtTypedArray<rLandInfo_cLandInfo_cLandAreaInfo> mAreaArray;
-    u32 mAreaArrayLen;
-    rLandInfo_cLandInfo_cLandAreaInfo mAreaArray[0];
-};
-
-struct rLandInfo : cResource
-{
-    //MtTypedArray<rLandInfo_cLandInfo> mLandInfo;
-    u32 mLandInfoLen;
-    rLandInfo_cLandInfo mLandInfo[0];
-};
-----
-
-. **Analyze array boundaries** - Compare Season 2 vs Season 3 data:
-   - Season 2: 3 lands, first land (Lestania) has 12 areas
-   - Season 3: 10 lands with different area distributions
-
-. **Export for analysis** - Use ImHex to export decoded data as JSON for better visualization:
-+
-[source,json]
-----
-{
-    "rlandinfo_at_0x00": {
-        "magicString": "LAI%00",
-        "magicVersion": 2,
-        "mLandInfo": {
-            "mLength": 3,
-            "arr": [
-                {
-                    "mLandId": 1,
-                    "mAreaArray": {
-                        "mLength": 12,
-                        "arr": [
-                            {"mAreaId": 1}, {"mAreaId": 2}, 
-                            // ... areas 3-12 ...
-                        ]
-                    }
-                }
-                // ... other lands ...
-            ]
-        }
-    }
-}
-----
-
-=== Step 9: Final Season 3 Pattern
-
-Through iterative testing, the final Season 3 pattern includes two additional fields:
-
-[source,cpp]
-----
-struct rLandInfo_cLandInfo_cLandAreaInfo : MtObject
-{
-    u32 mAreaId;
-};
-
-struct rLandInfo_cLandInfo : MtObject
-{
+struct rLandInfo_cLandInfo : MtObject {
     u32 mLandId;
     bool mIsDispNews;    // New in Season 3
     u8 mGameMode;        // New in Season 3  
     MtTypedArray<rLandInfo_cLandInfo_cLandAreaInfo> mAreaArray;
 };
-
-struct rLandInfo : cResource
-{
-    MtTypedArray<rLandInfo_cLandInfo> mLandInfo;
-};
-
-rLandInfo rlandinfo_at_0x00 @0x00;
 ----
 
-The two new attributes (`mIsDispNews` boolean and `mGameMode` byte) can be identified by observing the ImHex preview while adjusting the pattern.
+== Complete Workflow Summary
+
+The complete automated pipeline combines analysis, pattern generation, and validation:
+
+[source,bash]
+----
+# 1. Extract information from debug symbols
+./run_ghidra_analysis.sh dwarf "rResourceName" "DDOORBIS.elf" > struct_output.txt
+./run_ghidra_analysis.sh function "rResourceName::load" "DDOORBIS.elf" > function_output.txt
+
+# 2. Create ImHex pattern from output
+# (Convert struct definitions to pattern format in research/<version>/)
+
+# 3. Validate and iterate  
+imhex --pl format --pattern rResourceName-pattern.cpp --input season2_resource.ext
+imhex --pl format --pattern rResourceName-pattern.cpp --input season3_resource.ext
+
+# 4. Batch validation
+./validate_pattern.sh rResourceName-pattern.cpp test_files/ "field1,field2"
+----
+
+**Iteration Process:**
+1. If Season 3 validation fails, analyze error patterns  
+2. Adjust pattern incrementally (add/remove fields)
+3. Re-validate with ImHex CLI for quick feedback
+4. Document structural differences for future reference
+
+== Ghidra Headless Analysis Scripts
+
+The repository includes PyGhidra automation scripts for extracting C++ definitions and function analysis from DWARF debug symbols:
+
+[source,bash]
+----
+./run_ghidra_analysis.sh <mode> <symbol/function> <program>
+----
+
+**Modes:**
+- `dwarf` - Extract struct definitions with inheritance and dependencies
+- `function` - Decompile functions with call graph analysis
+
+**Usage:**
+[source,bash]
+----
+cd research/ghidra
+
+# Extract struct definitions
+./run_ghidra_analysis.sh dwarf "rResourceName" "DDOORBIS.elf"
+
+# Analyze load functions  
+./run_ghidra_analysis.sh function "rResourceName::load" "DDOORBIS.elf"
+
+# Quiet mode (logs only)
+./run_ghidra_analysis.sh dwarf "rResourceName" "DDOORBIS.elf" --quiet
+----
+
+**Configuration:** Scripts read from `.env` file:
+- `PYGHIDRA_RUN` - PyGhidra executable path
+- `PROJECT_DIR`/`PROJECT_NAME` - Ghidra project location
+- `DEFAULT_LOG_LEVEL`/`DEFAULT_EXPLORE_DEPTH` - Analysis parameters
+
+**Output:** Clean C++ code with proper formatting, inheritance syntax, and dependency ordering.
 
 == ImHex Command Line Interface
 
-ImHex provides command line functionality that enables automated pattern testing and batch processing of resource files. This is particularly useful for:
-The fundamental command structure for pattern evaluation is:
+ImHex CLI enables automated pattern testing and batch validation:
 
 [source,bash]
 ----
-./imhex --pl format --pattern <pattern_file> --input <resource_file>
+imhex --pl format --pattern <pattern_file> --input <resource_file>
 ----
 
-=== Command Line Options
+**Key Options:**
+- `--pl format` - Pattern language formatter plugin
+- `--pattern <file>` - ImHex pattern file (.cpp or .hexpat)  
+- `--input <file>` - Binary resource file to decode
+- `--output <file>` - JSON output file (optional, defaults to stdout)
 
-[cols="1,2,1"]
-|===
-|Option |Description |Required
-
-|`--pl format`
-|Specifies the pattern language formatter plugin
-|Yes
-
-|`--pattern <file>`
-|Path to the ImHex pattern file (`.hexpat` or `.cpp`)
-|Yes
-
-|`--input <file>` 
-|Path to the binary resource file to decode
-|Yes
-
-|`--output <file>`
-|Output file for JSON results (optional, defaults to stdout)
-|No
-|===
-
-=== Practical Examples
-
-==== Basic Pattern Testing
-
-Test the rLandInfo pattern against a Season 2 resource file:
-
+**Usage:**
 [source,bash]
 ----
-./imhex --pl format \
-  --pattern "C:\ddon-data\research\02030004\rLandInfo-pattern.hexpat" \
-  --input "C:\DDO-Client\nativePC\rom\game_common\scr\land_list.lai"
+# Test pattern
+imhex --pl format --pattern rLandInfo-pattern.cpp --input land_list.lai
+
+# Batch validation with custom script
+./validate_pattern.sh rLandInfo-pattern.cpp test_files/ "mLandId,mGameMode"
 ----
 
-==== Windows PowerShell Example
-
-For Windows users with PowerShell:
-
-[source,powershell]
-----
-& "C:\Program Files\ImHex\imhex.exe" --pl format `
-  --pattern "D:\ddon-data\research\02030004\rLandInfo-pattern.hexpat" `
-  --input "D:\DDO-Season3\nativePC\rom\base\scr\land_list.lai" `
-  --output "land_info_decoded.json"
-----
-
-=== Output Interpretation
-
-When a pattern successfully decodes a resource, ImHex outputs valid JSON to stdout (or the specified output file).
-Otherwise an error is generated: `Pattern Error: 18:18 -> runtime error: Array grew past set limit of 65536`
-
-==== Pattern Validation Script
-
-Create a validation script to test patterns against known good files:
-
-[source,bash]
-----
-#!/bin/bash
-# validate_pattern.sh
-
-PATTERN="$1"
-TEST_FILE="$2"
-EXPECTED_FIELDS="$3"  # comma-separated list
-
-echo "Validating pattern: $PATTERN"
-result=$(./imhex --pl format --pattern "$PATTERN" --input "$TEST_FILE" 2>&1)
-
-if [[ $? -eq 0 ]]; then
-    echo "✓ Pattern executed successfully"
-    
-    # Check for expected fields
-    IFS=',' read -ra fields <<< "$EXPECTED_FIELDS"
-    for field in "${fields[@]}"; do
-        if echo "$result" | grep -q "\"$field\""; then
-            echo "✓ Found expected field: $field"
-        else
-            echo "✗ Missing expected field: $field"
-            exit 1
-        fi
-    done
-else
-    echo "✗ Pattern failed: $result"
-    exit 1
-fi
-----
-
-==== Usage Example
-
-[source,bash]
-----
-./validate_pattern.sh \
-    "./patterns/rLandInfo.hexpat" \
-    "./test-data/land_list.lai" \
-    "mLandId,mIsDispNews,mGameMode"
-----
+**Output:** Valid JSON on success, error messages on failure (e.g., `Pattern Error: runtime error: Array grew past set limit`).
