@@ -334,3 +334,111 @@ rLandInfo rlandinfo_at_0x00 @0x00;
 ----
 
 The two new attributes (`mIsDispNews` boolean and `mGameMode` byte) can be identified by observing the ImHex preview while adjusting the pattern.
+
+== ImHex Command Line Interface
+
+ImHex provides command line functionality that enables automated pattern testing and batch processing of resource files. This is particularly useful for:
+The fundamental command structure for pattern evaluation is:
+
+[source,bash]
+----
+./imhex --pl format --pattern <pattern_file> --input <resource_file>
+----
+
+=== Command Line Options
+
+[cols="1,2,1"]
+|===
+|Option |Description |Required
+
+|`--pl format`
+|Specifies the pattern language formatter plugin
+|Yes
+
+|`--pattern <file>`
+|Path to the ImHex pattern file (`.hexpat` or `.cpp`)
+|Yes
+
+|`--input <file>` 
+|Path to the binary resource file to decode
+|Yes
+
+|`--output <file>`
+|Output file for JSON results (optional, defaults to stdout)
+|No
+|===
+
+=== Practical Examples
+
+==== Basic Pattern Testing
+
+Test the rLandInfo pattern against a Season 2 resource file:
+
+[source,bash]
+----
+./imhex --pl format \
+  --pattern "C:\ddon-data\research\02030004\rLandInfo-pattern.hexpat" \
+  --input "C:\DDO-Client\nativePC\rom\game_common\scr\land_list.lai"
+----
+
+==== Windows PowerShell Example
+
+For Windows users with PowerShell:
+
+[source,powershell]
+----
+& "C:\Program Files\ImHex\imhex.exe" --pl format `
+  --pattern "D:\ddon-data\research\02030004\rLandInfo-pattern.hexpat" `
+  --input "D:\DDO-Season3\nativePC\rom\base\scr\land_list.lai" `
+  --output "land_info_decoded.json"
+----
+
+=== Output Interpretation
+
+When a pattern successfully decodes a resource, ImHex outputs valid JSON to stdout (or the specified output file).
+Otherwise an error is generated: `Pattern Error: 18:18 -> runtime error: Array grew past set limit of 65536`
+
+==== Pattern Validation Script
+
+Create a validation script to test patterns against known good files:
+
+[source,bash]
+----
+#!/bin/bash
+# validate_pattern.sh
+
+PATTERN="$1"
+TEST_FILE="$2"
+EXPECTED_FIELDS="$3"  # comma-separated list
+
+echo "Validating pattern: $PATTERN"
+result=$(./imhex --pl format --pattern "$PATTERN" --input "$TEST_FILE" 2>&1)
+
+if [[ $? -eq 0 ]]; then
+    echo "✓ Pattern executed successfully"
+    
+    # Check for expected fields
+    IFS=',' read -ra fields <<< "$EXPECTED_FIELDS"
+    for field in "${fields[@]}"; do
+        if echo "$result" | grep -q "\"$field\""; then
+            echo "✓ Found expected field: $field"
+        else
+            echo "✗ Missing expected field: $field"
+            exit 1
+        fi
+    done
+else
+    echo "✗ Pattern failed: $result"
+    exit 1
+fi
+----
+
+==== Usage Example
+
+[source,bash]
+----
+./validate_pattern.sh \
+    "./patterns/rLandInfo.hexpat" \
+    "./test-data/land_list.lai" \
+    "mLandId,mIsDispNews,mGameMode"
+----
