@@ -1,0 +1,225 @@
+= rLandInfo Resource Decoding - Practical Example
+:toc:
+:toc-title: Table of Contents
+:toc-placement: preamble
+:sectnums:
+:sectanchors:
+:source-highlighter: highlight.js
+:icons: font
+
+Complete walkthrough of the resource decoding workflow using `rLandInfo` (`.lai` files), demonstrating both successful Season 2 pattern development and Season 3 adaptation challenges.
+
+== Resource Overview
+
+**Target Resource**: `rLandInfo` - Land and area information
+**File Extension**: `.lai` 
+**Magic String**: `"LAI\0"` (0x49414c00)
+**Locations**: 
+- Season 2: `DDON_02030004/nativePC/rom/game_common/scr/land_list.lai`
+- Season 3: `DDON_03040008/nativePC/rom/base/scr/land_list.lai`
+
+== Step 1: Symbol Extraction
+
+**Command**:
+```bash
+cd research/ghidra/headless-scripts
+./run_ghidra_analysis.sh dwarf "rLandInfo" "DDOORBIS.elf"
+```
+
+**Output** (key structures):
+```cpp
+struct rLandInfo : public cResource {
+  MtTypedArray<rLandInfo::cLandInfo> mLandInfo;  // offset: 112, size: 32
+};  // Total size: 144 bytes
+
+struct rLandInfo::cLandInfo : public MtObject {
+  uint32_t mLandId;  // offset: 8, size: 4
+  MtTypedArray<rLandInfo::cLandInfo::cLandAreaInfo> mAreaArray;  // offset: 16, size: 32
+};  // Total size: 48 bytes
+
+struct rLandInfo::cLandInfo::cLandAreaInfo : public MtObject {
+  uint32_t mAreaId;  // offset: 8, size: 4
+};  // Total size: 16 bytes
+```
+
+**Load Function Analysis**:
+```bash
+./run_ghidra_analysis.sh function "rLandInfo::load" "DDOORBIS.elf"
+```
+
+**Key Findings**:
+- Magic check: `if (uVar2 == 0x49414c)` → Magic string `"LAI\0"`
+- Version check: `if (uVar2 == 2)` → Season 2 uses version `2`
+- Binary layout: `magic → version → MtArray<rLandInfo::cLandInfo>`
+
+== Step 2: Season 2 Pattern Development
+
+**Generated Pattern** (`research/02030004/rLandInfo-pattern.cpp`):
+```cpp
+struct MtObject
+{
+};
+
+struct cResource
+{
+    char magicString[4];
+    u32 magicVersion;
+};
+
+struct MtArray
+{
+    u32 mLength;
+};
+
+struct MtTypedArray<T> : MtArray
+{
+    T arr[mLength];
+};
+
+struct rLandInfo_cLandInfo_cLandAreaInfo : MtObject
+{
+    u32 mAreaId;
+};
+
+struct rLandInfo_cLandInfo : MtObject
+{
+    u32 mLandId;
+    MtTypedArray<rLandInfo_cLandInfo_cLandAreaInfo> mAreaArray;
+};
+
+struct rLandInfo : cResource
+{
+    MtTypedArray<rLandInfo_cLandInfo> mLandInfo;
+};
+
+rLandInfo rlandinfo_at_0x00 @0x00;
+```
+
+== Step 3: Season 2 Validation
+
+**Command**:
+```bash
+imhex --pl format --pattern 02030004/rLandInfo-pattern.cpp --input D:/DDON_02030004/nativePC/rom/game_common/scr/land_list.lai
+```
+
+**✅ SUCCESS - Output**:
+```json
+{
+    "rlandinfo_at_0x00": {
+        "magicString": "LAI%00",
+        "magicVersion": 2,
+        "mLandInfo": {
+            "mLength": 3,
+            "arr": [
+                {
+                    "mLandId": 1,
+                    "mAreaArray": {
+                        "mLength": 12,
+                        "arr": [
+                            {"mAreaId": 1}, {"mAreaId": 2}, {"mAreaId": 3},
+                            {"mAreaId": 4}, {"mAreaId": 5}, {"mAreaId": 6},
+                            {"mAreaId": 7}, {"mAreaId": 8}, {"mAreaId": 9},
+                            {"mAreaId": 10}, {"mAreaId": 11}, {"mAreaId": 12}
+                        ]
+                    }
+                },
+                {
+                    "mLandId": 2,
+                    "mAreaArray": {
+                        "mLength": 1,
+                        "arr": [{"mAreaId": 13}]
+                    }
+                },
+                {
+                    "mLandId": 3,
+                    "mAreaArray": {
+                        "mLength": 4,
+                        "arr": [
+                            {"mAreaId": 14}, {"mAreaId": 15}, 
+                            {"mAreaId": 16}, {"mAreaId": 17}
+                        ]
+                    }
+                }
+            ]
+        }
+    }
+}
+```
+
+**Analysis**: Perfect parsing with 3 lands containing 12, 1, and 4 areas respectively.
+
+== Step 4: Cross-Season Testing
+
+**Command**:
+```bash
+imhex --pl format --pattern 02030004/rLandInfo-pattern.cpp --input D:/DDON_03040008/nativePC/rom/base/scr/land_list.lai
+```
+
+**❌ FAILURE - Output**:
+```
+Pattern Error: 18:18 -> runtime error: Array grew past set limit of 65536
+  -->   in 02030004\rLandInfo-pattern.cpp:18:18
+18 |     T arr[mLength];
+                      ^
+
+If this is intended, try increasing the limit using '#pragma array_limit <new_limit>'.
+```
+
+**Diagnosis**: This error indicates field misalignment, not large arrays. The Season 2 pattern is reading garbage data for `mLength` because Season 3 added new fields to `rLandInfo_cLandInfo`.
+
+== Step 5: Season 3 Investigation Process
+
+**Manual Analysis Required**: Season 3 has structural changes not captured in PS4 debug symbols (which are Season 2).
+
+**Investigation Steps**:
+
+1. **Hex Comparison**: Open both Season 2 and Season 3 files in hex editor
+2. **Magic/Version Check**: Confirm Season 3 uses version `4` instead of `2`  
+3. **Field Discovery**: Identify new fields added to `cLandInfo` struct
+4. **Iterative Pattern Updates**: Add fields incrementally and test
+
+**Expected Season 3 Changes**:
+- Magic version: `4` (instead of `2`)
+- Additional fields in `rLandInfo_cLandInfo` (exact fields unknown without manual analysis)
+- Possible field reordering or new data types
+
+**Season 3 Pattern Development**:
+```cpp
+// Example hypothetical Season 3 adaptation
+struct rLandInfo_cLandInfo : MtObject
+{
+    u32 mLandId;
+    bool mIsDispNews;    // Hypothetical new field
+    u8 mGameMode;        // Hypothetical new field
+    MtTypedArray<rLandInfo_cLandInfo_cLandAreaInfo> mAreaArray;
+};
+```
+
+== Lessons Learned
+
+**Automation Limitations**:
+- Debug symbols only provide Season 2 structure
+- Season 3 changes require manual reverse engineering
+- Pattern errors often indicate struct misalignment, not array size issues
+
+**Successful Workflow**:
+1. ✅ Automated symbol extraction works perfectly for base structure
+2. ✅ Season 2 pattern generation and validation is fully automated  
+3. ❌ Cross-season adaptation requires manual investigation and iteration
+4. ✅ ImHex CLI provides rapid feedback for pattern testing
+
+**Key Insight**: The automation gets you 80% there quickly, but cross-version differences need manual analysis. The systematic workflow helps identify where automation ends and manual work begins.
+
+== File Locations
+
+```
+research/
+├── rLandInfo.h                    # Extracted struct definitions  
+├── rLandInfo_load.cpp             # Extracted load function
+├── 02030004/
+│   └── rLandInfo-pattern.cpp      # Working Season 2 pattern
+└── 03040008/                      # Season 3 patterns
+    └── rLandInfo-pattern.cpp      # Requires manual development
+```
+
+This example demonstrates both the power and limits of the automated workflow, providing a realistic foundation for approaching other DDON resource types.

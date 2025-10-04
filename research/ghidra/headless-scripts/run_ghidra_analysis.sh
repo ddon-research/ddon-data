@@ -31,9 +31,9 @@
 # Examples:
 #   ./run_ghidra_analysis.sh dwarf "rLandInfo" "DDOORBIS.elf" "INFO" 5
 #   ./run_ghidra_analysis.sh function "rLandInfo::load" "DDOORBIS.elf" "DEBUG" 3
-# Quiet mode (suppress Ghidra system output, logs saved to logs/):
-#   ./run_ghidra_analysis.sh dwarf "rLandInfo" "DDOORBIS.elf" --quiet
-#   ./run_ghidra_analysis.sh function "rLandInfo::load" "DDOORBIS.elf" --quiet
+# Verbose mode (show full Ghidra system output, quiet is default):
+#   ./run_ghidra_analysis.sh dwarf "rLandInfo" "DDOORBIS.elf" --verbose
+#   ./run_ghidra_analysis.sh function "rLandInfo::load" "DDOORBIS.elf" --verbose
 
 # Script directory (for finding .env file)
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
@@ -53,7 +53,7 @@ source "$ENV_FILE"
 set +a
 
 # Output control configuration
-QUIET_MODE=false
+QUIET_MODE=true  # Default to quiet mode to suppress verbose Ghidra output
 LOG_DIR="$SCRIPT_DIR/logs"
 mkdir -p "$LOG_DIR"
 
@@ -66,10 +66,10 @@ show_usage() {
     echo "  function  - Function Decompilation Analyzer mode"
     echo ""
     echo "Options:"
-    echo "  --quiet   - Suppress Ghidra system output (logs saved to $LOG_DIR)"
+    echo "  --verbose - Show verbose Ghidra system output (default: quiet mode, logs saved to $LOG_DIR)"
     echo ""
     echo "DWARF Mode:"
-    echo "  $0 dwarf SYMBOL_NAME PROGRAM_NAME [LOG_LEVEL] [EXPLORE_DEPTH] [--quiet]"
+    echo "  $0 dwarf SYMBOL_NAME PROGRAM_NAME [LOG_LEVEL] [EXPLORE_DEPTH] [--verbose]"
     echo ""
     echo "  Parameters:"
     echo "    SYMBOL_NAME    Symbol to explore (e.g., 'rLandInfo')"
@@ -78,7 +78,7 @@ show_usage() {
     echo "    EXPLORE_DEPTH  Maximum exploration depth 1-10 (default: $DEFAULT_EXPLORE_DEPTH)"
     echo ""
     echo "Function Mode:"
-    echo "  $0 function FUNCTION_NAME PROGRAM_NAME [LOG_LEVEL] [MAX_DEPTH] [--quiet]"
+    echo "  $0 function FUNCTION_NAME PROGRAM_NAME [LOG_LEVEL] [MAX_DEPTH] [--verbose]"
     echo ""
     echo "  Parameters:"
     echo "    FUNCTION_NAME  Function to analyze (e.g., 'rLandInfo::load')"
@@ -88,9 +88,9 @@ show_usage() {
     echo ""
     echo "Examples:"
     echo "  $0 dwarf 'rLandInfo' 'DDOORBIS.elf'"
-    echo "  $0 dwarf 'MtObject' 'DDOORBIS.elf' 'DEBUG' 3 --quiet"
+    echo "  $0 dwarf 'MtObject' 'DDOORBIS.elf' 'DEBUG' 3 --verbose"
     echo "  $0 function 'rLandInfo::load' 'DDOORBIS.elf'"
-    echo "  $0 function 'rLandInfo::load' '*' 'DEBUG' 5 --quiet"
+    echo "  $0 function 'rLandInfo::load' '*' 'DEBUG' 5 --verbose"
 }
 
 # Validation functions
@@ -132,12 +132,12 @@ if [[ $# -eq 0 || "$1" == "-h" || "$1" == "--help" ]]; then
     exit 0
 fi
 
-# Check for quiet mode flag in any position
+# Check for verbose mode flag in any position
 for arg in "$@"; do
-    if [[ "$arg" == "--quiet" ]]; then
-        QUIET_MODE=true
-        # Remove --quiet from arguments array
-        set -- "${@/--quiet/}"
+    if [[ "$arg" == "--verbose" ]]; then
+        QUIET_MODE=false
+        # Remove --verbose from arguments array
+        set -- "${@/--verbose/}"
         break
     fi
 done
@@ -281,6 +281,11 @@ elif [[ "$MODE" == "function" ]]; then
         exit 1
     fi
     
+    # Extract just the filename for Ghidra's -postScript parameter
+    FUNCTION_ANALYZER_FILENAME=$(basename "$FUNCTION_ANALYZER_SCRIPT")
+    # Get the directory path for -scriptPath parameter
+    FUNCTION_ANALYZER_DIR="$SCRIPTS_BASE_DIR/$(dirname "$FUNCTION_ANALYZER_SCRIPT")"
+    
     # Set environment variables for the script
     export FUNCTION_NAME="$FUNCTION_NAME"
     export LOG_LEVEL="$LOG_LEVEL"
@@ -301,8 +306,8 @@ elif [[ "$MODE" == "function" ]]; then
     
     # Run PyGhidra for function analysis
     execute_pyghidra "$PYGHIDRA_RUN" --headless "$PROJECT_DIR" "$PROJECT_NAME" \
-        -scriptPath "$SCRIPTS_BASE_DIR" \
-        -postScript "$FUNCTION_ANALYZER_SCRIPT" \
+        -scriptPath "$FUNCTION_ANALYZER_DIR" \
+        -postScript "$FUNCTION_ANALYZER_FILENAME" \
         -process "$PROGRAM_NAME" \
         -noanalysis
 fi

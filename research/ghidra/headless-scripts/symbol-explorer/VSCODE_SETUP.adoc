@@ -1,0 +1,100 @@
+= VS Code Development Setup
+:toc:
+:icons: font
+:source-highlighter: highlight.js
+
+VS Code setup for Ghidra API development with full IntelliSense, type checking, and auto-completion using Ghidra 11.4.2 and PyGhidra.
+
+== Prerequisites
+
+* Ghidra 11.4.2 installed
+* PyGhidra installed (`pip install pyghidra`)
+* VS Code with Python extension
+* GHIDRA_INSTALL_DIR environment variable configured
+
+== Installation
+
+=== PyGhidra and Type Stubs
+
+[source,bash]
+----
+# Set environment variable
+export GHIDRA_INSTALL_DIR="E:/Ghidra/ghidra_11.4.2_PUBLIC"
+
+# Install dependencies
+pip install pyghidra ghidra-stubs==11.4.2
+
+# REQUIRED: Create symbolic link for import resolution
+cd "<venv>/Lib/site-packages"
+mklink /D ghidra ghidra-stubs  # Windows
+# ln -s ghidra-stubs ghidra    # Linux/Mac
+----
+
+[NOTE]
+====
+*Technical Note*: `ghidra-stubs` installs as `ghidra-stubs/` but Python imports require `import ghidra`. The symbolic link resolves this package/import name mismatch.
+====
+
+== VS Code Configuration
+
+The `.vscode/settings.json` configuration provides:
+
+* *extraPaths*: Ghidra support directory and ghidra-stubs location
+* *stubPath*: Site-packages root for stub resolution
+* *Type Checking*: Basic analysis with Ghidra API awareness
+* *Linting*: PyLint with ghidra extension allowlist
+
+[source,json]
+----
+{
+    "python.analysis.extraPaths": [
+        "E:/Ghidra/ghidra_11.4.2_PUBLIC/support",
+        "D:/ddon-data/.venv/Lib/site-packages/ghidra-stubs"
+    ],
+    "python.analysis.stubPath": "D:/ddon-data/.venv/Lib/site-packages"
+}
+----
+
+== Testing
+
+[source,python]
+----
+import pyghidra
+pyghidra.start()  # Must call before importing Ghidra modules
+
+from ghidra.program.model.data import Structure
+# Type Structure. to verify auto-completion works
+----
+
+Verify IntelliSense by typing `Structure.` - you should see comprehensive auto-completion with method signatures and documentation.
+
+== Troubleshooting
+
+*Import Errors*:: Verify `GHIDRA_INSTALL_DIR` is set and PyGhidra/ghidra-stubs are installed in same environment.
+
+*No IntelliSense*::
+. Verify symbolic link exists: `dir` should show both `ghidra/` and `ghidra-stubs/` in site-packages
+. Restart Python language server: `Ctrl+Shift+P > Python: Restart Language Server`
+
+*Version Mismatch*:: ghidra-stubs version must exactly match Ghidra installation (11.4.2).
+
+== Additional Configuration
+
+*PyLint*:: Add `extension-pkg-allow-list=ghidra,jpype` and `disable=import-error,no-name-in-module` to `.pylintrc`.
+
+*mypy*:: Set `ignore_missing_imports = True` for `ghidra.*` modules in `mypy.ini`.
+
+== Development Workflow
+
+. *Initialize*: `pyghidra.start()` before importing Ghidra modules
+. *Import*: `from ghidra.program.model.data import DataType` (after start)
+. *Type Annotations*: Use type hints for enhanced IntelliSense
+. *Validation*: Test with `run_ghidra_analysis.sh`
+
+[source,python]
+----
+import pyghidra
+pyghidra.start()
+from ghidra.program.model.data import DataTypeManager
+# Full IntelliSense and type checking available
+----

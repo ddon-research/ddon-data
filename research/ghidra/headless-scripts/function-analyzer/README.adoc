@@ -1,0 +1,387 @@
+= DDON Function Analyzer
+:toc: left
+:toclevels: 3
+:icons: font
+:source-highlighter: highlight.js
+:highlightjs-theme: github
+:version: 2.0.0
+
+Function analysis tool using PyGhidra for Dragon's Dogma Online binary reverse engineering.
+
+== Overview
+
+Decompiles C++ functions from Dragon's Dogma Online binaries. Implements recursive decompilation, namespace parsing, cross-reference analysis, and struct dependency mapping via Ghidra's headless API.
+
+=== Components
+
+* Recursive function call analysis with configurable depth limits
+* C++ namespace parsing and relationship mapping
+* Cross-reference analysis using Ghidra's ReferenceManager API
+* DWARF-aware struct dependency detection
+* Service-oriented architecture with dependency injection
+* PyGhidra headless execution via command line interface
+* Two output modes: INFO (code only) and DEBUG (analysis metadata)
+
+== Architecture
+
+Service-oriented architecture organized in layers:
+
+[source]
+----
+function-analyzer/
+├── main.py                           # Entry point for headless execution
+├── requirements.txt                  # Python dependencies
+├── README.adoc                       # This documentation
+├── function_analyzer/                # Main module package
+│   ├── __init__.py                   # Package exports
+│   ├── config/                       # Configuration and settings
+│   │   ├── analyzer_config.py        # Core configuration constants
+│   │   └── analyzer_exceptions.py    # Custom exception classes
+│   ├── types/                        # Type definitions and data structures
+│   │   ├── analysis_types.py         # Analysis result types
+│   │   └── function_info.py          # Function metadata classes
+│   ├── utils/                        # Utilities and helpers
+│   │   ├── namespace_utils.py        # C++ namespace parsing
+│   │   └── logging_config.py         # Logging configuration
+│   ├── services/                     # Core business logic services
+│   │   ├── function_search_service.py    # Function discovery
+│   │   ├── decompilation_service.py      # Code decompilation
+│   │   ├── cross_reference_analyzer.py   # Relationship analysis
+│   │   └── struct_analysis_service.py    # Struct and DWARF analysis
+│   └── analysis/                     # High-level analysis components
+│       ├── function_decompilation_analyzer.py  # Main analyzer facade
+│       └── output_formatter.py             # Result formatting
+----
+
+=== Implementation
+
+* Class-per-responsibility organization
+* Constructor dependency injection
+* Layered separation: configuration, services, analysis
+
+== Installation
+
+=== Requirements
+
+* Python 3.7+ (dataclasses, typing module support)
+* Ghidra 11.4.2+ (DecompInterface, ReferenceManager APIs)
+* PyGhidra 3.0+ (headless analysis bindings)
+
+=== Setup Instructions
+
+1. **Install Dependencies**
++
+[source,bash]
+----
+pip install -r requirements.txt
+----
+
+2. **Configure Environment**
++
+Copy `.env.template` to `.env` and update paths:
++
+[source,bash]
+----
+cp .env.template .env
+# Edit .env with your specific paths
+----
+
+3. **Test Installation**
++
+[source,bash]
+----
+./run_ghidra_analysis.sh function "rLandInfo::load" "DDOORBIS.elf" "INFO" 1
+----
+
+== Usage
+
+=== Command Line Interface
+
+The analyzer is invoked through the unified Ghidra analysis runner:
+
+[source,bash]
+----
+./run_ghidra_analysis.sh function FUNCTION_NAME PROGRAM_NAME [LOG_LEVEL] [MAX_DEPTH]
+----
+
+**Parameters:**
+
+* `FUNCTION_NAME` - Function to analyze (e.g., "rLandInfo::load")
+* `PROGRAM_NAME` - Program binary to analyze (e.g., "DDOORBIS.elf")
+* `LOG_LEVEL` - Output verbosity: "DEBUG" or "INFO" (default: "INFO")
+* `MAX_DEPTH` - Maximum recursion depth 1-10 (default: 3)
+
+**Examples:**
+
+[source,bash]
+----
+# Default analysis
+./run_ghidra_analysis.sh function "rLandInfo::load" "DDOORBIS.elf"
+
+# Debug output with increased depth
+./run_ghidra_analysis.sh function "rLandInfo::load" "DDOORBIS.elf" "DEBUG" 5
+
+# Single-level analysis
+./run_ghidra_analysis.sh function "MtObject::create" "*" "INFO" 1
+----
+
+=== Environment Configuration
+
+The system uses environment variables for configuration:
+
+[source,bash]
+----
+# Required
+export FUNCTION_NAME="rLandInfo::load"
+export LOG_LEVEL="INFO"                    # DEBUG | INFO
+export MAX_DEPTH=3                         # 1-10
+----
+
+=== Output Formats
+
+**INFO Level (Clean Code Only):**
+
+[source,c]
+----
+// Function: load
+bool __thiscall rLandInfo::load(rLandInfo *this, MtStream *in) {
+    // Decompiled function code...
+}
+
+// Function: readMtArray<rLandInfo::cLandInfo>
+void nDDOIO::readMtArray<rLandInfo::cLandInfo>(...) {
+    // Related function code...
+}
+----
+
+**DEBUG Level (Analysis Metadata):**
+- Function discovery logs
+- Namespace extraction data
+- Cross-reference analysis
+- Struct relationship data
+- Performance timing
+
+== API Reference
+
+=== Core Classes
+
+==== FunctionDecompilationAnalyzer
+
+Main facade class for function analysis.
+
+[source,python]
+----
+from function_analyzer.analysis import FunctionDecompilationAnalyzer
+
+analyzer = FunctionDecompilationAnalyzer(program, log_level="INFO")
+analyzer.analyze_function("rLandInfo::load", max_depth=3)
+----
+
+==== FunctionSearchService  
+
+Discovers and matches functions with namespace support.
+
+[source,python]
+----
+from function_analyzer.services import FunctionSearchService
+
+search_service = FunctionSearchService(program, logger)
+function = search_service.find_function_by_name("rLandInfo::load")
+qualified_name = search_service.get_qualified_function_name(function)
+----
+
+==== DecompilationService
+
+Extracts and processes decompiled C code.
+
+[source,python]
+----
+from function_analyzer.services import DecompilationService
+
+decompiler = DecompilationService(program, logger)
+code = decompiler.get_decompiled_function(function)
+calls = decompiler.get_function_calls_from_decompiled_code(code)
+----
+
+==== CrossReferenceAnalyzer
+
+Finds function relationships and struct dependencies.
+
+[source,python]
+----
+from function_analyzer.services import CrossReferenceAnalyzer
+
+analyzer = CrossReferenceAnalyzer(program, logger)
+related = analyzer.analyze_related_functions(function, namespace_filter="rLandInfo")
+----
+
+==== StructAnalysisService
+
+DWARF and struct dependency analysis.
+
+[source,python]
+----
+from function_analyzer.services import StructAnalysisService
+
+struct_analyzer = StructAnalysisService(program, logger)
+dwarf_info = struct_analyzer.analyze_function_with_dwarf(function)
+related_types = struct_analyzer.get_related_datatypes("rLandInfo")
+----
+
+=== Configuration
+
+==== AnalyzerConfig
+
+Configuration constants for the analyzer.
+
+[source,python]
+----
+from function_analyzer.config import AnalyzerConfig
+
+# Recursion settings
+AnalyzerConfig.DEFAULT_RECURSION_DEPTH  # 3
+AnalyzerConfig.MAX_RECURSION_DEPTH      # 10
+
+# Decompilation settings
+AnalyzerConfig.DECOMPILATION_TIMEOUT    # 30 seconds
+
+# Function scoring weights
+AnalyzerConfig.SCORE_NAMESPACE_BONUS    # 10
+----
+
+=== Utilities
+
+==== NamespaceUtils
+
+C++ namespace parsing utilities.
+
+[source,python]
+----
+from function_analyzer.utils import NamespaceUtils
+
+# Extract namespace from function signature
+namespace = NamespaceUtils.extract_namespace_from_signature(signature)
+
+# Extract function calls from decompiled C code
+calls = NamespaceUtils.extract_function_calls(decompiled_code)
+
+# Check namespace relationship
+related = NamespaceUtils.is_namespace_related(text, namespace)
+----
+
+== Configuration Reference
+
+=== Environment Variables
+
+[cols="1,1,3", options="header"]
+|===
+|Variable |Default |Description
+
+|`FUNCTION_NAME`
+|Required
+|Function to analyze (e.g., "rLandInfo::load")
+
+|`LOG_LEVEL` 
+|`"INFO"`
+|Logging level: "DEBUG" or "INFO"
+
+|`MAX_DEPTH`
+|`3`
+|Maximum recursion depth (1-10)
+
+|`PYGHIDRA_RUN`
+|Required
+|Path to PyGhidra executable
+
+|`PROJECT_DIR`
+|Required  
+|Ghidra project directory
+
+|`PROJECT_NAME`
+|Required
+|Ghidra project name
+
+|`SCRIPTS_BASE_DIR`
+|Required
+|Base directory for analysis scripts
+|===
+
+=== Analysis Configuration
+
+[cols="1,1,3", options="header"]
+|===
+|Setting |Default |Description
+
+|Decompilation Timeout
+|30 seconds
+|Maximum time for function decompilation
+
+|Recursion Depth
+|3 levels
+|Maximum depth for recursive analysis
+
+|Function Scoring
+|Weighted
+|Scoring system for function matching
+
+|Namespace Filtering  
+|Enabled
+|Filter results by C++ namespace
+|===
+
+== Development
+
+=== Architecture Layers
+
+1. **Entry Point** (`main.py`) - Headless execution interface
+2. **Analysis Layer** - Orchestrates analysis workflow
+3. **Services Layer** - Core analysis algorithms
+4. **Utils Layer** - Parsing and utility functions
+5. **Types Layer** - Data structure definitions
+6. **Config Layer** - Constants and exceptions
+
+=== Debug Output
+
+Enable debug logging:
+
+[source,bash]
+----
+export LOG_LEVEL="DEBUG"
+./run_ghidra_analysis.sh function "rLandInfo::load" "DDOORBIS.elf" "DEBUG" 1
+----
+
+Debug data includes:
+- Function discovery logs
+- Namespace parsing results
+- Cross-reference data
+- Timing information
+- Stack traces
+
+== Development
+
+=== Code Standards
+
+1. Follow existing architectural patterns
+2. Use Python type annotations
+3. Include tests for new functionality
+4. Update documentation
+5. Format with Black
+
+== License
+
+This project is part of the DDON research initiative for reverse engineering Dragon's Dogma Online.
+
+== Version History
+
+=== Version 2.0.0
+- Modular architecture implementation
+- Service layer separation
+- Type system integration
+- Structured exception handling
+- API documentation
+
+=== Version 1.0.0
+- Initial implementation
+- DecompInterface integration
+- Namespace parsing
+- Command-line execution
