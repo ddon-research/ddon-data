@@ -1,39 +1,38 @@
 #!/bin/bash
 
-# Unified Ghidra Analysis Runner
-# This script runs either DWARF symbol exploration or function decompilation analysis
-# in Ghidra headless mode based on the specified mode.
+# Ghidra Analysis Runner for DDON Binary Analyzer
+# This script runs the binary analyzer in Ghidra headless mode
 #
-# Usage: ./run_ghidra_analysis.sh MODE [OPTIONS...]
+# Usage: ./run_ghidra_analysis.sh MODE TARGET PROGRAM_NAME [LOG_LEVEL] [DEPTH]
 #
 # Modes:
-#   dwarf     - DWARF Symbol Explorer mode
 #   function  - Function Decompilation Analyzer mode
-#
-# DWARF Mode Usage:
-#   ./run_ghidra_analysis.sh dwarf SYMBOL_NAME PROGRAM_NAME [LOG_LEVEL] [EXPLORE_DEPTH]
-#   
-#   Parameters:
-#     SYMBOL_NAME: Symbol to explore (e.g., "rLandInfo")
-#     PROGRAM_NAME: Program to analyze (e.g., "DDOORBIS.elf" or "*" for all programs)
-#     LOG_LEVEL: "DEBUG" or "INFO" (default from .env)
-#     EXPLORE_DEPTH: Maximum exploration depth 1-10 (default from .env)
+#   dwarf     - DWARF Symbol Explorer mode
 #
 # Function Mode Usage:
 #   ./run_ghidra_analysis.sh function FUNCTION_NAME PROGRAM_NAME [LOG_LEVEL] [MAX_DEPTH]
-#   
+#
 #   Parameters:
 #     FUNCTION_NAME: Function to analyze (e.g., "rLandInfo::load")
 #     PROGRAM_NAME: Program to analyze (e.g., "DDOORBIS.elf" or "*" for all programs)
 #     LOG_LEVEL: "DEBUG" or "INFO" (default from .env)
 #     MAX_DEPTH: Maximum recursion depth 1-10 (default from .env)
 #
+# DWARF Mode Usage:
+#   ./run_ghidra_analysis.sh dwarf SYMBOL_NAME PROGRAM_NAME [LOG_LEVEL] [EXPLORE_DEPTH]
+#
+#   Parameters:
+#     SYMBOL_NAME: Symbol to explore (e.g., "rLandInfo")
+#     PROGRAM_NAME: Program to analyze (e.g., "DDOORBIS.elf" or "*" for all programs)
+#     LOG_LEVEL: "DEBUG" or "INFO" (default from .env)
+#     EXPLORE_DEPTH: Maximum exploration depth 1-10 (default from .env)
+#
 # Examples:
+#   ./run_ghidra_analysis.sh function "rLandInfo::load" "DDOORBIS.elf" "INFO" 3
 #   ./run_ghidra_analysis.sh dwarf "rLandInfo" "DDOORBIS.elf" "INFO" 5
-#   ./run_ghidra_analysis.sh function "rLandInfo::load" "DDOORBIS.elf" "DEBUG" 3
 # Verbose mode (show full Ghidra system output, quiet is default):
-#   ./run_ghidra_analysis.sh dwarf "rLandInfo" "DDOORBIS.elf" --verbose
 #   ./run_ghidra_analysis.sh function "rLandInfo::load" "DDOORBIS.elf" --verbose
+#   ./run_ghidra_analysis.sh dwarf "rLandInfo" "DDOORBIS.elf" --verbose
 
 # Script directory (for finding .env file)
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
@@ -57,25 +56,20 @@ QUIET_MODE=true  # Default to quiet mode to suppress verbose Ghidra output
 LOG_DIR="$SCRIPT_DIR/logs"
 mkdir -p "$LOG_DIR"
 
+# Binary analyzer script path
+UNIFIED_SCRIPT="ddon-binary-analyzer/main.py"
+UNIFIED_SCRIPT_DIR="$SCRIPT_DIR/ddon-binary-analyzer"
+
 # Function to display usage information
 show_usage() {
-    echo "Usage: $0 MODE [OPTIONS...] [--quiet]"
+    echo "Usage: $0 MODE TARGET PROGRAM_NAME [LOG_LEVEL] [DEPTH] [--verbose]"
     echo ""
     echo "Modes:"
-    echo "  dwarf     - DWARF Symbol Explorer mode"
     echo "  function  - Function Decompilation Analyzer mode"
+    echo "  dwarf     - DWARF Symbol Explorer mode"
     echo ""
     echo "Options:"
     echo "  --verbose - Show verbose Ghidra system output (default: quiet mode, logs saved to $LOG_DIR)"
-    echo ""
-    echo "DWARF Mode:"
-    echo "  $0 dwarf SYMBOL_NAME PROGRAM_NAME [LOG_LEVEL] [EXPLORE_DEPTH] [--verbose]"
-    echo ""
-    echo "  Parameters:"
-    echo "    SYMBOL_NAME    Symbol to explore (e.g., 'rLandInfo')"
-    echo "    PROGRAM_NAME   Program to analyze (e.g., 'DDOORBIS.elf' or '*' for all)"
-    echo "    LOG_LEVEL      'DEBUG' or 'INFO' (default: $DEFAULT_LOG_LEVEL)"
-    echo "    EXPLORE_DEPTH  Maximum exploration depth 1-10 (default: $DEFAULT_EXPLORE_DEPTH)"
     echo ""
     echo "Function Mode:"
     echo "  $0 function FUNCTION_NAME PROGRAM_NAME [LOG_LEVEL] [MAX_DEPTH] [--verbose]"
@@ -86,11 +80,20 @@ show_usage() {
     echo "    LOG_LEVEL      'DEBUG' or 'INFO' (default: $DEFAULT_LOG_LEVEL)"
     echo "    MAX_DEPTH      Maximum recursion depth 1-10 (default: $DEFAULT_MAX_DEPTH)"
     echo ""
+    echo "DWARF Mode:"
+    echo "  $0 dwarf SYMBOL_NAME PROGRAM_NAME [LOG_LEVEL] [EXPLORE_DEPTH] [--verbose]"
+    echo ""
+    echo "  Parameters:"
+    echo "    SYMBOL_NAME    Symbol to explore (e.g., 'rLandInfo')"
+    echo "    PROGRAM_NAME   Program to analyze (e.g., 'DDOORBIS.elf' or '*' for all)"
+    echo "    LOG_LEVEL      'DEBUG' or 'INFO' (default: $DEFAULT_LOG_LEVEL)"
+    echo "    EXPLORE_DEPTH  Maximum exploration depth 1-10 (default: $DEFAULT_EXPLORE_DEPTH)"
+    echo ""
     echo "Examples:"
-    echo "  $0 dwarf 'rLandInfo' 'DDOORBIS.elf'"
-    echo "  $0 dwarf 'MtObject' 'DDOORBIS.elf' 'DEBUG' 3 --verbose"
     echo "  $0 function 'rLandInfo::load' 'DDOORBIS.elf'"
     echo "  $0 function 'rLandInfo::load' '*' 'DEBUG' 5 --verbose"
+    echo "  $0 dwarf 'rLandInfo' 'DDOORBIS.elf'"
+    echo "  $0 dwarf 'MtObject' 'DDOORBIS.elf' 'DEBUG' 3 --verbose"
 }
 
 # Validation functions
@@ -123,6 +126,11 @@ validate_required_files() {
         return 1
     fi
 
+    if [[ ! -f "$UNIFIED_SCRIPT_DIR/main.py" ]]; then
+        echo "Error: Binary analyzer script not found at: $UNIFIED_SCRIPT_DIR/main.py"
+        return 1
+    fi
+
     return 0
 }
 
@@ -147,8 +155,8 @@ MODE="$1"
 shift
 
 # Validate mode
-if [[ "$MODE" != "dwarf" && "$MODE" != "function" ]]; then
-    echo "Error: Invalid mode '$MODE'. Must be 'dwarf' or 'function'."
+if [[ "$MODE" != "function" && "$MODE" != "dwarf" ]]; then
+    echo "Error: Invalid mode '$MODE'. Must be 'function' or 'dwarf'."
     echo ""
     show_usage
     exit 1
@@ -165,7 +173,7 @@ execute_pyghidra() {
     local ghidra_log="$LOG_DIR/ghidra_${timestamp}.log"
     local script_log="$LOG_DIR/script_${timestamp}.log"
     local system_log="$LOG_DIR/system_${timestamp}.log"
-    
+
     if [[ "$QUIET_MODE" == "true" ]]; then
         # In quiet mode, filter out system noise and only show script output
         "${cmd[@]}" -log "$ghidra_log" -scriptlog "$script_log" 2>&1 | \
@@ -174,7 +182,7 @@ execute_pyghidra() {
         BEGIN { in_script_paths = 0 }
         /HEADLESS Script Paths:/ { in_script_paths = 1; next }
         in_script_paths && /^[[:space:]]*[A-Za-z]:[\\]/ { next }
-        in_script_paths && /^[[:space:]]*\/.*ghidra/ { next } 
+        in_script_paths && /^[[:space:]]*\/.*ghidra/ { next }
         in_script_paths && /^[[:space:]]*[A-Za-z].*ghidra_scripts/ { next }
         /^INFO.*HEADLESS: execution starts/ { in_script_paths = 0; next }
         /Last used Python|Using Python command|Switching to Ghidra/ { next }
@@ -190,71 +198,13 @@ execute_pyghidra() {
 }
 
 # Mode-specific parameter handling
-if [[ "$MODE" == "dwarf" ]]; then
-    # DWARF Symbol Explorer mode
-    SYMBOL_NAME="${1:-}"
-    PROGRAM_NAME="${2:-}"
-    LOG_LEVEL="${3:-$DEFAULT_LOG_LEVEL}"
-    EXPLORE_DEPTH="${4:-$DEFAULT_EXPLORE_DEPTH}"
-    
-    # Validation
-    if [[ -z "$SYMBOL_NAME" ]]; then
-        echo "Error: Symbol name is required for dwarf mode!"
-        echo ""
-        show_usage
-        exit 1
-    fi
-    
-    if [[ -z "$PROGRAM_NAME" ]]; then
-        echo "Error: Program name is required for dwarf mode!"
-        echo ""
-        show_usage
-        exit 1
-    fi
-    
-    validate_log_level "$LOG_LEVEL" || exit 1
-    validate_depth "$EXPLORE_DEPTH" "EXPLORE_DEPTH" || exit 1
-    
-    # Check script file
-    SCRIPT_PATH="$SCRIPTS_BASE_DIR/$DWARF_EXPLORER_SCRIPT"
-    if [[ ! -f "$SCRIPT_PATH" ]]; then
-        echo "Error: DWARF explorer script not found at: $SCRIPT_PATH"
-        echo "Please update DWARF_EXPLORER_SCRIPT in $ENV_FILE"
-        exit 1
-    fi
-    
-    # Set environment variables for the script
-    export SYMBOL_NAME="$SYMBOL_NAME"
-    export LOG_LEVEL="$LOG_LEVEL"
-    export EXPLORE_DEPTH="$EXPLORE_DEPTH"
-    
-    if [[ "$QUIET_MODE" != "true" ]]; then
-        echo "=== DWARF Symbol Explorer - Headless Mode ==="
-        echo "Symbol to explore: $SYMBOL_NAME"
-        echo "Program to analyze: $PROGRAM_NAME"
-        echo "Log level: $LOG_LEVEL"
-        echo "Exploration depth: $EXPLORE_DEPTH"
-        echo "Project: $PROJECT_DIR/$PROJECT_NAME"
-        echo "Script: $SCRIPT_PATH"
-        [[ "$QUIET_MODE" == "true" ]] && echo "Quiet mode: enabled"
-        echo "=============================================="
-        echo ""
-    fi
-    
-    # Run PyGhidra for DWARF exploration
-    execute_pyghidra "$PYGHIDRA_RUN" --headless "$PROJECT_DIR" "$PROJECT_NAME" \
-        -scriptPath "$SCRIPTS_BASE_DIR" \
-        -postScript "$DWARF_EXPLORER_SCRIPT" \
-        -process "$PROGRAM_NAME" \
-        -noanalysis
-
-elif [[ "$MODE" == "function" ]]; then
+if [[ "$MODE" == "function" ]]; then
     # Function Decompilation Analyzer mode
     FUNCTION_NAME="${1:-}"
     PROGRAM_NAME="${2:-}"
     LOG_LEVEL="${3:-$DEFAULT_LOG_LEVEL}"
     MAX_DEPTH="${4:-$DEFAULT_MAX_DEPTH}"
-    
+
     # Validation
     if [[ -z "$FUNCTION_NAME" ]]; then
         echo "Error: Function name is required for function mode!"
@@ -262,72 +212,102 @@ elif [[ "$MODE" == "function" ]]; then
         show_usage
         exit 1
     fi
-    
+
     if [[ -z "$PROGRAM_NAME" ]]; then
         echo "Error: Program name is required for function mode!"
         echo ""
         show_usage
         exit 1
     fi
-    
+
     validate_log_level "$LOG_LEVEL" || exit 1
     validate_depth "$MAX_DEPTH" "MAX_DEPTH" || exit 1
-    
-    # Check script file
-    SCRIPT_PATH="$SCRIPTS_BASE_DIR/$FUNCTION_ANALYZER_SCRIPT"
-    if [[ ! -f "$SCRIPT_PATH" ]]; then
-        echo "Error: Function analyzer script not found at: $SCRIPT_PATH"
-        echo "Please update FUNCTION_ANALYZER_SCRIPT in $ENV_FILE"
-        exit 1
-    fi
-    
-    # Extract just the filename for Ghidra's -postScript parameter
-    FUNCTION_ANALYZER_FILENAME=$(basename "$FUNCTION_ANALYZER_SCRIPT")
-    # Get the directory path for -scriptPath parameter
-    FUNCTION_ANALYZER_DIR="$SCRIPTS_BASE_DIR/$(dirname "$FUNCTION_ANALYZER_SCRIPT")"
-    
+
     # Set environment variables for the script
+    export ANALYZER_MODE="function"
     export FUNCTION_NAME="$FUNCTION_NAME"
     export LOG_LEVEL="$LOG_LEVEL"
     export MAX_DEPTH="$MAX_DEPTH"
-    
+
     if [[ "$QUIET_MODE" != "true" ]]; then
-        echo "=== Ghidra Function Decompilation Analyzer - Headless Mode ==="
+        echo "=== DDON Binary Analyzer - Function Mode ==="
         echo "Function to analyze: $FUNCTION_NAME"
         echo "Program to analyze: $PROGRAM_NAME"
         echo "Log level: $LOG_LEVEL"
         echo "Max recursion depth: $MAX_DEPTH"
         echo "Project: $PROJECT_DIR/$PROJECT_NAME"
-        echo "Script: $SCRIPT_PATH"
         [[ "$QUIET_MODE" == "true" ]] && echo "Quiet mode: enabled"
-        echo "=============================================================="
+        echo "============================================"
         echo ""
     fi
-    
-    # Run PyGhidra for function analysis
-    execute_pyghidra "$PYGHIDRA_RUN" --headless "$PROJECT_DIR" "$PROJECT_NAME" \
-        -scriptPath "$FUNCTION_ANALYZER_DIR" \
-        -postScript "$FUNCTION_ANALYZER_FILENAME" \
-        -process "$PROGRAM_NAME" \
-        -noanalysis
+
+elif [[ "$MODE" == "dwarf" ]]; then
+    # DWARF Symbol Explorer mode
+    SYMBOL_NAME="${1:-}"
+    PROGRAM_NAME="${2:-}"
+    LOG_LEVEL="${3:-$DEFAULT_LOG_LEVEL}"
+    EXPLORE_DEPTH="${4:-$DEFAULT_EXPLORE_DEPTH}"
+
+    # Validation
+    if [[ -z "$SYMBOL_NAME" ]]; then
+        echo "Error: Symbol name is required for dwarf mode!"
+        echo ""
+        show_usage
+        exit 1
+    fi
+
+    if [[ -z "$PROGRAM_NAME" ]]; then
+        echo "Error: Program name is required for dwarf mode!"
+        echo ""
+        show_usage
+        exit 1
+    fi
+
+    validate_log_level "$LOG_LEVEL" || exit 1
+    validate_depth "$EXPLORE_DEPTH" "EXPLORE_DEPTH" || exit 1
+
+    # Set environment variables for the script
+    export ANALYZER_MODE="dwarf"
+    export SYMBOL_NAME="$SYMBOL_NAME"
+    export LOG_LEVEL="$LOG_LEVEL"
+    export EXPLORE_DEPTH="$EXPLORE_DEPTH"
+
+    if [[ "$QUIET_MODE" != "true" ]]; then
+        echo "=== DDON Binary Analyzer - DWARF Mode ==="
+        echo "Symbol to explore: $SYMBOL_NAME"
+        echo "Program to analyze: $PROGRAM_NAME"
+        echo "Log level: $LOG_LEVEL"
+        echo "Exploration depth: $EXPLORE_DEPTH"
+        echo "Project: $PROJECT_DIR/$PROJECT_NAME"
+        [[ "$QUIET_MODE" == "true" ]] && echo "Quiet mode: enabled"
+        echo "=========================================="
+        echo ""
+    fi
 fi
+
+# Run PyGhidra with binary analyzer script
+execute_pyghidra "$PYGHIDRA_RUN" --headless "$PROJECT_DIR" "$PROJECT_NAME" \
+    -scriptPath "$UNIFIED_SCRIPT_DIR" \
+    -postScript "main.py" \
+    -process "$PROGRAM_NAME" \
+    -noanalysis
 
 GHIDRA_EXIT_CODE=$?
 
 # Check exit status
 if [[ $GHIDRA_EXIT_CODE -eq 0 ]]; then
     echo ""
-    if [[ "$MODE" == "dwarf" ]]; then
-        echo "DWARF symbol exploration completed successfully!"
-    else
+    if [[ "$MODE" == "function" ]]; then
         echo "Function analysis completed successfully!"
+    else
+        echo "DWARF symbol exploration completed successfully!"
     fi
 else
     echo ""
-    if [[ "$MODE" == "dwarf" ]]; then
-        echo "DWARF symbol exploration failed with exit code $GHIDRA_EXIT_CODE"
-    else
+    if [[ "$MODE" == "function" ]]; then
         echo "Function analysis failed with exit code $GHIDRA_EXIT_CODE"
+    else
+        echo "DWARF symbol exploration failed with exit code $GHIDRA_EXIT_CODE"
     fi
     exit 1
 fi

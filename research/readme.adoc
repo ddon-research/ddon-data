@@ -7,7 +7,7 @@
 :source-highlighter: highlight.js
 :icons: font
 
-Systematic workflow for decoding DDON resource files using PS4 debug symbols and ImHex pattern automation. Designed for LLM-assisted reverse engineering.
+Systematic workflow for decoding DDON resource files using PS4 debug symbo automation. Designed for LLM-assisted reverse engineering.
 
 == Prerequisites
 
@@ -221,6 +221,7 @@ research/
 * **Practical Example**: link:rLandInfo-example.adoc[rLandInfo Walkthrough] - Complete example with actual resource files and validation results
 * **Tool Documentation**: link:ghidra/README.adoc[Ghidra Automation Scripts] - PyGhidra headless analysis setup
 * **Pattern Examples**: `research/02030004/` and `research/03040008/` directories with working patterns
+* **Extension Analysis**: link:find-unsupported-extensions.sh[Extension Coverage Script] - Automated identification of reverse engineering targets
 
 == Quick Reference
 
@@ -244,3 +245,65 @@ imhex --pl format --pattern 02030004/rResourceName-pattern.cpp --input season3_f
 - 🔧 Season 3 patterns need iterative development with hex analysis
 
 This workflow provides ~80% automation for Season 2 pattern development, with manual reverse engineering required for Season 3 adaptation.
+
+== Identifying Next Potential Targets
+
+=== Extension Coverage Analysis
+
+**Objective**: Find resource types that have multiple instances but lack ddon-extractor support.
+
+**Process**:
+1. **Compare supported vs. available extensions** to identify gaps
+2. **Prioritize by resource count** - more instances = higher value
+3. **Focus on Season 2 first** - debug symbols provide structure baseline
+
+**Automated Script** (using Git Bash from `research/` directory):
+```bash
+# Run extension coverage analysis for Season 2
+./find-unsupported-extensions.sh 02030004
+
+# Run for Season 3
+./find-unsupported-extensions.sh 03040008
+```
+
+**Script Output**:
+- **Coverage Statistics**: Exact counts and percentages of supported vs unsupported extensions
+- **Unsupported Extension List**: Complete list with real file path examples from ROM data
+- **File Path Examples**: Shows actual paths like `param\actorlight.ali`, `collision\hm_common.col`
+
+
+
+=== Current Coverage Analysis Results
+
+**Season 2 (02030004)**:
+- Total unique extensions: **291**
+- Supported by ddon-extractor: **176**
+- Unsupported: **115**
+- Coverage: **60%**
+
+**Season 3 (03040008)**:
+- Total unique extensions: **331** 
+- Supported by ddon-extractor: **186**
+- Unsupported: **145**
+- Coverage: **56%**
+
+**Target Selection**: Review the script output file paths to identify extensions of interest. Examples:
+- **UI/Interface**: `.gui` (ui\05_edit\camera_param.cecp), `.edt_*` family
+- **Animation**: `.mot_filter`, `.motparam`, `.ikctrl` 
+- **Physics**: `.col` (collision\hm_common.col), `.shake_ctrl`
+- **Audio**: `.aser` (sound\se\mt\mt_atribase.aser)
+
+=== Target Selection Criteria
+
+**Prioritization Factors**:
+1. **Research Value** - Does the format relate to key game mechanics of interest?
+2. **Debug Symbol Quality** - Are comprehensive C++ definitions available from PS4 symbols?
+3. **File Path Context** - Does the path suggest the extension's purpose?
+4. **Cross-Season Stability** - Format exists in both Season 2 and Season 3?
+
+**Workflow**:
+1. Run `./find-unsupported-extensions.sh` for both seasons
+2. Review file path examples to understand extension context
+3. Select extensions based on research goals
+4. Check if debug symbols exist via Ghidra analysis
+5. Begin reverse engineering workflow

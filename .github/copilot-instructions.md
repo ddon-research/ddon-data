@@ -14,7 +14,7 @@ This is a **reverse engineering research repository** for Dragon's Dogma Online 
 - `binaries/PS4_*/` - IDA/Ghidra dumps with debug symbols (struct definitions, function signatures)
 - `client/` - JSON extracts from game files using `ddon-extractor` tool
 - `packets/` - Network capture decryption pipeline with automated key bruteforcing
-- `research/` - ImHex patterns, analysis scripts, and documentation
+- `research/` - ImHex patterns, analysis scripts, target identification tools, and documentation
 
 ### 2. Versioning Strategy
 Data is organized by game version (e.g., `03040008`, `PS4_02020005`) with:
@@ -37,11 +37,10 @@ find client/<version> -name "*.json" | jq '...' > analysis.csv
 
 ```bash
 # 1. Extract C++ struct definitions from DWARF symbols
-cd research/ghidra
-./run_ghidra_analysis.sh dwarf "rResourceName" "DDOORBIS.elf"
+& "C:\Program Files\Git\bin\bash.exe" -c "cd /d/ddon-data/research/ghidra/headless-scripts && ./run_ghidra_analysis.sh dwarf 'rResourceName' 'DDOORBIS.elf'"
 
 # 2. Get function decompilation (e.g., load/save methods)
-./run_ghidra_analysis.sh function "rResourceName::load" "DDOORBIS.elf"
+& "C:\Program Files\Git\bin\bash.exe" -c "cd /d/ddon-data/research/ghidra/headless-scripts && ./run_ghidra_analysis.sh function 'rResourceName::load' 'DDOORBIS.elf'"
 
 # 3. Generate ImHex pattern from struct definitions
 # Create pattern file in research/<version>/r*-pattern.cpp
@@ -52,8 +51,8 @@ imhex --pl format --pattern rResource-pattern.cpp --input resource.file
 
 ### Packet Decryption Pipeline
 ```bash
-# Automated decryption (requires WSL/Git Bash on Windows)
-./packets/keys/decrypt-pcapng-streams-all-in-one.sh capture.pcapng
+# Automated decryption (execute via Git Bash on Windows)
+& "C:\Program Files\Git\bin\bash.exe" -c "cd /d/ddon-data/packets/keys && ./decrypt-pcapng-streams-all-in-one.sh capture.pcapng"
 # Dependencies: tshark, Arrowgene.Ddon.Cli, ddon_common_key_bruteforce
 ```
 
@@ -79,7 +78,8 @@ imhex --pl format --pattern rResource-pattern.cpp --input resource.file
 - Cross-reference fields: NpcId, Position.X/Y/Z, area names
 
 ### Shell Scripts  
-- Use bash (run via WSL/Git Bash on Windows)
+- Use bash (run via Git Bash on Windows with specific syntax)
+- **Execution Method**: `& "C:\Program Files\Git\bin\bash.exe" -c "command"`
 - Heavy use of `jq` for JSON processing
 - `find ... -exec jq` pattern for batch processing
 - Results typically piped to CSV files
@@ -100,7 +100,7 @@ imhex --pl format --pattern rResource-pattern.cpp --input resource.file
 - `ddon-extractor` - Client resource extraction
 
 **Ghidra Configuration:**
-- Environment setup in `research/ghidra/.env` 
+- Environment setup in `research/ghidra/headless-scripts/.env` 
 - PyGhidra path, project directory, and script locations
 - Default parameters for symbol exploration and decompilation depth
 
@@ -115,7 +115,7 @@ imhex --pl format --pattern rResource-pattern.cpp --input resource.file
 ### Naming Conventions
 - Enums: `rItemList_ITEM_CATEGORY` (from debug symbols)
 - Resource types: `r<Name>` prefix (e.g., `rItemList`, `rLayout`)
-- File extensions map to specific binary formats (336 known types)
+- File extensions map to specific binary formats (hundreds of known types)
 
 ### Key Discovery Heuristics  
 Packet decryption uses expected plaintext patterns:
@@ -126,7 +126,8 @@ Packet decryption uses expected plaintext patterns:
 
 ## Project-Specific Considerations
 
-- **Windows environment** - Use PowerShell for simple tasks, WSL/Git Bash for shell scripts
+- **Windows environment** - Use PowerShell for simple tasks, Git Bash for shell scripts
+- **Git Bash Execution** - Always use `& "C:\Program Files\Git\bin\bash.exe" -c "command"` syntax from PowerShell
 - **Shell scripts only** - Create bash scripts (.sh) for automation, not batch (.bat) or PowerShell (.ps1) files
 - **Automated workflows** - Prefer Ghidra headless scripts over manual binary inspection
 - **ImHex CLI validation** - Use command line for pattern testing and batch processing
@@ -134,5 +135,6 @@ Packet decryption uses expected plaintext patterns:
 - **Cross-season compatibility** - Season 2 debug symbols work for Season 3 with minor adjustments
 - **Pattern iteration** - Use trial-and-error approach with ImHex CLI for version differences
 - **Research preservation** - Historical patterns and notes are maintained for reference
+- **Target identification** - Use `research/find-unsupported-extensions.sh` to systematically identify next reverse engineering targets
 
 When working with this codebase, prioritize understanding the data flow between binary analysis, resource extraction, and network protocol reverse engineering.

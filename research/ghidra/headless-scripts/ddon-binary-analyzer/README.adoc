@@ -1,0 +1,457 @@
+= DDON Binary Analyzer
+:toc:
+:toclevels: 3
+
+PyGhidra-based tooling for automated analysis of Dragon's Dogma Online PS4 binaries.
+Extracts DWARF debug symbols and decompiles functions using Ghidra's headless analysis capabilities.
+
+== Overview
+
+This package provides two analysis modes for reverse engineering DDON binary formats:
+
+* **DWARF Symbol Extraction** - Parses debug symbols to generate C++ struct definitions with dependency resolution
+* **Function Decompilation** - Recursively analyzes function call graphs and extracts decompiled C code
+
+Both modes operate through a unified Python entry point that interfaces with Ghidra via PyGhidra.
+
+== Architecture
+
+=== Module Structure
+
+----
+ddon-binary-analyzer/
+├── main.py                          # PyGhidra entry point
+├── function_analyzer/               # Function decompilation module
+│   ├── __init__.py                  # Public API exports
+│   ├── analysis/
+│   │   ├── function_decompilation_analyzer.py
+│   │   └── output_formatter.py
+│   ├── config/
+│   │   ├── analyzer_config.py       # Configuration constants
+│   │   └── analyzer_exceptions.py   # Exception hierarchy
+│   ├── services/                    # Ghidra API wrappers
+│   │   ├── cross_reference_analyzer.py
+│   │   ├── decompilation_service.py
+│   │   ├── function_search_service.py
+│   │   └── struct_analysis_service.py
+│   └── types/
+│       ├── analysis_types.py        # Type definitions
+│       └── function_info.py
+├── symbol_explorer/                 # DWARF symbol extraction module
+│   ├── __init__.py                  # Public API exports
+│   ├── analysis/
+│   │   ├── dwarf_symbol_explorer.py
+│   │   ├── search_service.py        # Symbol resolution
+│   │   ├── visitors.py              # Type traversal
+│   │   └── generators/              # Code generation
+│   │       ├── cpp_definition_generator.py
+│   │       ├── dependency_collector.py
+│   │       ├── template_extractor.py
+│   │       └── type_discovery.py
+│   ├── core/
+│   │   ├── config.py                # Configuration
+│   │   ├── data_types.py            # Type metadata
+│   │   └── exceptions.py
+│   └── output/
+│       ├── formatters.py            # C++ output formatting
+│       └── handlers.py              # Output stream management
+└── shared/                          # Common utilities
+    ├── logging.py                   # Unified logging configuration
+    └── namespace_utils.py           # Namespace parsing utilities
+----
+
+=== Design Principles
+
+* **Separation of concerns** - Analysis logic, services, and output formatting are independent
+* **Lazy initialization** - Components are created only when needed
+* **Ghidra API abstraction** - Services wrap Ghidra API calls for testability
+* **Type safety** - Type hints throughout for static analysis
+
+== Installation
+
+=== Requirements
+
+* Python 3.12 (required for PyGhidra compatibility)
+* Ghidra 11.4.2+
+* PyGhidra 1.0.0+
+
+=== Setup
+
+[source,bash]
+----
+# Install in Ghidra's Python environment
+pip install pyghidra
+
+# Verify installation
+python -c "import pyghidra; print(pyghidra.__version__)"
+----
+
+== Usage
+
+=== Command-Line Interface
+
+The `run_ghidra_analysis.sh` wrapper script provides the primary interface:
+
+[source,bash]
+----
+./run_ghidra_analysis.sh MODE TARGET BINARY [LOG_LEVEL] [DEPTH]
+----
+
+**Arguments:**
+
+* `MODE` - Analysis mode: `dwarf` or `function`
+* `TARGET` - Symbol name (DWARF mode) or qualified function name (function mode)
+* `BINARY` - Program name in Ghidra project (e.g., `DDOORBIS.elf`)
+* `LOG_LEVEL` - Optional: `INFO` (default) or `DEBUG`
+* `DEPTH` - Optional: Recursion depth 0-10 (default: 2 for function, 5 for DWARF)
+
+**Examples:**
+
+[source,bash]
+----
+# Extract struct definitions for rLandInfo
+./run_ghidra_analysis.sh dwarf "rLandInfo" "DDOORBIS.elf" "INFO" 2
+
+# Decompile rLandInfo::load with call graph depth 3
+./run_ghidra_analysis.sh function "rLandInfo::load" "DDOORBIS.elf" "INFO" 3
+----
+
+=== Direct Python Usage
+
+[source,python]
+----
+from function_analyzer import FunctionDecompilationAnalyzer
+from symbol_explorer import DwarfSymbolExplorer
+
+# Function analysis
+analyzer = FunctionDecompilationAnalyzer(program, "INFO")
+analyzer.analyze_function("rLandInfo::load", max_depth=3)
+
+# Symbol extraction
+explorer = DwarfSymbolExplorer(program, "INFO")
+explorer.analyze_symbol("rLandInfo", explore_depth=5)
+----
+
+=== Environment Configuration
+
+Create `.env` in `research/ghidra/headless-scripts/`:
+
+[source,bash]
+----
+# Ghidra installation
+GHIDRA_INSTALL_DIR=/path/to/ghidra_11.4.2_PUBLIC
+
+# Ghidra project containing analyzed binary
+GHIDRA_PROJECT_DIR=/path/to/GhidraProjects/DDON_PS4
+GHIDRA_PROJECT_NAME=DDON_PS4
+
+# PyGhidra virtual environment
+GHIDRA_VENV=/path/to/ghidra_venv
+
+# Optional: Override defaults
+DEFAULT_LOG_LEVEL=INFO
+DEFAULT_MAX_DEPTH=3
+DEFAULT_EXPLORE_DEPTH=5
+----
+
+== Analysis Modes
+
+=== DWARF Symbol Extraction
+
+Extracts C++ type definitions from DWARF debug information with full dependency resolution.
+
+**Capabilities:**
+
+* Structure and union definitions
+* Template parameter extraction
+* Inheritance chain resolution
+* Nested type dependency tracking
+* Bitfield handling
+* Virtual table pointer identification
+
+**Output Format:**
+
+[source,cpp]
+----
+// Nested type definitions:
+
+struct MtObject {
+  _func_int * * _vptr$MtObject;  // offset: 0, size: 8
+};
+
+struct rLandInfo : public cResource {
+  MtTypedArray<rLandInfo::cLandInfo> mLandInfo;  // offset: 112, size: 32
+};
+----
+
+**Algorithm:**
+
+1. Resolve symbol in DWARF category paths (`/DWARF/_UNCATEGORIZED_`, `/DWARF`)
+2. Collect type dependencies using breadth-first traversal
+3. Generate definitions in topological order (base classes first)
+4. Format output with C++ syntax and size annotations
+
+=== Function Decompilation
+
+Recursively analyzes function implementations and their call graphs.
+
+**Capabilities:**
+
+* Decompiled C code extraction via `DecompInterface`
+* Cross-reference analysis using `ReferenceManager`
+* Struct-related function filtering by namespace
+* Thunk resolution with `Function.getThunkedFunction()`
+* Call graph traversal with configurable depth
+* Duplicate elimination across recursion levels
+
+**Output Format:**
+
+[source,c]
+----
+// Function: load
+bool __thiscall rLandInfo::load(rLandInfo *this, MtStream *in)
+{
+  // Decompiled implementation
+}
+----
+
+**Algorithm:**
+
+1. Resolve function using symbol table lookup with namespace awareness
+2. Decompile using `DecompInterface` with timeout handling
+3. Extract called functions using `Function.getCalledFunctions()`
+4. Filter by namespace to identify struct-related calls
+5. Recursively analyze struct-related functions up to max depth
+6. Deduplicate by function signature hash
+
+== Ghidra API Integration
+
+=== Key API Methods Used
+
+**Symbol Resolution:**
+
+* `DataTypeManager.getDataType(CategoryPath, String)` - Direct type lookup
+* `DataTypeManager.getAllComposites()` - Efficient composite iteration
+* `Category.getDataTypesByBaseName(String)` - Conflict suffix handling
+* `SymbolTable.getLabelOrFunctionSymbols(String, Namespace)` - Namespace-aware search
+
+**Function Analysis:**
+
+* `Function.getCalledFunctions(TaskMonitor)` - Call graph extraction
+* `Function.getCallingFunctions(TaskMonitor)` - Reverse call analysis
+* `Function.getThunkedFunction(boolean)` - Thunk chain resolution
+* `DecompInterface.decompileFunction(Function, int, TaskMonitor)` - Decompilation
+
+**Type Analysis:**
+
+* `Composite.getDefinedComponents()` - Field iteration (excludes padding)
+* `DataType.getParents()` - Reverse dependency tracking
+* `Namespace.getPathList(boolean)` - Namespace path extraction
+* `Structure.getDataTypeAt(int)` - Offset-based component lookup
+
+=== Optimization Strategies
+
+**Caching:**
+
+* Type cache populated using specialized iterators (`getAllComposites()` before `getAllDataTypes()`)
+* Symbol lookups cached by full path and simple name
+* Namespace resolution memoized during function search
+
+**Efficient Iteration:**
+
+* Use `getAllComposites()` instead of filtering `getAllDataTypes()`
+* Leverage `CategoryPath` direct lookups before cache population
+* Wildcard searches via `findDataTypes()` for pattern matching
+
+**Error Handling:**
+
+* Timeout configuration for decompilation (default: 30s)
+* Graceful degradation when symbols unavailable
+* Validation of `DecompileResults` state before accessing
+
+== Configuration
+
+=== Analyzer Settings
+
+**Function Analyzer** (`function_analyzer/config/analyzer_config.py`):
+
+[source,python]
+----
+MAX_RECURSION_DEPTH = 10        # Maximum call graph depth
+DEFAULT_RECURSION_DEPTH = 2     # Default depth for analysis
+DECOMPILATION_TIMEOUT = 30      # Seconds before timeout
+SCORE_NAMESPACE_BONUS = 10      # Prioritization for namespaced functions
+----
+
+**Symbol Explorer** (`symbol_explorer/core/config.py`):
+
+[source,python]
+----
+DEFAULT_EXPLORE_DEPTH = 5       # Default DWARF traversal depth
+MAX_EXPLORE_DEPTH = 10          # Maximum allowed depth
+----
+
+=== Logging Configuration
+
+**Log Levels:**
+
+* `INFO` - Analysis output only (decompiled code, struct definitions)
+* `DEBUG` - Verbose Ghidra API calls, cache statistics, resolution paths
+
+**Configuration:**
+
+[source,python]
+----
+from shared.logging import LoggingConfig
+
+logger = LoggingConfig.setup_logger("module_name", "DEBUG")
+----
+
+== Output Formats
+
+=== DWARF Mode
+
+Generates C++ header-style definitions:
+
+[source,cpp]
+----
+// Nested type definitions:
+struct BaseType { /* fields */ };
+
+// Main type definition:
+struct DerivedType : public BaseType { /* fields */ };
+----
+
+**Metadata included:**
+
+* Offset and size for each field
+* Pack value for structures
+* Total structure size
+* Inheritance relationships
+
+=== Function Mode
+
+**INFO Level:**
+
+Decompiled code only, no metadata:
+
+[source,c]
+----
+bool __thiscall rLandInfo::load(rLandInfo *this, MtStream *in)
+{
+  // Implementation
+}
+----
+
+**DEBUG Level:**
+
+Full analysis with metadata, cross-references, and call graphs.
+
+== Implementation Notes
+
+=== Symbol Search Strategy
+
+1. **Direct CategoryPath lookup** - Most efficient for known DWARF paths
+2. **Wildcard search** - Pattern matching via `findDataTypes()` if wildcards present
+3. **Cache lookup** - Fallback to pre-populated cache with priority sorting
+4. **Conflict resolution** - `getDataTypesByBaseName()` for `.conflict` suffixes
+
+Priority order: DWARF composites > non-DWARF composites > DWARF types > other types
+
+=== Function Resolution Strategy
+
+1. **Symbol table iterator** - `getSymbolIterator(name, caseSensitive)`
+2. **Namespace-aware lookup** - `getLabelOrFunctionSymbols(name, namespace)` for qualified names
+3. **Exact match** - Function manager iteration with name comparison
+4. **Partial match** - Token-based matching as fallback
+5. **Thunk resolution** - Automatic resolution to target function
+
+=== Dependency Collection
+
+**Breadth-first traversal:**
+
+1. Start with root type
+2. Extract component types from composites
+3. Resolve typedefs to concrete types
+4. Track visited types to prevent cycles
+5. Build dependency graph for topological sorting
+
+**Base class handling:**
+
+* Detect via first component named `super_*` at offset 0
+* Unwrap typedefs to get actual base structure
+* Ensure base classes precede derived in output order
+
+== Testing
+
+=== Verification Commands
+
+[source,bash]
+----
+# Test DWARF extraction
+./run_ghidra_analysis.sh dwarf "rLandInfo" "DDOORBIS.elf" "INFO" 2
+
+# Test function analysis
+./run_ghidra_analysis.sh function "rLandInfo::load" "DDOORBIS.elf" "INFO" 2
+
+# Debug mode for detailed output
+./run_ghidra_analysis.sh dwarf "MtObject" "DDOORBIS.elf" "DEBUG" 1
+----
+
+=== Expected Behavior
+
+**DWARF mode:**
+
+* Outputs complete struct hierarchy with all dependencies
+* Handles templates, inheritance, and nested types
+* Includes size and offset annotations
+
+**Function mode:**
+
+* Decompiles target function and struct-related callees
+* Respects recursion depth limit
+* Eliminates duplicate functions across levels
+
+== Troubleshooting
+
+**Symbol not found:**
+
+* Verify symbol exists in DWARF debug info
+* Check category paths: `/DWARF/_UNCATEGORIZED_/`, `/DWARF/`
+* Try wildcard search: `*SymbolName*`
+
+== API Reference
+
+=== Public Interfaces
+
+**Function Analyzer:**
+
+[source,python]
+----
+class FunctionDecompilationAnalyzer:
+    def __init__(self, program: Program, log_level: str = "INFO")
+    def analyze_function(self, function_name: str, max_depth: int = 3) -> None
+----
+
+**Symbol Explorer:**
+
+[source,python]
+----
+class DwarfSymbolExplorer:
+    def __init__(self, program: Program, log_level: str = "INFO")
+    def analyze_symbol(self, symbol_name: str, explore_depth: int = 5) -> bool
+    def find_and_explore_symbol(self, symbol_name: str) -> Optional[DataType]
+----
+
+**Utilities:**
+
+[source,python]
+----
+class NamespaceUtils:
+    @staticmethod
+    def extract_namespace_from_signature(signature: str) -> Optional[str]
+    @staticmethod
+    def get_namespace_path_list(namespace: Namespace) -> List[str]
+    @staticmethod
+    def is_namespace_related(text: str, namespace: str) -> bool
+----
