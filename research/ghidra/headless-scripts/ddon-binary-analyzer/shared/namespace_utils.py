@@ -21,8 +21,8 @@ class NamespaceUtils:
 
     # Regex patterns for function signature parsing
     QUALIFIED_NAME_PATTERN = re.compile(
-        r'(?:__thiscall\s+)?([a-zA-Z_][a-zA-Z0-9_]*(?:::[a-zA-Z_][a-zA-Z0-9_]*)*)::[a-zA-Z_][a-zA-Z0-9_]*\s*\(')
-    FUNCTION_CALL_PATTERN = re.compile(r'([a-zA-Z_][a-zA-Z0-9_]*(?:::[a-zA-Z_][a-zA-Z0-9_]*)*(?:<[^>]*>)?)\s*\(')
+        r'(?:__thiscall\s+)?([a-zA-Z_]\w*(?:::[a-zA-Z_]\w*)*)::[a-zA-Z_]\w*\s*\(')
+    FUNCTION_CALL_PATTERN = re.compile(r'([a-zA-Z_]\w*(?:::[a-zA-Z_]\w*)*(?:<[^>]*>)?)\s*\(')
 
     # ========== Function Signature Parsing (used by function_analyzer) ==========
 

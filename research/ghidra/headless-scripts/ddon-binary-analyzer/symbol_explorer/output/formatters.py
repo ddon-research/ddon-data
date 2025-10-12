@@ -130,7 +130,7 @@ class CppTypeFormatter:
         import re
         # Match pattern: primitive_type:positive_integer
         # Primitive types are typically short (u8, u16, u32, u64, s8, s16, s32, s64, int, char, etc.)
-        bitfield_pattern = r'^[a-zA-Z_][a-zA-Z0-9_]{0,15}:\d+$'
+        bitfield_pattern = r'^[a-zA-Z_]\w{0,15}:\d+$'
         return bool(re.match(bitfield_pattern, type_name))
 
     def _is_integral_type(self, cpp_type: str) -> bool:

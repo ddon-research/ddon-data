@@ -75,13 +75,14 @@ class SymbolSearchService:
         and is more efficient than manual pattern matching.
         """
         from ghidra.util.task import TaskMonitor
-        from java.util import ArrayList
+        from java.util import ArrayList # type: ignore
 
         results = []
 
         try:
             # Use Ghidra's built-in wildcard search
             results_list = ArrayList()
+            # def findDataTypes(self, name: typing.Union[java.lang.String, str], list: java.util.List[DataType], caseSensitive: typing.Union[jpype.JBoolean, bool], monitor: ghidra.util.task.TaskMonitor):
             self.dtm.findDataTypes(pattern, results_list, False, TaskMonitor.DUMMY)
 
             # Convert to Python list and prioritize DWARF types

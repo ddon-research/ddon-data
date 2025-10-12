@@ -231,6 +231,6 @@ class DwarfSymbolExplorer:
         self.logger.debug("DWARF SYMBOL EXPLORATION COMPLETED")
         self.logger.debug(f"{'=' * 60}")
         self.logger.debug(f"Symbol: {symbol_name}")
-        self.logger.debug(f"Output Format: cpp")
+        self.logger.debug("Output Format: cpp")
         self.logger.debug(f"Log Level: {self.log_level}")
         self.logger.debug(f"{'=' * 60}")
