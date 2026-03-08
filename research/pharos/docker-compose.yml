@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  ooanalyzer:
+    image: ${PHAROS_IMAGE:-ghcr.io/cmu-sei/pharos:master}
+    volumes:
+      - ${INPUT_DIR}:/input:ro
+      - ${OUTPUT_DIR}:/output
+      - ./scripts/analyze.sh:/scripts/analyze.sh:ro
+    environment:
+      - BINARY_NAME=${BINARY_NAME}
+      - BASE_NAME=${BASE_NAME}
+      - MAX_MEMORY=${MAX_MEMORY:-50000}
+      - TIMEOUT=${TIMEOUT:-60}
+      - THREADS=${THREADS:-}
+    command: /bin/bash /scripts/analyze.sh
+    working_dir: /output
