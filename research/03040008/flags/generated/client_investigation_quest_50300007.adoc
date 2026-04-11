@@ -1,0 +1,75 @@
+= Client Flag/Quest Investigation
+:toc: macro
+:toclevels: 3
+:toc-title: Contents
+
+Query mode:: quest
+Query value:: 50300007
+Generated at:: 2026-04-11T21:41:41.724736+00:00
+
+toc::[]
+
+== ARC Association Context
+
+_ARC associations are contextual only. They show which quest-stage and marker resources are bundled with this quest._
+
+* arc file: client/03040008/quest/q50300007.arc.json
+* resource count: 4
+
+=== unclassified
+
+* rGUIMessage: ui/00_message/examine_message/quest/quest_examine_q50300007
+* rQuestTextData: ui/00_param/quest_text/q50300007_00
+* rMsgSet: ui/00_message/examine_message/quest/quest_examine_q50300007
+* rGUIMessage: ui/00_message/quest_info/q50300007_00
+
+== Flag Summary Matrix
+
+[cols="2,1,1,2,2,3,3",options="header"]
+|===
+| Target | Kind | Hits | Sources | Stages | Relationships | Description
+
+| Cycle SubNo 1003 | cycle_sub_no | 2 | csi, qst | st0506 | ⚡ Quest Condition, 🔁 Repeatable Sortie | Repeatable cycle 1/1003
+| Quest ID 50300007 | quest_id | 1 | esi |  | 🔁 Repeatable Sortie | Derived quest-wide association scan
+|===
+
+== Known Documented Targets
+
+* quest 50300007 -- Cycle SubNo 1003 -- Repeatable cycle 1/1003 [CSI]
+* Quest ID 50300007 -- Derived quest-wide association scan [Derived]
+
+== Cycle SubNo 1003 -- Quest 50300007
+
+origin:: derived_csi
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | 92 | client/03040008/quest/q20020009/quest/20020009/q20020009_st0506.qst.json | QuestStageList[].QuestGrp[0].Condition | Condition | quest 20020009 / Betland Cemetery / "QuestGroup 1" / QuestSet=QuestSetInfoNpc \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| CSI | 92 | client/03040008/game_common/quest/rCycleContentsSortieInfo.csi.json | CycleContentsSortieInfoTable[2].CycleSubNo | CycleSubNo | Volden Large Tunnels / "CycleNo=1" / SortieRoute=st0437 Volden Large Tunnels -> st0437 Volden Large Tunnels \| CycleNo=1 \| CycleSubNo=1003 | Repeatable sortie cycle metadata; CycleSubNo here ties a repeatable q5 sortie to its cycle content bucket and stage route.
+|===
+
+== Quest ID 50300007
+
+origin:: derived_special_query
+direct hits:: *1*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 1 hit(s)
+
+[cols="1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Confidence | File | JSON Path | Field | Context | Why
+
+| ESI | 92 | client/03040008/game_common/quest/rEndContentsSortieInfo.esi.json | EndContentsSortieInfoTable[32].QuestId | QuestId | quest 50300007 (The Demon of Darkness Awakens) / Volden Large Tunnels / "Unknown1=9, Unknown2=1, Flag=0" / SortieRoute=st0437 Volden Large Tunnels -> st0437 Volden Large Tunnels \| Unknown1=9 \| Unknown2=1 | Repeatable sortie registry; QuestId and Flag here define special q5 repeatable sortie entries and their gate flags.
+|===
+

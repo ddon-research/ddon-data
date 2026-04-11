@@ -1,7 +1,7 @@
 """Shared scanner utilities for decoded client JSON traversal."""
 from __future__ import annotations
 
-import json
+import orjson
 import re
 from pathlib import Path
 from typing import Any, Final
@@ -14,8 +14,8 @@ EVENT_CODE_PATTERN: Final[re.Pattern[str]] = re.compile(r"ev(\d{3})")
 
 def load_json(path: Path) -> Any | None:
     try:
-        return json.loads(path.read_text(encoding="utf-8"))
-    except (OSError, UnicodeDecodeError, json.JSONDecodeError):
+        return orjson.loads(path.read_bytes())
+    except (OSError, UnicodeDecodeError, orjson.JSONDecodeError):
         return None
 
 

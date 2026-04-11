@@ -1,0 +1,74 @@
+= Client Flag/Quest Investigation
+:toc: macro
+:toclevels: 3
+:toc-title: Contents
+
+Query mode:: quest
+Query value:: 60320003
+Generated at:: 2026-04-11T21:41:42.037702+00:00
+
+toc::[]
+
+== ARC Association Context
+
+_ARC associations are contextual only. They show which quest-stage and marker resources are bundled with this quest._
+
+* arc file: client/03040008/quest/q60320003.arc.json
+* resource count: 12
+
+=== st0133 -- Megadosys Plateau
+
+* rQuestMarkerInfo: quest/60320003/st0133_marker_om
+* rQuestList: quest/60320003/q60320003_st0133
+* rQuestMarkerInfo: quest/60320003/st0133_marker_npc
+
+=== unclassified
+
+* rMsgSet: ui/00_message/examine_message/quest/quest_examine_q60320003
+* rGUIMessage: ui/00_message/examine_message/quest/quest_examine_q60320003
+* rQuestTextData: ui/00_param/quest_text/q60320003_00
+* rGUIMessage: ui/00_message/quest_info/q60320003_00
+* rMsgSet: ui/00_message/quest/q60320003
+* rFieldAreaMarkerInfo: quest/60320003/fa006_marker_npc
+* rFieldAreaMarkerInfo: quest/60320003/fa006_marker_om
+* rAIFSM: quest/60320003/npc/battle_npc_00
+* rGUIMessage: ui/00_message/quest/q60320003
+
+== Flag Summary Matrix
+
+[cols="2,1,1,2,2,3,3",options="header"]
+|===
+| Target | Kind | Hits | Sources | Stages | Relationships | Description
+
+| Quest ID 60320003 | quest_id | 9 | ams, qst | st0133 | 🗺️ Spot Block, 💬 Text Quest | Derived quest-wide association scan
+|===
+
+== Known Documented Targets
+
+* Quest ID 60320003 -- Derived quest-wide association scan [Derived]
+
+== Quest ID 60320003
+
+origin:: derived_special_query
+direct hits:: *9*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 9 hit(s)
+
+[cols="1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | 92 | client/03040008/quest/q60320003/quest/60320003/q60320003_st0133.qst.json | QuestStageList[].QuestGrp[0].QuestSet[0].TextQuestNo | TextQuestNo | quest 60320003 / Megadosys Plateau / "第一発見　パターン１ \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100565 \| TextType=2 \| TextQuestNo=60320003 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | 92 | client/03040008/quest/q60320003/quest/60320003/q60320003_st0133.qst.json | QuestStageList[].QuestGrp[0].QuestSet[1].TextQuestNo | TextQuestNo | quest 60320003 / Megadosys Plateau / "第一発見　パターン１ \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100568 \| TextType=2 \| TextQuestNo=60320003 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | 92 | client/03040008/quest/q60320003/quest/60320003/q60320003_st0133.qst.json | QuestStageList[].QuestGrp[1].QuestSet[0].TextQuestNo | TextQuestNo | quest 60320003 / Megadosys Plateau / "QuestGroup 1 \| 第一発見　パターン２ \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100565 \| TextType=2 \| TextQuestNo=60320003 \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | 92 | client/03040008/quest/q60320003/quest/60320003/q60320003_st0133.qst.json | QuestStageList[].QuestGrp[1].QuestSet[1].TextQuestNo | TextQuestNo | quest 60320003 / Megadosys Plateau / "QuestGroup 1 \| 第一発見　パターン２ \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100568 \| TextType=2 \| TextQuestNo=60320003 \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | 92 | client/03040008/quest/q60320003/quest/60320003/q60320003_st0133.qst.json | QuestStageList[].QuestGrp[2].QuestSet[0].TextQuestNo | TextQuestNo | quest 60320003 / Megadosys Plateau / "QuestGroup 2 \| 第二発見　パターン１ \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100567 \| TextType=2 \| TextQuestNo=60320003 \| GroupNo=2 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | 92 | client/03040008/quest/q60320003/quest/60320003/q60320003_st0133.qst.json | QuestStageList[].QuestGrp[2].QuestSet[1].TextQuestNo | TextQuestNo | quest 60320003 / Megadosys Plateau / "QuestGroup 2 \| 第二発見　パターン１ \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100568 \| TextType=2 \| TextQuestNo=60320003 \| GroupNo=2 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | 92 | client/03040008/quest/q60320003/quest/60320003/q60320003_st0133.qst.json | QuestStageList[].QuestGrp[3].QuestSet[0].TextQuestNo | TextQuestNo | quest 60320003 / Megadosys Plateau / "QuestGroup 3 \| 第二発見　パターン２ \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100567 \| TextType=2 \| TextQuestNo=60320003 \| GroupNo=3 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | 92 | client/03040008/quest/q60320003/quest/60320003/q60320003_st0133.qst.json | QuestStageList[].QuestGrp[3].QuestSet[1].TextQuestNo | TextQuestNo | quest 60320003 / Megadosys Plateau / "QuestGroup 3 \| 第二発見　パターン２ \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100568 \| TextType=2 \| TextQuestNo=60320003 \| GroupNo=3 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| AMS | 92 | client/03040008/ui/uGUIAreaMaster/ui/00_param/master/am_spot_20.ams.json | AreaMasterSpotDataList[9].QuestId | QuestId | quest 60320003 (Megadosys Plateau Pursue and Defeat Enemies) / Megadosys Plateau / Megadosys Plateau / "SpotId=1050" / QuestBlockedSpot \| Demon Army Standby Spot \| Monster Caution Spots \| RecommendLevel=93 | Area Master spot block; QuestId here indicates the map spot is hidden or blocked by that quest.
+|===
+

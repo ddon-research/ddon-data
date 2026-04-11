@@ -1,0 +1,146 @@
+{
+  "format": "client_investigation.v4",
+  "generated_at": "2026-04-11T21:41:42.008417+00:00",
+  "query": {
+    "mode": "quest",
+    "value": 60301042
+  },
+  "documented_targets": [
+    {
+      "flag_value": 60301042,
+      "quest_id": 60301042,
+      "flag_type": "quest_id",
+      "doc_comment": "Derived quest-wide association scan",
+      "origin": "derived_special_query"
+    }
+  ],
+  "targets": [
+    {
+      "target": {
+        "flag_value": 60301042,
+        "quest_id": 60301042,
+        "flag_type": "quest_id",
+        "origin": "derived_special_query",
+        "doc_comment": "Derived quest-wide association scan"
+      },
+      "hits": [
+        {
+          "source_type": "fsm",
+          "file_path": "client/03040008/quest/q60301042/quest/60301042/npc/n0029.fsm.json",
+          "json_path": "Process.Parameter.QuestId",
+          "field_name": "QuestId",
+          "flag_value": 60301042,
+          "flag_kind": "quest_id",
+          "relationship": "fsm_check",
+          "quest_name": "A Gift for You, My Love (2)",
+          "quest_name_jp": "愛し君のための贈り物＜２＞",
+          "context": "checkMyQuestFlag | NPCFSM=n0029 | QuestLocalNPCFSM",
+          "quest_id": 60301042,
+          "resource_family": "FSM",
+          "evidence_tier": "opaque_fsm",
+          "confidence": 78,
+          "why": "Quest-local NPC FSM MyQuest check; these files usually describe NPC behavior for the same quest, so this flag likely controls that NPC's quest-specific presence or behavior.",
+          "npc_id": 29,
+          "npc_name": "Nedo",
+          "npc_name_jp": "ネド"
+        },
+        {
+          "source_type": "fsm",
+          "file_path": "client/03040008/quest/q60301042/quest/60301042/npc/n0029.fsm.json",
+          "json_path": "Process.Parameter.QuestId",
+          "field_name": "QuestId",
+          "flag_value": 60301042,
+          "flag_kind": "quest_id",
+          "relationship": "fsm_check",
+          "quest_name": "A Gift for You, My Love (2)",
+          "quest_name_jp": "愛し君のための贈り物＜２＞",
+          "context": "checkMyQuestFlag | NPCFSM=n0029 | QuestLocalNPCFSM",
+          "quest_id": 60301042,
+          "resource_family": "FSM",
+          "evidence_tier": "opaque_fsm",
+          "confidence": 78,
+          "why": "Quest-local NPC FSM MyQuest check; these files usually describe NPC behavior for the same quest, so this flag likely controls that NPC's quest-specific presence or behavior.",
+          "npc_id": 29,
+          "npc_name": "Nedo",
+          "npc_name_jp": "ネド"
+        }
+      ],
+      "candidate_hits": []
+    }
+  ],
+  "quest_archive_context": {
+    "file_path": "client/03040008/quest/q60301042.arc.json",
+    "resource_count": 9,
+    "stages": [
+      {
+        "stage_code": "st0200",
+        "stage_no": 200,
+        "stage_name": "The White Dragon Temple",
+        "stage_name_jp": "白竜神殿レーゼ",
+        "resources": [
+          {
+            "path": "quest/60301042/st0200_marker_npc",
+            "type_extension": ".qmi",
+            "type_name": "rQuestMarkerInfo"
+          },
+          {
+            "path": "quest/60301042/q60301042_st0200",
+            "type_extension": ".qst",
+            "type_name": "rQuestList"
+          }
+        ]
+      },
+      {
+        "stage_code": "st0541",
+        "stage_no": 541,
+        "stage_name": "Tel's Withered Well",
+        "stage_name_jp": "テルの枯れ井戸",
+        "resources": [
+          {
+            "path": "quest/60301042/q60301042_st0541",
+            "type_extension": ".qst",
+            "type_name": "rQuestList"
+          },
+          {
+            "path": "quest/60301042/st0541_marker_npc",
+            "type_extension": ".qmi",
+            "type_name": "rQuestMarkerInfo"
+          }
+        ]
+      },
+      {
+        "stage_code": "",
+        "stage_no": 0,
+        "stage_name": "",
+        "stage_name_jp": "",
+        "resources": [
+          {
+            "path": "ui/00_message/quest/q60301042",
+            "type_extension": ".gmd",
+            "type_name": "rGUIMessage"
+          },
+          {
+            "path": "ui/00_param/quest_text/q60301042_00",
+            "type_extension": ".qtd",
+            "type_name": "rQuestTextData"
+          },
+          {
+            "path": "ui/00_message/quest/q60301042",
+            "type_extension": ".mss",
+            "type_name": "rMsgSet"
+          },
+          {
+            "path": "quest/60301042/npc/n0029",
+            "type_extension": ".fsm",
+            "type_name": "rAIFSM"
+          },
+          {
+            "path": "ui/00_message/quest_info/q60301042_00",
+            "type_extension": ".gmd",
+            "type_name": "rGUIMessage"
+          }
+        ]
+      }
+    ]
+  }
+}

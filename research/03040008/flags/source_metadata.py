@@ -642,13 +642,11 @@ def get_csi_rows_for_quest(quest_id: int) -> list[dict[str, Any]]:
 
 
 def quest_has_special_resource_refs(quest_id: int) -> bool:
-    return any(
-        (
-            get_esi_rows_for_quest(quest_id),
-            get_evd_rows_for_quest(quest_id),
-            get_jtq_rows_for_quest(quest_id),
-            get_tqg_rows_for_quest(quest_id),
-            get_jmc_rows_for_quest(quest_id),
-            get_ams_rows_for_quest(quest_id),
-        )
+    return bool(
+        get_esi_rows_for_quest(quest_id)
+        or get_evd_rows_for_quest(quest_id)
+        or get_jtq_rows_for_quest(quest_id)
+        or get_tqg_rows_for_quest(quest_id)
+        or get_jmc_rows_for_quest(quest_id)
+        or get_ams_rows_for_quest(quest_id)
     )

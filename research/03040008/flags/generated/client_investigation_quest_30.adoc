@@ -1,0 +1,53 @@
+= Client Flag/Quest Investigation
+:toc: macro
+:toclevels: 3
+:toc-title: Contents
+
+Query mode:: quest
+Query value:: 30
+Generated at:: 2026-04-11T21:41:40.511416+00:00
+
+toc::[]
+
+== Flag Summary Matrix
+
+[cols="2,1,1,2,2,3,3",options="header"]
+|===
+| Target | Kind | Hits | Sources | Stages | Relationships | Description
+
+| Quest ID 30 | quest_id | 13 | gpl, smc | st0201 | 🏗️ Layout Guard, 🗣️ NPC Chatter | Derived quest-wide association scan
+|===
+
+== Known Documented Targets
+
+* Quest ID 30 -- Derived quest-wide association scan [Derived]
+
+== Quest ID 30
+
+origin:: derived_special_query
+direct hits:: *13*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 13 hit(s)
+
+[cols="1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Confidence | File | JSON Path | Field | Context | Why
+
+| GPL | 92 | client/03040008/stage/st0201/st0201/scr/st0201/etc/st0201_n.gpl.json | GroupParamBuff[8].DataLotFlag.LotFlagNo | LotFlagNo | Audience Chamber / Hidell Plains / GroupParam[8] \| DataCommon.Group=12 \| LayoutAreas=201 \| LayoutRefs=1 | Layout group guard; QuestNo and LayoutFlagNo here usually determine whether a stage group loads, including enemy or object visibility.
+| SMC | 92 | client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json | SituationData.EndQuestId | EndQuestId | quest 30 (White Dragon Eternal) / Klaus / GroupSerial=14002 / "GroupSerial=14002, QuestWindow=24-30 (The Great Alchemist -> White Dragon Eternal), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0003 \| Quest-gated NPC chatter \| QuestWindow=24-30 (The Great Alchemist -> White Dragon Eternal) / MSS: Klaus / I keep thinking—that Diamantes wants me to follow | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | 92 | client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json | SituationData.EndQuestId | EndQuestId | quest 30 (White Dragon Eternal) / Joseph / GroupSerial=14004 / "GroupSerial=14004, QuestWindow=24-30 (The Great Alchemist -> White Dragon Eternal), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0004 \| Quest-gated NPC chatter \| QuestWindow=24-30 (The Great Alchemist -> White Dragon Eternal) / MSS: Joseph / No sign of Leo, but he'll be back soon. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | 92 | client/03040008/npc/n0007/ui/00_message/npc/base/n0007.smc.json | SituationData.EndQuestId | EndQuestId | quest 30 (White Dragon Eternal) / Gerd / GroupSerial=14051 / "GroupSerial=14051, QuestWindow=24-30 (The Great Alchemist -> White Dragon Eternal), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0007 \| Quest-gated NPC chatter \| QuestWindow=24-30 (The Great Alchemist -> White Dragon Eternal) / MSS: Gerd / However, just because we have defeated Diamantes, | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | 92 | client/03040008/npc/n0008/ui/00_message/npc/base/n0008.smc.json | SituationData.EndQuestId | EndQuestId | quest 30 (White Dragon Eternal) / Heinz / GroupSerial=14040 / "GroupSerial=14040, QuestWindow=24-30 (The Great Alchemist -> White Dragon Eternal), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0008 \| Quest-gated NPC chatter \| QuestWindow=24-30 (The Great Alchemist -> White Dragon Eternal) / MSS: Heinz / There have been many battles so far, but the | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | 92 | client/03040008/npc/n0010/ui/00_message/npc/base/n0010.smc.json | SituationData.EndQuestId | EndQuestId | quest 30 (White Dragon Eternal) / Theodor / GroupSerial=14052 / "GroupSerial=14052, QuestWindow=24-30 (The Great Alchemist -> White Dragon Eternal), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0010 \| Quest-gated NPC chatter \| QuestWindow=24-30 (The Great Alchemist -> White Dragon Eternal) / MSS: Theodor / Please convey my regards to the temple personnel. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | 92 | client/03040008/npc/n0011/ui/00_message/npc/base/n0011.smc.json | SituationData.EndQuestId | EndQuestId | quest 30 (White Dragon Eternal) / Vanessa / GroupSerial=14042 / "GroupSerial=14042, QuestWindow=24-30 (The Great Alchemist -> White Dragon Eternal), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0011 \| Quest-gated NPC chatter \| QuestWindow=24-30 (The Great Alchemist -> White Dragon Eternal) / MSS: Vanessa / I rushed over upon hearing the report. Were you | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | 92 | client/03040008/npc/n0012/ui/00_message/npc/base/n0012.smc.json | SituationData.EndQuestId | EndQuestId | quest 30 (White Dragon Eternal) / Fabio / GroupSerial=13999 / "GroupSerial=13999, QuestWindow=24-30 (The Great Alchemist -> White Dragon Eternal), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0012 \| Quest-gated NPC chatter \| QuestWindow=24-30 (The Great Alchemist -> White Dragon Eternal) / MSS: Fabio / You must have heard it said everywhere by now. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | 92 | client/03040008/npc/n0014/ui/00_message/npc/base/n0014.smc.json | SituationData.EndQuestId | EndQuestId | quest 30 (White Dragon Eternal) / Mayleaf / GroupSerial=14050 / "GroupSerial=14050, QuestWindow=24-30 (The Great Alchemist -> White Dragon Eternal), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0014 \| Quest-gated NPC chatter \| QuestWindow=24-30 (The Great Alchemist -> White Dragon Eternal) / MSS: Mayleaf / Welcome back! Um, as for me... um... | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | 92 | client/03040008/npc/n1003/ui/00_message/npc/base/n1003.smc.json | SituationData.EndQuestId | EndQuestId | quest 30 (White Dragon Eternal) / Pamela / GroupSerial=14053 / "GroupSerial=14053, QuestWindow=24-30 (The Great Alchemist -> White Dragon Eternal), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n1003 \| Quest-gated NPC chatter \| QuestWindow=24-30 (The Great Alchemist -> White Dragon Eternal) / MSS: Pamela / Thank you so much for your hard work. Please come | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | 92 | client/03040008/npc/n1313/ui/00_message/npc/base/n1313.smc.json | SituationData.EndQuestId | EndQuestId | quest 30 (White Dragon Eternal) / Alfred / GroupSerial=14047 / "GroupSerial=14047, QuestWindow=24-30 (The Great Alchemist -> White Dragon Eternal), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n1313 \| Quest-gated NPC chatter \| QuestWindow=24-30 (The Great Alchemist -> White Dragon Eternal) / MSS: Alfred / I hear that your performance was | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | 92 | client/03040008/npc/n2000/ui/00_message/npc/base/n2000.smc.json | SituationData.EndQuestId | EndQuestId | quest 30 (White Dragon Eternal) / Gilstan / GroupSerial=14046 / "GroupSerial=14046, QuestWindow=24-30 (The Great Alchemist -> White Dragon Eternal), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n2000 \| Quest-gated NPC chatter \| QuestWindow=24-30 (The Great Alchemist -> White Dragon Eternal) / MSS: Gilstan / I remember, you know! | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | 92 | client/03040008/npc/n2102/ui/00_message/npc/base/n2102.smc.json | SituationData.EndQuestId | EndQuestId | quest 30 (White Dragon Eternal) / Alvar / GroupSerial=14048 / "GroupSerial=14048, QuestWindow=24-30 (The Great Alchemist -> White Dragon Eternal), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n2102 \| Quest-gated NPC chatter \| QuestWindow=24-30 (The Great Alchemist -> White Dragon Eternal) / MSS: Alvar / Even though the great threat has been repelled, the enemies haven't disappeared from Lestania. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+|===
+

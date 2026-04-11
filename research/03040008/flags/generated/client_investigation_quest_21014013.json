@@ -1,0 +1,148 @@
+{
+  "format": "client_investigation.v4",
+  "generated_at": "2026-04-11T21:41:40.986306+00:00",
+  "query": {
+    "mode": "quest",
+    "value": 21014013
+  },
+  "documented_targets": [
+    {
+      "flag_value": 21014013,
+      "quest_id": 21014013,
+      "flag_type": "quest_id",
+      "doc_comment": "Derived quest-wide association scan",
+      "origin": "derived_special_query"
+    }
+  ],
+  "targets": [
+    {
+      "target": {
+        "flag_value": 21014013,
+        "quest_id": 21014013,
+        "flag_type": "quest_id",
+        "origin": "derived_special_query",
+        "doc_comment": "Derived quest-wide association scan"
+      },
+      "hits": [
+        {
+          "source_type": "fsm",
+          "file_path": "client/03040008/quest/q21014013/quest/21014013/npc/help.fsm.json",
+          "json_path": "Process.Parameter.QuestId",
+          "field_name": "QuestId",
+          "flag_value": 21014013,
+          "flag_kind": "quest_id",
+          "relationship": "fsm_check",
+          "quest_name": "The Arisen Corps' Blunder",
+          "quest_name_jp": "覚者隊の失態",
+          "context": "checkMyQuestFlag",
+          "quest_id": 21014013,
+          "resource_family": "FSM",
+          "evidence_tier": "opaque_fsm",
+          "confidence": 64,
+          "why": "Matched decoded FSM state data; authored semantics remain indirect without deeper correlation."
+        }
+      ],
+      "candidate_hits": []
+    }
+  ],
+  "quest_archive_context": {
+    "file_path": "client/03040008/quest/q21014013.arc.json",
+    "resource_count": 14,
+    "stages": [
+      {
+        "stage_code": "st0121",
+        "stage_no": 121,
+        "stage_name": "Elan Water Grove",
+        "stage_name_jp": "エラン水林",
+        "resources": [
+          {
+            "path": "quest/21014013/st0121_marker_npc",
+            "type_extension": ".qmi",
+            "type_name": "rQuestMarkerInfo"
+          },
+          {
+            "path": "quest/21014013/q21014013_st0121",
+            "type_extension": ".qst",
+            "type_name": "rQuestList"
+          }
+        ]
+      },
+      {
+        "stage_code": "st0814",
+        "stage_no": 814,
+        "stage_name": "Dancing Rainbow Cave",
+        "stage_name_jp": "虹舞い洞窟",
+        "resources": [
+          {
+            "path": "quest/21014013/st0814_marker_npc",
+            "type_extension": ".qmi",
+            "type_name": "rQuestMarkerInfo"
+          },
+          {
+            "path": "quest/21014013/q21014013_st0814",
+            "type_extension": ".qst",
+            "type_name": "rQuestList"
+          }
+        ]
+      },
+      {
+        "stage_code": "",
+        "stage_no": 0,
+        "stage_name": "",
+        "stage_name_jp": "",
+        "resources": [
+          {
+            "path": "ui/00_param/quest_text/q21014013_00",
+            "type_extension": ".qtd",
+            "type_name": "rQuestTextData"
+          },
+          {
+            "path": "quest/21014013/npc/help",
+            "type_extension": ".fsm",
+            "type_name": "rAIFSM"
+          },
+          {
+            "path": "ui/00_message/quest_info/q21014013_00",
+            "type_extension": ".gmd",
+            "type_name": "rGUIMessage"
+          },
+          {
+            "path": "ui/00_message/examine_message/quest/quest_examine_q21014013",
+            "type_extension": ".mss",
+            "type_name": "rMsgSet"
+          },
+          {
+            "path": "ui/00_message/quest/q21014013",
+            "type_extension": ".mss",
+            "type_name": "rMsgSet"
+          },
+          {
+            "path": "quest/21014013/fa005_marker_npc",
+            "type_extension": ".fmi",
+            "type_name": "rFieldAreaMarkerInfo"
+          },
+          {
+            "path": "ui/00_message/quest/q21014013",
+            "type_extension": ".gmd",
+            "type_name": "rGUIMessage"
+          },
+          {
+            "path": "quest/21014013/npc/help_alive",
+            "type_extension": ".fsm",
+            "type_name": "rAIFSM"
+          },
+          {
+            "path": "quest/21014013/npc/help_dead",
+            "type_extension": ".fsm",
+            "type_name": "rAIFSM"
+          },
+          {
+            "path": "ui/00_message/examine_message/quest/quest_examine_q21014013",
+            "type_extension": ".gmd",
+            "type_name": "rGUIMessage"
+          }
+        ]
+      }
+    ]
+  }
+}

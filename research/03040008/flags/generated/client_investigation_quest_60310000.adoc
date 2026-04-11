@@ -1,0 +1,81 @@
+= Client Flag/Quest Investigation
+:toc: macro
+:toclevels: 3
+:toc-title: Contents
+
+Query mode:: quest
+Query value:: 60310000
+Generated at:: 2026-04-11T21:41:42.016415+00:00
+
+toc::[]
+
+== ARC Association Context
+
+_ARC associations are contextual only. They show which quest-stage and marker resources are bundled with this quest._
+
+* arc file: client/03040008/quest/q60310000.arc.json
+* resource count: 17
+
+=== st0100 -- Lestania
+
+* rQuestMarkerInfo: quest/60310000/st0100_marker_om
+* rQuestMarkerInfo: quest/60310000/st0100_marker_npc
+* rQuestList: quest/60310000/q60310000_st0100
+
+=== st0200 -- The White Dragon Temple
+
+* rQuestMarkerInfo: quest/60310000/st0200_marker_npc
+* rQuestList: quest/60310000/q60310000_st0200
+
+=== st0330 -- Black Grape Inn
+
+* rQuestMarkerInfo: quest/60310000/st0330_marker_npc
+* rQuestList: quest/60310000/q60310000_st0330
+
+=== st0500 -- Hidell Catacombs
+
+* rQuestList: quest/60310000/q60310000_st0500
+* rQuestMarkerInfo: quest/60310000/st0500_marker_npc
+
+=== unclassified
+
+* rFieldAreaMarkerInfo: quest/60310000/fa001_marker_om
+* rFieldAreaMarkerInfo: quest/60310000/fa001_marker_npc
+* rMsgSet: ui/00_message/examine_message/quest/quest_examine_q60310000
+* rMsgSet: ui/00_message/quest/q60310000
+* rGUIMessage: ui/00_message/examine_message/quest/quest_examine_q60310000
+* rQuestTextData: ui/00_param/quest_text/q60310000_00
+* rGUIMessage: ui/00_message/quest/q60310000
+* rGUIMessage: ui/00_message/quest_info/q60310000_00
+
+== Flag Summary Matrix
+
+[cols="2,1,1,2,2,3,3",options="header"]
+|===
+| Target | Kind | Hits | Sources | Stages | Relationships | Description
+
+| Quest ID 60310000 | quest_id | 0 |  |  |  | Derived quest-wide association scan
+|===
+
+== Known Documented Targets
+
+* Quest ID 60310000 -- Derived quest-wide association scan [Derived]
+
+== Quest ID 60310000
+
+origin:: derived_special_query
+direct hits:: *0*
+ranked candidates:: *2*
+
+_No direct references found in decoded client data._
+
+=== Ranked Candidates
+
+[cols="1,1,2,3,3,3",options="header"]
+|===
+| Tier | Confidence | Field | File | Context | Why
+
+| context | 45 | QuestId | client/03040008/game_common/quest/QuestSequence.qsq.json | Ghost Wail Collection: Suddenly a Different World | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
+| context | 45 | QuestNo | client/03040008/stage/st0100/st0100/scr/st0100/etc/st0100_p.gpl.json | Ghost Wail Collection: Suddenly a Different World / Lestania | Matched a relevant decoded field (QuestNo), but not in the primary field family for this target type.
+|===
+

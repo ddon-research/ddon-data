@@ -1,0 +1,117 @@
+{
+  "format": "client_investigation.v4",
+  "generated_at": "2026-04-11T21:41:41.691378+00:00",
+  "query": {
+    "mode": "quest",
+    "value": 50104000
+  },
+  "documented_targets": [
+    {
+      "flag_value": 50104000,
+      "quest_id": 50104000,
+      "flag_type": "quest_id",
+      "doc_comment": "Derived quest-wide association scan",
+      "origin": "derived_special_query"
+    }
+  ],
+  "targets": [
+    {
+      "target": {
+        "flag_value": 50104000,
+        "quest_id": 50104000,
+        "flag_type": "quest_id",
+        "origin": "derived_special_query",
+        "doc_comment": "Derived quest-wide association scan"
+      },
+      "hits": [
+        {
+          "source_type": "lot",
+          "file_path": "client/03040008/stage/st0421/lot/st0421_00m00n/scr/st0421/etc/st0421_00m00n_p21.lot.json",
+          "json_path": "Array[4].Info.QuestId[0]",
+          "field_name": "QuestId",
+          "flag_value": 50104000,
+          "flag_kind": "quest_id",
+          "relationship": "warp_gate",
+          "stage_name": "Mergoda Ruins: Royal Palace Level",
+          "stage_name_jp": "亡都メルゴダ　王宮層",
+          "area_name": "Mergoda Ruins",
+          "area_name_jp": "亡都メルゴダ",
+          "stage_code": "st0421",
+          "context": "SetInfoOmWarp | om522151 | OM_ID_RIFT_WARP_CRYSTAL_1 | EnableZone | Destination st0422 The Golden Palace | StartPos=0",
+          "quest_id": 50104000,
+          "stage_no": 421,
+          "resource_family": "LOT",
+          "evidence_tier": "direct",
+          "confidence": 92,
+          "why": "Layout placement reference; LOT hits usually gate warps, NPCs, or interactable objects in the stage layout."
+        },
+        {
+          "source_type": "esi",
+          "file_path": "client/03040008/game_common/quest/rEndContentsSortieInfo.esi.json",
+          "json_path": "EndContentsSortieInfoTable[3].QuestId",
+          "field_name": "QuestId",
+          "flag_value": 50104000,
+          "flag_kind": "quest_id",
+          "relationship": "repeatable_sortie",
+          "quest_name": "The Shining Gate",
+          "quest_name_jp": "輝く扉",
+          "stage_name": "Mergoda Ruins: Royal Palace Level",
+          "stage_name_jp": "亡都メルゴダ　王宮層",
+          "comment": "Unknown1=1, Unknown2=1, Flag=0",
+          "context": "SortieRoute=st0421 Mergoda Ruins: Royal Palace Level -> st0421 Mergoda Ruins: Royal Palace Level | Unknown1=1 | Unknown2=1",
+          "quest_id": 50104000,
+          "stage_no": 421,
+          "resource_family": "ESI",
+          "evidence_tier": "direct",
+          "confidence": 92,
+          "why": "Repeatable sortie registry; QuestId and Flag here define special q5 repeatable sortie entries and their gate flags."
+        }
+      ],
+      "candidate_hits": []
+    }
+  ],
+  "quest_archive_context": {
+    "file_path": "client/03040008/quest/q50104000.arc.json",
+    "resource_count": 6,
+    "stages": [
+      {
+        "stage_code": "",
+        "stage_no": 0,
+        "stage_name": "",
+        "stage_name_jp": "",
+        "resources": [
+          {
+            "path": "ui/00_message/examine_message/quest/quest_examine_q50104000",
+            "type_extension": ".mss",
+            "type_name": "rMsgSet"
+          },
+          {
+            "path": "ui/00_message/examine_message/quest/quest_examine_q50104000",
+            "type_extension": ".gmd",
+            "type_name": "rGUIMessage"
+          },
+          {
+            "path": "ui/00_param/quest_text/q50104000_00",
+            "type_extension": ".qtd",
+            "type_name": "rQuestTextData"
+          },
+          {
+            "path": "ui/00_message/quest/q50104000",
+            "type_extension": ".gmd",
+            "type_name": "rGUIMessage"
+          },
+          {
+            "path": "ui/00_message/quest/q50104000",
+            "type_extension": ".mss",
+            "type_name": "rMsgSet"
+          },
+          {
+            "path": "ui/00_message/quest_info/q50104000_00",
+            "type_extension": ".gmd",
+            "type_name": "rGUIMessage"
+          }
+        ]
+      }
+    ]
+  }
+}

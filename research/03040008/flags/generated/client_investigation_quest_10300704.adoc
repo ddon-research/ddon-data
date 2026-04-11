@@ -1,0 +1,76 @@
+= Client Flag/Quest Investigation
+:toc: macro
+:toclevels: 3
+:toc-title: Contents
+
+Query mode:: quest
+Query value:: 10300704
+Generated at:: 2026-04-11T21:41:40.640153+00:00
+
+toc::[]
+
+== ARC Association Context
+
+_ARC associations are contextual only. They show which quest-stage and marker resources are bundled with this quest._
+
+* arc file: client/03040008/quest/q10300704.arc.json
+* resource count: 15
+
+=== st0130 -- Rathnite Foothills
+
+* rQuestList: quest/10300704/q10300704_st0130
+* rQuestMarkerInfo: quest/10300704/st0130_marker_npc
+* rQuestMarkerInfo: quest/10300704/st0130_marker_om
+
+=== st0488
+
+* rQuestMarkerInfo: quest/10300704/st0488_marker_npc
+* rQuestList: quest/10300704/q10300704_st0488
+
+=== st1022 -- Rathnite Underground Waterway
+
+* rQuestMarkerInfo: quest/10300704/st1022_marker_npc
+* rQuestList: quest/10300704/q10300704_st1022
+
+=== unclassified
+
+* rQuestTextData: ui/00_param/quest_text/q10300704_00
+* rAIFSM: quest/10300704/npc/help
+* rGUIMessage: ui/00_message/quest/q10300704
+* rMsgSet: ui/00_message/examine_message/quest/quest_examine_q10300704
+* rGUIMessage: ui/00_message/quest_info/q10300704_00
+* rMsgSet: ui/00_message/quest/q10300704
+* rFieldAreaMarkerInfo: quest/10300704/fa006_marker_om
+* rGUIMessage: ui/00_message/examine_message/quest/quest_examine_q10300704
+
+== Flag Summary Matrix
+
+[cols="2,1,1,2,2,3,3",options="header"]
+|===
+| Target | Kind | Hits | Sources | Stages | Relationships | Description
+
+| Quest ID 10300704 | quest_id | 0 |  |  |  | Derived quest-wide association scan
+|===
+
+== Known Documented Targets
+
+* Quest ID 10300704 -- Derived quest-wide association scan [Derived]
+
+== Quest ID 10300704
+
+origin:: derived_special_query
+direct hits:: *0*
+ranked candidates:: *2*
+
+_No direct references found in decoded client data._
+
+=== Ranked Candidates
+
+[cols="1,1,2,3,3,3",options="header"]
+|===
+| Tier | Confidence | Field | File | Context | Why
+
+| context | 45 | QuestId | client/03040008/game_common/quest/QuestSequence.qsq.json | Aidan Part: Search Request for the Disappearance of Aidan | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
+| context | 45 | QuestNo | client/03040008/stage/st0130/st0130/scr/st0130/etc/st0130_s.gpl.json | Aidan Part: Search Request for the Disappearance of Aidan / Rathnite Foothills | Matched a relevant decoded field (QuestNo), but not in the primary field family for this target type.
+|===
+

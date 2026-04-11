@@ -1,0 +1,92 @@
+= Client Flag/Quest Investigation
+:toc: macro
+:toclevels: 3
+:toc-title: Contents
+
+Query mode:: quest
+Query value:: 60200202
+Generated at:: 2026-04-11T21:41:41.890910+00:00
+
+toc::[]
+
+== ARC Association Context
+
+_ARC associations are contextual only. They show which quest-stage and marker resources are bundled with this quest._
+
+* arc file: client/03040008/quest/q60200202.arc.json
+* resource count: 22
+
+=== st0120 -- Farana Plains
+
+* rQuestMarkerInfo: quest/60200202/st0120_marker_npc
+* rQuestMarkerInfo: quest/60200202/st0120_marker_om
+* rQuestList: quest/60200202/q60200202_st0120
+
+=== st0121 -- Elan Water Grove
+
+* rQuestMarkerInfo: quest/60200202/st0121_marker_om
+* rQuestMarkerInfo: quest/60200202/st0121_marker_npc
+* rQuestList: quest/60200202/q60200202_st0121
+
+=== st0122 -- Kingal Canyon
+
+* rQuestMarkerInfo: quest/60200202/st0122_marker_npc
+* rQuestMarkerInfo: quest/60200202/st0122_marker_om
+* rQuestList: quest/60200202/q60200202_st0122
+
+=== st0123 -- Morrow Forest
+
+* rQuestMarkerInfo: quest/60200202/st0123_marker_npc
+* rQuestMarkerInfo: quest/60200202/st0123_marker_om
+* rQuestList: quest/60200202/q60200202_st0123
+
+=== st0884 -- Valtable Hall
+
+* rQuestMarkerInfo: quest/60200202/st0884_marker_om
+* rQuestMarkerInfo: quest/60200202/st0884_marker_npc
+* rQuestList: quest/60200202/q60200202_st0884
+
+=== unclassified
+
+* rFieldAreaMarkerInfo: quest/60200202/fa005_marker_om
+* rGUIMessage: ui/00_message/quest/q60200202
+* rMsgSet: ui/00_message/examine_message/quest/quest_examine_q60200202
+* rQuestTextData: ui/00_param/quest_text/q60200202_00
+* rMsgSet: ui/00_message/quest/q60200202
+* rGUIMessage: ui/00_message/examine_message/quest/quest_examine_q60200202
+* rGUIMessage: ui/00_message/quest_info/q60200202_00
+
+== Flag Summary Matrix
+
+[cols="2,1,1,2,2,3,3",options="header"]
+|===
+| Target | Kind | Hits | Sources | Stages | Relationships | Description
+
+| Quest ID 60200202 | quest_id | 5 | qst | st0120, st0121, st0122, st0123, st0884 | 💬 Text Quest | Derived quest-wide association scan
+|===
+
+== Known Documented Targets
+
+* Quest ID 60200202 -- Derived quest-wide association scan [Derived]
+
+== Quest ID 60200202
+
+origin:: derived_special_query
+direct hits:: *5*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 5 hit(s)
+
+[cols="1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | 92 | client/03040008/quest/q60200202/quest/60200202/q60200202_st0120.qst.json | QuestStageList[].QuestGrp[0].QuestSet[0].TextQuestNo | TextQuestNo | quest 60200202 / Farana Plains / "クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100120 \| TextType=2 \| TextQuestNo=60200202 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | 92 | client/03040008/quest/q60200202/quest/60200202/q60200202_st0121.qst.json | QuestStageList[].QuestGrp[0].QuestSet[0].TextQuestNo | TextQuestNo | quest 60200202 / Elan Water Grove / "クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100119 \| TextType=2 \| TextQuestNo=60200202 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | 92 | client/03040008/quest/q60200202/quest/60200202/q60200202_st0122.qst.json | QuestStageList[].QuestGrp[0].QuestSet[0].TextQuestNo | TextQuestNo | quest 60200202 / Kingal Canyon / "クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100121 \| TextType=2 \| TextQuestNo=60200202 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | 92 | client/03040008/quest/q60200202/quest/60200202/q60200202_st0123.qst.json | QuestStageList[].QuestGrp[0].QuestSet[0].TextQuestNo | TextQuestNo | quest 60200202 / Morrow Forest / "薬草 \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100118 \| TextType=2 \| TextQuestNo=60200202 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | 92 | client/03040008/quest/q60200202/quest/60200202/q60200202_st0884.qst.json | QuestStageList[].QuestGrp[0].QuestSet[0].TextQuestNo | TextQuestNo | quest 60200202 / Valtable Hall / "クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100123 \| TextType=2 \| TextQuestNo=60200202 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+

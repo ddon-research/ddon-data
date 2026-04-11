@@ -1,0 +1,136 @@
+{
+  "format": "client_investigation.v4",
+  "generated_at": "2026-04-11T21:41:40.741529+00:00",
+  "query": {
+    "mode": "quest",
+    "value": 20020004
+  },
+  "documented_targets": [
+    {
+      "flag_value": 20020004,
+      "quest_id": 20020004,
+      "flag_type": "quest_id",
+      "doc_comment": "Derived quest-wide association scan",
+      "origin": "derived_special_query"
+    }
+  ],
+  "targets": [
+    {
+      "target": {
+        "flag_value": 20020004,
+        "quest_id": 20020004,
+        "flag_type": "quest_id",
+        "origin": "derived_special_query",
+        "doc_comment": "Derived quest-wide association scan"
+      },
+      "hits": [
+        {
+          "source_type": "qst",
+          "file_path": "client/03040008/quest/q20020004/quest/20020004/q20020004_st0533.qst.json",
+          "json_path": "QuestStageList[].QuestGrp[0].QuestSet[0].TextQuestNo",
+          "field_name": "TextQuestNo",
+          "flag_value": 20020004,
+          "flag_kind": "quest_id",
+          "relationship": "text_quest",
+          "stage_name": "Defiled Waterway",
+          "stage_name_jp": "不浄の地下水道",
+          "stage_code": "st0533",
+          "comment": "QuestGroup 1 | クエスト指定メッセージOM",
+          "context": "QuestSet=QuestSetInfoOmText | OmID=522570 | OM_ID_CMN_MSG_POINT | EnableZone | TextNo=188 | TextType=2 | TextQuestNo=20020004 | GroupNo=1",
+          "quest_id": 20020004,
+          "stage_no": 533,
+          "resource_family": "QST",
+          "evidence_tier": "direct",
+          "confidence": 92,
+          "why": "Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes."
+        }
+      ],
+      "candidate_hits": []
+    }
+  ],
+  "quest_archive_context": {
+    "file_path": "client/03040008/quest/q20020004.arc.json",
+    "resource_count": 11,
+    "stages": [
+      {
+        "stage_code": "st0400",
+        "stage_no": 400,
+        "stage_name": "Fort Gritten",
+        "stage_name_jp": "グリッテン砦",
+        "resources": [
+          {
+            "path": "quest/20020004/st0400_marker_npc",
+            "type_extension": ".qmi",
+            "type_name": "rQuestMarkerInfo"
+          },
+          {
+            "path": "quest/20020004/q20020004_st0400",
+            "type_extension": ".qst",
+            "type_name": "rQuestList"
+          }
+        ]
+      },
+      {
+        "stage_code": "st0533",
+        "stage_no": 533,
+        "stage_name": "Defiled Waterway",
+        "stage_name_jp": "不浄の地下水道",
+        "resources": [
+          {
+            "path": "quest/20020004/st0533_marker_npc",
+            "type_extension": ".qmi",
+            "type_name": "rQuestMarkerInfo"
+          },
+          {
+            "path": "quest/20020004/q20020004_st0533",
+            "type_extension": ".qst",
+            "type_name": "rQuestList"
+          },
+          {
+            "path": "quest/20020004/st0533_marker_om",
+            "type_extension": ".qmi",
+            "type_name": "rQuestMarkerInfo"
+          }
+        ]
+      },
+      {
+        "stage_code": "",
+        "stage_no": 0,
+        "stage_name": "",
+        "stage_name_jp": "",
+        "resources": [
+          {
+            "path": "ui/00_message/quest/q20020004",
+            "type_extension": ".gmd",
+            "type_name": "rGUIMessage"
+          },
+          {
+            "path": "ui/00_message/examine_message/quest/quest_examine_q20020004",
+            "type_extension": ".gmd",
+            "type_name": "rGUIMessage"
+          },
+          {
+            "path": "ui/00_message/examine_message/quest/quest_examine_q20020004",
+            "type_extension": ".mss",
+            "type_name": "rMsgSet"
+          },
+          {
+            "path": "ui/00_message/quest/q20020004",
+            "type_extension": ".mss",
+            "type_name": "rMsgSet"
+          },
+          {
+            "path": "ui/00_param/quest_text/q20020004_00",
+            "type_extension": ".qtd",
+            "type_name": "rQuestTextData"
+          },
+          {
+            "path": "ui/00_message/quest_info/q20020004_00",
+            "type_extension": ".gmd",
+            "type_name": "rGUIMessage"
+          }
+        ]
+      }
+    ]
+  }
+}

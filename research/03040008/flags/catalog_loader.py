@@ -15,7 +15,7 @@ Sources of investigation targets:
 """
 from __future__ import annotations
 
-import json
+import orjson
 import re
 from dataclasses import dataclass
 from pathlib import Path
@@ -92,8 +92,8 @@ def load_npc_ledger_flags(upstream_root: Path) -> list[TargetFlag]:
 
     targets: list[TargetFlag] = []
     try:
-        data = json.loads(ledger_path.read_text(encoding="utf-8"))
-    except (OSError, json.JSONDecodeError):
+        data = orjson.loads(ledger_path.read_bytes())
+    except (OSError, orjson.JSONDecodeError):
         return []
 
     if not isinstance(data, dict):

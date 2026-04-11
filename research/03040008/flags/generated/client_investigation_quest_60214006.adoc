@@ -1,0 +1,66 @@
+= Client Flag/Quest Investigation
+:toc: macro
+:toclevels: 3
+:toc-title: Contents
+
+Query mode:: quest
+Query value:: 60214006
+Generated at:: 2026-04-11T21:41:41.920627+00:00
+
+toc::[]
+
+== ARC Association Context
+
+_ARC associations are contextual only. They show which quest-stage and marker resources are bundled with this quest._
+
+* arc file: client/03040008/quest/q60214006.arc.json
+* resource count: 11
+
+=== st0121 -- Elan Water Grove
+
+* rQuestMarkerInfo: quest/60214006/st0121_marker_npc
+* rQuestList: quest/60214006/q60214006_st0121
+
+=== unclassified
+
+* rGUIMessage: ui/00_message/quest/q60214006
+* rGUIMessage: ui/00_message/examine_message/quest/quest_examine_q60214006
+* rMsgSet: ui/00_message/examine_message/quest/quest_examine_q60214006
+* rMsgSet: ui/00_message/quest/q60214006
+* rQuestTextData: ui/00_param/quest_text/q60214006_00
+* rAIFSM: quest/60214006/npc/battle_npc1
+* rAIFSM: quest/60214006/npc/battle_npc
+* rFieldAreaMarkerInfo: quest/60214006/fa005_marker_npc
+* rGUIMessage: ui/00_message/quest_info/q60214006_00
+
+== Flag Summary Matrix
+
+[cols="2,1,1,2,2,3,3",options="header"]
+|===
+| Target | Kind | Hits | Sources | Stages | Relationships | Description
+
+| Quest ID 60214006 | quest_id | 2 | fsm |  | 🔍 FSM Check | Derived quest-wide association scan
+|===
+
+== Known Documented Targets
+
+* Quest ID 60214006 -- Derived quest-wide association scan [Derived]
+
+== Quest ID 60214006
+
+origin:: derived_special_query
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== opaque_fsm -- 2 hit(s)
+
+[cols="1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Confidence | File | JSON Path | Field | Context | Why
+
+| FSM | 64 | client/03040008/quest/q60214006/quest/60214006/npc/battle_npc.fsm.json | Process.Parameter.QuestId | QuestId | quest 60214006 (EWG Trial: Tidings of Turmoil) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | 64 | client/03040008/quest/q60214006/quest/60214006/npc/battle_npc1.fsm.json | Process.Parameter.QuestId | QuestId | quest 60214006 (EWG Trial: Tidings of Turmoil) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+|===
+

@@ -1,0 +1,95 @@
+{
+  "format": "client_investigation.v4",
+  "generated_at": "2026-04-11T21:41:41.776990+00:00",
+  "query": {
+    "mode": "quest",
+    "value": 60000058
+  },
+  "documented_targets": [
+    {
+      "flag_value": 60000058,
+      "quest_id": 60000058,
+      "flag_type": "quest_id",
+      "doc_comment": "Derived quest-wide association scan",
+      "origin": "derived_special_query"
+    }
+  ],
+  "targets": [
+    {
+      "target": {
+        "flag_value": 60000058,
+        "quest_id": 60000058,
+        "flag_type": "quest_id",
+        "origin": "derived_special_query",
+        "doc_comment": "Derived quest-wide association scan"
+      },
+      "hits": [
+        {
+          "source_type": "jmc",
+          "file_path": "client/03040008/game_common/etc/jobMasterCtrl.jmc.json",
+          "json_path": "JobMasterCtrlList[8].JobMasterTutorialQuestId",
+          "field_name": "JobMasterTutorialQuestId",
+          "flag_value": 60000058,
+          "flag_kind": "quest_id",
+          "relationship": "job_master",
+          "quest_name": "Seeking the Master: Alchemist",
+          "quest_name_jp": "求道の師を訪ねて　アルケミスト",
+          "area_name": "Mergoda Ruins",
+          "area_name_jp": "亡都メルゴダ",
+          "comment": "JobId=9",
+          "context": "Job master tutorial quest | Alchemist | Mergoda Ruins | StartJobLevel=18",
+          "quest_id": 60000058,
+          "resource_family": "JMC",
+          "evidence_tier": "direct",
+          "confidence": 92,
+          "why": "Job master control; this resource links tutorial and master-visit quests to a vocation mentor, area, and onboarding flow."
+        }
+      ],
+      "candidate_hits": []
+    }
+  ],
+  "quest_archive_context": {
+    "file_path": "client/03040008/quest/q60000058.arc.json",
+    "resource_count": 6,
+    "stages": [
+      {
+        "stage_code": "",
+        "stage_no": 0,
+        "stage_name": "",
+        "stage_name_jp": "",
+        "resources": [
+          {
+            "path": "ui/00_message/examine_message/quest/quest_examine_q60000058",
+            "type_extension": ".mss",
+            "type_name": "rMsgSet"
+          },
+          {
+            "path": "ui/00_param/quest_text/q60000058_00",
+            "type_extension": ".qtd",
+            "type_name": "rQuestTextData"
+          },
+          {
+            "path": "ui/00_message/quest/q60000058",
+            "type_extension": ".gmd",
+            "type_name": "rGUIMessage"
+          },
+          {
+            "path": "ui/00_message/quest/q60000058",
+            "type_extension": ".mss",
+            "type_name": "rMsgSet"
+          },
+          {
+            "path": "ui/00_message/examine_message/quest/quest_examine_q60000058",
+            "type_extension": ".gmd",
+            "type_name": "rGUIMessage"
+          },
+          {
+            "path": "ui/00_message/quest_info/q60000058_00",
+            "type_extension": ".gmd",
+            "type_name": "rGUIMessage"
+          }
+        ]
+      }
+    ]
+  }
+}

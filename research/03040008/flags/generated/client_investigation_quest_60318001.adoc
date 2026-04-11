@@ -1,0 +1,79 @@
+= Client Flag/Quest Investigation
+:toc: macro
+:toclevels: 3
+:toc-title: Contents
+
+Query mode:: quest
+Query value:: 60318001
+Generated at:: 2026-04-11T21:41:42.020455+00:00
+
+toc::[]
+
+== ARC Association Context
+
+_ARC associations are contextual only. They show which quest-stage and marker resources are bundled with this quest._
+
+* arc file: client/03040008/quest/q60318001.arc.json
+* resource count: 13
+
+=== st0130 -- Rathnite Foothills
+
+* rQuestList: quest/60318001/q60318001_st0130
+* rQuestMarkerInfo: quest/60318001/st0130_marker_npc
+
+=== unclassified
+
+* rGUIMessage: ui/00_message/examine_message/quest/quest_examine_q60318001
+* rGUIMessage: ui/00_message/quest/q60318001
+* rQuestTextData: ui/00_param/quest_text/q60318001_00
+* rMsgSet: ui/00_message/examine_message/quest/quest_examine_q60318001
+* rMsgSet: ui/00_message/quest/q60318001
+* rAIFSM: quest/60318001/npc/battle_npc
+* rAIFSM: quest/60318001/npc/battle_npc02
+* rAIFSM: quest/60318001/npc/battle_npc00
+* rAIFSM: quest/60318001/npc/battle_npc01
+* rFieldAreaMarkerInfo: quest/60318001/fa006_marker_npc
+* rGUIMessage: ui/00_message/quest_info/q60318001_00
+
+== Flag Summary Matrix
+
+[cols="2,1,1,2,2,3,3",options="header"]
+|===
+| Target | Kind | Hits | Sources | Stages | Relationships | Description
+
+| Quest ID 60318001 | quest_id | 5 | ams, fsm |  | 🔍 FSM Check, 🗺️ Spot Block | Derived quest-wide association scan
+|===
+
+== Known Documented Targets
+
+* Quest ID 60318001 -- Derived quest-wide association scan [Derived]
+
+== Quest ID 60318001
+
+origin:: derived_special_query
+direct hits:: *5*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 1 hit(s)
+
+[cols="1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Confidence | File | JSON Path | Field | Context | Why
+
+| AMS | 92 | client/03040008/ui/uGUIAreaMaster/ui/00_param/master/am_spot_18.ams.json | AreaMasterSpotDataList[8].QuestId | QuestId | quest 60318001 (Rathnite Foothills Rescue Request) / Rathnite Foothills / Rathnite Foothills / "SpotId=1036" / QuestBlockedSpot \| Deserted Village of Denisyr \| Monster Caution Spots \| RecommendLevel=83 | Area Master spot block; QuestId here indicates the map spot is hidden or blocked by that quest.
+|===
+
+==== opaque_fsm -- 4 hit(s)
+
+[cols="1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Confidence | File | JSON Path | Field | Context | Why
+
+| FSM | 64 | client/03040008/quest/q60318001/quest/60318001/npc/battle_npc00.fsm.json | Process.Parameter.QuestId | QuestId | quest 60318001 (Rathnite Foothills Rescue Request) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | 64 | client/03040008/quest/q60318001/quest/60318001/npc/battle_npc01.fsm.json | Process.Parameter.QuestId | QuestId | quest 60318001 (Rathnite Foothills Rescue Request) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | 64 | client/03040008/quest/q60318001/quest/60318001/npc/battle_npc02.fsm.json | Process.Parameter.QuestId | QuestId | quest 60318001 (Rathnite Foothills Rescue Request) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | 64 | client/03040008/quest/q60320001/quest/60320001/npc/battle_npc02.fsm.json | Process.Parameter.QuestId | QuestId | quest 60318001 (Rathnite Foothills Rescue Request) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+|===
+

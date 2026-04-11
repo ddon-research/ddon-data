@@ -1,0 +1,86 @@
+= Client Flag/Quest Investigation
+:toc: macro
+:toclevels: 3
+:toc-title: Contents
+
+Query mode:: quest
+Query value:: 60000004
+Generated at:: 2026-04-11T21:41:41.752468+00:00
+
+toc::[]
+
+== ARC Association Context
+
+_ARC associations are contextual only. They show which quest-stage and marker resources are bundled with this quest._
+
+* arc file: client/03040008/quest/q60000004.arc.json
+* resource count: 13
+
+=== st0100 -- Lestania
+
+* rQuestMarkerInfo: quest/60000004/st0100_marker_npc
+* rQuestList: quest/60000004/q60000004_st0100
+
+=== st0550 -- Training Chapel
+
+* rQuestMarkerInfo: quest/60000004/st0550_marker_npc
+* rQuestMarkerInfo: quest/60000004/st0550_marker_om
+* rQuestList: quest/60000004/q60000004_st0550
+
+=== unclassified
+
+* rGUIMessage: ui/00_message/quest/q60000004
+* rGUIMessage: ui/00_message/quest_info/q60000004_00
+* rQuestTextData: ui/00_param/quest_text/q60000004_00
+* rMsgSet: ui/00_message/examine_message/quest/quest_examine_q60000004
+* rMsgSet: ui/00_message/quest/q60000004
+* rAIFSM: quest/60000004/npc/n0545_st550
+* rFieldAreaMarkerInfo: quest/60000004/fa001_marker_npc
+* rGUIMessage: ui/00_message/examine_message/quest/quest_examine_q60000004
+
+== Flag Summary Matrix
+
+[cols="2,1,1,2,2,3,3",options="header"]
+|===
+| Target | Kind | Hits | Sources | Stages | Relationships | Description
+
+| Quest ID 60000004 | quest_id | 9 | fsm, jmc, jtq, qst | st0550 | 🔍 FSM Check, 🧑‍🏫 Job Master, 💬 Text Quest +1 | Derived quest-wide association scan
+|===
+
+== Known Documented Targets
+
+* Quest ID 60000004 -- Derived quest-wide association scan [Derived]
+
+== Quest ID 60000004
+
+origin:: derived_special_query
+direct hits:: *9*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 6 hit(s)
+
+[cols="1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | 92 | client/03040008/quest/q60000004/quest/60000004/q60000004_st0550.qst.json | QuestStageList[].QuestGrp[0].QuestSet[0].TextQuestNo | TextQuestNo | quest 60000004 / Training Chapel / "QuestGroup 1 \| OMーブラストウェイブ \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=27 \| TextType=2 \| TextQuestNo=60000004 \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | 92 | client/03040008/quest/q60000004/quest/60000004/q60000004_st0550.qst.json | QuestStageList[].QuestGrp[1].QuestSet[0].TextQuestNo | TextQuestNo | quest 60000004 / Training Chapel / "QuestGroup 2 \| OMー証 \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=36 \| TextType=2 \| TextQuestNo=60000004 \| GroupNo=2 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | 92 | client/03040008/quest/q60000004/quest/60000004/q60000004_st0550.qst.json | QuestStageList[].QuestGrp[4].QuestSet[0].TextQuestNo | TextQuestNo | quest 60000004 / Training Chapel / "QuestGroup 6 \| OMーヒールオーラ \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=29 \| TextType=2 \| TextQuestNo=60000004 \| GroupNo=6 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | 92 | client/03040008/quest/q60000004/quest/60000004/q60000004_st0550.qst.json | QuestStageList[].QuestGrp[5].QuestSet[0].TextQuestNo | TextQuestNo | quest 60000004 / Training Chapel / "QuestGroup 5 \| OMーセイントサークル \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=293 \| TextType=2 \| TextQuestNo=60000004 \| GroupNo=5 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| JTQ | 92 | client/03040008/game_common/quest/jobTutorialQuestList.jtq.json | JobTutorialQuestList[2].QuestId | QuestId | quest 60000004 (Priest Tactics Trial: Purification) / Job tutorial quest registry | Tutorial quest registry; q6 tutorial quests are listed directly in the job tutorial quest table.
+| JMC | 92 | client/03040008/game_common/etc/jobMasterCtrl.jmc.json | JobMasterCtrlList[3].JobTutorialQuestId | JobTutorialQuestId | quest 60000004 (Priest Tactics Trial: Purification) / Mysree Forest / "JobId=4" / Job tutorial quest \| Priest \| Mysree Forest \| StartJobLevel=18 | Job master control; this resource links tutorial and master-visit quests to a vocation mentor, area, and onboarding flow.
+|===
+
+==== opaque_fsm -- 3 hit(s)
+
+[cols="1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Confidence | File | JSON Path | Field | Context | Why
+
+| FSM | 64 | client/03040008/quest/q60000004/quest/60000004/npc/n0545_st550.fsm.json | Process.Parameter.QuestId | QuestId | quest 60000004 (Priest Tactics Trial: Purification) / Priest / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | 64 | client/03040008/quest/q60000004/quest/60000004/npc/n0545_st550.fsm.json | Process.Parameter.QuestId | QuestId | quest 60000004 (Priest Tactics Trial: Purification) / Priest / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | 64 | client/03040008/quest/q60000004/quest/60000004/npc/n0545_st550.fsm.json | Process.Parameter.QuestId | QuestId | quest 60000004 (Priest Tactics Trial: Purification) / Priest / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+|===
+

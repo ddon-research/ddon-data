@@ -1,0 +1,84 @@
+= Client Flag/Quest Investigation
+:toc: macro
+:toclevels: 3
+:toc-title: Contents
+
+Query mode:: quest
+Query value:: 60200201
+Generated at:: 2026-04-11T21:41:41.889913+00:00
+
+toc::[]
+
+== ARC Association Context
+
+_ARC associations are contextual only. They show which quest-stage and marker resources are bundled with this quest._
+
+* arc file: client/03040008/quest/q60200201.arc.json
+* resource count: 16
+
+=== st0000
+
+* rQuestMarkerInfo: quest/60200201/st0000_marker_npc
+* rQuestList: quest/60200201/q60200201_st0000
+
+=== st0201 -- Audience Chamber
+
+* rQuestMarkerInfo: quest/60200201/st0201_marker_npc
+* rQuestList: quest/60200201/q60200201_st0201
+
+=== st0213 -- Mayleaf's Bedroom
+
+* rQuestMarkerInfo: quest/60200201/st0213_marker_npc
+* rQuestList: quest/60200201/q60200201_st0213
+
+=== st0404 -- Erte Deenan
+
+* rQuestList: quest/60200201/q60200201_st0404
+* rQuestMarkerInfo: quest/60200201/st0404_marker_om
+* rQuestMarkerInfo: quest/60200201/st0404_marker_npc
+
+=== st0520 -- Bowmaster's Secret Lodge
+
+* rQuestList: quest/60200201/q60200201_st0520
+* rQuestMarkerInfo: quest/60200201/st0520_marker_npc
+
+=== unclassified
+
+* rGUIMessage: ui/00_message/quest_info/q60200201_00
+* rQuestTextData: ui/00_param/quest_text/q60200201_00
+* rGUIMessage: ui/00_message/quest/q60200201
+* rMsgSet: ui/00_message/quest/q60200201
+* rAIFSM: quest/60200201/npc/n0013
+
+== Flag Summary Matrix
+
+[cols="2,1,1,2,2,3,3",options="header"]
+|===
+| Target | Kind | Hits | Sources | Stages | Relationships | Description
+
+| Quest ID 60200201 | quest_id | 0 |  |  |  | Derived quest-wide association scan
+|===
+
+== Known Documented Targets
+
+* Quest ID 60200201 -- Derived quest-wide association scan [Derived]
+
+== Quest ID 60200201
+
+origin:: derived_special_query
+direct hits:: *0*
+ranked candidates:: *3*
+
+_No direct references found in decoded client data._
+
+=== Ranked Candidates
+
+[cols="1,1,2,3,3,3",options="header"]
+|===
+| Tier | Confidence | Field | File | Context | Why
+
+| context | 45 | QuestId | client/03040008/game_common/quest/QuestSequence.qsq.json | Story of Mayleaf and the Songbird | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
+| context | 45 | QuestId | client/03040008/npc/npc_common/etc/npc/NPCUseJobParam.ujp.json | Story of Mayleaf and the Songbird / Erte Deenan | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
+| context | 45 | QuestNo | client/03040008/stage/st0404/st0404/scr/st0404/etc/st0404_s.gpl.json | Story of Mayleaf and the Songbird / Erte Deenan | Matched a relevant decoded field (QuestNo), but not in the primary field family for this target type.
+|===
+

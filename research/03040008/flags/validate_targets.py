@@ -2,15 +2,15 @@
 Test all user-specified quest/flag combinations and report which ones
 produce zero hits from the structured scanner.
 """
-import sys, io, json
+import sys, io, orjson
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
-sys.path.insert(0, r"D:\ddon-data\research\03040008\flags")
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from pathlib import Path
 from client_scanner import collect_client_json_hits
 from manifest import AUTHORITATIVE_WORLD_MANAGE_TARGETS
 
-DDON_DATA_ROOT = Path(r"D:\ddon-data")
+DDON_DATA_ROOT = Path(__file__).resolve().parents[3]
 GENERATED_DIR = Path(__file__).resolve().parent / "generated"
 
 TARGETS = {
@@ -65,12 +65,11 @@ def report_quest_targets(quest_id: int, data: dict[str, list[int]], hits_by_valu
 def write_empty_flags(empty_flags: list[tuple[int, str, int]]) -> Path:
     GENERATED_DIR.mkdir(parents=True, exist_ok=True)
     empty_path = GENERATED_DIR / "empty_flags.json"
-    empty_path.write_text(
-        json.dumps(
+    empty_path.write_bytes(
+        orjson.dumps(
             [{"quest_id": quest_id, "flag_type": flag_type, "flag_value": flag_value} for quest_id, flag_type, flag_value in empty_flags],
-            indent=2,
+            option=orjson.OPT_INDENT_2,
         ),
-        encoding="utf-8",
     )
     return empty_path
 

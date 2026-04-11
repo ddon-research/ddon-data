@@ -1,0 +1,106 @@
+{
+  "format": "client_investigation.v4",
+  "generated_at": "2026-04-11T21:41:42.036657+00:00",
+  "query": {
+    "mode": "quest",
+    "value": 60320002
+  },
+  "documented_targets": [
+    {
+      "flag_value": 60320002,
+      "quest_id": 60320002,
+      "flag_type": "quest_id",
+      "doc_comment": "Derived quest-wide association scan",
+      "origin": "derived_special_query"
+    }
+  ],
+  "targets": [
+    {
+      "target": {
+        "flag_value": 60320002,
+        "quest_id": 60320002,
+        "flag_type": "quest_id",
+        "origin": "derived_special_query",
+        "doc_comment": "Derived quest-wide association scan"
+      },
+      "hits": [
+        {
+          "source_type": "ams",
+          "file_path": "client/03040008/ui/uGUIAreaMaster/ui/00_param/master/am_spot_20.ams.json",
+          "json_path": "AreaMasterSpotDataList[7].QuestId",
+          "field_name": "QuestId",
+          "flag_value": 60320002,
+          "flag_kind": "quest_id",
+          "relationship": "spot_block",
+          "quest_name": "Megadosys Plateau Liberation Army Support",
+          "quest_name_jp": "メガドシス高地　解放軍支援",
+          "stage_name": "Megadosys Plateau",
+          "stage_name_jp": "メガドシス高地",
+          "area_name": "Megadosys Plateau",
+          "area_name_jp": "メガドシス高地",
+          "comment": "SpotId=1048",
+          "context": "QuestBlockedSpot | Isolated Beach | Monster Caution Spots | RecommendLevel=92",
+          "quest_id": 60320002,
+          "stage_no": 133,
+          "resource_family": "AMS",
+          "evidence_tier": "direct",
+          "confidence": 92,
+          "why": "Area Master spot block; QuestId here indicates the map spot is hidden or blocked by that quest."
+        }
+      ],
+      "candidate_hits": []
+    }
+  ],
+  "quest_archive_context": {
+    "file_path": "client/03040008/quest/q60320002.arc.json",
+    "resource_count": 6,
+    "stages": [
+      {
+        "stage_code": "st0636",
+        "stage_no": 636,
+        "stage_name": "Eli Guard Tower",
+        "stage_name_jp": "エリ警備塔",
+        "resources": [
+          {
+            "path": "quest/60320002/q60320002_st0636",
+            "type_extension": ".qst",
+            "type_name": "rQuestList"
+          },
+          {
+            "path": "quest/60320002/st0636_marker_npc",
+            "type_extension": ".qmi",
+            "type_name": "rQuestMarkerInfo"
+          }
+        ]
+      },
+      {
+        "stage_code": "",
+        "stage_no": 0,
+        "stage_name": "",
+        "stage_name_jp": "",
+        "resources": [
+          {
+            "path": "ui/00_param/quest_text/q60320002_00",
+            "type_extension": ".qtd",
+            "type_name": "rQuestTextData"
+          },
+          {
+            "path": "ui/00_message/quest_info/q60320002_00",
+            "type_extension": ".gmd",
+            "type_name": "rGUIMessage"
+          },
+          {
+            "path": "ui/00_message/quest/q60320002",
+            "type_extension": ".mss",
+            "type_name": "rMsgSet"
+          },
+          {
+            "path": "ui/00_message/quest/q60320002",
+            "type_extension": ".gmd",
+            "type_name": "rGUIMessage"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,84 @@
+= Client Flag/Quest Investigation
+:toc: macro
+:toclevels: 3
+:toc-title: Contents
+
+Query mode:: quest
+Query value:: 10310302
+Generated at:: 2026-04-11T21:41:40.648658+00:00
+
+toc::[]
+
+== ARC Association Context
+
+_ARC associations are contextual only. They show which quest-stage and marker resources are bundled with this quest._
+
+* arc file: client/03040008/quest/q10310302.arc.json
+* resource count: 18
+
+=== st0137 -- Feryana Wilderness by Castle
+
+* rQuestList: quest/10310302/q10310302_st0137
+* rQuestMarkerInfo: quest/10310302/st0137_marker_npc
+* rQuestMarkerInfo: quest/10310302/st0137_marker_om
+
+=== unclassified
+
+* rAIFSM: quest/10310302/npc/last_setNPC
+* rAIFSM: quest/10310302/npc/sling_setNPC
+* rAIFSM: quest/10310302/npc/start
+* rAIFSM: quest/10310302/npc/wepons_setNPC
+* rFieldAreaMarkerInfo: quest/10310302/fa006_marker_npc
+* rFieldAreaMarkerInfo: quest/10310302/fa006_marker_om
+* rGUIMessage: ui/00_message/examine_message/quest/quest_examine_q10310302
+* rGUIMessage: ui/00_message/quest_info/q10310302_00
+* rMsgSet: ui/00_message/quest/q10310302
+* rMsgSet: ui/00_message/examine_message/quest/quest_examine_q10310302
+* rQuestTextData: ui/00_param/quest_text/q10310302_00
+* rAIFSM: quest/10310302/npc/boss
+* rAIFSM: quest/10310302/npc/bossfinish
+* rAIFSM: quest/10310302/npc/cannon_setNPC
+* rGUIMessage: ui/00_message/quest/q10310302
+
+== Flag Summary Matrix
+
+[cols="2,1,1,2,2,3,3",options="header"]
+|===
+| Target | Kind | Hits | Sources | Stages | Relationships | Description
+
+| Quest ID 10310302 | quest_id | 5 | fsm, qst | st0137 | ✏️ FSM Set, 💬 Text Quest | Derived quest-wide association scan
+|===
+
+== Known Documented Targets
+
+* Quest ID 10310302 -- Derived quest-wide association scan [Derived]
+
+== Quest ID 10310302
+
+origin:: derived_special_query
+direct hits:: *5*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 4 hit(s)
+
+[cols="1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | 92 | client/03040008/quest/q10310302/quest/10310302/q10310302_st0137.qst.json | QuestStageList[].QuestGrp[4].QuestSet[0].TextQuestNo | TextQuestNo | quest 10310302 / Feryana Wilderness by Castle / "QuestGroup 4 \| 調べるOM大砲 \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100496 \| TextType=2 \| TextQuestNo=10310302 \| GroupNo=4 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | 92 | client/03040008/quest/q10310302/quest/10310302/q10310302_st0137.qst.json | QuestStageList[].QuestGrp[5].QuestSet[0].TextQuestNo | TextQuestNo | quest 10310302 / Feryana Wilderness by Castle / "QuestGroup 5 \| 調べるOM武具 \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100497 \| TextType=2 \| TextQuestNo=10310302 \| GroupNo=5 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | 92 | client/03040008/quest/q10310302/quest/10310302/q10310302_st0137.qst.json | QuestStageList[].QuestGrp[6].QuestSet[0].TextQuestNo | TextQuestNo | quest 10310302 / Feryana Wilderness by Castle / "QuestGroup 6 \| 調べるOM投石器 \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100498 \| TextType=2 \| TextQuestNo=10310302 \| GroupNo=6 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | 92 | client/03040008/quest/q10310302/quest/10310302/q10310302_st0137.qst.json | QuestStageList[].QuestGrp[7].QuestSet[0].TextQuestNo | TextQuestNo | quest 10310302 / Feryana Wilderness by Castle / "QuestGroup 7 \| 調べるOM捕虜 \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100499 \| TextType=2 \| TextQuestNo=10310302 \| GroupNo=7 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+==== opaque_fsm -- 1 hit(s)
+
+[cols="1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Confidence | File | JSON Path | Field | Context | Why
+
+| FSM | 64 | client/03040008/quest/q10310302/quest/10310302/npc/boss.fsm.json | Process.Parameter.QuestId | QuestId | quest 10310302 (Capture the Large Training Area) / MainQstFlagOn | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+|===
+

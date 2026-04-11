@@ -1,0 +1,55 @@
+= Client Flag/Quest Investigation
+:toc: macro
+:toclevels: 3
+:toc-title: Contents
+
+Query mode:: quest
+Query value:: 50201000
+Generated at:: 2026-04-11T21:41:41.696442+00:00
+
+toc::[]
+
+== ARC Association Context
+
+_ARC associations are contextual only. They show which quest-stage and marker resources are bundled with this quest._
+
+* arc file: client/03040008/quest/q50201000.arc.json
+* resource count: 4
+
+=== unclassified
+
+* rGUIMessage: ui/00_message/examine_message/quest/quest_examine_q50201000
+* rQuestTextData: ui/00_param/quest_text/q50201000_00
+* rMsgSet: ui/00_message/examine_message/quest/quest_examine_q50201000
+* rGUIMessage: ui/00_message/quest_info/q50201000_00
+
+== Flag Summary Matrix
+
+[cols="2,1,1,2,2,3,3",options="header"]
+|===
+| Target | Kind | Hits | Sources | Stages | Relationships | Description
+
+| Quest ID 50201000 | quest_id | 1 | esi |  | 🔁 Repeatable Sortie | Derived quest-wide association scan
+|===
+
+== Known Documented Targets
+
+* Quest ID 50201000 -- Derived quest-wide association scan [Derived]
+
+== Quest ID 50201000
+
+origin:: derived_special_query
+direct hits:: *1*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 1 hit(s)
+
+[cols="1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Confidence | File | JSON Path | Field | Context | Why
+
+| ESI | 92 | client/03040008/game_common/quest/rEndContentsSortieInfo.esi.json | EndContentsSortieInfoTable[5].QuestId | QuestId | quest 50201000 (Agent of Corruption) / Bloodbane Isle / "Unknown1=2, Unknown2=1, Flag=0" / SortieRoute=st0113 Bloodbane Isle -> st0005 st0005 Sound testing stage -> st0113 Bloodbane Isle \| Unknown1=2 \| Unknown2=1 | Repeatable sortie registry; QuestId and Flag here define special q5 repeatable sortie entries and their gate flags.
+|===
+

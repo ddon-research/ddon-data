@@ -1,0 +1,97 @@
+{
+  "format": "client_investigation.v4",
+  "generated_at": "2026-04-11T21:41:42.966301+00:00",
+  "query": {
+    "mode": "quest",
+    "value": 90020201
+  },
+  "documented_targets": [
+    {
+      "flag_value": 90020201,
+      "quest_id": 90020201,
+      "flag_type": "quest_id",
+      "doc_comment": "Derived quest-wide association scan",
+      "origin": "derived_special_query"
+    }
+  ],
+  "targets": [
+    {
+      "target": {
+        "flag_value": 90020201,
+        "quest_id": 90020201,
+        "flag_type": "quest_id",
+        "origin": "derived_special_query",
+        "doc_comment": "Derived quest-wide association scan"
+      },
+      "hits": [],
+      "candidate_hits": [
+        {
+          "flag_value": 90020201,
+          "field_name": "QuestId",
+          "file_path": "client/03040008/game_common/quest/QuestSequence.qsq.json",
+          "json_path": "QuestSequenceList[525].QuestId",
+          "resource_family": ".qsq",
+          "evidence_tier": "context",
+          "confidence": 45,
+          "why": "Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.",
+          "class_name": "org.sehkah.ddon.tools.extractor.common.logic.resource.entity.game_common.QuestSequence",
+          "quest_id": 90020201,
+          "quest_name": "Bloodbane Isle's Feast of Madness",
+          "quest_name_jp": "魔赤島の狂宴"
+        }
+      ]
+    }
+  ],
+  "quest_archive_context": {
+    "file_path": "client/03040008/quest/q90020201.arc.json",
+    "resource_count": 6,
+    "stages": [
+      {
+        "stage_code": "st0203",
+        "stage_no": 203,
+        "stage_name": "Cave Harbor",
+        "stage_name_jp": "港洞",
+        "resources": [
+          {
+            "path": "quest/90020201/q90020201_st0203",
+            "type_extension": ".qst",
+            "type_name": "rQuestList"
+          },
+          {
+            "path": "quest/90020201/st0203_marker_npc",
+            "type_extension": ".qmi",
+            "type_name": "rQuestMarkerInfo"
+          }
+        ]
+      },
+      {
+        "stage_code": "",
+        "stage_no": 0,
+        "stage_name": "",
+        "stage_name_jp": "",
+        "resources": [
+          {
+            "path": "ui/00_param/quest_text/q90020201_00",
+            "type_extension": ".qtd",
+            "type_name": "rQuestTextData"
+          },
+          {
+            "path": "ui/00_message/quest/q90020201",
+            "type_extension": ".gmd",
+            "type_name": "rGUIMessage"
+          },
+          {
+            "path": "ui/00_message/quest/q90020201",
+            "type_extension": ".mss",
+            "type_name": "rMsgSet"
+          },
+          {
+            "path": "ui/00_message/quest_info/q90020201_00",
+            "type_extension": ".gmd",
+            "type_name": "rGUIMessage"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,69 @@
+= Client Flag/Quest Investigation
+:toc: macro
+:toclevels: 3
+:toc-title: Contents
+
+Query mode:: quest
+Query value:: 20030004
+Generated at:: 2026-04-11T21:41:40.760819+00:00
+
+toc::[]
+
+== ARC Association Context
+
+_ARC associations are contextual only. They show which quest-stage and marker resources are bundled with this quest._
+
+* arc file: client/03040008/quest/q20030004.arc.json
+* resource count: 12
+
+=== st0100 -- Lestania
+
+* rQuestList: quest/20030004/q20030004_st0100
+* rQuestMarkerInfo: quest/20030004/st0100_marker_npc
+
+=== st0585 -- Knights' Old Guardhouse
+
+* rQuestMarkerInfo: quest/20030004/st0585_marker_npc
+* rQuestMarkerInfo: quest/20030004/st0585_marker_om
+* rQuestList: quest/20030004/q20030004_st0585
+
+=== unclassified
+
+* rMsgSet: ui/00_message/examine_message/quest/quest_examine_q20030004
+* rGUIMessage: ui/00_message/examine_message/quest/quest_examine_q20030004
+* rQuestTextData: ui/00_param/quest_text/q20030004_00
+* rGUIMessage: ui/00_message/quest/q20030004
+* rMsgSet: ui/00_message/quest/q20030004
+* rFieldAreaMarkerInfo: quest/20030004/fa001_marker_npc
+* rGUIMessage: ui/00_message/quest_info/q20030004_00
+
+== Flag Summary Matrix
+
+[cols="2,1,1,2,2,3,3",options="header"]
+|===
+| Target | Kind | Hits | Sources | Stages | Relationships | Description
+
+| Quest ID 20030004 | quest_id | 1 | qst | st0585 | 💬 Text Quest | Derived quest-wide association scan
+|===
+
+== Known Documented Targets
+
+* Quest ID 20030004 -- Derived quest-wide association scan [Derived]
+
+== Quest ID 20030004
+
+origin:: derived_special_query
+direct hits:: *1*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 1 hit(s)
+
+[cols="1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | 92 | client/03040008/quest/q20030004/quest/20030004/q20030004_st0585.qst.json | QuestStageList[].QuestGrp[0].QuestSet[0].TextQuestNo | TextQuestNo | quest 20030004 / Knights' Old Guardhouse / "QuestGroup 1 \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=195 \| TextType=2 \| TextQuestNo=20030004 \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+

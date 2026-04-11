@@ -1,0 +1,123 @@
+{
+  "format": "client_investigation.v4",
+  "generated_at": "2026-04-11T21:41:41.719458+00:00",
+  "query": {
+    "mode": "quest",
+    "value": 50300003
+  },
+  "documented_targets": [
+    {
+      "flag_value": 3004,
+      "quest_id": 50300003,
+      "flag_type": "cycle_sub_no",
+      "doc_comment": "Repeatable cycle 3/3004",
+      "origin": "derived_csi"
+    },
+    {
+      "flag_value": 50300003,
+      "quest_id": 50300003,
+      "flag_type": "quest_id",
+      "doc_comment": "Derived quest-wide association scan",
+      "origin": "derived_special_query"
+    }
+  ],
+  "targets": [
+    {
+      "target": {
+        "flag_value": 3004,
+        "quest_id": 50300003,
+        "flag_type": "cycle_sub_no",
+        "origin": "derived_csi",
+        "doc_comment": "Repeatable cycle 3/3004"
+      },
+      "hits": [
+        {
+          "source_type": "csi",
+          "file_path": "client/03040008/game_common/quest/rCycleContentsSortieInfo.csi.json",
+          "json_path": "CycleContentsSortieInfoTable[6].CycleSubNo",
+          "field_name": "CycleSubNo",
+          "flag_value": 3004,
+          "flag_kind": "cycle_sub_no",
+          "relationship": "repeatable_sortie",
+          "stage_name": "Mergoda Security District",
+          "stage_name_jp": "メルゴダ護政区",
+          "comment": "CycleNo=3",
+          "context": "SortieRoute=st0424 Mergoda Security District -> st0424 Mergoda Security District | CycleNo=3 | CycleSubNo=3004",
+          "stage_no": 424,
+          "resource_family": "CSI",
+          "evidence_tier": "direct",
+          "confidence": 92,
+          "why": "Repeatable sortie cycle metadata; CycleSubNo here ties a repeatable q5 sortie to its cycle content bucket and stage route."
+        }
+      ],
+      "candidate_hits": []
+    },
+    {
+      "target": {
+        "flag_value": 50300003,
+        "quest_id": 50300003,
+        "flag_type": "quest_id",
+        "origin": "derived_special_query",
+        "doc_comment": "Derived quest-wide association scan"
+      },
+      "hits": [
+        {
+          "source_type": "esi",
+          "file_path": "client/03040008/game_common/quest/rEndContentsSortieInfo.esi.json",
+          "json_path": "EndContentsSortieInfoTable[28].QuestId",
+          "field_name": "QuestId",
+          "flag_value": 50300003,
+          "flag_kind": "quest_id",
+          "relationship": "repeatable_sortie",
+          "quest_name": "The Lost Order",
+          "quest_name_jp": "失われた秩序",
+          "stage_name": "Mergoda Security District",
+          "stage_name_jp": "メルゴダ護政区",
+          "comment": "Unknown1=9, Unknown2=1, Flag=0",
+          "context": "SortieRoute=st0424 Mergoda Security District -> st0424 Mergoda Security District | Unknown1=9 | Unknown2=1",
+          "quest_id": 50300003,
+          "stage_no": 424,
+          "resource_family": "ESI",
+          "evidence_tier": "direct",
+          "confidence": 92,
+          "why": "Repeatable sortie registry; QuestId and Flag here define special q5 repeatable sortie entries and their gate flags."
+        }
+      ],
+      "candidate_hits": []
+    }
+  ],
+  "quest_archive_context": {
+    "file_path": "client/03040008/quest/q50300003.arc.json",
+    "resource_count": 4,
+    "stages": [
+      {
+        "stage_code": "",
+        "stage_no": 0,
+        "stage_name": "",
+        "stage_name_jp": "",
+        "resources": [
+          {
+            "path": "ui/00_message/quest_info/q50300003_00",
+            "type_extension": ".gmd",
+            "type_name": "rGUIMessage"
+          },
+          {
+            "path": "ui/00_param/quest_text/q50300003_00",
+            "type_extension": ".qtd",
+            "type_name": "rQuestTextData"
+          },
+          {
+            "path": "ui/00_message/quest/q50300003",
+            "type_extension": ".gmd",
+            "type_name": "rGUIMessage"
+          },
+          {
+            "path": "ui/00_message/quest/q50300003",
+            "type_extension": ".mss",
+            "type_name": "rMsgSet"
+          }
+        ]
+      }
+    ]
+  }
+}

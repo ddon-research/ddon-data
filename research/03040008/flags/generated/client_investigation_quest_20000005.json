@@ -1,0 +1,130 @@
+{
+  "format": "client_investigation.v4",
+  "generated_at": "2026-04-11T21:41:40.702634+00:00",
+  "query": {
+    "mode": "quest",
+    "value": 20000005
+  },
+  "documented_targets": [
+    {
+      "flag_value": 20000005,
+      "quest_id": 20000005,
+      "flag_type": "quest_id",
+      "doc_comment": "Derived quest-wide association scan",
+      "origin": "derived_special_query"
+    }
+  ],
+  "targets": [
+    {
+      "target": {
+        "flag_value": 20000005,
+        "quest_id": 20000005,
+        "flag_type": "quest_id",
+        "origin": "derived_special_query",
+        "doc_comment": "Derived quest-wide association scan"
+      },
+      "hits": [],
+      "candidate_hits": [
+        {
+          "flag_value": 20000005,
+          "field_name": "QuestId",
+          "file_path": "client/03040008/game_common/quest/QuestSequence.qsq.json",
+          "json_path": "QuestSequenceList[136].QuestId",
+          "resource_family": ".qsq",
+          "evidence_tier": "context",
+          "confidence": 45,
+          "why": "Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.",
+          "class_name": "org.sehkah.ddon.tools.extractor.common.logic.resource.entity.game_common.QuestSequence",
+          "quest_id": 20000005,
+          "quest_name": "The Mysterious Monolith",
+          "quest_name_jp": "未知なる大石塊"
+        }
+      ]
+    }
+  ],
+  "quest_archive_context": {
+    "file_path": "client/03040008/quest/q20000005.arc.json",
+    "resource_count": 11,
+    "stages": [
+      {
+        "stage_code": "st0100",
+        "stage_no": 100,
+        "stage_name": "Lestania",
+        "stage_name_jp": "レスタニア",
+        "resources": [
+          {
+            "path": "quest/20000005/st0100_marker_npc",
+            "type_extension": ".qmi",
+            "type_name": "rQuestMarkerInfo"
+          },
+          {
+            "path": "quest/20000005/q20000005_st0100",
+            "type_extension": ".qst",
+            "type_name": "rQuestList"
+          }
+        ]
+      },
+      {
+        "stage_code": "st0573",
+        "stage_no": 573,
+        "stage_name": "The Ark",
+        "stage_name_jp": "アーク",
+        "resources": [
+          {
+            "path": "quest/20000005/st0573_marker_npc",
+            "type_extension": ".qmi",
+            "type_name": "rQuestMarkerInfo"
+          },
+          {
+            "path": "quest/20000005/q20000005_st0573",
+            "type_extension": ".qst",
+            "type_name": "rQuestList"
+          }
+        ]
+      },
+      {
+        "stage_code": "",
+        "stage_no": 0,
+        "stage_name": "",
+        "stage_name_jp": "",
+        "resources": [
+          {
+            "path": "ui/00_message/quest/q20000005",
+            "type_extension": ".gmd",
+            "type_name": "rGUIMessage"
+          },
+          {
+            "path": "ui/00_message/examine_message/quest/quest_examine_q20000005",
+            "type_extension": ".mss",
+            "type_name": "rMsgSet"
+          },
+          {
+            "path": "ui/00_message/examine_message/quest/quest_examine_q20000005",
+            "type_extension": ".gmd",
+            "type_name": "rGUIMessage"
+          },
+          {
+            "path": "ui/00_message/quest/q20000005",
+            "type_extension": ".mss",
+            "type_name": "rMsgSet"
+          },
+          {
+            "path": "ui/00_param/quest_text/q20000005_00",
+            "type_extension": ".qtd",
+            "type_name": "rQuestTextData"
+          },
+          {
+            "path": "quest/20000005/fa001_marker_npc",
+            "type_extension": ".fmi",
+            "type_name": "rFieldAreaMarkerInfo"
+          },
+          {
+            "path": "ui/00_message/quest_info/q20000005_00",
+            "type_extension": ".gmd",
+            "type_name": "rGUIMessage"
+          }
+        ]
+      }
+    ]
+  }
+}

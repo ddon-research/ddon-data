@@ -1,0 +1,63 @@
+= Client Flag/Quest Investigation
+:toc: macro
+:toclevels: 3
+:toc-title: Contents
+
+Query mode:: quest
+Query value:: 21016020
+Generated at:: 2026-04-11T21:41:41.026606+00:00
+
+toc::[]
+
+== ARC Association Context
+
+_ARC associations are contextual only. They show which quest-stage and marker resources are bundled with this quest._
+
+* arc file: client/03040008/quest/q21016020.arc.json
+* resource count: 9
+
+=== st0952 -- Deepney Great Forest
+
+* rQuestList: quest/21016020/q21016020_st0952
+* rQuestMarkerInfo: quest/21016020/st0952_marker_npc
+
+=== unclassified
+
+* rGUIMessage: ui/00_message/quest/q21016020
+* rQuestTextData: ui/00_param/quest_text/q21016020_00
+* rMsgSet: ui/00_message/quest/q21016020
+* rAIFSM: quest/21016020/npc/help
+* rAIFSM: quest/21016020/npc/help_dead
+* rAIFSM: quest/21016020/npc/help_alive
+* rGUIMessage: ui/00_message/quest_info/q21016020_00
+
+== Flag Summary Matrix
+
+[cols="2,1,1,2,2,3,3",options="header"]
+|===
+| Target | Kind | Hits | Sources | Stages | Relationships | Description
+
+| Quest ID 21016020 | quest_id | 1 | fsm |  | 🔍 FSM Check | Derived quest-wide association scan
+|===
+
+== Known Documented Targets
+
+* Quest ID 21016020 -- Derived quest-wide association scan [Derived]
+
+== Quest ID 21016020
+
+origin:: derived_special_query
+direct hits:: *1*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== opaque_fsm -- 1 hit(s)
+
+[cols="1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Confidence | File | JSON Path | Field | Context | Why
+
+| FSM | 64 | client/03040008/quest/q21016020/quest/21016020/npc/help.fsm.json | Process.Parameter.QuestId | QuestId | quest 21016020 (Wandering Puppets) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+|===
+

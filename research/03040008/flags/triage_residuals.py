@@ -1,23 +1,23 @@
 """Triage residual empty targets against decoded JSON candidate fields."""
 from __future__ import annotations
 
-import json
+import orjson
 from pathlib import Path
 
 from candidate_finder import collect_candidate_json_hits
 
 
-DDON_DATA_ROOT = Path(r"D:\ddon-data")
+DDON_DATA_ROOT = Path(__file__).resolve().parents[3]
 FLAGS_DIR = Path(__file__).resolve().parent
 GENERATED_DIR = FLAGS_DIR / "generated"
 EMPTY_PATH = GENERATED_DIR / "empty_flags.json"
 OUTPUT_JSON = GENERATED_DIR / "residual_empty_triage.json"
-OUTPUT_MD = GENERATED_DIR / "residual_empty_triage.md"
+OUTPUT_ADOC = GENERATED_DIR / "residual_empty_triage.adoc"
 
 
 def main() -> None:
     GENERATED_DIR.mkdir(parents=True, exist_ok=True)
-    empty_targets = json.loads(EMPTY_PATH.read_text(encoding="utf-8")) if EMPTY_PATH.exists() else []
+    empty_targets = orjson.loads(EMPTY_PATH.read_bytes()) if EMPTY_PATH.exists() else []
     target_kinds = {int(row["flag_value"]): str(row["flag_type"]) for row in empty_targets}
     candidates = collect_candidate_json_hits(DDON_DATA_ROOT, target_kinds)
 
@@ -25,25 +25,32 @@ def main() -> None:
         "targets": empty_targets,
         "candidate_hits": {str(value): hits[:50] for value, hits in candidates.items()},
     }
-    OUTPUT_JSON.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+    OUTPUT_JSON.write_bytes(orjson.dumps(payload, option=orjson.OPT_INDENT_2))
 
     lines = [
-        "# Residual Empty Target Triage",
+        "= Residual Empty Target Triage",
+        ":toc: macro",
+        ":toclevels: 2",
+        ":toc-title: Contents",
         "",
-        f"- targets: {len(empty_targets)}",
+        f"targets:: {len(empty_targets)}",
+        "",
+        "toc::[]",
         "",
     ]
     for row in empty_targets:
         value = int(row["flag_value"])
         hits = candidates.get(value, [])
-        lines.append(f"## {row['quest_id']} / {row['flag_type']} / {value}")
+        lines.append(f"== {row['quest_id']} / {row['flag_type']} / {value}")
         lines.append("")
         if not hits:
             lines.append("_No decoded candidate fields found._")
             lines.append("")
             continue
-        lines.append("| Tier | Confidence | Field | File | Why | Context |")
-        lines.append("|------|------------|-------|------|-----|---------|")
+        lines.append('[cols="1,1,2,3,3,3",options="header"]')
+        lines.append("|===")
+        lines.append("| Tier | Confidence | Field | File | Why | Context")
+        lines.append("")
         for hit in hits[:20]:
             context_parts = [
                 hit.get("quest_name") or "",
@@ -53,15 +60,16 @@ def main() -> None:
                 hit.get("message_excerpt") or "",
                 hit.get("comment") or "",
             ]
-            context = " | ".join(part for part in context_parts if part)
+            context = " / ".join(part for part in context_parts if part)
             lines.append(
-                f"| {hit['evidence_tier']} | {hit['confidence']} | {hit['field_name']} | {hit['file_path']} | {hit['why']} | {context} |"
+                f"| {hit['evidence_tier']} | {hit['confidence']} | {hit['field_name']} | {hit['file_path']} | {hit['why']} | {context}"
             )
+        lines.append("|===")
         lines.append("")
 
-    OUTPUT_MD.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    OUTPUT_ADOC.write_text("\n".join(lines) + "\n", encoding="utf-8")
     print(f"Wrote {OUTPUT_JSON}")
-    print(f"Wrote {OUTPUT_MD}")
+    print(f"Wrote {OUTPUT_ADOC}")
 
 
 if __name__ == "__main__":

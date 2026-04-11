@@ -1,0 +1,86 @@
+{
+  "format": "client_investigation.v4",
+  "generated_at": "2026-04-11T21:41:41.746579+00:00",
+  "query": {
+    "mode": "quest",
+    "value": 50400014
+  },
+  "documented_targets": [
+    {
+      "flag_value": 50400014,
+      "quest_id": 50400014,
+      "flag_type": "quest_id",
+      "doc_comment": "Derived quest-wide association scan",
+      "origin": "derived_special_query"
+    }
+  ],
+  "targets": [
+    {
+      "target": {
+        "flag_value": 50400014,
+        "quest_id": 50400014,
+        "flag_type": "quest_id",
+        "origin": "derived_special_query",
+        "doc_comment": "Derived quest-wide association scan"
+      },
+      "hits": [
+        {
+          "source_type": "esi",
+          "file_path": "client/03040008/game_common/quest/rEndContentsSortieInfo.esi.json",
+          "json_path": "EndContentsSortieInfoTable[56].QuestId",
+          "field_name": "QuestId",
+          "flag_value": 50400014,
+          "flag_kind": "quest_id",
+          "relationship": "repeatable_sortie",
+          "quest_name": "The Black Martyr",
+          "quest_name_jp": "黒の殉教者",
+          "stage_name": "The White Dragon Temple",
+          "stage_name_jp": "白竜神殿",
+          "comment": "Unknown1=2, Unknown2=1, Flag=0",
+          "context": "SortieRoute=st3602 The White Dragon Temple -> st3602 The White Dragon Temple | Unknown1=2 | Unknown2=1",
+          "quest_id": 50400014,
+          "stage_no": 3602,
+          "resource_family": "ESI",
+          "evidence_tier": "direct",
+          "confidence": 92,
+          "why": "Repeatable sortie registry; QuestId and Flag here define special q5 repeatable sortie entries and their gate flags."
+        }
+      ],
+      "candidate_hits": []
+    }
+  ],
+  "quest_archive_context": {
+    "file_path": "client/03040008/quest/q50400014.arc.json",
+    "resource_count": 4,
+    "stages": [
+      {
+        "stage_code": "",
+        "stage_no": 0,
+        "stage_name": "",
+        "stage_name_jp": "",
+        "resources": [
+          {
+            "path": "ui/00_message/examine_message/quest/quest_examine_q50400014",
+            "type_extension": ".gmd",
+            "type_name": "rGUIMessage"
+          },
+          {
+            "path": "ui/00_param/quest_text/q50400014_00",
+            "type_extension": ".qtd",
+            "type_name": "rQuestTextData"
+          },
+          {
+            "path": "ui/00_message/examine_message/quest/quest_examine_q50400014",
+            "type_extension": ".mss",
+            "type_name": "rMsgSet"
+          },
+          {
+            "path": "ui/00_message/quest_info/q50400014_00",
+            "type_extension": ".gmd",
+            "type_name": "rGUIMessage"
+          }
+        ]
+      }
+    ]
+  }
+}

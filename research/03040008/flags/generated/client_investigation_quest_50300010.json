@@ -1,0 +1,146 @@
+{
+  "format": "client_investigation.v4",
+  "generated_at": "2026-04-11T21:41:41.727023+00:00",
+  "query": {
+    "mode": "quest",
+    "value": 50300010
+  },
+  "documented_targets": [
+    {
+      "flag_value": 3007,
+      "quest_id": 50300010,
+      "flag_type": "cycle_sub_no",
+      "doc_comment": "Repeatable cycle 3/3007",
+      "origin": "derived_csi"
+    },
+    {
+      "flag_value": 50300010,
+      "quest_id": 50300010,
+      "flag_type": "quest_id",
+      "doc_comment": "Derived quest-wide association scan",
+      "origin": "derived_special_query"
+    }
+  ],
+  "targets": [
+    {
+      "target": {
+        "flag_value": 3007,
+        "quest_id": 50300010,
+        "flag_type": "cycle_sub_no",
+        "origin": "derived_csi",
+        "doc_comment": "Repeatable cycle 3/3007"
+      },
+      "hits": [
+        {
+          "source_type": "gpl",
+          "file_path": "client/03040008/stage/st0824/st0824/scr/st0824/etc/st0824_s.gpl.json",
+          "json_path": "GroupParamBuff[6].GuardData.LayoutFlagNo",
+          "field_name": "LayoutFlagNo",
+          "flag_value": 3007,
+          "flag_kind": "layout_flag",
+          "relationship": "layout_guard",
+          "quest_name": "A Monstrous Rampage",
+          "quest_name_jp": "猛り狂う異形",
+          "stage_name": "Moltova Ruins",
+          "stage_name_jp": "モルトバ遺跡",
+          "area_name": "Breya Coast",
+          "area_name_jp": "ブリア海岸",
+          "stage_code": "st0824",
+          "context": "GroupParam[6] | DataCommon.Group=200 | LayoutAreas=824 | LayoutRefs=1 | LikelyLOT=st0824_01m00n_p200.lot.json | LotTypes=SetInfoOmHeal",
+          "quest_id": 21000003,
+          "stage_no": 824,
+          "resource_family": "GPL",
+          "evidence_tier": "direct",
+          "confidence": 92,
+          "why": "Layout group guard; QuestNo and LayoutFlagNo here usually determine whether a stage group loads, including enemy or object visibility."
+        },
+        {
+          "source_type": "csi",
+          "file_path": "client/03040008/game_common/quest/rCycleContentsSortieInfo.csi.json",
+          "json_path": "CycleContentsSortieInfoTable[9].CycleSubNo",
+          "field_name": "CycleSubNo",
+          "flag_value": 3007,
+          "flag_kind": "cycle_sub_no",
+          "relationship": "repeatable_sortie",
+          "stage_name": "Spirit Dragon's Roost",
+          "stage_name_jp": "精霊竜のねぐら",
+          "comment": "CycleNo=3",
+          "context": "SortieRoute=st0436 Spirit Dragon's Roost -> st0436 Spirit Dragon's Roost | CycleNo=3 | CycleSubNo=3007",
+          "stage_no": 436,
+          "resource_family": "CSI",
+          "evidence_tier": "direct",
+          "confidence": 92,
+          "why": "Repeatable sortie cycle metadata; CycleSubNo here ties a repeatable q5 sortie to its cycle content bucket and stage route."
+        }
+      ],
+      "candidate_hits": []
+    },
+    {
+      "target": {
+        "flag_value": 50300010,
+        "quest_id": 50300010,
+        "flag_type": "quest_id",
+        "origin": "derived_special_query",
+        "doc_comment": "Derived quest-wide association scan"
+      },
+      "hits": [
+        {
+          "source_type": "esi",
+          "file_path": "client/03040008/game_common/quest/rEndContentsSortieInfo.esi.json",
+          "json_path": "EndContentsSortieInfoTable[35].QuestId",
+          "field_name": "QuestId",
+          "flag_value": 50300010,
+          "flag_kind": "quest_id",
+          "relationship": "repeatable_sortie",
+          "quest_name": "The Dragon Awakened",
+          "quest_name_jp": "呼び覚まされし竜",
+          "stage_name": "Spirit Dragon's Roost",
+          "stage_name_jp": "精霊竜のねぐら",
+          "comment": "Unknown1=9, Unknown2=257, Flag=0",
+          "context": "SortieRoute=st0436 Spirit Dragon's Roost -> st0436 Spirit Dragon's Roost | Unknown1=9 | Unknown2=257",
+          "quest_id": 50300010,
+          "stage_no": 436,
+          "resource_family": "ESI",
+          "evidence_tier": "direct",
+          "confidence": 92,
+          "why": "Repeatable sortie registry; QuestId and Flag here define special q5 repeatable sortie entries and their gate flags."
+        }
+      ],
+      "candidate_hits": []
+    }
+  ],
+  "quest_archive_context": {
+    "file_path": "client/03040008/quest/q50300010.arc.json",
+    "resource_count": 4,
+    "stages": [
+      {
+        "stage_code": "",
+        "stage_no": 0,
+        "stage_name": "",
+        "stage_name_jp": "",
+        "resources": [
+          {
+            "path": "ui/00_message/examine_message/quest/quest_examine_q50300010",
+            "type_extension": ".gmd",
+            "type_name": "rGUIMessage"
+          },
+          {
+            "path": "ui/00_param/quest_text/q50300010_00",
+            "type_extension": ".qtd",
+            "type_name": "rQuestTextData"
+          },
+          {
+            "path": "ui/00_message/examine_message/quest/quest_examine_q50300010",
+            "type_extension": ".mss",
+            "type_name": "rMsgSet"
+          },
+          {
+            "path": "ui/00_message/quest_info/q50300010_00",
+            "type_extension": ".gmd",
+            "type_name": "rGUIMessage"
+          }
+        ]
+      }
+    ]
+  }
+}

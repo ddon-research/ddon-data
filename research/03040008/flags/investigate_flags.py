@@ -2,7 +2,7 @@
 Unified flag/quest investigation script.
 
 Takes either a single flag number (--flag) or a single quest number (--quest)
-and produces a structured JSON report + human-readable Markdown with all
+and produces a structured JSON report + human-readable AsciiDoc with all
 direct hits and ranked candidates from the decoded client data.
 
 IMPORTANT: Only decoded client resource files are sources of truth.
@@ -49,7 +49,7 @@ from executable_scanner import (
     serialize_immediate_result,
 )
 from json_cache import JsonCache
-from report_writer import write_json_report, write_markdown_report
+from report_writer import write_json_report, write_asciidoc_report
 from candidate_finder import collect_candidate_json_hits
 from mss_enrichment import enrich_hit_dicts_with_mss
 from manifest import AUTHORITATIVE_WORLD_MANAGE_QUEST_IDS, get_authoritative_targets_for_quest
@@ -549,10 +549,10 @@ def run_investigation(
     # ---------- Write output ----------
     stem = f"{REPORT_STEM_PREFIX}_{query_mode}_{query_value}"
     json_path = output_dir / f"{stem}.json"
-    markdown_path = output_dir / f"{stem}.md"
+    markdown_path = output_dir / f"{stem}.adoc"
 
     write_json_report(json_path, payload)
-    write_markdown_report(markdown_path, payload)
+    write_asciidoc_report(markdown_path, payload)
 
     # Summary
     total_hits = sum(len(t.get("hits", [])) for t in payload["targets"])
@@ -560,7 +560,7 @@ def run_investigation(
     print(f"  Targets investigated: {len(targets)}")
     print(f"  Total flag references found: {total_hits}")
     print(f"  JSON report: {json_path}")
-    print(f"  Markdown report: {markdown_path}")
+    print(f"  AsciiDoc report: {markdown_path}")
 
 
 def _discover_client_quest_ids(ddon_data_root: Path) -> list[int]:
@@ -655,9 +655,29 @@ def main() -> None:
             global_hits_by_value.setdefault(int(hit_dict["flag_value"]), []).append(hit_dict)
         print(f"  Enriched and indexed in {_format_elapsed(time.monotonic() - t_enrich)}")
 
-        # Phase 4: per-quest candidate search + report generation.
-        # Candidate search only runs for *unresolved* targets, which is
-        # usually a tiny subset — so this is fast even without batching.
+        # Phase 3.5: batched candidate search for all unresolved targets.
+        t_cand = time.monotonic()
+        all_unresolved_kinds: dict[int, str] = {}
+        for _quest_id, targets, _documented_targets in per_quest:
+            for target in targets:
+                if target.flag_value not in global_hits_by_value or not global_hits_by_value[target.flag_value]:
+                    all_unresolved_kinds[target.flag_value] = target.flag_type or "quest_flag"
+        global_candidate_hits_by_value: dict[int, list[dict[str, Any]]] = {}
+        if all_unresolved_kinds:
+            print(f"Running batched candidate search for {len(all_unresolved_kinds)} unresolved target(s)...")
+            global_candidate_hits_by_value = collect_candidate_json_hits(
+                ddon_data_root,
+                all_unresolved_kinds,
+                corpus_index=index,
+                json_cache=cache,
+            )
+            for flag_value, hits in global_candidate_hits_by_value.items():
+                global_candidate_hits_by_value[flag_value] = [enrich_hit_with_npc_ledger(hit) for hit in hits]
+            print(f"  Candidate search done in {_format_elapsed(time.monotonic() - t_cand)}")
+        else:
+            print("  No unresolved targets — skipping candidate search")
+
+        # Phase 4: per-quest report generation.
         for qi, (quest_id, targets, documented_targets) in enumerate(per_quest, 1):
             quest_start = time.monotonic()
             print(f"\n{'='*60}")
@@ -670,13 +690,12 @@ def main() -> None:
                 v: global_hits_by_value.get(v, []) for v in target_values
             }
 
-            candidate_hits_by_value = collect_candidate_hits(
-                ddon_data_root,
-                targets,
-                hits_by_value,
-                corpus_index=index,
-                json_cache=cache,
-            )
+            # Slice global candidate hits for this quest's unresolved targets.
+            candidate_hits_by_value: dict[int, list[dict[str, Any]]] = {
+                v: global_candidate_hits_by_value.get(v, [])
+                for v in target_values
+                if v not in hits_by_value or not hits_by_value[v]
+            }
             exe_results = collect_executable_hits(
                 args.skip_executable_scan, args.ddo_exe_path, args.objdump_path, target_values,
             )
@@ -687,13 +706,13 @@ def main() -> None:
 
             stem = f"{REPORT_STEM_PREFIX}_quest_{quest_id}"
             json_path = output_dir / f"{stem}.json"
-            markdown_path = output_dir / f"{stem}.md"
+            markdown_path = output_dir / f"{stem}.adoc"
             write_json_report(json_path, payload_data)
-            write_markdown_report(markdown_path, payload_data)
+            write_asciidoc_report(markdown_path, payload_data)
 
             total_hits = sum(len(t.get("hits", [])) for t in payload_data["targets"])
             quest_elapsed = time.monotonic() - quest_start
-            print(f"  {len(targets)} targets, {total_hits} hits → {json_path.name} ({_format_elapsed(quest_elapsed)})")
+            print(f"  {len(targets)} targets, {total_hits} hits -> {json_path.name} ({_format_elapsed(quest_elapsed)})")
 
         batch_elapsed = time.monotonic() - batch_start
         print(f"\n{'='*60}")
@@ -704,6 +723,7 @@ def main() -> None:
 
     query_mode = "flag" if args.flag is not None else "quest"
     query_value = int(args.flag) if args.flag is not None else int(args.quest)
+    index, cache = _build_batch_infrastructure(ddon_data_root)
     run_investigation(
         query_mode=query_mode,
         query_value=query_value,
@@ -713,6 +733,8 @@ def main() -> None:
         skip_exe=args.skip_executable_scan,
         ddo_exe=args.ddo_exe_path,
         objdump=args.objdump_path,
+        corpus_index=index,
+        json_cache=cache,
     )
 
 

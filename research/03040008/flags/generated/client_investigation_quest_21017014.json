@@ -1,0 +1,125 @@
+{
+  "format": "client_investigation.v4",
+  "generated_at": "2026-04-11T21:41:41.046507+00:00",
+  "query": {
+    "mode": "quest",
+    "value": 21017014
+  },
+  "documented_targets": [
+    {
+      "flag_value": 21017014,
+      "quest_id": 21017014,
+      "flag_type": "quest_id",
+      "doc_comment": "Derived quest-wide association scan",
+      "origin": "derived_special_query"
+    }
+  ],
+  "targets": [
+    {
+      "target": {
+        "flag_value": 21017014,
+        "quest_id": 21017014,
+        "flag_type": "quest_id",
+        "origin": "derived_special_query",
+        "doc_comment": "Derived quest-wide association scan"
+      },
+      "hits": [
+        {
+          "source_type": "fsm",
+          "file_path": "client/03040008/quest/q21017014/quest/21017014/npc/help.fsm.json",
+          "json_path": "Process.Parameter.QuestId",
+          "field_name": "QuestId",
+          "flag_value": 21017014,
+          "flag_kind": "quest_id",
+          "relationship": "fsm_check",
+          "quest_name": "Concealed Kindliness",
+          "quest_name_jp": "隠された懇情",
+          "context": "checkMyQuestFlag",
+          "quest_id": 21017014,
+          "resource_family": "FSM",
+          "evidence_tier": "opaque_fsm",
+          "confidence": 64,
+          "why": "Matched decoded FSM state data; authored semantics remain indirect without deeper correlation."
+        }
+      ],
+      "candidate_hits": []
+    }
+  ],
+  "quest_archive_context": {
+    "file_path": "client/03040008/quest/q21017014.arc.json",
+    "resource_count": 11,
+    "stages": [
+      {
+        "stage_code": "st0865",
+        "stage_no": 865,
+        "stage_name": "Grinmel Ruins",
+        "stage_name_jp": "グリンメル遺跡",
+        "resources": [
+          {
+            "path": "quest/21017014/q21017014_st0865",
+            "type_extension": ".qst",
+            "type_name": "rQuestList"
+          },
+          {
+            "path": "quest/21017014/st0865_marker_npc",
+            "type_extension": ".qmi",
+            "type_name": "rQuestMarkerInfo"
+          }
+        ]
+      },
+      {
+        "stage_code": "",
+        "stage_no": 0,
+        "stage_name": "",
+        "stage_name_jp": "",
+        "resources": [
+          {
+            "path": "ui/00_message/quest/q21017014",
+            "type_extension": ".gmd",
+            "type_name": "rGUIMessage"
+          },
+          {
+            "path": "ui/00_message/examine_message/quest/quest_examine_q21017014",
+            "type_extension": ".gmd",
+            "type_name": "rGUIMessage"
+          },
+          {
+            "path": "ui/00_message/examine_message/quest/quest_examine_q21017014",
+            "type_extension": ".mss",
+            "type_name": "rMsgSet"
+          },
+          {
+            "path": "ui/00_message/quest/q21017014",
+            "type_extension": ".mss",
+            "type_name": "rMsgSet"
+          },
+          {
+            "path": "ui/00_param/quest_text/q21017014_00",
+            "type_extension": ".qtd",
+            "type_name": "rQuestTextData"
+          },
+          {
+            "path": "quest/21017014/npc/help_dead",
+            "type_extension": ".fsm",
+            "type_name": "rAIFSM"
+          },
+          {
+            "path": "quest/21017014/npc/help_alive",
+            "type_extension": ".fsm",
+            "type_name": "rAIFSM"
+          },
+          {
+            "path": "quest/21017014/npc/help",
+            "type_extension": ".fsm",
+            "type_name": "rAIFSM"
+          },
+          {
+            "path": "ui/00_message/quest_info/q21017014_00",
+            "type_extension": ".gmd",
+            "type_name": "rGUIMessage"
+          }
+        ]
+      }
+    ]
+  }
+}

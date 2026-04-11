@@ -1,0 +1,86 @@
+{
+  "format": "client_investigation.v4",
+  "generated_at": "2026-04-11T21:41:41.727023+00:00",
+  "query": {
+    "mode": "quest",
+    "value": 50301001
+  },
+  "documented_targets": [
+    {
+      "flag_value": 50301001,
+      "quest_id": 50301001,
+      "flag_type": "quest_id",
+      "doc_comment": "Derived quest-wide association scan",
+      "origin": "derived_special_query"
+    }
+  ],
+  "targets": [
+    {
+      "target": {
+        "flag_value": 50301001,
+        "quest_id": 50301001,
+        "flag_type": "quest_id",
+        "origin": "derived_special_query",
+        "doc_comment": "Derived quest-wide association scan"
+      },
+      "hits": [
+        {
+          "source_type": "esi",
+          "file_path": "client/03040008/game_common/quest/rEndContentsSortieInfo.esi.json",
+          "json_path": "EndContentsSortieInfoTable[36].QuestId",
+          "field_name": "QuestId",
+          "flag_value": 50301001,
+          "flag_kind": "quest_id",
+          "relationship": "repeatable_sortie",
+          "quest_name": "Breakneck Destruction: Dacreim Fortress",
+          "quest_name_jp": "速壊の極み　ダクレイム砦",
+          "stage_name": "Dacreim Fortress",
+          "stage_name_jp": "ダクレイム砦",
+          "comment": "Unknown1=5, Unknown2=0, Flag=0",
+          "context": "SortieRoute=st0446 Dacreim Fortress | Unknown1=5",
+          "quest_id": 50301001,
+          "stage_no": 446,
+          "resource_family": "ESI",
+          "evidence_tier": "direct",
+          "confidence": 92,
+          "why": "Repeatable sortie registry; QuestId and Flag here define special q5 repeatable sortie entries and their gate flags."
+        }
+      ],
+      "candidate_hits": []
+    }
+  ],
+  "quest_archive_context": {
+    "file_path": "client/03040008/quest/q50301001.arc.json",
+    "resource_count": 4,
+    "stages": [
+      {
+        "stage_code": "",
+        "stage_no": 0,
+        "stage_name": "",
+        "stage_name_jp": "",
+        "resources": [
+          {
+            "path": "ui/00_message/quest_info/q50301001_00",
+            "type_extension": ".gmd",
+            "type_name": "rGUIMessage"
+          },
+          {
+            "path": "ui/00_param/quest_text/q50301001_00",
+            "type_extension": ".qtd",
+            "type_name": "rQuestTextData"
+          },
+          {
+            "path": "ui/00_message/quest/q50301001",
+            "type_extension": ".gmd",
+            "type_name": "rGUIMessage"
+          },
+          {
+            "path": "ui/00_message/quest/q50301001",
+            "type_extension": ".mss",
+            "type_name": "rMsgSet"
+          }
+        ]
+      }
+    ]
+  }
+}

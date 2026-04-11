@@ -1,0 +1,154 @@
+{
+  "format": "client_investigation.v4",
+  "generated_at": "2026-04-11T21:41:42.024456+00:00",
+  "query": {
+    "mode": "quest",
+    "value": 60318004
+  },
+  "documented_targets": [
+    {
+      "flag_value": 60318004,
+      "quest_id": 60318004,
+      "flag_type": "quest_id",
+      "doc_comment": "Derived quest-wide association scan",
+      "origin": "derived_special_query"
+    }
+  ],
+  "targets": [
+    {
+      "target": {
+        "flag_value": 60318004,
+        "quest_id": 60318004,
+        "flag_type": "quest_id",
+        "origin": "derived_special_query",
+        "doc_comment": "Derived quest-wide association scan"
+      },
+      "hits": [
+        {
+          "source_type": "ams",
+          "file_path": "client/03040008/ui/uGUIAreaMaster/ui/00_param/master/am_spot_18.ams.json",
+          "json_path": "AreaMasterSpotDataList[10].QuestId",
+          "field_name": "QuestId",
+          "flag_value": 60318004,
+          "flag_kind": "quest_id",
+          "relationship": "spot_block",
+          "quest_name": "Rathnite Foothills Prevent Enemy Attack",
+          "quest_name_jp": "ラスニテ山麓　敵襲撃阻止",
+          "stage_name": "Rathnite Foothills Lakeside",
+          "stage_name_jp": "ラスニテ山麓　湖畔部",
+          "area_name": "Rathnite Foothills",
+          "area_name_jp": "ラスニテ山麓",
+          "comment": "SpotId=1038",
+          "context": "QuestBlockedSpot | Dewdrop Crater | Monster Caution Spots | RecommendLevel=83",
+          "quest_id": 60318004,
+          "stage_no": 131,
+          "resource_family": "AMS",
+          "evidence_tier": "direct",
+          "confidence": 92,
+          "why": "Area Master spot block; QuestId here indicates the map spot is hidden or blocked by that quest."
+        }
+      ],
+      "candidate_hits": []
+    }
+  ],
+  "quest_archive_context": {
+    "file_path": "client/03040008/quest/q60318004.arc.json",
+    "resource_count": 14,
+    "stages": [
+      {
+        "stage_code": "st0130",
+        "stage_no": 130,
+        "stage_name": "Rathnite Foothills",
+        "stage_name_jp": "ラスニテ山麓",
+        "resources": [
+          {
+            "path": "quest/60318004/st0130_marker_npc",
+            "type_extension": ".qmi",
+            "type_name": "rQuestMarkerInfo"
+          },
+          {
+            "path": "quest/60318004/q60318004_st0130",
+            "type_extension": ".qst",
+            "type_name": "rQuestList"
+          }
+        ]
+      },
+      {
+        "stage_code": "st0131",
+        "stage_no": 131,
+        "stage_name": "Rathnite Foothills Lakeside",
+        "stage_name_jp": "ラスニテ山麓　湖畔部",
+        "resources": [
+          {
+            "path": "quest/60318004/st0131_marker_npc",
+            "type_extension": ".qmi",
+            "type_name": "rQuestMarkerInfo"
+          },
+          {
+            "path": "quest/60318004/q60318004_st0131",
+            "type_extension": ".qst",
+            "type_name": "rQuestList"
+          }
+        ]
+      },
+      {
+        "stage_code": "",
+        "stage_no": 0,
+        "stage_name": "",
+        "stage_name_jp": "",
+        "resources": [
+          {
+            "path": "quest/60318004/npc/battle_npc_00",
+            "type_extension": ".fsm",
+            "type_name": "rAIFSM"
+          },
+          {
+            "path": "quest/60318004/npc/battle_npc_01",
+            "type_extension": ".fsm",
+            "type_name": "rAIFSM"
+          },
+          {
+            "path": "quest/60318004/npc/battle_npc",
+            "type_extension": ".fsm",
+            "type_name": "rAIFSM"
+          },
+          {
+            "path": "ui/00_param/quest_text/q60318004_00",
+            "type_extension": ".qtd",
+            "type_name": "rQuestTextData"
+          },
+          {
+            "path": "ui/00_message/quest/q60318004",
+            "type_extension": ".mss",
+            "type_name": "rMsgSet"
+          },
+          {
+            "path": "quest/60318004/fa006_marker_npc",
+            "type_extension": ".fmi",
+            "type_name": "rFieldAreaMarkerInfo"
+          },
+          {
+            "path": "ui/00_message/quest_info/q60318004_00",
+            "type_extension": ".gmd",
+            "type_name": "rGUIMessage"
+          },
+          {
+            "path": "quest/60318004/npc/battle_npc_02",
+            "type_extension": ".fsm",
+            "type_name": "rAIFSM"
+          },
+          {
+            "path": "quest/60318004/npc/battle_npc_03",
+            "type_extension": ".fsm",
+            "type_name": "rAIFSM"
+          },
+          {
+            "path": "ui/00_message/quest/q60318004",
+            "type_extension": ".gmd",
+            "type_name": "rGUIMessage"
+          }
+        ]
+      }
+    ]
+  }
+}

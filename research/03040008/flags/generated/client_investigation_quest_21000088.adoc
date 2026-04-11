@@ -1,0 +1,65 @@
+= Client Flag/Quest Investigation
+:toc: macro
+:toclevels: 3
+:toc-title: Contents
+
+Query mode:: quest
+Query value:: 21000088
+Generated at:: 2026-04-11T21:41:40.958050+00:00
+
+toc::[]
+
+== ARC Association Context
+
+_ARC associations are contextual only. They show which quest-stage and marker resources are bundled with this quest._
+
+* arc file: client/03040008/quest/q21000088.arc.json
+* resource count: 9
+
+=== st0622 -- Theodor's Alchemy Workshop
+
+* rQuestMarkerInfo: quest/21000088/st0622_marker_npc
+* rQuestList: quest/21000088/q21000088_st0622
+* rQuestMarkerInfo: quest/21000088/st0622_marker_om
+
+=== unclassified
+
+* rGUIMessage: ui/00_message/quest/q21000088
+* rMsgSet: ui/00_message/examine_message/quest/quest_examine_q21000088
+* rMsgSet: ui/00_message/quest/q21000088
+* rGUIMessage: ui/00_message/examine_message/quest/quest_examine_q21000088
+* rQuestTextData: ui/00_param/quest_text/q21000088_00
+* rGUIMessage: ui/00_message/quest_info/q21000088_00
+
+== Flag Summary Matrix
+
+[cols="2,1,1,2,2,3,3",options="header"]
+|===
+| Target | Kind | Hits | Sources | Stages | Relationships | Description
+
+| Quest ID 21000088 | quest_id | 0 |  |  |  | Derived quest-wide association scan
+|===
+
+== Known Documented Targets
+
+* Quest ID 21000088 -- Derived quest-wide association scan [Derived]
+
+== Quest ID 21000088
+
+origin:: derived_special_query
+direct hits:: *0*
+ranked candidates:: *3*
+
+_No direct references found in decoded client data._
+
+=== Ranked Candidates
+
+[cols="1,1,2,3,3,3",options="header"]
+|===
+| Tier | Confidence | Field | File | Context | Why
+
+| context | 45 | QuestId | client/03040008/game_common/quest/QuestSequence.qsq.json | The Good Old Days | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
+| context | 45 | QuestNo | client/03040008/stage/st0622/st0622/scr/st0622/etc/st0622_p.gpl.json | The Good Old Days / Theodor's Alchemy Workshop | Matched a relevant decoded field (QuestNo), but not in the primary field family for this target type.
+| context | 45 | QuestNo | client/03040008/stage/st0622/st0622/scr/st0622/etc/st0622_p.gpl.json | The Good Old Days / Theodor's Alchemy Workshop | Matched a relevant decoded field (QuestNo), but not in the primary field family for this target type.
+|===
+

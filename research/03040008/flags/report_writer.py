@@ -1,23 +1,23 @@
 """
 Evidence report generator for flag/quest investigation results.
 
-Produces structured JSON and human-readable Markdown reports with
+Produces structured JSON and human-readable AsciiDoc reports with
 enriched metadata (quest names, stage names, comments, relationship types).
 Includes a flag summary matrix and per-relationship grouped sections.
 """
 from __future__ import annotations
 
-import json
-from collections import Counter
+import orjson
 from pathlib import Path
 from typing import Any
 
 
 def write_json_report(output_path: Path, payload: dict[str, Any]) -> None:
-    output_path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+    output_path.write_bytes(orjson.dumps(payload, option=orjson.OPT_INDENT_2))
 
 
-def _escape_md(value: str) -> str:
+def _escape_cell(value: str) -> str:
+    """Escape pipe characters inside AsciiDoc table cells."""
     return value.replace("|", "\\|")
 
 
@@ -69,6 +69,7 @@ SOURCE_LABELS: dict[str, str] = {
     "jmc":   "JMC (Job Master Ctrl)",
     "ams":   "AMS (Area Master Spot)",
 }
+
 
 def _target_value_label(flag_value: Any, flag_type: str) -> str:
     value_text = str(flag_value)
@@ -126,8 +127,8 @@ def _format_context(hit: dict[str, Any]) -> str:
         if first.get("message_excerpt"):
             match_parts.append(first["message_excerpt"])
         if match_parts:
-            parts.append("MSS: " + " | ".join(match_parts))
-    return " | ".join(parts)
+            parts.append("MSS: " + " / ".join(match_parts))
+    return " / ".join(parts)
 
 
 def _group_hits_by_tier(hits: list[dict[str, Any]]) -> dict[str, list[dict[str, Any]]]:
@@ -139,26 +140,31 @@ def _group_hits_by_tier(hits: list[dict[str, Any]]) -> dict[str, list[dict[str, 
 
 
 def _build_hits_table(lines: list[str], hits: list[dict[str, Any]]) -> None:
-    lines.append("| Family | Confidence | File | JSON Path | Field | Context | Why |")
-    lines.append("|--------|------------|------|-----------|-------|---------|-----|")
+    lines.append('[cols="1,1,3,3,2,3,3",options="header"]')
+    lines.append("|===")
+    lines.append("| Family | Confidence | File | JSON Path | Field | Context | Why")
+    lines.append("")
     for hit in hits:
-        fp = _escape_md(hit.get("file_path", ""))
-        jp = _escape_md(hit.get("json_path", ""))
-        fn = _escape_md(hit.get("field_name", ""))
-        ctx = _escape_md(_format_context(hit))
-        why = _escape_md(hit.get("why", ""))
-        family = _escape_md(hit.get("resource_family", hit.get("source_type", "")))
+        fp = _escape_cell(hit.get("file_path", ""))
+        jp = _escape_cell(hit.get("json_path", ""))
+        fn = _escape_cell(hit.get("field_name", ""))
+        ctx = _escape_cell(_format_context(hit))
+        why = _escape_cell(hit.get("why", ""))
+        family = _escape_cell(hit.get("resource_family", hit.get("source_type", "")))
         confidence = str(hit.get("confidence", ""))
-        lines.append(f"| {family} | {confidence} | {fp} | {jp} | {fn} | {ctx} | {why} |")
+        lines.append(f"| {family} | {confidence} | {fp} | {jp} | {fn} | {ctx} | {why}")
+    lines.append("|===")
     lines.append("")
 
 
 def _build_candidate_table(lines: list[str], hits: list[dict[str, Any]]) -> None:
-    lines.append("| Tier | Confidence | Field | File | Context | Why |")
-    lines.append("|------|------------|-------|------|---------|-----|")
+    lines.append('[cols="1,1,2,3,3,3",options="header"]')
+    lines.append("|===")
+    lines.append("| Tier | Confidence | Field | File | Context | Why")
+    lines.append("")
     for hit in hits:
-        field_name = _escape_md(hit.get("field_name", ""))
-        file_path = _escape_md(hit.get("file_path", ""))
+        field_name = _escape_cell(hit.get("field_name", ""))
+        file_path = _escape_cell(hit.get("file_path", ""))
         context_parts = [
             hit.get("quest_name") or "",
             hit.get("stage_name") or "",
@@ -167,10 +173,11 @@ def _build_candidate_table(lines: list[str], hits: list[dict[str, Any]]) -> None
             hit.get("message_excerpt") or "",
             hit.get("comment") or "",
         ]
-        context = _escape_md(" | ".join(part for part in context_parts if part))
+        context = _escape_cell(" / ".join(part for part in context_parts if part))
         lines.append(
-            f"| {_escape_md(str(hit.get('evidence_tier', 'candidate')))} | {hit.get('confidence', '')} | {field_name} | {file_path} | {context} | {_escape_md(hit.get('why', ''))} |"
+            f"| {_escape_cell(str(hit.get('evidence_tier', 'candidate')))} | {hit.get('confidence', '')} | {field_name} | {file_path} | {context} | {_escape_cell(hit.get('why', ''))}"
         )
+    lines.append("|===")
     lines.append("")
 
 
@@ -250,35 +257,40 @@ def _build_flag_summary(all_targets: list[dict[str, Any]]) -> list[dict[str, Any
     return summaries
 
 
-def build_markdown_lines(payload: dict[str, Any]) -> list[str]:
+def build_asciidoc_lines(payload: dict[str, Any]) -> list[str]:
     query = payload["query"]
     lines = [
-        "# Client Flag/Quest Investigation",
+        "= Client Flag/Quest Investigation",
+        ":toc: macro",
+        ":toclevels: 3",
+        ":toc-title: Contents",
         "",
-        f"- **Query mode**: {query['mode']}",
-        f"- **Query value**: {query['value']}",
-        f"- **Generated at**: {payload['generated_at']}",
+        f"Query mode:: {query['mode']}",
+        f"Query value:: {query['value']}",
+        f"Generated at:: {payload['generated_at']}",
+        "",
+        "toc::[]",
         "",
     ]
 
     archive_context = payload.get("quest_archive_context")
     if isinstance(archive_context, dict):
-        lines.append("## ARC Association Context")
+        lines.append("== ARC Association Context")
         lines.append("")
         lines.append("_ARC associations are contextual only. They show which quest-stage and marker resources are bundled with this quest._")
         lines.append("")
-        lines.append(f"- arc file: {archive_context.get('file_path', '')}")
-        lines.append(f"- resource count: {archive_context.get('resource_count', 0)}")
+        lines.append(f"* arc file: {archive_context.get('file_path', '')}")
+        lines.append(f"* resource count: {archive_context.get('resource_count', 0)}")
         lines.append("")
         for stage in archive_context.get("stages", []):
             stage_label = str(stage.get("stage_code") or "unclassified")
             if stage.get("stage_name"):
-                stage_label += f" — {stage['stage_name']}"
-            lines.append(f"### {stage_label}")
+                stage_label += f" -- {stage['stage_name']}"
+            lines.append(f"=== {stage_label}")
             lines.append("")
             for resource in stage.get("resources", []):
                 type_name = resource.get("type_name") or resource.get("type_extension") or "resource"
-                lines.append(f"- {type_name}: {resource.get('path', '')}")
+                lines.append(f"* {type_name}: {resource.get('path', '')}")
             lines.append("")
 
     # ---------- Flag Summary Matrix ----------
@@ -286,16 +298,18 @@ def build_markdown_lines(payload: dict[str, Any]) -> list[str]:
     if targets:
         summaries = _build_flag_summary(targets)
 
-        lines.append("## Flag Summary Matrix")
+        lines.append("== Flag Summary Matrix")
         lines.append("")
-        lines.append("| Target | Kind | Hits | Sources | Stages | Relationships | Description |")
-        lines.append("|--------|------|------|---------|--------|---------------|-------------|")
+        lines.append('[cols="2,1,1,2,2,3,3",options="header"]')
+        lines.append("|===")
+        lines.append("| Target | Kind | Hits | Sources | Stages | Relationships | Description")
+        lines.append("")
         for s in summaries:
-            flag = _escape_md(_target_value_label(s["flag_value"], str(s.get("flag_type") or "")))
-            kind = _escape_md(s.get("flag_type", "") or "")
+            flag = _escape_cell(_target_value_label(s["flag_value"], str(s.get("flag_type") or "")))
+            kind = _escape_cell(s.get("flag_type", "") or "")
             hits_str = str(s["hit_count"])
-            sources = _escape_md(", ".join(s["sources"]))
-            stages = _escape_md(", ".join(s["stages"][:5]))
+            sources = _escape_cell(", ".join(s["sources"]))
+            stages = _escape_cell(", ".join(s["stages"][:5]))
             if len(s["stages"]) > 5:
                 stages += f" +{len(s['stages'])-5}"
             rels = ", ".join(
@@ -303,24 +317,25 @@ def build_markdown_lines(payload: dict[str, Any]) -> list[str]:
             )
             if len(s["relationships"]) > 3:
                 rels += f" +{len(s['relationships'])-3}"
-            rels = _escape_md(rels)
-            desc = _escape_md(s.get("doc_comment", ""))
-            lines.append(f"| {flag} | {kind} | {hits_str} | {sources} | {stages} | {rels} | {desc} |")
+            rels = _escape_cell(rels)
+            desc = _escape_cell(s.get("doc_comment", ""))
+            lines.append(f"| {flag} | {kind} | {hits_str} | {sources} | {stages} | {rels} | {desc}")
+        lines.append("|===")
         lines.append("")
 
     # ---------- Documented targets from catalog ----------
     if payload.get("documented_targets"):
-        lines.append("## Known Documented Targets")
+        lines.append("== Known Documented Targets")
         lines.append("")
         for t in payload["documented_targets"]:
             flag_type = str(t.get("flag_type") or "")
             label = _target_value_label(t.get("flag_value"), flag_type)
             if t.get("quest_id") and flag_type != "quest_id":
-                label = f"quest {t['quest_id']} — {label}"
+                label = f"quest {t['quest_id']} -- {label}"
             origin = t.get("origin", "")
             origin_badge = _origin_badge(str(origin))
-            c = f" — {t['doc_comment']}" if t.get("doc_comment") else ""
-            lines.append(f"- {label}{c}{origin_badge}")
+            c = f" -- {t['doc_comment']}" if t.get("doc_comment") else ""
+            lines.append(f"* {label}{c}{origin_badge}")
         lines.append("")
 
     # ---------- Per-target reports ----------
@@ -329,24 +344,24 @@ def build_markdown_lines(payload: dict[str, Any]) -> list[str]:
         flag_type = str(target.get("flag_type") or "")
         label = _target_value_label(target.get("flag_value"), flag_type)
         if target.get("quest_id") and flag_type != "quest_id":
-            label += f" — Quest {target['quest_id']}"
+            label += f" -- Quest {target['quest_id']}"
 
-        lines.append(f"## {label}")
+        lines.append(f"== {label}")
         lines.append("")
-        lines.append(f"- origin: {target.get('origin', 'unknown')}")
+        lines.append(f"origin:: {target.get('origin', 'unknown')}")
 
         hits = target_report.get("hits", [])
         candidate_hits = target_report.get("candidate_hits", [])
-        lines.append(f"- direct hits: **{len(hits)}**")
-        lines.append(f"- ranked candidates: **{len(candidate_hits)}**")
+        lines.append(f"direct hits:: *{len(hits)}*")
+        lines.append(f"ranked candidates:: *{len(candidate_hits)}*")
         lines.append("")
 
         if hits:
             by_tier = _group_hits_by_tier(hits)
-            lines.append("### Direct Hits")
+            lines.append("=== Direct Hits")
             lines.append("")
             for tier, tier_hits in sorted(by_tier.items()):
-                lines.append(f"#### {tier} — {len(tier_hits)} hit(s)")
+                lines.append(f"==== {tier} -- {len(tier_hits)} hit(s)")
                 lines.append("")
                 _build_hits_table(lines, tier_hits)
         else:
@@ -354,26 +369,29 @@ def build_markdown_lines(payload: dict[str, Any]) -> list[str]:
             lines.append("")
 
         if candidate_hits:
-            lines.append("### Ranked Candidates")
+            lines.append("=== Ranked Candidates")
             lines.append("")
             _build_candidate_table(lines, candidate_hits)
 
         # Executable immediates if present
         exe_data = target_report.get("executable_immediates", {})
         if exe_data and exe_data.get("references"):
-            lines.append(f"### Binary Fallback — {exe_data.get('hit_count', 0)} hit(s)")
+            lines.append(f"=== Binary Fallback -- {exe_data.get('hit_count', 0)} hit(s)")
             lines.append("")
             if exe_data.get("dominant_following_calls"):
-                lines.append(f"- dominant following calls: {exe_data['dominant_following_calls']}")
+                lines.append(f"* dominant following calls: {exe_data['dominant_following_calls']}")
                 lines.append("")
-            lines.append("| Address | Instruction |")
-            lines.append("|---------|-------------|")
+            lines.append('[cols="1,3",options="header"]')
+            lines.append("|===")
+            lines.append("| Address | Instruction")
+            lines.append("")
             for ref in exe_data["references"]:
-                lines.append(f"| `{ref['address']}` | `{ref['mnemonic']} {ref['operands']}` |")
+                lines.append(f"| `{ref['address']}` | `{ref['mnemonic']} {ref['operands']}`")
+            lines.append("|===")
             lines.append("")
 
     return lines
 
 
-def write_markdown_report(output_path: Path, payload: dict[str, Any]) -> None:
-    output_path.write_text("\n".join(build_markdown_lines(payload)) + "\n", encoding="utf-8")
+def write_asciidoc_report(output_path: Path, payload: dict[str, Any]) -> None:
+    output_path.write_text("\n".join(build_asciidoc_lines(payload)) + "\n", encoding="utf-8")

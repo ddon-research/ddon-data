@@ -1,0 +1,63 @@
+= Client Flag/Quest Investigation
+:toc: macro
+:toclevels: 3
+:toc-title: Contents
+
+Query mode:: quest
+Query value:: 20070001
+Generated at:: 2026-04-11T21:41:40.819282+00:00
+
+toc::[]
+
+== ARC Association Context
+
+_ARC associations are contextual only. They show which quest-stage and marker resources are bundled with this quest._
+
+* arc file: client/03040008/quest/q20070001.arc.json
+* resource count: 9
+
+=== st0730 -- Underground Crypt
+
+* rQuestMarkerInfo: quest/20070001/st0730_marker_npc
+* rQuestList: quest/20070001/q20070001_st0730
+* rQuestMarkerInfo: quest/20070001/st0730_marker_om
+
+=== unclassified
+
+* rGUIMessage: ui/00_message/quest/q20070001
+* rMsgSet: ui/00_message/examine_message/quest/quest_examine_q20070001
+* rGUIMessage: ui/00_message/examine_message/quest/quest_examine_q20070001
+* rMsgSet: ui/00_message/quest/q20070001
+* rQuestTextData: ui/00_param/quest_text/q20070001_00
+* rGUIMessage: ui/00_message/quest_info/q20070001_00
+
+== Flag Summary Matrix
+
+[cols="2,1,1,2,2,3,3",options="header"]
+|===
+| Target | Kind | Hits | Sources | Stages | Relationships | Description
+
+| Quest ID 20070001 | quest_id | 1 | qst | st0730 | 💬 Text Quest | Derived quest-wide association scan
+|===
+
+== Known Documented Targets
+
+* Quest ID 20070001 -- Derived quest-wide association scan [Derived]
+
+== Quest ID 20070001
+
+origin:: derived_special_query
+direct hits:: *1*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 1 hit(s)
+
+[cols="1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | 92 | client/03040008/quest/q20070001/quest/20070001/q20070001_st0730.qst.json | QuestStageList[].QuestGrp[1].QuestSet[0].TextQuestNo | TextQuestNo | quest 20070001 / Underground Crypt / "QuestGroup 2 \| OM \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=349 \| TextType=2 \| TextQuestNo=20070001 \| GroupNo=2 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+

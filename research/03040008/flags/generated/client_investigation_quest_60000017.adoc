@@ -1,0 +1,84 @@
+= Client Flag/Quest Investigation
+:toc: macro
+:toclevels: 3
+:toc-title: Contents
+
+Query mode:: quest
+Query value:: 60000017
+Generated at:: 2026-04-11T21:41:41.769233+00:00
+
+toc::[]
+
+== ARC Association Context
+
+_ARC associations are contextual only. They show which quest-stage and marker resources are bundled with this quest._
+
+* arc file: client/03040008/quest/q60000017.arc.json
+* resource count: 10
+
+=== st0550 -- Training Chapel
+
+* rQuestMarkerInfo: quest/60000017/st0550_marker_om
+* rQuestList: quest/60000017/q60000017_st0550
+* rQuestMarkerInfo: quest/60000017/st0550_marker_npc
+
+=== unclassified
+
+* rMsgSet: ui/00_message/examine_message/quest/quest_examine_q60000017
+* rGUIMessage: ui/00_message/quest_info/q60000017_00
+* rMsgSet: ui/00_message/quest/q60000017
+* rGUIMessage: ui/00_message/quest/q60000017
+* rQuestTextData: ui/00_param/quest_text/q60000017_00
+* rAIFSM: quest/60000017/npc/n0529_st550
+* rGUIMessage: ui/00_message/examine_message/quest/quest_examine_q60000017
+
+== Flag Summary Matrix
+
+[cols="2,1,1,2,2,3,3",options="header"]
+|===
+| Target | Kind | Hits | Sources | Stages | Relationships | Description
+
+| Quest ID 60000017 | quest_id | 13 | fsm, jtq, qst, tqg | st0550 | 🔍 FSM Check, 💬 Text Quest, 🧩 Tutorial Group +1 | Derived quest-wide association scan
+|===
+
+== Known Documented Targets
+
+* Quest ID 60000017 -- Derived quest-wide association scan [Derived]
+
+== Quest ID 60000017
+
+origin:: derived_special_query
+direct hits:: *13*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 10 hit(s)
+
+[cols="1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | 92 | client/03040008/quest/q60000017/quest/60000017/q60000017_st0550.qst.json | QuestStageList[].QuestGrp[2].QuestSet[0].TextQuestNo | TextQuestNo | quest 60000017 / Training Chapel / "QuestGroup 3 \| OMー証 \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=274 \| TextType=2 \| TextQuestNo=60000017 \| GroupNo=3 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | 92 | client/03040008/quest/q60000017/quest/60000017/q60000017_st0550.qst.json | QuestStageList[].QuestGrp[3].QuestSet[0].TextQuestNo | TextQuestNo | quest 60000017 / Training Chapel / "QuestGroup 4 \| OMー怒り \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=275 \| TextType=2 \| TextQuestNo=60000017 \| GroupNo=4 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | 92 | client/03040008/quest/q60000017/quest/60000017/q60000017_st0550.qst.json | QuestStageList[].QuestGrp[4].QuestSet[0].TextQuestNo | TextQuestNo | quest 60000017 / Training Chapel / "QuestGroup 5 \| OMー揺さぶり \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=276 \| TextType=2 \| TextQuestNo=60000017 \| GroupNo=5 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | 92 | client/03040008/quest/q60000017/quest/60000017/q60000017_st0550.qst.json | QuestStageList[].QuestGrp[5].QuestSet[0].TextQuestNo | TextQuestNo | quest 60000017 / Training Chapel / "QuestGroup 6 \| OMー耐える \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=279 \| TextType=2 \| TextQuestNo=60000017 \| GroupNo=6 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | 92 | client/03040008/quest/q60000017/quest/60000017/q60000017_st0550.qst.json | QuestStageList[].QuestGrp[6].QuestSet[0].TextQuestNo | TextQuestNo | quest 60000017 / Training Chapel / "QuestGroup 7 \| OMー離脱 \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=277 \| TextType=2 \| TextQuestNo=60000017 \| GroupNo=7 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | 92 | client/03040008/quest/q60000017/quest/60000017/q60000017_st0550.qst.json | QuestStageList[].QuestGrp[7].QuestSet[0].TextQuestNo | TextQuestNo | quest 60000017 / Training Chapel / "QuestGroup 8 \| OMーコアポイント検索 \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=272 \| TextType=2 \| TextQuestNo=60000017 \| GroupNo=8 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | 92 | client/03040008/quest/q60000017/quest/60000017/q60000017_st0550.qst.json | QuestStageList[].QuestGrp[8].QuestSet[0].TextQuestNo | TextQuestNo | quest 60000017 / Training Chapel / "QuestGroup 9 \| OMーライドヒールオーラ \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=273 \| TextType=2 \| TextQuestNo=60000017 \| GroupNo=9 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | 92 | client/03040008/quest/q60000017/quest/60000017/q60000017_st0550.qst.json | QuestStageList[].QuestGrp[9].QuestSet[0].TextQuestNo | TextQuestNo | quest 60000017 / Training Chapel / "QuestGroup 10 \| OMーライドセイントサークル \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=330 \| TextType=2 \| TextQuestNo=60000017 \| GroupNo=10 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| JTQ | 92 | client/03040008/game_common/quest/jobTutorialQuestList.jtq.json | JobTutorialQuestList[9].QuestId | QuestId | quest 60000017 (Priest Tactics Trial: Break Attack) / Job tutorial quest registry | Tutorial quest registry; q6 tutorial quests are listed directly in the job tutorial quest table.
+| TQG | 92 | client/03040008/game_common/quest/tutorialQuestGroup.tqg.json | TutorialQuestGroupList[0].QuestIdArray[1].QuestId | QuestId | quest 60000017 (Priest Tactics Trial: Break Attack) / "GroupId=1" / Tutorial quest group membership | Tutorial quest grouping; q6 tutorial quests are clustered into authored tutorial groups here.
+|===
+
+==== opaque_fsm -- 3 hit(s)
+
+[cols="1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Confidence | File | JSON Path | Field | Context | Why
+
+| FSM | 64 | client/03040008/quest/q60000017/quest/60000017/npc/n0529_st550.fsm.json | Process.Parameter.QuestId | QuestId | quest 60000017 (Priest Tactics Trial: Break Attack) / Arisen Corps Regimental Soldier / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | 64 | client/03040008/quest/q60000017/quest/60000017/npc/n0529_st550.fsm.json | Process.Parameter.QuestId | QuestId | quest 60000017 (Priest Tactics Trial: Break Attack) / Arisen Corps Regimental Soldier / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | 64 | client/03040008/quest/q60000017/quest/60000017/npc/n0529_st550.fsm.json | Process.Parameter.QuestId | QuestId | quest 60000017 (Priest Tactics Trial: Break Attack) / Arisen Corps Regimental Soldier / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+|===
+

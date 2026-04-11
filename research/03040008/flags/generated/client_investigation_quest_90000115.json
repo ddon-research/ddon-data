@@ -1,0 +1,100 @@
+{
+  "format": "client_investigation.v4",
+  "generated_at": "2026-04-11T21:41:42.928576+00:00",
+  "query": {
+    "mode": "quest",
+    "value": 90000115
+  },
+  "documented_targets": [
+    {
+      "flag_value": 90000115,
+      "quest_id": 90000115,
+      "flag_type": "quest_id",
+      "doc_comment": "Derived quest-wide association scan",
+      "origin": "derived_special_query"
+    }
+  ],
+  "targets": [
+    {
+      "target": {
+        "flag_value": 90000115,
+        "quest_id": 90000115,
+        "flag_type": "quest_id",
+        "origin": "derived_special_query",
+        "doc_comment": "Derived quest-wide association scan"
+      },
+      "hits": [
+        {
+          "source_type": "fsm",
+          "file_path": "client/03040008/quest/q90000115/quest/90000115/n0012.fsm.json",
+          "json_path": "Process.Parameter.QuestId",
+          "field_name": "QuestId",
+          "flag_value": 90000115,
+          "flag_kind": "quest_id",
+          "relationship": "fsm_set",
+          "quest_name": "Battle for Fort Gritten: Fierce Battle",
+          "quest_name_jp": "グリッテン砦攻防戦　戦況：激戦",
+          "context": "CallMessage | NPCFSM=n0012 | QuestLocalNPCFSM",
+          "quest_id": 90000115,
+          "resource_family": "FSM",
+          "evidence_tier": "opaque_fsm",
+          "confidence": 72,
+          "why": "Quest-local NPC FSM reference; these quest NPC FSM files usually define behavior for the same quest, such as joining fights or changing interactions.",
+          "npc_id": 12,
+          "npc_name": "Fabio",
+          "npc_name_jp": "ファビオ"
+        }
+      ],
+      "candidate_hits": []
+    }
+  ],
+  "quest_archive_context": {
+    "file_path": "client/03040008/quest/q90000115.arc.json",
+    "resource_count": 7,
+    "stages": [
+      {
+        "stage_code": "",
+        "stage_no": 0,
+        "stage_name": "",
+        "stage_name_jp": "",
+        "resources": [
+          {
+            "path": "quest/90000115/n0012",
+            "type_extension": ".fsm",
+            "type_name": "rAIFSM"
+          },
+          {
+            "path": "ui/00_message/quest_info/q90000115_00",
+            "type_extension": ".gmd",
+            "type_name": "rGUIMessage"
+          },
+          {
+            "path": "ui/00_param/quest_text/q90000115_00",
+            "type_extension": ".qtd",
+            "type_name": "rQuestTextData"
+          },
+          {
+            "path": "ui/00_message/examine_message/quest/quest_examine_q90000115",
+            "type_extension": ".mss",
+            "type_name": "rMsgSet"
+          },
+          {
+            "path": "ui/00_message/quest/q90000115",
+            "type_extension": ".mss",
+            "type_name": "rMsgSet"
+          },
+          {
+            "path": "ui/00_message/quest/q90000115",
+            "type_extension": ".gmd",
+            "type_name": "rGUIMessage"
+          },
+          {
+            "path": "ui/00_message/examine_message/quest/quest_examine_q90000115",
+            "type_extension": ".gmd",
+            "type_name": "rGUIMessage"
+          }
+        ]
+      }
+    ]
+  }
+}

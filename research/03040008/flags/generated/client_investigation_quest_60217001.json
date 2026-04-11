@@ -1,0 +1,143 @@
+{
+  "format": "client_investigation.v4",
+  "generated_at": "2026-04-11T21:41:41.933813+00:00",
+  "query": {
+    "mode": "quest",
+    "value": 60217001
+  },
+  "documented_targets": [
+    {
+      "flag_value": 60217001,
+      "quest_id": 60217001,
+      "flag_type": "quest_id",
+      "doc_comment": "Derived quest-wide association scan",
+      "origin": "derived_special_query"
+    }
+  ],
+  "targets": [
+    {
+      "target": {
+        "flag_value": 60217001,
+        "quest_id": 60217001,
+        "flag_type": "quest_id",
+        "origin": "derived_special_query",
+        "doc_comment": "Derived quest-wide association scan"
+      },
+      "hits": [
+        {
+          "source_type": "qst",
+          "file_path": "client/03040008/quest/q60217001/quest/60217001/q60217001_st0122.qst.json",
+          "json_path": "QuestStageList[].QuestGrp[0].QuestSet[0].TextQuestNo",
+          "field_name": "TextQuestNo",
+          "flag_value": 60217001,
+          "flag_kind": "quest_id",
+          "relationship": "text_quest",
+          "stage_name": "Kingal Canyon",
+          "stage_name_jp": "キンガル峡谷",
+          "stage_code": "st0122",
+          "comment": "調べる１ | クエスト指定メッセージOM",
+          "context": "QuestSet=QuestSetInfoOmText | OmID=522570 | OM_ID_CMN_MSG_POINT | EnableZone | TextNo=737 | TextType=2 | TextQuestNo=60217001",
+          "quest_id": 60217001,
+          "stage_no": 122,
+          "resource_family": "QST",
+          "evidence_tier": "direct",
+          "confidence": 92,
+          "why": "Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes."
+        },
+        {
+          "source_type": "qst",
+          "file_path": "client/03040008/quest/q60217001/quest/60217001/q60217001_st0122.qst.json",
+          "json_path": "QuestStageList[].QuestGrp[1].QuestSet[0].TextQuestNo",
+          "field_name": "TextQuestNo",
+          "flag_value": 60217001,
+          "flag_kind": "quest_id",
+          "relationship": "text_quest",
+          "stage_name": "Kingal Canyon",
+          "stage_name_jp": "キンガル峡谷",
+          "stage_code": "st0122",
+          "comment": "QuestGroup 1 | 調べる２ | クエスト指定メッセージOM",
+          "context": "QuestSet=QuestSetInfoOmText | OmID=522570 | OM_ID_CMN_MSG_POINT | EnableZone | TextNo=779 | TextType=2 | TextQuestNo=60217001 | GroupNo=1",
+          "quest_id": 60217001,
+          "stage_no": 122,
+          "resource_family": "QST",
+          "evidence_tier": "direct",
+          "confidence": 92,
+          "why": "Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes."
+        }
+      ],
+      "candidate_hits": []
+    }
+  ],
+  "quest_archive_context": {
+    "file_path": "client/03040008/quest/q60217001.arc.json",
+    "resource_count": 10,
+    "stages": [
+      {
+        "stage_code": "st0122",
+        "stage_no": 122,
+        "stage_name": "Kingal Canyon",
+        "stage_name_jp": "キンガル峡谷",
+        "resources": [
+          {
+            "path": "quest/60217001/st0122_marker_npc",
+            "type_extension": ".qmi",
+            "type_name": "rQuestMarkerInfo"
+          },
+          {
+            "path": "quest/60217001/st0122_marker_om",
+            "type_extension": ".qmi",
+            "type_name": "rQuestMarkerInfo"
+          },
+          {
+            "path": "quest/60217001/q60217001_st0122",
+            "type_extension": ".qst",
+            "type_name": "rQuestList"
+          }
+        ]
+      },
+      {
+        "stage_code": "",
+        "stage_no": 0,
+        "stage_name": "",
+        "stage_name_jp": "",
+        "resources": [
+          {
+            "path": "ui/00_message/examine_message/quest/quest_examine_q60217001",
+            "type_extension": ".mss",
+            "type_name": "rMsgSet"
+          },
+          {
+            "path": "ui/00_message/quest_info/q60217001_00",
+            "type_extension": ".gmd",
+            "type_name": "rGUIMessage"
+          },
+          {
+            "path": "ui/00_message/quest/q60217001",
+            "type_extension": ".mss",
+            "type_name": "rMsgSet"
+          },
+          {
+            "path": "quest/60217001/fa005_marker_om",
+            "type_extension": ".fmi",
+            "type_name": "rFieldAreaMarkerInfo"
+          },
+          {
+            "path": "ui/00_message/quest/q60217001",
+            "type_extension": ".gmd",
+            "type_name": "rGUIMessage"
+          },
+          {
+            "path": "ui/00_param/quest_text/q60217001_00",
+            "type_extension": ".qtd",
+            "type_name": "rQuestTextData"
+          },
+          {
+            "path": "ui/00_message/examine_message/quest/quest_examine_q60217001",
+            "type_extension": ".gmd",
+            "type_name": "rGUIMessage"
+          }
+        ]
+      }
+    ]
+  }
+}

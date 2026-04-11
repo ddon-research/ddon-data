@@ -1,0 +1,73 @@
+= Client Flag/Quest Investigation
+:toc: macro
+:toclevels: 3
+:toc-title: Contents
+
+Query mode:: quest
+Query value:: 10310701
+Generated at:: 2026-04-11T21:41:40.657787+00:00
+
+toc::[]
+
+== ARC Association Context
+
+_ARC associations are contextual only. They show which quest-stage and marker resources are bundled with this quest._
+
+* arc file: client/03040008/quest/q10310701.arc.json
+* resource count: 14
+
+=== st0137 -- Feryana Wilderness by Castle
+
+* rQuestMarkerInfo: quest/10310701/st0137_marker_npc
+* rQuestList: quest/10310701/q10310701_st0137
+
+=== st0451 -- Lookout Castle
+
+* rQuestMarkerInfo: quest/10310701/st0451_marker_npc
+* rQuestList: quest/10310701/q10310701_st0451
+
+=== unclassified
+
+* rAIFSM: quest/10310701/npc/boss
+* rAIFSM: quest/10310701/npc/finish
+* rQuestTextData: ui/00_param/quest_text/q10310701_00
+* rSoundStreamRequest: sound/stream/quest/di/jp/q10310701/q10310701_n0582
+* rGUIMessage: ui/00_message/quest_info/q10310701_00
+* rMsgSet: ui/00_message/quest/q10310701
+* rFieldAreaMarkerInfo: quest/10310701/fa006_marker_npc
+* rAIFSM: quest/10310701/npc/gate
+* rAIFSM: quest/10310701/npc/startsetpos
+* rGUIMessage: ui/00_message/quest/q10310701
+
+== Flag Summary Matrix
+
+[cols="2,1,1,2,2,3,3",options="header"]
+|===
+| Target | Kind | Hits | Sources | Stages | Relationships | Description
+
+| Quest ID 10310701 | quest_id | 3 | fsm |  | 🔍 FSM Check, ✏️ FSM Set | Derived quest-wide association scan
+|===
+
+== Known Documented Targets
+
+* Quest ID 10310701 -- Derived quest-wide association scan [Derived]
+
+== Quest ID 10310701
+
+origin:: derived_special_query
+direct hits:: *3*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== opaque_fsm -- 3 hit(s)
+
+[cols="1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Confidence | File | JSON Path | Field | Context | Why
+
+| FSM | 64 | client/03040008/quest/q10310701/quest/10310701/npc/boss.fsm.json | Process.Parameter.QuestId | QuestId | quest 10310701 (The Best Strategy, This Time!) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | 64 | client/03040008/quest/q10310701/quest/10310701/npc/boss.fsm.json | Process.Parameter.QuestId | QuestId | quest 10310701 (The Best Strategy, This Time!) / MainQstFlagOn | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | 64 | client/03040008/quest/q10310701/quest/10310701/npc/boss.fsm.json | Process.Parameter.QuestId | QuestId | quest 10310701 (The Best Strategy, This Time!) / MainQstFlagOn | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+|===
+

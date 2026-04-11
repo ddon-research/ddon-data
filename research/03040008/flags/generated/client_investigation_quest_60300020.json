@@ -1,0 +1,88 @@
+{
+  "format": "client_investigation.v4",
+  "generated_at": "2026-04-11T21:41:41.945319+00:00",
+  "query": {
+    "mode": "quest",
+    "value": 60300020
+  },
+  "documented_targets": [
+    {
+      "flag_value": 60300020,
+      "quest_id": 60300020,
+      "flag_type": "quest_id",
+      "doc_comment": "Derived quest-wide association scan",
+      "origin": "derived_special_query"
+    }
+  ],
+  "targets": [
+    {
+      "target": {
+        "flag_value": 60300020,
+        "quest_id": 60300020,
+        "flag_type": "quest_id",
+        "origin": "derived_special_query",
+        "doc_comment": "Derived quest-wide association scan"
+      },
+      "hits": [
+        {
+          "source_type": "ams",
+          "file_path": "client/03040008/ui/uGUIAreaMaster/ui/00_param/master/am_spot_18.ams.json",
+          "json_path": "AreaMasterSpotDataList[20].QuestId",
+          "field_name": "QuestId",
+          "flag_value": 60300020,
+          "flag_kind": "quest_id",
+          "relationship": "spot_block",
+          "quest_name": "Epitaph Road: Rathnite Region",
+          "quest_name_jp": "英霊眠りし道へ　ラスニテ地方",
+          "stage_name": "Rathnite Foothills",
+          "stage_name_jp": "ラスニテ山麓",
+          "area_name": "Rathnite Foothills",
+          "area_name_jp": "ラスニテ山麓",
+          "comment": "SpotId=1108",
+          "context": "QuestBlockedSpot | Epitaph Road: Rathnite Foothills | Adventure Spots | RecommendLevel=85",
+          "quest_id": 60300020,
+          "stage_no": 130,
+          "resource_family": "AMS",
+          "evidence_tier": "direct",
+          "confidence": 92,
+          "why": "Area Master spot block; QuestId here indicates the map spot is hidden or blocked by that quest."
+        }
+      ],
+      "candidate_hits": []
+    }
+  ],
+  "quest_archive_context": {
+    "file_path": "client/03040008/quest/q60300020.arc.json",
+    "resource_count": 4,
+    "stages": [
+      {
+        "stage_code": "",
+        "stage_no": 0,
+        "stage_name": "",
+        "stage_name_jp": "",
+        "resources": [
+          {
+            "path": "ui/00_param/quest_text/q60300020_00",
+            "type_extension": ".qtd",
+            "type_name": "rQuestTextData"
+          },
+          {
+            "path": "ui/00_message/quest/q60300020",
+            "type_extension": ".gmd",
+            "type_name": "rGUIMessage"
+          },
+          {
+            "path": "ui/00_message/quest/q60300020",
+            "type_extension": ".mss",
+            "type_name": "rMsgSet"
+          },
+          {
+            "path": "ui/00_message/quest_info/q60300020_00",
+            "type_extension": ".gmd",
+            "type_name": "rGUIMessage"
+          }
+        ]
+      }
+    ]
+  }
+}

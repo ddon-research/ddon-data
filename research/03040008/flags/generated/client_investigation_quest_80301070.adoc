@@ -1,0 +1,69 @@
+= Client Flag/Quest Investigation
+:toc: macro
+:toclevels: 3
+:toc-title: Contents
+
+Query mode:: quest
+Query value:: 80301070
+Generated at:: 2026-04-11T21:41:42.918386+00:00
+
+toc::[]
+
+== ARC Association Context
+
+_ARC associations are contextual only. They show which quest-stage and marker resources are bundled with this quest._
+
+* arc file: client/03040008/quest/q80301070.arc.json
+* resource count: 11
+
+=== st0461 -- Fortress City Megado: Residential Level
+
+* rQuestMarkerInfo: quest/80301070/st0461_marker_npc
+* rQuestList: quest/80301070/q80301070_st0461
+
+=== st0474 -- Marquise Kurt's residence
+
+* rQuestList: quest/80301070/q80301070_st0474
+* rQuestMarkerInfo: quest/80301070/st0474_marker_npc
+
+=== unclassified
+
+* rGUIMessage: ui/00_message/examine_message/quest/quest_examine_q80301070
+* rGUIMessage: ui/00_message/quest_info/q80301070_00
+* rMsgSet: ui/00_message/examine_message/quest/quest_examine_q80301070
+* rMsgSet: ui/00_message/quest/q80301070
+* rQuestTextData: ui/00_param/quest_text/q80301070_00
+* rAIFSM: quest/80301070/npc/work_npc
+* rGUIMessage: ui/00_message/quest/q80301070
+
+== Flag Summary Matrix
+
+[cols="2,1,1,2,2,3,3",options="header"]
+|===
+| Target | Kind | Hits | Sources | Stages | Relationships | Description
+
+| Quest ID 80301070 | quest_id | 0 |  |  |  | Derived quest-wide association scan
+|===
+
+== Known Documented Targets
+
+* Quest ID 80301070 -- Derived quest-wide association scan [Derived]
+
+== Quest ID 80301070
+
+origin:: derived_special_query
+direct hits:: *0*
+ranked candidates:: *2*
+
+_No direct references found in decoded client data._
+
+=== Ranked Candidates
+
+[cols="1,1,2,3,3,3",options="header"]
+|===
+| Tier | Confidence | Field | File | Context | Why
+
+| context | 45 | QuestId | client/03040008/game_common/quest/QuestSequence.qsq.json | [Daily Espionage] Royal Capital Megado - Follow Clues | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
+| context | 45 | QuestNo | client/03040008/stage/st0474/st0474/scr/st0474/etc/st0474_n.gpl.json | [Daily Espionage] Royal Capital Megado - Follow Clues / Marquise Kurt's residence | Matched a relevant decoded field (QuestNo), but not in the primary field family for this target type.
+|===
+

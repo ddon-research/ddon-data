@@ -1,0 +1,64 @@
+= Client Flag/Quest Investigation
+:toc: macro
+:toclevels: 3
+:toc-title: Contents
+
+Query mode:: quest
+Query value:: 60300201
+Generated at:: 2026-04-11T21:41:41.974924+00:00
+
+toc::[]
+
+== ARC Association Context
+
+_ARC associations are contextual only. They show which quest-stage and marker resources are bundled with this quest._
+
+* arc file: client/03040008/quest/q60300201.arc.json
+* resource count: 8
+
+=== st1102 -- The Royal Family Mausoleum
+
+* rQuestList: quest/60300201/q60300201_st1102
+* rQuestMarkerInfo: quest/60300201/st1102_marker_npc
+
+=== unclassified
+
+* rQuestTextData: ui/00_param/quest_text/q60300201_00
+* rGUIMessage: ui/00_message/quest/q60300201
+* rMsgSet: ui/00_message/quest/q60300201
+* rAIFSM: quest/60300201/npc/master_00
+* rAIFSM: quest/60300201/npc/master_02
+* rGUIMessage: ui/00_message/quest_info/q60300201_00
+
+== Flag Summary Matrix
+
+[cols="2,1,1,2,2,3,3",options="header"]
+|===
+| Target | Kind | Hits | Sources | Stages | Relationships | Description
+
+| Quest ID 60300201 | quest_id | 3 | fsm |  | 🔍 FSM Check | Derived quest-wide association scan
+|===
+
+== Known Documented Targets
+
+* Quest ID 60300201 -- Derived quest-wide association scan [Derived]
+
+== Quest ID 60300201
+
+origin:: derived_special_query
+direct hits:: *3*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== opaque_fsm -- 3 hit(s)
+
+[cols="1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Confidence | File | JSON Path | Field | Context | Why
+
+| FSM | 64 | client/03040008/quest/q60300201/quest/60300201/npc/master_00.fsm.json | Process.Parameter.QuestId | QuestId | quest 60300201 (Crown and Scepter II) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | 64 | client/03040008/quest/q60300201/quest/60300201/npc/master_00.fsm.json | Process.Parameter.QuestId | QuestId | quest 60300201 (Crown and Scepter II) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | 64 | client/03040008/quest/q60300201/quest/60300201/npc/master_00.fsm.json | Process.Parameter.QuestId | QuestId | quest 60300201 (Crown and Scepter II) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+|===
+

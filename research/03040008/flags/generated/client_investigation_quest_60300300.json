@@ -1,0 +1,82 @@
+{
+  "format": "client_investigation.v4",
+  "generated_at": "2026-04-11T21:41:41.977431+00:00",
+  "query": {
+    "mode": "quest",
+    "value": 60300300
+  },
+  "documented_targets": [
+    {
+      "flag_value": 60300300,
+      "quest_id": 60300300,
+      "flag_type": "quest_id",
+      "doc_comment": "Derived quest-wide association scan",
+      "origin": "derived_special_query"
+    }
+  ],
+  "targets": [
+    {
+      "target": {
+        "flag_value": 60300300,
+        "quest_id": 60300300,
+        "flag_type": "quest_id",
+        "origin": "derived_special_query",
+        "doc_comment": "Derived quest-wide association scan"
+      },
+      "hits": [],
+      "candidate_hits": [
+        {
+          "flag_value": 60300300,
+          "field_name": "QuestId",
+          "file_path": "client/03040008/game_common/quest/QuestSequence.qsq.json",
+          "json_path": "QuestSequenceList[435].QuestId",
+          "resource_family": ".qsq",
+          "evidence_tier": "context",
+          "confidence": 45,
+          "why": "Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.",
+          "class_name": "org.sehkah.ddon.tools.extractor.common.logic.resource.entity.game_common.QuestSequence",
+          "quest_id": 60300300,
+          "quest_name": "Where Is Gurdolin!?",
+          "quest_name_jp": "ガルドリンはどこだ！？"
+        }
+      ]
+    }
+  ],
+  "quest_archive_context": {
+    "file_path": "client/03040008/quest/q60300300.arc.json",
+    "resource_count": 3,
+    "stages": [
+      {
+        "stage_code": "st0412",
+        "stage_no": 412,
+        "stage_name": "Pawn Cathedral",
+        "stage_name_jp": "ポーン郷",
+        "resources": [
+          {
+            "path": "quest/60300300/q60300300_st0412",
+            "type_extension": ".qst",
+            "type_name": "rQuestList"
+          }
+        ]
+      },
+      {
+        "stage_code": "",
+        "stage_no": 0,
+        "stage_name": "",
+        "stage_name_jp": "",
+        "resources": [
+          {
+            "path": "ui/00_message/quest_info/q60300300_00",
+            "type_extension": ".gmd",
+            "type_name": "rGUIMessage"
+          },
+          {
+            "path": "ui/00_param/quest_text/q60300300_00",
+            "type_extension": ".qtd",
+            "type_name": "rQuestTextData"
+          }
+        ]
+      }
+    ]
+  }
+}

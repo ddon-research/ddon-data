@@ -1,0 +1,154 @@
+{
+  "format": "client_investigation.v4",
+  "generated_at": "2026-04-11T21:41:41.066544+00:00",
+  "query": {
+    "mode": "quest",
+    "value": 22018010
+  },
+  "documented_targets": [
+    {
+      "flag_value": 22018010,
+      "quest_id": 22018010,
+      "flag_type": "quest_id",
+      "doc_comment": "Derived quest-wide association scan",
+      "origin": "derived_special_query"
+    }
+  ],
+  "targets": [
+    {
+      "target": {
+        "flag_value": 22018010,
+        "quest_id": 22018010,
+        "flag_type": "quest_id",
+        "origin": "derived_special_query",
+        "doc_comment": "Derived quest-wide association scan"
+      },
+      "hits": [],
+      "candidate_hits": [
+        {
+          "flag_value": 22018010,
+          "field_name": "QuestId",
+          "file_path": "client/03040008/game_common/quest/QuestSequence.qsq.json",
+          "json_path": "QuestSequenceList[301].QuestId",
+          "resource_family": ".qsq",
+          "evidence_tier": "context",
+          "confidence": 45,
+          "why": "Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.",
+          "class_name": "org.sehkah.ddon.tools.extractor.common.logic.resource.entity.game_common.QuestSequence",
+          "quest_id": 22018010,
+          "quest_name": "Demon Army's Surprise Attack",
+          "quest_name_jp": "武装鬼軍の奇襲"
+        },
+        {
+          "flag_value": 22018010,
+          "field_name": "QuestNo",
+          "file_path": "client/03040008/stage/st0131/st0131/scr/st0131/etc/st0131_p.gpl.json",
+          "json_path": "GroupParamBuff[62].GuardData.QuestNo",
+          "resource_family": ".gpl",
+          "evidence_tier": "context",
+          "confidence": 45,
+          "why": "Matched a relevant decoded field (QuestNo), but not in the primary field family for this target type.",
+          "stage_name": "Rathnite Foothills Lakeside",
+          "stage_name_jp": "ラスニテ山麓　湖畔部",
+          "class_name": "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.stage.GroupParamGuardData",
+          "quest_id": 22018010,
+          "quest_name": "Demon Army's Surprise Attack",
+          "quest_name_jp": "武装鬼軍の奇襲"
+        }
+      ]
+    }
+  ],
+  "quest_archive_context": {
+    "file_path": "client/03040008/quest/q22018010.arc.json",
+    "resource_count": 11,
+    "stages": [
+      {
+        "stage_code": "st0130",
+        "stage_no": 130,
+        "stage_name": "Rathnite Foothills",
+        "stage_name_jp": "ラスニテ山麓",
+        "resources": [
+          {
+            "path": "quest/22018010/st0130_marker_npc",
+            "type_extension": ".qmi",
+            "type_name": "rQuestMarkerInfo"
+          }
+        ]
+      },
+      {
+        "stage_code": "st0131",
+        "stage_no": 131,
+        "stage_name": "Rathnite Foothills Lakeside",
+        "stage_name_jp": "ラスニテ山麓　湖畔部",
+        "resources": [
+          {
+            "path": "quest/22018010/q22018010_st0131",
+            "type_extension": ".qst",
+            "type_name": "rQuestList"
+          },
+          {
+            "path": "quest/22018010/st0131_marker_om",
+            "type_extension": ".qmi",
+            "type_name": "rQuestMarkerInfo"
+          },
+          {
+            "path": "quest/22018010/st0131_marker_npc",
+            "type_extension": ".qmi",
+            "type_name": "rQuestMarkerInfo"
+          }
+        ]
+      },
+      {
+        "stage_code": "st0132",
+        "stage_no": 132,
+        "stage_name": "Feryana Wilderness",
+        "stage_name_jp": "フェルヤナ荒原",
+        "resources": [
+          {
+            "path": "quest/22018010/st0132_marker_npc",
+            "type_extension": ".qmi",
+            "type_name": "rQuestMarkerInfo"
+          }
+        ]
+      },
+      {
+        "stage_code": "",
+        "stage_no": 0,
+        "stage_name": "",
+        "stage_name_jp": "",
+        "resources": [
+          {
+            "path": "ui/00_message/quest/q22018010",
+            "type_extension": ".gmd",
+            "type_name": "rGUIMessage"
+          },
+          {
+            "path": "ui/00_param/quest_text/q22018010_00",
+            "type_extension": ".qtd",
+            "type_name": "rQuestTextData"
+          },
+          {
+            "path": "ui/00_message/quest/q22018010",
+            "type_extension": ".mss",
+            "type_name": "rMsgSet"
+          },
+          {
+            "path": "quest/22018010/fa006_marker_npc",
+            "type_extension": ".fmi",
+            "type_name": "rFieldAreaMarkerInfo"
+          },
+          {
+            "path": "quest/22018010/fa006_marker_om",
+            "type_extension": ".fmi",
+            "type_name": "rFieldAreaMarkerInfo"
+          },
+          {
+            "path": "ui/00_message/quest_info/q22018010_00",
+            "type_extension": ".gmd",
+            "type_name": "rGUIMessage"
+          }
+        ]
+      }
+    ]
+  }
+}

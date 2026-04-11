@@ -1,0 +1,86 @@
+= Client Flag/Quest Investigation
+:toc: macro
+:toclevels: 3
+:toc-title: Contents
+
+Query mode:: quest
+Query value:: 20045008
+Generated at:: 2026-04-11T21:41:40.786398+00:00
+
+toc::[]
+
+== ARC Association Context
+
+_ARC associations are contextual only. They show which quest-stage and marker resources are bundled with this quest._
+
+* arc file: client/03040008/quest/q20045008.arc.json
+* resource count: 20
+
+=== st0100 -- Lestania
+
+* rQuestMarkerInfo: quest/20045008/st0100_marker_om
+* rQuestMarkerInfo: quest/20045008/st0100_marker_npc
+* rQuestList: quest/20045008/q20045008_st0100
+
+=== st0511 -- Miners' Secret Route
+
+* rQuestMarkerInfo: quest/20045008/st0511_marker_om
+* rQuestMarkerInfo: quest/20045008/st0511_marker_npc
+* rQuestList: quest/20045008/q20045008_st0511
+
+=== st0518 -- Demon's Grotto
+
+* rQuestMarkerInfo: quest/20045008/st0518_marker_npc
+* rQuestMarkerInfo: quest/20045008/st0518_marker_om
+* rQuestList: quest/20045008/q20045008_st0518
+
+=== st0519 -- Southern Wall Fissure
+
+* rQuestMarkerInfo: quest/20045008/st0519_marker_om
+* rQuestMarkerInfo: quest/20045008/st0519_marker_npc
+* rQuestList: quest/20045008/q20045008_st0519
+
+=== unclassified
+
+* rFieldAreaMarkerInfo: quest/20045008/fa001_marker_om
+* rFieldAreaMarkerInfo: quest/20045008/fa001_marker_npc
+* rMsgSet: ui/00_message/examine_message/quest/quest_examine_q20045008
+* rGUIMessage: ui/00_message/examine_message/quest/quest_examine_q20045008
+* rMsgSet: ui/00_message/quest/q20045008
+* rGUIMessage: ui/00_message/quest/q20045008
+* rQuestTextData: ui/00_param/quest_text/q20045008_00
+* rGUIMessage: ui/00_message/quest_info/q20045008_00
+
+== Flag Summary Matrix
+
+[cols="2,1,1,2,2,3,3",options="header"]
+|===
+| Target | Kind | Hits | Sources | Stages | Relationships | Description
+
+| Quest ID 20045008 | quest_id | 4 | qst | st0100, st0511, st0518, st0519 | 💬 Text Quest | Derived quest-wide association scan
+|===
+
+== Known Documented Targets
+
+* Quest ID 20045008 -- Derived quest-wide association scan [Derived]
+
+== Quest ID 20045008
+
+origin:: derived_special_query
+direct hits:: *4*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 4 hit(s)
+
+[cols="1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | 92 | client/03040008/quest/q20045008/quest/20045008/q20045008_st0100.qst.json | QuestStageList[].QuestGrp[4].QuestSet[0].TextQuestNo | TextQuestNo | quest 20045008 / Lestania / "QuestGroup 4 \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=728 \| TextType=2 \| TextQuestNo=20045008 \| GroupNo=4 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | 92 | client/03040008/quest/q20045008/quest/20045008/q20045008_st0511.qst.json | QuestStageList[].QuestGrp[0].QuestSet[0].TextQuestNo | TextQuestNo | quest 20045008 / Miners' Secret Route / "クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=730 \| TextType=2 \| TextQuestNo=20045008 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | 92 | client/03040008/quest/q20045008/quest/20045008/q20045008_st0518.qst.json | QuestStageList[].QuestGrp[0].QuestSet[0].TextQuestNo | TextQuestNo | quest 20045008 / Demon's Grotto / "クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=727 \| TextType=2 \| TextQuestNo=20045008 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | 92 | client/03040008/quest/q20045008/quest/20045008/q20045008_st0519.qst.json | QuestStageList[].QuestGrp[0].QuestSet[0].TextQuestNo | TextQuestNo | quest 20045008 / Southern Wall Fissure / "クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=729 \| TextType=2 \| TextQuestNo=20045008 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+

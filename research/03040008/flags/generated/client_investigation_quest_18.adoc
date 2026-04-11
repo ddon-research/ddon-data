@@ -1,0 +1,76 @@
+= Client Flag/Quest Investigation
+:toc: macro
+:toclevels: 3
+:toc-title: Contents
+
+Query mode:: quest
+Query value:: 18
+Generated at:: 2026-04-11T21:41:40.490893+00:00
+
+toc::[]
+
+== Flag Summary Matrix
+
+[cols="2,1,1,2,2,3,3",options="header"]
+|===
+| Target | Kind | Hits | Sources | Stages | Relationships | Description
+
+| Quest ID 18 | quest_id | 20 | evp, fsm, smc |  | 🎞️ Event Param, 🔍 FSM Check, ✏️ FSM Set +1 | Derived quest-wide association scan
+|===
+
+== Known Documented Targets
+
+* Quest ID 18 -- Derived quest-wide association scan [Derived]
+
+== Quest ID 18
+
+origin:: derived_special_query
+direct hits:: *20*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== candidate -- 1 hit(s)
+
+[cols="1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Confidence | File | JSON Path | Field | Context | Why
+
+| EVP | 68 | client/03040008/base/event/event_list.evp.json | EventParamList[56].Flag | Flag | Mergoda Ruins: Royal Palace Level / "EvNo=15" / event/st0418/ev015/st0418ev015 \| FlagTypes=FLAG_DUMMY, FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
+|===
+
+==== direct -- 17 hit(s)
+
+[cols="1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Confidence | File | JSON Path | Field | Context | Why
+
+| SMC | 92 | client/03040008/npc/n0002/ui/00_message/npc/base/n0002.smc.json | SituationData.EndQuestId | EndQuestId | quest 18 (The Ark, Once More) / Mysial / GroupSerial=12664 / "GroupSerial=12664, QuestWindow=28-18 (A Brief Respite -> The Ark, Once More), IsStartQuestIdStart=True, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0002 \| Quest-gated NPC chatter \| QuestWindow=28-18 (A Brief Respite -> The Ark, Once More) / MSS: Mysial / Thank you for taking on the impossible. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | 92 | client/03040008/npc/n0002/ui/00_message/npc/base/n0002.smc.json | SituationData.StartQuestId | StartQuestId | quest 18 (The Ark, Once More) / Mysial / GroupSerial=12665 / "GroupSerial=12665, QuestWindow=18-19 (The Ark, Once More -> Thinking of a Friend), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0002 \| Quest-gated NPC chatter \| QuestWindow=18-19 (The Ark, Once More -> Thinking of a Friend) / MSS: Mysial / I heard about Iris— | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | 92 | client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json | SituationData.EndQuestId | EndQuestId | quest 18 (The Ark, Once More) / Klaus / GroupSerial=14001 / "GroupSerial=14001, QuestWindow=28-18 (A Brief Respite -> The Ark, Once More), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0003 \| Quest-gated NPC chatter \| QuestWindow=28-18 (A Brief Respite -> The Ark, Once More) / MSS: Klaus / I want to go investigate too—but I'm holding back | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | 92 | client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json | SituationData.StartQuestId | StartQuestId | quest 18 (The Ark, Once More) / Klaus / GroupSerial=12700 / "GroupSerial=12700, QuestWindow=18-19 (The Ark, Once More -> Thinking of a Friend), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0003 \| Quest-gated NPC chatter \| QuestWindow=18-19 (The Ark, Once More -> Thinking of a Friend) / MSS: Klaus / That's queer—I was in charge of investigating | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | 92 | client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json | SituationData.EndQuestId | EndQuestId | quest 18 (The Ark, Once More) / Joseph / GroupSerial=14003 / "GroupSerial=14003, QuestWindow=28-18 (A Brief Respite -> The Ark, Once More), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0004 \| Quest-gated NPC chatter \| QuestWindow=28-18 (A Brief Respite -> The Ark, Once More) / MSS: Joseph / I am aware that there is dissatisfaction with the | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | 92 | client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json | SituationData.StartQuestId | StartQuestId | quest 18 (The Ark, Once More) / Joseph / GroupSerial=12743 / "GroupSerial=12743, QuestWindow=18-19 (The Ark, Once More -> Thinking of a Friend), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window start" / NpcChatter=n0004 \| Quest-gated NPC chatter \| QuestWindow=18-19 (The Ark, Once More -> Thinking of a Friend) / MSS: Joseph / Is Leo here yet? We need to discuss future plans | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | 92 | client/03040008/npc/n0005/ui/00_message/npc/base/n0005.smc.json | SituationData.EndQuestId | EndQuestId | quest 18 (The Ark, Once More) / Leo / GroupSerial=14005 / "GroupSerial=14005, QuestWindow=28-18 (A Brief Respite -> The Ark, Once More), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window end" / NpcChatter=n0005 \| Quest-gated NPC chatter \| QuestWindow=28-18 (A Brief Respite -> The Ark, Once More) / MSS: Leo / I understand that Joseph is doing his best, but- | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | 92 | client/03040008/npc/n0007/ui/00_message/npc/base/n0007.smc.json | SituationData.StartQuestId | StartQuestId | quest 18 (The Ark, Once More) / Gerd / GroupSerial=12965 / "GroupSerial=12965, QuestWindow=18-19 (The Ark, Once More -> Thinking of a Friend), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0007 \| Quest-gated NPC chatter \| QuestWindow=18-19 (The Ark, Once More -> Thinking of a Friend) / MSS: Gerd / I hear you were close to Iris... | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | 92 | client/03040008/npc/n0008/ui/00_message/npc/base/n0008.smc.json | SituationData.EndQuestId | EndQuestId | quest 18 (The Ark, Once More) / Heinz / GroupSerial=14006 / "GroupSerial=14006, QuestWindow=28-18 (A Brief Respite -> The Ark, Once More), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window end" / NpcChatter=n0008 \| Quest-gated NPC chatter \| QuestWindow=28-18 (A Brief Respite -> The Ark, Once More) / MSS: Heinz / Rumor has it that Mysial has descended the grand | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | 92 | client/03040008/npc/n0008/ui/00_message/npc/base/n0008.smc.json | SituationData.StartQuestId | StartQuestId | quest 18 (The Ark, Once More) / Heinz / GroupSerial=13010 / "GroupSerial=13010, QuestWindow=18-19 (The Ark, Once More -> Thinking of a Friend), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0008 \| Quest-gated NPC chatter \| QuestWindow=18-19 (The Ark, Once More -> Thinking of a Friend) / MSS: Heinz / Is it true that Iris appeared in the second Ark? | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | 92 | client/03040008/npc/n0011/ui/00_message/npc/base/n0011.smc.json | SituationData.EndQuestId | EndQuestId | quest 18 (The Ark, Once More) / Vanessa / GroupSerial=14041 / "GroupSerial=14041, QuestWindow=28-18 (A Brief Respite -> The Ark, Once More), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0011 \| Quest-gated NPC chatter \| QuestWindow=28-18 (A Brief Respite -> The Ark, Once More) / MSS: Vanessa / Mysial seems to have come out of the Audience | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | 92 | client/03040008/npc/n0011/ui/00_message/npc/base/n0011.smc.json | SituationData.StartQuestId | StartQuestId | quest 18 (The Ark, Once More) / Vanessa / GroupSerial=13081 / "GroupSerial=13081, QuestWindow=18-19 (The Ark, Once More -> Thinking of a Friend), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0011 \| Quest-gated NPC chatter \| QuestWindow=18-19 (The Ark, Once More -> Thinking of a Friend) / MSS: Vanessa / This fort, which used to be the front line, | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | 92 | client/03040008/npc/n0012/ui/00_message/npc/base/n0012.smc.json | SituationData.EndQuestId | EndQuestId | quest 18 (The Ark, Once More) / Fabio / GroupSerial=13991 / "GroupSerial=13991, QuestWindow=28-18 (A Brief Respite -> The Ark, Once More), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0012 \| Quest-gated NPC chatter \| QuestWindow=28-18 (A Brief Respite -> The Ark, Once More) / MSS: Fabio / I saw it—How does it feel to walk with a | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | 92 | client/03040008/npc/n0012/ui/00_message/npc/base/n0012.smc.json | SituationData.StartQuestId | StartQuestId | quest 18 (The Ark, Once More) / Fabio / GroupSerial=13992 / "GroupSerial=13992, QuestWindow=18-19 (The Ark, Once More -> Thinking of a Friend), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0012 \| Quest-gated NPC chatter \| QuestWindow=18-19 (The Ark, Once More -> Thinking of a Friend) / MSS: Fabio / The Arisen has to take care of the Arisen's | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | 92 | client/03040008/npc/n0014/ui/00_message/npc/base/n0014.smc.json | SituationData.EndQuestId | EndQuestId | quest 18 (The Ark, Once More) / Mayleaf / GroupSerial=14049 / "GroupSerial=14049, QuestWindow=28-18 (A Brief Respite -> The Ark, Once More), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0014 \| Quest-gated NPC chatter \| QuestWindow=28-18 (A Brief Respite -> The Ark, Once More) / MSS: Mayleaf / Mysial, is it true that you walked around this | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | 92 | client/03040008/npc/n0014/ui/00_message/npc/base/n0014.smc.json | SituationData.StartQuestId | StartQuestId | quest 18 (The Ark, Once More) / Mayleaf / GroupSerial=13119 / "GroupSerial=13119, QuestWindow=18-19 (The Ark, Once More -> Thinking of a Friend), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0014 \| Quest-gated NPC chatter \| QuestWindow=18-19 (The Ark, Once More -> Thinking of a Friend) / MSS: Mayleaf / I feel like something scary is about to happen— | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | 92 | client/03040008/npc/n1903/ui/00_message/npc/base/n1903.smc.json | SituationData.EndQuestId | EndQuestId | quest 18 (The Ark, Once More) / Ridley / GroupSerial=9668 / "GroupSerial=9668, QuestWindow=1-18 (Resolutions and Omens -> The Ark, Once More), IsStartQuestIdStart=True, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n1903 \| Quest-gated NPC chatter \| QuestWindow=1-18 (Resolutions and Omens -> The Ark, Once More) / MSS: Ridley / Permission from your superiors is required to pass through this main gate.  | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+|===
+
+==== opaque_fsm -- 2 hit(s)
+
+[cols="1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Confidence | File | JSON Path | Field | Context | Why
+
+| FSM | 78 | client/03040008/quest/q00000001/quest/00000001/npc/n0005.fsm.json | Process.Parameter.FlagNo | FlagNo | quest 1 (Resolutions and Omens) / Leo / checkMyQuestFlag \| NPCFSM=n0005 \| QuestLocalNPCFSM | Quest-local NPC FSM MyQuest check; these files usually describe NPC behavior for the same quest, so this flag likely controls that NPC's quest-specific presence or behavior.
+| FSM | 72 | client/03040008/quest/q00000001/quest/00000001/npc/n0006.fsm.json | Process.Parameter.FlagNo | FlagNo | quest 1 (Resolutions and Omens) / Iris / MainQstFlagOn \| NPCFSM=n0006 \| QuestLocalNPCFSM | Quest-local NPC FSM reference; these quest NPC FSM files usually define behavior for the same quest, such as joining fights or changing interactions.
+|===
+

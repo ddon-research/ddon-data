@@ -13,7 +13,7 @@ Usage::
 """
 from __future__ import annotations
 
-import json
+import orjson
 from pathlib import Path
 from typing import TYPE_CHECKING, Any
 
@@ -86,6 +86,6 @@ class JsonCache:
     @staticmethod
     def _parse(path: Path) -> Any | None:
         try:
-            return json.loads(path.read_text(encoding="utf-8"))
-        except (OSError, UnicodeDecodeError, json.JSONDecodeError):
+            return orjson.loads(path.read_bytes())
+        except (OSError, UnicodeDecodeError, orjson.JSONDecodeError):
             return None

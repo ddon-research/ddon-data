@@ -1,0 +1,85 @@
+{
+  "format": "client_investigation.v4",
+  "generated_at": "2026-04-11T21:41:41.837773+00:00",
+  "query": {
+    "mode": "quest",
+    "value": 60200051
+  },
+  "documented_targets": [
+    {
+      "flag_value": 60200051,
+      "quest_id": 60200051,
+      "flag_type": "quest_id",
+      "doc_comment": "Derived quest-wide association scan",
+      "origin": "derived_special_query"
+    }
+  ],
+  "targets": [
+    {
+      "target": {
+        "flag_value": 60200051,
+        "quest_id": 60200051,
+        "flag_type": "quest_id",
+        "origin": "derived_special_query",
+        "doc_comment": "Derived quest-wide association scan"
+      },
+      "hits": [
+        {
+          "source_type": "jmc",
+          "file_path": "client/03040008/game_common/etc/jobMasterCtrl.jmc.json",
+          "json_path": "JobMasterCtrlList[9].JobMasterTutorialQuestId",
+          "field_name": "JobMasterTutorialQuestId",
+          "flag_value": 60200051,
+          "flag_kind": "quest_id",
+          "relationship": "job_master",
+          "quest_name": "Seeking the Master: Spirit Lancer",
+          "quest_name_jp": "求道の師を訪ねて　スピリットランサー",
+          "area_name": "Farana Plains",
+          "area_name_jp": "ファーラナ平原",
+          "comment": "JobId=10",
+          "context": "Job master tutorial quest | Spirit Lancer | Farana Plains | StartJobLevel=18",
+          "quest_id": 60200051,
+          "resource_family": "JMC",
+          "evidence_tier": "direct",
+          "confidence": 92,
+          "why": "Job master control; this resource links tutorial and master-visit quests to a vocation mentor, area, and onboarding flow."
+        }
+      ],
+      "candidate_hits": []
+    }
+  ],
+  "quest_archive_context": {
+    "file_path": "client/03040008/quest/q60200051.arc.json",
+    "resource_count": 4,
+    "stages": [
+      {
+        "stage_code": "",
+        "stage_no": 0,
+        "stage_name": "",
+        "stage_name_jp": "",
+        "resources": [
+          {
+            "path": "ui/00_param/quest_text/q60200051_00",
+            "type_extension": ".qtd",
+            "type_name": "rQuestTextData"
+          },
+          {
+            "path": "ui/00_message/quest/q60200051",
+            "type_extension": ".gmd",
+            "type_name": "rGUIMessage"
+          },
+          {
+            "path": "ui/00_message/quest/q60200051",
+            "type_extension": ".mss",
+            "type_name": "rMsgSet"
+          },
+          {
+            "path": "ui/00_message/quest_info/q60200051_00",
+            "type_extension": ".gmd",
+            "type_name": "rGUIMessage"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,115 @@
+{
+  "format": "client_investigation.v4",
+  "generated_at": "2026-04-11T21:41:41.007998+00:00",
+  "query": {
+    "mode": "quest",
+    "value": 21015020
+  },
+  "documented_targets": [
+    {
+      "flag_value": 21015020,
+      "quest_id": 21015020,
+      "flag_type": "quest_id",
+      "doc_comment": "Derived quest-wide association scan",
+      "origin": "derived_special_query"
+    }
+  ],
+  "targets": [
+    {
+      "target": {
+        "flag_value": 21015020,
+        "quest_id": 21015020,
+        "flag_type": "quest_id",
+        "origin": "derived_special_query",
+        "doc_comment": "Derived quest-wide association scan"
+      },
+      "hits": [
+        {
+          "source_type": "fsm",
+          "file_path": "client/03040008/quest/q21015020/quest/21015020/npc/help.fsm.json",
+          "json_path": "Process.Parameter.QuestId",
+          "field_name": "QuestId",
+          "flag_value": 21015020,
+          "flag_kind": "quest_id",
+          "relationship": "fsm_check",
+          "quest_name": "Flawless Grave-Robbing",
+          "quest_name_jp": "無縫の墓荒らし",
+          "context": "checkMyQuestFlag",
+          "quest_id": 21015020,
+          "resource_family": "FSM",
+          "evidence_tier": "opaque_fsm",
+          "confidence": 64,
+          "why": "Matched decoded FSM state data; authored semantics remain indirect without deeper correlation."
+        }
+      ],
+      "candidate_hits": []
+    }
+  ],
+  "quest_archive_context": {
+    "file_path": "client/03040008/quest/q21015020.arc.json",
+    "resource_count": 9,
+    "stages": [
+      {
+        "stage_code": "st0861",
+        "stage_no": 861,
+        "stage_name": "Sacred River Ruins",
+        "stage_name_jp": "聖河の遺跡",
+        "resources": [
+          {
+            "path": "quest/21015020/q21015020_st0861",
+            "type_extension": ".qst",
+            "type_name": "rQuestList"
+          },
+          {
+            "path": "quest/21015020/st0861_marker_npc",
+            "type_extension": ".qmi",
+            "type_name": "rQuestMarkerInfo"
+          }
+        ]
+      },
+      {
+        "stage_code": "",
+        "stage_no": 0,
+        "stage_name": "",
+        "stage_name_jp": "",
+        "resources": [
+          {
+            "path": "ui/00_message/quest/q21015020",
+            "type_extension": ".gmd",
+            "type_name": "rGUIMessage"
+          },
+          {
+            "path": "ui/00_param/quest_text/q21015020_00",
+            "type_extension": ".qtd",
+            "type_name": "rQuestTextData"
+          },
+          {
+            "path": "ui/00_message/quest/q21015020",
+            "type_extension": ".mss",
+            "type_name": "rMsgSet"
+          },
+          {
+            "path": "quest/21015020/npc/help",
+            "type_extension": ".fsm",
+            "type_name": "rAIFSM"
+          },
+          {
+            "path": "quest/21015020/npc/help_dead",
+            "type_extension": ".fsm",
+            "type_name": "rAIFSM"
+          },
+          {
+            "path": "quest/21015020/npc/help_alive",
+            "type_extension": ".fsm",
+            "type_name": "rAIFSM"
+          },
+          {
+            "path": "ui/00_message/quest_info/q21015020_00",
+            "type_extension": ".gmd",
+            "type_name": "rGUIMessage"
+          }
+        ]
+      }
+    ]
+  }
+}

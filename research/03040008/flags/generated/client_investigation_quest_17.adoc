@@ -1,0 +1,87 @@
+= Client Flag/Quest Investigation
+:toc: macro
+:toclevels: 3
+:toc-title: Contents
+
+Query mode:: quest
+Query value:: 17
+Generated at:: 2026-04-11T21:41:40.488893+00:00
+
+toc::[]
+
+== Flag Summary Matrix
+
+[cols="2,1,1,2,2,3,3",options="header"]
+|===
+| Target | Kind | Hits | Sources | Stages | Relationships | Description
+
+| Quest ID 17 | quest_id | 31 | evp, fsm, smc |  | 🎞️ Event Param, ✏️ FSM Set, 🗣️ NPC Chatter | Derived quest-wide association scan
+|===
+
+== Known Documented Targets
+
+* Quest ID 17 -- Derived quest-wide association scan [Derived]
+
+== Quest ID 17
+
+origin:: derived_special_query
+direct hits:: *31*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== candidate -- 13 hit(s)
+
+[cols="1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Confidence | File | JSON Path | Field | Context | Why
+
+| EVP | 68 | client/03040008/base/event/event_list.evp.json | EventParamList[54].Flag | Flag | Glowworm Cave / "EvNo=5" / event/st0401/ev005/st0401ev005 \| FlagTypes=FLAG_LIGHT1, FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
+| EVP | 68 | client/03040008/base/event/event_list.evp.json | EventParamList[69].Flag | Flag | Temple of Purification / "EvNo=5" / event/st0408/ev005/st0408ev005 \| FlagTypes=FLAG_LIGHT1, FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
+| EVP | 68 | client/03040008/base/event/event_list.evp.json | EventParamList[73].Flag | Flag | The Third Ark / "EvNo=10" / event/st0572/ev010/st0572ev010 \| FlagTypes=FLAG_LIGHT1, FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
+| EVP | 68 | client/03040008/base/event/event_list.evp.json | EventParamList[74].Flag | Flag | Dreed Castle / "EvNo=15" / event/st0403/ev015/st0403ev015 \| FlagTypes=FLAG_LIGHT1, FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
+| EVP | 68 | client/03040008/base/event/event_list.evp.json | EventParamList[75].Flag | Flag | The Second Ark / "EvNo=16" / event/st0571/ev016/st0571ev016 \| FlagTypes=FLAG_LIGHT1, FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
+| EVP | 68 | client/03040008/base/event/event_list.evp.json | EventParamList[323].Flag | Flag | [Event] Black effect room / "EvNo=0" / event/st0470/ev000/st0470ev000 \| FlagTypes=FLAG_LIGHT1, FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
+| EVP | 68 | client/03040008/base/event/event_list.evp.json | EventParamList[325].Flag | Flag | Evil Dragon's Roost / "EvNo=5" / event/st1103/ev005/st1103ev005 \| FlagTypes=FLAG_LIGHT1, FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
+| EVP | 68 | client/03040008/base/event/event_list.evp.json | EventParamList[326].Flag | Flag | Evil Dragon's Roost / "EvNo=0" / event/st1103/ev000/st1103ev000 \| FlagTypes=FLAG_LIGHT1, FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
+| EVP | 68 | client/03040008/base/event/event_list.evp.json | EventParamList[353].Flag | Flag | Alternative Path / "EvNo=5" / event/st3500/ev005/st3500ev005 \| FlagTypes=FLAG_LIGHT1, FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
+| EVP | 68 | client/03040008/base/event/event_list.evp.json | EventParamList[354].Flag | Flag | North Land of Darkness / "EvNo=0" / event/st3400/ev000/st3400ev000 \| FlagTypes=FLAG_LIGHT1, FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
+| EVP | 68 | client/03040008/base/event/event_list.evp.json | EventParamList[355].Flag | Flag | East Land of Darkness / "EvNo=5" / event/st3300/ev005/st3300ev005 \| FlagTypes=FLAG_LIGHT1, FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
+| EVP | 68 | client/03040008/base/event/event_list.evp.json | EventParamList[356].Flag | Flag | 3.4 Demo Room / "EvNo=0" / event/st3000/ev000/st3000ev000 \| FlagTypes=FLAG_LIGHT1, FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
+| EVP | 68 | client/03040008/base/event/event_list.evp.json | EventParamList[357].Flag | Flag | Lestania / "EvNo=160" / event/st0100/ev160/st0100ev160 \| FlagTypes=FLAG_LIGHT1, FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
+|===
+
+==== direct -- 17 hit(s)
+
+[cols="1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Confidence | File | JSON Path | Field | Context | Why
+
+| SMC | 92 | client/03040008/npc/n0002/ui/00_message/npc/base/n0002.smc.json | SituationData.EndQuestId | EndQuestId | quest 17 (The Course of Life) / Mysial / GroupSerial=12662 / "GroupSerial=12662, QuestWindow=16-17 (A Friendly Visit -> The Course of Life), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0002 \| Quest-gated NPC chatter \| QuestWindow=16-17 (A Friendly Visit -> The Course of Life) / MSS: Mysial / 'Twas a strong, clear life. The way he lived | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | 92 | client/03040008/npc/n0002/ui/00_message/npc/base/n0002.smc.json | SituationData.StartQuestId | StartQuestId | quest 17 (The Course of Life) / Mysial / GroupSerial=12663 / "GroupSerial=12663, QuestWindow=17-28 (The Course of Life -> A Brief Respite), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0002 \| Quest-gated NPC chatter \| QuestWindow=17-28 (The Course of Life -> A Brief Respite) / MSS: Mysial / 'Twill take some time for The White Dragon to | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | 92 | client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json | SituationData.EndQuestId | EndQuestId | quest 17 (The Course of Life) / Klaus / GroupSerial=12698 / "GroupSerial=12698, QuestWindow=16-17 (A Friendly Visit -> The Course of Life), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0003 \| Quest-gated NPC chatter \| QuestWindow=16-17 (A Friendly Visit -> The Course of Life) / MSS: Klaus / Even if the life was useful to Master White | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | 92 | client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json | SituationData.StartQuestId | StartQuestId | quest 17 (The Course of Life) / Klaus / GroupSerial=12699 / "GroupSerial=12699, QuestWindow=17-28 (The Course of Life -> A Brief Respite), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window start" / NpcChatter=n0003 \| Quest-gated NPC chatter \| QuestWindow=17-28 (The Course of Life -> A Brief Respite) / MSS: Klaus / A meeting? Oh, this is going to take some time. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | 92 | client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json | SituationData.EndQuestId | EndQuestId | quest 17 (The Course of Life) / Joseph / GroupSerial=12741 / "GroupSerial=12741, QuestWindow=16-17 (A Friendly Visit -> The Course of Life), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0004 \| Quest-gated NPC chatter \| QuestWindow=16-17 (A Friendly Visit -> The Course of Life) / MSS: Joseph / Proud, solitary souls... | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | 92 | client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json | SituationData.StartQuestId | StartQuestId | quest 17 (The Course of Life) / Joseph / GroupSerial=12742 / "GroupSerial=12742, QuestWindow=17-28 (The Course of Life -> A Brief Respite), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0004 \| Quest-gated NPC chatter \| QuestWindow=17-28 (The Course of Life -> A Brief Respite) / MSS: Joseph / Do you want to attend the meeting? Please focus | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | 92 | client/03040008/npc/n0005/ui/00_message/npc/base/n0005.smc.json | SituationData.EndQuestId | EndQuestId | quest 17 (The Course of Life) / Leo / GroupSerial=12924 / "GroupSerial=12924, QuestWindow=16-17 (A Friendly Visit -> The Course of Life), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0005 \| Quest-gated NPC chatter \| QuestWindow=16-17 (A Friendly Visit -> The Course of Life) / MSS: Leo / The death of Kieshildt is by no means in vain. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | 92 | client/03040008/npc/n0005/ui/00_message/npc/base/n0005.smc.json | SituationData.StartQuestId | StartQuestId | quest 17 (The Course of Life) / Leo / GroupSerial=12925 / "GroupSerial=12925, QuestWindow=17-28 (The Course of Life -> A Brief Respite), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window start" / NpcChatter=n0005 \| Quest-gated NPC chatter \| QuestWindow=17-28 (The Course of Life -> A Brief Respite) / MSS: Leo / Diamantes— | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | 92 | client/03040008/npc/n0007/ui/00_message/npc/base/n0007.smc.json | SituationData.EndQuestId | EndQuestId | quest 17 (The Course of Life) / Gerd / GroupSerial=12964 / "GroupSerial=12964, QuestWindow=16-17 (A Friendly Visit -> The Course of Life), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0007 \| Quest-gated NPC chatter \| QuestWindow=16-17 (A Friendly Visit -> The Course of Life) / MSS: Gerd / The words of Lord White Dragon... | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | 92 | client/03040008/npc/n0008/ui/00_message/npc/base/n0008.smc.json | SituationData.EndQuestId | EndQuestId | quest 17 (The Course of Life) / Heinz / GroupSerial=13008 / "GroupSerial=13008, QuestWindow=16-17 (A Friendly Visit -> The Course of Life), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0008 \| Quest-gated NPC chatter \| QuestWindow=16-17 (A Friendly Visit -> The Course of Life) / MSS: Heinz / I think this is something you can't miss, you | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | 92 | client/03040008/npc/n0008/ui/00_message/npc/base/n0008.smc.json | SituationData.StartQuestId | StartQuestId | quest 17 (The Course of Life) / Heinz / GroupSerial=13009 / "GroupSerial=13009, QuestWindow=17-28 (The Course of Life -> A Brief Respite), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0008 \| Quest-gated NPC chatter \| QuestWindow=17-28 (The Course of Life -> A Brief Respite) / MSS: Heinz / Recently, more and more people want to join the | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | 92 | client/03040008/npc/n0011/ui/00_message/npc/base/n0011.smc.json | SituationData.EndQuestId | EndQuestId | quest 17 (The Course of Life) / Vanessa / GroupSerial=13079 / "GroupSerial=13079, QuestWindow=16-17 (A Friendly Visit -> The Course of Life), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0011 \| Quest-gated NPC chatter \| QuestWindow=16-17 (A Friendly Visit -> The Course of Life) / MSS: Vanessa / Rumor has it that the atmosphere of the temple | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | 92 | client/03040008/npc/n0011/ui/00_message/npc/base/n0011.smc.json | SituationData.StartQuestId | StartQuestId | quest 17 (The Course of Life) / Vanessa / GroupSerial=13080 / "GroupSerial=13080, QuestWindow=17-28 (The Course of Life -> A Brief Respite), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0011 \| Quest-gated NPC chatter \| QuestWindow=17-28 (The Course of Life -> A Brief Respite) / MSS: Vanessa / I can feel the awakening of the White Dragon even | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | 92 | client/03040008/npc/n0012/ui/00_message/npc/base/n0012.smc.json | SituationData.EndQuestId | EndQuestId | quest 17 (The Course of Life) / Fabio / GroupSerial=13989 / "GroupSerial=13989, QuestWindow=16-17 (A Friendly Visit -> The Course of Life), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0012 \| Quest-gated NPC chatter \| QuestWindow=16-17 (A Friendly Visit -> The Course of Life) / MSS: Fabio / If the white dragon had been healthy, I wouldn't | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | 92 | client/03040008/npc/n0012/ui/00_message/npc/base/n0012.smc.json | SituationData.StartQuestId | StartQuestId | quest 17 (The Course of Life) / Fabio / GroupSerial=13990 / "GroupSerial=13990, QuestWindow=17-28 (The Course of Life -> A Brief Respite), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0012 \| Quest-gated NPC chatter \| QuestWindow=17-28 (The Course of Life -> A Brief Respite) / MSS: Fabio / A new Ark... It would be nice to personally | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | 92 | client/03040008/npc/n0014/ui/00_message/npc/base/n0014.smc.json | SituationData.EndQuestId | EndQuestId | quest 17 (The Course of Life) / Mayleaf / GroupSerial=13109 / "GroupSerial=13109, QuestWindow=16-17 (A Friendly Visit -> The Course of Life), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0014 \| Quest-gated NPC chatter \| QuestWindow=16-17 (A Friendly Visit -> The Course of Life) / MSS: Mayleaf / I'm going to live on, for Kieshildt... | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | 92 | client/03040008/npc/n0014/ui/00_message/npc/base/n0014.smc.json | SituationData.StartQuestId | StartQuestId | quest 17 (The Course of Life) / Mayleaf / GroupSerial=13110 / "GroupSerial=13110, QuestWindow=17-28 (The Course of Life -> A Brief Respite), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window start" / NpcChatter=n0014 \| Quest-gated NPC chatter \| QuestWindow=17-28 (The Course of Life -> A Brief Respite) / MSS: Mayleaf / Don't go anywhere. I don't want anyone to | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+|===
+
+==== opaque_fsm -- 1 hit(s)
+
+[cols="1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Confidence | File | JSON Path | Field | Context | Why
+
+| FSM | 72 | client/03040008/quest/q00000001/quest/00000001/npc/n0005.fsm.json | Process.Parameter.FlagNo | FlagNo | quest 1 (Resolutions and Omens) / Leo / MainQstFlagOn \| NPCFSM=n0005 \| QuestLocalNPCFSM | Quest-local NPC FSM reference; these quest NPC FSM files usually define behavior for the same quest, such as joining fights or changing interactions.
+|===
+

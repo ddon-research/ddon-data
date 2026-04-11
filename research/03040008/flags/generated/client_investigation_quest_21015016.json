@@ -1,0 +1,139 @@
+{
+  "format": "client_investigation.v4",
+  "generated_at": "2026-04-11T21:41:41.007998+00:00",
+  "query": {
+    "mode": "quest",
+    "value": 21015016
+  },
+  "documented_targets": [
+    {
+      "flag_value": 21015016,
+      "quest_id": 21015016,
+      "flag_type": "quest_id",
+      "doc_comment": "Derived quest-wide association scan",
+      "origin": "derived_special_query"
+    }
+  ],
+  "targets": [
+    {
+      "target": {
+        "flag_value": 21015016,
+        "quest_id": 21015016,
+        "flag_type": "quest_id",
+        "origin": "derived_special_query",
+        "doc_comment": "Derived quest-wide association scan"
+      },
+      "hits": [],
+      "candidate_hits": [
+        {
+          "flag_value": 21015016,
+          "field_name": "QuestId",
+          "file_path": "client/03040008/game_common/quest/QuestSequence.qsq.json",
+          "json_path": "QuestSequenceList[282].QuestId",
+          "resource_family": ".qsq",
+          "evidence_tier": "context",
+          "confidence": 45,
+          "why": "Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.",
+          "class_name": "org.sehkah.ddon.tools.extractor.common.logic.resource.entity.game_common.QuestSequence",
+          "quest_id": 21015016,
+          "quest_name": "Lightning Scorching the Waterway",
+          "quest_name_jp": "水路を焦がす稲妻"
+        },
+        {
+          "flag_value": 21015016,
+          "field_name": "QuestNo",
+          "file_path": "client/03040008/stage/st0120/st0120/scr/st0120/etc/st0120_p.gpl.json",
+          "json_path": "GroupParamBuff[42].GuardData.QuestNo",
+          "resource_family": ".gpl",
+          "evidence_tier": "context",
+          "confidence": 45,
+          "why": "Matched a relevant decoded field (QuestNo), but not in the primary field family for this target type.",
+          "stage_name": "Farana Plains",
+          "stage_name_jp": "ファーラナ平原",
+          "class_name": "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.stage.GroupParamGuardData",
+          "quest_id": 21015016,
+          "quest_name": "Lightning Scorching the Waterway",
+          "quest_name_jp": "水路を焦がす稲妻"
+        },
+        {
+          "flag_value": 21015016,
+          "field_name": "QuestNo",
+          "file_path": "client/03040008/stage/st0120/st0120/scr/st0120/etc/st0120_p.gpl.json",
+          "json_path": "GroupParamBuff[46].GuardData.QuestNo",
+          "resource_family": ".gpl",
+          "evidence_tier": "context",
+          "confidence": 45,
+          "why": "Matched a relevant decoded field (QuestNo), but not in the primary field family for this target type.",
+          "stage_name": "Farana Plains",
+          "stage_name_jp": "ファーラナ平原",
+          "class_name": "org.sehkah.ddon.tools.extractor.season3.logic.resource.entity.stage.GroupParamGuardData",
+          "quest_id": 21015016,
+          "quest_name": "Lightning Scorching the Waterway",
+          "quest_name_jp": "水路を焦がす稲妻"
+        }
+      ]
+    }
+  ],
+  "quest_archive_context": {
+    "file_path": "client/03040008/quest/q21015016.arc.json",
+    "resource_count": 8,
+    "stages": [
+      {
+        "stage_code": "st0120",
+        "stage_no": 120,
+        "stage_name": "Farana Plains",
+        "stage_name_jp": "ファーラナ平原",
+        "resources": [
+          {
+            "path": "quest/21015016/st0120_marker_om",
+            "type_extension": ".qmi",
+            "type_name": "rQuestMarkerInfo"
+          },
+          {
+            "path": "quest/21015016/q21015016_st0120",
+            "type_extension": ".qst",
+            "type_name": "rQuestList"
+          },
+          {
+            "path": "quest/21015016/st0120_marker_npc",
+            "type_extension": ".qmi",
+            "type_name": "rQuestMarkerInfo"
+          }
+        ]
+      },
+      {
+        "stage_code": "",
+        "stage_no": 0,
+        "stage_name": "",
+        "stage_name_jp": "",
+        "resources": [
+          {
+            "path": "ui/00_param/quest_text/q21015016_00",
+            "type_extension": ".qtd",
+            "type_name": "rQuestTextData"
+          },
+          {
+            "path": "ui/00_message/quest/q21015016",
+            "type_extension": ".gmd",
+            "type_name": "rGUIMessage"
+          },
+          {
+            "path": "ui/00_message/quest/q21015016",
+            "type_extension": ".mss",
+            "type_name": "rMsgSet"
+          },
+          {
+            "path": "quest/21015016/fa005_marker_om",
+            "type_extension": ".fmi",
+            "type_name": "rFieldAreaMarkerInfo"
+          },
+          {
+            "path": "ui/00_message/quest_info/q21015016_00",
+            "type_extension": ".gmd",
+            "type_name": "rGUIMessage"
+          }
+        ]
+      }
+    ]
+  }
+}

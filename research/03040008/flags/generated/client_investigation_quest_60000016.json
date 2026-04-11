@@ -1,0 +1,111 @@
+{
+  "format": "client_investigation.v4",
+  "generated_at": "2026-04-11T21:41:41.766499+00:00",
+  "query": {
+    "mode": "quest",
+    "value": 60000016
+  },
+  "documented_targets": [
+    {
+      "flag_value": 60000016,
+      "quest_id": 60000016,
+      "flag_type": "quest_id",
+      "doc_comment": "Derived quest-wide association scan",
+      "origin": "derived_special_query"
+    }
+  ],
+  "targets": [
+    {
+      "target": {
+        "flag_value": 60000016,
+        "quest_id": 60000016,
+        "flag_type": "quest_id",
+        "origin": "derived_special_query",
+        "doc_comment": "Derived quest-wide association scan"
+      },
+      "hits": [
+        {
+          "source_type": "tqg",
+          "file_path": "client/03040008/game_common/quest/tutorialQuestGroup.tqg.json",
+          "json_path": "TutorialQuestGroupList[1].QuestIdArray[0].QuestId",
+          "field_name": "QuestId",
+          "flag_value": 60000016,
+          "flag_kind": "quest_id",
+          "relationship": "tutorial_group",
+          "quest_name": "Crafted Token of the Heart",
+          "quest_name_jp": "クラフトで伝える心",
+          "comment": "GroupId=2",
+          "context": "Tutorial quest group membership",
+          "quest_id": 60000016,
+          "resource_family": "TQG",
+          "evidence_tier": "direct",
+          "confidence": 92,
+          "why": "Tutorial quest grouping; q6 tutorial quests are clustered into authored tutorial groups here."
+        }
+      ],
+      "candidate_hits": []
+    }
+  ],
+  "quest_archive_context": {
+    "file_path": "client/03040008/quest/q60000016.arc.json",
+    "resource_count": 8,
+    "stages": [
+      {
+        "stage_code": "st0201",
+        "stage_no": 201,
+        "stage_name": "Audience Chamber",
+        "stage_name_jp": "謁見の間",
+        "resources": [
+          {
+            "path": "quest/60000016/q60000016_st0201",
+            "type_extension": ".qst",
+            "type_name": "rQuestList"
+          },
+          {
+            "path": "quest/60000016/st0201_marker_npc",
+            "type_extension": ".qmi",
+            "type_name": "rQuestMarkerInfo"
+          }
+        ]
+      },
+      {
+        "stage_code": "",
+        "stage_no": 0,
+        "stage_name": "",
+        "stage_name_jp": "",
+        "resources": [
+          {
+            "path": "ui/00_message/examine_message/quest/quest_examine_q60000016",
+            "type_extension": ".mss",
+            "type_name": "rMsgSet"
+          },
+          {
+            "path": "ui/00_message/quest/q60000016",
+            "type_extension": ".gmd",
+            "type_name": "rGUIMessage"
+          },
+          {
+            "path": "ui/00_message/quest/q60000016",
+            "type_extension": ".mss",
+            "type_name": "rMsgSet"
+          },
+          {
+            "path": "ui/00_message/quest_info/q60000016_00",
+            "type_extension": ".gmd",
+            "type_name": "rGUIMessage"
+          },
+          {
+            "path": "ui/00_param/quest_text/q60000016_00",
+            "type_extension": ".qtd",
+            "type_name": "rQuestTextData"
+          },
+          {
+            "path": "ui/00_message/examine_message/quest/quest_examine_q60000016",
+            "type_extension": ".gmd",
+            "type_name": "rGUIMessage"
+          }
+        ]
+      }
+    ]
+  }
+}

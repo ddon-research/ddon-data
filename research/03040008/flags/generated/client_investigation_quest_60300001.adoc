@@ -1,0 +1,82 @@
+= Client Flag/Quest Investigation
+:toc: macro
+:toclevels: 3
+:toc-title: Contents
+
+Query mode:: quest
+Query value:: 60300001
+Generated at:: 2026-04-11T21:41:41.939318+00:00
+
+toc::[]
+
+== ARC Association Context
+
+_ARC associations are contextual only. They show which quest-stage and marker resources are bundled with this quest._
+
+* arc file: client/03040008/quest/q60300001.arc.json
+* resource count: 13
+
+=== st0100 -- Lestania
+
+* rQuestList: quest/60300001/q60300001_st0100
+* rQuestMarkerInfo: quest/60300001/st0100_marker_om
+* rQuestMarkerInfo: quest/60300001/st0100_marker_npc
+
+=== st0211 -- Arisen's Room
+
+* rQuestMarkerInfo: quest/60300001/st0211_marker_npc
+* rQuestList: quest/60300001/q60300001_st0211
+
+=== unclassified
+
+* rGUIMessage: ui/00_message/examine_message/quest/quest_examine_q60300001
+* rGUIMessage: ui/00_message/quest/q60300001
+* rQuestTextData: ui/00_param/quest_text/q60300001_00
+* rMsgSet: ui/00_message/examine_message/quest/quest_examine_q60300001
+* rMsgSet: ui/00_message/quest/q60300001
+* rFieldAreaMarkerInfo: quest/60300001/fa001_marker_npc
+* rFieldAreaMarkerInfo: quest/60300001/fa001_marker_om
+* rGUIMessage: ui/00_message/quest_info/q60300001_00
+
+== Flag Summary Matrix
+
+[cols="2,1,1,2,2,3,3",options="header"]
+|===
+| Target | Kind | Hits | Sources | Stages | Relationships | Description
+
+| Quest ID 60300001 | quest_id | 13 | qst | st0100 | 💬 Text Quest | Derived quest-wide association scan
+|===
+
+== Known Documented Targets
+
+* Quest ID 60300001 -- Derived quest-wide association scan [Derived]
+
+== Quest ID 60300001
+
+origin:: derived_special_query
+direct hits:: *13*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 13 hit(s)
+
+[cols="1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | 92 | client/03040008/quest/q60300001/quest/60300001/q60300001_st0100.qst.json | QuestStageList[].QuestGrp[5].QuestSet[0].TextQuestNo | TextQuestNo | quest 60300001 / Lestania / "QuestGroup 5 \| 探索１（キラOM１） \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100240 \| TextType=2 \| TextQuestNo=60300001 \| GroupNo=5 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | 92 | client/03040008/quest/q60300001/quest/60300001/q60300001_st0100.qst.json | QuestStageList[].QuestGrp[5].QuestSet[1].TextQuestNo | TextQuestNo | quest 60300001 / Lestania / "QuestGroup 5 \| 探索１（キラOM１） \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100242 \| TextType=2 \| TextQuestNo=60300001 \| GroupNo=5 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | 92 | client/03040008/quest/q60300001/quest/60300001/q60300001_st0100.qst.json | QuestStageList[].QuestGrp[6].QuestSet[0].TextQuestNo | TextQuestNo | quest 60300001 / Lestania / "QuestGroup 6 \| 探索１（キラOM２） \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100242 \| TextType=2 \| TextQuestNo=60300001 \| GroupNo=6 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | 92 | client/03040008/quest/q60300001/quest/60300001/q60300001_st0100.qst.json | QuestStageList[].QuestGrp[6].QuestSet[1].TextQuestNo | TextQuestNo | quest 60300001 / Lestania / "QuestGroup 6 \| 探索１（キラOM２） \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100240 \| TextType=2 \| TextQuestNo=60300001 \| GroupNo=6 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | 92 | client/03040008/quest/q60300001/quest/60300001/q60300001_st0100.qst.json | QuestStageList[].QuestGrp[7].QuestSet[0].TextQuestNo | TextQuestNo | quest 60300001 / Lestania / "QuestGroup 7 \| 探索２（キラOM１） \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100240 \| TextType=2 \| TextQuestNo=60300001 \| GroupNo=7 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | 92 | client/03040008/quest/q60300001/quest/60300001/q60300001_st0100.qst.json | QuestStageList[].QuestGrp[7].QuestSet[1].TextQuestNo | TextQuestNo | quest 60300001 / Lestania / "QuestGroup 7 \| 探索２（キラOM１） \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100242 \| TextType=2 \| TextQuestNo=60300001 \| GroupNo=7 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | 92 | client/03040008/quest/q60300001/quest/60300001/q60300001_st0100.qst.json | QuestStageList[].QuestGrp[7].QuestSet[2].TextQuestNo | TextQuestNo | quest 60300001 / Lestania / "QuestGroup 7 \| 探索２（キラOM１） \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100242 \| TextType=2 \| TextQuestNo=60300001 \| GroupNo=7 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | 92 | client/03040008/quest/q60300001/quest/60300001/q60300001_st0100.qst.json | QuestStageList[].QuestGrp[8].QuestSet[0].TextQuestNo | TextQuestNo | quest 60300001 / Lestania / "QuestGroup 8 \| 探索２（キラOM２） \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100242 \| TextType=2 \| TextQuestNo=60300001 \| GroupNo=8 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | 92 | client/03040008/quest/q60300001/quest/60300001/q60300001_st0100.qst.json | QuestStageList[].QuestGrp[8].QuestSet[1].TextQuestNo | TextQuestNo | quest 60300001 / Lestania / "QuestGroup 8 \| 探索２（キラOM２） \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100240 \| TextType=2 \| TextQuestNo=60300001 \| GroupNo=8 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | 92 | client/03040008/quest/q60300001/quest/60300001/q60300001_st0100.qst.json | QuestStageList[].QuestGrp[8].QuestSet[2].TextQuestNo | TextQuestNo | quest 60300001 / Lestania / "QuestGroup 8 \| 探索２（キラOM２） \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100242 \| TextType=2 \| TextQuestNo=60300001 \| GroupNo=8 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | 92 | client/03040008/quest/q60300001/quest/60300001/q60300001_st0100.qst.json | QuestStageList[].QuestGrp[9].QuestSet[0].TextQuestNo | TextQuestNo | quest 60300001 / Lestania / "QuestGroup 9 \| 探索２（キラOM３） \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100242 \| TextType=2 \| TextQuestNo=60300001 \| GroupNo=9 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | 92 | client/03040008/quest/q60300001/quest/60300001/q60300001_st0100.qst.json | QuestStageList[].QuestGrp[9].QuestSet[1].TextQuestNo | TextQuestNo | quest 60300001 / Lestania / "QuestGroup 9 \| 探索２（キラOM３） \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100242 \| TextType=2 \| TextQuestNo=60300001 \| GroupNo=9 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | 92 | client/03040008/quest/q60300001/quest/60300001/q60300001_st0100.qst.json | QuestStageList[].QuestGrp[9].QuestSet[2].TextQuestNo | TextQuestNo | quest 60300001 / Lestania / "QuestGroup 9 \| 探索２（キラOM３） \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100240 \| TextType=2 \| TextQuestNo=60300001 \| GroupNo=9 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+

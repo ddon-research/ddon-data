@@ -1,0 +1,112 @@
+{
+  "format": "client_investigation.v4",
+  "generated_at": "2026-04-11T21:41:40.673292+00:00",
+  "query": {
+    "mode": "quest",
+    "value": 10320700
+  },
+  "documented_targets": [
+    {
+      "flag_value": 10320700,
+      "quest_id": 10320700,
+      "flag_type": "quest_id",
+      "doc_comment": "Derived quest-wide association scan",
+      "origin": "derived_special_query"
+    }
+  ],
+  "targets": [
+    {
+      "target": {
+        "flag_value": 10320700,
+        "quest_id": 10320700,
+        "flag_type": "quest_id",
+        "origin": "derived_special_query",
+        "doc_comment": "Derived quest-wide association scan"
+      },
+      "hits": [],
+      "candidate_hits": [
+        {
+          "flag_value": 10320700,
+          "field_name": "QuestId",
+          "file_path": "client/03040008/game_common/quest/QuestSequence.qsq.json",
+          "json_path": "QuestSequenceList[127].QuestId",
+          "resource_family": ".qsq",
+          "evidence_tier": "context",
+          "confidence": 45,
+          "why": "Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.",
+          "class_name": "org.sehkah.ddon.tools.extractor.common.logic.resource.entity.game_common.QuestSequence",
+          "quest_id": 10320700,
+          "quest_name": "Calm Before the Storm",
+          "quest_name_jp": "嵐の前の静けさ"
+        }
+      ]
+    }
+  ],
+  "quest_archive_context": {
+    "file_path": "client/03040008/quest/q10320700.arc.json",
+    "resource_count": 9,
+    "stages": [
+      {
+        "stage_code": "st0472",
+        "stage_no": 472,
+        "stage_name": "Fortress City Megado: Residential Level",
+        "stage_name_jp": "城塞都市メガド　居住層",
+        "resources": [
+          {
+            "path": "quest/10320700/q10320700_st0472",
+            "type_extension": ".qst",
+            "type_name": "rQuestList"
+          },
+          {
+            "path": "quest/10320700/st0472_marker_npc",
+            "type_extension": ".qmi",
+            "type_name": "rQuestMarkerInfo"
+          }
+        ]
+      },
+      {
+        "stage_code": "",
+        "stage_no": 0,
+        "stage_name": "",
+        "stage_name_jp": "",
+        "resources": [
+          {
+            "path": "ui/00_message/examine_message/quest/quest_examine_q10320700",
+            "type_extension": ".gmd",
+            "type_name": "rGUIMessage"
+          },
+          {
+            "path": "ui/00_message/quest_info/q10320700_00",
+            "type_extension": ".gmd",
+            "type_name": "rGUIMessage"
+          },
+          {
+            "path": "ui/00_message/examine_message/quest/quest_examine_q10320700",
+            "type_extension": ".mss",
+            "type_name": "rMsgSet"
+          },
+          {
+            "path": "ui/00_message/quest/q10320700",
+            "type_extension": ".mss",
+            "type_name": "rMsgSet"
+          },
+          {
+            "path": "sound/stream/quest/di/jp/q10320700/q10320700_n0680",
+            "type_extension": ".stqr",
+            "type_name": "rSoundStreamRequest"
+          },
+          {
+            "path": "ui/00_param/quest_text/q10320700_00",
+            "type_extension": ".qtd",
+            "type_name": "rQuestTextData"
+          },
+          {
+            "path": "ui/00_message/quest/q10320700",
+            "type_extension": ".gmd",
+            "type_name": "rGUIMessage"
+          }
+        ]
+      }
+    ]
+  }
+}

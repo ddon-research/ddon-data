@@ -1,0 +1,114 @@
+{
+  "format": "client_investigation.v4",
+  "generated_at": "2026-04-11T21:41:41.719458+00:00",
+  "query": {
+    "mode": "quest",
+    "value": 50300005
+  },
+  "documented_targets": [
+    {
+      "flag_value": 50300005,
+      "quest_id": 50300005,
+      "flag_type": "quest_id",
+      "doc_comment": "Derived quest-wide association scan",
+      "origin": "derived_special_query"
+    }
+  ],
+  "targets": [
+    {
+      "target": {
+        "flag_value": 50300005,
+        "quest_id": 50300005,
+        "flag_type": "quest_id",
+        "origin": "derived_special_query",
+        "doc_comment": "Derived quest-wide association scan"
+      },
+      "hits": [
+        {
+          "source_type": "esi",
+          "file_path": "client/03040008/game_common/quest/rEndContentsSortieInfo.esi.json",
+          "json_path": "EndContentsSortieInfoTable[27].QuestId",
+          "field_name": "QuestId",
+          "flag_value": 50300005,
+          "flag_kind": "quest_id",
+          "relationship": "repeatable_sortie",
+          "quest_name": "The Crucible of Demons",
+          "quest_name_jp": "魔物のるつぼ",
+          "stage_name": "Dragon's Nest",
+          "stage_name_jp": "竜の巣",
+          "comment": "Unknown1=9, Unknown2=0, Flag=0",
+          "context": "SortieRoute=st0203 Cave Harbor -> st0300 House -> st0407 Dragon's Nest | Unknown1=9",
+          "quest_id": 50300005,
+          "stage_no": 407,
+          "resource_family": "ESI",
+          "evidence_tier": "direct",
+          "confidence": 92,
+          "why": "Repeatable sortie registry; QuestId and Flag here define special q5 repeatable sortie entries and their gate flags."
+        }
+      ],
+      "candidate_hits": []
+    }
+  ],
+  "quest_archive_context": {
+    "file_path": "client/03040008/quest/q50300005.arc.json",
+    "resource_count": 8,
+    "stages": [
+      {
+        "stage_code": "st0407",
+        "stage_no": 407,
+        "stage_name": "Dragon's Nest",
+        "stage_name_jp": "竜の巣",
+        "resources": [
+          {
+            "path": "quest/50300005/q50300005_st0407",
+            "type_extension": ".qst",
+            "type_name": "rQuestList"
+          },
+          {
+            "path": "quest/50300005/st0407_marker_npc",
+            "type_extension": ".qmi",
+            "type_name": "rQuestMarkerInfo"
+          }
+        ]
+      },
+      {
+        "stage_code": "",
+        "stage_no": 0,
+        "stage_name": "",
+        "stage_name_jp": "",
+        "resources": [
+          {
+            "path": "ui/00_message/examine_message/quest/quest_examine_q50300005",
+            "type_extension": ".mss",
+            "type_name": "rMsgSet"
+          },
+          {
+            "path": "ui/00_message/quest/q50300005",
+            "type_extension": ".gmd",
+            "type_name": "rGUIMessage"
+          },
+          {
+            "path": "ui/00_message/quest/q50300005",
+            "type_extension": ".mss",
+            "type_name": "rMsgSet"
+          },
+          {
+            "path": "ui/00_message/examine_message/quest/quest_examine_q50300005",
+            "type_extension": ".gmd",
+            "type_name": "rGUIMessage"
+          },
+          {
+            "path": "ui/00_param/quest_text/q50300005_00",
+            "type_extension": ".qtd",
+            "type_name": "rQuestTextData"
+          },
+          {
+            "path": "ui/00_message/quest_info/q50300005_00",
+            "type_extension": ".gmd",
+            "type_name": "rGUIMessage"
+          }
+        ]
+      }
+    ]
+  }
+}

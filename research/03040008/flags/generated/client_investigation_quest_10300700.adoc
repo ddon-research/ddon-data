@@ -1,0 +1,77 @@
+= Client Flag/Quest Investigation
+:toc: macro
+:toclevels: 3
+:toc-title: Contents
+
+Query mode:: quest
+Query value:: 10300700
+Generated at:: 2026-04-11T21:41:40.634648+00:00
+
+toc::[]
+
+== ARC Association Context
+
+_ARC associations are contextual only. They show which quest-stage and marker resources are bundled with this quest._
+
+* arc file: client/03040008/quest/q10300700.arc.json
+* resource count: 12
+
+=== st0130 -- Rathnite Foothills
+
+* rQuestMarkerInfo: quest/10300700/st0130_marker_om
+* rQuestList: quest/10300700/q10300700_st0130
+* rQuestMarkerInfo: quest/10300700/st0130_marker_npc
+
+=== unclassified
+
+* rMsgSet: ui/00_message/examine_message/quest/quest_examine_q10300700
+* rGUIMessage: ui/00_message/examine_message/quest/quest_examine_q10300700
+* rQuestTextData: ui/00_param/quest_text/q10300700_00
+* rGUIMessage: ui/00_message/quest/q10300700
+* rMsgSet: ui/00_message/quest/q10300700
+* rFieldAreaMarkerInfo: quest/10300700/fa006_marker_npc
+* rFieldAreaMarkerInfo: quest/10300700/fa006_marker_om
+* rAIFSM: quest/10300700/npc/n676
+* rGUIMessage: ui/00_message/quest_info/q10300700_00
+
+== Flag Summary Matrix
+
+[cols="2,1,1,2,2,3,3",options="header"]
+|===
+| Target | Kind | Hits | Sources | Stages | Relationships | Description
+
+| Quest ID 10300700 | quest_id | 3 | fsm, qst | st0130 | 🔍 FSM Check, 💬 Text Quest | Derived quest-wide association scan
+|===
+
+== Known Documented Targets
+
+* Quest ID 10300700 -- Derived quest-wide association scan [Derived]
+
+== Quest ID 10300700
+
+origin:: derived_special_query
+direct hits:: *3*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | 92 | client/03040008/quest/q10300700/quest/10300700/q10300700_st0130.qst.json | QuestStageList[].QuestGrp[0].QuestSet[0].TextQuestNo | TextQuestNo | quest 10300700 / Rathnite Foothills / "木材１ \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100408 \| TextType=2 \| TextQuestNo=10300700 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | 92 | client/03040008/quest/q10300700/quest/10300700/q10300700_st0130.qst.json | QuestStageList[].QuestGrp[1].QuestSet[0].TextQuestNo | TextQuestNo | quest 10300700 / Rathnite Foothills / "QuestGroup 1 \| 木材２ \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100408 \| TextType=2 \| TextQuestNo=10300700 \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+==== opaque_fsm -- 1 hit(s)
+
+[cols="1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Confidence | File | JSON Path | Field | Context | Why
+
+| FSM | 64 | client/03040008/quest/q10300700/quest/10300700/npc/n676.fsm.json | Process.Parameter.QuestId | QuestId | quest 10300700 (Brad Part: Request for Wood
+Procurement Cooperation) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+|===
+

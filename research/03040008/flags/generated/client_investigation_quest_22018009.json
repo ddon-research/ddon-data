@@ -1,0 +1,115 @@
+{
+  "format": "client_investigation.v4",
+  "generated_at": "2026-04-11T21:41:41.066544+00:00",
+  "query": {
+    "mode": "quest",
+    "value": 22018009
+  },
+  "documented_targets": [
+    {
+      "flag_value": 22018009,
+      "quest_id": 22018009,
+      "flag_type": "quest_id",
+      "doc_comment": "Derived quest-wide association scan",
+      "origin": "derived_special_query"
+    }
+  ],
+  "targets": [
+    {
+      "target": {
+        "flag_value": 22018009,
+        "quest_id": 22018009,
+        "flag_type": "quest_id",
+        "origin": "derived_special_query",
+        "doc_comment": "Derived quest-wide association scan"
+      },
+      "hits": [
+        {
+          "source_type": "fsm",
+          "file_path": "client/03040008/quest/q22018009/quest/22018009/npc/help.fsm.json",
+          "json_path": "Process.Parameter.QuestId",
+          "field_name": "QuestId",
+          "flag_value": 22018009,
+          "flag_kind": "quest_id",
+          "relationship": "fsm_check",
+          "quest_name": "Love Thy Neighbor",
+          "quest_name_jp": "異邦の隣人愛",
+          "context": "checkMyQuestFlag",
+          "quest_id": 22018009,
+          "resource_family": "FSM",
+          "evidence_tier": "opaque_fsm",
+          "confidence": 64,
+          "why": "Matched decoded FSM state data; authored semantics remain indirect without deeper correlation."
+        }
+      ],
+      "candidate_hits": []
+    }
+  ],
+  "quest_archive_context": {
+    "file_path": "client/03040008/quest/q22018009.arc.json",
+    "resource_count": 9,
+    "stages": [
+      {
+        "stage_code": "st1022",
+        "stage_no": 1022,
+        "stage_name": "Rathnite Underground Waterway",
+        "stage_name_jp": "ラスニテ地下水路",
+        "resources": [
+          {
+            "path": "quest/22018009/q22018009_st1022",
+            "type_extension": ".qst",
+            "type_name": "rQuestList"
+          },
+          {
+            "path": "quest/22018009/st1022_marker_npc",
+            "type_extension": ".qmi",
+            "type_name": "rQuestMarkerInfo"
+          }
+        ]
+      },
+      {
+        "stage_code": "",
+        "stage_no": 0,
+        "stage_name": "",
+        "stage_name_jp": "",
+        "resources": [
+          {
+            "path": "ui/00_message/quest/q22018009",
+            "type_extension": ".gmd",
+            "type_name": "rGUIMessage"
+          },
+          {
+            "path": "ui/00_param/quest_text/q22018009_00",
+            "type_extension": ".qtd",
+            "type_name": "rQuestTextData"
+          },
+          {
+            "path": "ui/00_message/quest/q22018009",
+            "type_extension": ".mss",
+            "type_name": "rMsgSet"
+          },
+          {
+            "path": "quest/22018009/npc/help",
+            "type_extension": ".fsm",
+            "type_name": "rAIFSM"
+          },
+          {
+            "path": "quest/22018009/npc/help_dead",
+            "type_extension": ".fsm",
+            "type_name": "rAIFSM"
+          },
+          {
+            "path": "quest/22018009/npc/help_alive",
+            "type_extension": ".fsm",
+            "type_name": "rAIFSM"
+          },
+          {
+            "path": "ui/00_message/quest_info/q22018009_00",
+            "type_extension": ".gmd",
+            "type_name": "rGUIMessage"
+          }
+        ]
+      }
+    ]
+  }
+}

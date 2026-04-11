@@ -1,0 +1,86 @@
+{
+  "format": "client_investigation.v4",
+  "generated_at": "2026-04-11T21:41:41.727023+00:00",
+  "query": {
+    "mode": "quest",
+    "value": 50301000
+  },
+  "documented_targets": [
+    {
+      "flag_value": 50301000,
+      "quest_id": 50301000,
+      "flag_type": "quest_id",
+      "doc_comment": "Derived quest-wide association scan",
+      "origin": "derived_special_query"
+    }
+  ],
+  "targets": [
+    {
+      "target": {
+        "flag_value": 50301000,
+        "quest_id": 50301000,
+        "flag_type": "quest_id",
+        "origin": "derived_special_query",
+        "doc_comment": "Derived quest-wide association scan"
+      },
+      "hits": [
+        {
+          "source_type": "esi",
+          "file_path": "client/03040008/game_common/quest/rEndContentsSortieInfo.esi.json",
+          "json_path": "EndContentsSortieInfoTable[23].QuestId",
+          "field_name": "QuestId",
+          "flag_value": 50301000,
+          "flag_kind": "quest_id",
+          "relationship": "repeatable_sortie",
+          "quest_name": "Enfilade of Despair and Tragedy: Restricted Stage",
+          "quest_name_jp": "絶望と惨劇の砲声 限界域",
+          "stage_name": "Rathnite Foothills Lakeside",
+          "stage_name_jp": "ラスニテ山麓　湖畔部",
+          "comment": "Unknown1=5, Unknown2=1, Flag=0",
+          "context": "SortieRoute=st0136 Rathnite Foothills Lakeside -> st0136 Rathnite Foothills Lakeside | Unknown1=5 | Unknown2=1",
+          "quest_id": 50301000,
+          "stage_no": 136,
+          "resource_family": "ESI",
+          "evidence_tier": "direct",
+          "confidence": 92,
+          "why": "Repeatable sortie registry; QuestId and Flag here define special q5 repeatable sortie entries and their gate flags."
+        }
+      ],
+      "candidate_hits": []
+    }
+  ],
+  "quest_archive_context": {
+    "file_path": "client/03040008/quest/q50301000.arc.json",
+    "resource_count": 4,
+    "stages": [
+      {
+        "stage_code": "",
+        "stage_no": 0,
+        "stage_name": "",
+        "stage_name_jp": "",
+        "resources": [
+          {
+            "path": "ui/00_message/examine_message/quest/quest_examine_q50301000",
+            "type_extension": ".gmd",
+            "type_name": "rGUIMessage"
+          },
+          {
+            "path": "ui/00_param/quest_text/q50301000_00",
+            "type_extension": ".qtd",
+            "type_name": "rQuestTextData"
+          },
+          {
+            "path": "ui/00_message/examine_message/quest/quest_examine_q50301000",
+            "type_extension": ".mss",
+            "type_name": "rMsgSet"
+          },
+          {
+            "path": "ui/00_message/quest_info/q50301000_00",
+            "type_extension": ".gmd",
+            "type_name": "rGUIMessage"
+          }
+        ]
+      }
+    ]
+  }
+}
