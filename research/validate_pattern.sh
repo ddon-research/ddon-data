@@ -77,7 +77,7 @@ validate_single_file() {
     local exit_code
     result=$(imhex --pl format --pattern "$pattern" --input "$test_file" 2>&1) || exit_code=$?
 
-    if [[ ${exit_code:-0} -eq 0 ]] && [[ -n "$result" ]] && ! echo "$result" | grep -q "Pattern Error\|runtime error\|Error:"; then
+    if [[ ${exit_code:-0} -eq 0 ]] && [[ -n "$result" ]] && ! grep -Eq "Pattern Error|runtime error|Error:" <<< "$result"; then
         print_success "Pattern executed successfully"
         
         # Check for expected fields if provided
@@ -87,7 +87,7 @@ validate_single_file() {
             for field in "${fields[@]}"; do
                 # Trim whitespace
                 field=$(echo "$field" | xargs)
-                if echo "$result" | grep -q "\"$field\""; then
+                if grep -Fq -- "\"$field\"" <<< "$result"; then
                     print_success "Found expected field: $field"
                 else
                     print_error "Missing expected field: $field"
@@ -98,9 +98,19 @@ validate_single_file() {
         
         # Show a preview of the decoded data (first few lines)
         print_info "Pattern output preview:"
-        echo "$result" | head -20 | sed 's/^/  /'
-        if [[ $(echo "$result" | wc -l) -gt 20 ]]; then
-            echo "  ... (output truncated, $(echo "$result" | wc -l) total lines)"
+        local preview_count=0
+        while IFS= read -r line; do
+            echo "  $line"
+            ((preview_count += 1))
+            if [[ $preview_count -ge 20 ]]; then
+                break
+            fi
+        done <<< "$result"
+
+        local total_lines
+        total_lines=$(awk 'END { print NR }' <<< "$result")
+        if [[ $total_lines -gt 20 ]]; then
+            echo "  ... (output truncated, ${total_lines} total lines)"
         fi
     else
         print_error "Pattern execution failed"
@@ -168,9 +178,9 @@ main() {
         # Single file validation
         total_files=1
         if validate_single_file "$pattern" "$test_target" "$expected_fields"; then
-            ((passed_files++))
+            ((passed_files += 1))
         else
-            ((failed_files++))
+            ((failed_files += 1))
         fi
     elif [[ -d "$test_target" ]]; then
         # Directory batch validation
@@ -191,9 +201,9 @@ main() {
         for file in "${files[@]}"; do
             echo "----------------------------------------"
             if validate_single_file "$pattern" "$file" "$expected_fields"; then
-                ((passed_files++))
+                ((passed_files += 1))
             else
-                ((failed_files++))
+                ((failed_files += 1))
             fi
             echo ""
         done
