@@ -23,10 +23,13 @@ Usage examples:
     python investigate_flags.py --flag 1109
     python investigate_flags.py --quest 70000001 --skip-executable-scan
     python investigate_flags.py --all-quests --skip-executable-scan
+    python investigate_flags.py --all-client-quests --skip-executable-scan
 """
 from __future__ import annotations
 
 import argparse
+import re
+import time
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -39,11 +42,13 @@ from catalog_loader import (
     load_known_targets,
 )
 from client_scanner import collect_client_json_hits
+from corpus_index import CorpusIndex, build_corpus_index
 from executable_scanner import (
     collect_contexts_and_following_calls,
     collect_immediate_hits,
     serialize_immediate_result,
 )
+from json_cache import JsonCache
 from report_writer import write_json_report, write_markdown_report
 from candidate_finder import collect_candidate_json_hits
 from mss_enrichment import enrich_hit_dicts_with_mss
@@ -260,6 +265,8 @@ def parse_arguments() -> argparse.Namespace:
     query_group.add_argument("--quest", type=int, help="Investigate all known flags for a quest ID.")
     query_group.add_argument("--all-quests", action="store_true",
                              help="Batch-run for the authoritative q7 world-manage quest set.")
+    query_group.add_argument("--all-client-quests", action="store_true",
+                             help="Batch-run for every quest folder found in the client corpus.")
 
     script_path = Path(__file__).resolve()
     ddon_data_root = script_path.parents[3]
@@ -359,13 +366,26 @@ def resolve_targets(catalog: list[TargetFlag], query_mode: str, query_value: int
     )
 
 
-def collect_direct_hits(ddon_data_root: Path, target_values: set[int]) -> tuple[list[Any], dict[int, list[dict[str, Any]]]]:
+def collect_direct_hits(
+    ddon_data_root: Path,
+    target_values: set[int],
+    *,
+    corpus_index: CorpusIndex | None = None,
+    json_cache: JsonCache | None = None,
+) -> tuple[list[Any], dict[int, list[dict[str, Any]]]]:
     print(f"Scanning ddon-data/client for {len(target_values)} target flag value(s)...")
-    all_hits = collect_client_json_hits(ddon_data_root, target_values)
+    all_hits = collect_client_json_hits(
+        ddon_data_root,
+        target_values,
+        corpus_index=corpus_index,
+        json_cache=json_cache,
+    )
     print(f"  Found {len(all_hits)} total hits across all sources")
     serialized_hits: list[dict[str, Any]] = enrich_hit_dicts_with_mss(
         ddon_data_root,
         [annotate_direct_hit(hit.to_dict()) for hit in all_hits],
+        corpus_index=corpus_index,
+        json_cache=json_cache,
     )
     hits_by_value: dict[int, list[dict[str, Any]]] = {}
     source_counts: dict[str, int] = {}
@@ -382,13 +402,21 @@ def collect_candidate_hits(
     ddon_data_root: Path,
     targets: list[TargetFlag],
     hits_by_value: dict[int, list[dict[str, Any]]],
+    *,
+    corpus_index: CorpusIndex | None = None,
+    json_cache: JsonCache | None = None,
 ) -> dict[int, list[dict[str, Any]]]:
     unresolved_target_kinds = {
         target.flag_value: (target.flag_type or "quest_flag")
         for target in targets
         if target.flag_value not in hits_by_value
     }
-    candidate_hits_by_value = collect_candidate_json_hits(ddon_data_root, unresolved_target_kinds)
+    candidate_hits_by_value = collect_candidate_json_hits(
+        ddon_data_root,
+        unresolved_target_kinds,
+        corpus_index=corpus_index,
+        json_cache=json_cache,
+    )
     for flag_value, hits in candidate_hits_by_value.items():
         candidate_hits_by_value[flag_value] = [enrich_hit_with_npc_ledger(hit) for hit in hits]
     return candidate_hits_by_value
@@ -469,6 +497,14 @@ def build_payload(
     return payload
 
 
+def _format_elapsed(seconds: float) -> str:
+    if seconds < 60:
+        return f"{seconds:.1f}s"
+    minutes = int(seconds // 60)
+    remaining = seconds % 60
+    return f"{minutes}m {remaining:.1f}s"
+
+
 def run_investigation(
     query_mode: str,
     query_value: int,
@@ -478,13 +514,27 @@ def run_investigation(
     skip_exe: bool,
     ddo_exe: Path,
     objdump: Path,
+    *,
+    corpus_index: CorpusIndex | None = None,
+    json_cache: JsonCache | None = None,
 ) -> None:
     """Run a single investigation for a flag or quest and write reports."""
     catalog = load_known_targets(upstream_root)
     targets, documented_targets = resolve_targets(catalog, query_mode, query_value)
     target_values = {t.flag_value for t in targets}
-    _all_hits, hits_by_value = collect_direct_hits(ddon_data_root, target_values)
-    candidate_hits_by_value = collect_candidate_hits(ddon_data_root, targets, hits_by_value)
+    _all_hits, hits_by_value = collect_direct_hits(
+        ddon_data_root,
+        target_values,
+        corpus_index=corpus_index,
+        json_cache=json_cache,
+    )
+    candidate_hits_by_value = collect_candidate_hits(
+        ddon_data_root,
+        targets,
+        hits_by_value,
+        corpus_index=corpus_index,
+        json_cache=json_cache,
+    )
     exe_results = collect_executable_hits(skip_exe, ddo_exe, objdump, target_values)
     payload = build_payload(
         query_mode,
@@ -506,11 +556,45 @@ def run_investigation(
 
     # Summary
     total_hits = sum(len(t.get("hits", [])) for t in payload["targets"])
-    print("\nResults:")
+    print(f"\nResults:")
     print(f"  Targets investigated: {len(targets)}")
     print(f"  Total flag references found: {total_hits}")
     print(f"  JSON report: {json_path}")
     print(f"  Markdown report: {markdown_path}")
+
+
+def _discover_client_quest_ids(ddon_data_root: Path) -> list[int]:
+    """Discover all q######## quest folders in the client corpus."""
+    quest_root = ddon_data_root / "client" / "03040008" / "quest"
+    if not quest_root.exists():
+        return []
+    pattern = re.compile(r"^q(\d{8})$")
+    quest_ids: list[int] = []
+    for child in sorted(quest_root.iterdir()):
+        if child.is_dir():
+            match = pattern.match(child.name)
+            if match:
+                quest_ids.append(int(match.group(1)))
+    return quest_ids
+
+
+def _build_batch_infrastructure(
+    ddon_data_root: Path,
+) -> tuple[CorpusIndex, JsonCache]:
+    """Build the corpus index and pre-load JSON cache for batch mode."""
+    t0 = time.monotonic()
+    print("Building corpus index...")
+    index = build_corpus_index(ddon_data_root)
+    t1 = time.monotonic()
+    print(f"  Indexed {index.total_files} files ({index.scanner_file_count} scanner-relevant) in {_format_elapsed(t1 - t0)}")
+
+    print("Pre-loading JSON cache...")
+    cache = JsonCache()
+    cache.preload(index, verbose=True)
+    t2 = time.monotonic()
+    print(f"  Cache loaded in {_format_elapsed(t2 - t1)}")
+
+    return index, cache
 
 
 def main() -> None:
@@ -521,22 +605,101 @@ def main() -> None:
     output_dir = args.output_dir.resolve()
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    if args.all_quests:
-        print(f"=== Batch mode: running {len(SEASON3_WORLD_MANAGE_QUESTS)} authoritative q7 world-manage quests ===\n")
-        for quest_id in SEASON3_WORLD_MANAGE_QUESTS:
+    if args.all_quests or args.all_client_quests:
+        if args.all_client_quests:
+            quest_ids = _discover_client_quest_ids(ddon_data_root)
+            print(f"=== Batch mode: running {len(quest_ids)} client quest folders ===\n")
+        else:
+            quest_ids = SEASON3_WORLD_MANAGE_QUESTS
+            print(f"=== Batch mode: running {len(quest_ids)} authoritative q7 world-manage quests ===\n")
+
+        batch_start = time.monotonic()
+        index, cache = _build_batch_infrastructure(ddon_data_root)
+
+        # Phase 1: resolve all targets across every quest and collect the
+        # combined set of flag values.  This lets us do a *single* corpus
+        # scan instead of one per quest.
+        catalog = load_known_targets(upstream_root)
+        per_quest: list[tuple[int, list[TargetFlag], list[TargetFlag]]] = []
+        all_target_values: set[int] = set()
+        for quest_id in quest_ids:
+            targets, documented_targets = resolve_targets(catalog, "quest", quest_id)
+            per_quest.append((quest_id, targets, documented_targets))
+            all_target_values.update(t.flag_value for t in targets)
+
+        print(f"\nResolved {len(all_target_values)} unique target values across {len(quest_ids)} quests")
+
+        # Phase 2: single-pass structured scan.
+        t_scan = time.monotonic()
+        print(f"Running single-pass structured scan for {len(all_target_values)} target values...")
+        all_raw_hits = collect_client_json_hits(
+            ddon_data_root,
+            all_target_values,
+            corpus_index=index,
+            json_cache=cache,
+        )
+        print(f"  Found {len(all_raw_hits)} total hits in {_format_elapsed(time.monotonic() - t_scan)}")
+
+        # Phase 3: annotate all hits and build a single MSS lookup.
+        t_enrich = time.monotonic()
+        all_annotated = [annotate_direct_hit(hit.to_dict()) for hit in all_raw_hits]
+        all_enriched = enrich_hit_dicts_with_mss(
+            ddon_data_root,
+            all_annotated,
+            corpus_index=index,
+            json_cache=cache,
+        )
+        # Index enriched hits by flag value.
+        global_hits_by_value: dict[int, list[dict[str, Any]]] = {}
+        for hit_dict in all_enriched:
+            global_hits_by_value.setdefault(int(hit_dict["flag_value"]), []).append(hit_dict)
+        print(f"  Enriched and indexed in {_format_elapsed(time.monotonic() - t_enrich)}")
+
+        # Phase 4: per-quest candidate search + report generation.
+        # Candidate search only runs for *unresolved* targets, which is
+        # usually a tiny subset — so this is fast even without batching.
+        for qi, (quest_id, targets, documented_targets) in enumerate(per_quest, 1):
+            quest_start = time.monotonic()
             print(f"\n{'='*60}")
-            print(f"  Quest {quest_id}")
-            print(f"{'='*60}\n")
-            run_investigation(
-                query_mode="quest",
-                query_value=quest_id,
-                ddon_data_root=ddon_data_root,
-                upstream_root=upstream_root,
-                output_dir=output_dir,
-                skip_exe=args.skip_executable_scan,
-                ddo_exe=args.ddo_exe_path,
-                objdump=args.objdump_path,
+            print(f"  [{qi}/{len(quest_ids)}] Quest {quest_id}")
+            print(f"{'='*60}")
+
+            target_values = {t.flag_value for t in targets}
+            # Slice global hits for this quest's targets.
+            hits_by_value: dict[int, list[dict[str, Any]]] = {
+                v: global_hits_by_value.get(v, []) for v in target_values
+            }
+
+            candidate_hits_by_value = collect_candidate_hits(
+                ddon_data_root,
+                targets,
+                hits_by_value,
+                corpus_index=index,
+                json_cache=cache,
             )
+            exe_results = collect_executable_hits(
+                args.skip_executable_scan, args.ddo_exe_path, args.objdump_path, target_values,
+            )
+            payload_data = build_payload(
+                "quest", quest_id, documented_targets, targets,
+                hits_by_value, candidate_hits_by_value, exe_results,
+            )
+
+            stem = f"{REPORT_STEM_PREFIX}_quest_{quest_id}"
+            json_path = output_dir / f"{stem}.json"
+            markdown_path = output_dir / f"{stem}.md"
+            write_json_report(json_path, payload_data)
+            write_markdown_report(markdown_path, payload_data)
+
+            total_hits = sum(len(t.get("hits", [])) for t in payload_data["targets"])
+            quest_elapsed = time.monotonic() - quest_start
+            print(f"  {len(targets)} targets, {total_hits} hits → {json_path.name} ({_format_elapsed(quest_elapsed)})")
+
+        batch_elapsed = time.monotonic() - batch_start
+        print(f"\n{'='*60}")
+        print(f"  Batch complete: {len(quest_ids)} quests in {_format_elapsed(batch_elapsed)}")
+        print(f"  JSON cache stats: {cache.stats}")
+        print(f"{'='*60}")
         return
 
     query_mode = "flag" if args.flag is not None else "quest"

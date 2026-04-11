@@ -1,39 +1,24 @@
 """Helpers for enriching hits with context from decoded MSS message sets."""
 from __future__ import annotations
 
-import json
 from pathlib import Path
-from typing import Any
+from typing import TYPE_CHECKING, Any
 
+from scan_utils import extract_localized, load_json, relative_path
 from source_metadata import enrich_hit_with_npc_ledger
 
-
-def _extract_localized(value: Any) -> tuple[str, str]:
-    if isinstance(value, dict):
-        return str(value.get("En") or ""), str(value.get("Jp") or "")
-    if isinstance(value, str):
-        return value, ""
-    return "", ""
-
-
-def _relative_path(path: Path, root: Path) -> str:
-    try:
-        return path.relative_to(root).as_posix()
-    except ValueError:
-        return path.as_posix()
-
-
-def _load_json(path: Path) -> Any | None:
-    try:
-        return json.loads(path.read_text(encoding="utf-8"))
-    except (OSError, UnicodeDecodeError, json.JSONDecodeError):
-        return None
+if TYPE_CHECKING:
+    from corpus_index import CorpusIndex
+    from json_cache import JsonCache
 
 
 def build_mss_lookup(
     ddon_data_root: Path,
     group_serials: set[int],
     msg_serials: set[int],
+    *,
+    corpus_index: "CorpusIndex | None" = None,
+    json_cache: "JsonCache | None" = None,
 ) -> tuple[dict[int, list[dict[str, Any]]], dict[int, list[dict[str, Any]]]]:
     client_root = ddon_data_root / "client" / "03040008"
     if not client_root.exists() or (not group_serials and not msg_serials):
@@ -42,15 +27,24 @@ def build_mss_lookup(
     by_group_serial: dict[int, list[dict[str, Any]]] = {}
     by_msg_serial: dict[int, list[dict[str, Any]]] = {}
 
-    for mss_path in client_root.rglob("*.mss.json"):
-        payload = _load_json(mss_path)
+    # Determine which MSS files to scan.
+    if corpus_index is not None:
+        mss_paths = corpus_index.mss_paths()
+    else:
+        mss_paths = list(client_root.rglob("*.mss.json"))
+
+    for mss_path in mss_paths:
+        if json_cache is not None:
+            payload = json_cache.load(mss_path)
+        else:
+            payload = load_json(mss_path)
         if not isinstance(payload, dict):
             continue
         groups = payload.get("NativeMsgGroupArray", [])
         if not isinstance(groups, list):
             continue
 
-        rel = _relative_path(mss_path, ddon_data_root)
+        rel = relative_path(mss_path, ddon_data_root)
         for group in groups:
             if not isinstance(group, dict):
                 continue
@@ -59,7 +53,7 @@ def build_mss_lookup(
             if not isinstance(group_serial, int):
                 group_serial = 0
             npc_id = group.get("NpcId") if isinstance(group.get("NpcId"), int) else 0
-            npc_name_en, npc_name_jp = _extract_localized(group.get("NpcName"))
+            npc_name_en, npc_name_jp = extract_localized(group.get("NpcName"))
 
             messages: list[dict[str, Any]] = []
             for msg in group.get("MsgData", []):
@@ -67,7 +61,7 @@ def build_mss_lookup(
                     continue
                 msg_serial = msg.get("MsgSerial") if isinstance(msg.get("MsgSerial"), int) else 0
                 msg_type = msg.get("MsgType") if isinstance(msg.get("MsgType"), int) else 0
-                message_en, message_jp = _extract_localized(msg.get("Message"))
+                message_en, message_jp = extract_localized(msg.get("Message"))
                 message_text = message_en or message_jp
                 if not (group_serial in group_serials or msg_serial in msg_serials):
                     continue
@@ -109,7 +103,13 @@ def build_mss_lookup(
     return by_group_serial, by_msg_serial
 
 
-def enrich_hit_dicts_with_mss(ddon_data_root: Path, hit_dicts: list[dict[str, Any]]) -> list[dict[str, Any]]:
+def enrich_hit_dicts_with_mss(
+    ddon_data_root: Path,
+    hit_dicts: list[dict[str, Any]],
+    *,
+    corpus_index: "CorpusIndex | None" = None,
+    json_cache: "JsonCache | None" = None,
+) -> list[dict[str, Any]]:
     group_serials = {
         int(hit["group_serial"])
         for hit in hit_dicts
@@ -123,7 +123,13 @@ def enrich_hit_dicts_with_mss(ddon_data_root: Path, hit_dicts: list[dict[str, An
     if not group_serials and not msg_serials:
         return [enrich_hit_with_npc_ledger(hit) for hit in hit_dicts]
 
-    by_group_serial, by_msg_serial = build_mss_lookup(ddon_data_root, group_serials, msg_serials)
+    by_group_serial, by_msg_serial = build_mss_lookup(
+        ddon_data_root,
+        group_serials,
+        msg_serials,
+        corpus_index=corpus_index,
+        json_cache=json_cache,
+    )
 
     enriched: list[dict[str, Any]] = []
     for hit in hit_dicts:

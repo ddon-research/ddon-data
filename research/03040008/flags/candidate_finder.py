@@ -1,9 +1,14 @@
 """Residual decoded-data candidate search for unresolved target values."""
 from __future__ import annotations
 
-import json
 from pathlib import Path
-from typing import Any
+from typing import TYPE_CHECKING, Any
+
+from scan_utils import extract_localized, load_json, relative_path, to_int
+
+if TYPE_CHECKING:
+    from corpus_index import CorpusIndex
+    from json_cache import JsonCache
 
 
 FLAG_KEYS = {
@@ -21,28 +26,6 @@ SERIAL_KEYS = {"GroupSerial", "MsgSerial", "JumpGroupSerial", "GroupNameSerial"}
 COLLISION_KEYS = {"NpcId", "UniqueId", "GroupNo", "EvidenceId", "FunctionParam"}
 
 
-def _load_json(path: Path) -> Any | None:
-    try:
-        return json.loads(path.read_text(encoding="utf-8"))
-    except (OSError, UnicodeDecodeError, json.JSONDecodeError):
-        return None
-
-
-def _relative_path(path: Path, root: Path) -> str:
-    try:
-        return path.relative_to(root).as_posix()
-    except ValueError:
-        return path.as_posix()
-
-
-def _extract_localized(value: Any) -> tuple[str, str]:
-    if isinstance(value, dict):
-        return str(value.get("En") or ""), str(value.get("Jp") or "")
-    if isinstance(value, str):
-        return value, ""
-    return "", ""
-
-
 def _is_numeric_target(value: Any, targets: set[int]) -> int | None:
     if isinstance(value, bool):
         return None
@@ -57,15 +40,15 @@ def _extract_context(node: dict[str, Any]) -> dict[str, Any]:
     quest_id = node.get("QuestId") if isinstance(node.get("QuestId"), int) else node.get("QuestID")
     if not isinstance(quest_id, int):
         quest_id = node.get("QuestNo") if isinstance(node.get("QuestNo"), int) else 0
-    quest_name_en, quest_name_jp = _extract_localized(node.get("QuestName"))
-    stage_name_en, stage_name_jp = _extract_localized(node.get("StageName"))
-    npc_name_en, npc_name_jp = _extract_localized(node.get("NpcName"))
-    function_name_en, function_name_jp = _extract_localized(node.get("FunctionName"))
-    evidence_name_en, evidence_name_jp = _extract_localized(node.get("EvidenceName"))
+    quest_name_en, quest_name_jp = extract_localized(node.get("QuestName"))
+    stage_name_en, stage_name_jp = extract_localized(node.get("StageName"))
+    npc_name_en, npc_name_jp = extract_localized(node.get("NpcName"))
+    function_name_en, function_name_jp = extract_localized(node.get("FunctionName"))
+    evidence_name_en, evidence_name_jp = extract_localized(node.get("EvidenceName"))
     comment = str(node.get("Comment") or "")
     group_serial = node.get("GroupSerial") if isinstance(node.get("GroupSerial"), int) else 0
     msg_serial = node.get("MsgSerial") if isinstance(node.get("MsgSerial"), int) else 0
-    message_en, message_jp = _extract_localized(node.get("Message"))
+    message_en, message_jp = extract_localized(node.get("Message"))
     return {
         "quest_id": quest_id or 0,
         "quest_name": quest_name_en,
@@ -143,18 +126,35 @@ def _walk_candidates(
 def collect_candidate_json_hits(
     ddon_data_root: Path,
     target_kinds: dict[int, str],
+    *,
+    corpus_index: "CorpusIndex | None" = None,
+    json_cache: "JsonCache | None" = None,
 ) -> dict[int, list[dict[str, Any]]]:
+    """Search decoded JSON for unresolved target values.
+
+    When *corpus_index* and *json_cache* are provided, avoid repeated
+    ``rglob`` and disk I/O.
+    """
     client_root = ddon_data_root / "client" / "03040008"
     targets = set(target_kinds)
     by_value: dict[int, list[dict[str, Any]]] = {value: [] for value in sorted(targets)}
     if not client_root.exists() or not targets:
         return by_value
 
-    for json_path in client_root.rglob("*.json"):
-        payload = _load_json(json_path)
+    # Determine which files to walk.
+    if corpus_index is not None:
+        json_paths = list(corpus_index.all_json_paths())
+    else:
+        json_paths = list(client_root.rglob("*.json"))
+
+    for json_path in json_paths:
+        if json_cache is not None:
+            payload = json_cache.load(json_path)
+        else:
+            payload = load_json(json_path)
         if payload is None:
             continue
-        rel = _relative_path(json_path, ddon_data_root)
+        rel = relative_path(json_path, ddon_data_root)
         hits: list[dict[str, Any]] = []
         _walk_candidates(payload, targets, target_kinds, rel, "", {}, hits)
         for hit in hits:

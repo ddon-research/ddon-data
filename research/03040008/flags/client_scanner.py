@@ -2,7 +2,7 @@
 from __future__ import annotations
 
 from pathlib import Path
-from typing import Iterable, cast
+from typing import TYPE_CHECKING, Iterable, cast
 
 from client_scan_handlers import (
     scan_ams_file,
@@ -24,7 +24,11 @@ from client_scan_handlers import (
     scan_tqg_file,
 )
 from scan_models import FlagHit
-from scan_utils import load_json, relative_path
+from scan_utils import relative_path
+
+if TYPE_CHECKING:
+    from corpus_index import CorpusIndex
+    from json_cache import JsonCache
 
 
 SCANNER_MAP = {
@@ -48,8 +52,6 @@ SCANNER_MAP = {
     ".smc.json": scan_npc_situation_data,
 }
 
-SITUATION_KEYWORDS = {"GroupSerial", "StartQuestId", "RangeStartQuestFlag"}
-
 
 def get_scanner_key(filename: str) -> str | None:
     for suffix in SCANNER_MAP:
@@ -58,33 +60,62 @@ def get_scanner_key(filename: str) -> str | None:
     return None
 
 
-def collect_client_json_hits(ddon_data_root: Path, target_values: set[int] | None = None) -> list[FlagHit]:
+def collect_client_json_hits(
+    ddon_data_root: Path,
+    target_values: set[int] | None = None,
+    *,
+    corpus_index: "CorpusIndex | None" = None,
+    json_cache: "JsonCache | None" = None,
+) -> list[FlagHit]:
+    """Scan decoded client JSON for target flag/quest values.
+
+    When *corpus_index* and *json_cache* are provided the scan avoids
+    repeated ``rglob`` traversals and disk I/O — critical for batch mode.
+    """
     hits: list[FlagHit] = []
+
+    if corpus_index is not None:
+        return _scan_indexed(ddon_data_root, target_values, corpus_index, json_cache)
+
+    # Legacy path — full rglob walk (single-quest ad-hoc runs)
     client_root = ddon_data_root / "client" / "03040008"
     if not client_root.exists():
         return hits
 
     for json_path in client_root.rglob("*.json"):
         scanner_key = get_scanner_key(json_path.name)
-        if scanner_key is not None:
-            payload = load_json(json_path)
-            if not isinstance(payload, dict):
-                continue
-            rel = relative_path(json_path, ddon_data_root)
-            scanner = SCANNER_MAP[scanner_key]
-            hits.extend(cast(Iterable[FlagHit], scanner(json_path, payload, rel, target_values)))
+        if scanner_key is None:
             continue
-
-        try:
-            head = json_path.read_text(encoding="utf-8", errors="replace")[:2000]
-        except OSError:
-            continue
-        if not all(keyword in head for keyword in SITUATION_KEYWORDS):
-            continue
-        payload = load_json(json_path)
-        if payload is None:
+        payload = _load(json_path, json_cache)
+        if not isinstance(payload, dict):
             continue
         rel = relative_path(json_path, ddon_data_root)
-        hits.extend(cast(Iterable[FlagHit], scan_npc_situation_data(json_path, payload, rel, target_values)))
+        scanner = SCANNER_MAP[scanner_key]
+        hits.extend(cast(Iterable[FlagHit], scanner(json_path, payload, rel, target_values)))
 
     return hits
+
+
+def _scan_indexed(
+    ddon_data_root: Path,
+    target_values: set[int] | None,
+    corpus_index: "CorpusIndex",
+    json_cache: "JsonCache | None",
+) -> list[FlagHit]:
+    """Scan using a pre-built corpus index (fast path)."""
+    hits: list[FlagHit] = []
+    for suffix, json_path in corpus_index.all_scanner_paths():
+        payload = _load(json_path, json_cache)
+        if not isinstance(payload, dict):
+            continue
+        rel = relative_path(json_path, ddon_data_root)
+        scanner = SCANNER_MAP[suffix]
+        hits.extend(cast(Iterable[FlagHit], scanner(json_path, payload, rel, target_values)))
+    return hits
+
+
+def _load(path: Path, cache: "JsonCache | None") -> dict | list | None:
+    if cache is not None:
+        return cache.load(path)
+    from scan_utils import load_json
+    return load_json(path)

@@ -1,11 +1,14 @@
 """Cached metadata helpers for developer-facing report enrichment."""
 from __future__ import annotations
 
-import json
 import re
 from functools import lru_cache
 from pathlib import Path
 from typing import Any
+
+from scan_utils import extract_localized as _extract_localized
+from scan_utils import load_json as _load_json
+from scan_utils import relative_path as _relative_path_with_root
 
 
 ROOT = Path(__file__).resolve().parents[3]
@@ -20,26 +23,8 @@ MARKER_ASSET_PATTERN = re.compile(
 NPC_ASSET_ID_PATTERN = re.compile(r"(?:^|\D)n(?P<npc_id>\d{4})(?=\D|$)", re.IGNORECASE)
 
 
-def _load_json(path: Path) -> Any | None:
-    try:
-        return json.loads(path.read_text(encoding="utf-8"))
-    except (OSError, UnicodeDecodeError, json.JSONDecodeError):
-        return None
-
-
 def _relative_path(path: Path) -> str:
-    try:
-        return path.relative_to(ROOT).as_posix()
-    except ValueError:
-        return path.as_posix()
-
-
-def _extract_localized(value: Any) -> tuple[str, str]:
-    if isinstance(value, dict):
-        return str(value.get("En") or ""), str(value.get("Jp") or "")
-    if isinstance(value, str):
-        return value, ""
-    return "", ""
+    return _relative_path_with_root(path, ROOT)
 
 
 def _iter_item_rows(payload: Any) -> Any:
