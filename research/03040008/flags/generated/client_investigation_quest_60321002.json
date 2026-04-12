@@ -1,6 +1,6 @@
 {
   "format": "client_investigation.v4",
-  "generated_at": "2026-04-11T21:41:42.044699+00:00",
+  "generated_at": "2026-04-12T12:44:19.782029+00:00",
   "query": {
     "mode": "quest",
     "value": 60321002
@@ -44,6 +44,7 @@
           "stage_no": 134,
           "resource_family": "AMS",
           "evidence_tier": "direct",
+          "derivation_class": "direct_deterministic",
           "confidence": 92,
           "why": "Area Master spot block; QuestId here indicates the map spot is hidden or blocked by that quest."
         }
@@ -51,9 +52,46 @@
       "candidate_hits": []
     }
   ],
+  "quest_family": {
+    "key": "q6",
+    "label": "Tutorial / Unlock / Area Trial",
+    "description": "Tutorial, area-trial, unlock, and occasional festival quests.",
+    "discovery_focus": "jtq_tqg_jmc_scaffolding",
+    "supported": true
+  },
+  "quest_family_relationships": {
+    "quest_family": {
+      "key": "q6",
+      "label": "Tutorial / Unlock / Area Trial",
+      "description": "Tutorial, area-trial, unlock, and occasional festival quests.",
+      "discovery_focus": "jtq_tqg_jmc_scaffolding",
+      "supported": true
+    },
+    "blocked_spots": {
+      "entry_count": 1,
+      "spot_ids": [
+        1054
+      ]
+    }
+  },
+  "quest_owner_indexes": [],
+  "quest_dependency_targets": [],
   "quest_archive_context": {
+    "quest_family": {
+      "key": "q6",
+      "label": "Tutorial / Unlock / Area Trial",
+      "description": "Tutorial, area-trial, unlock, and occasional festival quests.",
+      "discovery_focus": "jtq_tqg_jmc_scaffolding",
+      "supported": true
+    },
     "file_path": "client/03040008/quest/q60321002.arc.json",
     "resource_count": 4,
+    "stage_codes": [],
+    "resource_type_extensions": [
+      ".gmd",
+      ".mss",
+      ".qtd"
+    ],
     "stages": [
       {
         "stage_code": "",
@@ -82,6 +120,105 @@
             "type_name": "rMsgSet"
           }
         ]
+      }
+    ]
+  },
+  "quest_stage_neighborhood": {
+    "quest_family": {
+      "key": "q6",
+      "label": "Tutorial / Unlock / Area Trial",
+      "description": "Tutorial, area-trial, unlock, and occasional festival quests.",
+      "discovery_focus": "jtq_tqg_jmc_scaffolding",
+      "supported": true
+    },
+    "stage_codes": [],
+    "scanner_file_count": 0,
+    "stages": []
+  },
+  "quest_stage_cues": {
+    "quest_family": {
+      "key": "q6",
+      "label": "Tutorial / Unlock / Area Trial",
+      "description": "Tutorial, area-trial, unlock, and occasional festival quests.",
+      "discovery_focus": "jtq_tqg_jmc_scaffolding",
+      "supported": true
+    },
+    "stage_codes": [],
+    "owner_families": [
+      "q6",
+      "q7"
+    ],
+    "cues": [],
+    "cue_count": 0
+  },
+  "quest_graph_expansion": {
+    "max_depth": 3,
+    "node_count": 3,
+    "edge_count": 2,
+    "node_kind_counts": {
+      "direct_family": 1,
+      "family_context": 1,
+      "quest": 1
+    },
+    "edge_type_counts": {
+      "direct_source_family": 1,
+      "family_context:blocked_spots": 1
+    },
+    "derivation_counts": {
+      "direct_deterministic": 5
+    },
+    "nodes": [
+      {
+        "node_id": "quest:60321002",
+        "label": "Quest 60321002",
+        "kind": "quest",
+        "depth": 0,
+        "derivation_class": "direct_deterministic",
+        "metadata": {
+          "quest_id": 60321002,
+          "target_count": 1
+        }
+      },
+      {
+        "node_id": "direct-family:ams",
+        "label": "ams direct hits (1)",
+        "kind": "direct_family",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "metadata": {
+          "source_type": "ams",
+          "hit_count": 1
+        }
+      },
+      {
+        "node_id": "family-context:blocked_spots",
+        "label": "Blocked Spots",
+        "kind": "family_context",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "metadata": {
+          "context_key": "blocked_spots"
+        }
+      }
+    ],
+    "edges": [
+      {
+        "from": "quest:60321002",
+        "to": "direct-family:ams",
+        "edge_type": "direct_source_family",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "why": "Decoded direct hits for the quest targets include this source family.",
+        "metadata": {}
+      },
+      {
+        "from": "quest:60321002",
+        "to": "family-context:blocked_spots",
+        "edge_type": "family_context:blocked_spots",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "why": "Family-specific decoded tables provide deterministic context for this quest.",
+        "metadata": {}
       }
     ]
   }

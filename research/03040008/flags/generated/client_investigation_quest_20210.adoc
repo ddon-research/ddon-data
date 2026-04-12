@@ -5,9 +5,307 @@
 
 Query mode:: quest
 Query value:: 20210
-Generated at:: 2026-04-11T21:41:40.544503+00:00
+Generated at:: 2026-04-12T12:43:33.334244+00:00
 
 toc::[]
+
+Quest family:: q2 -- World Quest
+Quest family notes:: Regional and area quests outside the main-story progression chain.
+Quest family focus:: local_stage_topology_plus_persistent_world_state
+
+== External Owner Indexes
+
+_These are reusable external owner catalogs inferred from stage-neighborhood cues. They are broader than the subset of flags promoted into derived dependency targets._
+
+[cols="2,1,1,2,2,2,4",options="header"]
+|===
+| Owner Quest | Family | Catalog Count | Catalog Flags | Linked Cues | Cue Sources | Why
+
+| 70000001 | q7 | 70 | 1098, 1103, 1104, 1105, 1106, 1109, 1110, 1111, 1112, 1113, 1114, 1115 +58 more | 1110, 1112, 1150, 1201, 1216, 1217, 1220, 1221 +15 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70001001 | q7 | 0 |  | 1851, 1954 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70002001 | q7 | 47 | 1098, 1103, 1104, 1105, 1106, 1109, 1110, 1111, 1112, 1113, 1114, 1115 +35 more | 1114, 1115, 1117, 1601, 3860 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70003001 | q7 | 49 | 1098, 1103, 1104, 1105, 1106, 1109, 1110, 1111, 1112, 1113, 1114, 1115 +37 more | 1103, 1105, 1106, 1119, 1120, 1121, 1122, 1123 +8 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70020001 | q7 | 8 | 2736, 3000, 3002, 3003, 3074, 3442, 3805, 4037 | 2736, 3003, 3074, 4037 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70021001 | q7 | 4 | 3278, 3650, 3753, 3861 | 3278, 3753 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70022001 | q7 | 17 | 3949, 3950, 3952, 3953, 3954, 3977, 4033, 4043, 4053, 4063, 4470, 4555 +5 more | 3949, 3950, 3952, 3953, 3954, 3977, 4033, 4043 +6 more | evsi, gpl | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70023001 | q7 | 15 | 4066, 4067, 4372, 4373, 4500, 4506, 4507, 4508, 4511, 4512, 4515, 4516 +3 more | 4066, 4372, 4373, 4500, 4506, 4507, 4508, 4511 +6 more | evsi, gpl | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70030001 | q7 | 46 | 5396, 5397, 5407, 5552, 5557, 5558, 5581, 5584, 5587, 5588, 5589, 5614 +34 more | 5397, 5407, 5552, 5557, 5558, 5584, 5587, 5588 +33 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70031001 | q7 | 8 | 5553, 5672, 6138, 6194, 6195, 6377, 6425, 7316 | 5553, 6138, 6194, 6195, 6377, 7316 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70032001 | q7 | 37 | 7169, 7240, 7241, 7336, 7341, 7342, 7386, 7387, 7388, 7389, 7390, 7438 +25 more | 7240, 7241, 7336, 7341, 7342, 7386, 7390, 7438 +23 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70033001 | q7 | 43 | 7826, 7827, 7876, 7888, 7889, 7916, 7917, 7954, 7955, 7965, 7966, 7967 +31 more | 7826, 7827, 7876, 7888, 7889, 7917, 7954, 7955 +32 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+|===
+
+== Derived External Dependency Targets
+
+_These are the promoted subset of external owner-index entries. A flag appears here only when it passes the current family-specific dependency promotion rules for this quest._
+
+[cols="2,1,1,2,2,4",options="header"]
+|===
+| Owner Quest | Family | Flag Count | Flags | Sources | Why
+
+| 70000001 | q7 | 22 | 1110, 1112, 1150, 1201, 1216, 1217, 1220, 1221, 1222, 1223, 1224, 1250 +10 more | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70002001 | q7 | 5 | 1114, 1115, 1117, 1601, 3860 | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70003001 | q7 | 12 | 1103, 1105, 1106, 1120, 1122, 1124, 1203, 1296, 1713, 2430, 2432, 2456 | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70020001 | q7 | 4 | 2736, 3003, 3074, 4037 | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70021001 | q7 | 2 | 3278, 3753 | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70022001 | q7 | 14 | 3949, 3950, 3952, 3953, 3954, 3977, 4033, 4043, 4470, 4556, 4557, 4803 +2 more | evsi, gpl | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70023001 | q7 | 7 | 4372, 4373, 4506, 4507, 4511, 4516, 4972 | evsi, gpl | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70030001 | q7 | 26 | 5552, 5557, 5584, 5587, 5589, 5614, 5632, 5634, 5636, 5669, 5705, 6151 +14 more | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70031001 | q7 | 2 | 6194, 7316 | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70032001 | q7 | 13 | 7240, 7341, 7386, 7496, 7512, 7544, 7549, 7551, 7553, 7555, 7557, 7927 +1 more | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70033001 | q7 | 14 | 7888, 7889, 7965, 7967, 7973, 8043, 8044, 8045, 8046, 8047, 8066, 8133 +2 more | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+|===
+
+== Family Relationship Context
+
+_These sections summarize deterministic client-side family metadata and reverse-index relationships. They are context for later owner/dependency inference, not direct quest-target promotion._
+
+=== Quest Sequence
+
+* seq no: 49
+* previous: 20200 -- The Darkness of the Heart
+* next: 20220 -- Within the Tree
+
+== ARC Association Context
+
+_ARC associations are contextual only. They show which quest-stage and marker resources are bundled with this quest._
+
+* arc file: link:../../../../client/03040008/quest/q00020210.arc.json#L1[client/03040008/quest/q00020210.arc.json#L1]
+* resource count: 19
+* stage codes: st0120, st0880, st0883
+* resource families: .fmi, .fsm, .gmd, .mss, .qmi, .qst, .qtd
+
+=== st0120 -- Farana Plains
+
+* rQuestList: quest/00020210/q00020210_st0120
+* rQuestMarkerInfo: quest/00020210/st0120_marker_npc
+
+=== st0880 -- Hollow of Beginnings
+
+* rQuestList: quest/00020210/q00020210_st0880
+* rQuestMarkerInfo: quest/00020210/st0880_marker_om
+* rQuestMarkerInfo: quest/00020210/st0880_marker_npc
+
+=== st0883 -- Vegasa Corridor
+
+* rQuestList: quest/00020210/q00020210_st0883
+* rQuestMarkerInfo: quest/00020210/st0883_marker_npc
+* rQuestMarkerInfo: quest/00020210/st0883_marker_om
+
+=== unclassified
+
+* rFieldAreaMarkerInfo: quest/00020210/fa005_marker_npc
+* rMsgSet: ui/00_message/quest/q00020210
+* rAIFSM: quest/00020210/npc/n0501
+* rGUIMessage: ui/00_message/examine_message/quest/quest_examine_q00020210
+* rQuestTextData: ui/00_param/quest_text/q00020210_00
+* rMsgSet: ui/00_message/examine_message/quest/quest_examine_q00020210
+* rAIFSM: quest/00020210/npc/n0013
+* rGUIMessage: ui/00_message/quest/q00020210
+* rAIFSM: quest/00020210/npc/n0021
+* rAIFSM: quest/00020210/npc/n0020
+* rGUIMessage: ui/00_message/quest_info/q00020210_00
+
+== Stage Neighborhood Context
+
+_Stage-neighborhood context summarizes scanner-relevant client files that share the quest's archive stage codes. This is deterministic client topology, not inferred ownership._
+
+* scanner-relevant stage files: 683
+* indexed stage codes: st0120, st0880, st0883
+
+=== st0120 -- Farana Plains
+
+* scanner files: 525
+* .evsi.json: 12
+* .fsm.json: 64
+* .gpl.json: 5
+* .lot.json: 403
+* .qmi.json: 26
+* .qst.json: 15
+
+=== st0880 -- Hollow of Beginnings
+
+* scanner files: 81
+* .evsi.json: 5
+* .fsm.json: 47
+* .gpl.json: 6
+* .lot.json: 13
+* .qmi.json: 7
+* .qst.json: 3
+
+=== st0883 -- Vegasa Corridor
+
+* scanner files: 77
+* .gpl.json: 16
+* .lot.json: 57
+* .qmi.json: 3
+* .qst.json: 1
+
+== Stage Neighborhood External-State Cues
+
+_These cues are deterministic client-side observations from the quest's stage neighborhood. They are not promoted to direct quest targets yet; they highlight q6/q7-owned external state values co-located in the quest's archive stages._
+
+* cue count: 198
+* owner families: q6, q7
+
+[cols="1,1,1,2,2,2",options="header"]
+|===
+| Value | Kind | Hits | Sources | Owners | Stages
+
+| Flag 4372 | layout_flag | 16 | evsi, gpl | 70023001 | st0120, st0880, st0883
+| Flag 4803 | layout_flag | 14 | evsi, gpl | 70022001 | st0120, st0880
+| Flag 1103 | layout_flag | 17 | evsi | 70003001 | st0120, st0880
+| Flag 1105 | layout_flag | 17 | evsi | 70003001 | st0120, st0880
+| Flag 1106 | layout_flag | 17 | evsi | 70003001 | st0120, st0880
+| Flag 1110 | layout_flag | 17 | evsi | 70000001 | st0120, st0880
+| Flag 1112 | layout_flag | 17 | evsi | 70000001 | st0120, st0880
+| Flag 1114 | layout_flag | 17 | evsi | 70002001 | st0120, st0880
+| Flag 1115 | layout_flag | 17 | evsi | 70002001 | st0120, st0880
+| Flag 1117 | layout_flag | 17 | evsi | 70002001 | st0120, st0880
+| Flag 1120 | layout_flag | 17 | evsi | 70003001 | st0120, st0880
+| Flag 1122 | layout_flag | 17 | evsi | 70003001 | st0120, st0880
+| Flag 1124 | layout_flag | 17 | evsi | 70003001 | st0120, st0880
+| Flag 1150 | layout_flag | 17 | evsi | 70000001 | st0120, st0880
+| Flag 1201 | layout_flag | 17 | evsi | 70000001 | st0120, st0880
+| Flag 1203 | layout_flag | 17 | evsi | 70003001 | st0120, st0880
+| Flag 1216 | layout_flag | 17 | evsi | 70000001 | st0120, st0880
+| Flag 1217 | layout_flag | 17 | evsi | 70000001 | st0120, st0880
+| Flag 1220 | layout_flag | 17 | evsi | 70000001 | st0120, st0880
+| Flag 1221 | layout_flag | 17 | evsi | 70000001 | st0120, st0880
+| Flag 1222 | layout_flag | 17 | evsi | 70000001 | st0120, st0880
+| Flag 1223 | layout_flag | 17 | evsi | 70000001 | st0120, st0880
+| Flag 1224 | layout_flag | 17 | evsi | 70000001 | st0120, st0880
+| Flag 1250 | layout_flag | 17 | evsi | 70000001 | st0120, st0880
+| Flag 1262 | layout_flag | 17 | evsi | 70000001 | st0120, st0880
+| Flag 1263 | layout_flag | 17 | evsi | 70000001 | st0120, st0880
+| Flag 1298 | layout_flag | 17 | evsi | 70000001 | st0120, st0880
+| Flag 1309 | layout_flag | 17 | evsi | 70000001 | st0120, st0880
+| Flag 1311 | layout_flag | 17 | evsi | 70000001 | st0120, st0880
+| Flag 1316 | layout_flag | 17 | evsi | 70000001 | st0120, st0880
+|===
+
+== Bounded Graph Expansion
+
+_This graph summarizes bounded deterministic and inferred edges around the quest: quest archive stages, direct source families, stage-linked owner catalogs, promoted dependencies, reverse-index event/group links, and family-specific table edges._
+
+* max depth: 3
+* node count: 235
+* edge count: 465
+* node kinds: direct_family=4, event_viewer=207, family_context=1, lot_file=2, owner_quest=12, quest=1, sequence_quest=2, stage=3, stage_group=3
+* derivation: Dependency=11, Direct=21, Graph=631, Owner Index=37
+
+=== Mermaid Graph Slice
+
+_This Mermaid flowchart shows a capped slice of the bounded graph so large quest reports stay readable while still exposing the graph structure._
+
+[mermaid]
+....
+flowchart TD
+    node_quest_20210["Quest 20210"]
+    node_direct_family_evsi["evsi direct hits (3)"]
+    node_direct_family_fsm["fsm direct hits (2)"]
+    node_direct_family_qst["qst direct hits (14)"]
+    node_direct_family_smc["smc direct hits (38)"]
+    node_family_context_quest_sequence["Quest Sequence"]
+    node_stage_st0120["st0120 -- Farana Plains"]
+    node_stage_st0880["st0880 -- Hollow of Beginnings"]
+    node_stage_st0883["st0883 -- Vegasa Corridor"]
+    node_event_viewer_st0120_ev000_70000001["Event st0120/ev000"]
+    node_event_viewer_st0120_ev000_70002001["Event st0120/ev000"]
+    node_event_viewer_st0120_ev000_70001001["Event st0120/ev000"]
+    node_owner_quest_70000001["Owner quest 70000001 (q7)"]
+    node_owner_quest_70002001["Owner quest 70002001 (q7)"]
+    node_owner_quest_70003001["Owner quest 70003001 (q7)"]
+    node_owner_quest_70020001["Owner quest 70020001 (q7)"]
+    node_owner_quest_70021001["Owner quest 70021001 (q7)"]
+    node_owner_quest_70022001["Owner quest 70022001 (q7)"]
+    node_owner_quest_70023001["Owner quest 70023001 (q7)"]
+    node_owner_quest_70030001["Owner quest 70030001 (q7)"]
+    node_owner_quest_70031001["Owner quest 70031001 (q7)"]
+    node_owner_quest_70032001["Owner quest 70032001 (q7)"]
+    node_owner_quest_70033001["Owner quest 70033001 (q7)"]
+    node_sequence_quest_20200["Quest 20200"]
+    node_sequence_quest_20220["Quest 20220"]
+    node_quest_20210 -->|direct_source_family| node_direct_family_evsi
+    node_quest_20210 -->|direct_source_family| node_direct_family_fsm
+    node_quest_20210 -->|direct_source_family| node_direct_family_qst
+    node_quest_20210 -->|direct_source_family| node_direct_family_smc
+    node_quest_20210 -->|family:quest_sequence| node_family_context_quest_sequence
+    node_quest_20210 -->|quest_archive_stage| node_stage_st0120
+    node_quest_20210 -->|quest_archive_stage| node_stage_st0880
+    node_quest_20210 -->|quest_archive_stage| node_stage_st0883
+    node_quest_20210 -->|promoted_dependency| node_owner_quest_70000001
+    node_quest_20210 -->|promoted_dependency| node_owner_quest_70002001
+    node_quest_20210 -->|promoted_dependency| node_owner_quest_70003001
+    node_quest_20210 -->|promoted_dependency| node_owner_quest_70020001
+    node_quest_20210 -->|promoted_dependency| node_owner_quest_70021001
+    node_quest_20210 -->|promoted_dependency| node_owner_quest_70022001
+    node_quest_20210 -->|promoted_dependency| node_owner_quest_70023001
+    node_quest_20210 -->|promoted_dependency| node_owner_quest_70030001
+    node_quest_20210 -->|promoted_dependency| node_owner_quest_70031001
+    node_quest_20210 -->|promoted_dependency| node_owner_quest_70032001
+    node_quest_20210 -->|promoted_dependency| node_owner_quest_70033001
+    node_family_context_quest_sequence -->|sequence_next| node_sequence_quest_20220
+    node_family_context_quest_sequence -->|sequence_previous| node_sequence_quest_20200
+    node_stage_st0120 -->|stage_event_viewer| node_event_viewer_st0120_ev000_70000001
+    node_stage_st0120 -->|stage_event_viewer| node_event_viewer_st0120_ev000_70001001
+    node_stage_st0120 -->|stage_event_viewer| node_event_viewer_st0120_ev000_70002001
+    classDef direct_deterministic fill:#e8f5e9,stroke:#2e7d32,stroke-width:1px
+    classDef owner_index fill:#e3f2fd,stroke:#1565c0,stroke-width:1px
+    classDef dependency_inferred fill:#fff3e0,stroke:#ef6c00,stroke-width:1px
+    classDef graph_expanded fill:#f3e5f5,stroke:#7b1fa2,stroke-width:1px
+    classDef lower_confidence fill:#fbe9e7,stroke:#d84315,stroke-width:1px
+    classDef binary_auxiliary fill:#eceff1,stroke:#455a64,stroke-width:1px
+    class node_quest_20210,node_direct_family_evsi,node_direct_family_fsm,node_direct_family_qst,node_direct_family_smc,node_family_context_quest_sequence,node_stage_st0120,node_stage_st0880,node_stage_st0883,node_sequence_quest_20200,node_sequence_quest_20220 direct_deterministic
+    class node_owner_quest_70000001,node_owner_quest_70002001,node_owner_quest_70003001,node_owner_quest_70020001,node_owner_quest_70021001,node_owner_quest_70022001,node_owner_quest_70023001,node_owner_quest_70030001,node_owner_quest_70031001,node_owner_quest_70032001,node_owner_quest_70033001 owner_index
+    class node_event_viewer_st0120_ev000_70000001,node_event_viewer_st0120_ev000_70002001,node_event_viewer_st0120_ev000_70001001 graph_expanded
+....
+
+[cols="1,2,2,2,2,4",options="header"]
+|===
+| Depth | Edge | From | To | Derivation | Why
+
+| 1 | direct_source_family | quest:20210 | direct-family:evsi | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | direct_source_family | quest:20210 | direct-family:fsm | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | direct_source_family | quest:20210 | direct-family:qst | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | direct_source_family | quest:20210 | direct-family:smc | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | family_context:quest_sequence | quest:20210 | family-context:quest_sequence | Direct | Family-specific decoded tables provide deterministic context for this quest.
+| 1 | quest_archive_stage | quest:20210 | stage:st0120 | Direct | Quest archive topology directly links this quest to the stage code.
+| 1 | quest_archive_stage | quest:20210 | stage:st0880 | Direct | Quest archive topology directly links this quest to the stage code.
+| 1 | quest_archive_stage | quest:20210 | stage:st0883 | Direct | Quest archive topology directly links this quest to the stage code.
+| 2 | promoted_dependency | quest:20210 | owner-quest:70000001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:20210 | owner-quest:70002001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:20210 | owner-quest:70003001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:20210 | owner-quest:70020001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:20210 | owner-quest:70021001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:20210 | owner-quest:70022001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:20210 | owner-quest:70023001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:20210 | owner-quest:70030001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:20210 | owner-quest:70031001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:20210 | owner-quest:70032001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:20210 | owner-quest:70033001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | sequence_next | family-context:quest_sequence | sequence-quest:20220 | Direct | QuestSequence links this quest to its neighboring sequence quest.
+| 2 | sequence_previous | family-context:quest_sequence | sequence-quest:20200 | Direct | QuestSequence links this quest to its neighboring sequence quest.
+| 2 | stage_event_viewer | stage:st0120 | event-viewer:st0120:ev000:70000001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0120 | event-viewer:st0120:ev000:70001001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0120 | event-viewer:st0120:ev000:70002001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0120 | event-viewer:st0120:ev000:70003001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0120 | event-viewer:st0120:ev000:70020001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0120 | event-viewer:st0120:ev000:70021001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0120 | event-viewer:st0120:ev000:70022001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0120 | event-viewer:st0120:ev000:70023001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0120 | event-viewer:st0120:ev000:70030001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0120 | event-viewer:st0120:ev000:70031001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0120 | event-viewer:st0120:ev000:70032001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0120 | event-viewer:st0120:ev000:70033001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0120 | event-viewer:st0120:ev005:70000001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0120 | event-viewer:st0120:ev005:70001001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0120 | event-viewer:st0120:ev005:70002001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0120 | event-viewer:st0120:ev005:70003001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0120 | event-viewer:st0120:ev005:70020001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0120 | event-viewer:st0120:ev005:70021001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0120 | event-viewer:st0120:ev005:70022001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+|===
 
 == Flag Summary Matrix
 
@@ -15,12 +313,137 @@ toc::[]
 |===
 | Target | Kind | Hits | Sources | Stages | Relationships | Description
 
+| Flag 4042 | layout_flag | 4 | evsi, fsm, qst | st0120 | 🎬 Event State, 🔍 FSM Check, ⚡ Quest Condition +1 | QST local: st0120 \| 聖域門デモ前セット
+| Flag 4044 | layout_flag | 3 | fsm, qst | st0120 | ✏️ FSM Set, ⚡ Quest Condition, ❌ Quest Erase | QST local: st0120 \| QuestGroup 1 \| デモ後セット
+| Flag 4046 | layout_flag | 2 | qst | st0880 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0880 \| QuestGroup 1 \| 戦闘後の演出置き
+| Flag 4211 | layout_flag | 6 | qst | st0880 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0880 \| 戦闘中封鎖カベ
+| Flag 4966 | layout_flag | 4 | evsi, qst | st0880, st0883 | 🎬 Event State, ⚡ Quest Condition, ❌ Quest Erase | QST local: st0883 \| 侵食植物
 | Quest ID 20210 | quest_id | 38 | smc |  | 🗣️ NPC Chatter | Derived quest-wide association scan
 |===
 
 == Known Documented Targets
 
+* quest 20210 -- Flag 4042 -- QST local: st0120 | 聖域門デモ前セット
+* quest 20210 -- Flag 4044 -- QST local: st0120 | QuestGroup 1 | デモ後セット
+* quest 20210 -- Flag 4046 -- QST local: st0880 | QuestGroup 1 | 戦闘後の演出置き
+* quest 20210 -- Flag 4211 -- QST local: st0880 | 戦闘中封鎖カベ
+* quest 20210 -- Flag 4966 -- QST local: st0883 | 侵食植物
 * Quest ID 20210 -- Derived quest-wide association scan [Derived]
+
+== Flag 4042 -- Quest 20210
+
+origin:: derived_qst_local
+direct hits:: *4*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 3 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00020210/quest/00020210/q00020210_st0120.qst.json[client/03040008/quest/q00020210/quest/00020210/q00020210_st0120.qst.json] | QuestStageList[].QuestGrp[0].Condition | Condition | quest 20210 / Farana Plains / "聖域門デモ前セット" / QuestSet=QuestSetInfoNpc | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00020210/quest/00020210/q00020210_st0120.qst.json[client/03040008/quest/q00020210/quest/00020210/q00020210_st0120.qst.json] | QuestStageList[].QuestGrp[0].EraseCondition | EraseCondition | quest 20210 / Farana Plains / "聖域門デモ前セット" / QuestSet=QuestSetInfoNpc | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0120/view_st0120ev035/event/viewer/view_st0120ev035.evsi.json#L821[client/03040008/event/st0120/view_st0120ev035/event/viewer/view_st0120ev035.evsi.json#L821] | LayoutFlagArray[119].FlagNo | FlagNo | quest 20210 (The Spirit Land) / Farana Plains / Event Viewer \| EVENT_NAME_st0120ev035 \| Open the door | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+|===
+
+==== opaque_fsm -- 1 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| FSM | Direct | 64 | link:../../../../client/03040008/quest/q10310300/quest/10310300/npc/spot3.fsm.json[client/03040008/quest/q10310300/quest/10310300/npc/spot3.fsm.json] | Process.Parameter.FlagNo | FlagNo | quest 10310300 (Infiltrate the Second Defense Area) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+|===
+
+== Flag 4044 -- Quest 20210
+
+origin:: derived_qst_local
+direct hits:: *3*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00020210/quest/00020210/q00020210_st0120.qst.json[client/03040008/quest/q00020210/quest/00020210/q00020210_st0120.qst.json] | QuestStageList[].QuestGrp[1].Condition | Condition | quest 20210 / Farana Plains / "QuestGroup 1 \| デモ後セット" / QuestSet=QuestSetInfoNpc \| GroupNo=1 \|\| QuestSet=QuestSetInfoNpc \| GroupNo=1 \|\| +3 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00020210/quest/00020210/q00020210_st0120.qst.json[client/03040008/quest/q00020210/quest/00020210/q00020210_st0120.qst.json] | QuestStageList[].QuestGrp[1].EraseCondition | EraseCondition | quest 20210 / Farana Plains / "QuestGroup 1 \| デモ後セット" / QuestSet=QuestSetInfoNpc \| GroupNo=1 \|\| QuestSet=QuestSetInfoNpc \| GroupNo=1 \|\| +3 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+==== opaque_fsm -- 1 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| FSM | Direct | 64 | link:../../../../client/03040008/quest/q10310300/quest/10310300/npc/spot3.fsm.json[client/03040008/quest/q10310300/quest/10310300/npc/spot3.fsm.json] | Process.Parameter.FlagNo | FlagNo | quest 10310300 (Infiltrate the Second Defense Area) / MainQstFlagOn | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+|===
+
+== Flag 4046 -- Quest 20210
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00020210/quest/00020210/q00020210_st0880.qst.json[client/03040008/quest/q00020210/quest/00020210/q00020210_st0880.qst.json] | QuestStageList[].QuestGrp[1].Condition | Condition | quest 20210 / Hollow of Beginnings / "QuestGroup 1 \| 戦闘後の演出置き" / QuestSet=QuestSetInfoNpc \| GroupNo=1 \|\| QuestSet=QuestSetInfoNpc \| GroupNo=1 \|\| +2 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00020210/quest/00020210/q00020210_st0880.qst.json[client/03040008/quest/q00020210/quest/00020210/q00020210_st0880.qst.json] | QuestStageList[].QuestGrp[1].EraseCondition | EraseCondition | quest 20210 / Hollow of Beginnings / "QuestGroup 1 \| 戦闘後の演出置き" / QuestSet=QuestSetInfoNpc \| GroupNo=1 \|\| QuestSet=QuestSetInfoNpc \| GroupNo=1 \|\| +2 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 4211 -- Quest 20210
+
+origin:: derived_qst_local
+direct hits:: *6*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 6 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00020210/quest/00020210/q00020210_st0880.qst.json[client/03040008/quest/q00020210/quest/00020210/q00020210_st0880.qst.json] | QuestStageList[].QuestGrp[0].Condition | Condition | quest 20210 / Hollow of Beginnings / "戦闘中封鎖カベ" / QuestSet=QuestSetInfoOm \| OmID=510448 \| UnitID=510448 \| EnableZone | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00020210/quest/00020210/q00020210_st0880.qst.json[client/03040008/quest/q00020210/quest/00020210/q00020210_st0880.qst.json] | QuestStageList[].QuestGrp[0].EraseCondition | EraseCondition | quest 20210 / Hollow of Beginnings / "戦闘中封鎖カベ" / QuestSet=QuestSetInfoOm \| OmID=510448 \| UnitID=510448 \| EnableZone | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00020210/quest/00020210/q00020210_st0880.qst.json[client/03040008/quest/q00020210/quest/00020210/q00020210_st0880.qst.json] | QuestStageList[].QuestGrp[2].Condition | Condition | quest 20210 / Hollow of Beginnings / "QuestGroup 2 \| レッサーデーモン戦共闘" / QuestSet=QuestSetInfoNpc \| GroupNo=2 \|\| QuestSet=QuestSetInfoNpc \| GroupNo=2 \|\| +1 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00020210/quest/00020210/q00020210_st0880.qst.json[client/03040008/quest/q00020210/quest/00020210/q00020210_st0880.qst.json] | QuestStageList[].QuestGrp[2].EraseCondition | EraseCondition | quest 20210 / Hollow of Beginnings / "QuestGroup 2 \| レッサーデーモン戦共闘" / QuestSet=QuestSetInfoNpc \| GroupNo=2 \|\| QuestSet=QuestSetInfoNpc \| GroupNo=2 \|\| +1 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00020210/quest/00020210/q00020210_st0880.qst.json[client/03040008/quest/q00020210/quest/00020210/q00020210_st0880.qst.json] | QuestStageList[].QuestGrp[3].Condition | Condition | quest 20210 / Hollow of Beginnings / "QuestGroup 3 \| 侵食植物" / QuestSet=QuestSetInfoOmBadStatus \| OmID=522236 \| UnitID=522236 \| EnableZone \| GroupNo=3 \|\| QuestSet=QuestSetInfoOmBadStatus \| OmID=522235 \| UnitID=522235 \| EnableZone \| GroupNo=3 \|\| +1 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00020210/quest/00020210/q00020210_st0880.qst.json[client/03040008/quest/q00020210/quest/00020210/q00020210_st0880.qst.json] | QuestStageList[].QuestGrp[3].EraseCondition | EraseCondition | quest 20210 / Hollow of Beginnings / "QuestGroup 3 \| 侵食植物" / QuestSet=QuestSetInfoOmBadStatus \| OmID=522236 \| UnitID=522236 \| EnableZone \| GroupNo=3 \|\| QuestSet=QuestSetInfoOmBadStatus \| OmID=522235 \| UnitID=522235 \| EnableZone \| GroupNo=3 \|\| +1 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 4966 -- Quest 20210
+
+origin:: derived_qst_local
+direct hits:: *4*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 4 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00020210/quest/00020210/q00020210_st0883.qst.json[client/03040008/quest/q00020210/quest/00020210/q00020210_st0883.qst.json] | QuestStageList[].QuestGrp[0].Condition | Condition | quest 20210 / Vegasa Corridor / "侵食植物" / QuestSet=QuestSetInfoOmBadStatus \| OmID=522235 \| UnitID=522235 \| EnableZone \|\| QuestSet=QuestSetInfoOmBadStatus \| OmID=522235 \| UnitID=522235 \| EnableZone \|\| +8 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00020210/quest/00020210/q00020210_st0883.qst.json[client/03040008/quest/q00020210/quest/00020210/q00020210_st0883.qst.json] | QuestStageList[].QuestGrp[0].EraseCondition | EraseCondition | quest 20210 / Vegasa Corridor / "侵食植物" / QuestSet=QuestSetInfoOmBadStatus \| OmID=522235 \| UnitID=522235 \| EnableZone \|\| QuestSet=QuestSetInfoOmBadStatus \| OmID=522235 \| UnitID=522235 \| EnableZone \|\| +8 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0880/view_st0880ev000/event/viewer/view_st0880ev000.evsi.json#L821[client/03040008/event/st0880/view_st0880ev000/event/viewer/view_st0880ev000.evsi.json#L821] | LayoutFlagArray[118].FlagNo | FlagNo | quest 20210 (The Spirit Land) / Hollow of Beginnings / Event Viewer \| EVENT_NAME_st0880ev000 \| Cave of Beginnings | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0880/view_st0880ev005/event/viewer/view_st0880ev005.evsi.json#L821[client/03040008/event/st0880/view_st0880ev005/event/viewer/view_st0880ev005.evsi.json#L821] | LayoutFlagArray[118].FlagNo | FlagNo | quest 20210 (The Spirit Land) / Hollow of Beginnings / Event Viewer \| EVENT_NAME_st0880ev005 \| For treatment | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+|===
 
 == Quest ID 20210
 
@@ -32,47 +455,47 @@ ranked candidates:: *0*
 
 ==== direct -- 38 hit(s)
 
-[cols="1,1,3,3,2,3,3",options="header"]
+[cols="1,1,1,3,3,2,3,3",options="header"]
 |===
-| Family | Confidence | File | JSON Path | Field | Context | Why
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
 
-| SMC | 92 | client/03040008/npc/n0001/ui/00_message/npc/base/n0001.smc.json | SituationData.EndQuestId | EndQuestId | quest 20210 (The Spirit Land) / The White Dragon / GroupSerial=17839 / "GroupSerial=17839, QuestWindow=20200-20210 (The Darkness of the Heart -> The Spirit Land), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window end" / NpcChatter=n0001 \| Quest-gated NPC chatter \| QuestWindow=20200-20210 (The Darkness of the Heart -> The Spirit Land) / MSS: The White Dragon / Men may seem but thralls to Dragon and land... | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0001/ui/00_message/npc/base/n0001.smc.json | SituationData.StartQuestId | StartQuestId | quest 20210 (The Spirit Land) / The White Dragon / GroupSerial=17896 / "GroupSerial=17896, QuestWindow=20210 (The Spirit Land), IsStartQuestIdStart=True, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0001 \| Quest-gated NPC chatter \| QuestWindow=20210 (The Spirit Land) / MSS: The White Dragon / (With their eyes closed, they seem to be deep | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0001/ui/00_message/npc/base/n0001.smc.json | SituationData.EndQuestId | EndQuestId | quest 20210 (The Spirit Land) / The White Dragon / GroupSerial=17896 / "GroupSerial=17896, QuestWindow=20210 (The Spirit Land), IsStartQuestIdStart=True, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0001 \| Quest-gated NPC chatter \| QuestWindow=20210 (The Spirit Land) / MSS: The White Dragon / (With their eyes closed, they seem to be deep | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0001/ui/00_message/npc/base/n0001.smc.json | SituationData.StartQuestId | StartQuestId | quest 20210 (The Spirit Land) / The White Dragon / GroupSerial=17897 / "GroupSerial=17897, QuestWindow=20210-20220 (The Spirit Land -> Within the Tree), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0001 \| Quest-gated NPC chatter \| QuestWindow=20210-20220 (The Spirit Land -> Within the Tree) / MSS: The White Dragon / Look to Phyndim's mighty Dragon... | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json | SituationData.EndQuestId | EndQuestId | quest 20210 (The Spirit Land) / Klaus / GroupSerial=17853 / "GroupSerial=17853, QuestWindow=20200-20210 (The Darkness of the Heart -> The Spirit Land), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window end" / NpcChatter=n0003 \| Quest-gated NPC chatter \| QuestWindow=20200-20210 (The Darkness of the Heart -> The Spirit Land) / MSS: Klaus / Loeg did not have a favorable opinion of the | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json | SituationData.StartQuestId | StartQuestId | quest 20210 (The Spirit Land) / Klaus / GroupSerial=17906 / "GroupSerial=17906, QuestWindow=20210 (The Spirit Land), IsStartQuestIdStart=True, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0003 \| Quest-gated NPC chatter \| QuestWindow=20210 (The Spirit Land) / MSS: Klaus / That Loeg, though... He seemed like a good-hearted | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json | SituationData.EndQuestId | EndQuestId | quest 20210 (The Spirit Land) / Klaus / GroupSerial=17906 / "GroupSerial=17906, QuestWindow=20210 (The Spirit Land), IsStartQuestIdStart=True, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0003 \| Quest-gated NPC chatter \| QuestWindow=20210 (The Spirit Land) / MSS: Klaus / That Loeg, though... He seemed like a good-hearted | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json | SituationData.StartQuestId | StartQuestId | quest 20210 (The Spirit Land) / Klaus / GroupSerial=17907 / "GroupSerial=17907, QuestWindow=20210-20220 (The Spirit Land -> Within the Tree), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0003 \| Quest-gated NPC chatter \| QuestWindow=20210-20220 (The Spirit Land -> Within the Tree) / MSS: Klaus / There was a detour, but now it's time. I'll be | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json | SituationData.EndQuestId | EndQuestId | quest 20210 (The Spirit Land) / Joseph / GroupSerial=17846 / "GroupSerial=17846, QuestWindow=20200-20210 (The Darkness of the Heart -> The Spirit Land), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window end" / NpcChatter=n0004 \| Quest-gated NPC chatter \| QuestWindow=20200-20210 (The Darkness of the Heart -> The Spirit Land) / MSS: Joseph / Make sure to treat Cecily well, aye? | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json | SituationData.StartQuestId | StartQuestId | quest 20210 (The Spirit Land) / Joseph / GroupSerial=17901 / "GroupSerial=17901, QuestWindow=20210 (The Spirit Land), IsStartQuestIdStart=True, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0004 \| Quest-gated NPC chatter \| QuestWindow=20210 (The Spirit Land) / MSS: Joseph / Isn't Cecily in danger of being crushed | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json | SituationData.EndQuestId | EndQuestId | quest 20210 (The Spirit Land) / Joseph / GroupSerial=17901 / "GroupSerial=17901, QuestWindow=20210 (The Spirit Land), IsStartQuestIdStart=True, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0004 \| Quest-gated NPC chatter \| QuestWindow=20210 (The Spirit Land) / MSS: Joseph / Isn't Cecily in danger of being crushed | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json | SituationData.StartQuestId | StartQuestId | quest 20210 (The Spirit Land) / Joseph / GroupSerial=17902 / "GroupSerial=17902, QuestWindow=20210-20220 (The Spirit Land -> Within the Tree), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0004 \| Quest-gated NPC chatter \| QuestWindow=20210-20220 (The Spirit Land -> Within the Tree) / MSS: Joseph / The White Dragon is trying to speak to Wilmia, the Spirit Dragon of Phyndim, | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0013/ui/00_message/npc/base/n0013.smc.json | SituationData.EndQuestId | EndQuestId | quest 20210 (The Spirit Land) / Lise / GroupSerial=17881 / "GroupSerial=17881, QuestWindow=20200-20210 (The Darkness of the Heart -> The Spirit Land), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window end" / NpcChatter=n0013 \| Quest-gated NPC chatter \| QuestWindow=20200-20210 (The Darkness of the Heart -> The Spirit Land) / MSS: Lise / Loeg's actions are unforgivable, but— | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0013/ui/00_message/npc/base/n0013.smc.json | SituationData.StartQuestId | StartQuestId | quest 20210 (The Spirit Land) / Lise / GroupSerial=17928 / "GroupSerial=17928, QuestWindow=20210 (The Spirit Land), IsStartQuestIdStart=True, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0013 \| Quest-gated NPC chatter \| QuestWindow=20210 (The Spirit Land) / MSS: Lise / I feel like— Cecily has become a very distant | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0013/ui/00_message/npc/base/n0013.smc.json | SituationData.EndQuestId | EndQuestId | quest 20210 (The Spirit Land) / Lise / GroupSerial=17928 / "GroupSerial=17928, QuestWindow=20210 (The Spirit Land), IsStartQuestIdStart=True, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0013 \| Quest-gated NPC chatter \| QuestWindow=20210 (The Spirit Land) / MSS: Lise / I feel like— Cecily has become a very distant | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0013/ui/00_message/npc/base/n0013.smc.json | SituationData.StartQuestId | StartQuestId | quest 20210 (The Spirit Land) / Lise / GroupSerial=17929 / "GroupSerial=17929, QuestWindow=20210-20220 (The Spirit Land -> Within the Tree), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0013 \| Quest-gated NPC chatter \| QuestWindow=20210-20220 (The Spirit Land -> Within the Tree) / MSS: Lise / Because it's battle after battle— | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0020/ui/00_message/npc/base/n0020.smc.json | SituationData.EndQuestId | EndQuestId | quest 20210 (The Spirit Land) / Cecily / GroupSerial=17862 / "GroupSerial=17862, QuestWindow=20200-20210 (The Darkness of the Heart -> The Spirit Land), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window end" / NpcChatter=n0020 \| Quest-gated NPC chatter \| QuestWindow=20200-20210 (The Darkness of the Heart -> The Spirit Land) / MSS: Cecily / Left: just a little more, Captain. The "Primeval | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0020/ui/00_message/npc/base/n0020.smc.json | SituationData.StartQuestId | StartQuestId | quest 20210 (The Spirit Land) / Cecily / GroupSerial=17919 / "GroupSerial=17919, QuestWindow=20210 (The Spirit Land), IsStartQuestIdStart=True, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0020 \| Quest-gated NPC chatter \| QuestWindow=20210 (The Spirit Land) / MSS: Cecily / I will protect the [Primeval Drops] with my life. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0020/ui/00_message/npc/base/n0020.smc.json | SituationData.EndQuestId | EndQuestId | quest 20210 (The Spirit Land) / Cecily / GroupSerial=17919 / "GroupSerial=17919, QuestWindow=20210 (The Spirit Land), IsStartQuestIdStart=True, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0020 \| Quest-gated NPC chatter \| QuestWindow=20210 (The Spirit Land) / MSS: Cecily / I will protect the [Primeval Drops] with my life. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0020/ui/00_message/npc/base/n0020.smc.json | SituationData.StartQuestId | StartQuestId | quest 20210 (The Spirit Land) / Cecily / GroupSerial=17920 / "GroupSerial=17920, QuestWindow=20210-20220 (The Spirit Land -> Within the Tree), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0020 \| Quest-gated NPC chatter \| QuestWindow=20210-20220 (The Spirit Land -> Within the Tree) / MSS: Cecily / If we completely eliminate these corrupting | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0021/ui/00_message/npc/base/n0021.smc.json | SituationData.EndQuestId | EndQuestId | quest 20210 (The Spirit Land) / Elliot / GroupSerial=17887 / "GroupSerial=17887, QuestWindow=20200-20210 (The Darkness of the Heart -> The Spirit Land), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window end" / NpcChatter=n0021 \| Quest-gated NPC chatter \| QuestWindow=20200-20210 (The Darkness of the Heart -> The Spirit Land) / MSS: Elliot / Ahahahaha! | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0021/ui/00_message/npc/base/n0021.smc.json | SituationData.StartQuestId | StartQuestId | quest 20210 (The Spirit Land) / Elliot / GroupSerial=17933 / "GroupSerial=17933, QuestWindow=20210 (The Spirit Land), IsStartQuestIdStart=True, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0021 \| Quest-gated NPC chatter \| QuestWindow=20210 (The Spirit Land) / MSS: Elliot / We're heading to the heart of Phindym, | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0021/ui/00_message/npc/base/n0021.smc.json | SituationData.EndQuestId | EndQuestId | quest 20210 (The Spirit Land) / Elliot / GroupSerial=17933 / "GroupSerial=17933, QuestWindow=20210 (The Spirit Land), IsStartQuestIdStart=True, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0021 \| Quest-gated NPC chatter \| QuestWindow=20210 (The Spirit Land) / MSS: Elliot / We're heading to the heart of Phindym, | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0021/ui/00_message/npc/base/n0021.smc.json | SituationData.StartQuestId | StartQuestId | quest 20210 (The Spirit Land) / Elliot / GroupSerial=17934 / "GroupSerial=17934, QuestWindow=20210-20220 (The Spirit Land -> Within the Tree), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0021 \| Quest-gated NPC chatter \| QuestWindow=20210-20220 (The Spirit Land -> Within the Tree) / MSS: Elliot / Well, there are still enemies here! | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0023/ui/00_message/npc/base/n0023.smc.json | SituationData.EndQuestId | EndQuestId | quest 20210 (The Spirit Land) / Gearóid / GroupSerial=17894 / "GroupSerial=17894, QuestWindow=20200-20210 (The Darkness of the Heart -> The Spirit Land), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window end" / NpcChatter=n0023 \| Quest-gated NPC chatter \| QuestWindow=20200-20210 (The Darkness of the Heart -> The Spirit Land) / MSS: Gearóid / Arisen of Lestania.  | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0023/ui/00_message/npc/base/n0023.smc.json | SituationData.StartQuestId | StartQuestId | quest 20210 (The Spirit Land) / Gearóid / GroupSerial=17911 / "GroupSerial=17911, QuestWindow=20210 (The Spirit Land), IsStartQuestIdStart=True, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0023 \| Quest-gated NPC chatter \| QuestWindow=20210 (The Spirit Land) / MSS: Gearóid / Rely on the "Primeval Drops" and Cecily. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0023/ui/00_message/npc/base/n0023.smc.json | SituationData.EndQuestId | EndQuestId | quest 20210 (The Spirit Land) / Gearóid / GroupSerial=17911 / "GroupSerial=17911, QuestWindow=20210 (The Spirit Land), IsStartQuestIdStart=True, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0023 \| Quest-gated NPC chatter \| QuestWindow=20210 (The Spirit Land) / MSS: Gearóid / Rely on the "Primeval Drops" and Cecily. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0023/ui/00_message/npc/base/n0023.smc.json | SituationData.StartQuestId | StartQuestId | quest 20210 (The Spirit Land) / Gearóid / GroupSerial=17912 / "GroupSerial=17912, QuestWindow=20210-20220 (The Spirit Land -> Within the Tree), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0023 \| Quest-gated NPC chatter \| QuestWindow=20210-20220 (The Spirit Land -> Within the Tree) / MSS: Gearóid / In terms of intruders into the forest, both us | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0501/ui/00_message/npc/base/n0501.smc.json | SituationData.EndQuestId | EndQuestId | quest 20210 (The Spirit Land) / Gurdolin / GroupSerial=17875 / "GroupSerial=17875, QuestWindow=20200-20210 (The Darkness of the Heart -> The Spirit Land), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window end" / NpcChatter=n0501 \| Quest-gated NPC chatter \| QuestWindow=20200-20210 (The Darkness of the Heart -> The Spirit Land) / MSS: Gurdolin / I'm a Lestanian man after all. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0501/ui/00_message/npc/base/n0501.smc.json | SituationData.StartQuestId | StartQuestId | quest 20210 (The Spirit Land) / Gurdolin / GroupSerial=17923 / "GroupSerial=17923, QuestWindow=20210 (The Spirit Land), IsStartQuestIdStart=True, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0501 \| Quest-gated NPC chatter \| QuestWindow=20210 (The Spirit Land) / MSS: Gurdolin / Arisen, whether sleeping or awake, it's all about | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0501/ui/00_message/npc/base/n0501.smc.json | SituationData.EndQuestId | EndQuestId | quest 20210 (The Spirit Land) / Gurdolin / GroupSerial=17923 / "GroupSerial=17923, QuestWindow=20210 (The Spirit Land), IsStartQuestIdStart=True, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0501 \| Quest-gated NPC chatter \| QuestWindow=20210 (The Spirit Land) / MSS: Gurdolin / Arisen, whether sleeping or awake, it's all about | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0501/ui/00_message/npc/base/n0501.smc.json | SituationData.StartQuestId | StartQuestId | quest 20210 (The Spirit Land) / Gurdolin / GroupSerial=17924 / "GroupSerial=17924, QuestWindow=20210-20220 (The Spirit Land -> Within the Tree), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0501 \| Quest-gated NPC chatter \| QuestWindow=20210-20220 (The Spirit Land -> Within the Tree) / MSS: Gurdolin / Nevertheless, enemies never seem to run out, you | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n2500/ui/00_message/npc/base/n2500.smc.json | SituationData.EndQuestId | EndQuestId | quest 20210 (The Spirit Land) / Pisarr / GroupSerial=17856 / "GroupSerial=17856, QuestWindow=20200-20210 (The Darkness of the Heart -> The Spirit Land), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window end" / NpcChatter=n2500 \| Quest-gated NPC chatter \| QuestWindow=20200-20210 (The Darkness of the Heart -> The Spirit Land) / MSS: Pisarr / Do not think of us as the same as when we first met. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n2600/ui/00_message/npc/base/n2600.smc.json | SituationData.EndQuestId | EndQuestId | quest 20210 (The Spirit Land) / Arthfael / GroupSerial=17893 / "GroupSerial=17893, QuestWindow=20200-20210 (The Darkness of the Heart -> The Spirit Land), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window end" / NpcChatter=n2600 \| Quest-gated NPC chatter \| QuestWindow=20200-20210 (The Darkness of the Heart -> The Spirit Land) / MSS: Arthfael / Loeg's Madness - The Dark Machinations of the | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n2610/ui/00_message/npc/base/n2610.smc.json | SituationData.EndQuestId | EndQuestId | quest 20210 (The Spirit Land) / Mordred / GroupSerial=17890 / "GroupSerial=17890, QuestWindow=20200-20210 (The Darkness of the Heart -> The Spirit Land), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window end" / NpcChatter=n2610 \| Quest-gated NPC chatter \| QuestWindow=20200-20210 (The Darkness of the Heart -> The Spirit Land) / MSS: Mordred / I have tarnished the land of Phindym, and yet, I | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n2610/ui/00_message/npc/base/n2610.smc.json | SituationData.StartQuestId | StartQuestId | quest 20210 (The Spirit Land) / Mordred / GroupSerial=17918 / "GroupSerial=17918, QuestWindow=20210 (The Spirit Land), IsStartQuestIdStart=True, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n2610 \| Quest-gated NPC chatter \| QuestWindow=20210 (The Spirit Land) / MSS: Mordred / To have been able to establish a connection with | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n2610/ui/00_message/npc/base/n2610.smc.json | SituationData.EndQuestId | EndQuestId | quest 20210 (The Spirit Land) / Mordred / GroupSerial=17918 / "GroupSerial=17918, QuestWindow=20210 (The Spirit Land), IsStartQuestIdStart=True, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n2610 \| Quest-gated NPC chatter \| QuestWindow=20210 (The Spirit Land) / MSS: Mordred / To have been able to establish a connection with | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n4510/ui/00_message/npc/base/n4510.smc.json | SituationData.EndQuestId | EndQuestId | quest 20210 (The Spirit Land) / Adair Donnchadh / GroupSerial=17895 / "GroupSerial=17895, QuestWindow=20200-20210 (The Darkness of the Heart -> The Spirit Land), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window end" / NpcChatter=n4510 \| Quest-gated NPC chatter \| QuestWindow=20200-20210 (The Darkness of the Heart -> The Spirit Land) / MSS: Adair Donnchadh / Those who speak the truth, | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0001/ui/00_message/npc/base/n0001.smc.json[client/03040008/npc/n0001/ui/00_message/npc/base/n0001.smc.json] | SituationData.EndQuestId | EndQuestId | quest 20210 (The Spirit Land) / The White Dragon / GroupSerial=17839 / "GroupSerial=17839, QuestWindow=20200-20210 (The Darkness of the Heart -> The Spirit Land), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window end" / NpcChatter=n0001 \| Quest-gated NPC chatter \| QuestWindow=20200-20210 (The Darkness of the Heart -> The Spirit Land) / MSS: The White Dragon / Men may seem but thralls to Dragon and land... | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0001/ui/00_message/npc/base/n0001.smc.json[client/03040008/npc/n0001/ui/00_message/npc/base/n0001.smc.json] | SituationData.StartQuestId | StartQuestId | quest 20210 (The Spirit Land) / The White Dragon / GroupSerial=17896 / "GroupSerial=17896, QuestWindow=20210 (The Spirit Land), IsStartQuestIdStart=True, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0001 \| Quest-gated NPC chatter \| QuestWindow=20210 (The Spirit Land) / MSS: The White Dragon / (With their eyes closed, they seem to be deep | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0001/ui/00_message/npc/base/n0001.smc.json[client/03040008/npc/n0001/ui/00_message/npc/base/n0001.smc.json] | SituationData.EndQuestId | EndQuestId | quest 20210 (The Spirit Land) / The White Dragon / GroupSerial=17896 / "GroupSerial=17896, QuestWindow=20210 (The Spirit Land), IsStartQuestIdStart=True, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0001 \| Quest-gated NPC chatter \| QuestWindow=20210 (The Spirit Land) / MSS: The White Dragon / (With their eyes closed, they seem to be deep | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0001/ui/00_message/npc/base/n0001.smc.json[client/03040008/npc/n0001/ui/00_message/npc/base/n0001.smc.json] | SituationData.StartQuestId | StartQuestId | quest 20210 (The Spirit Land) / The White Dragon / GroupSerial=17897 / "GroupSerial=17897, QuestWindow=20210-20220 (The Spirit Land -> Within the Tree), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0001 \| Quest-gated NPC chatter \| QuestWindow=20210-20220 (The Spirit Land -> Within the Tree) / MSS: The White Dragon / Look to Phyndim's mighty Dragon... | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json[client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json] | SituationData.EndQuestId | EndQuestId | quest 20210 (The Spirit Land) / Klaus / GroupSerial=17853 / "GroupSerial=17853, QuestWindow=20200-20210 (The Darkness of the Heart -> The Spirit Land), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window end" / NpcChatter=n0003 \| Quest-gated NPC chatter \| QuestWindow=20200-20210 (The Darkness of the Heart -> The Spirit Land) / MSS: Klaus / Loeg did not have a favorable opinion of the | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json[client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json] | SituationData.StartQuestId | StartQuestId | quest 20210 (The Spirit Land) / Klaus / GroupSerial=17906 / "GroupSerial=17906, QuestWindow=20210 (The Spirit Land), IsStartQuestIdStart=True, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0003 \| Quest-gated NPC chatter \| QuestWindow=20210 (The Spirit Land) / MSS: Klaus / That Loeg, though... He seemed like a good-hearted | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json[client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json] | SituationData.EndQuestId | EndQuestId | quest 20210 (The Spirit Land) / Klaus / GroupSerial=17906 / "GroupSerial=17906, QuestWindow=20210 (The Spirit Land), IsStartQuestIdStart=True, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0003 \| Quest-gated NPC chatter \| QuestWindow=20210 (The Spirit Land) / MSS: Klaus / That Loeg, though... He seemed like a good-hearted | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json[client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json] | SituationData.StartQuestId | StartQuestId | quest 20210 (The Spirit Land) / Klaus / GroupSerial=17907 / "GroupSerial=17907, QuestWindow=20210-20220 (The Spirit Land -> Within the Tree), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0003 \| Quest-gated NPC chatter \| QuestWindow=20210-20220 (The Spirit Land -> Within the Tree) / MSS: Klaus / There was a detour, but now it's time. I'll be | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json[client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json] | SituationData.EndQuestId | EndQuestId | quest 20210 (The Spirit Land) / Joseph / GroupSerial=17846 / "GroupSerial=17846, QuestWindow=20200-20210 (The Darkness of the Heart -> The Spirit Land), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window end" / NpcChatter=n0004 \| Quest-gated NPC chatter \| QuestWindow=20200-20210 (The Darkness of the Heart -> The Spirit Land) / MSS: Joseph / Make sure to treat Cecily well, aye? | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json[client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json] | SituationData.StartQuestId | StartQuestId | quest 20210 (The Spirit Land) / Joseph / GroupSerial=17901 / "GroupSerial=17901, QuestWindow=20210 (The Spirit Land), IsStartQuestIdStart=True, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0004 \| Quest-gated NPC chatter \| QuestWindow=20210 (The Spirit Land) / MSS: Joseph / Isn't Cecily in danger of being crushed | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json[client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json] | SituationData.EndQuestId | EndQuestId | quest 20210 (The Spirit Land) / Joseph / GroupSerial=17901 / "GroupSerial=17901, QuestWindow=20210 (The Spirit Land), IsStartQuestIdStart=True, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0004 \| Quest-gated NPC chatter \| QuestWindow=20210 (The Spirit Land) / MSS: Joseph / Isn't Cecily in danger of being crushed | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json[client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json] | SituationData.StartQuestId | StartQuestId | quest 20210 (The Spirit Land) / Joseph / GroupSerial=17902 / "GroupSerial=17902, QuestWindow=20210-20220 (The Spirit Land -> Within the Tree), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0004 \| Quest-gated NPC chatter \| QuestWindow=20210-20220 (The Spirit Land -> Within the Tree) / MSS: Joseph / The White Dragon is trying to speak to Wilmia, the Spirit Dragon of Phyndim, | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0013/ui/00_message/npc/base/n0013.smc.json[client/03040008/npc/n0013/ui/00_message/npc/base/n0013.smc.json] | SituationData.EndQuestId | EndQuestId | quest 20210 (The Spirit Land) / Lise / GroupSerial=17881 / "GroupSerial=17881, QuestWindow=20200-20210 (The Darkness of the Heart -> The Spirit Land), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window end" / NpcChatter=n0013 \| Quest-gated NPC chatter \| QuestWindow=20200-20210 (The Darkness of the Heart -> The Spirit Land) / MSS: Lise / Loeg's actions are unforgivable, but— | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0013/ui/00_message/npc/base/n0013.smc.json[client/03040008/npc/n0013/ui/00_message/npc/base/n0013.smc.json] | SituationData.StartQuestId | StartQuestId | quest 20210 (The Spirit Land) / Lise / GroupSerial=17928 / "GroupSerial=17928, QuestWindow=20210 (The Spirit Land), IsStartQuestIdStart=True, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0013 \| Quest-gated NPC chatter \| QuestWindow=20210 (The Spirit Land) / MSS: Lise / I feel like— Cecily has become a very distant | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0013/ui/00_message/npc/base/n0013.smc.json[client/03040008/npc/n0013/ui/00_message/npc/base/n0013.smc.json] | SituationData.EndQuestId | EndQuestId | quest 20210 (The Spirit Land) / Lise / GroupSerial=17928 / "GroupSerial=17928, QuestWindow=20210 (The Spirit Land), IsStartQuestIdStart=True, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0013 \| Quest-gated NPC chatter \| QuestWindow=20210 (The Spirit Land) / MSS: Lise / I feel like— Cecily has become a very distant | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0013/ui/00_message/npc/base/n0013.smc.json[client/03040008/npc/n0013/ui/00_message/npc/base/n0013.smc.json] | SituationData.StartQuestId | StartQuestId | quest 20210 (The Spirit Land) / Lise / GroupSerial=17929 / "GroupSerial=17929, QuestWindow=20210-20220 (The Spirit Land -> Within the Tree), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0013 \| Quest-gated NPC chatter \| QuestWindow=20210-20220 (The Spirit Land -> Within the Tree) / MSS: Lise / Because it's battle after battle— | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0020/ui/00_message/npc/base/n0020.smc.json[client/03040008/npc/n0020/ui/00_message/npc/base/n0020.smc.json] | SituationData.EndQuestId | EndQuestId | quest 20210 (The Spirit Land) / Cecily / GroupSerial=17862 / "GroupSerial=17862, QuestWindow=20200-20210 (The Darkness of the Heart -> The Spirit Land), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window end" / NpcChatter=n0020 \| Quest-gated NPC chatter \| QuestWindow=20200-20210 (The Darkness of the Heart -> The Spirit Land) / MSS: Cecily / Left: just a little more, Captain. The "Primeval | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0020/ui/00_message/npc/base/n0020.smc.json[client/03040008/npc/n0020/ui/00_message/npc/base/n0020.smc.json] | SituationData.StartQuestId | StartQuestId | quest 20210 (The Spirit Land) / Cecily / GroupSerial=17919 / "GroupSerial=17919, QuestWindow=20210 (The Spirit Land), IsStartQuestIdStart=True, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0020 \| Quest-gated NPC chatter \| QuestWindow=20210 (The Spirit Land) / MSS: Cecily / I will protect the [Primeval Drops] with my life. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0020/ui/00_message/npc/base/n0020.smc.json[client/03040008/npc/n0020/ui/00_message/npc/base/n0020.smc.json] | SituationData.EndQuestId | EndQuestId | quest 20210 (The Spirit Land) / Cecily / GroupSerial=17919 / "GroupSerial=17919, QuestWindow=20210 (The Spirit Land), IsStartQuestIdStart=True, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0020 \| Quest-gated NPC chatter \| QuestWindow=20210 (The Spirit Land) / MSS: Cecily / I will protect the [Primeval Drops] with my life. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0020/ui/00_message/npc/base/n0020.smc.json[client/03040008/npc/n0020/ui/00_message/npc/base/n0020.smc.json] | SituationData.StartQuestId | StartQuestId | quest 20210 (The Spirit Land) / Cecily / GroupSerial=17920 / "GroupSerial=17920, QuestWindow=20210-20220 (The Spirit Land -> Within the Tree), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0020 \| Quest-gated NPC chatter \| QuestWindow=20210-20220 (The Spirit Land -> Within the Tree) / MSS: Cecily / If we completely eliminate these corrupting | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0021/ui/00_message/npc/base/n0021.smc.json[client/03040008/npc/n0021/ui/00_message/npc/base/n0021.smc.json] | SituationData.EndQuestId | EndQuestId | quest 20210 (The Spirit Land) / Elliot / GroupSerial=17887 / "GroupSerial=17887, QuestWindow=20200-20210 (The Darkness of the Heart -> The Spirit Land), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window end" / NpcChatter=n0021 \| Quest-gated NPC chatter \| QuestWindow=20200-20210 (The Darkness of the Heart -> The Spirit Land) / MSS: Elliot / Ahahahaha! | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0021/ui/00_message/npc/base/n0021.smc.json[client/03040008/npc/n0021/ui/00_message/npc/base/n0021.smc.json] | SituationData.StartQuestId | StartQuestId | quest 20210 (The Spirit Land) / Elliot / GroupSerial=17933 / "GroupSerial=17933, QuestWindow=20210 (The Spirit Land), IsStartQuestIdStart=True, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0021 \| Quest-gated NPC chatter \| QuestWindow=20210 (The Spirit Land) / MSS: Elliot / We're heading to the heart of Phindym, | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0021/ui/00_message/npc/base/n0021.smc.json[client/03040008/npc/n0021/ui/00_message/npc/base/n0021.smc.json] | SituationData.EndQuestId | EndQuestId | quest 20210 (The Spirit Land) / Elliot / GroupSerial=17933 / "GroupSerial=17933, QuestWindow=20210 (The Spirit Land), IsStartQuestIdStart=True, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0021 \| Quest-gated NPC chatter \| QuestWindow=20210 (The Spirit Land) / MSS: Elliot / We're heading to the heart of Phindym, | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0021/ui/00_message/npc/base/n0021.smc.json[client/03040008/npc/n0021/ui/00_message/npc/base/n0021.smc.json] | SituationData.StartQuestId | StartQuestId | quest 20210 (The Spirit Land) / Elliot / GroupSerial=17934 / "GroupSerial=17934, QuestWindow=20210-20220 (The Spirit Land -> Within the Tree), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0021 \| Quest-gated NPC chatter \| QuestWindow=20210-20220 (The Spirit Land -> Within the Tree) / MSS: Elliot / Well, there are still enemies here! | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0023/ui/00_message/npc/base/n0023.smc.json[client/03040008/npc/n0023/ui/00_message/npc/base/n0023.smc.json] | SituationData.EndQuestId | EndQuestId | quest 20210 (The Spirit Land) / Gearóid / GroupSerial=17894 / "GroupSerial=17894, QuestWindow=20200-20210 (The Darkness of the Heart -> The Spirit Land), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window end" / NpcChatter=n0023 \| Quest-gated NPC chatter \| QuestWindow=20200-20210 (The Darkness of the Heart -> The Spirit Land) / MSS: Gearóid / Arisen of Lestania.  | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0023/ui/00_message/npc/base/n0023.smc.json[client/03040008/npc/n0023/ui/00_message/npc/base/n0023.smc.json] | SituationData.StartQuestId | StartQuestId | quest 20210 (The Spirit Land) / Gearóid / GroupSerial=17911 / "GroupSerial=17911, QuestWindow=20210 (The Spirit Land), IsStartQuestIdStart=True, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0023 \| Quest-gated NPC chatter \| QuestWindow=20210 (The Spirit Land) / MSS: Gearóid / Rely on the "Primeval Drops" and Cecily. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0023/ui/00_message/npc/base/n0023.smc.json[client/03040008/npc/n0023/ui/00_message/npc/base/n0023.smc.json] | SituationData.EndQuestId | EndQuestId | quest 20210 (The Spirit Land) / Gearóid / GroupSerial=17911 / "GroupSerial=17911, QuestWindow=20210 (The Spirit Land), IsStartQuestIdStart=True, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0023 \| Quest-gated NPC chatter \| QuestWindow=20210 (The Spirit Land) / MSS: Gearóid / Rely on the "Primeval Drops" and Cecily. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0023/ui/00_message/npc/base/n0023.smc.json[client/03040008/npc/n0023/ui/00_message/npc/base/n0023.smc.json] | SituationData.StartQuestId | StartQuestId | quest 20210 (The Spirit Land) / Gearóid / GroupSerial=17912 / "GroupSerial=17912, QuestWindow=20210-20220 (The Spirit Land -> Within the Tree), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0023 \| Quest-gated NPC chatter \| QuestWindow=20210-20220 (The Spirit Land -> Within the Tree) / MSS: Gearóid / In terms of intruders into the forest, both us | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0501/ui/00_message/npc/base/n0501.smc.json[client/03040008/npc/n0501/ui/00_message/npc/base/n0501.smc.json] | SituationData.EndQuestId | EndQuestId | quest 20210 (The Spirit Land) / Gurdolin / GroupSerial=17875 / "GroupSerial=17875, QuestWindow=20200-20210 (The Darkness of the Heart -> The Spirit Land), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window end" / NpcChatter=n0501 \| Quest-gated NPC chatter \| QuestWindow=20200-20210 (The Darkness of the Heart -> The Spirit Land) / MSS: Gurdolin / I'm a Lestanian man after all. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0501/ui/00_message/npc/base/n0501.smc.json[client/03040008/npc/n0501/ui/00_message/npc/base/n0501.smc.json] | SituationData.StartQuestId | StartQuestId | quest 20210 (The Spirit Land) / Gurdolin / GroupSerial=17923 / "GroupSerial=17923, QuestWindow=20210 (The Spirit Land), IsStartQuestIdStart=True, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0501 \| Quest-gated NPC chatter \| QuestWindow=20210 (The Spirit Land) / MSS: Gurdolin / Arisen, whether sleeping or awake, it's all about | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0501/ui/00_message/npc/base/n0501.smc.json[client/03040008/npc/n0501/ui/00_message/npc/base/n0501.smc.json] | SituationData.EndQuestId | EndQuestId | quest 20210 (The Spirit Land) / Gurdolin / GroupSerial=17923 / "GroupSerial=17923, QuestWindow=20210 (The Spirit Land), IsStartQuestIdStart=True, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0501 \| Quest-gated NPC chatter \| QuestWindow=20210 (The Spirit Land) / MSS: Gurdolin / Arisen, whether sleeping or awake, it's all about | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0501/ui/00_message/npc/base/n0501.smc.json[client/03040008/npc/n0501/ui/00_message/npc/base/n0501.smc.json] | SituationData.StartQuestId | StartQuestId | quest 20210 (The Spirit Land) / Gurdolin / GroupSerial=17924 / "GroupSerial=17924, QuestWindow=20210-20220 (The Spirit Land -> Within the Tree), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0501 \| Quest-gated NPC chatter \| QuestWindow=20210-20220 (The Spirit Land -> Within the Tree) / MSS: Gurdolin / Nevertheless, enemies never seem to run out, you | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n2500/ui/00_message/npc/base/n2500.smc.json[client/03040008/npc/n2500/ui/00_message/npc/base/n2500.smc.json] | SituationData.EndQuestId | EndQuestId | quest 20210 (The Spirit Land) / Pisarr / GroupSerial=17856 / "GroupSerial=17856, QuestWindow=20200-20210 (The Darkness of the Heart -> The Spirit Land), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window end" / NpcChatter=n2500 \| Quest-gated NPC chatter \| QuestWindow=20200-20210 (The Darkness of the Heart -> The Spirit Land) / MSS: Pisarr / Do not think of us as the same as when we first met. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n2600/ui/00_message/npc/base/n2600.smc.json[client/03040008/npc/n2600/ui/00_message/npc/base/n2600.smc.json] | SituationData.EndQuestId | EndQuestId | quest 20210 (The Spirit Land) / Arthfael / GroupSerial=17893 / "GroupSerial=17893, QuestWindow=20200-20210 (The Darkness of the Heart -> The Spirit Land), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window end" / NpcChatter=n2600 \| Quest-gated NPC chatter \| QuestWindow=20200-20210 (The Darkness of the Heart -> The Spirit Land) / MSS: Arthfael / Loeg's Madness - The Dark Machinations of the | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n2610/ui/00_message/npc/base/n2610.smc.json[client/03040008/npc/n2610/ui/00_message/npc/base/n2610.smc.json] | SituationData.EndQuestId | EndQuestId | quest 20210 (The Spirit Land) / Mordred / GroupSerial=17890 / "GroupSerial=17890, QuestWindow=20200-20210 (The Darkness of the Heart -> The Spirit Land), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window end" / NpcChatter=n2610 \| Quest-gated NPC chatter \| QuestWindow=20200-20210 (The Darkness of the Heart -> The Spirit Land) / MSS: Mordred / I have tarnished the land of Phindym, and yet, I | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n2610/ui/00_message/npc/base/n2610.smc.json[client/03040008/npc/n2610/ui/00_message/npc/base/n2610.smc.json] | SituationData.StartQuestId | StartQuestId | quest 20210 (The Spirit Land) / Mordred / GroupSerial=17918 / "GroupSerial=17918, QuestWindow=20210 (The Spirit Land), IsStartQuestIdStart=True, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n2610 \| Quest-gated NPC chatter \| QuestWindow=20210 (The Spirit Land) / MSS: Mordred / To have been able to establish a connection with | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n2610/ui/00_message/npc/base/n2610.smc.json[client/03040008/npc/n2610/ui/00_message/npc/base/n2610.smc.json] | SituationData.EndQuestId | EndQuestId | quest 20210 (The Spirit Land) / Mordred / GroupSerial=17918 / "GroupSerial=17918, QuestWindow=20210 (The Spirit Land), IsStartQuestIdStart=True, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n2610 \| Quest-gated NPC chatter \| QuestWindow=20210 (The Spirit Land) / MSS: Mordred / To have been able to establish a connection with | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n4510/ui/00_message/npc/base/n4510.smc.json[client/03040008/npc/n4510/ui/00_message/npc/base/n4510.smc.json] | SituationData.EndQuestId | EndQuestId | quest 20210 (The Spirit Land) / Adair Donnchadh / GroupSerial=17895 / "GroupSerial=17895, QuestWindow=20200-20210 (The Darkness of the Heart -> The Spirit Land), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window end" / NpcChatter=n4510 \| Quest-gated NPC chatter \| QuestWindow=20200-20210 (The Darkness of the Heart -> The Spirit Land) / MSS: Adair Donnchadh / Those who speak the truth, | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
 |===
 

@@ -5,16 +5,43 @@
 
 Query mode:: quest
 Query value:: 60300300
-Generated at:: 2026-04-11T21:41:41.977431+00:00
+Generated at:: 2026-04-12T12:44:18.537534+00:00
 
 toc::[]
+
+Quest family:: q6 -- Tutorial / Unlock / Area Trial
+Quest family notes:: Tutorial, area-trial, unlock, and occasional festival quests.
+Quest family focus:: jtq_tqg_jmc_scaffolding
+
+== External Owner Indexes
+
+_These are reusable external owner catalogs inferred from stage-neighborhood cues. They are broader than the subset of flags promoted into derived dependency targets._
+
+[cols="2,1,1,2,2,2,4",options="header"]
+|===
+| Owner Quest | Family | Catalog Count | Catalog Flags | Linked Cues | Cue Sources | Why
+
+| 70020001 | q7 | 8 | 2736, 3000, 3002, 3003, 3074, 3442, 3805, 4037 | 3002, 3003 | gpl | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+|===
+
+== Family Relationship Context
+
+_These sections summarize deterministic client-side family metadata and reverse-index relationships. They are context for later owner/dependency inference, not direct quest-target promotion._
+
+=== Quest Sequence
+
+* seq no: 435
+* previous: 60300203 -- Crown and Scepter IV
+* next: 60300301 -- Where Is Gurdolin!?
 
 == ARC Association Context
 
 _ARC associations are contextual only. They show which quest-stage and marker resources are bundled with this quest._
 
-* arc file: client/03040008/quest/q60300300.arc.json
+* arc file: link:../../../../client/03040008/quest/q60300300.arc.json#L1[client/03040008/quest/q60300300.arc.json#L1]
 * resource count: 3
+* stage codes: st0412
+* resource families: .gmd, .qst, .qtd
 
 === st0412 -- Pawn Cathedral
 
@@ -25,18 +52,177 @@ _ARC associations are contextual only. They show which quest-stage and marker re
 * rGUIMessage: ui/00_message/quest_info/q60300300_00
 * rQuestTextData: ui/00_param/quest_text/q60300300_00
 
+== Stage Neighborhood Context
+
+_Stage-neighborhood context summarizes scanner-relevant client files that share the quest's archive stage codes. This is deterministic client topology, not inferred ownership._
+
+* scanner-relevant stage files: 31
+* indexed stage codes: st0412
+
+=== st0412 -- Pawn Cathedral
+
+* scanner files: 31
+* .gpl.json: 3
+* .lot.json: 11
+* .qmi.json: 10
+* .qst.json: 7
+
+== Stage Neighborhood External-State Cues
+
+_These cues are deterministic client-side observations from the quest's stage neighborhood. They are not promoted to direct quest targets yet; they highlight q6/q7-owned external state values co-located in the quest's archive stages._
+
+* cue count: 2
+* owner families: q6, q7
+
+[cols="1,1,1,2,2,2",options="header"]
+|===
+| Value | Kind | Hits | Sources | Owners | Stages
+
+| Flag 3002 | layout_flag | 1 | gpl | 70020001 | st0412
+| Flag 3003 | layout_flag | 1 | gpl | 70020001 | st0412
+|===
+
+== Bounded Graph Expansion
+
+_This graph summarizes bounded deterministic and inferred edges around the quest: quest archive stages, direct source families, stage-linked owner catalogs, promoted dependencies, reverse-index event/group links, and family-specific table edges._
+
+* max depth: 3
+* node count: 11
+* edge count: 12
+* node kinds: direct_family=1, family_context=1, lot_file=2, owner_quest=1, quest=1, sequence_quest=2, stage=1, stage_group=2
+* derivation: Direct=11, Graph=10, Owner Index=2
+
+=== Mermaid Graph Slice
+
+_This Mermaid flowchart shows a capped slice of the bounded graph so large quest reports stay readable while still exposing the graph structure._
+
+[mermaid]
+....
+flowchart TD
+    node_quest_60300300["Quest 60300300"]
+    node_direct_family_qst["qst direct hits (6)"]
+    node_family_context_quest_sequence["Quest Sequence"]
+    node_stage_st0412["st0412 -- Pawn Cathedral"]
+    node_owner_quest_70020001["Owner quest 70020001 (q7)"]
+    node_sequence_quest_60300203["Quest 60300203"]
+    node_sequence_quest_60300301["Quest 60300301"]
+    node_stage_group_st0412_22["GPL group st0412/22"]
+    node_stage_group_st0412_23["GPL group st0412/23"]
+    node_lot_file_st0412_00m00n_p22_lot_json["st0412_00m00n_p22.lot.json"]
+    node_lot_file_st0412_00m00n_p23_lot_json["st0412_00m00n_p23.lot.json"]
+    node_quest_60300300 -->|direct_source_family| node_direct_family_qst
+    node_quest_60300300 -->|family:quest_sequence| node_family_context_quest_sequence
+    node_quest_60300300 -->|quest_archive_stage| node_stage_st0412
+    node_family_context_quest_sequence -->|sequence_next| node_sequence_quest_60300301
+    node_family_context_quest_sequence -->|sequence_previous| node_sequence_quest_60300203
+    node_stage_st0412 -->|stage_group_reference| node_stage_group_st0412_22
+    node_stage_st0412 -->|stage_group_reference| node_stage_group_st0412_23
+    node_stage_st0412 -->|stage_owner_index| node_owner_quest_70020001
+    node_stage_group_st0412_22 -->|gpl_owner_guard| node_owner_quest_70020001
+    node_stage_group_st0412_23 -->|gpl_owner_guard| node_owner_quest_70020001
+    node_stage_group_st0412_22 -->|group_lot_reference| node_lot_file_st0412_00m00n_p22_lot_json
+    node_stage_group_st0412_23 -->|group_lot_reference| node_lot_file_st0412_00m00n_p23_lot_json
+    classDef direct_deterministic fill:#e8f5e9,stroke:#2e7d32,stroke-width:1px
+    classDef owner_index fill:#e3f2fd,stroke:#1565c0,stroke-width:1px
+    classDef dependency_inferred fill:#fff3e0,stroke:#ef6c00,stroke-width:1px
+    classDef graph_expanded fill:#f3e5f5,stroke:#7b1fa2,stroke-width:1px
+    classDef lower_confidence fill:#fbe9e7,stroke:#d84315,stroke-width:1px
+    classDef binary_auxiliary fill:#eceff1,stroke:#455a64,stroke-width:1px
+    class node_quest_60300300,node_direct_family_qst,node_family_context_quest_sequence,node_stage_st0412,node_sequence_quest_60300203,node_sequence_quest_60300301 direct_deterministic
+    class node_owner_quest_70020001 owner_index
+    class node_stage_group_st0412_22,node_stage_group_st0412_23,node_lot_file_st0412_00m00n_p22_lot_json,node_lot_file_st0412_00m00n_p23_lot_json graph_expanded
+....
+
+[cols="1,2,2,2,2,4",options="header"]
+|===
+| Depth | Edge | From | To | Derivation | Why
+
+| 1 | direct_source_family | quest:60300300 | direct-family:qst | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | family_context:quest_sequence | quest:60300300 | family-context:quest_sequence | Direct | Family-specific decoded tables provide deterministic context for this quest.
+| 1 | quest_archive_stage | quest:60300300 | stage:st0412 | Direct | Quest archive topology directly links this quest to the stage code.
+| 2 | sequence_next | family-context:quest_sequence | sequence-quest:60300301 | Direct | QuestSequence links this quest to its neighboring sequence quest.
+| 2 | sequence_previous | family-context:quest_sequence | sequence-quest:60300203 | Direct | QuestSequence links this quest to its neighboring sequence quest.
+| 2 | stage_group_reference | stage:st0412 | stage-group:st0412:22 | Graph | Reverse indexes expose GPL group references for this stage.
+| 2 | stage_group_reference | stage:st0412 | stage-group:st0412:23 | Graph | Reverse indexes expose GPL group references for this stage.
+| 2 | stage_owner_index | stage:st0412 | owner-quest:70020001 | Owner Index | Stage-neighborhood cues on this stage link to the reusable owner catalog.
+| 3 | gpl_owner_guard | stage-group:st0412:22 | owner-quest:70020001 | Graph | GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.
+| 3 | gpl_owner_guard | stage-group:st0412:23 | owner-quest:70020001 | Graph | GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.
+| 3 | group_lot_reference | stage-group:st0412:22 | lot-file:st0412_00m00n_p22.lot.json | Graph | LOT association resolves the GPL group to a concrete stage layout file.
+| 3 | group_lot_reference | stage-group:st0412:23 | lot-file:st0412_00m00n_p23.lot.json | Graph | LOT association resolves the GPL group to a concrete stage layout file.
+|===
+
 == Flag Summary Matrix
 
 [cols="2,1,1,2,2,3,3",options="header"]
 |===
 | Target | Kind | Hits | Sources | Stages | Relationships | Description
 
+| Flag 8437 | layout_flag | 2 | qst | st0412 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0412 \| ガルドリン
+| Flag 8438 | layout_flag | 2 | qst | st0412 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0412 \| QuestGroup 1 \| ガルドリン
+| Flag 8439 | layout_flag | 2 | qst | st0412 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0412 \| QuestGroup 2 \| ガルドリン
 | Quest ID 60300300 | quest_id | 0 |  |  |  | Derived quest-wide association scan
 |===
 
 == Known Documented Targets
 
+* quest 60300300 -- Flag 8437 -- QST local: st0412 | ガルドリン
+* quest 60300300 -- Flag 8438 -- QST local: st0412 | QuestGroup 1 | ガルドリン
+* quest 60300300 -- Flag 8439 -- QST local: st0412 | QuestGroup 2 | ガルドリン
 * Quest ID 60300300 -- Derived quest-wide association scan [Derived]
+
+== Flag 8437 -- Quest 60300300
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q60300300/quest/60300300/q60300300_st0412.qst.json[client/03040008/quest/q60300300/quest/60300300/q60300300_st0412.qst.json] | QuestStageList[].QuestGrp[0].Condition | Condition | quest 60300300 / Pawn Cathedral / "ガルドリン" / QuestSet=QuestSetInfoNpc | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q60300300/quest/60300300/q60300300_st0412.qst.json[client/03040008/quest/q60300300/quest/60300300/q60300300_st0412.qst.json] | QuestStageList[].QuestGrp[0].EraseCondition | EraseCondition | quest 60300300 / Pawn Cathedral / "ガルドリン" / QuestSet=QuestSetInfoNpc | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 8438 -- Quest 60300300
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q60300300/quest/60300300/q60300300_st0412.qst.json[client/03040008/quest/q60300300/quest/60300300/q60300300_st0412.qst.json] | QuestStageList[].QuestGrp[1].Condition | Condition | quest 60300300 / Pawn Cathedral / "QuestGroup 1 \| ガルドリン" / QuestSet=QuestSetInfoNpc \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q60300300/quest/60300300/q60300300_st0412.qst.json[client/03040008/quest/q60300300/quest/60300300/q60300300_st0412.qst.json] | QuestStageList[].QuestGrp[1].EraseCondition | EraseCondition | quest 60300300 / Pawn Cathedral / "QuestGroup 1 \| ガルドリン" / QuestSet=QuestSetInfoNpc \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 8439 -- Quest 60300300
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q60300300/quest/60300300/q60300300_st0412.qst.json[client/03040008/quest/q60300300/quest/60300300/q60300300_st0412.qst.json] | QuestStageList[].QuestGrp[2].Condition | Condition | quest 60300300 / Pawn Cathedral / "QuestGroup 2 \| ガルドリン" / QuestSet=QuestSetInfoNpc \| GroupNo=2 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q60300300/quest/60300300/q60300300_st0412.qst.json[client/03040008/quest/q60300300/quest/60300300/q60300300_st0412.qst.json] | QuestStageList[].QuestGrp[2].EraseCondition | EraseCondition | quest 60300300 / Pawn Cathedral / "QuestGroup 2 \| ガルドリン" / QuestSet=QuestSetInfoNpc \| GroupNo=2 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
 
 == Quest ID 60300300
 
@@ -48,10 +234,10 @@ _No direct references found in decoded client data._
 
 === Ranked Candidates
 
-[cols="1,1,2,3,3,3",options="header"]
+[cols="1,1,1,2,3,3,3",options="header"]
 |===
-| Tier | Confidence | Field | File | Context | Why
+| Tier | Derivation | Confidence | Field | File | Context | Why
 
-| context | 45 | QuestId | client/03040008/game_common/quest/QuestSequence.qsq.json | Where Is Gurdolin!? | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
+| context | Lower Confidence | 45 | QuestId | link:../../../../client/03040008/game_common/quest/QuestSequence.qsq.json#L3475[client/03040008/game_common/quest/QuestSequence.qsq.json#L3475] | Where Is Gurdolin!? | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
 |===
 

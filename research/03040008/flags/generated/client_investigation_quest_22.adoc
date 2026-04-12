@@ -5,9 +5,340 @@
 
 Query mode:: quest
 Query value:: 22
-Generated at:: 2026-04-11T21:41:40.497399+00:00
+Generated at:: 2026-04-12T12:43:28.923091+00:00
 
 toc::[]
+
+Quest family:: q0 -- Main Quest
+Quest family notes:: Story progression quests and adjacent mainline quest-state flows.
+Quest family focus:: local_stage_topology_plus_external_dependencies
+
+== External Owner Indexes
+
+_These are reusable external owner catalogs inferred from stage-neighborhood cues. They are broader than the subset of flags promoted into derived dependency targets._
+
+[cols="2,1,1,2,2,2,4",options="header"]
+|===
+| Owner Quest | Family | Catalog Count | Catalog Flags | Linked Cues | Cue Sources | Why
+
+| 70000001 | q7 | 70 | 1098, 1103, 1104, 1105, 1106, 1109, 1110, 1111, 1112, 1113, 1114, 1115 +58 more | 1109, 1110, 1111, 1112, 1150, 1201, 1215, 1216 +36 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70001001 | q7 | 0 |  | 1851, 1954 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70002001 | q7 | 47 | 1098, 1103, 1104, 1105, 1106, 1109, 1110, 1111, 1112, 1113, 1114, 1115 +35 more | 1113, 1114, 1115, 1117, 1295, 1601, 3859, 3860 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70003001 | q7 | 49 | 1098, 1103, 1104, 1105, 1106, 1109, 1110, 1111, 1112, 1113, 1114, 1115 +37 more | 1098, 1103, 1104, 1105, 1106, 1119, 1120, 1121 +13 more | evsi, gpl | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70004001 | q7 | 44 | 1098, 1103, 1104, 1105, 1106, 1109, 1110, 1111, 1112, 1113, 1114, 1115 +32 more | 2509 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70020001 | q7 | 8 | 2736, 3000, 3002, 3003, 3074, 3442, 3805, 4037 | 2736, 3000, 3002, 3003, 3074, 3442, 3805, 4037 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70021001 | q7 | 4 | 3278, 3650, 3753, 3861 | 3278, 3650, 3753 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70022001 | q7 | 17 | 3949, 3950, 3952, 3953, 3954, 3977, 4033, 4043, 4053, 4063, 4470, 4555 +5 more | 3949, 3950, 3952, 3953, 3954, 3977, 4033, 4043 +7 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70023001 | q7 | 15 | 4066, 4067, 4372, 4373, 4500, 4506, 4507, 4508, 4511, 4512, 4515, 4516 +3 more | 4066, 4372, 4373, 4500, 4506, 4507, 4508, 4511 +6 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70030001 | q7 | 46 | 5396, 5397, 5407, 5552, 5557, 5558, 5581, 5584, 5587, 5588, 5589, 5614 +34 more | 5396, 5397, 5407, 5552, 5557, 5558, 5584, 5587 +35 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70031001 | q7 | 8 | 5553, 5672, 6138, 6194, 6195, 6377, 6425, 7316 | 5553, 5672, 6138, 6194, 6195, 6377, 7316 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70032001 | q7 | 37 | 7169, 7240, 7241, 7336, 7341, 7342, 7386, 7387, 7388, 7389, 7390, 7438 +25 more | 7169, 7240, 7241, 7336, 7341, 7342, 7386, 7388 +27 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70033001 | q7 | 43 | 7826, 7827, 7876, 7888, 7889, 7916, 7917, 7954, 7955, 7965, 7966, 7967 +31 more | 7826, 7827, 7876, 7888, 7889, 7917, 7954, 7955 +33 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70034001 | q7 | 3 | 8486, 8630, 8631 | 8486 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+|===
+
+== Derived External Dependency Targets
+
+_These are the promoted subset of external owner-index entries. A flag appears here only when it passes the current family-specific dependency promotion rules for this quest._
+
+[cols="2,1,1,2,2,4",options="header"]
+|===
+| Owner Quest | Family | Flag Count | Flags | Sources | Why
+
+| 70000001 | q7 | 22 | 1109, 1111, 1215, 1218, 1219, 1251, 1261, 1263, 1293, 1294, 1297, 1298 +10 more | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70002001 | q7 | 3 | 1113, 1295, 3859 | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70003001 | q7 | 20 | 1098, 1103, 1104, 1105, 1119, 1120, 1121, 1122, 1123, 1124, 1202, 1203 +8 more | evsi, gpl | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70020001 | q7 | 4 | 2736, 3003, 3074, 3805 | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70021001 | q7 | 2 | 3278, 3753 | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70022001 | q7 | 9 | 3949, 3952, 3953, 3954, 3977, 4033, 4556, 4803, 4968 | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70023001 | q7 | 9 | 4066, 4373, 4500, 4506, 4508, 4512, 4515, 4517, 4973 | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70030001 | q7 | 17 | 5396, 5397, 5407, 5558, 5588, 5635, 5637, 5642, 5658, 5706, 5708, 6196 +5 more | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70031001 | q7 | 4 | 5553, 6138, 6195, 6377 | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70032001 | q7 | 19 | 7241, 7336, 7342, 7390, 7438, 7440, 7497, 7498, 7514, 7545, 7550, 7552 +7 more | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70033001 | q7 | 25 | 7826, 7827, 7876, 7954, 7955, 7966, 7968, 7972, 8016, 8033, 8034, 8035 +13 more | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+|===
+
+== Family Relationship Context
+
+_These sections summarize deterministic client-side family metadata and reverse-index relationships. They are context for later owner/dependency inference, not direct quest-target promotion._
+
+=== Quest Sequence
+
+* seq no: 20
+* previous: 21 -- The Quandary of Soldiers
+* next: 23 -- The Golden Key
+
+== ARC Association Context
+
+_ARC associations are contextual only. They show which quest-stage and marker resources are bundled with this quest._
+
+* arc file: link:../../../../client/03040008/quest/q00000022.arc.json#L1[client/03040008/quest/q00000022.arc.json#L1]
+* resource count: 22
+* stage codes: st0201, st0410, st0411, st0418, st0622
+* resource families: .fmi, .gmd, .mss, .qmi, .qst, .qtd
+
+=== st0201 -- Audience Chamber
+
+* rQuestMarkerInfo: quest/00000022/st0201_marker_npc
+* rQuestList: quest/00000022/q00000022_st0201
+
+=== st0410 -- Mergoda Ruins: Lower Level
+
+* rQuestMarkerInfo: quest/00000022/st0410_marker_npc
+* rQuestMarkerInfo: quest/00000022/st0410_marker_om
+* rQuestList: quest/00000022/q00000022_st0410
+
+=== st0411 -- Mergoda Security District
+
+* rQuestMarkerInfo: quest/00000022/st0411_marker_npc
+* rQuestMarkerInfo: quest/00000022/st0411_marker_om
+* rQuestList: quest/00000022/q00000022_st0411
+
+=== st0418 -- Mergoda Ruins: Royal Palace Level
+
+* rQuestMarkerInfo: quest/00000022/st0418_marker_om
+* rQuestMarkerInfo: quest/00000022/st0418_marker_npc
+* rQuestList: quest/00000022/q00000022_st0418
+
+=== st0622 -- Theodor's Alchemy Workshop
+
+* rQuestMarkerInfo: quest/00000022/st0622_marker_npc
+* rQuestList: quest/00000022/q00000022_st0622
+
+=== unclassified
+
+* rFieldAreaMarkerInfo: quest/00000022/fa002_marker_om
+* rFieldAreaMarkerInfo: quest/00000022/fa002_marker_npc
+* rFieldAreaMarkerInfo: quest/00000022/fa003_marker_om
+* rGUIMessage: ui/00_message/quest/q00000022
+* rGUIMessage: ui/00_message/examine_message/quest/quest_examine_q00000022
+* rMsgSet: ui/00_message/examine_message/quest/quest_examine_q00000022
+* rQuestTextData: ui/00_param/quest_text/q00000022_00
+* rMsgSet: ui/00_message/quest/q00000022
+* rGUIMessage: ui/00_message/quest_info/q00000022_00
+
+== Stage Neighborhood Context
+
+_Stage-neighborhood context summarizes scanner-relevant client files that share the quest's archive stage codes. This is deterministic client topology, not inferred ownership._
+
+* scanner-relevant stage files: 1039
+* indexed stage codes: st0201, st0410, st0411, st0418, st0622
+
+=== st0201 -- Audience Chamber
+
+* scanner files: 694
+* .evsi.json: 50
+* .fsm.json: 433
+* .gpl.json: 3
+* .lot.json: 64
+* .qmi.json: 75
+* .qst.json: 69
+
+=== st0410 -- Mergoda Ruins: Lower Level
+
+* scanner files: 102
+* .evsi.json: 6
+* .fsm.json: 36
+* .gpl.json: 5
+* .lot.json: 38
+* .qmi.json: 11
+* .qst.json: 6
+
+=== st0411 -- Mergoda Security District
+
+* scanner files: 97
+* .evsi.json: 2
+* .fsm.json: 2
+* .gpl.json: 5
+* .lot.json: 65
+* .qmi.json: 16
+* .qst.json: 7
+
+=== st0418 -- Mergoda Ruins: Royal Palace Level
+
+* scanner files: 106
+* .evsi.json: 7
+* .fsm.json: 26
+* .gpl.json: 5
+* .lot.json: 40
+* .qmi.json: 19
+* .qst.json: 9
+
+=== st0622 -- Theodor's Alchemy Workshop
+
+* scanner files: 40
+* .evsi.json: 2
+* .fsm.json: 16
+* .gpl.json: 3
+* .lot.json: 10
+* .qmi.json: 6
+* .qst.json: 3
+
+== Stage Neighborhood External-State Cues
+
+_These cues are deterministic client-side observations from the quest's stage neighborhood. They are not promoted to direct quest targets yet; they highlight q6/q7-owned external state values co-located in the quest's archive stages._
+
+* cue count: 243
+* owner families: q6, q7
+
+[cols="1,1,1,2,2,2",options="header"]
+|===
+| Value | Kind | Hits | Sources | Owners | Stages
+
+| Flag 1106 | layout_flag | 67 | evsi | 70003001 | st0201, st0410, st0411, st0418, st0622
+| Flag 1115 | layout_flag | 67 | evsi | 70002001 | st0201, st0410, st0411, st0418, st0622
+| Flag 1117 | layout_flag | 67 | evsi | 70002001 | st0201, st0410, st0411, st0418, st0622
+| Flag 1150 | layout_flag | 67 | evsi | 70000001 | st0201, st0410, st0411, st0418, st0622
+| Flag 1217 | layout_flag | 67 | evsi | 70000001 | st0201, st0410, st0411, st0418, st0622
+| Flag 1224 | layout_flag | 67 | evsi | 70000001 | st0201, st0410, st0411, st0418, st0622
+| Flag 1851 | layout_flag | 67 | evsi | 70001001 | st0201, st0410, st0411, st0418, st0622
+| Flag 1954 | layout_flag | 67 | evsi | 70001001 | st0201, st0410, st0411, st0418, st0622
+| Flag 2208 | layout_flag | 67 | evsi | 70000001 | st0201, st0410, st0411, st0418, st0622
+| Flag 2380 | layout_flag | 67 | evsi | 70000001 | st0201, st0410, st0411, st0418, st0622
+| Flag 3950 | layout_flag | 67 | evsi | 70022001 | st0201, st0410, st0411, st0418, st0622
+| Flag 5589 | layout_flag | 67 | evsi | 70030001 | st0201, st0410, st0411, st0418, st0622
+| Flag 5614 | layout_flag | 67 | evsi | 70030001 | st0201, st0410, st0411, st0418, st0622
+| Flag 5632 | layout_flag | 67 | evsi | 70030001 | st0201, st0410, st0411, st0418, st0622
+| Flag 6469 | layout_flag | 67 | evsi | 70030001 | st0201, st0410, st0411, st0418, st0622
+| Flag 6470 | layout_flag | 67 | evsi | 70030001 | st0201, st0410, st0411, st0418, st0622
+| Flag 6471 | layout_flag | 67 | evsi | 70030001 | st0201, st0410, st0411, st0418, st0622
+| Flag 6472 | layout_flag | 67 | evsi | 70030001 | st0201, st0410, st0411, st0418, st0622
+| Flag 6473 | layout_flag | 67 | evsi | 70030001 | st0201, st0410, st0411, st0418, st0622
+| Flag 6474 | layout_flag | 67 | evsi | 70030001 | st0201, st0410, st0411, st0418, st0622
+| Flag 7316 | layout_flag | 67 | evsi | 70031001 | st0201, st0410, st0411, st0418, st0622
+| Flag 8066 | layout_flag | 67 | evsi | 70033001 | st0201, st0410, st0411, st0418, st0622
+| Flag 1201 | layout_flag | 65 | evsi | 70000001 | st0201, st0410, st0411, st0418, st0622
+| Flag 5557 | layout_flag | 64 | evsi | 70030001 | st0201, st0410, st0411, st0418, st0622
+| Flag 7496 | layout_flag | 64 | evsi | 70032001 | st0201, st0410, st0411, st0418, st0622
+| Flag 1221 | layout_flag | 63 | evsi | 70000001 | st0201, st0410, st0411, st0418, st0622
+| Flag 1222 | layout_flag | 63 | evsi | 70000001 | st0201, st0410, st0411, st0418, st0622
+| Flag 7888 | layout_flag | 63 | evsi | 70033001 | st0201, st0410, st0411, st0418, st0622
+| Flag 7889 | layout_flag | 63 | evsi | 70033001 | st0201, st0410, st0411, st0418, st0622
+| Flag 7965 | layout_flag | 63 | evsi | 70033001 | st0201, st0410, st0411, st0418, st0622
+|===
+
+== Bounded Graph Expansion
+
+_This graph summarizes bounded deterministic and inferred edges around the quest: quest archive stages, direct source families, stage-linked owner catalogs, promoted dependencies, reverse-index event/group links, and family-specific table edges._
+
+* max depth: 3
+* node count: 845
+* edge count: 1712
+* node kinds: direct_family=3, event_viewer=810, family_context=1, lot_file=2, owner_quest=14, quest=1, sequence_quest=2, stage=5, stage_group=7
+* derivation: Dependency=11, Direct=23, Graph=2447, Owner Index=76
+
+=== Mermaid Graph Slice
+
+_This Mermaid flowchart shows a capped slice of the bounded graph so large quest reports stay readable while still exposing the graph structure._
+
+[mermaid]
+....
+flowchart TD
+    node_quest_22["Quest 22"]
+    node_direct_family_evsi["evsi direct hits (91)"]
+    node_direct_family_qst["qst direct hits (26)"]
+    node_direct_family_smc["smc direct hits (15)"]
+    node_family_context_quest_sequence["Quest Sequence"]
+    node_stage_st0201["st0201 -- Audience Chamber"]
+    node_stage_st0410["st0410 -- Mergoda Ruins: Lower Level"]
+    node_stage_st0411["st0411 -- Mergoda Security District"]
+    node_stage_st0418["st0418 -- Mergoda Ruins: Royal Palace Level"]
+    node_stage_st0622["st0622 -- Theodor's Alchemy Workshop"]
+    node_event_viewer_st0201_ev000_70000001["Event st0201/ev000"]
+    node_event_viewer_st0201_ev000_70001001["Event st0201/ev000"]
+    node_owner_quest_70000001["Owner quest 70000001 (q7)"]
+    node_owner_quest_70002001["Owner quest 70002001 (q7)"]
+    node_owner_quest_70003001["Owner quest 70003001 (q7)"]
+    node_owner_quest_70020001["Owner quest 70020001 (q7)"]
+    node_owner_quest_70021001["Owner quest 70021001 (q7)"]
+    node_owner_quest_70022001["Owner quest 70022001 (q7)"]
+    node_owner_quest_70023001["Owner quest 70023001 (q7)"]
+    node_owner_quest_70030001["Owner quest 70030001 (q7)"]
+    node_owner_quest_70031001["Owner quest 70031001 (q7)"]
+    node_owner_quest_70032001["Owner quest 70032001 (q7)"]
+    node_owner_quest_70033001["Owner quest 70033001 (q7)"]
+    node_sequence_quest_21["Quest 21"]
+    node_sequence_quest_23["Quest 23"]
+    node_quest_22 -->|direct_source_family| node_direct_family_evsi
+    node_quest_22 -->|direct_source_family| node_direct_family_qst
+    node_quest_22 -->|direct_source_family| node_direct_family_smc
+    node_quest_22 -->|family:quest_sequence| node_family_context_quest_sequence
+    node_quest_22 -->|quest_archive_stage| node_stage_st0201
+    node_quest_22 -->|quest_archive_stage| node_stage_st0410
+    node_quest_22 -->|quest_archive_stage| node_stage_st0411
+    node_quest_22 -->|quest_archive_stage| node_stage_st0418
+    node_quest_22 -->|quest_archive_stage| node_stage_st0622
+    node_quest_22 -->|promoted_dependency| node_owner_quest_70000001
+    node_quest_22 -->|promoted_dependency| node_owner_quest_70002001
+    node_quest_22 -->|promoted_dependency| node_owner_quest_70003001
+    node_quest_22 -->|promoted_dependency| node_owner_quest_70020001
+    node_quest_22 -->|promoted_dependency| node_owner_quest_70021001
+    node_quest_22 -->|promoted_dependency| node_owner_quest_70022001
+    node_quest_22 -->|promoted_dependency| node_owner_quest_70023001
+    node_quest_22 -->|promoted_dependency| node_owner_quest_70030001
+    node_quest_22 -->|promoted_dependency| node_owner_quest_70031001
+    node_quest_22 -->|promoted_dependency| node_owner_quest_70032001
+    node_quest_22 -->|promoted_dependency| node_owner_quest_70033001
+    node_family_context_quest_sequence -->|sequence_next| node_sequence_quest_23
+    node_family_context_quest_sequence -->|sequence_previous| node_sequence_quest_21
+    node_stage_st0201 -->|stage_event_viewer| node_event_viewer_st0201_ev000_70000001
+    node_stage_st0201 -->|stage_event_viewer| node_event_viewer_st0201_ev000_70001001
+    classDef direct_deterministic fill:#e8f5e9,stroke:#2e7d32,stroke-width:1px
+    classDef owner_index fill:#e3f2fd,stroke:#1565c0,stroke-width:1px
+    classDef dependency_inferred fill:#fff3e0,stroke:#ef6c00,stroke-width:1px
+    classDef graph_expanded fill:#f3e5f5,stroke:#7b1fa2,stroke-width:1px
+    classDef lower_confidence fill:#fbe9e7,stroke:#d84315,stroke-width:1px
+    classDef binary_auxiliary fill:#eceff1,stroke:#455a64,stroke-width:1px
+    class node_quest_22,node_direct_family_evsi,node_direct_family_qst,node_direct_family_smc,node_family_context_quest_sequence,node_stage_st0201,node_stage_st0410,node_stage_st0411,node_stage_st0418,node_stage_st0622,node_sequence_quest_21,node_sequence_quest_23 direct_deterministic
+    class node_owner_quest_70000001,node_owner_quest_70002001,node_owner_quest_70003001,node_owner_quest_70020001,node_owner_quest_70021001,node_owner_quest_70022001,node_owner_quest_70023001,node_owner_quest_70030001,node_owner_quest_70031001,node_owner_quest_70032001,node_owner_quest_70033001 owner_index
+    class node_event_viewer_st0201_ev000_70000001,node_event_viewer_st0201_ev000_70001001 graph_expanded
+....
+
+[cols="1,2,2,2,2,4",options="header"]
+|===
+| Depth | Edge | From | To | Derivation | Why
+
+| 1 | direct_source_family | quest:22 | direct-family:evsi | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | direct_source_family | quest:22 | direct-family:qst | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | direct_source_family | quest:22 | direct-family:smc | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | family_context:quest_sequence | quest:22 | family-context:quest_sequence | Direct | Family-specific decoded tables provide deterministic context for this quest.
+| 1 | quest_archive_stage | quest:22 | stage:st0201 | Direct | Quest archive topology directly links this quest to the stage code.
+| 1 | quest_archive_stage | quest:22 | stage:st0410 | Direct | Quest archive topology directly links this quest to the stage code.
+| 1 | quest_archive_stage | quest:22 | stage:st0411 | Direct | Quest archive topology directly links this quest to the stage code.
+| 1 | quest_archive_stage | quest:22 | stage:st0418 | Direct | Quest archive topology directly links this quest to the stage code.
+| 1 | quest_archive_stage | quest:22 | stage:st0622 | Direct | Quest archive topology directly links this quest to the stage code.
+| 2 | promoted_dependency | quest:22 | owner-quest:70000001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:22 | owner-quest:70002001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:22 | owner-quest:70003001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:22 | owner-quest:70020001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:22 | owner-quest:70021001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:22 | owner-quest:70022001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:22 | owner-quest:70023001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:22 | owner-quest:70030001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:22 | owner-quest:70031001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:22 | owner-quest:70032001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:22 | owner-quest:70033001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | sequence_next | family-context:quest_sequence | sequence-quest:23 | Direct | QuestSequence links this quest to its neighboring sequence quest.
+| 2 | sequence_previous | family-context:quest_sequence | sequence-quest:21 | Direct | QuestSequence links this quest to its neighboring sequence quest.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev000:70000001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev000:70001001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev000:70002001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev000:70003001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev000:70020001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev000:70021001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev000:70022001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev000:70023001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev000:70030001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev000:70031001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev000:70032001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev000:70033001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev003:70000001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev003:70001001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev003:70002001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev003:70003001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev003:70020001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev003:70021001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+|===
 
 == Flag Summary Matrix
 
@@ -15,12 +346,291 @@ toc::[]
 |===
 | Target | Kind | Hits | Sources | Stages | Relationships | Description
 
+| Flag 920 | layout_flag | 3 | evsi, qst | st0410 | 🎬 Event State, ⚡ Quest Condition, ❌ Quest Erase | QST local: st0410 \| QuestGroup 1 \| スライドドア
+| Flag 1028 | layout_flag | 5 | evsi, qst | st0201, st0410 | 🎬 Event State, ⚡ Quest Condition, ❌ Quest Erase | QST local: st0201 \| QuestGroup 1
+| Flag 1029 | layout_flag | 3 | evsi, qst | st0410 | 🎬 Event State, ⚡ Quest Condition, ❌ Quest Erase | QST local: st0410 \| QuestGroup 2
+| Flag 1030 | layout_flag | 2 | qst | st0622 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0622 \| QuestGroup 1
+| Flag 1098 | layout_flag | 92 | evsi, qst | st0100, st0200, st0201, st0400, st0401 +13 | 🎬 Event State, ⚡ Quest Condition, ❌ Quest Erase | QST local: st0418 \| QuestGroup 1
+| Flag 1102 | layout_flag | 2 | qst | st0411 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0411 \| QuestGroup 1
+| Flag 1253 | layout_flag | 2 | qst | st0201 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0201 \| QuestGroup 2
+| Flag 1307 | layout_flag | 3 | evsi, qst | st0410, st0411 | 🎬 Event State, ⚡ Quest Condition, ❌ Quest Erase | QST local: st0411 \| QuestGroup 2
+| Flag 2464 | layout_flag | 5 | evsi, qst | st0410 | 🎬 Event State, ⚡ Quest Condition, ❌ Quest Erase | QST local: st0410 \| QuestGroup 3 \| 封鎖岩とアタリ
 | Quest ID 22 | quest_id | 15 | smc |  | 🗣️ NPC Chatter | Derived quest-wide association scan
 |===
 
 == Known Documented Targets
 
+* quest 22 -- Flag 920 -- QST local: st0410 | QuestGroup 1 | スライドドア
+* quest 22 -- Flag 1028 -- QST local: st0201 | QuestGroup 1
+* quest 22 -- Flag 1029 -- QST local: st0410 | QuestGroup 2
+* quest 22 -- Flag 1030 -- QST local: st0622 | QuestGroup 1
+* quest 22 -- Flag 1098 -- QST local: st0418 | QuestGroup 1
+* quest 22 -- Flag 1102 -- QST local: st0411 | QuestGroup 1
+* quest 22 -- Flag 1253 -- QST local: st0201 | QuestGroup 2
+* quest 22 -- Flag 1307 -- QST local: st0411 | QuestGroup 2
+* quest 22 -- Flag 2464 -- QST local: st0410 | QuestGroup 3 | 封鎖岩とアタリ
 * Quest ID 22 -- Derived quest-wide association scan [Derived]
+
+== Flag 920 -- Quest 22
+
+origin:: derived_qst_local
+direct hits:: *3*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 3 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00000022/quest/00000022/q00000022_st0410.qst.json[client/03040008/quest/q00000022/quest/00000022/q00000022_st0410.qst.json] | QuestStageList[].QuestGrp[0].Condition | Condition | quest 22 / Mergoda Ruins: Lower Level / "QuestGroup 1 \| スライドドア" / QuestSet=QuestSetInfoOm \| OM_ID_DOOR_510381 \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00000022/quest/00000022/q00000022_st0410.qst.json[client/03040008/quest/q00000022/quest/00000022/q00000022_st0410.qst.json] | QuestStageList[].QuestGrp[0].EraseCondition | EraseCondition | quest 22 / Mergoda Ruins: Lower Level / "QuestGroup 1 \| スライドドア" / QuestSet=QuestSetInfoOm \| OM_ID_DOOR_510381 \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0410/view_st0410ev010/event/viewer/view_st0410ev010.evsi.json#L269[client/03040008/event/st0410/view_st0410ev010/event/viewer/view_st0410ev010.evsi.json#L269] | LayoutFlagArray[1].FlagNo | FlagNo | quest 22 (The Dwellers of the Golden Land) / Mergoda Ruins: Lower Level / Event Viewer \| EVENT_NAME_st0410ev010 \| Theodore and Klaus | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+|===
+
+== Flag 1028 -- Quest 22
+
+origin:: derived_qst_local
+direct hits:: *5*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 5 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00000022/quest/00000022/q00000022_st0201.qst.json[client/03040008/quest/q00000022/quest/00000022/q00000022_st0201.qst.json] | QuestStageList[].QuestGrp[0].Condition | Condition | quest 22 / Audience Chamber / "QuestGroup 1" / QuestSet=QuestSetInfoNpc \| GroupNo=1 \|\| QuestSet=QuestSetInfoNpc \| GroupNo=1 \|\| +1 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00000022/quest/00000022/q00000022_st0201.qst.json[client/03040008/quest/q00000022/quest/00000022/q00000022_st0201.qst.json] | QuestStageList[].QuestGrp[0].EraseCondition | EraseCondition | quest 22 / Audience Chamber / "QuestGroup 1" / QuestSet=QuestSetInfoNpc \| GroupNo=1 \|\| QuestSet=QuestSetInfoNpc \| GroupNo=1 \|\| +1 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0410/view_st0410ev000/event/viewer/view_st0410ev000.evsi.json#L261[client/03040008/event/st0410/view_st0410ev000/event/viewer/view_st0410ev000.evsi.json#L261] | LayoutFlagArray[0].FlagNo | FlagNo | quest 22 (The Dwellers of the Golden Land) / Mergoda Ruins: Lower Level / Event Viewer \| EVENT_NAME_st0410ev000 \| The Ruined city of Mergoda | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0410/view_st0410ev005/event/viewer/view_st0410ev005.evsi.json#L261[client/03040008/event/st0410/view_st0410ev005/event/viewer/view_st0410ev005.evsi.json#L261] | LayoutFlagArray[0].FlagNo | FlagNo | quest 22 (The Dwellers of the Golden Land) / Mergoda Ruins: Lower Level / Event Viewer \| EVENT_NAME_st0410ev005 \| Residents of the Golden Hills | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0410/view_st0410ev010/event/viewer/view_st0410ev010.evsi.json#L277[client/03040008/event/st0410/view_st0410ev010/event/viewer/view_st0410ev010.evsi.json#L277] | LayoutFlagArray[2].FlagNo | FlagNo | quest 22 (The Dwellers of the Golden Land) / Mergoda Ruins: Lower Level / Event Viewer \| EVENT_NAME_st0410ev010 \| Theodore and Klaus | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+|===
+
+== Flag 1029 -- Quest 22
+
+origin:: derived_qst_local
+direct hits:: *3*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 3 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00000022/quest/00000022/q00000022_st0410.qst.json[client/03040008/quest/q00000022/quest/00000022/q00000022_st0410.qst.json] | QuestStageList[].QuestGrp[1].Condition | Condition | quest 22 / Mergoda Ruins: Lower Level / "QuestGroup 2" / QuestSet=QuestSetInfoNpc \| GroupNo=2 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00000022/quest/00000022/q00000022_st0410.qst.json[client/03040008/quest/q00000022/quest/00000022/q00000022_st0410.qst.json] | QuestStageList[].QuestGrp[1].EraseCondition | EraseCondition | quest 22 / Mergoda Ruins: Lower Level / "QuestGroup 2" / QuestSet=QuestSetInfoNpc \| GroupNo=2 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0410/view_st0410ev005/event/viewer/view_st0410ev005.evsi.json#L269[client/03040008/event/st0410/view_st0410ev005/event/viewer/view_st0410ev005.evsi.json#L269] | LayoutFlagArray[1].FlagNo | FlagNo | quest 22 (The Dwellers of the Golden Land) / Mergoda Ruins: Lower Level / Event Viewer \| EVENT_NAME_st0410ev005 \| Residents of the Golden Hills | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+|===
+
+== Flag 1030 -- Quest 22
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00000022/quest/00000022/q00000022_st0622.qst.json[client/03040008/quest/q00000022/quest/00000022/q00000022_st0622.qst.json] | QuestStageList[].QuestGrp[0].Condition | Condition | quest 22 / Theodor's Alchemy Workshop / "QuestGroup 1" / QuestSet=QuestSetInfoNpc \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00000022/quest/00000022/q00000022_st0622.qst.json[client/03040008/quest/q00000022/quest/00000022/q00000022_st0622.qst.json] | QuestStageList[].QuestGrp[0].EraseCondition | EraseCondition | quest 22 / Theodor's Alchemy Workshop / "QuestGroup 1" / QuestSet=QuestSetInfoNpc \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 1098 -- Quest 22
+
+origin:: derived_qst_local
+direct hits:: *92*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 92 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00000022/quest/00000022/q00000022_st0418.qst.json[client/03040008/quest/q00000022/quest/00000022/q00000022_st0418.qst.json] | QuestStageList[].QuestGrp[0].Condition | Condition | quest 22 / Mergoda Ruins: Royal Palace Level / "QuestGroup 1" / QuestSet=QuestSetInfoOm \| OM_ID_DOOR_DIAMANTES \| KeyNo=7561 (Broken key of the Sealed Palace) \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00000022/quest/00000022/q00000022_st0418.qst.json[client/03040008/quest/q00000022/quest/00000022/q00000022_st0418.qst.json] | QuestStageList[].QuestGrp[0].EraseCondition | EraseCondition | quest 22 / Mergoda Ruins: Royal Palace Level / "QuestGroup 1" / QuestSet=QuestSetInfoOm \| OM_ID_DOOR_DIAMANTES \| KeyNo=7561 (Broken key of the Sealed Palace) \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q70000001/quest/70000001/q70000001_st0418.qst.json[client/03040008/quest/q70000001/quest/70000001/q70000001_st0418.qst.json] | QuestStageList[].QuestGrp[0].Condition | Condition | quest 70000001 / Mergoda Ruins: Royal Palace Level / "QuestGroup 1 \| ver1.2閉じ_ディアマンテス扉(削除)" | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q70000001/quest/70000001/q70000001_st0418.qst.json[client/03040008/quest/q70000001/quest/70000001/q70000001_st0418.qst.json] | QuestStageList[].QuestGrp[0].EraseCondition | EraseCondition | quest 70000001 / Mergoda Ruins: Royal Palace Level / "QuestGroup 1 \| ver1.2閉じ_ディアマンテス扉(削除)" | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q70002001/quest/70002001/q70002001_st0418.qst.json[client/03040008/quest/q70002001/quest/70002001/q70002001_st0418.qst.json] | QuestStageList[].QuestGrp[0].Condition | Condition | quest 70002001 / Mergoda Ruins: Royal Palace Level / "QuestGroup 1 \| ver1.2閉じ_ディアマンテス扉(削除)" | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q70002001/quest/70002001/q70002001_st0418.qst.json[client/03040008/quest/q70002001/quest/70002001/q70002001_st0418.qst.json] | QuestStageList[].QuestGrp[0].EraseCondition | EraseCondition | quest 70002001 / Mergoda Ruins: Royal Palace Level / "QuestGroup 1 \| ver1.2閉じ_ディアマンテス扉(削除)" | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q70003001/quest/70003001/q70003001_st0418.qst.json[client/03040008/quest/q70003001/quest/70003001/q70003001_st0418.qst.json] | QuestStageList[].QuestGrp[0].Condition | Condition | quest 70003001 / Mergoda Ruins: Royal Palace Level / "QuestGroup 1 \| ver1.2閉じ_ディアマンテス扉" / QuestSet=QuestSetInfoOmDoor \| OmID=510340 \| OM_ID_DOOR_DIAMANTES \| DisableEffect \| KeyNo=1046 \| TextNo=355 \| TextType=1 \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q70003001/quest/70003001/q70003001_st0418.qst.json[client/03040008/quest/q70003001/quest/70003001/q70003001_st0418.qst.json] | QuestStageList[].QuestGrp[0].EraseCondition | EraseCondition | quest 70003001 / Mergoda Ruins: Royal Palace Level / "QuestGroup 1 \| ver1.2閉じ_ディアマンテス扉" / QuestSet=QuestSetInfoOmDoor \| OmID=510340 \| OM_ID_DOOR_DIAMANTES \| DisableEffect \| KeyNo=1046 \| TextNo=355 \| TextType=1 \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q70004001/quest/70004001/q70004001_st0418.qst.json[client/03040008/quest/q70004001/quest/70004001/q70004001_st0418.qst.json] | QuestStageList[].QuestGrp[0].Condition | Condition | quest 70004001 / Mergoda Ruins: Royal Palace Level / "QuestGroup 1 \| ver1.0閉じ_ディアマンテス扉（削除）" | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q70004001/quest/70004001/q70004001_st0418.qst.json[client/03040008/quest/q70004001/quest/70004001/q70004001_st0418.qst.json] | QuestStageList[].QuestGrp[0].EraseCondition | EraseCondition | quest 70004001 / Mergoda Ruins: Royal Palace Level / "QuestGroup 1 \| ver1.0閉じ_ディアマンテス扉（削除）" | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0100/view_st0100ev010/event/viewer/view_st0100ev010.evsi.json#L261[client/03040008/event/st0100/view_st0100ev010/event/viewer/view_st0100ev010.evsi.json#L261] | LayoutFlagArray[31].FlagNo | FlagNo | quest 70003001 / Lestania / Event Viewer \| EVENT_NAME_st0100ev010 \| Skirmish | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0100/view_st0100ev015/event/viewer/view_st0100ev015.evsi.json#L293[client/03040008/event/st0100/view_st0100ev015/event/viewer/view_st0100ev015.evsi.json#L293] | LayoutFlagArray[31].FlagNo | FlagNo | quest 70003001 / Lestania / Event Viewer \| EVENT_NAME_st0100ev015 \| Gert's appearance | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0100/view_st0100ev020/event/viewer/view_st0100ev020.evsi.json#L381[client/03040008/event/st0100/view_st0100ev020/event/viewer/view_st0100ev020.evsi.json#L381] | LayoutFlagArray[32].FlagNo | FlagNo | quest 70003001 / Lestania / Event Viewer \| EVENT_NAME_st0100ev020 \| Searching for Mayleaf | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0100/view_st0100ev025/event/viewer/view_st0100ev025.evsi.json#L385[client/03040008/event/st0100/view_st0100ev025/event/viewer/view_st0100ev025.evsi.json#L385] | LayoutFlagArray[31].FlagNo | FlagNo | quest 70003001 / Lestania / Event Viewer \| EVENT_NAME_st0100ev025 \| Tomb of Lynwood | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0100/view_st0100ev030/event/viewer/view_st0100ev030.evsi.json#L381[client/03040008/event/st0100/view_st0100ev030/event/viewer/view_st0100ev030.evsi.json#L381] | LayoutFlagArray[32].FlagNo | FlagNo | quest 70003001 / Lestania / Event Viewer \| EVENT_NAME_st0100ev030 \| Mystery Assailant | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0100/view_st0100ev035/event/viewer/view_st0100ev035.evsi.json#L397[client/03040008/event/st0100/view_st0100ev035/event/viewer/view_st0100ev035.evsi.json#L397] | LayoutFlagArray[33].FlagNo | FlagNo | quest 70003001 / Lestania / Event Viewer \| EVENT_NAME_st0100ev035 \| Reunion with Keith Hilt | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0100/view_st0100ev040/event/viewer/view_st0100ev040.evsi.json#L437[client/03040008/event/st0100/view_st0100ev040/event/viewer/view_st0100ev040.evsi.json#L437] | LayoutFlagArray[31].FlagNo | FlagNo | quest 70003001 / Lestania / Event Viewer \| EVENT_NAME_st0100ev040 \| Who is Keith Hilt? | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0100/view_st0100ev045/event/viewer/view_st0100ev045.evsi.json#L457[client/03040008/event/st0100/view_st0100ev045/event/viewer/view_st0100ev045.evsi.json#L457] | LayoutFlagArray[36].FlagNo | FlagNo | quest 70003001 / Lestania / Event Viewer \| EVENT_NAME_st0100ev045 \| Orc army appears | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0100/view_st0100ev050/event/viewer/view_st0100ev050.evsi.json#L481[client/03040008/event/st0100/view_st0100ev050/event/viewer/view_st0100ev050.evsi.json#L481] | LayoutFlagArray[38].FlagNo | FlagNo | quest 70003001 / Lestania / Event Viewer \| EVENT_NAME_st0100ev050 \| Purpose of Zuhl | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0100/view_st0100ev055/event/viewer/view_st0100ev055.evsi.json#L369[client/03040008/event/st0100/view_st0100ev055/event/viewer/view_st0100ev055.evsi.json#L369] | LayoutFlagArray[30].FlagNo | FlagNo | quest 70003001 / Lestania / Event Viewer \| EVENT_NAME_st0100ev055 \| Second Ark falls | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0100/view_st0100ev060/event/viewer/view_st0100ev060.evsi.json#L421[client/03040008/event/st0100/view_st0100ev060/event/viewer/view_st0100ev060.evsi.json#L421] | LayoutFlagArray[35].FlagNo | FlagNo | quest 70003001 / Lestania / Event Viewer \| EVENT_NAME_st0100ev060 \| Welcoming the Knights | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0100/view_st0100ev065/event/viewer/view_st0100ev065.evsi.json#L449[client/03040008/event/st0100/view_st0100ev065/event/viewer/view_st0100ev065.evsi.json#L449] | LayoutFlagArray[36].FlagNo | FlagNo | quest 70003001 / Lestania / Event Viewer \| EVENT_NAME_st0100ev065 \| Mergoda Revival | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0100/view_st0100ev071/event/viewer/view_st0100ev071.evsi.json#L409[client/03040008/event/st0100/view_st0100ev071/event/viewer/view_st0100ev071.evsi.json#L409] | LayoutFlagArray[34].FlagNo | FlagNo | quest 70003001 / Lestania / Event Viewer \| EVENT_NAME_st0100ev071 \| Farewell to Iris | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0200/view_st0200ev000/event/viewer/view_st0200ev000.evsi.json#L169[client/03040008/event/st0200/view_st0200ev000/event/viewer/view_st0200ev000.evsi.json#L169] | LayoutFlagArray[27].FlagNo | FlagNo | quest 70003001 / The White Dragon Temple / Event Viewer \| EVENT_NAME_st0200ev000 \| guide | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0200/view_st0200ev005/event/viewer/view_st0200ev005.evsi.json#L257[client/03040008/event/st0200/view_st0200ev005/event/viewer/view_st0200ev005.evsi.json#L257] | LayoutFlagArray[30].FlagNo | FlagNo | quest 70003001 / The White Dragon Temple / Event Viewer \| EVENT_NAME_st0200ev005 \| To become a full-fledged Arisen | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0200/view_st0200ev010/event/viewer/view_st0200ev010.evsi.json#L441[client/03040008/event/st0200/view_st0200ev010/event/viewer/view_st0200ev010.evsi.json#L441] | LayoutFlagArray[31].FlagNo | FlagNo | quest 70003001 / The White Dragon Temple / Event Viewer \| EVENT_NAME_st0200ev010 \| Confessions of Mysial | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0201/view_st0201ev000/event/viewer/view_st0201ev000.evsi.json#L217[client/03040008/event/st0201/view_st0201ev000/event/viewer/view_st0201ev000.evsi.json#L217] | LayoutFlagArray[30].FlagNo | FlagNo | quest 70003001 / Audience Chamber / Event Viewer \| EVENT_NAME_st0201ev000 \| People of the White Dragon Temple | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0201/view_st0201ev003/event/viewer/view_st0201ev003.evsi.json#L249[client/03040008/event/st0201/view_st0201ev003/event/viewer/view_st0201ev003.evsi.json#L249] | LayoutFlagArray[30].FlagNo | FlagNo | quest 70003001 / Audience Chamber / Event Viewer \| EVENT_NAME_st0201ev003 \| Dragon Guardian | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0201/view_st0201ev005/event/viewer/view_st0201ev005.evsi.json#L237[client/03040008/event/st0201/view_st0201ev005/event/viewer/view_st0201ev005.evsi.json#L237] | LayoutFlagArray[30].FlagNo | FlagNo | quest 70003001 / Audience Chamber / Event Viewer \| EVENT_NAME_st0201ev005 \| An errand to the village of Tel | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0201/view_st0201ev008/event/viewer/view_st0201ev008.evsi.json#L249[client/03040008/event/st0201/view_st0201ev008/event/viewer/view_st0201ev008.evsi.json#L249] | LayoutFlagArray[31].FlagNo | FlagNo | quest 70003001 / Audience Chamber / Event Viewer \| EVENT_NAME_st0201ev008 \| To Pawn Village | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0201/view_st0201ev010/event/viewer/view_st0201ev010.evsi.json#L277[client/03040008/event/st0201/view_st0201ev010/event/viewer/view_st0201ev010.evsi.json#L277] | LayoutFlagArray[30].FlagNo | FlagNo | quest 70003001 / Audience Chamber / Event Viewer \| EVENT_NAME_st0201ev010 \| Pawn Contracts | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0201/view_st0201ev013/event/viewer/view_st0201ev013.evsi.json#L273[client/03040008/event/st0201/view_st0201ev013/event/viewer/view_st0201ev013.evsi.json#L273] | LayoutFlagArray[31].FlagNo | FlagNo | quest 70003001 / Audience Chamber / Event Viewer \| EVENT_NAME_st0201ev013 \| World Quests unlocked | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0201/view_st0201ev015/event/viewer/view_st0201ev015.evsi.json#L345[client/03040008/event/st0201/view_st0201ev015/event/viewer/view_st0201ev015.evsi.json#L345] | LayoutFlagArray[30].FlagNo | FlagNo | quest 70003001 / Audience Chamber / Event Viewer \| EVENT_NAME_st0201ev015 \| Survey team that never returned | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0201/view_st0201ev020/event/viewer/view_st0201ev020.evsi.json#L365[client/03040008/event/st0201/view_st0201ev020/event/viewer/view_st0201ev020.evsi.json#L365] | LayoutFlagArray[32].FlagNo | FlagNo | quest 70003001 / Audience Chamber / Event Viewer \| EVENT_NAME_st0201ev020 \| Awakening White Dragon | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0201/view_st0201ev025/event/viewer/view_st0201ev025.evsi.json#L381[client/03040008/event/st0201/view_st0201ev025/event/viewer/view_st0201ev025.evsi.json#L381] | LayoutFlagArray[31].FlagNo | FlagNo | quest 70003001 / Audience Chamber / Event Viewer \| EVENT_NAME_st0201ev025 \| Return from the Ark | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0201/view_st0201ev028/event/viewer/view_st0201ev028.evsi.json#L373[client/03040008/event/st0201/view_st0201ev028/event/viewer/view_st0201ev028.evsi.json#L373] | LayoutFlagArray[31].FlagNo | FlagNo | quest 70003001 / Audience Chamber / Event Viewer \| EVENT_NAME_st0201ev028 \| Klaus's thoughts | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0201/view_st0201ev030/event/viewer/view_st0201ev030.evsi.json#L381[client/03040008/event/st0201/view_st0201ev030/event/viewer/view_st0201ev030.evsi.json#L381] | LayoutFlagArray[31].FlagNo | FlagNo | quest 70003001 / Audience Chamber / Event Viewer \| EVENT_NAME_st0201ev030 \| Alchemist Diamantes Picture Scroll | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0201/view_st0201ev035/event/viewer/view_st0201ev035.evsi.json#L357[client/03040008/event/st0201/view_st0201ev035/event/viewer/view_st0201ev035.evsi.json#L357] | LayoutFlagArray[30].FlagNo | FlagNo | quest 70003001 / Audience Chamber / Event Viewer \| EVENT_NAME_st0201ev035 \| Relief to Fort Gritten | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0201/view_st0201ev040/event/viewer/view_st0201ev040.evsi.json#L421[client/03040008/event/st0201/view_st0201ev040/event/viewer/view_st0201ev040.evsi.json#L421] | LayoutFlagArray[34].FlagNo | FlagNo | quest 70003001 / Audience Chamber / Event Viewer \| EVENT_NAME_st0201ev040 \| Leo's problems | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0201/view_st0201ev045/event/viewer/view_st0201ev045.evsi.json#L373[client/03040008/event/st0201/view_st0201ev045/event/viewer/view_st0201ev045.evsi.json#L373] | LayoutFlagArray[31].FlagNo | FlagNo | quest 70003001 / Audience Chamber / Event Viewer \| EVENT_NAME_st0201ev045 \| Message from Iris | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0201/view_st0201ev050/event/viewer/view_st0201ev050.evsi.json#L385[client/03040008/event/st0201/view_st0201ev050/event/viewer/view_st0201ev050.evsi.json#L385] | LayoutFlagArray[33].FlagNo | FlagNo | quest 70003001 / Audience Chamber / Event Viewer \| EVENT_NAME_st0201ev050 \| Hordes of Orcs Approaching the Temple | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0201/view_st0201ev060/event/viewer/view_st0201ev060.evsi.json#L369[client/03040008/event/st0201/view_st0201ev060/event/viewer/view_st0201ev060.evsi.json#L369] | LayoutFlagArray[31].FlagNo | FlagNo | quest 70003001 / Audience Chamber / Event Viewer \| EVENT_NAME_st0201ev060 \| Recapture of life | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0201/view_st0201ev065/event/viewer/view_st0201ev065.evsi.json#L373[client/03040008/event/st0201/view_st0201ev065/event/viewer/view_st0201ev065.evsi.json#L373] | LayoutFlagArray[31].FlagNo | FlagNo | quest 70003001 / Audience Chamber / Event Viewer \| EVENT_NAME_st0201ev065 \| Keith Hilt's Legacy | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0201/view_st0201ev066/event/viewer/view_st0201ev066.evsi.json#L369[client/03040008/event/st0201/view_st0201ev066/event/viewer/view_st0201ev066.evsi.json#L369] | LayoutFlagArray[30].FlagNo | FlagNo | quest 70003001 / Audience Chamber / Event Viewer \| EVENT_NAME_st0201ev066 \| Shock | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0201/view_st0201ev068/event/viewer/view_st0201ev068.evsi.json#L417[client/03040008/event/st0201/view_st0201ev068/event/viewer/view_st0201ev068.evsi.json#L417] | LayoutFlagArray[33].FlagNo | FlagNo | quest 70003001 / Audience Chamber / Event Viewer \| EVENT_NAME_st0201ev068 \| Joseph's view | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0201/view_st0201ev070/event/viewer/view_st0201ev070.evsi.json#L381[client/03040008/event/st0201/view_st0201ev070/event/viewer/view_st0201ev070.evsi.json#L381] | LayoutFlagArray[31].FlagNo | FlagNo | quest 70003001 / Audience Chamber / Event Viewer \| EVENT_NAME_st0201ev070 \| Ark destruction strategy | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0201/view_st0201ev073/event/viewer/view_st0201ev073.evsi.json#L377[client/03040008/event/st0201/view_st0201ev073/event/viewer/view_st0201ev073.evsi.json#L377] | LayoutFlagArray[31].FlagNo | FlagNo | quest 70003001 / Audience Chamber / Event Viewer \| EVENT_NAME_st0201ev073 \| Operation Ark Destruction | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0201/view_st0201ev075/event/viewer/view_st0201ev075.evsi.json#L421[client/03040008/event/st0201/view_st0201ev075/event/viewer/view_st0201ev075.evsi.json#L421] | LayoutFlagArray[32].FlagNo | FlagNo | quest 70003001 / Audience Chamber / Event Viewer \| EVENT_NAME_st0201ev075 \| The Abducted Priestess | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0201/view_st0201ev080/event/viewer/view_st0201ev080.evsi.json#L433[client/03040008/event/st0201/view_st0201ev080/event/viewer/view_st0201ev080.evsi.json#L433] | LayoutFlagArray[32].FlagNo | FlagNo | quest 70003001 / Audience Chamber / Event Viewer \| EVENT_NAME_st0201ev080 \| Ending at the Abyss | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0201/view_st0201ev090/event/viewer/view_st0201ev090.evsi.json#L373[client/03040008/event/st0201/view_st0201ev090/event/viewer/view_st0201ev090.evsi.json#L373] | LayoutFlagArray[30].FlagNo | FlagNo | quest 70003001 / Audience Chamber / Event Viewer \| EVENT_NAME_st0201ev090 \| To the site of the decisive battle | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0400/view_st0400ev013/event/viewer/view_st0400ev013.evsi.json#L337[client/03040008/event/st0400/view_st0400ev013/event/viewer/view_st0400ev013.evsi.json#L337] | LayoutFlagArray[31].FlagNo | FlagNo | quest 70003001 / Fort Gritten / Event Viewer \| EVENT_NAME_st0400ev013 \| Vanessa's arrival | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0401/view_st0401ev000/event/viewer/view_st0401ev000.evsi.json#L373[client/03040008/event/st0401/view_st0401ev000/event/viewer/view_st0401ev000.evsi.json#L373] | LayoutFlagArray[31].FlagNo | FlagNo | quest 70003001 / Glowworm Cave / Event Viewer \| EVENT_NAME_st0401ev000 \| Appearance of Trolls | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0401/view_st0401ev005/event/viewer/view_st0401ev005.evsi.json#L381[client/03040008/event/st0401/view_st0401ev005/event/viewer/view_st0401ev005.evsi.json#L381] | LayoutFlagArray[31].FlagNo | FlagNo | quest 70003001 / Glowworm Cave / Event Viewer \| EVENT_NAME_st0401ev005 \| Keith Hilt and Mayleaf | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0401/view_st0401ev010/event/viewer/view_st0401ev010.evsi.json#L381[client/03040008/event/st0401/view_st0401ev010/event/viewer/view_st0401ev010.evsi.json#L381] | LayoutFlagArray[32].FlagNo | FlagNo | quest 70003001 / Glowworm Cave / Event Viewer \| EVENT_NAME_st0401ev010 \| Mayleaf Rescue | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0402/view_st0402ev000/event/viewer/view_st0402ev000.evsi.json#L417[client/03040008/event/st0402/view_st0402ev000/event/viewer/view_st0402ev000.evsi.json#L417] | LayoutFlagArray[32].FlagNo | FlagNo | quest 70003001 / Gardnox Fortress / Event Viewer \| EVENT_NAME_st0402ev000 \| Appearance of Mogok | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0402/view_st0402ev005/event/viewer/view_st0402ev005.evsi.json#L449[client/03040008/event/st0402/view_st0402ev005/event/viewer/view_st0402ev005.evsi.json#L449] | LayoutFlagArray[35].FlagNo | FlagNo | quest 70003001 / Gardnox Fortress / Event Viewer \| EVENT_NAME_st0402ev005 \| Defeat Mogok | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0403/view_st0403ev000/event/viewer/view_st0403ev000.evsi.json#L381[client/03040008/event/st0403/view_st0403ev000/event/viewer/view_st0403ev000.evsi.json#L381] | LayoutFlagArray[32].FlagNo | FlagNo | quest 70003001 / Dreed Castle / Event Viewer \| EVENT_NAME_st0403ev000 \| Occupied old castle | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0403/view_st0403ev005/event/viewer/view_st0403ev005.evsi.json#L401[client/03040008/event/st0403/view_st0403ev005/event/viewer/view_st0403ev005.evsi.json#L401] | LayoutFlagArray[32].FlagNo | FlagNo | quest 70003001 / Dreed Castle / Event Viewer \| EVENT_NAME_st0403ev005 \| Discovering the Vessel of Life | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0403/view_st0403ev010/event/viewer/view_st0403ev010.evsi.json#L441[client/03040008/event/st0403/view_st0403ev010/event/viewer/view_st0403ev010.evsi.json#L441] | LayoutFlagArray[35].FlagNo | FlagNo | quest 70003001 / Dreed Castle / Event Viewer \| EVENT_NAME_st0403ev010 \| Behemoth Defeat | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0403/view_st0403ev015/event/viewer/view_st0403ev015.evsi.json#L433[client/03040008/event/st0403/view_st0403ev015/event/viewer/view_st0403ev015.evsi.json#L433] | LayoutFlagArray[34].FlagNo | FlagNo | quest 70003001 / Dreed Castle / Event Viewer \| EVENT_NAME_st0403ev015 \| vessel to be filled | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0404/view_st0404ev000/event/viewer/view_st0404ev000.evsi.json#L421[client/03040008/event/st0404/view_st0404ev000/event/viewer/view_st0404ev000.evsi.json#L421] | LayoutFlagArray[33].FlagNo | FlagNo | quest 70003001 / Erte Deenan / Event Viewer \| EVENT_NAME_st0404ev000 \| Keith Hilt cornered | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0404/view_st0404ev005/event/viewer/view_st0404ev005.evsi.json#L457[client/03040008/event/st0404/view_st0404ev005/event/viewer/view_st0404ev005.evsi.json#L457] | LayoutFlagArray[37].FlagNo | FlagNo | quest 70003001 / Erte Deenan / Event Viewer \| EVENT_NAME_st0404ev005 \| Death of Keith Hilt | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0408/view_st0408ev000/event/viewer/view_st0408ev000.evsi.json#L421[client/03040008/event/st0408/view_st0408ev000/event/viewer/view_st0408ev000.evsi.json#L421] | LayoutFlagArray[31].FlagNo | FlagNo | quest 70003001 / Temple of Purification / Event Viewer \| EVENT_NAME_st0408ev000 \| Iris and Mayleaf | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0408/view_st0408ev005/event/viewer/view_st0408ev005.evsi.json#L453[client/03040008/event/st0408/view_st0408ev005/event/viewer/view_st0408ev005.evsi.json#L453] | LayoutFlagArray[33].FlagNo | FlagNo | quest 70003001 / Temple of Purification / Event Viewer \| EVENT_NAME_st0408ev005 \| Stolen Heart | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0408/view_st0408ev010/event/viewer/view_st0408ev010.evsi.json#L445[client/03040008/event/st0408/view_st0408ev010/event/viewer/view_st0408ev010.evsi.json#L445] | LayoutFlagArray[32].FlagNo | FlagNo | quest 70003001 / Temple of Purification / Event Viewer \| EVENT_NAME_st0408ev010 \| Escape from the Temple | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0408/view_st0408ev090/event/viewer/view_st0408ev090.evsi.json#L453[client/03040008/event/st0408/view_st0408ev090/event/viewer/view_st0408ev090.evsi.json#L453] | LayoutFlagArray[37].FlagNo | FlagNo | quest 70003001 / Temple of Purification / Event Viewer \| EVENT_NAME_st0408ev090 \| Misogi Temple | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0410/view_st0410ev000/event/viewer/view_st0410ev000.evsi.json#L409[client/03040008/event/st0410/view_st0410ev000/event/viewer/view_st0410ev000.evsi.json#L409] | LayoutFlagArray[34].FlagNo | FlagNo | quest 70003001 / Mergoda Ruins: Lower Level / Event Viewer \| EVENT_NAME_st0410ev000 \| The Ruined city of Mergoda | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0410/view_st0410ev005/event/viewer/view_st0410ev005.evsi.json#L413[client/03040008/event/st0410/view_st0410ev005/event/viewer/view_st0410ev005.evsi.json#L413] | LayoutFlagArray[34].FlagNo | FlagNo | quest 70003001 / Mergoda Ruins: Lower Level / Event Viewer \| EVENT_NAME_st0410ev005 \| Residents of the Golden Hills | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0410/view_st0410ev010/event/viewer/view_st0410ev010.evsi.json#L421[client/03040008/event/st0410/view_st0410ev010/event/viewer/view_st0410ev010.evsi.json#L421] | LayoutFlagArray[35].FlagNo | FlagNo | quest 70003001 / Mergoda Ruins: Lower Level / Event Viewer \| EVENT_NAME_st0410ev010 \| Theodore and Klaus | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0411/view_st0411ev000/event/viewer/view_st0411ev000.evsi.json#L421[client/03040008/event/st0411/view_st0411ev000/event/viewer/view_st0411ev000.evsi.json#L421] | LayoutFlagArray[33].FlagNo | FlagNo | quest 70003001 / Mergoda Security District / Event Viewer \| EVENT_NAME_st0411ev000 \| The future entrusted to us | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0411/view_st0411ev005/event/viewer/view_st0411ev005.evsi.json#L445[client/03040008/event/st0411/view_st0411ev005/event/viewer/view_st0411ev005.evsi.json#L445] | LayoutFlagArray[34].FlagNo | FlagNo | quest 70003001 / Mergoda Security District / Event Viewer \| EVENT_NAME_st0411ev005 \| Our Mutually Conflicting Thoughts | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0414/view_st0414ev005/event/viewer/view_st0414ev005.evsi.json#L365[client/03040008/event/st0414/view_st0414ev005/event/viewer/view_st0414ev005.evsi.json#L365] | LayoutFlagArray[30].FlagNo | FlagNo | quest 70003001 / Kinoza Mineral Springs / Event Viewer \| EVENT_NAME_st0414ev005 \| Kinoza Hot Springs | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0417/view_st0417ev010/event/viewer/view_st0417ev010.evsi.json#L397[client/03040008/event/st0417/view_st0417ev010/event/viewer/view_st0417ev010.evsi.json#L397] | LayoutFlagArray[34].FlagNo | FlagNo | quest 70003001 / Fort Gritten / Event Viewer \| EVENT_NAME_st0417ev010 \| Arrival of rescue teams | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0417/view_st0417ev015/event/viewer/view_st0417ev015.evsi.json#L413[client/03040008/event/st0417/view_st0417ev015/event/viewer/view_st0417ev015.evsi.json#L413] | LayoutFlagArray[35].FlagNo | FlagNo | quest 70003001 / Fort Gritten / Event Viewer \| EVENT_NAME_st0417ev015 \| Confronting Mogok | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0417/view_st0417ev020/event/viewer/view_st0417ev020.evsi.json#L421[client/03040008/event/st0417/view_st0417ev020/event/viewer/view_st0417ev020.evsi.json#L421] | LayoutFlagArray[35].FlagNo | FlagNo | quest 70003001 / Fort Gritten / Event Viewer \| EVENT_NAME_st0417ev020 \| Garm Repulsion | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0418/view_st0418ev000/event/viewer/view_st0418ev000.evsi.json#L441[client/03040008/event/st0418/view_st0418ev000/event/viewer/view_st0418ev000.evsi.json#L441] | LayoutFlagArray[35].FlagNo | FlagNo | quest 70003001 / Mergoda Ruins: Royal Palace Level / Event Viewer \| EVENT_NAME_st0418ev000 \| Defeat of Giant Soldiers | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0418/view_st0418ev005/event/viewer/view_st0418ev005.evsi.json#L405[client/03040008/event/st0418/view_st0418ev005/event/viewer/view_st0418ev005.evsi.json#L405] | LayoutFlagArray[33].FlagNo | FlagNo | quest 70003001 / Mergoda Ruins: Royal Palace Level / Event Viewer \| EVENT_NAME_st0418ev005 \| Beyond the sealed door | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0418/view_st0418ev030/event/viewer/view_st0418ev030.evsi.json#L425[client/03040008/event/st0418/view_st0418ev030/event/viewer/view_st0418ev030.evsi.json#L425] | LayoutFlagArray[34].FlagNo | FlagNo | quest 70003001 / Mergoda Ruins: Royal Palace Level / Event Viewer \| EVENT_NAME_st0418ev030 \| Leo's Coalition | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0571/view_st0571ev000/event/viewer/view_st0571ev000.evsi.json#L397[client/03040008/event/st0571/view_st0571ev000/event/viewer/view_st0571ev000.evsi.json#L397] | LayoutFlagArray[33].FlagNo | FlagNo | quest 70003001 / The Second Ark / Event Viewer \| EVENT_NAME_st0571ev000 \| Iris stands in the way | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0571/view_st0571ev005/event/viewer/view_st0571ev005.evsi.json#L413[client/03040008/event/st0571/view_st0571ev005/event/viewer/view_st0571ev005.evsi.json#L413] | LayoutFlagArray[35].FlagNo | FlagNo | quest 70003001 / The Second Ark / Event Viewer \| EVENT_NAME_st0571ev005 \| Ark Escape | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0571/view_st0571ev010/event/viewer/view_st0571ev010.evsi.json#L417[client/03040008/event/st0571/view_st0571ev010/event/viewer/view_st0571ev010.evsi.json#L417] | LayoutFlagArray[35].FlagNo | FlagNo | quest 70003001 / The Second Ark / Event Viewer \| EVENT_NAME_st0571ev010 \| Zuhl ambush | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0571/view_st0571ev015/event/viewer/view_st0571ev015.evsi.json#L425[client/03040008/event/st0571/view_st0571ev015/event/viewer/view_st0571ev015.evsi.json#L425] | LayoutFlagArray[36].FlagNo | FlagNo | quest 70003001 / The Second Ark / Event Viewer \| EVENT_NAME_st0571ev015 \| Third Ark falls, first half | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0571/view_st0571ev016/event/viewer/view_st0571ev016.evsi.json#L425[client/03040008/event/st0571/view_st0571ev016/event/viewer/view_st0571ev016.evsi.json#L425] | LayoutFlagArray[36].FlagNo | FlagNo | quest 70003001 / The Second Ark / Event Viewer \| EVENT_NAME_st0571ev016 \| Third Ark falls, second half | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0571/view_st0571ev020/event/viewer/view_st0571ev020.evsi.json#L449[client/03040008/event/st0571/view_st0571ev020/event/viewer/view_st0571ev020.evsi.json#L449] | LayoutFlagArray[38].FlagNo | FlagNo | quest 70003001 / The Second Ark / Event Viewer \| EVENT_NAME_st0571ev020 \| Defeating Zuhl | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0572/view_st0572ev000/event/viewer/view_st0572ev000.evsi.json#L449[client/03040008/event/st0572/view_st0572ev000/event/viewer/view_st0572ev000.evsi.json#L449] | LayoutFlagArray[36].FlagNo | FlagNo | quest 70003001 / The Third Ark / Event Viewer \| EVENT_NAME_st0572ev000 \| Leo is cornered | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0572/view_st0572ev005/event/viewer/view_st0572ev005.evsi.json#L465[client/03040008/event/st0572/view_st0572ev005/event/viewer/view_st0572ev005.evsi.json#L465] | LayoutFlagArray[38].FlagNo | FlagNo | quest 70003001 / The Third Ark / Event Viewer \| EVENT_NAME_st0572ev005 \| Leo Escapes | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0572/view_st0572ev010/event/viewer/view_st0572ev010.evsi.json#L449[client/03040008/event/st0572/view_st0572ev010/event/viewer/view_st0572ev010.evsi.json#L449] | LayoutFlagArray[36].FlagNo | FlagNo | quest 70003001 / The Third Ark / Event Viewer \| EVENT_NAME_st0572ev010 \| Ark Activation | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0572/view_st0572ev015/event/viewer/view_st0572ev015.evsi.json#L449[client/03040008/event/st0572/view_st0572ev015/event/viewer/view_st0572ev015.evsi.json#L449] | LayoutFlagArray[36].FlagNo | FlagNo | quest 70003001 / The Third Ark / Event Viewer \| EVENT_NAME_st0572ev015 \| Leo takes flight | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0576/view_st0576ev000/event/viewer/view_st0576ev000.evsi.json#L369[client/03040008/event/st0576/view_st0576ev000/event/viewer/view_st0576ev000.evsi.json#L369] | LayoutFlagArray[32].FlagNo | FlagNo | quest 70003001 / The Ark / Event Viewer \| EVENT_NAME_st0576ev000 \| Keeper of the Furnace | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0576/view_st0576ev005/event/viewer/view_st0576ev005.evsi.json#L397[client/03040008/event/st0576/view_st0576ev005/event/viewer/view_st0576ev005.evsi.json#L397] | LayoutFlagArray[34].FlagNo | FlagNo | quest 70003001 / The Ark / Event Viewer \| EVENT_NAME_st0576ev005 \| Rescue of the survey team | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0622/view_st0622ev000/event/viewer/view_st0622ev000.evsi.json#L401[client/03040008/event/st0622/view_st0622ev000/event/viewer/view_st0622ev000.evsi.json#L401] | LayoutFlagArray[32].FlagNo | FlagNo | quest 70003001 / Theodor's Alchemy Workshop / Event Viewer \| EVENT_NAME_st0622ev000 \| Seal Key | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0622/view_st0622ev005/event/viewer/view_st0622ev005.evsi.json#L429[client/03040008/event/st0622/view_st0622ev005/event/viewer/view_st0622ev005.evsi.json#L429] | LayoutFlagArray[33].FlagNo | FlagNo | quest 70003001 / Theodor's Alchemy Workshop / Event Viewer \| EVENT_NAME_st0622ev005 \| Report to Theodor | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+|===
+
+== Flag 1102 -- Quest 22
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00000022/quest/00000022/q00000022_st0411.qst.json[client/03040008/quest/q00000022/quest/00000022/q00000022_st0411.qst.json] | QuestStageList[].QuestGrp[0].Condition | Condition | quest 22 / Mergoda Security District / "QuestGroup 1" / QuestSet=QuestSetInfoNpc \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00000022/quest/00000022/q00000022_st0411.qst.json[client/03040008/quest/q00000022/quest/00000022/q00000022_st0411.qst.json] | QuestStageList[].QuestGrp[0].EraseCondition | EraseCondition | quest 22 / Mergoda Security District / "QuestGroup 1" / QuestSet=QuestSetInfoNpc \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 1253 -- Quest 22
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00000022/quest/00000022/q00000022_st0201.qst.json[client/03040008/quest/q00000022/quest/00000022/q00000022_st0201.qst.json] | QuestStageList[].QuestGrp[1].Condition | Condition | quest 22 / Audience Chamber / "QuestGroup 2" / QuestSet=QuestSetInfoNpc \| GroupNo=2 \|\| QuestSet=QuestSetInfoNpc \| GroupNo=2 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00000022/quest/00000022/q00000022_st0201.qst.json[client/03040008/quest/q00000022/quest/00000022/q00000022_st0201.qst.json] | QuestStageList[].QuestGrp[1].EraseCondition | EraseCondition | quest 22 / Audience Chamber / "QuestGroup 2" / QuestSet=QuestSetInfoNpc \| GroupNo=2 \|\| QuestSet=QuestSetInfoNpc \| GroupNo=2 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 1307 -- Quest 22
+
+origin:: derived_qst_local
+direct hits:: *3*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 3 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00000022/quest/00000022/q00000022_st0411.qst.json[client/03040008/quest/q00000022/quest/00000022/q00000022_st0411.qst.json] | QuestStageList[].QuestGrp[1].Condition | Condition | quest 22 / Mergoda Security District / "QuestGroup 2" / QuestSet=QuestSetInfoOm \| OmID=522541 \| om522541 \| EnableZone \| GroupNo=2 \|\| QuestSet=QuestSetInfoOmWall \| OmID=522540 \| OM_ID_STRUCTURE_WALL1 \| EnableZone \| GroupNo=2 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00000022/quest/00000022/q00000022_st0411.qst.json[client/03040008/quest/q00000022/quest/00000022/q00000022_st0411.qst.json] | QuestStageList[].QuestGrp[1].EraseCondition | EraseCondition | quest 22 / Mergoda Security District / "QuestGroup 2" / QuestSet=QuestSetInfoOm \| OmID=522541 \| om522541 \| EnableZone \| GroupNo=2 \|\| QuestSet=QuestSetInfoOmWall \| OmID=522540 \| OM_ID_STRUCTURE_WALL1 \| EnableZone \| GroupNo=2 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0410/view_st0410ev000/event/viewer/view_st0410ev000.evsi.json#L269[client/03040008/event/st0410/view_st0410ev000/event/viewer/view_st0410ev000.evsi.json#L269] | LayoutFlagArray[1].FlagNo | FlagNo | quest 22 (The Dwellers of the Golden Land) / Mergoda Ruins: Lower Level / Event Viewer \| EVENT_NAME_st0410ev000 \| The Ruined city of Mergoda | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+|===
+
+== Flag 2464 -- Quest 22
+
+origin:: derived_qst_local
+direct hits:: *5*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 5 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00000022/quest/00000022/q00000022_st0410.qst.json[client/03040008/quest/q00000022/quest/00000022/q00000022_st0410.qst.json] | QuestStageList[].QuestGrp[2].Condition | Condition | quest 22 / Mergoda Ruins: Lower Level / "QuestGroup 3 \| 封鎖岩とアタリ" / QuestSet=QuestSetInfoOm \| OmID=522542 \| UnitID=522542 \| EnableZone \| GroupNo=3 \|\| QuestSet=QuestSetInfoOm \| OmID=507341 \| UnitID=507341 \| EnableZone \| GroupNo=3 \|\| +6 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00000022/quest/00000022/q00000022_st0410.qst.json[client/03040008/quest/q00000022/quest/00000022/q00000022_st0410.qst.json] | QuestStageList[].QuestGrp[2].EraseCondition | EraseCondition | quest 22 / Mergoda Ruins: Lower Level / "QuestGroup 3 \| 封鎖岩とアタリ" / QuestSet=QuestSetInfoOm \| OmID=522542 \| UnitID=522542 \| EnableZone \| GroupNo=3 \|\| QuestSet=QuestSetInfoOm \| OmID=507341 \| UnitID=507341 \| EnableZone \| GroupNo=3 \|\| +6 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0410/view_st0410ev000/event/viewer/view_st0410ev000.evsi.json#L277[client/03040008/event/st0410/view_st0410ev000/event/viewer/view_st0410ev000.evsi.json#L277] | LayoutFlagArray[2].FlagNo | FlagNo | quest 22 (The Dwellers of the Golden Land) / Mergoda Ruins: Lower Level / Event Viewer \| EVENT_NAME_st0410ev000 \| The Ruined city of Mergoda | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0410/view_st0410ev005/event/viewer/view_st0410ev005.evsi.json#L285[client/03040008/event/st0410/view_st0410ev005/event/viewer/view_st0410ev005.evsi.json#L285] | LayoutFlagArray[3].FlagNo | FlagNo | quest 22 (The Dwellers of the Golden Land) / Mergoda Ruins: Lower Level / Event Viewer \| EVENT_NAME_st0410ev005 \| Residents of the Golden Hills | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0410/view_st0410ev010/event/viewer/view_st0410ev010.evsi.json#L293[client/03040008/event/st0410/view_st0410ev010/event/viewer/view_st0410ev010.evsi.json#L293] | LayoutFlagArray[4].FlagNo | FlagNo | quest 22 (The Dwellers of the Golden Land) / Mergoda Ruins: Lower Level / Event Viewer \| EVENT_NAME_st0410ev010 \| Theodore and Klaus | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+|===
 
 == Quest ID 22
 
@@ -32,24 +642,24 @@ ranked candidates:: *0*
 
 ==== direct -- 15 hit(s)
 
-[cols="1,1,3,3,2,3,3",options="header"]
+[cols="1,1,1,3,3,2,3,3",options="header"]
 |===
-| Family | Confidence | File | JSON Path | Field | Context | Why
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
 
-| SMC | 92 | client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json | SituationData.EndQuestId | EndQuestId | quest 22 (The Dwellers of the Golden Land) / Klaus / GroupSerial=12704 / "GroupSerial=12704, QuestWindow=21-22 (The Quandary of Soldiers -> The Dwellers of the Golden Land), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window end" / NpcChatter=n0003 \| Quest-gated NPC chatter \| QuestWindow=21-22 (The Quandary of Soldiers -> The Dwellers of the Golden Land) / MSS: Klaus / I cannot stay still here. I'm going to Mergoda! | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json | SituationData.StartQuestId | StartQuestId | quest 22 (The Dwellers of the Golden Land) / Klaus / GroupSerial=12705 / "GroupSerial=12705, QuestWindow=22-23 (The Dwellers of the Golden Land -> The Golden Key), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0003 \| Quest-gated NPC chatter \| QuestWindow=22-23 (The Dwellers of the Golden Land -> The Golden Key) / MSS: Klaus / I am happy that there was an alchemist who | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json | SituationData.EndQuestId | EndQuestId | quest 22 (The Dwellers of the Golden Land) / Joseph / GroupSerial=12747 / "GroupSerial=12747, QuestWindow=21-22 (The Quandary of Soldiers -> The Dwellers of the Golden Land), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0004 \| Quest-gated NPC chatter \| QuestWindow=21-22 (The Quandary of Soldiers -> The Dwellers of the Golden Land) / MSS: Joseph / Now, you're going to Mergoda. Who to talk to o'er | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json | SituationData.StartQuestId | StartQuestId | quest 22 (The Dwellers of the Golden Land) / Joseph / GroupSerial=12748 / "GroupSerial=12748, QuestWindow=22-23 (The Dwellers of the Golden Land -> The Golden Key), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0004 \| Quest-gated NPC chatter \| QuestWindow=22-23 (The Dwellers of the Golden Land -> The Golden Key) / MSS: Joseph / Did you see Leo? Tell him I was worried. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0007/ui/00_message/npc/base/n0007.smc.json | SituationData.EndQuestId | EndQuestId | quest 22 (The Dwellers of the Golden Land) / Gerd / GroupSerial=12969 / "GroupSerial=12969, QuestWindow=21-22 (The Quandary of Soldiers -> The Dwellers of the Golden Land), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0007 \| Quest-gated NPC chatter \| QuestWindow=21-22 (The Quandary of Soldiers -> The Dwellers of the Golden Land) / MSS: Gerd / Damn it, Leo— | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0007/ui/00_message/npc/base/n0007.smc.json | SituationData.StartQuestId | StartQuestId | quest 22 (The Dwellers of the Golden Land) / Gerd / GroupSerial=12970 / "GroupSerial=12970, QuestWindow=22-23 (The Dwellers of the Golden Land -> The Golden Key), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0007 \| Quest-gated NPC chatter \| QuestWindow=22-23 (The Dwellers of the Golden Land -> The Golden Key) / MSS: Gerd / A knight must indeed stand on the battlefield. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0008/ui/00_message/npc/base/n0008.smc.json | SituationData.EndQuestId | EndQuestId | quest 22 (The Dwellers of the Golden Land) / Heinz / GroupSerial=13014 / "GroupSerial=13014, QuestWindow=21-22 (The Quandary of Soldiers -> The Dwellers of the Golden Land), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0008 \| Quest-gated NPC chatter \| QuestWindow=21-22 (The Quandary of Soldiers -> The Dwellers of the Golden Land) / MSS: Heinz / The commander of the Knights claims that Leo was negligent. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0008/ui/00_message/npc/base/n0008.smc.json | SituationData.StartQuestId | StartQuestId | quest 22 (The Dwellers of the Golden Land) / Heinz / GroupSerial=13020 / "GroupSerial=13020, QuestWindow=22-23 (The Dwellers of the Golden Land -> The Golden Key), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0008 \| Quest-gated NPC chatter \| QuestWindow=22-23 (The Dwellers of the Golden Land -> The Golden Key) / MSS: Heinz / I do not want to fight Leo. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0010/ui/00_message/npc/base/n0010.smc.json | SituationData.StartQuestId | StartQuestId | quest 22 (The Dwellers of the Golden Land) / Theodor / GroupSerial=13043 / "GroupSerial=13043, QuestWindow=22-23 (The Dwellers of the Golden Land -> The Golden Key), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0010 \| Quest-gated NPC chatter \| QuestWindow=22-23 (The Dwellers of the Golden Land -> The Golden Key) / MSS: Theodor / What the alchemist started, the alchemist will | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0011/ui/00_message/npc/base/n0011.smc.json | SituationData.EndQuestId | EndQuestId | quest 22 (The Dwellers of the Golden Land) / Vanessa / GroupSerial=13092 / "GroupSerial=13092, QuestWindow=21-22 (The Quandary of Soldiers -> The Dwellers of the Golden Land), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0011 \| Quest-gated NPC chatter \| QuestWindow=21-22 (The Quandary of Soldiers -> The Dwellers of the Golden Land) / MSS: Vanessa / Don't worry about Leo. I'm sure he's doing | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0011/ui/00_message/npc/base/n0011.smc.json | SituationData.StartQuestId | StartQuestId | quest 22 (The Dwellers of the Golden Land) / Vanessa / GroupSerial=13093 / "GroupSerial=13093, QuestWindow=22-23 (The Dwellers of the Golden Land -> The Golden Key), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0011 \| Quest-gated NPC chatter \| QuestWindow=22-23 (The Dwellers of the Golden Land -> The Golden Key) / MSS: Vanessa / Damn it—The enemies around here are getting | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0012/ui/00_message/npc/base/n0012.smc.json | SituationData.EndQuestId | EndQuestId | quest 22 (The Dwellers of the Golden Land) / Fabio / GroupSerial=13996 / "GroupSerial=13996, QuestWindow=21-22 (The Quandary of Soldiers -> The Dwellers of the Golden Land), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0012 \| Quest-gated NPC chatter \| QuestWindow=21-22 (The Quandary of Soldiers -> The Dwellers of the Golden Land) / MSS: Fabio / Everyone seems to be preoccupied with the | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0012/ui/00_message/npc/base/n0012.smc.json | SituationData.StartQuestId | StartQuestId | quest 22 (The Dwellers of the Golden Land) / Fabio / GroupSerial=13997 / "GroupSerial=13997, QuestWindow=22-23 (The Dwellers of the Golden Land -> The Golden Key), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0012 \| Quest-gated NPC chatter \| QuestWindow=22-23 (The Dwellers of the Golden Land -> The Golden Key) / MSS: Fabio / How's it going in Mergoda? You may be busy | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0014/ui/00_message/npc/base/n0014.smc.json | SituationData.EndQuestId | EndQuestId | quest 22 (The Dwellers of the Golden Land) / Mayleaf / GroupSerial=13123 / "GroupSerial=13123, QuestWindow=21-22 (The Quandary of Soldiers -> The Dwellers of the Golden Land), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0014 \| Quest-gated NPC chatter \| QuestWindow=21-22 (The Quandary of Soldiers -> The Dwellers of the Golden Land) / MSS: Mayleaf / Are you all leaving? | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0014/ui/00_message/npc/base/n0014.smc.json | SituationData.StartQuestId | StartQuestId | quest 22 (The Dwellers of the Golden Land) / Mayleaf / GroupSerial=13124 / "GroupSerial=13124, QuestWindow=22-23 (The Dwellers of the Golden Land -> The Golden Key), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0014 \| Quest-gated NPC chatter \| QuestWindow=22-23 (The Dwellers of the Golden Land -> The Golden Key) / MSS: Mayleaf / I'm praying to Lord White Dragon. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json[client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json] | SituationData.EndQuestId | EndQuestId | quest 22 (The Dwellers of the Golden Land) / Klaus / GroupSerial=12704 / "GroupSerial=12704, QuestWindow=21-22 (The Quandary of Soldiers -> The Dwellers of the Golden Land), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window end" / NpcChatter=n0003 \| Quest-gated NPC chatter \| QuestWindow=21-22 (The Quandary of Soldiers -> The Dwellers of the Golden Land) / MSS: Klaus / I cannot stay still here. I'm going to Mergoda! | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json[client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json] | SituationData.StartQuestId | StartQuestId | quest 22 (The Dwellers of the Golden Land) / Klaus / GroupSerial=12705 / "GroupSerial=12705, QuestWindow=22-23 (The Dwellers of the Golden Land -> The Golden Key), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0003 \| Quest-gated NPC chatter \| QuestWindow=22-23 (The Dwellers of the Golden Land -> The Golden Key) / MSS: Klaus / I am happy that there was an alchemist who | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json[client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json] | SituationData.EndQuestId | EndQuestId | quest 22 (The Dwellers of the Golden Land) / Joseph / GroupSerial=12747 / "GroupSerial=12747, QuestWindow=21-22 (The Quandary of Soldiers -> The Dwellers of the Golden Land), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0004 \| Quest-gated NPC chatter \| QuestWindow=21-22 (The Quandary of Soldiers -> The Dwellers of the Golden Land) / MSS: Joseph / Now, you're going to Mergoda. Who to talk to o'er | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json[client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json] | SituationData.StartQuestId | StartQuestId | quest 22 (The Dwellers of the Golden Land) / Joseph / GroupSerial=12748 / "GroupSerial=12748, QuestWindow=22-23 (The Dwellers of the Golden Land -> The Golden Key), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0004 \| Quest-gated NPC chatter \| QuestWindow=22-23 (The Dwellers of the Golden Land -> The Golden Key) / MSS: Joseph / Did you see Leo? Tell him I was worried. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0007/ui/00_message/npc/base/n0007.smc.json[client/03040008/npc/n0007/ui/00_message/npc/base/n0007.smc.json] | SituationData.EndQuestId | EndQuestId | quest 22 (The Dwellers of the Golden Land) / Gerd / GroupSerial=12969 / "GroupSerial=12969, QuestWindow=21-22 (The Quandary of Soldiers -> The Dwellers of the Golden Land), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0007 \| Quest-gated NPC chatter \| QuestWindow=21-22 (The Quandary of Soldiers -> The Dwellers of the Golden Land) / MSS: Gerd / Damn it, Leo— | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0007/ui/00_message/npc/base/n0007.smc.json[client/03040008/npc/n0007/ui/00_message/npc/base/n0007.smc.json] | SituationData.StartQuestId | StartQuestId | quest 22 (The Dwellers of the Golden Land) / Gerd / GroupSerial=12970 / "GroupSerial=12970, QuestWindow=22-23 (The Dwellers of the Golden Land -> The Golden Key), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0007 \| Quest-gated NPC chatter \| QuestWindow=22-23 (The Dwellers of the Golden Land -> The Golden Key) / MSS: Gerd / A knight must indeed stand on the battlefield. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0008/ui/00_message/npc/base/n0008.smc.json[client/03040008/npc/n0008/ui/00_message/npc/base/n0008.smc.json] | SituationData.EndQuestId | EndQuestId | quest 22 (The Dwellers of the Golden Land) / Heinz / GroupSerial=13014 / "GroupSerial=13014, QuestWindow=21-22 (The Quandary of Soldiers -> The Dwellers of the Golden Land), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0008 \| Quest-gated NPC chatter \| QuestWindow=21-22 (The Quandary of Soldiers -> The Dwellers of the Golden Land) / MSS: Heinz / The commander of the Knights claims that Leo was negligent. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0008/ui/00_message/npc/base/n0008.smc.json[client/03040008/npc/n0008/ui/00_message/npc/base/n0008.smc.json] | SituationData.StartQuestId | StartQuestId | quest 22 (The Dwellers of the Golden Land) / Heinz / GroupSerial=13020 / "GroupSerial=13020, QuestWindow=22-23 (The Dwellers of the Golden Land -> The Golden Key), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0008 \| Quest-gated NPC chatter \| QuestWindow=22-23 (The Dwellers of the Golden Land -> The Golden Key) / MSS: Heinz / I do not want to fight Leo. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0010/ui/00_message/npc/base/n0010.smc.json[client/03040008/npc/n0010/ui/00_message/npc/base/n0010.smc.json] | SituationData.StartQuestId | StartQuestId | quest 22 (The Dwellers of the Golden Land) / Theodor / GroupSerial=13043 / "GroupSerial=13043, QuestWindow=22-23 (The Dwellers of the Golden Land -> The Golden Key), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0010 \| Quest-gated NPC chatter \| QuestWindow=22-23 (The Dwellers of the Golden Land -> The Golden Key) / MSS: Theodor / What the alchemist started, the alchemist will | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0011/ui/00_message/npc/base/n0011.smc.json[client/03040008/npc/n0011/ui/00_message/npc/base/n0011.smc.json] | SituationData.EndQuestId | EndQuestId | quest 22 (The Dwellers of the Golden Land) / Vanessa / GroupSerial=13092 / "GroupSerial=13092, QuestWindow=21-22 (The Quandary of Soldiers -> The Dwellers of the Golden Land), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0011 \| Quest-gated NPC chatter \| QuestWindow=21-22 (The Quandary of Soldiers -> The Dwellers of the Golden Land) / MSS: Vanessa / Don't worry about Leo. I'm sure he's doing | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0011/ui/00_message/npc/base/n0011.smc.json[client/03040008/npc/n0011/ui/00_message/npc/base/n0011.smc.json] | SituationData.StartQuestId | StartQuestId | quest 22 (The Dwellers of the Golden Land) / Vanessa / GroupSerial=13093 / "GroupSerial=13093, QuestWindow=22-23 (The Dwellers of the Golden Land -> The Golden Key), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0011 \| Quest-gated NPC chatter \| QuestWindow=22-23 (The Dwellers of the Golden Land -> The Golden Key) / MSS: Vanessa / Damn it—The enemies around here are getting | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0012/ui/00_message/npc/base/n0012.smc.json[client/03040008/npc/n0012/ui/00_message/npc/base/n0012.smc.json] | SituationData.EndQuestId | EndQuestId | quest 22 (The Dwellers of the Golden Land) / Fabio / GroupSerial=13996 / "GroupSerial=13996, QuestWindow=21-22 (The Quandary of Soldiers -> The Dwellers of the Golden Land), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0012 \| Quest-gated NPC chatter \| QuestWindow=21-22 (The Quandary of Soldiers -> The Dwellers of the Golden Land) / MSS: Fabio / Everyone seems to be preoccupied with the | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0012/ui/00_message/npc/base/n0012.smc.json[client/03040008/npc/n0012/ui/00_message/npc/base/n0012.smc.json] | SituationData.StartQuestId | StartQuestId | quest 22 (The Dwellers of the Golden Land) / Fabio / GroupSerial=13997 / "GroupSerial=13997, QuestWindow=22-23 (The Dwellers of the Golden Land -> The Golden Key), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0012 \| Quest-gated NPC chatter \| QuestWindow=22-23 (The Dwellers of the Golden Land -> The Golden Key) / MSS: Fabio / How's it going in Mergoda? You may be busy | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0014/ui/00_message/npc/base/n0014.smc.json[client/03040008/npc/n0014/ui/00_message/npc/base/n0014.smc.json] | SituationData.EndQuestId | EndQuestId | quest 22 (The Dwellers of the Golden Land) / Mayleaf / GroupSerial=13123 / "GroupSerial=13123, QuestWindow=21-22 (The Quandary of Soldiers -> The Dwellers of the Golden Land), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0014 \| Quest-gated NPC chatter \| QuestWindow=21-22 (The Quandary of Soldiers -> The Dwellers of the Golden Land) / MSS: Mayleaf / Are you all leaving? | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0014/ui/00_message/npc/base/n0014.smc.json[client/03040008/npc/n0014/ui/00_message/npc/base/n0014.smc.json] | SituationData.StartQuestId | StartQuestId | quest 22 (The Dwellers of the Golden Land) / Mayleaf / GroupSerial=13124 / "GroupSerial=13124, QuestWindow=22-23 (The Dwellers of the Golden Land -> The Golden Key), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0014 \| Quest-gated NPC chatter \| QuestWindow=22-23 (The Dwellers of the Golden Land -> The Golden Key) / MSS: Mayleaf / I'm praying to Lord White Dragon. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
 |===
 

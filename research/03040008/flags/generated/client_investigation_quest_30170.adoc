@@ -5,9 +5,337 @@
 
 Query mode:: quest
 Query value:: 30170
-Generated at:: 2026-04-11T21:41:40.582772+00:00
+Generated at:: 2026-04-12T12:43:40.498519+00:00
 
 toc::[]
+
+Quest family:: q3 -- Light Quest
+Quest family notes:: Light and board-style quests with repeatable or lightweight stage flows.
+Quest family focus:: local_stage_topology_plus_board_repeatability
+
+== External Owner Indexes
+
+_These are reusable external owner catalogs inferred from stage-neighborhood cues. They are broader than the subset of flags promoted into derived dependency targets._
+
+[cols="2,1,1,2,2,2,4",options="header"]
+|===
+| Owner Quest | Family | Catalog Count | Catalog Flags | Linked Cues | Cue Sources | Why
+
+| 70000001 | q7 | 70 | 1098, 1103, 1104, 1105, 1106, 1109, 1110, 1111, 1112, 1113, 1114, 1115 +58 more | 1109, 1110, 1111, 1112, 1150, 1201, 1215, 1216 +36 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70001001 | q7 | 0 |  | 1851, 1954 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70002001 | q7 | 47 | 1098, 1103, 1104, 1105, 1106, 1109, 1110, 1111, 1112, 1113, 1114, 1115 +35 more | 1113, 1114, 1115, 1117, 1295, 1601, 3859, 3860 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70003001 | q7 | 49 | 1098, 1103, 1104, 1105, 1106, 1109, 1110, 1111, 1112, 1113, 1114, 1115 +37 more | 1098, 1103, 1104, 1105, 1106, 1119, 1120, 1121 +13 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70020001 | q7 | 8 | 2736, 3000, 3002, 3003, 3074, 3442, 3805, 4037 | 2736, 3000, 3002, 3003, 3074, 3442, 3805, 4037 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70021001 | q7 | 4 | 3278, 3650, 3753, 3861 | 3278, 3445, 3650, 3753 | evsi, gpl | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70022001 | q7 | 17 | 3949, 3950, 3952, 3953, 3954, 3977, 4033, 4043, 4053, 4063, 4470, 4555 +5 more | 3949, 3950, 3952, 3953, 3954, 3977, 4033, 4043 +7 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70023001 | q7 | 15 | 4066, 4067, 4372, 4373, 4500, 4506, 4507, 4508, 4511, 4512, 4515, 4516 +3 more | 4066, 4372, 4373, 4500, 4506, 4507, 4508, 4511 +6 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70030001 | q7 | 46 | 5396, 5397, 5407, 5552, 5557, 5558, 5581, 5584, 5587, 5588, 5589, 5614 +34 more | 5396, 5397, 5407, 5552, 5557, 5558, 5584, 5587 +35 more | evsi, gpl | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70031001 | q7 | 8 | 5553, 5672, 6138, 6194, 6195, 6377, 6425, 7316 | 5553, 5672, 6138, 6194, 6195, 6377, 6425, 7316 | evsi, gpl | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70032001 | q7 | 37 | 7169, 7240, 7241, 7336, 7341, 7342, 7386, 7387, 7388, 7389, 7390, 7438 +25 more | 7169, 7240, 7241, 7336, 7341, 7342, 7386, 7387 +29 more | evsi, gpl | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70033001 | q7 | 43 | 7826, 7827, 7876, 7888, 7889, 7916, 7917, 7954, 7955, 7965, 7966, 7967 +31 more | 7826, 7827, 7876, 7888, 7889, 7917, 7954, 7955 +33 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70034001 | q7 | 3 | 8486, 8630, 8631 | 8486 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+|===
+
+== Derived External Dependency Targets
+
+_These are the promoted subset of external owner-index entries. A flag appears here only when it passes the current family-specific dependency promotion rules for this quest._
+
+[cols="2,1,1,2,2,4",options="header"]
+|===
+| Owner Quest | Family | Flag Count | Flags | Sources | Why
+
+| 70000001 | q7 | 20 | 1109, 1111, 1215, 1218, 1219, 1251, 1261, 1263, 1293, 1294, 1297, 1298 +8 more | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70002001 | q7 | 3 | 1113, 1295, 3859 | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70003001 | q7 | 20 | 1098, 1103, 1104, 1105, 1119, 1120, 1121, 1122, 1123, 1124, 1202, 1203 +8 more | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70020001 | q7 | 6 | 2736, 3000, 3002, 3003, 3074, 3805 | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70021001 | q7 | 3 | 3278, 3650, 3753 | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70022001 | q7 | 14 | 3949, 3952, 3953, 3954, 3977, 4033, 4043, 4470, 4555, 4556, 4557, 4803 +2 more | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70023001 | q7 | 13 | 4066, 4372, 4373, 4500, 4506, 4507, 4508, 4511, 4512, 4515, 4516, 4517 +1 more | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70030001 | q7 | 18 | 5396, 5397, 5407, 5558, 5588, 5635, 5637, 5642, 5658, 5706, 5708, 6196 +6 more | evsi, gpl | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70031001 | q7 | 4 | 5553, 6138, 6195, 6377 | evsi, gpl | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70032001 | q7 | 20 | 7241, 7336, 7342, 7388, 7390, 7438, 7440, 7497, 7498, 7514, 7545, 7550 +8 more | evsi, gpl | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70033001 | q7 | 25 | 7826, 7827, 7876, 7954, 7955, 7966, 7968, 7972, 8016, 8033, 8034, 8035 +13 more | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70034001 | q7 | 1 | 8486 | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+|===
+
+== Family Relationship Context
+
+_These sections summarize deterministic client-side family metadata and reverse-index relationships. They are context for later owner/dependency inference, not direct quest-target promotion._
+
+=== Quest Sequence
+
+* seq no: 70
+* previous: 30160 -- Attack on the Royal Capital
+* next: 30180 -- A Brief Dragon Force
+
+== ARC Association Context
+
+_ARC associations are contextual only. They show which quest-stage and marker resources are bundled with this quest._
+
+* arc file: link:../../../../client/03040008/quest/q00030170.arc.json#L1[client/03040008/quest/q00030170.arc.json#L1]
+* resource count: 19
+* stage codes: st0201, st0213, st0408, st0430, st0451
+* resource families: .fsm, .gmd, .mss, .qmi, .qst, .qtd
+
+=== st0201 -- Audience Chamber
+
+* rQuestMarkerInfo: quest/00030170/st0201_marker_npc
+* rQuestList: quest/00030170/q00030170_st0201
+
+=== st0213 -- Mayleaf's Bedroom
+
+* rQuestMarkerInfo: quest/00030170/st0213_marker_npc
+* rQuestList: quest/00030170/q00030170_st0213
+
+=== st0408 -- Temple of Purification
+
+* rQuestMarkerInfo: quest/00030170/st0408_marker_om
+* rQuestMarkerInfo: quest/00030170/st0408_marker_npc
+* rQuestList: quest/00030170/q00030170_st0408
+
+=== st0430 -- Vortex of Stagnation
+
+* rQuestList: quest/00030170/q00030170_st0430
+* rQuestMarkerInfo: quest/00030170/st0430_marker_npc
+* rQuestMarkerInfo: quest/00030170/st0430_marker_om
+
+=== st0451 -- Lookout Castle
+
+* rQuestList: quest/00030170/q00030170_st0451
+* rQuestMarkerInfo: quest/00030170/st0451_marker_npc
+
+=== unclassified
+
+* rMsgSet: ui/00_message/quest/q00030170
+* rQuestTextData: ui/00_param/quest_text/q00030170_00
+* rGUIMessage: ui/00_message/examine_message/quest/quest_examine_q00030170
+* rMsgSet: ui/00_message/examine_message/quest/quest_examine_q00030170
+* rAIFSM: quest/00030170/npc/n0013
+* rGUIMessage: ui/00_message/quest/q00030170
+* rGUIMessage: ui/00_message/quest_info/q00030170_00
+
+== Stage Neighborhood Context
+
+_Stage-neighborhood context summarizes scanner-relevant client files that share the quest's archive stage codes. This is deterministic client topology, not inferred ownership._
+
+* scanner-relevant stage files: 1097
+* indexed stage codes: st0201, st0213, st0408, st0430, st0451
+
+=== st0201 -- Audience Chamber
+
+* scanner files: 694
+* .evsi.json: 50
+* .fsm.json: 433
+* .gpl.json: 3
+* .lot.json: 64
+* .qmi.json: 75
+* .qst.json: 69
+
+=== st0213 -- Mayleaf's Bedroom
+
+* scanner files: 63
+* .evsi.json: 5
+* .fsm.json: 29
+* .gpl.json: 3
+* .lot.json: 10
+* .qmi.json: 8
+* .qst.json: 8
+
+=== st0408 -- Temple of Purification
+
+* scanner files: 125
+* .evsi.json: 5
+* .fsm.json: 28
+* .gpl.json: 5
+* .lot.json: 61
+* .qmi.json: 17
+* .qst.json: 9
+
+=== st0430 -- Vortex of Stagnation
+
+* scanner files: 42
+* .evsi.json: 3
+* .fsm.json: 17
+* .gpl.json: 4
+* .lot.json: 8
+* .qmi.json: 7
+* .qst.json: 3
+
+=== st0451 -- Lookout Castle
+
+* scanner files: 173
+* .evsi.json: 6
+* .fsm.json: 45
+* .gpl.json: 3
+* .lot.json: 49
+* .qmi.json: 38
+* .qst.json: 32
+
+== Stage Neighborhood External-State Cues
+
+_These cues are deterministic client-side observations from the quest's stage neighborhood. They are not promoted to direct quest targets yet; they highlight q6/q7-owned external state values co-located in the quest's archive stages._
+
+* cue count: 246
+* owner families: q6, q7
+
+[cols="1,1,1,2,2,2",options="header"]
+|===
+| Value | Kind | Hits | Sources | Owners | Stages
+
+| Flag 1106 | layout_flag | 69 | evsi | 70003001 | st0201, st0213, st0408, st0430, st0451
+| Flag 1115 | layout_flag | 69 | evsi | 70002001 | st0201, st0213, st0408, st0430, st0451
+| Flag 1117 | layout_flag | 69 | evsi | 70002001 | st0201, st0213, st0408, st0430, st0451
+| Flag 1150 | layout_flag | 69 | evsi | 70000001 | st0201, st0213, st0408, st0430, st0451
+| Flag 1217 | layout_flag | 69 | evsi | 70000001 | st0201, st0213, st0408, st0430, st0451
+| Flag 1224 | layout_flag | 69 | evsi | 70000001 | st0201, st0213, st0408, st0430, st0451
+| Flag 1851 | layout_flag | 69 | evsi | 70001001 | st0201, st0213, st0408, st0430, st0451
+| Flag 1954 | layout_flag | 69 | evsi | 70001001 | st0201, st0213, st0408, st0430, st0451
+| Flag 2208 | layout_flag | 69 | evsi | 70000001 | st0201, st0213, st0408, st0430, st0451
+| Flag 2380 | layout_flag | 69 | evsi | 70000001 | st0201, st0213, st0408, st0430, st0451
+| Flag 3950 | layout_flag | 69 | evsi | 70022001 | st0201, st0213, st0408, st0430, st0451
+| Flag 5589 | layout_flag | 69 | evsi | 70030001 | st0201, st0213, st0408, st0430, st0451
+| Flag 5614 | layout_flag | 69 | evsi | 70030001 | st0201, st0213, st0408, st0430, st0451
+| Flag 5632 | layout_flag | 69 | evsi | 70030001 | st0201, st0213, st0408, st0430, st0451
+| Flag 6469 | layout_flag | 69 | evsi | 70030001 | st0201, st0213, st0408, st0430, st0451
+| Flag 6470 | layout_flag | 69 | evsi | 70030001 | st0201, st0213, st0408, st0430, st0451
+| Flag 6471 | layout_flag | 69 | evsi | 70030001 | st0201, st0213, st0408, st0430, st0451
+| Flag 6472 | layout_flag | 69 | evsi | 70030001 | st0201, st0213, st0408, st0430, st0451
+| Flag 6473 | layout_flag | 69 | evsi | 70030001 | st0201, st0213, st0408, st0430, st0451
+| Flag 6474 | layout_flag | 69 | evsi | 70030001 | st0201, st0213, st0408, st0430, st0451
+| Flag 7316 | layout_flag | 69 | evsi | 70031001 | st0201, st0213, st0408, st0430, st0451
+| Flag 8066 | layout_flag | 69 | evsi | 70033001 | st0201, st0213, st0408, st0430, st0451
+| Flag 1221 | layout_flag | 68 | evsi | 70000001 | st0201, st0213, st0408, st0430, st0451
+| Flag 1201 | layout_flag | 67 | evsi | 70000001 | st0201, st0213, st0408, st0430, st0451
+| Flag 1216 | layout_flag | 67 | evsi | 70000001 | st0201, st0213, st0408, st0430, st0451
+| Flag 1222 | layout_flag | 65 | evsi | 70000001 | st0201, st0213, st0408, st0430, st0451
+| Flag 5557 | layout_flag | 65 | evsi | 70030001 | st0201, st0213, st0408, st0430, st0451
+| Flag 7496 | layout_flag | 65 | evsi | 70032001 | st0201, st0213, st0408, st0430, st0451
+| Flag 1220 | layout_flag | 64 | evsi | 70000001 | st0201, st0213, st0408, st0430, st0451
+| Flag 1250 | layout_flag | 64 | evsi | 70000001 | st0201, st0213, st0408, st0430, st0451
+|===
+
+== Bounded Graph Expansion
+
+_This graph summarizes bounded deterministic and inferred edges around the quest: quest archive stages, direct source families, stage-linked owner catalogs, promoted dependencies, reverse-index event/group links, and family-specific table edges._
+
+* max depth: 3
+* node count: 874
+* edge count: 1771
+* node kinds: direct_family=3, event_viewer=834, family_context=1, lot_file=4, owner_quest=13, quest=1, sequence_quest=2, stage=5, stage_group=11
+* derivation: Dependency=12, Direct=23, Graph=2535, Owner Index=75
+
+=== Mermaid Graph Slice
+
+_This Mermaid flowchart shows a capped slice of the bounded graph so large quest reports stay readable while still exposing the graph structure._
+
+[mermaid]
+....
+flowchart TD
+    node_quest_30170["Quest 30170"]
+    node_direct_family_evsi["evsi direct hits (9)"]
+    node_direct_family_qst["qst direct hits (26)"]
+    node_direct_family_smc["smc direct hits (25)"]
+    node_family_context_quest_sequence["Quest Sequence"]
+    node_stage_st0201["st0201 -- Audience Chamber"]
+    node_stage_st0213["st0213 -- Mayleaf's Bedroom"]
+    node_stage_st0408["st0408 -- Temple of Purification"]
+    node_stage_st0430["st0430 -- Vortex of Stagnation"]
+    node_stage_st0451["st0451 -- Lookout Castle"]
+    node_event_viewer_st0201_ev000_70000001["Event st0201/ev000"]
+    node_owner_quest_70000001["Owner quest 70000001 (q7)"]
+    node_owner_quest_70002001["Owner quest 70002001 (q7)"]
+    node_owner_quest_70003001["Owner quest 70003001 (q7)"]
+    node_owner_quest_70020001["Owner quest 70020001 (q7)"]
+    node_owner_quest_70021001["Owner quest 70021001 (q7)"]
+    node_owner_quest_70022001["Owner quest 70022001 (q7)"]
+    node_owner_quest_70023001["Owner quest 70023001 (q7)"]
+    node_owner_quest_70030001["Owner quest 70030001 (q7)"]
+    node_owner_quest_70031001["Owner quest 70031001 (q7)"]
+    node_owner_quest_70032001["Owner quest 70032001 (q7)"]
+    node_owner_quest_70033001["Owner quest 70033001 (q7)"]
+    node_owner_quest_70034001["Owner quest 70034001 (q7)"]
+    node_sequence_quest_30160["Quest 30160"]
+    node_sequence_quest_30180["Quest 30180"]
+    node_quest_30170 -->|direct_source_family| node_direct_family_evsi
+    node_quest_30170 -->|direct_source_family| node_direct_family_qst
+    node_quest_30170 -->|direct_source_family| node_direct_family_smc
+    node_quest_30170 -->|family:quest_sequence| node_family_context_quest_sequence
+    node_quest_30170 -->|quest_archive_stage| node_stage_st0201
+    node_quest_30170 -->|quest_archive_stage| node_stage_st0213
+    node_quest_30170 -->|quest_archive_stage| node_stage_st0408
+    node_quest_30170 -->|quest_archive_stage| node_stage_st0430
+    node_quest_30170 -->|quest_archive_stage| node_stage_st0451
+    node_quest_30170 -->|promoted_dependency| node_owner_quest_70000001
+    node_quest_30170 -->|promoted_dependency| node_owner_quest_70002001
+    node_quest_30170 -->|promoted_dependency| node_owner_quest_70003001
+    node_quest_30170 -->|promoted_dependency| node_owner_quest_70020001
+    node_quest_30170 -->|promoted_dependency| node_owner_quest_70021001
+    node_quest_30170 -->|promoted_dependency| node_owner_quest_70022001
+    node_quest_30170 -->|promoted_dependency| node_owner_quest_70023001
+    node_quest_30170 -->|promoted_dependency| node_owner_quest_70030001
+    node_quest_30170 -->|promoted_dependency| node_owner_quest_70031001
+    node_quest_30170 -->|promoted_dependency| node_owner_quest_70032001
+    node_quest_30170 -->|promoted_dependency| node_owner_quest_70033001
+    node_quest_30170 -->|promoted_dependency| node_owner_quest_70034001
+    node_family_context_quest_sequence -->|sequence_next| node_sequence_quest_30180
+    node_family_context_quest_sequence -->|sequence_previous| node_sequence_quest_30160
+    node_stage_st0201 -->|stage_event_viewer| node_event_viewer_st0201_ev000_70000001
+    classDef direct_deterministic fill:#e8f5e9,stroke:#2e7d32,stroke-width:1px
+    classDef owner_index fill:#e3f2fd,stroke:#1565c0,stroke-width:1px
+    classDef dependency_inferred fill:#fff3e0,stroke:#ef6c00,stroke-width:1px
+    classDef graph_expanded fill:#f3e5f5,stroke:#7b1fa2,stroke-width:1px
+    classDef lower_confidence fill:#fbe9e7,stroke:#d84315,stroke-width:1px
+    classDef binary_auxiliary fill:#eceff1,stroke:#455a64,stroke-width:1px
+    class node_quest_30170,node_direct_family_evsi,node_direct_family_qst,node_direct_family_smc,node_family_context_quest_sequence,node_stage_st0201,node_stage_st0213,node_stage_st0408,node_stage_st0430,node_stage_st0451,node_sequence_quest_30160,node_sequence_quest_30180 direct_deterministic
+    class node_owner_quest_70000001,node_owner_quest_70002001,node_owner_quest_70003001,node_owner_quest_70020001,node_owner_quest_70021001,node_owner_quest_70022001,node_owner_quest_70023001,node_owner_quest_70030001,node_owner_quest_70031001,node_owner_quest_70032001,node_owner_quest_70033001,node_owner_quest_70034001 owner_index
+    class node_event_viewer_st0201_ev000_70000001 graph_expanded
+....
+
+[cols="1,2,2,2,2,4",options="header"]
+|===
+| Depth | Edge | From | To | Derivation | Why
+
+| 1 | direct_source_family | quest:30170 | direct-family:evsi | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | direct_source_family | quest:30170 | direct-family:qst | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | direct_source_family | quest:30170 | direct-family:smc | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | family_context:quest_sequence | quest:30170 | family-context:quest_sequence | Direct | Family-specific decoded tables provide deterministic context for this quest.
+| 1 | quest_archive_stage | quest:30170 | stage:st0201 | Direct | Quest archive topology directly links this quest to the stage code.
+| 1 | quest_archive_stage | quest:30170 | stage:st0213 | Direct | Quest archive topology directly links this quest to the stage code.
+| 1 | quest_archive_stage | quest:30170 | stage:st0408 | Direct | Quest archive topology directly links this quest to the stage code.
+| 1 | quest_archive_stage | quest:30170 | stage:st0430 | Direct | Quest archive topology directly links this quest to the stage code.
+| 1 | quest_archive_stage | quest:30170 | stage:st0451 | Direct | Quest archive topology directly links this quest to the stage code.
+| 2 | promoted_dependency | quest:30170 | owner-quest:70000001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30170 | owner-quest:70002001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30170 | owner-quest:70003001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30170 | owner-quest:70020001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30170 | owner-quest:70021001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30170 | owner-quest:70022001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30170 | owner-quest:70023001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30170 | owner-quest:70030001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30170 | owner-quest:70031001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30170 | owner-quest:70032001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30170 | owner-quest:70033001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30170 | owner-quest:70034001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | sequence_next | family-context:quest_sequence | sequence-quest:30180 | Direct | QuestSequence links this quest to its neighboring sequence quest.
+| 2 | sequence_previous | family-context:quest_sequence | sequence-quest:30160 | Direct | QuestSequence links this quest to its neighboring sequence quest.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev000:70000001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev000:70001001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev000:70002001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev000:70003001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev000:70020001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev000:70021001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev000:70022001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev000:70023001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev000:70030001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev000:70031001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev000:70032001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev000:70033001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev003:70000001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev003:70001001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev003:70002001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev003:70003001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev003:70020001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+|===
 
 == Flag Summary Matrix
 
@@ -15,12 +343,259 @@ toc::[]
 |===
 | Target | Kind | Hits | Sources | Stages | Relationships | Description
 
+| Flag 7018 | layout_flag | 2 | qst | st0201 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0201 \| 受注時謁見の間
+| Flag 7019 | layout_flag | 2 | qst | st0408 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0408 \| タッチOM竜力なし
+| Flag 7020 | layout_flag | 3 | evsi, qst | st0213, st0408, st0430 | 🎬 Event State, ⚡ Quest Condition | QST local: st0408 \| QuestGroup 1 \| タッチOM通行可能
+| Flag 7024 | layout_flag | 2 | qst | st0408 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0408 \| QuestGroup 2 \| A
+| Flag 7025 | layout_flag | 2 | qst | st0408 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0408 \| QuestGroup 3 \| B
+| Flag 7089 | layout_flag | 3 | evsi, qst | st0213 | 🎬 Event State, ⚡ Quest Condition, ❌ Quest Erase | QST local: st0213 \| Condition
+| Flag 7090 | layout_flag | 2 | qst | st0430 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0430 \| QuestGroup 1 \| ボスあとエリオット
+| Flag 7091 | layout_flag | 3 | evsi, qst | st0213 | 🎬 Event State, ⚡ Quest Condition, ❌ Quest Erase | QST local: st0213 \| QuestGroup 1
+| Flag 7092 | layout_flag | 2 | qst | st0201 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0201 \| QuestGroup 1 \| クリア直前
+| Flag 7293 | layout_flag | 2 | qst | st0408 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0408 \| QuestGroup 4 \| C
+| Flag 7294 | layout_flag | 3 | evsi, qst | st0213, st0430 | 🎬 Event State, ⚡ Quest Condition | QST local: st0430 \| ワープ系
+| Flag 7532 | layout_flag | 5 | evsi, qst | st0201, st0213, st0430, st0451 | 🎬 Event State, ⚡ Quest Condition, ❌ Quest Erase | QST local: st0451 \| 雰囲気セット
 | Quest ID 30170 | quest_id | 29 | qst, smc | st0408 | 🗣️ NPC Chatter, 💬 Text Quest | Derived quest-wide association scan
 |===
 
 == Known Documented Targets
 
+* quest 30170 -- Flag 7018 -- QST local: st0201 | 受注時謁見の間
+* quest 30170 -- Flag 7019 -- QST local: st0408 | タッチOM竜力なし
+* quest 30170 -- Flag 7020 -- QST local: st0408 | QuestGroup 1 | タッチOM通行可能
+* quest 30170 -- Flag 7024 -- QST local: st0408 | QuestGroup 2 | A
+* quest 30170 -- Flag 7025 -- QST local: st0408 | QuestGroup 3 | B
+* quest 30170 -- Flag 7089 -- QST local: st0213 | Condition
+* quest 30170 -- Flag 7090 -- QST local: st0430 | QuestGroup 1 | ボスあとエリオット
+* quest 30170 -- Flag 7091 -- QST local: st0213 | QuestGroup 1
+* quest 30170 -- Flag 7092 -- QST local: st0201 | QuestGroup 1 | クリア直前
+* quest 30170 -- Flag 7293 -- QST local: st0408 | QuestGroup 4 | C
+* quest 30170 -- Flag 7294 -- QST local: st0430 | ワープ系
+* quest 30170 -- Flag 7532 -- QST local: st0451 | 雰囲気セット
 * Quest ID 30170 -- Derived quest-wide association scan [Derived]
+
+== Flag 7018 -- Quest 30170
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030170/quest/00030170/q00030170_st0201.qst.json[client/03040008/quest/q00030170/quest/00030170/q00030170_st0201.qst.json] | QuestStageList[].QuestGrp[0].Condition | Condition | quest 30170 / Audience Chamber / "受注時謁見の間" / QuestSet=QuestSetInfoNpc \|\| QuestSet=QuestSetInfoNpc \|\| +2 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030170/quest/00030170/q00030170_st0201.qst.json[client/03040008/quest/q00030170/quest/00030170/q00030170_st0201.qst.json] | QuestStageList[].QuestGrp[0].EraseCondition | EraseCondition | quest 30170 / Audience Chamber / "受注時謁見の間" / QuestSet=QuestSetInfoNpc \|\| QuestSet=QuestSetInfoNpc \|\| +2 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 7019 -- Quest 30170
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030170/quest/00030170/q00030170_st0408.qst.json[client/03040008/quest/q00030170/quest/00030170/q00030170_st0408.qst.json] | QuestStageList[].QuestGrp[0].Condition | Condition | quest 30170 / Temple of Purification / "タッチOM竜力なし" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100538 \| TextType=2 \| TextQuestNo=30170 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030170/quest/00030170/q00030170_st0408.qst.json[client/03040008/quest/q00030170/quest/00030170/q00030170_st0408.qst.json] | QuestStageList[].QuestGrp[0].EraseCondition | EraseCondition | quest 30170 / Temple of Purification / "タッチOM竜力なし" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100538 \| TextType=2 \| TextQuestNo=30170 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 7020 -- Quest 30170
+
+origin:: derived_qst_local
+direct hits:: *3*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 3 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030170/quest/00030170/q00030170_st0408.qst.json[client/03040008/quest/q00030170/quest/00030170/q00030170_st0408.qst.json] | QuestStageList[].QuestGrp[1].Condition | Condition | quest 30170 / Temple of Purification / "QuestGroup 1 \| タッチOM通行可能" / QuestSet=QuestSetInfoOmWarp \| OmID=511150 \| UnitID=511150 \| EnableZone \| GroupNo=1 \|\| QuestSet=QuestSetInfoOm \| OmID=522452 \| OM_ID_QUEST_TWINKLE \| EnableZone \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0213/view_st0213ev025/event/viewer/view_st0213ev025.evsi.json#L517[client/03040008/event/st0213/view_st0213ev025/event/viewer/view_st0213ev025.evsi.json#L517] | LayoutFlagArray[0].FlagNo | FlagNo | quest 30170 (An Omen of Destruction) / Mayleaf's Bedroom / Event Viewer \| EVENT_NAME_st0213ev025 \| Weakening Arisen | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0430/view_st0430ev010/event/viewer/view_st0430ev010.evsi.json#L517[client/03040008/event/st0430/view_st0430ev010/event/viewer/view_st0430ev010.evsi.json#L517] | LayoutFlagArray[0].FlagNo | FlagNo | quest 30170 (An Omen of Destruction) / Vortex of Stagnation / Event Viewer \| EVENT_NAME_st0430ev010 \| Within the Imitation Dragon | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+|===
+
+== Flag 7024 -- Quest 30170
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030170/quest/00030170/q00030170_st0408.qst.json[client/03040008/quest/q00030170/quest/00030170/q00030170_st0408.qst.json] | QuestStageList[].QuestGrp[2].Condition | Condition | quest 30170 / Temple of Purification / "QuestGroup 2 \| A" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100540 \| TextType=2 \| TextQuestNo=30170 \| GroupNo=2 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030170/quest/00030170/q00030170_st0408.qst.json[client/03040008/quest/q00030170/quest/00030170/q00030170_st0408.qst.json] | QuestStageList[].QuestGrp[2].EraseCondition | EraseCondition | quest 30170 / Temple of Purification / "QuestGroup 2 \| A" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100540 \| TextType=2 \| TextQuestNo=30170 \| GroupNo=2 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 7025 -- Quest 30170
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030170/quest/00030170/q00030170_st0408.qst.json[client/03040008/quest/q00030170/quest/00030170/q00030170_st0408.qst.json] | QuestStageList[].QuestGrp[3].Condition | Condition | quest 30170 / Temple of Purification / "QuestGroup 3 \| B" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100540 \| TextType=2 \| TextQuestNo=30170 \| GroupNo=3 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030170/quest/00030170/q00030170_st0408.qst.json[client/03040008/quest/q00030170/quest/00030170/q00030170_st0408.qst.json] | QuestStageList[].QuestGrp[3].EraseCondition | EraseCondition | quest 30170 / Temple of Purification / "QuestGroup 3 \| B" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100540 \| TextType=2 \| TextQuestNo=30170 \| GroupNo=3 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 7089 -- Quest 30170
+
+origin:: derived_qst_local
+direct hits:: *3*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 3 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030170/quest/00030170/q00030170_st0213.qst.json[client/03040008/quest/q00030170/quest/00030170/q00030170_st0213.qst.json] | QuestStageList[].QuestGrp[0].Condition | Condition | quest 30170 / Mayleaf's Bedroom / QuestSet=QuestSetInfoNpc \|\| QuestSet=QuestSetInfoNpc \|\| +1 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030170/quest/00030170/q00030170_st0213.qst.json[client/03040008/quest/q00030170/quest/00030170/q00030170_st0213.qst.json] | QuestStageList[].QuestGrp[0].EraseCondition | EraseCondition | quest 30170 / Mayleaf's Bedroom / QuestSet=QuestSetInfoNpc \|\| QuestSet=QuestSetInfoNpc \|\| +1 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0213/view_st0213ev025/event/viewer/view_st0213ev025.evsi.json#L549[client/03040008/event/st0213/view_st0213ev025/event/viewer/view_st0213ev025.evsi.json#L549] | LayoutFlagArray[4].FlagNo | FlagNo | quest 30170 (An Omen of Destruction) / Mayleaf's Bedroom / Event Viewer \| EVENT_NAME_st0213ev025 \| Weakening Arisen | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+|===
+
+== Flag 7090 -- Quest 30170
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030170/quest/00030170/q00030170_st0430.qst.json[client/03040008/quest/q00030170/quest/00030170/q00030170_st0430.qst.json] | QuestStageList[].QuestGrp[1].Condition | Condition | quest 30170 / Vortex of Stagnation / "QuestGroup 1 \| ボスあとエリオット" / QuestSet=QuestSetInfoNpc \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030170/quest/00030170/q00030170_st0430.qst.json[client/03040008/quest/q00030170/quest/00030170/q00030170_st0430.qst.json] | QuestStageList[].QuestGrp[1].EraseCondition | EraseCondition | quest 30170 / Vortex of Stagnation / "QuestGroup 1 \| ボスあとエリオット" / QuestSet=QuestSetInfoNpc \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 7091 -- Quest 30170
+
+origin:: derived_qst_local
+direct hits:: *3*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 3 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030170/quest/00030170/q00030170_st0213.qst.json[client/03040008/quest/q00030170/quest/00030170/q00030170_st0213.qst.json] | QuestStageList[].QuestGrp[1].Condition | Condition | quest 30170 / Mayleaf's Bedroom / "QuestGroup 1" / QuestSet=QuestSetInfoNpc \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030170/quest/00030170/q00030170_st0213.qst.json[client/03040008/quest/q00030170/quest/00030170/q00030170_st0213.qst.json] | QuestStageList[].QuestGrp[1].EraseCondition | EraseCondition | quest 30170 / Mayleaf's Bedroom / "QuestGroup 1" / QuestSet=QuestSetInfoNpc \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0213/view_st0213ev025/event/viewer/view_st0213ev025.evsi.json#L557[client/03040008/event/st0213/view_st0213ev025/event/viewer/view_st0213ev025.evsi.json#L557] | LayoutFlagArray[5].FlagNo | FlagNo | quest 30170 (An Omen of Destruction) / Mayleaf's Bedroom / Event Viewer \| EVENT_NAME_st0213ev025 \| Weakening Arisen | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+|===
+
+== Flag 7092 -- Quest 30170
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030170/quest/00030170/q00030170_st0201.qst.json[client/03040008/quest/q00030170/quest/00030170/q00030170_st0201.qst.json] | QuestStageList[].QuestGrp[1].Condition | Condition | quest 30170 / Audience Chamber / "QuestGroup 1 \| クリア直前" / QuestSet=QuestSetInfoNpc \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030170/quest/00030170/q00030170_st0201.qst.json[client/03040008/quest/q00030170/quest/00030170/q00030170_st0201.qst.json] | QuestStageList[].QuestGrp[1].EraseCondition | EraseCondition | quest 30170 / Audience Chamber / "QuestGroup 1 \| クリア直前" / QuestSet=QuestSetInfoNpc \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 7293 -- Quest 30170
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030170/quest/00030170/q00030170_st0408.qst.json[client/03040008/quest/q00030170/quest/00030170/q00030170_st0408.qst.json] | QuestStageList[].QuestGrp[4].Condition | Condition | quest 30170 / Temple of Purification / "QuestGroup 4 \| C" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100540 \| TextType=2 \| TextQuestNo=30170 \| GroupNo=4 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030170/quest/00030170/q00030170_st0408.qst.json[client/03040008/quest/q00030170/quest/00030170/q00030170_st0408.qst.json] | QuestStageList[].QuestGrp[4].EraseCondition | EraseCondition | quest 30170 / Temple of Purification / "QuestGroup 4 \| C" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100540 \| TextType=2 \| TextQuestNo=30170 \| GroupNo=4 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 7294 -- Quest 30170
+
+origin:: derived_qst_local
+direct hits:: *3*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 3 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030170/quest/00030170/q00030170_st0430.qst.json[client/03040008/quest/q00030170/quest/00030170/q00030170_st0430.qst.json] | QuestStageList[].QuestGrp[0].Condition | Condition | quest 30170 / Vortex of Stagnation / "ワープ系" / QuestSet=QuestSetInfoOm \| OmID=522452 \| OM_ID_QUEST_TWINKLE \| EnableZone \|\| QuestSet=QuestSetInfoOmWarp \| OmID=511150 \| UnitID=511150 \| EnableZone \|\| +2 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0213/view_st0213ev025/event/viewer/view_st0213ev025.evsi.json#L565[client/03040008/event/st0213/view_st0213ev025/event/viewer/view_st0213ev025.evsi.json#L565] | LayoutFlagArray[6].FlagNo | FlagNo | quest 30170 (An Omen of Destruction) / Mayleaf's Bedroom / Event Viewer \| EVENT_NAME_st0213ev025 \| Weakening Arisen | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0430/view_st0430ev010/event/viewer/view_st0430ev010.evsi.json#L549[client/03040008/event/st0430/view_st0430ev010/event/viewer/view_st0430ev010.evsi.json#L549] | LayoutFlagArray[4].FlagNo | FlagNo | quest 30170 (An Omen of Destruction) / Vortex of Stagnation / Event Viewer \| EVENT_NAME_st0430ev010 \| Within the Imitation Dragon | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+|===
+
+== Flag 7532 -- Quest 30170
+
+origin:: derived_qst_local
+direct hits:: *5*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 5 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030170/quest/00030170/q00030170_st0451.qst.json[client/03040008/quest/q00030170/quest/00030170/q00030170_st0451.qst.json] | QuestStageList[].QuestGrp[0].Condition | Condition | quest 30170 / Lookout Castle / "雰囲気セット" / QuestSet=QuestSetInfoNpc \|\| QuestSet=QuestSetInfoNpc \|\| +2 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030170/quest/00030170/q00030170_st0451.qst.json[client/03040008/quest/q00030170/quest/00030170/q00030170_st0451.qst.json] | QuestStageList[].QuestGrp[0].EraseCondition | EraseCondition | quest 30170 / Lookout Castle / "雰囲気セット" / QuestSet=QuestSetInfoNpc \|\| QuestSet=QuestSetInfoNpc \|\| +2 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0201/view_st0201ev215/event/viewer/view_st0201ev215.evsi.json#L509[client/03040008/event/st0201/view_st0201ev215/event/viewer/view_st0201ev215.evsi.json#L509] | LayoutFlagArray[0].FlagNo | FlagNo | quest 30170 (An Omen of Destruction) / Audience Chamber / Event Viewer \| EVENT_NAME_st0201ev215 \| White Dragon's Salvation | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0213/view_st0213ev025/event/viewer/view_st0213ev025.evsi.json#L573[client/03040008/event/st0213/view_st0213ev025/event/viewer/view_st0213ev025.evsi.json#L573] | LayoutFlagArray[7].FlagNo | FlagNo | quest 30170 (An Omen of Destruction) / Mayleaf's Bedroom / Event Viewer \| EVENT_NAME_st0213ev025 \| Weakening Arisen | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0430/view_st0430ev010/event/viewer/view_st0430ev010.evsi.json#L557[client/03040008/event/st0430/view_st0430ev010/event/viewer/view_st0430ev010.evsi.json#L557] | LayoutFlagArray[5].FlagNo | FlagNo | quest 30170 (An Omen of Destruction) / Vortex of Stagnation / Event Viewer \| EVENT_NAME_st0430ev010 \| Within the Imitation Dragon | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+|===
 
 == Quest ID 30170
 
@@ -32,38 +607,38 @@ ranked candidates:: *0*
 
 ==== direct -- 29 hit(s)
 
-[cols="1,1,3,3,2,3,3",options="header"]
+[cols="1,1,1,3,3,2,3,3",options="header"]
 |===
-| Family | Confidence | File | JSON Path | Field | Context | Why
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
 
-| QST | 92 | client/03040008/quest/q00030170/quest/00030170/q00030170_st0408.qst.json | QuestStageList[].QuestGrp[0].QuestSet[0].TextQuestNo | TextQuestNo | quest 30170 / Temple of Purification / "タッチOM竜力なし \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100538 \| TextType=2 \| TextQuestNo=30170 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
-| QST | 92 | client/03040008/quest/q00030170/quest/00030170/q00030170_st0408.qst.json | QuestStageList[].QuestGrp[2].QuestSet[0].TextQuestNo | TextQuestNo | quest 30170 / Temple of Purification / "QuestGroup 2 \| A \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100540 \| TextType=2 \| TextQuestNo=30170 \| GroupNo=2 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
-| QST | 92 | client/03040008/quest/q00030170/quest/00030170/q00030170_st0408.qst.json | QuestStageList[].QuestGrp[3].QuestSet[0].TextQuestNo | TextQuestNo | quest 30170 / Temple of Purification / "QuestGroup 3 \| B \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100540 \| TextType=2 \| TextQuestNo=30170 \| GroupNo=3 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
-| QST | 92 | client/03040008/quest/q00030170/quest/00030170/q00030170_st0408.qst.json | QuestStageList[].QuestGrp[4].QuestSet[0].TextQuestNo | TextQuestNo | quest 30170 / Temple of Purification / "QuestGroup 4 \| C \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100540 \| TextType=2 \| TextQuestNo=30170 \| GroupNo=4 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
-| SMC | 92 | client/03040008/npc/n0001/ui/00_message/npc/base/n0001.smc.json | SituationData.EndQuestId | EndQuestId | quest 30170 (An Omen of Destruction) / The White Dragon / GroupSerial=24422 / "GroupSerial=24422, QuestWindow=30160-30170 (Attack on the Royal Capital -> An Omen of Destruction), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0001 \| Quest-gated NPC chatter \| QuestWindow=30160-30170 (Attack on the Royal Capital -> An Omen of Destruction) / MSS: The White Dragon / That which empowereth the Dragon... | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0001/ui/00_message/npc/base/n0001.smc.json | SituationData.StartQuestId | StartQuestId | quest 30170 (An Omen of Destruction) / The White Dragon / GroupSerial=24423 / "GroupSerial=24423, QuestWindow=30170-30180 (An Omen of Destruction -> A Brief Dragon Force), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0001 \| Quest-gated NPC chatter \| QuestWindow=30170-30180 (An Omen of Destruction -> A Brief Dragon Force) / MSS: The White Dragon / A voice... I hear... | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json | SituationData.EndQuestId | EndQuestId | quest 30170 (An Omen of Destruction) / Klaus / GroupSerial=24491 / "GroupSerial=24491, QuestWindow=30160-30170 (Attack on the Royal Capital -> An Omen of Destruction), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0003 \| Quest-gated NPC chatter \| QuestWindow=30160-30170 (Attack on the Royal Capital -> An Omen of Destruction) / MSS: Klaus / Write down all possible measures and | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json | SituationData.StartQuestId | StartQuestId | quest 30170 (An Omen of Destruction) / Klaus / GroupSerial=24492 / "GroupSerial=24492, QuestWindow=30170-30180 (An Omen of Destruction -> A Brief Dragon Force), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0003 \| Quest-gated NPC chatter \| QuestWindow=30170-30180 (An Omen of Destruction -> A Brief Dragon Force) / MSS: Klaus / I'm hitting various books and such, but this | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json | SituationData.EndQuestId | EndQuestId | quest 30170 (An Omen of Destruction) / Joseph / GroupSerial=24462 / "GroupSerial=24462, QuestWindow=30160-30170 (Attack on the Royal Capital -> An Omen of Destruction), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0004 \| Quest-gated NPC chatter \| QuestWindow=30160-30170 (Attack on the Royal Capital -> An Omen of Destruction) / MSS: Joseph / Calm down― | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json | SituationData.StartQuestId | StartQuestId | quest 30170 (An Omen of Destruction) / Joseph / GroupSerial=24463 / "GroupSerial=24463, QuestWindow=30170-30180 (An Omen of Destruction -> A Brief Dragon Force), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0004 \| Quest-gated NPC chatter \| QuestWindow=30170-30180 (An Omen of Destruction -> A Brief Dragon Force) / MSS: Joseph / We are gathering Blood orbs one after another, but | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0007/ui/00_message/npc/base/n0007.smc.json | SituationData.EndQuestId | EndQuestId | quest 30170 (An Omen of Destruction) / Gerd / GroupSerial=24821 / "GroupSerial=24821, QuestWindow=30160-30170 (Attack on the Royal Capital -> An Omen of Destruction), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0007 \| Quest-gated NPC chatter \| QuestWindow=30160-30170 (Attack on the Royal Capital -> An Omen of Destruction) / MSS: Gerd / I will gather all the Blood Orbs in Lestania, | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0007/ui/00_message/npc/base/n0007.smc.json | SituationData.StartQuestId | StartQuestId | quest 30170 (An Omen of Destruction) / Gerd / GroupSerial=24822 / "GroupSerial=24822, QuestWindow=30170-30180 (An Omen of Destruction -> A Brief Dragon Force), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0007 \| Quest-gated NPC chatter \| QuestWindow=30170-30180 (An Omen of Destruction -> A Brief Dragon Force) / MSS: Gerd / The morale of the Knights' Order is high,  | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0012/ui/00_message/npc/base/n0012.smc.json | SituationData.EndQuestId | EndQuestId | quest 30170 (An Omen of Destruction) / Fabio / GroupSerial=24829 / "GroupSerial=24829, QuestWindow=30160-30170 (Attack on the Royal Capital -> An Omen of Destruction), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0012 \| Quest-gated NPC chatter \| QuestWindow=30160-30170 (Attack on the Royal Capital -> An Omen of Destruction) / MSS: Fabio / Let me drink— | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0012/ui/00_message/npc/base/n0012.smc.json | SituationData.StartQuestId | StartQuestId | quest 30170 (An Omen of Destruction) / Fabio / GroupSerial=24830 / "GroupSerial=24830, QuestWindow=30170-30180 (An Omen of Destruction -> A Brief Dragon Force), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0012 \| Quest-gated NPC chatter \| QuestWindow=30170-30180 (An Omen of Destruction -> A Brief Dragon Force) / MSS: Fabio / B-Blood Orb... I have to find it... | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0013/ui/00_message/npc/base/n0013.smc.json | SituationData.EndQuestId | EndQuestId | quest 30170 (An Omen of Destruction) / Lise / GroupSerial=24551 / "GroupSerial=24551, QuestWindow=30160-30170 (Attack on the Royal Capital -> An Omen of Destruction), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0013 \| Quest-gated NPC chatter \| QuestWindow=30160-30170 (Attack on the Royal Capital -> An Omen of Destruction) / MSS: Lise / Captain - I - no, it's nothing. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0014/ui/00_message/npc/base/n0014.smc.json | SituationData.EndQuestId | EndQuestId | quest 30170 (An Omen of Destruction) / Mayleaf / GroupSerial=24833 / "GroupSerial=24833, QuestWindow=30160-30170 (Attack on the Royal Capital -> An Omen of Destruction), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0014 \| Quest-gated NPC chatter \| QuestWindow=30160-30170 (Attack on the Royal Capital -> An Omen of Destruction) / MSS: Mayleaf / Where did The Black Knight go? It's scary not | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0014/ui/00_message/npc/base/n0014.smc.json | SituationData.StartQuestId | StartQuestId | quest 30170 (An Omen of Destruction) / Mayleaf / GroupSerial=24834 / "GroupSerial=24834, QuestWindow=30170-30180 (An Omen of Destruction -> A Brief Dragon Force), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window start" / NpcChatter=n0014 \| Quest-gated NPC chatter \| QuestWindow=30170-30180 (An Omen of Destruction -> A Brief Dragon Force) / MSS: Mayleaf / Lise, I don't think he can hear me anymore— | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0021/ui/00_message/npc/base/n0021.smc.json | SituationData.EndQuestId | EndQuestId | quest 30170 (An Omen of Destruction) / Elliot / GroupSerial=24575 / "GroupSerial=24575, QuestWindow=30160-30170 (Attack on the Royal Capital -> An Omen of Destruction), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0021 \| Quest-gated NPC chatter \| QuestWindow=30160-30170 (Attack on the Royal Capital -> An Omen of Destruction) / MSS: Elliot / Captain, what should we do... | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0021/ui/00_message/npc/base/n0021.smc.json | SituationData.StartQuestId | StartQuestId | quest 30170 (An Omen of Destruction) / Elliot / GroupSerial=24576 / "GroupSerial=24576, QuestWindow=30170-30180 (An Omen of Destruction -> A Brief Dragon Force), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0021 \| Quest-gated NPC chatter \| QuestWindow=30170-30180 (An Omen of Destruction -> A Brief Dragon Force) / MSS: Elliot / If we don't do something soon, even we will | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0029/ui/00_message/npc/base/n0029.smc.json | SituationData.EndQuestId | EndQuestId | quest 30170 (An Omen of Destruction) / Nedo / GroupSerial=24918 / "GroupSerial=24918, QuestWindow=30160-30170 (Attack on the Royal Capital -> An Omen of Destruction), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0029 \| Quest-gated NPC chatter \| QuestWindow=30160-30170 (Attack on the Royal Capital -> An Omen of Destruction) / MSS: Nedo / Oh Captain, | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0030/ui/00_message/npc/base/n0030.smc.json | SituationData.EndQuestId | EndQuestId | quest 30170 (An Omen of Destruction) / Gillian / GroupSerial=24605 / "GroupSerial=24605, QuestWindow=30160-30170 (Attack on the Royal Capital -> An Omen of Destruction), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0030 \| Quest-gated NPC chatter \| QuestWindow=30160-30170 (Attack on the Royal Capital -> An Omen of Destruction) / MSS: Gillian / Is it okay if I stay here? | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0031/ui/00_message/npc/base/n0031.smc.json | SituationData.EndQuestId | EndQuestId | quest 30170 (An Omen of Destruction) / Meirova / GroupSerial=24755 / "GroupSerial=24755, QuestWindow=30160-30170 (Attack on the Royal Capital -> An Omen of Destruction), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0031 \| Quest-gated NPC chatter \| QuestWindow=30160-30170 (Attack on the Royal Capital -> An Omen of Destruction) / MSS: Meirova / Even if it falls into the hands of the enemy, it | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0032/ui/00_message/npc/base/n0032.smc.json | SituationData.EndQuestId | EndQuestId | quest 30170 (An Omen of Destruction) / Gerhard / GroupSerial=24776 / "GroupSerial=24776, QuestWindow=30160-30170 (Attack on the Royal Capital -> An Omen of Destruction), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0032 \| Quest-gated NPC chatter \| QuestWindow=30160-30170 (Attack on the Royal Capital -> An Omen of Destruction) / MSS: Gerhard / It seems that the capture of the royal capital | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0033/ui/00_message/npc/base/n0033.smc.json | SituationData.EndQuestId | EndQuestId | quest 30170 (An Omen of Destruction) / Bertha / GroupSerial=24932 / "GroupSerial=24932, QuestWindow=30160-30170 (Attack on the Royal Capital -> An Omen of Destruction), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0033 \| Quest-gated NPC chatter \| QuestWindow=30160-30170 (Attack on the Royal Capital -> An Omen of Destruction) / MSS: Bertha / What's wrong? You look pale. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0034/ui/00_message/npc/base/n0034.smc.json | SituationData.EndQuestId | EndQuestId | quest 30170 (An Omen of Destruction) / Quintus / GroupSerial=24732 / "GroupSerial=24732, QuestWindow=30160-30170 (Attack on the Royal Capital -> An Omen of Destruction), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0034 \| Quest-gated NPC chatter \| QuestWindow=30160-30170 (Attack on the Royal Capital -> An Omen of Destruction) / MSS: Quintus / I heard that the first attempt to retake the | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0501/ui/00_message/npc/base/n0501.smc.json | SituationData.EndQuestId | EndQuestId | quest 30170 (An Omen of Destruction) / Gurdolin / GroupSerial=24526 / "GroupSerial=24526, QuestWindow=30160-30170 (Attack on the Royal Capital -> An Omen of Destruction), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0501 \| Quest-gated NPC chatter \| QuestWindow=30160-30170 (Attack on the Royal Capital -> An Omen of Destruction) / MSS: Gurdolin / How's your body feeling? | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0501/ui/00_message/npc/base/n0501.smc.json | SituationData.StartQuestId | StartQuestId | quest 30170 (An Omen of Destruction) / Gurdolin / GroupSerial=24527 / "GroupSerial=24527, QuestWindow=30170-30180 (An Omen of Destruction -> A Brief Dragon Force), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0501 \| Quest-gated NPC chatter \| QuestWindow=30170-30180 (An Omen of Destruction -> A Brief Dragon Force) / MSS: Gurdolin / When you let your mind wander... your strength | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n1003/ui/00_message/npc/base/n1003.smc.json | SituationData.EndQuestId | EndQuestId | quest 30170 (An Omen of Destruction) / Pamela / GroupSerial=24837 / "GroupSerial=24837, QuestWindow=30160-30170 (Attack on the Royal Capital -> An Omen of Destruction), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n1003 \| Quest-gated NPC chatter \| QuestWindow=30160-30170 (Attack on the Royal Capital -> An Omen of Destruction) / MSS: Pamela / Ever since I heard about the eyeballs appearing | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n1003/ui/00_message/npc/base/n1003.smc.json | SituationData.StartQuestId | StartQuestId | quest 30170 (An Omen of Destruction) / Pamela / GroupSerial=24838 / "GroupSerial=24838, QuestWindow=30170-30180 (An Omen of Destruction -> A Brief Dragon Force), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n1003 \| Quest-gated NPC chatter \| QuestWindow=30170-30180 (An Omen of Destruction -> A Brief Dragon Force) / MSS: Pamela / How is The White Dragon's condition? | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030170/quest/00030170/q00030170_st0408.qst.json[client/03040008/quest/q00030170/quest/00030170/q00030170_st0408.qst.json] | QuestStageList[].QuestGrp[0].QuestSet[0].TextQuestNo | TextQuestNo | quest 30170 / Temple of Purification / "タッチOM竜力なし \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100538 \| TextType=2 \| TextQuestNo=30170 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030170/quest/00030170/q00030170_st0408.qst.json[client/03040008/quest/q00030170/quest/00030170/q00030170_st0408.qst.json] | QuestStageList[].QuestGrp[2].QuestSet[0].TextQuestNo | TextQuestNo | quest 30170 / Temple of Purification / "QuestGroup 2 \| A \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100540 \| TextType=2 \| TextQuestNo=30170 \| GroupNo=2 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030170/quest/00030170/q00030170_st0408.qst.json[client/03040008/quest/q00030170/quest/00030170/q00030170_st0408.qst.json] | QuestStageList[].QuestGrp[3].QuestSet[0].TextQuestNo | TextQuestNo | quest 30170 / Temple of Purification / "QuestGroup 3 \| B \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100540 \| TextType=2 \| TextQuestNo=30170 \| GroupNo=3 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030170/quest/00030170/q00030170_st0408.qst.json[client/03040008/quest/q00030170/quest/00030170/q00030170_st0408.qst.json] | QuestStageList[].QuestGrp[4].QuestSet[0].TextQuestNo | TextQuestNo | quest 30170 / Temple of Purification / "QuestGroup 4 \| C \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100540 \| TextType=2 \| TextQuestNo=30170 \| GroupNo=4 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0001/ui/00_message/npc/base/n0001.smc.json[client/03040008/npc/n0001/ui/00_message/npc/base/n0001.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30170 (An Omen of Destruction) / The White Dragon / GroupSerial=24422 / "GroupSerial=24422, QuestWindow=30160-30170 (Attack on the Royal Capital -> An Omen of Destruction), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0001 \| Quest-gated NPC chatter \| QuestWindow=30160-30170 (Attack on the Royal Capital -> An Omen of Destruction) / MSS: The White Dragon / That which empowereth the Dragon... | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0001/ui/00_message/npc/base/n0001.smc.json[client/03040008/npc/n0001/ui/00_message/npc/base/n0001.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30170 (An Omen of Destruction) / The White Dragon / GroupSerial=24423 / "GroupSerial=24423, QuestWindow=30170-30180 (An Omen of Destruction -> A Brief Dragon Force), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0001 \| Quest-gated NPC chatter \| QuestWindow=30170-30180 (An Omen of Destruction -> A Brief Dragon Force) / MSS: The White Dragon / A voice... I hear... | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json[client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30170 (An Omen of Destruction) / Klaus / GroupSerial=24491 / "GroupSerial=24491, QuestWindow=30160-30170 (Attack on the Royal Capital -> An Omen of Destruction), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0003 \| Quest-gated NPC chatter \| QuestWindow=30160-30170 (Attack on the Royal Capital -> An Omen of Destruction) / MSS: Klaus / Write down all possible measures and | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json[client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30170 (An Omen of Destruction) / Klaus / GroupSerial=24492 / "GroupSerial=24492, QuestWindow=30170-30180 (An Omen of Destruction -> A Brief Dragon Force), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0003 \| Quest-gated NPC chatter \| QuestWindow=30170-30180 (An Omen of Destruction -> A Brief Dragon Force) / MSS: Klaus / I'm hitting various books and such, but this | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json[client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30170 (An Omen of Destruction) / Joseph / GroupSerial=24462 / "GroupSerial=24462, QuestWindow=30160-30170 (Attack on the Royal Capital -> An Omen of Destruction), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0004 \| Quest-gated NPC chatter \| QuestWindow=30160-30170 (Attack on the Royal Capital -> An Omen of Destruction) / MSS: Joseph / Calm down― | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json[client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30170 (An Omen of Destruction) / Joseph / GroupSerial=24463 / "GroupSerial=24463, QuestWindow=30170-30180 (An Omen of Destruction -> A Brief Dragon Force), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0004 \| Quest-gated NPC chatter \| QuestWindow=30170-30180 (An Omen of Destruction -> A Brief Dragon Force) / MSS: Joseph / We are gathering Blood orbs one after another, but | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0007/ui/00_message/npc/base/n0007.smc.json[client/03040008/npc/n0007/ui/00_message/npc/base/n0007.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30170 (An Omen of Destruction) / Gerd / GroupSerial=24821 / "GroupSerial=24821, QuestWindow=30160-30170 (Attack on the Royal Capital -> An Omen of Destruction), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0007 \| Quest-gated NPC chatter \| QuestWindow=30160-30170 (Attack on the Royal Capital -> An Omen of Destruction) / MSS: Gerd / I will gather all the Blood Orbs in Lestania, | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0007/ui/00_message/npc/base/n0007.smc.json[client/03040008/npc/n0007/ui/00_message/npc/base/n0007.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30170 (An Omen of Destruction) / Gerd / GroupSerial=24822 / "GroupSerial=24822, QuestWindow=30170-30180 (An Omen of Destruction -> A Brief Dragon Force), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0007 \| Quest-gated NPC chatter \| QuestWindow=30170-30180 (An Omen of Destruction -> A Brief Dragon Force) / MSS: Gerd / The morale of the Knights' Order is high,  | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0012/ui/00_message/npc/base/n0012.smc.json[client/03040008/npc/n0012/ui/00_message/npc/base/n0012.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30170 (An Omen of Destruction) / Fabio / GroupSerial=24829 / "GroupSerial=24829, QuestWindow=30160-30170 (Attack on the Royal Capital -> An Omen of Destruction), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0012 \| Quest-gated NPC chatter \| QuestWindow=30160-30170 (Attack on the Royal Capital -> An Omen of Destruction) / MSS: Fabio / Let me drink— | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0012/ui/00_message/npc/base/n0012.smc.json[client/03040008/npc/n0012/ui/00_message/npc/base/n0012.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30170 (An Omen of Destruction) / Fabio / GroupSerial=24830 / "GroupSerial=24830, QuestWindow=30170-30180 (An Omen of Destruction -> A Brief Dragon Force), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0012 \| Quest-gated NPC chatter \| QuestWindow=30170-30180 (An Omen of Destruction -> A Brief Dragon Force) / MSS: Fabio / B-Blood Orb... I have to find it... | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0013/ui/00_message/npc/base/n0013.smc.json[client/03040008/npc/n0013/ui/00_message/npc/base/n0013.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30170 (An Omen of Destruction) / Lise / GroupSerial=24551 / "GroupSerial=24551, QuestWindow=30160-30170 (Attack on the Royal Capital -> An Omen of Destruction), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0013 \| Quest-gated NPC chatter \| QuestWindow=30160-30170 (Attack on the Royal Capital -> An Omen of Destruction) / MSS: Lise / Captain - I - no, it's nothing. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0014/ui/00_message/npc/base/n0014.smc.json[client/03040008/npc/n0014/ui/00_message/npc/base/n0014.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30170 (An Omen of Destruction) / Mayleaf / GroupSerial=24833 / "GroupSerial=24833, QuestWindow=30160-30170 (Attack on the Royal Capital -> An Omen of Destruction), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0014 \| Quest-gated NPC chatter \| QuestWindow=30160-30170 (Attack on the Royal Capital -> An Omen of Destruction) / MSS: Mayleaf / Where did The Black Knight go? It's scary not | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0014/ui/00_message/npc/base/n0014.smc.json[client/03040008/npc/n0014/ui/00_message/npc/base/n0014.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30170 (An Omen of Destruction) / Mayleaf / GroupSerial=24834 / "GroupSerial=24834, QuestWindow=30170-30180 (An Omen of Destruction -> A Brief Dragon Force), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window start" / NpcChatter=n0014 \| Quest-gated NPC chatter \| QuestWindow=30170-30180 (An Omen of Destruction -> A Brief Dragon Force) / MSS: Mayleaf / Lise, I don't think he can hear me anymore— | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0021/ui/00_message/npc/base/n0021.smc.json[client/03040008/npc/n0021/ui/00_message/npc/base/n0021.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30170 (An Omen of Destruction) / Elliot / GroupSerial=24575 / "GroupSerial=24575, QuestWindow=30160-30170 (Attack on the Royal Capital -> An Omen of Destruction), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0021 \| Quest-gated NPC chatter \| QuestWindow=30160-30170 (Attack on the Royal Capital -> An Omen of Destruction) / MSS: Elliot / Captain, what should we do... | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0021/ui/00_message/npc/base/n0021.smc.json[client/03040008/npc/n0021/ui/00_message/npc/base/n0021.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30170 (An Omen of Destruction) / Elliot / GroupSerial=24576 / "GroupSerial=24576, QuestWindow=30170-30180 (An Omen of Destruction -> A Brief Dragon Force), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0021 \| Quest-gated NPC chatter \| QuestWindow=30170-30180 (An Omen of Destruction -> A Brief Dragon Force) / MSS: Elliot / If we don't do something soon, even we will | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0029/ui/00_message/npc/base/n0029.smc.json[client/03040008/npc/n0029/ui/00_message/npc/base/n0029.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30170 (An Omen of Destruction) / Nedo / GroupSerial=24918 / "GroupSerial=24918, QuestWindow=30160-30170 (Attack on the Royal Capital -> An Omen of Destruction), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0029 \| Quest-gated NPC chatter \| QuestWindow=30160-30170 (Attack on the Royal Capital -> An Omen of Destruction) / MSS: Nedo / Oh Captain, | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0030/ui/00_message/npc/base/n0030.smc.json[client/03040008/npc/n0030/ui/00_message/npc/base/n0030.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30170 (An Omen of Destruction) / Gillian / GroupSerial=24605 / "GroupSerial=24605, QuestWindow=30160-30170 (Attack on the Royal Capital -> An Omen of Destruction), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0030 \| Quest-gated NPC chatter \| QuestWindow=30160-30170 (Attack on the Royal Capital -> An Omen of Destruction) / MSS: Gillian / Is it okay if I stay here? | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0031/ui/00_message/npc/base/n0031.smc.json[client/03040008/npc/n0031/ui/00_message/npc/base/n0031.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30170 (An Omen of Destruction) / Meirova / GroupSerial=24755 / "GroupSerial=24755, QuestWindow=30160-30170 (Attack on the Royal Capital -> An Omen of Destruction), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0031 \| Quest-gated NPC chatter \| QuestWindow=30160-30170 (Attack on the Royal Capital -> An Omen of Destruction) / MSS: Meirova / Even if it falls into the hands of the enemy, it | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0032/ui/00_message/npc/base/n0032.smc.json[client/03040008/npc/n0032/ui/00_message/npc/base/n0032.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30170 (An Omen of Destruction) / Gerhard / GroupSerial=24776 / "GroupSerial=24776, QuestWindow=30160-30170 (Attack on the Royal Capital -> An Omen of Destruction), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0032 \| Quest-gated NPC chatter \| QuestWindow=30160-30170 (Attack on the Royal Capital -> An Omen of Destruction) / MSS: Gerhard / It seems that the capture of the royal capital | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0033/ui/00_message/npc/base/n0033.smc.json[client/03040008/npc/n0033/ui/00_message/npc/base/n0033.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30170 (An Omen of Destruction) / Bertha / GroupSerial=24932 / "GroupSerial=24932, QuestWindow=30160-30170 (Attack on the Royal Capital -> An Omen of Destruction), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0033 \| Quest-gated NPC chatter \| QuestWindow=30160-30170 (Attack on the Royal Capital -> An Omen of Destruction) / MSS: Bertha / What's wrong? You look pale. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0034/ui/00_message/npc/base/n0034.smc.json[client/03040008/npc/n0034/ui/00_message/npc/base/n0034.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30170 (An Omen of Destruction) / Quintus / GroupSerial=24732 / "GroupSerial=24732, QuestWindow=30160-30170 (Attack on the Royal Capital -> An Omen of Destruction), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0034 \| Quest-gated NPC chatter \| QuestWindow=30160-30170 (Attack on the Royal Capital -> An Omen of Destruction) / MSS: Quintus / I heard that the first attempt to retake the | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0501/ui/00_message/npc/base/n0501.smc.json[client/03040008/npc/n0501/ui/00_message/npc/base/n0501.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30170 (An Omen of Destruction) / Gurdolin / GroupSerial=24526 / "GroupSerial=24526, QuestWindow=30160-30170 (Attack on the Royal Capital -> An Omen of Destruction), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0501 \| Quest-gated NPC chatter \| QuestWindow=30160-30170 (Attack on the Royal Capital -> An Omen of Destruction) / MSS: Gurdolin / How's your body feeling? | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0501/ui/00_message/npc/base/n0501.smc.json[client/03040008/npc/n0501/ui/00_message/npc/base/n0501.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30170 (An Omen of Destruction) / Gurdolin / GroupSerial=24527 / "GroupSerial=24527, QuestWindow=30170-30180 (An Omen of Destruction -> A Brief Dragon Force), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0501 \| Quest-gated NPC chatter \| QuestWindow=30170-30180 (An Omen of Destruction -> A Brief Dragon Force) / MSS: Gurdolin / When you let your mind wander... your strength | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n1003/ui/00_message/npc/base/n1003.smc.json[client/03040008/npc/n1003/ui/00_message/npc/base/n1003.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30170 (An Omen of Destruction) / Pamela / GroupSerial=24837 / "GroupSerial=24837, QuestWindow=30160-30170 (Attack on the Royal Capital -> An Omen of Destruction), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n1003 \| Quest-gated NPC chatter \| QuestWindow=30160-30170 (Attack on the Royal Capital -> An Omen of Destruction) / MSS: Pamela / Ever since I heard about the eyeballs appearing | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n1003/ui/00_message/npc/base/n1003.smc.json[client/03040008/npc/n1003/ui/00_message/npc/base/n1003.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30170 (An Omen of Destruction) / Pamela / GroupSerial=24838 / "GroupSerial=24838, QuestWindow=30170-30180 (An Omen of Destruction -> A Brief Dragon Force), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n1003 \| Quest-gated NPC chatter \| QuestWindow=30170-30180 (An Omen of Destruction -> A Brief Dragon Force) / MSS: Pamela / How is The White Dragon's condition? | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
 |===
 

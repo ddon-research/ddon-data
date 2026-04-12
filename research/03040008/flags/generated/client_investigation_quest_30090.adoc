@@ -5,9 +5,288 @@
 
 Query mode:: quest
 Query value:: 30090
-Generated at:: 2026-04-11T21:41:40.565760+00:00
+Generated at:: 2026-04-12T12:43:37.132568+00:00
 
 toc::[]
+
+Quest family:: q3 -- Light Quest
+Quest family notes:: Light and board-style quests with repeatable or lightweight stage flows.
+Quest family focus:: local_stage_topology_plus_board_repeatability
+
+== External Owner Indexes
+
+_These are reusable external owner catalogs inferred from stage-neighborhood cues. They are broader than the subset of flags promoted into derived dependency targets._
+
+[cols="2,1,1,2,2,2,4",options="header"]
+|===
+| Owner Quest | Family | Catalog Count | Catalog Flags | Linked Cues | Cue Sources | Why
+
+| 70000001 | q7 | 70 | 1098, 1103, 1104, 1105, 1106, 1109, 1110, 1111, 1112, 1113, 1114, 1115 +58 more | 1110, 1112, 1150, 1201, 1216, 1217, 1220, 1221 +14 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70001001 | q7 | 0 |  | 1851, 1954 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70002001 | q7 | 47 | 1098, 1103, 1104, 1105, 1106, 1109, 1110, 1111, 1112, 1113, 1114, 1115 +35 more | 1114, 1115, 1117, 1601, 3860 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70003001 | q7 | 49 | 1098, 1103, 1104, 1105, 1106, 1109, 1110, 1111, 1112, 1113, 1114, 1115 +37 more | 1103, 1105, 1106, 1119, 1120, 1121, 1122, 1123 +8 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70020001 | q7 | 8 | 2736, 3000, 3002, 3003, 3074, 3442, 3805, 4037 | 2736, 3003, 3074, 4037 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70021001 | q7 | 4 | 3278, 3650, 3753, 3861 | 3278, 3753 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70022001 | q7 | 17 | 3949, 3950, 3952, 3953, 3954, 3977, 4033, 4043, 4053, 4063, 4470, 4555 +5 more | 3949, 3950, 3952, 3953, 3954, 3977, 4033, 4556 +2 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70023001 | q7 | 15 | 4066, 4067, 4372, 4373, 4500, 4506, 4507, 4508, 4511, 4512, 4515, 4516 +3 more | 4066, 4373, 4500, 4506, 4508, 4512, 4515, 4517 +1 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70030001 | q7 | 46 | 5396, 5397, 5407, 5552, 5557, 5558, 5581, 5584, 5587, 5588, 5589, 5614 +34 more | 5396, 5397, 5407, 5557, 5588, 5589, 5614, 5632 +22 more | evsi, gpl | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70031001 | q7 | 8 | 5553, 5672, 6138, 6194, 6195, 6377, 6425, 7316 | 5553, 6194, 7316 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70032001 | q7 | 37 | 7169, 7240, 7241, 7336, 7341, 7342, 7386, 7387, 7388, 7389, 7390, 7438 +25 more | 7240, 7341, 7386, 7496, 7512, 7544, 7549, 7551 +5 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70033001 | q7 | 43 | 7826, 7827, 7876, 7888, 7889, 7916, 7917, 7954, 7955, 7965, 7966, 7967 +31 more | 7888, 7889, 7965, 7967, 7973, 8043, 8044, 8045 +6 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+|===
+
+== Derived External Dependency Targets
+
+_These are the promoted subset of external owner-index entries. A flag appears here only when it passes the current family-specific dependency promotion rules for this quest._
+
+[cols="2,1,1,2,2,4",options="header"]
+|===
+| Owner Quest | Family | Flag Count | Flags | Sources | Why
+
+| 70000001 | q7 | 22 | 1110, 1112, 1150, 1201, 1216, 1217, 1220, 1221, 1222, 1223, 1224, 1250 +10 more | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70002001 | q7 | 5 | 1114, 1115, 1117, 1601, 3860 | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70003001 | q7 | 16 | 1103, 1105, 1106, 1119, 1120, 1121, 1122, 1123, 1124, 1202, 1203, 1296 +4 more | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70020001 | q7 | 4 | 2736, 3003, 3074, 4037 | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70021001 | q7 | 2 | 3278, 3753 | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70022001 | q7 | 10 | 3949, 3950, 3952, 3953, 3954, 3977, 4033, 4556, 4803, 4968 | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70023001 | q7 | 9 | 4066, 4373, 4500, 4506, 4508, 4512, 4515, 4517, 4973 | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70030001 | q7 | 25 | 5396, 5407, 5557, 5589, 5614, 5632, 5635, 5637, 5658, 5706, 5708, 6196 +13 more | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70031001 | q7 | 3 | 5553, 6194, 7316 | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70032001 | q7 | 13 | 7240, 7341, 7386, 7496, 7512, 7544, 7549, 7551, 7553, 7555, 7557, 7927 +1 more | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70033001 | q7 | 14 | 7888, 7889, 7965, 7967, 7973, 8043, 8044, 8045, 8046, 8047, 8066, 8133 +2 more | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+|===
+
+== Family Relationship Context
+
+_These sections summarize deterministic client-side family metadata and reverse-index relationships. They are context for later owner/dependency inference, not direct quest-target promotion._
+
+=== Quest Sequence
+
+* seq no: 61
+* previous: 30080 -- The Royal Family Sacrament
+* next: 30100 -- Portent of Despair
+
+== ARC Association Context
+
+_ARC associations are contextual only. They show which quest-stage and marker resources are bundled with this quest._
+
+* arc file: link:../../../../client/03040008/quest/q00030090.arc.json#L1[client/03040008/quest/q00030090.arc.json#L1]
+* resource count: 11
+* stage codes: st0443, st0444
+* resource families: .fsm, .gmd, .mss, .qmi, .qst, .qtd
+
+=== st0443 -- Fort Thines
+
+* rQuestMarkerInfo: quest/00030090/st0443_marker_npc
+* rQuestList: quest/00030090/q00030090_st0443
+
+=== st0444 -- Fort Thines
+
+* rQuestMarkerInfo: quest/00030090/st0444_marker_npc
+* rQuestList: quest/00030090/q00030090_st0444
+* rQuestMarkerInfo: quest/00030090/st0444_marker_om
+
+=== unclassified
+
+* rGUIMessage: ui/00_message/quest/q00030090
+* rAIFSM: quest/00030090/npc/n0501
+* rQuestTextData: ui/00_param/quest_text/q00030090_00
+* rMsgSet: ui/00_message/quest/q00030090
+* rAIFSM: quest/00030090/npc/n0502
+* rGUIMessage: ui/00_message/quest_info/q00030090_00
+
+== Stage Neighborhood Context
+
+_Stage-neighborhood context summarizes scanner-relevant client files that share the quest's archive stage codes. This is deterministic client topology, not inferred ownership._
+
+* scanner-relevant stage files: 170
+* indexed stage codes: st0443, st0444
+
+=== st0443 -- Fort Thines
+
+* scanner files: 109
+* .evsi.json: 2
+* .fsm.json: 18
+* .gpl.json: 3
+* .lot.json: 33
+* .qmi.json: 28
+* .qst.json: 25
+
+=== st0444 -- Fort Thines
+
+* scanner files: 61
+* .evsi.json: 2
+* .fsm.json: 28
+* .gpl.json: 5
+* .lot.json: 21
+* .qmi.json: 4
+* .qst.json: 1
+
+== Stage Neighborhood External-State Cues
+
+_These cues are deterministic client-side observations from the quest's stage neighborhood. They are not promoted to direct quest targets yet; they highlight q6/q7-owned external state values co-located in the quest's archive stages._
+
+* cue count: 130
+* owner families: q6, q7
+
+[cols="1,1,1,2,2,2",options="header"]
+|===
+| Value | Kind | Hits | Sources | Owners | Stages
+
+| Flag 1103 | layout_flag | 4 | evsi | 70003001 | st0443, st0444
+| Flag 1105 | layout_flag | 4 | evsi | 70003001 | st0443, st0444
+| Flag 1106 | layout_flag | 4 | evsi | 70003001 | st0443, st0444
+| Flag 1110 | layout_flag | 4 | evsi | 70000001 | st0443, st0444
+| Flag 1112 | layout_flag | 4 | evsi | 70000001 | st0443, st0444
+| Flag 1114 | layout_flag | 4 | evsi | 70002001 | st0443, st0444
+| Flag 1115 | layout_flag | 4 | evsi | 70002001 | st0443, st0444
+| Flag 1117 | layout_flag | 4 | evsi | 70002001 | st0443, st0444
+| Flag 1119 | layout_flag | 4 | evsi | 70003001 | st0443, st0444
+| Flag 1120 | layout_flag | 4 | evsi | 70003001 | st0443, st0444
+| Flag 1121 | layout_flag | 4 | evsi | 70003001 | st0443, st0444
+| Flag 1122 | layout_flag | 4 | evsi | 70003001 | st0443, st0444
+| Flag 1123 | layout_flag | 4 | evsi | 70003001 | st0443, st0444
+| Flag 1124 | layout_flag | 4 | evsi | 70003001 | st0443, st0444
+| Flag 1150 | layout_flag | 4 | evsi | 70000001 | st0443, st0444
+| Flag 1201 | layout_flag | 4 | evsi | 70000001 | st0443, st0444
+| Flag 1202 | layout_flag | 4 | evsi | 70003001 | st0443, st0444
+| Flag 1203 | layout_flag | 4 | evsi | 70003001 | st0443, st0444
+| Flag 1216 | layout_flag | 4 | evsi | 70000001 | st0443, st0444
+| Flag 1217 | layout_flag | 4 | evsi | 70000001 | st0443, st0444
+| Flag 1220 | layout_flag | 4 | evsi | 70000001 | st0443, st0444
+| Flag 1221 | layout_flag | 4 | evsi | 70000001 | st0443, st0444
+| Flag 1222 | layout_flag | 4 | evsi | 70000001 | st0443, st0444
+| Flag 1223 | layout_flag | 4 | evsi | 70000001 | st0443, st0444
+| Flag 1224 | layout_flag | 4 | evsi | 70000001 | st0443, st0444
+| Flag 1250 | layout_flag | 4 | evsi | 70000001 | st0443, st0444
+| Flag 1262 | layout_flag | 4 | evsi | 70000001 | st0443, st0444
+| Flag 1263 | layout_flag | 4 | evsi | 70000001 | st0443, st0444
+| Flag 1296 | layout_flag | 4 | evsi | 70003001 | st0443, st0444
+| Flag 1298 | layout_flag | 4 | evsi | 70000001 | st0443, st0444
+|===
+
+== Bounded Graph Expansion
+
+_This graph summarizes bounded deterministic and inferred edges around the quest: quest archive stages, direct source families, stage-linked owner catalogs, promoted dependencies, reverse-index event/group links, and family-specific table edges._
+
+* max depth: 3
+* node count: 73
+* edge count: 144
+* node kinds: direct_family=4, event_viewer=50, family_context=1, owner_quest=12, quest=1, sequence_quest=2, stage=2, stage_group=1
+* derivation: Dependency=11, Direct=19, Graph=151, Owner Index=36
+
+=== Mermaid Graph Slice
+
+_This Mermaid flowchart shows a capped slice of the bounded graph so large quest reports stay readable while still exposing the graph structure._
+
+[mermaid]
+....
+flowchart TD
+    node_quest_30090["Quest 30090"]
+    node_direct_family_evsi["evsi direct hits (4)"]
+    node_direct_family_fsm["fsm direct hits (2)"]
+    node_direct_family_qst["qst direct hits (10)"]
+    node_direct_family_smc["smc direct hits (23)"]
+    node_family_context_quest_sequence["Quest Sequence"]
+    node_stage_st0443["st0443 -- Fort Thines"]
+    node_stage_st0444["st0444 -- Fort Thines"]
+    node_event_viewer_st0443_ev000_70002001["Event st0443/ev000"]
+    node_event_viewer_st0443_ev000_70003001["Event st0443/ev000"]
+    node_event_viewer_st0443_ev000_70000001["Event st0443/ev000"]
+    node_event_viewer_st0443_ev000_70001001["Event st0443/ev000"]
+    node_owner_quest_70000001["Owner quest 70000001 (q7)"]
+    node_owner_quest_70002001["Owner quest 70002001 (q7)"]
+    node_owner_quest_70003001["Owner quest 70003001 (q7)"]
+    node_owner_quest_70020001["Owner quest 70020001 (q7)"]
+    node_owner_quest_70021001["Owner quest 70021001 (q7)"]
+    node_owner_quest_70022001["Owner quest 70022001 (q7)"]
+    node_owner_quest_70023001["Owner quest 70023001 (q7)"]
+    node_owner_quest_70030001["Owner quest 70030001 (q7)"]
+    node_owner_quest_70031001["Owner quest 70031001 (q7)"]
+    node_owner_quest_70032001["Owner quest 70032001 (q7)"]
+    node_owner_quest_70033001["Owner quest 70033001 (q7)"]
+    node_sequence_quest_30080["Quest 30080"]
+    node_sequence_quest_30100["Quest 30100"]
+    node_quest_30090 -->|direct_source_family| node_direct_family_evsi
+    node_quest_30090 -->|direct_source_family| node_direct_family_fsm
+    node_quest_30090 -->|direct_source_family| node_direct_family_qst
+    node_quest_30090 -->|direct_source_family| node_direct_family_smc
+    node_quest_30090 -->|family:quest_sequence| node_family_context_quest_sequence
+    node_quest_30090 -->|quest_archive_stage| node_stage_st0443
+    node_quest_30090 -->|quest_archive_stage| node_stage_st0444
+    node_quest_30090 -->|promoted_dependency| node_owner_quest_70000001
+    node_quest_30090 -->|promoted_dependency| node_owner_quest_70002001
+    node_quest_30090 -->|promoted_dependency| node_owner_quest_70003001
+    node_quest_30090 -->|promoted_dependency| node_owner_quest_70020001
+    node_quest_30090 -->|promoted_dependency| node_owner_quest_70021001
+    node_quest_30090 -->|promoted_dependency| node_owner_quest_70022001
+    node_quest_30090 -->|promoted_dependency| node_owner_quest_70023001
+    node_quest_30090 -->|promoted_dependency| node_owner_quest_70030001
+    node_quest_30090 -->|promoted_dependency| node_owner_quest_70031001
+    node_quest_30090 -->|promoted_dependency| node_owner_quest_70032001
+    node_quest_30090 -->|promoted_dependency| node_owner_quest_70033001
+    node_family_context_quest_sequence -->|sequence_next| node_sequence_quest_30100
+    node_family_context_quest_sequence -->|sequence_previous| node_sequence_quest_30080
+    node_stage_st0443 -->|stage_event_viewer| node_event_viewer_st0443_ev000_70000001
+    node_stage_st0443 -->|stage_event_viewer| node_event_viewer_st0443_ev000_70001001
+    node_stage_st0443 -->|stage_event_viewer| node_event_viewer_st0443_ev000_70002001
+    node_stage_st0443 -->|stage_event_viewer| node_event_viewer_st0443_ev000_70003001
+    classDef direct_deterministic fill:#e8f5e9,stroke:#2e7d32,stroke-width:1px
+    classDef owner_index fill:#e3f2fd,stroke:#1565c0,stroke-width:1px
+    classDef dependency_inferred fill:#fff3e0,stroke:#ef6c00,stroke-width:1px
+    classDef graph_expanded fill:#f3e5f5,stroke:#7b1fa2,stroke-width:1px
+    classDef lower_confidence fill:#fbe9e7,stroke:#d84315,stroke-width:1px
+    classDef binary_auxiliary fill:#eceff1,stroke:#455a64,stroke-width:1px
+    class node_quest_30090,node_direct_family_evsi,node_direct_family_fsm,node_direct_family_qst,node_direct_family_smc,node_family_context_quest_sequence,node_stage_st0443,node_stage_st0444,node_sequence_quest_30080,node_sequence_quest_30100 direct_deterministic
+    class node_owner_quest_70000001,node_owner_quest_70002001,node_owner_quest_70003001,node_owner_quest_70020001,node_owner_quest_70021001,node_owner_quest_70022001,node_owner_quest_70023001,node_owner_quest_70030001,node_owner_quest_70031001,node_owner_quest_70032001,node_owner_quest_70033001 owner_index
+    class node_event_viewer_st0443_ev000_70002001,node_event_viewer_st0443_ev000_70003001,node_event_viewer_st0443_ev000_70000001,node_event_viewer_st0443_ev000_70001001 graph_expanded
+....
+
+[cols="1,2,2,2,2,4",options="header"]
+|===
+| Depth | Edge | From | To | Derivation | Why
+
+| 1 | direct_source_family | quest:30090 | direct-family:evsi | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | direct_source_family | quest:30090 | direct-family:fsm | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | direct_source_family | quest:30090 | direct-family:qst | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | direct_source_family | quest:30090 | direct-family:smc | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | family_context:quest_sequence | quest:30090 | family-context:quest_sequence | Direct | Family-specific decoded tables provide deterministic context for this quest.
+| 1 | quest_archive_stage | quest:30090 | stage:st0443 | Direct | Quest archive topology directly links this quest to the stage code.
+| 1 | quest_archive_stage | quest:30090 | stage:st0444 | Direct | Quest archive topology directly links this quest to the stage code.
+| 2 | promoted_dependency | quest:30090 | owner-quest:70000001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30090 | owner-quest:70002001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30090 | owner-quest:70003001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30090 | owner-quest:70020001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30090 | owner-quest:70021001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30090 | owner-quest:70022001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30090 | owner-quest:70023001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30090 | owner-quest:70030001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30090 | owner-quest:70031001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30090 | owner-quest:70032001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30090 | owner-quest:70033001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | sequence_next | family-context:quest_sequence | sequence-quest:30100 | Direct | QuestSequence links this quest to its neighboring sequence quest.
+| 2 | sequence_previous | family-context:quest_sequence | sequence-quest:30080 | Direct | QuestSequence links this quest to its neighboring sequence quest.
+| 2 | stage_event_viewer | stage:st0443 | event-viewer:st0443:ev000:70000001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0443 | event-viewer:st0443:ev000:70001001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0443 | event-viewer:st0443:ev000:70002001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0443 | event-viewer:st0443:ev000:70003001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0443 | event-viewer:st0443:ev000:70020001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0443 | event-viewer:st0443:ev000:70021001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0443 | event-viewer:st0443:ev000:70022001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0443 | event-viewer:st0443:ev000:70023001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0443 | event-viewer:st0443:ev000:70030001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0443 | event-viewer:st0443:ev000:70031001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0443 | event-viewer:st0443:ev000:70032001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0443 | event-viewer:st0443:ev000:70033001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0443 | event-viewer:st0443:ev005:70000001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0443 | event-viewer:st0443:ev005:70001001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0443 | event-viewer:st0443:ev005:70002001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0443 | event-viewer:st0443:ev005:70003001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0443 | event-viewer:st0443:ev005:70020001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0443 | event-viewer:st0443:ev005:70021001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0443 | event-viewer:st0443:ev005:70022001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0443 | event-viewer:st0443:ev005:70023001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+|===
 
 == Flag Summary Matrix
 
@@ -15,12 +294,116 @@ toc::[]
 |===
 | Target | Kind | Hits | Sources | Stages | Relationships | Description
 
+| Flag 5559 | layout_flag | 4 | evsi, qst | st0443, st0444 | 🎬 Event State, ⚡ Quest Condition, ❌ Quest Erase | QST local: st0443 \| 受注時セット
+| Flag 5561 | layout_flag | 3 | evsi, qst | st0444 | 🎬 Event State, ⚡ Quest Condition, ❌ Quest Erase | QST local: st0444 \| 戦闘前ネドセット
+| Flag 5562 | layout_flag | 3 | evsi, qst | st0444 | 🎬 Event State, ⚡ Quest Condition, ❌ Quest Erase | QST local: st0444 \| QuestGroup 2
+| Flag 5563 | layout_flag | 2 | qst | st0443 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0443 \| QuestGroup 1 \| ボス戦後セット
+| Flag 7209 | layout_flag | 2 | qst | st0444 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0444 \| QuestGroup 1 \| かいほうぐんへいし
 | Quest ID 30090 | quest_id | 25 | fsm, smc |  | 🔍 FSM Check, 🗣️ NPC Chatter | Derived quest-wide association scan
 |===
 
 == Known Documented Targets
 
+* quest 30090 -- Flag 5559 -- QST local: st0443 | 受注時セット
+* quest 30090 -- Flag 5561 -- QST local: st0444 | 戦闘前ネドセット
+* quest 30090 -- Flag 5562 -- QST local: st0444 | QuestGroup 2
+* quest 30090 -- Flag 5563 -- QST local: st0443 | QuestGroup 1 | ボス戦後セット
+* quest 30090 -- Flag 7209 -- QST local: st0444 | QuestGroup 1 | かいほうぐんへいし
 * Quest ID 30090 -- Derived quest-wide association scan [Derived]
+
+== Flag 5559 -- Quest 30090
+
+origin:: derived_qst_local
+direct hits:: *4*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 4 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030090/quest/00030090/q00030090_st0443.qst.json[client/03040008/quest/q00030090/quest/00030090/q00030090_st0443.qst.json] | QuestStageList[].QuestGrp[0].Condition | Condition | quest 30090 / Fort Thines / "受注時セット" / QuestSet=QuestSetInfoNpc | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030090/quest/00030090/q00030090_st0443.qst.json[client/03040008/quest/q00030090/quest/00030090/q00030090_st0443.qst.json] | QuestStageList[].QuestGrp[0].EraseCondition | EraseCondition | quest 30090 / Fort Thines / "受注時セット" / QuestSet=QuestSetInfoNpc | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0444/view_st0444ev000/event/viewer/view_st0444ev000.evsi.json#L481[client/03040008/event/st0444/view_st0444ev000/event/viewer/view_st0444ev000.evsi.json#L481] | LayoutFlagArray[0].FlagNo | FlagNo | quest 30090 (The Approaching Demon Army) / Fort Thines / Event Viewer \| EVENT_NAME_st0444ev000 \| Ned being targeted | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0444/view_st0444ev005/event/viewer/view_st0444ev005.evsi.json#L477[client/03040008/event/st0444/view_st0444ev005/event/viewer/view_st0444ev005.evsi.json#L477] | LayoutFlagArray[0].FlagNo | FlagNo | quest 30090 (The Approaching Demon Army) / Fort Thines / Event Viewer \| EVENT_NAME_st0444ev005 \| Gillian's Report | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+|===
+
+== Flag 5561 -- Quest 30090
+
+origin:: derived_qst_local
+direct hits:: *3*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 3 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030090/quest/00030090/q00030090_st0444.qst.json[client/03040008/quest/q00030090/quest/00030090/q00030090_st0444.qst.json] | QuestStageList[].QuestGrp[0].Condition | Condition | quest 30090 / Fort Thines / "戦闘前ネドセット" / QuestSet=QuestSetInfoNpc \|\| QuestSet=QuestSetInfoNpc \|\| +3 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030090/quest/00030090/q00030090_st0444.qst.json[client/03040008/quest/q00030090/quest/00030090/q00030090_st0444.qst.json] | QuestStageList[].QuestGrp[0].EraseCondition | EraseCondition | quest 30090 / Fort Thines / "戦闘前ネドセット" / QuestSet=QuestSetInfoNpc \|\| QuestSet=QuestSetInfoNpc \|\| +3 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0444/view_st0444ev000/event/viewer/view_st0444ev000.evsi.json#L497[client/03040008/event/st0444/view_st0444ev000/event/viewer/view_st0444ev000.evsi.json#L497] | LayoutFlagArray[2].FlagNo | FlagNo | quest 30090 (The Approaching Demon Army) / Fort Thines / Event Viewer \| EVENT_NAME_st0444ev000 \| Ned being targeted | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+|===
+
+== Flag 5562 -- Quest 30090
+
+origin:: derived_qst_local
+direct hits:: *3*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 3 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030090/quest/00030090/q00030090_st0444.qst.json[client/03040008/quest/q00030090/quest/00030090/q00030090_st0444.qst.json] | QuestStageList[].QuestGrp[2].Condition | Condition | quest 30090 / Fort Thines / "QuestGroup 2" / QuestSet=QuestSetInfoOm \| OmID=510440 \| UnitID=510440 \| EnableZone \| GroupNo=2 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030090/quest/00030090/q00030090_st0444.qst.json[client/03040008/quest/q00030090/quest/00030090/q00030090_st0444.qst.json] | QuestStageList[].QuestGrp[2].EraseCondition | EraseCondition | quest 30090 / Fort Thines / "QuestGroup 2" / QuestSet=QuestSetInfoOm \| OmID=510440 \| UnitID=510440 \| EnableZone \| GroupNo=2 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0444/view_st0444ev005/event/viewer/view_st0444ev005.evsi.json#L485[client/03040008/event/st0444/view_st0444ev005/event/viewer/view_st0444ev005.evsi.json#L485] | LayoutFlagArray[1].FlagNo | FlagNo | quest 30090 (The Approaching Demon Army) / Fort Thines / Event Viewer \| EVENT_NAME_st0444ev005 \| Gillian's Report | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+|===
+
+== Flag 5563 -- Quest 30090
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030090/quest/00030090/q00030090_st0443.qst.json[client/03040008/quest/q00030090/quest/00030090/q00030090_st0443.qst.json] | QuestStageList[].QuestGrp[1].Condition | Condition | quest 30090 / Fort Thines / "QuestGroup 1 \| ボス戦後セット" / QuestSet=QuestSetInfoNpc \| GroupNo=1 \|\| QuestSet=QuestSetInfoNpc \| GroupNo=1 \|\| +4 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030090/quest/00030090/q00030090_st0443.qst.json[client/03040008/quest/q00030090/quest/00030090/q00030090_st0443.qst.json] | QuestStageList[].QuestGrp[1].EraseCondition | EraseCondition | quest 30090 / Fort Thines / "QuestGroup 1 \| ボス戦後セット" / QuestSet=QuestSetInfoNpc \| GroupNo=1 \|\| QuestSet=QuestSetInfoNpc \| GroupNo=1 \|\| +4 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 7209 -- Quest 30090
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030090/quest/00030090/q00030090_st0444.qst.json[client/03040008/quest/q00030090/quest/00030090/q00030090_st0444.qst.json] | QuestStageList[].QuestGrp[1].Condition | Condition | quest 30090 / Fort Thines / "QuestGroup 1 \| かいほうぐんへいし" / QuestSet=QuestSetInfoNpc \| GroupNo=1 \|\| QuestSet=QuestSetInfoNpc \| GroupNo=1 \|\| +5 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030090/quest/00030090/q00030090_st0444.qst.json[client/03040008/quest/q00030090/quest/00030090/q00030090_st0444.qst.json] | QuestStageList[].QuestGrp[1].EraseCondition | EraseCondition | quest 30090 / Fort Thines / "QuestGroup 1 \| かいほうぐんへいし" / QuestSet=QuestSetInfoNpc \| GroupNo=1 \|\| QuestSet=QuestSetInfoNpc \| GroupNo=1 \|\| +5 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
 
 == Quest ID 30090
 
@@ -32,42 +415,42 @@ ranked candidates:: *0*
 
 ==== direct -- 23 hit(s)
 
-[cols="1,1,3,3,2,3,3",options="header"]
+[cols="1,1,1,3,3,2,3,3",options="header"]
 |===
-| Family | Confidence | File | JSON Path | Field | Context | Why
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
 
-| SMC | 92 | client/03040008/npc/n0001/ui/00_message/npc/base/n0001.smc.json | SituationData.EndQuestId | EndQuestId | quest 30090 (The Approaching Demon Army) / The White Dragon / GroupSerial=24412 / "GroupSerial=24412, QuestWindow=30080-30090 (The Royal Family Sacrament -> The Approaching Demon Army), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0001 \| Quest-gated NPC chatter \| QuestWindow=30080-30090 (The Royal Family Sacrament -> The Approaching Demon Army) / MSS: The White Dragon / The fell Dragon wouldst ne'er surrender its | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0001/ui/00_message/npc/base/n0001.smc.json | SituationData.StartQuestId | StartQuestId | quest 30090 (The Approaching Demon Army) / The White Dragon / GroupSerial=24413 / "GroupSerial=24413, QuestWindow=30090-30100 (The Approaching Demon Army -> Portent of Despair), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0001 \| Quest-gated NPC chatter \| QuestWindow=30090-30100 (The Approaching Demon Army -> Portent of Despair) / MSS: The White Dragon / The dragon's might possessed by the evil Dragon | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json | SituationData.EndQuestId | EndQuestId | quest 30090 (The Approaching Demon Army) / Klaus / GroupSerial=24481 / "GroupSerial=24481, QuestWindow=30080-30090 (The Royal Family Sacrament -> The Approaching Demon Army), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0003 \| Quest-gated NPC chatter \| QuestWindow=30080-30090 (The Royal Family Sacrament -> The Approaching Demon Army) / MSS: Klaus / I hope we can establish a friendly relationship | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json | SituationData.StartQuestId | StartQuestId | quest 30090 (The Approaching Demon Army) / Klaus / GroupSerial=24482 / "GroupSerial=24482, QuestWindow=30090-30100 (The Approaching Demon Army -> Portent of Despair), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0003 \| Quest-gated NPC chatter \| QuestWindow=30090-30100 (The Approaching Demon Army -> Portent of Despair) / MSS: Klaus / Do not extinguish the flame of hope that has | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json | SituationData.EndQuestId | EndQuestId | quest 30090 (The Approaching Demon Army) / Joseph / GroupSerial=24452 / "GroupSerial=24452, QuestWindow=30080-30090 (The Royal Family Sacrament -> The Approaching Demon Army), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0004 \| Quest-gated NPC chatter \| QuestWindow=30080-30090 (The Royal Family Sacrament -> The Approaching Demon Army) / MSS: Joseph / With the recent momentum gained by the People's | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json | SituationData.StartQuestId | StartQuestId | quest 30090 (The Approaching Demon Army) / Joseph / GroupSerial=24453 / "GroupSerial=24453, QuestWindow=30090-30100 (The Approaching Demon Army -> Portent of Despair), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0004 \| Quest-gated NPC chatter \| QuestWindow=30090-30100 (The Approaching Demon Army -> Portent of Despair) / MSS: Joseph / The enemy's offensive is predictable. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0013/ui/00_message/npc/base/n0013.smc.json | SituationData.EndQuestId | EndQuestId | quest 30090 (The Approaching Demon Army) / Lise / GroupSerial=24542 / "GroupSerial=24542, QuestWindow=30080-30090 (The Royal Family Sacrament -> The Approaching Demon Army), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0013 \| Quest-gated NPC chatter \| QuestWindow=30080-30090 (The Royal Family Sacrament -> The Approaching Demon Army) / MSS: Lise / Prince Nedo seems to think that it is his duty to | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0013/ui/00_message/npc/base/n0013.smc.json | SituationData.StartQuestId | StartQuestId | quest 30090 (The Approaching Demon Army) / Lise / GroupSerial=24543 / "GroupSerial=24543, QuestWindow=30090-30100 (The Approaching Demon Army -> Portent of Despair), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0013 \| Quest-gated NPC chatter \| QuestWindow=30090-30100 (The Approaching Demon Army -> Portent of Despair) / MSS: Lise / The air feels polluted, doesn't it? Maybe it's | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0021/ui/00_message/npc/base/n0021.smc.json | SituationData.EndQuestId | EndQuestId | quest 30090 (The Approaching Demon Army) / Elliot / GroupSerial=24566 / "GroupSerial=24566, QuestWindow=30080-30090 (The Royal Family Sacrament -> The Approaching Demon Army), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0021 \| Quest-gated NPC chatter \| QuestWindow=30080-30090 (The Royal Family Sacrament -> The Approaching Demon Army) / MSS: Elliot / Prince Nedo, I feel like he's trying to be more | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0021/ui/00_message/npc/base/n0021.smc.json | SituationData.StartQuestId | StartQuestId | quest 30090 (The Approaching Demon Army) / Elliot / GroupSerial=24567 / "GroupSerial=24567, QuestWindow=30090-30100 (The Approaching Demon Army -> Portent of Despair), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0021 \| Quest-gated NPC chatter \| QuestWindow=30090-30100 (The Approaching Demon Army -> Portent of Despair) / MSS: Elliot / Weapons, armor—equipment, all taken care of | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0029/ui/00_message/npc/base/n0029.smc.json | SituationData.EndQuestId | EndQuestId | quest 30090 (The Approaching Demon Army) / Nedo / GroupSerial=24909 / "GroupSerial=24909, QuestWindow=30080-30090 (The Royal Family Sacrament -> The Approaching Demon Army), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0029 \| Quest-gated NPC chatter \| QuestWindow=30080-30090 (The Royal Family Sacrament -> The Approaching Demon Army) / MSS: Nedo / Captain, I must be the hope of the people | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0029/ui/00_message/npc/base/n0029.smc.json | SituationData.StartQuestId | StartQuestId | quest 30090 (The Approaching Demon Army) / Nedo / GroupSerial=24910 / "GroupSerial=24910, QuestWindow=30090-30100 (The Approaching Demon Army -> Portent of Despair), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0029 \| Quest-gated NPC chatter \| QuestWindow=30090-30100 (The Approaching Demon Army -> Portent of Despair) / MSS: Nedo / I'm nervous, aren't you? Is it always like this | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0030/ui/00_message/npc/base/n0030.smc.json | SituationData.EndQuestId | EndQuestId | quest 30090 (The Approaching Demon Army) / Gillian / GroupSerial=24596 / "GroupSerial=24596, QuestWindow=30080-30090 (The Royal Family Sacrament -> The Approaching Demon Army), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0030 \| Quest-gated NPC chatter \| QuestWindow=30080-30090 (The Royal Family Sacrament -> The Approaching Demon Army) / MSS: Gillian / The Orcs are quite active, huh? Hmph, even though | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0030/ui/00_message/npc/base/n0030.smc.json | SituationData.StartQuestId | StartQuestId | quest 30090 (The Approaching Demon Army) / Gillian / GroupSerial=24597 / "GroupSerial=24597, QuestWindow=30090-30100 (The Approaching Demon Army -> Portent of Despair), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0030 \| Quest-gated NPC chatter \| QuestWindow=30090-30100 (The Approaching Demon Army -> Portent of Despair) / MSS: Gillian / If all the orcs in Acre Selund start moving, | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0031/ui/00_message/npc/base/n0031.smc.json | SituationData.EndQuestId | EndQuestId | quest 30090 (The Approaching Demon Army) / Meirova / GroupSerial=24746 / "GroupSerial=24746, QuestWindow=30080-30090 (The Royal Family Sacrament -> The Approaching Demon Army), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0031 \| Quest-gated NPC chatter \| QuestWindow=30080-30090 (The Royal Family Sacrament -> The Approaching Demon Army) / MSS: Meirova / I kindly ask for your continued support in the | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0031/ui/00_message/npc/base/n0031.smc.json | SituationData.StartQuestId | StartQuestId | quest 30090 (The Approaching Demon Army) / Meirova / GroupSerial=24747 / "GroupSerial=24747, QuestWindow=30090-30100 (The Approaching Demon Army -> Portent of Despair), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0031 \| Quest-gated NPC chatter \| QuestWindow=30090-30100 (The Approaching Demon Army -> Portent of Despair) / MSS: Meirova / The Liberation Army is an elite few and they | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0032/ui/00_message/npc/base/n0032.smc.json | SituationData.EndQuestId | EndQuestId | quest 30090 (The Approaching Demon Army) / Gerhard / GroupSerial=24766 / "GroupSerial=24766, QuestWindow=30080-30090 (The Royal Family Sacrament -> The Approaching Demon Army), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0032 \| Quest-gated NPC chatter \| QuestWindow=30080-30090 (The Royal Family Sacrament -> The Approaching Demon Army) / MSS: Gerhard / After finishing the defense of this area, I will | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0032/ui/00_message/npc/base/n0032.smc.json | SituationData.StartQuestId | StartQuestId | quest 30090 (The Approaching Demon Army) / Gerhard / GroupSerial=24767 / "GroupSerial=24767, QuestWindow=30090-30100 (The Approaching Demon Army -> Portent of Despair), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0032 \| Quest-gated NPC chatter \| QuestWindow=30090-30100 (The Approaching Demon Army -> Portent of Despair) / MSS: Gerhard / While the focus tends to be only on the infected | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0033/ui/00_message/npc/base/n0033.smc.json | SituationData.EndQuestId | EndQuestId | quest 30090 (The Approaching Demon Army) / Bertha / GroupSerial=24922 / "GroupSerial=24922, QuestWindow=30080-30090 (The Royal Family Sacrament -> The Approaching Demon Army), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0033 \| Quest-gated NPC chatter \| QuestWindow=30080-30090 (The Royal Family Sacrament -> The Approaching Demon Army) / MSS: Bertha / Prince Nedo, aren't you trying too hard? Oh dear, | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0034/ui/00_message/npc/base/n0034.smc.json | SituationData.EndQuestId | EndQuestId | quest 30090 (The Approaching Demon Army) / Quintus / GroupSerial=24722 / "GroupSerial=24722, QuestWindow=30080-30090 (The Royal Family Sacrament -> The Approaching Demon Army), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0034 \| Quest-gated NPC chatter \| QuestWindow=30080-30090 (The Royal Family Sacrament -> The Approaching Demon Army) / MSS: Quintus / Should we fortify the defenses of Fort Thines, or | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0034/ui/00_message/npc/base/n0034.smc.json | SituationData.StartQuestId | StartQuestId | quest 30090 (The Approaching Demon Army) / Quintus / GroupSerial=24723 / "GroupSerial=24723, QuestWindow=30090-30100 (The Approaching Demon Army -> Portent of Despair), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0034 \| Quest-gated NPC chatter \| QuestWindow=30090-30100 (The Approaching Demon Army -> Portent of Despair) / MSS: Quintus / It will be difficult to reinforce the troops for | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0501/ui/00_message/npc/base/n0501.smc.json | SituationData.EndQuestId | EndQuestId | quest 30090 (The Approaching Demon Army) / Gurdolin / GroupSerial=24517 / "GroupSerial=24517, QuestWindow=30080-30090 (The Royal Family Sacrament -> The Approaching Demon Army), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0501 \| Quest-gated NPC chatter \| QuestWindow=30080-30090 (The Royal Family Sacrament -> The Approaching Demon Army) / MSS: Gurdolin / Since I became an Arisen, I've been fighting Orcs | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0501/ui/00_message/npc/base/n0501.smc.json | SituationData.StartQuestId | StartQuestId | quest 30090 (The Approaching Demon Army) / Gurdolin / GroupSerial=24518 / "GroupSerial=24518, QuestWindow=30090-30100 (The Approaching Demon Army -> Portent of Despair), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0501 \| Quest-gated NPC chatter \| QuestWindow=30090-30100 (The Approaching Demon Army -> Portent of Despair) / MSS: Gurdolin / Ignoring the troublesome negotiations, Leave it | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0001/ui/00_message/npc/base/n0001.smc.json[client/03040008/npc/n0001/ui/00_message/npc/base/n0001.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30090 (The Approaching Demon Army) / The White Dragon / GroupSerial=24412 / "GroupSerial=24412, QuestWindow=30080-30090 (The Royal Family Sacrament -> The Approaching Demon Army), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0001 \| Quest-gated NPC chatter \| QuestWindow=30080-30090 (The Royal Family Sacrament -> The Approaching Demon Army) / MSS: The White Dragon / The fell Dragon wouldst ne'er surrender its | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0001/ui/00_message/npc/base/n0001.smc.json[client/03040008/npc/n0001/ui/00_message/npc/base/n0001.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30090 (The Approaching Demon Army) / The White Dragon / GroupSerial=24413 / "GroupSerial=24413, QuestWindow=30090-30100 (The Approaching Demon Army -> Portent of Despair), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0001 \| Quest-gated NPC chatter \| QuestWindow=30090-30100 (The Approaching Demon Army -> Portent of Despair) / MSS: The White Dragon / The dragon's might possessed by the evil Dragon | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json[client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30090 (The Approaching Demon Army) / Klaus / GroupSerial=24481 / "GroupSerial=24481, QuestWindow=30080-30090 (The Royal Family Sacrament -> The Approaching Demon Army), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0003 \| Quest-gated NPC chatter \| QuestWindow=30080-30090 (The Royal Family Sacrament -> The Approaching Demon Army) / MSS: Klaus / I hope we can establish a friendly relationship | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json[client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30090 (The Approaching Demon Army) / Klaus / GroupSerial=24482 / "GroupSerial=24482, QuestWindow=30090-30100 (The Approaching Demon Army -> Portent of Despair), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0003 \| Quest-gated NPC chatter \| QuestWindow=30090-30100 (The Approaching Demon Army -> Portent of Despair) / MSS: Klaus / Do not extinguish the flame of hope that has | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json[client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30090 (The Approaching Demon Army) / Joseph / GroupSerial=24452 / "GroupSerial=24452, QuestWindow=30080-30090 (The Royal Family Sacrament -> The Approaching Demon Army), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0004 \| Quest-gated NPC chatter \| QuestWindow=30080-30090 (The Royal Family Sacrament -> The Approaching Demon Army) / MSS: Joseph / With the recent momentum gained by the People's | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json[client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30090 (The Approaching Demon Army) / Joseph / GroupSerial=24453 / "GroupSerial=24453, QuestWindow=30090-30100 (The Approaching Demon Army -> Portent of Despair), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0004 \| Quest-gated NPC chatter \| QuestWindow=30090-30100 (The Approaching Demon Army -> Portent of Despair) / MSS: Joseph / The enemy's offensive is predictable. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0013/ui/00_message/npc/base/n0013.smc.json[client/03040008/npc/n0013/ui/00_message/npc/base/n0013.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30090 (The Approaching Demon Army) / Lise / GroupSerial=24542 / "GroupSerial=24542, QuestWindow=30080-30090 (The Royal Family Sacrament -> The Approaching Demon Army), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0013 \| Quest-gated NPC chatter \| QuestWindow=30080-30090 (The Royal Family Sacrament -> The Approaching Demon Army) / MSS: Lise / Prince Nedo seems to think that it is his duty to | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0013/ui/00_message/npc/base/n0013.smc.json[client/03040008/npc/n0013/ui/00_message/npc/base/n0013.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30090 (The Approaching Demon Army) / Lise / GroupSerial=24543 / "GroupSerial=24543, QuestWindow=30090-30100 (The Approaching Demon Army -> Portent of Despair), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0013 \| Quest-gated NPC chatter \| QuestWindow=30090-30100 (The Approaching Demon Army -> Portent of Despair) / MSS: Lise / The air feels polluted, doesn't it? Maybe it's | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0021/ui/00_message/npc/base/n0021.smc.json[client/03040008/npc/n0021/ui/00_message/npc/base/n0021.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30090 (The Approaching Demon Army) / Elliot / GroupSerial=24566 / "GroupSerial=24566, QuestWindow=30080-30090 (The Royal Family Sacrament -> The Approaching Demon Army), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0021 \| Quest-gated NPC chatter \| QuestWindow=30080-30090 (The Royal Family Sacrament -> The Approaching Demon Army) / MSS: Elliot / Prince Nedo, I feel like he's trying to be more | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0021/ui/00_message/npc/base/n0021.smc.json[client/03040008/npc/n0021/ui/00_message/npc/base/n0021.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30090 (The Approaching Demon Army) / Elliot / GroupSerial=24567 / "GroupSerial=24567, QuestWindow=30090-30100 (The Approaching Demon Army -> Portent of Despair), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0021 \| Quest-gated NPC chatter \| QuestWindow=30090-30100 (The Approaching Demon Army -> Portent of Despair) / MSS: Elliot / Weapons, armor—equipment, all taken care of | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0029/ui/00_message/npc/base/n0029.smc.json[client/03040008/npc/n0029/ui/00_message/npc/base/n0029.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30090 (The Approaching Demon Army) / Nedo / GroupSerial=24909 / "GroupSerial=24909, QuestWindow=30080-30090 (The Royal Family Sacrament -> The Approaching Demon Army), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0029 \| Quest-gated NPC chatter \| QuestWindow=30080-30090 (The Royal Family Sacrament -> The Approaching Demon Army) / MSS: Nedo / Captain, I must be the hope of the people | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0029/ui/00_message/npc/base/n0029.smc.json[client/03040008/npc/n0029/ui/00_message/npc/base/n0029.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30090 (The Approaching Demon Army) / Nedo / GroupSerial=24910 / "GroupSerial=24910, QuestWindow=30090-30100 (The Approaching Demon Army -> Portent of Despair), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0029 \| Quest-gated NPC chatter \| QuestWindow=30090-30100 (The Approaching Demon Army -> Portent of Despair) / MSS: Nedo / I'm nervous, aren't you? Is it always like this | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0030/ui/00_message/npc/base/n0030.smc.json[client/03040008/npc/n0030/ui/00_message/npc/base/n0030.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30090 (The Approaching Demon Army) / Gillian / GroupSerial=24596 / "GroupSerial=24596, QuestWindow=30080-30090 (The Royal Family Sacrament -> The Approaching Demon Army), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0030 \| Quest-gated NPC chatter \| QuestWindow=30080-30090 (The Royal Family Sacrament -> The Approaching Demon Army) / MSS: Gillian / The Orcs are quite active, huh? Hmph, even though | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0030/ui/00_message/npc/base/n0030.smc.json[client/03040008/npc/n0030/ui/00_message/npc/base/n0030.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30090 (The Approaching Demon Army) / Gillian / GroupSerial=24597 / "GroupSerial=24597, QuestWindow=30090-30100 (The Approaching Demon Army -> Portent of Despair), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0030 \| Quest-gated NPC chatter \| QuestWindow=30090-30100 (The Approaching Demon Army -> Portent of Despair) / MSS: Gillian / If all the orcs in Acre Selund start moving, | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0031/ui/00_message/npc/base/n0031.smc.json[client/03040008/npc/n0031/ui/00_message/npc/base/n0031.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30090 (The Approaching Demon Army) / Meirova / GroupSerial=24746 / "GroupSerial=24746, QuestWindow=30080-30090 (The Royal Family Sacrament -> The Approaching Demon Army), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0031 \| Quest-gated NPC chatter \| QuestWindow=30080-30090 (The Royal Family Sacrament -> The Approaching Demon Army) / MSS: Meirova / I kindly ask for your continued support in the | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0031/ui/00_message/npc/base/n0031.smc.json[client/03040008/npc/n0031/ui/00_message/npc/base/n0031.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30090 (The Approaching Demon Army) / Meirova / GroupSerial=24747 / "GroupSerial=24747, QuestWindow=30090-30100 (The Approaching Demon Army -> Portent of Despair), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0031 \| Quest-gated NPC chatter \| QuestWindow=30090-30100 (The Approaching Demon Army -> Portent of Despair) / MSS: Meirova / The Liberation Army is an elite few and they | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0032/ui/00_message/npc/base/n0032.smc.json[client/03040008/npc/n0032/ui/00_message/npc/base/n0032.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30090 (The Approaching Demon Army) / Gerhard / GroupSerial=24766 / "GroupSerial=24766, QuestWindow=30080-30090 (The Royal Family Sacrament -> The Approaching Demon Army), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0032 \| Quest-gated NPC chatter \| QuestWindow=30080-30090 (The Royal Family Sacrament -> The Approaching Demon Army) / MSS: Gerhard / After finishing the defense of this area, I will | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0032/ui/00_message/npc/base/n0032.smc.json[client/03040008/npc/n0032/ui/00_message/npc/base/n0032.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30090 (The Approaching Demon Army) / Gerhard / GroupSerial=24767 / "GroupSerial=24767, QuestWindow=30090-30100 (The Approaching Demon Army -> Portent of Despair), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0032 \| Quest-gated NPC chatter \| QuestWindow=30090-30100 (The Approaching Demon Army -> Portent of Despair) / MSS: Gerhard / While the focus tends to be only on the infected | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0033/ui/00_message/npc/base/n0033.smc.json[client/03040008/npc/n0033/ui/00_message/npc/base/n0033.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30090 (The Approaching Demon Army) / Bertha / GroupSerial=24922 / "GroupSerial=24922, QuestWindow=30080-30090 (The Royal Family Sacrament -> The Approaching Demon Army), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0033 \| Quest-gated NPC chatter \| QuestWindow=30080-30090 (The Royal Family Sacrament -> The Approaching Demon Army) / MSS: Bertha / Prince Nedo, aren't you trying too hard? Oh dear, | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0034/ui/00_message/npc/base/n0034.smc.json[client/03040008/npc/n0034/ui/00_message/npc/base/n0034.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30090 (The Approaching Demon Army) / Quintus / GroupSerial=24722 / "GroupSerial=24722, QuestWindow=30080-30090 (The Royal Family Sacrament -> The Approaching Demon Army), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0034 \| Quest-gated NPC chatter \| QuestWindow=30080-30090 (The Royal Family Sacrament -> The Approaching Demon Army) / MSS: Quintus / Should we fortify the defenses of Fort Thines, or | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0034/ui/00_message/npc/base/n0034.smc.json[client/03040008/npc/n0034/ui/00_message/npc/base/n0034.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30090 (The Approaching Demon Army) / Quintus / GroupSerial=24723 / "GroupSerial=24723, QuestWindow=30090-30100 (The Approaching Demon Army -> Portent of Despair), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0034 \| Quest-gated NPC chatter \| QuestWindow=30090-30100 (The Approaching Demon Army -> Portent of Despair) / MSS: Quintus / It will be difficult to reinforce the troops for | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0501/ui/00_message/npc/base/n0501.smc.json[client/03040008/npc/n0501/ui/00_message/npc/base/n0501.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30090 (The Approaching Demon Army) / Gurdolin / GroupSerial=24517 / "GroupSerial=24517, QuestWindow=30080-30090 (The Royal Family Sacrament -> The Approaching Demon Army), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0501 \| Quest-gated NPC chatter \| QuestWindow=30080-30090 (The Royal Family Sacrament -> The Approaching Demon Army) / MSS: Gurdolin / Since I became an Arisen, I've been fighting Orcs | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0501/ui/00_message/npc/base/n0501.smc.json[client/03040008/npc/n0501/ui/00_message/npc/base/n0501.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30090 (The Approaching Demon Army) / Gurdolin / GroupSerial=24518 / "GroupSerial=24518, QuestWindow=30090-30100 (The Approaching Demon Army -> Portent of Despair), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0501 \| Quest-gated NPC chatter \| QuestWindow=30090-30100 (The Approaching Demon Army -> Portent of Despair) / MSS: Gurdolin / Ignoring the troublesome negotiations, Leave it | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
 |===
 
 ==== opaque_fsm -- 2 hit(s)
 
-[cols="1,1,3,3,2,3,3",options="header"]
+[cols="1,1,1,3,3,2,3,3",options="header"]
 |===
-| Family | Confidence | File | JSON Path | Field | Context | Why
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
 
-| FSM | 78 | client/03040008/quest/q00030090/quest/00030090/npc/n0501.fsm.json | Process.Parameter.QuestId | QuestId | quest 30090 (The Approaching Demon Army) / Gurdolin / checkMyQuestFlag \| NPCFSM=n0501 \| QuestLocalNPCFSM | Quest-local NPC FSM MyQuest check; these files usually describe NPC behavior for the same quest, so this flag likely controls that NPC's quest-specific presence or behavior.
-| FSM | 78 | client/03040008/quest/q00030090/quest/00030090/npc/n0502.fsm.json | Process.Parameter.QuestId | QuestId | quest 30090 (The Approaching Demon Army) / Wandering Seeker / checkMyQuestFlag \| NPCFSM=n0502 \| QuestLocalNPCFSM | Quest-local NPC FSM MyQuest check; these files usually describe NPC behavior for the same quest, so this flag likely controls that NPC's quest-specific presence or behavior.
+| FSM | Direct | 78 | link:../../../../client/03040008/quest/q00030090/quest/00030090/npc/n0501.fsm.json[client/03040008/quest/q00030090/quest/00030090/npc/n0501.fsm.json] | Process.Parameter.QuestId | QuestId | quest 30090 (The Approaching Demon Army) / Gurdolin / checkMyQuestFlag \| NPCFSM=n0501 \| QuestLocalNPCFSM | Quest-local NPC FSM MyQuest check; these files usually describe NPC behavior for the same quest, so this flag likely controls that NPC's quest-specific presence or behavior.
+| FSM | Direct | 78 | link:../../../../client/03040008/quest/q00030090/quest/00030090/npc/n0502.fsm.json[client/03040008/quest/q00030090/quest/00030090/npc/n0502.fsm.json] | Process.Parameter.QuestId | QuestId | quest 30090 (The Approaching Demon Army) / Wandering Seeker / checkMyQuestFlag \| NPCFSM=n0502 \| QuestLocalNPCFSM | Quest-local NPC FSM MyQuest check; these files usually describe NPC behavior for the same quest, so this flag likely controls that NPC's quest-specific presence or behavior.
 |===
 

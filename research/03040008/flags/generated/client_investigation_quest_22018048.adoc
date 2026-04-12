@@ -5,16 +5,32 @@
 
 Query mode:: quest
 Query value:: 22018048
-Generated at:: 2026-04-11T21:41:41.100431+00:00
+Generated at:: 2026-04-12T12:44:01.896363+00:00
 
 toc::[]
+
+Quest family:: unknown -- Unknown Quest Family
+Quest family notes:: Quest family could not be inferred from the client quest id pattern.
+Quest family focus:: treat_as_generic
+
+== Family Relationship Context
+
+_These sections summarize deterministic client-side family metadata and reverse-index relationships. They are context for later owner/dependency inference, not direct quest-target promotion._
+
+=== Quest Sequence
+
+* seq no: 317
+* previous: 22018047 -- Time Restriction: Collecting Before the Monsters Return
+* next: 22018049 -- [Hard] The Demon Army Counterattacks
 
 == ARC Association Context
 
 _ARC associations are contextual only. They show which quest-stage and marker resources are bundled with this quest._
 
-* arc file: client/03040008/quest/q22018048.arc.json
+* arc file: link:../../../../client/03040008/quest/q22018048.arc.json#L1[client/03040008/quest/q22018048.arc.json#L1]
 * resource count: 9
+* stage codes: st0463
+* resource families: .fsm, .gmd, .mss, .qmi, .qst, .qtd
 
 === st0463 -- Megado Cathedral
 
@@ -31,18 +47,149 @@ _ARC associations are contextual only. They show which quest-stage and marker re
 * rAIFSM: quest/22018048/npc/help_alive
 * rGUIMessage: ui/00_message/quest_info/q22018048_00
 
+== Stage Neighborhood Context
+
+_Stage-neighborhood context summarizes scanner-relevant client files that share the quest's archive stage codes. This is deterministic client topology, not inferred ownership._
+
+* scanner-relevant stage files: 68
+* indexed stage codes: st0463
+
+=== st0463 -- Megado Cathedral
+
+* scanner files: 68
+* .gpl.json: 4
+* .lot.json: 60
+* .qmi.json: 3
+* .qst.json: 1
+
+== Stage Neighborhood External-State Cues
+
+_These cues are deterministic client-side observations from the quest's stage neighborhood. They are not promoted to direct quest targets yet; they highlight q6/q7-owned external state values co-located in the quest's archive stages._
+
+* cue count: 0
+* owner families: q6, q7
+
+== Bounded Graph Expansion
+
+_This graph summarizes bounded deterministic and inferred edges around the quest: quest archive stages, direct source families, stage-linked owner catalogs, promoted dependencies, reverse-index event/group links, and family-specific table edges._
+
+* max depth: 3
+* node count: 7
+* edge count: 6
+* node kinds: direct_family=2, family_context=1, quest=1, sequence_quest=2, stage=1
+* derivation: Direct=13
+
+=== Mermaid Graph Slice
+
+_This Mermaid flowchart shows a capped slice of the bounded graph so large quest reports stay readable while still exposing the graph structure._
+
+[mermaid]
+....
+flowchart TD
+    node_quest_22018048["Quest 22018048"]
+    node_direct_family_fsm["fsm direct hits (1)"]
+    node_direct_family_qst["qst direct hits (4)"]
+    node_family_context_quest_sequence["Quest Sequence"]
+    node_stage_st0463["st0463 -- Megado Cathedral"]
+    node_sequence_quest_22018047["Quest 22018047"]
+    node_sequence_quest_22018049["Quest 22018049"]
+    node_quest_22018048 -->|direct_source_family| node_direct_family_fsm
+    node_quest_22018048 -->|direct_source_family| node_direct_family_qst
+    node_quest_22018048 -->|family:quest_sequence| node_family_context_quest_sequence
+    node_quest_22018048 -->|quest_archive_stage| node_stage_st0463
+    node_family_context_quest_sequence -->|sequence_next| node_sequence_quest_22018049
+    node_family_context_quest_sequence -->|sequence_previous| node_sequence_quest_22018047
+    classDef direct_deterministic fill:#e8f5e9,stroke:#2e7d32,stroke-width:1px
+    classDef owner_index fill:#e3f2fd,stroke:#1565c0,stroke-width:1px
+    classDef dependency_inferred fill:#fff3e0,stroke:#ef6c00,stroke-width:1px
+    classDef graph_expanded fill:#f3e5f5,stroke:#7b1fa2,stroke-width:1px
+    classDef lower_confidence fill:#fbe9e7,stroke:#d84315,stroke-width:1px
+    classDef binary_auxiliary fill:#eceff1,stroke:#455a64,stroke-width:1px
+    class node_quest_22018048,node_direct_family_fsm,node_direct_family_qst,node_family_context_quest_sequence,node_stage_st0463,node_sequence_quest_22018047,node_sequence_quest_22018049 direct_deterministic
+....
+
+[cols="1,2,2,2,2,4",options="header"]
+|===
+| Depth | Edge | From | To | Derivation | Why
+
+| 1 | direct_source_family | quest:22018048 | direct-family:fsm | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | direct_source_family | quest:22018048 | direct-family:qst | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | family_context:quest_sequence | quest:22018048 | family-context:quest_sequence | Direct | Family-specific decoded tables provide deterministic context for this quest.
+| 1 | quest_archive_stage | quest:22018048 | stage:st0463 | Direct | Quest archive topology directly links this quest to the stage code.
+| 2 | sequence_next | family-context:quest_sequence | sequence-quest:22018049 | Direct | QuestSequence links this quest to its neighboring sequence quest.
+| 2 | sequence_previous | family-context:quest_sequence | sequence-quest:22018047 | Direct | QuestSequence links this quest to its neighboring sequence quest.
+|===
+
 == Flag Summary Matrix
 
 [cols="2,1,1,2,2,3,3",options="header"]
 |===
 | Target | Kind | Hits | Sources | Stages | Relationships | Description
 
+| Flag 7405 | layout_flag | 2 | qst | st0463 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0463 \| Condition
+| Flag 7408 | layout_flag | 1 | qst | st0463 | ⚡ Quest Condition | QST local: st0463 \| QuestGroup 1
+| Flag 7409 | layout_flag | 1 | qst | st0463 | ⚡ Quest Condition | QST local: st0463 \| QuestGroup 2
 | Quest ID 22018048 | quest_id | 1 | fsm |  | 🔍 FSM Check | Derived quest-wide association scan
 |===
 
 == Known Documented Targets
 
+* quest 22018048 -- Flag 7405 -- QST local: st0463 | Condition
+* quest 22018048 -- Flag 7408 -- QST local: st0463 | QuestGroup 1
+* quest 22018048 -- Flag 7409 -- QST local: st0463 | QuestGroup 2
 * Quest ID 22018048 -- Derived quest-wide association scan [Derived]
+
+== Flag 7405 -- Quest 22018048
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q22018048/quest/22018048/q22018048_st0463.qst.json[client/03040008/quest/q22018048/quest/22018048/q22018048_st0463.qst.json] | QuestStageList[].QuestGrp[0].Condition | Condition | quest 22018048 / Megado Cathedral / QuestSet=QuestSetInfoNpc | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q22018048/quest/22018048/q22018048_st0463.qst.json[client/03040008/quest/q22018048/quest/22018048/q22018048_st0463.qst.json] | QuestStageList[].QuestGrp[0].EraseCondition | EraseCondition | quest 22018048 / Megado Cathedral / QuestSet=QuestSetInfoNpc | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 7408 -- Quest 22018048
+
+origin:: derived_qst_local
+direct hits:: *1*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 1 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q22018048/quest/22018048/q22018048_st0463.qst.json[client/03040008/quest/q22018048/quest/22018048/q22018048_st0463.qst.json] | QuestStageList[].QuestGrp[1].Condition | Condition | quest 22018048 / Megado Cathedral / "QuestGroup 1" / QuestSet=QuestSetInfoNpc \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 7409 -- Quest 22018048
+
+origin:: derived_qst_local
+direct hits:: *1*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 1 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q22018048/quest/22018048/q22018048_st0463.qst.json[client/03040008/quest/q22018048/quest/22018048/q22018048_st0463.qst.json] | QuestStageList[].QuestGrp[2].Condition | Condition | quest 22018048 / Megado Cathedral / "QuestGroup 2" / QuestSet=QuestSetInfoNpc \| GroupNo=2 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
 
 == Quest ID 22018048
 
@@ -54,10 +201,10 @@ ranked candidates:: *0*
 
 ==== opaque_fsm -- 1 hit(s)
 
-[cols="1,1,3,3,2,3,3",options="header"]
+[cols="1,1,1,3,3,2,3,3",options="header"]
 |===
-| Family | Confidence | File | JSON Path | Field | Context | Why
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
 
-| FSM | 64 | client/03040008/quest/q22018048/quest/22018048/npc/help.fsm.json | Process.Parameter.QuestId | QuestId | quest 22018048 (Self-Righteous Conviction) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/quest/q22018048/quest/22018048/npc/help.fsm.json[client/03040008/quest/q22018048/quest/22018048/npc/help.fsm.json] | Process.Parameter.QuestId | QuestId | quest 22018048 (Self-Righteous Conviction) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
 |===
 

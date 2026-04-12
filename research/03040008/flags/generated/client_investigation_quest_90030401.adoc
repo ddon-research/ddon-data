@@ -5,16 +5,54 @@
 
 Query mode:: quest
 Query value:: 90030401
-Generated at:: 2026-04-11T21:41:43.001708+00:00
+Generated at:: 2026-04-12T12:44:33.554598+00:00
 
 toc::[]
+
+Quest family:: q9 -- Reserved q9
+Quest family notes:: Reserved or unimplemented quest-family bucket.
+Quest family focus:: unsupported_until_client_evidence
+
+== External Owner Indexes
+
+_These are reusable external owner catalogs inferred from stage-neighborhood cues. They are broader than the subset of flags promoted into derived dependency targets._
+
+[cols="2,1,1,2,2,2,4",options="header"]
+|===
+| Owner Quest | Family | Catalog Count | Catalog Flags | Linked Cues | Cue Sources | Why
+
+| 70033001 | q7 | 43 | 7826, 7827, 7876, 7888, 7889, 7916, 7917, 7954, 7955, 7965, 7966, 7967 +31 more | 7954, 8034, 8035, 8038 | gpl | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+|===
+
+== Derived External Dependency Targets
+
+_These are the promoted subset of external owner-index entries. A flag appears here only when it passes the current family-specific dependency promotion rules for this quest._
+
+[cols="2,1,1,2,2,4",options="header"]
+|===
+| Owner Quest | Family | Flag Count | Flags | Sources | Why
+
+| 70033001 | q7 | 1 | 8035 | gpl | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+|===
+
+== Family Relationship Context
+
+_These sections summarize deterministic client-side family metadata and reverse-index relationships. They are context for later owner/dependency inference, not direct quest-target promotion._
+
+=== Quest Sequence
+
+* seq no: 540
+* previous: 90030303 -- The Deathly Battle of the Forest of Mist
+* next: 90030402 -- Resurrection of the Flame of Despair
 
 == ARC Association Context
 
 _ARC associations are contextual only. They show which quest-stage and marker resources are bundled with this quest._
 
-* arc file: client/03040008/quest/q90030401.arc.json
+* arc file: link:../../../../client/03040008/quest/q90030401.arc.json#L1[client/03040008/quest/q90030401.arc.json#L1]
 * resource count: 5
+* stage codes: st0139
+* resource families: .fmi, .gmd, .qmi, .qst, .qtd
 
 === st0139 -- Firefall Mountain Campsite
 
@@ -27,18 +65,183 @@ _ARC associations are contextual only. They show which quest-stage and marker re
 * rQuestTextData: ui/00_param/quest_text/q90030401_00
 * rGUIMessage: ui/00_message/quest_info/q90030401_00
 
+== Stage Neighborhood Context
+
+_Stage-neighborhood context summarizes scanner-relevant client files that share the quest's archive stage codes. This is deterministic client topology, not inferred ownership._
+
+* scanner-relevant stage files: 50
+* indexed stage codes: st0139
+
+=== st0139 -- Firefall Mountain Campsite
+
+* scanner files: 50
+* .gpl.json: 3
+* .lot.json: 30
+* .qmi.json: 9
+* .qst.json: 8
+
+== Stage Neighborhood External-State Cues
+
+_These cues are deterministic client-side observations from the quest's stage neighborhood. They are not promoted to direct quest targets yet; they highlight q6/q7-owned external state values co-located in the quest's archive stages._
+
+* cue count: 4
+* owner families: q6, q7
+
+[cols="1,1,1,2,2,2",options="header"]
+|===
+| Value | Kind | Hits | Sources | Owners | Stages
+
+| Flag 8035 | layout_flag | 7 | gpl | 70033001 | st0139
+| Flag 7954 | layout_flag | 2 | gpl | 70033001 | st0139
+| Flag 8034 | layout_flag | 1 | gpl | 70033001 | st0139
+| Flag 8038 | layout_flag | 1 | gpl | 70033001 | st0139
+|===
+
+== Bounded Graph Expansion
+
+_This graph summarizes bounded deterministic and inferred edges around the quest: quest archive stages, direct source families, stage-linked owner catalogs, promoted dependencies, reverse-index event/group links, and family-specific table edges._
+
+* max depth: 3
+* node count: 26
+* edge count: 37
+* node kinds: direct_family=1, family_context=1, lot_file=8, owner_quest=1, quest=1, sequence_quest=2, stage=1, stage_group=11
+* derivation: Dependency=1, Direct=11, Graph=49, Owner Index=2
+
+=== Mermaid Graph Slice
+
+_This Mermaid flowchart shows a capped slice of the bounded graph so large quest reports stay readable while still exposing the graph structure._
+
+[mermaid]
+....
+flowchart TD
+    node_quest_90030401["Quest 90030401"]
+    node_direct_family_qst["qst direct hits (2)"]
+    node_family_context_quest_sequence["Quest Sequence"]
+    node_stage_st0139["st0139 -- Firefall Mountain Campsite"]
+    node_owner_quest_70033001["Owner quest 70033001 (q7)"]
+    node_sequence_quest_90030303["Quest 90030303"]
+    node_sequence_quest_90030402["Quest 90030402"]
+    node_stage_group_st0139_1["GPL group st0139/1"]
+    node_stage_group_st0139_2["GPL group st0139/2"]
+    node_stage_group_st0139_21["GPL group st0139/21"]
+    node_stage_group_st0139_27["GPL group st0139/27"]
+    node_stage_group_st0139_32["GPL group st0139/32"]
+    node_stage_group_st0139_33["GPL group st0139/33"]
+    node_stage_group_st0139_34["GPL group st0139/34"]
+    node_stage_group_st0139_35["GPL group st0139/35"]
+    node_stage_group_st0139_36["GPL group st0139/36"]
+    node_stage_group_st0139_37["GPL group st0139/37"]
+    node_stage_group_st0139_40["GPL group st0139/40"]
+    node_quest_90030401 -->|direct_source_family| node_direct_family_qst
+    node_quest_90030401 -->|family:quest_sequence| node_family_context_quest_sequence
+    node_quest_90030401 -->|quest_archive_stage| node_stage_st0139
+    node_quest_90030401 -->|promoted_dependency| node_owner_quest_70033001
+    node_family_context_quest_sequence -->|sequence_next| node_sequence_quest_90030402
+    node_family_context_quest_sequence -->|sequence_previous| node_sequence_quest_90030303
+    node_stage_st0139 -->|stage_group_reference| node_stage_group_st0139_1
+    node_stage_st0139 -->|stage_group_reference| node_stage_group_st0139_2
+    node_stage_st0139 -->|stage_group_reference| node_stage_group_st0139_21
+    node_stage_st0139 -->|stage_group_reference| node_stage_group_st0139_27
+    node_stage_st0139 -->|stage_group_reference| node_stage_group_st0139_32
+    node_stage_st0139 -->|stage_group_reference| node_stage_group_st0139_33
+    node_stage_st0139 -->|stage_group_reference| node_stage_group_st0139_34
+    node_stage_st0139 -->|stage_group_reference| node_stage_group_st0139_35
+    node_stage_st0139 -->|stage_group_reference| node_stage_group_st0139_36
+    node_stage_st0139 -->|stage_group_reference| node_stage_group_st0139_37
+    node_stage_st0139 -->|stage_group_reference| node_stage_group_st0139_40
+    node_stage_st0139 -->|stage_owner_index| node_owner_quest_70033001
+    node_stage_group_st0139_1 -->|gpl_owner_guard| node_owner_quest_70033001
+    node_stage_group_st0139_2 -->|gpl_owner_guard| node_owner_quest_70033001
+    node_stage_group_st0139_21 -->|gpl_owner_guard| node_owner_quest_70033001
+    node_stage_group_st0139_27 -->|gpl_owner_guard| node_owner_quest_70033001
+    node_stage_group_st0139_32 -->|gpl_owner_guard| node_owner_quest_70033001
+    node_stage_group_st0139_33 -->|gpl_owner_guard| node_owner_quest_70033001
+    classDef direct_deterministic fill:#e8f5e9,stroke:#2e7d32,stroke-width:1px
+    classDef owner_index fill:#e3f2fd,stroke:#1565c0,stroke-width:1px
+    classDef dependency_inferred fill:#fff3e0,stroke:#ef6c00,stroke-width:1px
+    classDef graph_expanded fill:#f3e5f5,stroke:#7b1fa2,stroke-width:1px
+    classDef lower_confidence fill:#fbe9e7,stroke:#d84315,stroke-width:1px
+    classDef binary_auxiliary fill:#eceff1,stroke:#455a64,stroke-width:1px
+    class node_quest_90030401,node_direct_family_qst,node_family_context_quest_sequence,node_stage_st0139,node_sequence_quest_90030303,node_sequence_quest_90030402 direct_deterministic
+    class node_owner_quest_70033001 owner_index
+    class node_stage_group_st0139_1,node_stage_group_st0139_2,node_stage_group_st0139_21,node_stage_group_st0139_27,node_stage_group_st0139_32,node_stage_group_st0139_33,node_stage_group_st0139_34,node_stage_group_st0139_35,node_stage_group_st0139_36,node_stage_group_st0139_37,node_stage_group_st0139_40 graph_expanded
+....
+
+[cols="1,2,2,2,2,4",options="header"]
+|===
+| Depth | Edge | From | To | Derivation | Why
+
+| 1 | direct_source_family | quest:90030401 | direct-family:qst | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | family_context:quest_sequence | quest:90030401 | family-context:quest_sequence | Direct | Family-specific decoded tables provide deterministic context for this quest.
+| 1 | quest_archive_stage | quest:90030401 | stage:st0139 | Direct | Quest archive topology directly links this quest to the stage code.
+| 2 | promoted_dependency | quest:90030401 | owner-quest:70033001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | sequence_next | family-context:quest_sequence | sequence-quest:90030402 | Direct | QuestSequence links this quest to its neighboring sequence quest.
+| 2 | sequence_previous | family-context:quest_sequence | sequence-quest:90030303 | Direct | QuestSequence links this quest to its neighboring sequence quest.
+| 2 | stage_group_reference | stage:st0139 | stage-group:st0139:1 | Graph | Reverse indexes expose GPL group references for this stage.
+| 2 | stage_group_reference | stage:st0139 | stage-group:st0139:2 | Graph | Reverse indexes expose GPL group references for this stage.
+| 2 | stage_group_reference | stage:st0139 | stage-group:st0139:21 | Graph | Reverse indexes expose GPL group references for this stage.
+| 2 | stage_group_reference | stage:st0139 | stage-group:st0139:27 | Graph | Reverse indexes expose GPL group references for this stage.
+| 2 | stage_group_reference | stage:st0139 | stage-group:st0139:32 | Graph | Reverse indexes expose GPL group references for this stage.
+| 2 | stage_group_reference | stage:st0139 | stage-group:st0139:33 | Graph | Reverse indexes expose GPL group references for this stage.
+| 2 | stage_group_reference | stage:st0139 | stage-group:st0139:34 | Graph | Reverse indexes expose GPL group references for this stage.
+| 2 | stage_group_reference | stage:st0139 | stage-group:st0139:35 | Graph | Reverse indexes expose GPL group references for this stage.
+| 2 | stage_group_reference | stage:st0139 | stage-group:st0139:36 | Graph | Reverse indexes expose GPL group references for this stage.
+| 2 | stage_group_reference | stage:st0139 | stage-group:st0139:37 | Graph | Reverse indexes expose GPL group references for this stage.
+| 2 | stage_group_reference | stage:st0139 | stage-group:st0139:40 | Graph | Reverse indexes expose GPL group references for this stage.
+| 2 | stage_owner_index | stage:st0139 | owner-quest:70033001 | Owner Index | Stage-neighborhood cues on this stage link to the reusable owner catalog.
+| 3 | gpl_owner_guard | stage-group:st0139:1 | owner-quest:70033001 | Graph | GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.
+| 3 | gpl_owner_guard | stage-group:st0139:2 | owner-quest:70033001 | Graph | GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.
+| 3 | gpl_owner_guard | stage-group:st0139:21 | owner-quest:70033001 | Graph | GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.
+| 3 | gpl_owner_guard | stage-group:st0139:27 | owner-quest:70033001 | Graph | GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.
+| 3 | gpl_owner_guard | stage-group:st0139:32 | owner-quest:70033001 | Graph | GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.
+| 3 | gpl_owner_guard | stage-group:st0139:33 | owner-quest:70033001 | Graph | GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.
+| 3 | gpl_owner_guard | stage-group:st0139:34 | owner-quest:70033001 | Graph | GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.
+| 3 | gpl_owner_guard | stage-group:st0139:35 | owner-quest:70033001 | Graph | GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.
+| 3 | gpl_owner_guard | stage-group:st0139:36 | owner-quest:70033001 | Graph | GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.
+| 3 | gpl_owner_guard | stage-group:st0139:37 | owner-quest:70033001 | Graph | GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.
+| 3 | gpl_owner_guard | stage-group:st0139:40 | owner-quest:70033001 | Graph | GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.
+| 3 | group_lot_reference | stage-group:st0139:27 | lot-file:st0139_02m25n_p27.lot.json | Graph | LOT association resolves the GPL group to a concrete stage layout file.
+| 3 | group_lot_reference | stage-group:st0139:32 | lot-file:st0139_03m25n_p32.lot.json | Graph | LOT association resolves the GPL group to a concrete stage layout file.
+| 3 | group_lot_reference | stage-group:st0139:33 | lot-file:st0139_03m25n_p33.lot.json | Graph | LOT association resolves the GPL group to a concrete stage layout file.
+| 3 | group_lot_reference | stage-group:st0139:34 | lot-file:st0139_03m25n_p34.lot.json | Graph | LOT association resolves the GPL group to a concrete stage layout file.
+| 3 | group_lot_reference | stage-group:st0139:35 | lot-file:st0139_03m25n_p35.lot.json | Graph | LOT association resolves the GPL group to a concrete stage layout file.
+| 3 | group_lot_reference | stage-group:st0139:36 | lot-file:st0139_03m25n_p36.lot.json | Graph | LOT association resolves the GPL group to a concrete stage layout file.
+| 3 | group_lot_reference | stage-group:st0139:37 | lot-file:st0139_03m25n_p37.lot.json | Graph | LOT association resolves the GPL group to a concrete stage layout file.
+| 3 | group_lot_reference | stage-group:st0139:40 | lot-file:st0139_03m25n_p40.lot.json | Graph | LOT association resolves the GPL group to a concrete stage layout file.
+|===
+
 == Flag Summary Matrix
 
 [cols="2,1,1,2,2,3,3",options="header"]
 |===
 | Target | Kind | Hits | Sources | Stages | Relationships | Description
 
+| Flag 8089 | layout_flag | 2 | qst | st0139 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0139 \| Condition
 | Quest ID 90030401 | quest_id | 0 |  |  |  | Derived quest-wide association scan
 |===
 
 == Known Documented Targets
 
+* quest 90030401 -- Flag 8089 -- QST local: st0139 | Condition
 * Quest ID 90030401 -- Derived quest-wide association scan [Derived]
+
+== Flag 8089 -- Quest 90030401
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q90030401/quest/90030401/q90030401_st0139.qst.json[client/03040008/quest/q90030401/quest/90030401/q90030401_st0139.qst.json] | QuestStageList[].QuestGrp[0].Condition | Condition | quest 90030401 / Firefall Mountain Campsite / QuestSet=QuestSetInfoNpc | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q90030401/quest/90030401/q90030401_st0139.qst.json[client/03040008/quest/q90030401/quest/90030401/q90030401_st0139.qst.json] | QuestStageList[].QuestGrp[0].EraseCondition | EraseCondition | quest 90030401 / Firefall Mountain Campsite / QuestSet=QuestSetInfoNpc | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
 
 == Quest ID 90030401
 
@@ -50,10 +253,10 @@ _No direct references found in decoded client data._
 
 === Ranked Candidates
 
-[cols="1,1,2,3,3,3",options="header"]
+[cols="1,1,1,2,3,3,3",options="header"]
 |===
-| Tier | Confidence | Field | File | Context | Why
+| Tier | Derivation | Confidence | Field | File | Context | Why
 
-| context | 45 | QuestId | client/03040008/game_common/quest/QuestSequence.qsq.json | Resurrection of the Flame of Despair | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
+| context | Lower Confidence | 45 | QuestId | link:../../../../client/03040008/game_common/quest/QuestSequence.qsq.json#L4211[client/03040008/game_common/quest/QuestSequence.qsq.json#L4211] | Resurrection of the Flame of Despair | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
 |===
 

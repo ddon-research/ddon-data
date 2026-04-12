@@ -5,16 +5,41 @@
 
 Query mode:: quest
 Query value:: 60000005
-Generated at:: 2026-04-11T21:41:41.756562+00:00
+Generated at:: 2026-04-12T12:44:07.272016+00:00
 
 toc::[]
+
+Quest family:: q6 -- Tutorial / Unlock / Area Trial
+Quest family notes:: Tutorial, area-trial, unlock, and occasional festival quests.
+Quest family focus:: jtq_tqg_jmc_scaffolding
+
+== Family Relationship Context
+
+_These sections summarize deterministic client-side family metadata and reverse-index relationships. They are context for later owner/dependency inference, not direct quest-target promotion._
+
+=== Quest Sequence
+
+* seq no: 331
+* previous: 60000004 -- Priest Tactics Trial: Purification
+* next: 60000006 -- Shield Sage Tactics Trial: A Magick Shield
+
+=== Tutorial Scaffolding
+
+* JTQ rows: 1
+* TQG rows: 1
+* JMC rows: 1
+* tutorial groups: 1
+* tutorial quest: Seeker Tactics Trial: A Whirlwind
+* job link: tutorial 60000005 / master 60000054
 
 == ARC Association Context
 
 _ARC associations are contextual only. They show which quest-stage and marker resources are bundled with this quest._
 
-* arc file: client/03040008/quest/q60000005.arc.json
+* arc file: link:../../../../client/03040008/quest/q60000005.arc.json#L1[client/03040008/quest/q60000005.arc.json#L1]
 * resource count: 10
+* stage codes: st0550
+* resource families: .fsm, .gmd, .mss, .qmi, .qst, .qtd
 
 === st0550 -- Training Chapel
 
@@ -32,18 +57,279 @@ _ARC associations are contextual only. They show which quest-stage and marker re
 * rAIFSM: quest/60000005/npc/n0539_st550
 * rGUIMessage: ui/00_message/examine_message/quest/quest_examine_q60000005
 
+== Stage Neighborhood Context
+
+_Stage-neighborhood context summarizes scanner-relevant client files that share the quest's archive stage codes. This is deterministic client topology, not inferred ownership._
+
+* scanner-relevant stage files: 101
+* indexed stage codes: st0550
+
+=== st0550 -- Training Chapel
+
+* scanner files: 101
+* .gpl.json: 8
+* .lot.json: 23
+* .qmi.json: 44
+* .qst.json: 26
+
+== Stage Neighborhood External-State Cues
+
+_These cues are deterministic client-side observations from the quest's stage neighborhood. They are not promoted to direct quest targets yet; they highlight q6/q7-owned external state values co-located in the quest's archive stages._
+
+* cue count: 0
+* owner families: q6, q7
+
+== Bounded Graph Expansion
+
+_This graph summarizes bounded deterministic and inferred edges around the quest: quest archive stages, direct source families, stage-linked owner catalogs, promoted dependencies, reverse-index event/group links, and family-specific table edges._
+
+* max depth: 3
+* node count: 13
+* edge count: 12
+* node kinds: direct_family=6, family_context=2, quest=1, sequence_quest=2, stage=1, tutorial_group=1
+* derivation: Direct=25
+
+=== Mermaid Graph Slice
+
+_This Mermaid flowchart shows a capped slice of the bounded graph so large quest reports stay readable while still exposing the graph structure._
+
+[mermaid]
+....
+flowchart TD
+    node_quest_60000005["Quest 60000005"]
+    node_direct_family_evsi["evsi direct hits (2)"]
+    node_direct_family_fsm["fsm direct hits (5)"]
+    node_direct_family_jmc["jmc direct hits (1)"]
+    node_direct_family_jtq["jtq direct hits (1)"]
+    node_direct_family_qst["qst direct hits (20)"]
+    node_direct_family_tqg["tqg direct hits (1)"]
+    node_family_context_quest_sequence["Quest Sequence"]
+    node_family_context_tutorial_scaffolding["Tutorial Scaffolding"]
+    node_stage_st0550["st0550 -- Training Chapel"]
+    node_sequence_quest_60000004["Quest 60000004"]
+    node_sequence_quest_60000006["Quest 60000006"]
+    node_tutorial_group_1["Tutorial Group 1"]
+    node_quest_60000005 -->|direct_source_family| node_direct_family_evsi
+    node_quest_60000005 -->|direct_source_family| node_direct_family_fsm
+    node_quest_60000005 -->|direct_source_family| node_direct_family_jmc
+    node_quest_60000005 -->|direct_source_family| node_direct_family_jtq
+    node_quest_60000005 -->|direct_source_family| node_direct_family_qst
+    node_quest_60000005 -->|direct_source_family| node_direct_family_tqg
+    node_quest_60000005 -->|family:quest_sequence| node_family_context_quest_sequence
+    node_quest_60000005 -->|family:tutorial_scaffolding| node_family_context_tutorial_scaffolding
+    node_quest_60000005 -->|quest_archive_stage| node_stage_st0550
+    node_family_context_quest_sequence -->|sequence_next| node_sequence_quest_60000006
+    node_family_context_quest_sequence -->|sequence_previous| node_sequence_quest_60000004
+    node_family_context_tutorial_scaffolding -->|tutorial_group| node_tutorial_group_1
+    classDef direct_deterministic fill:#e8f5e9,stroke:#2e7d32,stroke-width:1px
+    classDef owner_index fill:#e3f2fd,stroke:#1565c0,stroke-width:1px
+    classDef dependency_inferred fill:#fff3e0,stroke:#ef6c00,stroke-width:1px
+    classDef graph_expanded fill:#f3e5f5,stroke:#7b1fa2,stroke-width:1px
+    classDef lower_confidence fill:#fbe9e7,stroke:#d84315,stroke-width:1px
+    classDef binary_auxiliary fill:#eceff1,stroke:#455a64,stroke-width:1px
+    class node_quest_60000005,node_direct_family_evsi,node_direct_family_fsm,node_direct_family_jmc,node_direct_family_jtq,node_direct_family_qst,node_direct_family_tqg,node_family_context_quest_sequence,node_family_context_tutorial_scaffolding,node_stage_st0550,node_sequence_quest_60000004,node_sequence_quest_60000006,node_tutorial_group_1 direct_deterministic
+....
+
+[cols="1,2,2,2,2,4",options="header"]
+|===
+| Depth | Edge | From | To | Derivation | Why
+
+| 1 | direct_source_family | quest:60000005 | direct-family:evsi | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | direct_source_family | quest:60000005 | direct-family:fsm | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | direct_source_family | quest:60000005 | direct-family:jmc | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | direct_source_family | quest:60000005 | direct-family:jtq | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | direct_source_family | quest:60000005 | direct-family:qst | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | direct_source_family | quest:60000005 | direct-family:tqg | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | family_context:quest_sequence | quest:60000005 | family-context:quest_sequence | Direct | Family-specific decoded tables provide deterministic context for this quest.
+| 1 | family_context:tutorial_scaffolding | quest:60000005 | family-context:tutorial_scaffolding | Direct | Family-specific decoded tables provide deterministic context for this quest.
+| 1 | quest_archive_stage | quest:60000005 | stage:st0550 | Direct | Quest archive topology directly links this quest to the stage code.
+| 2 | sequence_next | family-context:quest_sequence | sequence-quest:60000006 | Direct | QuestSequence links this quest to its neighboring sequence quest.
+| 2 | sequence_previous | family-context:quest_sequence | sequence-quest:60000004 | Direct | QuestSequence links this quest to its neighboring sequence quest.
+| 2 | tutorial_group | family-context:tutorial_scaffolding | tutorial-group:1 | Direct | Tutorial quest tables group this quest into an authored tutorial scaffold.
+|===
+
 == Flag Summary Matrix
 
 [cols="2,1,1,2,2,3,3",options="header"]
 |===
 | Target | Kind | Hits | Sources | Stages | Relationships | Description
 
+| Flag 166 | layout_flag | 1 | qst | st0550 | ⚡ Quest Condition | QST local: st0550 \| QuestGroup 3 \| NPCセット_n567
+| Flag 929 | layout_flag | 2 | qst | st0550 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0550 \| QuestGroup 1 \| OMー連斬
+| Flag 942 | layout_flag | 4 | fsm, qst | st0550 | 🔍 FSM Check, ⚡ Quest Condition, ❌ Quest Erase | QST local: st0550 \| QuestGroup 2 \| OMー証
+| Flag 950 | layout_flag | 3 | evsi, qst | st0100, st0401, st0550 | 🎬 Event State, ⚡ Quest Condition | QST local: st0550 \| QuestGroup 4 \| NPCセット_n529/530
+| Flag 1613 | layout_flag | 2 | qst | st0550 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0550 \| QuestGroup 5 \| OMー百烈斬り
+| Flag 1614 | layout_flag | 2 | qst | st0550 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0550 \| QuestGroup 6 \| OMー転身
+| Flag 1615 | layout_flag | 2 | qst | st0550 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0550 \| QuestGroup 7 \| ロープ投げ
+| Flag 1616 | layout_flag | 2 | qst | st0550 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0550 \| QuestGroup 8 \| しがみつき百烈斬り
 | Quest ID 60000005 | quest_id | 12 | fsm, jmc, jtq, qst, tqg | st0550 | 🔍 FSM Check, 🧑‍🏫 Job Master, 💬 Text Quest +2 | Derived quest-wide association scan
 |===
 
 == Known Documented Targets
 
+* quest 60000005 -- Flag 166 -- QST local: st0550 | QuestGroup 3 | NPCセット_n567
+* quest 60000005 -- Flag 929 -- QST local: st0550 | QuestGroup 1 | OMー連斬
+* quest 60000005 -- Flag 942 -- QST local: st0550 | QuestGroup 2 | OMー証
+* quest 60000005 -- Flag 950 -- QST local: st0550 | QuestGroup 4 | NPCセット_n529/530
+* quest 60000005 -- Flag 1613 -- QST local: st0550 | QuestGroup 5 | OMー百烈斬り
+* quest 60000005 -- Flag 1614 -- QST local: st0550 | QuestGroup 6 | OMー転身
+* quest 60000005 -- Flag 1615 -- QST local: st0550 | QuestGroup 7 | ロープ投げ
+* quest 60000005 -- Flag 1616 -- QST local: st0550 | QuestGroup 8 | しがみつき百烈斬り
 * Quest ID 60000005 -- Derived quest-wide association scan [Derived]
+
+== Flag 166 -- Quest 60000005
+
+origin:: derived_qst_local
+direct hits:: *1*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 1 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q60000005/quest/60000005/q60000005_st0550.qst.json[client/03040008/quest/q60000005/quest/60000005/q60000005_st0550.qst.json] | QuestStageList[].QuestGrp[2].Condition | Condition | quest 60000005 / Training Chapel / "QuestGroup 3 \| NPCセット_n567" / QuestSet=QuestSetInfoNpc \| GroupNo=3 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 929 -- Quest 60000005
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q60000005/quest/60000005/q60000005_st0550.qst.json[client/03040008/quest/q60000005/quest/60000005/q60000005_st0550.qst.json] | QuestStageList[].QuestGrp[0].Condition | Condition | quest 60000005 / Training Chapel / "QuestGroup 1 \| OMー連斬" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=30 \| TextType=2 \| TextQuestNo=60000005 \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q60000005/quest/60000005/q60000005_st0550.qst.json[client/03040008/quest/q60000005/quest/60000005/q60000005_st0550.qst.json] | QuestStageList[].QuestGrp[0].EraseCondition | EraseCondition | quest 60000005 / Training Chapel / "QuestGroup 1 \| OMー連斬" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=30 \| TextType=2 \| TextQuestNo=60000005 \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 942 -- Quest 60000005
+
+origin:: derived_qst_local
+direct hits:: *4*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q60000005/quest/60000005/q60000005_st0550.qst.json[client/03040008/quest/q60000005/quest/60000005/q60000005_st0550.qst.json] | QuestStageList[].QuestGrp[1].Condition | Condition | quest 60000005 / Training Chapel / "QuestGroup 2 \| OMー証" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=35 \| TextType=2 \| TextQuestNo=60000005 \| GroupNo=2 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q60000005/quest/60000005/q60000005_st0550.qst.json[client/03040008/quest/q60000005/quest/60000005/q60000005_st0550.qst.json] | QuestStageList[].QuestGrp[1].EraseCondition | EraseCondition | quest 60000005 / Training Chapel / "QuestGroup 2 \| OMー証" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=35 \| TextType=2 \| TextQuestNo=60000005 \| GroupNo=2 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+==== opaque_fsm -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| FSM | Direct | 78 | link:../../../../client/03040008/quest/q00000001/quest/00000001/npc/n0005.fsm.json[client/03040008/quest/q00000001/quest/00000001/npc/n0005.fsm.json] | Process.Parameter.FlagNo | FlagNo | quest 1 (Resolutions and Omens) / Leo / checkMyQuestFlag \| NPCFSM=n0005 \| QuestLocalNPCFSM | Quest-local NPC FSM MyQuest check; these files usually describe NPC behavior for the same quest, so this flag likely controls that NPC's quest-specific presence or behavior.
+| FSM | Direct | 78 | link:../../../../client/03040008/quest/q00000001/quest/00000001/npc/n0006.fsm.json[client/03040008/quest/q00000001/quest/00000001/npc/n0006.fsm.json] | Process.Parameter.FlagNo | FlagNo | quest 1 (Resolutions and Omens) / Iris / checkMyQuestFlag \| NPCFSM=n0006 \| QuestLocalNPCFSM | Quest-local NPC FSM MyQuest check; these files usually describe NPC behavior for the same quest, so this flag likely controls that NPC's quest-specific presence or behavior.
+|===
+
+== Flag 950 -- Quest 60000005
+
+origin:: derived_qst_local
+direct hits:: *3*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 3 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q60000005/quest/60000005/q60000005_st0550.qst.json[client/03040008/quest/q60000005/quest/60000005/q60000005_st0550.qst.json] | QuestStageList[].QuestGrp[3].Condition | Condition | quest 60000005 / Training Chapel / "QuestGroup 4 \| NPCセット_n529/530" / QuestSet=QuestSetInfoNpc \| GroupNo=4 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0100/view_st0100ev025/event/viewer/view_st0100ev025.evsi.json#L20[client/03040008/event/st0100/view_st0100ev025/event/viewer/view_st0100ev025.evsi.json#L20] | FlagArray[1].FlagNo | FlagNo | quest 6 (The Girl in the Forest) / Lestania / Event Viewer \| EVENT_NAME_st0100ev025 \| Tomb of Lynwood | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0401/view_st0401ev005/event/viewer/view_st0401ev005.evsi.json#L20[client/03040008/event/st0401/view_st0401ev005/event/viewer/view_st0401ev005.evsi.json#L20] | FlagArray[1].FlagNo | FlagNo | quest 6 (The Girl in the Forest) / Glowworm Cave / Event Viewer \| EVENT_NAME_st0401ev005 \| Keith Hilt and Mayleaf | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+|===
+
+== Flag 1613 -- Quest 60000005
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q60000005/quest/60000005/q60000005_st0550.qst.json[client/03040008/quest/q60000005/quest/60000005/q60000005_st0550.qst.json] | QuestStageList[].QuestGrp[4].Condition | Condition | quest 60000005 / Training Chapel / "QuestGroup 5 \| OMー百烈斬り" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=294 \| TextType=2 \| TextQuestNo=60000005 \| GroupNo=5 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q60000005/quest/60000005/q60000005_st0550.qst.json[client/03040008/quest/q60000005/quest/60000005/q60000005_st0550.qst.json] | QuestStageList[].QuestGrp[4].EraseCondition | EraseCondition | quest 60000005 / Training Chapel / "QuestGroup 5 \| OMー百烈斬り" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=294 \| TextType=2 \| TextQuestNo=60000005 \| GroupNo=5 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 1614 -- Quest 60000005
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q60000005/quest/60000005/q60000005_st0550.qst.json[client/03040008/quest/q60000005/quest/60000005/q60000005_st0550.qst.json] | QuestStageList[].QuestGrp[5].Condition | Condition | quest 60000005 / Training Chapel / "QuestGroup 6 \| OMー転身" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=295 \| TextType=2 \| TextQuestNo=60000005 \| GroupNo=6 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q60000005/quest/60000005/q60000005_st0550.qst.json[client/03040008/quest/q60000005/quest/60000005/q60000005_st0550.qst.json] | QuestStageList[].QuestGrp[5].EraseCondition | EraseCondition | quest 60000005 / Training Chapel / "QuestGroup 6 \| OMー転身" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=295 \| TextType=2 \| TextQuestNo=60000005 \| GroupNo=6 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 1615 -- Quest 60000005
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q60000005/quest/60000005/q60000005_st0550.qst.json[client/03040008/quest/q60000005/quest/60000005/q60000005_st0550.qst.json] | QuestStageList[].QuestGrp[6].Condition | Condition | quest 60000005 / Training Chapel / "QuestGroup 7 \| ロープ投げ" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=34 \| TextType=2 \| TextQuestNo=60000005 \| GroupNo=7 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q60000005/quest/60000005/q60000005_st0550.qst.json[client/03040008/quest/q60000005/quest/60000005/q60000005_st0550.qst.json] | QuestStageList[].QuestGrp[6].EraseCondition | EraseCondition | quest 60000005 / Training Chapel / "QuestGroup 7 \| ロープ投げ" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=34 \| TextType=2 \| TextQuestNo=60000005 \| GroupNo=7 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 1616 -- Quest 60000005
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q60000005/quest/60000005/q60000005_st0550.qst.json[client/03040008/quest/q60000005/quest/60000005/q60000005_st0550.qst.json] | QuestStageList[].QuestGrp[7].Condition | Condition | quest 60000005 / Training Chapel / "QuestGroup 8 \| しがみつき百烈斬り" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=296 \| TextType=2 \| TextQuestNo=60000005 \| GroupNo=8 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q60000005/quest/60000005/q60000005_st0550.qst.json[client/03040008/quest/q60000005/quest/60000005/q60000005_st0550.qst.json] | QuestStageList[].QuestGrp[7].EraseCondition | EraseCondition | quest 60000005 / Training Chapel / "QuestGroup 8 \| しがみつき百烈斬り" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=296 \| TextType=2 \| TextQuestNo=60000005 \| GroupNo=8 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
 
 == Quest ID 60000005
 
@@ -55,29 +341,29 @@ ranked candidates:: *0*
 
 ==== direct -- 9 hit(s)
 
-[cols="1,1,3,3,2,3,3",options="header"]
+[cols="1,1,1,3,3,2,3,3",options="header"]
 |===
-| Family | Confidence | File | JSON Path | Field | Context | Why
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
 
-| QST | 92 | client/03040008/quest/q60000005/quest/60000005/q60000005_st0550.qst.json | QuestStageList[].QuestGrp[0].QuestSet[0].TextQuestNo | TextQuestNo | quest 60000005 / Training Chapel / "QuestGroup 1 \| OMー連斬 \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=30 \| TextType=2 \| TextQuestNo=60000005 \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
-| QST | 92 | client/03040008/quest/q60000005/quest/60000005/q60000005_st0550.qst.json | QuestStageList[].QuestGrp[1].QuestSet[0].TextQuestNo | TextQuestNo | quest 60000005 / Training Chapel / "QuestGroup 2 \| OMー証 \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=35 \| TextType=2 \| TextQuestNo=60000005 \| GroupNo=2 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
-| QST | 92 | client/03040008/quest/q60000005/quest/60000005/q60000005_st0550.qst.json | QuestStageList[].QuestGrp[4].QuestSet[0].TextQuestNo | TextQuestNo | quest 60000005 / Training Chapel / "QuestGroup 5 \| OMー百烈斬り \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=294 \| TextType=2 \| TextQuestNo=60000005 \| GroupNo=5 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
-| QST | 92 | client/03040008/quest/q60000005/quest/60000005/q60000005_st0550.qst.json | QuestStageList[].QuestGrp[5].QuestSet[0].TextQuestNo | TextQuestNo | quest 60000005 / Training Chapel / "QuestGroup 6 \| OMー転身 \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=295 \| TextType=2 \| TextQuestNo=60000005 \| GroupNo=6 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
-| QST | 92 | client/03040008/quest/q60000005/quest/60000005/q60000005_st0550.qst.json | QuestStageList[].QuestGrp[6].QuestSet[0].TextQuestNo | TextQuestNo | quest 60000005 / Training Chapel / "QuestGroup 7 \| ロープ投げ \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=34 \| TextType=2 \| TextQuestNo=60000005 \| GroupNo=7 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
-| QST | 92 | client/03040008/quest/q60000005/quest/60000005/q60000005_st0550.qst.json | QuestStageList[].QuestGrp[7].QuestSet[0].TextQuestNo | TextQuestNo | quest 60000005 / Training Chapel / "QuestGroup 8 \| しがみつき百烈斬り \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=296 \| TextType=2 \| TextQuestNo=60000005 \| GroupNo=8 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
-| JTQ | 92 | client/03040008/game_common/quest/jobTutorialQuestList.jtq.json | JobTutorialQuestList[3].QuestId | QuestId | quest 60000005 (Seeker Tactics Trial: A Whirlwind) / Job tutorial quest registry | Tutorial quest registry; q6 tutorial quests are listed directly in the job tutorial quest table.
-| TQG | 92 | client/03040008/game_common/quest/tutorialQuestGroup.tqg.json | TutorialQuestGroupList[0].QuestIdArray[5].QuestId | QuestId | quest 60000005 (Seeker Tactics Trial: A Whirlwind) / "GroupId=1" / Tutorial quest group membership | Tutorial quest grouping; q6 tutorial quests are clustered into authored tutorial groups here.
-| JMC | 92 | client/03040008/game_common/etc/jobMasterCtrl.jmc.json | JobMasterCtrlList[1].JobTutorialQuestId | JobTutorialQuestId | quest 60000005 (Seeker Tactics Trial: A Whirlwind) / Dowe Valley / "JobId=2" / Job tutorial quest \| Seeker \| Dowe Valley \| StartJobLevel=18 | Job master control; this resource links tutorial and master-visit quests to a vocation mentor, area, and onboarding flow.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q60000005/quest/60000005/q60000005_st0550.qst.json[client/03040008/quest/q60000005/quest/60000005/q60000005_st0550.qst.json] | QuestStageList[].QuestGrp[0].QuestSet[0].TextQuestNo | TextQuestNo | quest 60000005 / Training Chapel / "QuestGroup 1 \| OMー連斬 \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=30 \| TextType=2 \| TextQuestNo=60000005 \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q60000005/quest/60000005/q60000005_st0550.qst.json[client/03040008/quest/q60000005/quest/60000005/q60000005_st0550.qst.json] | QuestStageList[].QuestGrp[1].QuestSet[0].TextQuestNo | TextQuestNo | quest 60000005 / Training Chapel / "QuestGroup 2 \| OMー証 \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=35 \| TextType=2 \| TextQuestNo=60000005 \| GroupNo=2 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q60000005/quest/60000005/q60000005_st0550.qst.json[client/03040008/quest/q60000005/quest/60000005/q60000005_st0550.qst.json] | QuestStageList[].QuestGrp[4].QuestSet[0].TextQuestNo | TextQuestNo | quest 60000005 / Training Chapel / "QuestGroup 5 \| OMー百烈斬り \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=294 \| TextType=2 \| TextQuestNo=60000005 \| GroupNo=5 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q60000005/quest/60000005/q60000005_st0550.qst.json[client/03040008/quest/q60000005/quest/60000005/q60000005_st0550.qst.json] | QuestStageList[].QuestGrp[5].QuestSet[0].TextQuestNo | TextQuestNo | quest 60000005 / Training Chapel / "QuestGroup 6 \| OMー転身 \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=295 \| TextType=2 \| TextQuestNo=60000005 \| GroupNo=6 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q60000005/quest/60000005/q60000005_st0550.qst.json[client/03040008/quest/q60000005/quest/60000005/q60000005_st0550.qst.json] | QuestStageList[].QuestGrp[6].QuestSet[0].TextQuestNo | TextQuestNo | quest 60000005 / Training Chapel / "QuestGroup 7 \| ロープ投げ \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=34 \| TextType=2 \| TextQuestNo=60000005 \| GroupNo=7 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q60000005/quest/60000005/q60000005_st0550.qst.json[client/03040008/quest/q60000005/quest/60000005/q60000005_st0550.qst.json] | QuestStageList[].QuestGrp[7].QuestSet[0].TextQuestNo | TextQuestNo | quest 60000005 / Training Chapel / "QuestGroup 8 \| しがみつき百烈斬り \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=296 \| TextType=2 \| TextQuestNo=60000005 \| GroupNo=8 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| JTQ | Direct | 92 | link:../../../../client/03040008/game_common/quest/jobTutorialQuestList.jtq.json#L33[client/03040008/game_common/quest/jobTutorialQuestList.jtq.json#L33] | JobTutorialQuestList[3].QuestId | QuestId | quest 60000005 (Seeker Tactics Trial: A Whirlwind) / Job tutorial quest registry | Tutorial quest registry; q6 tutorial quests are listed directly in the job tutorial quest table.
+| TQG | Direct | 92 | link:../../../../client/03040008/game_common/quest/tutorialQuestGroup.tqg.json#L50[client/03040008/game_common/quest/tutorialQuestGroup.tqg.json#L50] | TutorialQuestGroupList[0].QuestIdArray[5].QuestId | QuestId | quest 60000005 (Seeker Tactics Trial: A Whirlwind) / "GroupId=1" / Tutorial quest group membership | Tutorial quest grouping; q6 tutorial quests are clustered into authored tutorial groups here.
+| JMC | Direct | 92 | link:../../../../client/03040008/game_common/etc/jobMasterCtrl.jmc.json#L56[client/03040008/game_common/etc/jobMasterCtrl.jmc.json#L56] | JobMasterCtrlList[1].JobTutorialQuestId | JobTutorialQuestId | quest 60000005 (Seeker Tactics Trial: A Whirlwind) / Dowe Valley / "JobId=2" / Job tutorial quest \| Seeker \| Dowe Valley \| StartJobLevel=18 | Job master control; this resource links tutorial and master-visit quests to a vocation mentor, area, and onboarding flow.
 |===
 
 ==== opaque_fsm -- 3 hit(s)
 
-[cols="1,1,3,3,2,3,3",options="header"]
+[cols="1,1,1,3,3,2,3,3",options="header"]
 |===
-| Family | Confidence | File | JSON Path | Field | Context | Why
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
 
-| FSM | 64 | client/03040008/quest/q60000005/quest/60000005/npc/n0539_st550.fsm.json | Process.Parameter.QuestId | QuestId | quest 60000005 (Seeker Tactics Trial: A Whirlwind) / Lightly-Equipped Soldier / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
-| FSM | 64 | client/03040008/quest/q60000005/quest/60000005/npc/n0539_st550.fsm.json | Process.Parameter.QuestId | QuestId | quest 60000005 (Seeker Tactics Trial: A Whirlwind) / Lightly-Equipped Soldier / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
-| FSM | 64 | client/03040008/quest/q60000005/quest/60000005/npc/n0539_st550.fsm.json | Process.Parameter.QuestId | QuestId | quest 60000005 (Seeker Tactics Trial: A Whirlwind) / Lightly-Equipped Soldier / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/quest/q60000005/quest/60000005/npc/n0539_st550.fsm.json[client/03040008/quest/q60000005/quest/60000005/npc/n0539_st550.fsm.json] | Process.Parameter.QuestId | QuestId | quest 60000005 (Seeker Tactics Trial: A Whirlwind) / Lightly-Equipped Soldier / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/quest/q60000005/quest/60000005/npc/n0539_st550.fsm.json[client/03040008/quest/q60000005/quest/60000005/npc/n0539_st550.fsm.json] | Process.Parameter.QuestId | QuestId | quest 60000005 (Seeker Tactics Trial: A Whirlwind) / Lightly-Equipped Soldier / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/quest/q60000005/quest/60000005/npc/n0539_st550.fsm.json[client/03040008/quest/q60000005/quest/60000005/npc/n0539_st550.fsm.json] | Process.Parameter.QuestId | QuestId | quest 60000005 (Seeker Tactics Trial: A Whirlwind) / Lightly-Equipped Soldier / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
 |===
 

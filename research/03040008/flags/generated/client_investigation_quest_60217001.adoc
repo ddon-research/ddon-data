@@ -5,16 +5,67 @@
 
 Query mode:: quest
 Query value:: 60217001
-Generated at:: 2026-04-11T21:41:41.933813+00:00
+Generated at:: 2026-04-12T12:44:15.138688+00:00
 
 toc::[]
+
+Quest family:: q6 -- Tutorial / Unlock / Area Trial
+Quest family notes:: Tutorial, area-trial, unlock, and occasional festival quests.
+Quest family focus:: jtq_tqg_jmc_scaffolding
+
+== External Owner Indexes
+
+_These are reusable external owner catalogs inferred from stage-neighborhood cues. They are broader than the subset of flags promoted into derived dependency targets._
+
+[cols="2,1,1,2,2,2,4",options="header"]
+|===
+| Owner Quest | Family | Catalog Count | Catalog Flags | Linked Cues | Cue Sources | Why
+
+| 70000001 | q7 | 70 | 1098, 1103, 1104, 1105, 1106, 1109, 1110, 1111, 1112, 1113, 1114, 1115 +58 more | 1110, 1112, 1150, 1201, 1216, 1217, 1220, 1221 +14 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70001001 | q7 | 0 |  | 1851, 1954 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70002001 | q7 | 47 | 1098, 1103, 1104, 1105, 1106, 1109, 1110, 1111, 1112, 1113, 1114, 1115 +35 more | 1114, 1115, 1117, 1601, 3860 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70003001 | q7 | 49 | 1098, 1103, 1104, 1105, 1106, 1109, 1110, 1111, 1112, 1113, 1114, 1115 +37 more | 1103, 1105, 1106, 1120, 1122, 1124, 1203, 1296 +4 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70020001 | q7 | 8 | 2736, 3000, 3002, 3003, 3074, 3442, 3805, 4037 | 2736, 3003, 3074, 4037 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70021001 | q7 | 4 | 3278, 3650, 3753, 3861 | 3278, 3753 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70022001 | q7 | 17 | 3949, 3950, 3952, 3953, 3954, 3977, 4033, 4043, 4053, 4063, 4470, 4555 +5 more | 3949, 3950, 3952, 3953, 3954, 3977, 4033, 4043 +4 more | evsi, gpl | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70023001 | q7 | 15 | 4066, 4067, 4372, 4373, 4500, 4506, 4507, 4508, 4511, 4512, 4515, 4516 +3 more | 4372, 4506, 4507, 4511, 4516, 4972 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70030001 | q7 | 46 | 5396, 5397, 5407, 5552, 5557, 5558, 5581, 5584, 5587, 5588, 5589, 5614 +34 more | 5552, 5557, 5584, 5587, 5589, 5614, 5632, 5634 +18 more | evsi, gpl | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70031001 | q7 | 8 | 5553, 5672, 6138, 6194, 6195, 6377, 6425, 7316 | 6194, 7316 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70032001 | q7 | 37 | 7169, 7240, 7241, 7336, 7341, 7342, 7386, 7387, 7388, 7389, 7390, 7438 +25 more | 7240, 7341, 7386, 7496, 7512, 7544, 7549, 7551 +5 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70033001 | q7 | 43 | 7826, 7827, 7876, 7888, 7889, 7916, 7917, 7954, 7955, 7965, 7966, 7967 +31 more | 7888, 7889, 7965, 7967, 7973, 8043, 8044, 8045 +6 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70034001 | q7 | 3 | 8486, 8630, 8631 | 8843 | gpl | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+|===
+
+== Derived External Dependency Targets
+
+_These are the promoted subset of external owner-index entries. A flag appears here only when it passes the current family-specific dependency promotion rules for this quest._
+
+[cols="2,1,1,2,2,4",options="header"]
+|===
+| Owner Quest | Family | Flag Count | Flags | Sources | Why
+
+| 70022001 | q7 | 1 | 4043 | evsi, gpl | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70030001 | q7 | 1 | 6751 | evsi, gpl | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+|===
+
+== Family Relationship Context
+
+_These sections summarize deterministic client-side family metadata and reverse-index relationships. They are context for later owner/dependency inference, not direct quest-target promotion._
+
+=== Quest Sequence
+
+* seq no: 413
+* previous: 60216003 -- MF Trial: Traces of Tribulation
+* next: 60217003 -- KC Trial: Memories of Desertion
 
 == ARC Association Context
 
 _ARC associations are contextual only. They show which quest-stage and marker resources are bundled with this quest._
 
-* arc file: client/03040008/quest/q60217001.arc.json
+* arc file: link:../../../../client/03040008/quest/q60217001.arc.json#L1[client/03040008/quest/q60217001.arc.json#L1]
 * resource count: 10
+* stage codes: st0122
+* resource families: .fmi, .gmd, .mss, .qmi, .qst, .qtd
 
 === st0122 -- Kingal Canyon
 
@@ -32,18 +83,241 @@ _ARC associations are contextual only. They show which quest-stage and marker re
 * rQuestTextData: ui/00_param/quest_text/q60217001_00
 * rGUIMessage: ui/00_message/examine_message/quest/quest_examine_q60217001
 
+== Stage Neighborhood Context
+
+_Stage-neighborhood context summarizes scanner-relevant client files that share the quest's archive stage codes. This is deterministic client topology, not inferred ownership._
+
+* scanner-relevant stage files: 394
+* indexed stage codes: st0122
+
+=== st0122 -- Kingal Canyon
+
+* scanner files: 394
+* .evsi.json: 2
+* .fsm.json: 6
+* .gpl.json: 5
+* .lot.json: 353
+* .qmi.json: 19
+* .qst.json: 9
+
+== Stage Neighborhood External-State Cues
+
+_These cues are deterministic client-side observations from the quest's stage neighborhood. They are not promoted to direct quest targets yet; they highlight q6/q7-owned external state values co-located in the quest's archive stages._
+
+* cue count: 121
+* owner families: q6, q7
+
+[cols="1,1,1,2,2,2",options="header"]
+|===
+| Value | Kind | Hits | Sources | Owners | Stages
+
+| Flag 4043 | layout_flag | 3 | evsi, gpl | 70022001 | st0122
+| Flag 6751 | layout_flag | 3 | evsi, gpl | 70030001 | st0122
+| Flag 4470 | layout_flag | 1 | gpl | 70022001 | st0122
+| Flag 6750 | layout_flag | 1 | gpl | 70030001 | st0122
+| Flag 8843 | layout_flag | 1 | gpl | 70034001 | st0122
+| Flag 1103 | layout_flag | 2 | evsi | 70003001 | st0122
+| Flag 1105 | layout_flag | 2 | evsi | 70003001 | st0122
+| Flag 1106 | layout_flag | 2 | evsi | 70003001 | st0122
+| Flag 1110 | layout_flag | 2 | evsi | 70000001 | st0122
+| Flag 1112 | layout_flag | 2 | evsi | 70000001 | st0122
+| Flag 1114 | layout_flag | 2 | evsi | 70002001 | st0122
+| Flag 1115 | layout_flag | 2 | evsi | 70002001 | st0122
+| Flag 1117 | layout_flag | 2 | evsi | 70002001 | st0122
+| Flag 1120 | layout_flag | 2 | evsi | 70003001 | st0122
+| Flag 1122 | layout_flag | 2 | evsi | 70003001 | st0122
+| Flag 1124 | layout_flag | 2 | evsi | 70003001 | st0122
+| Flag 1150 | layout_flag | 2 | evsi | 70000001 | st0122
+| Flag 1201 | layout_flag | 2 | evsi | 70000001 | st0122
+| Flag 1203 | layout_flag | 2 | evsi | 70003001 | st0122
+| Flag 1216 | layout_flag | 2 | evsi | 70000001 | st0122
+| Flag 1217 | layout_flag | 2 | evsi | 70000001 | st0122
+| Flag 1220 | layout_flag | 2 | evsi | 70000001 | st0122
+| Flag 1221 | layout_flag | 2 | evsi | 70000001 | st0122
+| Flag 1222 | layout_flag | 2 | evsi | 70000001 | st0122
+| Flag 1223 | layout_flag | 2 | evsi | 70000001 | st0122
+| Flag 1224 | layout_flag | 2 | evsi | 70000001 | st0122
+| Flag 1250 | layout_flag | 2 | evsi | 70000001 | st0122
+| Flag 1262 | layout_flag | 2 | evsi | 70000001 | st0122
+| Flag 1263 | layout_flag | 2 | evsi | 70000001 | st0122
+| Flag 1296 | layout_flag | 2 | evsi | 70003001 | st0122
+|===
+
+== Bounded Graph Expansion
+
+_This graph summarizes bounded deterministic and inferred edges around the quest: quest archive stages, direct source families, stage-linked owner catalogs, promoted dependencies, reverse-index event/group links, and family-specific table edges._
+
+* max depth: 3
+* node count: 53
+* edge count: 83
+* node kinds: direct_family=1, event_viewer=24, family_context=1, lot_file=5, owner_quest=13, quest=1, sequence_quest=2, stage=1, stage_group=5
+* derivation: Dependency=2, Direct=11, Graph=97, Owner Index=26
+
+=== Mermaid Graph Slice
+
+_This Mermaid flowchart shows a capped slice of the bounded graph so large quest reports stay readable while still exposing the graph structure._
+
+[mermaid]
+....
+flowchart TD
+    node_quest_60217001["Quest 60217001"]
+    node_direct_family_qst["qst direct hits (6)"]
+    node_family_context_quest_sequence["Quest Sequence"]
+    node_stage_st0122["st0122 -- Kingal Canyon"]
+    node_event_viewer_st0122_ev000_70021001["Event st0122/ev000"]
+    node_event_viewer_st0122_ev000_70023001["Event st0122/ev000"]
+    node_event_viewer_st0122_ev000_70001001["Event st0122/ev000"]
+    node_event_viewer_st0122_ev000_70002001["Event st0122/ev000"]
+    node_event_viewer_st0122_ev000_70003001["Event st0122/ev000"]
+    node_event_viewer_st0122_ev000_70032001["Event st0122/ev000"]
+    node_event_viewer_st0122_ev000_70030001["Event st0122/ev000"]
+    node_event_viewer_st0122_ev000_70000001["Event st0122/ev000"]
+    node_event_viewer_st0122_ev000_70031001["Event st0122/ev000"]
+    node_event_viewer_st0122_ev000_70020001["Event st0122/ev000"]
+    node_event_viewer_st0122_ev000_70022001["Event st0122/ev000"]
+    node_event_viewer_st0122_ev000_70033001["Event st0122/ev000"]
+    node_event_viewer_st0122_ev005_70001001["Event st0122/ev005"]
+    node_event_viewer_st0122_ev005_70003001["Event st0122/ev005"]
+    node_event_viewer_st0122_ev005_70002001["Event st0122/ev005"]
+    node_event_viewer_st0122_ev005_70020001["Event st0122/ev005"]
+    node_event_viewer_st0122_ev005_70000001["Event st0122/ev005"]
+    node_owner_quest_70022001["Owner quest 70022001 (q7)"]
+    node_owner_quest_70030001["Owner quest 70030001 (q7)"]
+    node_sequence_quest_60216003["Quest 60216003"]
+    node_sequence_quest_60217003["Quest 60217003"]
+    node_quest_60217001 -->|direct_source_family| node_direct_family_qst
+    node_quest_60217001 -->|family:quest_sequence| node_family_context_quest_sequence
+    node_quest_60217001 -->|quest_archive_stage| node_stage_st0122
+    node_quest_60217001 -->|promoted_dependency| node_owner_quest_70022001
+    node_quest_60217001 -->|promoted_dependency| node_owner_quest_70030001
+    node_family_context_quest_sequence -->|sequence_next| node_sequence_quest_60217003
+    node_family_context_quest_sequence -->|sequence_previous| node_sequence_quest_60216003
+    node_stage_st0122 -->|stage_event_viewer| node_event_viewer_st0122_ev000_70000001
+    node_stage_st0122 -->|stage_event_viewer| node_event_viewer_st0122_ev000_70001001
+    node_stage_st0122 -->|stage_event_viewer| node_event_viewer_st0122_ev000_70002001
+    node_stage_st0122 -->|stage_event_viewer| node_event_viewer_st0122_ev000_70003001
+    node_stage_st0122 -->|stage_event_viewer| node_event_viewer_st0122_ev000_70020001
+    node_stage_st0122 -->|stage_event_viewer| node_event_viewer_st0122_ev000_70021001
+    node_stage_st0122 -->|stage_event_viewer| node_event_viewer_st0122_ev000_70022001
+    node_stage_st0122 -->|stage_event_viewer| node_event_viewer_st0122_ev000_70023001
+    node_stage_st0122 -->|stage_event_viewer| node_event_viewer_st0122_ev000_70030001
+    node_stage_st0122 -->|stage_event_viewer| node_event_viewer_st0122_ev000_70031001
+    node_stage_st0122 -->|stage_event_viewer| node_event_viewer_st0122_ev000_70032001
+    node_stage_st0122 -->|stage_event_viewer| node_event_viewer_st0122_ev000_70033001
+    node_stage_st0122 -->|stage_event_viewer| node_event_viewer_st0122_ev005_70000001
+    node_stage_st0122 -->|stage_event_viewer| node_event_viewer_st0122_ev005_70001001
+    node_stage_st0122 -->|stage_event_viewer| node_event_viewer_st0122_ev005_70002001
+    node_stage_st0122 -->|stage_event_viewer| node_event_viewer_st0122_ev005_70003001
+    node_stage_st0122 -->|stage_event_viewer| node_event_viewer_st0122_ev005_70020001
+    classDef direct_deterministic fill:#e8f5e9,stroke:#2e7d32,stroke-width:1px
+    classDef owner_index fill:#e3f2fd,stroke:#1565c0,stroke-width:1px
+    classDef dependency_inferred fill:#fff3e0,stroke:#ef6c00,stroke-width:1px
+    classDef graph_expanded fill:#f3e5f5,stroke:#7b1fa2,stroke-width:1px
+    classDef lower_confidence fill:#fbe9e7,stroke:#d84315,stroke-width:1px
+    classDef binary_auxiliary fill:#eceff1,stroke:#455a64,stroke-width:1px
+    class node_quest_60217001,node_direct_family_qst,node_family_context_quest_sequence,node_stage_st0122,node_sequence_quest_60216003,node_sequence_quest_60217003 direct_deterministic
+    class node_owner_quest_70022001,node_owner_quest_70030001 owner_index
+    class node_event_viewer_st0122_ev000_70021001,node_event_viewer_st0122_ev000_70023001,node_event_viewer_st0122_ev000_70001001,node_event_viewer_st0122_ev000_70002001,node_event_viewer_st0122_ev000_70003001,node_event_viewer_st0122_ev000_70032001,node_event_viewer_st0122_ev000_70030001,node_event_viewer_st0122_ev000_70000001,node_event_viewer_st0122_ev000_70031001,node_event_viewer_st0122_ev000_70020001,node_event_viewer_st0122_ev000_70022001,node_event_viewer_st0122_ev000_70033001,node_event_viewer_st0122_ev005_70001001,node_event_viewer_st0122_ev005_70003001,node_event_viewer_st0122_ev005_70002001,node_event_viewer_st0122_ev005_70020001,node_event_viewer_st0122_ev005_70000001 graph_expanded
+....
+
+[cols="1,2,2,2,2,4",options="header"]
+|===
+| Depth | Edge | From | To | Derivation | Why
+
+| 1 | direct_source_family | quest:60217001 | direct-family:qst | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | family_context:quest_sequence | quest:60217001 | family-context:quest_sequence | Direct | Family-specific decoded tables provide deterministic context for this quest.
+| 1 | quest_archive_stage | quest:60217001 | stage:st0122 | Direct | Quest archive topology directly links this quest to the stage code.
+| 2 | promoted_dependency | quest:60217001 | owner-quest:70022001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:60217001 | owner-quest:70030001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | sequence_next | family-context:quest_sequence | sequence-quest:60217003 | Direct | QuestSequence links this quest to its neighboring sequence quest.
+| 2 | sequence_previous | family-context:quest_sequence | sequence-quest:60216003 | Direct | QuestSequence links this quest to its neighboring sequence quest.
+| 2 | stage_event_viewer | stage:st0122 | event-viewer:st0122:ev000:70000001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0122 | event-viewer:st0122:ev000:70001001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0122 | event-viewer:st0122:ev000:70002001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0122 | event-viewer:st0122:ev000:70003001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0122 | event-viewer:st0122:ev000:70020001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0122 | event-viewer:st0122:ev000:70021001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0122 | event-viewer:st0122:ev000:70022001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0122 | event-viewer:st0122:ev000:70023001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0122 | event-viewer:st0122:ev000:70030001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0122 | event-viewer:st0122:ev000:70031001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0122 | event-viewer:st0122:ev000:70032001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0122 | event-viewer:st0122:ev000:70033001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0122 | event-viewer:st0122:ev005:70000001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0122 | event-viewer:st0122:ev005:70001001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0122 | event-viewer:st0122:ev005:70002001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0122 | event-viewer:st0122:ev005:70003001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0122 | event-viewer:st0122:ev005:70020001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0122 | event-viewer:st0122:ev005:70021001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0122 | event-viewer:st0122:ev005:70022001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0122 | event-viewer:st0122:ev005:70023001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0122 | event-viewer:st0122:ev005:70030001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0122 | event-viewer:st0122:ev005:70031001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0122 | event-viewer:st0122:ev005:70032001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0122 | event-viewer:st0122:ev005:70033001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_group_reference | stage:st0122 | stage-group:st0122:240 | Graph | Reverse indexes expose GPL group references for this stage.
+| 2 | stage_group_reference | stage:st0122 | stage-group:st0122:241 | Graph | Reverse indexes expose GPL group references for this stage.
+| 2 | stage_group_reference | stage:st0122 | stage-group:st0122:25 | Graph | Reverse indexes expose GPL group references for this stage.
+| 2 | stage_group_reference | stage:st0122 | stage-group:st0122:26 | Graph | Reverse indexes expose GPL group references for this stage.
+| 2 | stage_group_reference | stage:st0122 | stage-group:st0122:40 | Graph | Reverse indexes expose GPL group references for this stage.
+| 2 | stage_owner_index | stage:st0122 | owner-quest:70000001 | Owner Index | Stage-neighborhood cues on this stage link to the reusable owner catalog.
+| 2 | stage_owner_index | stage:st0122 | owner-quest:70001001 | Owner Index | Stage-neighborhood cues on this stage link to the reusable owner catalog.
+| 2 | stage_owner_index | stage:st0122 | owner-quest:70002001 | Owner Index | Stage-neighborhood cues on this stage link to the reusable owner catalog.
+| 2 | stage_owner_index | stage:st0122 | owner-quest:70003001 | Owner Index | Stage-neighborhood cues on this stage link to the reusable owner catalog.
+|===
+
 == Flag Summary Matrix
 
 [cols="2,1,1,2,2,3,3",options="header"]
 |===
 | Target | Kind | Hits | Sources | Stages | Relationships | Description
 
+| Flag 4296 | layout_flag | 2 | qst | st0122 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0122 \| 調べる１
+| Flag 4297 | layout_flag | 2 | qst | st0122 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0122 \| QuestGroup 1 \| 調べる２
 | Quest ID 60217001 | quest_id | 2 | qst | st0122 | 💬 Text Quest | Derived quest-wide association scan
 |===
 
 == Known Documented Targets
 
+* quest 60217001 -- Flag 4296 -- QST local: st0122 | 調べる１
+* quest 60217001 -- Flag 4297 -- QST local: st0122 | QuestGroup 1 | 調べる２
 * Quest ID 60217001 -- Derived quest-wide association scan [Derived]
+
+== Flag 4296 -- Quest 60217001
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q60217001/quest/60217001/q60217001_st0122.qst.json[client/03040008/quest/q60217001/quest/60217001/q60217001_st0122.qst.json] | QuestStageList[].QuestGrp[0].Condition | Condition | quest 60217001 / Kingal Canyon / "調べる１" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=737 \| TextType=2 \| TextQuestNo=60217001 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q60217001/quest/60217001/q60217001_st0122.qst.json[client/03040008/quest/q60217001/quest/60217001/q60217001_st0122.qst.json] | QuestStageList[].QuestGrp[0].EraseCondition | EraseCondition | quest 60217001 / Kingal Canyon / "調べる１" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=737 \| TextType=2 \| TextQuestNo=60217001 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 4297 -- Quest 60217001
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q60217001/quest/60217001/q60217001_st0122.qst.json[client/03040008/quest/q60217001/quest/60217001/q60217001_st0122.qst.json] | QuestStageList[].QuestGrp[1].Condition | Condition | quest 60217001 / Kingal Canyon / "QuestGroup 1 \| 調べる２" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=779 \| TextType=2 \| TextQuestNo=60217001 \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q60217001/quest/60217001/q60217001_st0122.qst.json[client/03040008/quest/q60217001/quest/60217001/q60217001_st0122.qst.json] | QuestStageList[].QuestGrp[1].EraseCondition | EraseCondition | quest 60217001 / Kingal Canyon / "QuestGroup 1 \| 調べる２" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=779 \| TextType=2 \| TextQuestNo=60217001 \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
 
 == Quest ID 60217001
 
@@ -55,11 +329,11 @@ ranked candidates:: *0*
 
 ==== direct -- 2 hit(s)
 
-[cols="1,1,3,3,2,3,3",options="header"]
+[cols="1,1,1,3,3,2,3,3",options="header"]
 |===
-| Family | Confidence | File | JSON Path | Field | Context | Why
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
 
-| QST | 92 | client/03040008/quest/q60217001/quest/60217001/q60217001_st0122.qst.json | QuestStageList[].QuestGrp[0].QuestSet[0].TextQuestNo | TextQuestNo | quest 60217001 / Kingal Canyon / "調べる１ \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=737 \| TextType=2 \| TextQuestNo=60217001 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
-| QST | 92 | client/03040008/quest/q60217001/quest/60217001/q60217001_st0122.qst.json | QuestStageList[].QuestGrp[1].QuestSet[0].TextQuestNo | TextQuestNo | quest 60217001 / Kingal Canyon / "QuestGroup 1 \| 調べる２ \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=779 \| TextType=2 \| TextQuestNo=60217001 \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q60217001/quest/60217001/q60217001_st0122.qst.json[client/03040008/quest/q60217001/quest/60217001/q60217001_st0122.qst.json] | QuestStageList[].QuestGrp[0].QuestSet[0].TextQuestNo | TextQuestNo | quest 60217001 / Kingal Canyon / "調べる１ \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=737 \| TextType=2 \| TextQuestNo=60217001 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q60217001/quest/60217001/q60217001_st0122.qst.json[client/03040008/quest/q60217001/quest/60217001/q60217001_st0122.qst.json] | QuestStageList[].QuestGrp[1].QuestSet[0].TextQuestNo | TextQuestNo | quest 60217001 / Kingal Canyon / "QuestGroup 1 \| 調べる２ \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=779 \| TextType=2 \| TextQuestNo=60217001 \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
 |===
 

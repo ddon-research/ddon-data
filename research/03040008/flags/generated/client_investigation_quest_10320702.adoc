@@ -5,16 +5,44 @@
 
 Query mode:: quest
 Query value:: 10320702
-Generated at:: 2026-04-11T21:41:40.675294+00:00
+Generated at:: 2026-04-12T12:43:48.907824+00:00
 
 toc::[]
+
+Quest family:: unknown -- Unknown Quest Family
+Quest family notes:: Quest family could not be inferred from the client quest id pattern.
+Quest family focus:: treat_as_generic
+
+== External Owner Indexes
+
+_These are reusable external owner catalogs inferred from stage-neighborhood cues. They are broader than the subset of flags promoted into derived dependency targets._
+
+[cols="2,1,1,2,2,2,4",options="header"]
+|===
+| Owner Quest | Family | Catalog Count | Catalog Flags | Linked Cues | Cue Sources | Why
+
+| 70032001 | q7 | 37 | 7169, 7240, 7241, 7336, 7341, 7342, 7386, 7387, 7388, 7389, 7390, 7438 +25 more | 7497, 7654, 7747 | gpl | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70034001 | q7 | 3 | 8486, 8630, 8631 | 8844 | gpl | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+|===
+
+== Family Relationship Context
+
+_These sections summarize deterministic client-side family metadata and reverse-index relationships. They are context for later owner/dependency inference, not direct quest-target promotion._
+
+=== Quest Sequence
+
+* seq no: 129
+* previous: 10320701 -- Those That Cut through the Darkness
+* next: 19000004 -- Package Quest Verification 4
 
 == ARC Association Context
 
 _ARC associations are contextual only. They show which quest-stage and marker resources are bundled with this quest._
 
-* arc file: client/03040008/quest/q10320702.arc.json
+* arc file: link:../../../../client/03040008/quest/q10320702.arc.json#L1[client/03040008/quest/q10320702.arc.json#L1]
 * resource count: 8
+* stage codes: st0461, st0474
+* resource families: .gmd, .mss, .qmi, .qst, .qtd
 
 === st0461 -- Fortress City Megado: Residential Level
 
@@ -33,18 +61,183 @@ _ARC associations are contextual only. They show which quest-stage and marker re
 * rGUIMessage: ui/00_message/quest/q10320702
 * rMsgSet: ui/00_message/quest/q10320702
 
+== Stage Neighborhood Context
+
+_Stage-neighborhood context summarizes scanner-relevant client files that share the quest's archive stage codes. This is deterministic client topology, not inferred ownership._
+
+* scanner-relevant stage files: 70
+* indexed stage codes: st0461, st0474
+
+=== st0461 -- Fortress City Megado: Residential Level
+
+* scanner files: 47
+* .gpl.json: 3
+* .lot.json: 22
+* .qmi.json: 12
+* .qst.json: 10
+
+=== st0474 -- Marquise Kurt's residence
+
+* scanner files: 23
+* .gpl.json: 3
+* .lot.json: 11
+* .qmi.json: 5
+* .qst.json: 4
+
+== Stage Neighborhood External-State Cues
+
+_These cues are deterministic client-side observations from the quest's stage neighborhood. They are not promoted to direct quest targets yet; they highlight q6/q7-owned external state values co-located in the quest's archive stages._
+
+* cue count: 4
+* owner families: q6, q7
+
+[cols="1,1,1,2,2,2",options="header"]
+|===
+| Value | Kind | Hits | Sources | Owners | Stages
+
+| Flag 7497 | layout_flag | 1 | gpl | 70032001 | st0461
+| Flag 7654 | layout_flag | 1 | gpl | 70032001 | st0461
+| Flag 7747 | layout_flag | 1 | gpl | 70032001 | st0461
+| Flag 8844 | layout_flag | 1 | gpl | 70034001 | st0461
+|===
+
+== Bounded Graph Expansion
+
+_This graph summarizes bounded deterministic and inferred edges around the quest: quest archive stages, direct source families, stage-linked owner catalogs, promoted dependencies, reverse-index event/group links, and family-specific table edges._
+
+* max depth: 3
+* node count: 15
+* edge count: 18
+* node kinds: direct_family=1, family_context=1, lot_file=2, owner_quest=2, quest=1, sequence_quest=2, stage=2, stage_group=4
+* derivation: Direct=13, Graph=16, Owner Index=4
+
+=== Mermaid Graph Slice
+
+_This Mermaid flowchart shows a capped slice of the bounded graph so large quest reports stay readable while still exposing the graph structure._
+
+[mermaid]
+....
+flowchart TD
+    node_quest_10320702["Quest 10320702"]
+    node_direct_family_qst["qst direct hits (4)"]
+    node_family_context_quest_sequence["Quest Sequence"]
+    node_stage_st0461["st0461 -- Fortress City Megado: Residential Level"]
+    node_stage_st0474["st0474 -- Marquise Kurt's residence"]
+    node_owner_quest_70032001["Owner quest 70032001 (q7)"]
+    node_owner_quest_70034001["Owner quest 70034001 (q7)"]
+    node_sequence_quest_10320701["Quest 10320701"]
+    node_sequence_quest_19000004["Quest 19000004"]
+    node_stage_group_st0461_206["GPL group st0461/206"]
+    node_stage_group_st0461_4["GPL group st0461/4"]
+    node_stage_group_st0461_40["GPL group st0461/40"]
+    node_stage_group_st0461_5["GPL group st0461/5"]
+    node_lot_file_st0461_00m00n_p206_lot_json["st0461_00m00n_p206.lot.json"]
+    node_lot_file_st0461_00m00n_p40_lot_json["st0461_00m00n_p40.lot.json"]
+    node_quest_10320702 -->|direct_source_family| node_direct_family_qst
+    node_quest_10320702 -->|family:quest_sequence| node_family_context_quest_sequence
+    node_quest_10320702 -->|quest_archive_stage| node_stage_st0461
+    node_quest_10320702 -->|quest_archive_stage| node_stage_st0474
+    node_family_context_quest_sequence -->|sequence_next| node_sequence_quest_19000004
+    node_family_context_quest_sequence -->|sequence_previous| node_sequence_quest_10320701
+    node_stage_st0461 -->|stage_group_reference| node_stage_group_st0461_206
+    node_stage_st0461 -->|stage_group_reference| node_stage_group_st0461_4
+    node_stage_st0461 -->|stage_group_reference| node_stage_group_st0461_40
+    node_stage_st0461 -->|stage_group_reference| node_stage_group_st0461_5
+    node_stage_st0461 -->|stage_owner_index| node_owner_quest_70032001
+    node_stage_st0461 -->|stage_owner_index| node_owner_quest_70034001
+    node_stage_group_st0461_206 -->|gpl_owner_guard| node_owner_quest_70032001
+    node_stage_group_st0461_4 -->|gpl_owner_guard| node_owner_quest_70032001
+    node_stage_group_st0461_40 -->|gpl_owner_guard| node_owner_quest_70034001
+    node_stage_group_st0461_5 -->|gpl_owner_guard| node_owner_quest_70032001
+    node_stage_group_st0461_206 -->|group_lot_reference| node_lot_file_st0461_00m00n_p206_lot_json
+    node_stage_group_st0461_40 -->|group_lot_reference| node_lot_file_st0461_00m00n_p40_lot_json
+    classDef direct_deterministic fill:#e8f5e9,stroke:#2e7d32,stroke-width:1px
+    classDef owner_index fill:#e3f2fd,stroke:#1565c0,stroke-width:1px
+    classDef dependency_inferred fill:#fff3e0,stroke:#ef6c00,stroke-width:1px
+    classDef graph_expanded fill:#f3e5f5,stroke:#7b1fa2,stroke-width:1px
+    classDef lower_confidence fill:#fbe9e7,stroke:#d84315,stroke-width:1px
+    classDef binary_auxiliary fill:#eceff1,stroke:#455a64,stroke-width:1px
+    class node_quest_10320702,node_direct_family_qst,node_family_context_quest_sequence,node_stage_st0461,node_stage_st0474,node_sequence_quest_10320701,node_sequence_quest_19000004 direct_deterministic
+    class node_owner_quest_70032001,node_owner_quest_70034001 owner_index
+    class node_stage_group_st0461_206,node_stage_group_st0461_4,node_stage_group_st0461_40,node_stage_group_st0461_5,node_lot_file_st0461_00m00n_p206_lot_json,node_lot_file_st0461_00m00n_p40_lot_json graph_expanded
+....
+
+[cols="1,2,2,2,2,4",options="header"]
+|===
+| Depth | Edge | From | To | Derivation | Why
+
+| 1 | direct_source_family | quest:10320702 | direct-family:qst | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | family_context:quest_sequence | quest:10320702 | family-context:quest_sequence | Direct | Family-specific decoded tables provide deterministic context for this quest.
+| 1 | quest_archive_stage | quest:10320702 | stage:st0461 | Direct | Quest archive topology directly links this quest to the stage code.
+| 1 | quest_archive_stage | quest:10320702 | stage:st0474 | Direct | Quest archive topology directly links this quest to the stage code.
+| 2 | sequence_next | family-context:quest_sequence | sequence-quest:19000004 | Direct | QuestSequence links this quest to its neighboring sequence quest.
+| 2 | sequence_previous | family-context:quest_sequence | sequence-quest:10320701 | Direct | QuestSequence links this quest to its neighboring sequence quest.
+| 2 | stage_group_reference | stage:st0461 | stage-group:st0461:206 | Graph | Reverse indexes expose GPL group references for this stage.
+| 2 | stage_group_reference | stage:st0461 | stage-group:st0461:4 | Graph | Reverse indexes expose GPL group references for this stage.
+| 2 | stage_group_reference | stage:st0461 | stage-group:st0461:40 | Graph | Reverse indexes expose GPL group references for this stage.
+| 2 | stage_group_reference | stage:st0461 | stage-group:st0461:5 | Graph | Reverse indexes expose GPL group references for this stage.
+| 2 | stage_owner_index | stage:st0461 | owner-quest:70032001 | Owner Index | Stage-neighborhood cues on this stage link to the reusable owner catalog.
+| 2 | stage_owner_index | stage:st0461 | owner-quest:70034001 | Owner Index | Stage-neighborhood cues on this stage link to the reusable owner catalog.
+| 3 | gpl_owner_guard | stage-group:st0461:206 | owner-quest:70032001 | Graph | GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.
+| 3 | gpl_owner_guard | stage-group:st0461:4 | owner-quest:70032001 | Graph | GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.
+| 3 | gpl_owner_guard | stage-group:st0461:40 | owner-quest:70034001 | Graph | GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.
+| 3 | gpl_owner_guard | stage-group:st0461:5 | owner-quest:70032001 | Graph | GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.
+| 3 | group_lot_reference | stage-group:st0461:206 | lot-file:st0461_00m00n_p206.lot.json | Graph | LOT association resolves the GPL group to a concrete stage layout file.
+| 3 | group_lot_reference | stage-group:st0461:40 | lot-file:st0461_00m00n_p40.lot.json | Graph | LOT association resolves the GPL group to a concrete stage layout file.
+|===
+
 == Flag Summary Matrix
 
 [cols="2,1,1,2,2,3,3",options="header"]
 |===
 | Target | Kind | Hits | Sources | Stages | Relationships | Description
 
+| Flag 7653 | layout_flag | 2 | qst | st0474 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0474 \| メフィス
+| Flag 7900 | layout_flag | 2 | qst | st0461 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0461 \| Condition
 | Quest ID 10320702 | quest_id | 0 |  |  |  | Derived quest-wide association scan
 |===
 
 == Known Documented Targets
 
+* quest 10320702 -- Flag 7653 -- QST local: st0474 | メフィス
+* quest 10320702 -- Flag 7900 -- QST local: st0461 | Condition
 * Quest ID 10320702 -- Derived quest-wide association scan [Derived]
+
+== Flag 7653 -- Quest 10320702
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320702/quest/10320702/q10320702_st0474.qst.json[client/03040008/quest/q10320702/quest/10320702/q10320702_st0474.qst.json] | QuestStageList[].QuestGrp[0].Condition | Condition | quest 10320702 / Marquise Kurt's residence / "メフィス" / QuestSet=QuestSetInfoNpc | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320702/quest/10320702/q10320702_st0474.qst.json[client/03040008/quest/q10320702/quest/10320702/q10320702_st0474.qst.json] | QuestStageList[].QuestGrp[0].EraseCondition | EraseCondition | quest 10320702 / Marquise Kurt's residence / "メフィス" / QuestSet=QuestSetInfoNpc | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 7900 -- Quest 10320702
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320702/quest/10320702/q10320702_st0461.qst.json[client/03040008/quest/q10320702/quest/10320702/q10320702_st0461.qst.json] | QuestStageList[].QuestGrp[0].Condition | Condition | quest 10320702 / Fortress City Megado: Residential Level / QuestSet=QuestSetInfoNpc | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320702/quest/10320702/q10320702_st0461.qst.json[client/03040008/quest/q10320702/quest/10320702/q10320702_st0461.qst.json] | QuestStageList[].QuestGrp[0].EraseCondition | EraseCondition | quest 10320702 / Fortress City Megado: Residential Level / QuestSet=QuestSetInfoNpc | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
 
 == Quest ID 10320702
 
@@ -56,10 +249,10 @@ _No direct references found in decoded client data._
 
 === Ranked Candidates
 
-[cols="1,1,2,3,3,3",options="header"]
+[cols="1,1,1,2,3,3,3",options="header"]
 |===
-| Tier | Confidence | Field | File | Context | Why
+| Tier | Derivation | Confidence | Field | File | Context | Why
 
-| context | 45 | QuestId | client/03040008/game_common/quest/QuestSequence.qsq.json | The Battle Fades Like a Dream | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
+| context | Lower Confidence | 45 | QuestId | link:../../../../client/03040008/game_common/quest/QuestSequence.qsq.json#L1039[client/03040008/game_common/quest/QuestSequence.qsq.json#L1039] | The Battle Fades Like a Dream | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
 |===
 

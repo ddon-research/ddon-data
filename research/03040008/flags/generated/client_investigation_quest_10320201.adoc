@@ -5,16 +5,32 @@
 
 Query mode:: quest
 Query value:: 10320201
-Generated at:: 2026-04-11T21:41:40.662786+00:00
+Generated at:: 2026-04-12T12:43:48.235959+00:00
 
 toc::[]
+
+Quest family:: unknown -- Unknown Quest Family
+Quest family notes:: Quest family could not be inferred from the client quest id pattern.
+Quest family focus:: treat_as_generic
+
+== Family Relationship Context
+
+_These sections summarize deterministic client-side family metadata and reverse-index relationships. They are context for later owner/dependency inference, not direct quest-target promotion._
+
+=== Quest Sequence
+
+* seq no: 119
+* previous: 10320200 -- Undercover: Skill Warm-Up
+* next: 10320202 -- Undercover: Encounter with the Already Known
 
 == ARC Association Context
 
 _ARC associations are contextual only. They show which quest-stage and marker resources are bundled with this quest._
 
-* arc file: client/03040008/quest/q10320201.arc.json
+* arc file: link:../../../../client/03040008/quest/q10320201.arc.json#L1[client/03040008/quest/q10320201.arc.json#L1]
 * resource count: 9
+* stage codes: st0471
+* resource families: .fsm, .gmd, .mss, .qmi, .qst, .qtd
 
 === st0471 -- Fortress City Megado: Residential Level
 
@@ -31,18 +47,250 @@ _ARC associations are contextual only. They show which quest-stage and marker re
 * rQuestTextData: ui/00_param/quest_text/q10320201_00
 * rGUIMessage: ui/00_message/quest/q10320201
 
+== Stage Neighborhood Context
+
+_Stage-neighborhood context summarizes scanner-relevant client files that share the quest's archive stage codes. This is deterministic client topology, not inferred ownership._
+
+* scanner-relevant stage files: 52
+* indexed stage codes: st0471
+
+=== st0471 -- Fortress City Megado: Residential Level
+
+* scanner files: 52
+* .gpl.json: 5
+* .lot.json: 25
+* .qmi.json: 14
+* .qst.json: 8
+
+== Stage Neighborhood External-State Cues
+
+_These cues are deterministic client-side observations from the quest's stage neighborhood. They are not promoted to direct quest targets yet; they highlight q6/q7-owned external state values co-located in the quest's archive stages._
+
+* cue count: 0
+* owner families: q6, q7
+
+== Bounded Graph Expansion
+
+_This graph summarizes bounded deterministic and inferred edges around the quest: quest archive stages, direct source families, stage-linked owner catalogs, promoted dependencies, reverse-index event/group links, and family-specific table edges._
+
+* max depth: 3
+* node count: 7
+* edge count: 6
+* node kinds: direct_family=2, family_context=1, quest=1, sequence_quest=2, stage=1
+* derivation: Direct=13
+
+=== Mermaid Graph Slice
+
+_This Mermaid flowchart shows a capped slice of the bounded graph so large quest reports stay readable while still exposing the graph structure._
+
+[mermaid]
+....
+flowchart TD
+    node_quest_10320201["Quest 10320201"]
+    node_direct_family_fsm["fsm direct hits (4)"]
+    node_direct_family_qst["qst direct hits (15)"]
+    node_family_context_quest_sequence["Quest Sequence"]
+    node_stage_st0471["st0471 -- Fortress City Megado: Residential Level"]
+    node_sequence_quest_10320200["Quest 10320200"]
+    node_sequence_quest_10320202["Quest 10320202"]
+    node_quest_10320201 -->|direct_source_family| node_direct_family_fsm
+    node_quest_10320201 -->|direct_source_family| node_direct_family_qst
+    node_quest_10320201 -->|family:quest_sequence| node_family_context_quest_sequence
+    node_quest_10320201 -->|quest_archive_stage| node_stage_st0471
+    node_family_context_quest_sequence -->|sequence_next| node_sequence_quest_10320202
+    node_family_context_quest_sequence -->|sequence_previous| node_sequence_quest_10320200
+    classDef direct_deterministic fill:#e8f5e9,stroke:#2e7d32,stroke-width:1px
+    classDef owner_index fill:#e3f2fd,stroke:#1565c0,stroke-width:1px
+    classDef dependency_inferred fill:#fff3e0,stroke:#ef6c00,stroke-width:1px
+    classDef graph_expanded fill:#f3e5f5,stroke:#7b1fa2,stroke-width:1px
+    classDef lower_confidence fill:#fbe9e7,stroke:#d84315,stroke-width:1px
+    classDef binary_auxiliary fill:#eceff1,stroke:#455a64,stroke-width:1px
+    class node_quest_10320201,node_direct_family_fsm,node_direct_family_qst,node_family_context_quest_sequence,node_stage_st0471,node_sequence_quest_10320200,node_sequence_quest_10320202 direct_deterministic
+....
+
+[cols="1,2,2,2,2,4",options="header"]
+|===
+| Depth | Edge | From | To | Derivation | Why
+
+| 1 | direct_source_family | quest:10320201 | direct-family:fsm | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | direct_source_family | quest:10320201 | direct-family:qst | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | family_context:quest_sequence | quest:10320201 | family-context:quest_sequence | Direct | Family-specific decoded tables provide deterministic context for this quest.
+| 1 | quest_archive_stage | quest:10320201 | stage:st0471 | Direct | Quest archive topology directly links this quest to the stage code.
+| 2 | sequence_next | family-context:quest_sequence | sequence-quest:10320202 | Direct | QuestSequence links this quest to its neighboring sequence quest.
+| 2 | sequence_previous | family-context:quest_sequence | sequence-quest:10320200 | Direct | QuestSequence links this quest to its neighboring sequence quest.
+|===
+
 == Flag Summary Matrix
 
 [cols="2,1,1,2,2,3,3",options="header"]
 |===
 | Target | Kind | Hits | Sources | Stages | Relationships | Description
 
+| Flag 7688 | layout_flag | 2 | qst | st0471 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0471 \| 領主
+| Flag 7689 | layout_flag | 2 | qst | st0471 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0471 \| QuestGroup 1 \| 兵士たち
+| Flag 7692 | layout_flag | 2 | qst | st0471 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0471 \| QuestGroup 2 \| 兵士C
+| Flag 7697 | layout_flag | 1 | qst | st0471 | ⚡ Quest Condition | QST local: st0471 \| QuestGroup 7 \| 野次馬
+| Flag 7698 | layout_flag | 2 | qst | st0471 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0471 \| QuestGroup 4 \| ジャン
+| Flag 7699 | layout_flag | 2 | qst | st0471 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0471 \| QuestGroup 5 \| 憲兵（戦闘前）
+| Flag 7700 | layout_flag | 2 | qst | st0471 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0471 \| QuestGroup 6 \| 憲兵（戦闘後）
+| Flag 7706 | layout_flag | 2 | qst | st0471 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0471 \| QuestGroup 3 \| 兵士C２
 | Quest ID 10320201 | quest_id | 4 | fsm |  | 🔍 FSM Check | Derived quest-wide association scan
 |===
 
 == Known Documented Targets
 
+* quest 10320201 -- Flag 7688 -- QST local: st0471 | 領主
+* quest 10320201 -- Flag 7689 -- QST local: st0471 | QuestGroup 1 | 兵士たち
+* quest 10320201 -- Flag 7692 -- QST local: st0471 | QuestGroup 2 | 兵士C
+* quest 10320201 -- Flag 7697 -- QST local: st0471 | QuestGroup 7 | 野次馬
+* quest 10320201 -- Flag 7698 -- QST local: st0471 | QuestGroup 4 | ジャン
+* quest 10320201 -- Flag 7699 -- QST local: st0471 | QuestGroup 5 | 憲兵（戦闘前）
+* quest 10320201 -- Flag 7700 -- QST local: st0471 | QuestGroup 6 | 憲兵（戦闘後）
+* quest 10320201 -- Flag 7706 -- QST local: st0471 | QuestGroup 3 | 兵士C２
 * Quest ID 10320201 -- Derived quest-wide association scan [Derived]
+
+== Flag 7688 -- Quest 10320201
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320201/quest/10320201/q10320201_st0471.qst.json[client/03040008/quest/q10320201/quest/10320201/q10320201_st0471.qst.json] | QuestStageList[].QuestGrp[0].Condition | Condition | quest 10320201 / Fortress City Megado: Residential Level / "領主" / QuestSet=QuestSetInfoNpc | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320201/quest/10320201/q10320201_st0471.qst.json[client/03040008/quest/q10320201/quest/10320201/q10320201_st0471.qst.json] | QuestStageList[].QuestGrp[0].EraseCondition | EraseCondition | quest 10320201 / Fortress City Megado: Residential Level / "領主" / QuestSet=QuestSetInfoNpc | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 7689 -- Quest 10320201
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320201/quest/10320201/q10320201_st0471.qst.json[client/03040008/quest/q10320201/quest/10320201/q10320201_st0471.qst.json] | QuestStageList[].QuestGrp[1].Condition | Condition | quest 10320201 / Fortress City Megado: Residential Level / "QuestGroup 1 \| 兵士たち" / QuestSet=QuestSetInfoNpc \| GroupNo=1 \|\| QuestSet=QuestSetInfoNpc \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320201/quest/10320201/q10320201_st0471.qst.json[client/03040008/quest/q10320201/quest/10320201/q10320201_st0471.qst.json] | QuestStageList[].QuestGrp[1].EraseCondition | EraseCondition | quest 10320201 / Fortress City Megado: Residential Level / "QuestGroup 1 \| 兵士たち" / QuestSet=QuestSetInfoNpc \| GroupNo=1 \|\| QuestSet=QuestSetInfoNpc \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 7692 -- Quest 10320201
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320201/quest/10320201/q10320201_st0471.qst.json[client/03040008/quest/q10320201/quest/10320201/q10320201_st0471.qst.json] | QuestStageList[].QuestGrp[2].Condition | Condition | quest 10320201 / Fortress City Megado: Residential Level / "QuestGroup 2 \| 兵士C" / QuestSet=QuestSetInfoNpc \| GroupNo=2 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320201/quest/10320201/q10320201_st0471.qst.json[client/03040008/quest/q10320201/quest/10320201/q10320201_st0471.qst.json] | QuestStageList[].QuestGrp[2].EraseCondition | EraseCondition | quest 10320201 / Fortress City Megado: Residential Level / "QuestGroup 2 \| 兵士C" / QuestSet=QuestSetInfoNpc \| GroupNo=2 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 7697 -- Quest 10320201
+
+origin:: derived_qst_local
+direct hits:: *1*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 1 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320201/quest/10320201/q10320201_st0471.qst.json[client/03040008/quest/q10320201/quest/10320201/q10320201_st0471.qst.json] | QuestStageList[].QuestGrp[7].Condition | Condition | quest 10320201 / Fortress City Megado: Residential Level / "QuestGroup 7 \| 野次馬" / QuestSet=QuestSetInfoNpc \| GroupNo=7 \|\| QuestSet=QuestSetInfoNpc \| GroupNo=7 \|\| +1 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 7698 -- Quest 10320201
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320201/quest/10320201/q10320201_st0471.qst.json[client/03040008/quest/q10320201/quest/10320201/q10320201_st0471.qst.json] | QuestStageList[].QuestGrp[4].Condition | Condition | quest 10320201 / Fortress City Megado: Residential Level / "QuestGroup 4 \| ジャン" / QuestSet=QuestSetInfoNpc \| GroupNo=4 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320201/quest/10320201/q10320201_st0471.qst.json[client/03040008/quest/q10320201/quest/10320201/q10320201_st0471.qst.json] | QuestStageList[].QuestGrp[4].EraseCondition | EraseCondition | quest 10320201 / Fortress City Megado: Residential Level / "QuestGroup 4 \| ジャン" / QuestSet=QuestSetInfoNpc \| GroupNo=4 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 7699 -- Quest 10320201
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320201/quest/10320201/q10320201_st0471.qst.json[client/03040008/quest/q10320201/quest/10320201/q10320201_st0471.qst.json] | QuestStageList[].QuestGrp[5].Condition | Condition | quest 10320201 / Fortress City Megado: Residential Level / "QuestGroup 5 \| 憲兵（戦闘前）" / QuestSet=QuestSetInfoNpc \| GroupNo=5 \|\| QuestSet=QuestSetInfoNpc \| GroupNo=5 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320201/quest/10320201/q10320201_st0471.qst.json[client/03040008/quest/q10320201/quest/10320201/q10320201_st0471.qst.json] | QuestStageList[].QuestGrp[5].EraseCondition | EraseCondition | quest 10320201 / Fortress City Megado: Residential Level / "QuestGroup 5 \| 憲兵（戦闘前）" / QuestSet=QuestSetInfoNpc \| GroupNo=5 \|\| QuestSet=QuestSetInfoNpc \| GroupNo=5 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 7700 -- Quest 10320201
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320201/quest/10320201/q10320201_st0471.qst.json[client/03040008/quest/q10320201/quest/10320201/q10320201_st0471.qst.json] | QuestStageList[].QuestGrp[6].Condition | Condition | quest 10320201 / Fortress City Megado: Residential Level / "QuestGroup 6 \| 憲兵（戦闘後）" / QuestSet=QuestSetInfoNpc \| GroupNo=6 \|\| QuestSet=QuestSetInfoNpc \| GroupNo=6 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320201/quest/10320201/q10320201_st0471.qst.json[client/03040008/quest/q10320201/quest/10320201/q10320201_st0471.qst.json] | QuestStageList[].QuestGrp[6].EraseCondition | EraseCondition | quest 10320201 / Fortress City Megado: Residential Level / "QuestGroup 6 \| 憲兵（戦闘後）" / QuestSet=QuestSetInfoNpc \| GroupNo=6 \|\| QuestSet=QuestSetInfoNpc \| GroupNo=6 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 7706 -- Quest 10320201
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320201/quest/10320201/q10320201_st0471.qst.json[client/03040008/quest/q10320201/quest/10320201/q10320201_st0471.qst.json] | QuestStageList[].QuestGrp[3].Condition | Condition | quest 10320201 / Fortress City Megado: Residential Level / "QuestGroup 3 \| 兵士C２" / QuestSet=QuestSetInfoNpc \| GroupNo=3 \|\| QuestSet=QuestSetInfoNpc \| GroupNo=3 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320201/quest/10320201/q10320201_st0471.qst.json[client/03040008/quest/q10320201/quest/10320201/q10320201_st0471.qst.json] | QuestStageList[].QuestGrp[3].EraseCondition | EraseCondition | quest 10320201 / Fortress City Megado: Residential Level / "QuestGroup 3 \| 兵士C２" / QuestSet=QuestSetInfoNpc \| GroupNo=3 \|\| QuestSet=QuestSetInfoNpc \| GroupNo=3 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
 
 == Quest ID 10320201
 
@@ -54,13 +302,13 @@ ranked candidates:: *0*
 
 ==== opaque_fsm -- 4 hit(s)
 
-[cols="1,1,3,3,2,3,3",options="header"]
+[cols="1,1,1,3,3,2,3,3",options="header"]
 |===
-| Family | Confidence | File | JSON Path | Field | Context | Why
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
 
-| FSM | 78 | client/03040008/quest/q10320201/quest/10320201/npc/n3259.fsm.json | Process.Parameter.QuestId | QuestId | quest 10320201 (Undercover: Military Police Encounter) / Jan / checkMyQuestFlag \| NPCFSM=n3259 \| QuestLocalNPCFSM | Quest-local NPC FSM MyQuest check; these files usually describe NPC behavior for the same quest, so this flag likely controls that NPC's quest-specific presence or behavior.
-| FSM | 78 | client/03040008/quest/q10320201/quest/10320201/npc/n3259.fsm.json | Process.Parameter.QuestId | QuestId | quest 10320201 (Undercover: Military Police Encounter) / Jan / checkMyQuestFlag \| NPCFSM=n3259 \| QuestLocalNPCFSM | Quest-local NPC FSM MyQuest check; these files usually describe NPC behavior for the same quest, so this flag likely controls that NPC's quest-specific presence or behavior.
-| FSM | 74 | client/03040008/quest/q10320502/quest/10320502/npc/n3259.fsm.json | Process.Parameter.QuestId | QuestId | quest 10320201 (Undercover: Military Police Encounter) / Jan / checkMyQuestFlag \| NPCFSM=n3259 | NPC-related FSM MyQuest check; this flag likely controls NPC visibility, interaction, or behavior for the referenced quest.
-| FSM | 74 | client/03040008/quest/q10320502/quest/10320502/npc/n3259.fsm.json | Process.Parameter.QuestId | QuestId | quest 10320201 (Undercover: Military Police Encounter) / Jan / checkMyQuestFlag \| NPCFSM=n3259 | NPC-related FSM MyQuest check; this flag likely controls NPC visibility, interaction, or behavior for the referenced quest.
+| FSM | Direct | 78 | link:../../../../client/03040008/quest/q10320201/quest/10320201/npc/n3259.fsm.json[client/03040008/quest/q10320201/quest/10320201/npc/n3259.fsm.json] | Process.Parameter.QuestId | QuestId | quest 10320201 (Undercover: Military Police Encounter) / Jan / checkMyQuestFlag \| NPCFSM=n3259 \| QuestLocalNPCFSM | Quest-local NPC FSM MyQuest check; these files usually describe NPC behavior for the same quest, so this flag likely controls that NPC's quest-specific presence or behavior.
+| FSM | Direct | 78 | link:../../../../client/03040008/quest/q10320201/quest/10320201/npc/n3259.fsm.json[client/03040008/quest/q10320201/quest/10320201/npc/n3259.fsm.json] | Process.Parameter.QuestId | QuestId | quest 10320201 (Undercover: Military Police Encounter) / Jan / checkMyQuestFlag \| NPCFSM=n3259 \| QuestLocalNPCFSM | Quest-local NPC FSM MyQuest check; these files usually describe NPC behavior for the same quest, so this flag likely controls that NPC's quest-specific presence or behavior.
+| FSM | Direct | 74 | link:../../../../client/03040008/quest/q10320502/quest/10320502/npc/n3259.fsm.json[client/03040008/quest/q10320502/quest/10320502/npc/n3259.fsm.json] | Process.Parameter.QuestId | QuestId | quest 10320201 (Undercover: Military Police Encounter) / Jan / checkMyQuestFlag \| NPCFSM=n3259 | NPC-related FSM MyQuest check; this flag likely controls NPC visibility, interaction, or behavior for the referenced quest.
+| FSM | Direct | 74 | link:../../../../client/03040008/quest/q10320502/quest/10320502/npc/n3259.fsm.json[client/03040008/quest/q10320502/quest/10320502/npc/n3259.fsm.json] | Process.Parameter.QuestId | QuestId | quest 10320201 (Undercover: Military Police Encounter) / Jan / checkMyQuestFlag \| NPCFSM=n3259 | NPC-related FSM MyQuest check; this flag likely controls NPC visibility, interaction, or behavior for the referenced quest.
 |===
 

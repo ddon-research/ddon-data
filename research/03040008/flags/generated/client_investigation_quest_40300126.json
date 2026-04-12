@@ -1,6 +1,6 @@
 {
   "format": "client_investigation.v4",
-  "generated_at": "2026-04-11T21:41:41.669132+00:00",
+  "generated_at": "2026-04-12T12:44:03.285194+00:00",
   "query": {
     "mode": "quest",
     "value": 40300126
@@ -27,9 +27,39 @@
       "candidate_hits": []
     }
   ],
+  "quest_family": {
+    "key": "q4",
+    "label": "Light / Board Quest",
+    "description": "Light quests and board-quest style errands with lightweight or text-heavy quest packaging.",
+    "discovery_focus": "local_stage_topology_plus_board_quest_context",
+    "supported": true
+  },
+  "quest_family_relationships": {
+    "quest_family": {
+      "key": "q4",
+      "label": "Light / Board Quest",
+      "description": "Light quests and board-quest style errands with lightweight or text-heavy quest packaging.",
+      "discovery_focus": "local_stage_topology_plus_board_quest_context",
+      "supported": true
+    }
+  },
+  "quest_owner_indexes": [],
+  "quest_dependency_targets": [],
   "quest_archive_context": {
+    "quest_family": {
+      "key": "q4",
+      "label": "Light / Board Quest",
+      "description": "Light quests and board-quest style errands with lightweight or text-heavy quest packaging.",
+      "discovery_focus": "local_stage_topology_plus_board_quest_context",
+      "supported": true
+    },
     "file_path": "client/03040008/quest/q40300126.arc.json",
     "resource_count": 2,
+    "stage_codes": [],
+    "resource_type_extensions": [
+      ".gmd",
+      ".qtd"
+    ],
     "stages": [
       {
         "stage_code": "",
@@ -50,5 +80,59 @@
         ]
       }
     ]
+  },
+  "quest_stage_neighborhood": {
+    "quest_family": {
+      "key": "q4",
+      "label": "Light / Board Quest",
+      "description": "Light quests and board-quest style errands with lightweight or text-heavy quest packaging.",
+      "discovery_focus": "local_stage_topology_plus_board_quest_context",
+      "supported": true
+    },
+    "stage_codes": [],
+    "scanner_file_count": 0,
+    "stages": []
+  },
+  "quest_stage_cues": {
+    "quest_family": {
+      "key": "q4",
+      "label": "Light / Board Quest",
+      "description": "Light quests and board-quest style errands with lightweight or text-heavy quest packaging.",
+      "discovery_focus": "local_stage_topology_plus_board_quest_context",
+      "supported": true
+    },
+    "stage_codes": [],
+    "owner_families": [
+      "q6",
+      "q7"
+    ],
+    "cues": [],
+    "cue_count": 0
+  },
+  "quest_graph_expansion": {
+    "max_depth": 3,
+    "node_count": 1,
+    "edge_count": 0,
+    "node_kind_counts": {
+      "quest": 1
+    },
+    "edge_type_counts": {},
+    "derivation_counts": {
+      "direct_deterministic": 1
+    },
+    "nodes": [
+      {
+        "node_id": "quest:40300126",
+        "label": "Quest 40300126",
+        "kind": "quest",
+        "depth": 0,
+        "derivation_class": "direct_deterministic",
+        "metadata": {
+          "quest_id": 40300126,
+          "target_count": 1
+        }
+      }
+    ],
+    "edges": []
   }
 }

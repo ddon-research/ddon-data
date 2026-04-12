@@ -1,11 +1,25 @@
 {
   "format": "client_investigation.v4",
-  "generated_at": "2026-04-11T21:41:41.832538+00:00",
+  "generated_at": "2026-04-12T12:44:10.437105+00:00",
   "query": {
     "mode": "quest",
     "value": 60200031
   },
   "documented_targets": [
+    {
+      "flag_value": 5419,
+      "quest_id": 60200031,
+      "flag_type": "layout_flag",
+      "doc_comment": "QST local: st0541 | サプライズ宝箱",
+      "origin": "derived_qst_local"
+    },
+    {
+      "flag_value": 5420,
+      "quest_id": 60200031,
+      "flag_type": "layout_flag",
+      "doc_comment": "QST local: st0541 | QuestGroup 1",
+      "origin": "derived_qst_local"
+    },
     {
       "flag_value": 60200031,
       "quest_id": 60200031,
@@ -15,6 +29,114 @@
     }
   ],
   "targets": [
+    {
+      "target": {
+        "flag_value": 5419,
+        "quest_id": 60200031,
+        "flag_type": "layout_flag",
+        "origin": "derived_qst_local",
+        "doc_comment": "QST local: st0541 | サプライズ宝箱"
+      },
+      "hits": [
+        {
+          "source_type": "qst",
+          "file_path": "client/03040008/quest/q60200031/quest/60200031/q60200031_st0541.qst.json",
+          "json_path": "QuestStageList[].QuestGrp[0].Condition",
+          "field_name": "Condition",
+          "flag_value": 5419,
+          "flag_kind": "layout_flag",
+          "relationship": "quest_condition",
+          "stage_name": "Tel's Withered Well",
+          "stage_name_jp": "テルの枯れ井戸",
+          "stage_code": "st0541",
+          "comment": "サプライズ宝箱",
+          "context": "QuestSet=QuestSetInfoOmTreasureBox | OmID=513055 | UnitID=513055 | EnableZone",
+          "quest_id": 60200031,
+          "stage_no": 541,
+          "resource_family": "QST",
+          "evidence_tier": "direct",
+          "derivation_class": "direct_deterministic",
+          "confidence": 92,
+          "why": "Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes."
+        },
+        {
+          "source_type": "qst",
+          "file_path": "client/03040008/quest/q60200031/quest/60200031/q60200031_st0541.qst.json",
+          "json_path": "QuestStageList[].QuestGrp[0].EraseCondition",
+          "field_name": "EraseCondition",
+          "flag_value": 5419,
+          "flag_kind": "layout_flag",
+          "relationship": "quest_erase",
+          "stage_name": "Tel's Withered Well",
+          "stage_name_jp": "テルの枯れ井戸",
+          "stage_code": "st0541",
+          "comment": "サプライズ宝箱",
+          "context": "QuestSet=QuestSetInfoOmTreasureBox | OmID=513055 | UnitID=513055 | EnableZone",
+          "quest_id": 60200031,
+          "stage_no": 541,
+          "resource_family": "QST",
+          "evidence_tier": "direct",
+          "derivation_class": "direct_deterministic",
+          "confidence": 92,
+          "why": "Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes."
+        }
+      ],
+      "candidate_hits": []
+    },
+    {
+      "target": {
+        "flag_value": 5420,
+        "quest_id": 60200031,
+        "flag_type": "layout_flag",
+        "origin": "derived_qst_local",
+        "doc_comment": "QST local: st0541 | QuestGroup 1"
+      },
+      "hits": [
+        {
+          "source_type": "qst",
+          "file_path": "client/03040008/quest/q60200031/quest/60200031/q60200031_st0541.qst.json",
+          "json_path": "QuestStageList[].QuestGrp[1].Condition",
+          "field_name": "Condition",
+          "flag_value": 5420,
+          "flag_kind": "layout_flag",
+          "relationship": "quest_condition",
+          "stage_name": "Tel's Withered Well",
+          "stage_name_jp": "テルの枯れ井戸",
+          "stage_code": "st0541",
+          "comment": "QuestGroup 1",
+          "context": "QuestSet=QuestSetInfoOmText | OmID=522570 | OM_ID_CMN_MSG_POINT | EnableZone | TextNo=100035 | GroupNo=1",
+          "quest_id": 60200031,
+          "stage_no": 541,
+          "resource_family": "QST",
+          "evidence_tier": "direct",
+          "derivation_class": "direct_deterministic",
+          "confidence": 92,
+          "why": "Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes."
+        },
+        {
+          "source_type": "qst",
+          "file_path": "client/03040008/quest/q60200031/quest/60200031/q60200031_st0541.qst.json",
+          "json_path": "QuestStageList[].QuestGrp[1].EraseCondition",
+          "field_name": "EraseCondition",
+          "flag_value": 5420,
+          "flag_kind": "layout_flag",
+          "relationship": "quest_erase",
+          "stage_name": "Tel's Withered Well",
+          "stage_name_jp": "テルの枯れ井戸",
+          "stage_code": "st0541",
+          "comment": "QuestGroup 1",
+          "context": "QuestSet=QuestSetInfoOmText | OmID=522570 | OM_ID_CMN_MSG_POINT | EnableZone | TextNo=100035 | GroupNo=1",
+          "quest_id": 60200031,
+          "stage_no": 541,
+          "resource_family": "QST",
+          "evidence_tier": "direct",
+          "derivation_class": "direct_deterministic",
+          "confidence": 92,
+          "why": "Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes."
+        }
+      ],
+      "candidate_hits": []
+    },
     {
       "target": {
         "flag_value": 60200031,
@@ -32,6 +154,7 @@
           "json_path": "QuestSequenceList[355].QuestId",
           "resource_family": ".qsq",
           "evidence_tier": "context",
+          "derivation_class": "lower_confidence",
           "confidence": 45,
           "why": "Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.",
           "class_name": "org.sehkah.ddon.tools.extractor.common.logic.resource.entity.game_common.QuestSequence",
@@ -42,9 +165,62 @@
       ]
     }
   ],
+  "quest_family": {
+    "key": "q6",
+    "label": "Tutorial / Unlock / Area Trial",
+    "description": "Tutorial, area-trial, unlock, and occasional festival quests.",
+    "discovery_focus": "jtq_tqg_jmc_scaffolding",
+    "supported": true
+  },
+  "quest_family_relationships": {
+    "quest_family": {
+      "key": "q6",
+      "label": "Tutorial / Unlock / Area Trial",
+      "description": "Tutorial, area-trial, unlock, and occasional festival quests.",
+      "discovery_focus": "jtq_tqg_jmc_scaffolding",
+      "supported": true
+    },
+    "quest_sequence": {
+      "quest_id": 60200031,
+      "seq_no": 355,
+      "quest_name": "White Day Gift Return: Klaus",
+      "quest_name_jp": "ホワイトデーのお返し・クラウス",
+      "previous": {
+        "quest_id": 60200030,
+        "seq_no": 354,
+        "quest_name": "White Day Gift Return: Elliot and Gurdolin",
+        "quest_name_jp": "ホワイトデーのお返し・エリオットとガルドリン"
+      },
+      "next": {
+        "quest_id": 60200032,
+        "seq_no": 356,
+        "quest_name": "For White Day Set",
+        "quest_name_jp": "ホワイトデーセット用"
+      }
+    }
+  },
+  "quest_owner_indexes": [],
+  "quest_dependency_targets": [],
   "quest_archive_context": {
+    "quest_family": {
+      "key": "q6",
+      "label": "Tutorial / Unlock / Area Trial",
+      "description": "Tutorial, area-trial, unlock, and occasional festival quests.",
+      "discovery_focus": "jtq_tqg_jmc_scaffolding",
+      "supported": true
+    },
     "file_path": "client/03040008/quest/q60200031.arc.json",
     "resource_count": 7,
+    "stage_codes": [
+      "st0541"
+    ],
+    "resource_type_extensions": [
+      ".gmd",
+      ".mss",
+      ".qmi",
+      ".qst",
+      ".qtd"
+    ],
     "stages": [
       {
         "stage_code": "st0541",
@@ -96,6 +272,187 @@
             "type_name": "rGUIMessage"
           }
         ]
+      }
+    ]
+  },
+  "quest_stage_neighborhood": {
+    "quest_family": {
+      "key": "q6",
+      "label": "Tutorial / Unlock / Area Trial",
+      "description": "Tutorial, area-trial, unlock, and occasional festival quests.",
+      "discovery_focus": "jtq_tqg_jmc_scaffolding",
+      "supported": true
+    },
+    "stage_codes": [
+      "st0541"
+    ],
+    "scanner_file_count": 31,
+    "stages": [
+      {
+        "stage_code": "st0541",
+        "stage_no": 541,
+        "stage_name": "Tel's Withered Well",
+        "stage_name_jp": "テルの枯れ井戸",
+        "scanner_file_count": 31,
+        "scanner_suffix_counts": {
+          ".gpl.json": 6,
+          ".lot.json": 14,
+          ".qmi.json": 7,
+          ".qst.json": 4
+        }
+      }
+    ]
+  },
+  "quest_stage_cues": {
+    "quest_family": {
+      "key": "q6",
+      "label": "Tutorial / Unlock / Area Trial",
+      "description": "Tutorial, area-trial, unlock, and occasional festival quests.",
+      "discovery_focus": "jtq_tqg_jmc_scaffolding",
+      "supported": true
+    },
+    "stage_codes": [
+      "st0541"
+    ],
+    "owner_families": [
+      "q6",
+      "q7"
+    ],
+    "cues": [],
+    "cue_count": 0
+  },
+  "quest_graph_expansion": {
+    "max_depth": 3,
+    "node_count": 6,
+    "edge_count": 5,
+    "node_kind_counts": {
+      "direct_family": 1,
+      "family_context": 1,
+      "quest": 1,
+      "sequence_quest": 2,
+      "stage": 1
+    },
+    "edge_type_counts": {
+      "direct_source_family": 1,
+      "family_context:quest_sequence": 1,
+      "quest_archive_stage": 1,
+      "sequence_next": 1,
+      "sequence_previous": 1
+    },
+    "derivation_counts": {
+      "direct_deterministic": 11
+    },
+    "nodes": [
+      {
+        "node_id": "quest:60200031",
+        "label": "Quest 60200031",
+        "kind": "quest",
+        "depth": 0,
+        "derivation_class": "direct_deterministic",
+        "metadata": {
+          "quest_id": 60200031,
+          "target_count": 3
+        }
+      },
+      {
+        "node_id": "direct-family:qst",
+        "label": "qst direct hits (4)",
+        "kind": "direct_family",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "metadata": {
+          "source_type": "qst",
+          "hit_count": 4
+        }
+      },
+      {
+        "node_id": "family-context:quest_sequence",
+        "label": "Quest Sequence",
+        "kind": "family_context",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "metadata": {
+          "context_key": "quest_sequence"
+        }
+      },
+      {
+        "node_id": "stage:st0541",
+        "label": "st0541 -- Tel's Withered Well",
+        "kind": "stage",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "metadata": {
+          "stage_code": "st0541"
+        }
+      },
+      {
+        "node_id": "sequence-quest:60200030",
+        "label": "Quest 60200030",
+        "kind": "sequence_quest",
+        "depth": 2,
+        "derivation_class": "direct_deterministic",
+        "metadata": {
+          "quest_id": 60200030,
+          "direction": "previous"
+        }
+      },
+      {
+        "node_id": "sequence-quest:60200032",
+        "label": "Quest 60200032",
+        "kind": "sequence_quest",
+        "depth": 2,
+        "derivation_class": "direct_deterministic",
+        "metadata": {
+          "quest_id": 60200032,
+          "direction": "next"
+        }
+      }
+    ],
+    "edges": [
+      {
+        "from": "quest:60200031",
+        "to": "direct-family:qst",
+        "edge_type": "direct_source_family",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "why": "Decoded direct hits for the quest targets include this source family.",
+        "metadata": {}
+      },
+      {
+        "from": "quest:60200031",
+        "to": "family-context:quest_sequence",
+        "edge_type": "family_context:quest_sequence",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "why": "Family-specific decoded tables provide deterministic context for this quest.",
+        "metadata": {}
+      },
+      {
+        "from": "quest:60200031",
+        "to": "stage:st0541",
+        "edge_type": "quest_archive_stage",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "why": "Quest archive topology directly links this quest to the stage code.",
+        "metadata": {}
+      },
+      {
+        "from": "family-context:quest_sequence",
+        "to": "sequence-quest:60200032",
+        "edge_type": "sequence_next",
+        "depth": 2,
+        "derivation_class": "direct_deterministic",
+        "why": "QuestSequence links this quest to its neighboring sequence quest.",
+        "metadata": {}
+      },
+      {
+        "from": "family-context:quest_sequence",
+        "to": "sequence-quest:60200030",
+        "edge_type": "sequence_previous",
+        "depth": 2,
+        "derivation_class": "direct_deterministic",
+        "why": "QuestSequence links this quest to its neighboring sequence quest.",
+        "metadata": {}
       }
     ]
   }

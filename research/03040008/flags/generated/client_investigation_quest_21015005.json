@@ -1,6 +1,6 @@
 {
   "format": "client_investigation.v4",
-  "generated_at": "2026-04-11T21:41:40.996543+00:00",
+  "generated_at": "2026-04-12T12:43:57.785688+00:00",
   "query": {
     "mode": "quest",
     "value": 21015005
@@ -32,6 +32,7 @@
           "json_path": "GroupParamBuff[34].GuardData.QuestNo",
           "resource_family": ".gpl",
           "evidence_tier": "context",
+          "derivation_class": "lower_confidence",
           "confidence": 45,
           "why": "Matched a relevant decoded field (QuestNo), but not in the primary field family for this target type.",
           "stage_name": "Farana Plains",
@@ -48,6 +49,7 @@
           "json_path": "GroupParamBuff[35].GuardData.QuestNo",
           "resource_family": ".gpl",
           "evidence_tier": "context",
+          "derivation_class": "lower_confidence",
           "confidence": 45,
           "why": "Matched a relevant decoded field (QuestNo), but not in the primary field family for this target type.",
           "stage_name": "Farana Plains",
@@ -64,6 +66,7 @@
           "json_path": "GroupParamBuff[36].GuardData.QuestNo",
           "resource_family": ".gpl",
           "evidence_tier": "context",
+          "derivation_class": "lower_confidence",
           "confidence": 45,
           "why": "Matched a relevant decoded field (QuestNo), but not in the primary field family for this target type.",
           "stage_name": "Farana Plains",
@@ -76,9 +79,40 @@
       ]
     }
   ],
+  "quest_family": {
+    "key": "unknown",
+    "label": "Unknown Quest Family",
+    "description": "Quest family could not be inferred from the client quest id pattern.",
+    "discovery_focus": "treat_as_generic",
+    "supported": false
+  },
+  "quest_family_relationships": {
+    "quest_family": {
+      "key": "unknown",
+      "label": "Unknown Quest Family",
+      "description": "Quest family could not be inferred from the client quest id pattern.",
+      "discovery_focus": "treat_as_generic",
+      "supported": false
+    }
+  },
+  "quest_owner_indexes": [],
+  "quest_dependency_targets": [],
   "quest_archive_context": {
+    "quest_family": {
+      "key": "unknown",
+      "label": "Unknown Quest Family",
+      "description": "Quest family could not be inferred from the client quest id pattern.",
+      "discovery_focus": "treat_as_generic",
+      "supported": false
+    },
     "file_path": "client/03040008/quest/q21015005.arc.json",
     "resource_count": 6,
+    "stage_codes": [],
+    "resource_type_extensions": [
+      ".gmd",
+      ".mss",
+      ".qtd"
+    ],
     "stages": [
       {
         "stage_code": "",
@@ -119,5 +153,59 @@
         ]
       }
     ]
+  },
+  "quest_stage_neighborhood": {
+    "quest_family": {
+      "key": "unknown",
+      "label": "Unknown Quest Family",
+      "description": "Quest family could not be inferred from the client quest id pattern.",
+      "discovery_focus": "treat_as_generic",
+      "supported": false
+    },
+    "stage_codes": [],
+    "scanner_file_count": 0,
+    "stages": []
+  },
+  "quest_stage_cues": {
+    "quest_family": {
+      "key": "unknown",
+      "label": "Unknown Quest Family",
+      "description": "Quest family could not be inferred from the client quest id pattern.",
+      "discovery_focus": "treat_as_generic",
+      "supported": false
+    },
+    "stage_codes": [],
+    "owner_families": [
+      "q6",
+      "q7"
+    ],
+    "cues": [],
+    "cue_count": 0
+  },
+  "quest_graph_expansion": {
+    "max_depth": 3,
+    "node_count": 1,
+    "edge_count": 0,
+    "node_kind_counts": {
+      "quest": 1
+    },
+    "edge_type_counts": {},
+    "derivation_counts": {
+      "direct_deterministic": 1
+    },
+    "nodes": [
+      {
+        "node_id": "quest:21015005",
+        "label": "Quest 21015005",
+        "kind": "quest",
+        "depth": 0,
+        "derivation_class": "direct_deterministic",
+        "metadata": {
+          "quest_id": 21015005,
+          "target_count": 1
+        }
+      }
+    ],
+    "edges": []
   }
 }

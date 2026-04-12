@@ -5,16 +5,43 @@
 
 Query mode:: quest
 Query value:: 10310101
-Generated at:: 2026-04-11T21:41:40.643153+00:00
+Generated at:: 2026-04-12T12:43:47.537459+00:00
 
 toc::[]
+
+Quest family:: unknown -- Unknown Quest Family
+Quest family notes:: Quest family could not be inferred from the client quest id pattern.
+Quest family focus:: treat_as_generic
+
+== External Owner Indexes
+
+_These are reusable external owner catalogs inferred from stage-neighborhood cues. They are broader than the subset of flags promoted into derived dependency targets._
+
+[cols="2,1,1,2,2,2,4",options="header"]
+|===
+| Owner Quest | Family | Catalog Count | Catalog Flags | Linked Cues | Cue Sources | Why
+
+| 70031001 | q7 | 8 | 5553, 5672, 6138, 6194, 6195, 6377, 6425, 7316 | 5662, 6176, 7217, 7218, 7219, 7220, 7221, 7222 +10 more | gpl | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+|===
+
+== Family Relationship Context
+
+_These sections summarize deterministic client-side family metadata and reverse-index relationships. They are context for later owner/dependency inference, not direct quest-target promotion._
+
+=== Quest Sequence
+
+* seq no: 103
+* previous: 10310100 -- Infiltrate the First Defense Area
+* next: 10310200 -- Recapture! First Gate
 
 == ARC Association Context
 
 _ARC associations are contextual only. They show which quest-stage and marker resources are bundled with this quest._
 
-* arc file: client/03040008/quest/q10310101.arc.json
+* arc file: link:../../../../client/03040008/quest/q10310101.arc.json#L1[client/03040008/quest/q10310101.arc.json#L1]
 * resource count: 20
+* stage codes: st0137
+* resource families: .fmi, .fsm, .gmd, .mss, .qmi, .qst, .qtd
 
 === st0137 -- Feryana Wilderness by Castle
 
@@ -42,18 +69,489 @@ _ARC associations are contextual only. They show which quest-stage and marker re
 * rAIFSM: quest/10310101/npc/danyakukoNPC
 * rGUIMessage: ui/00_message/quest/q10310101
 
+== Stage Neighborhood Context
+
+_Stage-neighborhood context summarizes scanner-relevant client files that share the quest's archive stage codes. This is deterministic client topology, not inferred ownership._
+
+* scanner-relevant stage files: 214
+* indexed stage codes: st0137
+
+=== st0137 -- Feryana Wilderness by Castle
+
+* scanner files: 214
+* .fsm.json: 3
+* .gpl.json: 5
+* .lot.json: 161
+* .qmi.json: 29
+* .qst.json: 16
+
+== Stage Neighborhood External-State Cues
+
+_These cues are deterministic client-side observations from the quest's stage neighborhood. They are not promoted to direct quest targets yet; they highlight q6/q7-owned external state values co-located in the quest's archive stages._
+
+* cue count: 18
+* owner families: q6, q7
+
+[cols="1,1,1,2,2,2",options="header"]
+|===
+| Value | Kind | Hits | Sources | Owners | Stages
+
+| Flag 7237 | layout_flag | 5 | gpl | 70031001 | st0137
+| Flag 7239 | layout_flag | 5 | gpl | 70031001 | st0137
+| Flag 7226 | layout_flag | 4 | gpl | 70031001 | st0137
+| Flag 7238 | layout_flag | 4 | gpl | 70031001 | st0137
+| Flag 7227 | layout_flag | 3 | gpl | 70031001 | st0137
+| Flag 5662 | layout_flag | 1 | gpl | 70031001 | st0137
+| Flag 6176 | layout_flag | 1 | gpl | 70031001 | st0137
+| Flag 7217 | layout_flag | 1 | gpl | 70031001 | st0137
+| Flag 7218 | layout_flag | 1 | gpl | 70031001 | st0137
+| Flag 7219 | layout_flag | 1 | gpl | 70031001 | st0137
+| Flag 7220 | layout_flag | 1 | gpl | 70031001 | st0137
+| Flag 7221 | layout_flag | 1 | gpl | 70031001 | st0137
+| Flag 7222 | layout_flag | 1 | gpl | 70031001 | st0137
+| Flag 7223 | layout_flag | 1 | gpl | 70031001 | st0137
+| Flag 7224 | layout_flag | 1 | gpl | 70031001 | st0137
+| Flag 7228 | layout_flag | 1 | gpl | 70031001 | st0137
+| Flag 7298 | layout_flag | 1 | gpl | 70031001 | st0137
+| Flag 7302 | layout_flag | 1 | gpl | 70031001 | st0137
+|===
+
+== Bounded Graph Expansion
+
+_This graph summarizes bounded deterministic and inferred edges around the quest: quest archive stages, direct source families, stage-linked owner catalogs, promoted dependencies, reverse-index event/group links, and family-specific table edges._
+
+* max depth: 3
+* node count: 60
+* edge count: 93
+* node kinds: direct_family=3, family_context=1, lot_file=17, owner_quest=1, quest=1, sequence_quest=2, stage=1, stage_group=34
+* derivation: Direct=15, Graph=136, Owner Index=2
+
+=== Mermaid Graph Slice
+
+_This Mermaid flowchart shows a capped slice of the bounded graph so large quest reports stay readable while still exposing the graph structure._
+
+[mermaid]
+....
+flowchart TD
+    node_quest_10310101["Quest 10310101"]
+    node_direct_family_fsm["fsm direct hits (33)"]
+    node_direct_family_lot["lot direct hits (2)"]
+    node_direct_family_qst["qst direct hits (54)"]
+    node_family_context_quest_sequence["Quest Sequence"]
+    node_stage_st0137["st0137 -- Feryana Wilderness by Castle"]
+    node_sequence_quest_10310100["Quest 10310100"]
+    node_sequence_quest_10310200["Quest 10310200"]
+    node_stage_group_st0137_10["GPL group st0137/10"]
+    node_stage_group_st0137_122["GPL group st0137/122"]
+    node_stage_group_st0137_123["GPL group st0137/123"]
+    node_stage_group_st0137_136["GPL group st0137/136"]
+    node_stage_group_st0137_138["GPL group st0137/138"]
+    node_stage_group_st0137_139["GPL group st0137/139"]
+    node_stage_group_st0137_143["GPL group st0137/143"]
+    node_stage_group_st0137_144["GPL group st0137/144"]
+    node_stage_group_st0137_146["GPL group st0137/146"]
+    node_stage_group_st0137_147["GPL group st0137/147"]
+    node_stage_group_st0137_149["GPL group st0137/149"]
+    node_stage_group_st0137_150["GPL group st0137/150"]
+    node_stage_group_st0137_151["GPL group st0137/151"]
+    node_stage_group_st0137_152["GPL group st0137/152"]
+    node_stage_group_st0137_153["GPL group st0137/153"]
+    node_stage_group_st0137_161["GPL group st0137/161"]
+    node_stage_group_st0137_162["GPL group st0137/162"]
+    node_quest_10310101 -->|direct_source_family| node_direct_family_fsm
+    node_quest_10310101 -->|direct_source_family| node_direct_family_lot
+    node_quest_10310101 -->|direct_source_family| node_direct_family_qst
+    node_quest_10310101 -->|family:quest_sequence| node_family_context_quest_sequence
+    node_quest_10310101 -->|quest_archive_stage| node_stage_st0137
+    node_family_context_quest_sequence -->|sequence_next| node_sequence_quest_10310200
+    node_family_context_quest_sequence -->|sequence_previous| node_sequence_quest_10310100
+    node_stage_st0137 -->|stage_group_reference| node_stage_group_st0137_10
+    node_stage_st0137 -->|stage_group_reference| node_stage_group_st0137_122
+    node_stage_st0137 -->|stage_group_reference| node_stage_group_st0137_123
+    node_stage_st0137 -->|stage_group_reference| node_stage_group_st0137_136
+    node_stage_st0137 -->|stage_group_reference| node_stage_group_st0137_138
+    node_stage_st0137 -->|stage_group_reference| node_stage_group_st0137_139
+    node_stage_st0137 -->|stage_group_reference| node_stage_group_st0137_143
+    node_stage_st0137 -->|stage_group_reference| node_stage_group_st0137_144
+    node_stage_st0137 -->|stage_group_reference| node_stage_group_st0137_146
+    node_stage_st0137 -->|stage_group_reference| node_stage_group_st0137_147
+    node_stage_st0137 -->|stage_group_reference| node_stage_group_st0137_149
+    node_stage_st0137 -->|stage_group_reference| node_stage_group_st0137_150
+    node_stage_st0137 -->|stage_group_reference| node_stage_group_st0137_151
+    node_stage_st0137 -->|stage_group_reference| node_stage_group_st0137_152
+    node_stage_st0137 -->|stage_group_reference| node_stage_group_st0137_153
+    node_stage_st0137 -->|stage_group_reference| node_stage_group_st0137_161
+    node_stage_st0137 -->|stage_group_reference| node_stage_group_st0137_162
+    classDef direct_deterministic fill:#e8f5e9,stroke:#2e7d32,stroke-width:1px
+    classDef owner_index fill:#e3f2fd,stroke:#1565c0,stroke-width:1px
+    classDef dependency_inferred fill:#fff3e0,stroke:#ef6c00,stroke-width:1px
+    classDef graph_expanded fill:#f3e5f5,stroke:#7b1fa2,stroke-width:1px
+    classDef lower_confidence fill:#fbe9e7,stroke:#d84315,stroke-width:1px
+    classDef binary_auxiliary fill:#eceff1,stroke:#455a64,stroke-width:1px
+    class node_quest_10310101,node_direct_family_fsm,node_direct_family_lot,node_direct_family_qst,node_family_context_quest_sequence,node_stage_st0137,node_sequence_quest_10310100,node_sequence_quest_10310200 direct_deterministic
+    class node_stage_group_st0137_10,node_stage_group_st0137_122,node_stage_group_st0137_123,node_stage_group_st0137_136,node_stage_group_st0137_138,node_stage_group_st0137_139,node_stage_group_st0137_143,node_stage_group_st0137_144,node_stage_group_st0137_146,node_stage_group_st0137_147,node_stage_group_st0137_149,node_stage_group_st0137_150,node_stage_group_st0137_151,node_stage_group_st0137_152,node_stage_group_st0137_153,node_stage_group_st0137_161,node_stage_group_st0137_162 graph_expanded
+....
+
+[cols="1,2,2,2,2,4",options="header"]
+|===
+| Depth | Edge | From | To | Derivation | Why
+
+| 1 | direct_source_family | quest:10310101 | direct-family:fsm | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | direct_source_family | quest:10310101 | direct-family:lot | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | direct_source_family | quest:10310101 | direct-family:qst | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | family_context:quest_sequence | quest:10310101 | family-context:quest_sequence | Direct | Family-specific decoded tables provide deterministic context for this quest.
+| 1 | quest_archive_stage | quest:10310101 | stage:st0137 | Direct | Quest archive topology directly links this quest to the stage code.
+| 2 | sequence_next | family-context:quest_sequence | sequence-quest:10310200 | Direct | QuestSequence links this quest to its neighboring sequence quest.
+| 2 | sequence_previous | family-context:quest_sequence | sequence-quest:10310100 | Direct | QuestSequence links this quest to its neighboring sequence quest.
+| 2 | stage_group_reference | stage:st0137 | stage-group:st0137:10 | Graph | Reverse indexes expose GPL group references for this stage.
+| 2 | stage_group_reference | stage:st0137 | stage-group:st0137:122 | Graph | Reverse indexes expose GPL group references for this stage.
+| 2 | stage_group_reference | stage:st0137 | stage-group:st0137:123 | Graph | Reverse indexes expose GPL group references for this stage.
+| 2 | stage_group_reference | stage:st0137 | stage-group:st0137:136 | Graph | Reverse indexes expose GPL group references for this stage.
+| 2 | stage_group_reference | stage:st0137 | stage-group:st0137:138 | Graph | Reverse indexes expose GPL group references for this stage.
+| 2 | stage_group_reference | stage:st0137 | stage-group:st0137:139 | Graph | Reverse indexes expose GPL group references for this stage.
+| 2 | stage_group_reference | stage:st0137 | stage-group:st0137:143 | Graph | Reverse indexes expose GPL group references for this stage.
+| 2 | stage_group_reference | stage:st0137 | stage-group:st0137:144 | Graph | Reverse indexes expose GPL group references for this stage.
+| 2 | stage_group_reference | stage:st0137 | stage-group:st0137:146 | Graph | Reverse indexes expose GPL group references for this stage.
+| 2 | stage_group_reference | stage:st0137 | stage-group:st0137:147 | Graph | Reverse indexes expose GPL group references for this stage.
+| 2 | stage_group_reference | stage:st0137 | stage-group:st0137:149 | Graph | Reverse indexes expose GPL group references for this stage.
+| 2 | stage_group_reference | stage:st0137 | stage-group:st0137:150 | Graph | Reverse indexes expose GPL group references for this stage.
+| 2 | stage_group_reference | stage:st0137 | stage-group:st0137:151 | Graph | Reverse indexes expose GPL group references for this stage.
+| 2 | stage_group_reference | stage:st0137 | stage-group:st0137:152 | Graph | Reverse indexes expose GPL group references for this stage.
+| 2 | stage_group_reference | stage:st0137 | stage-group:st0137:153 | Graph | Reverse indexes expose GPL group references for this stage.
+| 2 | stage_group_reference | stage:st0137 | stage-group:st0137:161 | Graph | Reverse indexes expose GPL group references for this stage.
+| 2 | stage_group_reference | stage:st0137 | stage-group:st0137:162 | Graph | Reverse indexes expose GPL group references for this stage.
+| 2 | stage_group_reference | stage:st0137 | stage-group:st0137:168 | Graph | Reverse indexes expose GPL group references for this stage.
+| 2 | stage_group_reference | stage:st0137 | stage-group:st0137:169 | Graph | Reverse indexes expose GPL group references for this stage.
+| 2 | stage_group_reference | stage:st0137 | stage-group:st0137:178 | Graph | Reverse indexes expose GPL group references for this stage.
+| 2 | stage_group_reference | stage:st0137 | stage-group:st0137:179 | Graph | Reverse indexes expose GPL group references for this stage.
+| 2 | stage_group_reference | stage:st0137 | stage-group:st0137:189 | Graph | Reverse indexes expose GPL group references for this stage.
+| 2 | stage_group_reference | stage:st0137 | stage-group:st0137:190 | Graph | Reverse indexes expose GPL group references for this stage.
+| 2 | stage_group_reference | stage:st0137 | stage-group:st0137:191 | Graph | Reverse indexes expose GPL group references for this stage.
+| 2 | stage_group_reference | stage:st0137 | stage-group:st0137:192 | Graph | Reverse indexes expose GPL group references for this stage.
+| 2 | stage_group_reference | stage:st0137 | stage-group:st0137:197 | Graph | Reverse indexes expose GPL group references for this stage.
+| 2 | stage_group_reference | stage:st0137 | stage-group:st0137:198 | Graph | Reverse indexes expose GPL group references for this stage.
+| 2 | stage_group_reference | stage:st0137 | stage-group:st0137:199 | Graph | Reverse indexes expose GPL group references for this stage.
+| 2 | stage_group_reference | stage:st0137 | stage-group:st0137:201 | Graph | Reverse indexes expose GPL group references for this stage.
+| 2 | stage_group_reference | stage:st0137 | stage-group:st0137:35 | Graph | Reverse indexes expose GPL group references for this stage.
+| 2 | stage_group_reference | stage:st0137 | stage-group:st0137:36 | Graph | Reverse indexes expose GPL group references for this stage.
+| 2 | stage_group_reference | stage:st0137 | stage-group:st0137:37 | Graph | Reverse indexes expose GPL group references for this stage.
+| 2 | stage_group_reference | stage:st0137 | stage-group:st0137:40 | Graph | Reverse indexes expose GPL group references for this stage.
+|===
+
 == Flag Summary Matrix
 
 [cols="2,1,1,2,2,3,3",options="header"]
 |===
 | Target | Kind | Hits | Sources | Stages | Relationships | Description
 
+| Flag 7181 | layout_flag | 4 | qst | st0137 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0137 \| QuestGroup 4 \| 1-3集会場：ソネル（開始）
+| Flag 7182 | layout_flag | 2 | qst | st0137 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0137 \| QuestGroup 5 \| 1-3集会場:ソネル（弾薬庫前）
+| Flag 7185 | layout_flag | 2 | qst | st0137 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0137 \| QuestGroup 7 \| 1-3集会場：弾薬庫破壊トリガー
+| Flag 7186 | layout_flag | 2 | qst | st0137 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0137 \| QuestGroup 9 \| 1-3集会場：爆破後ソネル
+| Flag 7190 | layout_flag | 2 | qst | st0137 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0137 \| QuestGroup 10 \| 1-3集会場：エクストラソネル
+| Flag 7191 | layout_flag | 2 | qst | st0137 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0137 \| QuestGroup 11 \| 1-3集会場：エクストラクリアソネル
+| Flag 7203 | layout_flag | 2 | qst | st0137 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0137 \| QuestGroup 1 \| 1-1兵舎：テント小OM
+| Flag 7204 | layout_flag | 2 | qst | st0137 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0137 \| QuestGroup 2 \| 1-1兵舎：テント中OM
+| Flag 7205 | layout_flag | 2 | qst | st0137 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0137 \| QuestGroup 3 \| 1-1兵舎：テント大OM
+| Flag 7266 | layout_flag | 2 | qst | st0137 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0137 \| QuestGroup 12 \| 1-1兵舎：失敗時ソネル
+| Flag 7267 | layout_flag | 2 | qst | st0137 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0137 \| 1-1兵舎：ソネル
+| Flag 7268 | layout_flag | 2 | qst | st0137 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0137 \| QuestGroup 6 \| 1-3集会場：テント内捕虜ＮＰＣ
+| Flag 7292 | layout_flag | 2 | qst | st0137 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0137 \| QuestGroup 8 \| 1-3集会場：弾薬庫用ソネル
+| Flag 7304 | layout_flag | 2 | qst | st0137 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0137 \| QuestGroup 14 \| 1-3集会場：破壊時煙OM
+| Flag 7305 | layout_flag | 2 | qst | st0137 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0137 \| QuestGroup 15 \| 1-3集会場：テント内ソネル
 | Quest ID 10310101 | quest_id | 57 | fsm, lot, qst | st0137 | 🔍 FSM Check, ✏️ FSM Set, 💬 Text Quest | Derived quest-wide association scan
 |===
 
 == Known Documented Targets
 
+* quest 10310101 -- Flag 7181 -- QST local: st0137 | QuestGroup 4 | 1-3集会場：ソネル（開始）
+* quest 10310101 -- Flag 7182 -- QST local: st0137 | QuestGroup 5 | 1-3集会場:ソネル（弾薬庫前）
+* quest 10310101 -- Flag 7185 -- QST local: st0137 | QuestGroup 7 | 1-3集会場：弾薬庫破壊トリガー
+* quest 10310101 -- Flag 7186 -- QST local: st0137 | QuestGroup 9 | 1-3集会場：爆破後ソネル
+* quest 10310101 -- Flag 7190 -- QST local: st0137 | QuestGroup 10 | 1-3集会場：エクストラソネル
+* quest 10310101 -- Flag 7191 -- QST local: st0137 | QuestGroup 11 | 1-3集会場：エクストラクリアソネル
+* quest 10310101 -- Flag 7203 -- QST local: st0137 | QuestGroup 1 | 1-1兵舎：テント小OM
+* quest 10310101 -- Flag 7204 -- QST local: st0137 | QuestGroup 2 | 1-1兵舎：テント中OM
+* quest 10310101 -- Flag 7205 -- QST local: st0137 | QuestGroup 3 | 1-1兵舎：テント大OM
+* quest 10310101 -- Flag 7266 -- QST local: st0137 | QuestGroup 12 | 1-1兵舎：失敗時ソネル
+* quest 10310101 -- Flag 7267 -- QST local: st0137 | 1-1兵舎：ソネル
+* quest 10310101 -- Flag 7268 -- QST local: st0137 | QuestGroup 6 | 1-3集会場：テント内捕虜ＮＰＣ
+* quest 10310101 -- Flag 7292 -- QST local: st0137 | QuestGroup 8 | 1-3集会場：弾薬庫用ソネル
+* quest 10310101 -- Flag 7304 -- QST local: st0137 | QuestGroup 14 | 1-3集会場：破壊時煙OM
+* quest 10310101 -- Flag 7305 -- QST local: st0137 | QuestGroup 15 | 1-3集会場：テント内ソネル
 * Quest ID 10310101 -- Derived quest-wide association scan [Derived]
+
+== Flag 7181 -- Quest 10310101
+
+origin:: derived_qst_local
+direct hits:: *4*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 4 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json[client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json] | QuestStageList[].QuestGrp[4].Condition | Condition | quest 10310101 / Feryana Wilderness by Castle / "QuestGroup 4 \| 1-3集会場：ソネル（開始）" / QuestSet=QuestSetInfoNpc \| GroupNo=4 \|\| QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100492 \| TextType=2 \| TextQuestNo=10310101 \| GroupNo=4 \|\| +1 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json[client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json] | QuestStageList[].QuestGrp[4].EraseCondition | EraseCondition | quest 10310101 / Feryana Wilderness by Castle / "QuestGroup 4 \| 1-3集会場：ソネル（開始）" / QuestSet=QuestSetInfoNpc \| GroupNo=4 \|\| QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100492 \| TextType=2 \| TextQuestNo=10310101 \| GroupNo=4 \|\| +1 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json[client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json] | QuestStageList[].QuestGrp[13].Condition | Condition | quest 10310101 / Feryana Wilderness by Castle / "QuestGroup 13 \| 1-3集会場：弾薬庫発見用OM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100539 \| TextType=2 \| TextQuestNo=10310101 \| GroupNo=13 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json[client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json] | QuestStageList[].QuestGrp[13].EraseCondition | EraseCondition | quest 10310101 / Feryana Wilderness by Castle / "QuestGroup 13 \| 1-3集会場：弾薬庫発見用OM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100539 \| TextType=2 \| TextQuestNo=10310101 \| GroupNo=13 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 7182 -- Quest 10310101
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json[client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json] | QuestStageList[].QuestGrp[5].Condition | Condition | quest 10310101 / Feryana Wilderness by Castle / "QuestGroup 5 \| 1-3集会場:ソネル（弾薬庫前）" / QuestSet=QuestSetInfoNpc \| GroupNo=5 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json[client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json] | QuestStageList[].QuestGrp[5].EraseCondition | EraseCondition | quest 10310101 / Feryana Wilderness by Castle / "QuestGroup 5 \| 1-3集会場:ソネル（弾薬庫前）" / QuestSet=QuestSetInfoNpc \| GroupNo=5 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 7185 -- Quest 10310101
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json[client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json] | QuestStageList[].QuestGrp[7].Condition | Condition | quest 10310101 / Feryana Wilderness by Castle / "QuestGroup 7 \| 1-3集会場：弾薬庫破壊トリガー" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100495 \| TextType=2 \| TextQuestNo=10310101 \| GroupNo=7 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json[client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json] | QuestStageList[].QuestGrp[7].EraseCondition | EraseCondition | quest 10310101 / Feryana Wilderness by Castle / "QuestGroup 7 \| 1-3集会場：弾薬庫破壊トリガー" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100495 \| TextType=2 \| TextQuestNo=10310101 \| GroupNo=7 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 7186 -- Quest 10310101
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json[client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json] | QuestStageList[].QuestGrp[9].Condition | Condition | quest 10310101 / Feryana Wilderness by Castle / "QuestGroup 9 \| 1-3集会場：爆破後ソネル" / QuestSet=QuestSetInfoNpc \| GroupNo=9 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json[client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json] | QuestStageList[].QuestGrp[9].EraseCondition | EraseCondition | quest 10310101 / Feryana Wilderness by Castle / "QuestGroup 9 \| 1-3集会場：爆破後ソネル" / QuestSet=QuestSetInfoNpc \| GroupNo=9 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 7190 -- Quest 10310101
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json[client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json] | QuestStageList[].QuestGrp[10].Condition | Condition | quest 10310101 / Feryana Wilderness by Castle / "QuestGroup 10 \| 1-3集会場：エクストラソネル" / QuestSet=QuestSetInfoNpc \| GroupNo=10 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json[client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json] | QuestStageList[].QuestGrp[10].EraseCondition | EraseCondition | quest 10310101 / Feryana Wilderness by Castle / "QuestGroup 10 \| 1-3集会場：エクストラソネル" / QuestSet=QuestSetInfoNpc \| GroupNo=10 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 7191 -- Quest 10310101
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json[client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json] | QuestStageList[].QuestGrp[11].Condition | Condition | quest 10310101 / Feryana Wilderness by Castle / "QuestGroup 11 \| 1-3集会場：エクストラクリアソネル" / QuestSet=QuestSetInfoNpc \| GroupNo=11 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json[client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json] | QuestStageList[].QuestGrp[11].EraseCondition | EraseCondition | quest 10310101 / Feryana Wilderness by Castle / "QuestGroup 11 \| 1-3集会場：エクストラクリアソネル" / QuestSet=QuestSetInfoNpc \| GroupNo=11 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 7203 -- Quest 10310101
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json[client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json] | QuestStageList[].QuestGrp[1].Condition | Condition | quest 10310101 / Feryana Wilderness by Castle / "QuestGroup 1 \| 1-1兵舎：テント小OM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100476 \| TextType=2 \| TextQuestNo=10310101 \| GroupNo=1 \|\| QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100477 \| TextType=2 \| TextQuestNo=10310101 \| GroupNo=1 \|\| +1 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json[client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json] | QuestStageList[].QuestGrp[1].EraseCondition | EraseCondition | quest 10310101 / Feryana Wilderness by Castle / "QuestGroup 1 \| 1-1兵舎：テント小OM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100476 \| TextType=2 \| TextQuestNo=10310101 \| GroupNo=1 \|\| QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100477 \| TextType=2 \| TextQuestNo=10310101 \| GroupNo=1 \|\| +1 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 7204 -- Quest 10310101
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json[client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json] | QuestStageList[].QuestGrp[2].Condition | Condition | quest 10310101 / Feryana Wilderness by Castle / "QuestGroup 2 \| 1-1兵舎：テント中OM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100481 \| TextType=2 \| TextQuestNo=10310101 \| GroupNo=2 \|\| QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100482 \| TextType=2 \| TextQuestNo=10310101 \| GroupNo=2 \|\| +3 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json[client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json] | QuestStageList[].QuestGrp[2].EraseCondition | EraseCondition | quest 10310101 / Feryana Wilderness by Castle / "QuestGroup 2 \| 1-1兵舎：テント中OM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100481 \| TextType=2 \| TextQuestNo=10310101 \| GroupNo=2 \|\| QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100482 \| TextType=2 \| TextQuestNo=10310101 \| GroupNo=2 \|\| +3 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 7205 -- Quest 10310101
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json[client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json] | QuestStageList[].QuestGrp[3].Condition | Condition | quest 10310101 / Feryana Wilderness by Castle / "QuestGroup 3 \| 1-1兵舎：テント大OM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100486 \| TextType=2 \| TextQuestNo=10310101 \| GroupNo=3 \|\| QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100487 \| TextType=2 \| TextQuestNo=10310101 \| GroupNo=3 \|\| +8 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json[client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json] | QuestStageList[].QuestGrp[3].EraseCondition | EraseCondition | quest 10310101 / Feryana Wilderness by Castle / "QuestGroup 3 \| 1-1兵舎：テント大OM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100486 \| TextType=2 \| TextQuestNo=10310101 \| GroupNo=3 \|\| QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100487 \| TextType=2 \| TextQuestNo=10310101 \| GroupNo=3 \|\| +8 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 7266 -- Quest 10310101
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json[client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json] | QuestStageList[].QuestGrp[12].Condition | Condition | quest 10310101 / Feryana Wilderness by Castle / "QuestGroup 12 \| 1-1兵舎：失敗時ソネル" / QuestSet=QuestSetInfoNpc \| GroupNo=12 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json[client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json] | QuestStageList[].QuestGrp[12].EraseCondition | EraseCondition | quest 10310101 / Feryana Wilderness by Castle / "QuestGroup 12 \| 1-1兵舎：失敗時ソネル" / QuestSet=QuestSetInfoNpc \| GroupNo=12 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 7267 -- Quest 10310101
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json[client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json] | QuestStageList[].QuestGrp[0].Condition | Condition | quest 10310101 / Feryana Wilderness by Castle / "1-1兵舎：ソネル" / QuestSet=QuestSetInfoNpc | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json[client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json] | QuestStageList[].QuestGrp[0].EraseCondition | EraseCondition | quest 10310101 / Feryana Wilderness by Castle / "1-1兵舎：ソネル" / QuestSet=QuestSetInfoNpc | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 7268 -- Quest 10310101
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json[client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json] | QuestStageList[].QuestGrp[6].Condition | Condition | quest 10310101 / Feryana Wilderness by Castle / "QuestGroup 6 \| 1-3集会場：テント内捕虜ＮＰＣ" / QuestSet=QuestSetInfoNpc \| GroupNo=6 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json[client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json] | QuestStageList[].QuestGrp[6].EraseCondition | EraseCondition | quest 10310101 / Feryana Wilderness by Castle / "QuestGroup 6 \| 1-3集会場：テント内捕虜ＮＰＣ" / QuestSet=QuestSetInfoNpc \| GroupNo=6 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 7292 -- Quest 10310101
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json[client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json] | QuestStageList[].QuestGrp[8].Condition | Condition | quest 10310101 / Feryana Wilderness by Castle / "QuestGroup 8 \| 1-3集会場：弾薬庫用ソネル" / QuestSet=QuestSetInfoNpc \| GroupNo=8 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json[client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json] | QuestStageList[].QuestGrp[8].EraseCondition | EraseCondition | quest 10310101 / Feryana Wilderness by Castle / "QuestGroup 8 \| 1-3集会場：弾薬庫用ソネル" / QuestSet=QuestSetInfoNpc \| GroupNo=8 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 7304 -- Quest 10310101
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json[client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json] | QuestStageList[].QuestGrp[14].Condition | Condition | quest 10310101 / Feryana Wilderness by Castle / "QuestGroup 14 \| 1-3集会場：破壊時煙OM" / QuestSet=QuestSetInfoOm \| OmID=522553 \| UnitID=522553 \| EnableZone \| GroupNo=14 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json[client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json] | QuestStageList[].QuestGrp[14].EraseCondition | EraseCondition | quest 10310101 / Feryana Wilderness by Castle / "QuestGroup 14 \| 1-3集会場：破壊時煙OM" / QuestSet=QuestSetInfoOm \| OmID=522553 \| UnitID=522553 \| EnableZone \| GroupNo=14 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 7305 -- Quest 10310101
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json[client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json] | QuestStageList[].QuestGrp[15].Condition | Condition | quest 10310101 / Feryana Wilderness by Castle / "QuestGroup 15 \| 1-3集会場：テント内ソネル" / QuestSet=QuestSetInfoNpc \| GroupNo=15 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json[client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json] | QuestStageList[].QuestGrp[15].EraseCondition | EraseCondition | quest 10310101 / Feryana Wilderness by Castle / "QuestGroup 15 \| 1-3集会場：テント内ソネル" / QuestSet=QuestSetInfoNpc \| GroupNo=15 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
 
 == Quest ID 10310101
 
@@ -65,74 +563,74 @@ ranked candidates:: *0*
 
 ==== direct -- 24 hit(s)
 
-[cols="1,1,3,3,2,3,3",options="header"]
+[cols="1,1,1,3,3,2,3,3",options="header"]
 |===
-| Family | Confidence | File | JSON Path | Field | Context | Why
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
 
-| QST | 92 | client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json | QuestStageList[].QuestGrp[1].QuestSet[0].TextQuestNo | TextQuestNo | quest 10310101 / Feryana Wilderness by Castle / "QuestGroup 1 \| 1-1兵舎：テント小OM \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100476 \| TextType=2 \| TextQuestNo=10310101 \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
-| QST | 92 | client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json | QuestStageList[].QuestGrp[1].QuestSet[1].TextQuestNo | TextQuestNo | quest 10310101 / Feryana Wilderness by Castle / "QuestGroup 1 \| 1-1兵舎：テント小OM \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100477 \| TextType=2 \| TextQuestNo=10310101 \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
-| QST | 92 | client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json | QuestStageList[].QuestGrp[1].QuestSet[2].TextQuestNo | TextQuestNo | quest 10310101 / Feryana Wilderness by Castle / "QuestGroup 1 \| 1-1兵舎：テント小OM \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100478 \| TextType=2 \| TextQuestNo=10310101 \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
-| QST | 92 | client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json | QuestStageList[].QuestGrp[2].QuestSet[0].TextQuestNo | TextQuestNo | quest 10310101 / Feryana Wilderness by Castle / "QuestGroup 2 \| 1-1兵舎：テント中OM \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100481 \| TextType=2 \| TextQuestNo=10310101 \| GroupNo=2 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
-| QST | 92 | client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json | QuestStageList[].QuestGrp[2].QuestSet[1].TextQuestNo | TextQuestNo | quest 10310101 / Feryana Wilderness by Castle / "QuestGroup 2 \| 1-1兵舎：テント中OM \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100482 \| TextType=2 \| TextQuestNo=10310101 \| GroupNo=2 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
-| QST | 92 | client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json | QuestStageList[].QuestGrp[2].QuestSet[2].TextQuestNo | TextQuestNo | quest 10310101 / Feryana Wilderness by Castle / "QuestGroup 2 \| 1-1兵舎：テント中OM \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100483 \| TextType=2 \| TextQuestNo=10310101 \| GroupNo=2 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
-| QST | 92 | client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json | QuestStageList[].QuestGrp[2].QuestSet[3].TextQuestNo | TextQuestNo | quest 10310101 / Feryana Wilderness by Castle / "QuestGroup 2 \| 1-1兵舎：テント中OM \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100484 \| TextType=2 \| TextQuestNo=10310101 \| GroupNo=2 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
-| QST | 92 | client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json | QuestStageList[].QuestGrp[2].QuestSet[4].TextQuestNo | TextQuestNo | quest 10310101 / Feryana Wilderness by Castle / "QuestGroup 2 \| 1-1兵舎：テント中OM \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100485 \| TextType=2 \| TextQuestNo=10310101 \| GroupNo=2 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
-| QST | 92 | client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json | QuestStageList[].QuestGrp[3].QuestSet[0].TextQuestNo | TextQuestNo | quest 10310101 / Feryana Wilderness by Castle / "QuestGroup 3 \| 1-1兵舎：テント大OM \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100486 \| TextType=2 \| TextQuestNo=10310101 \| GroupNo=3 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
-| QST | 92 | client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json | QuestStageList[].QuestGrp[3].QuestSet[1].TextQuestNo | TextQuestNo | quest 10310101 / Feryana Wilderness by Castle / "QuestGroup 3 \| 1-1兵舎：テント大OM \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100487 \| TextType=2 \| TextQuestNo=10310101 \| GroupNo=3 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
-| QST | 92 | client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json | QuestStageList[].QuestGrp[3].QuestSet[2].TextQuestNo | TextQuestNo | quest 10310101 / Feryana Wilderness by Castle / "QuestGroup 3 \| 1-1兵舎：テント大OM \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100488 \| TextType=2 \| TextQuestNo=10310101 \| GroupNo=3 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
-| QST | 92 | client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json | QuestStageList[].QuestGrp[3].QuestSet[3].TextQuestNo | TextQuestNo | quest 10310101 / Feryana Wilderness by Castle / "QuestGroup 3 \| 1-1兵舎：テント大OM \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100500 \| TextType=2 \| TextQuestNo=10310101 \| GroupNo=3 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
-| QST | 92 | client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json | QuestStageList[].QuestGrp[3].QuestSet[4].TextQuestNo | TextQuestNo | quest 10310101 / Feryana Wilderness by Castle / "QuestGroup 3 \| 1-1兵舎：テント大OM \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100489 \| TextType=2 \| TextQuestNo=10310101 \| GroupNo=3 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
-| QST | 92 | client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json | QuestStageList[].QuestGrp[3].QuestSet[5].TextQuestNo | TextQuestNo | quest 10310101 / Feryana Wilderness by Castle / "QuestGroup 3 \| 1-1兵舎：テント大OM \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100490 \| TextType=2 \| TextQuestNo=10310101 \| GroupNo=3 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
-| QST | 92 | client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json | QuestStageList[].QuestGrp[3].QuestSet[6].TextQuestNo | TextQuestNo | quest 10310101 / Feryana Wilderness by Castle / "QuestGroup 3 \| 1-1兵舎：テント大OM \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100501 \| TextType=2 \| TextQuestNo=10310101 \| GroupNo=3 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
-| QST | 92 | client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json | QuestStageList[].QuestGrp[3].QuestSet[7].TextQuestNo | TextQuestNo | quest 10310101 / Feryana Wilderness by Castle / "QuestGroup 3 \| 1-1兵舎：テント大OM \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100502 \| TextType=2 \| TextQuestNo=10310101 \| GroupNo=3 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
-| QST | 92 | client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json | QuestStageList[].QuestGrp[3].QuestSet[8].TextQuestNo | TextQuestNo | quest 10310101 / Feryana Wilderness by Castle / "QuestGroup 3 \| 1-1兵舎：テント大OM \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100503 \| TextType=2 \| TextQuestNo=10310101 \| GroupNo=3 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
-| QST | 92 | client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json | QuestStageList[].QuestGrp[3].QuestSet[9].TextQuestNo | TextQuestNo | quest 10310101 / Feryana Wilderness by Castle / "QuestGroup 3 \| 1-1兵舎：テント大OM \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100504 \| TextType=2 \| TextQuestNo=10310101 \| GroupNo=3 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
-| QST | 92 | client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json | QuestStageList[].QuestGrp[4].QuestSet[1].TextQuestNo | TextQuestNo | quest 10310101 / Feryana Wilderness by Castle / "QuestGroup 4 \| 1-3集会場：ソネル（開始） \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100492 \| TextType=2 \| TextQuestNo=10310101 \| GroupNo=4 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
-| QST | 92 | client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json | QuestStageList[].QuestGrp[4].QuestSet[2].TextQuestNo | TextQuestNo | quest 10310101 / Feryana Wilderness by Castle / "QuestGroup 4 \| 1-3集会場：ソネル（開始） \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100491 \| TextType=2 \| TextQuestNo=10310101 \| GroupNo=4 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
-| QST | 92 | client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json | QuestStageList[].QuestGrp[7].QuestSet[0].TextQuestNo | TextQuestNo | quest 10310101 / Feryana Wilderness by Castle / "QuestGroup 7 \| 1-3集会場：弾薬庫破壊トリガー \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100495 \| TextType=2 \| TextQuestNo=10310101 \| GroupNo=7 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
-| QST | 92 | client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json | QuestStageList[].QuestGrp[13].QuestSet[0].TextQuestNo | TextQuestNo | quest 10310101 / Feryana Wilderness by Castle / "QuestGroup 13 \| 1-3集会場：弾薬庫発見用OM \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100539 \| TextType=2 \| TextQuestNo=10310101 \| GroupNo=13 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
-| LOT | 92 | client/03040008/stage/st0137/lot/st0137_28m11n/scr/st0137/etc/st0137_28m11n_p119.lot.json | Array[0].Info.TextQuestNo | TextQuestNo | quest 10310101 / Feryana Wilderness by Castle / Feryana Wilderness / SetInfoOmText \| om522700 \| om522700 \| EnableZone | Layout placement reference; LOT hits usually gate warps, NPCs, or interactable objects in the stage layout.
-| LOT | 92 | client/03040008/stage/st0137/lot/st0137_28m11n/scr/st0137/etc/st0137_28m11n_p120.lot.json | Array[0].Info.TextQuestNo | TextQuestNo | quest 10310101 / Feryana Wilderness by Castle / Feryana Wilderness / SetInfoOmText \| om522700 \| om522700 \| EnableZone | Layout placement reference; LOT hits usually gate warps, NPCs, or interactable objects in the stage layout.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json[client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json] | QuestStageList[].QuestGrp[1].QuestSet[0].TextQuestNo | TextQuestNo | quest 10310101 / Feryana Wilderness by Castle / "QuestGroup 1 \| 1-1兵舎：テント小OM \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100476 \| TextType=2 \| TextQuestNo=10310101 \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json[client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json] | QuestStageList[].QuestGrp[1].QuestSet[1].TextQuestNo | TextQuestNo | quest 10310101 / Feryana Wilderness by Castle / "QuestGroup 1 \| 1-1兵舎：テント小OM \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100477 \| TextType=2 \| TextQuestNo=10310101 \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json[client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json] | QuestStageList[].QuestGrp[1].QuestSet[2].TextQuestNo | TextQuestNo | quest 10310101 / Feryana Wilderness by Castle / "QuestGroup 1 \| 1-1兵舎：テント小OM \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100478 \| TextType=2 \| TextQuestNo=10310101 \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json[client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json] | QuestStageList[].QuestGrp[2].QuestSet[0].TextQuestNo | TextQuestNo | quest 10310101 / Feryana Wilderness by Castle / "QuestGroup 2 \| 1-1兵舎：テント中OM \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100481 \| TextType=2 \| TextQuestNo=10310101 \| GroupNo=2 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json[client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json] | QuestStageList[].QuestGrp[2].QuestSet[1].TextQuestNo | TextQuestNo | quest 10310101 / Feryana Wilderness by Castle / "QuestGroup 2 \| 1-1兵舎：テント中OM \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100482 \| TextType=2 \| TextQuestNo=10310101 \| GroupNo=2 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json[client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json] | QuestStageList[].QuestGrp[2].QuestSet[2].TextQuestNo | TextQuestNo | quest 10310101 / Feryana Wilderness by Castle / "QuestGroup 2 \| 1-1兵舎：テント中OM \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100483 \| TextType=2 \| TextQuestNo=10310101 \| GroupNo=2 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json[client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json] | QuestStageList[].QuestGrp[2].QuestSet[3].TextQuestNo | TextQuestNo | quest 10310101 / Feryana Wilderness by Castle / "QuestGroup 2 \| 1-1兵舎：テント中OM \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100484 \| TextType=2 \| TextQuestNo=10310101 \| GroupNo=2 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json[client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json] | QuestStageList[].QuestGrp[2].QuestSet[4].TextQuestNo | TextQuestNo | quest 10310101 / Feryana Wilderness by Castle / "QuestGroup 2 \| 1-1兵舎：テント中OM \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100485 \| TextType=2 \| TextQuestNo=10310101 \| GroupNo=2 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json[client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json] | QuestStageList[].QuestGrp[3].QuestSet[0].TextQuestNo | TextQuestNo | quest 10310101 / Feryana Wilderness by Castle / "QuestGroup 3 \| 1-1兵舎：テント大OM \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100486 \| TextType=2 \| TextQuestNo=10310101 \| GroupNo=3 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json[client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json] | QuestStageList[].QuestGrp[3].QuestSet[1].TextQuestNo | TextQuestNo | quest 10310101 / Feryana Wilderness by Castle / "QuestGroup 3 \| 1-1兵舎：テント大OM \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100487 \| TextType=2 \| TextQuestNo=10310101 \| GroupNo=3 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json[client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json] | QuestStageList[].QuestGrp[3].QuestSet[2].TextQuestNo | TextQuestNo | quest 10310101 / Feryana Wilderness by Castle / "QuestGroup 3 \| 1-1兵舎：テント大OM \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100488 \| TextType=2 \| TextQuestNo=10310101 \| GroupNo=3 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json[client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json] | QuestStageList[].QuestGrp[3].QuestSet[3].TextQuestNo | TextQuestNo | quest 10310101 / Feryana Wilderness by Castle / "QuestGroup 3 \| 1-1兵舎：テント大OM \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100500 \| TextType=2 \| TextQuestNo=10310101 \| GroupNo=3 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json[client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json] | QuestStageList[].QuestGrp[3].QuestSet[4].TextQuestNo | TextQuestNo | quest 10310101 / Feryana Wilderness by Castle / "QuestGroup 3 \| 1-1兵舎：テント大OM \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100489 \| TextType=2 \| TextQuestNo=10310101 \| GroupNo=3 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json[client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json] | QuestStageList[].QuestGrp[3].QuestSet[5].TextQuestNo | TextQuestNo | quest 10310101 / Feryana Wilderness by Castle / "QuestGroup 3 \| 1-1兵舎：テント大OM \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100490 \| TextType=2 \| TextQuestNo=10310101 \| GroupNo=3 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json[client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json] | QuestStageList[].QuestGrp[3].QuestSet[6].TextQuestNo | TextQuestNo | quest 10310101 / Feryana Wilderness by Castle / "QuestGroup 3 \| 1-1兵舎：テント大OM \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100501 \| TextType=2 \| TextQuestNo=10310101 \| GroupNo=3 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json[client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json] | QuestStageList[].QuestGrp[3].QuestSet[7].TextQuestNo | TextQuestNo | quest 10310101 / Feryana Wilderness by Castle / "QuestGroup 3 \| 1-1兵舎：テント大OM \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100502 \| TextType=2 \| TextQuestNo=10310101 \| GroupNo=3 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json[client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json] | QuestStageList[].QuestGrp[3].QuestSet[8].TextQuestNo | TextQuestNo | quest 10310101 / Feryana Wilderness by Castle / "QuestGroup 3 \| 1-1兵舎：テント大OM \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100503 \| TextType=2 \| TextQuestNo=10310101 \| GroupNo=3 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json[client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json] | QuestStageList[].QuestGrp[3].QuestSet[9].TextQuestNo | TextQuestNo | quest 10310101 / Feryana Wilderness by Castle / "QuestGroup 3 \| 1-1兵舎：テント大OM \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100504 \| TextType=2 \| TextQuestNo=10310101 \| GroupNo=3 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json[client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json] | QuestStageList[].QuestGrp[4].QuestSet[1].TextQuestNo | TextQuestNo | quest 10310101 / Feryana Wilderness by Castle / "QuestGroup 4 \| 1-3集会場：ソネル（開始） \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100492 \| TextType=2 \| TextQuestNo=10310101 \| GroupNo=4 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json[client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json] | QuestStageList[].QuestGrp[4].QuestSet[2].TextQuestNo | TextQuestNo | quest 10310101 / Feryana Wilderness by Castle / "QuestGroup 4 \| 1-3集会場：ソネル（開始） \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100491 \| TextType=2 \| TextQuestNo=10310101 \| GroupNo=4 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json[client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json] | QuestStageList[].QuestGrp[7].QuestSet[0].TextQuestNo | TextQuestNo | quest 10310101 / Feryana Wilderness by Castle / "QuestGroup 7 \| 1-3集会場：弾薬庫破壊トリガー \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100495 \| TextType=2 \| TextQuestNo=10310101 \| GroupNo=7 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json[client/03040008/quest/q10310101/quest/10310101/q10310101_st0137.qst.json] | QuestStageList[].QuestGrp[13].QuestSet[0].TextQuestNo | TextQuestNo | quest 10310101 / Feryana Wilderness by Castle / "QuestGroup 13 \| 1-3集会場：弾薬庫発見用OM \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100539 \| TextType=2 \| TextQuestNo=10310101 \| GroupNo=13 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| LOT | Direct | 92 | link:../../../../client/03040008/stage/st0137/lot/st0137_28m11n/scr/st0137/etc/st0137_28m11n_p119.lot.json#L58[client/03040008/stage/st0137/lot/st0137_28m11n/scr/st0137/etc/st0137_28m11n_p119.lot.json#L58] | Array[0].Info.TextQuestNo | TextQuestNo | quest 10310101 / Feryana Wilderness by Castle / Feryana Wilderness / SetInfoOmText \| om522700 \| om522700 \| EnableZone | Layout placement reference; LOT hits usually gate warps, NPCs, or interactable objects in the stage layout.
+| LOT | Direct | 92 | link:../../../../client/03040008/stage/st0137/lot/st0137_28m11n/scr/st0137/etc/st0137_28m11n_p120.lot.json#L58[client/03040008/stage/st0137/lot/st0137_28m11n/scr/st0137/etc/st0137_28m11n_p120.lot.json#L58] | Array[0].Info.TextQuestNo | TextQuestNo | quest 10310101 / Feryana Wilderness by Castle / Feryana Wilderness / SetInfoOmText \| om522700 \| om522700 \| EnableZone | Layout placement reference; LOT hits usually gate warps, NPCs, or interactable objects in the stage layout.
 |===
 
 ==== opaque_fsm -- 33 hit(s)
 
-[cols="1,1,3,3,2,3,3",options="header"]
+[cols="1,1,1,3,3,2,3,3",options="header"]
 |===
-| Family | Confidence | File | JSON Path | Field | Context | Why
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
 
-| FSM | 64 | client/03040008/quest/q10310101/quest/10310101/npc/spotwork_1_0.fsm.json | Process.Parameter.QuestId | QuestId | quest 10310101 (Capture the Barracks and the Assembly Hall) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
-| FSM | 64 | client/03040008/quest/q10310101/quest/10310101/npc/spotwork_1_0.fsm.json | Process.Parameter.QuestId | QuestId | quest 10310101 (Capture the Barracks and the Assembly Hall) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
-| FSM | 64 | client/03040008/quest/q10310101/quest/10310101/npc/spotwork_1_0.fsm.json | Process.Parameter.QuestId | QuestId | quest 10310101 (Capture the Barracks and the Assembly Hall) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
-| FSM | 64 | client/03040008/quest/q10310101/quest/10310101/npc/spotwork_1_0.fsm.json | Process.Parameter.QuestId | QuestId | quest 10310101 (Capture the Barracks and the Assembly Hall) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
-| FSM | 64 | client/03040008/quest/q10310101/quest/10310101/npc/spotwork_1_0.fsm.json | Process.Parameter.QuestId | QuestId | quest 10310101 (Capture the Barracks and the Assembly Hall) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
-| FSM | 64 | client/03040008/quest/q10310101/quest/10310101/npc/spotwork_1_0.fsm.json | Process.Parameter.QuestId | QuestId | quest 10310101 (Capture the Barracks and the Assembly Hall) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
-| FSM | 64 | client/03040008/quest/q10310101/quest/10310101/npc/spotwork_1_0.fsm.json | Process.Parameter.QuestId | QuestId | quest 10310101 (Capture the Barracks and the Assembly Hall) / CallMessage | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
-| FSM | 64 | client/03040008/quest/q10310101/quest/10310101/npc/spotwork_1_0.fsm.json | Process.Parameter.QuestId | QuestId | quest 10310101 (Capture the Barracks and the Assembly Hall) / CallMessage | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
-| FSM | 64 | client/03040008/quest/q10310101/quest/10310101/npc/spotwork_1_0.fsm.json | Process.Parameter.QuestId | QuestId | quest 10310101 (Capture the Barracks and the Assembly Hall) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
-| FSM | 64 | client/03040008/quest/q10310101/quest/10310101/npc/spotwork_1_0.fsm.json | Process.Parameter.QuestId | QuestId | quest 10310101 (Capture the Barracks and the Assembly Hall) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
-| FSM | 64 | client/03040008/quest/q10310101/quest/10310101/npc/spotwork_1_0.fsm.json | Process.Parameter.QuestId | QuestId | quest 10310101 (Capture the Barracks and the Assembly Hall) / MainQstFlagOn | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
-| FSM | 64 | client/03040008/quest/q10310101/quest/10310101/npc/spotwork_1_0.fsm.json | Process.Parameter.QuestId | QuestId | quest 10310101 (Capture the Barracks and the Assembly Hall) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
-| FSM | 64 | client/03040008/quest/q10310101/quest/10310101/npc/spotwork_1_0.fsm.json | Process.Parameter.QuestId | QuestId | quest 10310101 (Capture the Barracks and the Assembly Hall) / CallMessage | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
-| FSM | 64 | client/03040008/quest/q10310101/quest/10310101/npc/spotwork_1_0.fsm.json | Process.Parameter.QuestId | QuestId | quest 10310101 (Capture the Barracks and the Assembly Hall) / CallMessage | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
-| FSM | 64 | client/03040008/quest/q10310101/quest/10310101/npc/spotwork_1_0.fsm.json | Process.Parameter.QuestId | QuestId | quest 10310101 (Capture the Barracks and the Assembly Hall) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
-| FSM | 64 | client/03040008/quest/q10310101/quest/10310101/npc/spotwork_1_0.fsm.json | Process.Parameter.QuestId | QuestId | quest 10310101 (Capture the Barracks and the Assembly Hall) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
-| FSM | 64 | client/03040008/quest/q10310101/quest/10310101/npc/spotwork_1_0.fsm.json | Process.Parameter.QuestId | QuestId | quest 10310101 (Capture the Barracks and the Assembly Hall) / MainQstFlagOn | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
-| FSM | 64 | client/03040008/quest/q10310101/quest/10310101/npc/spotwork_1_0.fsm.json | Process.Parameter.QuestId | QuestId | quest 10310101 (Capture the Barracks and the Assembly Hall) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
-| FSM | 64 | client/03040008/quest/q10310101/quest/10310101/npc/spotwork_1_0.fsm.json | Process.Parameter.QuestId | QuestId | quest 10310101 (Capture the Barracks and the Assembly Hall) / CallMessage | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
-| FSM | 64 | client/03040008/quest/q10310101/quest/10310101/npc/spotwork_1_0.fsm.json | Process.Parameter.QuestId | QuestId | quest 10310101 (Capture the Barracks and the Assembly Hall) / CallMessage | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
-| FSM | 64 | client/03040008/quest/q10310101/quest/10310101/npc/spotwork_1_0.fsm.json | Process.Parameter.QuestId | QuestId | quest 10310101 (Capture the Barracks and the Assembly Hall) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
-| FSM | 64 | client/03040008/quest/q10310101/quest/10310101/npc/spotwork_1_0.fsm.json | Process.Parameter.QuestId | QuestId | quest 10310101 (Capture the Barracks and the Assembly Hall) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
-| FSM | 64 | client/03040008/quest/q10310101/quest/10310101/npc/spotwork_1_0.fsm.json | Process.Parameter.QuestId | QuestId | quest 10310101 (Capture the Barracks and the Assembly Hall) / MainQstFlagOn | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
-| FSM | 64 | client/03040008/quest/q10310101/quest/10310101/npc/spotwork_1_0.fsm.json | Process.Parameter.QuestId | QuestId | quest 10310101 (Capture the Barracks and the Assembly Hall) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
-| FSM | 64 | client/03040008/quest/q10310101/quest/10310101/npc/spotwork_1_0.fsm.json | Process.Parameter.QuestId | QuestId | quest 10310101 (Capture the Barracks and the Assembly Hall) / MainQstFlagOn | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
-| FSM | 64 | client/03040008/quest/q10310101/quest/10310101/npc/spotwork_1_1.fsm.json | Process.Parameter.QuestId | QuestId | quest 10310101 (Capture the Barracks and the Assembly Hall) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
-| FSM | 64 | client/03040008/quest/q10310101/quest/10310101/npc/spotwork_1_1.fsm.json | Process.Parameter.QuestId | QuestId | quest 10310101 (Capture the Barracks and the Assembly Hall) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
-| FSM | 64 | client/03040008/quest/q10310101/quest/10310101/npc/spotwork_1_1.fsm.json | Process.Parameter.QuestId | QuestId | quest 10310101 (Capture the Barracks and the Assembly Hall) / MainQstFlagOn | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
-| FSM | 64 | client/03040008/quest/q10310101/quest/10310101/npc/spotwork_2_0.fsm.json | Process.Parameter.QuestId | QuestId | quest 10310101 (Capture the Barracks and the Assembly Hall) / MainQstFlagOn | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
-| FSM | 64 | client/03040008/quest/q10310101/quest/10310101/npc/spotwork_2_0.fsm.json | Process.Parameter.QuestId | QuestId | quest 10310101 (Capture the Barracks and the Assembly Hall) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
-| FSM | 64 | client/03040008/quest/q10310101/quest/10310101/npc/spotwork_3_0.fsm.json | Process.Parameter.QuestId | QuestId | quest 10310101 (Capture the Barracks and the Assembly Hall) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
-| FSM | 64 | client/03040008/quest/q10310101/quest/10310101/npc/spotwork_3_0.fsm.json | Process.Parameter.QuestId | QuestId | quest 10310101 (Capture the Barracks and the Assembly Hall) / MainQstFlagOn | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
-| FSM | 64 | client/03040008/quest/q10310101/quest/10310101/npc/spotwork_3_0.fsm.json | Process.Parameter.QuestId | QuestId | quest 10310101 (Capture the Barracks and the Assembly Hall) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/quest/q10310101/quest/10310101/npc/spotwork_1_0.fsm.json[client/03040008/quest/q10310101/quest/10310101/npc/spotwork_1_0.fsm.json] | Process.Parameter.QuestId | QuestId | quest 10310101 (Capture the Barracks and the Assembly Hall) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/quest/q10310101/quest/10310101/npc/spotwork_1_0.fsm.json[client/03040008/quest/q10310101/quest/10310101/npc/spotwork_1_0.fsm.json] | Process.Parameter.QuestId | QuestId | quest 10310101 (Capture the Barracks and the Assembly Hall) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/quest/q10310101/quest/10310101/npc/spotwork_1_0.fsm.json[client/03040008/quest/q10310101/quest/10310101/npc/spotwork_1_0.fsm.json] | Process.Parameter.QuestId | QuestId | quest 10310101 (Capture the Barracks and the Assembly Hall) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/quest/q10310101/quest/10310101/npc/spotwork_1_0.fsm.json[client/03040008/quest/q10310101/quest/10310101/npc/spotwork_1_0.fsm.json] | Process.Parameter.QuestId | QuestId | quest 10310101 (Capture the Barracks and the Assembly Hall) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/quest/q10310101/quest/10310101/npc/spotwork_1_0.fsm.json[client/03040008/quest/q10310101/quest/10310101/npc/spotwork_1_0.fsm.json] | Process.Parameter.QuestId | QuestId | quest 10310101 (Capture the Barracks and the Assembly Hall) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/quest/q10310101/quest/10310101/npc/spotwork_1_0.fsm.json[client/03040008/quest/q10310101/quest/10310101/npc/spotwork_1_0.fsm.json] | Process.Parameter.QuestId | QuestId | quest 10310101 (Capture the Barracks and the Assembly Hall) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/quest/q10310101/quest/10310101/npc/spotwork_1_0.fsm.json[client/03040008/quest/q10310101/quest/10310101/npc/spotwork_1_0.fsm.json] | Process.Parameter.QuestId | QuestId | quest 10310101 (Capture the Barracks and the Assembly Hall) / CallMessage | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/quest/q10310101/quest/10310101/npc/spotwork_1_0.fsm.json[client/03040008/quest/q10310101/quest/10310101/npc/spotwork_1_0.fsm.json] | Process.Parameter.QuestId | QuestId | quest 10310101 (Capture the Barracks and the Assembly Hall) / CallMessage | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/quest/q10310101/quest/10310101/npc/spotwork_1_0.fsm.json[client/03040008/quest/q10310101/quest/10310101/npc/spotwork_1_0.fsm.json] | Process.Parameter.QuestId | QuestId | quest 10310101 (Capture the Barracks and the Assembly Hall) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/quest/q10310101/quest/10310101/npc/spotwork_1_0.fsm.json[client/03040008/quest/q10310101/quest/10310101/npc/spotwork_1_0.fsm.json] | Process.Parameter.QuestId | QuestId | quest 10310101 (Capture the Barracks and the Assembly Hall) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/quest/q10310101/quest/10310101/npc/spotwork_1_0.fsm.json[client/03040008/quest/q10310101/quest/10310101/npc/spotwork_1_0.fsm.json] | Process.Parameter.QuestId | QuestId | quest 10310101 (Capture the Barracks and the Assembly Hall) / MainQstFlagOn | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/quest/q10310101/quest/10310101/npc/spotwork_1_0.fsm.json[client/03040008/quest/q10310101/quest/10310101/npc/spotwork_1_0.fsm.json] | Process.Parameter.QuestId | QuestId | quest 10310101 (Capture the Barracks and the Assembly Hall) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/quest/q10310101/quest/10310101/npc/spotwork_1_0.fsm.json[client/03040008/quest/q10310101/quest/10310101/npc/spotwork_1_0.fsm.json] | Process.Parameter.QuestId | QuestId | quest 10310101 (Capture the Barracks and the Assembly Hall) / CallMessage | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/quest/q10310101/quest/10310101/npc/spotwork_1_0.fsm.json[client/03040008/quest/q10310101/quest/10310101/npc/spotwork_1_0.fsm.json] | Process.Parameter.QuestId | QuestId | quest 10310101 (Capture the Barracks and the Assembly Hall) / CallMessage | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/quest/q10310101/quest/10310101/npc/spotwork_1_0.fsm.json[client/03040008/quest/q10310101/quest/10310101/npc/spotwork_1_0.fsm.json] | Process.Parameter.QuestId | QuestId | quest 10310101 (Capture the Barracks and the Assembly Hall) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/quest/q10310101/quest/10310101/npc/spotwork_1_0.fsm.json[client/03040008/quest/q10310101/quest/10310101/npc/spotwork_1_0.fsm.json] | Process.Parameter.QuestId | QuestId | quest 10310101 (Capture the Barracks and the Assembly Hall) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/quest/q10310101/quest/10310101/npc/spotwork_1_0.fsm.json[client/03040008/quest/q10310101/quest/10310101/npc/spotwork_1_0.fsm.json] | Process.Parameter.QuestId | QuestId | quest 10310101 (Capture the Barracks and the Assembly Hall) / MainQstFlagOn | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/quest/q10310101/quest/10310101/npc/spotwork_1_0.fsm.json[client/03040008/quest/q10310101/quest/10310101/npc/spotwork_1_0.fsm.json] | Process.Parameter.QuestId | QuestId | quest 10310101 (Capture the Barracks and the Assembly Hall) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/quest/q10310101/quest/10310101/npc/spotwork_1_0.fsm.json[client/03040008/quest/q10310101/quest/10310101/npc/spotwork_1_0.fsm.json] | Process.Parameter.QuestId | QuestId | quest 10310101 (Capture the Barracks and the Assembly Hall) / CallMessage | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/quest/q10310101/quest/10310101/npc/spotwork_1_0.fsm.json[client/03040008/quest/q10310101/quest/10310101/npc/spotwork_1_0.fsm.json] | Process.Parameter.QuestId | QuestId | quest 10310101 (Capture the Barracks and the Assembly Hall) / CallMessage | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/quest/q10310101/quest/10310101/npc/spotwork_1_0.fsm.json[client/03040008/quest/q10310101/quest/10310101/npc/spotwork_1_0.fsm.json] | Process.Parameter.QuestId | QuestId | quest 10310101 (Capture the Barracks and the Assembly Hall) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/quest/q10310101/quest/10310101/npc/spotwork_1_0.fsm.json[client/03040008/quest/q10310101/quest/10310101/npc/spotwork_1_0.fsm.json] | Process.Parameter.QuestId | QuestId | quest 10310101 (Capture the Barracks and the Assembly Hall) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/quest/q10310101/quest/10310101/npc/spotwork_1_0.fsm.json[client/03040008/quest/q10310101/quest/10310101/npc/spotwork_1_0.fsm.json] | Process.Parameter.QuestId | QuestId | quest 10310101 (Capture the Barracks and the Assembly Hall) / MainQstFlagOn | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/quest/q10310101/quest/10310101/npc/spotwork_1_0.fsm.json[client/03040008/quest/q10310101/quest/10310101/npc/spotwork_1_0.fsm.json] | Process.Parameter.QuestId | QuestId | quest 10310101 (Capture the Barracks and the Assembly Hall) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/quest/q10310101/quest/10310101/npc/spotwork_1_0.fsm.json[client/03040008/quest/q10310101/quest/10310101/npc/spotwork_1_0.fsm.json] | Process.Parameter.QuestId | QuestId | quest 10310101 (Capture the Barracks and the Assembly Hall) / MainQstFlagOn | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/quest/q10310101/quest/10310101/npc/spotwork_1_1.fsm.json[client/03040008/quest/q10310101/quest/10310101/npc/spotwork_1_1.fsm.json] | Process.Parameter.QuestId | QuestId | quest 10310101 (Capture the Barracks and the Assembly Hall) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/quest/q10310101/quest/10310101/npc/spotwork_1_1.fsm.json[client/03040008/quest/q10310101/quest/10310101/npc/spotwork_1_1.fsm.json] | Process.Parameter.QuestId | QuestId | quest 10310101 (Capture the Barracks and the Assembly Hall) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/quest/q10310101/quest/10310101/npc/spotwork_1_1.fsm.json[client/03040008/quest/q10310101/quest/10310101/npc/spotwork_1_1.fsm.json] | Process.Parameter.QuestId | QuestId | quest 10310101 (Capture the Barracks and the Assembly Hall) / MainQstFlagOn | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/quest/q10310101/quest/10310101/npc/spotwork_2_0.fsm.json[client/03040008/quest/q10310101/quest/10310101/npc/spotwork_2_0.fsm.json] | Process.Parameter.QuestId | QuestId | quest 10310101 (Capture the Barracks and the Assembly Hall) / MainQstFlagOn | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/quest/q10310101/quest/10310101/npc/spotwork_2_0.fsm.json[client/03040008/quest/q10310101/quest/10310101/npc/spotwork_2_0.fsm.json] | Process.Parameter.QuestId | QuestId | quest 10310101 (Capture the Barracks and the Assembly Hall) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/quest/q10310101/quest/10310101/npc/spotwork_3_0.fsm.json[client/03040008/quest/q10310101/quest/10310101/npc/spotwork_3_0.fsm.json] | Process.Parameter.QuestId | QuestId | quest 10310101 (Capture the Barracks and the Assembly Hall) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/quest/q10310101/quest/10310101/npc/spotwork_3_0.fsm.json[client/03040008/quest/q10310101/quest/10310101/npc/spotwork_3_0.fsm.json] | Process.Parameter.QuestId | QuestId | quest 10310101 (Capture the Barracks and the Assembly Hall) / MainQstFlagOn | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/quest/q10310101/quest/10310101/npc/spotwork_3_0.fsm.json[client/03040008/quest/q10310101/quest/10310101/npc/spotwork_3_0.fsm.json] | Process.Parameter.QuestId | QuestId | quest 10310101 (Capture the Barracks and the Assembly Hall) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
 |===
 

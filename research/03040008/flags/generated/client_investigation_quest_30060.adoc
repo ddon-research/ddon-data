@@ -5,9 +5,285 @@
 
 Query mode:: quest
 Query value:: 30060
-Generated at:: 2026-04-11T21:41:40.559764+00:00
+Generated at:: 2026-04-12T12:43:36.815052+00:00
 
 toc::[]
+
+Quest family:: q3 -- Light Quest
+Quest family notes:: Light and board-style quests with repeatable or lightweight stage flows.
+Quest family focus:: local_stage_topology_plus_board_repeatability
+
+== External Owner Indexes
+
+_These are reusable external owner catalogs inferred from stage-neighborhood cues. They are broader than the subset of flags promoted into derived dependency targets._
+
+[cols="2,1,1,2,2,2,4",options="header"]
+|===
+| Owner Quest | Family | Catalog Count | Catalog Flags | Linked Cues | Cue Sources | Why
+
+| 70000001 | q7 | 70 | 1098, 1103, 1104, 1105, 1106, 1109, 1110, 1111, 1112, 1113, 1114, 1115 +58 more | 1110, 1112, 1150, 1201, 1216, 1217, 1220, 1221 +15 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70001001 | q7 | 0 |  | 1851, 1954 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70002001 | q7 | 47 | 1098, 1103, 1104, 1105, 1106, 1109, 1110, 1111, 1112, 1113, 1114, 1115 +35 more | 1114, 1115, 1117, 1601, 3860 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70003001 | q7 | 49 | 1098, 1103, 1104, 1105, 1106, 1109, 1110, 1111, 1112, 1113, 1114, 1115 +37 more | 1103, 1105, 1106, 1119, 1120, 1121, 1122, 1123 +8 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70020001 | q7 | 8 | 2736, 3000, 3002, 3003, 3074, 3442, 3805, 4037 | 2736, 3003, 3074, 4037 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70021001 | q7 | 4 | 3278, 3650, 3753, 3861 | 3278, 3753 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70022001 | q7 | 17 | 3949, 3950, 3952, 3953, 3954, 3977, 4033, 4043, 4053, 4063, 4470, 4555 +5 more | 3949, 3950, 3952, 3953, 3954, 3977, 4033, 4556 +2 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70023001 | q7 | 15 | 4066, 4067, 4372, 4373, 4500, 4506, 4507, 4508, 4511, 4512, 4515, 4516 +3 more | 4066, 4373, 4500, 4506, 4508, 4512, 4515, 4517 +1 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70030001 | q7 | 46 | 5396, 5397, 5407, 5552, 5557, 5558, 5581, 5584, 5587, 5588, 5589, 5614 +34 more | 5396, 5397, 5407, 5552, 5557, 5588, 5589, 5614 +25 more | evsi, gpl | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70031001 | q7 | 8 | 5553, 5672, 6138, 6194, 6195, 6377, 6425, 7316 | 5553, 6194, 7316 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70032001 | q7 | 37 | 7169, 7240, 7241, 7336, 7341, 7342, 7386, 7387, 7388, 7389, 7390, 7438 +25 more | 7240, 7341, 7386, 7496, 7512, 7544, 7549, 7551 +5 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70033001 | q7 | 43 | 7826, 7827, 7876, 7888, 7889, 7916, 7917, 7954, 7955, 7965, 7966, 7967 +31 more | 7888, 7889, 7965, 7967, 7973, 8043, 8044, 8045 +6 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+|===
+
+== Derived External Dependency Targets
+
+_These are the promoted subset of external owner-index entries. A flag appears here only when it passes the current family-specific dependency promotion rules for this quest._
+
+[cols="2,1,1,2,2,4",options="header"]
+|===
+| Owner Quest | Family | Flag Count | Flags | Sources | Why
+
+| 70000001 | q7 | 21 | 1110, 1112, 1150, 1201, 1216, 1217, 1220, 1221, 1222, 1223, 1224, 1250 +9 more | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70002001 | q7 | 5 | 1114, 1115, 1117, 1601, 3860 | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70003001 | q7 | 12 | 1103, 1105, 1106, 1120, 1122, 1124, 1203, 1296, 1713, 2430, 2432, 2456 | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70020001 | q7 | 4 | 2736, 3003, 3074, 4037 | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70021001 | q7 | 2 | 3278, 3753 | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70022001 | q7 | 10 | 3949, 3950, 3952, 3953, 3954, 3977, 4033, 4556, 4803, 4968 | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70023001 | q7 | 9 | 4066, 4373, 4500, 4506, 4508, 4512, 4515, 4517, 4973 | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70030001 | q7 | 23 | 5396, 5407, 5557, 5589, 5614, 5632, 5635, 5637, 5706, 5708, 6196, 6197 +11 more | evsi, gpl | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70031001 | q7 | 2 | 6194, 7316 | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70032001 | q7 | 13 | 7240, 7341, 7386, 7496, 7512, 7544, 7549, 7551, 7553, 7555, 7557, 7927 +1 more | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70033001 | q7 | 14 | 7888, 7889, 7965, 7967, 7973, 8043, 8044, 8045, 8046, 8047, 8066, 8133 +2 more | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+|===
+
+== Family Relationship Context
+
+_These sections summarize deterministic client-side family metadata and reverse-index relationships. They are context for later owner/dependency inference, not direct quest-target promotion._
+
+=== Quest Sequence
+
+* seq no: 58
+* previous: 30050 -- Survivors Village
+* next: 30070 -- Prince Nedo
+
+== ARC Association Context
+
+_ARC associations are contextual only. They show which quest-stage and marker resources are bundled with this quest._
+
+* arc file: link:../../../../client/03040008/quest/q00030060.arc.json#L1[client/03040008/quest/q00030060.arc.json#L1]
+* resource count: 8
+* stage codes: st0443, st1001
+* resource families: .gmd, .mss, .qmi, .qst, .qtd
+
+=== st0443 -- Fort Thines
+
+* rQuestMarkerInfo: quest/00030060/st0443_marker_npc
+* rQuestList: quest/00030060/q00030060_st0443
+
+=== st1001 -- Bertha's Bandit Group Hideout
+
+* rQuestMarkerInfo: quest/00030060/st1001_marker_npc
+* rQuestList: quest/00030060/q00030060_st1001
+
+=== unclassified
+
+* rQuestTextData: ui/00_param/quest_text/q00030060_00
+* rGUIMessage: ui/00_message/quest/q00030060
+* rMsgSet: ui/00_message/quest/q00030060
+* rGUIMessage: ui/00_message/quest_info/q00030060_00
+
+== Stage Neighborhood Context
+
+_Stage-neighborhood context summarizes scanner-relevant client files that share the quest's archive stage codes. This is deterministic client topology, not inferred ownership._
+
+* scanner-relevant stage files: 172
+* indexed stage codes: st0443, st1001
+
+=== st0443 -- Fort Thines
+
+* scanner files: 109
+* .evsi.json: 2
+* .fsm.json: 18
+* .gpl.json: 3
+* .lot.json: 33
+* .qmi.json: 28
+* .qst.json: 25
+
+=== st1001 -- Bertha's Bandit Group Hideout
+
+* scanner files: 63
+* .evsi.json: 1
+* .fsm.json: 10
+* .gpl.json: 7
+* .lot.json: 20
+* .qmi.json: 13
+* .qst.json: 12
+
+== Stage Neighborhood External-State Cues
+
+_These cues are deterministic client-side observations from the quest's stage neighborhood. They are not promoted to direct quest targets yet; they highlight q6/q7-owned external state values co-located in the quest's archive stages._
+
+* cue count: 134
+* owner families: q6, q7
+
+[cols="1,1,1,2,2,2",options="header"]
+|===
+| Value | Kind | Hits | Sources | Owners | Stages
+
+| Flag 6968 | layout_flag | 4 | evsi, gpl | 70030001 | st0443, st1001
+| Flag 5669 | layout_flag | 2 | evsi, gpl | 70030001 | st1001
+| Flag 1103 | layout_flag | 3 | evsi | 70003001 | st0443, st1001
+| Flag 1105 | layout_flag | 3 | evsi | 70003001 | st0443, st1001
+| Flag 1106 | layout_flag | 3 | evsi | 70003001 | st0443, st1001
+| Flag 1110 | layout_flag | 3 | evsi | 70000001 | st0443, st1001
+| Flag 1112 | layout_flag | 3 | evsi | 70000001 | st0443, st1001
+| Flag 1114 | layout_flag | 3 | evsi | 70002001 | st0443, st1001
+| Flag 1115 | layout_flag | 3 | evsi | 70002001 | st0443, st1001
+| Flag 1117 | layout_flag | 3 | evsi | 70002001 | st0443, st1001
+| Flag 1120 | layout_flag | 3 | evsi | 70003001 | st0443, st1001
+| Flag 1122 | layout_flag | 3 | evsi | 70003001 | st0443, st1001
+| Flag 1124 | layout_flag | 3 | evsi | 70003001 | st0443, st1001
+| Flag 1150 | layout_flag | 3 | evsi | 70000001 | st0443, st1001
+| Flag 1201 | layout_flag | 3 | evsi | 70000001 | st0443, st1001
+| Flag 1203 | layout_flag | 3 | evsi | 70003001 | st0443, st1001
+| Flag 1216 | layout_flag | 3 | evsi | 70000001 | st0443, st1001
+| Flag 1217 | layout_flag | 3 | evsi | 70000001 | st0443, st1001
+| Flag 1220 | layout_flag | 3 | evsi | 70000001 | st0443, st1001
+| Flag 1221 | layout_flag | 3 | evsi | 70000001 | st0443, st1001
+| Flag 1222 | layout_flag | 3 | evsi | 70000001 | st0443, st1001
+| Flag 1223 | layout_flag | 3 | evsi | 70000001 | st0443, st1001
+| Flag 1224 | layout_flag | 3 | evsi | 70000001 | st0443, st1001
+| Flag 1250 | layout_flag | 3 | evsi | 70000001 | st0443, st1001
+| Flag 1262 | layout_flag | 3 | evsi | 70000001 | st0443, st1001
+| Flag 1263 | layout_flag | 3 | evsi | 70000001 | st0443, st1001
+| Flag 1296 | layout_flag | 3 | evsi | 70003001 | st0443, st1001
+| Flag 1298 | layout_flag | 3 | evsi | 70000001 | st0443, st1001
+| Flag 1309 | layout_flag | 3 | evsi | 70000001 | st0443, st1001
+| Flag 1311 | layout_flag | 3 | evsi | 70000001 | st0443, st1001
+|===
+
+== Bounded Graph Expansion
+
+_This graph summarizes bounded deterministic and inferred edges around the quest: quest archive stages, direct source families, stage-linked owner catalogs, promoted dependencies, reverse-index event/group links, and family-specific table edges._
+
+* max depth: 3
+* node count: 64
+* edge count: 127
+* node kinds: direct_family=3, event_viewer=37, family_context=1, lot_file=1, owner_quest=12, quest=1, sequence_quest=2, stage=2, stage_group=5
+* derivation: Dependency=11, Direct=17, Graph=127, Owner Index=36
+
+=== Mermaid Graph Slice
+
+_This Mermaid flowchart shows a capped slice of the bounded graph so large quest reports stay readable while still exposing the graph structure._
+
+[mermaid]
+....
+flowchart TD
+    node_quest_30060["Quest 30060"]
+    node_direct_family_evsi["evsi direct hits (2)"]
+    node_direct_family_qst["qst direct hits (6)"]
+    node_direct_family_smc["smc direct hits (21)"]
+    node_family_context_quest_sequence["Quest Sequence"]
+    node_stage_st0443["st0443 -- Fort Thines"]
+    node_stage_st1001["st1001 -- Bertha's Bandit Group Hideout"]
+    node_event_viewer_st0443_ev000_70020001["Event st0443/ev000"]
+    node_event_viewer_st0443_ev000_70002001["Event st0443/ev000"]
+    node_event_viewer_st0443_ev000_70003001["Event st0443/ev000"]
+    node_event_viewer_st0443_ev000_70000001["Event st0443/ev000"]
+    node_event_viewer_st0443_ev000_70001001["Event st0443/ev000"]
+    node_owner_quest_70000001["Owner quest 70000001 (q7)"]
+    node_owner_quest_70002001["Owner quest 70002001 (q7)"]
+    node_owner_quest_70003001["Owner quest 70003001 (q7)"]
+    node_owner_quest_70020001["Owner quest 70020001 (q7)"]
+    node_owner_quest_70021001["Owner quest 70021001 (q7)"]
+    node_owner_quest_70022001["Owner quest 70022001 (q7)"]
+    node_owner_quest_70023001["Owner quest 70023001 (q7)"]
+    node_owner_quest_70030001["Owner quest 70030001 (q7)"]
+    node_owner_quest_70031001["Owner quest 70031001 (q7)"]
+    node_owner_quest_70032001["Owner quest 70032001 (q7)"]
+    node_owner_quest_70033001["Owner quest 70033001 (q7)"]
+    node_sequence_quest_30050["Quest 30050"]
+    node_sequence_quest_30070["Quest 30070"]
+    node_quest_30060 -->|direct_source_family| node_direct_family_evsi
+    node_quest_30060 -->|direct_source_family| node_direct_family_qst
+    node_quest_30060 -->|direct_source_family| node_direct_family_smc
+    node_quest_30060 -->|family:quest_sequence| node_family_context_quest_sequence
+    node_quest_30060 -->|quest_archive_stage| node_stage_st0443
+    node_quest_30060 -->|quest_archive_stage| node_stage_st1001
+    node_quest_30060 -->|promoted_dependency| node_owner_quest_70000001
+    node_quest_30060 -->|promoted_dependency| node_owner_quest_70002001
+    node_quest_30060 -->|promoted_dependency| node_owner_quest_70003001
+    node_quest_30060 -->|promoted_dependency| node_owner_quest_70020001
+    node_quest_30060 -->|promoted_dependency| node_owner_quest_70021001
+    node_quest_30060 -->|promoted_dependency| node_owner_quest_70022001
+    node_quest_30060 -->|promoted_dependency| node_owner_quest_70023001
+    node_quest_30060 -->|promoted_dependency| node_owner_quest_70030001
+    node_quest_30060 -->|promoted_dependency| node_owner_quest_70031001
+    node_quest_30060 -->|promoted_dependency| node_owner_quest_70032001
+    node_quest_30060 -->|promoted_dependency| node_owner_quest_70033001
+    node_family_context_quest_sequence -->|sequence_next| node_sequence_quest_30070
+    node_family_context_quest_sequence -->|sequence_previous| node_sequence_quest_30050
+    node_stage_st0443 -->|stage_event_viewer| node_event_viewer_st0443_ev000_70000001
+    node_stage_st0443 -->|stage_event_viewer| node_event_viewer_st0443_ev000_70001001
+    node_stage_st0443 -->|stage_event_viewer| node_event_viewer_st0443_ev000_70002001
+    node_stage_st0443 -->|stage_event_viewer| node_event_viewer_st0443_ev000_70003001
+    node_stage_st0443 -->|stage_event_viewer| node_event_viewer_st0443_ev000_70020001
+    classDef direct_deterministic fill:#e8f5e9,stroke:#2e7d32,stroke-width:1px
+    classDef owner_index fill:#e3f2fd,stroke:#1565c0,stroke-width:1px
+    classDef dependency_inferred fill:#fff3e0,stroke:#ef6c00,stroke-width:1px
+    classDef graph_expanded fill:#f3e5f5,stroke:#7b1fa2,stroke-width:1px
+    classDef lower_confidence fill:#fbe9e7,stroke:#d84315,stroke-width:1px
+    classDef binary_auxiliary fill:#eceff1,stroke:#455a64,stroke-width:1px
+    class node_quest_30060,node_direct_family_evsi,node_direct_family_qst,node_direct_family_smc,node_family_context_quest_sequence,node_stage_st0443,node_stage_st1001,node_sequence_quest_30050,node_sequence_quest_30070 direct_deterministic
+    class node_owner_quest_70000001,node_owner_quest_70002001,node_owner_quest_70003001,node_owner_quest_70020001,node_owner_quest_70021001,node_owner_quest_70022001,node_owner_quest_70023001,node_owner_quest_70030001,node_owner_quest_70031001,node_owner_quest_70032001,node_owner_quest_70033001 owner_index
+    class node_event_viewer_st0443_ev000_70020001,node_event_viewer_st0443_ev000_70002001,node_event_viewer_st0443_ev000_70003001,node_event_viewer_st0443_ev000_70000001,node_event_viewer_st0443_ev000_70001001 graph_expanded
+....
+
+[cols="1,2,2,2,2,4",options="header"]
+|===
+| Depth | Edge | From | To | Derivation | Why
+
+| 1 | direct_source_family | quest:30060 | direct-family:evsi | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | direct_source_family | quest:30060 | direct-family:qst | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | direct_source_family | quest:30060 | direct-family:smc | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | family_context:quest_sequence | quest:30060 | family-context:quest_sequence | Direct | Family-specific decoded tables provide deterministic context for this quest.
+| 1 | quest_archive_stage | quest:30060 | stage:st0443 | Direct | Quest archive topology directly links this quest to the stage code.
+| 1 | quest_archive_stage | quest:30060 | stage:st1001 | Direct | Quest archive topology directly links this quest to the stage code.
+| 2 | promoted_dependency | quest:30060 | owner-quest:70000001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30060 | owner-quest:70002001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30060 | owner-quest:70003001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30060 | owner-quest:70020001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30060 | owner-quest:70021001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30060 | owner-quest:70022001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30060 | owner-quest:70023001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30060 | owner-quest:70030001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30060 | owner-quest:70031001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30060 | owner-quest:70032001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30060 | owner-quest:70033001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | sequence_next | family-context:quest_sequence | sequence-quest:30070 | Direct | QuestSequence links this quest to its neighboring sequence quest.
+| 2 | sequence_previous | family-context:quest_sequence | sequence-quest:30050 | Direct | QuestSequence links this quest to its neighboring sequence quest.
+| 2 | stage_event_viewer | stage:st0443 | event-viewer:st0443:ev000:70000001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0443 | event-viewer:st0443:ev000:70001001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0443 | event-viewer:st0443:ev000:70002001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0443 | event-viewer:st0443:ev000:70003001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0443 | event-viewer:st0443:ev000:70020001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0443 | event-viewer:st0443:ev000:70021001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0443 | event-viewer:st0443:ev000:70022001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0443 | event-viewer:st0443:ev000:70023001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0443 | event-viewer:st0443:ev000:70030001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0443 | event-viewer:st0443:ev000:70031001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0443 | event-viewer:st0443:ev000:70032001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0443 | event-viewer:st0443:ev000:70033001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0443 | event-viewer:st0443:ev005:70000001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0443 | event-viewer:st0443:ev005:70001001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0443 | event-viewer:st0443:ev005:70002001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0443 | event-viewer:st0443:ev005:70003001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0443 | event-viewer:st0443:ev005:70020001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0443 | event-viewer:st0443:ev005:70021001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0443 | event-viewer:st0443:ev005:70022001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0443 | event-viewer:st0443:ev005:70023001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0443 | event-viewer:st0443:ev005:70030001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+|===
 
 == Flag Summary Matrix
 
@@ -15,12 +291,74 @@ toc::[]
 |===
 | Target | Kind | Hits | Sources | Stages | Relationships | Description
 
+| Flag 5402 | layout_flag | 2 | qst | st1001 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st1001 \| スライ
+| Flag 5410 | layout_flag | 3 | evsi, qst | st0443, st1001 | 🎬 Event State, ⚡ Quest Condition, ❌ Quest Erase | QST local: st0443 \| 受注直後セット
+| Flag 5411 | layout_flag | 3 | evsi, qst | st0443, st1001 | 🎬 Event State, ⚡ Quest Condition, ❌ Quest Erase | QST local: st0443 \| QuestGroup 1 \| 受注直後クインタス
 | Quest ID 30060 | quest_id | 21 | smc |  | 🗣️ NPC Chatter | Derived quest-wide association scan
 |===
 
 == Known Documented Targets
 
+* quest 30060 -- Flag 5402 -- QST local: st1001 | スライ
+* quest 30060 -- Flag 5410 -- QST local: st0443 | 受注直後セット
+* quest 30060 -- Flag 5411 -- QST local: st0443 | QuestGroup 1 | 受注直後クインタス
 * Quest ID 30060 -- Derived quest-wide association scan [Derived]
+
+== Flag 5402 -- Quest 30060
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030060/quest/00030060/q00030060_st1001.qst.json[client/03040008/quest/q00030060/quest/00030060/q00030060_st1001.qst.json] | QuestStageList[].QuestGrp[0].Condition | Condition | quest 30060 / Bertha's Bandit Group Hideout / "スライ" / QuestSet=QuestSetInfoNpc \|\| QuestSet=QuestSetInfoNpc \|\| +4 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030060/quest/00030060/q00030060_st1001.qst.json[client/03040008/quest/q00030060/quest/00030060/q00030060_st1001.qst.json] | QuestStageList[].QuestGrp[0].EraseCondition | EraseCondition | quest 30060 / Bertha's Bandit Group Hideout / "スライ" / QuestSet=QuestSetInfoNpc \|\| QuestSet=QuestSetInfoNpc \|\| +4 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 5410 -- Quest 30060
+
+origin:: derived_qst_local
+direct hits:: *3*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 3 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030060/quest/00030060/q00030060_st0443.qst.json[client/03040008/quest/q00030060/quest/00030060/q00030060_st0443.qst.json] | QuestStageList[].QuestGrp[0].Condition | Condition | quest 30060 / Fort Thines / "受注直後セット" / QuestSet=QuestSetInfoNpc \|\| QuestSet=QuestSetInfoNpc \|\| +1 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030060/quest/00030060/q00030060_st0443.qst.json[client/03040008/quest/q00030060/quest/00030060/q00030060_st0443.qst.json] | QuestStageList[].QuestGrp[0].EraseCondition | EraseCondition | quest 30060 / Fort Thines / "受注直後セット" / QuestSet=QuestSetInfoNpc \|\| QuestSet=QuestSetInfoNpc \|\| +1 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st1001/view_st1001ev000/event/viewer/view_st1001ev000.evsi.json#L953[client/03040008/event/st1001/view_st1001ev000/event/viewer/view_st1001ev000.evsi.json#L953] | LayoutFlagArray[124].FlagNo | FlagNo | quest 30060 (The Opposition) / Bertha's Bandit Group Hideout / Event Viewer \| EVENT_NAME_st1001ev000 \| Thieves' hideout in the lakeside cave | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+|===
+
+== Flag 5411 -- Quest 30060
+
+origin:: derived_qst_local
+direct hits:: *3*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 3 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030060/quest/00030060/q00030060_st0443.qst.json[client/03040008/quest/q00030060/quest/00030060/q00030060_st0443.qst.json] | QuestStageList[].QuestGrp[1].Condition | Condition | quest 30060 / Fort Thines / "QuestGroup 1 \| 受注直後クインタス" / QuestSet=QuestSetInfoNpc \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030060/quest/00030060/q00030060_st0443.qst.json[client/03040008/quest/q00030060/quest/00030060/q00030060_st0443.qst.json] | QuestStageList[].QuestGrp[1].EraseCondition | EraseCondition | quest 30060 / Fort Thines / "QuestGroup 1 \| 受注直後クインタス" / QuestSet=QuestSetInfoNpc \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st1001/view_st1001ev000/event/viewer/view_st1001ev000.evsi.json#L945[client/03040008/event/st1001/view_st1001ev000/event/viewer/view_st1001ev000.evsi.json#L945] | LayoutFlagArray[123].FlagNo | FlagNo | quest 30060 (The Opposition) / Bertha's Bandit Group Hideout / Event Viewer \| EVENT_NAME_st1001ev000 \| Thieves' hideout in the lakeside cave | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+|===
 
 == Quest ID 30060
 
@@ -32,30 +370,30 @@ ranked candidates:: *0*
 
 ==== direct -- 21 hit(s)
 
-[cols="1,1,3,3,2,3,3",options="header"]
+[cols="1,1,1,3,3,2,3,3",options="header"]
 |===
-| Family | Confidence | File | JSON Path | Field | Context | Why
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
 
-| SMC | 92 | client/03040008/npc/n0001/ui/00_message/npc/base/n0001.smc.json | SituationData.EndQuestId | EndQuestId | quest 30060 (The Opposition) / The White Dragon / GroupSerial=24408 / "GroupSerial=24408, QuestWindow=30050-30060 (Survivors Village -> The Opposition), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0001 \| Quest-gated NPC chatter \| QuestWindow=30050-30060 (Survivors Village -> The Opposition) / MSS: The White Dragon / Hath the fell Dragon not reached out to thee? | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0001/ui/00_message/npc/base/n0001.smc.json | SituationData.StartQuestId | StartQuestId | quest 30060 (The Opposition) / The White Dragon / GroupSerial=24409 / "GroupSerial=24409, QuestWindow=30060-30070 (The Opposition -> Prince Nedo), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0001 \| Quest-gated NPC chatter \| QuestWindow=30060-30070 (The Opposition -> Prince Nedo) / MSS: The White Dragon / 'Tis the law of Acre Selund, | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json | SituationData.EndQuestId | EndQuestId | quest 30060 (The Opposition) / Klaus / GroupSerial=24477 / "GroupSerial=24477, QuestWindow=30050-30060 (Survivors Village -> The Opposition), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0003 \| Quest-gated NPC chatter \| QuestWindow=30050-30060 (Survivors Village -> The Opposition) / MSS: Klaus / When it comes to thieves, they are ofttimes | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json | SituationData.StartQuestId | StartQuestId | quest 30060 (The Opposition) / Klaus / GroupSerial=24478 / "GroupSerial=24478, QuestWindow=30060-30070 (The Opposition -> Prince Nedo), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window start" / NpcChatter=n0003 \| Quest-gated NPC chatter \| QuestWindow=30060-30070 (The Opposition -> Prince Nedo) / MSS: Klaus / Next is the orc's stronghold, huh? I wonder if you | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json | SituationData.EndQuestId | EndQuestId | quest 30060 (The Opposition) / Joseph / GroupSerial=24448 / "GroupSerial=24448, QuestWindow=30050-30060 (Survivors Village -> The Opposition), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0004 \| Quest-gated NPC chatter \| QuestWindow=30050-30060 (Survivors Village -> The Opposition) / MSS: Joseph / From the stories I hear, it seems that Prince | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json | SituationData.StartQuestId | StartQuestId | quest 30060 (The Opposition) / Joseph / GroupSerial=24449 / "GroupSerial=24449, QuestWindow=30060-30070 (The Opposition -> Prince Nedo), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window start" / NpcChatter=n0004 \| Quest-gated NPC chatter \| QuestWindow=30060-30070 (The Opposition -> Prince Nedo) / MSS: Joseph / I hear you're heading into an enemy | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0013/ui/00_message/npc/base/n0013.smc.json | SituationData.EndQuestId | EndQuestId | quest 30060 (The Opposition) / Lise / GroupSerial=24539 / "GroupSerial=24539, QuestWindow=30050-30060 (Survivors Village -> The Opposition), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0013 \| Quest-gated NPC chatter \| QuestWindow=30050-30060 (Survivors Village -> The Opposition) / MSS: Lise / I wonder if the prince is safe. I'd rather know | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0013/ui/00_message/npc/base/n0013.smc.json | SituationData.StartQuestId | StartQuestId | quest 30060 (The Opposition) / Lise / GroupSerial=24540 / "GroupSerial=24540, QuestWindow=30060-30070 (The Opposition -> Prince Nedo), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0013 \| Quest-gated NPC chatter \| QuestWindow=30060-30070 (The Opposition -> Prince Nedo) / MSS: Lise / The prince's goal is to save his benefactor, the | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0021/ui/00_message/npc/base/n0021.smc.json | SituationData.EndQuestId | EndQuestId | quest 30060 (The Opposition) / Elliot / GroupSerial=24563 / "GroupSerial=24563, QuestWindow=30050-30060 (Survivors Village -> The Opposition), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0021 \| Quest-gated NPC chatter \| QuestWindow=30050-30060 (Survivors Village -> The Opposition) / MSS: Elliot / Captain, it's in your best interest to keep your | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0021/ui/00_message/npc/base/n0021.smc.json | SituationData.StartQuestId | StartQuestId | quest 30060 (The Opposition) / Elliot / GroupSerial=24564 / "GroupSerial=24564, QuestWindow=30060-30070 (The Opposition -> Prince Nedo), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0021 \| Quest-gated NPC chatter \| QuestWindow=30060-30070 (The Opposition -> Prince Nedo) / MSS: Elliot / I'm currently focused on rescuing the prince, but | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0030/ui/00_message/npc/base/n0030.smc.json | SituationData.StartQuestId | StartQuestId | quest 30060 (The Opposition) / Gillian / GroupSerial=24594 / "GroupSerial=24594, QuestWindow=30060-30070 (The Opposition -> Prince Nedo), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0030 \| Quest-gated NPC chatter \| QuestWindow=30060-30070 (The Opposition -> Prince Nedo) / MSS: Gillian / The prince seems to be actively moving forward | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0031/ui/00_message/npc/base/n0031.smc.json | SituationData.EndQuestId | EndQuestId | quest 30060 (The Opposition) / Meirova / GroupSerial=24743 / "GroupSerial=24743, QuestWindow=30050-30060 (Survivors Village -> The Opposition), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0031 \| Quest-gated NPC chatter \| QuestWindow=30050-30060 (Survivors Village -> The Opposition) / MSS: Meirova / Please do not think badly of Gerhard. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0031/ui/00_message/npc/base/n0031.smc.json | SituationData.StartQuestId | StartQuestId | quest 30060 (The Opposition) / Meirova / GroupSerial=24744 / "GroupSerial=24744, QuestWindow=30060-30070 (The Opposition -> Prince Nedo), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0031 \| Quest-gated NPC chatter \| QuestWindow=30060-30070 (The Opposition -> Prince Nedo) / MSS: Meirova / I will make sure to speak well of you all to | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0032/ui/00_message/npc/base/n0032.smc.json | SituationData.EndQuestId | EndQuestId | quest 30060 (The Opposition) / Gerhard / GroupSerial=24762 / "GroupSerial=24762, QuestWindow=30050-30060 (Survivors Village -> The Opposition), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0032 \| Quest-gated NPC chatter \| QuestWindow=30050-30060 (Survivors Village -> The Opposition) / MSS: Gerhard / Oh my, is the search for the prince on hold? | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0032/ui/00_message/npc/base/n0032.smc.json | SituationData.StartQuestId | StartQuestId | quest 30060 (The Opposition) / Gerhard / GroupSerial=24763 / "GroupSerial=24763, QuestWindow=30060-30070 (The Opposition -> Prince Nedo), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0032 \| Quest-gated NPC chatter \| QuestWindow=30060-30070 (The Opposition -> Prince Nedo) / MSS: Gerhard / How about the progress over there? | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0034/ui/00_message/npc/base/n0034.smc.json | SituationData.EndQuestId | EndQuestId | quest 30060 (The Opposition) / Quintus / GroupSerial=24718 / "GroupSerial=24718, QuestWindow=30050-30060 (Survivors Village -> The Opposition), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0034 \| Quest-gated NPC chatter \| QuestWindow=30050-30060 (Survivors Village -> The Opposition) / MSS: Quintus / I can't believe the prince is in the care of | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0034/ui/00_message/npc/base/n0034.smc.json | SituationData.StartQuestId | StartQuestId | quest 30060 (The Opposition) / Quintus / GroupSerial=24719 / "GroupSerial=24719, QuestWindow=30060-30070 (The Opposition -> Prince Nedo), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0034 \| Quest-gated NPC chatter \| QuestWindow=30060-30070 (The Opposition -> Prince Nedo) / MSS: Quintus / Should we prepare to receive the bandits? | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0501/ui/00_message/npc/base/n0501.smc.json | SituationData.EndQuestId | EndQuestId | quest 30060 (The Opposition) / Gurdolin / GroupSerial=24514 / "GroupSerial=24514, QuestWindow=30050-30060 (Survivors Village -> The Opposition), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0501 \| Quest-gated NPC chatter \| QuestWindow=30050-30060 (Survivors Village -> The Opposition) / MSS: Gurdolin / The enemy is an "Evil Dragon", right? | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0501/ui/00_message/npc/base/n0501.smc.json | SituationData.StartQuestId | StartQuestId | quest 30060 (The Opposition) / Gurdolin / GroupSerial=24515 / "GroupSerial=24515, QuestWindow=30060-30070 (The Opposition -> Prince Nedo), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0501 \| Quest-gated NPC chatter \| QuestWindow=30060-30070 (The Opposition -> Prince Nedo) / MSS: Gurdolin / I'll take care of the orcs and whatnot. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n2951/ui/00_message/npc/base/n2951.smc.json | SituationData.StartQuestId | StartQuestId | quest 30060 (The Opposition) / Sly / GroupSerial=24801 / "GroupSerial=24801, QuestWindow=30060-30070 (The Opposition -> Prince Nedo), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n2951 \| Quest-gated NPC chatter \| QuestWindow=30060-30070 (The Opposition -> Prince Nedo) / MSS: Sly / If there's a future for us and you, will we spend | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n2952/ui/00_message/npc/base/n2952.smc.json | SituationData.StartQuestId | StartQuestId | quest 30060 (The Opposition) / Raven / GroupSerial=24804 / "GroupSerial=24804, QuestWindow=30060-30070 (The Opposition -> Prince Nedo), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n2952 \| Quest-gated NPC chatter \| QuestWindow=30060-30070 (The Opposition -> Prince Nedo) / MSS: Raven / This commotion will be a good diversion. Let's go | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0001/ui/00_message/npc/base/n0001.smc.json[client/03040008/npc/n0001/ui/00_message/npc/base/n0001.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30060 (The Opposition) / The White Dragon / GroupSerial=24408 / "GroupSerial=24408, QuestWindow=30050-30060 (Survivors Village -> The Opposition), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0001 \| Quest-gated NPC chatter \| QuestWindow=30050-30060 (Survivors Village -> The Opposition) / MSS: The White Dragon / Hath the fell Dragon not reached out to thee? | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0001/ui/00_message/npc/base/n0001.smc.json[client/03040008/npc/n0001/ui/00_message/npc/base/n0001.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30060 (The Opposition) / The White Dragon / GroupSerial=24409 / "GroupSerial=24409, QuestWindow=30060-30070 (The Opposition -> Prince Nedo), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0001 \| Quest-gated NPC chatter \| QuestWindow=30060-30070 (The Opposition -> Prince Nedo) / MSS: The White Dragon / 'Tis the law of Acre Selund, | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json[client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30060 (The Opposition) / Klaus / GroupSerial=24477 / "GroupSerial=24477, QuestWindow=30050-30060 (Survivors Village -> The Opposition), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0003 \| Quest-gated NPC chatter \| QuestWindow=30050-30060 (Survivors Village -> The Opposition) / MSS: Klaus / When it comes to thieves, they are ofttimes | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json[client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30060 (The Opposition) / Klaus / GroupSerial=24478 / "GroupSerial=24478, QuestWindow=30060-30070 (The Opposition -> Prince Nedo), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window start" / NpcChatter=n0003 \| Quest-gated NPC chatter \| QuestWindow=30060-30070 (The Opposition -> Prince Nedo) / MSS: Klaus / Next is the orc's stronghold, huh? I wonder if you | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json[client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30060 (The Opposition) / Joseph / GroupSerial=24448 / "GroupSerial=24448, QuestWindow=30050-30060 (Survivors Village -> The Opposition), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0004 \| Quest-gated NPC chatter \| QuestWindow=30050-30060 (Survivors Village -> The Opposition) / MSS: Joseph / From the stories I hear, it seems that Prince | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json[client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30060 (The Opposition) / Joseph / GroupSerial=24449 / "GroupSerial=24449, QuestWindow=30060-30070 (The Opposition -> Prince Nedo), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window start" / NpcChatter=n0004 \| Quest-gated NPC chatter \| QuestWindow=30060-30070 (The Opposition -> Prince Nedo) / MSS: Joseph / I hear you're heading into an enemy | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0013/ui/00_message/npc/base/n0013.smc.json[client/03040008/npc/n0013/ui/00_message/npc/base/n0013.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30060 (The Opposition) / Lise / GroupSerial=24539 / "GroupSerial=24539, QuestWindow=30050-30060 (Survivors Village -> The Opposition), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0013 \| Quest-gated NPC chatter \| QuestWindow=30050-30060 (Survivors Village -> The Opposition) / MSS: Lise / I wonder if the prince is safe. I'd rather know | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0013/ui/00_message/npc/base/n0013.smc.json[client/03040008/npc/n0013/ui/00_message/npc/base/n0013.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30060 (The Opposition) / Lise / GroupSerial=24540 / "GroupSerial=24540, QuestWindow=30060-30070 (The Opposition -> Prince Nedo), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0013 \| Quest-gated NPC chatter \| QuestWindow=30060-30070 (The Opposition -> Prince Nedo) / MSS: Lise / The prince's goal is to save his benefactor, the | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0021/ui/00_message/npc/base/n0021.smc.json[client/03040008/npc/n0021/ui/00_message/npc/base/n0021.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30060 (The Opposition) / Elliot / GroupSerial=24563 / "GroupSerial=24563, QuestWindow=30050-30060 (Survivors Village -> The Opposition), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0021 \| Quest-gated NPC chatter \| QuestWindow=30050-30060 (Survivors Village -> The Opposition) / MSS: Elliot / Captain, it's in your best interest to keep your | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0021/ui/00_message/npc/base/n0021.smc.json[client/03040008/npc/n0021/ui/00_message/npc/base/n0021.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30060 (The Opposition) / Elliot / GroupSerial=24564 / "GroupSerial=24564, QuestWindow=30060-30070 (The Opposition -> Prince Nedo), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0021 \| Quest-gated NPC chatter \| QuestWindow=30060-30070 (The Opposition -> Prince Nedo) / MSS: Elliot / I'm currently focused on rescuing the prince, but | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0030/ui/00_message/npc/base/n0030.smc.json[client/03040008/npc/n0030/ui/00_message/npc/base/n0030.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30060 (The Opposition) / Gillian / GroupSerial=24594 / "GroupSerial=24594, QuestWindow=30060-30070 (The Opposition -> Prince Nedo), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0030 \| Quest-gated NPC chatter \| QuestWindow=30060-30070 (The Opposition -> Prince Nedo) / MSS: Gillian / The prince seems to be actively moving forward | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0031/ui/00_message/npc/base/n0031.smc.json[client/03040008/npc/n0031/ui/00_message/npc/base/n0031.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30060 (The Opposition) / Meirova / GroupSerial=24743 / "GroupSerial=24743, QuestWindow=30050-30060 (Survivors Village -> The Opposition), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0031 \| Quest-gated NPC chatter \| QuestWindow=30050-30060 (Survivors Village -> The Opposition) / MSS: Meirova / Please do not think badly of Gerhard. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0031/ui/00_message/npc/base/n0031.smc.json[client/03040008/npc/n0031/ui/00_message/npc/base/n0031.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30060 (The Opposition) / Meirova / GroupSerial=24744 / "GroupSerial=24744, QuestWindow=30060-30070 (The Opposition -> Prince Nedo), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0031 \| Quest-gated NPC chatter \| QuestWindow=30060-30070 (The Opposition -> Prince Nedo) / MSS: Meirova / I will make sure to speak well of you all to | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0032/ui/00_message/npc/base/n0032.smc.json[client/03040008/npc/n0032/ui/00_message/npc/base/n0032.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30060 (The Opposition) / Gerhard / GroupSerial=24762 / "GroupSerial=24762, QuestWindow=30050-30060 (Survivors Village -> The Opposition), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0032 \| Quest-gated NPC chatter \| QuestWindow=30050-30060 (Survivors Village -> The Opposition) / MSS: Gerhard / Oh my, is the search for the prince on hold? | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0032/ui/00_message/npc/base/n0032.smc.json[client/03040008/npc/n0032/ui/00_message/npc/base/n0032.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30060 (The Opposition) / Gerhard / GroupSerial=24763 / "GroupSerial=24763, QuestWindow=30060-30070 (The Opposition -> Prince Nedo), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0032 \| Quest-gated NPC chatter \| QuestWindow=30060-30070 (The Opposition -> Prince Nedo) / MSS: Gerhard / How about the progress over there? | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0034/ui/00_message/npc/base/n0034.smc.json[client/03040008/npc/n0034/ui/00_message/npc/base/n0034.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30060 (The Opposition) / Quintus / GroupSerial=24718 / "GroupSerial=24718, QuestWindow=30050-30060 (Survivors Village -> The Opposition), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0034 \| Quest-gated NPC chatter \| QuestWindow=30050-30060 (Survivors Village -> The Opposition) / MSS: Quintus / I can't believe the prince is in the care of | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0034/ui/00_message/npc/base/n0034.smc.json[client/03040008/npc/n0034/ui/00_message/npc/base/n0034.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30060 (The Opposition) / Quintus / GroupSerial=24719 / "GroupSerial=24719, QuestWindow=30060-30070 (The Opposition -> Prince Nedo), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0034 \| Quest-gated NPC chatter \| QuestWindow=30060-30070 (The Opposition -> Prince Nedo) / MSS: Quintus / Should we prepare to receive the bandits? | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0501/ui/00_message/npc/base/n0501.smc.json[client/03040008/npc/n0501/ui/00_message/npc/base/n0501.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30060 (The Opposition) / Gurdolin / GroupSerial=24514 / "GroupSerial=24514, QuestWindow=30050-30060 (Survivors Village -> The Opposition), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0501 \| Quest-gated NPC chatter \| QuestWindow=30050-30060 (Survivors Village -> The Opposition) / MSS: Gurdolin / The enemy is an "Evil Dragon", right? | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0501/ui/00_message/npc/base/n0501.smc.json[client/03040008/npc/n0501/ui/00_message/npc/base/n0501.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30060 (The Opposition) / Gurdolin / GroupSerial=24515 / "GroupSerial=24515, QuestWindow=30060-30070 (The Opposition -> Prince Nedo), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0501 \| Quest-gated NPC chatter \| QuestWindow=30060-30070 (The Opposition -> Prince Nedo) / MSS: Gurdolin / I'll take care of the orcs and whatnot. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n2951/ui/00_message/npc/base/n2951.smc.json[client/03040008/npc/n2951/ui/00_message/npc/base/n2951.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30060 (The Opposition) / Sly / GroupSerial=24801 / "GroupSerial=24801, QuestWindow=30060-30070 (The Opposition -> Prince Nedo), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n2951 \| Quest-gated NPC chatter \| QuestWindow=30060-30070 (The Opposition -> Prince Nedo) / MSS: Sly / If there's a future for us and you, will we spend | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n2952/ui/00_message/npc/base/n2952.smc.json[client/03040008/npc/n2952/ui/00_message/npc/base/n2952.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30060 (The Opposition) / Raven / GroupSerial=24804 / "GroupSerial=24804, QuestWindow=30060-30070 (The Opposition -> Prince Nedo), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n2952 \| Quest-gated NPC chatter \| QuestWindow=30060-30070 (The Opposition -> Prince Nedo) / MSS: Raven / This commotion will be a good diversion. Let's go | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
 |===
 

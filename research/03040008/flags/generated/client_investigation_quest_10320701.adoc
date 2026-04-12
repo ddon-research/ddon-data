@@ -5,16 +5,55 @@
 
 Query mode:: quest
 Query value:: 10320701
-Generated at:: 2026-04-11T21:41:40.674295+00:00
+Generated at:: 2026-04-12T12:43:48.858388+00:00
 
 toc::[]
+
+Quest family:: unknown -- Unknown Quest Family
+Quest family notes:: Quest family could not be inferred from the client quest id pattern.
+Quest family focus:: treat_as_generic
+
+== External Owner Indexes
+
+_These are reusable external owner catalogs inferred from stage-neighborhood cues. They are broader than the subset of flags promoted into derived dependency targets._
+
+[cols="2,1,1,2,2,2,4",options="header"]
+|===
+| Owner Quest | Family | Catalog Count | Catalog Flags | Linked Cues | Cue Sources | Why
+
+| 60300032 | q6 | 14 | 7415, 7612, 7613, 7628, 7629, 7690, 7691, 7701, 7707, 7741, 7742, 7744 +2 more | 7690, 7691 | gpl | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70032001 | q7 | 37 | 7169, 7240, 7241, 7336, 7341, 7342, 7386, 7387, 7388, 7389, 7390, 7438 +25 more | 7497, 7654, 7722, 7743, 7893, 7894, 7918, 7919 +5 more | gpl | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+|===
+
+== Derived External Dependency Targets
+
+_These are the promoted subset of external owner-index entries. A flag appears here only when it passes the current family-specific dependency promotion rules for this quest._
+
+[cols="2,1,1,2,2,4",options="header"]
+|===
+| Owner Quest | Family | Flag Count | Flags | Sources | Why
+
+| 60300032 | q6 | 2 | 7690, 7691 | gpl | Filtered GPL-backed q6 stage-neighborhood cues intersect the owner q6 quest's client-derived layout catalog built from self-owned client evidence.
+|===
+
+== Family Relationship Context
+
+_These sections summarize deterministic client-side family metadata and reverse-index relationships. They are context for later owner/dependency inference, not direct quest-target promotion._
+
+=== Quest Sequence
+
+* seq no: 128
+* previous: 10320700 -- Calm Before the Storm
+* next: 10320702 -- The Battle Fades Like a Dream
 
 == ARC Association Context
 
 _ARC associations are contextual only. They show which quest-stage and marker resources are bundled with this quest._
 
-* arc file: client/03040008/quest/q10320701.arc.json
+* arc file: link:../../../../client/03040008/quest/q10320701.arc.json#L1[client/03040008/quest/q10320701.arc.json#L1]
 * resource count: 21
+* stage codes: st0471, st0472, st0473
+* resource families: .fsm, .gmd, .mss, .qmi, .qst, .qtd, .stqr
 
 === st0471 -- Fortress City Megado: Residential Level
 
@@ -49,18 +88,782 @@ _ARC associations are contextual only. They show which quest-stage and marker re
 * rGUIMessage: ui/00_message/quest/q10320701
 * rGUIMessage: ui/00_message/quest_info/q10320701_00
 
+== Stage Neighborhood Context
+
+_Stage-neighborhood context summarizes scanner-relevant client files that share the quest's archive stage codes. This is deterministic client topology, not inferred ownership._
+
+* scanner-relevant stage files: 172
+* indexed stage codes: st0471, st0472, st0473
+
+=== st0471 -- Fortress City Megado: Residential Level
+
+* scanner files: 52
+* .gpl.json: 5
+* .lot.json: 25
+* .qmi.json: 14
+* .qst.json: 8
+
+=== st0472 -- Fortress City Megado: Residential Level
+
+* scanner files: 78
+* .fsm.json: 6
+* .gpl.json: 5
+* .lot.json: 47
+* .qmi.json: 14
+* .qst.json: 6
+
+=== st0473 -- Marquise Kurt's residence
+
+* scanner files: 42
+* .fsm.json: 5
+* .gpl.json: 5
+* .lot.json: 23
+* .qmi.json: 7
+* .qst.json: 2
+
+== Stage Neighborhood External-State Cues
+
+_These cues are deterministic client-side observations from the quest's stage neighborhood. They are not promoted to direct quest targets yet; they highlight q6/q7-owned external state values co-located in the quest's archive stages._
+
+* cue count: 15
+* owner families: q6, q7
+
+[cols="1,1,1,2,2,2",options="header"]
+|===
+| Value | Kind | Hits | Sources | Owners | Stages
+
+| Flag 7497 | layout_flag | 1 | gpl | 70032001 | st0472
+| Flag 7654 | layout_flag | 1 | gpl | 70032001 | st0472
+| Flag 7722 | layout_flag | 1 | gpl | 70032001 | st0472
+| Flag 7743 | layout_flag | 1 | gpl | 70032001 | st0473
+| Flag 7893 | layout_flag | 1 | gpl | 70032001 | st0473
+| Flag 7894 | layout_flag | 1 | gpl | 70032001 | st0473
+| Flag 7918 | layout_flag | 1 | gpl | 70032001 | st0472
+| Flag 7919 | layout_flag | 1 | gpl | 70032001 | st0472
+| Flag 7920 | layout_flag | 1 | gpl | 70032001 | st0472
+| Flag 7921 | layout_flag | 1 | gpl | 70032001 | st0472
+| Flag 7922 | layout_flag | 1 | gpl | 70032001 | st0472
+| Flag 7923 | layout_flag | 1 | gpl | 70032001 | st0472
+| Flag 7924 | layout_flag | 1 | gpl | 70032001 | st0472
+| Flag 7690 | layout_flag | 1 | gpl | 60300032 | st0473
+| Flag 7691 | layout_flag | 1 | gpl | 60300032 | st0473
+|===
+
+== Bounded Graph Expansion
+
+_This graph summarizes bounded deterministic and inferred edges around the quest: quest archive stages, direct source families, stage-linked owner catalogs, promoted dependencies, reverse-index event/group links, and family-specific table edges._
+
+* max depth: 3
+* node count: 32
+* edge count: 48
+* node kinds: direct_family=3, family_context=1, lot_file=5, owner_quest=2, quest=1, sequence_quest=2, stage=3, stage_group=15
+* derivation: Dependency=1, Direct=19, Graph=55, Owner Index=5
+
+=== Mermaid Graph Slice
+
+_This Mermaid flowchart shows a capped slice of the bounded graph so large quest reports stay readable while still exposing the graph structure._
+
+[mermaid]
+....
+flowchart TD
+    node_quest_10320701["Quest 10320701"]
+    node_direct_family_fsm["fsm direct hits (9)"]
+    node_direct_family_lot["lot direct hits (2)"]
+    node_direct_family_qst["qst direct hits (61)"]
+    node_family_context_quest_sequence["Quest Sequence"]
+    node_stage_st0471["st0471 -- Fortress City Megado: Residential Level"]
+    node_stage_st0472["st0472 -- Fortress City Megado: Residential Level"]
+    node_stage_st0473["st0473 -- Marquise Kurt's residence"]
+    node_owner_quest_60300032["Owner quest 60300032 (q6)"]
+    node_sequence_quest_10320700["Quest 10320700"]
+    node_sequence_quest_10320702["Quest 10320702"]
+    node_stage_group_st0472_13["GPL group st0472/13"]
+    node_stage_group_st0472_14["GPL group st0472/14"]
+    node_stage_group_st0472_15["GPL group st0472/15"]
+    node_stage_group_st0472_16["GPL group st0472/16"]
+    node_stage_group_st0472_17["GPL group st0472/17"]
+    node_stage_group_st0472_18["GPL group st0472/18"]
+    node_stage_group_st0472_19["GPL group st0472/19"]
+    node_stage_group_st0472_33["GPL group st0472/33"]
+    node_stage_group_st0472_4["GPL group st0472/4"]
+    node_stage_group_st0472_6["GPL group st0472/6"]
+    node_stage_group_st0473_10["GPL group st0473/10"]
+    node_stage_group_st0473_11["GPL group st0473/11"]
+    node_stage_group_st0473_35["GPL group st0473/35"]
+    node_stage_group_st0473_36["GPL group st0473/36"]
+    node_quest_10320701 -->|direct_source_family| node_direct_family_fsm
+    node_quest_10320701 -->|direct_source_family| node_direct_family_lot
+    node_quest_10320701 -->|direct_source_family| node_direct_family_qst
+    node_quest_10320701 -->|family:quest_sequence| node_family_context_quest_sequence
+    node_quest_10320701 -->|quest_archive_stage| node_stage_st0471
+    node_quest_10320701 -->|quest_archive_stage| node_stage_st0472
+    node_quest_10320701 -->|quest_archive_stage| node_stage_st0473
+    node_quest_10320701 -->|promoted_dependency| node_owner_quest_60300032
+    node_family_context_quest_sequence -->|sequence_next| node_sequence_quest_10320702
+    node_family_context_quest_sequence -->|sequence_previous| node_sequence_quest_10320700
+    node_stage_st0472 -->|stage_group_reference| node_stage_group_st0472_13
+    node_stage_st0472 -->|stage_group_reference| node_stage_group_st0472_14
+    node_stage_st0472 -->|stage_group_reference| node_stage_group_st0472_15
+    node_stage_st0472 -->|stage_group_reference| node_stage_group_st0472_16
+    node_stage_st0472 -->|stage_group_reference| node_stage_group_st0472_17
+    node_stage_st0472 -->|stage_group_reference| node_stage_group_st0472_18
+    node_stage_st0472 -->|stage_group_reference| node_stage_group_st0472_19
+    node_stage_st0472 -->|stage_group_reference| node_stage_group_st0472_33
+    node_stage_st0472 -->|stage_group_reference| node_stage_group_st0472_4
+    node_stage_st0472 -->|stage_group_reference| node_stage_group_st0472_6
+    node_stage_st0473 -->|stage_group_reference| node_stage_group_st0473_10
+    node_stage_st0473 -->|stage_group_reference| node_stage_group_st0473_11
+    node_stage_st0473 -->|stage_group_reference| node_stage_group_st0473_35
+    node_stage_st0473 -->|stage_group_reference| node_stage_group_st0473_36
+    classDef direct_deterministic fill:#e8f5e9,stroke:#2e7d32,stroke-width:1px
+    classDef owner_index fill:#e3f2fd,stroke:#1565c0,stroke-width:1px
+    classDef dependency_inferred fill:#fff3e0,stroke:#ef6c00,stroke-width:1px
+    classDef graph_expanded fill:#f3e5f5,stroke:#7b1fa2,stroke-width:1px
+    classDef lower_confidence fill:#fbe9e7,stroke:#d84315,stroke-width:1px
+    classDef binary_auxiliary fill:#eceff1,stroke:#455a64,stroke-width:1px
+    class node_quest_10320701,node_direct_family_fsm,node_direct_family_lot,node_direct_family_qst,node_family_context_quest_sequence,node_stage_st0471,node_stage_st0472,node_stage_st0473,node_sequence_quest_10320700,node_sequence_quest_10320702 direct_deterministic
+    class node_owner_quest_60300032 owner_index
+    class node_stage_group_st0472_13,node_stage_group_st0472_14,node_stage_group_st0472_15,node_stage_group_st0472_16,node_stage_group_st0472_17,node_stage_group_st0472_18,node_stage_group_st0472_19,node_stage_group_st0472_33,node_stage_group_st0472_4,node_stage_group_st0472_6,node_stage_group_st0473_10,node_stage_group_st0473_11,node_stage_group_st0473_35,node_stage_group_st0473_36 graph_expanded
+....
+
+[cols="1,2,2,2,2,4",options="header"]
+|===
+| Depth | Edge | From | To | Derivation | Why
+
+| 1 | direct_source_family | quest:10320701 | direct-family:fsm | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | direct_source_family | quest:10320701 | direct-family:lot | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | direct_source_family | quest:10320701 | direct-family:qst | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | family_context:quest_sequence | quest:10320701 | family-context:quest_sequence | Direct | Family-specific decoded tables provide deterministic context for this quest.
+| 1 | quest_archive_stage | quest:10320701 | stage:st0471 | Direct | Quest archive topology directly links this quest to the stage code.
+| 1 | quest_archive_stage | quest:10320701 | stage:st0472 | Direct | Quest archive topology directly links this quest to the stage code.
+| 1 | quest_archive_stage | quest:10320701 | stage:st0473 | Direct | Quest archive topology directly links this quest to the stage code.
+| 2 | promoted_dependency | quest:10320701 | owner-quest:60300032 | Dependency | Filtered GPL-backed q6 stage-neighborhood cues intersect the owner q6 quest's client-derived layout catalog built from self-owned client evidence.
+| 2 | sequence_next | family-context:quest_sequence | sequence-quest:10320702 | Direct | QuestSequence links this quest to its neighboring sequence quest.
+| 2 | sequence_previous | family-context:quest_sequence | sequence-quest:10320700 | Direct | QuestSequence links this quest to its neighboring sequence quest.
+| 2 | stage_group_reference | stage:st0472 | stage-group:st0472:13 | Graph | Reverse indexes expose GPL group references for this stage.
+| 2 | stage_group_reference | stage:st0472 | stage-group:st0472:14 | Graph | Reverse indexes expose GPL group references for this stage.
+| 2 | stage_group_reference | stage:st0472 | stage-group:st0472:15 | Graph | Reverse indexes expose GPL group references for this stage.
+| 2 | stage_group_reference | stage:st0472 | stage-group:st0472:16 | Graph | Reverse indexes expose GPL group references for this stage.
+| 2 | stage_group_reference | stage:st0472 | stage-group:st0472:17 | Graph | Reverse indexes expose GPL group references for this stage.
+| 2 | stage_group_reference | stage:st0472 | stage-group:st0472:18 | Graph | Reverse indexes expose GPL group references for this stage.
+| 2 | stage_group_reference | stage:st0472 | stage-group:st0472:19 | Graph | Reverse indexes expose GPL group references for this stage.
+| 2 | stage_group_reference | stage:st0472 | stage-group:st0472:33 | Graph | Reverse indexes expose GPL group references for this stage.
+| 2 | stage_group_reference | stage:st0472 | stage-group:st0472:4 | Graph | Reverse indexes expose GPL group references for this stage.
+| 2 | stage_group_reference | stage:st0472 | stage-group:st0472:6 | Graph | Reverse indexes expose GPL group references for this stage.
+| 2 | stage_group_reference | stage:st0473 | stage-group:st0473:10 | Graph | Reverse indexes expose GPL group references for this stage.
+| 2 | stage_group_reference | stage:st0473 | stage-group:st0473:11 | Graph | Reverse indexes expose GPL group references for this stage.
+| 2 | stage_group_reference | stage:st0473 | stage-group:st0473:35 | Graph | Reverse indexes expose GPL group references for this stage.
+| 2 | stage_group_reference | stage:st0473 | stage-group:st0473:36 | Graph | Reverse indexes expose GPL group references for this stage.
+| 2 | stage_group_reference | stage:st0473 | stage-group:st0473:40 | Graph | Reverse indexes expose GPL group references for this stage.
+| 2 | stage_owner_index | stage:st0472 | owner-quest:70032001 | Owner Index | Stage-neighborhood cues on this stage link to the reusable owner catalog.
+| 2 | stage_owner_index | stage:st0473 | owner-quest:60300032 | Owner Index | Stage-neighborhood cues on this stage link to the reusable owner catalog.
+| 2 | stage_owner_index | stage:st0473 | owner-quest:70032001 | Owner Index | Stage-neighborhood cues on this stage link to the reusable owner catalog.
+| 3 | gpl_owner_guard | stage-group:st0472:13 | owner-quest:70032001 | Graph | GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.
+| 3 | gpl_owner_guard | stage-group:st0472:14 | owner-quest:70032001 | Graph | GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.
+| 3 | gpl_owner_guard | stage-group:st0472:15 | owner-quest:70032001 | Graph | GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.
+| 3 | gpl_owner_guard | stage-group:st0472:16 | owner-quest:70032001 | Graph | GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.
+| 3 | gpl_owner_guard | stage-group:st0472:17 | owner-quest:70032001 | Graph | GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.
+| 3 | gpl_owner_guard | stage-group:st0472:18 | owner-quest:70032001 | Graph | GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.
+| 3 | gpl_owner_guard | stage-group:st0472:19 | owner-quest:70032001 | Graph | GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.
+| 3 | gpl_owner_guard | stage-group:st0472:33 | owner-quest:70032001 | Graph | GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.
+| 3 | gpl_owner_guard | stage-group:st0472:4 | owner-quest:70032001 | Graph | GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.
+| 3 | gpl_owner_guard | stage-group:st0472:6 | owner-quest:70032001 | Graph | GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.
+| 3 | gpl_owner_guard | stage-group:st0473:10 | owner-quest:60300032 | Graph | GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.
+| 3 | gpl_owner_guard | stage-group:st0473:11 | owner-quest:60300032 | Graph | GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.
+|===
+
 == Flag Summary Matrix
 
 [cols="2,1,1,2,2,3,3",options="header"]
 |===
 | Target | Kind | Hits | Sources | Stages | Relationships | Description
 
+| Flag 7617 | layout_flag | 2 | qst | st0472 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0472 \| 襲撃前仲間たち
+| Flag 7618 | layout_flag | 2 | qst | st0472 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0472 \| QuestGroup 12 \| 襲撃後ゴカ
+| Flag 7619 | layout_flag | 2 | qst | st0472 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0472 \| QuestGroup 1 \| 襲撃前エセン
+| Flag 7620 | layout_flag | 2 | qst | st0472 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0472 \| QuestGroup 2 \| 襲撃前学者
+| Flag 7621 | layout_flag | 2 | qst | st0473 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0473 \| ジャン
+| Flag 7622 | layout_flag | 2 | qst | st0473 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0473 \| QuestGroup 1 \| ミュゲ
+| Flag 7623 | layout_flag | 2 | qst | st0471 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0471 \| QuestGroup 4 \| クリア前エセン
+| Flag 7624 | layout_flag | 2 | qst | st0471 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0471 \| QuestGroup 1 \| クリア前学者
+| Flag 7625 | layout_flag | 2 | qst | st0471 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0471 \| QuestGroup 2 \| クリア前ジャン
+| Flag 7626 | layout_flag | 2 | qst | st0471 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0471 \| QuestGroup 3 \| クリア前ミュゲ
+| Flag 7627 | layout_flag | 2 | qst | st0471 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0471 \| クリア前メゴカセ
+| Flag 7630 | layout_flag | 2 | qst | st0473 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0473 \| QuestGroup 2 \| メフィス
+| Flag 7634 | layout_flag | 2 | qst | st0473 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0473 \| QuestGroup 3 \| ナヴィド１
+| Flag 7635 | layout_flag | 2 | qst | st0473 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0473 \| QuestGroup 4 \| ナヴィド２
+| Flag 7636 | layout_flag | 2 | qst | st0472 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0472 \| QuestGroup 3 \| 襲撃後セム
+| Flag 7637 | layout_flag | 2 | qst | st0473 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0473 \| QuestGroup 5 \| 死体セット
+| Flag 7638 | layout_flag | 2 | qst | st0472 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0472 \| QuestGroup 11 \| メフィス誘拐前
+| Flag 7640 | layout_flag | 2 | qst | st0472 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0472 \| QuestGroup 13 \| 襲撃後エセン
+| Flag 7641 | layout_flag | 2 | qst | st0472 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0472 \| QuestGroup 5 \| 襲撃後学者
+| Flag 7642 | layout_flag | 2 | qst | st0472 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0472 \| QuestGroup 14 \| 襲撃前ジャン
+| Flag 7643 | layout_flag | 2 | qst | st0472 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0472 \| QuestGroup 15 \| 襲撃前ミュゲ
+| Flag 7683 | layout_flag | 2 | qst | st0473 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0473 \| QuestGroup 7 \| 鍵セット
+| Flag 7684 | layout_flag | 2 | qst | st0473 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0473 \| QuestGroup 6 \| 鍵セット
+| Flag 7686 | layout_flag | 2 | qst | st0473 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0473 \| QuestGroup 8 \| エフェクト壁
+| Flag 7949 | layout_flag | 2 | qst | st0473 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0473 \| QuestGroup 9 \| ジャン
+| Flag 7950 | layout_flag | 2 | qst | st0473 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0473 \| QuestGroup 10 \| 夜の女
+| Flag 7951 | layout_flag | 2 | qst | st0473 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0473 \| QuestGroup 11 \| ゴロリ
+| Flag 7952 | layout_flag | 2 | qst | st0473 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0473 \| QuestGroup 12 \| バーノン
+| Flag 7953 | layout_flag | 2 | qst | st0473 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0473 \| QuestGroup 13 \| 情報屋
 | Quest ID 10320701 | quest_id | 14 | fsm, lot, qst | st0473 | 🚪 Door/Gate, 🔍 FSM Check, 💬 Text Quest | Derived quest-wide association scan
 |===
 
 == Known Documented Targets
 
+* quest 10320701 -- Flag 7617 -- QST local: st0472 | 襲撃前仲間たち
+* quest 10320701 -- Flag 7618 -- QST local: st0472 | QuestGroup 12 | 襲撃後ゴカ
+* quest 10320701 -- Flag 7619 -- QST local: st0472 | QuestGroup 1 | 襲撃前エセン
+* quest 10320701 -- Flag 7620 -- QST local: st0472 | QuestGroup 2 | 襲撃前学者
+* quest 10320701 -- Flag 7621 -- QST local: st0473 | ジャン
+* quest 10320701 -- Flag 7622 -- QST local: st0473 | QuestGroup 1 | ミュゲ
+* quest 10320701 -- Flag 7623 -- QST local: st0471 | QuestGroup 4 | クリア前エセン
+* quest 10320701 -- Flag 7624 -- QST local: st0471 | QuestGroup 1 | クリア前学者
+* quest 10320701 -- Flag 7625 -- QST local: st0471 | QuestGroup 2 | クリア前ジャン
+* quest 10320701 -- Flag 7626 -- QST local: st0471 | QuestGroup 3 | クリア前ミュゲ
+* quest 10320701 -- Flag 7627 -- QST local: st0471 | クリア前メゴカセ
+* quest 10320701 -- Flag 7630 -- QST local: st0473 | QuestGroup 2 | メフィス
+* quest 10320701 -- Flag 7634 -- QST local: st0473 | QuestGroup 3 | ナヴィド１
+* quest 10320701 -- Flag 7635 -- QST local: st0473 | QuestGroup 4 | ナヴィド２
+* quest 10320701 -- Flag 7636 -- QST local: st0472 | QuestGroup 3 | 襲撃後セム
+* quest 10320701 -- Flag 7637 -- QST local: st0473 | QuestGroup 5 | 死体セット
+* quest 10320701 -- Flag 7638 -- QST local: st0472 | QuestGroup 11 | メフィス誘拐前
+* quest 10320701 -- Flag 7640 -- QST local: st0472 | QuestGroup 13 | 襲撃後エセン
+* quest 10320701 -- Flag 7641 -- QST local: st0472 | QuestGroup 5 | 襲撃後学者
+* quest 10320701 -- Flag 7642 -- QST local: st0472 | QuestGroup 14 | 襲撃前ジャン
+* quest 10320701 -- Flag 7643 -- QST local: st0472 | QuestGroup 15 | 襲撃前ミュゲ
+* quest 10320701 -- Flag 7683 -- QST local: st0473 | QuestGroup 7 | 鍵セット
+* quest 10320701 -- Flag 7684 -- QST local: st0473 | QuestGroup 6 | 鍵セット
+* quest 10320701 -- Flag 7686 -- QST local: st0473 | QuestGroup 8 | エフェクト壁
+* quest 10320701 -- Flag 7949 -- QST local: st0473 | QuestGroup 9 | ジャン
+* quest 10320701 -- Flag 7950 -- QST local: st0473 | QuestGroup 10 | 夜の女
+* quest 10320701 -- Flag 7951 -- QST local: st0473 | QuestGroup 11 | ゴロリ
+* quest 10320701 -- Flag 7952 -- QST local: st0473 | QuestGroup 12 | バーノン
+* quest 10320701 -- Flag 7953 -- QST local: st0473 | QuestGroup 13 | 情報屋
 * Quest ID 10320701 -- Derived quest-wide association scan [Derived]
+
+== Flag 7617 -- Quest 10320701
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320701/quest/10320701/q10320701_st0472.qst.json[client/03040008/quest/q10320701/quest/10320701/q10320701_st0472.qst.json] | QuestStageList[].QuestGrp[0].Condition | Condition | quest 10320701 / Fortress City Megado: Residential Level / "襲撃前仲間たち" / QuestSet=QuestSetInfoNpc \|\| QuestSet=QuestSetInfoNpc \|\| +1 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320701/quest/10320701/q10320701_st0472.qst.json[client/03040008/quest/q10320701/quest/10320701/q10320701_st0472.qst.json] | QuestStageList[].QuestGrp[0].EraseCondition | EraseCondition | quest 10320701 / Fortress City Megado: Residential Level / "襲撃前仲間たち" / QuestSet=QuestSetInfoNpc \|\| QuestSet=QuestSetInfoNpc \|\| +1 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 7618 -- Quest 10320701
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320701/quest/10320701/q10320701_st0472.qst.json[client/03040008/quest/q10320701/quest/10320701/q10320701_st0472.qst.json] | QuestStageList[].QuestGrp[5].Condition | Condition | quest 10320701 / Fortress City Megado: Residential Level / "QuestGroup 12 \| 襲撃後ゴカ" / QuestSet=QuestSetInfoNpc \| GroupNo=12 \|\| QuestSet=QuestSetInfoNpc \| GroupNo=12 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320701/quest/10320701/q10320701_st0472.qst.json[client/03040008/quest/q10320701/quest/10320701/q10320701_st0472.qst.json] | QuestStageList[].QuestGrp[5].EraseCondition | EraseCondition | quest 10320701 / Fortress City Megado: Residential Level / "QuestGroup 12 \| 襲撃後ゴカ" / QuestSet=QuestSetInfoNpc \| GroupNo=12 \|\| QuestSet=QuestSetInfoNpc \| GroupNo=12 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 7619 -- Quest 10320701
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320701/quest/10320701/q10320701_st0472.qst.json[client/03040008/quest/q10320701/quest/10320701/q10320701_st0472.qst.json] | QuestStageList[].QuestGrp[1].Condition | Condition | quest 10320701 / Fortress City Megado: Residential Level / "QuestGroup 1 \| 襲撃前エセン" / QuestSet=QuestSetInfoNpc \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320701/quest/10320701/q10320701_st0472.qst.json[client/03040008/quest/q10320701/quest/10320701/q10320701_st0472.qst.json] | QuestStageList[].QuestGrp[1].EraseCondition | EraseCondition | quest 10320701 / Fortress City Megado: Residential Level / "QuestGroup 1 \| 襲撃前エセン" / QuestSet=QuestSetInfoNpc \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 7620 -- Quest 10320701
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320701/quest/10320701/q10320701_st0472.qst.json[client/03040008/quest/q10320701/quest/10320701/q10320701_st0472.qst.json] | QuestStageList[].QuestGrp[2].Condition | Condition | quest 10320701 / Fortress City Megado: Residential Level / "QuestGroup 2 \| 襲撃前学者" / QuestSet=QuestSetInfoNpc \| GroupNo=2 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320701/quest/10320701/q10320701_st0472.qst.json[client/03040008/quest/q10320701/quest/10320701/q10320701_st0472.qst.json] | QuestStageList[].QuestGrp[2].EraseCondition | EraseCondition | quest 10320701 / Fortress City Megado: Residential Level / "QuestGroup 2 \| 襲撃前学者" / QuestSet=QuestSetInfoNpc \| GroupNo=2 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 7621 -- Quest 10320701
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320701/quest/10320701/q10320701_st0473.qst.json[client/03040008/quest/q10320701/quest/10320701/q10320701_st0473.qst.json] | QuestStageList[].QuestGrp[0].Condition | Condition | quest 10320701 / Marquise Kurt's residence / "ジャン" / QuestSet=QuestSetInfoNpc | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320701/quest/10320701/q10320701_st0473.qst.json[client/03040008/quest/q10320701/quest/10320701/q10320701_st0473.qst.json] | QuestStageList[].QuestGrp[0].EraseCondition | EraseCondition | quest 10320701 / Marquise Kurt's residence / "ジャン" / QuestSet=QuestSetInfoNpc | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 7622 -- Quest 10320701
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320701/quest/10320701/q10320701_st0473.qst.json[client/03040008/quest/q10320701/quest/10320701/q10320701_st0473.qst.json] | QuestStageList[].QuestGrp[1].Condition | Condition | quest 10320701 / Marquise Kurt's residence / "QuestGroup 1 \| ミュゲ" / QuestSet=QuestSetInfoNpc \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320701/quest/10320701/q10320701_st0473.qst.json[client/03040008/quest/q10320701/quest/10320701/q10320701_st0473.qst.json] | QuestStageList[].QuestGrp[1].EraseCondition | EraseCondition | quest 10320701 / Marquise Kurt's residence / "QuestGroup 1 \| ミュゲ" / QuestSet=QuestSetInfoNpc \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 7623 -- Quest 10320701
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320701/quest/10320701/q10320701_st0471.qst.json[client/03040008/quest/q10320701/quest/10320701/q10320701_st0471.qst.json] | QuestStageList[].QuestGrp[4].Condition | Condition | quest 10320701 / Fortress City Megado: Residential Level / "QuestGroup 4 \| クリア前エセン" / QuestSet=QuestSetInfoNpc \| GroupNo=4 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320701/quest/10320701/q10320701_st0471.qst.json[client/03040008/quest/q10320701/quest/10320701/q10320701_st0471.qst.json] | QuestStageList[].QuestGrp[4].EraseCondition | EraseCondition | quest 10320701 / Fortress City Megado: Residential Level / "QuestGroup 4 \| クリア前エセン" / QuestSet=QuestSetInfoNpc \| GroupNo=4 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 7624 -- Quest 10320701
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320701/quest/10320701/q10320701_st0471.qst.json[client/03040008/quest/q10320701/quest/10320701/q10320701_st0471.qst.json] | QuestStageList[].QuestGrp[1].Condition | Condition | quest 10320701 / Fortress City Megado: Residential Level / "QuestGroup 1 \| クリア前学者" / QuestSet=QuestSetInfoNpc \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320701/quest/10320701/q10320701_st0471.qst.json[client/03040008/quest/q10320701/quest/10320701/q10320701_st0471.qst.json] | QuestStageList[].QuestGrp[1].EraseCondition | EraseCondition | quest 10320701 / Fortress City Megado: Residential Level / "QuestGroup 1 \| クリア前学者" / QuestSet=QuestSetInfoNpc \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 7625 -- Quest 10320701
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320701/quest/10320701/q10320701_st0471.qst.json[client/03040008/quest/q10320701/quest/10320701/q10320701_st0471.qst.json] | QuestStageList[].QuestGrp[2].Condition | Condition | quest 10320701 / Fortress City Megado: Residential Level / "QuestGroup 2 \| クリア前ジャン" / QuestSet=QuestSetInfoNpc \| GroupNo=2 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320701/quest/10320701/q10320701_st0471.qst.json[client/03040008/quest/q10320701/quest/10320701/q10320701_st0471.qst.json] | QuestStageList[].QuestGrp[2].EraseCondition | EraseCondition | quest 10320701 / Fortress City Megado: Residential Level / "QuestGroup 2 \| クリア前ジャン" / QuestSet=QuestSetInfoNpc \| GroupNo=2 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 7626 -- Quest 10320701
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320701/quest/10320701/q10320701_st0471.qst.json[client/03040008/quest/q10320701/quest/10320701/q10320701_st0471.qst.json] | QuestStageList[].QuestGrp[3].Condition | Condition | quest 10320701 / Fortress City Megado: Residential Level / "QuestGroup 3 \| クリア前ミュゲ" / QuestSet=QuestSetInfoNpc \| GroupNo=3 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320701/quest/10320701/q10320701_st0471.qst.json[client/03040008/quest/q10320701/quest/10320701/q10320701_st0471.qst.json] | QuestStageList[].QuestGrp[3].EraseCondition | EraseCondition | quest 10320701 / Fortress City Megado: Residential Level / "QuestGroup 3 \| クリア前ミュゲ" / QuestSet=QuestSetInfoNpc \| GroupNo=3 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 7627 -- Quest 10320701
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320701/quest/10320701/q10320701_st0471.qst.json[client/03040008/quest/q10320701/quest/10320701/q10320701_st0471.qst.json] | QuestStageList[].QuestGrp[0].Condition | Condition | quest 10320701 / Fortress City Megado: Residential Level / "クリア前メゴカセ" / QuestSet=QuestSetInfoNpc \|\| QuestSet=QuestSetInfoNpc \|\| +2 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320701/quest/10320701/q10320701_st0471.qst.json[client/03040008/quest/q10320701/quest/10320701/q10320701_st0471.qst.json] | QuestStageList[].QuestGrp[0].EraseCondition | EraseCondition | quest 10320701 / Fortress City Megado: Residential Level / "クリア前メゴカセ" / QuestSet=QuestSetInfoNpc \|\| QuestSet=QuestSetInfoNpc \|\| +2 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 7630 -- Quest 10320701
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320701/quest/10320701/q10320701_st0473.qst.json[client/03040008/quest/q10320701/quest/10320701/q10320701_st0473.qst.json] | QuestStageList[].QuestGrp[2].Condition | Condition | quest 10320701 / Marquise Kurt's residence / "QuestGroup 2 \| メフィス" / QuestSet=QuestSetInfoNpc \| GroupNo=2 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320701/quest/10320701/q10320701_st0473.qst.json[client/03040008/quest/q10320701/quest/10320701/q10320701_st0473.qst.json] | QuestStageList[].QuestGrp[2].EraseCondition | EraseCondition | quest 10320701 / Marquise Kurt's residence / "QuestGroup 2 \| メフィス" / QuestSet=QuestSetInfoNpc \| GroupNo=2 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 7634 -- Quest 10320701
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320701/quest/10320701/q10320701_st0473.qst.json[client/03040008/quest/q10320701/quest/10320701/q10320701_st0473.qst.json] | QuestStageList[].QuestGrp[3].Condition | Condition | quest 10320701 / Marquise Kurt's residence / "QuestGroup 3 \| ナヴィド１" / QuestSet=QuestSetInfoNpc \| GroupNo=3 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320701/quest/10320701/q10320701_st0473.qst.json[client/03040008/quest/q10320701/quest/10320701/q10320701_st0473.qst.json] | QuestStageList[].QuestGrp[3].EraseCondition | EraseCondition | quest 10320701 / Marquise Kurt's residence / "QuestGroup 3 \| ナヴィド１" / QuestSet=QuestSetInfoNpc \| GroupNo=3 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 7635 -- Quest 10320701
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320701/quest/10320701/q10320701_st0473.qst.json[client/03040008/quest/q10320701/quest/10320701/q10320701_st0473.qst.json] | QuestStageList[].QuestGrp[4].Condition | Condition | quest 10320701 / Marquise Kurt's residence / "QuestGroup 4 \| ナヴィド２" / QuestSet=QuestSetInfoNpc \| GroupNo=4 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320701/quest/10320701/q10320701_st0473.qst.json[client/03040008/quest/q10320701/quest/10320701/q10320701_st0473.qst.json] | QuestStageList[].QuestGrp[4].EraseCondition | EraseCondition | quest 10320701 / Marquise Kurt's residence / "QuestGroup 4 \| ナヴィド２" / QuestSet=QuestSetInfoNpc \| GroupNo=4 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 7636 -- Quest 10320701
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320701/quest/10320701/q10320701_st0472.qst.json[client/03040008/quest/q10320701/quest/10320701/q10320701_st0472.qst.json] | QuestStageList[].QuestGrp[3].Condition | Condition | quest 10320701 / Fortress City Megado: Residential Level / "QuestGroup 3 \| 襲撃後セム" / QuestSet=QuestSetInfoNpc \| GroupNo=3 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320701/quest/10320701/q10320701_st0472.qst.json[client/03040008/quest/q10320701/quest/10320701/q10320701_st0472.qst.json] | QuestStageList[].QuestGrp[3].EraseCondition | EraseCondition | quest 10320701 / Fortress City Megado: Residential Level / "QuestGroup 3 \| 襲撃後セム" / QuestSet=QuestSetInfoNpc \| GroupNo=3 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 7637 -- Quest 10320701
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320701/quest/10320701/q10320701_st0473.qst.json[client/03040008/quest/q10320701/quest/10320701/q10320701_st0473.qst.json] | QuestStageList[].QuestGrp[5].Condition | Condition | quest 10320701 / Marquise Kurt's residence / "QuestGroup 5 \| 死体セット" / QuestSet=QuestSetInfoOm \| OmID=507683 \| UnitID=507683 \| EnableZone \| GroupNo=5 \|\| QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100606 \| TextType=2 \| TextQuestNo=10320701 \| GroupNo=5 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320701/quest/10320701/q10320701_st0473.qst.json[client/03040008/quest/q10320701/quest/10320701/q10320701_st0473.qst.json] | QuestStageList[].QuestGrp[5].EraseCondition | EraseCondition | quest 10320701 / Marquise Kurt's residence / "QuestGroup 5 \| 死体セット" / QuestSet=QuestSetInfoOm \| OmID=507683 \| UnitID=507683 \| EnableZone \| GroupNo=5 \|\| QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100606 \| TextType=2 \| TextQuestNo=10320701 \| GroupNo=5 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 7638 -- Quest 10320701
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320701/quest/10320701/q10320701_st0472.qst.json[client/03040008/quest/q10320701/quest/10320701/q10320701_st0472.qst.json] | QuestStageList[].QuestGrp[4].Condition | Condition | quest 10320701 / Fortress City Megado: Residential Level / "QuestGroup 11 \| メフィス誘拐前" / QuestSet=QuestSetInfoNpc \| GroupNo=11 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320701/quest/10320701/q10320701_st0472.qst.json[client/03040008/quest/q10320701/quest/10320701/q10320701_st0472.qst.json] | QuestStageList[].QuestGrp[4].EraseCondition | EraseCondition | quest 10320701 / Fortress City Megado: Residential Level / "QuestGroup 11 \| メフィス誘拐前" / QuestSet=QuestSetInfoNpc \| GroupNo=11 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 7640 -- Quest 10320701
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320701/quest/10320701/q10320701_st0472.qst.json[client/03040008/quest/q10320701/quest/10320701/q10320701_st0472.qst.json] | QuestStageList[].QuestGrp[7].Condition | Condition | quest 10320701 / Fortress City Megado: Residential Level / "QuestGroup 13 \| 襲撃後エセン" / QuestSet=QuestSetInfoNpc \| GroupNo=13 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320701/quest/10320701/q10320701_st0472.qst.json[client/03040008/quest/q10320701/quest/10320701/q10320701_st0472.qst.json] | QuestStageList[].QuestGrp[7].EraseCondition | EraseCondition | quest 10320701 / Fortress City Megado: Residential Level / "QuestGroup 13 \| 襲撃後エセン" / QuestSet=QuestSetInfoNpc \| GroupNo=13 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 7641 -- Quest 10320701
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320701/quest/10320701/q10320701_st0472.qst.json[client/03040008/quest/q10320701/quest/10320701/q10320701_st0472.qst.json] | QuestStageList[].QuestGrp[6].Condition | Condition | quest 10320701 / Fortress City Megado: Residential Level / "QuestGroup 5 \| 襲撃後学者" / QuestSet=QuestSetInfoNpc \| GroupNo=5 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320701/quest/10320701/q10320701_st0472.qst.json[client/03040008/quest/q10320701/quest/10320701/q10320701_st0472.qst.json] | QuestStageList[].QuestGrp[6].EraseCondition | EraseCondition | quest 10320701 / Fortress City Megado: Residential Level / "QuestGroup 5 \| 襲撃後学者" / QuestSet=QuestSetInfoNpc \| GroupNo=5 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 7642 -- Quest 10320701
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320701/quest/10320701/q10320701_st0472.qst.json[client/03040008/quest/q10320701/quest/10320701/q10320701_st0472.qst.json] | QuestStageList[].QuestGrp[8].Condition | Condition | quest 10320701 / Fortress City Megado: Residential Level / "QuestGroup 14 \| 襲撃前ジャン" / QuestSet=QuestSetInfoNpc \| GroupNo=14 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320701/quest/10320701/q10320701_st0472.qst.json[client/03040008/quest/q10320701/quest/10320701/q10320701_st0472.qst.json] | QuestStageList[].QuestGrp[8].EraseCondition | EraseCondition | quest 10320701 / Fortress City Megado: Residential Level / "QuestGroup 14 \| 襲撃前ジャン" / QuestSet=QuestSetInfoNpc \| GroupNo=14 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 7643 -- Quest 10320701
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320701/quest/10320701/q10320701_st0472.qst.json[client/03040008/quest/q10320701/quest/10320701/q10320701_st0472.qst.json] | QuestStageList[].QuestGrp[9].Condition | Condition | quest 10320701 / Fortress City Megado: Residential Level / "QuestGroup 15 \| 襲撃前ミュゲ" / QuestSet=QuestSetInfoNpc \| GroupNo=15 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320701/quest/10320701/q10320701_st0472.qst.json[client/03040008/quest/q10320701/quest/10320701/q10320701_st0472.qst.json] | QuestStageList[].QuestGrp[9].EraseCondition | EraseCondition | quest 10320701 / Fortress City Megado: Residential Level / "QuestGroup 15 \| 襲撃前ミュゲ" / QuestSet=QuestSetInfoNpc \| GroupNo=15 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 7683 -- Quest 10320701
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320701/quest/10320701/q10320701_st0473.qst.json[client/03040008/quest/q10320701/quest/10320701/q10320701_st0473.qst.json] | QuestStageList[].QuestGrp[7].Condition | Condition | quest 10320701 / Marquise Kurt's residence / "QuestGroup 7 \| 鍵セット" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100609 \| TextType=2 \| TextQuestNo=10320701 \| GroupNo=7 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320701/quest/10320701/q10320701_st0473.qst.json[client/03040008/quest/q10320701/quest/10320701/q10320701_st0473.qst.json] | QuestStageList[].QuestGrp[7].EraseCondition | EraseCondition | quest 10320701 / Marquise Kurt's residence / "QuestGroup 7 \| 鍵セット" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100609 \| TextType=2 \| TextQuestNo=10320701 \| GroupNo=7 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 7684 -- Quest 10320701
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320701/quest/10320701/q10320701_st0473.qst.json[client/03040008/quest/q10320701/quest/10320701/q10320701_st0473.qst.json] | QuestStageList[].QuestGrp[6].Condition | Condition | quest 10320701 / Marquise Kurt's residence / "QuestGroup 6 \| 鍵セット" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100607 \| TextType=2 \| TextQuestNo=10320701 \| GroupNo=6 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320701/quest/10320701/q10320701_st0473.qst.json[client/03040008/quest/q10320701/quest/10320701/q10320701_st0473.qst.json] | QuestStageList[].QuestGrp[6].EraseCondition | EraseCondition | quest 10320701 / Marquise Kurt's residence / "QuestGroup 6 \| 鍵セット" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100607 \| TextType=2 \| TextQuestNo=10320701 \| GroupNo=6 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 7686 -- Quest 10320701
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320701/quest/10320701/q10320701_st0473.qst.json[client/03040008/quest/q10320701/quest/10320701/q10320701_st0473.qst.json] | QuestStageList[].QuestGrp[8].Condition | Condition | quest 10320701 / Marquise Kurt's residence / "QuestGroup 8 \| エフェクト壁" / QuestSet=QuestSetInfoOm \| OmID=510443 \| UnitID=510443 \| EnableZone \| GroupNo=8 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320701/quest/10320701/q10320701_st0473.qst.json[client/03040008/quest/q10320701/quest/10320701/q10320701_st0473.qst.json] | QuestStageList[].QuestGrp[8].EraseCondition | EraseCondition | quest 10320701 / Marquise Kurt's residence / "QuestGroup 8 \| エフェクト壁" / QuestSet=QuestSetInfoOm \| OmID=510443 \| UnitID=510443 \| EnableZone \| GroupNo=8 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 7949 -- Quest 10320701
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320701/quest/10320701/q10320701_st0473.qst.json[client/03040008/quest/q10320701/quest/10320701/q10320701_st0473.qst.json] | QuestStageList[].QuestGrp[9].Condition | Condition | quest 10320701 / Marquise Kurt's residence / "QuestGroup 9 \| ジャン" / QuestSet=QuestSetInfoNpc \| GroupNo=9 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320701/quest/10320701/q10320701_st0473.qst.json[client/03040008/quest/q10320701/quest/10320701/q10320701_st0473.qst.json] | QuestStageList[].QuestGrp[9].EraseCondition | EraseCondition | quest 10320701 / Marquise Kurt's residence / "QuestGroup 9 \| ジャン" / QuestSet=QuestSetInfoNpc \| GroupNo=9 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 7950 -- Quest 10320701
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320701/quest/10320701/q10320701_st0473.qst.json[client/03040008/quest/q10320701/quest/10320701/q10320701_st0473.qst.json] | QuestStageList[].QuestGrp[10].Condition | Condition | quest 10320701 / Marquise Kurt's residence / "QuestGroup 10 \| 夜の女" / QuestSet=QuestSetInfoNpc \| GroupNo=10 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320701/quest/10320701/q10320701_st0473.qst.json[client/03040008/quest/q10320701/quest/10320701/q10320701_st0473.qst.json] | QuestStageList[].QuestGrp[10].EraseCondition | EraseCondition | quest 10320701 / Marquise Kurt's residence / "QuestGroup 10 \| 夜の女" / QuestSet=QuestSetInfoNpc \| GroupNo=10 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 7951 -- Quest 10320701
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320701/quest/10320701/q10320701_st0473.qst.json[client/03040008/quest/q10320701/quest/10320701/q10320701_st0473.qst.json] | QuestStageList[].QuestGrp[11].Condition | Condition | quest 10320701 / Marquise Kurt's residence / "QuestGroup 11 \| ゴロリ" / QuestSet=QuestSetInfoNpc \| GroupNo=11 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320701/quest/10320701/q10320701_st0473.qst.json[client/03040008/quest/q10320701/quest/10320701/q10320701_st0473.qst.json] | QuestStageList[].QuestGrp[11].EraseCondition | EraseCondition | quest 10320701 / Marquise Kurt's residence / "QuestGroup 11 \| ゴロリ" / QuestSet=QuestSetInfoNpc \| GroupNo=11 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 7952 -- Quest 10320701
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320701/quest/10320701/q10320701_st0473.qst.json[client/03040008/quest/q10320701/quest/10320701/q10320701_st0473.qst.json] | QuestStageList[].QuestGrp[12].Condition | Condition | quest 10320701 / Marquise Kurt's residence / "QuestGroup 12 \| バーノン" / QuestSet=QuestSetInfoNpc \| GroupNo=12 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320701/quest/10320701/q10320701_st0473.qst.json[client/03040008/quest/q10320701/quest/10320701/q10320701_st0473.qst.json] | QuestStageList[].QuestGrp[12].EraseCondition | EraseCondition | quest 10320701 / Marquise Kurt's residence / "QuestGroup 12 \| バーノン" / QuestSet=QuestSetInfoNpc \| GroupNo=12 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 7953 -- Quest 10320701
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320701/quest/10320701/q10320701_st0473.qst.json[client/03040008/quest/q10320701/quest/10320701/q10320701_st0473.qst.json] | QuestStageList[].QuestGrp[13].Condition | Condition | quest 10320701 / Marquise Kurt's residence / "QuestGroup 13 \| 情報屋" / QuestSet=QuestSetInfoNpc \| GroupNo=13 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320701/quest/10320701/q10320701_st0473.qst.json[client/03040008/quest/q10320701/quest/10320701/q10320701_st0473.qst.json] | QuestStageList[].QuestGrp[13].EraseCondition | EraseCondition | quest 10320701 / Marquise Kurt's residence / "QuestGroup 13 \| 情報屋" / QuestSet=QuestSetInfoNpc \| GroupNo=13 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
 
 == Quest ID 10320701
 
@@ -72,31 +875,31 @@ ranked candidates:: *0*
 
 ==== direct -- 5 hit(s)
 
-[cols="1,1,3,3,2,3,3",options="header"]
+[cols="1,1,1,3,3,2,3,3",options="header"]
 |===
-| Family | Confidence | File | JSON Path | Field | Context | Why
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
 
-| QST | 92 | client/03040008/quest/q10320701/quest/10320701/q10320701_st0473.qst.json | QuestStageList[].QuestGrp[5].QuestSet[1].TextQuestNo | TextQuestNo | quest 10320701 / Marquise Kurt's residence / "QuestGroup 5 \| 死体セット \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100606 \| TextType=2 \| TextQuestNo=10320701 \| GroupNo=5 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
-| QST | 92 | client/03040008/quest/q10320701/quest/10320701/q10320701_st0473.qst.json | QuestStageList[].QuestGrp[6].QuestSet[0].TextQuestNo | TextQuestNo | quest 10320701 / Marquise Kurt's residence / "QuestGroup 6 \| 鍵セット \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100607 \| TextType=2 \| TextQuestNo=10320701 \| GroupNo=6 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
-| QST | 92 | client/03040008/quest/q10320701/quest/10320701/q10320701_st0473.qst.json | QuestStageList[].QuestGrp[7].QuestSet[0].TextQuestNo | TextQuestNo | quest 10320701 / Marquise Kurt's residence / "QuestGroup 7 \| 鍵セット \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100609 \| TextType=2 \| TextQuestNo=10320701 \| GroupNo=7 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
-| LOT | 92 | client/03040008/stage/st0473/lot/st0473_00m00n/scr/st0473/etc/st0473_00m00n_p20.lot.json | Array[8].Info.QuestID | QuestID | quest 10320701 / Marquise Kurt's residence / Megadosys Plateau / SetInfoOmDoor \| om510320 \| OM_ID_DOOR_510320 \| EnableZone | Layout placement reference; LOT hits usually gate warps, NPCs, or interactable objects in the stage layout.
-| LOT | 92 | client/03040008/stage/st0473/lot/st0473_00m00n/scr/st0473/etc/st0473_00m00n_p20.lot.json | Array[8].Info.TextQuestNo | TextQuestNo | quest 10320701 / Marquise Kurt's residence / Megadosys Plateau / SetInfoOmDoor \| om510320 \| OM_ID_DOOR_510320 \| EnableZone | Layout placement reference; LOT hits usually gate warps, NPCs, or interactable objects in the stage layout.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320701/quest/10320701/q10320701_st0473.qst.json[client/03040008/quest/q10320701/quest/10320701/q10320701_st0473.qst.json] | QuestStageList[].QuestGrp[5].QuestSet[1].TextQuestNo | TextQuestNo | quest 10320701 / Marquise Kurt's residence / "QuestGroup 5 \| 死体セット \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100606 \| TextType=2 \| TextQuestNo=10320701 \| GroupNo=5 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320701/quest/10320701/q10320701_st0473.qst.json[client/03040008/quest/q10320701/quest/10320701/q10320701_st0473.qst.json] | QuestStageList[].QuestGrp[6].QuestSet[0].TextQuestNo | TextQuestNo | quest 10320701 / Marquise Kurt's residence / "QuestGroup 6 \| 鍵セット \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100607 \| TextType=2 \| TextQuestNo=10320701 \| GroupNo=6 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320701/quest/10320701/q10320701_st0473.qst.json[client/03040008/quest/q10320701/quest/10320701/q10320701_st0473.qst.json] | QuestStageList[].QuestGrp[7].QuestSet[0].TextQuestNo | TextQuestNo | quest 10320701 / Marquise Kurt's residence / "QuestGroup 7 \| 鍵セット \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100609 \| TextType=2 \| TextQuestNo=10320701 \| GroupNo=7 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| LOT | Direct | 92 | link:../../../../client/03040008/stage/st0473/lot/st0473_00m00n/scr/st0473/etc/st0473_00m00n_p20.lot.json#L573[client/03040008/stage/st0473/lot/st0473_00m00n/scr/st0473/etc/st0473_00m00n_p20.lot.json#L573] | Array[8].Info.QuestID | QuestID | quest 10320701 / Marquise Kurt's residence / Megadosys Plateau / SetInfoOmDoor \| om510320 \| OM_ID_DOOR_510320 \| EnableZone | Layout placement reference; LOT hits usually gate warps, NPCs, or interactable objects in the stage layout.
+| LOT | Direct | 92 | link:../../../../client/03040008/stage/st0473/lot/st0473_00m00n/scr/st0473/etc/st0473_00m00n_p20.lot.json#L579[client/03040008/stage/st0473/lot/st0473_00m00n/scr/st0473/etc/st0473_00m00n_p20.lot.json#L579] | Array[8].Info.TextQuestNo | TextQuestNo | quest 10320701 / Marquise Kurt's residence / Megadosys Plateau / SetInfoOmDoor \| om510320 \| OM_ID_DOOR_510320 \| EnableZone | Layout placement reference; LOT hits usually gate warps, NPCs, or interactable objects in the stage layout.
 |===
 
 ==== opaque_fsm -- 9 hit(s)
 
-[cols="1,1,3,3,2,3,3",options="header"]
+[cols="1,1,1,3,3,2,3,3",options="header"]
 |===
-| Family | Confidence | File | JSON Path | Field | Context | Why
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
 
-| FSM | 78 | client/03040008/quest/q10320701/quest/10320701/npc/n3252.fsm.json | Process.Parameter.QuestId | QuestId | quest 10320701 (Those That Cut through the Darkness) / Shem / checkMyQuestFlag \| NPCFSM=n3252 \| QuestLocalNPCFSM | Quest-local NPC FSM MyQuest check; these files usually describe NPC behavior for the same quest, so this flag likely controls that NPC's quest-specific presence or behavior.
-| FSM | 78 | client/03040008/quest/q10320701/quest/10320701/npc/n3252.fsm.json | Process.Parameter.QuestId | QuestId | quest 10320701 (Those That Cut through the Darkness) / Shem / checkMyQuestFlag \| NPCFSM=n3252 \| QuestLocalNPCFSM | Quest-local NPC FSM MyQuest check; these files usually describe NPC behavior for the same quest, so this flag likely controls that NPC's quest-specific presence or behavior.
-| FSM | 78 | client/03040008/quest/q10320701/quest/10320701/npc/n3255.fsm.json | Process.Parameter.QuestId | QuestId | quest 10320701 (Those That Cut through the Darkness) / Muge / checkMyQuestFlag \| NPCFSM=n3255 \| QuestLocalNPCFSM | Quest-local NPC FSM MyQuest check; these files usually describe NPC behavior for the same quest, so this flag likely controls that NPC's quest-specific presence or behavior.
-| FSM | 78 | client/03040008/quest/q10320701/quest/10320701/npc/n3255.fsm.json | Process.Parameter.QuestId | QuestId | quest 10320701 (Those That Cut through the Darkness) / Muge / checkMyQuestFlag \| NPCFSM=n3255 \| QuestLocalNPCFSM | Quest-local NPC FSM MyQuest check; these files usually describe NPC behavior for the same quest, so this flag likely controls that NPC's quest-specific presence or behavior.
-| FSM | 78 | client/03040008/quest/q10320701/quest/10320701/npc/n3259.fsm.json | Process.Parameter.QuestId | QuestId | quest 10320701 (Those That Cut through the Darkness) / Jan / checkMyQuestFlag \| NPCFSM=n3259 \| QuestLocalNPCFSM | Quest-local NPC FSM MyQuest check; these files usually describe NPC behavior for the same quest, so this flag likely controls that NPC's quest-specific presence or behavior.
-| FSM | 78 | client/03040008/quest/q10320701/quest/10320701/npc/n3259.fsm.json | Process.Parameter.QuestId | QuestId | quest 10320701 (Those That Cut through the Darkness) / Jan / checkMyQuestFlag \| NPCFSM=n3259 \| QuestLocalNPCFSM | Quest-local NPC FSM MyQuest check; these files usually describe NPC behavior for the same quest, so this flag likely controls that NPC's quest-specific presence or behavior.
-| FSM | 64 | client/03040008/quest/q10320701/quest/10320701/npc/n681.fsm.json | Process.Parameter.QuestId | QuestId | quest 10320701 (Those That Cut through the Darkness) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
-| FSM | 64 | client/03040008/quest/q10320701/quest/10320701/npc/nw.fsm.json | Process.Parameter.QuestId | QuestId | quest 10320701 (Those That Cut through the Darkness) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
-| FSM | 64 | client/03040008/quest/q10320701/quest/10320701/npc/nw.fsm.json | Process.Parameter.QuestId | QuestId | quest 10320701 (Those That Cut through the Darkness) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 78 | link:../../../../client/03040008/quest/q10320701/quest/10320701/npc/n3252.fsm.json[client/03040008/quest/q10320701/quest/10320701/npc/n3252.fsm.json] | Process.Parameter.QuestId | QuestId | quest 10320701 (Those That Cut through the Darkness) / Shem / checkMyQuestFlag \| NPCFSM=n3252 \| QuestLocalNPCFSM | Quest-local NPC FSM MyQuest check; these files usually describe NPC behavior for the same quest, so this flag likely controls that NPC's quest-specific presence or behavior.
+| FSM | Direct | 78 | link:../../../../client/03040008/quest/q10320701/quest/10320701/npc/n3252.fsm.json[client/03040008/quest/q10320701/quest/10320701/npc/n3252.fsm.json] | Process.Parameter.QuestId | QuestId | quest 10320701 (Those That Cut through the Darkness) / Shem / checkMyQuestFlag \| NPCFSM=n3252 \| QuestLocalNPCFSM | Quest-local NPC FSM MyQuest check; these files usually describe NPC behavior for the same quest, so this flag likely controls that NPC's quest-specific presence or behavior.
+| FSM | Direct | 78 | link:../../../../client/03040008/quest/q10320701/quest/10320701/npc/n3255.fsm.json[client/03040008/quest/q10320701/quest/10320701/npc/n3255.fsm.json] | Process.Parameter.QuestId | QuestId | quest 10320701 (Those That Cut through the Darkness) / Muge / checkMyQuestFlag \| NPCFSM=n3255 \| QuestLocalNPCFSM | Quest-local NPC FSM MyQuest check; these files usually describe NPC behavior for the same quest, so this flag likely controls that NPC's quest-specific presence or behavior.
+| FSM | Direct | 78 | link:../../../../client/03040008/quest/q10320701/quest/10320701/npc/n3255.fsm.json[client/03040008/quest/q10320701/quest/10320701/npc/n3255.fsm.json] | Process.Parameter.QuestId | QuestId | quest 10320701 (Those That Cut through the Darkness) / Muge / checkMyQuestFlag \| NPCFSM=n3255 \| QuestLocalNPCFSM | Quest-local NPC FSM MyQuest check; these files usually describe NPC behavior for the same quest, so this flag likely controls that NPC's quest-specific presence or behavior.
+| FSM | Direct | 78 | link:../../../../client/03040008/quest/q10320701/quest/10320701/npc/n3259.fsm.json[client/03040008/quest/q10320701/quest/10320701/npc/n3259.fsm.json] | Process.Parameter.QuestId | QuestId | quest 10320701 (Those That Cut through the Darkness) / Jan / checkMyQuestFlag \| NPCFSM=n3259 \| QuestLocalNPCFSM | Quest-local NPC FSM MyQuest check; these files usually describe NPC behavior for the same quest, so this flag likely controls that NPC's quest-specific presence or behavior.
+| FSM | Direct | 78 | link:../../../../client/03040008/quest/q10320701/quest/10320701/npc/n3259.fsm.json[client/03040008/quest/q10320701/quest/10320701/npc/n3259.fsm.json] | Process.Parameter.QuestId | QuestId | quest 10320701 (Those That Cut through the Darkness) / Jan / checkMyQuestFlag \| NPCFSM=n3259 \| QuestLocalNPCFSM | Quest-local NPC FSM MyQuest check; these files usually describe NPC behavior for the same quest, so this flag likely controls that NPC's quest-specific presence or behavior.
+| FSM | Direct | 64 | link:../../../../client/03040008/quest/q10320701/quest/10320701/npc/n681.fsm.json[client/03040008/quest/q10320701/quest/10320701/npc/n681.fsm.json] | Process.Parameter.QuestId | QuestId | quest 10320701 (Those That Cut through the Darkness) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/quest/q10320701/quest/10320701/npc/nw.fsm.json[client/03040008/quest/q10320701/quest/10320701/npc/nw.fsm.json] | Process.Parameter.QuestId | QuestId | quest 10320701 (Those That Cut through the Darkness) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/quest/q10320701/quest/10320701/npc/nw.fsm.json[client/03040008/quest/q10320701/quest/10320701/npc/nw.fsm.json] | Process.Parameter.QuestId | QuestId | quest 10320701 (Those That Cut through the Darkness) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
 |===
 

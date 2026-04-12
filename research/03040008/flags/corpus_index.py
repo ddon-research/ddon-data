@@ -18,6 +18,7 @@ from pathlib import Path
 from typing import Iterator
 
 from client_scanner import SCANNER_MAP
+from scan_utils import parse_code, STAGE_CODE_PATTERN
 
 
 # Suffixes handled by the structured scanners (order doesn't matter).
@@ -33,11 +34,13 @@ class CorpusIndex:
     def __init__(
         self,
         by_suffix: dict[str, list[Path]],
+        by_stage_code: dict[str, list[tuple[str, Path]]],
         mss: list[Path],
         other: list[Path],
         total: int,
     ) -> None:
         self._by_suffix = by_suffix
+        self._by_stage_code = by_stage_code
         self._mss = mss
         self._other = other
         self._total = total
@@ -61,6 +64,10 @@ class CorpusIndex:
         for suffix, paths in self._by_suffix.items():
             for path in paths:
                 yield suffix, path
+
+    def stage_scanner_paths(self, stage_code: str) -> list[tuple[str, Path]]:
+        """Return scanner-relevant files indexed under a stage code."""
+        return self._by_stage_code.get(stage_code, [])
 
     def mss_paths(self) -> list[Path]:
         """Return all MSS message-set file paths."""
@@ -91,12 +98,13 @@ def build_corpus_index(ddon_data_root: Path) -> CorpusIndex:
     client_root = ddon_data_root / "client" / "03040008"
 
     by_suffix: dict[str, list[Path]] = {suffix: [] for suffix in _SCANNER_SUFFIXES}
+    by_stage_code: dict[str, list[tuple[str, Path]]] = {}
     mss: list[Path] = []
     other: list[Path] = []
     total = 0
 
     if not client_root.exists():
-        return CorpusIndex(by_suffix, mss, other, total)
+        return CorpusIndex(by_suffix, by_stage_code, mss, other, total)
 
     for json_path in client_root.rglob("*.json"):
         total += 1
@@ -105,6 +113,9 @@ def build_corpus_index(ddon_data_root: Path) -> CorpusIndex:
         suffix = _classify_suffix(name)
         if suffix is not None:
             by_suffix[suffix].append(json_path)
+            stage_code = parse_code(STAGE_CODE_PATTERN, json_path.as_posix())
+            if stage_code:
+                by_stage_code.setdefault(stage_code, []).append((suffix, json_path))
             continue
 
         if name.endswith(_MSS_SUFFIX):
@@ -113,4 +124,4 @@ def build_corpus_index(ddon_data_root: Path) -> CorpusIndex:
 
         other.append(json_path)
 
-    return CorpusIndex(by_suffix, mss, other, total)
+    return CorpusIndex(by_suffix, by_stage_code, mss, other, total)

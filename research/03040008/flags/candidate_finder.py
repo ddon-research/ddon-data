@@ -4,6 +4,7 @@ from __future__ import annotations
 from pathlib import Path
 from typing import TYPE_CHECKING, Any
 
+from derivation import DerivationClass
 from scan_utils import extract_localized, load_json, relative_path, to_int
 
 if TYPE_CHECKING:
@@ -111,6 +112,7 @@ def _walk_candidates(
                         "json_path": next_path,
                         "resource_family": Path(file_path).suffixes[-2] if len(Path(file_path).suffixes) >= 2 else Path(file_path).suffix,
                         "evidence_tier": tier,
+                        "derivation_class": DerivationClass.LOWER_CONFIDENCE.value,
                         "confidence": score,
                         "why": why,
                         **next_context,

@@ -1,6 +1,6 @@
 {
   "format": "client_investigation.v4",
-  "generated_at": "2026-04-11T21:41:41.769233+00:00",
+  "generated_at": "2026-04-12T12:44:09.907823+00:00",
   "query": {
     "mode": "quest",
     "value": 60000050
@@ -41,6 +41,7 @@
           "quest_id": 60000050,
           "resource_family": "JMC",
           "evidence_tier": "direct",
+          "derivation_class": "direct_deterministic",
           "confidence": 92,
           "why": "Job master control; this resource links tutorial and master-visit quests to a vocation mentor, area, and onboarding flow."
         }
@@ -48,9 +49,53 @@
       "candidate_hits": []
     }
   ],
+  "quest_family": {
+    "key": "q6",
+    "label": "Tutorial / Unlock / Area Trial",
+    "description": "Tutorial, area-trial, unlock, and occasional festival quests.",
+    "discovery_focus": "jtq_tqg_jmc_scaffolding",
+    "supported": true
+  },
+  "quest_family_relationships": {
+    "quest_family": {
+      "key": "q6",
+      "label": "Tutorial / Unlock / Area Trial",
+      "description": "Tutorial, area-trial, unlock, and occasional festival quests.",
+      "discovery_focus": "jtq_tqg_jmc_scaffolding",
+      "supported": true
+    },
+    "tutorial_scaffolding": {
+      "jtq_count": 0,
+      "tqg_count": 0,
+      "jmc_count": 1,
+      "tutorial_names": [],
+      "group_ids": [],
+      "job_links": [
+        {
+          "job_tutorial_quest_id": 60000003,
+          "job_master_tutorial_quest_id": 60000050
+        }
+      ]
+    }
+  },
+  "quest_owner_indexes": [],
+  "quest_dependency_targets": [],
   "quest_archive_context": {
+    "quest_family": {
+      "key": "q6",
+      "label": "Tutorial / Unlock / Area Trial",
+      "description": "Tutorial, area-trial, unlock, and occasional festival quests.",
+      "discovery_focus": "jtq_tqg_jmc_scaffolding",
+      "supported": true
+    },
     "file_path": "client/03040008/quest/q60000050.arc.json",
     "resource_count": 6,
+    "stage_codes": [],
+    "resource_type_extensions": [
+      ".gmd",
+      ".mss",
+      ".qtd"
+    ],
     "stages": [
       {
         "stage_code": "",
@@ -89,6 +134,105 @@
             "type_name": "rGUIMessage"
           }
         ]
+      }
+    ]
+  },
+  "quest_stage_neighborhood": {
+    "quest_family": {
+      "key": "q6",
+      "label": "Tutorial / Unlock / Area Trial",
+      "description": "Tutorial, area-trial, unlock, and occasional festival quests.",
+      "discovery_focus": "jtq_tqg_jmc_scaffolding",
+      "supported": true
+    },
+    "stage_codes": [],
+    "scanner_file_count": 0,
+    "stages": []
+  },
+  "quest_stage_cues": {
+    "quest_family": {
+      "key": "q6",
+      "label": "Tutorial / Unlock / Area Trial",
+      "description": "Tutorial, area-trial, unlock, and occasional festival quests.",
+      "discovery_focus": "jtq_tqg_jmc_scaffolding",
+      "supported": true
+    },
+    "stage_codes": [],
+    "owner_families": [
+      "q6",
+      "q7"
+    ],
+    "cues": [],
+    "cue_count": 0
+  },
+  "quest_graph_expansion": {
+    "max_depth": 3,
+    "node_count": 3,
+    "edge_count": 2,
+    "node_kind_counts": {
+      "direct_family": 1,
+      "family_context": 1,
+      "quest": 1
+    },
+    "edge_type_counts": {
+      "direct_source_family": 1,
+      "family_context:tutorial_scaffolding": 1
+    },
+    "derivation_counts": {
+      "direct_deterministic": 5
+    },
+    "nodes": [
+      {
+        "node_id": "quest:60000050",
+        "label": "Quest 60000050",
+        "kind": "quest",
+        "depth": 0,
+        "derivation_class": "direct_deterministic",
+        "metadata": {
+          "quest_id": 60000050,
+          "target_count": 1
+        }
+      },
+      {
+        "node_id": "direct-family:jmc",
+        "label": "jmc direct hits (1)",
+        "kind": "direct_family",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "metadata": {
+          "source_type": "jmc",
+          "hit_count": 1
+        }
+      },
+      {
+        "node_id": "family-context:tutorial_scaffolding",
+        "label": "Tutorial Scaffolding",
+        "kind": "family_context",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "metadata": {
+          "context_key": "tutorial_scaffolding"
+        }
+      }
+    ],
+    "edges": [
+      {
+        "from": "quest:60000050",
+        "to": "direct-family:jmc",
+        "edge_type": "direct_source_family",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "why": "Decoded direct hits for the quest targets include this source family.",
+        "metadata": {}
+      },
+      {
+        "from": "quest:60000050",
+        "to": "family-context:tutorial_scaffolding",
+        "edge_type": "family_context:tutorial_scaffolding",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "why": "Family-specific decoded tables provide deterministic context for this quest.",
+        "metadata": {}
       }
     ]
   }

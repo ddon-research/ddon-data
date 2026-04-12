@@ -1,6 +1,6 @@
 {
   "format": "client_investigation.v4",
-  "generated_at": "2026-04-11T21:41:41.116587+00:00",
+  "generated_at": "2026-04-12T12:44:02.297474+00:00",
   "query": {
     "mode": "quest",
     "value": 29300002
@@ -42,6 +42,7 @@
           "stage_no": 141,
           "resource_family": "LOT",
           "evidence_tier": "direct",
+          "derivation_class": "direct_deterministic",
           "confidence": 92,
           "why": "Layout placement reference; LOT hits usually gate warps, NPCs, or interactable objects in the stage layout."
         },
@@ -63,6 +64,7 @@
           "stage_no": 141,
           "resource_family": "LOT",
           "evidence_tier": "direct",
+          "derivation_class": "direct_deterministic",
           "confidence": 92,
           "why": "Layout placement reference; LOT hits usually gate warps, NPCs, or interactable objects in the stage layout."
         }
@@ -70,9 +72,40 @@
       "candidate_hits": []
     }
   ],
+  "quest_family": {
+    "key": "unknown",
+    "label": "Unknown Quest Family",
+    "description": "Quest family could not be inferred from the client quest id pattern.",
+    "discovery_focus": "treat_as_generic",
+    "supported": false
+  },
+  "quest_family_relationships": {
+    "quest_family": {
+      "key": "unknown",
+      "label": "Unknown Quest Family",
+      "description": "Quest family could not be inferred from the client quest id pattern.",
+      "discovery_focus": "treat_as_generic",
+      "supported": false
+    }
+  },
+  "quest_owner_indexes": [],
+  "quest_dependency_targets": [],
   "quest_archive_context": {
+    "quest_family": {
+      "key": "unknown",
+      "label": "Unknown Quest Family",
+      "description": "Quest family could not be inferred from the client quest id pattern.",
+      "discovery_focus": "treat_as_generic",
+      "supported": false
+    },
     "file_path": "client/03040008/quest/q29300002.arc.json",
     "resource_count": 6,
+    "stage_codes": [],
+    "resource_type_extensions": [
+      ".gmd",
+      ".mss",
+      ".qtd"
+    ],
     "stages": [
       {
         "stage_code": "",
@@ -111,6 +144,84 @@
             "type_name": "rGUIMessage"
           }
         ]
+      }
+    ]
+  },
+  "quest_stage_neighborhood": {
+    "quest_family": {
+      "key": "unknown",
+      "label": "Unknown Quest Family",
+      "description": "Quest family could not be inferred from the client quest id pattern.",
+      "discovery_focus": "treat_as_generic",
+      "supported": false
+    },
+    "stage_codes": [],
+    "scanner_file_count": 0,
+    "stages": []
+  },
+  "quest_stage_cues": {
+    "quest_family": {
+      "key": "unknown",
+      "label": "Unknown Quest Family",
+      "description": "Quest family could not be inferred from the client quest id pattern.",
+      "discovery_focus": "treat_as_generic",
+      "supported": false
+    },
+    "stage_codes": [],
+    "owner_families": [
+      "q6",
+      "q7"
+    ],
+    "cues": [],
+    "cue_count": 0
+  },
+  "quest_graph_expansion": {
+    "max_depth": 3,
+    "node_count": 2,
+    "edge_count": 1,
+    "node_kind_counts": {
+      "direct_family": 1,
+      "quest": 1
+    },
+    "edge_type_counts": {
+      "direct_source_family": 1
+    },
+    "derivation_counts": {
+      "direct_deterministic": 3
+    },
+    "nodes": [
+      {
+        "node_id": "quest:29300002",
+        "label": "Quest 29300002",
+        "kind": "quest",
+        "depth": 0,
+        "derivation_class": "direct_deterministic",
+        "metadata": {
+          "quest_id": 29300002,
+          "target_count": 1
+        }
+      },
+      {
+        "node_id": "direct-family:lot",
+        "label": "lot direct hits (2)",
+        "kind": "direct_family",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "metadata": {
+          "source_type": "lot",
+          "hit_count": 2
+        }
+      }
+    ],
+    "edges": [
+      {
+        "from": "quest:29300002",
+        "to": "direct-family:lot",
+        "edge_type": "direct_source_family",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "why": "Decoded direct hits for the quest targets include this source family.",
+        "metadata": {}
       }
     ]
   }

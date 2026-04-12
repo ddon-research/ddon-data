@@ -5,16 +5,21 @@
 
 Query mode:: quest
 Query value:: 90030406
-Generated at:: 2026-04-11T21:41:43.006708+00:00
+Generated at:: 2026-04-12T12:44:33.574770+00:00
 
 toc::[]
+
+Quest family:: q9 -- Reserved q9
+Quest family notes:: Reserved or unimplemented quest-family bucket.
+Quest family focus:: unsupported_until_client_evidence
 
 == ARC Association Context
 
 _ARC associations are contextual only. They show which quest-stage and marker resources are bundled with this quest._
 
-* arc file: client/03040008/quest/q90030406.arc.json
+* arc file: link:../../../../client/03040008/quest/q90030406.arc.json#L1[client/03040008/quest/q90030406.arc.json#L1]
 * resource count: 4
+* resource families: .gmd, .mss, .qtd
 
 === unclassified
 
@@ -22,6 +27,55 @@ _ARC associations are contextual only. They show which quest-stage and marker re
 * rQuestTextData: ui/00_param/quest_text/q90030406_00
 * rMsgSet: ui/00_message/examine_message/quest/quest_examine_q90030406
 * rGUIMessage: ui/00_message/quest_info/q90030406_00
+
+== Stage Neighborhood Context
+
+_Stage-neighborhood context summarizes scanner-relevant client files that share the quest's archive stage codes. This is deterministic client topology, not inferred ownership._
+
+* scanner-relevant stage files: 0
+
+== Stage Neighborhood External-State Cues
+
+_These cues are deterministic client-side observations from the quest's stage neighborhood. They are not promoted to direct quest targets yet; they highlight q6/q7-owned external state values co-located in the quest's archive stages._
+
+* cue count: 0
+* owner families: q6, q7
+
+== Bounded Graph Expansion
+
+_This graph summarizes bounded deterministic and inferred edges around the quest: quest archive stages, direct source families, stage-linked owner catalogs, promoted dependencies, reverse-index event/group links, and family-specific table edges._
+
+* max depth: 3
+* node count: 2
+* edge count: 1
+* node kinds: direct_family=1, quest=1
+* derivation: Direct=3
+
+=== Mermaid Graph Slice
+
+_This Mermaid flowchart shows a capped slice of the bounded graph so large quest reports stay readable while still exposing the graph structure._
+
+[mermaid]
+....
+flowchart TD
+    node_quest_90030406["Quest 90030406"]
+    node_direct_family_lot["lot direct hits (13)"]
+    node_quest_90030406 -->|direct_source_family| node_direct_family_lot
+    classDef direct_deterministic fill:#e8f5e9,stroke:#2e7d32,stroke-width:1px
+    classDef owner_index fill:#e3f2fd,stroke:#1565c0,stroke-width:1px
+    classDef dependency_inferred fill:#fff3e0,stroke:#ef6c00,stroke-width:1px
+    classDef graph_expanded fill:#f3e5f5,stroke:#7b1fa2,stroke-width:1px
+    classDef lower_confidence fill:#fbe9e7,stroke:#d84315,stroke-width:1px
+    classDef binary_auxiliary fill:#eceff1,stroke:#455a64,stroke-width:1px
+    class node_quest_90030406,node_direct_family_lot direct_deterministic
+....
+
+[cols="1,2,2,2,2,4",options="header"]
+|===
+| Depth | Edge | From | To | Derivation | Why
+
+| 1 | direct_source_family | quest:90030406 | direct-family:lot | Direct | Decoded direct hits for the quest targets include this source family.
+|===
 
 == Flag Summary Matrix
 
@@ -46,22 +100,22 @@ ranked candidates:: *0*
 
 ==== direct -- 13 hit(s)
 
-[cols="1,1,3,3,2,3,3",options="header"]
+[cols="1,1,1,3,3,2,3,3",options="header"]
 |===
-| Family | Confidence | File | JSON Path | Field | Context | Why
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
 
-| LOT | 92 | client/03040008/stage/st1104/lot/st1104_00m00n/scr/st1104/etc/st1104_00m00n_p236.lot.json | Array[0].Info.QuestId[0] | QuestId | quest 90030406 / Evil Dragon's Roost / Urteca Mountains / SetInfoOmWarp \| om522153 \| OM_ID_RIFT_WARP_CRYSTAL_3 \| EnableZone \| Destination st1105 Evil Dragon's Roost \| StartPos=0 | Layout placement reference; LOT hits usually gate warps, NPCs, or interactable objects in the stage layout.
-| LOT | 92 | client/03040008/stage/st1105/lot/st1105_00m00n/scr/st1105/etc/st1105_00m00n_p202.lot.json | Array[0].Info.BlockQuestID | BlockQuestID | quest 90030406 / Evil Dragon's Roost / Urteca Mountains / SetInfoOmHugeRimShl \| om522241 \| om522241 \| EnableZone | Layout placement reference; LOT hits usually gate warps, NPCs, or interactable objects in the stage layout.
-| LOT | 92 | client/03040008/stage/st1105/lot/st1105_00m00n/scr/st1105/etc/st1105_00m00n_p202.lot.json | Array[1].Info.BlockQuestID | BlockQuestID | quest 90030406 / Evil Dragon's Roost / Urteca Mountains / SetInfoOmHugeRimShl \| om522241 \| om522241 \| EnableZone | Layout placement reference; LOT hits usually gate warps, NPCs, or interactable objects in the stage layout.
-| LOT | 92 | client/03040008/stage/st1105/lot/st1105_00m00n/scr/st1105/etc/st1105_00m00n_p202.lot.json | Array[2].Info.BlockQuestID | BlockQuestID | quest 90030406 / Evil Dragon's Roost / Urteca Mountains / SetInfoOmHugeRimShl \| om522241 \| om522241 \| EnableZone | Layout placement reference; LOT hits usually gate warps, NPCs, or interactable objects in the stage layout.
-| LOT | 92 | client/03040008/stage/st1105/lot/st1105_00m00n/scr/st1105/etc/st1105_00m00n_p202.lot.json | Array[3].Info.BlockQuestID | BlockQuestID | quest 90030406 / Evil Dragon's Roost / Urteca Mountains / SetInfoOmHugeRimShl \| om522241 \| om522241 \| EnableZone | Layout placement reference; LOT hits usually gate warps, NPCs, or interactable objects in the stage layout.
-| LOT | 92 | client/03040008/stage/st1105/lot/st1105_00m00n/scr/st1105/etc/st1105_00m00n_p202.lot.json | Array[4].Info.BlockQuestID | BlockQuestID | quest 90030406 / Evil Dragon's Roost / Urteca Mountains / SetInfoOmHugeRimShl \| om522241 \| om522241 \| EnableZone | Layout placement reference; LOT hits usually gate warps, NPCs, or interactable objects in the stage layout.
-| LOT | 92 | client/03040008/stage/st1105/lot/st1105_00m00n/scr/st1105/etc/st1105_00m00n_p202.lot.json | Array[5].Info.BlockQuestID | BlockQuestID | quest 90030406 / Evil Dragon's Roost / Urteca Mountains / SetInfoOmHugeRimShl \| om522241 \| om522241 \| EnableZone | Layout placement reference; LOT hits usually gate warps, NPCs, or interactable objects in the stage layout.
-| LOT | 92 | client/03040008/stage/st1105/lot/st1105_00m00n/scr/st1105/etc/st1105_00m00n_p202.lot.json | Array[6].Info.BlockQuestID | BlockQuestID | quest 90030406 / Evil Dragon's Roost / Urteca Mountains / SetInfoOmHugeRimShl \| om522241 \| om522241 \| EnableZone | Layout placement reference; LOT hits usually gate warps, NPCs, or interactable objects in the stage layout.
-| LOT | 92 | client/03040008/stage/st1105/lot/st1105_00m00n/scr/st1105/etc/st1105_00m00n_p202.lot.json | Array[7].Info.BlockQuestID | BlockQuestID | quest 90030406 / Evil Dragon's Roost / Urteca Mountains / SetInfoOmHugeRimShl \| om522241 \| om522241 \| EnableZone | Layout placement reference; LOT hits usually gate warps, NPCs, or interactable objects in the stage layout.
-| LOT | 92 | client/03040008/stage/st1105/lot/st1105_00m00n/scr/st1105/etc/st1105_00m00n_p202.lot.json | Array[8].Info.BlockQuestID | BlockQuestID | quest 90030406 / Evil Dragon's Roost / Urteca Mountains / SetInfoOmHugeRimShl \| om522241 \| om522241 \| EnableZone | Layout placement reference; LOT hits usually gate warps, NPCs, or interactable objects in the stage layout.
-| LOT | 92 | client/03040008/stage/st1105/lot/st1105_00m00n/scr/st1105/etc/st1105_00m00n_p202.lot.json | Array[9].Info.BlockQuestID | BlockQuestID | quest 90030406 / Evil Dragon's Roost / Urteca Mountains / SetInfoOmHugeRimShl \| om522241 \| om522241 \| EnableZone | Layout placement reference; LOT hits usually gate warps, NPCs, or interactable objects in the stage layout.
-| LOT | 92 | client/03040008/stage/st1105/lot/st1105_00m00n/scr/st1105/etc/st1105_00m00n_p202.lot.json | Array[10].Info.BlockQuestID | BlockQuestID | quest 90030406 / Evil Dragon's Roost / Urteca Mountains / SetInfoOmHugeRimShl \| om522241 \| om522241 \| EnableZone | Layout placement reference; LOT hits usually gate warps, NPCs, or interactable objects in the stage layout.
-| LOT | 92 | client/03040008/stage/st1105/lot/st1105_00m00n/scr/st1105/etc/st1105_00m00n_p202.lot.json | Array[11].Info.BlockQuestID | BlockQuestID | quest 90030406 / Evil Dragon's Roost / Urteca Mountains / SetInfoOmHugeRimShl \| om522241 \| om522241 \| EnableZone | Layout placement reference; LOT hits usually gate warps, NPCs, or interactable objects in the stage layout.
+| LOT | Direct | 92 | link:../../../../client/03040008/stage/st1104/lot/st1104_00m00n/scr/st1104/etc/st1104_00m00n_p236.lot.json#L60[client/03040008/stage/st1104/lot/st1104_00m00n/scr/st1104/etc/st1104_00m00n_p236.lot.json#L60] | Array[0].Info.QuestId[0] | QuestId | quest 90030406 / Evil Dragon's Roost / Urteca Mountains / SetInfoOmWarp \| om522153 \| OM_ID_RIFT_WARP_CRYSTAL_3 \| EnableZone \| Destination st1105 Evil Dragon's Roost \| StartPos=0 | Layout placement reference; LOT hits usually gate warps, NPCs, or interactable objects in the stage layout.
+| LOT | Direct | 92 | link:../../../../client/03040008/stage/st1105/lot/st1105_00m00n/scr/st1105/etc/st1105_00m00n_p202.lot.json#L16[client/03040008/stage/st1105/lot/st1105_00m00n/scr/st1105/etc/st1105_00m00n_p202.lot.json#L16] | Array[0].Info.BlockQuestID | BlockQuestID | quest 90030406 / Evil Dragon's Roost / Urteca Mountains / SetInfoOmHugeRimShl \| om522241 \| om522241 \| EnableZone | Layout placement reference; LOT hits usually gate warps, NPCs, or interactable objects in the stage layout.
+| LOT | Direct | 92 | link:../../../../client/03040008/stage/st1105/lot/st1105_00m00n/scr/st1105/etc/st1105_00m00n_p202.lot.json#L91[client/03040008/stage/st1105/lot/st1105_00m00n/scr/st1105/etc/st1105_00m00n_p202.lot.json#L91] | Array[1].Info.BlockQuestID | BlockQuestID | quest 90030406 / Evil Dragon's Roost / Urteca Mountains / SetInfoOmHugeRimShl \| om522241 \| om522241 \| EnableZone | Layout placement reference; LOT hits usually gate warps, NPCs, or interactable objects in the stage layout.
+| LOT | Direct | 92 | link:../../../../client/03040008/stage/st1105/lot/st1105_00m00n/scr/st1105/etc/st1105_00m00n_p202.lot.json#L166[client/03040008/stage/st1105/lot/st1105_00m00n/scr/st1105/etc/st1105_00m00n_p202.lot.json#L166] | Array[2].Info.BlockQuestID | BlockQuestID | quest 90030406 / Evil Dragon's Roost / Urteca Mountains / SetInfoOmHugeRimShl \| om522241 \| om522241 \| EnableZone | Layout placement reference; LOT hits usually gate warps, NPCs, or interactable objects in the stage layout.
+| LOT | Direct | 92 | link:../../../../client/03040008/stage/st1105/lot/st1105_00m00n/scr/st1105/etc/st1105_00m00n_p202.lot.json#L241[client/03040008/stage/st1105/lot/st1105_00m00n/scr/st1105/etc/st1105_00m00n_p202.lot.json#L241] | Array[3].Info.BlockQuestID | BlockQuestID | quest 90030406 / Evil Dragon's Roost / Urteca Mountains / SetInfoOmHugeRimShl \| om522241 \| om522241 \| EnableZone | Layout placement reference; LOT hits usually gate warps, NPCs, or interactable objects in the stage layout.
+| LOT | Direct | 92 | link:../../../../client/03040008/stage/st1105/lot/st1105_00m00n/scr/st1105/etc/st1105_00m00n_p202.lot.json#L316[client/03040008/stage/st1105/lot/st1105_00m00n/scr/st1105/etc/st1105_00m00n_p202.lot.json#L316] | Array[4].Info.BlockQuestID | BlockQuestID | quest 90030406 / Evil Dragon's Roost / Urteca Mountains / SetInfoOmHugeRimShl \| om522241 \| om522241 \| EnableZone | Layout placement reference; LOT hits usually gate warps, NPCs, or interactable objects in the stage layout.
+| LOT | Direct | 92 | link:../../../../client/03040008/stage/st1105/lot/st1105_00m00n/scr/st1105/etc/st1105_00m00n_p202.lot.json#L391[client/03040008/stage/st1105/lot/st1105_00m00n/scr/st1105/etc/st1105_00m00n_p202.lot.json#L391] | Array[5].Info.BlockQuestID | BlockQuestID | quest 90030406 / Evil Dragon's Roost / Urteca Mountains / SetInfoOmHugeRimShl \| om522241 \| om522241 \| EnableZone | Layout placement reference; LOT hits usually gate warps, NPCs, or interactable objects in the stage layout.
+| LOT | Direct | 92 | link:../../../../client/03040008/stage/st1105/lot/st1105_00m00n/scr/st1105/etc/st1105_00m00n_p202.lot.json#L466[client/03040008/stage/st1105/lot/st1105_00m00n/scr/st1105/etc/st1105_00m00n_p202.lot.json#L466] | Array[6].Info.BlockQuestID | BlockQuestID | quest 90030406 / Evil Dragon's Roost / Urteca Mountains / SetInfoOmHugeRimShl \| om522241 \| om522241 \| EnableZone | Layout placement reference; LOT hits usually gate warps, NPCs, or interactable objects in the stage layout.
+| LOT | Direct | 92 | link:../../../../client/03040008/stage/st1105/lot/st1105_00m00n/scr/st1105/etc/st1105_00m00n_p202.lot.json#L541[client/03040008/stage/st1105/lot/st1105_00m00n/scr/st1105/etc/st1105_00m00n_p202.lot.json#L541] | Array[7].Info.BlockQuestID | BlockQuestID | quest 90030406 / Evil Dragon's Roost / Urteca Mountains / SetInfoOmHugeRimShl \| om522241 \| om522241 \| EnableZone | Layout placement reference; LOT hits usually gate warps, NPCs, or interactable objects in the stage layout.
+| LOT | Direct | 92 | link:../../../../client/03040008/stage/st1105/lot/st1105_00m00n/scr/st1105/etc/st1105_00m00n_p202.lot.json#L616[client/03040008/stage/st1105/lot/st1105_00m00n/scr/st1105/etc/st1105_00m00n_p202.lot.json#L616] | Array[8].Info.BlockQuestID | BlockQuestID | quest 90030406 / Evil Dragon's Roost / Urteca Mountains / SetInfoOmHugeRimShl \| om522241 \| om522241 \| EnableZone | Layout placement reference; LOT hits usually gate warps, NPCs, or interactable objects in the stage layout.
+| LOT | Direct | 92 | link:../../../../client/03040008/stage/st1105/lot/st1105_00m00n/scr/st1105/etc/st1105_00m00n_p202.lot.json#L691[client/03040008/stage/st1105/lot/st1105_00m00n/scr/st1105/etc/st1105_00m00n_p202.lot.json#L691] | Array[9].Info.BlockQuestID | BlockQuestID | quest 90030406 / Evil Dragon's Roost / Urteca Mountains / SetInfoOmHugeRimShl \| om522241 \| om522241 \| EnableZone | Layout placement reference; LOT hits usually gate warps, NPCs, or interactable objects in the stage layout.
+| LOT | Direct | 92 | link:../../../../client/03040008/stage/st1105/lot/st1105_00m00n/scr/st1105/etc/st1105_00m00n_p202.lot.json#L766[client/03040008/stage/st1105/lot/st1105_00m00n/scr/st1105/etc/st1105_00m00n_p202.lot.json#L766] | Array[10].Info.BlockQuestID | BlockQuestID | quest 90030406 / Evil Dragon's Roost / Urteca Mountains / SetInfoOmHugeRimShl \| om522241 \| om522241 \| EnableZone | Layout placement reference; LOT hits usually gate warps, NPCs, or interactable objects in the stage layout.
+| LOT | Direct | 92 | link:../../../../client/03040008/stage/st1105/lot/st1105_00m00n/scr/st1105/etc/st1105_00m00n_p202.lot.json#L841[client/03040008/stage/st1105/lot/st1105_00m00n/scr/st1105/etc/st1105_00m00n_p202.lot.json#L841] | Array[11].Info.BlockQuestID | BlockQuestID | quest 90030406 / Evil Dragon's Roost / Urteca Mountains / SetInfoOmHugeRimShl \| om522241 \| om522241 \| EnableZone | Layout placement reference; LOT hits usually gate warps, NPCs, or interactable objects in the stage layout.
 |===
 

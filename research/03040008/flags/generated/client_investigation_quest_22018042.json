@@ -1,11 +1,18 @@
 {
   "format": "client_investigation.v4",
-  "generated_at": "2026-04-11T21:41:41.094925+00:00",
+  "generated_at": "2026-04-12T12:44:01.861997+00:00",
   "query": {
     "mode": "quest",
     "value": 22018042
   },
   "documented_targets": [
+    {
+      "flag_value": 7376,
+      "quest_id": 22018042,
+      "flag_type": "layout_flag",
+      "doc_comment": "QST local: st1026 | Condition",
+      "origin": "derived_qst_local"
+    },
     {
       "flag_value": 22018042,
       "quest_id": 22018042,
@@ -15,6 +22,58 @@
     }
   ],
   "targets": [
+    {
+      "target": {
+        "flag_value": 7376,
+        "quest_id": 22018042,
+        "flag_type": "layout_flag",
+        "origin": "derived_qst_local",
+        "doc_comment": "QST local: st1026 | Condition"
+      },
+      "hits": [
+        {
+          "source_type": "qst",
+          "file_path": "client/03040008/quest/q22018042/quest/22018042/q22018042_st1026.qst.json",
+          "json_path": "QuestStageList[].QuestGrp[0].Condition",
+          "field_name": "Condition",
+          "flag_value": 7376,
+          "flag_kind": "layout_flag",
+          "relationship": "quest_condition",
+          "stage_name": "Hidden Waterway to Megado",
+          "stage_name_jp": "メガドへの隠れ水路",
+          "stage_code": "st1026",
+          "context": "QuestSet=QuestSetInfoOm | OmID=522450 | OM_ID_KIRAKIRA_POINT | EnableZone",
+          "quest_id": 22018042,
+          "stage_no": 1026,
+          "resource_family": "QST",
+          "evidence_tier": "direct",
+          "derivation_class": "direct_deterministic",
+          "confidence": 92,
+          "why": "Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes."
+        },
+        {
+          "source_type": "qst",
+          "file_path": "client/03040008/quest/q22018042/quest/22018042/q22018042_st1026.qst.json",
+          "json_path": "QuestStageList[].QuestGrp[0].EraseCondition",
+          "field_name": "EraseCondition",
+          "flag_value": 7376,
+          "flag_kind": "layout_flag",
+          "relationship": "quest_erase",
+          "stage_name": "Hidden Waterway to Megado",
+          "stage_name_jp": "メガドへの隠れ水路",
+          "stage_code": "st1026",
+          "context": "QuestSet=QuestSetInfoOm | OmID=522450 | OM_ID_KIRAKIRA_POINT | EnableZone",
+          "quest_id": 22018042,
+          "stage_no": 1026,
+          "resource_family": "QST",
+          "evidence_tier": "direct",
+          "derivation_class": "direct_deterministic",
+          "confidence": 92,
+          "why": "Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes."
+        }
+      ],
+      "candidate_hits": []
+    },
     {
       "target": {
         "flag_value": 22018042,
@@ -32,6 +91,7 @@
           "json_path": "QuestSequenceList[315].QuestId",
           "resource_family": ".qsq",
           "evidence_tier": "context",
+          "derivation_class": "lower_confidence",
           "confidence": 45,
           "why": "Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.",
           "class_name": "org.sehkah.ddon.tools.extractor.common.logic.resource.entity.game_common.QuestSequence",
@@ -46,6 +106,7 @@
           "json_path": "GroupParamBuff[13].GuardData.QuestNo",
           "resource_family": ".gpl",
           "evidence_tier": "context",
+          "derivation_class": "lower_confidence",
           "confidence": 45,
           "why": "Matched a relevant decoded field (QuestNo), but not in the primary field family for this target type.",
           "stage_name": "Hidden Waterway to Megado",
@@ -58,9 +119,127 @@
       ]
     }
   ],
+  "quest_family": {
+    "key": "unknown",
+    "label": "Unknown Quest Family",
+    "description": "Quest family could not be inferred from the client quest id pattern.",
+    "discovery_focus": "treat_as_generic",
+    "supported": false
+  },
+  "quest_family_relationships": {
+    "quest_family": {
+      "key": "unknown",
+      "label": "Unknown Quest Family",
+      "description": "Quest family could not be inferred from the client quest id pattern.",
+      "discovery_focus": "treat_as_generic",
+      "supported": false
+    },
+    "quest_sequence": {
+      "quest_id": 22018042,
+      "seq_no": 315,
+      "quest_name": "Apparition Lurking in Darkness",
+      "quest_name_jp": "怪異は深き闇に潜む",
+      "previous": {
+        "quest_id": 22018041,
+        "seq_no": 314,
+        "quest_name": "Fury in the Fog",
+        "quest_name_jp": "霧の中に猛る狂乱"
+      },
+      "next": {
+        "quest_id": 22018047,
+        "seq_no": 316,
+        "quest_name": "Time Restriction: Collecting Before the Monsters Return",
+        "quest_name_jp": "【時限採取】鬼の居ぬ間の回収道"
+      }
+    }
+  },
+  "quest_owner_indexes": [
+    {
+      "owner_quest_id": 70032001,
+      "owner_family": "q7",
+      "flag_values": [
+        7169,
+        7240,
+        7241,
+        7336,
+        7341,
+        7342,
+        7386,
+        7387,
+        7388,
+        7389,
+        7390,
+        7438,
+        7439,
+        7440,
+        7496,
+        7497,
+        7498,
+        7512,
+        7514,
+        7544,
+        7545,
+        7549,
+        7550,
+        7551,
+        7552,
+        7553,
+        7554,
+        7555,
+        7556,
+        7557,
+        7558,
+        7562,
+        7746,
+        7927,
+        7928,
+        7929,
+        7930
+      ],
+      "flag_count": 37,
+      "local_qst_flag_count": 8,
+      "self_cue_flag_count": 29,
+      "cue_source_types": [
+        "evsi",
+        "gpl"
+      ],
+      "derivation_class": "owner_index",
+      "linked_flag_values": [
+        7341,
+        7342,
+        7746
+      ],
+      "linked_flag_count": 3,
+      "linked_source_types": [
+        "gpl"
+      ],
+      "linked_stage_codes": [
+        "st1026"
+      ],
+      "why": "Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference."
+    }
+  ],
+  "quest_dependency_targets": [],
   "quest_archive_context": {
+    "quest_family": {
+      "key": "unknown",
+      "label": "Unknown Quest Family",
+      "description": "Quest family could not be inferred from the client quest id pattern.",
+      "discovery_focus": "treat_as_generic",
+      "supported": false
+    },
     "file_path": "client/03040008/quest/q22018042.arc.json",
     "resource_count": 7,
+    "stage_codes": [
+      "st1026"
+    ],
+    "resource_type_extensions": [
+      ".gmd",
+      ".mss",
+      ".qmi",
+      ".qst",
+      ".qtd"
+    ],
     "stages": [
       {
         "stage_code": "st1026",
@@ -112,6 +291,472 @@
             "type_name": "rGUIMessage"
           }
         ]
+      }
+    ]
+  },
+  "quest_stage_neighborhood": {
+    "quest_family": {
+      "key": "unknown",
+      "label": "Unknown Quest Family",
+      "description": "Quest family could not be inferred from the client quest id pattern.",
+      "discovery_focus": "treat_as_generic",
+      "supported": false
+    },
+    "stage_codes": [
+      "st1026"
+    ],
+    "scanner_file_count": 76,
+    "stages": [
+      {
+        "stage_code": "st1026",
+        "stage_no": 1026,
+        "stage_name": "Hidden Waterway to Megado",
+        "stage_name_jp": "メガドへの隠れ水路",
+        "scanner_file_count": 76,
+        "scanner_suffix_counts": {
+          ".gpl.json": 14,
+          ".lot.json": 52,
+          ".qmi.json": 7,
+          ".qst.json": 3
+        }
+      }
+    ]
+  },
+  "quest_stage_cues": {
+    "quest_family": {
+      "key": "unknown",
+      "label": "Unknown Quest Family",
+      "description": "Quest family could not be inferred from the client quest id pattern.",
+      "discovery_focus": "treat_as_generic",
+      "supported": false
+    },
+    "stage_codes": [
+      "st1026"
+    ],
+    "owner_families": [
+      "q6",
+      "q7"
+    ],
+    "cues": [
+      {
+        "flag_value": 7341,
+        "flag_kind": "layout_flag",
+        "score": 8,
+        "hit_count": 1,
+        "source_types": [
+          "gpl"
+        ],
+        "owner_quests": [
+          70032001
+        ],
+        "owner_families": [
+          "q7"
+        ],
+        "stage_codes": [
+          "st1026"
+        ],
+        "sample_hits": [
+          {
+            "source_type": "gpl",
+            "field_name": "LayoutFlagNo",
+            "relationship": "layout_guard",
+            "quest_id": 70032001,
+            "stage_code": "st1026",
+            "file_path": "client/03040008/stage/st1026/st1026/scr/st1026/etc/st1026_p.gpl.json",
+            "comment": ""
+          }
+        ]
+      },
+      {
+        "flag_value": 7342,
+        "flag_kind": "layout_flag",
+        "score": 8,
+        "hit_count": 1,
+        "source_types": [
+          "gpl"
+        ],
+        "owner_quests": [
+          70032001
+        ],
+        "owner_families": [
+          "q7"
+        ],
+        "stage_codes": [
+          "st1026"
+        ],
+        "sample_hits": [
+          {
+            "source_type": "gpl",
+            "field_name": "LayoutFlagNo",
+            "relationship": "layout_guard",
+            "quest_id": 70032001,
+            "stage_code": "st1026",
+            "file_path": "client/03040008/stage/st1026/st1026/scr/st1026/etc/st1026_p.gpl.json",
+            "comment": ""
+          }
+        ]
+      },
+      {
+        "flag_value": 7746,
+        "flag_kind": "layout_flag",
+        "score": 8,
+        "hit_count": 1,
+        "source_types": [
+          "gpl"
+        ],
+        "owner_quests": [
+          70032001
+        ],
+        "owner_families": [
+          "q7"
+        ],
+        "stage_codes": [
+          "st1026"
+        ],
+        "sample_hits": [
+          {
+            "source_type": "gpl",
+            "field_name": "LayoutFlagNo",
+            "relationship": "layout_guard",
+            "quest_id": 70032001,
+            "stage_code": "st1026",
+            "file_path": "client/03040008/stage/st1026/st1026/scr/st1026/etc/st1026_p.gpl.json",
+            "comment": ""
+          }
+        ]
+      }
+    ],
+    "cue_count": 3
+  },
+  "quest_graph_expansion": {
+    "max_depth": 3,
+    "node_count": 13,
+    "edge_count": 15,
+    "node_kind_counts": {
+      "direct_family": 1,
+      "family_context": 1,
+      "lot_file": 3,
+      "owner_quest": 1,
+      "quest": 1,
+      "sequence_quest": 2,
+      "stage": 1,
+      "stage_group": 3
+    },
+    "edge_type_counts": {
+      "direct_source_family": 1,
+      "family_context:quest_sequence": 1,
+      "gpl_owner_guard": 3,
+      "group_lot_reference": 3,
+      "quest_archive_stage": 1,
+      "sequence_next": 1,
+      "sequence_previous": 1,
+      "stage_group_reference": 3,
+      "stage_owner_index": 1
+    },
+    "derivation_counts": {
+      "direct_deterministic": 11,
+      "graph_expanded": 15,
+      "owner_index": 2
+    },
+    "nodes": [
+      {
+        "node_id": "quest:22018042",
+        "label": "Quest 22018042",
+        "kind": "quest",
+        "depth": 0,
+        "derivation_class": "direct_deterministic",
+        "metadata": {
+          "quest_id": 22018042,
+          "target_count": 2
+        }
+      },
+      {
+        "node_id": "direct-family:qst",
+        "label": "qst direct hits (2)",
+        "kind": "direct_family",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "metadata": {
+          "source_type": "qst",
+          "hit_count": 2
+        }
+      },
+      {
+        "node_id": "family-context:quest_sequence",
+        "label": "Quest Sequence",
+        "kind": "family_context",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "metadata": {
+          "context_key": "quest_sequence"
+        }
+      },
+      {
+        "node_id": "stage:st1026",
+        "label": "st1026 -- Hidden Waterway to Megado",
+        "kind": "stage",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "metadata": {
+          "stage_code": "st1026"
+        }
+      },
+      {
+        "node_id": "owner-quest:70032001",
+        "label": "Owner quest 70032001 (q7)",
+        "kind": "owner_quest",
+        "depth": 2,
+        "derivation_class": "owner_index",
+        "metadata": {
+          "owner_quest_id": 70032001,
+          "owner_family": "q7",
+          "flag_count": 37
+        }
+      },
+      {
+        "node_id": "sequence-quest:22018041",
+        "label": "Quest 22018041",
+        "kind": "sequence_quest",
+        "depth": 2,
+        "derivation_class": "direct_deterministic",
+        "metadata": {
+          "quest_id": 22018041,
+          "direction": "previous"
+        }
+      },
+      {
+        "node_id": "sequence-quest:22018047",
+        "label": "Quest 22018047",
+        "kind": "sequence_quest",
+        "depth": 2,
+        "derivation_class": "direct_deterministic",
+        "metadata": {
+          "quest_id": 22018047,
+          "direction": "next"
+        }
+      },
+      {
+        "node_id": "stage-group:st1026:27",
+        "label": "GPL group st1026/27",
+        "kind": "stage_group",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "metadata": {
+          "stage_code": "st1026",
+          "group_no": 27
+        }
+      },
+      {
+        "node_id": "stage-group:st1026:32",
+        "label": "GPL group st1026/32",
+        "kind": "stage_group",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "metadata": {
+          "stage_code": "st1026",
+          "group_no": 32
+        }
+      },
+      {
+        "node_id": "stage-group:st1026:33",
+        "label": "GPL group st1026/33",
+        "kind": "stage_group",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "metadata": {
+          "stage_code": "st1026",
+          "group_no": 33
+        }
+      },
+      {
+        "node_id": "lot-file:st1026_01m00n_p32.lot.json",
+        "label": "st1026_01m00n_p32.lot.json",
+        "kind": "lot_file",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "metadata": {
+          "file_path": "client/03040008/stage/st1026/lot/st1026_01m00n/scr/st1026/etc/st1026_01m00n_p32.lot.json",
+          "type_names": [
+            "SetInfoOmOld",
+            "SetInfoOmDoor"
+          ]
+        }
+      },
+      {
+        "node_id": "lot-file:st1026_01m00n_p33.lot.json",
+        "label": "st1026_01m00n_p33.lot.json",
+        "kind": "lot_file",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "metadata": {
+          "file_path": "client/03040008/stage/st1026/lot/st1026_01m00n/scr/st1026/etc/st1026_01m00n_p33.lot.json",
+          "type_names": [
+            "SetInfoOmOld",
+            "SetInfoOmDoor"
+          ]
+        }
+      },
+      {
+        "node_id": "lot-file:st1026_04m00n_p27.lot.json",
+        "label": "st1026_04m00n_p27.lot.json",
+        "kind": "lot_file",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "metadata": {
+          "file_path": "client/03040008/stage/st1026/lot/st1026_04m00n/scr/st1026/etc/st1026_04m00n_p27.lot.json",
+          "type_names": [
+            "SetInfoOmWarp"
+          ]
+        }
+      }
+    ],
+    "edges": [
+      {
+        "from": "quest:22018042",
+        "to": "direct-family:qst",
+        "edge_type": "direct_source_family",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "why": "Decoded direct hits for the quest targets include this source family.",
+        "metadata": {}
+      },
+      {
+        "from": "quest:22018042",
+        "to": "family-context:quest_sequence",
+        "edge_type": "family_context:quest_sequence",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "why": "Family-specific decoded tables provide deterministic context for this quest.",
+        "metadata": {}
+      },
+      {
+        "from": "quest:22018042",
+        "to": "stage:st1026",
+        "edge_type": "quest_archive_stage",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "why": "Quest archive topology directly links this quest to the stage code.",
+        "metadata": {}
+      },
+      {
+        "from": "family-context:quest_sequence",
+        "to": "sequence-quest:22018047",
+        "edge_type": "sequence_next",
+        "depth": 2,
+        "derivation_class": "direct_deterministic",
+        "why": "QuestSequence links this quest to its neighboring sequence quest.",
+        "metadata": {}
+      },
+      {
+        "from": "family-context:quest_sequence",
+        "to": "sequence-quest:22018041",
+        "edge_type": "sequence_previous",
+        "depth": 2,
+        "derivation_class": "direct_deterministic",
+        "why": "QuestSequence links this quest to its neighboring sequence quest.",
+        "metadata": {}
+      },
+      {
+        "from": "stage:st1026",
+        "to": "stage-group:st1026:27",
+        "edge_type": "stage_group_reference",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "why": "Reverse indexes expose GPL group references for this stage.",
+        "metadata": {}
+      },
+      {
+        "from": "stage:st1026",
+        "to": "stage-group:st1026:32",
+        "edge_type": "stage_group_reference",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "why": "Reverse indexes expose GPL group references for this stage.",
+        "metadata": {}
+      },
+      {
+        "from": "stage:st1026",
+        "to": "stage-group:st1026:33",
+        "edge_type": "stage_group_reference",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "why": "Reverse indexes expose GPL group references for this stage.",
+        "metadata": {}
+      },
+      {
+        "from": "stage:st1026",
+        "to": "owner-quest:70032001",
+        "edge_type": "stage_owner_index",
+        "depth": 2,
+        "derivation_class": "owner_index",
+        "why": "Stage-neighborhood cues on this stage link to the reusable owner catalog.",
+        "metadata": {
+          "linked_flag_values": [
+            7341,
+            7342,
+            7746
+          ]
+        }
+      },
+      {
+        "from": "stage-group:st1026:27",
+        "to": "owner-quest:70032001",
+        "edge_type": "gpl_owner_guard",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "why": "GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.",
+        "metadata": {
+          "flag_value": 7746
+        }
+      },
+      {
+        "from": "stage-group:st1026:32",
+        "to": "owner-quest:70032001",
+        "edge_type": "gpl_owner_guard",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "why": "GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.",
+        "metadata": {
+          "flag_value": 7341
+        }
+      },
+      {
+        "from": "stage-group:st1026:33",
+        "to": "owner-quest:70032001",
+        "edge_type": "gpl_owner_guard",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "why": "GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.",
+        "metadata": {
+          "flag_value": 7342
+        }
+      },
+      {
+        "from": "stage-group:st1026:27",
+        "to": "lot-file:st1026_04m00n_p27.lot.json",
+        "edge_type": "group_lot_reference",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "why": "LOT association resolves the GPL group to a concrete stage layout file.",
+        "metadata": {}
+      },
+      {
+        "from": "stage-group:st1026:32",
+        "to": "lot-file:st1026_01m00n_p32.lot.json",
+        "edge_type": "group_lot_reference",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "why": "LOT association resolves the GPL group to a concrete stage layout file.",
+        "metadata": {}
+      },
+      {
+        "from": "stage-group:st1026:33",
+        "to": "lot-file:st1026_01m00n_p33.lot.json",
+        "edge_type": "group_lot_reference",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "why": "LOT association resolves the GPL group to a concrete stage layout file.",
+        "metadata": {}
       }
     ]
   }

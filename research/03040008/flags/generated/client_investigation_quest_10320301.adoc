@@ -5,16 +5,43 @@
 
 Query mode:: quest
 Query value:: 10320301
-Generated at:: 2026-04-11T21:41:40.664786+00:00
+Generated at:: 2026-04-12T12:43:48.310228+00:00
 
 toc::[]
+
+Quest family:: unknown -- Unknown Quest Family
+Quest family notes:: Quest family could not be inferred from the client quest id pattern.
+Quest family focus:: treat_as_generic
+
+== External Owner Indexes
+
+_These are reusable external owner catalogs inferred from stage-neighborhood cues. They are broader than the subset of flags promoted into derived dependency targets._
+
+[cols="2,1,1,2,2,2,4",options="header"]
+|===
+| Owner Quest | Family | Catalog Count | Catalog Flags | Linked Cues | Cue Sources | Why
+
+| 70032001 | q7 | 37 | 7169, 7240, 7241, 7336, 7341, 7342, 7386, 7387, 7388, 7389, 7390, 7438 +25 more | 7497, 7654, 7722, 7918, 7919, 7920, 7921, 7922 +2 more | gpl | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+|===
+
+== Family Relationship Context
+
+_These sections summarize deterministic client-side family metadata and reverse-index relationships. They are context for later owner/dependency inference, not direct quest-target promotion._
+
+=== Quest Sequence
+
+* seq no: 122
+* previous: 10320300 -- Intelligence Assessment: Skill Warm-Up
+* next: 10320500 -- Undercover: Suspicious Ennis
 
 == ARC Association Context
 
 _ARC associations are contextual only. They show which quest-stage and marker resources are bundled with this quest._
 
-* arc file: client/03040008/quest/q10320301.arc.json
+* arc file: link:../../../../client/03040008/quest/q10320301.arc.json#L1[client/03040008/quest/q10320301.arc.json#L1]
 * resource count: 15
+* stage codes: st0472
+* resource families: .fsm, .gmd, .mss, .qmi, .qst, .qtd
 
 === st0472 -- Fortress City Megado: Residential Level
 
@@ -37,18 +64,440 @@ _ARC associations are contextual only. They show which quest-stage and marker re
 * rAIFSM: quest/10320301/npc/watcher1
 * rGUIMessage: ui/00_message/examine_message/quest/quest_examine_q10320301
 
+== Stage Neighborhood Context
+
+_Stage-neighborhood context summarizes scanner-relevant client files that share the quest's archive stage codes. This is deterministic client topology, not inferred ownership._
+
+* scanner-relevant stage files: 78
+* indexed stage codes: st0472
+
+=== st0472 -- Fortress City Megado: Residential Level
+
+* scanner files: 78
+* .fsm.json: 6
+* .gpl.json: 5
+* .lot.json: 47
+* .qmi.json: 14
+* .qst.json: 6
+
+== Stage Neighborhood External-State Cues
+
+_These cues are deterministic client-side observations from the quest's stage neighborhood. They are not promoted to direct quest targets yet; they highlight q6/q7-owned external state values co-located in the quest's archive stages._
+
+* cue count: 10
+* owner families: q6, q7
+
+[cols="1,1,1,2,2,2",options="header"]
+|===
+| Value | Kind | Hits | Sources | Owners | Stages
+
+| Flag 7497 | layout_flag | 1 | gpl | 70032001 | st0472
+| Flag 7654 | layout_flag | 1 | gpl | 70032001 | st0472
+| Flag 7722 | layout_flag | 1 | gpl | 70032001 | st0472
+| Flag 7918 | layout_flag | 1 | gpl | 70032001 | st0472
+| Flag 7919 | layout_flag | 1 | gpl | 70032001 | st0472
+| Flag 7920 | layout_flag | 1 | gpl | 70032001 | st0472
+| Flag 7921 | layout_flag | 1 | gpl | 70032001 | st0472
+| Flag 7922 | layout_flag | 1 | gpl | 70032001 | st0472
+| Flag 7923 | layout_flag | 1 | gpl | 70032001 | st0472
+| Flag 7924 | layout_flag | 1 | gpl | 70032001 | st0472
+|===
+
+== Bounded Graph Expansion
+
+_This graph summarizes bounded deterministic and inferred edges around the quest: quest archive stages, direct source families, stage-linked owner catalogs, promoted dependencies, reverse-index event/group links, and family-specific table edges._
+
+* max depth: 3
+* node count: 18
+* edge count: 27
+* node kinds: direct_family=2, family_context=1, owner_quest=1, quest=1, sequence_quest=2, stage=1, stage_group=10
+* derivation: Direct=13, Graph=30, Owner Index=2
+
+=== Mermaid Graph Slice
+
+_This Mermaid flowchart shows a capped slice of the bounded graph so large quest reports stay readable while still exposing the graph structure._
+
+[mermaid]
+....
+flowchart TD
+    node_quest_10320301["Quest 10320301"]
+    node_direct_family_fsm["fsm direct hits (20)"]
+    node_direct_family_qst["qst direct hits (32)"]
+    node_family_context_quest_sequence["Quest Sequence"]
+    node_stage_st0472["st0472 -- Fortress City Megado: Residential Level"]
+    node_owner_quest_70032001["Owner quest 70032001 (q7)"]
+    node_sequence_quest_10320300["Quest 10320300"]
+    node_sequence_quest_10320500["Quest 10320500"]
+    node_stage_group_st0472_13["GPL group st0472/13"]
+    node_stage_group_st0472_14["GPL group st0472/14"]
+    node_stage_group_st0472_15["GPL group st0472/15"]
+    node_stage_group_st0472_16["GPL group st0472/16"]
+    node_stage_group_st0472_17["GPL group st0472/17"]
+    node_stage_group_st0472_18["GPL group st0472/18"]
+    node_stage_group_st0472_19["GPL group st0472/19"]
+    node_stage_group_st0472_33["GPL group st0472/33"]
+    node_stage_group_st0472_4["GPL group st0472/4"]
+    node_stage_group_st0472_6["GPL group st0472/6"]
+    node_quest_10320301 -->|direct_source_family| node_direct_family_fsm
+    node_quest_10320301 -->|direct_source_family| node_direct_family_qst
+    node_quest_10320301 -->|family:quest_sequence| node_family_context_quest_sequence
+    node_quest_10320301 -->|quest_archive_stage| node_stage_st0472
+    node_family_context_quest_sequence -->|sequence_next| node_sequence_quest_10320500
+    node_family_context_quest_sequence -->|sequence_previous| node_sequence_quest_10320300
+    node_stage_st0472 -->|stage_group_reference| node_stage_group_st0472_13
+    node_stage_st0472 -->|stage_group_reference| node_stage_group_st0472_14
+    node_stage_st0472 -->|stage_group_reference| node_stage_group_st0472_15
+    node_stage_st0472 -->|stage_group_reference| node_stage_group_st0472_16
+    node_stage_st0472 -->|stage_group_reference| node_stage_group_st0472_17
+    node_stage_st0472 -->|stage_group_reference| node_stage_group_st0472_18
+    node_stage_st0472 -->|stage_group_reference| node_stage_group_st0472_19
+    node_stage_st0472 -->|stage_group_reference| node_stage_group_st0472_33
+    node_stage_st0472 -->|stage_group_reference| node_stage_group_st0472_4
+    node_stage_st0472 -->|stage_group_reference| node_stage_group_st0472_6
+    node_stage_st0472 -->|stage_owner_index| node_owner_quest_70032001
+    node_stage_group_st0472_13 -->|gpl_owner_guard| node_owner_quest_70032001
+    node_stage_group_st0472_14 -->|gpl_owner_guard| node_owner_quest_70032001
+    node_stage_group_st0472_15 -->|gpl_owner_guard| node_owner_quest_70032001
+    node_stage_group_st0472_16 -->|gpl_owner_guard| node_owner_quest_70032001
+    node_stage_group_st0472_17 -->|gpl_owner_guard| node_owner_quest_70032001
+    node_stage_group_st0472_18 -->|gpl_owner_guard| node_owner_quest_70032001
+    node_stage_group_st0472_19 -->|gpl_owner_guard| node_owner_quest_70032001
+    classDef direct_deterministic fill:#e8f5e9,stroke:#2e7d32,stroke-width:1px
+    classDef owner_index fill:#e3f2fd,stroke:#1565c0,stroke-width:1px
+    classDef dependency_inferred fill:#fff3e0,stroke:#ef6c00,stroke-width:1px
+    classDef graph_expanded fill:#f3e5f5,stroke:#7b1fa2,stroke-width:1px
+    classDef lower_confidence fill:#fbe9e7,stroke:#d84315,stroke-width:1px
+    classDef binary_auxiliary fill:#eceff1,stroke:#455a64,stroke-width:1px
+    class node_quest_10320301,node_direct_family_fsm,node_direct_family_qst,node_family_context_quest_sequence,node_stage_st0472,node_sequence_quest_10320300,node_sequence_quest_10320500 direct_deterministic
+    class node_owner_quest_70032001 owner_index
+    class node_stage_group_st0472_13,node_stage_group_st0472_14,node_stage_group_st0472_15,node_stage_group_st0472_16,node_stage_group_st0472_17,node_stage_group_st0472_18,node_stage_group_st0472_19,node_stage_group_st0472_33,node_stage_group_st0472_4,node_stage_group_st0472_6 graph_expanded
+....
+
+[cols="1,2,2,2,2,4",options="header"]
+|===
+| Depth | Edge | From | To | Derivation | Why
+
+| 1 | direct_source_family | quest:10320301 | direct-family:fsm | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | direct_source_family | quest:10320301 | direct-family:qst | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | family_context:quest_sequence | quest:10320301 | family-context:quest_sequence | Direct | Family-specific decoded tables provide deterministic context for this quest.
+| 1 | quest_archive_stage | quest:10320301 | stage:st0472 | Direct | Quest archive topology directly links this quest to the stage code.
+| 2 | sequence_next | family-context:quest_sequence | sequence-quest:10320500 | Direct | QuestSequence links this quest to its neighboring sequence quest.
+| 2 | sequence_previous | family-context:quest_sequence | sequence-quest:10320300 | Direct | QuestSequence links this quest to its neighboring sequence quest.
+| 2 | stage_group_reference | stage:st0472 | stage-group:st0472:13 | Graph | Reverse indexes expose GPL group references for this stage.
+| 2 | stage_group_reference | stage:st0472 | stage-group:st0472:14 | Graph | Reverse indexes expose GPL group references for this stage.
+| 2 | stage_group_reference | stage:st0472 | stage-group:st0472:15 | Graph | Reverse indexes expose GPL group references for this stage.
+| 2 | stage_group_reference | stage:st0472 | stage-group:st0472:16 | Graph | Reverse indexes expose GPL group references for this stage.
+| 2 | stage_group_reference | stage:st0472 | stage-group:st0472:17 | Graph | Reverse indexes expose GPL group references for this stage.
+| 2 | stage_group_reference | stage:st0472 | stage-group:st0472:18 | Graph | Reverse indexes expose GPL group references for this stage.
+| 2 | stage_group_reference | stage:st0472 | stage-group:st0472:19 | Graph | Reverse indexes expose GPL group references for this stage.
+| 2 | stage_group_reference | stage:st0472 | stage-group:st0472:33 | Graph | Reverse indexes expose GPL group references for this stage.
+| 2 | stage_group_reference | stage:st0472 | stage-group:st0472:4 | Graph | Reverse indexes expose GPL group references for this stage.
+| 2 | stage_group_reference | stage:st0472 | stage-group:st0472:6 | Graph | Reverse indexes expose GPL group references for this stage.
+| 2 | stage_owner_index | stage:st0472 | owner-quest:70032001 | Owner Index | Stage-neighborhood cues on this stage link to the reusable owner catalog.
+| 3 | gpl_owner_guard | stage-group:st0472:13 | owner-quest:70032001 | Graph | GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.
+| 3 | gpl_owner_guard | stage-group:st0472:14 | owner-quest:70032001 | Graph | GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.
+| 3 | gpl_owner_guard | stage-group:st0472:15 | owner-quest:70032001 | Graph | GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.
+| 3 | gpl_owner_guard | stage-group:st0472:16 | owner-quest:70032001 | Graph | GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.
+| 3 | gpl_owner_guard | stage-group:st0472:17 | owner-quest:70032001 | Graph | GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.
+| 3 | gpl_owner_guard | stage-group:st0472:18 | owner-quest:70032001 | Graph | GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.
+| 3 | gpl_owner_guard | stage-group:st0472:19 | owner-quest:70032001 | Graph | GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.
+| 3 | gpl_owner_guard | stage-group:st0472:33 | owner-quest:70032001 | Graph | GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.
+| 3 | gpl_owner_guard | stage-group:st0472:4 | owner-quest:70032001 | Graph | GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.
+| 3 | gpl_owner_guard | stage-group:st0472:6 | owner-quest:70032001 | Graph | GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.
+|===
+
 == Flag Summary Matrix
 
 [cols="2,1,1,2,2,3,3",options="header"]
 |===
 | Target | Kind | Hits | Sources | Stages | Relationships | Description
 
+| Flag 7403 | layout_flag | 2 | qst | st0472 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0472 \| NW
+| Flag 7404 | layout_flag | 2 | qst | st0472 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0472 \| QuestGroup 1 \| 封鎖兵士
+| Flag 7430 | layout_flag | 2 | qst | st0472 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0472 \| QuestGroup 2 \| 情報屋
+| Flag 7431 | layout_flag | 2 | qst | st0472 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0472 \| QuestGroup 3 \| 幽霊憲兵
+| Flag 7432 | layout_flag | 2 | qst | st0472 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0472 \| QuestGroup 4 \| お守りじいさん
+| Flag 7724 | layout_flag | 2 | qst | st0472 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0472 \| QuestGroup 5 \| 【仲間】ジャン
+| Flag 7725 | layout_flag | 2 | qst | st0472 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0472 \| QuestGroup 6 \| 証拠2子供１
+| Flag 7727 | layout_flag | 2 | qst | st0472 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0472 \| QuestGroup 7 \| 証拠5
+| Flag 7728 | layout_flag | 2 | qst | st0472 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0472 \| QuestGroup 10 \| 証拠3OM
+| Flag 7729 | layout_flag | 2 | qst | st0472 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0472 \| QuestGroup 11 \| 証拠5追尾NPC
+| Flag 7730 | layout_flag | 2 | qst | st0472 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0472 \| QuestGroup 9 \| 証拠4OM
+| Flag 7732 | layout_flag | 2 | qst | st0472 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0472 \| QuestGroup 12 \| 証拠5追尾NPC2
+| Flag 7858 | layout_flag | 2 | qst | st0472 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0472 \| QuestGroup 13 \| 証拠3OM
+| Flag 7859 | layout_flag | 2 | qst | st0472 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0472 \| QuestGroup 14 \| 証拠3OM
 | Quest ID 10320301 | quest_id | 24 | fsm, qst | st0472 | 🔍 FSM Check, 💬 Text Quest | Derived quest-wide association scan
 |===
 
 == Known Documented Targets
 
+* quest 10320301 -- Flag 7403 -- QST local: st0472 | NW
+* quest 10320301 -- Flag 7404 -- QST local: st0472 | QuestGroup 1 | 封鎖兵士
+* quest 10320301 -- Flag 7430 -- QST local: st0472 | QuestGroup 2 | 情報屋
+* quest 10320301 -- Flag 7431 -- QST local: st0472 | QuestGroup 3 | 幽霊憲兵
+* quest 10320301 -- Flag 7432 -- QST local: st0472 | QuestGroup 4 | お守りじいさん
+* quest 10320301 -- Flag 7724 -- QST local: st0472 | QuestGroup 5 | 【仲間】ジャン
+* quest 10320301 -- Flag 7725 -- QST local: st0472 | QuestGroup 6 | 証拠2子供１
+* quest 10320301 -- Flag 7727 -- QST local: st0472 | QuestGroup 7 | 証拠5
+* quest 10320301 -- Flag 7728 -- QST local: st0472 | QuestGroup 10 | 証拠3OM
+* quest 10320301 -- Flag 7729 -- QST local: st0472 | QuestGroup 11 | 証拠5追尾NPC
+* quest 10320301 -- Flag 7730 -- QST local: st0472 | QuestGroup 9 | 証拠4OM
+* quest 10320301 -- Flag 7732 -- QST local: st0472 | QuestGroup 12 | 証拠5追尾NPC2
+* quest 10320301 -- Flag 7858 -- QST local: st0472 | QuestGroup 13 | 証拠3OM
+* quest 10320301 -- Flag 7859 -- QST local: st0472 | QuestGroup 14 | 証拠3OM
 * Quest ID 10320301 -- Derived quest-wide association scan [Derived]
+
+== Flag 7403 -- Quest 10320301
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320301/quest/10320301/q10320301_st0472.qst.json[client/03040008/quest/q10320301/quest/10320301/q10320301_st0472.qst.json] | QuestStageList[].QuestGrp[0].Condition | Condition | quest 10320301 / Fortress City Megado: Residential Level / "NW" / QuestSet=QuestSetInfoNpc | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320301/quest/10320301/q10320301_st0472.qst.json[client/03040008/quest/q10320301/quest/10320301/q10320301_st0472.qst.json] | QuestStageList[].QuestGrp[0].EraseCondition | EraseCondition | quest 10320301 / Fortress City Megado: Residential Level / "NW" / QuestSet=QuestSetInfoNpc | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 7404 -- Quest 10320301
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320301/quest/10320301/q10320301_st0472.qst.json[client/03040008/quest/q10320301/quest/10320301/q10320301_st0472.qst.json] | QuestStageList[].QuestGrp[1].Condition | Condition | quest 10320301 / Fortress City Megado: Residential Level / "QuestGroup 1 \| 封鎖兵士" / QuestSet=QuestSetInfoNpc \| GroupNo=1 \|\| QuestSet=QuestSetInfoNpc \| GroupNo=1 \|\| +1 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320301/quest/10320301/q10320301_st0472.qst.json[client/03040008/quest/q10320301/quest/10320301/q10320301_st0472.qst.json] | QuestStageList[].QuestGrp[1].EraseCondition | EraseCondition | quest 10320301 / Fortress City Megado: Residential Level / "QuestGroup 1 \| 封鎖兵士" / QuestSet=QuestSetInfoNpc \| GroupNo=1 \|\| QuestSet=QuestSetInfoNpc \| GroupNo=1 \|\| +1 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 7430 -- Quest 10320301
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320301/quest/10320301/q10320301_st0472.qst.json[client/03040008/quest/q10320301/quest/10320301/q10320301_st0472.qst.json] | QuestStageList[].QuestGrp[2].Condition | Condition | quest 10320301 / Fortress City Megado: Residential Level / "QuestGroup 2 \| 情報屋" / QuestSet=QuestSetInfoNpc \| GroupNo=2 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320301/quest/10320301/q10320301_st0472.qst.json[client/03040008/quest/q10320301/quest/10320301/q10320301_st0472.qst.json] | QuestStageList[].QuestGrp[2].EraseCondition | EraseCondition | quest 10320301 / Fortress City Megado: Residential Level / "QuestGroup 2 \| 情報屋" / QuestSet=QuestSetInfoNpc \| GroupNo=2 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 7431 -- Quest 10320301
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320301/quest/10320301/q10320301_st0472.qst.json[client/03040008/quest/q10320301/quest/10320301/q10320301_st0472.qst.json] | QuestStageList[].QuestGrp[3].Condition | Condition | quest 10320301 / Fortress City Megado: Residential Level / "QuestGroup 3 \| 幽霊憲兵" / QuestSet=QuestSetInfoNpc \| GroupNo=3 \|\| QuestSet=QuestSetInfoNpc \| GroupNo=3 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320301/quest/10320301/q10320301_st0472.qst.json[client/03040008/quest/q10320301/quest/10320301/q10320301_st0472.qst.json] | QuestStageList[].QuestGrp[3].EraseCondition | EraseCondition | quest 10320301 / Fortress City Megado: Residential Level / "QuestGroup 3 \| 幽霊憲兵" / QuestSet=QuestSetInfoNpc \| GroupNo=3 \|\| QuestSet=QuestSetInfoNpc \| GroupNo=3 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 7432 -- Quest 10320301
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320301/quest/10320301/q10320301_st0472.qst.json[client/03040008/quest/q10320301/quest/10320301/q10320301_st0472.qst.json] | QuestStageList[].QuestGrp[4].Condition | Condition | quest 10320301 / Fortress City Megado: Residential Level / "QuestGroup 4 \| お守りじいさん" / QuestSet=QuestSetInfoNpc \| GroupNo=4 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320301/quest/10320301/q10320301_st0472.qst.json[client/03040008/quest/q10320301/quest/10320301/q10320301_st0472.qst.json] | QuestStageList[].QuestGrp[4].EraseCondition | EraseCondition | quest 10320301 / Fortress City Megado: Residential Level / "QuestGroup 4 \| お守りじいさん" / QuestSet=QuestSetInfoNpc \| GroupNo=4 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 7724 -- Quest 10320301
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320301/quest/10320301/q10320301_st0472.qst.json[client/03040008/quest/q10320301/quest/10320301/q10320301_st0472.qst.json] | QuestStageList[].QuestGrp[5].Condition | Condition | quest 10320301 / Fortress City Megado: Residential Level / "QuestGroup 5 \| 【仲間】ジャン" / QuestSet=QuestSetInfoNpc \| GroupNo=5 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320301/quest/10320301/q10320301_st0472.qst.json[client/03040008/quest/q10320301/quest/10320301/q10320301_st0472.qst.json] | QuestStageList[].QuestGrp[5].EraseCondition | EraseCondition | quest 10320301 / Fortress City Megado: Residential Level / "QuestGroup 5 \| 【仲間】ジャン" / QuestSet=QuestSetInfoNpc \| GroupNo=5 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 7725 -- Quest 10320301
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320301/quest/10320301/q10320301_st0472.qst.json[client/03040008/quest/q10320301/quest/10320301/q10320301_st0472.qst.json] | QuestStageList[].QuestGrp[6].Condition | Condition | quest 10320301 / Fortress City Megado: Residential Level / "QuestGroup 6 \| 証拠2子供１" / QuestSet=QuestSetInfoNpc \| GroupNo=6 \|\| QuestSet=QuestSetInfoNpc \| GroupNo=6 \|\| +1 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320301/quest/10320301/q10320301_st0472.qst.json[client/03040008/quest/q10320301/quest/10320301/q10320301_st0472.qst.json] | QuestStageList[].QuestGrp[6].EraseCondition | EraseCondition | quest 10320301 / Fortress City Megado: Residential Level / "QuestGroup 6 \| 証拠2子供１" / QuestSet=QuestSetInfoNpc \| GroupNo=6 \|\| QuestSet=QuestSetInfoNpc \| GroupNo=6 \|\| +1 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 7727 -- Quest 10320301
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320301/quest/10320301/q10320301_st0472.qst.json[client/03040008/quest/q10320301/quest/10320301/q10320301_st0472.qst.json] | QuestStageList[].QuestGrp[7].Condition | Condition | quest 10320301 / Fortress City Megado: Residential Level / "QuestGroup 7 \| 証拠5" / QuestSet=QuestSetInfoNpc \| GroupNo=7 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320301/quest/10320301/q10320301_st0472.qst.json[client/03040008/quest/q10320301/quest/10320301/q10320301_st0472.qst.json] | QuestStageList[].QuestGrp[7].EraseCondition | EraseCondition | quest 10320301 / Fortress City Megado: Residential Level / "QuestGroup 7 \| 証拠5" / QuestSet=QuestSetInfoNpc \| GroupNo=7 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 7728 -- Quest 10320301
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320301/quest/10320301/q10320301_st0472.qst.json[client/03040008/quest/q10320301/quest/10320301/q10320301_st0472.qst.json] | QuestStageList[].QuestGrp[9].Condition | Condition | quest 10320301 / Fortress City Megado: Residential Level / "QuestGroup 10 \| 証拠3OM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100625 \| TextType=2 \| TextQuestNo=10320301 \| GroupNo=10 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320301/quest/10320301/q10320301_st0472.qst.json[client/03040008/quest/q10320301/quest/10320301/q10320301_st0472.qst.json] | QuestStageList[].QuestGrp[9].EraseCondition | EraseCondition | quest 10320301 / Fortress City Megado: Residential Level / "QuestGroup 10 \| 証拠3OM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100625 \| TextType=2 \| TextQuestNo=10320301 \| GroupNo=10 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 7729 -- Quest 10320301
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320301/quest/10320301/q10320301_st0472.qst.json[client/03040008/quest/q10320301/quest/10320301/q10320301_st0472.qst.json] | QuestStageList[].QuestGrp[10].Condition | Condition | quest 10320301 / Fortress City Megado: Residential Level / "QuestGroup 11 \| 証拠5追尾NPC" / QuestSet=QuestSetInfoNpc \| GroupNo=11 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320301/quest/10320301/q10320301_st0472.qst.json[client/03040008/quest/q10320301/quest/10320301/q10320301_st0472.qst.json] | QuestStageList[].QuestGrp[10].EraseCondition | EraseCondition | quest 10320301 / Fortress City Megado: Residential Level / "QuestGroup 11 \| 証拠5追尾NPC" / QuestSet=QuestSetInfoNpc \| GroupNo=11 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 7730 -- Quest 10320301
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320301/quest/10320301/q10320301_st0472.qst.json[client/03040008/quest/q10320301/quest/10320301/q10320301_st0472.qst.json] | QuestStageList[].QuestGrp[8].Condition | Condition | quest 10320301 / Fortress City Megado: Residential Level / "QuestGroup 9 \| 証拠4OM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100624 \| TextType=2 \| TextQuestNo=10320301 \| GroupNo=9 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320301/quest/10320301/q10320301_st0472.qst.json[client/03040008/quest/q10320301/quest/10320301/q10320301_st0472.qst.json] | QuestStageList[].QuestGrp[8].EraseCondition | EraseCondition | quest 10320301 / Fortress City Megado: Residential Level / "QuestGroup 9 \| 証拠4OM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100624 \| TextType=2 \| TextQuestNo=10320301 \| GroupNo=9 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 7732 -- Quest 10320301
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320301/quest/10320301/q10320301_st0472.qst.json[client/03040008/quest/q10320301/quest/10320301/q10320301_st0472.qst.json] | QuestStageList[].QuestGrp[11].Condition | Condition | quest 10320301 / Fortress City Megado: Residential Level / "QuestGroup 12 \| 証拠5追尾NPC2" / QuestSet=QuestSetInfoNpc \| GroupNo=12 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320301/quest/10320301/q10320301_st0472.qst.json[client/03040008/quest/q10320301/quest/10320301/q10320301_st0472.qst.json] | QuestStageList[].QuestGrp[11].EraseCondition | EraseCondition | quest 10320301 / Fortress City Megado: Residential Level / "QuestGroup 12 \| 証拠5追尾NPC2" / QuestSet=QuestSetInfoNpc \| GroupNo=12 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 7858 -- Quest 10320301
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320301/quest/10320301/q10320301_st0472.qst.json[client/03040008/quest/q10320301/quest/10320301/q10320301_st0472.qst.json] | QuestStageList[].QuestGrp[12].Condition | Condition | quest 10320301 / Fortress City Megado: Residential Level / "QuestGroup 13 \| 証拠3OM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100626 \| TextType=2 \| TextQuestNo=10320301 \| GroupNo=13 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320301/quest/10320301/q10320301_st0472.qst.json[client/03040008/quest/q10320301/quest/10320301/q10320301_st0472.qst.json] | QuestStageList[].QuestGrp[12].EraseCondition | EraseCondition | quest 10320301 / Fortress City Megado: Residential Level / "QuestGroup 13 \| 証拠3OM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100626 \| TextType=2 \| TextQuestNo=10320301 \| GroupNo=13 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 7859 -- Quest 10320301
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320301/quest/10320301/q10320301_st0472.qst.json[client/03040008/quest/q10320301/quest/10320301/q10320301_st0472.qst.json] | QuestStageList[].QuestGrp[13].Condition | Condition | quest 10320301 / Fortress City Megado: Residential Level / "QuestGroup 14 \| 証拠3OM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100627 \| TextType=2 \| TextQuestNo=10320301 \| GroupNo=14 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320301/quest/10320301/q10320301_st0472.qst.json[client/03040008/quest/q10320301/quest/10320301/q10320301_st0472.qst.json] | QuestStageList[].QuestGrp[13].EraseCondition | EraseCondition | quest 10320301 / Fortress City Megado: Residential Level / "QuestGroup 14 \| 証拠3OM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100627 \| TextType=2 \| TextQuestNo=10320301 \| GroupNo=14 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
 
 == Quest ID 10320301
 
@@ -60,41 +509,41 @@ ranked candidates:: *0*
 
 ==== direct -- 4 hit(s)
 
-[cols="1,1,3,3,2,3,3",options="header"]
+[cols="1,1,1,3,3,2,3,3",options="header"]
 |===
-| Family | Confidence | File | JSON Path | Field | Context | Why
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
 
-| QST | 92 | client/03040008/quest/q10320301/quest/10320301/q10320301_st0472.qst.json | QuestStageList[].QuestGrp[8].QuestSet[0].TextQuestNo | TextQuestNo | quest 10320301 / Fortress City Megado: Residential Level / "QuestGroup 9 \| 証拠4OM \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100624 \| TextType=2 \| TextQuestNo=10320301 \| GroupNo=9 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
-| QST | 92 | client/03040008/quest/q10320301/quest/10320301/q10320301_st0472.qst.json | QuestStageList[].QuestGrp[9].QuestSet[0].TextQuestNo | TextQuestNo | quest 10320301 / Fortress City Megado: Residential Level / "QuestGroup 10 \| 証拠3OM \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100625 \| TextType=2 \| TextQuestNo=10320301 \| GroupNo=10 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
-| QST | 92 | client/03040008/quest/q10320301/quest/10320301/q10320301_st0472.qst.json | QuestStageList[].QuestGrp[12].QuestSet[0].TextQuestNo | TextQuestNo | quest 10320301 / Fortress City Megado: Residential Level / "QuestGroup 13 \| 証拠3OM \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100626 \| TextType=2 \| TextQuestNo=10320301 \| GroupNo=13 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
-| QST | 92 | client/03040008/quest/q10320301/quest/10320301/q10320301_st0472.qst.json | QuestStageList[].QuestGrp[13].QuestSet[0].TextQuestNo | TextQuestNo | quest 10320301 / Fortress City Megado: Residential Level / "QuestGroup 14 \| 証拠3OM \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100627 \| TextType=2 \| TextQuestNo=10320301 \| GroupNo=14 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320301/quest/10320301/q10320301_st0472.qst.json[client/03040008/quest/q10320301/quest/10320301/q10320301_st0472.qst.json] | QuestStageList[].QuestGrp[8].QuestSet[0].TextQuestNo | TextQuestNo | quest 10320301 / Fortress City Megado: Residential Level / "QuestGroup 9 \| 証拠4OM \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100624 \| TextType=2 \| TextQuestNo=10320301 \| GroupNo=9 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320301/quest/10320301/q10320301_st0472.qst.json[client/03040008/quest/q10320301/quest/10320301/q10320301_st0472.qst.json] | QuestStageList[].QuestGrp[9].QuestSet[0].TextQuestNo | TextQuestNo | quest 10320301 / Fortress City Megado: Residential Level / "QuestGroup 10 \| 証拠3OM \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100625 \| TextType=2 \| TextQuestNo=10320301 \| GroupNo=10 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320301/quest/10320301/q10320301_st0472.qst.json[client/03040008/quest/q10320301/quest/10320301/q10320301_st0472.qst.json] | QuestStageList[].QuestGrp[12].QuestSet[0].TextQuestNo | TextQuestNo | quest 10320301 / Fortress City Megado: Residential Level / "QuestGroup 13 \| 証拠3OM \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100626 \| TextType=2 \| TextQuestNo=10320301 \| GroupNo=13 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q10320301/quest/10320301/q10320301_st0472.qst.json[client/03040008/quest/q10320301/quest/10320301/q10320301_st0472.qst.json] | QuestStageList[].QuestGrp[13].QuestSet[0].TextQuestNo | TextQuestNo | quest 10320301 / Fortress City Megado: Residential Level / "QuestGroup 14 \| 証拠3OM \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100627 \| TextType=2 \| TextQuestNo=10320301 \| GroupNo=14 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
 |===
 
 ==== opaque_fsm -- 20 hit(s)
 
-[cols="1,1,3,3,2,3,3",options="header"]
+[cols="1,1,1,3,3,2,3,3",options="header"]
 |===
-| Family | Confidence | File | JSON Path | Field | Context | Why
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
 
-| FSM | 64 | client/03040008/quest/q10320301/quest/10320301/npc/child.fsm.json | Process.Parameter.QuestId | QuestId | quest 10320301 (Intelligence Assessment: Dark Night Covering Megado) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
-| FSM | 64 | client/03040008/quest/q10320301/quest/10320301/npc/child.fsm.json | Process.Parameter.QuestId | QuestId | quest 10320301 (Intelligence Assessment: Dark Night Covering Megado) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
-| FSM | 64 | client/03040008/quest/q10320301/quest/10320301/npc/child.fsm.json | Process.Parameter.QuestId | QuestId | quest 10320301 (Intelligence Assessment: Dark Night Covering Megado) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
-| FSM | 64 | client/03040008/quest/q10320301/quest/10320301/npc/child.fsm.json | Process.Parameter.QuestId | QuestId | quest 10320301 (Intelligence Assessment: Dark Night Covering Megado) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
-| FSM | 64 | client/03040008/quest/q10320301/quest/10320301/npc/child.fsm.json | Process.Parameter.QuestId | QuestId | quest 10320301 (Intelligence Assessment: Dark Night Covering Megado) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
-| FSM | 64 | client/03040008/quest/q10320301/quest/10320301/npc/child.fsm.json | Process.Parameter.QuestId | QuestId | quest 10320301 (Intelligence Assessment: Dark Night Covering Megado) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
-| FSM | 64 | client/03040008/quest/q10320301/quest/10320301/npc/child.fsm.json | Process.Parameter.QuestId | QuestId | quest 10320301 (Intelligence Assessment: Dark Night Covering Megado) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
-| FSM | 64 | client/03040008/quest/q10320301/quest/10320301/npc/child.fsm.json | Process.Parameter.QuestId | QuestId | quest 10320301 (Intelligence Assessment: Dark Night Covering Megado) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
-| FSM | 64 | client/03040008/quest/q10320301/quest/10320301/npc/child.fsm.json | Process.Parameter.QuestId | QuestId | quest 10320301 (Intelligence Assessment: Dark Night Covering Megado) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
-| FSM | 64 | client/03040008/quest/q10320301/quest/10320301/npc/child.fsm.json | Process.Parameter.QuestId | QuestId | quest 10320301 (Intelligence Assessment: Dark Night Covering Megado) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
-| FSM | 64 | client/03040008/quest/q10320301/quest/10320301/npc/child.fsm.json | Process.Parameter.QuestId | QuestId | quest 10320301 (Intelligence Assessment: Dark Night Covering Megado) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
-| FSM | 64 | client/03040008/quest/q10320301/quest/10320301/npc/child.fsm.json | Process.Parameter.QuestId | QuestId | quest 10320301 (Intelligence Assessment: Dark Night Covering Megado) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
-| FSM | 64 | client/03040008/quest/q10320301/quest/10320301/npc/child.fsm.json | Process.Parameter.QuestId | QuestId | quest 10320301 (Intelligence Assessment: Dark Night Covering Megado) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
-| FSM | 64 | client/03040008/quest/q10320301/quest/10320301/npc/child.fsm.json | Process.Parameter.QuestId | QuestId | quest 10320301 (Intelligence Assessment: Dark Night Covering Megado) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
-| FSM | 64 | client/03040008/quest/q10320301/quest/10320301/npc/child.fsm.json | Process.Parameter.QuestId | QuestId | quest 10320301 (Intelligence Assessment: Dark Night Covering Megado) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
-| FSM | 64 | client/03040008/quest/q10320301/quest/10320301/npc/child.fsm.json | Process.Parameter.QuestId | QuestId | quest 10320301 (Intelligence Assessment: Dark Night Covering Megado) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
-| FSM | 64 | client/03040008/quest/q10320301/quest/10320301/npc/mob5.fsm.json | Process.Parameter.QuestId | QuestId | quest 10320301 (Intelligence Assessment: Dark Night Covering Megado) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
-| FSM | 64 | client/03040008/quest/q10320301/quest/10320301/npc/mob5.fsm.json | Process.Parameter.QuestId | QuestId | quest 10320301 (Intelligence Assessment: Dark Night Covering Megado) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
-| FSM | 64 | client/03040008/quest/q10320301/quest/10320301/npc/mob5.fsm.json | Process.Parameter.QuestId | QuestId | quest 10320301 (Intelligence Assessment: Dark Night Covering Megado) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
-| FSM | 64 | client/03040008/quest/q10320301/quest/10320301/npc/nw.fsm.json | Process.Parameter.QuestId | QuestId | quest 10320301 (Intelligence Assessment: Dark Night Covering Megado) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/quest/q10320301/quest/10320301/npc/child.fsm.json[client/03040008/quest/q10320301/quest/10320301/npc/child.fsm.json] | Process.Parameter.QuestId | QuestId | quest 10320301 (Intelligence Assessment: Dark Night Covering Megado) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/quest/q10320301/quest/10320301/npc/child.fsm.json[client/03040008/quest/q10320301/quest/10320301/npc/child.fsm.json] | Process.Parameter.QuestId | QuestId | quest 10320301 (Intelligence Assessment: Dark Night Covering Megado) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/quest/q10320301/quest/10320301/npc/child.fsm.json[client/03040008/quest/q10320301/quest/10320301/npc/child.fsm.json] | Process.Parameter.QuestId | QuestId | quest 10320301 (Intelligence Assessment: Dark Night Covering Megado) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/quest/q10320301/quest/10320301/npc/child.fsm.json[client/03040008/quest/q10320301/quest/10320301/npc/child.fsm.json] | Process.Parameter.QuestId | QuestId | quest 10320301 (Intelligence Assessment: Dark Night Covering Megado) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/quest/q10320301/quest/10320301/npc/child.fsm.json[client/03040008/quest/q10320301/quest/10320301/npc/child.fsm.json] | Process.Parameter.QuestId | QuestId | quest 10320301 (Intelligence Assessment: Dark Night Covering Megado) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/quest/q10320301/quest/10320301/npc/child.fsm.json[client/03040008/quest/q10320301/quest/10320301/npc/child.fsm.json] | Process.Parameter.QuestId | QuestId | quest 10320301 (Intelligence Assessment: Dark Night Covering Megado) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/quest/q10320301/quest/10320301/npc/child.fsm.json[client/03040008/quest/q10320301/quest/10320301/npc/child.fsm.json] | Process.Parameter.QuestId | QuestId | quest 10320301 (Intelligence Assessment: Dark Night Covering Megado) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/quest/q10320301/quest/10320301/npc/child.fsm.json[client/03040008/quest/q10320301/quest/10320301/npc/child.fsm.json] | Process.Parameter.QuestId | QuestId | quest 10320301 (Intelligence Assessment: Dark Night Covering Megado) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/quest/q10320301/quest/10320301/npc/child.fsm.json[client/03040008/quest/q10320301/quest/10320301/npc/child.fsm.json] | Process.Parameter.QuestId | QuestId | quest 10320301 (Intelligence Assessment: Dark Night Covering Megado) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/quest/q10320301/quest/10320301/npc/child.fsm.json[client/03040008/quest/q10320301/quest/10320301/npc/child.fsm.json] | Process.Parameter.QuestId | QuestId | quest 10320301 (Intelligence Assessment: Dark Night Covering Megado) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/quest/q10320301/quest/10320301/npc/child.fsm.json[client/03040008/quest/q10320301/quest/10320301/npc/child.fsm.json] | Process.Parameter.QuestId | QuestId | quest 10320301 (Intelligence Assessment: Dark Night Covering Megado) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/quest/q10320301/quest/10320301/npc/child.fsm.json[client/03040008/quest/q10320301/quest/10320301/npc/child.fsm.json] | Process.Parameter.QuestId | QuestId | quest 10320301 (Intelligence Assessment: Dark Night Covering Megado) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/quest/q10320301/quest/10320301/npc/child.fsm.json[client/03040008/quest/q10320301/quest/10320301/npc/child.fsm.json] | Process.Parameter.QuestId | QuestId | quest 10320301 (Intelligence Assessment: Dark Night Covering Megado) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/quest/q10320301/quest/10320301/npc/child.fsm.json[client/03040008/quest/q10320301/quest/10320301/npc/child.fsm.json] | Process.Parameter.QuestId | QuestId | quest 10320301 (Intelligence Assessment: Dark Night Covering Megado) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/quest/q10320301/quest/10320301/npc/child.fsm.json[client/03040008/quest/q10320301/quest/10320301/npc/child.fsm.json] | Process.Parameter.QuestId | QuestId | quest 10320301 (Intelligence Assessment: Dark Night Covering Megado) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/quest/q10320301/quest/10320301/npc/child.fsm.json[client/03040008/quest/q10320301/quest/10320301/npc/child.fsm.json] | Process.Parameter.QuestId | QuestId | quest 10320301 (Intelligence Assessment: Dark Night Covering Megado) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/quest/q10320301/quest/10320301/npc/mob5.fsm.json[client/03040008/quest/q10320301/quest/10320301/npc/mob5.fsm.json] | Process.Parameter.QuestId | QuestId | quest 10320301 (Intelligence Assessment: Dark Night Covering Megado) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/quest/q10320301/quest/10320301/npc/mob5.fsm.json[client/03040008/quest/q10320301/quest/10320301/npc/mob5.fsm.json] | Process.Parameter.QuestId | QuestId | quest 10320301 (Intelligence Assessment: Dark Night Covering Megado) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/quest/q10320301/quest/10320301/npc/mob5.fsm.json[client/03040008/quest/q10320301/quest/10320301/npc/mob5.fsm.json] | Process.Parameter.QuestId | QuestId | quest 10320301 (Intelligence Assessment: Dark Night Covering Megado) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/quest/q10320301/quest/10320301/npc/nw.fsm.json[client/03040008/quest/q10320301/quest/10320301/npc/nw.fsm.json] | Process.Parameter.QuestId | QuestId | quest 10320301 (Intelligence Assessment: Dark Night Covering Megado) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
 |===
 

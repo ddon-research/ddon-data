@@ -5,9 +5,317 @@
 
 Query mode:: quest
 Query value:: 30125
-Generated at:: 2026-04-11T21:41:40.573265+00:00
+Generated at:: 2026-04-12T12:43:38.865323+00:00
 
 toc::[]
+
+Quest family:: q3 -- Light Quest
+Quest family notes:: Light and board-style quests with repeatable or lightweight stage flows.
+Quest family focus:: local_stage_topology_plus_board_repeatability
+
+== External Owner Indexes
+
+_These are reusable external owner catalogs inferred from stage-neighborhood cues. They are broader than the subset of flags promoted into derived dependency targets._
+
+[cols="2,1,1,2,2,2,4",options="header"]
+|===
+| Owner Quest | Family | Catalog Count | Catalog Flags | Linked Cues | Cue Sources | Why
+
+| 70000001 | q7 | 70 | 1098, 1103, 1104, 1105, 1106, 1109, 1110, 1111, 1112, 1113, 1114, 1115 +58 more | 1110, 1112, 1150, 1201, 1216, 1217, 1220, 1221 +14 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70001001 | q7 | 0 |  | 1851, 1954 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70002001 | q7 | 47 | 1098, 1103, 1104, 1105, 1106, 1109, 1110, 1111, 1112, 1113, 1114, 1115 +35 more | 1114, 1115, 1117, 1601, 3860 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70003001 | q7 | 49 | 1098, 1103, 1104, 1105, 1106, 1109, 1110, 1111, 1112, 1113, 1114, 1115 +37 more | 1103, 1105, 1106, 1119, 1120, 1121, 1122, 1123 +8 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70020001 | q7 | 8 | 2736, 3000, 3002, 3003, 3074, 3442, 3805, 4037 | 2736, 3003, 3074, 4037 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70021001 | q7 | 4 | 3278, 3650, 3753, 3861 | 3278, 3753 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70022001 | q7 | 17 | 3949, 3950, 3952, 3953, 3954, 3977, 4033, 4043, 4053, 4063, 4470, 4555 +5 more | 3949, 3950, 3952, 3953, 3954, 3977, 4033, 4556 +2 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70023001 | q7 | 15 | 4066, 4067, 4372, 4373, 4500, 4506, 4507, 4508, 4511, 4512, 4515, 4516 +3 more | 4066, 4373, 4500, 4506, 4508, 4512, 4515, 4517 +1 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70030001 | q7 | 46 | 5396, 5397, 5407, 5552, 5557, 5558, 5581, 5584, 5587, 5588, 5589, 5614 +34 more | 5396, 5397, 5407, 5557, 5588, 5589, 5614, 5632 +22 more | evsi, gpl | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70031001 | q7 | 8 | 5553, 5672, 6138, 6194, 6195, 6377, 6425, 7316 | 5553, 6194, 6195, 7316 | evsi, gpl | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70032001 | q7 | 37 | 7169, 7240, 7241, 7336, 7341, 7342, 7386, 7387, 7388, 7389, 7390, 7438 +25 more | 7240, 7341, 7386, 7496, 7512, 7544, 7549, 7551 +5 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70033001 | q7 | 43 | 7826, 7827, 7876, 7888, 7889, 7916, 7917, 7954, 7955, 7965, 7966, 7967 +31 more | 7888, 7889, 7965, 7967, 7973, 8043, 8044, 8045 +6 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+|===
+
+== Derived External Dependency Targets
+
+_These are the promoted subset of external owner-index entries. A flag appears here only when it passes the current family-specific dependency promotion rules for this quest._
+
+[cols="2,1,1,2,2,4",options="header"]
+|===
+| Owner Quest | Family | Flag Count | Flags | Sources | Why
+
+| 70000001 | q7 | 22 | 1110, 1112, 1150, 1201, 1216, 1217, 1220, 1221, 1222, 1223, 1224, 1250 +10 more | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70002001 | q7 | 5 | 1114, 1115, 1117, 1601, 3860 | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70003001 | q7 | 16 | 1103, 1105, 1106, 1119, 1120, 1121, 1122, 1123, 1124, 1202, 1203, 1296 +4 more | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70020001 | q7 | 4 | 2736, 3003, 3074, 4037 | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70021001 | q7 | 2 | 3278, 3753 | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70022001 | q7 | 10 | 3949, 3950, 3952, 3953, 3954, 3977, 4033, 4556, 4803, 4968 | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70023001 | q7 | 9 | 4066, 4373, 4500, 4506, 4508, 4512, 4515, 4517, 4973 | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70030001 | q7 | 27 | 5396, 5407, 5557, 5589, 5614, 5632, 5635, 5637, 5642, 5658, 5706, 5708 +15 more | evsi, gpl | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70031001 | q7 | 3 | 5553, 6194, 7316 | evsi, gpl | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70032001 | q7 | 13 | 7240, 7341, 7386, 7496, 7512, 7544, 7549, 7551, 7553, 7555, 7557, 7927 +1 more | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70033001 | q7 | 14 | 7888, 7889, 7965, 7967, 7973, 8043, 8044, 8045, 8046, 8047, 8066, 8133 +2 more | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+|===
+
+== Family Relationship Context
+
+_These sections summarize deterministic client-side family metadata and reverse-index relationships. They are context for later owner/dependency inference, not direct quest-target promotion._
+
+=== Quest Sequence
+
+* seq no: 65
+* previous: 30120 -- The Secret Entrance
+* next: 30130 -- The Battle of Lookout Castle
+
+== ARC Association Context
+
+_ARC associations are contextual only. They show which quest-stage and marker resources are bundled with this quest._
+
+* arc file: link:../../../../client/03040008/quest/q00030125.arc.json#L1[client/03040008/quest/q00030125.arc.json#L1]
+* resource count: 14
+* stage codes: st0443, st0450, st0631, st1091
+* resource families: .fsm, .gmd, .mss, .qmi, .qst, .qtd
+
+=== st0443 -- Fort Thines
+
+* rQuestList: quest/00030125/q00030125_st0443
+* rQuestMarkerInfo: quest/00030125/st0443_marker_npc
+
+=== st0450 -- Lookout Castle
+
+* rQuestMarkerInfo: quest/00030125/st0450_marker_npc
+* rQuestList: quest/00030125/q00030125_st0450
+
+=== st0631 -- Rothgill Traveler's Inn
+
+* rQuestMarkerInfo: quest/00030125/st0631_marker_npc
+* rQuestList: quest/00030125/q00030125_st0631
+
+=== st1091 -- Royal Family's Secret Path
+
+* rQuestMarkerInfo: quest/00030125/st1091_marker_npc
+* rQuestList: quest/00030125/q00030125_st1091
+
+=== unclassified
+
+* rAIFSM: quest/00030125/npc/n002901
+* rAIFSM: quest/00030125/npc/n0029
+* rGUIMessage: ui/00_message/quest_info/q00030125_00
+* rQuestTextData: ui/00_param/quest_text/q00030125_00
+* rMsgSet: ui/00_message/quest/q00030125
+* rGUIMessage: ui/00_message/quest/q00030125
+
+== Stage Neighborhood Context
+
+_Stage-neighborhood context summarizes scanner-relevant client files that share the quest's archive stage codes. This is deterministic client topology, not inferred ownership._
+
+* scanner-relevant stage files: 344
+* indexed stage codes: st0443, st0450, st0631, st1091
+
+=== st0443 -- Fort Thines
+
+* scanner files: 109
+* .evsi.json: 2
+* .fsm.json: 18
+* .gpl.json: 3
+* .lot.json: 33
+* .qmi.json: 28
+* .qst.json: 25
+
+=== st0450 -- Lookout Castle
+
+* scanner files: 63
+* .evsi.json: 2
+* .fsm.json: 14
+* .gpl.json: 5
+* .lot.json: 36
+* .qmi.json: 4
+* .qst.json: 2
+
+=== st0631 -- Rothgill Traveler's Inn
+
+* scanner files: 37
+* .evsi.json: 1
+* .fsm.json: 8
+* .gpl.json: 3
+* .lot.json: 12
+* .qmi.json: 7
+* .qst.json: 6
+
+=== st1091 -- Royal Family's Secret Path
+
+* scanner files: 135
+* .evsi.json: 1
+* .fsm.json: 7
+* .gpl.json: 11
+* .lot.json: 106
+* .qmi.json: 6
+* .qst.json: 4
+
+== Stage Neighborhood External-State Cues
+
+_These cues are deterministic client-side observations from the quest's stage neighborhood. They are not promoted to direct quest targets yet; they highlight q6/q7-owned external state values co-located in the quest's archive stages._
+
+* cue count: 131
+* owner families: q6, q7
+
+[cols="1,1,1,2,2,2",options="header"]
+|===
+| Value | Kind | Hits | Sources | Owners | Stages
+
+| Flag 6194 | layout_flag | 7 | evsi, gpl | 70031001 | st0443, st0450, st0631, st1091
+| Flag 5642 | layout_flag | 5 | evsi, gpl | 70030001 | st0443, st0450, st0631, st1091
+| Flag 1103 | layout_flag | 6 | evsi | 70003001 | st0443, st0450, st0631, st1091
+| Flag 1105 | layout_flag | 6 | evsi | 70003001 | st0443, st0450, st0631, st1091
+| Flag 1106 | layout_flag | 6 | evsi | 70003001 | st0443, st0450, st0631, st1091
+| Flag 1110 | layout_flag | 6 | evsi | 70000001 | st0443, st0450, st0631, st1091
+| Flag 1112 | layout_flag | 6 | evsi | 70000001 | st0443, st0450, st0631, st1091
+| Flag 1114 | layout_flag | 6 | evsi | 70002001 | st0443, st0450, st0631, st1091
+| Flag 1115 | layout_flag | 6 | evsi | 70002001 | st0443, st0450, st0631, st1091
+| Flag 1117 | layout_flag | 6 | evsi | 70002001 | st0443, st0450, st0631, st1091
+| Flag 1119 | layout_flag | 6 | evsi | 70003001 | st0443, st0450, st0631, st1091
+| Flag 1120 | layout_flag | 6 | evsi | 70003001 | st0443, st0450, st0631, st1091
+| Flag 1121 | layout_flag | 6 | evsi | 70003001 | st0443, st0450, st0631, st1091
+| Flag 1122 | layout_flag | 6 | evsi | 70003001 | st0443, st0450, st0631, st1091
+| Flag 1123 | layout_flag | 6 | evsi | 70003001 | st0443, st0450, st0631, st1091
+| Flag 1124 | layout_flag | 6 | evsi | 70003001 | st0443, st0450, st0631, st1091
+| Flag 1150 | layout_flag | 6 | evsi | 70000001 | st0443, st0450, st0631, st1091
+| Flag 1201 | layout_flag | 6 | evsi | 70000001 | st0443, st0450, st0631, st1091
+| Flag 1202 | layout_flag | 6 | evsi | 70003001 | st0443, st0450, st0631, st1091
+| Flag 1203 | layout_flag | 6 | evsi | 70003001 | st0443, st0450, st0631, st1091
+| Flag 1216 | layout_flag | 6 | evsi | 70000001 | st0443, st0450, st0631, st1091
+| Flag 1217 | layout_flag | 6 | evsi | 70000001 | st0443, st0450, st0631, st1091
+| Flag 1220 | layout_flag | 6 | evsi | 70000001 | st0443, st0450, st0631, st1091
+| Flag 1221 | layout_flag | 6 | evsi | 70000001 | st0443, st0450, st0631, st1091
+| Flag 1222 | layout_flag | 6 | evsi | 70000001 | st0443, st0450, st0631, st1091
+| Flag 1223 | layout_flag | 6 | evsi | 70000001 | st0443, st0450, st0631, st1091
+| Flag 1224 | layout_flag | 6 | evsi | 70000001 | st0443, st0450, st0631, st1091
+| Flag 1250 | layout_flag | 6 | evsi | 70000001 | st0443, st0450, st0631, st1091
+| Flag 1262 | layout_flag | 6 | evsi | 70000001 | st0443, st0450, st0631, st1091
+| Flag 1263 | layout_flag | 6 | evsi | 70000001 | st0443, st0450, st0631, st1091
+|===
+
+== Bounded Graph Expansion
+
+_This graph summarizes bounded deterministic and inferred edges around the quest: quest archive stages, direct source families, stage-linked owner catalogs, promoted dependencies, reverse-index event/group links, and family-specific table edges._
+
+* max depth: 3
+* node count: 102
+* edge count: 224
+* node kinds: direct_family=4, event_viewer=72, family_context=1, lot_file=2, owner_quest=12, quest=1, sequence_quest=2, stage=4, stage_group=4
+* derivation: Dependency=11, Direct=23, Graph=232, Owner Index=60
+
+=== Mermaid Graph Slice
+
+_This Mermaid flowchart shows a capped slice of the bounded graph so large quest reports stay readable while still exposing the graph structure._
+
+[mermaid]
+....
+flowchart TD
+    node_quest_30125["Quest 30125"]
+    node_direct_family_fsm["fsm direct hits (4)"]
+    node_direct_family_lot["lot direct hits (2)"]
+    node_direct_family_qst["qst direct hits (21)"]
+    node_direct_family_smc["smc direct hits (23)"]
+    node_family_context_quest_sequence["Quest Sequence"]
+    node_stage_st0443["st0443 -- Fort Thines"]
+    node_stage_st0450["st0450 -- Lookout Castle"]
+    node_stage_st0631["st0631 -- Rothgill Traveler's Inn"]
+    node_stage_st1091["st1091 -- Royal Family's Secret Path"]
+    node_event_viewer_st0443_ev000_70000001["Event st0443/ev000"]
+    node_event_viewer_st0443_ev000_70001001["Event st0443/ev000"]
+    node_owner_quest_70000001["Owner quest 70000001 (q7)"]
+    node_owner_quest_70002001["Owner quest 70002001 (q7)"]
+    node_owner_quest_70003001["Owner quest 70003001 (q7)"]
+    node_owner_quest_70020001["Owner quest 70020001 (q7)"]
+    node_owner_quest_70021001["Owner quest 70021001 (q7)"]
+    node_owner_quest_70022001["Owner quest 70022001 (q7)"]
+    node_owner_quest_70023001["Owner quest 70023001 (q7)"]
+    node_owner_quest_70030001["Owner quest 70030001 (q7)"]
+    node_owner_quest_70031001["Owner quest 70031001 (q7)"]
+    node_owner_quest_70032001["Owner quest 70032001 (q7)"]
+    node_owner_quest_70033001["Owner quest 70033001 (q7)"]
+    node_sequence_quest_30120["Quest 30120"]
+    node_sequence_quest_30130["Quest 30130"]
+    node_quest_30125 -->|direct_source_family| node_direct_family_fsm
+    node_quest_30125 -->|direct_source_family| node_direct_family_lot
+    node_quest_30125 -->|direct_source_family| node_direct_family_qst
+    node_quest_30125 -->|direct_source_family| node_direct_family_smc
+    node_quest_30125 -->|family:quest_sequence| node_family_context_quest_sequence
+    node_quest_30125 -->|quest_archive_stage| node_stage_st0443
+    node_quest_30125 -->|quest_archive_stage| node_stage_st0450
+    node_quest_30125 -->|quest_archive_stage| node_stage_st0631
+    node_quest_30125 -->|quest_archive_stage| node_stage_st1091
+    node_quest_30125 -->|promoted_dependency| node_owner_quest_70000001
+    node_quest_30125 -->|promoted_dependency| node_owner_quest_70002001
+    node_quest_30125 -->|promoted_dependency| node_owner_quest_70003001
+    node_quest_30125 -->|promoted_dependency| node_owner_quest_70020001
+    node_quest_30125 -->|promoted_dependency| node_owner_quest_70021001
+    node_quest_30125 -->|promoted_dependency| node_owner_quest_70022001
+    node_quest_30125 -->|promoted_dependency| node_owner_quest_70023001
+    node_quest_30125 -->|promoted_dependency| node_owner_quest_70030001
+    node_quest_30125 -->|promoted_dependency| node_owner_quest_70031001
+    node_quest_30125 -->|promoted_dependency| node_owner_quest_70032001
+    node_quest_30125 -->|promoted_dependency| node_owner_quest_70033001
+    node_family_context_quest_sequence -->|sequence_next| node_sequence_quest_30130
+    node_family_context_quest_sequence -->|sequence_previous| node_sequence_quest_30120
+    node_stage_st0443 -->|stage_event_viewer| node_event_viewer_st0443_ev000_70000001
+    node_stage_st0443 -->|stage_event_viewer| node_event_viewer_st0443_ev000_70001001
+    classDef direct_deterministic fill:#e8f5e9,stroke:#2e7d32,stroke-width:1px
+    classDef owner_index fill:#e3f2fd,stroke:#1565c0,stroke-width:1px
+    classDef dependency_inferred fill:#fff3e0,stroke:#ef6c00,stroke-width:1px
+    classDef graph_expanded fill:#f3e5f5,stroke:#7b1fa2,stroke-width:1px
+    classDef lower_confidence fill:#fbe9e7,stroke:#d84315,stroke-width:1px
+    classDef binary_auxiliary fill:#eceff1,stroke:#455a64,stroke-width:1px
+    class node_quest_30125,node_direct_family_fsm,node_direct_family_lot,node_direct_family_qst,node_direct_family_smc,node_family_context_quest_sequence,node_stage_st0443,node_stage_st0450,node_stage_st0631,node_stage_st1091,node_sequence_quest_30120,node_sequence_quest_30130 direct_deterministic
+    class node_owner_quest_70000001,node_owner_quest_70002001,node_owner_quest_70003001,node_owner_quest_70020001,node_owner_quest_70021001,node_owner_quest_70022001,node_owner_quest_70023001,node_owner_quest_70030001,node_owner_quest_70031001,node_owner_quest_70032001,node_owner_quest_70033001 owner_index
+    class node_event_viewer_st0443_ev000_70000001,node_event_viewer_st0443_ev000_70001001 graph_expanded
+....
+
+[cols="1,2,2,2,2,4",options="header"]
+|===
+| Depth | Edge | From | To | Derivation | Why
+
+| 1 | direct_source_family | quest:30125 | direct-family:fsm | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | direct_source_family | quest:30125 | direct-family:lot | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | direct_source_family | quest:30125 | direct-family:qst | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | direct_source_family | quest:30125 | direct-family:smc | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | family_context:quest_sequence | quest:30125 | family-context:quest_sequence | Direct | Family-specific decoded tables provide deterministic context for this quest.
+| 1 | quest_archive_stage | quest:30125 | stage:st0443 | Direct | Quest archive topology directly links this quest to the stage code.
+| 1 | quest_archive_stage | quest:30125 | stage:st0450 | Direct | Quest archive topology directly links this quest to the stage code.
+| 1 | quest_archive_stage | quest:30125 | stage:st0631 | Direct | Quest archive topology directly links this quest to the stage code.
+| 1 | quest_archive_stage | quest:30125 | stage:st1091 | Direct | Quest archive topology directly links this quest to the stage code.
+| 2 | promoted_dependency | quest:30125 | owner-quest:70000001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30125 | owner-quest:70002001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30125 | owner-quest:70003001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30125 | owner-quest:70020001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30125 | owner-quest:70021001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30125 | owner-quest:70022001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30125 | owner-quest:70023001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30125 | owner-quest:70030001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30125 | owner-quest:70031001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30125 | owner-quest:70032001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30125 | owner-quest:70033001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | sequence_next | family-context:quest_sequence | sequence-quest:30130 | Direct | QuestSequence links this quest to its neighboring sequence quest.
+| 2 | sequence_previous | family-context:quest_sequence | sequence-quest:30120 | Direct | QuestSequence links this quest to its neighboring sequence quest.
+| 2 | stage_event_viewer | stage:st0443 | event-viewer:st0443:ev000:70000001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0443 | event-viewer:st0443:ev000:70001001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0443 | event-viewer:st0443:ev000:70002001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0443 | event-viewer:st0443:ev000:70003001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0443 | event-viewer:st0443:ev000:70020001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0443 | event-viewer:st0443:ev000:70021001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0443 | event-viewer:st0443:ev000:70022001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0443 | event-viewer:st0443:ev000:70023001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0443 | event-viewer:st0443:ev000:70030001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0443 | event-viewer:st0443:ev000:70031001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0443 | event-viewer:st0443:ev000:70032001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0443 | event-viewer:st0443:ev000:70033001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0443 | event-viewer:st0443:ev005:70000001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0443 | event-viewer:st0443:ev005:70001001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0443 | event-viewer:st0443:ev005:70002001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0443 | event-viewer:st0443:ev005:70003001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0443 | event-viewer:st0443:ev005:70020001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0443 | event-viewer:st0443:ev005:70021001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+|===
 
 == Flag Summary Matrix
 
@@ -15,12 +323,213 @@ toc::[]
 |===
 | Target | Kind | Hits | Sources | Stages | Relationships | Description
 
+| Flag 6255 | layout_flag | 2 | qst | st0443 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0443 \| 受注後（移動組）
+| Flag 6256 | layout_flag | 2 | qst | st0443 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0443 \| QuestGroup 1 \| 受注後（移動無し）
+| Flag 6257 | layout_flag | 2 | qst | st0443 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0443 \| QuestGroup 2 \| クリア前
+| Flag 6258 | layout_flag | 2 | qst | st1091 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st1091 \| 待ち合わせネド
+| Flag 6259 | layout_flag | 2 | qst | st1091 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st1091 \| QuestGroup 1 \| ネド以外
+| Flag 6260 | layout_flag | 3 | qst | st0450 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0450 \| ネド達
+| Flag 6261 | layout_flag | 2 | qst | st0450 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0450 \| QuestGroup 1 \| 捕虜
+| Flag 6264 | layout_flag | 2 | qst | st0450 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0450 \| QuestGroup 2 \| 奪還後のネド
+| Flag 6265 | layout_flag | 2 | qst | st1091 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st1091 \| QuestGroup 2 \| 扉前
+| Flag 6521 | layout_flag | 2 | qst | st0631 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0631 \| 受注前
 | Quest ID 30125 | quest_id | 29 | fsm, lot, smc | st0450 | 🚪 Door/Gate, 🔍 FSM Check, ✏️ FSM Set +1 | Derived quest-wide association scan
 |===
 
 == Known Documented Targets
 
+* quest 30125 -- Flag 6255 -- QST local: st0443 | 受注後（移動組）
+* quest 30125 -- Flag 6256 -- QST local: st0443 | QuestGroup 1 | 受注後（移動無し）
+* quest 30125 -- Flag 6257 -- QST local: st0443 | QuestGroup 2 | クリア前
+* quest 30125 -- Flag 6258 -- QST local: st1091 | 待ち合わせネド
+* quest 30125 -- Flag 6259 -- QST local: st1091 | QuestGroup 1 | ネド以外
+* quest 30125 -- Flag 6260 -- QST local: st0450 | ネド達
+* quest 30125 -- Flag 6261 -- QST local: st0450 | QuestGroup 1 | 捕虜
+* quest 30125 -- Flag 6264 -- QST local: st0450 | QuestGroup 2 | 奪還後のネド
+* quest 30125 -- Flag 6265 -- QST local: st1091 | QuestGroup 2 | 扉前
+* quest 30125 -- Flag 6521 -- QST local: st0631 | 受注前
 * Quest ID 30125 -- Derived quest-wide association scan [Derived]
+
+== Flag 6255 -- Quest 30125
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030125/quest/00030125/q00030125_st0443.qst.json[client/03040008/quest/q00030125/quest/00030125/q00030125_st0443.qst.json] | QuestStageList[].QuestGrp[0].Condition | Condition | quest 30125 / Fort Thines / "受注後（移動組）" / QuestSet=QuestSetInfoNpc \|\| QuestSet=QuestSetInfoNpc \|\| +1 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030125/quest/00030125/q00030125_st0443.qst.json[client/03040008/quest/q00030125/quest/00030125/q00030125_st0443.qst.json] | QuestStageList[].QuestGrp[0].EraseCondition | EraseCondition | quest 30125 / Fort Thines / "受注後（移動組）" / QuestSet=QuestSetInfoNpc \|\| QuestSet=QuestSetInfoNpc \|\| +1 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 6256 -- Quest 30125
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030125/quest/00030125/q00030125_st0443.qst.json[client/03040008/quest/q00030125/quest/00030125/q00030125_st0443.qst.json] | QuestStageList[].QuestGrp[1].Condition | Condition | quest 30125 / Fort Thines / "QuestGroup 1 \| 受注後（移動無し）" / QuestSet=QuestSetInfoNpc \| GroupNo=1 \|\| QuestSet=QuestSetInfoNpc \| GroupNo=1 \|\| +2 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030125/quest/00030125/q00030125_st0443.qst.json[client/03040008/quest/q00030125/quest/00030125/q00030125_st0443.qst.json] | QuestStageList[].QuestGrp[1].EraseCondition | EraseCondition | quest 30125 / Fort Thines / "QuestGroup 1 \| 受注後（移動無し）" / QuestSet=QuestSetInfoNpc \| GroupNo=1 \|\| QuestSet=QuestSetInfoNpc \| GroupNo=1 \|\| +2 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 6257 -- Quest 30125
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030125/quest/00030125/q00030125_st0443.qst.json[client/03040008/quest/q00030125/quest/00030125/q00030125_st0443.qst.json] | QuestStageList[].QuestGrp[2].Condition | Condition | quest 30125 / Fort Thines / "QuestGroup 2 \| クリア前" / QuestSet=QuestSetInfoNpc \| GroupNo=2 \|\| QuestSet=QuestSetInfoNpc \| GroupNo=2 \|\| +4 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030125/quest/00030125/q00030125_st0443.qst.json[client/03040008/quest/q00030125/quest/00030125/q00030125_st0443.qst.json] | QuestStageList[].QuestGrp[2].EraseCondition | EraseCondition | quest 30125 / Fort Thines / "QuestGroup 2 \| クリア前" / QuestSet=QuestSetInfoNpc \| GroupNo=2 \|\| QuestSet=QuestSetInfoNpc \| GroupNo=2 \|\| +4 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 6258 -- Quest 30125
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030125/quest/00030125/q00030125_st1091.qst.json[client/03040008/quest/q00030125/quest/00030125/q00030125_st1091.qst.json] | QuestStageList[].QuestGrp[0].Condition | Condition | quest 30125 / Royal Family's Secret Path / "待ち合わせネド" / QuestSet=QuestSetInfoNpc | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030125/quest/00030125/q00030125_st1091.qst.json[client/03040008/quest/q00030125/quest/00030125/q00030125_st1091.qst.json] | QuestStageList[].QuestGrp[0].EraseCondition | EraseCondition | quest 30125 / Royal Family's Secret Path / "待ち合わせネド" / QuestSet=QuestSetInfoNpc | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 6259 -- Quest 30125
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030125/quest/00030125/q00030125_st1091.qst.json[client/03040008/quest/q00030125/quest/00030125/q00030125_st1091.qst.json] | QuestStageList[].QuestGrp[1].Condition | Condition | quest 30125 / Royal Family's Secret Path / "QuestGroup 1 \| ネド以外" / QuestSet=QuestSetInfoNpc \| GroupNo=1 \|\| QuestSet=QuestSetInfoNpc \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030125/quest/00030125/q00030125_st1091.qst.json[client/03040008/quest/q00030125/quest/00030125/q00030125_st1091.qst.json] | QuestStageList[].QuestGrp[1].EraseCondition | EraseCondition | quest 30125 / Royal Family's Secret Path / "QuestGroup 1 \| ネド以外" / QuestSet=QuestSetInfoNpc \| GroupNo=1 \|\| QuestSet=QuestSetInfoNpc \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 6260 -- Quest 30125
+
+origin:: derived_qst_local
+direct hits:: *3*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 3 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030125/quest/00030125/q00030125_st0450.qst.json[client/03040008/quest/q00030125/quest/00030125/q00030125_st0450.qst.json] | QuestStageList[].QuestGrp[0].Condition | Condition | quest 30125 / Lookout Castle / "ネド達" / QuestSet=QuestSetInfoNpc \|\| QuestSet=QuestSetInfoNpc \|\| +1 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030125/quest/00030125/q00030125_st0450.qst.json[client/03040008/quest/q00030125/quest/00030125/q00030125_st0450.qst.json] | QuestStageList[].QuestGrp[0].EraseCondition | EraseCondition | quest 30125 / Lookout Castle / "ネド達" / QuestSet=QuestSetInfoNpc \|\| QuestSet=QuestSetInfoNpc \|\| +1 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030125/quest/00030125/q00030125_st0450.qst.json[client/03040008/quest/q00030125/quest/00030125/q00030125_st0450.qst.json] | QuestStageList[].QuestGrp[3].Condition | Condition | quest 30125 / Lookout Castle / "QuestGroup 3 \| 鉄格子" / QuestSet=QuestSetInfoOmDoor \| OmID=510522 \| OM_ID_DOOR_510522 \| EnableZone \| GroupNo=3 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 6261 -- Quest 30125
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030125/quest/00030125/q00030125_st0450.qst.json[client/03040008/quest/q00030125/quest/00030125/q00030125_st0450.qst.json] | QuestStageList[].QuestGrp[1].Condition | Condition | quest 30125 / Lookout Castle / "QuestGroup 1 \| 捕虜" / QuestSet=QuestSetInfoNpc \| GroupNo=1 \|\| QuestSet=QuestSetInfoNpc \| GroupNo=1 \|\| +5 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030125/quest/00030125/q00030125_st0450.qst.json[client/03040008/quest/q00030125/quest/00030125/q00030125_st0450.qst.json] | QuestStageList[].QuestGrp[1].EraseCondition | EraseCondition | quest 30125 / Lookout Castle / "QuestGroup 1 \| 捕虜" / QuestSet=QuestSetInfoNpc \| GroupNo=1 \|\| QuestSet=QuestSetInfoNpc \| GroupNo=1 \|\| +5 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 6264 -- Quest 30125
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030125/quest/00030125/q00030125_st0450.qst.json[client/03040008/quest/q00030125/quest/00030125/q00030125_st0450.qst.json] | QuestStageList[].QuestGrp[2].Condition | Condition | quest 30125 / Lookout Castle / "QuestGroup 2 \| 奪還後のネド" / QuestSet=QuestSetInfoNpc \| GroupNo=2 \|\| QuestSet=QuestSetInfoNpc \| GroupNo=2 \|\| +1 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030125/quest/00030125/q00030125_st0450.qst.json[client/03040008/quest/q00030125/quest/00030125/q00030125_st0450.qst.json] | QuestStageList[].QuestGrp[2].EraseCondition | EraseCondition | quest 30125 / Lookout Castle / "QuestGroup 2 \| 奪還後のネド" / QuestSet=QuestSetInfoNpc \| GroupNo=2 \|\| QuestSet=QuestSetInfoNpc \| GroupNo=2 \|\| +1 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 6265 -- Quest 30125
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030125/quest/00030125/q00030125_st1091.qst.json[client/03040008/quest/q00030125/quest/00030125/q00030125_st1091.qst.json] | QuestStageList[].QuestGrp[2].Condition | Condition | quest 30125 / Royal Family's Secret Path / "QuestGroup 2 \| 扉前" / QuestSet=QuestSetInfoNpc \| GroupNo=2 \|\| QuestSet=QuestSetInfoNpc \| GroupNo=2 \|\| +1 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030125/quest/00030125/q00030125_st1091.qst.json[client/03040008/quest/q00030125/quest/00030125/q00030125_st1091.qst.json] | QuestStageList[].QuestGrp[2].EraseCondition | EraseCondition | quest 30125 / Royal Family's Secret Path / "QuestGroup 2 \| 扉前" / QuestSet=QuestSetInfoNpc \| GroupNo=2 \|\| QuestSet=QuestSetInfoNpc \| GroupNo=2 \|\| +1 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 6521 -- Quest 30125
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030125/quest/00030125/q00030125_st0631.qst.json[client/03040008/quest/q00030125/quest/00030125/q00030125_st0631.qst.json] | QuestStageList[].QuestGrp[0].Condition | Condition | quest 30125 / Rothgill Traveler's Inn / "受注前" / QuestSet=QuestSetInfoNpc | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030125/quest/00030125/q00030125_st0631.qst.json[client/03040008/quest/q00030125/quest/00030125/q00030125_st0631.qst.json] | QuestStageList[].QuestGrp[0].EraseCondition | EraseCondition | quest 30125 / Rothgill Traveler's Inn / "受注前" / QuestSet=QuestSetInfoNpc | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
 
 == Quest ID 30125
 
@@ -32,46 +541,46 @@ ranked candidates:: *0*
 
 ==== direct -- 25 hit(s)
 
-[cols="1,1,3,3,2,3,3",options="header"]
+[cols="1,1,1,3,3,2,3,3",options="header"]
 |===
-| Family | Confidence | File | JSON Path | Field | Context | Why
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
 
-| LOT | 92 | client/03040008/stage/st0450/lot/st0450_00m00n/scr/st0450/etc/st0450_00m00n_p20.lot.json | Array[1].Info.QuestID | QuestID | quest 30125 / Lookout Castle / Feryana Wilderness / SetInfoOmDoor \| om510321 \| OM_ID_DOOR_510321 \| EnableZone \| KeyNo=1044 (Fully Blocked Door Key) \| QuestFlag=3187 | Layout placement reference; LOT hits usually gate warps, NPCs, or interactable objects in the stage layout.
-| LOT | 92 | client/03040008/stage/st0450/lot/st0450_00m00n/scr/st0450/etc/st0450_00m00n_p20.lot.json | Array[5].Info.QuestID | QuestID | quest 30125 / Lookout Castle / Feryana Wilderness / SetInfoOmDoor \| om510321 \| OM_ID_DOOR_510321 \| EnableZone \| KeyNo=1044 (Fully Blocked Door Key) \| QuestFlag=3187 | Layout placement reference; LOT hits usually gate warps, NPCs, or interactable objects in the stage layout.
-| SMC | 92 | client/03040008/npc/n0001/ui/00_message/npc/base/n0001.smc.json | SituationData.EndQuestId | EndQuestId | quest 30125 (A Desperate Infiltration) / The White Dragon / GroupSerial=24416 / "GroupSerial=24416, QuestWindow=30120-30125 (The Secret Entrance -> A Desperate Infiltration), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0001 \| Quest-gated NPC chatter \| QuestWindow=30120-30125 (The Secret Entrance -> A Desperate Infiltration) / MSS: The White Dragon / The fell Dragon showeth arrogance— | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0001/ui/00_message/npc/base/n0001.smc.json | SituationData.StartQuestId | StartQuestId | quest 30125 (A Desperate Infiltration) / The White Dragon / GroupSerial=24417 / "GroupSerial=24417, QuestWindow=30125-30130 (A Desperate Infiltration -> The Battle of Lookout Castle), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0001 \| Quest-gated NPC chatter \| QuestWindow=30125-30130 (A Desperate Infiltration -> The Battle of Lookout Castle) / MSS: The White Dragon / In the hour of strife, | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json | SituationData.EndQuestId | EndQuestId | quest 30125 (A Desperate Infiltration) / Klaus / GroupSerial=24485 / "GroupSerial=24485, QuestWindow=30120-30125 (The Secret Entrance -> A Desperate Infiltration), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0003 \| Quest-gated NPC chatter \| QuestWindow=30120-30125 (The Secret Entrance -> A Desperate Infiltration) / MSS: Klaus / Joseph is currently a bundle of suspicion. It's | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json | SituationData.StartQuestId | StartQuestId | quest 30125 (A Desperate Infiltration) / Klaus / GroupSerial=24486 / "GroupSerial=24486, QuestWindow=30125-30130 (A Desperate Infiltration -> The Battle of Lookout Castle), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window start" / NpcChatter=n0003 \| Quest-gated NPC chatter \| QuestWindow=30125-30130 (A Desperate Infiltration -> The Battle of Lookout Castle) / MSS: Klaus / Is it a vacation afore a serious castle attack? | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json | SituationData.EndQuestId | EndQuestId | quest 30125 (A Desperate Infiltration) / Joseph / GroupSerial=24456 / "GroupSerial=24456, QuestWindow=30120-30125 (The Secret Entrance -> A Desperate Infiltration), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0004 \| Quest-gated NPC chatter \| QuestWindow=30120-30125 (The Secret Entrance -> A Desperate Infiltration) / MSS: Joseph / Can we take the words of the "Evil Dragon" | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json | SituationData.StartQuestId | StartQuestId | quest 30125 (A Desperate Infiltration) / Joseph / GroupSerial=24457 / "GroupSerial=24457, QuestWindow=30125-30130 (A Desperate Infiltration -> The Battle of Lookout Castle), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0004 \| Quest-gated NPC chatter \| QuestWindow=30125-30130 (A Desperate Infiltration -> The Battle of Lookout Castle) / MSS: Joseph / I guess it goes without saying-- | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0013/ui/00_message/npc/base/n0013.smc.json | SituationData.EndQuestId | EndQuestId | quest 30125 (A Desperate Infiltration) / Lise / GroupSerial=24546 / "GroupSerial=24546, QuestWindow=30120-30125 (The Secret Entrance -> A Desperate Infiltration), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0013 \| Quest-gated NPC chatter \| QuestWindow=30120-30125 (The Secret Entrance -> A Desperate Infiltration) / MSS: Lise / Waiting is tough. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0013/ui/00_message/npc/base/n0013.smc.json | SituationData.StartQuestId | StartQuestId | quest 30125 (A Desperate Infiltration) / Lise / GroupSerial=24547 / "GroupSerial=24547, QuestWindow=30125-30130 (A Desperate Infiltration -> The Battle of Lookout Castle), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0013 \| Quest-gated NPC chatter \| QuestWindow=30125-30130 (A Desperate Infiltration -> The Battle of Lookout Castle) / MSS: Lise / When I'm with Gurdolin and Elliot, I somehow get | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0021/ui/00_message/npc/base/n0021.smc.json | SituationData.EndQuestId | EndQuestId | quest 30125 (A Desperate Infiltration) / Elliot / GroupSerial=24570 / "GroupSerial=24570, QuestWindow=30120-30125 (The Secret Entrance -> A Desperate Infiltration), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0021 \| Quest-gated NPC chatter \| QuestWindow=30120-30125 (The Secret Entrance -> A Desperate Infiltration) / MSS: Elliot / Rest when you can. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0021/ui/00_message/npc/base/n0021.smc.json | SituationData.StartQuestId | StartQuestId | quest 30125 (A Desperate Infiltration) / Elliot / GroupSerial=24571 / "GroupSerial=24571, QuestWindow=30125-30130 (A Desperate Infiltration -> The Battle of Lookout Castle), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0021 \| Quest-gated NPC chatter \| QuestWindow=30125-30130 (A Desperate Infiltration -> The Battle of Lookout Castle) / MSS: Elliot / After all, an Arisen should fight. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0029/ui/00_message/npc/base/n0029.smc.json | SituationData.EndQuestId | EndQuestId | quest 30125 (A Desperate Infiltration) / Nedo / GroupSerial=24913 / "GroupSerial=24913, QuestWindow=30120-30125 (The Secret Entrance -> A Desperate Infiltration), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window end" / NpcChatter=n0029 \| Quest-gated NPC chatter \| QuestWindow=30120-30125 (The Secret Entrance -> A Desperate Infiltration) / MSS: Nedo / The path beyond the door must lead to Lookout | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0029/ui/00_message/npc/base/n0029.smc.json | SituationData.StartQuestId | StartQuestId | quest 30125 (A Desperate Infiltration) / Nedo / GroupSerial=24914 / "GroupSerial=24914, QuestWindow=30125-30130 (A Desperate Infiltration -> The Battle of Lookout Castle), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0029 \| Quest-gated NPC chatter \| QuestWindow=30125-30130 (A Desperate Infiltration -> The Battle of Lookout Castle) / MSS: Nedo / Thank you, Captain. It's thanks to you all that | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0030/ui/00_message/npc/base/n0030.smc.json | SituationData.EndQuestId | EndQuestId | quest 30125 (A Desperate Infiltration) / Gillian / GroupSerial=24600 / "GroupSerial=24600, QuestWindow=30120-30125 (The Secret Entrance -> A Desperate Infiltration), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0030 \| Quest-gated NPC chatter \| QuestWindow=30120-30125 (The Secret Entrance -> A Desperate Infiltration) / MSS: Gillian / Fighting near Gerhard is very educational. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0030/ui/00_message/npc/base/n0030.smc.json | SituationData.StartQuestId | StartQuestId | quest 30125 (A Desperate Infiltration) / Gillian / GroupSerial=24601 / "GroupSerial=24601, QuestWindow=30125-30130 (A Desperate Infiltration -> The Battle of Lookout Castle), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0030 \| Quest-gated NPC chatter \| QuestWindow=30125-30130 (A Desperate Infiltration -> The Battle of Lookout Castle) / MSS: Gillian / When the battle is over—I'll see you at the | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0031/ui/00_message/npc/base/n0031.smc.json | SituationData.EndQuestId | EndQuestId | quest 30125 (A Desperate Infiltration) / Meirova / GroupSerial=24750 / "GroupSerial=24750, QuestWindow=30120-30125 (The Secret Entrance -> A Desperate Infiltration), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0031 \| Quest-gated NPC chatter \| QuestWindow=30120-30125 (The Secret Entrance -> A Desperate Infiltration) / MSS: Meirova / Hmmm | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0031/ui/00_message/npc/base/n0031.smc.json | SituationData.StartQuestId | StartQuestId | quest 30125 (A Desperate Infiltration) / Meirova / GroupSerial=24751 / "GroupSerial=24751, QuestWindow=30125-30130 (A Desperate Infiltration -> The Battle of Lookout Castle), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0031 \| Quest-gated NPC chatter \| QuestWindow=30125-30130 (A Desperate Infiltration -> The Battle of Lookout Castle) / MSS: Meirova / The lord of Lookout Castle is Prince Nedo Acre. I | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0032/ui/00_message/npc/base/n0032.smc.json | SituationData.EndQuestId | EndQuestId | quest 30125 (A Desperate Infiltration) / Gerhard / GroupSerial=24770 / "GroupSerial=24770, QuestWindow=30120-30125 (The Secret Entrance -> A Desperate Infiltration), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0032 \| Quest-gated NPC chatter \| QuestWindow=30120-30125 (The Secret Entrance -> A Desperate Infiltration) / MSS: Gerhard / There is no problem here, please serve Prince | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0032/ui/00_message/npc/base/n0032.smc.json | SituationData.StartQuestId | StartQuestId | quest 30125 (A Desperate Infiltration) / Gerhard / GroupSerial=24771 / "GroupSerial=24771, QuestWindow=30125-30130 (A Desperate Infiltration -> The Battle of Lookout Castle), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0032 \| Quest-gated NPC chatter \| QuestWindow=30125-30130 (A Desperate Infiltration -> The Battle of Lookout Castle) / MSS: Gerhard / The enemy will be completely occupied with us. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0033/ui/00_message/npc/base/n0033.smc.json | SituationData.EndQuestId | EndQuestId | quest 30125 (A Desperate Infiltration) / Bertha / GroupSerial=24926 / "GroupSerial=24926, QuestWindow=30120-30125 (The Secret Entrance -> A Desperate Infiltration), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0033 \| Quest-gated NPC chatter \| QuestWindow=30120-30125 (The Secret Entrance -> A Desperate Infiltration) / MSS: Bertha / Entrances, corridors, the royal family has a lot | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0034/ui/00_message/npc/base/n0034.smc.json | SituationData.EndQuestId | EndQuestId | quest 30125 (A Desperate Infiltration) / Quintus / GroupSerial=24726 / "GroupSerial=24726, QuestWindow=30120-30125 (The Secret Entrance -> A Desperate Infiltration), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0034 \| Quest-gated NPC chatter \| QuestWindow=30120-30125 (The Secret Entrance -> A Desperate Infiltration) / MSS: Quintus / I'm sure Gerhard is there to make sure that | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0034/ui/00_message/npc/base/n0034.smc.json | SituationData.StartQuestId | StartQuestId | quest 30125 (A Desperate Infiltration) / Quintus / GroupSerial=24727 / "GroupSerial=24727, QuestWindow=30125-30130 (A Desperate Infiltration -> The Battle of Lookout Castle), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0034 \| Quest-gated NPC chatter \| QuestWindow=30125-30130 (A Desperate Infiltration -> The Battle of Lookout Castle) / MSS: Quintus / The Lookout Castle is not only a place that is | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0501/ui/00_message/npc/base/n0501.smc.json | SituationData.EndQuestId | EndQuestId | quest 30125 (A Desperate Infiltration) / Gurdolin / GroupSerial=24521 / "GroupSerial=24521, QuestWindow=30120-30125 (The Secret Entrance -> A Desperate Infiltration), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0501 \| Quest-gated NPC chatter \| QuestWindow=30120-30125 (The Secret Entrance -> A Desperate Infiltration) / MSS: Gurdolin / I'm seeing the number of orcs in Lookout Castle | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0501/ui/00_message/npc/base/n0501.smc.json | SituationData.StartQuestId | StartQuestId | quest 30125 (A Desperate Infiltration) / Gurdolin / GroupSerial=24522 / "GroupSerial=24522, QuestWindow=30125-30130 (A Desperate Infiltration -> The Battle of Lookout Castle), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0501 \| Quest-gated NPC chatter \| QuestWindow=30125-30130 (A Desperate Infiltration -> The Battle of Lookout Castle) / MSS: Gurdolin / My blood is boiling, man. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| LOT | Direct | 92 | link:../../../../client/03040008/stage/st0450/lot/st0450_00m00n/scr/st0450/etc/st0450_00m00n_p20.lot.json#L133[client/03040008/stage/st0450/lot/st0450_00m00n/scr/st0450/etc/st0450_00m00n_p20.lot.json#L133] | Array[1].Info.QuestID | QuestID | quest 30125 / Lookout Castle / Feryana Wilderness / SetInfoOmDoor \| om510321 \| OM_ID_DOOR_510321 \| EnableZone \| KeyNo=1044 (Fully Blocked Door Key) \| QuestFlag=3187 | Layout placement reference; LOT hits usually gate warps, NPCs, or interactable objects in the stage layout.
+| LOT | Direct | 92 | link:../../../../client/03040008/stage/st0450/lot/st0450_00m00n/scr/st0450/etc/st0450_00m00n_p20.lot.json#L397[client/03040008/stage/st0450/lot/st0450_00m00n/scr/st0450/etc/st0450_00m00n_p20.lot.json#L397] | Array[5].Info.QuestID | QuestID | quest 30125 / Lookout Castle / Feryana Wilderness / SetInfoOmDoor \| om510321 \| OM_ID_DOOR_510321 \| EnableZone \| KeyNo=1044 (Fully Blocked Door Key) \| QuestFlag=3187 | Layout placement reference; LOT hits usually gate warps, NPCs, or interactable objects in the stage layout.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0001/ui/00_message/npc/base/n0001.smc.json[client/03040008/npc/n0001/ui/00_message/npc/base/n0001.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30125 (A Desperate Infiltration) / The White Dragon / GroupSerial=24416 / "GroupSerial=24416, QuestWindow=30120-30125 (The Secret Entrance -> A Desperate Infiltration), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0001 \| Quest-gated NPC chatter \| QuestWindow=30120-30125 (The Secret Entrance -> A Desperate Infiltration) / MSS: The White Dragon / The fell Dragon showeth arrogance— | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0001/ui/00_message/npc/base/n0001.smc.json[client/03040008/npc/n0001/ui/00_message/npc/base/n0001.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30125 (A Desperate Infiltration) / The White Dragon / GroupSerial=24417 / "GroupSerial=24417, QuestWindow=30125-30130 (A Desperate Infiltration -> The Battle of Lookout Castle), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0001 \| Quest-gated NPC chatter \| QuestWindow=30125-30130 (A Desperate Infiltration -> The Battle of Lookout Castle) / MSS: The White Dragon / In the hour of strife, | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json[client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30125 (A Desperate Infiltration) / Klaus / GroupSerial=24485 / "GroupSerial=24485, QuestWindow=30120-30125 (The Secret Entrance -> A Desperate Infiltration), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0003 \| Quest-gated NPC chatter \| QuestWindow=30120-30125 (The Secret Entrance -> A Desperate Infiltration) / MSS: Klaus / Joseph is currently a bundle of suspicion. It's | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json[client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30125 (A Desperate Infiltration) / Klaus / GroupSerial=24486 / "GroupSerial=24486, QuestWindow=30125-30130 (A Desperate Infiltration -> The Battle of Lookout Castle), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window start" / NpcChatter=n0003 \| Quest-gated NPC chatter \| QuestWindow=30125-30130 (A Desperate Infiltration -> The Battle of Lookout Castle) / MSS: Klaus / Is it a vacation afore a serious castle attack? | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json[client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30125 (A Desperate Infiltration) / Joseph / GroupSerial=24456 / "GroupSerial=24456, QuestWindow=30120-30125 (The Secret Entrance -> A Desperate Infiltration), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0004 \| Quest-gated NPC chatter \| QuestWindow=30120-30125 (The Secret Entrance -> A Desperate Infiltration) / MSS: Joseph / Can we take the words of the "Evil Dragon" | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json[client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30125 (A Desperate Infiltration) / Joseph / GroupSerial=24457 / "GroupSerial=24457, QuestWindow=30125-30130 (A Desperate Infiltration -> The Battle of Lookout Castle), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0004 \| Quest-gated NPC chatter \| QuestWindow=30125-30130 (A Desperate Infiltration -> The Battle of Lookout Castle) / MSS: Joseph / I guess it goes without saying-- | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0013/ui/00_message/npc/base/n0013.smc.json[client/03040008/npc/n0013/ui/00_message/npc/base/n0013.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30125 (A Desperate Infiltration) / Lise / GroupSerial=24546 / "GroupSerial=24546, QuestWindow=30120-30125 (The Secret Entrance -> A Desperate Infiltration), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0013 \| Quest-gated NPC chatter \| QuestWindow=30120-30125 (The Secret Entrance -> A Desperate Infiltration) / MSS: Lise / Waiting is tough. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0013/ui/00_message/npc/base/n0013.smc.json[client/03040008/npc/n0013/ui/00_message/npc/base/n0013.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30125 (A Desperate Infiltration) / Lise / GroupSerial=24547 / "GroupSerial=24547, QuestWindow=30125-30130 (A Desperate Infiltration -> The Battle of Lookout Castle), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0013 \| Quest-gated NPC chatter \| QuestWindow=30125-30130 (A Desperate Infiltration -> The Battle of Lookout Castle) / MSS: Lise / When I'm with Gurdolin and Elliot, I somehow get | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0021/ui/00_message/npc/base/n0021.smc.json[client/03040008/npc/n0021/ui/00_message/npc/base/n0021.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30125 (A Desperate Infiltration) / Elliot / GroupSerial=24570 / "GroupSerial=24570, QuestWindow=30120-30125 (The Secret Entrance -> A Desperate Infiltration), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0021 \| Quest-gated NPC chatter \| QuestWindow=30120-30125 (The Secret Entrance -> A Desperate Infiltration) / MSS: Elliot / Rest when you can. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0021/ui/00_message/npc/base/n0021.smc.json[client/03040008/npc/n0021/ui/00_message/npc/base/n0021.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30125 (A Desperate Infiltration) / Elliot / GroupSerial=24571 / "GroupSerial=24571, QuestWindow=30125-30130 (A Desperate Infiltration -> The Battle of Lookout Castle), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0021 \| Quest-gated NPC chatter \| QuestWindow=30125-30130 (A Desperate Infiltration -> The Battle of Lookout Castle) / MSS: Elliot / After all, an Arisen should fight. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0029/ui/00_message/npc/base/n0029.smc.json[client/03040008/npc/n0029/ui/00_message/npc/base/n0029.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30125 (A Desperate Infiltration) / Nedo / GroupSerial=24913 / "GroupSerial=24913, QuestWindow=30120-30125 (The Secret Entrance -> A Desperate Infiltration), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window end" / NpcChatter=n0029 \| Quest-gated NPC chatter \| QuestWindow=30120-30125 (The Secret Entrance -> A Desperate Infiltration) / MSS: Nedo / The path beyond the door must lead to Lookout | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0029/ui/00_message/npc/base/n0029.smc.json[client/03040008/npc/n0029/ui/00_message/npc/base/n0029.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30125 (A Desperate Infiltration) / Nedo / GroupSerial=24914 / "GroupSerial=24914, QuestWindow=30125-30130 (A Desperate Infiltration -> The Battle of Lookout Castle), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0029 \| Quest-gated NPC chatter \| QuestWindow=30125-30130 (A Desperate Infiltration -> The Battle of Lookout Castle) / MSS: Nedo / Thank you, Captain. It's thanks to you all that | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0030/ui/00_message/npc/base/n0030.smc.json[client/03040008/npc/n0030/ui/00_message/npc/base/n0030.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30125 (A Desperate Infiltration) / Gillian / GroupSerial=24600 / "GroupSerial=24600, QuestWindow=30120-30125 (The Secret Entrance -> A Desperate Infiltration), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0030 \| Quest-gated NPC chatter \| QuestWindow=30120-30125 (The Secret Entrance -> A Desperate Infiltration) / MSS: Gillian / Fighting near Gerhard is very educational. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0030/ui/00_message/npc/base/n0030.smc.json[client/03040008/npc/n0030/ui/00_message/npc/base/n0030.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30125 (A Desperate Infiltration) / Gillian / GroupSerial=24601 / "GroupSerial=24601, QuestWindow=30125-30130 (A Desperate Infiltration -> The Battle of Lookout Castle), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0030 \| Quest-gated NPC chatter \| QuestWindow=30125-30130 (A Desperate Infiltration -> The Battle of Lookout Castle) / MSS: Gillian / When the battle is over—I'll see you at the | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0031/ui/00_message/npc/base/n0031.smc.json[client/03040008/npc/n0031/ui/00_message/npc/base/n0031.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30125 (A Desperate Infiltration) / Meirova / GroupSerial=24750 / "GroupSerial=24750, QuestWindow=30120-30125 (The Secret Entrance -> A Desperate Infiltration), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0031 \| Quest-gated NPC chatter \| QuestWindow=30120-30125 (The Secret Entrance -> A Desperate Infiltration) / MSS: Meirova / Hmmm | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0031/ui/00_message/npc/base/n0031.smc.json[client/03040008/npc/n0031/ui/00_message/npc/base/n0031.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30125 (A Desperate Infiltration) / Meirova / GroupSerial=24751 / "GroupSerial=24751, QuestWindow=30125-30130 (A Desperate Infiltration -> The Battle of Lookout Castle), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0031 \| Quest-gated NPC chatter \| QuestWindow=30125-30130 (A Desperate Infiltration -> The Battle of Lookout Castle) / MSS: Meirova / The lord of Lookout Castle is Prince Nedo Acre. I | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0032/ui/00_message/npc/base/n0032.smc.json[client/03040008/npc/n0032/ui/00_message/npc/base/n0032.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30125 (A Desperate Infiltration) / Gerhard / GroupSerial=24770 / "GroupSerial=24770, QuestWindow=30120-30125 (The Secret Entrance -> A Desperate Infiltration), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0032 \| Quest-gated NPC chatter \| QuestWindow=30120-30125 (The Secret Entrance -> A Desperate Infiltration) / MSS: Gerhard / There is no problem here, please serve Prince | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0032/ui/00_message/npc/base/n0032.smc.json[client/03040008/npc/n0032/ui/00_message/npc/base/n0032.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30125 (A Desperate Infiltration) / Gerhard / GroupSerial=24771 / "GroupSerial=24771, QuestWindow=30125-30130 (A Desperate Infiltration -> The Battle of Lookout Castle), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0032 \| Quest-gated NPC chatter \| QuestWindow=30125-30130 (A Desperate Infiltration -> The Battle of Lookout Castle) / MSS: Gerhard / The enemy will be completely occupied with us. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0033/ui/00_message/npc/base/n0033.smc.json[client/03040008/npc/n0033/ui/00_message/npc/base/n0033.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30125 (A Desperate Infiltration) / Bertha / GroupSerial=24926 / "GroupSerial=24926, QuestWindow=30120-30125 (The Secret Entrance -> A Desperate Infiltration), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0033 \| Quest-gated NPC chatter \| QuestWindow=30120-30125 (The Secret Entrance -> A Desperate Infiltration) / MSS: Bertha / Entrances, corridors, the royal family has a lot | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0034/ui/00_message/npc/base/n0034.smc.json[client/03040008/npc/n0034/ui/00_message/npc/base/n0034.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30125 (A Desperate Infiltration) / Quintus / GroupSerial=24726 / "GroupSerial=24726, QuestWindow=30120-30125 (The Secret Entrance -> A Desperate Infiltration), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0034 \| Quest-gated NPC chatter \| QuestWindow=30120-30125 (The Secret Entrance -> A Desperate Infiltration) / MSS: Quintus / I'm sure Gerhard is there to make sure that | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0034/ui/00_message/npc/base/n0034.smc.json[client/03040008/npc/n0034/ui/00_message/npc/base/n0034.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30125 (A Desperate Infiltration) / Quintus / GroupSerial=24727 / "GroupSerial=24727, QuestWindow=30125-30130 (A Desperate Infiltration -> The Battle of Lookout Castle), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0034 \| Quest-gated NPC chatter \| QuestWindow=30125-30130 (A Desperate Infiltration -> The Battle of Lookout Castle) / MSS: Quintus / The Lookout Castle is not only a place that is | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0501/ui/00_message/npc/base/n0501.smc.json[client/03040008/npc/n0501/ui/00_message/npc/base/n0501.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30125 (A Desperate Infiltration) / Gurdolin / GroupSerial=24521 / "GroupSerial=24521, QuestWindow=30120-30125 (The Secret Entrance -> A Desperate Infiltration), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0501 \| Quest-gated NPC chatter \| QuestWindow=30120-30125 (The Secret Entrance -> A Desperate Infiltration) / MSS: Gurdolin / I'm seeing the number of orcs in Lookout Castle | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0501/ui/00_message/npc/base/n0501.smc.json[client/03040008/npc/n0501/ui/00_message/npc/base/n0501.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30125 (A Desperate Infiltration) / Gurdolin / GroupSerial=24522 / "GroupSerial=24522, QuestWindow=30125-30130 (A Desperate Infiltration -> The Battle of Lookout Castle), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0501 \| Quest-gated NPC chatter \| QuestWindow=30125-30130 (A Desperate Infiltration -> The Battle of Lookout Castle) / MSS: Gurdolin / My blood is boiling, man. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
 |===
 
 ==== opaque_fsm -- 4 hit(s)
 
-[cols="1,1,3,3,2,3,3",options="header"]
+[cols="1,1,1,3,3,2,3,3",options="header"]
 |===
-| Family | Confidence | File | JSON Path | Field | Context | Why
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
 
-| FSM | 78 | client/03040008/quest/q00030125/quest/00030125/npc/n0029.fsm.json | Process.Parameter.QuestId | QuestId | quest 30125 (A Desperate Infiltration) / Nedo / checkMyQuestFlag \| NPCFSM=n0029 \| QuestLocalNPCFSM | Quest-local NPC FSM MyQuest check; these files usually describe NPC behavior for the same quest, so this flag likely controls that NPC's quest-specific presence or behavior.
-| FSM | 64 | client/03040008/quest/q00030125/quest/00030125/npc/n002901.fsm.json | Process.Parameter.QuestId | QuestId | quest 30125 (A Desperate Infiltration) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
-| FSM | 64 | client/03040008/quest/q00030125/quest/00030125/npc/n002901.fsm.json | Process.Parameter.QuestId | QuestId | quest 30125 (A Desperate Infiltration) / MainQstFlagOn | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
-| FSM | 64 | client/03040008/quest/q00030125/quest/00030125/npc/n002901.fsm.json | Process.Parameter.QuestId | QuestId | quest 30125 (A Desperate Infiltration) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 78 | link:../../../../client/03040008/quest/q00030125/quest/00030125/npc/n0029.fsm.json[client/03040008/quest/q00030125/quest/00030125/npc/n0029.fsm.json] | Process.Parameter.QuestId | QuestId | quest 30125 (A Desperate Infiltration) / Nedo / checkMyQuestFlag \| NPCFSM=n0029 \| QuestLocalNPCFSM | Quest-local NPC FSM MyQuest check; these files usually describe NPC behavior for the same quest, so this flag likely controls that NPC's quest-specific presence or behavior.
+| FSM | Direct | 64 | link:../../../../client/03040008/quest/q00030125/quest/00030125/npc/n002901.fsm.json[client/03040008/quest/q00030125/quest/00030125/npc/n002901.fsm.json] | Process.Parameter.QuestId | QuestId | quest 30125 (A Desperate Infiltration) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/quest/q00030125/quest/00030125/npc/n002901.fsm.json[client/03040008/quest/q00030125/quest/00030125/npc/n002901.fsm.json] | Process.Parameter.QuestId | QuestId | quest 30125 (A Desperate Infiltration) / MainQstFlagOn | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/quest/q00030125/quest/00030125/npc/n002901.fsm.json[client/03040008/quest/q00030125/quest/00030125/npc/n002901.fsm.json] | Process.Parameter.QuestId | QuestId | quest 30125 (A Desperate Infiltration) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
 |===
 

@@ -48,13 +48,22 @@ from executable_scanner import (
     collect_immediate_hits,
     serialize_immediate_result,
 )
+from derivation import DerivationClass
+from graph_expansion import build_quest_graph_expansion
 from json_cache import JsonCache
+from quest_families import classify_quest_family
 from report_writer import write_json_report, write_asciidoc_report
 from candidate_finder import collect_candidate_json_hits
 from mss_enrichment import enrich_hit_dicts_with_mss
 from manifest import AUTHORITATIVE_WORLD_MANAGE_QUEST_IDS, get_authoritative_targets_for_quest
 from source_metadata import (
     build_quest_archive_context,
+    build_family_relationship_context,
+    build_owner_layout_catalog,
+    build_q7_owner_layout_catalog,
+    collect_stage_neighborhood_cues,
+    build_stage_neighborhood_context,
+    collect_quest_archive_qst_hits,
     enrich_hit_with_npc_ledger,
     get_ams_rows_for_quest,
     get_csi_rows_for_quest,
@@ -161,12 +170,37 @@ def _collect_evd_targets(quest_id: int) -> list[TargetFlag]:
     return targets
 
 
+def _collect_local_qst_targets(quest_id: int) -> list[TargetFlag]:
+    targets: list[TargetFlag] = []
+    for hit in collect_quest_archive_qst_hits(quest_id):
+        flag_type = hit.flag_kind or "quest_flag"
+        if flag_type not in {"quest_flag", "layout_flag"}:
+            continue
+
+        stage_label = hit.stage_code or (f"st{hit.stage_no:04d}" if hit.stage_no else "")
+        comment_parts = [part for part in (stage_label, hit.comment or hit.field_name) if part]
+        doc_comment = "QST local: " + " | ".join(comment_parts) if comment_parts else "QST local quest-stage flag"
+        targets.append(
+            TargetFlag(
+                quest_id=quest_id,
+                flag_type=flag_type,
+                flag_value=hit.flag_value,
+                doc_comment=doc_comment,
+                origin="derived_qst_local",
+            )
+        )
+    return dedupe_targets(targets)
+
+
 def _build_special_quest_targets(quest_id: int, include_fallback: bool) -> list[TargetFlag]:
     targets = [
         *_collect_esi_targets(quest_id),
         *_collect_csi_targets(quest_id),
         *_collect_evd_targets(quest_id),
     ]
+
+    if quest_id not in AUTHORITATIVE_WORLD_MANAGE_QUEST_IDS:
+        targets = [*targets, *_collect_local_qst_targets(quest_id)]
 
     if include_fallback or quest_has_special_resource_refs(quest_id):
         targets.append(_make_quest_id_target(quest_id, "Derived quest-wide association scan", "derived_special_query"))
@@ -179,6 +213,189 @@ def _build_special_quest_targets(quest_id: int, include_fallback: bool) -> list[
         targets.append(_make_quest_id_target(quest_id, "Blocked spot association scan", "derived_ams"))
 
     return dedupe_targets(targets)
+
+
+def _build_external_dependency_targets(
+    quest_id: int,
+    *,
+    corpus_index: CorpusIndex | None = None,
+    json_cache: JsonCache | None = None,
+    stage_cues: dict[str, Any] | None = None,
+    owner_indexes: list[dict[str, Any]] | None = None,
+) -> list[dict[str, Any]]:
+    if corpus_index is None or json_cache is None:
+        return []
+
+    current_family = classify_quest_family(quest_id).key
+    if current_family == "q7":
+        return []
+
+    cues = stage_cues or collect_stage_neighborhood_cues(
+        quest_id,
+        corpus_index=corpus_index,
+        json_cache=json_cache,
+    )
+    if not isinstance(cues, dict):
+        return []
+
+    owners: dict[int, dict[str, Any]] = {}
+    owner_catalog_cache: dict[int, dict[str, Any] | None] = {
+        int(entry.get("owner_quest_id") or 0): entry
+        for entry in (owner_indexes or [])
+        if isinstance(entry, dict) and int(entry.get("owner_quest_id") or 0) > 0
+    }
+    for cue in cues.get("cues", []):
+        if not isinstance(cue, dict):
+            continue
+
+        owner_quests = [int(value) for value in (cue.get("owner_quests") or []) if int(value) > 0]
+        if len(owner_quests) != 1:
+            continue
+
+        owner_quest_id = owner_quests[0]
+        if owner_quest_id == quest_id:
+            continue
+
+        owner_family = classify_quest_family(owner_quest_id).key
+        if owner_family not in {"q6", "q7"}:
+            continue
+
+        source_types = set(str(value) for value in (cue.get("source_types") or []) if value)
+        hit_count = int(cue.get("hit_count") or 0)
+        if owner_family == "q7":
+            if hit_count < 3 or hit_count >= 50:
+                continue
+        elif owner_family == "q6":
+            if "gpl" not in source_types or hit_count >= 10:
+                continue
+        else:
+            continue
+
+        flag_value = int(cue.get("flag_value") or 0)
+        if owner_quest_id not in owner_catalog_cache:
+            owner_catalog_cache[owner_quest_id] = build_owner_layout_catalog(
+                owner_quest_id,
+                corpus_index=corpus_index,
+                json_cache=json_cache,
+            )
+        owner_catalog = owner_catalog_cache[owner_quest_id]
+        if owner_catalog is None:
+            continue
+        if flag_value not in set(owner_catalog.get("flag_values", [])):
+            continue
+
+        owner_entry = owners.setdefault(
+            owner_quest_id,
+            {
+                "owner_quest_id": owner_quest_id,
+                "owner_family": owner_family,
+                "flag_values": set(),
+                "source_types": set(),
+                "stage_codes": set(),
+                "why": (
+                    "Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags."
+                    if owner_family == "q7"
+                    else "Filtered GPL-backed q6 stage-neighborhood cues intersect the owner q6 quest's client-derived layout catalog built from self-owned client evidence."
+                ),
+            },
+        )
+        owner_entry["flag_values"].add(flag_value)
+        owner_entry["source_types"].update(source_types)
+        owner_entry["stage_codes"].update(str(value) for value in (cue.get("stage_codes") or []) if value)
+
+    dependency_targets: list[dict[str, Any]] = []
+    for owner_quest_id, owner_entry in sorted(owners.items()):
+        flag_values = sorted(int(value) for value in owner_entry["flag_values"])
+        sorted_source_types = sorted(str(value) for value in owner_entry["source_types"])
+        stage_codes = sorted(str(value) for value in owner_entry["stage_codes"])
+        dependency_targets.append(
+            {
+                "owner_quest_id": owner_quest_id,
+                "owner_family": owner_entry["owner_family"],
+                "derivation_class": DerivationClass.DEPENDENCY_INFERRED.value,
+                "flag_values": flag_values,
+                "flag_count": len(flag_values),
+                "source_types": sorted_source_types,
+                "stage_codes": stage_codes,
+                "why": owner_entry["why"],
+            }
+        )
+
+    return dependency_targets
+
+
+def _build_owner_indexes(
+    quest_id: int,
+    *,
+    corpus_index: CorpusIndex | None = None,
+    json_cache: JsonCache | None = None,
+    stage_cues: dict[str, Any] | None = None,
+) -> list[dict[str, Any]]:
+    if corpus_index is None or json_cache is None:
+        return []
+
+    cues = stage_cues or collect_stage_neighborhood_cues(
+        quest_id,
+        corpus_index=corpus_index,
+        json_cache=json_cache,
+    )
+    if not isinstance(cues, dict):
+        return []
+
+    linked_owners: dict[int, dict[str, Any]] = {}
+    for cue in cues.get("cues", []):
+        if not isinstance(cue, dict):
+            continue
+
+        owner_quests = [int(value) for value in (cue.get("owner_quests") or []) if int(value) > 0]
+        if len(owner_quests) != 1:
+            continue
+
+        owner_quest_id = owner_quests[0]
+        if owner_quest_id == quest_id:
+            continue
+
+        owner_family = classify_quest_family(owner_quest_id).key
+        if owner_family not in {"q6", "q7"}:
+            continue
+
+        owner_entry = linked_owners.setdefault(
+            owner_quest_id,
+            {
+                "owner_quest_id": owner_quest_id,
+                "owner_family": owner_family,
+                "linked_flag_values": set(),
+                "linked_source_types": set(),
+                "linked_stage_codes": set(),
+            },
+        )
+        owner_entry["linked_flag_values"].add(int(cue.get("flag_value") or 0))
+        owner_entry["linked_source_types"].update(str(value) for value in (cue.get("source_types") or []) if value)
+        owner_entry["linked_stage_codes"].update(str(value) for value in (cue.get("stage_codes") or []) if value)
+
+    owner_indexes: list[dict[str, Any]] = []
+    for owner_quest_id, link_data in sorted(linked_owners.items()):
+        owner_catalog = build_owner_layout_catalog(
+            owner_quest_id,
+            corpus_index=corpus_index,
+            json_cache=json_cache,
+        )
+        if not isinstance(owner_catalog, dict):
+            continue
+
+        owner_indexes.append(
+            {
+                **owner_catalog,
+                "derivation_class": DerivationClass.OWNER_INDEX.value,
+                "linked_flag_values": sorted(int(value) for value in link_data["linked_flag_values"] if int(value) > 0),
+                "linked_flag_count": len(link_data["linked_flag_values"]),
+                "linked_source_types": sorted(str(value) for value in link_data["linked_source_types"]),
+                "linked_stage_codes": sorted(str(value) for value in link_data["linked_stage_codes"]),
+                "why": "Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.",
+            }
+        )
+
+    return owner_indexes
 
 
 def _explain_qmi_hit(context: str) -> str:
@@ -311,6 +528,7 @@ def build_target_report(
     if exe_data:
         exe_data = dict(exe_data)
         exe_data["evidence_tier"] = "binary"
+        exe_data["derivation_class"] = DerivationClass.BINARY_AUXILIARY.value
         report["executable_immediates"] = exe_data
 
     return report
@@ -350,6 +568,7 @@ def annotate_direct_hit(hit: dict[str, Any]) -> dict[str, Any]:
 
     cloned["resource_family"] = family
     cloned["evidence_tier"] = evidence_tier
+    cloned["derivation_class"] = DerivationClass.DIRECT_DETERMINISTIC.value
     cloned["confidence"] = confidence
     cloned["why"] = why
     return cloned
@@ -471,6 +690,9 @@ def build_payload(
     hits_by_value: dict[int, list[dict[str, Any]]],
     candidate_hits_by_value: dict[int, list[dict[str, Any]]],
     exe_results: dict[int, dict[str, Any]],
+    *,
+    corpus_index: CorpusIndex | None = None,
+    json_cache: JsonCache | None = None,
 ) -> dict[str, Any]:
     payload: dict[str, Any] = {
         "format": REPORT_FORMAT_VERSION,
@@ -489,7 +711,41 @@ def build_payload(
         "targets": [],
     }
     if query_mode == "quest":
+        payload["quest_family"] = classify_quest_family(query_value).to_dict()
+        payload["quest_family_relationships"] = build_family_relationship_context(query_value)
+        stage_cues = collect_stage_neighborhood_cues(
+            query_value,
+            corpus_index=corpus_index,
+            json_cache=json_cache,
+        )
+        owner_indexes = _build_owner_indexes(
+            query_value,
+            corpus_index=corpus_index,
+            json_cache=json_cache,
+            stage_cues=stage_cues,
+        )
+        payload["quest_owner_indexes"] = owner_indexes
+        payload["quest_dependency_targets"] = _build_external_dependency_targets(
+            query_value,
+            corpus_index=corpus_index,
+            json_cache=json_cache,
+            stage_cues=stage_cues,
+            owner_indexes=owner_indexes,
+        )
         payload["quest_archive_context"] = build_quest_archive_context(query_value)
+        payload["quest_stage_neighborhood"] = build_stage_neighborhood_context(query_value, corpus_index=corpus_index)
+        payload["quest_stage_cues"] = stage_cues
+        payload["quest_graph_expansion"] = build_quest_graph_expansion(
+            query_value,
+            targets=targets,
+            hits_by_value=hits_by_value,
+            family_relationships=payload["quest_family_relationships"],
+            archive_context=payload["quest_archive_context"],
+            owner_indexes=owner_indexes,
+            dependency_targets=payload["quest_dependency_targets"],
+            corpus_index=corpus_index,
+            json_cache=json_cache,
+        )
     for target in targets:
         payload["targets"].append(
             build_target_report(target, hits_by_value, candidate_hits_by_value, exe_results.get(target.flag_value))
@@ -544,6 +800,8 @@ def run_investigation(
         hits_by_value,
         candidate_hits_by_value,
         exe_results,
+        corpus_index=corpus_index,
+        json_cache=json_cache,
     )
 
     # ---------- Write output ----------
@@ -702,6 +960,8 @@ def main() -> None:
             payload_data = build_payload(
                 "quest", quest_id, documented_targets, targets,
                 hits_by_value, candidate_hits_by_value, exe_results,
+                corpus_index=index,
+                json_cache=cache,
             )
 
             stem = f"{REPORT_STEM_PREFIX}_quest_{quest_id}"

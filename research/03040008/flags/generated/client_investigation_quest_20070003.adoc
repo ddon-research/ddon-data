@@ -5,16 +5,54 @@
 
 Query mode:: quest
 Query value:: 20070003
-Generated at:: 2026-04-11T21:41:40.819282+00:00
+Generated at:: 2026-04-12T12:43:52.484932+00:00
 
 toc::[]
+
+Quest family:: unknown -- Unknown Quest Family
+Quest family notes:: Quest family could not be inferred from the client quest id pattern.
+Quest family focus:: treat_as_generic
+
+== External Owner Indexes
+
+_These are reusable external owner catalogs inferred from stage-neighborhood cues. They are broader than the subset of flags promoted into derived dependency targets._
+
+[cols="2,1,1,2,2,2,4",options="header"]
+|===
+| Owner Quest | Family | Catalog Count | Catalog Flags | Linked Cues | Cue Sources | Why
+
+| 70000001 | q7 | 70 | 1098, 1103, 1104, 1105, 1106, 1109, 1110, 1111, 1112, 1113, 1114, 1115 +58 more | 1110, 1112, 1150, 1201, 1215, 1216, 1217, 1220 +15 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70001001 | q7 | 0 |  | 1851, 1954 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70002001 | q7 | 47 | 1098, 1103, 1104, 1105, 1106, 1109, 1110, 1111, 1112, 1113, 1114, 1115 +35 more | 1114, 1115, 1117, 1601, 3859 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70003001 | q7 | 49 | 1098, 1103, 1104, 1105, 1106, 1109, 1110, 1111, 1112, 1113, 1114, 1115 +37 more | 1098, 1104, 1106, 1119, 1121, 1123, 1202, 2429 +2 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70020001 | q7 | 8 | 2736, 3000, 3002, 3003, 3074, 3442, 3805, 4037 | 3002, 4037 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70021001 | q7 | 4 | 3278, 3650, 3753, 3861 | 3650 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70022001 | q7 | 17 | 3949, 3950, 3952, 3953, 3954, 3977, 4033, 4043, 4053, 4063, 4470, 4555 +5 more | 3950, 4043, 4470, 4555, 4557, 4806 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70023001 | q7 | 15 | 4066, 4067, 4372, 4373, 4500, 4506, 4507, 4508, 4511, 4512, 4515, 4516 +3 more | 4372, 4507, 4511, 4516 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70030001 | q7 | 46 | 5396, 5397, 5407, 5552, 5557, 5558, 5581, 5584, 5587, 5588, 5589, 5614 +34 more | 5552, 5557, 5584, 5587, 5589, 5614, 5632, 5634 +17 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70031001 | q7 | 8 | 5553, 5672, 6138, 6194, 6195, 6377, 6425, 7316 | 6194, 7316 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70032001 | q7 | 37 | 7169, 7240, 7241, 7336, 7341, 7342, 7386, 7387, 7388, 7389, 7390, 7438 +25 more | 7240, 7341, 7386, 7496, 7512, 7544, 7549, 7551 +5 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70033001 | q7 | 43 | 7826, 7827, 7876, 7888, 7889, 7916, 7917, 7954, 7955, 7965, 7966, 7967 +31 more | 7888, 7889, 7965, 7967, 7973, 8043, 8044, 8045 +6 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+|===
+
+== Family Relationship Context
+
+_These sections summarize deterministic client-side family metadata and reverse-index relationships. They are context for later owner/dependency inference, not direct quest-target promotion._
+
+=== Quest Sequence
+
+* seq no: 215
+* previous: 20070002 -- A Dangerous Wager
+* next: 20070004 -- The Perfect Warrior
 
 == ARC Association Context
 
 _ARC associations are contextual only. They show which quest-stage and marker resources are bundled with this quest._
 
-* arc file: client/03040008/quest/q20070003.arc.json
+* arc file: link:../../../../client/03040008/quest/q20070003.arc.json#L1[client/03040008/quest/q20070003.arc.json#L1]
 * resource count: 11
+* stage codes: st0372, st0402
+* resource families: .gmd, .mss, .qmi, .qst, .qtd
 
 === st0372 -- Brandon's Armor Shop
 
@@ -36,18 +74,456 @@ _ARC associations are contextual only. They show which quest-stage and marker re
 * rMsgSet: ui/00_message/quest/q20070003
 * rQuestTextData: ui/00_param/quest_text/q20070003_00
 
+== Stage Neighborhood Context
+
+_Stage-neighborhood context summarizes scanner-relevant client files that share the quest's archive stage codes. This is deterministic client topology, not inferred ownership._
+
+* scanner-relevant stage files: 98
+* indexed stage codes: st0372, st0402
+
+=== st0372 -- Brandon's Armor Shop
+
+* scanner files: 12
+* .gpl.json: 3
+* .lot.json: 6
+* .qmi.json: 2
+* .qst.json: 1
+
+=== st0402 -- Gardnox Fortress
+
+* scanner files: 86
+* .evsi.json: 2
+* .fsm.json: 17
+* .gpl.json: 5
+* .lot.json: 47
+* .qmi.json: 11
+* .qst.json: 4
+
+== Stage Neighborhood External-State Cues
+
+_These cues are deterministic client-side observations from the quest's stage neighborhood. They are not promoted to direct quest targets yet; they highlight q6/q7-owned external state values co-located in the quest's archive stages._
+
+* cue count: 107
+* owner families: q6, q7
+
+[cols="1,1,1,2,2,2",options="header"]
+|===
+| Value | Kind | Hits | Sources | Owners | Stages
+
+| Flag 1098 | layout_flag | 2 | evsi | 70003001 | st0402
+| Flag 1104 | layout_flag | 2 | evsi | 70003001 | st0402
+| Flag 1106 | layout_flag | 2 | evsi | 70003001 | st0402
+| Flag 1110 | layout_flag | 2 | evsi | 70000001 | st0402
+| Flag 1112 | layout_flag | 2 | evsi | 70000001 | st0402
+| Flag 1114 | layout_flag | 2 | evsi | 70002001 | st0402
+| Flag 1115 | layout_flag | 2 | evsi | 70002001 | st0402
+| Flag 1117 | layout_flag | 2 | evsi | 70002001 | st0402
+| Flag 1119 | layout_flag | 2 | evsi | 70003001 | st0402
+| Flag 1121 | layout_flag | 2 | evsi | 70003001 | st0402
+| Flag 1123 | layout_flag | 2 | evsi | 70003001 | st0402
+| Flag 1150 | layout_flag | 2 | evsi | 70000001 | st0402
+| Flag 1201 | layout_flag | 2 | evsi | 70000001 | st0402
+| Flag 1202 | layout_flag | 2 | evsi | 70003001 | st0402
+| Flag 1215 | layout_flag | 2 | evsi | 70000001 | st0402
+| Flag 1216 | layout_flag | 2 | evsi | 70000001 | st0402
+| Flag 1217 | layout_flag | 2 | evsi | 70000001 | st0402
+| Flag 1220 | layout_flag | 2 | evsi | 70000001 | st0402
+| Flag 1222 | layout_flag | 2 | evsi | 70000001 | st0402
+| Flag 1223 | layout_flag | 2 | evsi | 70000001 | st0402
+| Flag 1224 | layout_flag | 2 | evsi | 70000001 | st0402
+| Flag 1250 | layout_flag | 2 | evsi | 70000001 | st0402
+| Flag 1262 | layout_flag | 2 | evsi | 70000001 | st0402
+| Flag 1294 | layout_flag | 2 | evsi | 70000001 | st0402
+| Flag 1309 | layout_flag | 2 | evsi | 70000001 | st0402
+| Flag 1311 | layout_flag | 2 | evsi | 70000001 | st0402
+| Flag 1316 | layout_flag | 2 | evsi | 70000001 | st0402
+| Flag 1601 | layout_flag | 2 | evsi | 70002001 | st0402
+| Flag 1658 | layout_flag | 2 | evsi | 70000001 | st0402
+| Flag 1672 | layout_flag | 2 | evsi | 70000001 | st0402
+|===
+
+== Bounded Graph Expansion
+
+_This graph summarizes bounded deterministic and inferred edges around the quest: quest archive stages, direct source families, stage-linked owner catalogs, promoted dependencies, reverse-index event/group links, and family-specific table edges._
+
+* max depth: 3
+* node count: 44
+* edge count: 67
+* node kinds: direct_family=2, event_viewer=24, family_context=1, owner_quest=12, quest=1, sequence_quest=2, stage=2
+* derivation: Direct=15, Graph=72, Owner Index=24
+
+=== Mermaid Graph Slice
+
+_This Mermaid flowchart shows a capped slice of the bounded graph so large quest reports stay readable while still exposing the graph structure._
+
+[mermaid]
+....
+flowchart TD
+    node_quest_20070003["Quest 20070003"]
+    node_direct_family_fsm["fsm direct hits (5)"]
+    node_direct_family_qst["qst direct hits (31)"]
+    node_family_context_quest_sequence["Quest Sequence"]
+    node_stage_st0372["st0372 -- Brandon's Armor Shop"]
+    node_stage_st0402["st0402 -- Gardnox Fortress"]
+    node_event_viewer_st0402_ev000_70020001["Event st0402/ev000"]
+    node_event_viewer_st0402_ev000_70022001["Event st0402/ev000"]
+    node_event_viewer_st0402_ev000_70032001["Event st0402/ev000"]
+    node_event_viewer_st0402_ev000_70002001["Event st0402/ev000"]
+    node_event_viewer_st0402_ev000_70023001["Event st0402/ev000"]
+    node_event_viewer_st0402_ev000_70003001["Event st0402/ev000"]
+    node_event_viewer_st0402_ev000_70000001["Event st0402/ev000"]
+    node_event_viewer_st0402_ev000_70001001["Event st0402/ev000"]
+    node_event_viewer_st0402_ev000_70033001["Event st0402/ev000"]
+    node_event_viewer_st0402_ev000_70021001["Event st0402/ev000"]
+    node_event_viewer_st0402_ev000_70031001["Event st0402/ev000"]
+    node_event_viewer_st0402_ev000_70030001["Event st0402/ev000"]
+    node_event_viewer_st0402_ev005_70000001["Event st0402/ev005"]
+    node_event_viewer_st0402_ev005_70002001["Event st0402/ev005"]
+    node_event_viewer_st0402_ev005_70001001["Event st0402/ev005"]
+    node_event_viewer_st0402_ev005_70003001["Event st0402/ev005"]
+    node_event_viewer_st0402_ev005_70020001["Event st0402/ev005"]
+    node_sequence_quest_20070002["Quest 20070002"]
+    node_sequence_quest_20070004["Quest 20070004"]
+    node_quest_20070003 -->|direct_source_family| node_direct_family_fsm
+    node_quest_20070003 -->|direct_source_family| node_direct_family_qst
+    node_quest_20070003 -->|family:quest_sequence| node_family_context_quest_sequence
+    node_quest_20070003 -->|quest_archive_stage| node_stage_st0372
+    node_quest_20070003 -->|quest_archive_stage| node_stage_st0402
+    node_family_context_quest_sequence -->|sequence_next| node_sequence_quest_20070004
+    node_family_context_quest_sequence -->|sequence_previous| node_sequence_quest_20070002
+    node_stage_st0402 -->|stage_event_viewer| node_event_viewer_st0402_ev000_70000001
+    node_stage_st0402 -->|stage_event_viewer| node_event_viewer_st0402_ev000_70001001
+    node_stage_st0402 -->|stage_event_viewer| node_event_viewer_st0402_ev000_70002001
+    node_stage_st0402 -->|stage_event_viewer| node_event_viewer_st0402_ev000_70003001
+    node_stage_st0402 -->|stage_event_viewer| node_event_viewer_st0402_ev000_70020001
+    node_stage_st0402 -->|stage_event_viewer| node_event_viewer_st0402_ev000_70021001
+    node_stage_st0402 -->|stage_event_viewer| node_event_viewer_st0402_ev000_70022001
+    node_stage_st0402 -->|stage_event_viewer| node_event_viewer_st0402_ev000_70023001
+    node_stage_st0402 -->|stage_event_viewer| node_event_viewer_st0402_ev000_70030001
+    node_stage_st0402 -->|stage_event_viewer| node_event_viewer_st0402_ev000_70031001
+    node_stage_st0402 -->|stage_event_viewer| node_event_viewer_st0402_ev000_70032001
+    node_stage_st0402 -->|stage_event_viewer| node_event_viewer_st0402_ev000_70033001
+    node_stage_st0402 -->|stage_event_viewer| node_event_viewer_st0402_ev005_70000001
+    node_stage_st0402 -->|stage_event_viewer| node_event_viewer_st0402_ev005_70001001
+    node_stage_st0402 -->|stage_event_viewer| node_event_viewer_st0402_ev005_70002001
+    node_stage_st0402 -->|stage_event_viewer| node_event_viewer_st0402_ev005_70003001
+    node_stage_st0402 -->|stage_event_viewer| node_event_viewer_st0402_ev005_70020001
+    classDef direct_deterministic fill:#e8f5e9,stroke:#2e7d32,stroke-width:1px
+    classDef owner_index fill:#e3f2fd,stroke:#1565c0,stroke-width:1px
+    classDef dependency_inferred fill:#fff3e0,stroke:#ef6c00,stroke-width:1px
+    classDef graph_expanded fill:#f3e5f5,stroke:#7b1fa2,stroke-width:1px
+    classDef lower_confidence fill:#fbe9e7,stroke:#d84315,stroke-width:1px
+    classDef binary_auxiliary fill:#eceff1,stroke:#455a64,stroke-width:1px
+    class node_quest_20070003,node_direct_family_fsm,node_direct_family_qst,node_family_context_quest_sequence,node_stage_st0372,node_stage_st0402,node_sequence_quest_20070002,node_sequence_quest_20070004 direct_deterministic
+    class node_event_viewer_st0402_ev000_70020001,node_event_viewer_st0402_ev000_70022001,node_event_viewer_st0402_ev000_70032001,node_event_viewer_st0402_ev000_70002001,node_event_viewer_st0402_ev000_70023001,node_event_viewer_st0402_ev000_70003001,node_event_viewer_st0402_ev000_70000001,node_event_viewer_st0402_ev000_70001001,node_event_viewer_st0402_ev000_70033001,node_event_viewer_st0402_ev000_70021001,node_event_viewer_st0402_ev000_70031001,node_event_viewer_st0402_ev000_70030001,node_event_viewer_st0402_ev005_70000001,node_event_viewer_st0402_ev005_70002001,node_event_viewer_st0402_ev005_70001001,node_event_viewer_st0402_ev005_70003001,node_event_viewer_st0402_ev005_70020001 graph_expanded
+....
+
+[cols="1,2,2,2,2,4",options="header"]
+|===
+| Depth | Edge | From | To | Derivation | Why
+
+| 1 | direct_source_family | quest:20070003 | direct-family:fsm | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | direct_source_family | quest:20070003 | direct-family:qst | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | family_context:quest_sequence | quest:20070003 | family-context:quest_sequence | Direct | Family-specific decoded tables provide deterministic context for this quest.
+| 1 | quest_archive_stage | quest:20070003 | stage:st0372 | Direct | Quest archive topology directly links this quest to the stage code.
+| 1 | quest_archive_stage | quest:20070003 | stage:st0402 | Direct | Quest archive topology directly links this quest to the stage code.
+| 2 | sequence_next | family-context:quest_sequence | sequence-quest:20070004 | Direct | QuestSequence links this quest to its neighboring sequence quest.
+| 2 | sequence_previous | family-context:quest_sequence | sequence-quest:20070002 | Direct | QuestSequence links this quest to its neighboring sequence quest.
+| 2 | stage_event_viewer | stage:st0402 | event-viewer:st0402:ev000:70000001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0402 | event-viewer:st0402:ev000:70001001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0402 | event-viewer:st0402:ev000:70002001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0402 | event-viewer:st0402:ev000:70003001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0402 | event-viewer:st0402:ev000:70020001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0402 | event-viewer:st0402:ev000:70021001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0402 | event-viewer:st0402:ev000:70022001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0402 | event-viewer:st0402:ev000:70023001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0402 | event-viewer:st0402:ev000:70030001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0402 | event-viewer:st0402:ev000:70031001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0402 | event-viewer:st0402:ev000:70032001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0402 | event-viewer:st0402:ev000:70033001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0402 | event-viewer:st0402:ev005:70000001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0402 | event-viewer:st0402:ev005:70001001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0402 | event-viewer:st0402:ev005:70002001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0402 | event-viewer:st0402:ev005:70003001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0402 | event-viewer:st0402:ev005:70020001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0402 | event-viewer:st0402:ev005:70021001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0402 | event-viewer:st0402:ev005:70022001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0402 | event-viewer:st0402:ev005:70023001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0402 | event-viewer:st0402:ev005:70030001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0402 | event-viewer:st0402:ev005:70031001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0402 | event-viewer:st0402:ev005:70032001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0402 | event-viewer:st0402:ev005:70033001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_owner_index | stage:st0402 | owner-quest:70000001 | Owner Index | Stage-neighborhood cues on this stage link to the reusable owner catalog.
+| 2 | stage_owner_index | stage:st0402 | owner-quest:70001001 | Owner Index | Stage-neighborhood cues on this stage link to the reusable owner catalog.
+| 2 | stage_owner_index | stage:st0402 | owner-quest:70002001 | Owner Index | Stage-neighborhood cues on this stage link to the reusable owner catalog.
+| 2 | stage_owner_index | stage:st0402 | owner-quest:70003001 | Owner Index | Stage-neighborhood cues on this stage link to the reusable owner catalog.
+| 2 | stage_owner_index | stage:st0402 | owner-quest:70020001 | Owner Index | Stage-neighborhood cues on this stage link to the reusable owner catalog.
+| 2 | stage_owner_index | stage:st0402 | owner-quest:70021001 | Owner Index | Stage-neighborhood cues on this stage link to the reusable owner catalog.
+| 2 | stage_owner_index | stage:st0402 | owner-quest:70022001 | Owner Index | Stage-neighborhood cues on this stage link to the reusable owner catalog.
+| 2 | stage_owner_index | stage:st0402 | owner-quest:70023001 | Owner Index | Stage-neighborhood cues on this stage link to the reusable owner catalog.
+| 2 | stage_owner_index | stage:st0402 | owner-quest:70030001 | Owner Index | Stage-neighborhood cues on this stage link to the reusable owner catalog.
+|===
+
 == Flag Summary Matrix
 
 [cols="2,1,1,2,2,3,3",options="header"]
 |===
 | Target | Kind | Hits | Sources | Stages | Relationships | Description
 
+| Flag 1065 | layout_flag | 1 | qst | st0372 | ⚡ Quest Condition | QST local: st0372 \| QuestGroup 1
+| Flag 1287 | layout_flag | 2 | qst | st0402 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0402 \| QuestGroup 1 \| OM
+| Flag 1288 | layout_flag | 2 | qst | st0402 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0402 \| QuestGroup 2 \| OM
+| Flag 1289 | layout_flag | 2 | qst | st0402 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0402 \| QuestGroup 3 \| OM
+| Flag 1812 | layout_flag | 3 | fsm, qst | st0402 | 🔍 FSM Check, ⚡ Quest Condition, ❌ Quest Erase | QST local: st0402 \| QuestGroup 4 \| OM
+| Flag 1813 | layout_flag | 4 | fsm, qst | st0402 | 🔍 FSM Check, ⚡ Quest Condition, ❌ Quest Erase | QST local: st0402 \| QuestGroup 5 \| OM
+| Flag 1814 | layout_flag | 4 | fsm, qst | st0402 | 🔍 FSM Check, ⚡ Quest Condition, ❌ Quest Erase | QST local: st0402 \| QuestGroup 6 \| OM
+| Flag 1815 | layout_flag | 2 | qst | st0402 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0402 \| QuestGroup 7 \| OM
+| Flag 1816 | layout_flag | 2 | qst | st0402 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0402 \| QuestGroup 8 \| OM
+| Flag 1817 | layout_flag | 2 | qst | st0402 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0402 \| QuestGroup 9 \| OM
+| Flag 1818 | layout_flag | 2 | qst | st0402 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0402 \| QuestGroup 10 \| OM
 | Quest ID 20070003 | quest_id | 10 | qst | st0402 | 💬 Text Quest | Derived quest-wide association scan
 |===
 
 == Known Documented Targets
 
+* quest 20070003 -- Flag 1065 -- QST local: st0372 | QuestGroup 1
+* quest 20070003 -- Flag 1287 -- QST local: st0402 | QuestGroup 1 | OM
+* quest 20070003 -- Flag 1288 -- QST local: st0402 | QuestGroup 2 | OM
+* quest 20070003 -- Flag 1289 -- QST local: st0402 | QuestGroup 3 | OM
+* quest 20070003 -- Flag 1812 -- QST local: st0402 | QuestGroup 4 | OM
+* quest 20070003 -- Flag 1813 -- QST local: st0402 | QuestGroup 5 | OM
+* quest 20070003 -- Flag 1814 -- QST local: st0402 | QuestGroup 6 | OM
+* quest 20070003 -- Flag 1815 -- QST local: st0402 | QuestGroup 7 | OM
+* quest 20070003 -- Flag 1816 -- QST local: st0402 | QuestGroup 8 | OM
+* quest 20070003 -- Flag 1817 -- QST local: st0402 | QuestGroup 9 | OM
+* quest 20070003 -- Flag 1818 -- QST local: st0402 | QuestGroup 10 | OM
 * Quest ID 20070003 -- Derived quest-wide association scan [Derived]
+
+== Flag 1065 -- Quest 20070003
+
+origin:: derived_qst_local
+direct hits:: *1*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 1 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q20070003/quest/20070003/q20070003_st0372.qst.json[client/03040008/quest/q20070003/quest/20070003/q20070003_st0372.qst.json] | QuestStageList[].QuestGrp[0].Condition | Condition | quest 20070003 / Brandon's Armor Shop / "QuestGroup 1" / QuestSet=QuestSetInfoNpc \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 1287 -- Quest 20070003
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q20070003/quest/20070003/q20070003_st0402.qst.json[client/03040008/quest/q20070003/quest/20070003/q20070003_st0402.qst.json] | QuestStageList[].QuestGrp[0].Condition | Condition | quest 20070003 / Gardnox Fortress / "QuestGroup 1 \| OM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=241 \| TextType=2 \| TextQuestNo=20070003 \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q20070003/quest/20070003/q20070003_st0402.qst.json[client/03040008/quest/q20070003/quest/20070003/q20070003_st0402.qst.json] | QuestStageList[].QuestGrp[0].EraseCondition | EraseCondition | quest 20070003 / Gardnox Fortress / "QuestGroup 1 \| OM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=241 \| TextType=2 \| TextQuestNo=20070003 \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 1288 -- Quest 20070003
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q20070003/quest/20070003/q20070003_st0402.qst.json[client/03040008/quest/q20070003/quest/20070003/q20070003_st0402.qst.json] | QuestStageList[].QuestGrp[1].Condition | Condition | quest 20070003 / Gardnox Fortress / "QuestGroup 2 \| OM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=241 \| TextType=2 \| TextQuestNo=20070003 \| GroupNo=2 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q20070003/quest/20070003/q20070003_st0402.qst.json[client/03040008/quest/q20070003/quest/20070003/q20070003_st0402.qst.json] | QuestStageList[].QuestGrp[1].EraseCondition | EraseCondition | quest 20070003 / Gardnox Fortress / "QuestGroup 2 \| OM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=241 \| TextType=2 \| TextQuestNo=20070003 \| GroupNo=2 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 1289 -- Quest 20070003
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q20070003/quest/20070003/q20070003_st0402.qst.json[client/03040008/quest/q20070003/quest/20070003/q20070003_st0402.qst.json] | QuestStageList[].QuestGrp[2].Condition | Condition | quest 20070003 / Gardnox Fortress / "QuestGroup 3 \| OM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=241 \| TextType=2 \| TextQuestNo=20070003 \| GroupNo=3 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q20070003/quest/20070003/q20070003_st0402.qst.json[client/03040008/quest/q20070003/quest/20070003/q20070003_st0402.qst.json] | QuestStageList[].QuestGrp[2].EraseCondition | EraseCondition | quest 20070003 / Gardnox Fortress / "QuestGroup 3 \| OM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=241 \| TextType=2 \| TextQuestNo=20070003 \| GroupNo=3 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 1812 -- Quest 20070003
+
+origin:: derived_qst_local
+direct hits:: *3*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q20070003/quest/20070003/q20070003_st0402.qst.json[client/03040008/quest/q20070003/quest/20070003/q20070003_st0402.qst.json] | QuestStageList[].QuestGrp[3].Condition | Condition | quest 20070003 / Gardnox Fortress / "QuestGroup 4 \| OM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=241 \| TextType=2 \| TextQuestNo=20070003 \| GroupNo=4 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q20070003/quest/20070003/q20070003_st0402.qst.json[client/03040008/quest/q20070003/quest/20070003/q20070003_st0402.qst.json] | QuestStageList[].QuestGrp[3].EraseCondition | EraseCondition | quest 20070003 / Gardnox Fortress / "QuestGroup 4 \| OM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=241 \| TextType=2 \| TextQuestNo=20070003 \| GroupNo=4 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+==== opaque_fsm -- 1 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| FSM | Direct | 64 | link:../../../../client/03040008/quest/q60200122/quest/60200122/npc/master_30.fsm.json[client/03040008/quest/q60200122/quest/60200122/npc/master_30.fsm.json] | Process.Parameter.FlagNo | FlagNo | quest 60200122 (Skill Augmentation: Sorcerer Trial III) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+|===
+
+== Flag 1813 -- Quest 20070003
+
+origin:: derived_qst_local
+direct hits:: *4*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q20070003/quest/20070003/q20070003_st0402.qst.json[client/03040008/quest/q20070003/quest/20070003/q20070003_st0402.qst.json] | QuestStageList[].QuestGrp[4].Condition | Condition | quest 20070003 / Gardnox Fortress / "QuestGroup 5 \| OM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=241 \| TextType=2 \| TextQuestNo=20070003 \| GroupNo=5 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q20070003/quest/20070003/q20070003_st0402.qst.json[client/03040008/quest/q20070003/quest/20070003/q20070003_st0402.qst.json] | QuestStageList[].QuestGrp[4].EraseCondition | EraseCondition | quest 20070003 / Gardnox Fortress / "QuestGroup 5 \| OM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=241 \| TextType=2 \| TextQuestNo=20070003 \| GroupNo=5 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+==== opaque_fsm -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| FSM | Direct | 64 | link:../../../../client/03040008/quest/q60200122/quest/60200122/npc/master_30.fsm.json[client/03040008/quest/q60200122/quest/60200122/npc/master_30.fsm.json] | Process.Parameter.FlagNo | FlagNo | quest 60200122 (Skill Augmentation: Sorcerer Trial III) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/quest/q60200122/quest/60200122/npc/master_30.fsm.json[client/03040008/quest/q60200122/quest/60200122/npc/master_30.fsm.json] | Process.Parameter.FlagNo | FlagNo | quest 60200122 (Skill Augmentation: Sorcerer Trial III) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+|===
+
+== Flag 1814 -- Quest 20070003
+
+origin:: derived_qst_local
+direct hits:: *4*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q20070003/quest/20070003/q20070003_st0402.qst.json[client/03040008/quest/q20070003/quest/20070003/q20070003_st0402.qst.json] | QuestStageList[].QuestGrp[5].Condition | Condition | quest 20070003 / Gardnox Fortress / "QuestGroup 6 \| OM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=241 \| TextType=2 \| TextQuestNo=20070003 \| GroupNo=6 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q20070003/quest/20070003/q20070003_st0402.qst.json[client/03040008/quest/q20070003/quest/20070003/q20070003_st0402.qst.json] | QuestStageList[].QuestGrp[5].EraseCondition | EraseCondition | quest 20070003 / Gardnox Fortress / "QuestGroup 6 \| OM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=241 \| TextType=2 \| TextQuestNo=20070003 \| GroupNo=6 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+==== opaque_fsm -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| FSM | Direct | 64 | link:../../../../client/03040008/quest/q60200122/quest/60200122/npc/master_30.fsm.json[client/03040008/quest/q60200122/quest/60200122/npc/master_30.fsm.json] | Process.Parameter.FlagNo | FlagNo | quest 60200122 (Skill Augmentation: Sorcerer Trial III) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/quest/q60200122/quest/60200122/npc/master_30.fsm.json[client/03040008/quest/q60200122/quest/60200122/npc/master_30.fsm.json] | Process.Parameter.FlagNo | FlagNo | quest 60200122 (Skill Augmentation: Sorcerer Trial III) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+|===
+
+== Flag 1815 -- Quest 20070003
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q20070003/quest/20070003/q20070003_st0402.qst.json[client/03040008/quest/q20070003/quest/20070003/q20070003_st0402.qst.json] | QuestStageList[].QuestGrp[6].Condition | Condition | quest 20070003 / Gardnox Fortress / "QuestGroup 7 \| OM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=241 \| TextType=2 \| TextQuestNo=20070003 \| GroupNo=7 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q20070003/quest/20070003/q20070003_st0402.qst.json[client/03040008/quest/q20070003/quest/20070003/q20070003_st0402.qst.json] | QuestStageList[].QuestGrp[6].EraseCondition | EraseCondition | quest 20070003 / Gardnox Fortress / "QuestGroup 7 \| OM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=241 \| TextType=2 \| TextQuestNo=20070003 \| GroupNo=7 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 1816 -- Quest 20070003
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q20070003/quest/20070003/q20070003_st0402.qst.json[client/03040008/quest/q20070003/quest/20070003/q20070003_st0402.qst.json] | QuestStageList[].QuestGrp[7].Condition | Condition | quest 20070003 / Gardnox Fortress / "QuestGroup 8 \| OM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=241 \| TextType=2 \| TextQuestNo=20070003 \| GroupNo=8 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q20070003/quest/20070003/q20070003_st0402.qst.json[client/03040008/quest/q20070003/quest/20070003/q20070003_st0402.qst.json] | QuestStageList[].QuestGrp[7].EraseCondition | EraseCondition | quest 20070003 / Gardnox Fortress / "QuestGroup 8 \| OM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=241 \| TextType=2 \| TextQuestNo=20070003 \| GroupNo=8 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 1817 -- Quest 20070003
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q20070003/quest/20070003/q20070003_st0402.qst.json[client/03040008/quest/q20070003/quest/20070003/q20070003_st0402.qst.json] | QuestStageList[].QuestGrp[8].Condition | Condition | quest 20070003 / Gardnox Fortress / "QuestGroup 9 \| OM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=241 \| TextType=2 \| TextQuestNo=20070003 \| GroupNo=9 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q20070003/quest/20070003/q20070003_st0402.qst.json[client/03040008/quest/q20070003/quest/20070003/q20070003_st0402.qst.json] | QuestStageList[].QuestGrp[8].EraseCondition | EraseCondition | quest 20070003 / Gardnox Fortress / "QuestGroup 9 \| OM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=241 \| TextType=2 \| TextQuestNo=20070003 \| GroupNo=9 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 1818 -- Quest 20070003
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q20070003/quest/20070003/q20070003_st0402.qst.json[client/03040008/quest/q20070003/quest/20070003/q20070003_st0402.qst.json] | QuestStageList[].QuestGrp[9].Condition | Condition | quest 20070003 / Gardnox Fortress / "QuestGroup 10 \| OM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=241 \| TextType=2 \| TextQuestNo=20070003 \| GroupNo=10 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q20070003/quest/20070003/q20070003_st0402.qst.json[client/03040008/quest/q20070003/quest/20070003/q20070003_st0402.qst.json] | QuestStageList[].QuestGrp[9].EraseCondition | EraseCondition | quest 20070003 / Gardnox Fortress / "QuestGroup 10 \| OM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=241 \| TextType=2 \| TextQuestNo=20070003 \| GroupNo=10 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
 
 == Quest ID 20070003
 
@@ -59,19 +535,19 @@ ranked candidates:: *0*
 
 ==== direct -- 10 hit(s)
 
-[cols="1,1,3,3,2,3,3",options="header"]
+[cols="1,1,1,3,3,2,3,3",options="header"]
 |===
-| Family | Confidence | File | JSON Path | Field | Context | Why
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
 
-| QST | 92 | client/03040008/quest/q20070003/quest/20070003/q20070003_st0402.qst.json | QuestStageList[].QuestGrp[0].QuestSet[0].TextQuestNo | TextQuestNo | quest 20070003 / Gardnox Fortress / "QuestGroup 1 \| OM \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=241 \| TextType=2 \| TextQuestNo=20070003 \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
-| QST | 92 | client/03040008/quest/q20070003/quest/20070003/q20070003_st0402.qst.json | QuestStageList[].QuestGrp[1].QuestSet[0].TextQuestNo | TextQuestNo | quest 20070003 / Gardnox Fortress / "QuestGroup 2 \| OM \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=241 \| TextType=2 \| TextQuestNo=20070003 \| GroupNo=2 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
-| QST | 92 | client/03040008/quest/q20070003/quest/20070003/q20070003_st0402.qst.json | QuestStageList[].QuestGrp[2].QuestSet[0].TextQuestNo | TextQuestNo | quest 20070003 / Gardnox Fortress / "QuestGroup 3 \| OM \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=241 \| TextType=2 \| TextQuestNo=20070003 \| GroupNo=3 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
-| QST | 92 | client/03040008/quest/q20070003/quest/20070003/q20070003_st0402.qst.json | QuestStageList[].QuestGrp[3].QuestSet[0].TextQuestNo | TextQuestNo | quest 20070003 / Gardnox Fortress / "QuestGroup 4 \| OM \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=241 \| TextType=2 \| TextQuestNo=20070003 \| GroupNo=4 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
-| QST | 92 | client/03040008/quest/q20070003/quest/20070003/q20070003_st0402.qst.json | QuestStageList[].QuestGrp[4].QuestSet[0].TextQuestNo | TextQuestNo | quest 20070003 / Gardnox Fortress / "QuestGroup 5 \| OM \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=241 \| TextType=2 \| TextQuestNo=20070003 \| GroupNo=5 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
-| QST | 92 | client/03040008/quest/q20070003/quest/20070003/q20070003_st0402.qst.json | QuestStageList[].QuestGrp[5].QuestSet[0].TextQuestNo | TextQuestNo | quest 20070003 / Gardnox Fortress / "QuestGroup 6 \| OM \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=241 \| TextType=2 \| TextQuestNo=20070003 \| GroupNo=6 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
-| QST | 92 | client/03040008/quest/q20070003/quest/20070003/q20070003_st0402.qst.json | QuestStageList[].QuestGrp[6].QuestSet[0].TextQuestNo | TextQuestNo | quest 20070003 / Gardnox Fortress / "QuestGroup 7 \| OM \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=241 \| TextType=2 \| TextQuestNo=20070003 \| GroupNo=7 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
-| QST | 92 | client/03040008/quest/q20070003/quest/20070003/q20070003_st0402.qst.json | QuestStageList[].QuestGrp[7].QuestSet[0].TextQuestNo | TextQuestNo | quest 20070003 / Gardnox Fortress / "QuestGroup 8 \| OM \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=241 \| TextType=2 \| TextQuestNo=20070003 \| GroupNo=8 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
-| QST | 92 | client/03040008/quest/q20070003/quest/20070003/q20070003_st0402.qst.json | QuestStageList[].QuestGrp[8].QuestSet[0].TextQuestNo | TextQuestNo | quest 20070003 / Gardnox Fortress / "QuestGroup 9 \| OM \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=241 \| TextType=2 \| TextQuestNo=20070003 \| GroupNo=9 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
-| QST | 92 | client/03040008/quest/q20070003/quest/20070003/q20070003_st0402.qst.json | QuestStageList[].QuestGrp[9].QuestSet[0].TextQuestNo | TextQuestNo | quest 20070003 / Gardnox Fortress / "QuestGroup 10 \| OM \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=241 \| TextType=2 \| TextQuestNo=20070003 \| GroupNo=10 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q20070003/quest/20070003/q20070003_st0402.qst.json[client/03040008/quest/q20070003/quest/20070003/q20070003_st0402.qst.json] | QuestStageList[].QuestGrp[0].QuestSet[0].TextQuestNo | TextQuestNo | quest 20070003 / Gardnox Fortress / "QuestGroup 1 \| OM \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=241 \| TextType=2 \| TextQuestNo=20070003 \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q20070003/quest/20070003/q20070003_st0402.qst.json[client/03040008/quest/q20070003/quest/20070003/q20070003_st0402.qst.json] | QuestStageList[].QuestGrp[1].QuestSet[0].TextQuestNo | TextQuestNo | quest 20070003 / Gardnox Fortress / "QuestGroup 2 \| OM \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=241 \| TextType=2 \| TextQuestNo=20070003 \| GroupNo=2 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q20070003/quest/20070003/q20070003_st0402.qst.json[client/03040008/quest/q20070003/quest/20070003/q20070003_st0402.qst.json] | QuestStageList[].QuestGrp[2].QuestSet[0].TextQuestNo | TextQuestNo | quest 20070003 / Gardnox Fortress / "QuestGroup 3 \| OM \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=241 \| TextType=2 \| TextQuestNo=20070003 \| GroupNo=3 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q20070003/quest/20070003/q20070003_st0402.qst.json[client/03040008/quest/q20070003/quest/20070003/q20070003_st0402.qst.json] | QuestStageList[].QuestGrp[3].QuestSet[0].TextQuestNo | TextQuestNo | quest 20070003 / Gardnox Fortress / "QuestGroup 4 \| OM \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=241 \| TextType=2 \| TextQuestNo=20070003 \| GroupNo=4 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q20070003/quest/20070003/q20070003_st0402.qst.json[client/03040008/quest/q20070003/quest/20070003/q20070003_st0402.qst.json] | QuestStageList[].QuestGrp[4].QuestSet[0].TextQuestNo | TextQuestNo | quest 20070003 / Gardnox Fortress / "QuestGroup 5 \| OM \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=241 \| TextType=2 \| TextQuestNo=20070003 \| GroupNo=5 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q20070003/quest/20070003/q20070003_st0402.qst.json[client/03040008/quest/q20070003/quest/20070003/q20070003_st0402.qst.json] | QuestStageList[].QuestGrp[5].QuestSet[0].TextQuestNo | TextQuestNo | quest 20070003 / Gardnox Fortress / "QuestGroup 6 \| OM \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=241 \| TextType=2 \| TextQuestNo=20070003 \| GroupNo=6 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q20070003/quest/20070003/q20070003_st0402.qst.json[client/03040008/quest/q20070003/quest/20070003/q20070003_st0402.qst.json] | QuestStageList[].QuestGrp[6].QuestSet[0].TextQuestNo | TextQuestNo | quest 20070003 / Gardnox Fortress / "QuestGroup 7 \| OM \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=241 \| TextType=2 \| TextQuestNo=20070003 \| GroupNo=7 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q20070003/quest/20070003/q20070003_st0402.qst.json[client/03040008/quest/q20070003/quest/20070003/q20070003_st0402.qst.json] | QuestStageList[].QuestGrp[7].QuestSet[0].TextQuestNo | TextQuestNo | quest 20070003 / Gardnox Fortress / "QuestGroup 8 \| OM \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=241 \| TextType=2 \| TextQuestNo=20070003 \| GroupNo=8 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q20070003/quest/20070003/q20070003_st0402.qst.json[client/03040008/quest/q20070003/quest/20070003/q20070003_st0402.qst.json] | QuestStageList[].QuestGrp[8].QuestSet[0].TextQuestNo | TextQuestNo | quest 20070003 / Gardnox Fortress / "QuestGroup 9 \| OM \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=241 \| TextType=2 \| TextQuestNo=20070003 \| GroupNo=9 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q20070003/quest/20070003/q20070003_st0402.qst.json[client/03040008/quest/q20070003/quest/20070003/q20070003_st0402.qst.json] | QuestStageList[].QuestGrp[9].QuestSet[0].TextQuestNo | TextQuestNo | quest 20070003 / Gardnox Fortress / "QuestGroup 10 \| OM \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=241 \| TextType=2 \| TextQuestNo=20070003 \| GroupNo=10 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
 |===
 

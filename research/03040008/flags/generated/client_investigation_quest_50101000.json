@@ -1,6 +1,6 @@
 {
   "format": "client_investigation.v4",
-  "generated_at": "2026-04-11T21:41:41.686752+00:00",
+  "generated_at": "2026-04-12T12:44:03.311195+00:00",
   "query": {
     "mode": "quest",
     "value": 50101000
@@ -27,9 +27,40 @@
       "candidate_hits": []
     }
   ],
+  "quest_family": {
+    "key": "q5",
+    "label": "Extreme / Grand Mission",
+    "description": "Extreme and grand mission content with sortie and cycle metadata.",
+    "discovery_focus": "esi_csi_sortie_topology",
+    "supported": true
+  },
+  "quest_family_relationships": {
+    "quest_family": {
+      "key": "q5",
+      "label": "Extreme / Grand Mission",
+      "description": "Extreme and grand mission content with sortie and cycle metadata.",
+      "discovery_focus": "esi_csi_sortie_topology",
+      "supported": true
+    }
+  },
+  "quest_owner_indexes": [],
+  "quest_dependency_targets": [],
   "quest_archive_context": {
+    "quest_family": {
+      "key": "q5",
+      "label": "Extreme / Grand Mission",
+      "description": "Extreme and grand mission content with sortie and cycle metadata.",
+      "discovery_focus": "esi_csi_sortie_topology",
+      "supported": true
+    },
     "file_path": "client/03040008/quest/q50101000.arc.json",
     "resource_count": 4,
+    "stage_codes": [],
+    "resource_type_extensions": [
+      ".gmd",
+      ".mss",
+      ".qtd"
+    ],
     "stages": [
       {
         "stage_code": "",
@@ -60,5 +91,59 @@
         ]
       }
     ]
+  },
+  "quest_stage_neighborhood": {
+    "quest_family": {
+      "key": "q5",
+      "label": "Extreme / Grand Mission",
+      "description": "Extreme and grand mission content with sortie and cycle metadata.",
+      "discovery_focus": "esi_csi_sortie_topology",
+      "supported": true
+    },
+    "stage_codes": [],
+    "scanner_file_count": 0,
+    "stages": []
+  },
+  "quest_stage_cues": {
+    "quest_family": {
+      "key": "q5",
+      "label": "Extreme / Grand Mission",
+      "description": "Extreme and grand mission content with sortie and cycle metadata.",
+      "discovery_focus": "esi_csi_sortie_topology",
+      "supported": true
+    },
+    "stage_codes": [],
+    "owner_families": [
+      "q6",
+      "q7"
+    ],
+    "cues": [],
+    "cue_count": 0
+  },
+  "quest_graph_expansion": {
+    "max_depth": 3,
+    "node_count": 1,
+    "edge_count": 0,
+    "node_kind_counts": {
+      "quest": 1
+    },
+    "edge_type_counts": {},
+    "derivation_counts": {
+      "direct_deterministic": 1
+    },
+    "nodes": [
+      {
+        "node_id": "quest:50101000",
+        "label": "Quest 50101000",
+        "kind": "quest",
+        "depth": 0,
+        "derivation_class": "direct_deterministic",
+        "metadata": {
+          "quest_id": 50101000,
+          "target_count": 1
+        }
+      }
+    ],
+    "edges": []
   }
 }

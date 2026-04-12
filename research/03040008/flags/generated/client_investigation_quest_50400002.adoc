@@ -5,21 +5,89 @@
 
 Query mode:: quest
 Query value:: 50400002
-Generated at:: 2026-04-11T21:41:41.736747+00:00
+Generated at:: 2026-04-12T12:44:05.148546+00:00
 
 toc::[]
+
+Quest family:: q5 -- Extreme / Grand Mission
+Quest family notes:: Extreme and grand mission content with sortie and cycle metadata.
+Quest family focus:: esi_csi_sortie_topology
+
+== Family Relationship Context
+
+_These sections summarize deterministic client-side family metadata and reverse-index relationships. They are context for later owner/dependency inference, not direct quest-target promotion._
+
+=== Repeatable Sortie
+
+* ESI rows: 1
+* CSI rows: 0
+* sortie flags: 16777216
+* stage tuple: 3200, 0, 3200
 
 == ARC Association Context
 
 _ARC associations are contextual only. They show which quest-stage and marker resources are bundled with this quest._
 
-* arc file: client/03040008/quest/q50400002.arc.json
+* arc file: link:../../../../client/03040008/quest/q50400002.arc.json#L1[client/03040008/quest/q50400002.arc.json#L1]
 * resource count: 2
+* resource families: .gmd, .qtd
 
 === unclassified
 
 * rGUIMessage: ui/00_message/quest_info/q50400002_00
 * rQuestTextData: ui/00_param/quest_text/q50400002_00
+
+== Stage Neighborhood Context
+
+_Stage-neighborhood context summarizes scanner-relevant client files that share the quest's archive stage codes. This is deterministic client topology, not inferred ownership._
+
+* scanner-relevant stage files: 0
+
+== Stage Neighborhood External-State Cues
+
+_These cues are deterministic client-side observations from the quest's stage neighborhood. They are not promoted to direct quest targets yet; they highlight q6/q7-owned external state values co-located in the quest's archive stages._
+
+* cue count: 0
+* owner families: q6, q7
+
+== Bounded Graph Expansion
+
+_This graph summarizes bounded deterministic and inferred edges around the quest: quest archive stages, direct source families, stage-linked owner catalogs, promoted dependencies, reverse-index event/group links, and family-specific table edges._
+
+* max depth: 3
+* node count: 3
+* edge count: 2
+* node kinds: direct_family=1, family_context=1, quest=1
+* derivation: Direct=5
+
+=== Mermaid Graph Slice
+
+_This Mermaid flowchart shows a capped slice of the bounded graph so large quest reports stay readable while still exposing the graph structure._
+
+[mermaid]
+....
+flowchart TD
+    node_quest_50400002["Quest 50400002"]
+    node_direct_family_esi["esi direct hits (10)"]
+    node_family_context_repeatable_sortie["Repeatable Sortie"]
+    node_quest_50400002 -->|direct_source_family| node_direct_family_esi
+    node_quest_50400002 -->|family:repeatable_sortie| node_family_context_repeatable_sortie
+    classDef direct_deterministic fill:#e8f5e9,stroke:#2e7d32,stroke-width:1px
+    classDef owner_index fill:#e3f2fd,stroke:#1565c0,stroke-width:1px
+    classDef dependency_inferred fill:#fff3e0,stroke:#ef6c00,stroke-width:1px
+    classDef graph_expanded fill:#f3e5f5,stroke:#7b1fa2,stroke-width:1px
+    classDef lower_confidence fill:#fbe9e7,stroke:#d84315,stroke-width:1px
+    classDef binary_auxiliary fill:#eceff1,stroke:#455a64,stroke-width:1px
+    class node_quest_50400002,node_direct_family_esi,node_family_context_repeatable_sortie direct_deterministic
+....
+
+[cols="1,2,2,2,2,4",options="header"]
+|===
+| Depth | Edge | From | To | Derivation | Why
+
+| 1 | direct_source_family | quest:50400002 | direct-family:esi | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | family_context:repeatable_sortie | quest:50400002 | family-context:repeatable_sortie | Direct | Family-specific decoded tables provide deterministic context for this quest.
+|===
 
 == Flag Summary Matrix
 
@@ -46,19 +114,19 @@ ranked candidates:: *0*
 
 ==== direct -- 9 hit(s)
 
-[cols="1,1,3,3,2,3,3",options="header"]
+[cols="1,1,1,3,3,2,3,3",options="header"]
 |===
-| Family | Confidence | File | JSON Path | Field | Context | Why
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
 
-| ESI | 92 | client/03040008/game_common/quest/rEndContentsSortieInfo.esi.json | EndContentsSortieInfoTable[42].Flag | Flag | quest 50400000 (Gatekeeper of the Dark World) / West Land of Darkness / "Unknown1=10, Unknown2=1" / SortieRoute=st3100 West Land of Darkness -> st3100 West Land of Darkness \| Unknown1=10 \| Unknown2=1 | Repeatable sortie registry; QuestId and Flag here define special q5 repeatable sortie entries and their gate flags.
-| ESI | 92 | client/03040008/game_common/quest/rEndContentsSortieInfo.esi.json | EndContentsSortieInfoTable[43].Flag | Flag | quest 50400001 ([Hard] Gatekeeper of the Dark World) / West Land of Darkness / "Unknown1=10, Unknown2=1" / SortieRoute=st3100 West Land of Darkness -> st3100 West Land of Darkness \| Unknown1=10 \| Unknown2=1 | Repeatable sortie registry; QuestId and Flag here define special q5 repeatable sortie entries and their gate flags.
-| ESI | 92 | client/03040008/game_common/quest/rEndContentsSortieInfo.esi.json | EndContentsSortieInfoTable[44].Flag | Flag | quest 50400002 (Blue Shadow Dancing in Revelry) / South Land of Darkness / "Unknown1=10, Unknown2=1" / SortieRoute=st3200 South Land of Darkness -> st3200 South Land of Darkness \| Unknown1=10 \| Unknown2=1 | Repeatable sortie registry; QuestId and Flag here define special q5 repeatable sortie entries and their gate flags.
-| ESI | 92 | client/03040008/game_common/quest/rEndContentsSortieInfo.esi.json | EndContentsSortieInfoTable[45].Flag | Flag | quest 50400003 ([Hard] Blue Shadow Dancing in Revelry) / South Land of Darkness / "Unknown1=10, Unknown2=1" / SortieRoute=st3200 South Land of Darkness -> st3200 South Land of Darkness \| Unknown1=10 \| Unknown2=1 | Repeatable sortie registry; QuestId and Flag here define special q5 repeatable sortie entries and their gate flags.
-| ESI | 92 | client/03040008/game_common/quest/rEndContentsSortieInfo.esi.json | EndContentsSortieInfoTable[46].Flag | Flag | quest 50400004 (Arisen of the Black Darkness) / East Land of Darkness / "Unknown1=10, Unknown2=1" / SortieRoute=st3300 East Land of Darkness -> st0010 st0010 Backdrop testing room -> st3300 East Land of Darkness \| Unknown1=10 \| Unknown2=1 | Repeatable sortie registry; QuestId and Flag here define special q5 repeatable sortie entries and their gate flags.
-| ESI | 92 | client/03040008/game_common/quest/rEndContentsSortieInfo.esi.json | EndContentsSortieInfoTable[47].Flag | Flag | quest 50400005 ([Hard] Arisen of the Black Darkness) / East Land of Darkness / "Unknown1=10, Unknown2=1" / SortieRoute=st3300 East Land of Darkness -> st0010 st0010 Backdrop testing room -> st3300 East Land of Darkness \| Unknown1=10 \| Unknown2=1 | Repeatable sortie registry; QuestId and Flag here define special q5 repeatable sortie entries and their gate flags.
-| ESI | 92 | client/03040008/game_common/quest/rEndContentsSortieInfo.esi.json | EndContentsSortieInfoTable[48].Flag | Flag | quest 50400006 (That Which Destroys Order) / North Land of Darkness / "Unknown1=10, Unknown2=1" / SortieRoute=st3400 North Land of Darkness -> st0010 st0010 Backdrop testing room -> st3400 North Land of Darkness \| Unknown1=10 \| Unknown2=1 | Repeatable sortie registry; QuestId and Flag here define special q5 repeatable sortie entries and their gate flags.
-| ESI | 92 | client/03040008/game_common/quest/rEndContentsSortieInfo.esi.json | EndContentsSortieInfoTable[49].Flag | Flag | quest 50400007 ([Hard] That Which Destroys Order) / North Land of Darkness / "Unknown1=10, Unknown2=1" / SortieRoute=st3400 North Land of Darkness -> st0010 st0010 Backdrop testing room -> st3400 North Land of Darkness \| Unknown1=10 \| Unknown2=1 \| Unknown3=True | Repeatable sortie registry; QuestId and Flag here define special q5 repeatable sortie entries and their gate flags.
-| ESI | 92 | client/03040008/game_common/quest/rEndContentsSortieInfo.esi.json | EndContentsSortieInfoTable[54].Flag | Flag | quest 50400012 (Restricted Stage: That Which Destroys Order) / North Land of Darkness / "Unknown1=10, Unknown2=1" / SortieRoute=st3400 North Land of Darkness -> st0015 st0015 Standard model room (field) -> st3400 North Land of Darkness \| Unknown1=10 \| Unknown2=1 \| Unknown3=True | Repeatable sortie registry; QuestId and Flag here define special q5 repeatable sortie entries and their gate flags.
+| ESI | Direct | 92 | link:../../../../client/03040008/game_common/quest/rEndContentsSortieInfo.esi.json#L937[client/03040008/game_common/quest/rEndContentsSortieInfo.esi.json#L937] | EndContentsSortieInfoTable[42].Flag | Flag | quest 50400000 (Gatekeeper of the Dark World) / West Land of Darkness / "Unknown1=10, Unknown2=1" / SortieRoute=st3100 West Land of Darkness -> st3100 West Land of Darkness \| Unknown1=10 \| Unknown2=1 | Repeatable sortie registry; QuestId and Flag here define special q5 repeatable sortie entries and their gate flags.
+| ESI | Direct | 92 | link:../../../../client/03040008/game_common/quest/rEndContentsSortieInfo.esi.json#L959[client/03040008/game_common/quest/rEndContentsSortieInfo.esi.json#L959] | EndContentsSortieInfoTable[43].Flag | Flag | quest 50400001 ([Hard] Gatekeeper of the Dark World) / West Land of Darkness / "Unknown1=10, Unknown2=1" / SortieRoute=st3100 West Land of Darkness -> st3100 West Land of Darkness \| Unknown1=10 \| Unknown2=1 | Repeatable sortie registry; QuestId and Flag here define special q5 repeatable sortie entries and their gate flags.
+| ESI | Direct | 92 | link:../../../../client/03040008/game_common/quest/rEndContentsSortieInfo.esi.json#L981[client/03040008/game_common/quest/rEndContentsSortieInfo.esi.json#L981] | EndContentsSortieInfoTable[44].Flag | Flag | quest 50400002 (Blue Shadow Dancing in Revelry) / South Land of Darkness / "Unknown1=10, Unknown2=1" / SortieRoute=st3200 South Land of Darkness -> st3200 South Land of Darkness \| Unknown1=10 \| Unknown2=1 | Repeatable sortie registry; QuestId and Flag here define special q5 repeatable sortie entries and their gate flags.
+| ESI | Direct | 92 | link:../../../../client/03040008/game_common/quest/rEndContentsSortieInfo.esi.json#L1003[client/03040008/game_common/quest/rEndContentsSortieInfo.esi.json#L1003] | EndContentsSortieInfoTable[45].Flag | Flag | quest 50400003 ([Hard] Blue Shadow Dancing in Revelry) / South Land of Darkness / "Unknown1=10, Unknown2=1" / SortieRoute=st3200 South Land of Darkness -> st3200 South Land of Darkness \| Unknown1=10 \| Unknown2=1 | Repeatable sortie registry; QuestId and Flag here define special q5 repeatable sortie entries and their gate flags.
+| ESI | Direct | 92 | link:../../../../client/03040008/game_common/quest/rEndContentsSortieInfo.esi.json#L1025[client/03040008/game_common/quest/rEndContentsSortieInfo.esi.json#L1025] | EndContentsSortieInfoTable[46].Flag | Flag | quest 50400004 (Arisen of the Black Darkness) / East Land of Darkness / "Unknown1=10, Unknown2=1" / SortieRoute=st3300 East Land of Darkness -> st0010 st0010 Backdrop testing room -> st3300 East Land of Darkness \| Unknown1=10 \| Unknown2=1 | Repeatable sortie registry; QuestId and Flag here define special q5 repeatable sortie entries and their gate flags.
+| ESI | Direct | 92 | link:../../../../client/03040008/game_common/quest/rEndContentsSortieInfo.esi.json#L1051[client/03040008/game_common/quest/rEndContentsSortieInfo.esi.json#L1051] | EndContentsSortieInfoTable[47].Flag | Flag | quest 50400005 ([Hard] Arisen of the Black Darkness) / East Land of Darkness / "Unknown1=10, Unknown2=1" / SortieRoute=st3300 East Land of Darkness -> st0010 st0010 Backdrop testing room -> st3300 East Land of Darkness \| Unknown1=10 \| Unknown2=1 | Repeatable sortie registry; QuestId and Flag here define special q5 repeatable sortie entries and their gate flags.
+| ESI | Direct | 92 | link:../../../../client/03040008/game_common/quest/rEndContentsSortieInfo.esi.json#L1077[client/03040008/game_common/quest/rEndContentsSortieInfo.esi.json#L1077] | EndContentsSortieInfoTable[48].Flag | Flag | quest 50400006 (That Which Destroys Order) / North Land of Darkness / "Unknown1=10, Unknown2=1" / SortieRoute=st3400 North Land of Darkness -> st0010 st0010 Backdrop testing room -> st3400 North Land of Darkness \| Unknown1=10 \| Unknown2=1 | Repeatable sortie registry; QuestId and Flag here define special q5 repeatable sortie entries and their gate flags.
+| ESI | Direct | 92 | link:../../../../client/03040008/game_common/quest/rEndContentsSortieInfo.esi.json#L1103[client/03040008/game_common/quest/rEndContentsSortieInfo.esi.json#L1103] | EndContentsSortieInfoTable[49].Flag | Flag | quest 50400007 ([Hard] That Which Destroys Order) / North Land of Darkness / "Unknown1=10, Unknown2=1" / SortieRoute=st3400 North Land of Darkness -> st0010 st0010 Backdrop testing room -> st3400 North Land of Darkness \| Unknown1=10 \| Unknown2=1 \| Unknown3=True | Repeatable sortie registry; QuestId and Flag here define special q5 repeatable sortie entries and their gate flags.
+| ESI | Direct | 92 | link:../../../../client/03040008/game_common/quest/rEndContentsSortieInfo.esi.json#L1201[client/03040008/game_common/quest/rEndContentsSortieInfo.esi.json#L1201] | EndContentsSortieInfoTable[54].Flag | Flag | quest 50400012 (Restricted Stage: That Which Destroys Order) / North Land of Darkness / "Unknown1=10, Unknown2=1" / SortieRoute=st3400 North Land of Darkness -> st0015 st0015 Standard model room (field) -> st3400 North Land of Darkness \| Unknown1=10 \| Unknown2=1 \| Unknown3=True | Repeatable sortie registry; QuestId and Flag here define special q5 repeatable sortie entries and their gate flags.
 |===
 
 == Quest ID 50400002
@@ -71,10 +139,10 @@ ranked candidates:: *0*
 
 ==== direct -- 1 hit(s)
 
-[cols="1,1,3,3,2,3,3",options="header"]
+[cols="1,1,1,3,3,2,3,3",options="header"]
 |===
-| Family | Confidence | File | JSON Path | Field | Context | Why
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
 
-| ESI | 92 | client/03040008/game_common/quest/rEndContentsSortieInfo.esi.json | EndContentsSortieInfoTable[44].QuestId | QuestId | quest 50400002 (Blue Shadow Dancing in Revelry) / South Land of Darkness / "Unknown1=10, Unknown2=1, Flag=16777216" / SortieRoute=st3200 South Land of Darkness -> st3200 South Land of Darkness \| Unknown1=10 \| Unknown2=1 | Repeatable sortie registry; QuestId and Flag here define special q5 repeatable sortie entries and their gate flags.
+| ESI | Direct | 92 | link:../../../../client/03040008/game_common/quest/rEndContentsSortieInfo.esi.json#L982[client/03040008/game_common/quest/rEndContentsSortieInfo.esi.json#L982] | EndContentsSortieInfoTable[44].QuestId | QuestId | quest 50400002 (Blue Shadow Dancing in Revelry) / South Land of Darkness / "Unknown1=10, Unknown2=1, Flag=16777216" / SortieRoute=st3200 South Land of Darkness -> st3200 South Land of Darkness \| Unknown1=10 \| Unknown2=1 | Repeatable sortie registry; QuestId and Flag here define special q5 repeatable sortie entries and their gate flags.
 |===
 

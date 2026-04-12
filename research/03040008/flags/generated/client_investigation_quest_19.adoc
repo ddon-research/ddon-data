@@ -5,9 +5,294 @@
 
 Query mode:: quest
 Query value:: 19
-Generated at:: 2026-04-11T21:41:40.491893+00:00
+Generated at:: 2026-04-12T12:43:28.485699+00:00
 
 toc::[]
+
+Quest family:: q0 -- Main Quest
+Quest family notes:: Story progression quests and adjacent mainline quest-state flows.
+Quest family focus:: local_stage_topology_plus_external_dependencies
+
+== External Owner Indexes
+
+_These are reusable external owner catalogs inferred from stage-neighborhood cues. They are broader than the subset of flags promoted into derived dependency targets._
+
+[cols="2,1,1,2,2,2,4",options="header"]
+|===
+| Owner Quest | Family | Catalog Count | Catalog Flags | Linked Cues | Cue Sources | Why
+
+| 60310000 | q6 | 7 | 6970, 6972, 6973, 6974, 6975, 6976, 6984 | 6972 | gpl | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70000001 | q7 | 70 | 1098, 1103, 1104, 1105, 1106, 1109, 1110, 1111, 1112, 1113, 1114, 1115 +58 more | 1109, 1110, 1111, 1112, 1150, 1201, 1215, 1216 +39 more | evsi, gpl | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70001001 | q7 | 0 |  | 1851, 1954, 1955 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70002001 | q7 | 47 | 1098, 1103, 1104, 1105, 1106, 1109, 1110, 1111, 1112, 1113, 1114, 1115 +35 more | 1113, 1114, 1115, 1117, 1295, 1601, 3859, 3860 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70003001 | q7 | 49 | 1098, 1103, 1104, 1105, 1106, 1109, 1110, 1111, 1112, 1113, 1114, 1115 +37 more | 1098, 1103, 1104, 1105, 1106, 1119, 1120, 1121 +13 more | evsi, gpl | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70020001 | q7 | 8 | 2736, 3000, 3002, 3003, 3074, 3442, 3805, 4037 | 2736, 3000, 3001, 3002, 3003, 3074, 3442, 3805 +1 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70021001 | q7 | 4 | 3278, 3650, 3753, 3861 | 3278, 3650, 3753 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70022001 | q7 | 17 | 3949, 3950, 3952, 3953, 3954, 3977, 4033, 4043, 4053, 4063, 4470, 4555 +5 more | 3949, 3950, 3952, 3953, 3954, 3977, 4033, 4043 +7 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70023001 | q7 | 15 | 4066, 4067, 4372, 4373, 4500, 4506, 4507, 4508, 4511, 4512, 4515, 4516 +3 more | 4066, 4372, 4373, 4500, 4506, 4507, 4508, 4511 +6 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70030001 | q7 | 46 | 5396, 5397, 5407, 5552, 5557, 5558, 5581, 5584, 5587, 5588, 5589, 5614 +34 more | 5396, 5397, 5407, 5552, 5557, 5558, 5584, 5587 +35 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70031001 | q7 | 8 | 5553, 5672, 6138, 6194, 6195, 6377, 6425, 7316 | 5553, 5672, 6138, 6194, 6195, 6377, 7316 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70032001 | q7 | 37 | 7169, 7240, 7241, 7336, 7341, 7342, 7386, 7387, 7388, 7389, 7390, 7438 +25 more | 7169, 7240, 7241, 7336, 7341, 7342, 7386, 7388 +27 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70033001 | q7 | 43 | 7826, 7827, 7876, 7888, 7889, 7916, 7917, 7954, 7955, 7965, 7966, 7967 +31 more | 7826, 7827, 7876, 7888, 7889, 7917, 7954, 7955 +33 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70034001 | q7 | 3 | 8486, 8630, 8631 | 8486 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+|===
+
+== Derived External Dependency Targets
+
+_These are the promoted subset of external owner-index entries. A flag appears here only when it passes the current family-specific dependency promotion rules for this quest._
+
+[cols="2,1,1,2,2,4",options="header"]
+|===
+| Owner Quest | Family | Flag Count | Flags | Sources | Why
+
+| 60310000 | q6 | 1 | 6972 | gpl | Filtered GPL-backed q6 stage-neighborhood cues intersect the owner q6 quest's client-derived layout catalog built from self-owned client evidence.
+| 70000001 | q7 | 21 | 1109, 1111, 1215, 1218, 1219, 1251, 1261, 1263, 1293, 1294, 1297, 1298 +9 more | evsi, gpl | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70002001 | q7 | 3 | 1113, 1295, 3859 | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70003001 | q7 | 20 | 1098, 1103, 1104, 1105, 1119, 1120, 1121, 1122, 1123, 1124, 1202, 1203 +8 more | evsi, gpl | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70020001 | q7 | 5 | 2736, 3000, 3003, 3074, 3805 | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70021001 | q7 | 2 | 3278, 3753 | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70022001 | q7 | 9 | 3949, 3952, 3953, 3954, 3977, 4033, 4556, 4803, 4968 | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70023001 | q7 | 9 | 4066, 4373, 4500, 4506, 4508, 4512, 4515, 4517, 4973 | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70030001 | q7 | 17 | 5396, 5397, 5407, 5558, 5588, 5635, 5637, 5642, 5658, 5706, 5708, 6196 +5 more | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70031001 | q7 | 4 | 5553, 6138, 6195, 6377 | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70032001 | q7 | 19 | 7241, 7336, 7342, 7390, 7438, 7440, 7497, 7498, 7514, 7545, 7550, 7552 +7 more | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70033001 | q7 | 25 | 7826, 7827, 7876, 7954, 7955, 7966, 7968, 7972, 8016, 8033, 8034, 8035 +13 more | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70034001 | q7 | 1 | 8486 | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+|===
+
+== Family Relationship Context
+
+_These sections summarize deterministic client-side family metadata and reverse-index relationships. They are context for later owner/dependency inference, not direct quest-target promotion._
+
+=== Quest Sequence
+
+* seq no: 17
+* previous: 18 -- The Ark, Once More
+* next: 20 -- The Entrusted Future
+
+== ARC Association Context
+
+_ARC associations are contextual only. They show which quest-stage and marker resources are bundled with this quest._
+
+* arc file: link:../../../../client/03040008/quest/q00000019.arc.json#L1[client/03040008/quest/q00000019.arc.json#L1]
+* resource count: 13
+* stage codes: st0100, st0201
+* resource families: .fmi, .gmd, .mss, .qmi, .qst, .qtd
+
+=== st0100 -- Lestania
+
+* rQuestList: quest/00000019/q00000019_st0100
+* rQuestMarkerInfo: quest/00000019/st0100_marker_om
+* rQuestMarkerInfo: quest/00000019/st0100_marker_npc
+
+=== st0201 -- Audience Chamber
+
+* rQuestMarkerInfo: quest/00000019/st0201_marker_npc
+* rQuestList: quest/00000019/q00000019_st0201
+
+=== unclassified
+
+* rGUIMessage: ui/00_message/quest/q00000019
+* rGUIMessage: ui/00_message/quest_info/q00000019_00
+* rQuestTextData: ui/00_param/quest_text/q00000019_00
+* rMsgSet: ui/00_message/examine_message/quest/quest_examine_q00000019
+* rMsgSet: ui/00_message/quest/q00000019
+* rFieldAreaMarkerInfo: quest/00000019/fa001_marker_npc
+* rFieldAreaMarkerInfo: quest/00000019/fa001_marker_om
+* rGUIMessage: ui/00_message/examine_message/quest/quest_examine_q00000019
+
+== Stage Neighborhood Context
+
+_Stage-neighborhood context summarizes scanner-relevant client files that share the quest's archive stage codes. This is deterministic client topology, not inferred ownership._
+
+* scanner-relevant stage files: 3336
+* indexed stage codes: st0100, st0201
+
+=== st0100 -- Lestania
+
+* scanner files: 2642
+* .evsi.json: 24
+* .fsm.json: 212
+* .gpl.json: 5
+* .lot.json: 2162
+* .qmi.json: 137
+* .qst.json: 102
+
+=== st0201 -- Audience Chamber
+
+* scanner files: 694
+* .evsi.json: 50
+* .fsm.json: 433
+* .gpl.json: 3
+* .lot.json: 64
+* .qmi.json: 75
+* .qst.json: 69
+
+== Stage Neighborhood External-State Cues
+
+_These cues are deterministic client-side observations from the quest's stage neighborhood. They are not promoted to direct quest targets yet; they highlight q6/q7-owned external state values co-located in the quest's archive stages._
+
+* cue count: 248
+* owner families: q6, q7
+
+[cols="1,1,1,2,2,2",options="header"]
+|===
+| Value | Kind | Hits | Sources | Owners | Stages
+
+| Flag 1106 | layout_flag | 74 | evsi | 70003001 | st0100, st0201
+| Flag 1115 | layout_flag | 74 | evsi | 70002001 | st0100, st0201
+| Flag 1117 | layout_flag | 74 | evsi | 70002001 | st0100, st0201
+| Flag 1150 | layout_flag | 74 | evsi | 70000001 | st0100, st0201
+| Flag 1851 | layout_flag | 74 | evsi | 70001001 | st0100, st0201
+| Flag 2208 | layout_flag | 74 | evsi | 70000001 | st0100, st0201
+| Flag 2380 | layout_flag | 74 | evsi | 70000001 | st0100, st0201
+| Flag 3950 | layout_flag | 74 | evsi | 70022001 | st0100, st0201
+| Flag 5589 | layout_flag | 74 | evsi | 70030001 | st0100, st0201
+| Flag 5614 | layout_flag | 74 | evsi | 70030001 | st0100, st0201
+| Flag 5632 | layout_flag | 74 | evsi | 70030001 | st0100, st0201
+| Flag 6469 | layout_flag | 74 | evsi | 70030001 | st0100, st0201
+| Flag 6470 | layout_flag | 74 | evsi | 70030001 | st0100, st0201
+| Flag 6471 | layout_flag | 74 | evsi | 70030001 | st0100, st0201
+| Flag 6472 | layout_flag | 74 | evsi | 70030001 | st0100, st0201
+| Flag 6473 | layout_flag | 74 | evsi | 70030001 | st0100, st0201
+| Flag 6474 | layout_flag | 74 | evsi | 70030001 | st0100, st0201
+| Flag 7316 | layout_flag | 74 | evsi | 70031001 | st0100, st0201
+| Flag 8066 | layout_flag | 74 | evsi | 70033001 | st0100, st0201
+| Flag 1217 | layout_flag | 73 | evsi | 70000001 | st0100, st0201
+| Flag 1221 | layout_flag | 73 | evsi | 70000001 | st0100, st0201
+| Flag 1954 | layout_flag | 73 | evsi | 70001001 | st0100, st0201
+| Flag 1201 | layout_flag | 72 | evsi | 70000001 | st0100, st0201
+| Flag 1216 | layout_flag | 72 | evsi | 70000001 | st0100, st0201
+| Flag 1224 | layout_flag | 72 | evsi | 70000001 | st0100, st0201
+| Flag 5557 | layout_flag | 70 | evsi | 70030001 | st0100, st0201
+| Flag 7496 | layout_flag | 70 | evsi | 70032001 | st0100, st0201
+| Flag 1222 | layout_flag | 69 | evsi | 70000001 | st0100, st0201
+| Flag 7888 | layout_flag | 69 | evsi | 70033001 | st0100, st0201
+| Flag 7889 | layout_flag | 69 | evsi | 70033001 | st0100, st0201
+|===
+
+== Bounded Graph Expansion
+
+_This graph summarizes bounded deterministic and inferred edges around the quest: quest archive stages, direct source families, stage-linked owner catalogs, promoted dependencies, reverse-index event/group links, and family-specific table edges._
+
+* max depth: 3
+* node count: 931
+* edge count: 1853
+* node kinds: direct_family=4, event_viewer=892, family_context=1, lot_file=4, owner_quest=14, quest=1, sequence_quest=2, stage=2, stage_group=11
+* derivation: Dependency=13, Direct=19, Graph=2711, Owner Index=41
+
+=== Mermaid Graph Slice
+
+_This Mermaid flowchart shows a capped slice of the bounded graph so large quest reports stay readable while still exposing the graph structure._
+
+[mermaid]
+....
+flowchart TD
+    node_quest_19["Quest 19"]
+    node_direct_family_evsi["evsi direct hits (2)"]
+    node_direct_family_fsm["fsm direct hits (2)"]
+    node_direct_family_qst["qst direct hits (9)"]
+    node_direct_family_smc["smc direct hits (17)"]
+    node_family_context_quest_sequence["Quest Sequence"]
+    node_stage_st0100["st0100 -- Lestania"]
+    node_stage_st0201["st0201 -- Audience Chamber"]
+    node_event_viewer_st0100_ev010_70001001["Event st0100/ev010"]
+    node_event_viewer_st0100_ev010_70000001["Event st0100/ev010"]
+    node_owner_quest_60310000["Owner quest 60310000 (q6)"]
+    node_owner_quest_70000001["Owner quest 70000001 (q7)"]
+    node_owner_quest_70002001["Owner quest 70002001 (q7)"]
+    node_owner_quest_70003001["Owner quest 70003001 (q7)"]
+    node_owner_quest_70020001["Owner quest 70020001 (q7)"]
+    node_owner_quest_70021001["Owner quest 70021001 (q7)"]
+    node_owner_quest_70022001["Owner quest 70022001 (q7)"]
+    node_owner_quest_70023001["Owner quest 70023001 (q7)"]
+    node_owner_quest_70030001["Owner quest 70030001 (q7)"]
+    node_owner_quest_70031001["Owner quest 70031001 (q7)"]
+    node_owner_quest_70032001["Owner quest 70032001 (q7)"]
+    node_owner_quest_70033001["Owner quest 70033001 (q7)"]
+    node_owner_quest_70034001["Owner quest 70034001 (q7)"]
+    node_sequence_quest_18["Quest 18"]
+    node_sequence_quest_20["Quest 20"]
+    node_quest_19 -->|direct_source_family| node_direct_family_evsi
+    node_quest_19 -->|direct_source_family| node_direct_family_fsm
+    node_quest_19 -->|direct_source_family| node_direct_family_qst
+    node_quest_19 -->|direct_source_family| node_direct_family_smc
+    node_quest_19 -->|family:quest_sequence| node_family_context_quest_sequence
+    node_quest_19 -->|quest_archive_stage| node_stage_st0100
+    node_quest_19 -->|quest_archive_stage| node_stage_st0201
+    node_quest_19 -->|promoted_dependency| node_owner_quest_60310000
+    node_quest_19 -->|promoted_dependency| node_owner_quest_70000001
+    node_quest_19 -->|promoted_dependency| node_owner_quest_70002001
+    node_quest_19 -->|promoted_dependency| node_owner_quest_70003001
+    node_quest_19 -->|promoted_dependency| node_owner_quest_70020001
+    node_quest_19 -->|promoted_dependency| node_owner_quest_70021001
+    node_quest_19 -->|promoted_dependency| node_owner_quest_70022001
+    node_quest_19 -->|promoted_dependency| node_owner_quest_70023001
+    node_quest_19 -->|promoted_dependency| node_owner_quest_70030001
+    node_quest_19 -->|promoted_dependency| node_owner_quest_70031001
+    node_quest_19 -->|promoted_dependency| node_owner_quest_70032001
+    node_quest_19 -->|promoted_dependency| node_owner_quest_70033001
+    node_quest_19 -->|promoted_dependency| node_owner_quest_70034001
+    node_family_context_quest_sequence -->|sequence_next| node_sequence_quest_20
+    node_family_context_quest_sequence -->|sequence_previous| node_sequence_quest_18
+    node_stage_st0100 -->|stage_event_viewer| node_event_viewer_st0100_ev010_70000001
+    node_stage_st0100 -->|stage_event_viewer| node_event_viewer_st0100_ev010_70001001
+    classDef direct_deterministic fill:#e8f5e9,stroke:#2e7d32,stroke-width:1px
+    classDef owner_index fill:#e3f2fd,stroke:#1565c0,stroke-width:1px
+    classDef dependency_inferred fill:#fff3e0,stroke:#ef6c00,stroke-width:1px
+    classDef graph_expanded fill:#f3e5f5,stroke:#7b1fa2,stroke-width:1px
+    classDef lower_confidence fill:#fbe9e7,stroke:#d84315,stroke-width:1px
+    classDef binary_auxiliary fill:#eceff1,stroke:#455a64,stroke-width:1px
+    class node_quest_19,node_direct_family_evsi,node_direct_family_fsm,node_direct_family_qst,node_direct_family_smc,node_family_context_quest_sequence,node_stage_st0100,node_stage_st0201,node_sequence_quest_18,node_sequence_quest_20 direct_deterministic
+    class node_owner_quest_60310000,node_owner_quest_70000001,node_owner_quest_70002001,node_owner_quest_70003001,node_owner_quest_70020001,node_owner_quest_70021001,node_owner_quest_70022001,node_owner_quest_70023001,node_owner_quest_70030001,node_owner_quest_70031001,node_owner_quest_70032001,node_owner_quest_70033001,node_owner_quest_70034001 owner_index
+    class node_event_viewer_st0100_ev010_70001001,node_event_viewer_st0100_ev010_70000001 graph_expanded
+....
+
+[cols="1,2,2,2,2,4",options="header"]
+|===
+| Depth | Edge | From | To | Derivation | Why
+
+| 1 | direct_source_family | quest:19 | direct-family:evsi | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | direct_source_family | quest:19 | direct-family:fsm | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | direct_source_family | quest:19 | direct-family:qst | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | direct_source_family | quest:19 | direct-family:smc | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | family_context:quest_sequence | quest:19 | family-context:quest_sequence | Direct | Family-specific decoded tables provide deterministic context for this quest.
+| 1 | quest_archive_stage | quest:19 | stage:st0100 | Direct | Quest archive topology directly links this quest to the stage code.
+| 1 | quest_archive_stage | quest:19 | stage:st0201 | Direct | Quest archive topology directly links this quest to the stage code.
+| 2 | promoted_dependency | quest:19 | owner-quest:60310000 | Dependency | Filtered GPL-backed q6 stage-neighborhood cues intersect the owner q6 quest's client-derived layout catalog built from self-owned client evidence.
+| 2 | promoted_dependency | quest:19 | owner-quest:70000001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:19 | owner-quest:70002001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:19 | owner-quest:70003001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:19 | owner-quest:70020001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:19 | owner-quest:70021001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:19 | owner-quest:70022001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:19 | owner-quest:70023001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:19 | owner-quest:70030001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:19 | owner-quest:70031001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:19 | owner-quest:70032001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:19 | owner-quest:70033001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:19 | owner-quest:70034001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | sequence_next | family-context:quest_sequence | sequence-quest:20 | Direct | QuestSequence links this quest to its neighboring sequence quest.
+| 2 | sequence_previous | family-context:quest_sequence | sequence-quest:18 | Direct | QuestSequence links this quest to its neighboring sequence quest.
+| 2 | stage_event_viewer | stage:st0100 | event-viewer:st0100:ev010:70000001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0100 | event-viewer:st0100:ev010:70001001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0100 | event-viewer:st0100:ev010:70002001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0100 | event-viewer:st0100:ev010:70003001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0100 | event-viewer:st0100:ev010:70020001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0100 | event-viewer:st0100:ev010:70021001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0100 | event-viewer:st0100:ev010:70022001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0100 | event-viewer:st0100:ev010:70023001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0100 | event-viewer:st0100:ev010:70030001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0100 | event-viewer:st0100:ev010:70031001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0100 | event-viewer:st0100:ev010:70032001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0100 | event-viewer:st0100:ev010:70033001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0100 | event-viewer:st0100:ev015:70000001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0100 | event-viewer:st0100:ev015:70001001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0100 | event-viewer:st0100:ev015:70002001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0100 | event-viewer:st0100:ev015:70003001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0100 | event-viewer:st0100:ev015:70020001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0100 | event-viewer:st0100:ev015:70021001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+|===
 
 == Flag Summary Matrix
 
@@ -15,12 +300,94 @@ toc::[]
 |===
 | Target | Kind | Hits | Sources | Stages | Relationships | Description
 
+| Flag 274 | layout_flag | 3 | evsi, qst | st0100 | 🎬 Event State, ⚡ Quest Condition, ❌ Quest Erase | QST local: st0100 \| QuestGroup 1
+| Flag 971 | layout_flag | 2 | qst | st0100 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0100 \| QuestGroup 2
+| Flag 1017 | layout_flag | 2 | qst | st0100 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0100 \| QuestGroup 3
+| Flag 1243 | layout_flag | 3 | evsi, qst | st0100, st0201 | 🎬 Event State, ⚡ Quest Condition, ❌ Quest Erase | QST local: st0201 \| QuestGroup 1
 | Quest ID 19 | quest_id | 20 | fsm, qst, smc | st0100 | 🔍 FSM Check, ✏️ FSM Set, 🗣️ NPC Chatter +1 | Derived quest-wide association scan
 |===
 
 == Known Documented Targets
 
+* quest 19 -- Flag 274 -- QST local: st0100 | QuestGroup 1
+* quest 19 -- Flag 971 -- QST local: st0100 | QuestGroup 2
+* quest 19 -- Flag 1017 -- QST local: st0100 | QuestGroup 3
+* quest 19 -- Flag 1243 -- QST local: st0201 | QuestGroup 1
 * Quest ID 19 -- Derived quest-wide association scan [Derived]
+
+== Flag 274 -- Quest 19
+
+origin:: derived_qst_local
+direct hits:: *3*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 3 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00000019/quest/00000019/q00000019_st0100.qst.json[client/03040008/quest/q00000019/quest/00000019/q00000019_st0100.qst.json] | QuestStageList[].QuestGrp[0].Condition | Condition | quest 19 / Lestania / "QuestGroup 1" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=18 \| TextType=2 \| TextQuestNo=19 \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00000019/quest/00000019/q00000019_st0100.qst.json[client/03040008/quest/q00000019/quest/00000019/q00000019_st0100.qst.json] | QuestStageList[].QuestGrp[0].EraseCondition | EraseCondition | quest 19 / Lestania / "QuestGroup 1" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=18 \| TextType=2 \| TextQuestNo=19 \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0100/view_st0100ev071/event/viewer/view_st0100ev071.evsi.json#L269[client/03040008/event/st0100/view_st0100ev071/event/viewer/view_st0100ev071.evsi.json#L269] | LayoutFlagArray[1].FlagNo | FlagNo | quest 19 (Thinking of a Friend) / Lestania / Event Viewer \| EVENT_NAME_st0100ev071 \| Farewell to Iris | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+|===
+
+== Flag 971 -- Quest 19
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00000019/quest/00000019/q00000019_st0100.qst.json[client/03040008/quest/q00000019/quest/00000019/q00000019_st0100.qst.json] | QuestStageList[].QuestGrp[1].Condition | Condition | quest 19 / Lestania / "QuestGroup 2" / QuestSet=QuestSetInfoOm \| om522420 \| GroupNo=2 \|\| QuestSet=QuestSetInfoOm \| om522420 \| GroupNo=2 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00000019/quest/00000019/q00000019_st0100.qst.json[client/03040008/quest/q00000019/quest/00000019/q00000019_st0100.qst.json] | QuestStageList[].QuestGrp[1].EraseCondition | EraseCondition | quest 19 / Lestania / "QuestGroup 2" / QuestSet=QuestSetInfoOm \| om522420 \| GroupNo=2 \|\| QuestSet=QuestSetInfoOm \| om522420 \| GroupNo=2 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 1017 -- Quest 19
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00000019/quest/00000019/q00000019_st0100.qst.json[client/03040008/quest/q00000019/quest/00000019/q00000019_st0100.qst.json] | QuestStageList[].QuestGrp[2].Condition | Condition | quest 19 / Lestania / "QuestGroup 3" / QuestSet=QuestSetInfoNpc \| GroupNo=3 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00000019/quest/00000019/q00000019_st0100.qst.json[client/03040008/quest/q00000019/quest/00000019/q00000019_st0100.qst.json] | QuestStageList[].QuestGrp[2].EraseCondition | EraseCondition | quest 19 / Lestania / "QuestGroup 3" / QuestSet=QuestSetInfoNpc \| GroupNo=3 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 1243 -- Quest 19
+
+origin:: derived_qst_local
+direct hits:: *3*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 3 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00000019/quest/00000019/q00000019_st0201.qst.json[client/03040008/quest/q00000019/quest/00000019/q00000019_st0201.qst.json] | QuestStageList[].QuestGrp[0].Condition | Condition | quest 19 / Audience Chamber / "QuestGroup 1" / QuestSet=QuestSetInfoNpc \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00000019/quest/00000019/q00000019_st0201.qst.json[client/03040008/quest/q00000019/quest/00000019/q00000019_st0201.qst.json] | QuestStageList[].QuestGrp[0].EraseCondition | EraseCondition | quest 19 / Audience Chamber / "QuestGroup 1" / QuestSet=QuestSetInfoNpc \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0100/view_st0100ev071/event/viewer/view_st0100ev071.evsi.json#L277[client/03040008/event/st0100/view_st0100ev071/event/viewer/view_st0100ev071.evsi.json#L277] | LayoutFlagArray[2].FlagNo | FlagNo | quest 19 (Thinking of a Friend) / Lestania / Event Viewer \| EVENT_NAME_st0100ev071 \| Farewell to Iris | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+|===
 
 == Quest ID 19
 
@@ -32,37 +399,37 @@ ranked candidates:: *0*
 
 ==== direct -- 18 hit(s)
 
-[cols="1,1,3,3,2,3,3",options="header"]
+[cols="1,1,1,3,3,2,3,3",options="header"]
 |===
-| Family | Confidence | File | JSON Path | Field | Context | Why
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
 
-| QST | 92 | client/03040008/quest/q00000019/quest/00000019/q00000019_st0100.qst.json | QuestStageList[].QuestGrp[0].QuestSet[0].TextQuestNo | TextQuestNo | quest 19 / Lestania / "QuestGroup 1 \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=18 \| TextType=2 \| TextQuestNo=19 \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
-| SMC | 92 | client/03040008/npc/n0002/ui/00_message/npc/base/n0002.smc.json | SituationData.EndQuestId | EndQuestId | quest 19 (Thinking of a Friend) / Mysial / GroupSerial=12665 / "GroupSerial=12665, QuestWindow=18-19 (The Ark, Once More -> Thinking of a Friend), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0002 \| Quest-gated NPC chatter \| QuestWindow=18-19 (The Ark, Once More -> Thinking of a Friend) / MSS: Mysial / I heard about Iris— | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0002/ui/00_message/npc/base/n0002.smc.json | SituationData.StartQuestId | StartQuestId | quest 19 (Thinking of a Friend) / Mysial / GroupSerial=12666 / "GroupSerial=12666, QuestWindow=19-29 (Thinking of a Friend -> The Beast's Final Moments), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0002 \| Quest-gated NPC chatter \| QuestWindow=19-29 (Thinking of a Friend -> The Beast's Final Moments) / MSS: Mysial / The enemy is Diamantes— | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json | SituationData.EndQuestId | EndQuestId | quest 19 (Thinking of a Friend) / Klaus / GroupSerial=12700 / "GroupSerial=12700, QuestWindow=18-19 (The Ark, Once More -> Thinking of a Friend), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0003 \| Quest-gated NPC chatter \| QuestWindow=18-19 (The Ark, Once More -> Thinking of a Friend) / MSS: Klaus / That's queer—I was in charge of investigating | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json | SituationData.StartQuestId | StartQuestId | quest 19 (Thinking of a Friend) / Klaus / GroupSerial=12701 / "GroupSerial=12701, QuestWindow=19-29 (Thinking of a Friend -> The Beast's Final Moments), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0003 \| Quest-gated NPC chatter \| QuestWindow=19-29 (Thinking of a Friend -> The Beast's Final Moments) / MSS: Klaus / I am indeed a descendant of an alchemist, but | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json | SituationData.EndQuestId | EndQuestId | quest 19 (Thinking of a Friend) / Joseph / GroupSerial=12743 / "GroupSerial=12743, QuestWindow=18-19 (The Ark, Once More -> Thinking of a Friend), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window end" / NpcChatter=n0004 \| Quest-gated NPC chatter \| QuestWindow=18-19 (The Ark, Once More -> Thinking of a Friend) / MSS: Joseph / Is Leo here yet? We need to discuss future plans | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json | SituationData.StartQuestId | StartQuestId | quest 19 (Thinking of a Friend) / Joseph / GroupSerial=12744 / "GroupSerial=12744, QuestWindow=19-29 (Thinking of a Friend -> The Beast's Final Moments), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window start" / NpcChatter=n0004 \| Quest-gated NPC chatter \| QuestWindow=19-29 (Thinking of a Friend -> The Beast's Final Moments) / MSS: Joseph / Leave the strategy for the Ark to me - Now, go | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0005/ui/00_message/npc/base/n0005.smc.json | SituationData.StartQuestId | StartQuestId | quest 19 (Thinking of a Friend) / Leo / GroupSerial=12926 / "GroupSerial=12926, QuestWindow=19-29 (Thinking of a Friend -> The Beast's Final Moments), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0005 \| Quest-gated NPC chatter \| QuestWindow=19-29 (Thinking of a Friend -> The Beast's Final Moments) / MSS: Leo / As an Arisen, I have never sought anything in | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0007/ui/00_message/npc/base/n0007.smc.json | SituationData.EndQuestId | EndQuestId | quest 19 (Thinking of a Friend) / Gerd / GroupSerial=12965 / "GroupSerial=12965, QuestWindow=18-19 (The Ark, Once More -> Thinking of a Friend), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0007 \| Quest-gated NPC chatter \| QuestWindow=18-19 (The Ark, Once More -> Thinking of a Friend) / MSS: Gerd / I hear you were close to Iris... | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0007/ui/00_message/npc/base/n0007.smc.json | SituationData.StartQuestId | StartQuestId | quest 19 (Thinking of a Friend) / Gerd / GroupSerial=12967 / "GroupSerial=12967, QuestWindow=19-29 (Thinking of a Friend -> The Beast's Final Moments), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0007 \| Quest-gated NPC chatter \| QuestWindow=19-29 (Thinking of a Friend -> The Beast's Final Moments) / MSS: Gerd / Iris is one of the most popular Arisen among the Knights. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0008/ui/00_message/npc/base/n0008.smc.json | SituationData.EndQuestId | EndQuestId | quest 19 (Thinking of a Friend) / Heinz / GroupSerial=13010 / "GroupSerial=13010, QuestWindow=18-19 (The Ark, Once More -> Thinking of a Friend), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0008 \| Quest-gated NPC chatter \| QuestWindow=18-19 (The Ark, Once More -> Thinking of a Friend) / MSS: Heinz / Is it true that Iris appeared in the second Ark? | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0008/ui/00_message/npc/base/n0008.smc.json | SituationData.StartQuestId | StartQuestId | quest 19 (Thinking of a Friend) / Heinz / GroupSerial=13011 / "GroupSerial=13011, QuestWindow=19-29 (Thinking of a Friend -> The Beast's Final Moments), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window start" / NpcChatter=n0008 \| Quest-gated NPC chatter \| QuestWindow=19-29 (Thinking of a Friend -> The Beast's Final Moments) / MSS: Heinz / Since they're forming an Ark destruction squad,  | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0011/ui/00_message/npc/base/n0011.smc.json | SituationData.EndQuestId | EndQuestId | quest 19 (Thinking of a Friend) / Vanessa / GroupSerial=13081 / "GroupSerial=13081, QuestWindow=18-19 (The Ark, Once More -> Thinking of a Friend), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0011 \| Quest-gated NPC chatter \| QuestWindow=18-19 (The Ark, Once More -> Thinking of a Friend) / MSS: Vanessa / This fort, which used to be the front line, | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0011/ui/00_message/npc/base/n0011.smc.json | SituationData.StartQuestId | StartQuestId | quest 19 (Thinking of a Friend) / Vanessa / GroupSerial=13082 / "GroupSerial=13082, QuestWindow=19-29 (Thinking of a Friend -> The Beast's Final Moments), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0011 \| Quest-gated NPC chatter \| QuestWindow=19-29 (Thinking of a Friend -> The Beast's Final Moments) / MSS: Vanessa / Do you know where Iris is? It might be better to | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0012/ui/00_message/npc/base/n0012.smc.json | SituationData.EndQuestId | EndQuestId | quest 19 (Thinking of a Friend) / Fabio / GroupSerial=13992 / "GroupSerial=13992, QuestWindow=18-19 (The Ark, Once More -> Thinking of a Friend), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0012 \| Quest-gated NPC chatter \| QuestWindow=18-19 (The Ark, Once More -> Thinking of a Friend) / MSS: Fabio / The Arisen has to take care of the Arisen's | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0012/ui/00_message/npc/base/n0012.smc.json | SituationData.StartQuestId | StartQuestId | quest 19 (Thinking of a Friend) / Fabio / GroupSerial=13993 / "GroupSerial=13993, QuestWindow=19-29 (Thinking of a Friend -> The Beast's Final Moments), IsStartQuestIdStart=True, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0012 \| Quest-gated NPC chatter \| QuestWindow=19-29 (Thinking of a Friend -> The Beast's Final Moments) / MSS: Fabio / I'll be here for a while, as I don't have any | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0014/ui/00_message/npc/base/n0014.smc.json | SituationData.EndQuestId | EndQuestId | quest 19 (Thinking of a Friend) / Mayleaf / GroupSerial=13119 / "GroupSerial=13119, QuestWindow=18-19 (The Ark, Once More -> Thinking of a Friend), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0014 \| Quest-gated NPC chatter \| QuestWindow=18-19 (The Ark, Once More -> Thinking of a Friend) / MSS: Mayleaf / I feel like something scary is about to happen— | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0014/ui/00_message/npc/base/n0014.smc.json | SituationData.StartQuestId | StartQuestId | quest 19 (Thinking of a Friend) / Mayleaf / GroupSerial=13120 / "GroupSerial=13120, QuestWindow=19-29 (Thinking of a Friend -> The Beast's Final Moments), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0014 \| Quest-gated NPC chatter \| QuestWindow=19-29 (Thinking of a Friend -> The Beast's Final Moments) / MSS: Mayleaf / Hey, where is Iris? | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00000019/quest/00000019/q00000019_st0100.qst.json[client/03040008/quest/q00000019/quest/00000019/q00000019_st0100.qst.json] | QuestStageList[].QuestGrp[0].QuestSet[0].TextQuestNo | TextQuestNo | quest 19 / Lestania / "QuestGroup 1 \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=18 \| TextType=2 \| TextQuestNo=19 \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0002/ui/00_message/npc/base/n0002.smc.json[client/03040008/npc/n0002/ui/00_message/npc/base/n0002.smc.json] | SituationData.EndQuestId | EndQuestId | quest 19 (Thinking of a Friend) / Mysial / GroupSerial=12665 / "GroupSerial=12665, QuestWindow=18-19 (The Ark, Once More -> Thinking of a Friend), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0002 \| Quest-gated NPC chatter \| QuestWindow=18-19 (The Ark, Once More -> Thinking of a Friend) / MSS: Mysial / I heard about Iris— | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0002/ui/00_message/npc/base/n0002.smc.json[client/03040008/npc/n0002/ui/00_message/npc/base/n0002.smc.json] | SituationData.StartQuestId | StartQuestId | quest 19 (Thinking of a Friend) / Mysial / GroupSerial=12666 / "GroupSerial=12666, QuestWindow=19-29 (Thinking of a Friend -> The Beast's Final Moments), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0002 \| Quest-gated NPC chatter \| QuestWindow=19-29 (Thinking of a Friend -> The Beast's Final Moments) / MSS: Mysial / The enemy is Diamantes— | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json[client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json] | SituationData.EndQuestId | EndQuestId | quest 19 (Thinking of a Friend) / Klaus / GroupSerial=12700 / "GroupSerial=12700, QuestWindow=18-19 (The Ark, Once More -> Thinking of a Friend), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0003 \| Quest-gated NPC chatter \| QuestWindow=18-19 (The Ark, Once More -> Thinking of a Friend) / MSS: Klaus / That's queer—I was in charge of investigating | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json[client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json] | SituationData.StartQuestId | StartQuestId | quest 19 (Thinking of a Friend) / Klaus / GroupSerial=12701 / "GroupSerial=12701, QuestWindow=19-29 (Thinking of a Friend -> The Beast's Final Moments), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0003 \| Quest-gated NPC chatter \| QuestWindow=19-29 (Thinking of a Friend -> The Beast's Final Moments) / MSS: Klaus / I am indeed a descendant of an alchemist, but | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json[client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json] | SituationData.EndQuestId | EndQuestId | quest 19 (Thinking of a Friend) / Joseph / GroupSerial=12743 / "GroupSerial=12743, QuestWindow=18-19 (The Ark, Once More -> Thinking of a Friend), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window end" / NpcChatter=n0004 \| Quest-gated NPC chatter \| QuestWindow=18-19 (The Ark, Once More -> Thinking of a Friend) / MSS: Joseph / Is Leo here yet? We need to discuss future plans | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json[client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json] | SituationData.StartQuestId | StartQuestId | quest 19 (Thinking of a Friend) / Joseph / GroupSerial=12744 / "GroupSerial=12744, QuestWindow=19-29 (Thinking of a Friend -> The Beast's Final Moments), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window start" / NpcChatter=n0004 \| Quest-gated NPC chatter \| QuestWindow=19-29 (Thinking of a Friend -> The Beast's Final Moments) / MSS: Joseph / Leave the strategy for the Ark to me - Now, go | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0005/ui/00_message/npc/base/n0005.smc.json[client/03040008/npc/n0005/ui/00_message/npc/base/n0005.smc.json] | SituationData.StartQuestId | StartQuestId | quest 19 (Thinking of a Friend) / Leo / GroupSerial=12926 / "GroupSerial=12926, QuestWindow=19-29 (Thinking of a Friend -> The Beast's Final Moments), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0005 \| Quest-gated NPC chatter \| QuestWindow=19-29 (Thinking of a Friend -> The Beast's Final Moments) / MSS: Leo / As an Arisen, I have never sought anything in | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0007/ui/00_message/npc/base/n0007.smc.json[client/03040008/npc/n0007/ui/00_message/npc/base/n0007.smc.json] | SituationData.EndQuestId | EndQuestId | quest 19 (Thinking of a Friend) / Gerd / GroupSerial=12965 / "GroupSerial=12965, QuestWindow=18-19 (The Ark, Once More -> Thinking of a Friend), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0007 \| Quest-gated NPC chatter \| QuestWindow=18-19 (The Ark, Once More -> Thinking of a Friend) / MSS: Gerd / I hear you were close to Iris... | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0007/ui/00_message/npc/base/n0007.smc.json[client/03040008/npc/n0007/ui/00_message/npc/base/n0007.smc.json] | SituationData.StartQuestId | StartQuestId | quest 19 (Thinking of a Friend) / Gerd / GroupSerial=12967 / "GroupSerial=12967, QuestWindow=19-29 (Thinking of a Friend -> The Beast's Final Moments), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0007 \| Quest-gated NPC chatter \| QuestWindow=19-29 (Thinking of a Friend -> The Beast's Final Moments) / MSS: Gerd / Iris is one of the most popular Arisen among the Knights. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0008/ui/00_message/npc/base/n0008.smc.json[client/03040008/npc/n0008/ui/00_message/npc/base/n0008.smc.json] | SituationData.EndQuestId | EndQuestId | quest 19 (Thinking of a Friend) / Heinz / GroupSerial=13010 / "GroupSerial=13010, QuestWindow=18-19 (The Ark, Once More -> Thinking of a Friend), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0008 \| Quest-gated NPC chatter \| QuestWindow=18-19 (The Ark, Once More -> Thinking of a Friend) / MSS: Heinz / Is it true that Iris appeared in the second Ark? | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0008/ui/00_message/npc/base/n0008.smc.json[client/03040008/npc/n0008/ui/00_message/npc/base/n0008.smc.json] | SituationData.StartQuestId | StartQuestId | quest 19 (Thinking of a Friend) / Heinz / GroupSerial=13011 / "GroupSerial=13011, QuestWindow=19-29 (Thinking of a Friend -> The Beast's Final Moments), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window start" / NpcChatter=n0008 \| Quest-gated NPC chatter \| QuestWindow=19-29 (Thinking of a Friend -> The Beast's Final Moments) / MSS: Heinz / Since they're forming an Ark destruction squad,  | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0011/ui/00_message/npc/base/n0011.smc.json[client/03040008/npc/n0011/ui/00_message/npc/base/n0011.smc.json] | SituationData.EndQuestId | EndQuestId | quest 19 (Thinking of a Friend) / Vanessa / GroupSerial=13081 / "GroupSerial=13081, QuestWindow=18-19 (The Ark, Once More -> Thinking of a Friend), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0011 \| Quest-gated NPC chatter \| QuestWindow=18-19 (The Ark, Once More -> Thinking of a Friend) / MSS: Vanessa / This fort, which used to be the front line, | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0011/ui/00_message/npc/base/n0011.smc.json[client/03040008/npc/n0011/ui/00_message/npc/base/n0011.smc.json] | SituationData.StartQuestId | StartQuestId | quest 19 (Thinking of a Friend) / Vanessa / GroupSerial=13082 / "GroupSerial=13082, QuestWindow=19-29 (Thinking of a Friend -> The Beast's Final Moments), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0011 \| Quest-gated NPC chatter \| QuestWindow=19-29 (Thinking of a Friend -> The Beast's Final Moments) / MSS: Vanessa / Do you know where Iris is? It might be better to | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0012/ui/00_message/npc/base/n0012.smc.json[client/03040008/npc/n0012/ui/00_message/npc/base/n0012.smc.json] | SituationData.EndQuestId | EndQuestId | quest 19 (Thinking of a Friend) / Fabio / GroupSerial=13992 / "GroupSerial=13992, QuestWindow=18-19 (The Ark, Once More -> Thinking of a Friend), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0012 \| Quest-gated NPC chatter \| QuestWindow=18-19 (The Ark, Once More -> Thinking of a Friend) / MSS: Fabio / The Arisen has to take care of the Arisen's | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0012/ui/00_message/npc/base/n0012.smc.json[client/03040008/npc/n0012/ui/00_message/npc/base/n0012.smc.json] | SituationData.StartQuestId | StartQuestId | quest 19 (Thinking of a Friend) / Fabio / GroupSerial=13993 / "GroupSerial=13993, QuestWindow=19-29 (Thinking of a Friend -> The Beast's Final Moments), IsStartQuestIdStart=True, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0012 \| Quest-gated NPC chatter \| QuestWindow=19-29 (Thinking of a Friend -> The Beast's Final Moments) / MSS: Fabio / I'll be here for a while, as I don't have any | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0014/ui/00_message/npc/base/n0014.smc.json[client/03040008/npc/n0014/ui/00_message/npc/base/n0014.smc.json] | SituationData.EndQuestId | EndQuestId | quest 19 (Thinking of a Friend) / Mayleaf / GroupSerial=13119 / "GroupSerial=13119, QuestWindow=18-19 (The Ark, Once More -> Thinking of a Friend), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0014 \| Quest-gated NPC chatter \| QuestWindow=18-19 (The Ark, Once More -> Thinking of a Friend) / MSS: Mayleaf / I feel like something scary is about to happen— | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0014/ui/00_message/npc/base/n0014.smc.json[client/03040008/npc/n0014/ui/00_message/npc/base/n0014.smc.json] | SituationData.StartQuestId | StartQuestId | quest 19 (Thinking of a Friend) / Mayleaf / GroupSerial=13120 / "GroupSerial=13120, QuestWindow=19-29 (Thinking of a Friend -> The Beast's Final Moments), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0014 \| Quest-gated NPC chatter \| QuestWindow=19-29 (Thinking of a Friend -> The Beast's Final Moments) / MSS: Mayleaf / Hey, where is Iris? | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
 |===
 
 ==== opaque_fsm -- 2 hit(s)
 
-[cols="1,1,3,3,2,3,3",options="header"]
+[cols="1,1,1,3,3,2,3,3",options="header"]
 |===
-| Family | Confidence | File | JSON Path | Field | Context | Why
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
 
-| FSM | 72 | client/03040008/quest/q00000001/quest/00000001/npc/n0005.fsm.json | Process.Parameter.FlagNo | FlagNo | quest 1 (Resolutions and Omens) / Leo / MainQstFlagOn \| NPCFSM=n0005 \| QuestLocalNPCFSM | Quest-local NPC FSM reference; these quest NPC FSM files usually define behavior for the same quest, such as joining fights or changing interactions.
-| FSM | 78 | client/03040008/quest/q00000001/quest/00000001/npc/n0006.fsm.json | Process.Parameter.FlagNo | FlagNo | quest 1 (Resolutions and Omens) / Iris / checkMyQuestFlag \| NPCFSM=n0006 \| QuestLocalNPCFSM | Quest-local NPC FSM MyQuest check; these files usually describe NPC behavior for the same quest, so this flag likely controls that NPC's quest-specific presence or behavior.
+| FSM | Direct | 72 | link:../../../../client/03040008/quest/q00000001/quest/00000001/npc/n0005.fsm.json[client/03040008/quest/q00000001/quest/00000001/npc/n0005.fsm.json] | Process.Parameter.FlagNo | FlagNo | quest 1 (Resolutions and Omens) / Leo / MainQstFlagOn \| NPCFSM=n0005 \| QuestLocalNPCFSM | Quest-local NPC FSM reference; these quest NPC FSM files usually define behavior for the same quest, such as joining fights or changing interactions.
+| FSM | Direct | 78 | link:../../../../client/03040008/quest/q00000001/quest/00000001/npc/n0006.fsm.json[client/03040008/quest/q00000001/quest/00000001/npc/n0006.fsm.json] | Process.Parameter.FlagNo | FlagNo | quest 1 (Resolutions and Omens) / Iris / checkMyQuestFlag \| NPCFSM=n0006 \| QuestLocalNPCFSM | Quest-local NPC FSM MyQuest check; these files usually describe NPC behavior for the same quest, so this flag likely controls that NPC's quest-specific presence or behavior.
 |===
 

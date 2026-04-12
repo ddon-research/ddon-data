@@ -5,16 +5,33 @@
 
 Query mode:: quest
 Query value:: 50300008
-Generated at:: 2026-04-11T21:41:41.727023+00:00
+Generated at:: 2026-04-12T12:44:05.052252+00:00
 
 toc::[]
+
+Quest family:: q5 -- Extreme / Grand Mission
+Quest family notes:: Extreme and grand mission content with sortie and cycle metadata.
+Quest family focus:: esi_csi_sortie_topology
+
+== Family Relationship Context
+
+_These sections summarize deterministic client-side family metadata and reverse-index relationships. They are context for later owner/dependency inference, not direct quest-target promotion._
+
+=== Repeatable Sortie
+
+* ESI rows: 1
+* CSI rows: 1
+* cycle sub numbers: 3006
+* cycle numbers: 3
+* stage tuple: 114, 0, 114
 
 == ARC Association Context
 
 _ARC associations are contextual only. They show which quest-stage and marker resources are bundled with this quest._
 
-* arc file: client/03040008/quest/q50300008.arc.json
+* arc file: link:../../../../client/03040008/quest/q50300008.arc.json#L1[client/03040008/quest/q50300008.arc.json#L1]
 * resource count: 4
+* resource families: .gmd, .mss, .qtd
 
 === unclassified
 
@@ -22,6 +39,64 @@ _ARC associations are contextual only. They show which quest-stage and marker re
 * rQuestTextData: ui/00_param/quest_text/q50300008_00
 * rMsgSet: ui/00_message/examine_message/quest/quest_examine_q50300008
 * rGUIMessage: ui/00_message/quest_info/q50300008_00
+
+== Stage Neighborhood Context
+
+_Stage-neighborhood context summarizes scanner-relevant client files that share the quest's archive stage codes. This is deterministic client topology, not inferred ownership._
+
+* scanner-relevant stage files: 0
+
+== Stage Neighborhood External-State Cues
+
+_These cues are deterministic client-side observations from the quest's stage neighborhood. They are not promoted to direct quest targets yet; they highlight q6/q7-owned external state values co-located in the quest's archive stages._
+
+* cue count: 0
+* owner families: q6, q7
+
+== Bounded Graph Expansion
+
+_This graph summarizes bounded deterministic and inferred edges around the quest: quest archive stages, direct source families, stage-linked owner catalogs, promoted dependencies, reverse-index event/group links, and family-specific table edges._
+
+* max depth: 3
+* node count: 5
+* edge count: 4
+* node kinds: cycle_sub_no=1, direct_family=2, family_context=1, quest=1
+* derivation: Direct=9
+
+=== Mermaid Graph Slice
+
+_This Mermaid flowchart shows a capped slice of the bounded graph so large quest reports stay readable while still exposing the graph structure._
+
+[mermaid]
+....
+flowchart TD
+    node_quest_50300008["Quest 50300008"]
+    node_direct_family_csi["csi direct hits (1)"]
+    node_direct_family_esi["esi direct hits (1)"]
+    node_family_context_repeatable_sortie["Repeatable Sortie"]
+    node_cycle_sub_no_3006["CycleSubNo 3006"]
+    node_quest_50300008 -->|direct_source_family| node_direct_family_csi
+    node_quest_50300008 -->|direct_source_family| node_direct_family_esi
+    node_quest_50300008 -->|family:repeatable_sortie| node_family_context_repeatable_sortie
+    node_family_context_repeatable_sortie -->|repeatable_cycle| node_cycle_sub_no_3006
+    classDef direct_deterministic fill:#e8f5e9,stroke:#2e7d32,stroke-width:1px
+    classDef owner_index fill:#e3f2fd,stroke:#1565c0,stroke-width:1px
+    classDef dependency_inferred fill:#fff3e0,stroke:#ef6c00,stroke-width:1px
+    classDef graph_expanded fill:#f3e5f5,stroke:#7b1fa2,stroke-width:1px
+    classDef lower_confidence fill:#fbe9e7,stroke:#d84315,stroke-width:1px
+    classDef binary_auxiliary fill:#eceff1,stroke:#455a64,stroke-width:1px
+    class node_quest_50300008,node_direct_family_csi,node_direct_family_esi,node_family_context_repeatable_sortie,node_cycle_sub_no_3006 direct_deterministic
+....
+
+[cols="1,2,2,2,2,4",options="header"]
+|===
+| Depth | Edge | From | To | Derivation | Why
+
+| 1 | direct_source_family | quest:50300008 | direct-family:csi | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | direct_source_family | quest:50300008 | direct-family:esi | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | family_context:repeatable_sortie | quest:50300008 | family-context:repeatable_sortie | Direct | Family-specific decoded tables provide deterministic context for this quest.
+| 2 | repeatable_cycle | family-context:repeatable_sortie | cycle-sub-no:3006 | Direct | Repeatable sortie tables link this quest to a cycle sub number.
+|===
 
 == Flag Summary Matrix
 
@@ -48,11 +123,11 @@ ranked candidates:: *0*
 
 ==== direct -- 1 hit(s)
 
-[cols="1,1,3,3,2,3,3",options="header"]
+[cols="1,1,1,3,3,2,3,3",options="header"]
 |===
-| Family | Confidence | File | JSON Path | Field | Context | Why
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
 
-| CSI | 92 | client/03040008/game_common/quest/rCycleContentsSortieInfo.csi.json | CycleContentsSortieInfoTable[8].CycleSubNo | CycleSubNo | Bloodbane Isle Summit / "CycleNo=3" / SortieRoute=st0114 Bloodbane Isle Summit -> st0114 Bloodbane Isle Summit \| CycleNo=3 \| CycleSubNo=3006 | Repeatable sortie cycle metadata; CycleSubNo here ties a repeatable q5 sortie to its cycle content bucket and stage route.
+| CSI | Direct | 92 | link:../../../../client/03040008/game_common/quest/rCycleContentsSortieInfo.csi.json#L146[client/03040008/game_common/quest/rCycleContentsSortieInfo.csi.json#L146] | CycleContentsSortieInfoTable[8].CycleSubNo | CycleSubNo | Bloodbane Isle Summit / "CycleNo=3" / SortieRoute=st0114 Bloodbane Isle Summit -> st0114 Bloodbane Isle Summit \| CycleNo=3 \| CycleSubNo=3006 | Repeatable sortie cycle metadata; CycleSubNo here ties a repeatable q5 sortie to its cycle content bucket and stage route.
 |===
 
 == Quest ID 50300008
@@ -65,10 +140,10 @@ ranked candidates:: *0*
 
 ==== direct -- 1 hit(s)
 
-[cols="1,1,3,3,2,3,3",options="header"]
+[cols="1,1,1,3,3,2,3,3",options="header"]
 |===
-| Family | Confidence | File | JSON Path | Field | Context | Why
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
 
-| ESI | 92 | client/03040008/game_common/quest/rEndContentsSortieInfo.esi.json | EndContentsSortieInfoTable[33].QuestId | QuestId | quest 50300008 (Bloodbane Isle's Feast of Madness) / Bloodbane Isle Summit / "Unknown1=9, Unknown2=257, Flag=0" / SortieRoute=st0114 Bloodbane Isle Summit -> st0114 Bloodbane Isle Summit \| Unknown1=9 \| Unknown2=257 | Repeatable sortie registry; QuestId and Flag here define special q5 repeatable sortie entries and their gate flags.
+| ESI | Direct | 92 | link:../../../../client/03040008/game_common/quest/rEndContentsSortieInfo.esi.json#L756[client/03040008/game_common/quest/rEndContentsSortieInfo.esi.json#L756] | EndContentsSortieInfoTable[33].QuestId | QuestId | quest 50300008 (Bloodbane Isle's Feast of Madness) / Bloodbane Isle Summit / "Unknown1=9, Unknown2=257, Flag=0" / SortieRoute=st0114 Bloodbane Isle Summit -> st0114 Bloodbane Isle Summit \| Unknown1=9 \| Unknown2=257 | Repeatable sortie registry; QuestId and Flag here define special q5 repeatable sortie entries and their gate flags.
 |===
 

@@ -1,6 +1,6 @@
 {
   "format": "client_investigation.v4",
-  "generated_at": "2026-04-11T21:41:41.727023+00:00",
+  "generated_at": "2026-04-12T12:44:05.054331+00:00",
   "query": {
     "mode": "quest",
     "value": 50300009
@@ -12,6 +12,111 @@
       "flag_type": "cycle_sub_no",
       "doc_comment": "Repeatable cycle 1/1004",
       "origin": "derived_csi"
+    },
+    {
+      "flag_value": 6072,
+      "quest_id": 50300009,
+      "flag_type": "layout_flag",
+      "doc_comment": "QST local: st0433 | QuestGroup 1 | 序盤連動封鎖壁右１",
+      "origin": "derived_qst_local"
+    },
+    {
+      "flag_value": 6073,
+      "quest_id": 50300009,
+      "flag_type": "layout_flag",
+      "doc_comment": "QST local: st0433 | QuestGroup 2 | 序盤連動封鎖壁右２",
+      "origin": "derived_qst_local"
+    },
+    {
+      "flag_value": 6074,
+      "quest_id": 50300009,
+      "flag_type": "layout_flag",
+      "doc_comment": "QST local: st0433 | QuestGroup 3 | 序盤連動封鎖壁左１",
+      "origin": "derived_qst_local"
+    },
+    {
+      "flag_value": 6075,
+      "quest_id": 50300009,
+      "flag_type": "layout_flag",
+      "doc_comment": "QST local: st0433 | QuestGroup 4 | 序盤連動封鎖壁左２",
+      "origin": "derived_qst_local"
+    },
+    {
+      "flag_value": 6076,
+      "quest_id": 50300009,
+      "flag_type": "layout_flag",
+      "doc_comment": "QST local: st0433 | QuestGroup 5 | 一方通行ワープOM右1",
+      "origin": "derived_qst_local"
+    },
+    {
+      "flag_value": 6077,
+      "quest_id": 50300009,
+      "flag_type": "layout_flag",
+      "doc_comment": "QST local: st0433 | QuestGroup 6 | 一方通行ワープOM右2",
+      "origin": "derived_qst_local"
+    },
+    {
+      "flag_value": 6078,
+      "quest_id": 50300009,
+      "flag_type": "layout_flag",
+      "doc_comment": "QST local: st0433 | QuestGroup 7 | 一方通行ワープOM右3",
+      "origin": "derived_qst_local"
+    },
+    {
+      "flag_value": 6079,
+      "quest_id": 50300009,
+      "flag_type": "layout_flag",
+      "doc_comment": "QST local: st0433 | QuestGroup 8 | 一方通行ワープOM右4",
+      "origin": "derived_qst_local"
+    },
+    {
+      "flag_value": 6080,
+      "quest_id": 50300009,
+      "flag_type": "layout_flag",
+      "doc_comment": "QST local: st0433 | QuestGroup 9 | 一方通行ワープOM左1",
+      "origin": "derived_qst_local"
+    },
+    {
+      "flag_value": 6081,
+      "quest_id": 50300009,
+      "flag_type": "layout_flag",
+      "doc_comment": "QST local: st0433 | QuestGroup 10 | 一方通行ワープOM左2",
+      "origin": "derived_qst_local"
+    },
+    {
+      "flag_value": 6082,
+      "quest_id": 50300009,
+      "flag_type": "layout_flag",
+      "doc_comment": "QST local: st0433 | QuestGroup 11 | 一方通行ワープOM左3",
+      "origin": "derived_qst_local"
+    },
+    {
+      "flag_value": 6083,
+      "quest_id": 50300009,
+      "flag_type": "layout_flag",
+      "doc_comment": "QST local: st0433 | QuestGroup 12 | 一方通行ワープOM左4",
+      "origin": "derived_qst_local"
+    },
+    {
+      "flag_value": 6086,
+      "quest_id": 50300009,
+      "flag_type": "layout_flag",
+      "doc_comment": "QST local: st0433 | QuestGroup 13 | 体力温泉（右側レバー）",
+      "origin": "derived_qst_local"
+    },
+    {
+      "flag_value": 6087,
+      "quest_id": 50300009,
+      "flag_type": "layout_flag",
+      "doc_comment": "QST local: st0433 | QuestGroup 14 | スタミナ温泉（左側レバー）",
+      "origin": "derived_qst_local"
+    },
+    {
+      "flag_value": 6093,
+      "quest_id": 50300009,
+      "flag_type": "layout_flag",
+      "doc_comment": "QST local: st0433 | QuestGroup 15 | スタート敵連動封鎖壁",
+      "origin": "derived_qst_local"
     },
     {
       "flag_value": 50300009,
@@ -48,6 +153,7 @@
           "stage_no": 100,
           "resource_family": "QST",
           "evidence_tier": "direct",
+          "derivation_class": "direct_deterministic",
           "confidence": 92,
           "why": "Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes."
         },
@@ -66,8 +172,633 @@
           "stage_no": 433,
           "resource_family": "CSI",
           "evidence_tier": "direct",
+          "derivation_class": "direct_deterministic",
           "confidence": 92,
           "why": "Repeatable sortie cycle metadata; CycleSubNo here ties a repeatable q5 sortie to its cycle content bucket and stage route."
+        }
+      ],
+      "candidate_hits": []
+    },
+    {
+      "target": {
+        "flag_value": 6072,
+        "quest_id": 50300009,
+        "flag_type": "layout_flag",
+        "origin": "derived_qst_local",
+        "doc_comment": "QST local: st0433 | QuestGroup 1 | 序盤連動封鎖壁右１"
+      },
+      "hits": [
+        {
+          "source_type": "qst",
+          "file_path": "client/03040008/quest/q50300009/quest/50300009/q50300009_st0433.qst.json",
+          "json_path": "QuestStageList[].QuestGrp[1].Condition",
+          "field_name": "Condition",
+          "flag_value": 6072,
+          "flag_kind": "layout_flag",
+          "relationship": "quest_condition",
+          "stage_name": "Shadolean Great Temple",
+          "stage_name_jp": "シェドレアン大神殿",
+          "stage_code": "st0433",
+          "comment": "QuestGroup 1 | 序盤連動封鎖壁右１",
+          "context": "QuestSet=QuestSetInfoOm | OmID=510445 | OM_ID_DOOR_510445 | EnableZone | GroupNo=1",
+          "quest_id": 50300009,
+          "stage_no": 433,
+          "resource_family": "QST",
+          "evidence_tier": "direct",
+          "derivation_class": "direct_deterministic",
+          "confidence": 92,
+          "why": "Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes."
+        },
+        {
+          "source_type": "qst",
+          "file_path": "client/03040008/quest/q50300009/quest/50300009/q50300009_st0433.qst.json",
+          "json_path": "QuestStageList[].QuestGrp[1].EraseCondition",
+          "field_name": "EraseCondition",
+          "flag_value": 6072,
+          "flag_kind": "layout_flag",
+          "relationship": "quest_erase",
+          "stage_name": "Shadolean Great Temple",
+          "stage_name_jp": "シェドレアン大神殿",
+          "stage_code": "st0433",
+          "comment": "QuestGroup 1 | 序盤連動封鎖壁右１",
+          "context": "QuestSet=QuestSetInfoOm | OmID=510445 | OM_ID_DOOR_510445 | EnableZone | GroupNo=1",
+          "quest_id": 50300009,
+          "stage_no": 433,
+          "resource_family": "QST",
+          "evidence_tier": "direct",
+          "derivation_class": "direct_deterministic",
+          "confidence": 92,
+          "why": "Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes."
+        }
+      ],
+      "candidate_hits": []
+    },
+    {
+      "target": {
+        "flag_value": 6073,
+        "quest_id": 50300009,
+        "flag_type": "layout_flag",
+        "origin": "derived_qst_local",
+        "doc_comment": "QST local: st0433 | QuestGroup 2 | 序盤連動封鎖壁右２"
+      },
+      "hits": [
+        {
+          "source_type": "qst",
+          "file_path": "client/03040008/quest/q50300009/quest/50300009/q50300009_st0433.qst.json",
+          "json_path": "QuestStageList[].QuestGrp[2].Condition",
+          "field_name": "Condition",
+          "flag_value": 6073,
+          "flag_kind": "layout_flag",
+          "relationship": "quest_condition",
+          "stage_name": "Shadolean Great Temple",
+          "stage_name_jp": "シェドレアン大神殿",
+          "stage_code": "st0433",
+          "comment": "QuestGroup 2 | 序盤連動封鎖壁右２",
+          "context": "QuestSet=QuestSetInfoOm | OmID=510445 | OM_ID_DOOR_510445 | EnableZone | GroupNo=2",
+          "quest_id": 50300009,
+          "stage_no": 433,
+          "resource_family": "QST",
+          "evidence_tier": "direct",
+          "derivation_class": "direct_deterministic",
+          "confidence": 92,
+          "why": "Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes."
+        },
+        {
+          "source_type": "qst",
+          "file_path": "client/03040008/quest/q50300009/quest/50300009/q50300009_st0433.qst.json",
+          "json_path": "QuestStageList[].QuestGrp[2].EraseCondition",
+          "field_name": "EraseCondition",
+          "flag_value": 6073,
+          "flag_kind": "layout_flag",
+          "relationship": "quest_erase",
+          "stage_name": "Shadolean Great Temple",
+          "stage_name_jp": "シェドレアン大神殿",
+          "stage_code": "st0433",
+          "comment": "QuestGroup 2 | 序盤連動封鎖壁右２",
+          "context": "QuestSet=QuestSetInfoOm | OmID=510445 | OM_ID_DOOR_510445 | EnableZone | GroupNo=2",
+          "quest_id": 50300009,
+          "stage_no": 433,
+          "resource_family": "QST",
+          "evidence_tier": "direct",
+          "derivation_class": "direct_deterministic",
+          "confidence": 92,
+          "why": "Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes."
+        }
+      ],
+      "candidate_hits": []
+    },
+    {
+      "target": {
+        "flag_value": 6074,
+        "quest_id": 50300009,
+        "flag_type": "layout_flag",
+        "origin": "derived_qst_local",
+        "doc_comment": "QST local: st0433 | QuestGroup 3 | 序盤連動封鎖壁左１"
+      },
+      "hits": [
+        {
+          "source_type": "qst",
+          "file_path": "client/03040008/quest/q50300009/quest/50300009/q50300009_st0433.qst.json",
+          "json_path": "QuestStageList[].QuestGrp[3].Condition",
+          "field_name": "Condition",
+          "flag_value": 6074,
+          "flag_kind": "layout_flag",
+          "relationship": "quest_condition",
+          "stage_name": "Shadolean Great Temple",
+          "stage_name_jp": "シェドレアン大神殿",
+          "stage_code": "st0433",
+          "comment": "QuestGroup 3 | 序盤連動封鎖壁左１",
+          "context": "QuestSet=QuestSetInfoOm | OmID=510445 | OM_ID_DOOR_510445 | EnableZone | GroupNo=3",
+          "quest_id": 50300009,
+          "stage_no": 433,
+          "resource_family": "QST",
+          "evidence_tier": "direct",
+          "derivation_class": "direct_deterministic",
+          "confidence": 92,
+          "why": "Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes."
+        },
+        {
+          "source_type": "qst",
+          "file_path": "client/03040008/quest/q50300009/quest/50300009/q50300009_st0433.qst.json",
+          "json_path": "QuestStageList[].QuestGrp[3].EraseCondition",
+          "field_name": "EraseCondition",
+          "flag_value": 6074,
+          "flag_kind": "layout_flag",
+          "relationship": "quest_erase",
+          "stage_name": "Shadolean Great Temple",
+          "stage_name_jp": "シェドレアン大神殿",
+          "stage_code": "st0433",
+          "comment": "QuestGroup 3 | 序盤連動封鎖壁左１",
+          "context": "QuestSet=QuestSetInfoOm | OmID=510445 | OM_ID_DOOR_510445 | EnableZone | GroupNo=3",
+          "quest_id": 50300009,
+          "stage_no": 433,
+          "resource_family": "QST",
+          "evidence_tier": "direct",
+          "derivation_class": "direct_deterministic",
+          "confidence": 92,
+          "why": "Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes."
+        }
+      ],
+      "candidate_hits": []
+    },
+    {
+      "target": {
+        "flag_value": 6075,
+        "quest_id": 50300009,
+        "flag_type": "layout_flag",
+        "origin": "derived_qst_local",
+        "doc_comment": "QST local: st0433 | QuestGroup 4 | 序盤連動封鎖壁左２"
+      },
+      "hits": [
+        {
+          "source_type": "qst",
+          "file_path": "client/03040008/quest/q50300009/quest/50300009/q50300009_st0433.qst.json",
+          "json_path": "QuestStageList[].QuestGrp[4].Condition",
+          "field_name": "Condition",
+          "flag_value": 6075,
+          "flag_kind": "layout_flag",
+          "relationship": "quest_condition",
+          "stage_name": "Shadolean Great Temple",
+          "stage_name_jp": "シェドレアン大神殿",
+          "stage_code": "st0433",
+          "comment": "QuestGroup 4 | 序盤連動封鎖壁左２",
+          "context": "QuestSet=QuestSetInfoOm | OmID=510445 | OM_ID_DOOR_510445 | EnableZone | GroupNo=4",
+          "quest_id": 50300009,
+          "stage_no": 433,
+          "resource_family": "QST",
+          "evidence_tier": "direct",
+          "derivation_class": "direct_deterministic",
+          "confidence": 92,
+          "why": "Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes."
+        },
+        {
+          "source_type": "qst",
+          "file_path": "client/03040008/quest/q50300009/quest/50300009/q50300009_st0433.qst.json",
+          "json_path": "QuestStageList[].QuestGrp[4].EraseCondition",
+          "field_name": "EraseCondition",
+          "flag_value": 6075,
+          "flag_kind": "layout_flag",
+          "relationship": "quest_erase",
+          "stage_name": "Shadolean Great Temple",
+          "stage_name_jp": "シェドレアン大神殿",
+          "stage_code": "st0433",
+          "comment": "QuestGroup 4 | 序盤連動封鎖壁左２",
+          "context": "QuestSet=QuestSetInfoOm | OmID=510445 | OM_ID_DOOR_510445 | EnableZone | GroupNo=4",
+          "quest_id": 50300009,
+          "stage_no": 433,
+          "resource_family": "QST",
+          "evidence_tier": "direct",
+          "derivation_class": "direct_deterministic",
+          "confidence": 92,
+          "why": "Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes."
+        }
+      ],
+      "candidate_hits": []
+    },
+    {
+      "target": {
+        "flag_value": 6076,
+        "quest_id": 50300009,
+        "flag_type": "layout_flag",
+        "origin": "derived_qst_local",
+        "doc_comment": "QST local: st0433 | QuestGroup 5 | 一方通行ワープOM右1"
+      },
+      "hits": [
+        {
+          "source_type": "qst",
+          "file_path": "client/03040008/quest/q50300009/quest/50300009/q50300009_st0433.qst.json",
+          "json_path": "QuestStageList[].QuestGrp[5].Condition",
+          "field_name": "Condition",
+          "flag_value": 6076,
+          "flag_kind": "layout_flag",
+          "relationship": "quest_condition",
+          "stage_name": "Shadolean Great Temple",
+          "stage_name_jp": "シェドレアン大神殿",
+          "stage_code": "st0433",
+          "comment": "QuestGroup 5 | 一方通行ワープOM右1",
+          "context": "QuestSet=QuestSetInfoOmWarp | OmID=522157 | OM_ID_RIFT_WARP_CRYSTAL_7 | EnableZone | GroupNo=5 || QuestSet=QuestSetInfoOmWarp | OmID=522157 | OM_ID_RIFT_WARP_CRYSTAL_7 | EnableZone | GroupNo=5 || +2 more",
+          "quest_id": 50300009,
+          "stage_no": 433,
+          "resource_family": "QST",
+          "evidence_tier": "direct",
+          "derivation_class": "direct_deterministic",
+          "confidence": 92,
+          "why": "Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes."
+        }
+      ],
+      "candidate_hits": []
+    },
+    {
+      "target": {
+        "flag_value": 6077,
+        "quest_id": 50300009,
+        "flag_type": "layout_flag",
+        "origin": "derived_qst_local",
+        "doc_comment": "QST local: st0433 | QuestGroup 6 | 一方通行ワープOM右2"
+      },
+      "hits": [
+        {
+          "source_type": "qst",
+          "file_path": "client/03040008/quest/q50300009/quest/50300009/q50300009_st0433.qst.json",
+          "json_path": "QuestStageList[].QuestGrp[6].Condition",
+          "field_name": "Condition",
+          "flag_value": 6077,
+          "flag_kind": "layout_flag",
+          "relationship": "quest_condition",
+          "stage_name": "Shadolean Great Temple",
+          "stage_name_jp": "シェドレアン大神殿",
+          "stage_code": "st0433",
+          "comment": "QuestGroup 6 | 一方通行ワープOM右2",
+          "context": "QuestSet=QuestSetInfoOmWarp | OmID=522157 | OM_ID_RIFT_WARP_CRYSTAL_7 | EnableZone | GroupNo=6 || QuestSet=QuestSetInfoOmWarp | OmID=522157 | OM_ID_RIFT_WARP_CRYSTAL_7 | EnableZone | GroupNo=6 || +2 more",
+          "quest_id": 50300009,
+          "stage_no": 433,
+          "resource_family": "QST",
+          "evidence_tier": "direct",
+          "derivation_class": "direct_deterministic",
+          "confidence": 92,
+          "why": "Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes."
+        }
+      ],
+      "candidate_hits": []
+    },
+    {
+      "target": {
+        "flag_value": 6078,
+        "quest_id": 50300009,
+        "flag_type": "layout_flag",
+        "origin": "derived_qst_local",
+        "doc_comment": "QST local: st0433 | QuestGroup 7 | 一方通行ワープOM右3"
+      },
+      "hits": [
+        {
+          "source_type": "qst",
+          "file_path": "client/03040008/quest/q50300009/quest/50300009/q50300009_st0433.qst.json",
+          "json_path": "QuestStageList[].QuestGrp[7].Condition",
+          "field_name": "Condition",
+          "flag_value": 6078,
+          "flag_kind": "layout_flag",
+          "relationship": "quest_condition",
+          "stage_name": "Shadolean Great Temple",
+          "stage_name_jp": "シェドレアン大神殿",
+          "stage_code": "st0433",
+          "comment": "QuestGroup 7 | 一方通行ワープOM右3",
+          "context": "QuestSet=QuestSetInfoOmWarp | OmID=522157 | OM_ID_RIFT_WARP_CRYSTAL_7 | EnableZone | GroupNo=7 || QuestSet=QuestSetInfoOmWarp | OmID=522157 | OM_ID_RIFT_WARP_CRYSTAL_7 | EnableZone | GroupNo=7 || +2 more",
+          "quest_id": 50300009,
+          "stage_no": 433,
+          "resource_family": "QST",
+          "evidence_tier": "direct",
+          "derivation_class": "direct_deterministic",
+          "confidence": 92,
+          "why": "Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes."
+        }
+      ],
+      "candidate_hits": []
+    },
+    {
+      "target": {
+        "flag_value": 6079,
+        "quest_id": 50300009,
+        "flag_type": "layout_flag",
+        "origin": "derived_qst_local",
+        "doc_comment": "QST local: st0433 | QuestGroup 8 | 一方通行ワープOM右4"
+      },
+      "hits": [
+        {
+          "source_type": "qst",
+          "file_path": "client/03040008/quest/q50300009/quest/50300009/q50300009_st0433.qst.json",
+          "json_path": "QuestStageList[].QuestGrp[8].Condition",
+          "field_name": "Condition",
+          "flag_value": 6079,
+          "flag_kind": "layout_flag",
+          "relationship": "quest_condition",
+          "stage_name": "Shadolean Great Temple",
+          "stage_name_jp": "シェドレアン大神殿",
+          "stage_code": "st0433",
+          "comment": "QuestGroup 8 | 一方通行ワープOM右4",
+          "context": "QuestSet=QuestSetInfoOmWarp | OmID=522157 | OM_ID_RIFT_WARP_CRYSTAL_7 | EnableZone | GroupNo=8 || QuestSet=QuestSetInfoOmWarp | OmID=522157 | OM_ID_RIFT_WARP_CRYSTAL_7 | EnableZone | GroupNo=8 || +2 more",
+          "quest_id": 50300009,
+          "stage_no": 433,
+          "resource_family": "QST",
+          "evidence_tier": "direct",
+          "derivation_class": "direct_deterministic",
+          "confidence": 92,
+          "why": "Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes."
+        }
+      ],
+      "candidate_hits": []
+    },
+    {
+      "target": {
+        "flag_value": 6080,
+        "quest_id": 50300009,
+        "flag_type": "layout_flag",
+        "origin": "derived_qst_local",
+        "doc_comment": "QST local: st0433 | QuestGroup 9 | 一方通行ワープOM左1"
+      },
+      "hits": [
+        {
+          "source_type": "qst",
+          "file_path": "client/03040008/quest/q50300009/quest/50300009/q50300009_st0433.qst.json",
+          "json_path": "QuestStageList[].QuestGrp[9].Condition",
+          "field_name": "Condition",
+          "flag_value": 6080,
+          "flag_kind": "layout_flag",
+          "relationship": "quest_condition",
+          "stage_name": "Shadolean Great Temple",
+          "stage_name_jp": "シェドレアン大神殿",
+          "stage_code": "st0433",
+          "comment": "QuestGroup 9 | 一方通行ワープOM左1",
+          "context": "QuestSet=QuestSetInfoOmWarp | OmID=522157 | OM_ID_RIFT_WARP_CRYSTAL_7 | EnableZone | GroupNo=9 || QuestSet=QuestSetInfoOmWarp | OmID=522157 | OM_ID_RIFT_WARP_CRYSTAL_7 | EnableZone | GroupNo=9 || +2 more",
+          "quest_id": 50300009,
+          "stage_no": 433,
+          "resource_family": "QST",
+          "evidence_tier": "direct",
+          "derivation_class": "direct_deterministic",
+          "confidence": 92,
+          "why": "Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes."
+        }
+      ],
+      "candidate_hits": []
+    },
+    {
+      "target": {
+        "flag_value": 6081,
+        "quest_id": 50300009,
+        "flag_type": "layout_flag",
+        "origin": "derived_qst_local",
+        "doc_comment": "QST local: st0433 | QuestGroup 10 | 一方通行ワープOM左2"
+      },
+      "hits": [
+        {
+          "source_type": "qst",
+          "file_path": "client/03040008/quest/q50300009/quest/50300009/q50300009_st0433.qst.json",
+          "json_path": "QuestStageList[].QuestGrp[10].Condition",
+          "field_name": "Condition",
+          "flag_value": 6081,
+          "flag_kind": "layout_flag",
+          "relationship": "quest_condition",
+          "stage_name": "Shadolean Great Temple",
+          "stage_name_jp": "シェドレアン大神殿",
+          "stage_code": "st0433",
+          "comment": "QuestGroup 10 | 一方通行ワープOM左2",
+          "context": "QuestSet=QuestSetInfoOmWarp | OmID=522157 | OM_ID_RIFT_WARP_CRYSTAL_7 | EnableZone | GroupNo=10 || QuestSet=QuestSetInfoOmWarp | OmID=522157 | OM_ID_RIFT_WARP_CRYSTAL_7 | EnableZone | GroupNo=10 || +2 more",
+          "quest_id": 50300009,
+          "stage_no": 433,
+          "resource_family": "QST",
+          "evidence_tier": "direct",
+          "derivation_class": "direct_deterministic",
+          "confidence": 92,
+          "why": "Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes."
+        }
+      ],
+      "candidate_hits": []
+    },
+    {
+      "target": {
+        "flag_value": 6082,
+        "quest_id": 50300009,
+        "flag_type": "layout_flag",
+        "origin": "derived_qst_local",
+        "doc_comment": "QST local: st0433 | QuestGroup 11 | 一方通行ワープOM左3"
+      },
+      "hits": [
+        {
+          "source_type": "qst",
+          "file_path": "client/03040008/quest/q50300009/quest/50300009/q50300009_st0433.qst.json",
+          "json_path": "QuestStageList[].QuestGrp[11].Condition",
+          "field_name": "Condition",
+          "flag_value": 6082,
+          "flag_kind": "layout_flag",
+          "relationship": "quest_condition",
+          "stage_name": "Shadolean Great Temple",
+          "stage_name_jp": "シェドレアン大神殿",
+          "stage_code": "st0433",
+          "comment": "QuestGroup 11 | 一方通行ワープOM左3",
+          "context": "QuestSet=QuestSetInfoOmWarp | OmID=522157 | OM_ID_RIFT_WARP_CRYSTAL_7 | EnableZone | GroupNo=11 || QuestSet=QuestSetInfoOmWarp | OmID=522157 | OM_ID_RIFT_WARP_CRYSTAL_7 | EnableZone | GroupNo=11 || +2 more",
+          "quest_id": 50300009,
+          "stage_no": 433,
+          "resource_family": "QST",
+          "evidence_tier": "direct",
+          "derivation_class": "direct_deterministic",
+          "confidence": 92,
+          "why": "Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes."
+        }
+      ],
+      "candidate_hits": []
+    },
+    {
+      "target": {
+        "flag_value": 6083,
+        "quest_id": 50300009,
+        "flag_type": "layout_flag",
+        "origin": "derived_qst_local",
+        "doc_comment": "QST local: st0433 | QuestGroup 12 | 一方通行ワープOM左4"
+      },
+      "hits": [
+        {
+          "source_type": "qst",
+          "file_path": "client/03040008/quest/q50300009/quest/50300009/q50300009_st0433.qst.json",
+          "json_path": "QuestStageList[].QuestGrp[12].Condition",
+          "field_name": "Condition",
+          "flag_value": 6083,
+          "flag_kind": "layout_flag",
+          "relationship": "quest_condition",
+          "stage_name": "Shadolean Great Temple",
+          "stage_name_jp": "シェドレアン大神殿",
+          "stage_code": "st0433",
+          "comment": "QuestGroup 12 | 一方通行ワープOM左4",
+          "context": "QuestSet=QuestSetInfoOmWarp | OmID=522157 | OM_ID_RIFT_WARP_CRYSTAL_7 | EnableZone | GroupNo=12 || QuestSet=QuestSetInfoOmWarp | OmID=522157 | OM_ID_RIFT_WARP_CRYSTAL_7 | EnableZone | GroupNo=12 || +2 more",
+          "quest_id": 50300009,
+          "stage_no": 433,
+          "resource_family": "QST",
+          "evidence_tier": "direct",
+          "derivation_class": "direct_deterministic",
+          "confidence": 92,
+          "why": "Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes."
+        }
+      ],
+      "candidate_hits": []
+    },
+    {
+      "target": {
+        "flag_value": 6086,
+        "quest_id": 50300009,
+        "flag_type": "layout_flag",
+        "origin": "derived_qst_local",
+        "doc_comment": "QST local: st0433 | QuestGroup 13 | 体力温泉（右側レバー）"
+      },
+      "hits": [
+        {
+          "source_type": "qst",
+          "file_path": "client/03040008/quest/q50300009/quest/50300009/q50300009_st0433.qst.json",
+          "json_path": "QuestStageList[].QuestGrp[13].Condition",
+          "field_name": "Condition",
+          "flag_value": 6086,
+          "flag_kind": "layout_flag",
+          "relationship": "quest_condition",
+          "stage_name": "Shadolean Great Temple",
+          "stage_name_jp": "シェドレアン大神殿",
+          "stage_code": "st0433",
+          "comment": "QuestGroup 13 | 体力温泉（右側レバー）",
+          "context": "QuestSet=QuestSetInfoOmHeal | OmID=522180 | UnitID=522180 | EnableZone | GroupNo=13",
+          "quest_id": 50300009,
+          "stage_no": 433,
+          "resource_family": "QST",
+          "evidence_tier": "direct",
+          "derivation_class": "direct_deterministic",
+          "confidence": 92,
+          "why": "Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes."
+        }
+      ],
+      "candidate_hits": []
+    },
+    {
+      "target": {
+        "flag_value": 6087,
+        "quest_id": 50300009,
+        "flag_type": "layout_flag",
+        "origin": "derived_qst_local",
+        "doc_comment": "QST local: st0433 | QuestGroup 14 | スタミナ温泉（左側レバー）"
+      },
+      "hits": [
+        {
+          "source_type": "qst",
+          "file_path": "client/03040008/quest/q50300009/quest/50300009/q50300009_st0433.qst.json",
+          "json_path": "QuestStageList[].QuestGrp[14].Condition",
+          "field_name": "Condition",
+          "flag_value": 6087,
+          "flag_kind": "layout_flag",
+          "relationship": "quest_condition",
+          "stage_name": "Shadolean Great Temple",
+          "stage_name_jp": "シェドレアン大神殿",
+          "stage_code": "st0433",
+          "comment": "QuestGroup 14 | スタミナ温泉（左側レバー）",
+          "context": "QuestSet=QuestSetInfoOmHeal | OmID=522180 | UnitID=522180 | EnableZone | GroupNo=14",
+          "quest_id": 50300009,
+          "stage_no": 433,
+          "resource_family": "QST",
+          "evidence_tier": "direct",
+          "derivation_class": "direct_deterministic",
+          "confidence": 92,
+          "why": "Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes."
+        }
+      ],
+      "candidate_hits": []
+    },
+    {
+      "target": {
+        "flag_value": 6093,
+        "quest_id": 50300009,
+        "flag_type": "layout_flag",
+        "origin": "derived_qst_local",
+        "doc_comment": "QST local: st0433 | QuestGroup 15 | スタート敵連動封鎖壁"
+      },
+      "hits": [
+        {
+          "source_type": "qst",
+          "file_path": "client/03040008/quest/q50300009/quest/50300009/q50300009_st0433.qst.json",
+          "json_path": "QuestStageList[].QuestGrp[15].Condition",
+          "field_name": "Condition",
+          "flag_value": 6093,
+          "flag_kind": "layout_flag",
+          "relationship": "quest_condition",
+          "stage_name": "Shadolean Great Temple",
+          "stage_name_jp": "シェドレアン大神殿",
+          "stage_code": "st0433",
+          "comment": "QuestGroup 15 | スタート敵連動封鎖壁",
+          "context": "QuestSet=QuestSetInfoOm | OmID=510441 | OM_ID_DOOR_510441 | EnableZone | GroupNo=15",
+          "quest_id": 50300009,
+          "stage_no": 433,
+          "resource_family": "QST",
+          "evidence_tier": "direct",
+          "derivation_class": "direct_deterministic",
+          "confidence": 92,
+          "why": "Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes."
+        },
+        {
+          "source_type": "qst",
+          "file_path": "client/03040008/quest/q50300009/quest/50300009/q50300009_st0433.qst.json",
+          "json_path": "QuestStageList[].QuestGrp[15].EraseCondition",
+          "field_name": "EraseCondition",
+          "flag_value": 6093,
+          "flag_kind": "layout_flag",
+          "relationship": "quest_erase",
+          "stage_name": "Shadolean Great Temple",
+          "stage_name_jp": "シェドレアン大神殿",
+          "stage_code": "st0433",
+          "comment": "QuestGroup 15 | スタート敵連動封鎖壁",
+          "context": "QuestSet=QuestSetInfoOm | OmID=510441 | OM_ID_DOOR_510441 | EnableZone | GroupNo=15",
+          "quest_id": 50300009,
+          "stage_no": 433,
+          "resource_family": "QST",
+          "evidence_tier": "direct",
+          "derivation_class": "direct_deterministic",
+          "confidence": 92,
+          "why": "Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes."
+        },
+        {
+          "source_type": "gpl",
+          "file_path": "client/03040008/stage/st0433/st0433/scr/st0433/etc/st0433_p.gpl.json",
+          "json_path": "GroupParamBuff[9].GuardData.LayoutFlagNo",
+          "field_name": "LayoutFlagNo",
+          "flag_value": 6093,
+          "flag_kind": "layout_flag",
+          "relationship": "layout_guard",
+          "quest_name": "The Deathly Battle of the Ancient Temple",
+          "quest_name_jp": "古代神殿の死闘",
+          "stage_name": "Shadolean Great Temple",
+          "stage_name_jp": "シェドレアン大神殿",
+          "area_name": "Kingal Canyon",
+          "area_name_jp": "キンガル峡谷",
+          "stage_code": "st0433",
+          "context": "GroupParam[9] | DataCommon.Group=179 | LayoutAreas=433 | LayoutRefs=1 | LikelyLOT=st0433_00m00n_p179.lot.json | LotTypes=SetInfoOmOld",
+          "quest_id": 50300009,
+          "stage_no": 433,
+          "resource_family": "GPL",
+          "evidence_tier": "direct",
+          "derivation_class": "direct_deterministic",
+          "confidence": 92,
+          "why": "Layout group guard; QuestNo and LayoutFlagNo here usually determine whether a stage group loads, including enemy or object visibility."
         }
       ],
       "candidate_hits": []
@@ -99,6 +830,7 @@
           "stage_no": 433,
           "resource_family": "LOT",
           "evidence_tier": "direct",
+          "derivation_class": "direct_deterministic",
           "confidence": 92,
           "why": "Layout placement reference; LOT hits usually gate warps, NPCs, or interactable objects in the stage layout."
         },
@@ -120,6 +852,7 @@
           "stage_no": 433,
           "resource_family": "LOT",
           "evidence_tier": "direct",
+          "derivation_class": "direct_deterministic",
           "confidence": 92,
           "why": "Layout placement reference; LOT hits usually gate warps, NPCs, or interactable objects in the stage layout."
         },
@@ -141,6 +874,7 @@
           "stage_no": 433,
           "resource_family": "ESI",
           "evidence_tier": "direct",
+          "derivation_class": "direct_deterministic",
           "confidence": 92,
           "why": "Repeatable sortie registry; QuestId and Flag here define special q5 repeatable sortie entries and their gate flags."
         }
@@ -148,9 +882,80 @@
       "candidate_hits": []
     }
   ],
+  "quest_family": {
+    "key": "q5",
+    "label": "Extreme / Grand Mission",
+    "description": "Extreme and grand mission content with sortie and cycle metadata.",
+    "discovery_focus": "esi_csi_sortie_topology",
+    "supported": true
+  },
+  "quest_family_relationships": {
+    "quest_family": {
+      "key": "q5",
+      "label": "Extreme / Grand Mission",
+      "description": "Extreme and grand mission content with sortie and cycle metadata.",
+      "discovery_focus": "esi_csi_sortie_topology",
+      "supported": true
+    },
+    "quest_sequence": {
+      "quest_id": 50300009,
+      "seq_no": 327,
+      "quest_name": "The Deathly Battle of the Ancient Temple",
+      "quest_name_jp": "古代神殿の死闘",
+      "previous": {
+        "quest_id": 50300005,
+        "seq_no": 326,
+        "quest_name": "The Crucible of Demons",
+        "quest_name_jp": "魔物のるつぼ"
+      },
+      "next": {
+        "quest_id": 60000001,
+        "seq_no": 328,
+        "quest_name": "Fighter Tactics Trial: Break Attack",
+        "quest_name_jp": "破攻の証　ファイター戦術試練"
+      }
+    },
+    "repeatable_sortie": {
+      "esi_count": 1,
+      "csi_count": 1,
+      "stage_tuples": [
+        [
+          433,
+          0,
+          433
+        ]
+      ],
+      "flags": [],
+      "cycle_sub_nos": [
+        1004
+      ],
+      "cycle_nos": [
+        1
+      ]
+    }
+  },
+  "quest_owner_indexes": [],
+  "quest_dependency_targets": [],
   "quest_archive_context": {
+    "quest_family": {
+      "key": "q5",
+      "label": "Extreme / Grand Mission",
+      "description": "Extreme and grand mission content with sortie and cycle metadata.",
+      "discovery_focus": "esi_csi_sortie_topology",
+      "supported": true
+    },
     "file_path": "client/03040008/quest/q50300009.arc.json",
     "resource_count": 7,
+    "stage_codes": [
+      "st0433"
+    ],
+    "resource_type_extensions": [
+      ".gmd",
+      ".mss",
+      ".qmi",
+      ".qst",
+      ".qtd"
+    ],
     "stages": [
       {
         "stage_code": "st0433",
@@ -202,6 +1007,309 @@
             "type_name": "rGUIMessage"
           }
         ]
+      }
+    ]
+  },
+  "quest_stage_neighborhood": {
+    "quest_family": {
+      "key": "q5",
+      "label": "Extreme / Grand Mission",
+      "description": "Extreme and grand mission content with sortie and cycle metadata.",
+      "discovery_focus": "esi_csi_sortie_topology",
+      "supported": true
+    },
+    "stage_codes": [
+      "st0433"
+    ],
+    "scanner_file_count": 154,
+    "stages": [
+      {
+        "stage_code": "st0433",
+        "stage_no": 433,
+        "stage_name": "Shadolean Great Temple",
+        "stage_name_jp": "シェドレアン大神殿",
+        "scanner_file_count": 154,
+        "scanner_suffix_counts": {
+          ".fsm.json": 15,
+          ".gpl.json": 5,
+          ".lot.json": 116,
+          ".qmi.json": 13,
+          ".qst.json": 5
+        }
+      }
+    ]
+  },
+  "quest_stage_cues": {
+    "quest_family": {
+      "key": "q5",
+      "label": "Extreme / Grand Mission",
+      "description": "Extreme and grand mission content with sortie and cycle metadata.",
+      "discovery_focus": "esi_csi_sortie_topology",
+      "supported": true
+    },
+    "stage_codes": [
+      "st0433"
+    ],
+    "owner_families": [
+      "q6",
+      "q7"
+    ],
+    "cues": [],
+    "cue_count": 0
+  },
+  "quest_graph_expansion": {
+    "max_depth": 3,
+    "node_count": 12,
+    "edge_count": 11,
+    "node_kind_counts": {
+      "cycle_sub_no": 1,
+      "direct_family": 5,
+      "family_context": 2,
+      "quest": 1,
+      "sequence_quest": 2,
+      "stage": 1
+    },
+    "edge_type_counts": {
+      "direct_source_family": 5,
+      "family_context:quest_sequence": 1,
+      "family_context:repeatable_sortie": 1,
+      "quest_archive_stage": 1,
+      "repeatable_cycle": 1,
+      "sequence_next": 1,
+      "sequence_previous": 1
+    },
+    "derivation_counts": {
+      "direct_deterministic": 23
+    },
+    "nodes": [
+      {
+        "node_id": "quest:50300009",
+        "label": "Quest 50300009",
+        "kind": "quest",
+        "depth": 0,
+        "derivation_class": "direct_deterministic",
+        "metadata": {
+          "quest_id": 50300009,
+          "target_count": 17
+        }
+      },
+      {
+        "node_id": "direct-family:csi",
+        "label": "csi direct hits (1)",
+        "kind": "direct_family",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "metadata": {
+          "source_type": "csi",
+          "hit_count": 1
+        }
+      },
+      {
+        "node_id": "direct-family:esi",
+        "label": "esi direct hits (1)",
+        "kind": "direct_family",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "metadata": {
+          "source_type": "esi",
+          "hit_count": 1
+        }
+      },
+      {
+        "node_id": "direct-family:gpl",
+        "label": "gpl direct hits (1)",
+        "kind": "direct_family",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "metadata": {
+          "source_type": "gpl",
+          "hit_count": 1
+        }
+      },
+      {
+        "node_id": "direct-family:lot",
+        "label": "lot direct hits (2)",
+        "kind": "direct_family",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "metadata": {
+          "source_type": "lot",
+          "hit_count": 2
+        }
+      },
+      {
+        "node_id": "direct-family:qst",
+        "label": "qst direct hits (21)",
+        "kind": "direct_family",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "metadata": {
+          "source_type": "qst",
+          "hit_count": 21
+        }
+      },
+      {
+        "node_id": "family-context:quest_sequence",
+        "label": "Quest Sequence",
+        "kind": "family_context",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "metadata": {
+          "context_key": "quest_sequence"
+        }
+      },
+      {
+        "node_id": "family-context:repeatable_sortie",
+        "label": "Repeatable Sortie",
+        "kind": "family_context",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "metadata": {
+          "context_key": "repeatable_sortie"
+        }
+      },
+      {
+        "node_id": "stage:st0433",
+        "label": "st0433 -- Shadolean Great Temple",
+        "kind": "stage",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "metadata": {
+          "stage_code": "st0433"
+        }
+      },
+      {
+        "node_id": "cycle-sub-no:1004",
+        "label": "CycleSubNo 1004",
+        "kind": "cycle_sub_no",
+        "depth": 2,
+        "derivation_class": "direct_deterministic",
+        "metadata": {
+          "cycle_sub_no": 1004
+        }
+      },
+      {
+        "node_id": "sequence-quest:50300005",
+        "label": "Quest 50300005",
+        "kind": "sequence_quest",
+        "depth": 2,
+        "derivation_class": "direct_deterministic",
+        "metadata": {
+          "quest_id": 50300005,
+          "direction": "previous"
+        }
+      },
+      {
+        "node_id": "sequence-quest:60000001",
+        "label": "Quest 60000001",
+        "kind": "sequence_quest",
+        "depth": 2,
+        "derivation_class": "direct_deterministic",
+        "metadata": {
+          "quest_id": 60000001,
+          "direction": "next"
+        }
+      }
+    ],
+    "edges": [
+      {
+        "from": "quest:50300009",
+        "to": "direct-family:csi",
+        "edge_type": "direct_source_family",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "why": "Decoded direct hits for the quest targets include this source family.",
+        "metadata": {}
+      },
+      {
+        "from": "quest:50300009",
+        "to": "direct-family:esi",
+        "edge_type": "direct_source_family",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "why": "Decoded direct hits for the quest targets include this source family.",
+        "metadata": {}
+      },
+      {
+        "from": "quest:50300009",
+        "to": "direct-family:gpl",
+        "edge_type": "direct_source_family",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "why": "Decoded direct hits for the quest targets include this source family.",
+        "metadata": {}
+      },
+      {
+        "from": "quest:50300009",
+        "to": "direct-family:lot",
+        "edge_type": "direct_source_family",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "why": "Decoded direct hits for the quest targets include this source family.",
+        "metadata": {}
+      },
+      {
+        "from": "quest:50300009",
+        "to": "direct-family:qst",
+        "edge_type": "direct_source_family",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "why": "Decoded direct hits for the quest targets include this source family.",
+        "metadata": {}
+      },
+      {
+        "from": "quest:50300009",
+        "to": "family-context:quest_sequence",
+        "edge_type": "family_context:quest_sequence",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "why": "Family-specific decoded tables provide deterministic context for this quest.",
+        "metadata": {}
+      },
+      {
+        "from": "quest:50300009",
+        "to": "family-context:repeatable_sortie",
+        "edge_type": "family_context:repeatable_sortie",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "why": "Family-specific decoded tables provide deterministic context for this quest.",
+        "metadata": {}
+      },
+      {
+        "from": "quest:50300009",
+        "to": "stage:st0433",
+        "edge_type": "quest_archive_stage",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "why": "Quest archive topology directly links this quest to the stage code.",
+        "metadata": {}
+      },
+      {
+        "from": "family-context:repeatable_sortie",
+        "to": "cycle-sub-no:1004",
+        "edge_type": "repeatable_cycle",
+        "depth": 2,
+        "derivation_class": "direct_deterministic",
+        "why": "Repeatable sortie tables link this quest to a cycle sub number.",
+        "metadata": {}
+      },
+      {
+        "from": "family-context:quest_sequence",
+        "to": "sequence-quest:60000001",
+        "edge_type": "sequence_next",
+        "depth": 2,
+        "derivation_class": "direct_deterministic",
+        "why": "QuestSequence links this quest to its neighboring sequence quest.",
+        "metadata": {}
+      },
+      {
+        "from": "family-context:quest_sequence",
+        "to": "sequence-quest:50300005",
+        "edge_type": "sequence_previous",
+        "depth": 2,
+        "derivation_class": "direct_deterministic",
+        "why": "QuestSequence links this quest to its neighboring sequence quest.",
+        "metadata": {}
       }
     ]
   }

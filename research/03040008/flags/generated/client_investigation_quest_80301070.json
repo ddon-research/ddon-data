@@ -1,11 +1,46 @@
 {
   "format": "client_investigation.v4",
-  "generated_at": "2026-04-11T21:41:42.918386+00:00",
+  "generated_at": "2026-04-12T12:44:32.629116+00:00",
   "query": {
     "mode": "quest",
     "value": 80301070
   },
   "documented_targets": [
+    {
+      "flag_value": 7646,
+      "quest_id": 80301070,
+      "flag_type": "layout_flag",
+      "doc_comment": "QST local: st0461 | 復興NPC",
+      "origin": "derived_qst_local"
+    },
+    {
+      "flag_value": 7647,
+      "quest_id": 80301070,
+      "flag_type": "layout_flag",
+      "doc_comment": "QST local: st0461 | QuestGroup 1 | 兵士１",
+      "origin": "derived_qst_local"
+    },
+    {
+      "flag_value": 7648,
+      "quest_id": 80301070,
+      "flag_type": "layout_flag",
+      "doc_comment": "QST local: st0461 | QuestGroup 2 | 兵士２",
+      "origin": "derived_qst_local"
+    },
+    {
+      "flag_value": 7649,
+      "quest_id": 80301070,
+      "flag_type": "layout_flag",
+      "doc_comment": "QST local: st0461 | QuestGroup 3 | 兵士３",
+      "origin": "derived_qst_local"
+    },
+    {
+      "flag_value": 7650,
+      "quest_id": 80301070,
+      "flag_type": "layout_flag",
+      "doc_comment": "QST local: st0461 | QuestGroup 4 | 受注NPC",
+      "origin": "derived_qst_local"
+    },
     {
       "flag_value": 80301070,
       "quest_id": 80301070,
@@ -15,6 +50,257 @@
     }
   ],
   "targets": [
+    {
+      "target": {
+        "flag_value": 7646,
+        "quest_id": 80301070,
+        "flag_type": "layout_flag",
+        "origin": "derived_qst_local",
+        "doc_comment": "QST local: st0461 | 復興NPC"
+      },
+      "hits": [
+        {
+          "source_type": "qst",
+          "file_path": "client/03040008/quest/q80301070/quest/80301070/q80301070_st0461.qst.json",
+          "json_path": "QuestStageList[].QuestGrp[0].Condition",
+          "field_name": "Condition",
+          "flag_value": 7646,
+          "flag_kind": "layout_flag",
+          "relationship": "quest_condition",
+          "stage_name": "Fortress City Megado: Residential Level",
+          "stage_name_jp": "城塞都市メガド 居住層",
+          "stage_code": "st0461",
+          "comment": "復興NPC",
+          "context": "QuestSet=QuestSetInfoNpc",
+          "quest_id": 80301070,
+          "stage_no": 461,
+          "resource_family": "QST",
+          "evidence_tier": "direct",
+          "derivation_class": "direct_deterministic",
+          "confidence": 92,
+          "why": "Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes."
+        }
+      ],
+      "candidate_hits": []
+    },
+    {
+      "target": {
+        "flag_value": 7647,
+        "quest_id": 80301070,
+        "flag_type": "layout_flag",
+        "origin": "derived_qst_local",
+        "doc_comment": "QST local: st0461 | QuestGroup 1 | 兵士１"
+      },
+      "hits": [
+        {
+          "source_type": "qst",
+          "file_path": "client/03040008/quest/q80301070/quest/80301070/q80301070_st0461.qst.json",
+          "json_path": "QuestStageList[].QuestGrp[1].Condition",
+          "field_name": "Condition",
+          "flag_value": 7647,
+          "flag_kind": "layout_flag",
+          "relationship": "quest_condition",
+          "stage_name": "Fortress City Megado: Residential Level",
+          "stage_name_jp": "城塞都市メガド 居住層",
+          "stage_code": "st0461",
+          "comment": "QuestGroup 1 | 兵士１",
+          "context": "QuestSet=QuestSetInfoNpc | GroupNo=1 || QuestSet=QuestSetInfoNpc | GroupNo=1 || +1 more",
+          "quest_id": 80301070,
+          "stage_no": 461,
+          "resource_family": "QST",
+          "evidence_tier": "direct",
+          "derivation_class": "direct_deterministic",
+          "confidence": 92,
+          "why": "Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes."
+        },
+        {
+          "source_type": "qst",
+          "file_path": "client/03040008/quest/q80301070/quest/80301070/q80301070_st0461.qst.json",
+          "json_path": "QuestStageList[].QuestGrp[1].EraseCondition",
+          "field_name": "EraseCondition",
+          "flag_value": 7647,
+          "flag_kind": "layout_flag",
+          "relationship": "quest_erase",
+          "stage_name": "Fortress City Megado: Residential Level",
+          "stage_name_jp": "城塞都市メガド 居住層",
+          "stage_code": "st0461",
+          "comment": "QuestGroup 1 | 兵士１",
+          "context": "QuestSet=QuestSetInfoNpc | GroupNo=1 || QuestSet=QuestSetInfoNpc | GroupNo=1 || +1 more",
+          "quest_id": 80301070,
+          "stage_no": 461,
+          "resource_family": "QST",
+          "evidence_tier": "direct",
+          "derivation_class": "direct_deterministic",
+          "confidence": 92,
+          "why": "Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes."
+        }
+      ],
+      "candidate_hits": []
+    },
+    {
+      "target": {
+        "flag_value": 7648,
+        "quest_id": 80301070,
+        "flag_type": "layout_flag",
+        "origin": "derived_qst_local",
+        "doc_comment": "QST local: st0461 | QuestGroup 2 | 兵士２"
+      },
+      "hits": [
+        {
+          "source_type": "qst",
+          "file_path": "client/03040008/quest/q80301070/quest/80301070/q80301070_st0461.qst.json",
+          "json_path": "QuestStageList[].QuestGrp[2].Condition",
+          "field_name": "Condition",
+          "flag_value": 7648,
+          "flag_kind": "layout_flag",
+          "relationship": "quest_condition",
+          "stage_name": "Fortress City Megado: Residential Level",
+          "stage_name_jp": "城塞都市メガド 居住層",
+          "stage_code": "st0461",
+          "comment": "QuestGroup 2 | 兵士２",
+          "context": "QuestSet=QuestSetInfoNpc | GroupNo=2 || QuestSet=QuestSetInfoNpc | GroupNo=2 || +1 more",
+          "quest_id": 80301070,
+          "stage_no": 461,
+          "resource_family": "QST",
+          "evidence_tier": "direct",
+          "derivation_class": "direct_deterministic",
+          "confidence": 92,
+          "why": "Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes."
+        },
+        {
+          "source_type": "qst",
+          "file_path": "client/03040008/quest/q80301070/quest/80301070/q80301070_st0461.qst.json",
+          "json_path": "QuestStageList[].QuestGrp[2].EraseCondition",
+          "field_name": "EraseCondition",
+          "flag_value": 7648,
+          "flag_kind": "layout_flag",
+          "relationship": "quest_erase",
+          "stage_name": "Fortress City Megado: Residential Level",
+          "stage_name_jp": "城塞都市メガド 居住層",
+          "stage_code": "st0461",
+          "comment": "QuestGroup 2 | 兵士２",
+          "context": "QuestSet=QuestSetInfoNpc | GroupNo=2 || QuestSet=QuestSetInfoNpc | GroupNo=2 || +1 more",
+          "quest_id": 80301070,
+          "stage_no": 461,
+          "resource_family": "QST",
+          "evidence_tier": "direct",
+          "derivation_class": "direct_deterministic",
+          "confidence": 92,
+          "why": "Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes."
+        }
+      ],
+      "candidate_hits": []
+    },
+    {
+      "target": {
+        "flag_value": 7649,
+        "quest_id": 80301070,
+        "flag_type": "layout_flag",
+        "origin": "derived_qst_local",
+        "doc_comment": "QST local: st0461 | QuestGroup 3 | 兵士３"
+      },
+      "hits": [
+        {
+          "source_type": "qst",
+          "file_path": "client/03040008/quest/q80301070/quest/80301070/q80301070_st0461.qst.json",
+          "json_path": "QuestStageList[].QuestGrp[3].Condition",
+          "field_name": "Condition",
+          "flag_value": 7649,
+          "flag_kind": "layout_flag",
+          "relationship": "quest_condition",
+          "stage_name": "Fortress City Megado: Residential Level",
+          "stage_name_jp": "城塞都市メガド 居住層",
+          "stage_code": "st0461",
+          "comment": "QuestGroup 3 | 兵士３",
+          "context": "QuestSet=QuestSetInfoNpc | GroupNo=3 || QuestSet=QuestSetInfoNpc | GroupNo=3 || +1 more",
+          "quest_id": 80301070,
+          "stage_no": 461,
+          "resource_family": "QST",
+          "evidence_tier": "direct",
+          "derivation_class": "direct_deterministic",
+          "confidence": 92,
+          "why": "Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes."
+        },
+        {
+          "source_type": "qst",
+          "file_path": "client/03040008/quest/q80301070/quest/80301070/q80301070_st0461.qst.json",
+          "json_path": "QuestStageList[].QuestGrp[3].EraseCondition",
+          "field_name": "EraseCondition",
+          "flag_value": 7649,
+          "flag_kind": "layout_flag",
+          "relationship": "quest_erase",
+          "stage_name": "Fortress City Megado: Residential Level",
+          "stage_name_jp": "城塞都市メガド 居住層",
+          "stage_code": "st0461",
+          "comment": "QuestGroup 3 | 兵士３",
+          "context": "QuestSet=QuestSetInfoNpc | GroupNo=3 || QuestSet=QuestSetInfoNpc | GroupNo=3 || +1 more",
+          "quest_id": 80301070,
+          "stage_no": 461,
+          "resource_family": "QST",
+          "evidence_tier": "direct",
+          "derivation_class": "direct_deterministic",
+          "confidence": 92,
+          "why": "Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes."
+        }
+      ],
+      "candidate_hits": []
+    },
+    {
+      "target": {
+        "flag_value": 7650,
+        "quest_id": 80301070,
+        "flag_type": "layout_flag",
+        "origin": "derived_qst_local",
+        "doc_comment": "QST local: st0461 | QuestGroup 4 | 受注NPC"
+      },
+      "hits": [
+        {
+          "source_type": "qst",
+          "file_path": "client/03040008/quest/q80301070/quest/80301070/q80301070_st0461.qst.json",
+          "json_path": "QuestStageList[].QuestGrp[4].Condition",
+          "field_name": "Condition",
+          "flag_value": 7650,
+          "flag_kind": "layout_flag",
+          "relationship": "quest_condition",
+          "stage_name": "Fortress City Megado: Residential Level",
+          "stage_name_jp": "城塞都市メガド 居住層",
+          "stage_code": "st0461",
+          "comment": "QuestGroup 4 | 受注NPC",
+          "quest_id": 80301070,
+          "stage_no": 461,
+          "resource_family": "QST",
+          "evidence_tier": "direct",
+          "derivation_class": "direct_deterministic",
+          "confidence": 92,
+          "why": "Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes."
+        },
+        {
+          "source_type": "gpl",
+          "file_path": "client/03040008/stage/st0474/st0474/scr/st0474/etc/st0474_n.gpl.json",
+          "json_path": "GroupParamBuff[2].GuardData.LayoutFlagNo",
+          "field_name": "LayoutFlagNo",
+          "flag_value": 7650,
+          "flag_kind": "layout_flag",
+          "relationship": "layout_guard",
+          "quest_name": "[Daily Espionage] Royal Capital Megado - Follow Clues",
+          "quest_name_jp": "【諜報日課】王都メガド　追跡捜査",
+          "stage_name": "Marquise Kurt's residence",
+          "stage_name_jp": "クルト侯爵邸",
+          "area_name": "Megadosys Plateau",
+          "area_name_jp": "メガドシス高地",
+          "stage_code": "st0474",
+          "context": "GroupParam[2] | DataCommon.Group=4 | LayoutAreas=474 | LayoutRefs=1",
+          "quest_id": 80301070,
+          "stage_no": 474,
+          "resource_family": "GPL",
+          "evidence_tier": "direct",
+          "derivation_class": "direct_deterministic",
+          "confidence": 92,
+          "why": "Layout group guard; QuestNo and LayoutFlagNo here usually determine whether a stage group loads, including enemy or object visibility."
+        }
+      ],
+      "candidate_hits": []
+    },
     {
       "target": {
         "flag_value": 80301070,
@@ -32,6 +318,7 @@
           "json_path": "QuestSequenceList[519].QuestId",
           "resource_family": ".qsq",
           "evidence_tier": "context",
+          "derivation_class": "lower_confidence",
           "confidence": 45,
           "why": "Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.",
           "class_name": "org.sehkah.ddon.tools.extractor.common.logic.resource.entity.game_common.QuestSequence",
@@ -46,6 +333,7 @@
           "json_path": "GroupParamBuff[2].GuardData.QuestNo",
           "resource_family": ".gpl",
           "evidence_tier": "context",
+          "derivation_class": "lower_confidence",
           "confidence": 45,
           "why": "Matched a relevant decoded field (QuestNo), but not in the primary field family for this target type.",
           "stage_name": "Marquise Kurt's residence",
@@ -58,9 +346,156 @@
       ]
     }
   ],
+  "quest_family": {
+    "key": "q8",
+    "label": "Partner Pawn Personal Quest",
+    "description": "Partner Pawn personal quests and pawn-relationship quest flows.",
+    "discovery_focus": "pawn_quest_talk_plus_personal_progression",
+    "supported": true
+  },
+  "quest_family_relationships": {
+    "quest_family": {
+      "key": "q8",
+      "label": "Partner Pawn Personal Quest",
+      "description": "Partner Pawn personal quests and pawn-relationship quest flows.",
+      "discovery_focus": "pawn_quest_talk_plus_personal_progression",
+      "supported": true
+    },
+    "quest_sequence": {
+      "quest_id": 80301070,
+      "seq_no": 519,
+      "quest_name": "[Daily Espionage] Royal Capital Megado - Follow Clues",
+      "quest_name_jp": "【諜報日課】王都メガド　追跡捜査",
+      "previous": {
+        "quest_id": 80301062,
+        "seq_no": 518,
+        "quest_name": "[Daily Council] Bandit Hideout - Collect Information",
+        "quest_name_jp": "【参謀日課】盗賊アジト　情報収集"
+      },
+      "next": {
+        "quest_id": 80301071,
+        "seq_no": 520,
+        "quest_name": "[Daily Espionage] Eli Guard Tower - \nRecover Materials",
+        "quest_name_jp": "【諜報日課】エリ警備塔　資材回収"
+      }
+    }
+  },
+  "quest_owner_indexes": [
+    {
+      "owner_quest_id": 70032001,
+      "owner_family": "q7",
+      "flag_values": [
+        7169,
+        7240,
+        7241,
+        7336,
+        7341,
+        7342,
+        7386,
+        7387,
+        7388,
+        7389,
+        7390,
+        7438,
+        7439,
+        7440,
+        7496,
+        7497,
+        7498,
+        7512,
+        7514,
+        7544,
+        7545,
+        7549,
+        7550,
+        7551,
+        7552,
+        7553,
+        7554,
+        7555,
+        7556,
+        7557,
+        7558,
+        7562,
+        7746,
+        7927,
+        7928,
+        7929,
+        7930
+      ],
+      "flag_count": 37,
+      "local_qst_flag_count": 8,
+      "self_cue_flag_count": 29,
+      "cue_source_types": [
+        "evsi",
+        "gpl"
+      ],
+      "derivation_class": "owner_index",
+      "linked_flag_values": [
+        7497,
+        7654,
+        7747
+      ],
+      "linked_flag_count": 3,
+      "linked_source_types": [
+        "gpl"
+      ],
+      "linked_stage_codes": [
+        "st0461"
+      ],
+      "why": "Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference."
+    },
+    {
+      "owner_quest_id": 70034001,
+      "owner_family": "q7",
+      "flag_values": [
+        8486,
+        8630,
+        8631
+      ],
+      "flag_count": 3,
+      "local_qst_flag_count": 2,
+      "self_cue_flag_count": 1,
+      "cue_source_types": [
+        "evsi"
+      ],
+      "derivation_class": "owner_index",
+      "linked_flag_values": [
+        8844
+      ],
+      "linked_flag_count": 1,
+      "linked_source_types": [
+        "gpl"
+      ],
+      "linked_stage_codes": [
+        "st0461"
+      ],
+      "why": "Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference."
+    }
+  ],
+  "quest_dependency_targets": [],
   "quest_archive_context": {
+    "quest_family": {
+      "key": "q8",
+      "label": "Partner Pawn Personal Quest",
+      "description": "Partner Pawn personal quests and pawn-relationship quest flows.",
+      "discovery_focus": "pawn_quest_talk_plus_personal_progression",
+      "supported": true
+    },
     "file_path": "client/03040008/quest/q80301070.arc.json",
     "resource_count": 11,
+    "stage_codes": [
+      "st0461",
+      "st0474"
+    ],
+    "resource_type_extensions": [
+      ".fsm",
+      ".gmd",
+      ".mss",
+      ".qmi",
+      ".qst",
+      ".qtd"
+    ],
     "stages": [
       {
         "stage_code": "st0461",
@@ -140,6 +575,588 @@
             "type_name": "rGUIMessage"
           }
         ]
+      }
+    ]
+  },
+  "quest_stage_neighborhood": {
+    "quest_family": {
+      "key": "q8",
+      "label": "Partner Pawn Personal Quest",
+      "description": "Partner Pawn personal quests and pawn-relationship quest flows.",
+      "discovery_focus": "pawn_quest_talk_plus_personal_progression",
+      "supported": true
+    },
+    "stage_codes": [
+      "st0461",
+      "st0474"
+    ],
+    "scanner_file_count": 70,
+    "stages": [
+      {
+        "stage_code": "st0461",
+        "stage_no": 461,
+        "stage_name": "Fortress City Megado: Residential Level",
+        "stage_name_jp": "城塞都市メガド 居住層",
+        "scanner_file_count": 47,
+        "scanner_suffix_counts": {
+          ".gpl.json": 3,
+          ".lot.json": 22,
+          ".qmi.json": 12,
+          ".qst.json": 10
+        }
+      },
+      {
+        "stage_code": "st0474",
+        "stage_no": 474,
+        "stage_name": "Marquise Kurt's residence",
+        "stage_name_jp": "クルト侯爵邸",
+        "scanner_file_count": 23,
+        "scanner_suffix_counts": {
+          ".gpl.json": 3,
+          ".lot.json": 11,
+          ".qmi.json": 5,
+          ".qst.json": 4
+        }
+      }
+    ]
+  },
+  "quest_stage_cues": {
+    "quest_family": {
+      "key": "q8",
+      "label": "Partner Pawn Personal Quest",
+      "description": "Partner Pawn personal quests and pawn-relationship quest flows.",
+      "discovery_focus": "pawn_quest_talk_plus_personal_progression",
+      "supported": true
+    },
+    "stage_codes": [
+      "st0461",
+      "st0474"
+    ],
+    "owner_families": [
+      "q6",
+      "q7"
+    ],
+    "cues": [
+      {
+        "flag_value": 7497,
+        "flag_kind": "layout_flag",
+        "score": 8,
+        "hit_count": 1,
+        "source_types": [
+          "gpl"
+        ],
+        "owner_quests": [
+          70032001
+        ],
+        "owner_families": [
+          "q7"
+        ],
+        "stage_codes": [
+          "st0461"
+        ],
+        "sample_hits": [
+          {
+            "source_type": "gpl",
+            "field_name": "LayoutFlagNo",
+            "relationship": "layout_guard",
+            "quest_id": 70032001,
+            "stage_code": "st0461",
+            "file_path": "client/03040008/stage/st0461/st0461/scr/st0461/etc/st0461_n.gpl.json",
+            "comment": ""
+          }
+        ]
+      },
+      {
+        "flag_value": 7654,
+        "flag_kind": "layout_flag",
+        "score": 8,
+        "hit_count": 1,
+        "source_types": [
+          "gpl"
+        ],
+        "owner_quests": [
+          70032001
+        ],
+        "owner_families": [
+          "q7"
+        ],
+        "stage_codes": [
+          "st0461"
+        ],
+        "sample_hits": [
+          {
+            "source_type": "gpl",
+            "field_name": "LayoutFlagNo",
+            "relationship": "layout_guard",
+            "quest_id": 70032001,
+            "stage_code": "st0461",
+            "file_path": "client/03040008/stage/st0461/st0461/scr/st0461/etc/st0461_p.gpl.json",
+            "comment": ""
+          }
+        ]
+      },
+      {
+        "flag_value": 7747,
+        "flag_kind": "layout_flag",
+        "score": 8,
+        "hit_count": 1,
+        "source_types": [
+          "gpl"
+        ],
+        "owner_quests": [
+          70032001
+        ],
+        "owner_families": [
+          "q7"
+        ],
+        "stage_codes": [
+          "st0461"
+        ],
+        "sample_hits": [
+          {
+            "source_type": "gpl",
+            "field_name": "LayoutFlagNo",
+            "relationship": "layout_guard",
+            "quest_id": 70032001,
+            "stage_code": "st0461",
+            "file_path": "client/03040008/stage/st0461/st0461/scr/st0461/etc/st0461_n.gpl.json",
+            "comment": ""
+          }
+        ]
+      },
+      {
+        "flag_value": 8844,
+        "flag_kind": "layout_flag",
+        "score": 8,
+        "hit_count": 1,
+        "source_types": [
+          "gpl"
+        ],
+        "owner_quests": [
+          70034001
+        ],
+        "owner_families": [
+          "q7"
+        ],
+        "stage_codes": [
+          "st0461"
+        ],
+        "sample_hits": [
+          {
+            "source_type": "gpl",
+            "field_name": "LayoutFlagNo",
+            "relationship": "layout_guard",
+            "quest_id": 70034001,
+            "stage_code": "st0461",
+            "file_path": "client/03040008/stage/st0461/st0461/scr/st0461/etc/st0461_p.gpl.json",
+            "comment": ""
+          }
+        ]
+      }
+    ],
+    "cue_count": 4
+  },
+  "quest_graph_expansion": {
+    "max_depth": 3,
+    "node_count": 16,
+    "edge_count": 19,
+    "node_kind_counts": {
+      "direct_family": 2,
+      "family_context": 1,
+      "lot_file": 2,
+      "owner_quest": 2,
+      "quest": 1,
+      "sequence_quest": 2,
+      "stage": 2,
+      "stage_group": 4
+    },
+    "edge_type_counts": {
+      "direct_source_family": 2,
+      "family_context:quest_sequence": 1,
+      "gpl_owner_guard": 4,
+      "group_lot_reference": 2,
+      "quest_archive_stage": 2,
+      "sequence_next": 1,
+      "sequence_previous": 1,
+      "stage_group_reference": 4,
+      "stage_owner_index": 2
+    },
+    "derivation_counts": {
+      "direct_deterministic": 15,
+      "graph_expanded": 16,
+      "owner_index": 4
+    },
+    "nodes": [
+      {
+        "node_id": "quest:80301070",
+        "label": "Quest 80301070",
+        "kind": "quest",
+        "depth": 0,
+        "derivation_class": "direct_deterministic",
+        "metadata": {
+          "quest_id": 80301070,
+          "target_count": 6
+        }
+      },
+      {
+        "node_id": "direct-family:gpl",
+        "label": "gpl direct hits (1)",
+        "kind": "direct_family",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "metadata": {
+          "source_type": "gpl",
+          "hit_count": 1
+        }
+      },
+      {
+        "node_id": "direct-family:qst",
+        "label": "qst direct hits (8)",
+        "kind": "direct_family",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "metadata": {
+          "source_type": "qst",
+          "hit_count": 8
+        }
+      },
+      {
+        "node_id": "family-context:quest_sequence",
+        "label": "Quest Sequence",
+        "kind": "family_context",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "metadata": {
+          "context_key": "quest_sequence"
+        }
+      },
+      {
+        "node_id": "stage:st0461",
+        "label": "st0461 -- Fortress City Megado: Residential Level",
+        "kind": "stage",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "metadata": {
+          "stage_code": "st0461"
+        }
+      },
+      {
+        "node_id": "stage:st0474",
+        "label": "st0474 -- Marquise Kurt's residence",
+        "kind": "stage",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "metadata": {
+          "stage_code": "st0474"
+        }
+      },
+      {
+        "node_id": "owner-quest:70032001",
+        "label": "Owner quest 70032001 (q7)",
+        "kind": "owner_quest",
+        "depth": 2,
+        "derivation_class": "owner_index",
+        "metadata": {
+          "owner_quest_id": 70032001,
+          "owner_family": "q7",
+          "flag_count": 37
+        }
+      },
+      {
+        "node_id": "owner-quest:70034001",
+        "label": "Owner quest 70034001 (q7)",
+        "kind": "owner_quest",
+        "depth": 2,
+        "derivation_class": "owner_index",
+        "metadata": {
+          "owner_quest_id": 70034001,
+          "owner_family": "q7",
+          "flag_count": 3
+        }
+      },
+      {
+        "node_id": "sequence-quest:80301062",
+        "label": "Quest 80301062",
+        "kind": "sequence_quest",
+        "depth": 2,
+        "derivation_class": "direct_deterministic",
+        "metadata": {
+          "quest_id": 80301062,
+          "direction": "previous"
+        }
+      },
+      {
+        "node_id": "sequence-quest:80301071",
+        "label": "Quest 80301071",
+        "kind": "sequence_quest",
+        "depth": 2,
+        "derivation_class": "direct_deterministic",
+        "metadata": {
+          "quest_id": 80301071,
+          "direction": "next"
+        }
+      },
+      {
+        "node_id": "stage-group:st0461:206",
+        "label": "GPL group st0461/206",
+        "kind": "stage_group",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "metadata": {
+          "stage_code": "st0461",
+          "group_no": 206
+        }
+      },
+      {
+        "node_id": "stage-group:st0461:4",
+        "label": "GPL group st0461/4",
+        "kind": "stage_group",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "metadata": {
+          "stage_code": "st0461",
+          "group_no": 4
+        }
+      },
+      {
+        "node_id": "stage-group:st0461:40",
+        "label": "GPL group st0461/40",
+        "kind": "stage_group",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "metadata": {
+          "stage_code": "st0461",
+          "group_no": 40
+        }
+      },
+      {
+        "node_id": "stage-group:st0461:5",
+        "label": "GPL group st0461/5",
+        "kind": "stage_group",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "metadata": {
+          "stage_code": "st0461",
+          "group_no": 5
+        }
+      },
+      {
+        "node_id": "lot-file:st0461_00m00n_p206.lot.json",
+        "label": "st0461_00m00n_p206.lot.json",
+        "kind": "lot_file",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "metadata": {
+          "file_path": "client/03040008/stage/st0461/lot/st0461_00m00n/scr/st0461/etc/st0461_00m00n_p206.lot.json",
+          "type_names": [
+            "SetInfoOmWarp"
+          ]
+        }
+      },
+      {
+        "node_id": "lot-file:st0461_00m00n_p40.lot.json",
+        "label": "st0461_00m00n_p40.lot.json",
+        "kind": "lot_file",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "metadata": {
+          "file_path": "client/03040008/stage/st0461/lot/st0461_00m00n/scr/st0461/etc/st0461_00m00n_p40.lot.json",
+          "type_names": [
+            "SetInfoOmOld",
+            "SetInfoOmWarp"
+          ]
+        }
+      }
+    ],
+    "edges": [
+      {
+        "from": "quest:80301070",
+        "to": "direct-family:gpl",
+        "edge_type": "direct_source_family",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "why": "Decoded direct hits for the quest targets include this source family.",
+        "metadata": {}
+      },
+      {
+        "from": "quest:80301070",
+        "to": "direct-family:qst",
+        "edge_type": "direct_source_family",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "why": "Decoded direct hits for the quest targets include this source family.",
+        "metadata": {}
+      },
+      {
+        "from": "quest:80301070",
+        "to": "family-context:quest_sequence",
+        "edge_type": "family_context:quest_sequence",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "why": "Family-specific decoded tables provide deterministic context for this quest.",
+        "metadata": {}
+      },
+      {
+        "from": "quest:80301070",
+        "to": "stage:st0461",
+        "edge_type": "quest_archive_stage",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "why": "Quest archive topology directly links this quest to the stage code.",
+        "metadata": {}
+      },
+      {
+        "from": "quest:80301070",
+        "to": "stage:st0474",
+        "edge_type": "quest_archive_stage",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "why": "Quest archive topology directly links this quest to the stage code.",
+        "metadata": {}
+      },
+      {
+        "from": "family-context:quest_sequence",
+        "to": "sequence-quest:80301071",
+        "edge_type": "sequence_next",
+        "depth": 2,
+        "derivation_class": "direct_deterministic",
+        "why": "QuestSequence links this quest to its neighboring sequence quest.",
+        "metadata": {}
+      },
+      {
+        "from": "family-context:quest_sequence",
+        "to": "sequence-quest:80301062",
+        "edge_type": "sequence_previous",
+        "depth": 2,
+        "derivation_class": "direct_deterministic",
+        "why": "QuestSequence links this quest to its neighboring sequence quest.",
+        "metadata": {}
+      },
+      {
+        "from": "stage:st0461",
+        "to": "stage-group:st0461:206",
+        "edge_type": "stage_group_reference",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "why": "Reverse indexes expose GPL group references for this stage.",
+        "metadata": {}
+      },
+      {
+        "from": "stage:st0461",
+        "to": "stage-group:st0461:4",
+        "edge_type": "stage_group_reference",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "why": "Reverse indexes expose GPL group references for this stage.",
+        "metadata": {}
+      },
+      {
+        "from": "stage:st0461",
+        "to": "stage-group:st0461:40",
+        "edge_type": "stage_group_reference",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "why": "Reverse indexes expose GPL group references for this stage.",
+        "metadata": {}
+      },
+      {
+        "from": "stage:st0461",
+        "to": "stage-group:st0461:5",
+        "edge_type": "stage_group_reference",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "why": "Reverse indexes expose GPL group references for this stage.",
+        "metadata": {}
+      },
+      {
+        "from": "stage:st0461",
+        "to": "owner-quest:70032001",
+        "edge_type": "stage_owner_index",
+        "depth": 2,
+        "derivation_class": "owner_index",
+        "why": "Stage-neighborhood cues on this stage link to the reusable owner catalog.",
+        "metadata": {
+          "linked_flag_values": [
+            7497,
+            7654,
+            7747
+          ]
+        }
+      },
+      {
+        "from": "stage:st0461",
+        "to": "owner-quest:70034001",
+        "edge_type": "stage_owner_index",
+        "depth": 2,
+        "derivation_class": "owner_index",
+        "why": "Stage-neighborhood cues on this stage link to the reusable owner catalog.",
+        "metadata": {
+          "linked_flag_values": [
+            8844
+          ]
+        }
+      },
+      {
+        "from": "stage-group:st0461:206",
+        "to": "owner-quest:70032001",
+        "edge_type": "gpl_owner_guard",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "why": "GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.",
+        "metadata": {
+          "flag_value": 7654
+        }
+      },
+      {
+        "from": "stage-group:st0461:4",
+        "to": "owner-quest:70032001",
+        "edge_type": "gpl_owner_guard",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "why": "GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.",
+        "metadata": {
+          "flag_value": 7497
+        }
+      },
+      {
+        "from": "stage-group:st0461:40",
+        "to": "owner-quest:70034001",
+        "edge_type": "gpl_owner_guard",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "why": "GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.",
+        "metadata": {
+          "flag_value": 8844
+        }
+      },
+      {
+        "from": "stage-group:st0461:5",
+        "to": "owner-quest:70032001",
+        "edge_type": "gpl_owner_guard",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "why": "GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.",
+        "metadata": {
+          "flag_value": 7747
+        }
+      },
+      {
+        "from": "stage-group:st0461:206",
+        "to": "lot-file:st0461_00m00n_p206.lot.json",
+        "edge_type": "group_lot_reference",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "why": "LOT association resolves the GPL group to a concrete stage layout file.",
+        "metadata": {}
+      },
+      {
+        "from": "stage-group:st0461:40",
+        "to": "lot-file:st0461_00m00n_p40.lot.json",
+        "edge_type": "group_lot_reference",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "why": "LOT association resolves the GPL group to a concrete stage layout file.",
+        "metadata": {}
       }
     ]
   }

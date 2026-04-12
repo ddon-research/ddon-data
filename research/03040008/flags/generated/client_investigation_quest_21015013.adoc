@@ -5,16 +5,32 @@
 
 Query mode:: quest
 Query value:: 21015013
-Generated at:: 2026-04-11T21:41:41.007998+00:00
+Generated at:: 2026-04-12T12:43:57.916320+00:00
 
 toc::[]
+
+Quest family:: unknown -- Unknown Quest Family
+Quest family notes:: Quest family could not be inferred from the client quest id pattern.
+Quest family focus:: treat_as_generic
+
+== Family Relationship Context
+
+_These sections summarize deterministic client-side family metadata and reverse-index relationships. They are context for later owner/dependency inference, not direct quest-target promotion._
+
+=== Quest Sequence
+
+* seq no: 280
+* previous: 21015012 -- A Foreign Investigation
+* next: 21015014 -- Missing Cohort
 
 == ARC Association Context
 
 _ARC associations are contextual only. They show which quest-stage and marker resources are bundled with this quest._
 
-* arc file: client/03040008/quest/q21015013.arc.json
+* arc file: link:../../../../client/03040008/quest/q21015013.arc.json#L1[client/03040008/quest/q21015013.arc.json#L1]
 * resource count: 11
+* stage codes: st0860
+* resource families: .fsm, .gmd, .mss, .qmi, .qst, .qtd
 
 === st0860 -- Farana Ruins
 
@@ -33,18 +49,158 @@ _ARC associations are contextual only. They show which quest-stage and marker re
 * rAIFSM: quest/21015013/npc/help
 * rGUIMessage: ui/00_message/quest_info/q21015013_00
 
+== Stage Neighborhood Context
+
+_Stage-neighborhood context summarizes scanner-relevant client files that share the quest's archive stage codes. This is deterministic client topology, not inferred ownership._
+
+* scanner-relevant stage files: 77
+* indexed stage codes: st0860
+
+=== st0860 -- Farana Ruins
+
+* scanner files: 77
+* .gpl.json: 11
+* .lot.json: 63
+* .qmi.json: 2
+* .qst.json: 1
+
+== Stage Neighborhood External-State Cues
+
+_These cues are deterministic client-side observations from the quest's stage neighborhood. They are not promoted to direct quest targets yet; they highlight q6/q7-owned external state values co-located in the quest's archive stages._
+
+* cue count: 0
+* owner families: q6, q7
+
+== Bounded Graph Expansion
+
+_This graph summarizes bounded deterministic and inferred edges around the quest: quest archive stages, direct source families, stage-linked owner catalogs, promoted dependencies, reverse-index event/group links, and family-specific table edges._
+
+* max depth: 3
+* node count: 7
+* edge count: 6
+* node kinds: direct_family=2, family_context=1, quest=1, sequence_quest=2, stage=1
+* derivation: Direct=13
+
+=== Mermaid Graph Slice
+
+_This Mermaid flowchart shows a capped slice of the bounded graph so large quest reports stay readable while still exposing the graph structure._
+
+[mermaid]
+....
+flowchart TD
+    node_quest_21015013["Quest 21015013"]
+    node_direct_family_fsm["fsm direct hits (2)"]
+    node_direct_family_qst["qst direct hits (4)"]
+    node_family_context_quest_sequence["Quest Sequence"]
+    node_stage_st0860["st0860 -- Farana Ruins"]
+    node_sequence_quest_21015012["Quest 21015012"]
+    node_sequence_quest_21015014["Quest 21015014"]
+    node_quest_21015013 -->|direct_source_family| node_direct_family_fsm
+    node_quest_21015013 -->|direct_source_family| node_direct_family_qst
+    node_quest_21015013 -->|family:quest_sequence| node_family_context_quest_sequence
+    node_quest_21015013 -->|quest_archive_stage| node_stage_st0860
+    node_family_context_quest_sequence -->|sequence_next| node_sequence_quest_21015014
+    node_family_context_quest_sequence -->|sequence_previous| node_sequence_quest_21015012
+    classDef direct_deterministic fill:#e8f5e9,stroke:#2e7d32,stroke-width:1px
+    classDef owner_index fill:#e3f2fd,stroke:#1565c0,stroke-width:1px
+    classDef dependency_inferred fill:#fff3e0,stroke:#ef6c00,stroke-width:1px
+    classDef graph_expanded fill:#f3e5f5,stroke:#7b1fa2,stroke-width:1px
+    classDef lower_confidence fill:#fbe9e7,stroke:#d84315,stroke-width:1px
+    classDef binary_auxiliary fill:#eceff1,stroke:#455a64,stroke-width:1px
+    class node_quest_21015013,node_direct_family_fsm,node_direct_family_qst,node_family_context_quest_sequence,node_stage_st0860,node_sequence_quest_21015012,node_sequence_quest_21015014 direct_deterministic
+....
+
+[cols="1,2,2,2,2,4",options="header"]
+|===
+| Depth | Edge | From | To | Derivation | Why
+
+| 1 | direct_source_family | quest:21015013 | direct-family:fsm | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | direct_source_family | quest:21015013 | direct-family:qst | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | family_context:quest_sequence | quest:21015013 | family-context:quest_sequence | Direct | Family-specific decoded tables provide deterministic context for this quest.
+| 1 | quest_archive_stage | quest:21015013 | stage:st0860 | Direct | Quest archive topology directly links this quest to the stage code.
+| 2 | sequence_next | family-context:quest_sequence | sequence-quest:21015014 | Direct | QuestSequence links this quest to its neighboring sequence quest.
+| 2 | sequence_previous | family-context:quest_sequence | sequence-quest:21015012 | Direct | QuestSequence links this quest to its neighboring sequence quest.
+|===
+
 == Flag Summary Matrix
 
 [cols="2,1,1,2,2,3,3",options="header"]
 |===
 | Target | Kind | Hits | Sources | Stages | Relationships | Description
 
+| Flag 4332 | layout_flag | 2 | qst | st0860 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0860 \| Condition
+| Flag 4336 | layout_flag | 1 | qst | st0860 | ⚡ Quest Condition | QST local: st0860 \| QuestGroup 1
+| Flag 4337 | layout_flag | 2 | fsm, qst | st0860 | 🔍 FSM Check, ⚡ Quest Condition | QST local: st0860 \| QuestGroup 2
 | Quest ID 21015013 | quest_id | 1 | fsm |  | 🔍 FSM Check | Derived quest-wide association scan
 |===
 
 == Known Documented Targets
 
+* quest 21015013 -- Flag 4332 -- QST local: st0860 | Condition
+* quest 21015013 -- Flag 4336 -- QST local: st0860 | QuestGroup 1
+* quest 21015013 -- Flag 4337 -- QST local: st0860 | QuestGroup 2
 * Quest ID 21015013 -- Derived quest-wide association scan [Derived]
+
+== Flag 4332 -- Quest 21015013
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q21015013/quest/21015013/q21015013_st0860.qst.json[client/03040008/quest/q21015013/quest/21015013/q21015013_st0860.qst.json] | QuestStageList[].QuestGrp[0].Condition | Condition | quest 21015013 / Farana Ruins / QuestSet=QuestSetInfoNpc | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q21015013/quest/21015013/q21015013_st0860.qst.json[client/03040008/quest/q21015013/quest/21015013/q21015013_st0860.qst.json] | QuestStageList[].QuestGrp[0].EraseCondition | EraseCondition | quest 21015013 / Farana Ruins / QuestSet=QuestSetInfoNpc | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 4336 -- Quest 21015013
+
+origin:: derived_qst_local
+direct hits:: *1*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 1 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q21015013/quest/21015013/q21015013_st0860.qst.json[client/03040008/quest/q21015013/quest/21015013/q21015013_st0860.qst.json] | QuestStageList[].QuestGrp[1].Condition | Condition | quest 21015013 / Farana Ruins / "QuestGroup 1" / QuestSet=QuestSetInfoNpc \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 4337 -- Quest 21015013
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 1 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q21015013/quest/21015013/q21015013_st0860.qst.json[client/03040008/quest/q21015013/quest/21015013/q21015013_st0860.qst.json] | QuestStageList[].QuestGrp[2].Condition | Condition | quest 21015013 / Farana Ruins / "QuestGroup 2" / QuestSet=QuestSetInfoNpc \| GroupNo=2 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+==== opaque_fsm -- 1 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| FSM | Direct | 64 | link:../../../../client/03040008/quest/q10320301/quest/10320301/npc/nw.fsm.json[client/03040008/quest/q10320301/quest/10320301/npc/nw.fsm.json] | Process.Parameter.FlagNo | FlagNo | quest 10320301 (Intelligence Assessment: Dark Night Covering Megado) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+|===
 
 == Quest ID 21015013
 
@@ -56,10 +212,10 @@ ranked candidates:: *0*
 
 ==== opaque_fsm -- 1 hit(s)
 
-[cols="1,1,3,3,2,3,3",options="header"]
+[cols="1,1,1,3,3,2,3,3",options="header"]
 |===
-| Family | Confidence | File | JSON Path | Field | Context | Why
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
 
-| FSM | 64 | client/03040008/quest/q21015013/quest/21015013/npc/help.fsm.json | Process.Parameter.QuestId | QuestId | quest 21015013 (The Troubled Fortification) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/quest/q21015013/quest/21015013/npc/help.fsm.json[client/03040008/quest/q21015013/quest/21015013/npc/help.fsm.json] | Process.Parameter.QuestId | QuestId | quest 21015013 (The Troubled Fortification) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
 |===
 

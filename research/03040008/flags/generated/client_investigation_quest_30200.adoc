@@ -5,9 +5,339 @@
 
 Query mode:: quest
 Query value:: 30200
-Generated at:: 2026-04-11T21:41:40.587899+00:00
+Generated at:: 2026-04-12T12:43:41.169552+00:00
 
 toc::[]
+
+Quest family:: q3 -- Light Quest
+Quest family notes:: Light and board-style quests with repeatable or lightweight stage flows.
+Quest family focus:: local_stage_topology_plus_board_repeatability
+
+== External Owner Indexes
+
+_These are reusable external owner catalogs inferred from stage-neighborhood cues. They are broader than the subset of flags promoted into derived dependency targets._
+
+[cols="2,1,1,2,2,2,4",options="header"]
+|===
+| Owner Quest | Family | Catalog Count | Catalog Flags | Linked Cues | Cue Sources | Why
+
+| 70000001 | q7 | 70 | 1098, 1103, 1104, 1105, 1106, 1109, 1110, 1111, 1112, 1113, 1114, 1115 +58 more | 1109, 1110, 1111, 1112, 1150, 1201, 1215, 1216 +36 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70001001 | q7 | 0 |  | 1851, 1954 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70002001 | q7 | 47 | 1098, 1103, 1104, 1105, 1106, 1109, 1110, 1111, 1112, 1113, 1114, 1115 +35 more | 1113, 1114, 1115, 1117, 1295, 1601, 3859, 3860 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70003001 | q7 | 49 | 1098, 1103, 1104, 1105, 1106, 1109, 1110, 1111, 1112, 1113, 1114, 1115 +37 more | 1098, 1103, 1104, 1105, 1106, 1119, 1120, 1121 +13 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70020001 | q7 | 8 | 2736, 3000, 3002, 3003, 3074, 3442, 3805, 4037 | 2736, 3000, 3002, 3003, 3074, 3442, 3805, 4037 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70021001 | q7 | 4 | 3278, 3650, 3753, 3861 | 3278, 3650, 3753 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70022001 | q7 | 17 | 3949, 3950, 3952, 3953, 3954, 3977, 4033, 4043, 4053, 4063, 4470, 4555 +5 more | 3949, 3950, 3952, 3953, 3954, 3977, 4033, 4043 +7 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70023001 | q7 | 15 | 4066, 4067, 4372, 4373, 4500, 4506, 4507, 4508, 4511, 4512, 4515, 4516 +3 more | 4066, 4372, 4373, 4500, 4506, 4507, 4508, 4511 +6 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70030001 | q7 | 46 | 5396, 5397, 5407, 5552, 5557, 5558, 5581, 5584, 5587, 5588, 5589, 5614 +34 more | 5396, 5397, 5407, 5552, 5557, 5558, 5584, 5587 +35 more | evsi, gpl | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70031001 | q7 | 8 | 5553, 5672, 6138, 6194, 6195, 6377, 6425, 7316 | 5553, 5672, 6138, 6194, 6195, 6377, 6425, 7316 | evsi, gpl | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70032001 | q7 | 37 | 7169, 7240, 7241, 7336, 7341, 7342, 7386, 7387, 7388, 7389, 7390, 7438 +25 more | 7169, 7240, 7241, 7336, 7341, 7342, 7386, 7388 +28 more | evsi, gpl | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70033001 | q7 | 43 | 7826, 7827, 7876, 7888, 7889, 7916, 7917, 7954, 7955, 7965, 7966, 7967 +31 more | 7826, 7827, 7876, 7888, 7889, 7917, 7954, 7955 +33 more | evsi, gpl | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70034001 | q7 | 3 | 8486, 8630, 8631 | 8486 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+|===
+
+== Derived External Dependency Targets
+
+_These are the promoted subset of external owner-index entries. A flag appears here only when it passes the current family-specific dependency promotion rules for this quest._
+
+[cols="2,1,1,2,2,4",options="header"]
+|===
+| Owner Quest | Family | Flag Count | Flags | Sources | Why
+
+| 70000001 | q7 | 21 | 1109, 1111, 1112, 1215, 1218, 1219, 1251, 1261, 1263, 1293, 1294, 1297 +9 more | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70002001 | q7 | 6 | 1113, 1114, 1295, 1601, 3859, 3860 | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70003001 | q7 | 20 | 1098, 1103, 1104, 1105, 1119, 1120, 1121, 1122, 1123, 1124, 1202, 1203 +8 more | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70020001 | q7 | 5 | 2736, 3002, 3003, 3074, 3805 | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70021001 | q7 | 3 | 3278, 3650, 3753 | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70022001 | q7 | 14 | 3949, 3952, 3953, 3954, 3977, 4033, 4043, 4470, 4555, 4556, 4557, 4803 +2 more | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70023001 | q7 | 13 | 4066, 4372, 4373, 4500, 4506, 4507, 4508, 4511, 4512, 4515, 4516, 4517 +1 more | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70030001 | q7 | 32 | 5396, 5397, 5407, 5552, 5558, 5584, 5587, 5588, 5634, 5635, 5636, 5637 +20 more | evsi, gpl | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70031001 | q7 | 5 | 5553, 6138, 6194, 6195, 6377 | evsi, gpl | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70032001 | q7 | 25 | 7240, 7241, 7336, 7341, 7342, 7388, 7390, 7438, 7439, 7440, 7497, 7498 +13 more | evsi, gpl | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70033001 | q7 | 25 | 7826, 7827, 7876, 7954, 7955, 7966, 7968, 7972, 8016, 8033, 8034, 8035 +13 more | evsi, gpl | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70034001 | q7 | 1 | 8486 | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+|===
+
+== Family Relationship Context
+
+_These sections summarize deterministic client-side family metadata and reverse-index relationships. They are context for later owner/dependency inference, not direct quest-target promotion._
+
+=== Quest Sequence
+
+* seq no: 73
+* previous: 30190 -- The Plight of Lookout Castle
+* next: 30210 -- The Missing Prince
+
+== ARC Association Context
+
+_ARC associations are contextual only. They show which quest-stage and marker resources are bundled with this quest._
+
+* arc file: link:../../../../client/03040008/quest/q00030200.arc.json#L1[client/03040008/quest/q00030200.arc.json#L1]
+* resource count: 23
+* stage codes: st0201, st0451, st0460, st0462, st0464
+* resource families: .fsm, .gmd, .mss, .qmi, .qst, .qtd, .stqr
+
+=== st0201 -- Audience Chamber
+
+* rQuestList: quest/00030200/q00030200_st0201
+* rQuestMarkerInfo: quest/00030200/st0201_marker_npc
+
+=== st0451 -- Lookout Castle
+
+* rQuestList: quest/00030200/q00030200_st0451
+* rQuestMarkerInfo: quest/00030200/st0451_marker_npc
+
+=== st0460 -- Fortress City Megado: Residential Level
+
+* rQuestList: quest/00030200/q00030200_st0460
+* rQuestMarkerInfo: quest/00030200/st0460_marker_npc
+
+=== st0462 -- Megado Corridor
+
+* rQuestList: quest/00030200/q00030200_st0462
+* rQuestMarkerInfo: quest/00030200/st0462_marker_npc
+
+=== st0464 -- Megado: Royal Palace Level
+
+* rQuestMarkerInfo: quest/00030200/st0464_marker_npc
+* rQuestList: quest/00030200/q00030200_st0464
+
+=== unclassified
+
+* rAIFSM: quest/00030200/npc/n0501
+* rMsgSet: ui/00_message/quest/q00030200
+* rAIFSM: quest/00030200/npc/n0007
+* rSoundStreamRequest: sound/stream/quest/di/jp/q00030200/q00030200_n0021
+* rSoundStreamRequest: sound/stream/quest/di/jp/q00030200/q00030200_n0013
+* rSoundStreamRequest: sound/stream/quest/di/jp/q00030200/q00030200_n0501
+* rSoundStreamRequest: sound/stream/quest/di/jp/q00030200/q00030200_n0030
+* rSoundStreamRequest: sound/stream/quest/di/jp/q00030200/q00030200_n0024
+* rQuestTextData: ui/00_param/quest_text/q00030200_00
+* rGUIMessage: ui/00_message/quest/q00030200
+* rAIFSM: quest/00030200/npc/n0006
+* rAIFSM: quest/00030200/npc/n0004
+* rGUIMessage: ui/00_message/quest_info/q00030200_00
+
+== Stage Neighborhood Context
+
+_Stage-neighborhood context summarizes scanner-relevant client files that share the quest's archive stage codes. This is deterministic client topology, not inferred ownership._
+
+* scanner-relevant stage files: 1102
+* indexed stage codes: st0201, st0451, st0460, st0462, st0464
+
+=== st0201 -- Audience Chamber
+
+* scanner files: 694
+* .evsi.json: 50
+* .fsm.json: 433
+* .gpl.json: 3
+* .lot.json: 64
+* .qmi.json: 75
+* .qst.json: 69
+
+=== st0451 -- Lookout Castle
+
+* scanner files: 173
+* .evsi.json: 6
+* .fsm.json: 45
+* .gpl.json: 3
+* .lot.json: 49
+* .qmi.json: 38
+* .qst.json: 32
+
+=== st0460 -- Fortress City Megado: Residential Level
+
+* scanner files: 82
+* .evsi.json: 2
+* .fsm.json: 32
+* .gpl.json: 5
+* .lot.json: 37
+* .qmi.json: 4
+* .qst.json: 2
+
+=== st0462 -- Megado Corridor
+
+* scanner files: 86
+* .gpl.json: 4
+* .lot.json: 77
+* .qmi.json: 4
+* .qst.json: 1
+
+=== st0464 -- Megado: Royal Palace Level
+
+* scanner files: 67
+* .evsi.json: 3
+* .fsm.json: 18
+* .gpl.json: 5
+* .lot.json: 36
+* .qmi.json: 3
+* .qst.json: 2
+
+== Stage Neighborhood External-State Cues
+
+_These cues are deterministic client-side observations from the quest's stage neighborhood. They are not promoted to direct quest targets yet; they highlight q6/q7-owned external state values co-located in the quest's archive stages._
+
+* cue count: 244
+* owner families: q6, q7
+
+[cols="1,1,1,2,2,2",options="header"]
+|===
+| Value | Kind | Hits | Sources | Owners | Stages
+
+| Flag 7555 | layout_flag | 56 | evsi, gpl | 70032001 | st0201, st0451, st0460, st0462, st0464
+| Flag 7544 | layout_flag | 55 | evsi, gpl | 70032001 | st0201, st0451, st0460, st0462, st0464
+| Flag 7557 | layout_flag | 55 | evsi, gpl | 70032001 | st0201, st0451, st0460, st0462, st0464
+| Flag 1106 | layout_flag | 61 | evsi | 70003001 | st0201, st0451, st0460, st0464
+| Flag 1115 | layout_flag | 61 | evsi | 70002001 | st0201, st0451, st0460, st0464
+| Flag 1117 | layout_flag | 61 | evsi | 70002001 | st0201, st0451, st0460, st0464
+| Flag 1150 | layout_flag | 61 | evsi | 70000001 | st0201, st0451, st0460, st0464
+| Flag 1217 | layout_flag | 61 | evsi | 70000001 | st0201, st0451, st0460, st0464
+| Flag 1224 | layout_flag | 61 | evsi | 70000001 | st0201, st0451, st0460, st0464
+| Flag 1851 | layout_flag | 61 | evsi | 70001001 | st0201, st0451, st0460, st0464
+| Flag 1954 | layout_flag | 61 | evsi | 70001001 | st0201, st0451, st0460, st0464
+| Flag 2208 | layout_flag | 61 | evsi | 70000001 | st0201, st0451, st0460, st0464
+| Flag 2380 | layout_flag | 61 | evsi | 70000001 | st0201, st0451, st0460, st0464
+| Flag 3950 | layout_flag | 61 | evsi | 70022001 | st0201, st0451, st0460, st0464
+| Flag 5589 | layout_flag | 61 | evsi | 70030001 | st0201, st0451, st0460, st0464
+| Flag 5614 | layout_flag | 61 | evsi | 70030001 | st0201, st0451, st0460, st0464
+| Flag 5632 | layout_flag | 61 | evsi | 70030001 | st0201, st0451, st0460, st0464
+| Flag 6469 | layout_flag | 61 | evsi | 70030001 | st0201, st0451, st0460, st0464
+| Flag 6470 | layout_flag | 61 | evsi | 70030001 | st0201, st0451, st0460, st0464
+| Flag 6471 | layout_flag | 61 | evsi | 70030001 | st0201, st0451, st0460, st0464
+| Flag 6472 | layout_flag | 61 | evsi | 70030001 | st0201, st0451, st0460, st0464
+| Flag 6473 | layout_flag | 61 | evsi | 70030001 | st0201, st0451, st0460, st0464
+| Flag 6474 | layout_flag | 61 | evsi | 70030001 | st0201, st0451, st0460, st0464
+| Flag 7316 | layout_flag | 61 | evsi | 70031001 | st0201, st0451, st0460, st0464
+| Flag 8066 | layout_flag | 61 | evsi | 70033001 | st0201, st0451, st0460, st0464
+| Flag 1221 | layout_flag | 60 | evsi | 70000001 | st0201, st0451, st0460, st0464
+| Flag 1201 | layout_flag | 59 | evsi | 70000001 | st0201, st0451, st0460, st0464
+| Flag 1216 | layout_flag | 59 | evsi | 70000001 | st0201, st0451, st0460, st0464
+| Flag 1223 | layout_flag | 59 | evsi | 70000001 | st0201, st0451, st0460, st0464
+| Flag 7551 | layout_flag | 51 | evsi, gpl | 70032001 | st0201, st0451, st0460, st0462
+|===
+
+== Bounded Graph Expansion
+
+_This graph summarizes bounded deterministic and inferred edges around the quest: quest archive stages, direct source families, stage-linked owner catalogs, promoted dependencies, reverse-index event/group links, and family-specific table edges._
+
+* max depth: 3
+* node count: 819
+* edge count: 1628
+* node kinds: direct_family=3, event_viewer=741, family_context=1, lot_file=23, owner_quest=13, quest=1, sequence_quest=2, stage=5, stage_group=30
+* derivation: Dependency=12, Direct=23, Graph=2348, Owner Index=64
+
+=== Mermaid Graph Slice
+
+_This Mermaid flowchart shows a capped slice of the bounded graph so large quest reports stay readable while still exposing the graph structure._
+
+[mermaid]
+....
+flowchart TD
+    node_quest_30200["Quest 30200"]
+    node_direct_family_evsi["evsi direct hits (19)"]
+    node_direct_family_qst["qst direct hits (14)"]
+    node_direct_family_smc["smc direct hits (23)"]
+    node_family_context_quest_sequence["Quest Sequence"]
+    node_stage_st0201["st0201 -- Audience Chamber"]
+    node_stage_st0451["st0451 -- Lookout Castle"]
+    node_stage_st0460["st0460 -- Fortress City Megado: Residential Level"]
+    node_stage_st0462["st0462 -- Megado Corridor"]
+    node_stage_st0464["st0464 -- Megado: Royal Palace Level"]
+    node_event_viewer_st0201_ev000_70000001["Event st0201/ev000"]
+    node_owner_quest_70000001["Owner quest 70000001 (q7)"]
+    node_owner_quest_70002001["Owner quest 70002001 (q7)"]
+    node_owner_quest_70003001["Owner quest 70003001 (q7)"]
+    node_owner_quest_70020001["Owner quest 70020001 (q7)"]
+    node_owner_quest_70021001["Owner quest 70021001 (q7)"]
+    node_owner_quest_70022001["Owner quest 70022001 (q7)"]
+    node_owner_quest_70023001["Owner quest 70023001 (q7)"]
+    node_owner_quest_70030001["Owner quest 70030001 (q7)"]
+    node_owner_quest_70031001["Owner quest 70031001 (q7)"]
+    node_owner_quest_70032001["Owner quest 70032001 (q7)"]
+    node_owner_quest_70033001["Owner quest 70033001 (q7)"]
+    node_owner_quest_70034001["Owner quest 70034001 (q7)"]
+    node_sequence_quest_30190["Quest 30190"]
+    node_sequence_quest_30210["Quest 30210"]
+    node_quest_30200 -->|direct_source_family| node_direct_family_evsi
+    node_quest_30200 -->|direct_source_family| node_direct_family_qst
+    node_quest_30200 -->|direct_source_family| node_direct_family_smc
+    node_quest_30200 -->|family:quest_sequence| node_family_context_quest_sequence
+    node_quest_30200 -->|quest_archive_stage| node_stage_st0201
+    node_quest_30200 -->|quest_archive_stage| node_stage_st0451
+    node_quest_30200 -->|quest_archive_stage| node_stage_st0460
+    node_quest_30200 -->|quest_archive_stage| node_stage_st0462
+    node_quest_30200 -->|quest_archive_stage| node_stage_st0464
+    node_quest_30200 -->|promoted_dependency| node_owner_quest_70000001
+    node_quest_30200 -->|promoted_dependency| node_owner_quest_70002001
+    node_quest_30200 -->|promoted_dependency| node_owner_quest_70003001
+    node_quest_30200 -->|promoted_dependency| node_owner_quest_70020001
+    node_quest_30200 -->|promoted_dependency| node_owner_quest_70021001
+    node_quest_30200 -->|promoted_dependency| node_owner_quest_70022001
+    node_quest_30200 -->|promoted_dependency| node_owner_quest_70023001
+    node_quest_30200 -->|promoted_dependency| node_owner_quest_70030001
+    node_quest_30200 -->|promoted_dependency| node_owner_quest_70031001
+    node_quest_30200 -->|promoted_dependency| node_owner_quest_70032001
+    node_quest_30200 -->|promoted_dependency| node_owner_quest_70033001
+    node_quest_30200 -->|promoted_dependency| node_owner_quest_70034001
+    node_family_context_quest_sequence -->|sequence_next| node_sequence_quest_30210
+    node_family_context_quest_sequence -->|sequence_previous| node_sequence_quest_30190
+    node_stage_st0201 -->|stage_event_viewer| node_event_viewer_st0201_ev000_70000001
+    classDef direct_deterministic fill:#e8f5e9,stroke:#2e7d32,stroke-width:1px
+    classDef owner_index fill:#e3f2fd,stroke:#1565c0,stroke-width:1px
+    classDef dependency_inferred fill:#fff3e0,stroke:#ef6c00,stroke-width:1px
+    classDef graph_expanded fill:#f3e5f5,stroke:#7b1fa2,stroke-width:1px
+    classDef lower_confidence fill:#fbe9e7,stroke:#d84315,stroke-width:1px
+    classDef binary_auxiliary fill:#eceff1,stroke:#455a64,stroke-width:1px
+    class node_quest_30200,node_direct_family_evsi,node_direct_family_qst,node_direct_family_smc,node_family_context_quest_sequence,node_stage_st0201,node_stage_st0451,node_stage_st0460,node_stage_st0462,node_stage_st0464,node_sequence_quest_30190,node_sequence_quest_30210 direct_deterministic
+    class node_owner_quest_70000001,node_owner_quest_70002001,node_owner_quest_70003001,node_owner_quest_70020001,node_owner_quest_70021001,node_owner_quest_70022001,node_owner_quest_70023001,node_owner_quest_70030001,node_owner_quest_70031001,node_owner_quest_70032001,node_owner_quest_70033001,node_owner_quest_70034001 owner_index
+    class node_event_viewer_st0201_ev000_70000001 graph_expanded
+....
+
+[cols="1,2,2,2,2,4",options="header"]
+|===
+| Depth | Edge | From | To | Derivation | Why
+
+| 1 | direct_source_family | quest:30200 | direct-family:evsi | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | direct_source_family | quest:30200 | direct-family:qst | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | direct_source_family | quest:30200 | direct-family:smc | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | family_context:quest_sequence | quest:30200 | family-context:quest_sequence | Direct | Family-specific decoded tables provide deterministic context for this quest.
+| 1 | quest_archive_stage | quest:30200 | stage:st0201 | Direct | Quest archive topology directly links this quest to the stage code.
+| 1 | quest_archive_stage | quest:30200 | stage:st0451 | Direct | Quest archive topology directly links this quest to the stage code.
+| 1 | quest_archive_stage | quest:30200 | stage:st0460 | Direct | Quest archive topology directly links this quest to the stage code.
+| 1 | quest_archive_stage | quest:30200 | stage:st0462 | Direct | Quest archive topology directly links this quest to the stage code.
+| 1 | quest_archive_stage | quest:30200 | stage:st0464 | Direct | Quest archive topology directly links this quest to the stage code.
+| 2 | promoted_dependency | quest:30200 | owner-quest:70000001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30200 | owner-quest:70002001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30200 | owner-quest:70003001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30200 | owner-quest:70020001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30200 | owner-quest:70021001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30200 | owner-quest:70022001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30200 | owner-quest:70023001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30200 | owner-quest:70030001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30200 | owner-quest:70031001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30200 | owner-quest:70032001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30200 | owner-quest:70033001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30200 | owner-quest:70034001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | sequence_next | family-context:quest_sequence | sequence-quest:30210 | Direct | QuestSequence links this quest to its neighboring sequence quest.
+| 2 | sequence_previous | family-context:quest_sequence | sequence-quest:30190 | Direct | QuestSequence links this quest to its neighboring sequence quest.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev000:70000001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev000:70001001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev000:70002001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev000:70003001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev000:70020001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev000:70021001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev000:70022001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev000:70023001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev000:70030001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev000:70031001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev000:70032001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev000:70033001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev003:70000001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev003:70001001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev003:70002001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev003:70003001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev003:70020001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+|===
 
 == Flag Summary Matrix
 
@@ -15,12 +345,171 @@ toc::[]
 |===
 | Target | Kind | Hits | Sources | Stages | Relationships | Description
 
+| Flag 7114 | layout_flag | 9 | evsi, qst | st0201, st0451, st0460, st0464, st0467 | 🎬 Event State, ⚡ Quest Condition, ❌ Quest Erase | QST local: st0201 \| 受注時
+| Flag 7115 | layout_flag | 9 | evsi, qst | st0201, st0451, st0460, st0464, st0467 | 🎬 Event State, ⚡ Quest Condition, ❌ Quest Erase | QST local: st0451 \| 受注後
+| Flag 7116 | layout_flag | 3 | evsi, qst | st0460 | 🎬 Event State, ⚡ Quest Condition, ❌ Quest Erase | QST local: st0460 \| デモ前
+| Flag 7117 | layout_flag | 2 | qst | st0460 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0460 \| QuestGroup 1 \| デモ後
+| Flag 7119 | layout_flag | 3 | evsi, qst | st0462, st0464 | 🎬 Event State, ⚡ Quest Condition, ❌ Quest Erase | QST local: st0462 \| 回廊のメイロワ
+| Flag 7122 | layout_flag | 4 | evsi, qst | st0201, st0451, st0464 | 🎬 Event State, ⚡ Quest Condition, ❌ Quest Erase | QST local: st0464 \| QuestGroup 1 \| ボス戦後のセット
+| Flag 7309 | layout_flag | 3 | evsi, qst | st0464 | 🎬 Event State, ⚡ Quest Condition, ❌ Quest Erase | QST local: st0464 \| 共闘NPC
 | Quest ID 30200 | quest_id | 23 | smc |  | 🗣️ NPC Chatter | Derived quest-wide association scan
 |===
 
 == Known Documented Targets
 
+* quest 30200 -- Flag 7114 -- QST local: st0201 | 受注時
+* quest 30200 -- Flag 7115 -- QST local: st0451 | 受注後
+* quest 30200 -- Flag 7116 -- QST local: st0460 | デモ前
+* quest 30200 -- Flag 7117 -- QST local: st0460 | QuestGroup 1 | デモ後
+* quest 30200 -- Flag 7119 -- QST local: st0462 | 回廊のメイロワ
+* quest 30200 -- Flag 7122 -- QST local: st0464 | QuestGroup 1 | ボス戦後のセット
+* quest 30200 -- Flag 7309 -- QST local: st0464 | 共闘NPC
 * Quest ID 30200 -- Derived quest-wide association scan [Derived]
+
+== Flag 7114 -- Quest 30200
+
+origin:: derived_qst_local
+direct hits:: *9*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 9 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030200/quest/00030200/q00030200_st0201.qst.json[client/03040008/quest/q00030200/quest/00030200/q00030200_st0201.qst.json] | QuestStageList[].QuestGrp[0].Condition | Condition | quest 30200 / Audience Chamber / "受注時" / QuestSet=QuestSetInfoNpc \|\| QuestSet=QuestSetInfoNpc \|\| +1 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030200/quest/00030200/q00030200_st0201.qst.json[client/03040008/quest/q00030200/quest/00030200/q00030200_st0201.qst.json] | QuestStageList[].QuestGrp[0].EraseCondition | EraseCondition | quest 30200 / Audience Chamber / "受注時" / QuestSet=QuestSetInfoNpc \|\| QuestSet=QuestSetInfoNpc \|\| +1 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0201/view_st0201ev220/event/viewer/view_st0201ev220.evsi.json#L581[client/03040008/event/st0201/view_st0201ev220/event/viewer/view_st0201ev220.evsi.json#L581] | LayoutFlagArray[0].FlagNo | FlagNo | quest 30200 (The Final Battle of the Royal Capital) / Audience Chamber / Event Viewer \| EVENT_NAME_st0201ev220 \| Offer sword to the White Dragon | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0451/view_st0451ev017/event/viewer/view_st0451ev017.evsi.json#L581[client/03040008/event/st0451/view_st0451ev017/event/viewer/view_st0451ev017.evsi.json#L581] | LayoutFlagArray[0].FlagNo | FlagNo | quest 30200 (The Final Battle of the Royal Capital) / Lookout Castle / Event Viewer \| EVENT_NAME_st0451ev017 \| The Prince Who Disappeared | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0460/view_st0460ev005/event/viewer/view_st0460ev005.evsi.json#L533[client/03040008/event/st0460/view_st0460ev005/event/viewer/view_st0460ev005.evsi.json#L533] | LayoutFlagArray[0].FlagNo | FlagNo | quest 30200 (The Final Battle of the Royal Capital) / Fortress City Megado: Residential Level / Event Viewer \| EVENT_NAME_st0460ev005 \| The Final Battle of the Royal Capital | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0464/view_st0464ev000/event/viewer/view_st0464ev000.evsi.json#L549[client/03040008/event/st0464/view_st0464ev000/event/viewer/view_st0464ev000.evsi.json#L549] | LayoutFlagArray[0].FlagNo | FlagNo | quest 30200 (The Final Battle of the Royal Capital) / Megado: Royal Palace Level / Event Viewer \| EVENT_NAME_st0464ev000 \| Black Knight appears at the Megado Royal Palace | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0464/view_st0464ev005/event/viewer/view_st0464ev005.evsi.json#L557[client/03040008/event/st0464/view_st0464ev005/event/viewer/view_st0464ev005.evsi.json#L557] | LayoutFlagArray[0].FlagNo | FlagNo | quest 30200 (The Final Battle of the Royal Capital) / Megado: Royal Palace Level / Event Viewer \| EVENT_NAME_st0464ev005 \| Follow the black knight into the darkness. | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0464/view_st0464ev010/event/viewer/view_st0464ev010.evsi.json#L581[client/03040008/event/st0464/view_st0464ev010/event/viewer/view_st0464ev010.evsi.json#L581] | LayoutFlagArray[0].FlagNo | FlagNo | quest 30200 (The Final Battle of the Royal Capital) / Megado: Royal Palace Level / Event Viewer \| EVENT_NAME_st0464ev010 \| Return from the darkness | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0467/view_st0467ev000/event/viewer/view_st0467ev000.evsi.json#L573[client/03040008/event/st0467/view_st0467ev000/event/viewer/view_st0467ev000.evsi.json#L573] | LayoutFlagArray[0].FlagNo | FlagNo | quest 30200 (The Final Battle of the Royal Capital) / Black King's Room / Event Viewer \| EVENT_NAME_st0467ev000 \| Defeating the Black Knight | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+|===
+
+== Flag 7115 -- Quest 30200
+
+origin:: derived_qst_local
+direct hits:: *9*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 9 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030200/quest/00030200/q00030200_st0451.qst.json[client/03040008/quest/q00030200/quest/00030200/q00030200_st0451.qst.json] | QuestStageList[].QuestGrp[0].Condition | Condition | quest 30200 / Lookout Castle / "受注後" / QuestSet=QuestSetInfoNpc \|\| QuestSet=QuestSetInfoNpc \|\| +3 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030200/quest/00030200/q00030200_st0451.qst.json[client/03040008/quest/q00030200/quest/00030200/q00030200_st0451.qst.json] | QuestStageList[].QuestGrp[0].EraseCondition | EraseCondition | quest 30200 / Lookout Castle / "受注後" / QuestSet=QuestSetInfoNpc \|\| QuestSet=QuestSetInfoNpc \|\| +3 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0201/view_st0201ev220/event/viewer/view_st0201ev220.evsi.json#L589[client/03040008/event/st0201/view_st0201ev220/event/viewer/view_st0201ev220.evsi.json#L589] | LayoutFlagArray[1].FlagNo | FlagNo | quest 30200 (The Final Battle of the Royal Capital) / Audience Chamber / Event Viewer \| EVENT_NAME_st0201ev220 \| Offer sword to the White Dragon | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0451/view_st0451ev017/event/viewer/view_st0451ev017.evsi.json#L589[client/03040008/event/st0451/view_st0451ev017/event/viewer/view_st0451ev017.evsi.json#L589] | LayoutFlagArray[1].FlagNo | FlagNo | quest 30200 (The Final Battle of the Royal Capital) / Lookout Castle / Event Viewer \| EVENT_NAME_st0451ev017 \| The Prince Who Disappeared | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0460/view_st0460ev005/event/viewer/view_st0460ev005.evsi.json#L541[client/03040008/event/st0460/view_st0460ev005/event/viewer/view_st0460ev005.evsi.json#L541] | LayoutFlagArray[1].FlagNo | FlagNo | quest 30200 (The Final Battle of the Royal Capital) / Fortress City Megado: Residential Level / Event Viewer \| EVENT_NAME_st0460ev005 \| The Final Battle of the Royal Capital | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0464/view_st0464ev000/event/viewer/view_st0464ev000.evsi.json#L557[client/03040008/event/st0464/view_st0464ev000/event/viewer/view_st0464ev000.evsi.json#L557] | LayoutFlagArray[1].FlagNo | FlagNo | quest 30200 (The Final Battle of the Royal Capital) / Megado: Royal Palace Level / Event Viewer \| EVENT_NAME_st0464ev000 \| Black Knight appears at the Megado Royal Palace | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0464/view_st0464ev005/event/viewer/view_st0464ev005.evsi.json#L565[client/03040008/event/st0464/view_st0464ev005/event/viewer/view_st0464ev005.evsi.json#L565] | LayoutFlagArray[1].FlagNo | FlagNo | quest 30200 (The Final Battle of the Royal Capital) / Megado: Royal Palace Level / Event Viewer \| EVENT_NAME_st0464ev005 \| Follow the black knight into the darkness. | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0464/view_st0464ev010/event/viewer/view_st0464ev010.evsi.json#L589[client/03040008/event/st0464/view_st0464ev010/event/viewer/view_st0464ev010.evsi.json#L589] | LayoutFlagArray[1].FlagNo | FlagNo | quest 30200 (The Final Battle of the Royal Capital) / Megado: Royal Palace Level / Event Viewer \| EVENT_NAME_st0464ev010 \| Return from the darkness | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0467/view_st0467ev000/event/viewer/view_st0467ev000.evsi.json#L581[client/03040008/event/st0467/view_st0467ev000/event/viewer/view_st0467ev000.evsi.json#L581] | LayoutFlagArray[1].FlagNo | FlagNo | quest 30200 (The Final Battle of the Royal Capital) / Black King's Room / Event Viewer \| EVENT_NAME_st0467ev000 \| Defeating the Black Knight | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+|===
+
+== Flag 7116 -- Quest 30200
+
+origin:: derived_qst_local
+direct hits:: *3*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 3 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030200/quest/00030200/q00030200_st0460.qst.json[client/03040008/quest/q00030200/quest/00030200/q00030200_st0460.qst.json] | QuestStageList[].QuestGrp[0].Condition | Condition | quest 30200 / Fortress City Megado: Residential Level / "デモ前" / QuestSet=QuestSetInfoNpc \|\| QuestSet=QuestSetInfoNpc \|\| +3 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030200/quest/00030200/q00030200_st0460.qst.json[client/03040008/quest/q00030200/quest/00030200/q00030200_st0460.qst.json] | QuestStageList[].QuestGrp[0].EraseCondition | EraseCondition | quest 30200 / Fortress City Megado: Residential Level / "デモ前" / QuestSet=QuestSetInfoNpc \|\| QuestSet=QuestSetInfoNpc \|\| +3 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0460/view_st0460ev005/event/viewer/view_st0460ev005.evsi.json#L549[client/03040008/event/st0460/view_st0460ev005/event/viewer/view_st0460ev005.evsi.json#L549] | LayoutFlagArray[2].FlagNo | FlagNo | quest 30200 (The Final Battle of the Royal Capital) / Fortress City Megado: Residential Level / Event Viewer \| EVENT_NAME_st0460ev005 \| The Final Battle of the Royal Capital | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+|===
+
+== Flag 7117 -- Quest 30200
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030200/quest/00030200/q00030200_st0460.qst.json[client/03040008/quest/q00030200/quest/00030200/q00030200_st0460.qst.json] | QuestStageList[].QuestGrp[1].Condition | Condition | quest 30200 / Fortress City Megado: Residential Level / "QuestGroup 1 \| デモ後" / QuestSet=QuestSetInfoNpc \| GroupNo=1 \|\| QuestSet=QuestSetInfoNpc \| GroupNo=1 \|\| +3 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030200/quest/00030200/q00030200_st0460.qst.json[client/03040008/quest/q00030200/quest/00030200/q00030200_st0460.qst.json] | QuestStageList[].QuestGrp[1].EraseCondition | EraseCondition | quest 30200 / Fortress City Megado: Residential Level / "QuestGroup 1 \| デモ後" / QuestSet=QuestSetInfoNpc \| GroupNo=1 \|\| QuestSet=QuestSetInfoNpc \| GroupNo=1 \|\| +3 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 7119 -- Quest 30200
+
+origin:: derived_qst_local
+direct hits:: *3*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 3 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030200/quest/00030200/q00030200_st0462.qst.json[client/03040008/quest/q00030200/quest/00030200/q00030200_st0462.qst.json] | QuestStageList[].QuestGrp[0].Condition | Condition | quest 30200 / Megado Corridor / "回廊のメイロワ" / QuestSet=QuestSetInfoNpc | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030200/quest/00030200/q00030200_st0462.qst.json[client/03040008/quest/q00030200/quest/00030200/q00030200_st0462.qst.json] | QuestStageList[].QuestGrp[0].EraseCondition | EraseCondition | quest 30200 / Megado Corridor / "回廊のメイロワ" / QuestSet=QuestSetInfoNpc | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0464/view_st0464ev000/event/viewer/view_st0464ev000.evsi.json#L573[client/03040008/event/st0464/view_st0464ev000/event/viewer/view_st0464ev000.evsi.json#L573] | LayoutFlagArray[3].FlagNo | FlagNo | quest 30200 (The Final Battle of the Royal Capital) / Megado: Royal Palace Level / Event Viewer \| EVENT_NAME_st0464ev000 \| Black Knight appears at the Megado Royal Palace | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+|===
+
+== Flag 7122 -- Quest 30200
+
+origin:: derived_qst_local
+direct hits:: *4*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 4 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030200/quest/00030200/q00030200_st0464.qst.json[client/03040008/quest/q00030200/quest/00030200/q00030200_st0464.qst.json] | QuestStageList[].QuestGrp[1].Condition | Condition | quest 30200 / Megado: Royal Palace Level / "QuestGroup 1 \| ボス戦後のセット" / QuestSet=QuestSetInfoNpc \| GroupNo=1 \|\| QuestSet=QuestSetInfoNpc \| GroupNo=1 \|\| +5 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030200/quest/00030200/q00030200_st0464.qst.json[client/03040008/quest/q00030200/quest/00030200/q00030200_st0464.qst.json] | QuestStageList[].QuestGrp[1].EraseCondition | EraseCondition | quest 30200 / Megado: Royal Palace Level / "QuestGroup 1 \| ボス戦後のセット" / QuestSet=QuestSetInfoNpc \| GroupNo=1 \|\| QuestSet=QuestSetInfoNpc \| GroupNo=1 \|\| +5 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0201/view_st0201ev220/event/viewer/view_st0201ev220.evsi.json#L605[client/03040008/event/st0201/view_st0201ev220/event/viewer/view_st0201ev220.evsi.json#L605] | LayoutFlagArray[3].FlagNo | FlagNo | quest 30200 (The Final Battle of the Royal Capital) / Audience Chamber / Event Viewer \| EVENT_NAME_st0201ev220 \| Offer sword to the White Dragon | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0451/view_st0451ev017/event/viewer/view_st0451ev017.evsi.json#L605[client/03040008/event/st0451/view_st0451ev017/event/viewer/view_st0451ev017.evsi.json#L605] | LayoutFlagArray[3].FlagNo | FlagNo | quest 30200 (The Final Battle of the Royal Capital) / Lookout Castle / Event Viewer \| EVENT_NAME_st0451ev017 \| The Prince Who Disappeared | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+|===
+
+== Flag 7309 -- Quest 30200
+
+origin:: derived_qst_local
+direct hits:: *3*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 3 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030200/quest/00030200/q00030200_st0464.qst.json[client/03040008/quest/q00030200/quest/00030200/q00030200_st0464.qst.json] | QuestStageList[].QuestGrp[0].Condition | Condition | quest 30200 / Megado: Royal Palace Level / "共闘NPC" / QuestSet=QuestSetInfoNpc \|\| QuestSet=QuestSetInfoNpc \|\| +2 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030200/quest/00030200/q00030200_st0464.qst.json[client/03040008/quest/q00030200/quest/00030200/q00030200_st0464.qst.json] | QuestStageList[].QuestGrp[0].EraseCondition | EraseCondition | quest 30200 / Megado: Royal Palace Level / "共闘NPC" / QuestSet=QuestSetInfoNpc \|\| QuestSet=QuestSetInfoNpc \|\| +2 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0464/view_st0464ev005/event/viewer/view_st0464ev005.evsi.json#L589[client/03040008/event/st0464/view_st0464ev005/event/viewer/view_st0464ev005.evsi.json#L589] | LayoutFlagArray[4].FlagNo | FlagNo | quest 30200 (The Final Battle of the Royal Capital) / Megado: Royal Palace Level / Event Viewer \| EVENT_NAME_st0464ev005 \| Follow the black knight into the darkness. | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+|===
 
 == Quest ID 30200
 
@@ -32,32 +521,32 @@ ranked candidates:: *0*
 
 ==== direct -- 23 hit(s)
 
-[cols="1,1,3,3,2,3,3",options="header"]
+[cols="1,1,1,3,3,2,3,3",options="header"]
 |===
-| Family | Confidence | File | JSON Path | Field | Context | Why
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
 
-| SMC | 92 | client/03040008/npc/n0001/ui/00_message/npc/base/n0001.smc.json | SituationData.EndQuestId | EndQuestId | quest 30200 (The Final Battle of the Royal Capital) / The White Dragon / GroupSerial=24425 / "GroupSerial=24425, QuestWindow=30190-30200 (The Plight of Lookout Castle -> The Final Battle of the Royal Capital), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0001 \| Quest-gated NPC chatter \| QuestWindow=30190-30200 (The Plight of Lookout Castle -> The Final Battle of the Royal Capital) / MSS: The White Dragon / Bear it forth unto the people. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0001/ui/00_message/npc/base/n0001.smc.json | SituationData.StartQuestId | StartQuestId | quest 30200 (The Final Battle of the Royal Capital) / The White Dragon / GroupSerial=24426 / "GroupSerial=24426, QuestWindow=30200-30210 (The Final Battle of the Royal Capital -> The Missing Prince), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window start" / NpcChatter=n0001 \| Quest-gated NPC chatter \| QuestWindow=30200-30210 (The Final Battle of the Royal Capital -> The Missing Prince) / MSS: The White Dragon / By fortune, all Dragon's might hath returned. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json | SituationData.EndQuestId | EndQuestId | quest 30200 (The Final Battle of the Royal Capital) / Klaus / GroupSerial=24494 / "GroupSerial=24494, QuestWindow=30190-30200 (The Plight of Lookout Castle -> The Final Battle of the Royal Capital), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window end" / NpcChatter=n0003 \| Quest-gated NPC chatter \| QuestWindow=30190-30200 (The Plight of Lookout Castle -> The Final Battle of the Royal Capital) / MSS: Klaus / Come on, hurry up. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json | SituationData.StartQuestId | StartQuestId | quest 30200 (The Final Battle of the Royal Capital) / Klaus / GroupSerial=24495 / "GroupSerial=24495, QuestWindow=30200-30210 (The Final Battle of the Royal Capital -> The Missing Prince), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window start" / NpcChatter=n0003 \| Quest-gated NPC chatter \| QuestWindow=30200-30210 (The Final Battle of the Royal Capital -> The Missing Prince) / MSS: Klaus / Lestania's fate was on the brink of | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json | SituationData.EndQuestId | EndQuestId | quest 30200 (The Final Battle of the Royal Capital) / Joseph / GroupSerial=24465 / "GroupSerial=24465, QuestWindow=30190-30200 (The Plight of Lookout Castle -> The Final Battle of the Royal Capital), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window end" / NpcChatter=n0004 \| Quest-gated NPC chatter \| QuestWindow=30190-30200 (The Plight of Lookout Castle -> The Final Battle of the Royal Capital) / MSS: Joseph / Looking back, the White Dragon in my memories | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json | SituationData.StartQuestId | StartQuestId | quest 30200 (The Final Battle of the Royal Capital) / Joseph / GroupSerial=24466 / "GroupSerial=24466, QuestWindow=30200-30210 (The Final Battle of the Royal Capital -> The Missing Prince), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window start" / NpcChatter=n0004 \| Quest-gated NPC chatter \| QuestWindow=30200-30210 (The Final Battle of the Royal Capital -> The Missing Prince) / MSS: Joseph / You've worked hard. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0013/ui/00_message/npc/base/n0013.smc.json | SituationData.EndQuestId | EndQuestId | quest 30200 (The Final Battle of the Royal Capital) / Lise / GroupSerial=24553 / "GroupSerial=24553, QuestWindow=30190-30200 (The Plight of Lookout Castle -> The Final Battle of the Royal Capital), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window end" / NpcChatter=n0013 \| Quest-gated NPC chatter \| QuestWindow=30190-30200 (The Plight of Lookout Castle -> The Final Battle of the Royal Capital) / MSS: Lise / Captain - I won't forgive him. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0013/ui/00_message/npc/base/n0013.smc.json | SituationData.StartQuestId | StartQuestId | quest 30200 (The Final Battle of the Royal Capital) / Lise / GroupSerial=24554 / "GroupSerial=24554, QuestWindow=30200-30210 (The Final Battle of the Royal Capital -> The Missing Prince), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window start" / NpcChatter=n0013 \| Quest-gated NPC chatter \| QuestWindow=30200-30210 (The Final Battle of the Royal Capital -> The Missing Prince) / MSS: Lise / I caused you trouble, didn't I? I will make it up | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0021/ui/00_message/npc/base/n0021.smc.json | SituationData.EndQuestId | EndQuestId | quest 30200 (The Final Battle of the Royal Capital) / Elliot / GroupSerial=24578 / "GroupSerial=24578, QuestWindow=30190-30200 (The Plight of Lookout Castle -> The Final Battle of the Royal Capital), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window end" / NpcChatter=n0021 \| Quest-gated NPC chatter \| QuestWindow=30190-30200 (The Plight of Lookout Castle -> The Final Battle of the Royal Capital) / MSS: Elliot / Let's defeat the Black Knight and restore the | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0021/ui/00_message/npc/base/n0021.smc.json | SituationData.StartQuestId | StartQuestId | quest 30200 (The Final Battle of the Royal Capital) / Elliot / GroupSerial=24579 / "GroupSerial=24579, QuestWindow=30200-30210 (The Final Battle of the Royal Capital -> The Missing Prince), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window start" / NpcChatter=n0021 \| Quest-gated NPC chatter \| QuestWindow=30200-30210 (The Final Battle of the Royal Capital -> The Missing Prince) / MSS: Elliot / Well, somehow, a song just slips out. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0029/ui/00_message/npc/base/n0029.smc.json | SituationData.EndQuestId | EndQuestId | quest 30200 (The Final Battle of the Royal Capital) / Nedo / GroupSerial=24919 / "GroupSerial=24919, QuestWindow=30190-30200 (The Plight of Lookout Castle -> The Final Battle of the Royal Capital), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0029 \| Quest-gated NPC chatter \| QuestWindow=30190-30200 (The Plight of Lookout Castle -> The Final Battle of the Royal Capital) / MSS: Nedo / Now, everyone, | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0030/ui/00_message/npc/base/n0030.smc.json | SituationData.EndQuestId | EndQuestId | quest 30200 (The Final Battle of the Royal Capital) / Gillian / GroupSerial=24606 / "GroupSerial=24606, QuestWindow=30190-30200 (The Plight of Lookout Castle -> The Final Battle of the Royal Capital), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window end" / NpcChatter=n0030 \| Quest-gated NPC chatter \| QuestWindow=30190-30200 (The Plight of Lookout Castle -> The Final Battle of the Royal Capital) / MSS: Gillian / It seems that the time has come to repay the debt. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0030/ui/00_message/npc/base/n0030.smc.json | SituationData.StartQuestId | StartQuestId | quest 30200 (The Final Battle of the Royal Capital) / Gillian / GroupSerial=24607 / "GroupSerial=24607, QuestWindow=30200-30210 (The Final Battle of the Royal Capital -> The Missing Prince), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window start" / NpcChatter=n0030 \| Quest-gated NPC chatter \| QuestWindow=30200-30210 (The Final Battle of the Royal Capital -> The Missing Prince) / MSS: Gillian / Both there and here, we have made some progress | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0031/ui/00_message/npc/base/n0031.smc.json | SituationData.EndQuestId | EndQuestId | quest 30200 (The Final Battle of the Royal Capital) / Meirova / GroupSerial=24756 / "GroupSerial=24756, QuestWindow=30190-30200 (The Plight of Lookout Castle -> The Final Battle of the Royal Capital), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window end" / NpcChatter=n0031 \| Quest-gated NPC chatter \| QuestWindow=30190-30200 (The Plight of Lookout Castle -> The Final Battle of the Royal Capital) / MSS: Meirova / I'll leave the black knight to you. That's what | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0031/ui/00_message/npc/base/n0031.smc.json | SituationData.StartQuestId | StartQuestId | quest 30200 (The Final Battle of the Royal Capital) / Meirova / GroupSerial=24757 / "GroupSerial=24757, QuestWindow=30200-30210 (The Final Battle of the Royal Capital -> The Missing Prince), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window start" / NpcChatter=n0031 \| Quest-gated NPC chatter \| QuestWindow=30200-30210 (The Final Battle of the Royal Capital -> The Missing Prince) / MSS: Meirova / I hear that the White Dragon of Lestania has | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0032/ui/00_message/npc/base/n0032.smc.json | SituationData.EndQuestId | EndQuestId | quest 30200 (The Final Battle of the Royal Capital) / Gerhard / GroupSerial=24778 / "GroupSerial=24778, QuestWindow=30190-30200 (The Plight of Lookout Castle -> The Final Battle of the Royal Capital), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window end" / NpcChatter=n0032 \| Quest-gated NPC chatter \| QuestWindow=30190-30200 (The Plight of Lookout Castle -> The Final Battle of the Royal Capital) / MSS: Gerhard / If you guys are here, does that mean it's all | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0032/ui/00_message/npc/base/n0032.smc.json | SituationData.StartQuestId | StartQuestId | quest 30200 (The Final Battle of the Royal Capital) / Gerhard / GroupSerial=24779 / "GroupSerial=24779, QuestWindow=30200-30210 (The Final Battle of the Royal Capital -> The Missing Prince), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window start" / NpcChatter=n0032 \| Quest-gated NPC chatter \| QuestWindow=30200-30210 (The Final Battle of the Royal Capital -> The Missing Prince) / MSS: Gerhard / I think it's time for us to head out. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0033/ui/00_message/npc/base/n0033.smc.json | SituationData.EndQuestId | EndQuestId | quest 30200 (The Final Battle of the Royal Capital) / Bertha / GroupSerial=24934 / "GroupSerial=24934, QuestWindow=30190-30200 (The Plight of Lookout Castle -> The Final Battle of the Royal Capital), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window end" / NpcChatter=n0033 \| Quest-gated NPC chatter \| QuestWindow=30190-30200 (The Plight of Lookout Castle -> The Final Battle of the Royal Capital) / MSS: Bertha / The Liberation Army is regrouping but you know, | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0033/ui/00_message/npc/base/n0033.smc.json | SituationData.StartQuestId | StartQuestId | quest 30200 (The Final Battle of the Royal Capital) / Bertha / GroupSerial=24935 / "GroupSerial=24935, QuestWindow=30200-30210 (The Final Battle of the Royal Capital -> The Missing Prince), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window start" / NpcChatter=n0033 \| Quest-gated NPC chatter \| QuestWindow=30200-30210 (The Final Battle of the Royal Capital -> The Missing Prince) / MSS: Bertha / The Evil Dragon is the only thing remaining. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0034/ui/00_message/npc/base/n0034.smc.json | SituationData.EndQuestId | EndQuestId | quest 30200 (The Final Battle of the Royal Capital) / Quintus / GroupSerial=24734 / "GroupSerial=24734, QuestWindow=30190-30200 (The Plight of Lookout Castle -> The Final Battle of the Royal Capital), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0034 \| Quest-gated NPC chatter \| QuestWindow=30190-30200 (The Plight of Lookout Castle -> The Final Battle of the Royal Capital) / MSS: Quintus / Now is an important moment in the plan to regain | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0034/ui/00_message/npc/base/n0034.smc.json | SituationData.StartQuestId | StartQuestId | quest 30200 (The Final Battle of the Royal Capital) / Quintus / GroupSerial=24735 / "GroupSerial=24735, QuestWindow=30200-30210 (The Final Battle of the Royal Capital -> The Missing Prince), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window start" / NpcChatter=n0034 \| Quest-gated NPC chatter \| QuestWindow=30200-30210 (The Final Battle of the Royal Capital -> The Missing Prince) / MSS: Quintus / Is it okay not to move to Lookout Castle? Am I | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0501/ui/00_message/npc/base/n0501.smc.json | SituationData.EndQuestId | EndQuestId | quest 30200 (The Final Battle of the Royal Capital) / Gurdolin / GroupSerial=24529 / "GroupSerial=24529, QuestWindow=30190-30200 (The Plight of Lookout Castle -> The Final Battle of the Royal Capital), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window end" / NpcChatter=n0501 \| Quest-gated NPC chatter \| QuestWindow=30190-30200 (The Plight of Lookout Castle -> The Final Battle of the Royal Capital) / MSS: Gurdolin / Please don't talk to me. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0501/ui/00_message/npc/base/n0501.smc.json | SituationData.StartQuestId | StartQuestId | quest 30200 (The Final Battle of the Royal Capital) / Gurdolin / GroupSerial=24530 / "GroupSerial=24530, QuestWindow=30200-30210 (The Final Battle of the Royal Capital -> The Missing Prince), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window start" / NpcChatter=n0501 \| Quest-gated NPC chatter \| QuestWindow=30200-30210 (The Final Battle of the Royal Capital -> The Missing Prince) / MSS: Gurdolin / You should have bet on this, that, and the other | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0001/ui/00_message/npc/base/n0001.smc.json[client/03040008/npc/n0001/ui/00_message/npc/base/n0001.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30200 (The Final Battle of the Royal Capital) / The White Dragon / GroupSerial=24425 / "GroupSerial=24425, QuestWindow=30190-30200 (The Plight of Lookout Castle -> The Final Battle of the Royal Capital), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0001 \| Quest-gated NPC chatter \| QuestWindow=30190-30200 (The Plight of Lookout Castle -> The Final Battle of the Royal Capital) / MSS: The White Dragon / Bear it forth unto the people. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0001/ui/00_message/npc/base/n0001.smc.json[client/03040008/npc/n0001/ui/00_message/npc/base/n0001.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30200 (The Final Battle of the Royal Capital) / The White Dragon / GroupSerial=24426 / "GroupSerial=24426, QuestWindow=30200-30210 (The Final Battle of the Royal Capital -> The Missing Prince), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window start" / NpcChatter=n0001 \| Quest-gated NPC chatter \| QuestWindow=30200-30210 (The Final Battle of the Royal Capital -> The Missing Prince) / MSS: The White Dragon / By fortune, all Dragon's might hath returned. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json[client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30200 (The Final Battle of the Royal Capital) / Klaus / GroupSerial=24494 / "GroupSerial=24494, QuestWindow=30190-30200 (The Plight of Lookout Castle -> The Final Battle of the Royal Capital), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window end" / NpcChatter=n0003 \| Quest-gated NPC chatter \| QuestWindow=30190-30200 (The Plight of Lookout Castle -> The Final Battle of the Royal Capital) / MSS: Klaus / Come on, hurry up. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json[client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30200 (The Final Battle of the Royal Capital) / Klaus / GroupSerial=24495 / "GroupSerial=24495, QuestWindow=30200-30210 (The Final Battle of the Royal Capital -> The Missing Prince), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window start" / NpcChatter=n0003 \| Quest-gated NPC chatter \| QuestWindow=30200-30210 (The Final Battle of the Royal Capital -> The Missing Prince) / MSS: Klaus / Lestania's fate was on the brink of | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json[client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30200 (The Final Battle of the Royal Capital) / Joseph / GroupSerial=24465 / "GroupSerial=24465, QuestWindow=30190-30200 (The Plight of Lookout Castle -> The Final Battle of the Royal Capital), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window end" / NpcChatter=n0004 \| Quest-gated NPC chatter \| QuestWindow=30190-30200 (The Plight of Lookout Castle -> The Final Battle of the Royal Capital) / MSS: Joseph / Looking back, the White Dragon in my memories | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json[client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30200 (The Final Battle of the Royal Capital) / Joseph / GroupSerial=24466 / "GroupSerial=24466, QuestWindow=30200-30210 (The Final Battle of the Royal Capital -> The Missing Prince), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window start" / NpcChatter=n0004 \| Quest-gated NPC chatter \| QuestWindow=30200-30210 (The Final Battle of the Royal Capital -> The Missing Prince) / MSS: Joseph / You've worked hard. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0013/ui/00_message/npc/base/n0013.smc.json[client/03040008/npc/n0013/ui/00_message/npc/base/n0013.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30200 (The Final Battle of the Royal Capital) / Lise / GroupSerial=24553 / "GroupSerial=24553, QuestWindow=30190-30200 (The Plight of Lookout Castle -> The Final Battle of the Royal Capital), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window end" / NpcChatter=n0013 \| Quest-gated NPC chatter \| QuestWindow=30190-30200 (The Plight of Lookout Castle -> The Final Battle of the Royal Capital) / MSS: Lise / Captain - I won't forgive him. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0013/ui/00_message/npc/base/n0013.smc.json[client/03040008/npc/n0013/ui/00_message/npc/base/n0013.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30200 (The Final Battle of the Royal Capital) / Lise / GroupSerial=24554 / "GroupSerial=24554, QuestWindow=30200-30210 (The Final Battle of the Royal Capital -> The Missing Prince), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window start" / NpcChatter=n0013 \| Quest-gated NPC chatter \| QuestWindow=30200-30210 (The Final Battle of the Royal Capital -> The Missing Prince) / MSS: Lise / I caused you trouble, didn't I? I will make it up | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0021/ui/00_message/npc/base/n0021.smc.json[client/03040008/npc/n0021/ui/00_message/npc/base/n0021.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30200 (The Final Battle of the Royal Capital) / Elliot / GroupSerial=24578 / "GroupSerial=24578, QuestWindow=30190-30200 (The Plight of Lookout Castle -> The Final Battle of the Royal Capital), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window end" / NpcChatter=n0021 \| Quest-gated NPC chatter \| QuestWindow=30190-30200 (The Plight of Lookout Castle -> The Final Battle of the Royal Capital) / MSS: Elliot / Let's defeat the Black Knight and restore the | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0021/ui/00_message/npc/base/n0021.smc.json[client/03040008/npc/n0021/ui/00_message/npc/base/n0021.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30200 (The Final Battle of the Royal Capital) / Elliot / GroupSerial=24579 / "GroupSerial=24579, QuestWindow=30200-30210 (The Final Battle of the Royal Capital -> The Missing Prince), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window start" / NpcChatter=n0021 \| Quest-gated NPC chatter \| QuestWindow=30200-30210 (The Final Battle of the Royal Capital -> The Missing Prince) / MSS: Elliot / Well, somehow, a song just slips out. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0029/ui/00_message/npc/base/n0029.smc.json[client/03040008/npc/n0029/ui/00_message/npc/base/n0029.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30200 (The Final Battle of the Royal Capital) / Nedo / GroupSerial=24919 / "GroupSerial=24919, QuestWindow=30190-30200 (The Plight of Lookout Castle -> The Final Battle of the Royal Capital), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0029 \| Quest-gated NPC chatter \| QuestWindow=30190-30200 (The Plight of Lookout Castle -> The Final Battle of the Royal Capital) / MSS: Nedo / Now, everyone, | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0030/ui/00_message/npc/base/n0030.smc.json[client/03040008/npc/n0030/ui/00_message/npc/base/n0030.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30200 (The Final Battle of the Royal Capital) / Gillian / GroupSerial=24606 / "GroupSerial=24606, QuestWindow=30190-30200 (The Plight of Lookout Castle -> The Final Battle of the Royal Capital), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window end" / NpcChatter=n0030 \| Quest-gated NPC chatter \| QuestWindow=30190-30200 (The Plight of Lookout Castle -> The Final Battle of the Royal Capital) / MSS: Gillian / It seems that the time has come to repay the debt. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0030/ui/00_message/npc/base/n0030.smc.json[client/03040008/npc/n0030/ui/00_message/npc/base/n0030.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30200 (The Final Battle of the Royal Capital) / Gillian / GroupSerial=24607 / "GroupSerial=24607, QuestWindow=30200-30210 (The Final Battle of the Royal Capital -> The Missing Prince), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window start" / NpcChatter=n0030 \| Quest-gated NPC chatter \| QuestWindow=30200-30210 (The Final Battle of the Royal Capital -> The Missing Prince) / MSS: Gillian / Both there and here, we have made some progress | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0031/ui/00_message/npc/base/n0031.smc.json[client/03040008/npc/n0031/ui/00_message/npc/base/n0031.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30200 (The Final Battle of the Royal Capital) / Meirova / GroupSerial=24756 / "GroupSerial=24756, QuestWindow=30190-30200 (The Plight of Lookout Castle -> The Final Battle of the Royal Capital), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window end" / NpcChatter=n0031 \| Quest-gated NPC chatter \| QuestWindow=30190-30200 (The Plight of Lookout Castle -> The Final Battle of the Royal Capital) / MSS: Meirova / I'll leave the black knight to you. That's what | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0031/ui/00_message/npc/base/n0031.smc.json[client/03040008/npc/n0031/ui/00_message/npc/base/n0031.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30200 (The Final Battle of the Royal Capital) / Meirova / GroupSerial=24757 / "GroupSerial=24757, QuestWindow=30200-30210 (The Final Battle of the Royal Capital -> The Missing Prince), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window start" / NpcChatter=n0031 \| Quest-gated NPC chatter \| QuestWindow=30200-30210 (The Final Battle of the Royal Capital -> The Missing Prince) / MSS: Meirova / I hear that the White Dragon of Lestania has | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0032/ui/00_message/npc/base/n0032.smc.json[client/03040008/npc/n0032/ui/00_message/npc/base/n0032.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30200 (The Final Battle of the Royal Capital) / Gerhard / GroupSerial=24778 / "GroupSerial=24778, QuestWindow=30190-30200 (The Plight of Lookout Castle -> The Final Battle of the Royal Capital), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window end" / NpcChatter=n0032 \| Quest-gated NPC chatter \| QuestWindow=30190-30200 (The Plight of Lookout Castle -> The Final Battle of the Royal Capital) / MSS: Gerhard / If you guys are here, does that mean it's all | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0032/ui/00_message/npc/base/n0032.smc.json[client/03040008/npc/n0032/ui/00_message/npc/base/n0032.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30200 (The Final Battle of the Royal Capital) / Gerhard / GroupSerial=24779 / "GroupSerial=24779, QuestWindow=30200-30210 (The Final Battle of the Royal Capital -> The Missing Prince), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window start" / NpcChatter=n0032 \| Quest-gated NPC chatter \| QuestWindow=30200-30210 (The Final Battle of the Royal Capital -> The Missing Prince) / MSS: Gerhard / I think it's time for us to head out. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0033/ui/00_message/npc/base/n0033.smc.json[client/03040008/npc/n0033/ui/00_message/npc/base/n0033.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30200 (The Final Battle of the Royal Capital) / Bertha / GroupSerial=24934 / "GroupSerial=24934, QuestWindow=30190-30200 (The Plight of Lookout Castle -> The Final Battle of the Royal Capital), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window end" / NpcChatter=n0033 \| Quest-gated NPC chatter \| QuestWindow=30190-30200 (The Plight of Lookout Castle -> The Final Battle of the Royal Capital) / MSS: Bertha / The Liberation Army is regrouping but you know, | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0033/ui/00_message/npc/base/n0033.smc.json[client/03040008/npc/n0033/ui/00_message/npc/base/n0033.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30200 (The Final Battle of the Royal Capital) / Bertha / GroupSerial=24935 / "GroupSerial=24935, QuestWindow=30200-30210 (The Final Battle of the Royal Capital -> The Missing Prince), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window start" / NpcChatter=n0033 \| Quest-gated NPC chatter \| QuestWindow=30200-30210 (The Final Battle of the Royal Capital -> The Missing Prince) / MSS: Bertha / The Evil Dragon is the only thing remaining. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0034/ui/00_message/npc/base/n0034.smc.json[client/03040008/npc/n0034/ui/00_message/npc/base/n0034.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30200 (The Final Battle of the Royal Capital) / Quintus / GroupSerial=24734 / "GroupSerial=24734, QuestWindow=30190-30200 (The Plight of Lookout Castle -> The Final Battle of the Royal Capital), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0034 \| Quest-gated NPC chatter \| QuestWindow=30190-30200 (The Plight of Lookout Castle -> The Final Battle of the Royal Capital) / MSS: Quintus / Now is an important moment in the plan to regain | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0034/ui/00_message/npc/base/n0034.smc.json[client/03040008/npc/n0034/ui/00_message/npc/base/n0034.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30200 (The Final Battle of the Royal Capital) / Quintus / GroupSerial=24735 / "GroupSerial=24735, QuestWindow=30200-30210 (The Final Battle of the Royal Capital -> The Missing Prince), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window start" / NpcChatter=n0034 \| Quest-gated NPC chatter \| QuestWindow=30200-30210 (The Final Battle of the Royal Capital -> The Missing Prince) / MSS: Quintus / Is it okay not to move to Lookout Castle? Am I | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0501/ui/00_message/npc/base/n0501.smc.json[client/03040008/npc/n0501/ui/00_message/npc/base/n0501.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30200 (The Final Battle of the Royal Capital) / Gurdolin / GroupSerial=24529 / "GroupSerial=24529, QuestWindow=30190-30200 (The Plight of Lookout Castle -> The Final Battle of the Royal Capital), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window end" / NpcChatter=n0501 \| Quest-gated NPC chatter \| QuestWindow=30190-30200 (The Plight of Lookout Castle -> The Final Battle of the Royal Capital) / MSS: Gurdolin / Please don't talk to me. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0501/ui/00_message/npc/base/n0501.smc.json[client/03040008/npc/n0501/ui/00_message/npc/base/n0501.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30200 (The Final Battle of the Royal Capital) / Gurdolin / GroupSerial=24530 / "GroupSerial=24530, QuestWindow=30200-30210 (The Final Battle of the Royal Capital -> The Missing Prince), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window start" / NpcChatter=n0501 \| Quest-gated NPC chatter \| QuestWindow=30200-30210 (The Final Battle of the Royal Capital -> The Missing Prince) / MSS: Gurdolin / You should have bet on this, that, and the other | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
 |===
 

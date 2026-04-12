@@ -5,9 +5,294 @@
 
 Query mode:: quest
 Query value:: 5
-Generated at:: 2026-04-11T21:41:40.468681+00:00
+Generated at:: 2026-04-12T12:43:22.566397+00:00
 
 toc::[]
+
+Quest family:: q0 -- Main Quest
+Quest family notes:: Story progression quests and adjacent mainline quest-state flows.
+Quest family focus:: local_stage_topology_plus_external_dependencies
+
+== External Owner Indexes
+
+_These are reusable external owner catalogs inferred from stage-neighborhood cues. They are broader than the subset of flags promoted into derived dependency targets._
+
+[cols="2,1,1,2,2,2,4",options="header"]
+|===
+| Owner Quest | Family | Catalog Count | Catalog Flags | Linked Cues | Cue Sources | Why
+
+| 70000001 | q7 | 70 | 1098, 1103, 1104, 1105, 1106, 1109, 1110, 1111, 1112, 1113, 1114, 1115 +58 more | 1109, 1110, 1111, 1112, 1150, 1201, 1215, 1216 +36 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70001001 | q7 | 0 |  | 1851, 1954 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70002001 | q7 | 47 | 1098, 1103, 1104, 1105, 1106, 1109, 1110, 1111, 1112, 1113, 1114, 1115 +35 more | 1113, 1114, 1115, 1117, 1295, 1601, 3859, 3860 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70003001 | q7 | 49 | 1098, 1103, 1104, 1105, 1106, 1109, 1110, 1111, 1112, 1113, 1114, 1115 +37 more | 1098, 1103, 1104, 1105, 1106, 1119, 1120, 1121 +13 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70020001 | q7 | 8 | 2736, 3000, 3002, 3003, 3074, 3442, 3805, 4037 | 2736, 3000, 3002, 3003, 3074, 3442, 3805, 4037 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70021001 | q7 | 4 | 3278, 3650, 3753, 3861 | 3278, 3650, 3753 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70022001 | q7 | 17 | 3949, 3950, 3952, 3953, 3954, 3977, 4033, 4043, 4053, 4063, 4470, 4555 +5 more | 3949, 3950, 3952, 3953, 3954, 3977, 4033, 4043 +7 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70023001 | q7 | 15 | 4066, 4067, 4372, 4373, 4500, 4506, 4507, 4508, 4511, 4512, 4515, 4516 +3 more | 4066, 4372, 4373, 4500, 4506, 4507, 4508, 4511 +6 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70030001 | q7 | 46 | 5396, 5397, 5407, 5552, 5557, 5558, 5581, 5584, 5587, 5588, 5589, 5614 +34 more | 5396, 5397, 5407, 5552, 5557, 5558, 5584, 5587 +35 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70031001 | q7 | 8 | 5553, 5672, 6138, 6194, 6195, 6377, 6425, 7316 | 5553, 5672, 6138, 6194, 6195, 6377, 7316 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70032001 | q7 | 37 | 7169, 7240, 7241, 7336, 7341, 7342, 7386, 7387, 7388, 7389, 7390, 7438 +25 more | 7169, 7240, 7241, 7336, 7341, 7342, 7386, 7388 +27 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70033001 | q7 | 43 | 7826, 7827, 7876, 7888, 7889, 7916, 7917, 7954, 7955, 7965, 7966, 7967 +31 more | 7826, 7827, 7876, 7888, 7889, 7917, 7954, 7955 +33 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70034001 | q7 | 3 | 8486, 8630, 8631 | 8486 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+|===
+
+== Derived External Dependency Targets
+
+_These are the promoted subset of external owner-index entries. A flag appears here only when it passes the current family-specific dependency promotion rules for this quest._
+
+[cols="2,1,1,2,2,4",options="header"]
+|===
+| Owner Quest | Family | Flag Count | Flags | Sources | Why
+
+| 70000001 | q7 | 33 | 1109, 1110, 1111, 1112, 1215, 1216, 1218, 1219, 1220, 1222, 1250, 1251 +21 more | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70002001 | q7 | 6 | 1113, 1114, 1295, 1601, 3859, 3860 | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70003001 | q7 | 20 | 1098, 1103, 1104, 1105, 1119, 1120, 1121, 1122, 1123, 1124, 1202, 1203 +8 more | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70020001 | q7 | 6 | 2736, 3002, 3003, 3074, 3805, 4037 | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70021001 | q7 | 3 | 3278, 3650, 3753 | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70022001 | q7 | 14 | 3949, 3952, 3953, 3954, 3977, 4033, 4043, 4470, 4555, 4556, 4557, 4803 +2 more | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70023001 | q7 | 13 | 4066, 4372, 4373, 4500, 4506, 4507, 4508, 4511, 4512, 4515, 4516, 4517 +1 more | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70030001 | q7 | 33 | 5396, 5397, 5407, 5552, 5557, 5558, 5584, 5587, 5588, 5634, 5635, 5636 +21 more | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70031001 | q7 | 5 | 5553, 6138, 6194, 6195, 6377 | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70032001 | q7 | 32 | 7240, 7241, 7336, 7341, 7342, 7386, 7390, 7438, 7440, 7496, 7497, 7498 +20 more | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70033001 | q7 | 38 | 7826, 7827, 7876, 7888, 7889, 7954, 7955, 7965, 7966, 7967, 7968, 7972 +26 more | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+|===
+
+== Family Relationship Context
+
+_These sections summarize deterministic client-side family metadata and reverse-index relationships. They are context for later owner/dependency inference, not direct quest-target promotion._
+
+=== Quest Sequence
+
+* seq no: 4
+* previous: 4 -- Soldiers of the Rift
+* next: 6 -- The Girl in the Forest
+
+== ARC Association Context
+
+_ARC associations are contextual only. They show which quest-stage and marker resources are bundled with this quest._
+
+* arc file: link:../../../../client/03040008/quest/q00000005.arc.json#L1[client/03040008/quest/q00000005.arc.json#L1]
+* resource count: 16
+* stage codes: st0201, st0576
+* resource families: .fsm, .gmd, .mss, .qmi, .qst, .qtd, .stqr
+
+=== st0201 -- Audience Chamber
+
+* rQuestList: quest/00000005/q00000005_st0201
+* rQuestMarkerInfo: quest/00000005/st0201_marker_npc
+
+=== st0576 -- The Ark
+
+* rQuestMarkerInfo: quest/00000005/st0576_marker_npc
+* rQuestMarkerInfo: quest/00000005/st0576_marker_om
+* rQuestList: quest/00000005/q00000005_st0576
+
+=== unclassified
+
+* rAIFSM: quest/00000005/npc/n0012
+* rAIFSM: quest/00000005/npc/n0003
+* rAIFSM: quest/00000005/npc/n0006
+* rGUIMessage: ui/00_message/examine_message/quest/quest_examine_q00000005
+* rMsgSet: ui/00_message/examine_message/quest/quest_examine_q00000005
+* rGUIMessage: ui/00_message/quest/q00000005
+* rMsgSet: ui/00_message/quest/q00000005
+* rQuestTextData: ui/00_param/quest_text/q00000005_00
+* rSoundStreamRequest: sound/stream/quest/di/jp/q00000005/q00000005_n0003
+* rSoundStreamRequest: sound/stream/quest/di/jp/q00000005/q00000005_n0006
+* rGUIMessage: ui/00_message/quest_info/q00000005_00
+
+== Stage Neighborhood Context
+
+_Stage-neighborhood context summarizes scanner-relevant client files that share the quest's archive stage codes. This is deterministic client topology, not inferred ownership._
+
+* scanner-relevant stage files: 770
+* indexed stage codes: st0201, st0576
+
+=== st0201 -- Audience Chamber
+
+* scanner files: 694
+* .evsi.json: 50
+* .fsm.json: 433
+* .gpl.json: 3
+* .lot.json: 64
+* .qmi.json: 75
+* .qst.json: 69
+
+=== st0576 -- The Ark
+
+* scanner files: 76
+* .evsi.json: 2
+* .fsm.json: 22
+* .gpl.json: 11
+* .lot.json: 35
+* .qmi.json: 5
+* .qst.json: 1
+
+== Stage Neighborhood External-State Cues
+
+_These cues are deterministic client-side observations from the quest's stage neighborhood. They are not promoted to direct quest targets yet; they highlight q6/q7-owned external state values co-located in the quest's archive stages._
+
+* cue count: 242
+* owner families: q6, q7
+
+[cols="1,1,1,2,2,2",options="header"]
+|===
+| Value | Kind | Hits | Sources | Owners | Stages
+
+| Flag 1106 | layout_flag | 52 | evsi | 70003001 | st0201, st0576
+| Flag 1115 | layout_flag | 52 | evsi | 70002001 | st0201, st0576
+| Flag 1117 | layout_flag | 52 | evsi | 70002001 | st0201, st0576
+| Flag 1150 | layout_flag | 52 | evsi | 70000001 | st0201, st0576
+| Flag 1217 | layout_flag | 52 | evsi | 70000001 | st0201, st0576
+| Flag 1224 | layout_flag | 52 | evsi | 70000001 | st0201, st0576
+| Flag 1851 | layout_flag | 52 | evsi | 70001001 | st0201, st0576
+| Flag 1954 | layout_flag | 52 | evsi | 70001001 | st0201, st0576
+| Flag 2208 | layout_flag | 52 | evsi | 70000001 | st0201, st0576
+| Flag 2380 | layout_flag | 52 | evsi | 70000001 | st0201, st0576
+| Flag 3950 | layout_flag | 52 | evsi | 70022001 | st0201, st0576
+| Flag 5589 | layout_flag | 52 | evsi | 70030001 | st0201, st0576
+| Flag 5614 | layout_flag | 52 | evsi | 70030001 | st0201, st0576
+| Flag 5632 | layout_flag | 52 | evsi | 70030001 | st0201, st0576
+| Flag 6469 | layout_flag | 52 | evsi | 70030001 | st0201, st0576
+| Flag 6470 | layout_flag | 52 | evsi | 70030001 | st0201, st0576
+| Flag 6471 | layout_flag | 52 | evsi | 70030001 | st0201, st0576
+| Flag 6472 | layout_flag | 52 | evsi | 70030001 | st0201, st0576
+| Flag 6473 | layout_flag | 52 | evsi | 70030001 | st0201, st0576
+| Flag 6474 | layout_flag | 52 | evsi | 70030001 | st0201, st0576
+| Flag 7316 | layout_flag | 52 | evsi | 70031001 | st0201, st0576
+| Flag 8066 | layout_flag | 52 | evsi | 70033001 | st0201, st0576
+| Flag 1221 | layout_flag | 51 | evsi | 70000001 | st0201, st0576
+| Flag 1201 | layout_flag | 50 | evsi | 70000001 | st0201, st0576
+| Flag 1223 | layout_flag | 50 | evsi | 70000001 | st0201, st0576
+| Flag 5557 | layout_flag | 49 | evsi | 70030001 | st0201, st0576
+| Flag 7496 | layout_flag | 49 | evsi | 70032001 | st0201, st0576
+| Flag 1216 | layout_flag | 48 | evsi | 70000001 | st0201
+| Flag 7888 | layout_flag | 48 | evsi | 70033001 | st0201, st0576
+| Flag 7889 | layout_flag | 48 | evsi | 70033001 | st0201, st0576
+|===
+
+== Bounded Graph Expansion
+
+_This graph summarizes bounded deterministic and inferred edges around the quest: quest archive stages, direct source families, stage-linked owner catalogs, promoted dependencies, reverse-index event/group links, and family-specific table edges._
+
+* max depth: 3
+* node count: 658
+* edge count: 1306
+* node kinds: direct_family=5, event_viewer=629, family_context=1, owner_quest=13, quest=1, sequence_quest=2, stage=2, stage_group=5
+* derivation: Dependency=11, Direct=21, Graph=1894, Owner Index=38
+
+=== Mermaid Graph Slice
+
+_This Mermaid flowchart shows a capped slice of the bounded graph so large quest reports stay readable while still exposing the graph structure._
+
+[mermaid]
+....
+flowchart TD
+    node_quest_5["Quest 5"]
+    node_direct_family_evsi["evsi direct hits (12)"]
+    node_direct_family_fsm["fsm direct hits (26)"]
+    node_direct_family_gpl["gpl direct hits (10)"]
+    node_direct_family_qst["qst direct hits (12)"]
+    node_direct_family_smc["smc direct hits (18)"]
+    node_family_context_quest_sequence["Quest Sequence"]
+    node_stage_st0201["st0201 -- Audience Chamber"]
+    node_stage_st0576["st0576 -- The Ark"]
+    node_event_viewer_st0201_ev000_70000001["Event st0201/ev000"]
+    node_event_viewer_st0201_ev000_70001001["Event st0201/ev000"]
+    node_event_viewer_st0201_ev000_70002001["Event st0201/ev000"]
+    node_owner_quest_70000001["Owner quest 70000001 (q7)"]
+    node_owner_quest_70002001["Owner quest 70002001 (q7)"]
+    node_owner_quest_70003001["Owner quest 70003001 (q7)"]
+    node_owner_quest_70020001["Owner quest 70020001 (q7)"]
+    node_owner_quest_70021001["Owner quest 70021001 (q7)"]
+    node_owner_quest_70022001["Owner quest 70022001 (q7)"]
+    node_owner_quest_70023001["Owner quest 70023001 (q7)"]
+    node_owner_quest_70030001["Owner quest 70030001 (q7)"]
+    node_owner_quest_70031001["Owner quest 70031001 (q7)"]
+    node_owner_quest_70032001["Owner quest 70032001 (q7)"]
+    node_owner_quest_70033001["Owner quest 70033001 (q7)"]
+    node_sequence_quest_4["Quest 4"]
+    node_sequence_quest_6["Quest 6"]
+    node_quest_5 -->|direct_source_family| node_direct_family_evsi
+    node_quest_5 -->|direct_source_family| node_direct_family_fsm
+    node_quest_5 -->|direct_source_family| node_direct_family_gpl
+    node_quest_5 -->|direct_source_family| node_direct_family_qst
+    node_quest_5 -->|direct_source_family| node_direct_family_smc
+    node_quest_5 -->|family:quest_sequence| node_family_context_quest_sequence
+    node_quest_5 -->|quest_archive_stage| node_stage_st0201
+    node_quest_5 -->|quest_archive_stage| node_stage_st0576
+    node_quest_5 -->|promoted_dependency| node_owner_quest_70000001
+    node_quest_5 -->|promoted_dependency| node_owner_quest_70002001
+    node_quest_5 -->|promoted_dependency| node_owner_quest_70003001
+    node_quest_5 -->|promoted_dependency| node_owner_quest_70020001
+    node_quest_5 -->|promoted_dependency| node_owner_quest_70021001
+    node_quest_5 -->|promoted_dependency| node_owner_quest_70022001
+    node_quest_5 -->|promoted_dependency| node_owner_quest_70023001
+    node_quest_5 -->|promoted_dependency| node_owner_quest_70030001
+    node_quest_5 -->|promoted_dependency| node_owner_quest_70031001
+    node_quest_5 -->|promoted_dependency| node_owner_quest_70032001
+    node_quest_5 -->|promoted_dependency| node_owner_quest_70033001
+    node_family_context_quest_sequence -->|sequence_next| node_sequence_quest_6
+    node_family_context_quest_sequence -->|sequence_previous| node_sequence_quest_4
+    node_stage_st0201 -->|stage_event_viewer| node_event_viewer_st0201_ev000_70000001
+    node_stage_st0201 -->|stage_event_viewer| node_event_viewer_st0201_ev000_70001001
+    node_stage_st0201 -->|stage_event_viewer| node_event_viewer_st0201_ev000_70002001
+    classDef direct_deterministic fill:#e8f5e9,stroke:#2e7d32,stroke-width:1px
+    classDef owner_index fill:#e3f2fd,stroke:#1565c0,stroke-width:1px
+    classDef dependency_inferred fill:#fff3e0,stroke:#ef6c00,stroke-width:1px
+    classDef graph_expanded fill:#f3e5f5,stroke:#7b1fa2,stroke-width:1px
+    classDef lower_confidence fill:#fbe9e7,stroke:#d84315,stroke-width:1px
+    classDef binary_auxiliary fill:#eceff1,stroke:#455a64,stroke-width:1px
+    class node_quest_5,node_direct_family_evsi,node_direct_family_fsm,node_direct_family_gpl,node_direct_family_qst,node_direct_family_smc,node_family_context_quest_sequence,node_stage_st0201,node_stage_st0576,node_sequence_quest_4,node_sequence_quest_6 direct_deterministic
+    class node_owner_quest_70000001,node_owner_quest_70002001,node_owner_quest_70003001,node_owner_quest_70020001,node_owner_quest_70021001,node_owner_quest_70022001,node_owner_quest_70023001,node_owner_quest_70030001,node_owner_quest_70031001,node_owner_quest_70032001,node_owner_quest_70033001 owner_index
+    class node_event_viewer_st0201_ev000_70000001,node_event_viewer_st0201_ev000_70001001,node_event_viewer_st0201_ev000_70002001 graph_expanded
+....
+
+[cols="1,2,2,2,2,4",options="header"]
+|===
+| Depth | Edge | From | To | Derivation | Why
+
+| 1 | direct_source_family | quest:5 | direct-family:evsi | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | direct_source_family | quest:5 | direct-family:fsm | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | direct_source_family | quest:5 | direct-family:gpl | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | direct_source_family | quest:5 | direct-family:qst | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | direct_source_family | quest:5 | direct-family:smc | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | family_context:quest_sequence | quest:5 | family-context:quest_sequence | Direct | Family-specific decoded tables provide deterministic context for this quest.
+| 1 | quest_archive_stage | quest:5 | stage:st0201 | Direct | Quest archive topology directly links this quest to the stage code.
+| 1 | quest_archive_stage | quest:5 | stage:st0576 | Direct | Quest archive topology directly links this quest to the stage code.
+| 2 | promoted_dependency | quest:5 | owner-quest:70000001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:5 | owner-quest:70002001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:5 | owner-quest:70003001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:5 | owner-quest:70020001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:5 | owner-quest:70021001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:5 | owner-quest:70022001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:5 | owner-quest:70023001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:5 | owner-quest:70030001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:5 | owner-quest:70031001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:5 | owner-quest:70032001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:5 | owner-quest:70033001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | sequence_next | family-context:quest_sequence | sequence-quest:6 | Direct | QuestSequence links this quest to its neighboring sequence quest.
+| 2 | sequence_previous | family-context:quest_sequence | sequence-quest:4 | Direct | QuestSequence links this quest to its neighboring sequence quest.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev000:70000001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev000:70001001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev000:70002001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev000:70003001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev000:70020001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev000:70021001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev000:70022001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev000:70023001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev000:70030001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev000:70031001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev000:70032001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev000:70033001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev003:70000001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev003:70001001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev003:70002001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev003:70003001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev003:70020001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev003:70021001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev003:70022001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+|===
 
 == Flag Summary Matrix
 
@@ -15,12 +300,102 @@ toc::[]
 |===
 | Target | Kind | Hits | Sources | Stages | Relationships | Description
 
+| Flag 907 | layout_flag | 8 | evsi, qst | st0576 | 🎬 Event State, ⚡ Quest Condition, ❌ Quest Erase | QST local: st0576 \| QuestGroup 1
+| Flag 911 | layout_flag | 3 | evsi, qst | st0576 | 🎬 Event State, ⚡ Quest Condition, ❌ Quest Erase | QST local: st0576 \| QuestGroup 4
+| Flag 976 | layout_flag | 4 | evsi, qst | st0576 | 🎬 Event State, ⚡ Quest Condition, ❌ Quest Erase | QST local: st0576 \| QuestGroup 5
+| Flag 1226 | layout_flag | 3 | evsi, qst | st0201 | 🎬 Event State, ⚡ Quest Condition, ❌ Quest Erase | QST local: st0201 \| QuestGroup 1
 | Quest ID 5 | quest_id | 60 | evsi, fsm, gpl, smc | st0101, st0120, st0130, st0134, st0213 +7 | 🎬 Event State, 🔍 FSM Check, ✏️ FSM Set +2 | Derived quest-wide association scan
 |===
 
 == Known Documented Targets
 
+* quest 5 -- Flag 907 -- QST local: st0576 | QuestGroup 1
+* quest 5 -- Flag 911 -- QST local: st0576 | QuestGroup 4
+* quest 5 -- Flag 976 -- QST local: st0576 | QuestGroup 5
+* quest 5 -- Flag 1226 -- QST local: st0201 | QuestGroup 1
 * Quest ID 5 -- Derived quest-wide association scan [Derived]
+
+== Flag 907 -- Quest 5
+
+origin:: derived_qst_local
+direct hits:: *8*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 8 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00000005/quest/00000005/q00000005_st0576.qst.json[client/03040008/quest/q00000005/quest/00000005/q00000005_st0576.qst.json] | QuestStageList[].QuestGrp[0].Condition | Condition | quest 5 / The Ark / "QuestGroup 1" / QuestSet=QuestSetInfoOm \| OmID=522600 \| UnitID=522600 \| EnableZone \| GroupNo=1 \|\| QuestSet=QuestSetInfoOm \| OmID=522600 \| UnitID=522600 \| EnableZone \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00000005/quest/00000005/q00000005_st0576.qst.json[client/03040008/quest/q00000005/quest/00000005/q00000005_st0576.qst.json] | QuestStageList[].QuestGrp[0].EraseCondition | EraseCondition | quest 5 / The Ark / "QuestGroup 1" / QuestSet=QuestSetInfoOm \| OmID=522600 \| UnitID=522600 \| EnableZone \| GroupNo=1 \|\| QuestSet=QuestSetInfoOm \| OmID=522600 \| UnitID=522600 \| EnableZone \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00000005/quest/00000005/q00000005_st0576.qst.json[client/03040008/quest/q00000005/quest/00000005/q00000005_st0576.qst.json] | QuestStageList[].QuestGrp[1].Condition | Condition | quest 5 / The Ark / "QuestGroup 2" / QuestSet=QuestSetInfoOm \| OmID=522601 \| UnitID=522601 \| EnableZone \| GroupNo=2 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00000005/quest/00000005/q00000005_st0576.qst.json[client/03040008/quest/q00000005/quest/00000005/q00000005_st0576.qst.json] | QuestStageList[].QuestGrp[1].EraseCondition | EraseCondition | quest 5 / The Ark / "QuestGroup 2" / QuestSet=QuestSetInfoOm \| OmID=522601 \| UnitID=522601 \| EnableZone \| GroupNo=2 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00000005/quest/00000005/q00000005_st0576.qst.json[client/03040008/quest/q00000005/quest/00000005/q00000005_st0576.qst.json] | QuestStageList[].QuestGrp[2].Condition | Condition | quest 5 / The Ark / "QuestGroup 3" / QuestSet=QuestSetInfoOm \| OmID=522602 \| UnitID=522602 \| EnableZone \| GroupNo=3 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00000005/quest/00000005/q00000005_st0576.qst.json[client/03040008/quest/q00000005/quest/00000005/q00000005_st0576.qst.json] | QuestStageList[].QuestGrp[2].EraseCondition | EraseCondition | quest 5 / The Ark / "QuestGroup 3" / QuestSet=QuestSetInfoOm \| OmID=522602 \| UnitID=522602 \| EnableZone \| GroupNo=3 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0576/view_st0576ev000/event/viewer/view_st0576ev000.evsi.json#L233[client/03040008/event/st0576/view_st0576ev000/event/viewer/view_st0576ev000.evsi.json#L233] | LayoutFlagArray[0].FlagNo | FlagNo | quest 5 (The Dull Grey Ark) / The Ark / Event Viewer \| EVENT_NAME_st0576ev000 \| Keeper of the Furnace | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0576/view_st0576ev005/event/viewer/view_st0576ev005.evsi.json#L253[client/03040008/event/st0576/view_st0576ev005/event/viewer/view_st0576ev005.evsi.json#L253] | LayoutFlagArray[1].FlagNo | FlagNo | quest 5 (The Dull Grey Ark) / The Ark / Event Viewer \| EVENT_NAME_st0576ev005 \| Rescue of the survey team | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+|===
+
+== Flag 911 -- Quest 5
+
+origin:: derived_qst_local
+direct hits:: *3*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 3 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00000005/quest/00000005/q00000005_st0576.qst.json[client/03040008/quest/q00000005/quest/00000005/q00000005_st0576.qst.json] | QuestStageList[].QuestGrp[3].Condition | Condition | quest 5 / The Ark / "QuestGroup 4" / QuestSet=QuestSetInfoOm \| OM_ID_DOOR_510310 \| GroupNo=4 \|\| QuestSet=QuestSetInfoOm \| OM_ID_DOOR_510381 \| GroupNo=4 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00000005/quest/00000005/q00000005_st0576.qst.json[client/03040008/quest/q00000005/quest/00000005/q00000005_st0576.qst.json] | QuestStageList[].QuestGrp[3].EraseCondition | EraseCondition | quest 5 / The Ark / "QuestGroup 4" / QuestSet=QuestSetInfoOm \| OM_ID_DOOR_510310 \| GroupNo=4 \|\| QuestSet=QuestSetInfoOm \| OM_ID_DOOR_510381 \| GroupNo=4 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0576/view_st0576ev005/event/viewer/view_st0576ev005.evsi.json#L261[client/03040008/event/st0576/view_st0576ev005/event/viewer/view_st0576ev005.evsi.json#L261] | LayoutFlagArray[2].FlagNo | FlagNo | quest 5 (The Dull Grey Ark) / The Ark / Event Viewer \| EVENT_NAME_st0576ev005 \| Rescue of the survey team | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+|===
+
+== Flag 976 -- Quest 5
+
+origin:: derived_qst_local
+direct hits:: *4*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 4 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00000005/quest/00000005/q00000005_st0576.qst.json[client/03040008/quest/q00000005/quest/00000005/q00000005_st0576.qst.json] | QuestStageList[].QuestGrp[4].Condition | Condition | quest 5 / The Ark / "QuestGroup 5" / QuestSet=QuestSetInfoNpc \| GroupNo=5 \|\| QuestSet=QuestSetInfoNpc \| GroupNo=5 \|\| +1 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00000005/quest/00000005/q00000005_st0576.qst.json[client/03040008/quest/q00000005/quest/00000005/q00000005_st0576.qst.json] | QuestStageList[].QuestGrp[4].EraseCondition | EraseCondition | quest 5 / The Ark / "QuestGroup 5" / QuestSet=QuestSetInfoNpc \| GroupNo=5 \|\| QuestSet=QuestSetInfoNpc \| GroupNo=5 \|\| +1 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0576/view_st0576ev000/event/viewer/view_st0576ev000.evsi.json#L241[client/03040008/event/st0576/view_st0576ev000/event/viewer/view_st0576ev000.evsi.json#L241] | LayoutFlagArray[1].FlagNo | FlagNo | quest 5 (The Dull Grey Ark) / The Ark / Event Viewer \| EVENT_NAME_st0576ev000 \| Keeper of the Furnace | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0576/view_st0576ev005/event/viewer/view_st0576ev005.evsi.json#L269[client/03040008/event/st0576/view_st0576ev005/event/viewer/view_st0576ev005.evsi.json#L269] | LayoutFlagArray[3].FlagNo | FlagNo | quest 5 (The Dull Grey Ark) / The Ark / Event Viewer \| EVENT_NAME_st0576ev005 \| Rescue of the survey team | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+|===
+
+== Flag 1226 -- Quest 5
+
+origin:: derived_qst_local
+direct hits:: *3*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 3 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00000005/quest/00000005/q00000005_st0201.qst.json[client/03040008/quest/q00000005/quest/00000005/q00000005_st0201.qst.json] | QuestStageList[].QuestGrp[0].Condition | Condition | quest 5 / Audience Chamber / "QuestGroup 1" / QuestSet=QuestSetInfoNpc \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00000005/quest/00000005/q00000005_st0201.qst.json[client/03040008/quest/q00000005/quest/00000005/q00000005_st0201.qst.json] | QuestStageList[].QuestGrp[0].EraseCondition | EraseCondition | quest 5 / Audience Chamber / "QuestGroup 1" / QuestSet=QuestSetInfoNpc \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0201/view_st0201ev025/event/viewer/view_st0201ev025.evsi.json#L253[client/03040008/event/st0201/view_st0201ev025/event/viewer/view_st0201ev025.evsi.json#L253] | LayoutFlagArray[0].FlagNo | FlagNo | quest 5 (The Dull Grey Ark) / Audience Chamber / Event Viewer \| EVENT_NAME_st0201ev025 \| Return from the Ark | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+|===
 
 == Quest ID 5
 
@@ -32,77 +407,77 @@ ranked candidates:: *0*
 
 ==== direct -- 34 hit(s)
 
-[cols="1,1,3,3,2,3,3",options="header"]
+[cols="1,1,1,3,3,2,3,3",options="header"]
 |===
-| Family | Confidence | File | JSON Path | Field | Context | Why
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
 
-| GPL | 92 | client/03040008/stage/st0120/st0120/scr/st0120/etc/st0120_n.gpl.json | GroupParamBuff[5].DataLotFlag.LotFlagNo | LotFlagNo | Farana Plains / Farana Plains / GroupParam[5] \| DataCommon.Group=5 \| LayoutAreas=120 \| LayoutRefs=1 | Layout group guard; QuestNo and LayoutFlagNo here usually determine whether a stage group loads, including enemy or object visibility.
-| GPL | 92 | client/03040008/stage/st0130/st0130/scr/st0130/etc/st0130_n.gpl.json | GroupParamBuff[5].DataLotFlag.LotFlagNo | LotFlagNo | Rathnite Foothills / Rathnite Foothills / GroupParam[5] \| DataCommon.Group=5 \| LayoutAreas=130 \| LayoutRefs=1 | Layout group guard; QuestNo and LayoutFlagNo here usually determine whether a stage group loads, including enemy or object visibility.
-| GPL | 92 | client/03040008/stage/st0134/st0134/scr/st0134/etc/st0134_n.gpl.json | GroupParamBuff[4].DataLotFlag.LotFlagNo | LotFlagNo | Urteca Mountains / Urteca Mountains / GroupParam[4] \| DataCommon.Group=4 \| LayoutAreas=134 \| LayoutRefs=1 | Layout group guard; QuestNo and LayoutFlagNo here usually determine whether a stage group loads, including enemy or object visibility.
-| GPL | 92 | client/03040008/stage/st0213/st0213/scr/st0213/etc/st0213_n.gpl.json | GroupParamBuff[5].DataLotFlag.LotFlagNo | LotFlagNo | Mayleaf's Bedroom / Hidell Plains / GroupParam[5] \| DataCommon.Group=5 \| LayoutAreas=213 \| LayoutRefs=1 | Layout group guard; QuestNo and LayoutFlagNo here usually determine whether a stage group loads, including enemy or object visibility.
-| GPL | 92 | client/03040008/stage/st0405/st0405/scr/st0405/etc/st0405_n.gpl.json | GroupParamBuff[4].DataLotFlag.LotFlagNo | LotFlagNo | quest 90000115 / Fort Gritten / Betland Plains / GroupParam[4] \| DataCommon.Group=10 \| LayoutAreas=405 \| LayoutRefs=1 \| LikelyLOT=st0405_00m00n_p10.lot.json \| LotTypes=SetInfoOmOld | Layout group guard; QuestNo and LayoutFlagNo here usually determine whether a stage group loads, including enemy or object visibility.
-| GPL | 92 | client/03040008/stage/st0405/st0405/scr/st0405/etc/st0405_n.gpl.json | GroupParamBuff[8].DataLotFlag.LotFlagNo | LotFlagNo | quest 90000113 / Fort Gritten / Betland Plains / GroupParam[8] \| DataCommon.Group=14 \| LayoutAreas=405 \| LayoutRefs=1 \| LikelyLOT=st0405_00m00n_p14.lot.json \| LotTypes=SetInfoOmOld | Layout group guard; QuestNo and LayoutFlagNo here usually determine whether a stage group loads, including enemy or object visibility.
-| GPL | 92 | client/03040008/stage/st0451/st0451/scr/st0451/etc/st0451_n.gpl.json | GroupParamBuff[9].DataLotFlag.LotFlagNo | LotFlagNo | Lookout Castle / Feryana Wilderness / GroupParam[9] \| DataCommon.Group=13 \| LayoutAreas=451 \| LayoutRefs=1 \| LikelyLOT=st0451_00m00n_p13.lot.json \| LotTypes=SetInfoOmOld | Layout group guard; QuestNo and LayoutFlagNo here usually determine whether a stage group loads, including enemy or object visibility.
-| GPL | 92 | client/03040008/stage/st0560/st0560/scr/st0560/etc/st0560_n.gpl.json | GroupParamBuff[5].DataLotFlag.LotFlagNo | LotFlagNo | The Rift / Mysree Forest / GroupParam[5] \| DataCommon.Group=5 \| LayoutAreas=560 \| LayoutRefs=1 | Layout group guard; QuestNo and LayoutFlagNo here usually determine whether a stage group loads, including enemy or object visibility.
-| GPL | 92 | client/03040008/stage/st0880/st0880/scr/st0880/etc/st0880_n.gpl.json | GroupParamBuff[1].DataLotFlag.LotFlagNo | LotFlagNo | Hollow of Beginnings / Farana Plains / GroupParam[1] \| DataCommon.Group=1 \| LayoutAreas=880 \| LayoutRefs=1 | Layout group guard; QuestNo and LayoutFlagNo here usually determine whether a stage group loads, including enemy or object visibility.
-| GPL | 92 | client/03040008/stage/st3400/st3400/scr/st3400/etc/st3400_n.gpl.json | GroupParamBuff[4].DataLotFlag.LotFlagNo | LotFlagNo | North Land of Darkness / Hidell Plains / GroupParam[4] \| DataCommon.Group=4 \| LayoutAreas=328 \| LayoutRefs=1 | Layout group guard; QuestNo and LayoutFlagNo here usually determine whether a stage group loads, including enemy or object visibility.
-| EVSI | 92 | client/03040008/event/st0101/view_st0101ev005/event/viewer/view_st0101ev005.evsi.json | FlagArray[3].FlagNo | FlagNo | quest 1 (Resolutions and Omens) / Battlefield outside Fort Gritten / Event Viewer \| EVENT_NAME_st0101ev005 \| Ark falls | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
-| EVSI | 92 | client/03040008/event/st0101/view_st0101ev005/event/viewer/view_st0101ev005.evsi.json | LayoutFlagArray[2].FlagNo | FlagNo | quest 1 (Resolutions and Omens) / Battlefield outside Fort Gritten / Event Viewer \| EVENT_NAME_st0101ev005 \| Ark falls | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
-| EVSI | 92 | client/03040008/event/st0423/view_st0423ev000/event/viewer/view_st0423ev000.evsi.json | FlagArray[3].FlagNo | FlagNo | quest 1 (Resolutions and Omens) / Fort Gritten / Event Viewer \| EVENT_NAME_st0423ev000 \| Orc standing in the way | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
-| EVSI | 92 | client/03040008/event/st0423/view_st0423ev000/event/viewer/view_st0423ev000.evsi.json | LayoutFlagArray[2].FlagNo | FlagNo | quest 1 (Resolutions and Omens) / Fort Gritten / Event Viewer \| EVENT_NAME_st0423ev000 \| Orc standing in the way | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
-| EVSI | 92 | client/03040008/event/st0423/view_st0423ev005/event/viewer/view_st0423ev005.evsi.json | FlagArray[3].FlagNo | FlagNo | quest 1 (Resolutions and Omens) / Fort Gritten / Event Viewer \| EVENT_NAME_st0423ev005 \| Destruction of orcs | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
-| EVSI | 92 | client/03040008/event/st0423/view_st0423ev005/event/viewer/view_st0423ev005.evsi.json | LayoutFlagArray[2].FlagNo | FlagNo | quest 1 (Resolutions and Omens) / Fort Gritten / Event Viewer \| EVENT_NAME_st0423ev005 \| Destruction of orcs | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
-| SMC | 92 | client/03040008/npc/n0002/ui/00_message/npc/base/n0002.smc.json | SituationData.EndQuestId | EndQuestId | quest 5 (The Dull Grey Ark) / Mysial / GroupSerial=12258 / "GroupSerial=12258, QuestWindow=25-5 (The Crimson Crystal -> The Dull Grey Ark), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0002 \| Quest-gated NPC chatter \| QuestWindow=25-5 (The Crimson Crystal -> The Dull Grey Ark) / MSS: Mysial / Despite having only recently become an Arisen, | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0002/ui/00_message/npc/base/n0002.smc.json | SituationData.StartQuestId | StartQuestId | quest 5 (The Dull Grey Ark) / Mysial / GroupSerial=12679 / "GroupSerial=12679, QuestWindow=5-6 (The Dull Grey Ark -> The Girl in the Forest), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0002 \| Quest-gated NPC chatter \| QuestWindow=5-6 (The Dull Grey Ark -> The Girl in the Forest) / MSS: Mysial / I'm sorry I made such a fuss about the smell of | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json | SituationData.StartQuestId | StartQuestId | quest 5 (The Dull Grey Ark) / Klaus / GroupSerial=12687 / "GroupSerial=12687, QuestWindow=5-6 (The Dull Grey Ark -> The Girl in the Forest), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0003 \| Quest-gated NPC chatter \| QuestWindow=5-6 (The Dull Grey Ark -> The Girl in the Forest) / MSS: Klaus / I'm reflecting on it—yes. Oh, it's you—I thought I | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json | SituationData.EndQuestId | EndQuestId | quest 5 (The Dull Grey Ark) / Joseph / GroupSerial=12726 / "GroupSerial=12726, QuestWindow=25-5 (The Crimson Crystal -> The Dull Grey Ark), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0004 \| Quest-gated NPC chatter \| QuestWindow=25-5 (The Crimson Crystal -> The Dull Grey Ark) / MSS: Joseph / How many times have you been to the fort and back? | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json | SituationData.StartQuestId | StartQuestId | quest 5 (The Dull Grey Ark) / Joseph / GroupSerial=12730 / "GroupSerial=12730, QuestWindow=5-6 (The Dull Grey Ark -> The Girl in the Forest), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0004 \| Quest-gated NPC chatter \| QuestWindow=5-6 (The Dull Grey Ark -> The Girl in the Forest) / MSS: Joseph / From one thing to another—how are we supposed | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0005/ui/00_message/npc/base/n0005.smc.json | SituationData.EndQuestId | EndQuestId | quest 5 (The Dull Grey Ark) / Leo / GroupSerial=12914 / "GroupSerial=12914, QuestWindow=25-5 (The Crimson Crystal -> The Dull Grey Ark), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0005 \| Quest-gated NPC chatter \| QuestWindow=25-5 (The Crimson Crystal -> The Dull Grey Ark) / MSS: Leo / Do you know the story of the Ark? | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0008/ui/00_message/npc/base/n0008.smc.json | SituationData.EndQuestId | EndQuestId | quest 5 (The Dull Grey Ark) / Heinz / GroupSerial=12973 / "GroupSerial=12973, QuestWindow=25-5 (The Crimson Crystal -> The Dull Grey Ark), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0008 \| Quest-gated NPC chatter \| QuestWindow=25-5 (The Crimson Crystal -> The Dull Grey Ark) / MSS: Heinz / The survey team's escorts | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0008/ui/00_message/npc/base/n0008.smc.json | SituationData.StartQuestId | StartQuestId | quest 5 (The Dull Grey Ark) / Heinz / GroupSerial=12986 / "GroupSerial=12986, QuestWindow=5-6 (The Dull Grey Ark -> The Girl in the Forest), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0008 \| Quest-gated NPC chatter \| QuestWindow=5-6 (The Dull Grey Ark -> The Girl in the Forest) / MSS: Heinz / There are subordinates who did not return from | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0011/ui/00_message/npc/base/n0011.smc.json | SituationData.EndQuestId | EndQuestId | quest 5 (The Dull Grey Ark) / Vanessa / GroupSerial=13048 / "GroupSerial=13048, QuestWindow=25-5 (The Crimson Crystal -> The Dull Grey Ark), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0011 \| Quest-gated NPC chatter \| QuestWindow=25-5 (The Crimson Crystal -> The Dull Grey Ark) / MSS: Vanessa / Oh, you've come back again. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0011/ui/00_message/npc/base/n0011.smc.json | SituationData.StartQuestId | StartQuestId | quest 5 (The Dull Grey Ark) / Vanessa / GroupSerial=13057 / "GroupSerial=13057, QuestWindow=5-6 (The Dull Grey Ark -> The Girl in the Forest), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0011 \| Quest-gated NPC chatter \| QuestWindow=5-6 (The Dull Grey Ark -> The Girl in the Forest) / MSS: Vanessa / The behavior patterns of the Orcs have clearly | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0012/ui/00_message/npc/base/n0012.smc.json | SituationData.StartQuestId | StartQuestId | quest 5 (The Dull Grey Ark) / Fabio / GroupSerial=13977 / "GroupSerial=13977, QuestWindow=5-6 (The Dull Grey Ark -> The Girl in the Forest), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0012 \| Quest-gated NPC chatter \| QuestWindow=5-6 (The Dull Grey Ark -> The Girl in the Forest) / MSS: Fabio / The Ark, no, I give up—But if you look, there | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0014/ui/00_message/npc/base/n0014.smc.json | SituationData.StartQuestId | StartQuestId | quest 5 (The Dull Grey Ark) / Mayleaf / GroupSerial=13099 / "GroupSerial=13099, QuestWindow=5-6 (The Dull Grey Ark -> The Girl in the Forest), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window start" / NpcChatter=n0014 \| Quest-gated NPC chatter \| QuestWindow=5-6 (The Dull Grey Ark -> The Girl in the Forest) / MSS: Mayleaf / Hello, I'm Mayleaf | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n1015/ui/00_message/npc/base/n1015.smc.json | SituationData.EndQuestId | EndQuestId | quest 5 (The Dull Grey Ark) / Hilde / GroupSerial=9319 / "GroupSerial=9319, QuestWindow=1-5 (Resolutions and Omens -> The Dull Grey Ark), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n1015 \| Quest-gated NPC chatter \| QuestWindow=1-5 (Resolutions and Omens -> The Dull Grey Ark) / MSS: Hilde / Ser Arisen! It seems that something enormous | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n1019/ui/00_message/npc/base/n1019.smc.json | SituationData.EndQuestId | EndQuestId | quest 5 (The Dull Grey Ark) / Karno / GroupSerial=12940 / "GroupSerial=12940, QuestWindow=1-5 (Resolutions and Omens -> The Dull Grey Ark), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n1019 \| Quest-gated NPC chatter \| QuestWindow=1-5 (Resolutions and Omens -> The Dull Grey Ark) / MSS: Karno / You say that some kind of ball of light  | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n1302/ui/00_message/npc/base/n1302.smc.json | SituationData.EndQuestId | EndQuestId | quest 5 (The Dull Grey Ark) / Federico / GroupSerial=9437 / "GroupSerial=9437, QuestWindow=25-5 (The Crimson Crystal -> The Dull Grey Ark), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n1302 \| Quest-gated NPC chatter \| QuestWindow=25-5 (The Crimson Crystal -> The Dull Grey Ark) / MSS: Federico / Even though it's been tough lately | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n1304/ui/00_message/npc/base/n1304.smc.json | SituationData.EndQuestId | EndQuestId | quest 5 (The Dull Grey Ark) / Norman / GroupSerial=9445 / "GroupSerial=9445, QuestWindow=25-5 (The Crimson Crystal -> The Dull Grey Ark), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n1304 \| Quest-gated NPC chatter \| QuestWindow=25-5 (The Crimson Crystal -> The Dull Grey Ark) / MSS: Norman / Something huge fell in the woods to the west. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n1309/ui/00_message/npc/base/n1309.smc.json | SituationData.EndQuestId | EndQuestId | quest 5 (The Dull Grey Ark) / Gordon / GroupSerial=9460 / "GroupSerial=9460, QuestWindow=25-5 (The Crimson Crystal -> The Dull Grey Ark), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n1309 \| Quest-gated NPC chatter \| QuestWindow=25-5 (The Crimson Crystal -> The Dull Grey Ark) / MSS: Gordon / During the orc invasion, it fell to the west of | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n1313/ui/00_message/npc/base/n1313.smc.json | SituationData.EndQuestId | EndQuestId | quest 5 (The Dull Grey Ark) / Alfred / GroupSerial=12948 / "GroupSerial=12948, QuestWindow=25-5 (The Crimson Crystal -> The Dull Grey Ark), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n1313 \| Quest-gated NPC chatter \| QuestWindow=25-5 (The Crimson Crystal -> The Dull Grey Ark) / MSS: Alfred / Something engulfed in flames swung from the west | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| GPL | Direct | 92 | link:../../../../client/03040008/stage/st0120/st0120/scr/st0120/etc/st0120_n.gpl.json#L688[client/03040008/stage/st0120/st0120/scr/st0120/etc/st0120_n.gpl.json#L688] | GroupParamBuff[5].DataLotFlag.LotFlagNo | LotFlagNo | Farana Plains / Farana Plains / GroupParam[5] \| DataCommon.Group=5 \| LayoutAreas=120 \| LayoutRefs=1 | Layout group guard; QuestNo and LayoutFlagNo here usually determine whether a stage group loads, including enemy or object visibility.
+| GPL | Direct | 92 | link:../../../../client/03040008/stage/st0130/st0130/scr/st0130/etc/st0130_n.gpl.json#L674[client/03040008/stage/st0130/st0130/scr/st0130/etc/st0130_n.gpl.json#L674] | GroupParamBuff[5].DataLotFlag.LotFlagNo | LotFlagNo | Rathnite Foothills / Rathnite Foothills / GroupParam[5] \| DataCommon.Group=5 \| LayoutAreas=130 \| LayoutRefs=1 | Layout group guard; QuestNo and LayoutFlagNo here usually determine whether a stage group loads, including enemy or object visibility.
+| GPL | Direct | 92 | link:../../../../client/03040008/stage/st0134/st0134/scr/st0134/etc/st0134_n.gpl.json#L551[client/03040008/stage/st0134/st0134/scr/st0134/etc/st0134_n.gpl.json#L551] | GroupParamBuff[4].DataLotFlag.LotFlagNo | LotFlagNo | Urteca Mountains / Urteca Mountains / GroupParam[4] \| DataCommon.Group=4 \| LayoutAreas=134 \| LayoutRefs=1 | Layout group guard; QuestNo and LayoutFlagNo here usually determine whether a stage group loads, including enemy or object visibility.
+| GPL | Direct | 92 | link:../../../../client/03040008/stage/st0213/st0213/scr/st0213/etc/st0213_n.gpl.json#L660[client/03040008/stage/st0213/st0213/scr/st0213/etc/st0213_n.gpl.json#L660] | GroupParamBuff[5].DataLotFlag.LotFlagNo | LotFlagNo | Mayleaf's Bedroom / Hidell Plains / GroupParam[5] \| DataCommon.Group=5 \| LayoutAreas=213 \| LayoutRefs=1 | Layout group guard; QuestNo and LayoutFlagNo here usually determine whether a stage group loads, including enemy or object visibility.
+| GPL | Direct | 92 | link:../../../../client/03040008/stage/st0405/st0405/scr/st0405/etc/st0405_n.gpl.json#L553[client/03040008/stage/st0405/st0405/scr/st0405/etc/st0405_n.gpl.json#L553] | GroupParamBuff[4].DataLotFlag.LotFlagNo | LotFlagNo | quest 90000115 / Fort Gritten / Betland Plains / GroupParam[4] \| DataCommon.Group=10 \| LayoutAreas=405 \| LayoutRefs=1 \| LikelyLOT=st0405_00m00n_p10.lot.json \| LotTypes=SetInfoOmOld | Layout group guard; QuestNo and LayoutFlagNo here usually determine whether a stage group loads, including enemy or object visibility.
+| GPL | Direct | 92 | link:../../../../client/03040008/stage/st0405/st0405/scr/st0405/etc/st0405_n.gpl.json#L1061[client/03040008/stage/st0405/st0405/scr/st0405/etc/st0405_n.gpl.json#L1061] | GroupParamBuff[8].DataLotFlag.LotFlagNo | LotFlagNo | quest 90000113 / Fort Gritten / Betland Plains / GroupParam[8] \| DataCommon.Group=14 \| LayoutAreas=405 \| LayoutRefs=1 \| LikelyLOT=st0405_00m00n_p14.lot.json \| LotTypes=SetInfoOmOld | Layout group guard; QuestNo and LayoutFlagNo here usually determine whether a stage group loads, including enemy or object visibility.
+| GPL | Direct | 92 | link:../../../../client/03040008/stage/st0451/st0451/scr/st0451/etc/st0451_n.gpl.json#L1152[client/03040008/stage/st0451/st0451/scr/st0451/etc/st0451_n.gpl.json#L1152] | GroupParamBuff[9].DataLotFlag.LotFlagNo | LotFlagNo | Lookout Castle / Feryana Wilderness / GroupParam[9] \| DataCommon.Group=13 \| LayoutAreas=451 \| LayoutRefs=1 \| LikelyLOT=st0451_00m00n_p13.lot.json \| LotTypes=SetInfoOmOld | Layout group guard; QuestNo and LayoutFlagNo here usually determine whether a stage group loads, including enemy or object visibility.
+| GPL | Direct | 92 | link:../../../../client/03040008/stage/st0560/st0560/scr/st0560/etc/st0560_n.gpl.json#L660[client/03040008/stage/st0560/st0560/scr/st0560/etc/st0560_n.gpl.json#L660] | GroupParamBuff[5].DataLotFlag.LotFlagNo | LotFlagNo | The Rift / Mysree Forest / GroupParam[5] \| DataCommon.Group=5 \| LayoutAreas=560 \| LayoutRefs=1 | Layout group guard; QuestNo and LayoutFlagNo here usually determine whether a stage group loads, including enemy or object visibility.
+| GPL | Direct | 92 | link:../../../../client/03040008/stage/st0880/st0880/scr/st0880/etc/st0880_n.gpl.json#L168[client/03040008/stage/st0880/st0880/scr/st0880/etc/st0880_n.gpl.json#L168] | GroupParamBuff[1].DataLotFlag.LotFlagNo | LotFlagNo | Hollow of Beginnings / Farana Plains / GroupParam[1] \| DataCommon.Group=1 \| LayoutAreas=880 \| LayoutRefs=1 | Layout group guard; QuestNo and LayoutFlagNo here usually determine whether a stage group loads, including enemy or object visibility.
+| GPL | Direct | 92 | link:../../../../client/03040008/stage/st3400/st3400/scr/st3400/etc/st3400_n.gpl.json#L537[client/03040008/stage/st3400/st3400/scr/st3400/etc/st3400_n.gpl.json#L537] | GroupParamBuff[4].DataLotFlag.LotFlagNo | LotFlagNo | North Land of Darkness / Hidell Plains / GroupParam[4] \| DataCommon.Group=4 \| LayoutAreas=328 \| LayoutRefs=1 | Layout group guard; QuestNo and LayoutFlagNo here usually determine whether a stage group loads, including enemy or object visibility.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0101/view_st0101ev005/event/viewer/view_st0101ev005.evsi.json#L36[client/03040008/event/st0101/view_st0101ev005/event/viewer/view_st0101ev005.evsi.json#L36] | FlagArray[3].FlagNo | FlagNo | quest 1 (Resolutions and Omens) / Battlefield outside Fort Gritten / Event Viewer \| EVENT_NAME_st0101ev005 \| Ark falls | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0101/view_st0101ev005/event/viewer/view_st0101ev005.evsi.json#L117[client/03040008/event/st0101/view_st0101ev005/event/viewer/view_st0101ev005.evsi.json#L117] | LayoutFlagArray[2].FlagNo | FlagNo | quest 1 (Resolutions and Omens) / Battlefield outside Fort Gritten / Event Viewer \| EVENT_NAME_st0101ev005 \| Ark falls | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0423/view_st0423ev000/event/viewer/view_st0423ev000.evsi.json#L36[client/03040008/event/st0423/view_st0423ev000/event/viewer/view_st0423ev000.evsi.json#L36] | FlagArray[3].FlagNo | FlagNo | quest 1 (Resolutions and Omens) / Fort Gritten / Event Viewer \| EVENT_NAME_st0423ev000 \| Orc standing in the way | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0423/view_st0423ev000/event/viewer/view_st0423ev000.evsi.json#L93[client/03040008/event/st0423/view_st0423ev000/event/viewer/view_st0423ev000.evsi.json#L93] | LayoutFlagArray[2].FlagNo | FlagNo | quest 1 (Resolutions and Omens) / Fort Gritten / Event Viewer \| EVENT_NAME_st0423ev000 \| Orc standing in the way | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0423/view_st0423ev005/event/viewer/view_st0423ev005.evsi.json#L36[client/03040008/event/st0423/view_st0423ev005/event/viewer/view_st0423ev005.evsi.json#L36] | FlagArray[3].FlagNo | FlagNo | quest 1 (Resolutions and Omens) / Fort Gritten / Event Viewer \| EVENT_NAME_st0423ev005 \| Destruction of orcs | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0423/view_st0423ev005/event/viewer/view_st0423ev005.evsi.json#L109[client/03040008/event/st0423/view_st0423ev005/event/viewer/view_st0423ev005.evsi.json#L109] | LayoutFlagArray[2].FlagNo | FlagNo | quest 1 (Resolutions and Omens) / Fort Gritten / Event Viewer \| EVENT_NAME_st0423ev005 \| Destruction of orcs | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0002/ui/00_message/npc/base/n0002.smc.json[client/03040008/npc/n0002/ui/00_message/npc/base/n0002.smc.json] | SituationData.EndQuestId | EndQuestId | quest 5 (The Dull Grey Ark) / Mysial / GroupSerial=12258 / "GroupSerial=12258, QuestWindow=25-5 (The Crimson Crystal -> The Dull Grey Ark), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0002 \| Quest-gated NPC chatter \| QuestWindow=25-5 (The Crimson Crystal -> The Dull Grey Ark) / MSS: Mysial / Despite having only recently become an Arisen, | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0002/ui/00_message/npc/base/n0002.smc.json[client/03040008/npc/n0002/ui/00_message/npc/base/n0002.smc.json] | SituationData.StartQuestId | StartQuestId | quest 5 (The Dull Grey Ark) / Mysial / GroupSerial=12679 / "GroupSerial=12679, QuestWindow=5-6 (The Dull Grey Ark -> The Girl in the Forest), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0002 \| Quest-gated NPC chatter \| QuestWindow=5-6 (The Dull Grey Ark -> The Girl in the Forest) / MSS: Mysial / I'm sorry I made such a fuss about the smell of | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json[client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json] | SituationData.StartQuestId | StartQuestId | quest 5 (The Dull Grey Ark) / Klaus / GroupSerial=12687 / "GroupSerial=12687, QuestWindow=5-6 (The Dull Grey Ark -> The Girl in the Forest), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0003 \| Quest-gated NPC chatter \| QuestWindow=5-6 (The Dull Grey Ark -> The Girl in the Forest) / MSS: Klaus / I'm reflecting on it—yes. Oh, it's you—I thought I | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json[client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json] | SituationData.EndQuestId | EndQuestId | quest 5 (The Dull Grey Ark) / Joseph / GroupSerial=12726 / "GroupSerial=12726, QuestWindow=25-5 (The Crimson Crystal -> The Dull Grey Ark), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0004 \| Quest-gated NPC chatter \| QuestWindow=25-5 (The Crimson Crystal -> The Dull Grey Ark) / MSS: Joseph / How many times have you been to the fort and back? | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json[client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json] | SituationData.StartQuestId | StartQuestId | quest 5 (The Dull Grey Ark) / Joseph / GroupSerial=12730 / "GroupSerial=12730, QuestWindow=5-6 (The Dull Grey Ark -> The Girl in the Forest), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0004 \| Quest-gated NPC chatter \| QuestWindow=5-6 (The Dull Grey Ark -> The Girl in the Forest) / MSS: Joseph / From one thing to another—how are we supposed | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0005/ui/00_message/npc/base/n0005.smc.json[client/03040008/npc/n0005/ui/00_message/npc/base/n0005.smc.json] | SituationData.EndQuestId | EndQuestId | quest 5 (The Dull Grey Ark) / Leo / GroupSerial=12914 / "GroupSerial=12914, QuestWindow=25-5 (The Crimson Crystal -> The Dull Grey Ark), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0005 \| Quest-gated NPC chatter \| QuestWindow=25-5 (The Crimson Crystal -> The Dull Grey Ark) / MSS: Leo / Do you know the story of the Ark? | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0008/ui/00_message/npc/base/n0008.smc.json[client/03040008/npc/n0008/ui/00_message/npc/base/n0008.smc.json] | SituationData.EndQuestId | EndQuestId | quest 5 (The Dull Grey Ark) / Heinz / GroupSerial=12973 / "GroupSerial=12973, QuestWindow=25-5 (The Crimson Crystal -> The Dull Grey Ark), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0008 \| Quest-gated NPC chatter \| QuestWindow=25-5 (The Crimson Crystal -> The Dull Grey Ark) / MSS: Heinz / The survey team's escorts | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0008/ui/00_message/npc/base/n0008.smc.json[client/03040008/npc/n0008/ui/00_message/npc/base/n0008.smc.json] | SituationData.StartQuestId | StartQuestId | quest 5 (The Dull Grey Ark) / Heinz / GroupSerial=12986 / "GroupSerial=12986, QuestWindow=5-6 (The Dull Grey Ark -> The Girl in the Forest), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0008 \| Quest-gated NPC chatter \| QuestWindow=5-6 (The Dull Grey Ark -> The Girl in the Forest) / MSS: Heinz / There are subordinates who did not return from | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0011/ui/00_message/npc/base/n0011.smc.json[client/03040008/npc/n0011/ui/00_message/npc/base/n0011.smc.json] | SituationData.EndQuestId | EndQuestId | quest 5 (The Dull Grey Ark) / Vanessa / GroupSerial=13048 / "GroupSerial=13048, QuestWindow=25-5 (The Crimson Crystal -> The Dull Grey Ark), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0011 \| Quest-gated NPC chatter \| QuestWindow=25-5 (The Crimson Crystal -> The Dull Grey Ark) / MSS: Vanessa / Oh, you've come back again. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0011/ui/00_message/npc/base/n0011.smc.json[client/03040008/npc/n0011/ui/00_message/npc/base/n0011.smc.json] | SituationData.StartQuestId | StartQuestId | quest 5 (The Dull Grey Ark) / Vanessa / GroupSerial=13057 / "GroupSerial=13057, QuestWindow=5-6 (The Dull Grey Ark -> The Girl in the Forest), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0011 \| Quest-gated NPC chatter \| QuestWindow=5-6 (The Dull Grey Ark -> The Girl in the Forest) / MSS: Vanessa / The behavior patterns of the Orcs have clearly | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0012/ui/00_message/npc/base/n0012.smc.json[client/03040008/npc/n0012/ui/00_message/npc/base/n0012.smc.json] | SituationData.StartQuestId | StartQuestId | quest 5 (The Dull Grey Ark) / Fabio / GroupSerial=13977 / "GroupSerial=13977, QuestWindow=5-6 (The Dull Grey Ark -> The Girl in the Forest), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0012 \| Quest-gated NPC chatter \| QuestWindow=5-6 (The Dull Grey Ark -> The Girl in the Forest) / MSS: Fabio / The Ark, no, I give up—But if you look, there | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0014/ui/00_message/npc/base/n0014.smc.json[client/03040008/npc/n0014/ui/00_message/npc/base/n0014.smc.json] | SituationData.StartQuestId | StartQuestId | quest 5 (The Dull Grey Ark) / Mayleaf / GroupSerial=13099 / "GroupSerial=13099, QuestWindow=5-6 (The Dull Grey Ark -> The Girl in the Forest), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window start" / NpcChatter=n0014 \| Quest-gated NPC chatter \| QuestWindow=5-6 (The Dull Grey Ark -> The Girl in the Forest) / MSS: Mayleaf / Hello, I'm Mayleaf | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n1015/ui/00_message/npc/base/n1015.smc.json[client/03040008/npc/n1015/ui/00_message/npc/base/n1015.smc.json] | SituationData.EndQuestId | EndQuestId | quest 5 (The Dull Grey Ark) / Hilde / GroupSerial=9319 / "GroupSerial=9319, QuestWindow=1-5 (Resolutions and Omens -> The Dull Grey Ark), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n1015 \| Quest-gated NPC chatter \| QuestWindow=1-5 (Resolutions and Omens -> The Dull Grey Ark) / MSS: Hilde / Ser Arisen! It seems that something enormous | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n1019/ui/00_message/npc/base/n1019.smc.json[client/03040008/npc/n1019/ui/00_message/npc/base/n1019.smc.json] | SituationData.EndQuestId | EndQuestId | quest 5 (The Dull Grey Ark) / Karno / GroupSerial=12940 / "GroupSerial=12940, QuestWindow=1-5 (Resolutions and Omens -> The Dull Grey Ark), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n1019 \| Quest-gated NPC chatter \| QuestWindow=1-5 (Resolutions and Omens -> The Dull Grey Ark) / MSS: Karno / You say that some kind of ball of light  | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n1302/ui/00_message/npc/base/n1302.smc.json[client/03040008/npc/n1302/ui/00_message/npc/base/n1302.smc.json] | SituationData.EndQuestId | EndQuestId | quest 5 (The Dull Grey Ark) / Federico / GroupSerial=9437 / "GroupSerial=9437, QuestWindow=25-5 (The Crimson Crystal -> The Dull Grey Ark), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n1302 \| Quest-gated NPC chatter \| QuestWindow=25-5 (The Crimson Crystal -> The Dull Grey Ark) / MSS: Federico / Even though it's been tough lately | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n1304/ui/00_message/npc/base/n1304.smc.json[client/03040008/npc/n1304/ui/00_message/npc/base/n1304.smc.json] | SituationData.EndQuestId | EndQuestId | quest 5 (The Dull Grey Ark) / Norman / GroupSerial=9445 / "GroupSerial=9445, QuestWindow=25-5 (The Crimson Crystal -> The Dull Grey Ark), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n1304 \| Quest-gated NPC chatter \| QuestWindow=25-5 (The Crimson Crystal -> The Dull Grey Ark) / MSS: Norman / Something huge fell in the woods to the west. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n1309/ui/00_message/npc/base/n1309.smc.json[client/03040008/npc/n1309/ui/00_message/npc/base/n1309.smc.json] | SituationData.EndQuestId | EndQuestId | quest 5 (The Dull Grey Ark) / Gordon / GroupSerial=9460 / "GroupSerial=9460, QuestWindow=25-5 (The Crimson Crystal -> The Dull Grey Ark), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n1309 \| Quest-gated NPC chatter \| QuestWindow=25-5 (The Crimson Crystal -> The Dull Grey Ark) / MSS: Gordon / During the orc invasion, it fell to the west of | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n1313/ui/00_message/npc/base/n1313.smc.json[client/03040008/npc/n1313/ui/00_message/npc/base/n1313.smc.json] | SituationData.EndQuestId | EndQuestId | quest 5 (The Dull Grey Ark) / Alfred / GroupSerial=12948 / "GroupSerial=12948, QuestWindow=25-5 (The Crimson Crystal -> The Dull Grey Ark), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n1313 \| Quest-gated NPC chatter \| QuestWindow=25-5 (The Crimson Crystal -> The Dull Grey Ark) / MSS: Alfred / Something engulfed in flames swung from the west | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
 |===
 
 ==== opaque_fsm -- 26 hit(s)
 
-[cols="1,1,3,3,2,3,3",options="header"]
+[cols="1,1,1,3,3,2,3,3",options="header"]
 |===
-| Family | Confidence | File | JSON Path | Field | Context | Why
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
 
-| FSM | 64 | client/03040008/event/st0120/st0120ev030/event/st0120/ev030/fsm/st0120ev030.fsm.json | Process.Parameter.FlagNo | FlagNo | st0120 / SetLayout | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
-| FSM | 64 | client/03040008/event/st0120/st0120ev030/event/st0120/ev030/fsm/st0120ev030.fsm.json | Process.Parameter.FlagNo | FlagNo | st0120 / SetLayout | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
-| FSM | 64 | client/03040008/event/st0130/st0130ev030/event/st0130/ev030/fsm/st0130ev030.fsm.json | Process.Parameter.FlagNo | FlagNo | st0130 / SetLayout | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
-| FSM | 64 | client/03040008/event/st0130/st0130ev030/event/st0130/ev030/fsm/st0130ev030.fsm.json | Process.Parameter.FlagNo | FlagNo | st0130 / SetLayout | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
-| FSM | 64 | client/03040008/event/st0134/st0134ev001/event/st0134/ev001/fsm/st0134ev001.fsm.json | Process.Parameter.FlagNo | FlagNo | st0134 / SetLayout | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
-| FSM | 64 | client/03040008/event/st0134/st0134ev001/event/st0134/ev001/fsm/st0134ev001.fsm.json | Process.Parameter.FlagNo | FlagNo | st0134 / SetLayout | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
-| FSM | 64 | client/03040008/event/st0213/st0213ev025/event/st0213/ev025/fsm/st0213ev025.fsm.json | Process.Parameter.FlagNo | FlagNo | st0213 / SetLayout | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
-| FSM | 64 | client/03040008/event/st0213/st0213ev025/event/st0213/ev025/fsm/st0213ev025.fsm.json | Process.Parameter.FlagNo | FlagNo | st0213 / SetLayout | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
-| FSM | 64 | client/03040008/event/st0451/st0451ev025/event/st0451/ev025/fsm/st0451ev025.fsm.json | Process.Parameter.FlagNo | FlagNo | st0451 / SetLayout | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
-| FSM | 64 | client/03040008/event/st0451/st0451ev025/event/st0451/ev025/fsm/st0451ev025.fsm.json | Process.Parameter.FlagNo | FlagNo | st0451 / SetLayout | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
-| FSM | 64 | client/03040008/event/st0813/st0813ev005/event/st0813/ev005/fsm/st0813ev005.fsm.json | Process.Parameter.FlagNo | FlagNo | st0813 / SetLayout | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
-| FSM | 64 | client/03040008/event/st0880/st0880ev005/event/st0880/ev005/fsm/st0880ev005.fsm.json | Process.Parameter.FlagNo | FlagNo | st0880 / SetLayout | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
-| FSM | 64 | client/03040008/event/st0880/st0880ev005/event/st0880/ev005/fsm/st0880ev005.fsm.json | Process.Parameter.FlagNo | FlagNo | st0880 / SetLayout | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
-| FSM | 64 | client/03040008/event/st3400/st3400ev020/event/st3400/ev020/fsm/st3400ev020.fsm.json | Process.Parameter.FlagNo | FlagNo | st3400 / SetLayout | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
-| FSM | 64 | client/03040008/event/st3400/st3400ev020/event/st3400/ev020/fsm/st3400ev020.fsm.json | Process.Parameter.FlagNo | FlagNo | st3400 / SetLayout | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
-| FSM | 64 | client/03040008/event/st3400/st3400ev020/event/st3400/ev020/fsm/st3400ev020.fsm.json | Process.Parameter.FlagNo | FlagNo | st3400 / SetLayout | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
-| FSM | 64 | client/03040008/event/st3400/st3400ev020/event/st3400/ev020/fsm/st3400ev020.fsm.json | Process.Parameter.FlagNo | FlagNo | st3400 / SetLayout | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
-| FSM | 78 | client/03040008/quest/q00000005/quest/00000005/npc/n0003.fsm.json | Process.Parameter.QuestId | QuestId | quest 5 (The Dull Grey Ark) / Klaus / checkMyQuestFlag \| NPCFSM=n0003 \| QuestLocalNPCFSM | Quest-local NPC FSM MyQuest check; these files usually describe NPC behavior for the same quest, so this flag likely controls that NPC's quest-specific presence or behavior.
-| FSM | 72 | client/03040008/quest/q00000005/quest/00000005/npc/n0003.fsm.json | Process.Parameter.QuestId | QuestId | quest 5 (The Dull Grey Ark) / Klaus / CallMessage \| NPCFSM=n0003 \| QuestLocalNPCFSM | Quest-local NPC FSM reference; these quest NPC FSM files usually define behavior for the same quest, such as joining fights or changing interactions.
-| FSM | 72 | client/03040008/quest/q00000005/quest/00000005/npc/n0003.fsm.json | Process.Parameter.QuestId | QuestId | quest 5 (The Dull Grey Ark) / Klaus / CallMessage \| NPCFSM=n0003 \| QuestLocalNPCFSM | Quest-local NPC FSM reference; these quest NPC FSM files usually define behavior for the same quest, such as joining fights or changing interactions.
-| FSM | 72 | client/03040008/quest/q00000005/quest/00000005/npc/n0003.fsm.json | Process.Parameter.QuestId | QuestId | quest 5 (The Dull Grey Ark) / Klaus / CallMessage \| NPCFSM=n0003 \| QuestLocalNPCFSM | Quest-local NPC FSM reference; these quest NPC FSM files usually define behavior for the same quest, such as joining fights or changing interactions.
-| FSM | 72 | client/03040008/quest/q00000005/quest/00000005/npc/n0003.fsm.json | Process.Parameter.QuestId | QuestId | quest 5 (The Dull Grey Ark) / Klaus / MainQstFlagOn \| NPCFSM=n0003 \| QuestLocalNPCFSM | Quest-local NPC FSM reference; these quest NPC FSM files usually define behavior for the same quest, such as joining fights or changing interactions.
-| FSM | 78 | client/03040008/quest/q00000005/quest/00000005/npc/n0006.fsm.json | Process.Parameter.QuestId | QuestId | quest 5 (The Dull Grey Ark) / Iris / checkMyQuestFlag \| NPCFSM=n0006 \| QuestLocalNPCFSM | Quest-local NPC FSM MyQuest check; these files usually describe NPC behavior for the same quest, so this flag likely controls that NPC's quest-specific presence or behavior.
-| FSM | 72 | client/03040008/quest/q00000005/quest/00000005/npc/n0006.fsm.json | Process.Parameter.QuestId | QuestId | quest 5 (The Dull Grey Ark) / Iris / CallMessage \| NPCFSM=n0006 \| QuestLocalNPCFSM | Quest-local NPC FSM reference; these quest NPC FSM files usually define behavior for the same quest, such as joining fights or changing interactions.
-| FSM | 72 | client/03040008/quest/q00000005/quest/00000005/npc/n0006.fsm.json | Process.Parameter.QuestId | QuestId | quest 5 (The Dull Grey Ark) / Iris / CallMessage \| NPCFSM=n0006 \| QuestLocalNPCFSM | Quest-local NPC FSM reference; these quest NPC FSM files usually define behavior for the same quest, such as joining fights or changing interactions.
-| FSM | 72 | client/03040008/quest/q00000005/quest/00000005/npc/n0006.fsm.json | Process.Parameter.QuestId | QuestId | quest 5 (The Dull Grey Ark) / Iris / CallMessage \| NPCFSM=n0006 \| QuestLocalNPCFSM | Quest-local NPC FSM reference; these quest NPC FSM files usually define behavior for the same quest, such as joining fights or changing interactions.
+| FSM | Direct | 64 | link:../../../../client/03040008/event/st0120/st0120ev030/event/st0120/ev030/fsm/st0120ev030.fsm.json[client/03040008/event/st0120/st0120ev030/event/st0120/ev030/fsm/st0120ev030.fsm.json] | Process.Parameter.FlagNo | FlagNo | st0120 / SetLayout | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/event/st0120/st0120ev030/event/st0120/ev030/fsm/st0120ev030.fsm.json[client/03040008/event/st0120/st0120ev030/event/st0120/ev030/fsm/st0120ev030.fsm.json] | Process.Parameter.FlagNo | FlagNo | st0120 / SetLayout | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/event/st0130/st0130ev030/event/st0130/ev030/fsm/st0130ev030.fsm.json[client/03040008/event/st0130/st0130ev030/event/st0130/ev030/fsm/st0130ev030.fsm.json] | Process.Parameter.FlagNo | FlagNo | st0130 / SetLayout | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/event/st0130/st0130ev030/event/st0130/ev030/fsm/st0130ev030.fsm.json[client/03040008/event/st0130/st0130ev030/event/st0130/ev030/fsm/st0130ev030.fsm.json] | Process.Parameter.FlagNo | FlagNo | st0130 / SetLayout | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/event/st0134/st0134ev001/event/st0134/ev001/fsm/st0134ev001.fsm.json[client/03040008/event/st0134/st0134ev001/event/st0134/ev001/fsm/st0134ev001.fsm.json] | Process.Parameter.FlagNo | FlagNo | st0134 / SetLayout | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/event/st0134/st0134ev001/event/st0134/ev001/fsm/st0134ev001.fsm.json[client/03040008/event/st0134/st0134ev001/event/st0134/ev001/fsm/st0134ev001.fsm.json] | Process.Parameter.FlagNo | FlagNo | st0134 / SetLayout | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/event/st0213/st0213ev025/event/st0213/ev025/fsm/st0213ev025.fsm.json[client/03040008/event/st0213/st0213ev025/event/st0213/ev025/fsm/st0213ev025.fsm.json] | Process.Parameter.FlagNo | FlagNo | st0213 / SetLayout | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/event/st0213/st0213ev025/event/st0213/ev025/fsm/st0213ev025.fsm.json[client/03040008/event/st0213/st0213ev025/event/st0213/ev025/fsm/st0213ev025.fsm.json] | Process.Parameter.FlagNo | FlagNo | st0213 / SetLayout | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/event/st0451/st0451ev025/event/st0451/ev025/fsm/st0451ev025.fsm.json[client/03040008/event/st0451/st0451ev025/event/st0451/ev025/fsm/st0451ev025.fsm.json] | Process.Parameter.FlagNo | FlagNo | st0451 / SetLayout | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/event/st0451/st0451ev025/event/st0451/ev025/fsm/st0451ev025.fsm.json[client/03040008/event/st0451/st0451ev025/event/st0451/ev025/fsm/st0451ev025.fsm.json] | Process.Parameter.FlagNo | FlagNo | st0451 / SetLayout | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/event/st0813/st0813ev005/event/st0813/ev005/fsm/st0813ev005.fsm.json[client/03040008/event/st0813/st0813ev005/event/st0813/ev005/fsm/st0813ev005.fsm.json] | Process.Parameter.FlagNo | FlagNo | st0813 / SetLayout | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/event/st0880/st0880ev005/event/st0880/ev005/fsm/st0880ev005.fsm.json[client/03040008/event/st0880/st0880ev005/event/st0880/ev005/fsm/st0880ev005.fsm.json] | Process.Parameter.FlagNo | FlagNo | st0880 / SetLayout | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/event/st0880/st0880ev005/event/st0880/ev005/fsm/st0880ev005.fsm.json[client/03040008/event/st0880/st0880ev005/event/st0880/ev005/fsm/st0880ev005.fsm.json] | Process.Parameter.FlagNo | FlagNo | st0880 / SetLayout | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/event/st3400/st3400ev020/event/st3400/ev020/fsm/st3400ev020.fsm.json[client/03040008/event/st3400/st3400ev020/event/st3400/ev020/fsm/st3400ev020.fsm.json] | Process.Parameter.FlagNo | FlagNo | st3400 / SetLayout | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/event/st3400/st3400ev020/event/st3400/ev020/fsm/st3400ev020.fsm.json[client/03040008/event/st3400/st3400ev020/event/st3400/ev020/fsm/st3400ev020.fsm.json] | Process.Parameter.FlagNo | FlagNo | st3400 / SetLayout | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/event/st3400/st3400ev020/event/st3400/ev020/fsm/st3400ev020.fsm.json[client/03040008/event/st3400/st3400ev020/event/st3400/ev020/fsm/st3400ev020.fsm.json] | Process.Parameter.FlagNo | FlagNo | st3400 / SetLayout | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/event/st3400/st3400ev020/event/st3400/ev020/fsm/st3400ev020.fsm.json[client/03040008/event/st3400/st3400ev020/event/st3400/ev020/fsm/st3400ev020.fsm.json] | Process.Parameter.FlagNo | FlagNo | st3400 / SetLayout | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 78 | link:../../../../client/03040008/quest/q00000005/quest/00000005/npc/n0003.fsm.json[client/03040008/quest/q00000005/quest/00000005/npc/n0003.fsm.json] | Process.Parameter.QuestId | QuestId | quest 5 (The Dull Grey Ark) / Klaus / checkMyQuestFlag \| NPCFSM=n0003 \| QuestLocalNPCFSM | Quest-local NPC FSM MyQuest check; these files usually describe NPC behavior for the same quest, so this flag likely controls that NPC's quest-specific presence or behavior.
+| FSM | Direct | 72 | link:../../../../client/03040008/quest/q00000005/quest/00000005/npc/n0003.fsm.json[client/03040008/quest/q00000005/quest/00000005/npc/n0003.fsm.json] | Process.Parameter.QuestId | QuestId | quest 5 (The Dull Grey Ark) / Klaus / CallMessage \| NPCFSM=n0003 \| QuestLocalNPCFSM | Quest-local NPC FSM reference; these quest NPC FSM files usually define behavior for the same quest, such as joining fights or changing interactions.
+| FSM | Direct | 72 | link:../../../../client/03040008/quest/q00000005/quest/00000005/npc/n0003.fsm.json[client/03040008/quest/q00000005/quest/00000005/npc/n0003.fsm.json] | Process.Parameter.QuestId | QuestId | quest 5 (The Dull Grey Ark) / Klaus / CallMessage \| NPCFSM=n0003 \| QuestLocalNPCFSM | Quest-local NPC FSM reference; these quest NPC FSM files usually define behavior for the same quest, such as joining fights or changing interactions.
+| FSM | Direct | 72 | link:../../../../client/03040008/quest/q00000005/quest/00000005/npc/n0003.fsm.json[client/03040008/quest/q00000005/quest/00000005/npc/n0003.fsm.json] | Process.Parameter.QuestId | QuestId | quest 5 (The Dull Grey Ark) / Klaus / CallMessage \| NPCFSM=n0003 \| QuestLocalNPCFSM | Quest-local NPC FSM reference; these quest NPC FSM files usually define behavior for the same quest, such as joining fights or changing interactions.
+| FSM | Direct | 72 | link:../../../../client/03040008/quest/q00000005/quest/00000005/npc/n0003.fsm.json[client/03040008/quest/q00000005/quest/00000005/npc/n0003.fsm.json] | Process.Parameter.QuestId | QuestId | quest 5 (The Dull Grey Ark) / Klaus / MainQstFlagOn \| NPCFSM=n0003 \| QuestLocalNPCFSM | Quest-local NPC FSM reference; these quest NPC FSM files usually define behavior for the same quest, such as joining fights or changing interactions.
+| FSM | Direct | 78 | link:../../../../client/03040008/quest/q00000005/quest/00000005/npc/n0006.fsm.json[client/03040008/quest/q00000005/quest/00000005/npc/n0006.fsm.json] | Process.Parameter.QuestId | QuestId | quest 5 (The Dull Grey Ark) / Iris / checkMyQuestFlag \| NPCFSM=n0006 \| QuestLocalNPCFSM | Quest-local NPC FSM MyQuest check; these files usually describe NPC behavior for the same quest, so this flag likely controls that NPC's quest-specific presence or behavior.
+| FSM | Direct | 72 | link:../../../../client/03040008/quest/q00000005/quest/00000005/npc/n0006.fsm.json[client/03040008/quest/q00000005/quest/00000005/npc/n0006.fsm.json] | Process.Parameter.QuestId | QuestId | quest 5 (The Dull Grey Ark) / Iris / CallMessage \| NPCFSM=n0006 \| QuestLocalNPCFSM | Quest-local NPC FSM reference; these quest NPC FSM files usually define behavior for the same quest, such as joining fights or changing interactions.
+| FSM | Direct | 72 | link:../../../../client/03040008/quest/q00000005/quest/00000005/npc/n0006.fsm.json[client/03040008/quest/q00000005/quest/00000005/npc/n0006.fsm.json] | Process.Parameter.QuestId | QuestId | quest 5 (The Dull Grey Ark) / Iris / CallMessage \| NPCFSM=n0006 \| QuestLocalNPCFSM | Quest-local NPC FSM reference; these quest NPC FSM files usually define behavior for the same quest, such as joining fights or changing interactions.
+| FSM | Direct | 72 | link:../../../../client/03040008/quest/q00000005/quest/00000005/npc/n0006.fsm.json[client/03040008/quest/q00000005/quest/00000005/npc/n0006.fsm.json] | Process.Parameter.QuestId | QuestId | quest 5 (The Dull Grey Ark) / Iris / CallMessage \| NPCFSM=n0006 \| QuestLocalNPCFSM | Quest-local NPC FSM reference; these quest NPC FSM files usually define behavior for the same quest, such as joining fights or changing interactions.
 |===
 

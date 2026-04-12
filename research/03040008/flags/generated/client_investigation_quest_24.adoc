@@ -5,9 +5,296 @@
 
 Query mode:: quest
 Query value:: 24
-Generated at:: 2026-04-11T21:41:40.500400+00:00
+Generated at:: 2026-04-12T12:43:29.344491+00:00
 
 toc::[]
+
+Quest family:: q0 -- Main Quest
+Quest family notes:: Story progression quests and adjacent mainline quest-state flows.
+Quest family focus:: local_stage_topology_plus_external_dependencies
+
+== External Owner Indexes
+
+_These are reusable external owner catalogs inferred from stage-neighborhood cues. They are broader than the subset of flags promoted into derived dependency targets._
+
+[cols="2,1,1,2,2,2,4",options="header"]
+|===
+| Owner Quest | Family | Catalog Count | Catalog Flags | Linked Cues | Cue Sources | Why
+
+| 70000001 | q7 | 70 | 1098, 1103, 1104, 1105, 1106, 1109, 1110, 1111, 1112, 1113, 1114, 1115 +58 more | 1109, 1110, 1111, 1112, 1150, 1201, 1215, 1216 +36 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70001001 | q7 | 0 |  | 1851, 1954 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70002001 | q7 | 47 | 1098, 1103, 1104, 1105, 1106, 1109, 1110, 1111, 1112, 1113, 1114, 1115 +35 more | 1113, 1114, 1115, 1117, 1295, 1601, 3859, 3860 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70003001 | q7 | 49 | 1098, 1103, 1104, 1105, 1106, 1109, 1110, 1111, 1112, 1113, 1114, 1115 +37 more | 1098, 1103, 1104, 1105, 1106, 1119, 1120, 1121 +13 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70020001 | q7 | 8 | 2736, 3000, 3002, 3003, 3074, 3442, 3805, 4037 | 2736, 3000, 3002, 3003, 3074, 3442, 3805, 4037 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70021001 | q7 | 4 | 3278, 3650, 3753, 3861 | 3278, 3650, 3753 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70022001 | q7 | 17 | 3949, 3950, 3952, 3953, 3954, 3977, 4033, 4043, 4053, 4063, 4470, 4555 +5 more | 3949, 3950, 3952, 3953, 3954, 3977, 4033, 4043 +7 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70023001 | q7 | 15 | 4066, 4067, 4372, 4373, 4500, 4506, 4507, 4508, 4511, 4512, 4515, 4516 +3 more | 4066, 4372, 4373, 4500, 4506, 4507, 4508, 4511 +6 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70030001 | q7 | 46 | 5396, 5397, 5407, 5552, 5557, 5558, 5581, 5584, 5587, 5588, 5589, 5614 +34 more | 5396, 5397, 5407, 5552, 5557, 5558, 5584, 5587 +35 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70031001 | q7 | 8 | 5553, 5672, 6138, 6194, 6195, 6377, 6425, 7316 | 5553, 5672, 6138, 6194, 6195, 6377, 7316 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70032001 | q7 | 37 | 7169, 7240, 7241, 7336, 7341, 7342, 7386, 7387, 7388, 7389, 7390, 7438 +25 more | 7169, 7240, 7241, 7336, 7341, 7342, 7386, 7388 +27 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70033001 | q7 | 43 | 7826, 7827, 7876, 7888, 7889, 7916, 7917, 7954, 7955, 7965, 7966, 7967 +31 more | 7826, 7827, 7876, 7888, 7889, 7917, 7954, 7955 +33 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70034001 | q7 | 3 | 8486, 8630, 8631 | 8486 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+|===
+
+== Derived External Dependency Targets
+
+_These are the promoted subset of external owner-index entries. A flag appears here only when it passes the current family-specific dependency promotion rules for this quest._
+
+[cols="2,1,1,2,2,4",options="header"]
+|===
+| Owner Quest | Family | Flag Count | Flags | Sources | Why
+
+| 70000001 | q7 | 31 | 1109, 1110, 1111, 1112, 1215, 1216, 1218, 1219, 1220, 1223, 1251, 1261 +19 more | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70002001 | q7 | 6 | 1113, 1114, 1295, 1601, 3859, 3860 | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70003001 | q7 | 20 | 1098, 1103, 1104, 1105, 1119, 1120, 1121, 1122, 1123, 1124, 1202, 1203 +8 more | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70020001 | q7 | 5 | 2736, 3002, 3003, 3074, 3805 | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70021001 | q7 | 3 | 3278, 3650, 3753 | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70022001 | q7 | 14 | 3949, 3952, 3953, 3954, 3977, 4033, 4043, 4470, 4555, 4556, 4557, 4803 +2 more | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70023001 | q7 | 13 | 4066, 4372, 4373, 4500, 4506, 4507, 4508, 4511, 4512, 4515, 4516, 4517 +1 more | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70030001 | q7 | 32 | 5396, 5397, 5407, 5552, 5558, 5584, 5587, 5588, 5634, 5635, 5636, 5637 +20 more | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70031001 | q7 | 5 | 5553, 6138, 6194, 6195, 6377 | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70032001 | q7 | 21 | 7240, 7241, 7336, 7341, 7342, 7390, 7438, 7440, 7497, 7498, 7514, 7545 +9 more | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70033001 | q7 | 25 | 7826, 7827, 7876, 7954, 7955, 7966, 7968, 7972, 8016, 8033, 8034, 8035 +13 more | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+|===
+
+== Family Relationship Context
+
+_These sections summarize deterministic client-side family metadata and reverse-index relationships. They are context for later owner/dependency inference, not direct quest-target promotion._
+
+=== Quest Sequence
+
+* seq no: 22
+* previous: 23 -- The Golden Key
+* next: 25 -- The Crimson Crystal
+
+== ARC Association Context
+
+_ARC associations are contextual only. They show which quest-stage and marker resources are bundled with this quest._
+
+* arc file: link:../../../../client/03040008/quest/q00000024.arc.json#L1[client/03040008/quest/q00000024.arc.json#L1]
+* resource count: 18
+* stage codes: st0201, st0418
+* resource families: .fmi, .fsm, .gmd, .mss, .qmi, .qst, .qtd, .stqr
+
+=== st0201 -- Audience Chamber
+
+* rQuestList: quest/00000024/q00000024_st0201
+* rQuestMarkerInfo: quest/00000024/st0201_marker_npc
+
+=== st0418 -- Mergoda Ruins: Royal Palace Level
+
+* rQuestList: quest/00000024/q00000024_st0418
+* rQuestMarkerInfo: quest/00000024/st0418_marker_npc
+* rQuestMarkerInfo: quest/00000024/st0418_marker_om
+
+=== unclassified
+
+* rAIFSM: quest/00000024/npc/n0003
+* rAIFSM: quest/00000024/npc/n0005
+* rFieldAreaMarkerInfo: quest/00000024/fa003_marker_npc
+* rFieldAreaMarkerInfo: quest/00000024/fa003_marker_om
+* rGUIMessage: ui/00_message/quest/q00000024
+* rMsgSet: ui/00_message/quest/q00000024
+* rGUIMessage: ui/00_message/examine_message/quest/quest_examine_q00000024
+* rMsgSet: ui/00_message/examine_message/quest/quest_examine_q00000024
+* rSoundStreamRequest: sound/stream/quest/di/jp/q00000024/q00000024_n0005
+* rSoundStreamRequest: sound/stream/quest/di/jp/q00000024/q00000024_n0009
+* rSoundStreamRequest: sound/stream/quest/di/jp/q00000024/q00000024_n0018
+* rGUIMessage: ui/00_message/quest_info/q00000024_00
+* rQuestTextData: ui/00_param/quest_text/q00000024_00
+
+== Stage Neighborhood Context
+
+_Stage-neighborhood context summarizes scanner-relevant client files that share the quest's archive stage codes. This is deterministic client topology, not inferred ownership._
+
+* scanner-relevant stage files: 800
+* indexed stage codes: st0201, st0418
+
+=== st0201 -- Audience Chamber
+
+* scanner files: 694
+* .evsi.json: 50
+* .fsm.json: 433
+* .gpl.json: 3
+* .lot.json: 64
+* .qmi.json: 75
+* .qst.json: 69
+
+=== st0418 -- Mergoda Ruins: Royal Palace Level
+
+* scanner files: 106
+* .evsi.json: 7
+* .fsm.json: 26
+* .gpl.json: 5
+* .lot.json: 40
+* .qmi.json: 19
+* .qst.json: 9
+
+== Stage Neighborhood External-State Cues
+
+_These cues are deterministic client-side observations from the quest's stage neighborhood. They are not promoted to direct quest targets yet; they highlight q6/q7-owned external state values co-located in the quest's archive stages._
+
+* cue count: 242
+* owner families: q6, q7
+
+[cols="1,1,1,2,2,2",options="header"]
+|===
+| Value | Kind | Hits | Sources | Owners | Stages
+
+| Flag 1106 | layout_flag | 57 | evsi | 70003001 | st0201, st0418
+| Flag 1115 | layout_flag | 57 | evsi | 70002001 | st0201, st0418
+| Flag 1117 | layout_flag | 57 | evsi | 70002001 | st0201, st0418
+| Flag 1150 | layout_flag | 57 | evsi | 70000001 | st0201, st0418
+| Flag 1217 | layout_flag | 57 | evsi | 70000001 | st0201, st0418
+| Flag 1224 | layout_flag | 57 | evsi | 70000001 | st0201, st0418
+| Flag 1851 | layout_flag | 57 | evsi | 70001001 | st0201, st0418
+| Flag 1954 | layout_flag | 57 | evsi | 70001001 | st0201, st0418
+| Flag 2208 | layout_flag | 57 | evsi | 70000001 | st0201, st0418
+| Flag 2380 | layout_flag | 57 | evsi | 70000001 | st0201, st0418
+| Flag 3950 | layout_flag | 57 | evsi | 70022001 | st0201, st0418
+| Flag 5589 | layout_flag | 57 | evsi | 70030001 | st0201, st0418
+| Flag 5614 | layout_flag | 57 | evsi | 70030001 | st0201, st0418
+| Flag 5632 | layout_flag | 57 | evsi | 70030001 | st0201, st0418
+| Flag 6469 | layout_flag | 57 | evsi | 70030001 | st0201, st0418
+| Flag 6470 | layout_flag | 57 | evsi | 70030001 | st0201, st0418
+| Flag 6471 | layout_flag | 57 | evsi | 70030001 | st0201, st0418
+| Flag 6472 | layout_flag | 57 | evsi | 70030001 | st0201, st0418
+| Flag 6473 | layout_flag | 57 | evsi | 70030001 | st0201, st0418
+| Flag 6474 | layout_flag | 57 | evsi | 70030001 | st0201, st0418
+| Flag 7316 | layout_flag | 57 | evsi | 70031001 | st0201, st0418
+| Flag 8066 | layout_flag | 57 | evsi | 70033001 | st0201, st0418
+| Flag 1221 | layout_flag | 56 | evsi | 70000001 | st0201, st0418
+| Flag 1201 | layout_flag | 55 | evsi | 70000001 | st0201, st0418
+| Flag 5557 | layout_flag | 54 | evsi | 70030001 | st0201, st0418
+| Flag 7496 | layout_flag | 54 | evsi | 70032001 | st0201, st0418
+| Flag 1222 | layout_flag | 53 | evsi | 70000001 | st0201, st0418
+| Flag 7888 | layout_flag | 53 | evsi | 70033001 | st0201, st0418
+| Flag 7889 | layout_flag | 53 | evsi | 70033001 | st0201, st0418
+| Flag 7965 | layout_flag | 53 | evsi | 70033001 | st0201, st0418
+|===
+
+== Bounded Graph Expansion
+
+_This graph summarizes bounded deterministic and inferred edges around the quest: quest archive stages, direct source families, stage-linked owner catalogs, promoted dependencies, reverse-index event/group links, and family-specific table edges._
+
+* max depth: 3
+* node count: 719
+* edge count: 1427
+* node kinds: direct_family=4, event_viewer=691, family_context=1, owner_quest=13, quest=1, sequence_quest=2, stage=2, stage_group=5
+* derivation: Dependency=11, Direct=19, Graph=2078, Owner Index=38
+
+=== Mermaid Graph Slice
+
+_This Mermaid flowchart shows a capped slice of the bounded graph so large quest reports stay readable while still exposing the graph structure._
+
+[mermaid]
+....
+flowchart TD
+    node_quest_24["Quest 24"]
+    node_direct_family_evsi["evsi direct hits (17)"]
+    node_direct_family_fsm["fsm direct hits (26)"]
+    node_direct_family_qst["qst direct hits (12)"]
+    node_direct_family_smc["smc direct hits (21)"]
+    node_family_context_quest_sequence["Quest Sequence"]
+    node_stage_st0201["st0201 -- Audience Chamber"]
+    node_stage_st0418["st0418 -- Mergoda Ruins: Royal Palace Level"]
+    node_event_viewer_st0201_ev000_70000001["Event st0201/ev000"]
+    node_event_viewer_st0201_ev000_70001001["Event st0201/ev000"]
+    node_event_viewer_st0201_ev000_70003001["Event st0201/ev000"]
+    node_event_viewer_st0201_ev000_70002001["Event st0201/ev000"]
+    node_owner_quest_70000001["Owner quest 70000001 (q7)"]
+    node_owner_quest_70002001["Owner quest 70002001 (q7)"]
+    node_owner_quest_70003001["Owner quest 70003001 (q7)"]
+    node_owner_quest_70020001["Owner quest 70020001 (q7)"]
+    node_owner_quest_70021001["Owner quest 70021001 (q7)"]
+    node_owner_quest_70022001["Owner quest 70022001 (q7)"]
+    node_owner_quest_70023001["Owner quest 70023001 (q7)"]
+    node_owner_quest_70030001["Owner quest 70030001 (q7)"]
+    node_owner_quest_70031001["Owner quest 70031001 (q7)"]
+    node_owner_quest_70032001["Owner quest 70032001 (q7)"]
+    node_owner_quest_70033001["Owner quest 70033001 (q7)"]
+    node_sequence_quest_23["Quest 23"]
+    node_sequence_quest_25["Quest 25"]
+    node_quest_24 -->|direct_source_family| node_direct_family_evsi
+    node_quest_24 -->|direct_source_family| node_direct_family_fsm
+    node_quest_24 -->|direct_source_family| node_direct_family_qst
+    node_quest_24 -->|direct_source_family| node_direct_family_smc
+    node_quest_24 -->|family:quest_sequence| node_family_context_quest_sequence
+    node_quest_24 -->|quest_archive_stage| node_stage_st0201
+    node_quest_24 -->|quest_archive_stage| node_stage_st0418
+    node_quest_24 -->|promoted_dependency| node_owner_quest_70000001
+    node_quest_24 -->|promoted_dependency| node_owner_quest_70002001
+    node_quest_24 -->|promoted_dependency| node_owner_quest_70003001
+    node_quest_24 -->|promoted_dependency| node_owner_quest_70020001
+    node_quest_24 -->|promoted_dependency| node_owner_quest_70021001
+    node_quest_24 -->|promoted_dependency| node_owner_quest_70022001
+    node_quest_24 -->|promoted_dependency| node_owner_quest_70023001
+    node_quest_24 -->|promoted_dependency| node_owner_quest_70030001
+    node_quest_24 -->|promoted_dependency| node_owner_quest_70031001
+    node_quest_24 -->|promoted_dependency| node_owner_quest_70032001
+    node_quest_24 -->|promoted_dependency| node_owner_quest_70033001
+    node_family_context_quest_sequence -->|sequence_next| node_sequence_quest_25
+    node_family_context_quest_sequence -->|sequence_previous| node_sequence_quest_23
+    node_stage_st0201 -->|stage_event_viewer| node_event_viewer_st0201_ev000_70000001
+    node_stage_st0201 -->|stage_event_viewer| node_event_viewer_st0201_ev000_70001001
+    node_stage_st0201 -->|stage_event_viewer| node_event_viewer_st0201_ev000_70002001
+    node_stage_st0201 -->|stage_event_viewer| node_event_viewer_st0201_ev000_70003001
+    classDef direct_deterministic fill:#e8f5e9,stroke:#2e7d32,stroke-width:1px
+    classDef owner_index fill:#e3f2fd,stroke:#1565c0,stroke-width:1px
+    classDef dependency_inferred fill:#fff3e0,stroke:#ef6c00,stroke-width:1px
+    classDef graph_expanded fill:#f3e5f5,stroke:#7b1fa2,stroke-width:1px
+    classDef lower_confidence fill:#fbe9e7,stroke:#d84315,stroke-width:1px
+    classDef binary_auxiliary fill:#eceff1,stroke:#455a64,stroke-width:1px
+    class node_quest_24,node_direct_family_evsi,node_direct_family_fsm,node_direct_family_qst,node_direct_family_smc,node_family_context_quest_sequence,node_stage_st0201,node_stage_st0418,node_sequence_quest_23,node_sequence_quest_25 direct_deterministic
+    class node_owner_quest_70000001,node_owner_quest_70002001,node_owner_quest_70003001,node_owner_quest_70020001,node_owner_quest_70021001,node_owner_quest_70022001,node_owner_quest_70023001,node_owner_quest_70030001,node_owner_quest_70031001,node_owner_quest_70032001,node_owner_quest_70033001 owner_index
+    class node_event_viewer_st0201_ev000_70000001,node_event_viewer_st0201_ev000_70001001,node_event_viewer_st0201_ev000_70003001,node_event_viewer_st0201_ev000_70002001 graph_expanded
+....
+
+[cols="1,2,2,2,2,4",options="header"]
+|===
+| Depth | Edge | From | To | Derivation | Why
+
+| 1 | direct_source_family | quest:24 | direct-family:evsi | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | direct_source_family | quest:24 | direct-family:fsm | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | direct_source_family | quest:24 | direct-family:qst | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | direct_source_family | quest:24 | direct-family:smc | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | family_context:quest_sequence | quest:24 | family-context:quest_sequence | Direct | Family-specific decoded tables provide deterministic context for this quest.
+| 1 | quest_archive_stage | quest:24 | stage:st0201 | Direct | Quest archive topology directly links this quest to the stage code.
+| 1 | quest_archive_stage | quest:24 | stage:st0418 | Direct | Quest archive topology directly links this quest to the stage code.
+| 2 | promoted_dependency | quest:24 | owner-quest:70000001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:24 | owner-quest:70002001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:24 | owner-quest:70003001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:24 | owner-quest:70020001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:24 | owner-quest:70021001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:24 | owner-quest:70022001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:24 | owner-quest:70023001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:24 | owner-quest:70030001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:24 | owner-quest:70031001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:24 | owner-quest:70032001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:24 | owner-quest:70033001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | sequence_next | family-context:quest_sequence | sequence-quest:25 | Direct | QuestSequence links this quest to its neighboring sequence quest.
+| 2 | sequence_previous | family-context:quest_sequence | sequence-quest:23 | Direct | QuestSequence links this quest to its neighboring sequence quest.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev000:70000001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev000:70001001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev000:70002001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev000:70003001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev000:70020001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev000:70021001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev000:70022001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev000:70023001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev000:70030001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev000:70031001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev000:70032001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev000:70033001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev003:70000001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev003:70001001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev003:70002001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev003:70003001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev003:70020001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev003:70021001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev003:70022001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev003:70023001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+|===
 
 == Flag Summary Matrix
 
@@ -15,12 +302,159 @@ toc::[]
 |===
 | Target | Kind | Hits | Sources | Stages | Relationships | Description
 
+| Flag 921 | layout_flag | 4 | evsi, qst | st0418 | 🎬 Event State, ⚡ Quest Condition, ❌ Quest Erase | QST local: st0418 \| QuestGroup 1
+| Flag 1033 | layout_flag | 7 | evsi, qst | st0201, st0418 | 🎬 Event State, ⚡ Quest Condition, ❌ Quest Erase | QST local: st0201 \| QuestGroup 1
+| Flag 1034 | layout_flag | 3 | evsi, qst | st0418 | 🎬 Event State, ⚡ Quest Condition, ❌ Quest Erase | QST local: st0418 \| QuestGroup 2
+| Flag 1035 | layout_flag | 7 | evsi, qst | st0418 | 🎬 Event State, ⚡ Quest Condition, ❌ Quest Erase | QST local: st0418 \| QuestGroup 3
+| Flag 1099 | layout_flag | 8 | evsi, fsm, qst | st0418 | 🎬 Event State, 🔍 FSM Check, ✏️ FSM Set +2 | QST local: st0418 \| QuestGroup 4
+| Flag 1101 | layout_flag | 2 | qst | st0418 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0418 \| QuestGroup 5
 | Quest ID 24 | quest_id | 45 | fsm, smc |  | 🔍 FSM Check, ✏️ FSM Set, 🗣️ NPC Chatter | Derived quest-wide association scan
 |===
 
 == Known Documented Targets
 
+* quest 24 -- Flag 921 -- QST local: st0418 | QuestGroup 1
+* quest 24 -- Flag 1033 -- QST local: st0201 | QuestGroup 1
+* quest 24 -- Flag 1034 -- QST local: st0418 | QuestGroup 2
+* quest 24 -- Flag 1035 -- QST local: st0418 | QuestGroup 3
+* quest 24 -- Flag 1099 -- QST local: st0418 | QuestGroup 4
+* quest 24 -- Flag 1101 -- QST local: st0418 | QuestGroup 5
 * Quest ID 24 -- Derived quest-wide association scan [Derived]
+
+== Flag 921 -- Quest 24
+
+origin:: derived_qst_local
+direct hits:: *4*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 4 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00000024/quest/00000024/q00000024_st0418.qst.json[client/03040008/quest/q00000024/quest/00000024/q00000024_st0418.qst.json] | QuestStageList[].QuestGrp[0].Condition | Condition | quest 24 / Mergoda Ruins: Royal Palace Level / "QuestGroup 1" / QuestSet=QuestSetInfoOm \| OmID=522542 \| UnitID=522542 \| GroupNo=1 \|\| QuestSet=QuestSetInfoOm \| OmID=507341 \| om507341 \| EnableZone \| GroupNo=1 \|\| +1 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00000024/quest/00000024/q00000024_st0418.qst.json[client/03040008/quest/q00000024/quest/00000024/q00000024_st0418.qst.json] | QuestStageList[].QuestGrp[0].EraseCondition | EraseCondition | quest 24 / Mergoda Ruins: Royal Palace Level / "QuestGroup 1" / QuestSet=QuestSetInfoOm \| OmID=522542 \| UnitID=522542 \| GroupNo=1 \|\| QuestSet=QuestSetInfoOm \| OmID=507341 \| om507341 \| EnableZone \| GroupNo=1 \|\| +1 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0418/view_st0418ev020/event/viewer/view_st0418ev020.evsi.json#L309[client/03040008/event/st0418/view_st0418ev020/event/viewer/view_st0418ev020.evsi.json#L309] | LayoutFlagArray[4].FlagNo | FlagNo | quest 24 (The Great Alchemist) / Mergoda Ruins: Royal Palace Level / Event Viewer \| EVENT_NAME_st0418ev020 \| Appearance of Horus | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0418/view_st0418ev025/event/viewer/view_st0418ev025.evsi.json#L309[client/03040008/event/st0418/view_st0418ev025/event/viewer/view_st0418ev025.evsi.json#L309] | LayoutFlagArray[3].FlagNo | FlagNo | quest 24 (The Great Alchemist) / Mergoda Ruins: Royal Palace Level / Event Viewer \| EVENT_NAME_st0418ev025 \| The Last of the Diamantes | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+|===
+
+== Flag 1033 -- Quest 24
+
+origin:: derived_qst_local
+direct hits:: *7*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 7 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00000024/quest/00000024/q00000024_st0201.qst.json[client/03040008/quest/q00000024/quest/00000024/q00000024_st0201.qst.json] | QuestStageList[].QuestGrp[0].Condition | Condition | quest 24 / Audience Chamber / "QuestGroup 1" / QuestSet=QuestSetInfoNpc \| GroupNo=1 \|\| QuestSet=QuestSetInfoNpc \| GroupNo=1 \|\| +2 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00000024/quest/00000024/q00000024_st0201.qst.json[client/03040008/quest/q00000024/quest/00000024/q00000024_st0201.qst.json] | QuestStageList[].QuestGrp[0].EraseCondition | EraseCondition | quest 24 / Audience Chamber / "QuestGroup 1" / QuestSet=QuestSetInfoNpc \| GroupNo=1 \|\| QuestSet=QuestSetInfoNpc \| GroupNo=1 \|\| +2 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0418/view_st0418ev005/event/viewer/view_st0418ev005.evsi.json#L261[client/03040008/event/st0418/view_st0418ev005/event/viewer/view_st0418ev005.evsi.json#L261] | LayoutFlagArray[0].FlagNo | FlagNo | quest 24 (The Great Alchemist) / Mergoda Ruins: Royal Palace Level / Event Viewer \| EVENT_NAME_st0418ev005 \| Beyond the sealed door | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0418/view_st0418ev010/event/viewer/view_st0418ev010.evsi.json#L269[client/03040008/event/st0418/view_st0418ev010/event/viewer/view_st0418ev010.evsi.json#L269] | LayoutFlagArray[0].FlagNo | FlagNo | quest 24 (The Great Alchemist) / Mergoda Ruins: Royal Palace Level / Event Viewer \| EVENT_NAME_st0418ev010 \| Leo kneeling | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0418/view_st0418ev015/event/viewer/view_st0418ev015.evsi.json#L269[client/03040008/event/st0418/view_st0418ev015/event/viewer/view_st0418ev015.evsi.json#L269] | LayoutFlagArray[0].FlagNo | FlagNo | quest 24 (The Great Alchemist) / Mergoda Ruins: Royal Palace Level / Event Viewer \| EVENT_NAME_st0418ev015 \| Appearance of Diamantes | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0418/view_st0418ev020/event/viewer/view_st0418ev020.evsi.json#L277[client/03040008/event/st0418/view_st0418ev020/event/viewer/view_st0418ev020.evsi.json#L277] | LayoutFlagArray[0].FlagNo | FlagNo | quest 24 (The Great Alchemist) / Mergoda Ruins: Royal Palace Level / Event Viewer \| EVENT_NAME_st0418ev020 \| Appearance of Horus | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0418/view_st0418ev025/event/viewer/view_st0418ev025.evsi.json#L285[client/03040008/event/st0418/view_st0418ev025/event/viewer/view_st0418ev025.evsi.json#L285] | LayoutFlagArray[0].FlagNo | FlagNo | quest 24 (The Great Alchemist) / Mergoda Ruins: Royal Palace Level / Event Viewer \| EVENT_NAME_st0418ev025 \| The Last of the Diamantes | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+|===
+
+== Flag 1034 -- Quest 24
+
+origin:: derived_qst_local
+direct hits:: *3*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 3 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00000024/quest/00000024/q00000024_st0418.qst.json[client/03040008/quest/q00000024/quest/00000024/q00000024_st0418.qst.json] | QuestStageList[].QuestGrp[1].Condition | Condition | quest 24 / Mergoda Ruins: Royal Palace Level / "QuestGroup 2" / QuestSet=QuestSetInfoNpc \| GroupNo=2 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00000024/quest/00000024/q00000024_st0418.qst.json[client/03040008/quest/q00000024/quest/00000024/q00000024_st0418.qst.json] | QuestStageList[].QuestGrp[1].EraseCondition | EraseCondition | quest 24 / Mergoda Ruins: Royal Palace Level / "QuestGroup 2" / QuestSet=QuestSetInfoNpc \| GroupNo=2 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0418/view_st0418ev005/event/viewer/view_st0418ev005.evsi.json#L269[client/03040008/event/st0418/view_st0418ev005/event/viewer/view_st0418ev005.evsi.json#L269] | LayoutFlagArray[1].FlagNo | FlagNo | quest 24 (The Great Alchemist) / Mergoda Ruins: Royal Palace Level / Event Viewer \| EVENT_NAME_st0418ev005 \| Beyond the sealed door | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+|===
+
+== Flag 1035 -- Quest 24
+
+origin:: derived_qst_local
+direct hits:: *7*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 7 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00000024/quest/00000024/q00000024_st0418.qst.json[client/03040008/quest/q00000024/quest/00000024/q00000024_st0418.qst.json] | QuestStageList[].QuestGrp[2].Condition | Condition | quest 24 / Mergoda Ruins: Royal Palace Level / "QuestGroup 3" / QuestSet=QuestSetInfoNpc \| GroupNo=3 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00000024/quest/00000024/q00000024_st0418.qst.json[client/03040008/quest/q00000024/quest/00000024/q00000024_st0418.qst.json] | QuestStageList[].QuestGrp[2].EraseCondition | EraseCondition | quest 24 / Mergoda Ruins: Royal Palace Level / "QuestGroup 3" / QuestSet=QuestSetInfoNpc \| GroupNo=3 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0418/view_st0418ev005/event/viewer/view_st0418ev005.evsi.json#L277[client/03040008/event/st0418/view_st0418ev005/event/viewer/view_st0418ev005.evsi.json#L277] | LayoutFlagArray[2].FlagNo | FlagNo | quest 24 (The Great Alchemist) / Mergoda Ruins: Royal Palace Level / Event Viewer \| EVENT_NAME_st0418ev005 \| Beyond the sealed door | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0418/view_st0418ev010/event/viewer/view_st0418ev010.evsi.json#L277[client/03040008/event/st0418/view_st0418ev010/event/viewer/view_st0418ev010.evsi.json#L277] | LayoutFlagArray[1].FlagNo | FlagNo | quest 24 (The Great Alchemist) / Mergoda Ruins: Royal Palace Level / Event Viewer \| EVENT_NAME_st0418ev010 \| Leo kneeling | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0418/view_st0418ev015/event/viewer/view_st0418ev015.evsi.json#L277[client/03040008/event/st0418/view_st0418ev015/event/viewer/view_st0418ev015.evsi.json#L277] | LayoutFlagArray[1].FlagNo | FlagNo | quest 24 (The Great Alchemist) / Mergoda Ruins: Royal Palace Level / Event Viewer \| EVENT_NAME_st0418ev015 \| Appearance of Diamantes | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0418/view_st0418ev020/event/viewer/view_st0418ev020.evsi.json#L285[client/03040008/event/st0418/view_st0418ev020/event/viewer/view_st0418ev020.evsi.json#L285] | LayoutFlagArray[1].FlagNo | FlagNo | quest 24 (The Great Alchemist) / Mergoda Ruins: Royal Palace Level / Event Viewer \| EVENT_NAME_st0418ev020 \| Appearance of Horus | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0418/view_st0418ev025/event/viewer/view_st0418ev025.evsi.json#L293[client/03040008/event/st0418/view_st0418ev025/event/viewer/view_st0418ev025.evsi.json#L293] | LayoutFlagArray[1].FlagNo | FlagNo | quest 24 (The Great Alchemist) / Mergoda Ruins: Royal Palace Level / Event Viewer \| EVENT_NAME_st0418ev025 \| The Last of the Diamantes | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+|===
+
+== Flag 1099 -- Quest 24
+
+origin:: derived_qst_local
+direct hits:: *8*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 6 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00000024/quest/00000024/q00000024_st0418.qst.json[client/03040008/quest/q00000024/quest/00000024/q00000024_st0418.qst.json] | QuestStageList[].QuestGrp[3].Condition | Condition | quest 24 / Mergoda Ruins: Royal Palace Level / "QuestGroup 4" / QuestSet=QuestSetInfoOm \| OM_ID_DOOR_DIAMANTES \| OpenOnCondition \| GroupNo=4 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00000024/quest/00000024/q00000024_st0418.qst.json[client/03040008/quest/q00000024/quest/00000024/q00000024_st0418.qst.json] | QuestStageList[].QuestGrp[3].EraseCondition | EraseCondition | quest 24 / Mergoda Ruins: Royal Palace Level / "QuestGroup 4" / QuestSet=QuestSetInfoOm \| OM_ID_DOOR_DIAMANTES \| OpenOnCondition \| GroupNo=4 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0418/view_st0418ev010/event/viewer/view_st0418ev010.evsi.json#L285[client/03040008/event/st0418/view_st0418ev010/event/viewer/view_st0418ev010.evsi.json#L285] | LayoutFlagArray[2].FlagNo | FlagNo | quest 24 (The Great Alchemist) / Mergoda Ruins: Royal Palace Level / Event Viewer \| EVENT_NAME_st0418ev010 \| Leo kneeling | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0418/view_st0418ev015/event/viewer/view_st0418ev015.evsi.json#L285[client/03040008/event/st0418/view_st0418ev015/event/viewer/view_st0418ev015.evsi.json#L285] | LayoutFlagArray[2].FlagNo | FlagNo | quest 24 (The Great Alchemist) / Mergoda Ruins: Royal Palace Level / Event Viewer \| EVENT_NAME_st0418ev015 \| Appearance of Diamantes | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0418/view_st0418ev020/event/viewer/view_st0418ev020.evsi.json#L293[client/03040008/event/st0418/view_st0418ev020/event/viewer/view_st0418ev020.evsi.json#L293] | LayoutFlagArray[2].FlagNo | FlagNo | quest 24 (The Great Alchemist) / Mergoda Ruins: Royal Palace Level / Event Viewer \| EVENT_NAME_st0418ev020 \| Appearance of Horus | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0418/view_st0418ev025/event/viewer/view_st0418ev025.evsi.json#L301[client/03040008/event/st0418/view_st0418ev025/event/viewer/view_st0418ev025.evsi.json#L301] | LayoutFlagArray[2].FlagNo | FlagNo | quest 24 (The Great Alchemist) / Mergoda Ruins: Royal Palace Level / Event Viewer \| EVENT_NAME_st0418ev025 \| The Last of the Diamantes | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+|===
+
+==== opaque_fsm -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| FSM | Direct | 72 | link:../../../../client/03040008/quest/q00000001/quest/00000001/npc/n0005.fsm.json[client/03040008/quest/q00000001/quest/00000001/npc/n0005.fsm.json] | Process.Parameter.FlagNo | FlagNo | quest 1 (Resolutions and Omens) / Leo / MainQstFlagOn \| NPCFSM=n0005 \| QuestLocalNPCFSM | Quest-local NPC FSM reference; these quest NPC FSM files usually define behavior for the same quest, such as joining fights or changing interactions.
+| FSM | Direct | 78 | link:../../../../client/03040008/quest/q00000001/quest/00000001/npc/n0006.fsm.json[client/03040008/quest/q00000001/quest/00000001/npc/n0006.fsm.json] | Process.Parameter.FlagNo | FlagNo | quest 1 (Resolutions and Omens) / Iris / checkMyQuestFlag \| NPCFSM=n0006 \| QuestLocalNPCFSM | Quest-local NPC FSM MyQuest check; these files usually describe NPC behavior for the same quest, so this flag likely controls that NPC's quest-specific presence or behavior.
+|===
+
+== Flag 1101 -- Quest 24
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00000024/quest/00000024/q00000024_st0418.qst.json[client/03040008/quest/q00000024/quest/00000024/q00000024_st0418.qst.json] | QuestStageList[].QuestGrp[4].Condition | Condition | quest 24 / Mergoda Ruins: Royal Palace Level / "QuestGroup 5" / QuestSet=QuestSetInfoNpc \| GroupNo=5 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00000024/quest/00000024/q00000024_st0418.qst.json[client/03040008/quest/q00000024/quest/00000024/q00000024_st0418.qst.json] | QuestStageList[].QuestGrp[4].EraseCondition | EraseCondition | quest 24 / Mergoda Ruins: Royal Palace Level / "QuestGroup 5" / QuestSet=QuestSetInfoNpc \| GroupNo=5 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
 
 == Quest ID 24
 
@@ -32,62 +466,62 @@ ranked candidates:: *0*
 
 ==== direct -- 21 hit(s)
 
-[cols="1,1,3,3,2,3,3",options="header"]
+[cols="1,1,1,3,3,2,3,3",options="header"]
 |===
-| Family | Confidence | File | JSON Path | Field | Context | Why
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
 
-| SMC | 92 | client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json | SituationData.EndQuestId | EndQuestId | quest 24 (The Great Alchemist) / Klaus / GroupSerial=12722 / "GroupSerial=12722, QuestWindow=23-24 (The Golden Key -> The Great Alchemist), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0003 \| Quest-gated NPC chatter \| QuestWindow=23-24 (The Golden Key -> The Great Alchemist) / MSS: Klaus / The time has come—right? | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json | SituationData.StartQuestId | StartQuestId | quest 24 (The Great Alchemist) / Klaus / GroupSerial=14002 / "GroupSerial=14002, QuestWindow=24-30 (The Great Alchemist -> White Dragon Eternal), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0003 \| Quest-gated NPC chatter \| QuestWindow=24-30 (The Great Alchemist -> White Dragon Eternal) / MSS: Klaus / I keep thinking—that Diamantes wants me to follow | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json | SituationData.EndQuestId | EndQuestId | quest 24 (The Great Alchemist) / Joseph / GroupSerial=12749 / "GroupSerial=12749, QuestWindow=23-24 (The Golden Key -> The Great Alchemist), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window end" / NpcChatter=n0004 \| Quest-gated NPC chatter \| QuestWindow=23-24 (The Golden Key -> The Great Alchemist) / MSS: Joseph / Now, while you're at it, get some rest and review | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json | SituationData.StartQuestId | StartQuestId | quest 24 (The Great Alchemist) / Joseph / GroupSerial=14004 / "GroupSerial=14004, QuestWindow=24-30 (The Great Alchemist -> White Dragon Eternal), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0004 \| Quest-gated NPC chatter \| QuestWindow=24-30 (The Great Alchemist -> White Dragon Eternal) / MSS: Joseph / No sign of Leo, but he'll be back soon. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0007/ui/00_message/npc/base/n0007.smc.json | SituationData.EndQuestId | EndQuestId | quest 24 (The Great Alchemist) / Gerd / GroupSerial=12971 / "GroupSerial=12971, QuestWindow=23-24 (The Golden Key -> The Great Alchemist), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0007 \| Quest-gated NPC chatter \| QuestWindow=23-24 (The Golden Key -> The Great Alchemist) / MSS: Gerd / Well, let's fight together, shall we? | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0007/ui/00_message/npc/base/n0007.smc.json | SituationData.StartQuestId | StartQuestId | quest 24 (The Great Alchemist) / Gerd / GroupSerial=14051 / "GroupSerial=14051, QuestWindow=24-30 (The Great Alchemist -> White Dragon Eternal), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0007 \| Quest-gated NPC chatter \| QuestWindow=24-30 (The Great Alchemist -> White Dragon Eternal) / MSS: Gerd / However, just because we have defeated Diamantes, | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0008/ui/00_message/npc/base/n0008.smc.json | SituationData.EndQuestId | EndQuestId | quest 24 (The Great Alchemist) / Heinz / GroupSerial=13021 / "GroupSerial=13021, QuestWindow=23-24 (The Golden Key -> The Great Alchemist), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0008 \| Quest-gated NPC chatter \| QuestWindow=23-24 (The Golden Key -> The Great Alchemist) / MSS: Heinz / I'll let you take the front line. You should be | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0008/ui/00_message/npc/base/n0008.smc.json | SituationData.StartQuestId | StartQuestId | quest 24 (The Great Alchemist) / Heinz / GroupSerial=14040 / "GroupSerial=14040, QuestWindow=24-30 (The Great Alchemist -> White Dragon Eternal), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0008 \| Quest-gated NPC chatter \| QuestWindow=24-30 (The Great Alchemist -> White Dragon Eternal) / MSS: Heinz / There have been many battles so far, but the | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0010/ui/00_message/npc/base/n0010.smc.json | SituationData.EndQuestId | EndQuestId | quest 24 (The Great Alchemist) / Theodor / GroupSerial=13044 / "GroupSerial=13044, QuestWindow=23-24 (The Golden Key -> The Great Alchemist), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0010 \| Quest-gated NPC chatter \| QuestWindow=23-24 (The Golden Key -> The Great Alchemist) / MSS: Theodor / Diamantes is a disgrace to us alchemists... | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0010/ui/00_message/npc/base/n0010.smc.json | SituationData.StartQuestId | StartQuestId | quest 24 (The Great Alchemist) / Theodor / GroupSerial=14052 / "GroupSerial=14052, QuestWindow=24-30 (The Great Alchemist -> White Dragon Eternal), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0010 \| Quest-gated NPC chatter \| QuestWindow=24-30 (The Great Alchemist -> White Dragon Eternal) / MSS: Theodor / Please convey my regards to the temple personnel. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0011/ui/00_message/npc/base/n0011.smc.json | SituationData.EndQuestId | EndQuestId | quest 24 (The Great Alchemist) / Vanessa / GroupSerial=13094 / "GroupSerial=13094, QuestWindow=23-24 (The Golden Key -> The Great Alchemist), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0011 \| Quest-gated NPC chatter \| QuestWindow=23-24 (The Golden Key -> The Great Alchemist) / MSS: Vanessa / I will make a stand here. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0011/ui/00_message/npc/base/n0011.smc.json | SituationData.StartQuestId | StartQuestId | quest 24 (The Great Alchemist) / Vanessa / GroupSerial=14042 / "GroupSerial=14042, QuestWindow=24-30 (The Great Alchemist -> White Dragon Eternal), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0011 \| Quest-gated NPC chatter \| QuestWindow=24-30 (The Great Alchemist -> White Dragon Eternal) / MSS: Vanessa / I rushed over upon hearing the report. Were you | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0012/ui/00_message/npc/base/n0012.smc.json | SituationData.EndQuestId | EndQuestId | quest 24 (The Great Alchemist) / Fabio / GroupSerial=13998 / "GroupSerial=13998, QuestWindow=23-24 (The Golden Key -> The Great Alchemist), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0012 \| Quest-gated NPC chatter \| QuestWindow=23-24 (The Golden Key -> The Great Alchemist) / MSS: Fabio / In the end, this was a battle with the past, so | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0012/ui/00_message/npc/base/n0012.smc.json | SituationData.StartQuestId | StartQuestId | quest 24 (The Great Alchemist) / Fabio / GroupSerial=13999 / "GroupSerial=13999, QuestWindow=24-30 (The Great Alchemist -> White Dragon Eternal), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0012 \| Quest-gated NPC chatter \| QuestWindow=24-30 (The Great Alchemist -> White Dragon Eternal) / MSS: Fabio / You must have heard it said everywhere by now. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0014/ui/00_message/npc/base/n0014.smc.json | SituationData.EndQuestId | EndQuestId | quest 24 (The Great Alchemist) / Mayleaf / GroupSerial=13125 / "GroupSerial=13125, QuestWindow=23-24 (The Golden Key -> The Great Alchemist), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0014 \| Quest-gated NPC chatter \| QuestWindow=23-24 (The Golden Key -> The Great Alchemist) / MSS: Mayleaf / Come on! | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0014/ui/00_message/npc/base/n0014.smc.json | SituationData.StartQuestId | StartQuestId | quest 24 (The Great Alchemist) / Mayleaf / GroupSerial=14050 / "GroupSerial=14050, QuestWindow=24-30 (The Great Alchemist -> White Dragon Eternal), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0014 \| Quest-gated NPC chatter \| QuestWindow=24-30 (The Great Alchemist -> White Dragon Eternal) / MSS: Mayleaf / Welcome back! Um, as for me... um... | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n1003/ui/00_message/npc/base/n1003.smc.json | SituationData.StartQuestId | StartQuestId | quest 24 (The Great Alchemist) / Pamela / GroupSerial=14053 / "GroupSerial=14053, QuestWindow=24-30 (The Great Alchemist -> White Dragon Eternal), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n1003 \| Quest-gated NPC chatter \| QuestWindow=24-30 (The Great Alchemist -> White Dragon Eternal) / MSS: Pamela / Thank you so much for your hard work. Please come | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n1311/ui/00_message/npc/base/n1311.smc.json | SituationData.EndQuestId | EndQuestId | quest 24 (The Great Alchemist) / Josh / GroupSerial=14077 / "GroupSerial=14077, QuestWindow=10-24 (The Castle of Dusk -> The Great Alchemist), IsStartQuestIdStart=True, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n1311 \| Quest-gated NPC chatter \| QuestWindow=10-24 (The Castle of Dusk -> The Great Alchemist) / MSS: Josh / I have heard that you have obtained permission to | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n1313/ui/00_message/npc/base/n1313.smc.json | SituationData.StartQuestId | StartQuestId | quest 24 (The Great Alchemist) / Alfred / GroupSerial=14047 / "GroupSerial=14047, QuestWindow=24-30 (The Great Alchemist -> White Dragon Eternal), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n1313 \| Quest-gated NPC chatter \| QuestWindow=24-30 (The Great Alchemist -> White Dragon Eternal) / MSS: Alfred / I hear that your performance was | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n2000/ui/00_message/npc/base/n2000.smc.json | SituationData.StartQuestId | StartQuestId | quest 24 (The Great Alchemist) / Gilstan / GroupSerial=14046 / "GroupSerial=14046, QuestWindow=24-30 (The Great Alchemist -> White Dragon Eternal), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n2000 \| Quest-gated NPC chatter \| QuestWindow=24-30 (The Great Alchemist -> White Dragon Eternal) / MSS: Gilstan / I remember, you know! | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n2102/ui/00_message/npc/base/n2102.smc.json | SituationData.StartQuestId | StartQuestId | quest 24 (The Great Alchemist) / Alvar / GroupSerial=14048 / "GroupSerial=14048, QuestWindow=24-30 (The Great Alchemist -> White Dragon Eternal), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n2102 \| Quest-gated NPC chatter \| QuestWindow=24-30 (The Great Alchemist -> White Dragon Eternal) / MSS: Alvar / Even though the great threat has been repelled, the enemies haven't disappeared from Lestania. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json[client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json] | SituationData.EndQuestId | EndQuestId | quest 24 (The Great Alchemist) / Klaus / GroupSerial=12722 / "GroupSerial=12722, QuestWindow=23-24 (The Golden Key -> The Great Alchemist), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0003 \| Quest-gated NPC chatter \| QuestWindow=23-24 (The Golden Key -> The Great Alchemist) / MSS: Klaus / The time has come—right? | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json[client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json] | SituationData.StartQuestId | StartQuestId | quest 24 (The Great Alchemist) / Klaus / GroupSerial=14002 / "GroupSerial=14002, QuestWindow=24-30 (The Great Alchemist -> White Dragon Eternal), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0003 \| Quest-gated NPC chatter \| QuestWindow=24-30 (The Great Alchemist -> White Dragon Eternal) / MSS: Klaus / I keep thinking—that Diamantes wants me to follow | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json[client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json] | SituationData.EndQuestId | EndQuestId | quest 24 (The Great Alchemist) / Joseph / GroupSerial=12749 / "GroupSerial=12749, QuestWindow=23-24 (The Golden Key -> The Great Alchemist), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window end" / NpcChatter=n0004 \| Quest-gated NPC chatter \| QuestWindow=23-24 (The Golden Key -> The Great Alchemist) / MSS: Joseph / Now, while you're at it, get some rest and review | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json[client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json] | SituationData.StartQuestId | StartQuestId | quest 24 (The Great Alchemist) / Joseph / GroupSerial=14004 / "GroupSerial=14004, QuestWindow=24-30 (The Great Alchemist -> White Dragon Eternal), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0004 \| Quest-gated NPC chatter \| QuestWindow=24-30 (The Great Alchemist -> White Dragon Eternal) / MSS: Joseph / No sign of Leo, but he'll be back soon. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0007/ui/00_message/npc/base/n0007.smc.json[client/03040008/npc/n0007/ui/00_message/npc/base/n0007.smc.json] | SituationData.EndQuestId | EndQuestId | quest 24 (The Great Alchemist) / Gerd / GroupSerial=12971 / "GroupSerial=12971, QuestWindow=23-24 (The Golden Key -> The Great Alchemist), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0007 \| Quest-gated NPC chatter \| QuestWindow=23-24 (The Golden Key -> The Great Alchemist) / MSS: Gerd / Well, let's fight together, shall we? | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0007/ui/00_message/npc/base/n0007.smc.json[client/03040008/npc/n0007/ui/00_message/npc/base/n0007.smc.json] | SituationData.StartQuestId | StartQuestId | quest 24 (The Great Alchemist) / Gerd / GroupSerial=14051 / "GroupSerial=14051, QuestWindow=24-30 (The Great Alchemist -> White Dragon Eternal), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0007 \| Quest-gated NPC chatter \| QuestWindow=24-30 (The Great Alchemist -> White Dragon Eternal) / MSS: Gerd / However, just because we have defeated Diamantes, | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0008/ui/00_message/npc/base/n0008.smc.json[client/03040008/npc/n0008/ui/00_message/npc/base/n0008.smc.json] | SituationData.EndQuestId | EndQuestId | quest 24 (The Great Alchemist) / Heinz / GroupSerial=13021 / "GroupSerial=13021, QuestWindow=23-24 (The Golden Key -> The Great Alchemist), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0008 \| Quest-gated NPC chatter \| QuestWindow=23-24 (The Golden Key -> The Great Alchemist) / MSS: Heinz / I'll let you take the front line. You should be | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0008/ui/00_message/npc/base/n0008.smc.json[client/03040008/npc/n0008/ui/00_message/npc/base/n0008.smc.json] | SituationData.StartQuestId | StartQuestId | quest 24 (The Great Alchemist) / Heinz / GroupSerial=14040 / "GroupSerial=14040, QuestWindow=24-30 (The Great Alchemist -> White Dragon Eternal), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0008 \| Quest-gated NPC chatter \| QuestWindow=24-30 (The Great Alchemist -> White Dragon Eternal) / MSS: Heinz / There have been many battles so far, but the | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0010/ui/00_message/npc/base/n0010.smc.json[client/03040008/npc/n0010/ui/00_message/npc/base/n0010.smc.json] | SituationData.EndQuestId | EndQuestId | quest 24 (The Great Alchemist) / Theodor / GroupSerial=13044 / "GroupSerial=13044, QuestWindow=23-24 (The Golden Key -> The Great Alchemist), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0010 \| Quest-gated NPC chatter \| QuestWindow=23-24 (The Golden Key -> The Great Alchemist) / MSS: Theodor / Diamantes is a disgrace to us alchemists... | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0010/ui/00_message/npc/base/n0010.smc.json[client/03040008/npc/n0010/ui/00_message/npc/base/n0010.smc.json] | SituationData.StartQuestId | StartQuestId | quest 24 (The Great Alchemist) / Theodor / GroupSerial=14052 / "GroupSerial=14052, QuestWindow=24-30 (The Great Alchemist -> White Dragon Eternal), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0010 \| Quest-gated NPC chatter \| QuestWindow=24-30 (The Great Alchemist -> White Dragon Eternal) / MSS: Theodor / Please convey my regards to the temple personnel. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0011/ui/00_message/npc/base/n0011.smc.json[client/03040008/npc/n0011/ui/00_message/npc/base/n0011.smc.json] | SituationData.EndQuestId | EndQuestId | quest 24 (The Great Alchemist) / Vanessa / GroupSerial=13094 / "GroupSerial=13094, QuestWindow=23-24 (The Golden Key -> The Great Alchemist), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0011 \| Quest-gated NPC chatter \| QuestWindow=23-24 (The Golden Key -> The Great Alchemist) / MSS: Vanessa / I will make a stand here. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0011/ui/00_message/npc/base/n0011.smc.json[client/03040008/npc/n0011/ui/00_message/npc/base/n0011.smc.json] | SituationData.StartQuestId | StartQuestId | quest 24 (The Great Alchemist) / Vanessa / GroupSerial=14042 / "GroupSerial=14042, QuestWindow=24-30 (The Great Alchemist -> White Dragon Eternal), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0011 \| Quest-gated NPC chatter \| QuestWindow=24-30 (The Great Alchemist -> White Dragon Eternal) / MSS: Vanessa / I rushed over upon hearing the report. Were you | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0012/ui/00_message/npc/base/n0012.smc.json[client/03040008/npc/n0012/ui/00_message/npc/base/n0012.smc.json] | SituationData.EndQuestId | EndQuestId | quest 24 (The Great Alchemist) / Fabio / GroupSerial=13998 / "GroupSerial=13998, QuestWindow=23-24 (The Golden Key -> The Great Alchemist), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0012 \| Quest-gated NPC chatter \| QuestWindow=23-24 (The Golden Key -> The Great Alchemist) / MSS: Fabio / In the end, this was a battle with the past, so | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0012/ui/00_message/npc/base/n0012.smc.json[client/03040008/npc/n0012/ui/00_message/npc/base/n0012.smc.json] | SituationData.StartQuestId | StartQuestId | quest 24 (The Great Alchemist) / Fabio / GroupSerial=13999 / "GroupSerial=13999, QuestWindow=24-30 (The Great Alchemist -> White Dragon Eternal), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0012 \| Quest-gated NPC chatter \| QuestWindow=24-30 (The Great Alchemist -> White Dragon Eternal) / MSS: Fabio / You must have heard it said everywhere by now. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0014/ui/00_message/npc/base/n0014.smc.json[client/03040008/npc/n0014/ui/00_message/npc/base/n0014.smc.json] | SituationData.EndQuestId | EndQuestId | quest 24 (The Great Alchemist) / Mayleaf / GroupSerial=13125 / "GroupSerial=13125, QuestWindow=23-24 (The Golden Key -> The Great Alchemist), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0014 \| Quest-gated NPC chatter \| QuestWindow=23-24 (The Golden Key -> The Great Alchemist) / MSS: Mayleaf / Come on! | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0014/ui/00_message/npc/base/n0014.smc.json[client/03040008/npc/n0014/ui/00_message/npc/base/n0014.smc.json] | SituationData.StartQuestId | StartQuestId | quest 24 (The Great Alchemist) / Mayleaf / GroupSerial=14050 / "GroupSerial=14050, QuestWindow=24-30 (The Great Alchemist -> White Dragon Eternal), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0014 \| Quest-gated NPC chatter \| QuestWindow=24-30 (The Great Alchemist -> White Dragon Eternal) / MSS: Mayleaf / Welcome back! Um, as for me... um... | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n1003/ui/00_message/npc/base/n1003.smc.json[client/03040008/npc/n1003/ui/00_message/npc/base/n1003.smc.json] | SituationData.StartQuestId | StartQuestId | quest 24 (The Great Alchemist) / Pamela / GroupSerial=14053 / "GroupSerial=14053, QuestWindow=24-30 (The Great Alchemist -> White Dragon Eternal), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n1003 \| Quest-gated NPC chatter \| QuestWindow=24-30 (The Great Alchemist -> White Dragon Eternal) / MSS: Pamela / Thank you so much for your hard work. Please come | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n1311/ui/00_message/npc/base/n1311.smc.json[client/03040008/npc/n1311/ui/00_message/npc/base/n1311.smc.json] | SituationData.EndQuestId | EndQuestId | quest 24 (The Great Alchemist) / Josh / GroupSerial=14077 / "GroupSerial=14077, QuestWindow=10-24 (The Castle of Dusk -> The Great Alchemist), IsStartQuestIdStart=True, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n1311 \| Quest-gated NPC chatter \| QuestWindow=10-24 (The Castle of Dusk -> The Great Alchemist) / MSS: Josh / I have heard that you have obtained permission to | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n1313/ui/00_message/npc/base/n1313.smc.json[client/03040008/npc/n1313/ui/00_message/npc/base/n1313.smc.json] | SituationData.StartQuestId | StartQuestId | quest 24 (The Great Alchemist) / Alfred / GroupSerial=14047 / "GroupSerial=14047, QuestWindow=24-30 (The Great Alchemist -> White Dragon Eternal), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n1313 \| Quest-gated NPC chatter \| QuestWindow=24-30 (The Great Alchemist -> White Dragon Eternal) / MSS: Alfred / I hear that your performance was | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n2000/ui/00_message/npc/base/n2000.smc.json[client/03040008/npc/n2000/ui/00_message/npc/base/n2000.smc.json] | SituationData.StartQuestId | StartQuestId | quest 24 (The Great Alchemist) / Gilstan / GroupSerial=14046 / "GroupSerial=14046, QuestWindow=24-30 (The Great Alchemist -> White Dragon Eternal), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n2000 \| Quest-gated NPC chatter \| QuestWindow=24-30 (The Great Alchemist -> White Dragon Eternal) / MSS: Gilstan / I remember, you know! | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n2102/ui/00_message/npc/base/n2102.smc.json[client/03040008/npc/n2102/ui/00_message/npc/base/n2102.smc.json] | SituationData.StartQuestId | StartQuestId | quest 24 (The Great Alchemist) / Alvar / GroupSerial=14048 / "GroupSerial=14048, QuestWindow=24-30 (The Great Alchemist -> White Dragon Eternal), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n2102 \| Quest-gated NPC chatter \| QuestWindow=24-30 (The Great Alchemist -> White Dragon Eternal) / MSS: Alvar / Even though the great threat has been repelled, the enemies haven't disappeared from Lestania. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
 |===
 
 ==== opaque_fsm -- 24 hit(s)
 
-[cols="1,1,3,3,2,3,3",options="header"]
+[cols="1,1,1,3,3,2,3,3",options="header"]
 |===
-| Family | Confidence | File | JSON Path | Field | Context | Why
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
 
-| FSM | 78 | client/03040008/quest/q00000024/quest/00000024/npc/n0005.fsm.json | Process.Parameter.QuestId | QuestId | quest 24 (The Great Alchemist) / Leo / checkMyQuestFlag \| NPCFSM=n0005 \| QuestLocalNPCFSM | Quest-local NPC FSM MyQuest check; these files usually describe NPC behavior for the same quest, so this flag likely controls that NPC's quest-specific presence or behavior.
-| FSM | 78 | client/03040008/quest/q00000024/quest/00000024/npc/n0005.fsm.json | Process.Parameter.QuestId | QuestId | quest 24 (The Great Alchemist) / Leo / checkMyQuestFlag \| NPCFSM=n0005 \| QuestLocalNPCFSM | Quest-local NPC FSM MyQuest check; these files usually describe NPC behavior for the same quest, so this flag likely controls that NPC's quest-specific presence or behavior.
-| FSM | 72 | client/03040008/quest/q00000024/quest/00000024/npc/n0005.fsm.json | Process.Parameter.QuestId | QuestId | quest 24 (The Great Alchemist) / Leo / CallMessage \| NPCFSM=n0005 \| QuestLocalNPCFSM | Quest-local NPC FSM reference; these quest NPC FSM files usually define behavior for the same quest, such as joining fights or changing interactions.
-| FSM | 78 | client/03040008/quest/q00000024/quest/00000024/npc/n0005.fsm.json | Process.Parameter.QuestId | QuestId | quest 24 (The Great Alchemist) / Leo / checkMyQuestFlag \| NPCFSM=n0005 \| QuestLocalNPCFSM | Quest-local NPC FSM MyQuest check; these files usually describe NPC behavior for the same quest, so this flag likely controls that NPC's quest-specific presence or behavior.
-| FSM | 72 | client/03040008/quest/q00000024/quest/00000024/npc/n0005.fsm.json | Process.Parameter.QuestId | QuestId | quest 24 (The Great Alchemist) / Leo / CallMessage \| NPCFSM=n0005 \| QuestLocalNPCFSM | Quest-local NPC FSM reference; these quest NPC FSM files usually define behavior for the same quest, such as joining fights or changing interactions.
-| FSM | 78 | client/03040008/quest/q00000024/quest/00000024/npc/n0005.fsm.json | Process.Parameter.QuestId | QuestId | quest 24 (The Great Alchemist) / Leo / checkMyQuestFlag \| NPCFSM=n0005 \| QuestLocalNPCFSM | Quest-local NPC FSM MyQuest check; these files usually describe NPC behavior for the same quest, so this flag likely controls that NPC's quest-specific presence or behavior.
-| FSM | 72 | client/03040008/quest/q00000024/quest/00000024/npc/n0005.fsm.json | Process.Parameter.QuestId | QuestId | quest 24 (The Great Alchemist) / Leo / CallMessage \| NPCFSM=n0005 \| QuestLocalNPCFSM | Quest-local NPC FSM reference; these quest NPC FSM files usually define behavior for the same quest, such as joining fights or changing interactions.
-| FSM | 78 | client/03040008/quest/q00000024/quest/00000024/npc/n0005.fsm.json | Process.Parameter.QuestId | QuestId | quest 24 (The Great Alchemist) / Leo / checkMyQuestFlag \| NPCFSM=n0005 \| QuestLocalNPCFSM | Quest-local NPC FSM MyQuest check; these files usually describe NPC behavior for the same quest, so this flag likely controls that NPC's quest-specific presence or behavior.
-| FSM | 72 | client/03040008/quest/q00000024/quest/00000024/npc/n0005.fsm.json | Process.Parameter.QuestId | QuestId | quest 24 (The Great Alchemist) / Leo / CallMessage \| NPCFSM=n0005 \| QuestLocalNPCFSM | Quest-local NPC FSM reference; these quest NPC FSM files usually define behavior for the same quest, such as joining fights or changing interactions.
-| FSM | 78 | client/03040008/quest/q00000024/quest/00000024/npc/n0005.fsm.json | Process.Parameter.QuestId | QuestId | quest 24 (The Great Alchemist) / Leo / checkMyQuestFlag \| NPCFSM=n0005 \| QuestLocalNPCFSM | Quest-local NPC FSM MyQuest check; these files usually describe NPC behavior for the same quest, so this flag likely controls that NPC's quest-specific presence or behavior.
-| FSM | 72 | client/03040008/quest/q00000024/quest/00000024/npc/n0005.fsm.json | Process.Parameter.QuestId | QuestId | quest 24 (The Great Alchemist) / Leo / CallMessage \| NPCFSM=n0005 \| QuestLocalNPCFSM | Quest-local NPC FSM reference; these quest NPC FSM files usually define behavior for the same quest, such as joining fights or changing interactions.
-| FSM | 78 | client/03040008/quest/q00000024/quest/00000024/npc/n0005.fsm.json | Process.Parameter.QuestId | QuestId | quest 24 (The Great Alchemist) / Leo / checkMyQuestFlag \| NPCFSM=n0005 \| QuestLocalNPCFSM | Quest-local NPC FSM MyQuest check; these files usually describe NPC behavior for the same quest, so this flag likely controls that NPC's quest-specific presence or behavior.
-| FSM | 78 | client/03040008/quest/q00000024/quest/00000024/npc/n0005.fsm.json | Process.Parameter.QuestId | QuestId | quest 24 (The Great Alchemist) / Leo / checkMyQuestFlag \| NPCFSM=n0005 \| QuestLocalNPCFSM | Quest-local NPC FSM MyQuest check; these files usually describe NPC behavior for the same quest, so this flag likely controls that NPC's quest-specific presence or behavior.
-| FSM | 72 | client/03040008/quest/q00000024/quest/00000024/npc/n0005.fsm.json | Process.Parameter.QuestId | QuestId | quest 24 (The Great Alchemist) / Leo / CallMessage \| NPCFSM=n0005 \| QuestLocalNPCFSM | Quest-local NPC FSM reference; these quest NPC FSM files usually define behavior for the same quest, such as joining fights or changing interactions.
-| FSM | 72 | client/03040008/quest/q00000024/quest/00000024/npc/n0005.fsm.json | Process.Parameter.QuestId | QuestId | quest 24 (The Great Alchemist) / Leo / CallMessage \| NPCFSM=n0005 \| QuestLocalNPCFSM | Quest-local NPC FSM reference; these quest NPC FSM files usually define behavior for the same quest, such as joining fights or changing interactions.
-| FSM | 72 | client/03040008/quest/q00000024/quest/00000024/npc/n0005.fsm.json | Process.Parameter.QuestId | QuestId | quest 24 (The Great Alchemist) / Leo / CallMessage \| NPCFSM=n0005 \| QuestLocalNPCFSM | Quest-local NPC FSM reference; these quest NPC FSM files usually define behavior for the same quest, such as joining fights or changing interactions.
-| FSM | 72 | client/03040008/quest/q00000024/quest/00000024/npc/n0005.fsm.json | Process.Parameter.QuestId | QuestId | quest 24 (The Great Alchemist) / Leo / CallMessage \| NPCFSM=n0005 \| QuestLocalNPCFSM | Quest-local NPC FSM reference; these quest NPC FSM files usually define behavior for the same quest, such as joining fights or changing interactions.
-| FSM | 72 | client/03040008/quest/q00000024/quest/00000024/npc/n0005.fsm.json | Process.Parameter.QuestId | QuestId | quest 24 (The Great Alchemist) / Leo / CallMessage \| NPCFSM=n0005 \| QuestLocalNPCFSM | Quest-local NPC FSM reference; these quest NPC FSM files usually define behavior for the same quest, such as joining fights or changing interactions.
-| FSM | 72 | client/03040008/quest/q00000024/quest/00000024/npc/n0005.fsm.json | Process.Parameter.QuestId | QuestId | quest 24 (The Great Alchemist) / Leo / CallMessage \| NPCFSM=n0005 \| QuestLocalNPCFSM | Quest-local NPC FSM reference; these quest NPC FSM files usually define behavior for the same quest, such as joining fights or changing interactions.
-| FSM | 72 | client/03040008/quest/q00000024/quest/00000024/npc/n0005.fsm.json | Process.Parameter.QuestId | QuestId | quest 24 (The Great Alchemist) / Leo / CallMessage \| NPCFSM=n0005 \| QuestLocalNPCFSM | Quest-local NPC FSM reference; these quest NPC FSM files usually define behavior for the same quest, such as joining fights or changing interactions.
-| FSM | 78 | client/03040008/quest/q00000024/quest/00000024/npc/n0005.fsm.json | Process.Parameter.QuestId | QuestId | quest 24 (The Great Alchemist) / Leo / checkMyQuestFlag \| NPCFSM=n0005 \| QuestLocalNPCFSM | Quest-local NPC FSM MyQuest check; these files usually describe NPC behavior for the same quest, so this flag likely controls that NPC's quest-specific presence or behavior.
-| FSM | 72 | client/03040008/quest/q00000024/quest/00000024/npc/n0005.fsm.json | Process.Parameter.QuestId | QuestId | quest 24 (The Great Alchemist) / Leo / CallMessage \| NPCFSM=n0005 \| QuestLocalNPCFSM | Quest-local NPC FSM reference; these quest NPC FSM files usually define behavior for the same quest, such as joining fights or changing interactions.
-| FSM | 72 | client/03040008/quest/q00000024/quest/00000024/npc/n0005.fsm.json | Process.Parameter.QuestId | QuestId | quest 24 (The Great Alchemist) / Leo / CallMessage \| NPCFSM=n0005 \| QuestLocalNPCFSM | Quest-local NPC FSM reference; these quest NPC FSM files usually define behavior for the same quest, such as joining fights or changing interactions.
-| FSM | 72 | client/03040008/quest/q00000024/quest/00000024/npc/n0005.fsm.json | Process.Parameter.QuestId | QuestId | quest 24 (The Great Alchemist) / Leo / CallMessage \| NPCFSM=n0005 \| QuestLocalNPCFSM | Quest-local NPC FSM reference; these quest NPC FSM files usually define behavior for the same quest, such as joining fights or changing interactions.
+| FSM | Direct | 78 | link:../../../../client/03040008/quest/q00000024/quest/00000024/npc/n0005.fsm.json[client/03040008/quest/q00000024/quest/00000024/npc/n0005.fsm.json] | Process.Parameter.QuestId | QuestId | quest 24 (The Great Alchemist) / Leo / checkMyQuestFlag \| NPCFSM=n0005 \| QuestLocalNPCFSM | Quest-local NPC FSM MyQuest check; these files usually describe NPC behavior for the same quest, so this flag likely controls that NPC's quest-specific presence or behavior.
+| FSM | Direct | 78 | link:../../../../client/03040008/quest/q00000024/quest/00000024/npc/n0005.fsm.json[client/03040008/quest/q00000024/quest/00000024/npc/n0005.fsm.json] | Process.Parameter.QuestId | QuestId | quest 24 (The Great Alchemist) / Leo / checkMyQuestFlag \| NPCFSM=n0005 \| QuestLocalNPCFSM | Quest-local NPC FSM MyQuest check; these files usually describe NPC behavior for the same quest, so this flag likely controls that NPC's quest-specific presence or behavior.
+| FSM | Direct | 72 | link:../../../../client/03040008/quest/q00000024/quest/00000024/npc/n0005.fsm.json[client/03040008/quest/q00000024/quest/00000024/npc/n0005.fsm.json] | Process.Parameter.QuestId | QuestId | quest 24 (The Great Alchemist) / Leo / CallMessage \| NPCFSM=n0005 \| QuestLocalNPCFSM | Quest-local NPC FSM reference; these quest NPC FSM files usually define behavior for the same quest, such as joining fights or changing interactions.
+| FSM | Direct | 78 | link:../../../../client/03040008/quest/q00000024/quest/00000024/npc/n0005.fsm.json[client/03040008/quest/q00000024/quest/00000024/npc/n0005.fsm.json] | Process.Parameter.QuestId | QuestId | quest 24 (The Great Alchemist) / Leo / checkMyQuestFlag \| NPCFSM=n0005 \| QuestLocalNPCFSM | Quest-local NPC FSM MyQuest check; these files usually describe NPC behavior for the same quest, so this flag likely controls that NPC's quest-specific presence or behavior.
+| FSM | Direct | 72 | link:../../../../client/03040008/quest/q00000024/quest/00000024/npc/n0005.fsm.json[client/03040008/quest/q00000024/quest/00000024/npc/n0005.fsm.json] | Process.Parameter.QuestId | QuestId | quest 24 (The Great Alchemist) / Leo / CallMessage \| NPCFSM=n0005 \| QuestLocalNPCFSM | Quest-local NPC FSM reference; these quest NPC FSM files usually define behavior for the same quest, such as joining fights or changing interactions.
+| FSM | Direct | 78 | link:../../../../client/03040008/quest/q00000024/quest/00000024/npc/n0005.fsm.json[client/03040008/quest/q00000024/quest/00000024/npc/n0005.fsm.json] | Process.Parameter.QuestId | QuestId | quest 24 (The Great Alchemist) / Leo / checkMyQuestFlag \| NPCFSM=n0005 \| QuestLocalNPCFSM | Quest-local NPC FSM MyQuest check; these files usually describe NPC behavior for the same quest, so this flag likely controls that NPC's quest-specific presence or behavior.
+| FSM | Direct | 72 | link:../../../../client/03040008/quest/q00000024/quest/00000024/npc/n0005.fsm.json[client/03040008/quest/q00000024/quest/00000024/npc/n0005.fsm.json] | Process.Parameter.QuestId | QuestId | quest 24 (The Great Alchemist) / Leo / CallMessage \| NPCFSM=n0005 \| QuestLocalNPCFSM | Quest-local NPC FSM reference; these quest NPC FSM files usually define behavior for the same quest, such as joining fights or changing interactions.
+| FSM | Direct | 78 | link:../../../../client/03040008/quest/q00000024/quest/00000024/npc/n0005.fsm.json[client/03040008/quest/q00000024/quest/00000024/npc/n0005.fsm.json] | Process.Parameter.QuestId | QuestId | quest 24 (The Great Alchemist) / Leo / checkMyQuestFlag \| NPCFSM=n0005 \| QuestLocalNPCFSM | Quest-local NPC FSM MyQuest check; these files usually describe NPC behavior for the same quest, so this flag likely controls that NPC's quest-specific presence or behavior.
+| FSM | Direct | 72 | link:../../../../client/03040008/quest/q00000024/quest/00000024/npc/n0005.fsm.json[client/03040008/quest/q00000024/quest/00000024/npc/n0005.fsm.json] | Process.Parameter.QuestId | QuestId | quest 24 (The Great Alchemist) / Leo / CallMessage \| NPCFSM=n0005 \| QuestLocalNPCFSM | Quest-local NPC FSM reference; these quest NPC FSM files usually define behavior for the same quest, such as joining fights or changing interactions.
+| FSM | Direct | 78 | link:../../../../client/03040008/quest/q00000024/quest/00000024/npc/n0005.fsm.json[client/03040008/quest/q00000024/quest/00000024/npc/n0005.fsm.json] | Process.Parameter.QuestId | QuestId | quest 24 (The Great Alchemist) / Leo / checkMyQuestFlag \| NPCFSM=n0005 \| QuestLocalNPCFSM | Quest-local NPC FSM MyQuest check; these files usually describe NPC behavior for the same quest, so this flag likely controls that NPC's quest-specific presence or behavior.
+| FSM | Direct | 72 | link:../../../../client/03040008/quest/q00000024/quest/00000024/npc/n0005.fsm.json[client/03040008/quest/q00000024/quest/00000024/npc/n0005.fsm.json] | Process.Parameter.QuestId | QuestId | quest 24 (The Great Alchemist) / Leo / CallMessage \| NPCFSM=n0005 \| QuestLocalNPCFSM | Quest-local NPC FSM reference; these quest NPC FSM files usually define behavior for the same quest, such as joining fights or changing interactions.
+| FSM | Direct | 78 | link:../../../../client/03040008/quest/q00000024/quest/00000024/npc/n0005.fsm.json[client/03040008/quest/q00000024/quest/00000024/npc/n0005.fsm.json] | Process.Parameter.QuestId | QuestId | quest 24 (The Great Alchemist) / Leo / checkMyQuestFlag \| NPCFSM=n0005 \| QuestLocalNPCFSM | Quest-local NPC FSM MyQuest check; these files usually describe NPC behavior for the same quest, so this flag likely controls that NPC's quest-specific presence or behavior.
+| FSM | Direct | 78 | link:../../../../client/03040008/quest/q00000024/quest/00000024/npc/n0005.fsm.json[client/03040008/quest/q00000024/quest/00000024/npc/n0005.fsm.json] | Process.Parameter.QuestId | QuestId | quest 24 (The Great Alchemist) / Leo / checkMyQuestFlag \| NPCFSM=n0005 \| QuestLocalNPCFSM | Quest-local NPC FSM MyQuest check; these files usually describe NPC behavior for the same quest, so this flag likely controls that NPC's quest-specific presence or behavior.
+| FSM | Direct | 72 | link:../../../../client/03040008/quest/q00000024/quest/00000024/npc/n0005.fsm.json[client/03040008/quest/q00000024/quest/00000024/npc/n0005.fsm.json] | Process.Parameter.QuestId | QuestId | quest 24 (The Great Alchemist) / Leo / CallMessage \| NPCFSM=n0005 \| QuestLocalNPCFSM | Quest-local NPC FSM reference; these quest NPC FSM files usually define behavior for the same quest, such as joining fights or changing interactions.
+| FSM | Direct | 72 | link:../../../../client/03040008/quest/q00000024/quest/00000024/npc/n0005.fsm.json[client/03040008/quest/q00000024/quest/00000024/npc/n0005.fsm.json] | Process.Parameter.QuestId | QuestId | quest 24 (The Great Alchemist) / Leo / CallMessage \| NPCFSM=n0005 \| QuestLocalNPCFSM | Quest-local NPC FSM reference; these quest NPC FSM files usually define behavior for the same quest, such as joining fights or changing interactions.
+| FSM | Direct | 72 | link:../../../../client/03040008/quest/q00000024/quest/00000024/npc/n0005.fsm.json[client/03040008/quest/q00000024/quest/00000024/npc/n0005.fsm.json] | Process.Parameter.QuestId | QuestId | quest 24 (The Great Alchemist) / Leo / CallMessage \| NPCFSM=n0005 \| QuestLocalNPCFSM | Quest-local NPC FSM reference; these quest NPC FSM files usually define behavior for the same quest, such as joining fights or changing interactions.
+| FSM | Direct | 72 | link:../../../../client/03040008/quest/q00000024/quest/00000024/npc/n0005.fsm.json[client/03040008/quest/q00000024/quest/00000024/npc/n0005.fsm.json] | Process.Parameter.QuestId | QuestId | quest 24 (The Great Alchemist) / Leo / CallMessage \| NPCFSM=n0005 \| QuestLocalNPCFSM | Quest-local NPC FSM reference; these quest NPC FSM files usually define behavior for the same quest, such as joining fights or changing interactions.
+| FSM | Direct | 72 | link:../../../../client/03040008/quest/q00000024/quest/00000024/npc/n0005.fsm.json[client/03040008/quest/q00000024/quest/00000024/npc/n0005.fsm.json] | Process.Parameter.QuestId | QuestId | quest 24 (The Great Alchemist) / Leo / CallMessage \| NPCFSM=n0005 \| QuestLocalNPCFSM | Quest-local NPC FSM reference; these quest NPC FSM files usually define behavior for the same quest, such as joining fights or changing interactions.
+| FSM | Direct | 72 | link:../../../../client/03040008/quest/q00000024/quest/00000024/npc/n0005.fsm.json[client/03040008/quest/q00000024/quest/00000024/npc/n0005.fsm.json] | Process.Parameter.QuestId | QuestId | quest 24 (The Great Alchemist) / Leo / CallMessage \| NPCFSM=n0005 \| QuestLocalNPCFSM | Quest-local NPC FSM reference; these quest NPC FSM files usually define behavior for the same quest, such as joining fights or changing interactions.
+| FSM | Direct | 72 | link:../../../../client/03040008/quest/q00000024/quest/00000024/npc/n0005.fsm.json[client/03040008/quest/q00000024/quest/00000024/npc/n0005.fsm.json] | Process.Parameter.QuestId | QuestId | quest 24 (The Great Alchemist) / Leo / CallMessage \| NPCFSM=n0005 \| QuestLocalNPCFSM | Quest-local NPC FSM reference; these quest NPC FSM files usually define behavior for the same quest, such as joining fights or changing interactions.
+| FSM | Direct | 78 | link:../../../../client/03040008/quest/q00000024/quest/00000024/npc/n0005.fsm.json[client/03040008/quest/q00000024/quest/00000024/npc/n0005.fsm.json] | Process.Parameter.QuestId | QuestId | quest 24 (The Great Alchemist) / Leo / checkMyQuestFlag \| NPCFSM=n0005 \| QuestLocalNPCFSM | Quest-local NPC FSM MyQuest check; these files usually describe NPC behavior for the same quest, so this flag likely controls that NPC's quest-specific presence or behavior.
+| FSM | Direct | 72 | link:../../../../client/03040008/quest/q00000024/quest/00000024/npc/n0005.fsm.json[client/03040008/quest/q00000024/quest/00000024/npc/n0005.fsm.json] | Process.Parameter.QuestId | QuestId | quest 24 (The Great Alchemist) / Leo / CallMessage \| NPCFSM=n0005 \| QuestLocalNPCFSM | Quest-local NPC FSM reference; these quest NPC FSM files usually define behavior for the same quest, such as joining fights or changing interactions.
+| FSM | Direct | 72 | link:../../../../client/03040008/quest/q00000024/quest/00000024/npc/n0005.fsm.json[client/03040008/quest/q00000024/quest/00000024/npc/n0005.fsm.json] | Process.Parameter.QuestId | QuestId | quest 24 (The Great Alchemist) / Leo / CallMessage \| NPCFSM=n0005 \| QuestLocalNPCFSM | Quest-local NPC FSM reference; these quest NPC FSM files usually define behavior for the same quest, such as joining fights or changing interactions.
+| FSM | Direct | 72 | link:../../../../client/03040008/quest/q00000024/quest/00000024/npc/n0005.fsm.json[client/03040008/quest/q00000024/quest/00000024/npc/n0005.fsm.json] | Process.Parameter.QuestId | QuestId | quest 24 (The Great Alchemist) / Leo / CallMessage \| NPCFSM=n0005 \| QuestLocalNPCFSM | Quest-local NPC FSM reference; these quest NPC FSM files usually define behavior for the same quest, such as joining fights or changing interactions.
 |===
 

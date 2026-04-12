@@ -5,9 +5,354 @@
 
 Query mode:: quest
 Query value:: 30260
-Generated at:: 2026-04-11T21:41:40.598402+00:00
+Generated at:: 2026-04-12T12:43:42.573466+00:00
 
 toc::[]
+
+Quest family:: q3 -- Light Quest
+Quest family notes:: Light and board-style quests with repeatable or lightweight stage flows.
+Quest family focus:: local_stage_topology_plus_board_repeatability
+
+== External Owner Indexes
+
+_These are reusable external owner catalogs inferred from stage-neighborhood cues. They are broader than the subset of flags promoted into derived dependency targets._
+
+[cols="2,1,1,2,2,2,4",options="header"]
+|===
+| Owner Quest | Family | Catalog Count | Catalog Flags | Linked Cues | Cue Sources | Why
+
+| 70000001 | q7 | 70 | 1098, 1103, 1104, 1105, 1106, 1109, 1110, 1111, 1112, 1113, 1114, 1115 +58 more | 1109, 1110, 1111, 1112, 1150, 1201, 1215, 1216 +36 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70001001 | q7 | 0 |  | 1851, 1954 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70002001 | q7 | 47 | 1098, 1103, 1104, 1105, 1106, 1109, 1110, 1111, 1112, 1113, 1114, 1115 +35 more | 1113, 1114, 1115, 1117, 1295, 1601, 3859, 3860 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70003001 | q7 | 49 | 1098, 1103, 1104, 1105, 1106, 1109, 1110, 1111, 1112, 1113, 1114, 1115 +37 more | 1098, 1103, 1104, 1105, 1106, 1119, 1120, 1121 +13 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70020001 | q7 | 8 | 2736, 3000, 3002, 3003, 3074, 3442, 3805, 4037 | 2736, 3000, 3002, 3003, 3074, 3442, 3805, 4037 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70021001 | q7 | 4 | 3278, 3650, 3753, 3861 | 3278, 3650, 3753 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70022001 | q7 | 17 | 3949, 3950, 3952, 3953, 3954, 3977, 4033, 4043, 4053, 4063, 4470, 4555 +5 more | 3949, 3950, 3952, 3953, 3954, 3977, 4033, 4043 +7 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70023001 | q7 | 15 | 4066, 4067, 4372, 4373, 4500, 4506, 4507, 4508, 4511, 4512, 4515, 4516 +3 more | 4066, 4372, 4373, 4500, 4506, 4507, 4508, 4511 +6 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70030001 | q7 | 46 | 5396, 5397, 5407, 5552, 5557, 5558, 5581, 5584, 5587, 5588, 5589, 5614 +34 more | 5396, 5397, 5407, 5552, 5557, 5558, 5584, 5587 +35 more | evsi, gpl | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70031001 | q7 | 8 | 5553, 5672, 6138, 6194, 6195, 6377, 6425, 7316 | 5553, 5672, 6138, 6194, 6195, 6377, 6425, 7316 | evsi, gpl | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70032001 | q7 | 37 | 7169, 7240, 7241, 7336, 7341, 7342, 7386, 7387, 7388, 7389, 7390, 7438 +25 more | 7169, 7240, 7241, 7336, 7341, 7342, 7386, 7388 +28 more | evsi, gpl | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70033001 | q7 | 43 | 7826, 7827, 7876, 7888, 7889, 7916, 7917, 7954, 7955, 7965, 7966, 7967 +31 more | 7826, 7827, 7876, 7888, 7889, 7917, 7954, 7955 +34 more | evsi, gpl | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70034001 | q7 | 3 | 8486, 8630, 8631 | 8486 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+|===
+
+== Derived External Dependency Targets
+
+_These are the promoted subset of external owner-index entries. A flag appears here only when it passes the current family-specific dependency promotion rules for this quest._
+
+[cols="2,1,1,2,2,4",options="header"]
+|===
+| Owner Quest | Family | Flag Count | Flags | Sources | Why
+
+| 70000001 | q7 | 24 | 1109, 1110, 1111, 1112, 1215, 1218, 1219, 1251, 1261, 1263, 1293, 1294 +12 more | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70002001 | q7 | 6 | 1113, 1114, 1295, 1601, 3859, 3860 | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70003001 | q7 | 20 | 1098, 1103, 1104, 1105, 1119, 1120, 1121, 1122, 1123, 1124, 1202, 1203 +8 more | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70020001 | q7 | 5 | 2736, 3002, 3003, 3074, 3805 | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70021001 | q7 | 3 | 3278, 3650, 3753 | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70022001 | q7 | 14 | 3949, 3952, 3953, 3954, 3977, 4033, 4043, 4470, 4555, 4556, 4557, 4803 +2 more | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70023001 | q7 | 13 | 4066, 4372, 4373, 4500, 4506, 4507, 4508, 4511, 4512, 4515, 4516, 4517 +1 more | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70030001 | q7 | 32 | 5396, 5397, 5407, 5552, 5558, 5584, 5587, 5588, 5634, 5635, 5636, 5637 +20 more | evsi, gpl | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70031001 | q7 | 5 | 5553, 6138, 6194, 6195, 6377 | evsi, gpl | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70032001 | q7 | 32 | 7240, 7241, 7336, 7341, 7342, 7386, 7388, 7390, 7438, 7440, 7497, 7498 +20 more | evsi, gpl | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70033001 | q7 | 26 | 7826, 7827, 7876, 7954, 7955, 7966, 7968, 7972, 8016, 8033, 8034, 8035 +14 more | evsi, gpl | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70034001 | q7 | 1 | 8486 | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+|===
+
+== Family Relationship Context
+
+_These sections summarize deterministic client-side family metadata and reverse-index relationships. They are context for later owner/dependency inference, not direct quest-target promotion._
+
+=== Quest Sequence
+
+* seq no: 79
+* previous: 30250 -- The Relics of the First King
+* next: 30410 -- Breakdown of Order
+
+== ARC Association Context
+
+_ARC associations are contextual only. They show which quest-stage and marker resources are bundled with this quest._
+
+* arc file: link:../../../../client/03040008/quest/q00030260.arc.json#L1[client/03040008/quest/q00030260.arc.json#L1]
+* resource count: 29
+* stage codes: st0139, st0201, st0451, st1100, st1101, st1103
+* resource families: .fmi, .fsm, .gmd, .mss, .qmi, .qst, .qtd, .stqr
+
+=== st0139 -- Firefall Mountain Campsite
+
+* rQuestMarkerInfo: quest/00030260/st0139_marker_npc
+* rQuestList: quest/00030260/q00030260_st0139
+
+=== st0201 -- Audience Chamber
+
+* rQuestMarkerInfo: quest/00030260/st0201_marker_npc
+* rQuestList: quest/00030260/q00030260_st0201
+
+=== st0451 -- Lookout Castle
+
+* rQuestList: quest/00030260/q00030260_st0451
+* rQuestMarkerInfo: quest/00030260/st0451_marker_npc
+
+=== st1100 -- Sacred Flame Path
+
+* rQuestList: quest/00030260/q00030260_st1100
+* rQuestMarkerInfo: quest/00030260/st1100_marker_npc
+
+=== st1101 -- Sacred Flame Path: Upper Level
+
+* rQuestList: quest/00030260/q00030260_st1101
+* rQuestMarkerInfo: quest/00030260/st1101_marker_om
+* rQuestMarkerInfo: quest/00030260/st1101_marker_npc
+
+=== st1103 -- Evil Dragon's Roost
+
+* rQuestList: quest/00030260/q00030260_st1103
+* rQuestMarkerInfo: quest/00030260/st1103_marker_om
+* rQuestMarkerInfo: quest/00030260/st1103_marker_npc
+
+=== unclassified
+
+* rFieldAreaMarkerInfo: quest/00030260/fa006_marker_npc
+* rSoundStreamRequest: sound/stream/quest/di/jp/q00030260/q00030260_n0021
+* rSoundStreamRequest: sound/stream/quest/di/jp/q00030260/q00030260_n0035
+* rSoundStreamRequest: sound/stream/quest/di/jp/q00030260/q00030260_n0013
+* rMsgSet: ui/00_message/examine_message/quest/quest_examine_q00030260
+* rMsgSet: ui/00_message/quest/q00030260
+* rAIFSM: quest/00030260/npc/n0501
+* rSoundStreamRequest: sound/stream/quest/di/jp/q00030260/q00030260_n0501
+* rAIFSM: quest/00030260/npc/n0031
+* rAIFSM: quest/00030260/npc/n0000
+* rAIFSM: quest/00030260/npc/n0030
+* rQuestTextData: ui/00_param/quest_text/q00030260_00
+* rGUIMessage: ui/00_message/quest/q00030260
+* rGUIMessage: ui/00_message/examine_message/quest/quest_examine_q00030260
+* rGUIMessage: ui/00_message/quest_info/q00030260_00
+
+== Stage Neighborhood Context
+
+_Stage-neighborhood context summarizes scanner-relevant client files that share the quest's archive stage codes. This is deterministic client topology, not inferred ownership._
+
+* scanner-relevant stage files: 1073
+* indexed stage codes: st0139, st0201, st0451, st1100, st1101, st1103
+
+=== st0139 -- Firefall Mountain Campsite
+
+* scanner files: 50
+* .gpl.json: 3
+* .lot.json: 30
+* .qmi.json: 9
+* .qst.json: 8
+
+=== st0201 -- Audience Chamber
+
+* scanner files: 694
+* .evsi.json: 50
+* .fsm.json: 433
+* .gpl.json: 3
+* .lot.json: 64
+* .qmi.json: 75
+* .qst.json: 69
+
+=== st0451 -- Lookout Castle
+
+* scanner files: 173
+* .evsi.json: 6
+* .fsm.json: 45
+* .gpl.json: 3
+* .lot.json: 49
+* .qmi.json: 38
+* .qst.json: 32
+
+=== st1100 -- Sacred Flame Path
+
+* scanner files: 83
+* .fsm.json: 7
+* .gpl.json: 5
+* .lot.json: 58
+* .qmi.json: 9
+* .qst.json: 4
+
+=== st1101 -- Sacred Flame Path: Upper Level
+
+* scanner files: 39
+* .gpl.json: 4
+* .lot.json: 28
+* .qmi.json: 5
+* .qst.json: 2
+
+=== st1103 -- Evil Dragon's Roost
+
+* scanner files: 34
+* .evsi.json: 2
+* .fsm.json: 6
+* .gpl.json: 5
+* .lot.json: 17
+* .qmi.json: 3
+* .qst.json: 1
+
+== Stage Neighborhood External-State Cues
+
+_These cues are deterministic client-side observations from the quest's stage neighborhood. They are not promoted to direct quest targets yet; they highlight q6/q7-owned external state values co-located in the quest's archive stages._
+
+* cue count: 245
+* owner families: q6, q7
+
+[cols="1,1,1,2,2,2",options="header"]
+|===
+| Value | Kind | Hits | Sources | Owners | Stages
+
+| Flag 8066 | layout_flag | 59 | evsi, gpl | 70033001 | st0201, st0451, st1100, st1103
+| Flag 1106 | layout_flag | 58 | evsi | 70003001 | st0201, st0451, st1103
+| Flag 1115 | layout_flag | 58 | evsi | 70002001 | st0201, st0451, st1103
+| Flag 1117 | layout_flag | 58 | evsi | 70002001 | st0201, st0451, st1103
+| Flag 1150 | layout_flag | 58 | evsi | 70000001 | st0201, st0451, st1103
+| Flag 1217 | layout_flag | 58 | evsi | 70000001 | st0201, st0451, st1103
+| Flag 1224 | layout_flag | 58 | evsi | 70000001 | st0201, st0451, st1103
+| Flag 1851 | layout_flag | 58 | evsi | 70001001 | st0201, st0451, st1103
+| Flag 1954 | layout_flag | 58 | evsi | 70001001 | st0201, st0451, st1103
+| Flag 2208 | layout_flag | 58 | evsi | 70000001 | st0201, st0451, st1103
+| Flag 2380 | layout_flag | 58 | evsi | 70000001 | st0201, st0451, st1103
+| Flag 3950 | layout_flag | 58 | evsi | 70022001 | st0201, st0451, st1103
+| Flag 5589 | layout_flag | 58 | evsi | 70030001 | st0201, st0451, st1103
+| Flag 5614 | layout_flag | 58 | evsi | 70030001 | st0201, st0451, st1103
+| Flag 5632 | layout_flag | 58 | evsi | 70030001 | st0201, st0451, st1103
+| Flag 6469 | layout_flag | 58 | evsi | 70030001 | st0201, st0451, st1103
+| Flag 6470 | layout_flag | 58 | evsi | 70030001 | st0201, st0451, st1103
+| Flag 6471 | layout_flag | 58 | evsi | 70030001 | st0201, st0451, st1103
+| Flag 6472 | layout_flag | 58 | evsi | 70030001 | st0201, st0451, st1103
+| Flag 6473 | layout_flag | 58 | evsi | 70030001 | st0201, st0451, st1103
+| Flag 6474 | layout_flag | 58 | evsi | 70030001 | st0201, st0451, st1103
+| Flag 7316 | layout_flag | 58 | evsi | 70031001 | st0201, st0451, st1103
+| Flag 1221 | layout_flag | 57 | evsi | 70000001 | st0201, st0451, st1103
+| Flag 1201 | layout_flag | 56 | evsi | 70000001 | st0201, st0451, st1103
+| Flag 1216 | layout_flag | 56 | evsi | 70000001 | st0201, st0451, st1103
+| Flag 1223 | layout_flag | 56 | evsi | 70000001 | st0201, st0451, st1103
+| Flag 1222 | layout_flag | 54 | evsi | 70000001 | st0201, st0451, st1103
+| Flag 5557 | layout_flag | 54 | evsi | 70030001 | st0201, st0451, st1103
+| Flag 7496 | layout_flag | 54 | evsi | 70032001 | st0201, st0451, st1103
+| Flag 1220 | layout_flag | 53 | evsi | 70000001 | st0201, st0451, st1103
+|===
+
+== Bounded Graph Expansion
+
+_This graph summarizes bounded deterministic and inferred edges around the quest: quest archive stages, direct source families, stage-linked owner catalogs, promoted dependencies, reverse-index event/group links, and family-specific table edges._
+
+* max depth: 3
+* node count: 767
+* edge count: 1523
+* node kinds: direct_family=4, event_viewer=702, family_context=1, lot_file=14, owner_quest=13, quest=1, sequence_quest=2, stage=6, stage_group=24
+* derivation: Dependency=12, Direct=27, Graph=2198, Owner Index=53
+
+=== Mermaid Graph Slice
+
+_This Mermaid flowchart shows a capped slice of the bounded graph so large quest reports stay readable while still exposing the graph structure._
+
+[mermaid]
+....
+flowchart TD
+    node_quest_30260["Quest 30260"]
+    node_direct_family_evsi["evsi direct hits (9)"]
+    node_direct_family_fsm["fsm direct hits (2)"]
+    node_direct_family_qst["qst direct hits (28)"]
+    node_direct_family_smc["smc direct hits (31)"]
+    node_family_context_quest_sequence["Quest Sequence"]
+    node_stage_st0139["st0139 -- Firefall Mountain Campsite"]
+    node_stage_st0201["st0201 -- Audience Chamber"]
+    node_stage_st0451["st0451 -- Lookout Castle"]
+    node_stage_st1100["st1100 -- Sacred Flame Path"]
+    node_stage_st1101["st1101 -- Sacred Flame Path: Upper Level"]
+    node_stage_st1103["st1103 -- Evil Dragon's Roost"]
+    node_owner_quest_70000001["Owner quest 70000001 (q7)"]
+    node_owner_quest_70002001["Owner quest 70002001 (q7)"]
+    node_owner_quest_70003001["Owner quest 70003001 (q7)"]
+    node_owner_quest_70020001["Owner quest 70020001 (q7)"]
+    node_owner_quest_70021001["Owner quest 70021001 (q7)"]
+    node_owner_quest_70022001["Owner quest 70022001 (q7)"]
+    node_owner_quest_70023001["Owner quest 70023001 (q7)"]
+    node_owner_quest_70030001["Owner quest 70030001 (q7)"]
+    node_owner_quest_70031001["Owner quest 70031001 (q7)"]
+    node_owner_quest_70032001["Owner quest 70032001 (q7)"]
+    node_owner_quest_70033001["Owner quest 70033001 (q7)"]
+    node_owner_quest_70034001["Owner quest 70034001 (q7)"]
+    node_sequence_quest_30410["Quest 30410"]
+    node_quest_30260 -->|direct_source_family| node_direct_family_evsi
+    node_quest_30260 -->|direct_source_family| node_direct_family_fsm
+    node_quest_30260 -->|direct_source_family| node_direct_family_qst
+    node_quest_30260 -->|direct_source_family| node_direct_family_smc
+    node_quest_30260 -->|family:quest_sequence| node_family_context_quest_sequence
+    node_quest_30260 -->|quest_archive_stage| node_stage_st0139
+    node_quest_30260 -->|quest_archive_stage| node_stage_st0201
+    node_quest_30260 -->|quest_archive_stage| node_stage_st0451
+    node_quest_30260 -->|quest_archive_stage| node_stage_st1100
+    node_quest_30260 -->|quest_archive_stage| node_stage_st1101
+    node_quest_30260 -->|quest_archive_stage| node_stage_st1103
+    node_quest_30260 -->|promoted_dependency| node_owner_quest_70000001
+    node_quest_30260 -->|promoted_dependency| node_owner_quest_70002001
+    node_quest_30260 -->|promoted_dependency| node_owner_quest_70003001
+    node_quest_30260 -->|promoted_dependency| node_owner_quest_70020001
+    node_quest_30260 -->|promoted_dependency| node_owner_quest_70021001
+    node_quest_30260 -->|promoted_dependency| node_owner_quest_70022001
+    node_quest_30260 -->|promoted_dependency| node_owner_quest_70023001
+    node_quest_30260 -->|promoted_dependency| node_owner_quest_70030001
+    node_quest_30260 -->|promoted_dependency| node_owner_quest_70031001
+    node_quest_30260 -->|promoted_dependency| node_owner_quest_70032001
+    node_quest_30260 -->|promoted_dependency| node_owner_quest_70033001
+    node_quest_30260 -->|promoted_dependency| node_owner_quest_70034001
+    node_family_context_quest_sequence -->|sequence_next| node_sequence_quest_30410
+    classDef direct_deterministic fill:#e8f5e9,stroke:#2e7d32,stroke-width:1px
+    classDef owner_index fill:#e3f2fd,stroke:#1565c0,stroke-width:1px
+    classDef dependency_inferred fill:#fff3e0,stroke:#ef6c00,stroke-width:1px
+    classDef graph_expanded fill:#f3e5f5,stroke:#7b1fa2,stroke-width:1px
+    classDef lower_confidence fill:#fbe9e7,stroke:#d84315,stroke-width:1px
+    classDef binary_auxiliary fill:#eceff1,stroke:#455a64,stroke-width:1px
+    class node_quest_30260,node_direct_family_evsi,node_direct_family_fsm,node_direct_family_qst,node_direct_family_smc,node_family_context_quest_sequence,node_stage_st0139,node_stage_st0201,node_stage_st0451,node_stage_st1100,node_stage_st1101,node_stage_st1103,node_sequence_quest_30410 direct_deterministic
+    class node_owner_quest_70000001,node_owner_quest_70002001,node_owner_quest_70003001,node_owner_quest_70020001,node_owner_quest_70021001,node_owner_quest_70022001,node_owner_quest_70023001,node_owner_quest_70030001,node_owner_quest_70031001,node_owner_quest_70032001,node_owner_quest_70033001,node_owner_quest_70034001 owner_index
+....
+
+[cols="1,2,2,2,2,4",options="header"]
+|===
+| Depth | Edge | From | To | Derivation | Why
+
+| 1 | direct_source_family | quest:30260 | direct-family:evsi | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | direct_source_family | quest:30260 | direct-family:fsm | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | direct_source_family | quest:30260 | direct-family:qst | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | direct_source_family | quest:30260 | direct-family:smc | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | family_context:quest_sequence | quest:30260 | family-context:quest_sequence | Direct | Family-specific decoded tables provide deterministic context for this quest.
+| 1 | quest_archive_stage | quest:30260 | stage:st0139 | Direct | Quest archive topology directly links this quest to the stage code.
+| 1 | quest_archive_stage | quest:30260 | stage:st0201 | Direct | Quest archive topology directly links this quest to the stage code.
+| 1 | quest_archive_stage | quest:30260 | stage:st0451 | Direct | Quest archive topology directly links this quest to the stage code.
+| 1 | quest_archive_stage | quest:30260 | stage:st1100 | Direct | Quest archive topology directly links this quest to the stage code.
+| 1 | quest_archive_stage | quest:30260 | stage:st1101 | Direct | Quest archive topology directly links this quest to the stage code.
+| 1 | quest_archive_stage | quest:30260 | stage:st1103 | Direct | Quest archive topology directly links this quest to the stage code.
+| 2 | promoted_dependency | quest:30260 | owner-quest:70000001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30260 | owner-quest:70002001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30260 | owner-quest:70003001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30260 | owner-quest:70020001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30260 | owner-quest:70021001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30260 | owner-quest:70022001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30260 | owner-quest:70023001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30260 | owner-quest:70030001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30260 | owner-quest:70031001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30260 | owner-quest:70032001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30260 | owner-quest:70033001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30260 | owner-quest:70034001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | sequence_next | family-context:quest_sequence | sequence-quest:30410 | Direct | QuestSequence links this quest to its neighboring sequence quest.
+| 2 | sequence_previous | family-context:quest_sequence | sequence-quest:30250 | Direct | QuestSequence links this quest to its neighboring sequence quest.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev000:70000001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev000:70001001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev000:70002001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev000:70003001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev000:70020001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev000:70021001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev000:70022001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev000:70023001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev000:70030001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev000:70031001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev000:70032001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev000:70033001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev003:70000001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev003:70001001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0201 | event-viewer:st0201:ev003:70002001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+|===
 
 == Flag Summary Matrix
 
@@ -15,12 +360,355 @@ toc::[]
 |===
 | Target | Kind | Hits | Sources | Stages | Relationships | Description
 
+| Flag 7860 | layout_flag | 2 | evsi, qst | st0201, st0451 | 🎬 Event State, ⚡ Quest Condition | QST local: st0201 \| 受注前後
+| Flag 7861 | layout_flag | 3 | evsi, qst | st0451 | 🎬 Event State, ⚡ Quest Condition, ❌ Quest Erase | QST local: st0451 \| メイロワジリアン
+| Flag 7862 | layout_flag | 1 | qst | st0451 | ⚡ Quest Condition | QST local: st0451 \| QuestGroup 1 \| 部下
+| Flag 7868 | layout_flag | 2 | qst | st1103 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st1103 \| 共闘
+| Flag 7872 | layout_flag | 1 | qst | st1103 | ⚡ Quest Condition | QST local: st1103 \| QuestGroup 1 \| ボス後
+| Flag 7891 | layout_flag | 4 | evsi, qst | st0451, st1103 | 🎬 Event State, ⚡ Quest Condition | QST local: st0451 \| QuestGroup 2 \| ベルタ
+| Flag 7901 | layout_flag | 3 | evsi, qst | st0139, st1103 | 🎬 Event State, ⚡ Quest Condition | QST local: st0139 \| Condition
+| Flag 7904 | layout_flag | 3 | evsi, qst | st1101, st1103 | 🎬 Event State, ⚡ Quest Condition, ❌ Quest Erase | QST local: st1101 \| 最後かもしれないだろ、だから全部話ておきたいんだ
+| Flag 8013 | layout_flag | 2 | qst | st0139 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0139 \| QuestGroup 1 \| 5と6の間のジリアン
+| Flag 8062 | layout_flag | 2 | qst | st1100 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st1100 \| QuestGroup 2 \| ガルドリン
+| Flag 8063 | layout_flag | 2 | qst | st1100 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st1100 \| エリオット
+| Flag 8064 | layout_flag | 2 | qst | st1100 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st1100 \| QuestGroup 1 \| リズ
+| Flag 8146 | layout_flag | 2 | qst | st1100 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st1100 \| QuestGroup 3 \| 置き直しエリオット
+| Flag 8147 | layout_flag | 2 | qst | st1100 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st1100 \| QuestGroup 4 \| 置き直しりず
+| Flag 8148 | layout_flag | 2 | qst | st1100 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st1100 \| QuestGroup 5 \| 置き直しガルドリン
+| Flag 8200 | layout_flag | 1 | qst | st1103 | ⚡ Quest Condition | QST local: st1103 \| QuestGroup 2 \| ボス後のワープOM
+| Flag 8545 | layout_flag | 3 | evsi, qst | st1103 | 🎬 Event State, ⚡ Quest Condition, ❌ Quest Erase | QST local: st1103 \| QuestGroup 3 \| 共闘後半
 | Quest ID 30260 | quest_id | 33 | fsm, smc |  | 🔍 FSM Check, 🗣️ NPC Chatter | Derived quest-wide association scan
 |===
 
 == Known Documented Targets
 
+* quest 30260 -- Flag 7860 -- QST local: st0201 | 受注前後
+* quest 30260 -- Flag 7861 -- QST local: st0451 | メイロワジリアン
+* quest 30260 -- Flag 7862 -- QST local: st0451 | QuestGroup 1 | 部下
+* quest 30260 -- Flag 7868 -- QST local: st1103 | 共闘
+* quest 30260 -- Flag 7872 -- QST local: st1103 | QuestGroup 1 | ボス後
+* quest 30260 -- Flag 7891 -- QST local: st0451 | QuestGroup 2 | ベルタ
+* quest 30260 -- Flag 7901 -- QST local: st0139 | Condition
+* quest 30260 -- Flag 7904 -- QST local: st1101 | 最後かもしれないだろ、だから全部話ておきたいんだ
+* quest 30260 -- Flag 8013 -- QST local: st0139 | QuestGroup 1 | 5と6の間のジリアン
+* quest 30260 -- Flag 8062 -- QST local: st1100 | QuestGroup 2 | ガルドリン
+* quest 30260 -- Flag 8063 -- QST local: st1100 | エリオット
+* quest 30260 -- Flag 8064 -- QST local: st1100 | QuestGroup 1 | リズ
+* quest 30260 -- Flag 8146 -- QST local: st1100 | QuestGroup 3 | 置き直しエリオット
+* quest 30260 -- Flag 8147 -- QST local: st1100 | QuestGroup 4 | 置き直しりず
+* quest 30260 -- Flag 8148 -- QST local: st1100 | QuestGroup 5 | 置き直しガルドリン
+* quest 30260 -- Flag 8200 -- QST local: st1103 | QuestGroup 2 | ボス後のワープOM
+* quest 30260 -- Flag 8545 -- QST local: st1103 | QuestGroup 3 | 共闘後半
 * Quest ID 30260 -- Derived quest-wide association scan [Derived]
+
+== Flag 7860 -- Quest 30260
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030260/quest/00030260/q00030260_st0201.qst.json[client/03040008/quest/q00030260/quest/00030260/q00030260_st0201.qst.json] | QuestStageList[].QuestGrp[0].Condition | Condition | quest 30260 / Audience Chamber / "受注前後" / QuestSet=QuestSetInfoNpc \|\| QuestSet=QuestSetInfoNpc \|\| +1 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0451/view_st0451ev020/event/viewer/view_st0451ev020.evsi.json#L613[client/03040008/event/st0451/view_st0451ev020/event/viewer/view_st0451ev020.evsi.json#L613] | LayoutFlagArray[0].FlagNo | FlagNo | quest 30260 (Hopes' Bitter End) / Lookout Castle / Event Viewer \| EVENT_NAME_st0451ev020 \| Thoughts of each of us | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+|===
+
+== Flag 7861 -- Quest 30260
+
+origin:: derived_qst_local
+direct hits:: *3*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 3 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030260/quest/00030260/q00030260_st0451.qst.json[client/03040008/quest/q00030260/quest/00030260/q00030260_st0451.qst.json] | QuestStageList[].QuestGrp[0].Condition | Condition | quest 30260 / Lookout Castle / "メイロワジリアン" / QuestSet=QuestSetInfoNpc \|\| QuestSet=QuestSetInfoNpc | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030260/quest/00030260/q00030260_st0451.qst.json[client/03040008/quest/q00030260/quest/00030260/q00030260_st0451.qst.json] | QuestStageList[].QuestGrp[0].EraseCondition | EraseCondition | quest 30260 / Lookout Castle / "メイロワジリアン" / QuestSet=QuestSetInfoNpc \|\| QuestSet=QuestSetInfoNpc | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0451/view_st0451ev020/event/viewer/view_st0451ev020.evsi.json#L621[client/03040008/event/st0451/view_st0451ev020/event/viewer/view_st0451ev020.evsi.json#L621] | LayoutFlagArray[1].FlagNo | FlagNo | quest 30260 (Hopes' Bitter End) / Lookout Castle / Event Viewer \| EVENT_NAME_st0451ev020 \| Thoughts of each of us | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+|===
+
+== Flag 7862 -- Quest 30260
+
+origin:: derived_qst_local
+direct hits:: *1*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 1 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030260/quest/00030260/q00030260_st0451.qst.json[client/03040008/quest/q00030260/quest/00030260/q00030260_st0451.qst.json] | QuestStageList[].QuestGrp[1].Condition | Condition | quest 30260 / Lookout Castle / "QuestGroup 1 \| 部下" / QuestSet=QuestSetInfoNpc \| GroupNo=1 \|\| QuestSet=QuestSetInfoNpc \| GroupNo=1 \|\| +1 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 7868 -- Quest 30260
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030260/quest/00030260/q00030260_st1103.qst.json[client/03040008/quest/q00030260/quest/00030260/q00030260_st1103.qst.json] | QuestStageList[].QuestGrp[0].Condition | Condition | quest 30260 / Evil Dragon's Roost / "共闘" / QuestSet=QuestSetInfoNpc \|\| QuestSet=QuestSetInfoNpc \|\| +1 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030260/quest/00030260/q00030260_st1103.qst.json[client/03040008/quest/q00030260/quest/00030260/q00030260_st1103.qst.json] | QuestStageList[].QuestGrp[0].EraseCondition | EraseCondition | quest 30260 / Evil Dragon's Roost / "共闘" / QuestSet=QuestSetInfoNpc \|\| QuestSet=QuestSetInfoNpc \|\| +1 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 7872 -- Quest 30260
+
+origin:: derived_qst_local
+direct hits:: *1*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 1 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030260/quest/00030260/q00030260_st1103.qst.json[client/03040008/quest/q00030260/quest/00030260/q00030260_st1103.qst.json] | QuestStageList[].QuestGrp[1].Condition | Condition | quest 30260 / Evil Dragon's Roost / "QuestGroup 1 \| ボス後" / QuestSet=QuestSetInfoNpc \| GroupNo=1 \|\| QuestSet=QuestSetInfoNpc \| GroupNo=1 \|\| +4 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 7891 -- Quest 30260
+
+origin:: derived_qst_local
+direct hits:: *4*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 4 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030260/quest/00030260/q00030260_st0451.qst.json[client/03040008/quest/q00030260/quest/00030260/q00030260_st0451.qst.json] | QuestStageList[].QuestGrp[2].Condition | Condition | quest 30260 / Lookout Castle / "QuestGroup 2 \| ベルタ" / QuestSet=QuestSetInfoNpc \| GroupNo=2 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0451/view_st0451ev020/event/viewer/view_st0451ev020.evsi.json#L629[client/03040008/event/st0451/view_st0451ev020/event/viewer/view_st0451ev020.evsi.json#L629] | LayoutFlagArray[2].FlagNo | FlagNo | quest 30260 (Hopes' Bitter End) / Lookout Castle / Event Viewer \| EVENT_NAME_st0451ev020 \| Thoughts of each of us | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st1103/view_st1103ev000/event/viewer/view_st1103ev000.evsi.json#L661[client/03040008/event/st1103/view_st1103ev000/event/viewer/view_st1103ev000.evsi.json#L661] | LayoutFlagArray[0].FlagNo | FlagNo | quest 30260 (Hopes' Bitter End) / Evil Dragon's Roost / Event Viewer \| EVENT_NAME_st1103ev000 \| The End of Hope | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st1103/view_st1103ev005/event/viewer/view_st1103ev005.evsi.json#L685[client/03040008/event/st1103/view_st1103ev005/event/viewer/view_st1103ev005.evsi.json#L685] | LayoutFlagArray[1].FlagNo | FlagNo | quest 30260 (Hopes' Bitter End) / Evil Dragon's Roost / Event Viewer \| EVENT_NAME_st1103ev005 \| The whole story | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+|===
+
+== Flag 7901 -- Quest 30260
+
+origin:: derived_qst_local
+direct hits:: *3*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 3 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030260/quest/00030260/q00030260_st0139.qst.json[client/03040008/quest/q00030260/quest/00030260/q00030260_st0139.qst.json] | QuestStageList[].QuestGrp[0].Condition | Condition | quest 30260 / Firefall Mountain Campsite / QuestSet=QuestSetInfoNpc | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st1103/view_st1103ev000/event/viewer/view_st1103ev000.evsi.json#L669[client/03040008/event/st1103/view_st1103ev000/event/viewer/view_st1103ev000.evsi.json#L669] | LayoutFlagArray[1].FlagNo | FlagNo | quest 30260 (Hopes' Bitter End) / Evil Dragon's Roost / Event Viewer \| EVENT_NAME_st1103ev000 \| The End of Hope | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st1103/view_st1103ev005/event/viewer/view_st1103ev005.evsi.json#L693[client/03040008/event/st1103/view_st1103ev005/event/viewer/view_st1103ev005.evsi.json#L693] | LayoutFlagArray[2].FlagNo | FlagNo | quest 30260 (Hopes' Bitter End) / Evil Dragon's Roost / Event Viewer \| EVENT_NAME_st1103ev005 \| The whole story | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+|===
+
+== Flag 7904 -- Quest 30260
+
+origin:: derived_qst_local
+direct hits:: *3*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 3 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030260/quest/00030260/q00030260_st1101.qst.json[client/03040008/quest/q00030260/quest/00030260/q00030260_st1101.qst.json] | QuestStageList[].QuestGrp[0].Condition | Condition | quest 30260 / Sacred Flame Path: Upper Level / "最後かもしれないだろ、だから全部話ておきたいんだ" / QuestSet=QuestSetInfoNpc \|\| QuestSet=QuestSetInfoNpc \|\| +3 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030260/quest/00030260/q00030260_st1101.qst.json[client/03040008/quest/q00030260/quest/00030260/q00030260_st1101.qst.json] | QuestStageList[].QuestGrp[0].EraseCondition | EraseCondition | quest 30260 / Sacred Flame Path: Upper Level / "最後かもしれないだろ、だから全部話ておきたいんだ" / QuestSet=QuestSetInfoNpc \|\| QuestSet=QuestSetInfoNpc \|\| +3 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st1103/view_st1103ev000/event/viewer/view_st1103ev000.evsi.json#L677[client/03040008/event/st1103/view_st1103ev000/event/viewer/view_st1103ev000.evsi.json#L677] | LayoutFlagArray[2].FlagNo | FlagNo | quest 30260 (Hopes' Bitter End) / Evil Dragon's Roost / Event Viewer \| EVENT_NAME_st1103ev000 \| The End of Hope | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+|===
+
+== Flag 8013 -- Quest 30260
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030260/quest/00030260/q00030260_st0139.qst.json[client/03040008/quest/q00030260/quest/00030260/q00030260_st0139.qst.json] | QuestStageList[].QuestGrp[1].Condition | Condition | quest 30260 / Firefall Mountain Campsite / "QuestGroup 1 \| 5と6の間のジリアン" / QuestSet=QuestSetInfoNpc \| GroupNo=1 \|\| QuestSet=QuestSetInfoNpc \| GroupNo=1 \|\| +1 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030260/quest/00030260/q00030260_st0139.qst.json[client/03040008/quest/q00030260/quest/00030260/q00030260_st0139.qst.json] | QuestStageList[].QuestGrp[1].EraseCondition | EraseCondition | quest 30260 / Firefall Mountain Campsite / "QuestGroup 1 \| 5と6の間のジリアン" / QuestSet=QuestSetInfoNpc \| GroupNo=1 \|\| QuestSet=QuestSetInfoNpc \| GroupNo=1 \|\| +1 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 8062 -- Quest 30260
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030260/quest/00030260/q00030260_st1100.qst.json[client/03040008/quest/q00030260/quest/00030260/q00030260_st1100.qst.json] | QuestStageList[].QuestGrp[2].Condition | Condition | quest 30260 / Sacred Flame Path / "QuestGroup 2 \| ガルドリン" / QuestSet=QuestSetInfoNpc \| GroupNo=2 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030260/quest/00030260/q00030260_st1100.qst.json[client/03040008/quest/q00030260/quest/00030260/q00030260_st1100.qst.json] | QuestStageList[].QuestGrp[2].EraseCondition | EraseCondition | quest 30260 / Sacred Flame Path / "QuestGroup 2 \| ガルドリン" / QuestSet=QuestSetInfoNpc \| GroupNo=2 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 8063 -- Quest 30260
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030260/quest/00030260/q00030260_st1100.qst.json[client/03040008/quest/q00030260/quest/00030260/q00030260_st1100.qst.json] | QuestStageList[].QuestGrp[0].Condition | Condition | quest 30260 / Sacred Flame Path / "エリオット" / QuestSet=QuestSetInfoNpc | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030260/quest/00030260/q00030260_st1100.qst.json[client/03040008/quest/q00030260/quest/00030260/q00030260_st1100.qst.json] | QuestStageList[].QuestGrp[0].EraseCondition | EraseCondition | quest 30260 / Sacred Flame Path / "エリオット" / QuestSet=QuestSetInfoNpc | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 8064 -- Quest 30260
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030260/quest/00030260/q00030260_st1100.qst.json[client/03040008/quest/q00030260/quest/00030260/q00030260_st1100.qst.json] | QuestStageList[].QuestGrp[1].Condition | Condition | quest 30260 / Sacred Flame Path / "QuestGroup 1 \| リズ" / QuestSet=QuestSetInfoNpc \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030260/quest/00030260/q00030260_st1100.qst.json[client/03040008/quest/q00030260/quest/00030260/q00030260_st1100.qst.json] | QuestStageList[].QuestGrp[1].EraseCondition | EraseCondition | quest 30260 / Sacred Flame Path / "QuestGroup 1 \| リズ" / QuestSet=QuestSetInfoNpc \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 8146 -- Quest 30260
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030260/quest/00030260/q00030260_st1100.qst.json[client/03040008/quest/q00030260/quest/00030260/q00030260_st1100.qst.json] | QuestStageList[].QuestGrp[3].Condition | Condition | quest 30260 / Sacred Flame Path / "QuestGroup 3 \| 置き直しエリオット" / QuestSet=QuestSetInfoNpc \| GroupNo=3 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030260/quest/00030260/q00030260_st1100.qst.json[client/03040008/quest/q00030260/quest/00030260/q00030260_st1100.qst.json] | QuestStageList[].QuestGrp[3].EraseCondition | EraseCondition | quest 30260 / Sacred Flame Path / "QuestGroup 3 \| 置き直しエリオット" / QuestSet=QuestSetInfoNpc \| GroupNo=3 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 8147 -- Quest 30260
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030260/quest/00030260/q00030260_st1100.qst.json[client/03040008/quest/q00030260/quest/00030260/q00030260_st1100.qst.json] | QuestStageList[].QuestGrp[4].Condition | Condition | quest 30260 / Sacred Flame Path / "QuestGroup 4 \| 置き直しりず" / QuestSet=QuestSetInfoNpc \| GroupNo=4 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030260/quest/00030260/q00030260_st1100.qst.json[client/03040008/quest/q00030260/quest/00030260/q00030260_st1100.qst.json] | QuestStageList[].QuestGrp[4].EraseCondition | EraseCondition | quest 30260 / Sacred Flame Path / "QuestGroup 4 \| 置き直しりず" / QuestSet=QuestSetInfoNpc \| GroupNo=4 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 8148 -- Quest 30260
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030260/quest/00030260/q00030260_st1100.qst.json[client/03040008/quest/q00030260/quest/00030260/q00030260_st1100.qst.json] | QuestStageList[].QuestGrp[5].Condition | Condition | quest 30260 / Sacred Flame Path / "QuestGroup 5 \| 置き直しガルドリン" / QuestSet=QuestSetInfoNpc \| GroupNo=5 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030260/quest/00030260/q00030260_st1100.qst.json[client/03040008/quest/q00030260/quest/00030260/q00030260_st1100.qst.json] | QuestStageList[].QuestGrp[5].EraseCondition | EraseCondition | quest 30260 / Sacred Flame Path / "QuestGroup 5 \| 置き直しガルドリン" / QuestSet=QuestSetInfoNpc \| GroupNo=5 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 8200 -- Quest 30260
+
+origin:: derived_qst_local
+direct hits:: *1*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 1 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030260/quest/00030260/q00030260_st1103.qst.json[client/03040008/quest/q00030260/quest/00030260/q00030260_st1103.qst.json] | QuestStageList[].QuestGrp[2].Condition | Condition | quest 30260 / Evil Dragon's Roost / "QuestGroup 2 \| ボス後のワープOM" / QuestSet=QuestSetInfoOmWarp \| OmID=511150 \| UnitID=511150 \| EnableZone \| GroupNo=2 \|\| QuestSet=QuestSetInfoOm \| OmID=522452 \| OM_ID_QUEST_TWINKLE \| EnableZone \| GroupNo=2 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 8545 -- Quest 30260
+
+origin:: derived_qst_local
+direct hits:: *3*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 3 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030260/quest/00030260/q00030260_st1103.qst.json[client/03040008/quest/q00030260/quest/00030260/q00030260_st1103.qst.json] | QuestStageList[].QuestGrp[3].Condition | Condition | quest 30260 / Evil Dragon's Roost / "QuestGroup 3 \| 共闘後半" / QuestSet=QuestSetInfoNpc \| GroupNo=3 \|\| QuestSet=QuestSetInfoNpc \| GroupNo=3 \|\| +1 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030260/quest/00030260/q00030260_st1103.qst.json[client/03040008/quest/q00030260/quest/00030260/q00030260_st1103.qst.json] | QuestStageList[].QuestGrp[3].EraseCondition | EraseCondition | quest 30260 / Evil Dragon's Roost / "QuestGroup 3 \| 共闘後半" / QuestSet=QuestSetInfoNpc \| GroupNo=3 \|\| QuestSet=QuestSetInfoNpc \| GroupNo=3 \|\| +1 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st1103/view_st1103ev005/event/viewer/view_st1103ev005.evsi.json#L749[client/03040008/event/st1103/view_st1103ev005/event/viewer/view_st1103ev005.evsi.json#L749] | LayoutFlagArray[9].FlagNo | FlagNo | quest 30260 (Hopes' Bitter End) / Evil Dragon's Roost / Event Viewer \| EVENT_NAME_st1103ev005 \| The whole story | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+|===
 
 == Quest ID 30260
 
@@ -32,50 +720,50 @@ ranked candidates:: *0*
 
 ==== direct -- 31 hit(s)
 
-[cols="1,1,3,3,2,3,3",options="header"]
+[cols="1,1,1,3,3,2,3,3",options="header"]
 |===
-| Family | Confidence | File | JSON Path | Field | Context | Why
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
 
-| SMC | 92 | client/03040008/npc/n0001/ui/00_message/npc/base/n0001.smc.json | SituationData.EndQuestId | EndQuestId | quest 30260 (Hopes' Bitter End) / The White Dragon / GroupSerial=24430 / "GroupSerial=24430, QuestWindow=30250-30260 (The Relics of the First King -> Hopes' Bitter End), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0001 \| Quest-gated NPC chatter \| QuestWindow=30250-30260 (The Relics of the First King -> Hopes' Bitter End) / MSS: The White Dragon / Fix thy watchful gaze upon the malevolent Dragon, | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0001/ui/00_message/npc/base/n0001.smc.json | SituationData.StartQuestId | StartQuestId | quest 30260 (Hopes' Bitter End) / The White Dragon / GroupSerial=24431 / "GroupSerial=24431, QuestWindow=30260-30270 (Hopes' Bitter End -> Those Who Follow the Dragon), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0001 \| Quest-gated NPC chatter \| QuestWindow=30260-30270 (Hopes' Bitter End -> Those Who Follow the Dragon) / MSS: The White Dragon / I bear tidings of grave import... | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json | SituationData.EndQuestId | EndQuestId | quest 30260 (Hopes' Bitter End) / Klaus / GroupSerial=24499 / "GroupSerial=24499, QuestWindow=30250-30260 (The Relics of the First King -> Hopes' Bitter End), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0003 \| Quest-gated NPC chatter \| QuestWindow=30250-30260 (The Relics of the First King -> Hopes' Bitter End) / MSS: Klaus / It would be better to quickly head towards Acre | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json | SituationData.StartQuestId | StartQuestId | quest 30260 (Hopes' Bitter End) / Klaus / GroupSerial=24500 / "GroupSerial=24500, QuestWindow=30260-30270 (Hopes' Bitter End -> Those Who Follow the Dragon), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0003 \| Quest-gated NPC chatter \| QuestWindow=30260-30270 (Hopes' Bitter End -> Those Who Follow the Dragon) / MSS: Klaus / Cannot we consider the "Evil Dragon" as a child | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json | SituationData.EndQuestId | EndQuestId | quest 30260 (Hopes' Bitter End) / Joseph / GroupSerial=24470 / "GroupSerial=24470, QuestWindow=30250-30260 (The Relics of the First King -> Hopes' Bitter End), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0004 \| Quest-gated NPC chatter \| QuestWindow=30250-30260 (The Relics of the First King -> Hopes' Bitter End) / MSS: Joseph / Dragon and Dragon Force, along with the blessings | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json | SituationData.StartQuestId | StartQuestId | quest 30260 (Hopes' Bitter End) / Joseph / GroupSerial=24471 / "GroupSerial=24471, QuestWindow=30260-30270 (Hopes' Bitter End -> Those Who Follow the Dragon), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0004 \| Quest-gated NPC chatter \| QuestWindow=30260-30270 (Hopes' Bitter End -> Those Who Follow the Dragon) / MSS: Joseph / Well, well... | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0007/ui/00_message/npc/base/n0007.smc.json | SituationData.StartQuestId | StartQuestId | quest 30260 (Hopes' Bitter End) / Gerd / GroupSerial=24824 / "GroupSerial=24824, QuestWindow=30260-30270 (Hopes' Bitter End -> Those Who Follow the Dragon), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0007 \| Quest-gated NPC chatter \| QuestWindow=30260-30270 (Hopes' Bitter End -> Those Who Follow the Dragon) / MSS: Gerd / It’s as if you were destined to save the Dragon. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0012/ui/00_message/npc/base/n0012.smc.json | SituationData.StartQuestId | StartQuestId | quest 30260 (Hopes' Bitter End) / Fabio / GroupSerial=24832 / "GroupSerial=24832, QuestWindow=30260-30270 (Hopes' Bitter End -> Those Who Follow the Dragon), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0012 \| Quest-gated NPC chatter \| QuestWindow=30260-30270 (Hopes' Bitter End -> Those Who Follow the Dragon) / MSS: Fabio / For a moment, I thought I was done for. If things | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0013/ui/00_message/npc/base/n0013.smc.json | SituationData.EndQuestId | EndQuestId | quest 30260 (Hopes' Bitter End) / Lise / GroupSerial=24557 / "GroupSerial=24557, QuestWindow=30250-30260 (The Relics of the First King -> Hopes' Bitter End), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0013 \| Quest-gated NPC chatter \| QuestWindow=30250-30260 (The Relics of the First King -> Hopes' Bitter End) / MSS: Lise / Elliot, come on, you say it's okay too much! | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0013/ui/00_message/npc/base/n0013.smc.json | SituationData.StartQuestId | StartQuestId | quest 30260 (Hopes' Bitter End) / Lise / GroupSerial=24558 / "GroupSerial=24558, QuestWindow=30260-30270 (Hopes' Bitter End -> Those Who Follow the Dragon), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0013 \| Quest-gated NPC chatter \| QuestWindow=30260-30270 (Hopes' Bitter End -> Those Who Follow the Dragon) / MSS: Lise / Prince Nedo will become a dragon someday. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0014/ui/00_message/npc/base/n0014.smc.json | SituationData.StartQuestId | StartQuestId | quest 30260 (Hopes' Bitter End) / Mayleaf / GroupSerial=24836 / "GroupSerial=24836, QuestWindow=30260-30270 (Hopes' Bitter End -> Those Who Follow the Dragon), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0014 \| Quest-gated NPC chatter \| QuestWindow=30260-30270 (Hopes' Bitter End -> Those Who Follow the Dragon) / MSS: Mayleaf / Is it all finished? | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0021/ui/00_message/npc/base/n0021.smc.json | SituationData.EndQuestId | EndQuestId | quest 30260 (Hopes' Bitter End) / Elliot / GroupSerial=24582 / "GroupSerial=24582, QuestWindow=30250-30260 (The Relics of the First King -> Hopes' Bitter End), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0021 \| Quest-gated NPC chatter \| QuestWindow=30250-30260 (The Relics of the First King -> Hopes' Bitter End) / MSS: Elliot / I'm fine! | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0021/ui/00_message/npc/base/n0021.smc.json | SituationData.StartQuestId | StartQuestId | quest 30260 (Hopes' Bitter End) / Elliot / GroupSerial=24583 / "GroupSerial=24583, QuestWindow=30260-30270 (Hopes' Bitter End -> Those Who Follow the Dragon), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0021 \| Quest-gated NPC chatter \| QuestWindow=30260-30270 (Hopes' Bitter End -> Those Who Follow the Dragon) / MSS: Elliot / Ahahaha— | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0029/ui/00_message/npc/base/n0029.smc.json | SituationData.StartQuestId | StartQuestId | quest 30260 (Hopes' Bitter End) / Nedo / GroupSerial=24920 / "GroupSerial=24920, QuestWindow=30260-30270 (Hopes' Bitter End -> Those Who Follow the Dragon), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0029 \| Quest-gated NPC chatter \| QuestWindow=30260-30270 (Hopes' Bitter End -> Those Who Follow the Dragon) / MSS: Nedo / Oh Captain, | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0030/ui/00_message/npc/base/n0030.smc.json | SituationData.EndQuestId | EndQuestId | quest 30260 (Hopes' Bitter End) / Gillian / GroupSerial=24610 / "GroupSerial=24610, QuestWindow=30250-30260 (The Relics of the First King -> Hopes' Bitter End), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0030 \| Quest-gated NPC chatter \| QuestWindow=30250-30260 (The Relics of the First King -> Hopes' Bitter End) / MSS: Gillian / Finally, the decisive battle—. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0030/ui/00_message/npc/base/n0030.smc.json | SituationData.StartQuestId | StartQuestId | quest 30260 (Hopes' Bitter End) / Gillian / GroupSerial=24611 / "GroupSerial=24611, QuestWindow=30260-30270 (Hopes' Bitter End -> Those Who Follow the Dragon), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0030 \| Quest-gated NPC chatter \| QuestWindow=30260-30270 (Hopes' Bitter End -> Those Who Follow the Dragon) / MSS: Gillian / Once this situation here settles down, I will | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0031/ui/00_message/npc/base/n0031.smc.json | SituationData.EndQuestId | EndQuestId | quest 30260 (Hopes' Bitter End) / Meirova / GroupSerial=24760 / "GroupSerial=24760, QuestWindow=30250-30260 (The Relics of the First King -> Hopes' Bitter End), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0031 \| Quest-gated NPC chatter \| QuestWindow=30250-30260 (The Relics of the First King -> Hopes' Bitter End) / MSS: Meirova / There's no choice but to move forward. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0031/ui/00_message/npc/base/n0031.smc.json | SituationData.StartQuestId | StartQuestId | quest 30260 (Hopes' Bitter End) / Meirova / GroupSerial=24761 / "GroupSerial=24761, QuestWindow=30260-30270 (Hopes' Bitter End -> Those Who Follow the Dragon), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0031 \| Quest-gated NPC chatter \| QuestWindow=30260-30270 (Hopes' Bitter End -> Those Who Follow the Dragon) / MSS: Meirova / There are many things that I need to discuss with | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0032/ui/00_message/npc/base/n0032.smc.json | SituationData.EndQuestId | EndQuestId | quest 30260 (Hopes' Bitter End) / Gerhard / GroupSerial=24783 / "GroupSerial=24783, QuestWindow=30240-30260 (The Dreadful Passage -> Hopes' Bitter End), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0032 \| Quest-gated NPC chatter \| QuestWindow=30240-30260 (The Dreadful Passage -> Hopes' Bitter End) / MSS: Gerhard / As soon as preparations are complete, I plan to | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0032/ui/00_message/npc/base/n0032.smc.json | SituationData.StartQuestId | StartQuestId | quest 30260 (Hopes' Bitter End) / Gerhard / GroupSerial=24784 / "GroupSerial=24784, QuestWindow=30260-30270 (Hopes' Bitter End -> Those Who Follow the Dragon), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0032 \| Quest-gated NPC chatter \| QuestWindow=30260-30270 (Hopes' Bitter End -> Those Who Follow the Dragon) / MSS: Gerhard / Thank you all for your hard work. I will pray | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0033/ui/00_message/npc/base/n0033.smc.json | SituationData.EndQuestId | EndQuestId | quest 30260 (Hopes' Bitter End) / Bertha / GroupSerial=24939 / "GroupSerial=24939, QuestWindow=30250-30260 (The Relics of the First King -> Hopes' Bitter End), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window end" / NpcChatter=n0033 \| Quest-gated NPC chatter \| QuestWindow=30250-30260 (The Relics of the First King -> Hopes' Bitter End) / MSS: Bertha / The inside of the castle is quiet. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0033/ui/00_message/npc/base/n0033.smc.json | SituationData.StartQuestId | StartQuestId | quest 30260 (Hopes' Bitter End) / Bertha / GroupSerial=24940 / "GroupSerial=24940, QuestWindow=30260-30270 (Hopes' Bitter End -> Those Who Follow the Dragon), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0033 \| Quest-gated NPC chatter \| QuestWindow=30260-30270 (Hopes' Bitter End -> Those Who Follow the Dragon) / MSS: Bertha / I heard a rumor about what happened to Phindym's | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0034/ui/00_message/npc/base/n0034.smc.json | SituationData.EndQuestId | EndQuestId | quest 30260 (Hopes' Bitter End) / Quintus / GroupSerial=24739 / "GroupSerial=24739, QuestWindow=30240-30260 (The Dreadful Passage -> Hopes' Bitter End), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0034 \| Quest-gated NPC chatter \| QuestWindow=30240-30260 (The Dreadful Passage -> Hopes' Bitter End) / MSS: Quintus / When we met you, our hearts were like dark | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0034/ui/00_message/npc/base/n0034.smc.json | SituationData.StartQuestId | StartQuestId | quest 30260 (Hopes' Bitter End) / Quintus / GroupSerial=24740 / "GroupSerial=24740, QuestWindow=30260-30270 (Hopes' Bitter End -> Those Who Follow the Dragon), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0034 \| Quest-gated NPC chatter \| QuestWindow=30260-30270 (Hopes' Bitter End -> Those Who Follow the Dragon) / MSS: Quintus / I am considering a plan to strengthen this | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0501/ui/00_message/npc/base/n0501.smc.json | SituationData.EndQuestId | EndQuestId | quest 30260 (Hopes' Bitter End) / Gurdolin / GroupSerial=24533 / "GroupSerial=24533, QuestWindow=30250-30260 (The Relics of the First King -> Hopes' Bitter End), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0501 \| Quest-gated NPC chatter \| QuestWindow=30250-30260 (The Relics of the First King -> Hopes' Bitter End) / MSS: Gurdolin / Well, in this situation, there's nothing else to | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0501/ui/00_message/npc/base/n0501.smc.json | SituationData.StartQuestId | StartQuestId | quest 30260 (Hopes' Bitter End) / Gurdolin / GroupSerial=24534 / "GroupSerial=24534, QuestWindow=30260-30270 (Hopes' Bitter End -> Those Who Follow the Dragon), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0501 \| Quest-gated NPC chatter \| QuestWindow=30260-30270 (Hopes' Bitter End -> Those Who Follow the Dragon) / MSS: Gurdolin / I'm going to sleep—Oh, what the heck, I'll | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n1003/ui/00_message/npc/base/n1003.smc.json | SituationData.StartQuestId | StartQuestId | quest 30260 (Hopes' Bitter End) / Pamela / GroupSerial=24839 / "GroupSerial=24839, QuestWindow=30260-30270 (Hopes' Bitter End -> Those Who Follow the Dragon), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n1003 \| Quest-gated NPC chatter \| QuestWindow=30260-30270 (Hopes' Bitter End -> Those Who Follow the Dragon) / MSS: Pamela / I suppose Mayleaf and I experience time quite | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n2951/ui/00_message/npc/base/n2951.smc.json | SituationData.StartQuestId | StartQuestId | quest 30260 (Hopes' Bitter End) / Sly / GroupSerial=24803 / "GroupSerial=24803, QuestWindow=30260-30270 (Hopes' Bitter End -> Those Who Follow the Dragon), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n2951 \| Quest-gated NPC chatter \| QuestWindow=30260-30270 (Hopes' Bitter End -> Those Who Follow the Dragon) / MSS: Sly / The chief's already surrounded by Prince Nedo's | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n2952/ui/00_message/npc/base/n2952.smc.json | SituationData.StartQuestId | StartQuestId | quest 30260 (Hopes' Bitter End) / Raven / GroupSerial=24806 / "GroupSerial=24806, QuestWindow=30260-30270 (Hopes' Bitter End -> Those Who Follow the Dragon), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n2952 \| Quest-gated NPC chatter \| QuestWindow=30260-30270 (Hopes' Bitter End -> Those Who Follow the Dragon) / MSS: Raven / The intellect of a bandit is sharp and cold. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n3051/ui/00_message/npc/base/n3051.smc.json | SituationData.StartQuestId | StartQuestId | quest 30260 (Hopes' Bitter End) / Yuri / GroupSerial=24809 / "GroupSerial=24809, QuestWindow=30260-30270 (Hopes' Bitter End -> Those Who Follow the Dragon), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n3051 \| Quest-gated NPC chatter \| QuestWindow=30260-30270 (Hopes' Bitter End -> Those Who Follow the Dragon) / MSS: Yuri / Whatever happens to Acre Selund from now on, at | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n3052/ui/00_message/npc/base/n3052.smc.json | SituationData.StartQuestId | StartQuestId | quest 30260 (Hopes' Bitter End) / Ross / GroupSerial=24812 / "GroupSerial=24812, QuestWindow=30260-30270 (Hopes' Bitter End -> Those Who Follow the Dragon), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n3052 \| Quest-gated NPC chatter \| QuestWindow=30260-30270 (Hopes' Bitter End -> Those Who Follow the Dragon) / MSS: Ross / To be able to end the battle and live on, I am so | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0001/ui/00_message/npc/base/n0001.smc.json[client/03040008/npc/n0001/ui/00_message/npc/base/n0001.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30260 (Hopes' Bitter End) / The White Dragon / GroupSerial=24430 / "GroupSerial=24430, QuestWindow=30250-30260 (The Relics of the First King -> Hopes' Bitter End), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0001 \| Quest-gated NPC chatter \| QuestWindow=30250-30260 (The Relics of the First King -> Hopes' Bitter End) / MSS: The White Dragon / Fix thy watchful gaze upon the malevolent Dragon, | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0001/ui/00_message/npc/base/n0001.smc.json[client/03040008/npc/n0001/ui/00_message/npc/base/n0001.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30260 (Hopes' Bitter End) / The White Dragon / GroupSerial=24431 / "GroupSerial=24431, QuestWindow=30260-30270 (Hopes' Bitter End -> Those Who Follow the Dragon), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0001 \| Quest-gated NPC chatter \| QuestWindow=30260-30270 (Hopes' Bitter End -> Those Who Follow the Dragon) / MSS: The White Dragon / I bear tidings of grave import... | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json[client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30260 (Hopes' Bitter End) / Klaus / GroupSerial=24499 / "GroupSerial=24499, QuestWindow=30250-30260 (The Relics of the First King -> Hopes' Bitter End), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0003 \| Quest-gated NPC chatter \| QuestWindow=30250-30260 (The Relics of the First King -> Hopes' Bitter End) / MSS: Klaus / It would be better to quickly head towards Acre | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json[client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30260 (Hopes' Bitter End) / Klaus / GroupSerial=24500 / "GroupSerial=24500, QuestWindow=30260-30270 (Hopes' Bitter End -> Those Who Follow the Dragon), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0003 \| Quest-gated NPC chatter \| QuestWindow=30260-30270 (Hopes' Bitter End -> Those Who Follow the Dragon) / MSS: Klaus / Cannot we consider the "Evil Dragon" as a child | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json[client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30260 (Hopes' Bitter End) / Joseph / GroupSerial=24470 / "GroupSerial=24470, QuestWindow=30250-30260 (The Relics of the First King -> Hopes' Bitter End), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0004 \| Quest-gated NPC chatter \| QuestWindow=30250-30260 (The Relics of the First King -> Hopes' Bitter End) / MSS: Joseph / Dragon and Dragon Force, along with the blessings | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json[client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30260 (Hopes' Bitter End) / Joseph / GroupSerial=24471 / "GroupSerial=24471, QuestWindow=30260-30270 (Hopes' Bitter End -> Those Who Follow the Dragon), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0004 \| Quest-gated NPC chatter \| QuestWindow=30260-30270 (Hopes' Bitter End -> Those Who Follow the Dragon) / MSS: Joseph / Well, well... | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0007/ui/00_message/npc/base/n0007.smc.json[client/03040008/npc/n0007/ui/00_message/npc/base/n0007.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30260 (Hopes' Bitter End) / Gerd / GroupSerial=24824 / "GroupSerial=24824, QuestWindow=30260-30270 (Hopes' Bitter End -> Those Who Follow the Dragon), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0007 \| Quest-gated NPC chatter \| QuestWindow=30260-30270 (Hopes' Bitter End -> Those Who Follow the Dragon) / MSS: Gerd / It’s as if you were destined to save the Dragon. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0012/ui/00_message/npc/base/n0012.smc.json[client/03040008/npc/n0012/ui/00_message/npc/base/n0012.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30260 (Hopes' Bitter End) / Fabio / GroupSerial=24832 / "GroupSerial=24832, QuestWindow=30260-30270 (Hopes' Bitter End -> Those Who Follow the Dragon), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0012 \| Quest-gated NPC chatter \| QuestWindow=30260-30270 (Hopes' Bitter End -> Those Who Follow the Dragon) / MSS: Fabio / For a moment, I thought I was done for. If things | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0013/ui/00_message/npc/base/n0013.smc.json[client/03040008/npc/n0013/ui/00_message/npc/base/n0013.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30260 (Hopes' Bitter End) / Lise / GroupSerial=24557 / "GroupSerial=24557, QuestWindow=30250-30260 (The Relics of the First King -> Hopes' Bitter End), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0013 \| Quest-gated NPC chatter \| QuestWindow=30250-30260 (The Relics of the First King -> Hopes' Bitter End) / MSS: Lise / Elliot, come on, you say it's okay too much! | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0013/ui/00_message/npc/base/n0013.smc.json[client/03040008/npc/n0013/ui/00_message/npc/base/n0013.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30260 (Hopes' Bitter End) / Lise / GroupSerial=24558 / "GroupSerial=24558, QuestWindow=30260-30270 (Hopes' Bitter End -> Those Who Follow the Dragon), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0013 \| Quest-gated NPC chatter \| QuestWindow=30260-30270 (Hopes' Bitter End -> Those Who Follow the Dragon) / MSS: Lise / Prince Nedo will become a dragon someday. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0014/ui/00_message/npc/base/n0014.smc.json[client/03040008/npc/n0014/ui/00_message/npc/base/n0014.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30260 (Hopes' Bitter End) / Mayleaf / GroupSerial=24836 / "GroupSerial=24836, QuestWindow=30260-30270 (Hopes' Bitter End -> Those Who Follow the Dragon), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0014 \| Quest-gated NPC chatter \| QuestWindow=30260-30270 (Hopes' Bitter End -> Those Who Follow the Dragon) / MSS: Mayleaf / Is it all finished? | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0021/ui/00_message/npc/base/n0021.smc.json[client/03040008/npc/n0021/ui/00_message/npc/base/n0021.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30260 (Hopes' Bitter End) / Elliot / GroupSerial=24582 / "GroupSerial=24582, QuestWindow=30250-30260 (The Relics of the First King -> Hopes' Bitter End), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0021 \| Quest-gated NPC chatter \| QuestWindow=30250-30260 (The Relics of the First King -> Hopes' Bitter End) / MSS: Elliot / I'm fine! | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0021/ui/00_message/npc/base/n0021.smc.json[client/03040008/npc/n0021/ui/00_message/npc/base/n0021.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30260 (Hopes' Bitter End) / Elliot / GroupSerial=24583 / "GroupSerial=24583, QuestWindow=30260-30270 (Hopes' Bitter End -> Those Who Follow the Dragon), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0021 \| Quest-gated NPC chatter \| QuestWindow=30260-30270 (Hopes' Bitter End -> Those Who Follow the Dragon) / MSS: Elliot / Ahahaha— | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0029/ui/00_message/npc/base/n0029.smc.json[client/03040008/npc/n0029/ui/00_message/npc/base/n0029.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30260 (Hopes' Bitter End) / Nedo / GroupSerial=24920 / "GroupSerial=24920, QuestWindow=30260-30270 (Hopes' Bitter End -> Those Who Follow the Dragon), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0029 \| Quest-gated NPC chatter \| QuestWindow=30260-30270 (Hopes' Bitter End -> Those Who Follow the Dragon) / MSS: Nedo / Oh Captain, | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0030/ui/00_message/npc/base/n0030.smc.json[client/03040008/npc/n0030/ui/00_message/npc/base/n0030.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30260 (Hopes' Bitter End) / Gillian / GroupSerial=24610 / "GroupSerial=24610, QuestWindow=30250-30260 (The Relics of the First King -> Hopes' Bitter End), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0030 \| Quest-gated NPC chatter \| QuestWindow=30250-30260 (The Relics of the First King -> Hopes' Bitter End) / MSS: Gillian / Finally, the decisive battle—. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0030/ui/00_message/npc/base/n0030.smc.json[client/03040008/npc/n0030/ui/00_message/npc/base/n0030.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30260 (Hopes' Bitter End) / Gillian / GroupSerial=24611 / "GroupSerial=24611, QuestWindow=30260-30270 (Hopes' Bitter End -> Those Who Follow the Dragon), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0030 \| Quest-gated NPC chatter \| QuestWindow=30260-30270 (Hopes' Bitter End -> Those Who Follow the Dragon) / MSS: Gillian / Once this situation here settles down, I will | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0031/ui/00_message/npc/base/n0031.smc.json[client/03040008/npc/n0031/ui/00_message/npc/base/n0031.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30260 (Hopes' Bitter End) / Meirova / GroupSerial=24760 / "GroupSerial=24760, QuestWindow=30250-30260 (The Relics of the First King -> Hopes' Bitter End), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0031 \| Quest-gated NPC chatter \| QuestWindow=30250-30260 (The Relics of the First King -> Hopes' Bitter End) / MSS: Meirova / There's no choice but to move forward. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0031/ui/00_message/npc/base/n0031.smc.json[client/03040008/npc/n0031/ui/00_message/npc/base/n0031.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30260 (Hopes' Bitter End) / Meirova / GroupSerial=24761 / "GroupSerial=24761, QuestWindow=30260-30270 (Hopes' Bitter End -> Those Who Follow the Dragon), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0031 \| Quest-gated NPC chatter \| QuestWindow=30260-30270 (Hopes' Bitter End -> Those Who Follow the Dragon) / MSS: Meirova / There are many things that I need to discuss with | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0032/ui/00_message/npc/base/n0032.smc.json[client/03040008/npc/n0032/ui/00_message/npc/base/n0032.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30260 (Hopes' Bitter End) / Gerhard / GroupSerial=24783 / "GroupSerial=24783, QuestWindow=30240-30260 (The Dreadful Passage -> Hopes' Bitter End), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0032 \| Quest-gated NPC chatter \| QuestWindow=30240-30260 (The Dreadful Passage -> Hopes' Bitter End) / MSS: Gerhard / As soon as preparations are complete, I plan to | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0032/ui/00_message/npc/base/n0032.smc.json[client/03040008/npc/n0032/ui/00_message/npc/base/n0032.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30260 (Hopes' Bitter End) / Gerhard / GroupSerial=24784 / "GroupSerial=24784, QuestWindow=30260-30270 (Hopes' Bitter End -> Those Who Follow the Dragon), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0032 \| Quest-gated NPC chatter \| QuestWindow=30260-30270 (Hopes' Bitter End -> Those Who Follow the Dragon) / MSS: Gerhard / Thank you all for your hard work. I will pray | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0033/ui/00_message/npc/base/n0033.smc.json[client/03040008/npc/n0033/ui/00_message/npc/base/n0033.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30260 (Hopes' Bitter End) / Bertha / GroupSerial=24939 / "GroupSerial=24939, QuestWindow=30250-30260 (The Relics of the First King -> Hopes' Bitter End), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window end" / NpcChatter=n0033 \| Quest-gated NPC chatter \| QuestWindow=30250-30260 (The Relics of the First King -> Hopes' Bitter End) / MSS: Bertha / The inside of the castle is quiet. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0033/ui/00_message/npc/base/n0033.smc.json[client/03040008/npc/n0033/ui/00_message/npc/base/n0033.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30260 (Hopes' Bitter End) / Bertha / GroupSerial=24940 / "GroupSerial=24940, QuestWindow=30260-30270 (Hopes' Bitter End -> Those Who Follow the Dragon), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0033 \| Quest-gated NPC chatter \| QuestWindow=30260-30270 (Hopes' Bitter End -> Those Who Follow the Dragon) / MSS: Bertha / I heard a rumor about what happened to Phindym's | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0034/ui/00_message/npc/base/n0034.smc.json[client/03040008/npc/n0034/ui/00_message/npc/base/n0034.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30260 (Hopes' Bitter End) / Quintus / GroupSerial=24739 / "GroupSerial=24739, QuestWindow=30240-30260 (The Dreadful Passage -> Hopes' Bitter End), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0034 \| Quest-gated NPC chatter \| QuestWindow=30240-30260 (The Dreadful Passage -> Hopes' Bitter End) / MSS: Quintus / When we met you, our hearts were like dark | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0034/ui/00_message/npc/base/n0034.smc.json[client/03040008/npc/n0034/ui/00_message/npc/base/n0034.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30260 (Hopes' Bitter End) / Quintus / GroupSerial=24740 / "GroupSerial=24740, QuestWindow=30260-30270 (Hopes' Bitter End -> Those Who Follow the Dragon), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0034 \| Quest-gated NPC chatter \| QuestWindow=30260-30270 (Hopes' Bitter End -> Those Who Follow the Dragon) / MSS: Quintus / I am considering a plan to strengthen this | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0501/ui/00_message/npc/base/n0501.smc.json[client/03040008/npc/n0501/ui/00_message/npc/base/n0501.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30260 (Hopes' Bitter End) / Gurdolin / GroupSerial=24533 / "GroupSerial=24533, QuestWindow=30250-30260 (The Relics of the First King -> Hopes' Bitter End), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0501 \| Quest-gated NPC chatter \| QuestWindow=30250-30260 (The Relics of the First King -> Hopes' Bitter End) / MSS: Gurdolin / Well, in this situation, there's nothing else to | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0501/ui/00_message/npc/base/n0501.smc.json[client/03040008/npc/n0501/ui/00_message/npc/base/n0501.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30260 (Hopes' Bitter End) / Gurdolin / GroupSerial=24534 / "GroupSerial=24534, QuestWindow=30260-30270 (Hopes' Bitter End -> Those Who Follow the Dragon), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0501 \| Quest-gated NPC chatter \| QuestWindow=30260-30270 (Hopes' Bitter End -> Those Who Follow the Dragon) / MSS: Gurdolin / I'm going to sleep—Oh, what the heck, I'll | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n1003/ui/00_message/npc/base/n1003.smc.json[client/03040008/npc/n1003/ui/00_message/npc/base/n1003.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30260 (Hopes' Bitter End) / Pamela / GroupSerial=24839 / "GroupSerial=24839, QuestWindow=30260-30270 (Hopes' Bitter End -> Those Who Follow the Dragon), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n1003 \| Quest-gated NPC chatter \| QuestWindow=30260-30270 (Hopes' Bitter End -> Those Who Follow the Dragon) / MSS: Pamela / I suppose Mayleaf and I experience time quite | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n2951/ui/00_message/npc/base/n2951.smc.json[client/03040008/npc/n2951/ui/00_message/npc/base/n2951.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30260 (Hopes' Bitter End) / Sly / GroupSerial=24803 / "GroupSerial=24803, QuestWindow=30260-30270 (Hopes' Bitter End -> Those Who Follow the Dragon), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n2951 \| Quest-gated NPC chatter \| QuestWindow=30260-30270 (Hopes' Bitter End -> Those Who Follow the Dragon) / MSS: Sly / The chief's already surrounded by Prince Nedo's | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n2952/ui/00_message/npc/base/n2952.smc.json[client/03040008/npc/n2952/ui/00_message/npc/base/n2952.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30260 (Hopes' Bitter End) / Raven / GroupSerial=24806 / "GroupSerial=24806, QuestWindow=30260-30270 (Hopes' Bitter End -> Those Who Follow the Dragon), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n2952 \| Quest-gated NPC chatter \| QuestWindow=30260-30270 (Hopes' Bitter End -> Those Who Follow the Dragon) / MSS: Raven / The intellect of a bandit is sharp and cold. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n3051/ui/00_message/npc/base/n3051.smc.json[client/03040008/npc/n3051/ui/00_message/npc/base/n3051.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30260 (Hopes' Bitter End) / Yuri / GroupSerial=24809 / "GroupSerial=24809, QuestWindow=30260-30270 (Hopes' Bitter End -> Those Who Follow the Dragon), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n3051 \| Quest-gated NPC chatter \| QuestWindow=30260-30270 (Hopes' Bitter End -> Those Who Follow the Dragon) / MSS: Yuri / Whatever happens to Acre Selund from now on, at | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n3052/ui/00_message/npc/base/n3052.smc.json[client/03040008/npc/n3052/ui/00_message/npc/base/n3052.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30260 (Hopes' Bitter End) / Ross / GroupSerial=24812 / "GroupSerial=24812, QuestWindow=30260-30270 (Hopes' Bitter End -> Those Who Follow the Dragon), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n3052 \| Quest-gated NPC chatter \| QuestWindow=30260-30270 (Hopes' Bitter End -> Those Who Follow the Dragon) / MSS: Ross / To be able to end the battle and live on, I am so | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
 |===
 
 ==== opaque_fsm -- 2 hit(s)
 
-[cols="1,1,3,3,2,3,3",options="header"]
+[cols="1,1,1,3,3,2,3,3",options="header"]
 |===
-| Family | Confidence | File | JSON Path | Field | Context | Why
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
 
-| FSM | 78 | client/03040008/quest/q00030260/quest/00030260/npc/n0030.fsm.json | Process.Parameter.QuestId | QuestId | quest 30260 (Hopes' Bitter End) / Gillian / checkMyQuestFlag \| NPCFSM=n0030 \| QuestLocalNPCFSM | Quest-local NPC FSM MyQuest check; these files usually describe NPC behavior for the same quest, so this flag likely controls that NPC's quest-specific presence or behavior.
-| FSM | 78 | client/03040008/quest/q00030260/quest/00030260/npc/n0031.fsm.json | Process.Parameter.QuestId | QuestId | quest 30260 (Hopes' Bitter End) / Meirova / checkMyQuestFlag \| NPCFSM=n0031 \| QuestLocalNPCFSM | Quest-local NPC FSM MyQuest check; these files usually describe NPC behavior for the same quest, so this flag likely controls that NPC's quest-specific presence or behavior.
+| FSM | Direct | 78 | link:../../../../client/03040008/quest/q00030260/quest/00030260/npc/n0030.fsm.json[client/03040008/quest/q00030260/quest/00030260/npc/n0030.fsm.json] | Process.Parameter.QuestId | QuestId | quest 30260 (Hopes' Bitter End) / Gillian / checkMyQuestFlag \| NPCFSM=n0030 \| QuestLocalNPCFSM | Quest-local NPC FSM MyQuest check; these files usually describe NPC behavior for the same quest, so this flag likely controls that NPC's quest-specific presence or behavior.
+| FSM | Direct | 78 | link:../../../../client/03040008/quest/q00030260/quest/00030260/npc/n0031.fsm.json[client/03040008/quest/q00030260/quest/00030260/npc/n0031.fsm.json] | Process.Parameter.QuestId | QuestId | quest 30260 (Hopes' Bitter End) / Meirova / checkMyQuestFlag \| NPCFSM=n0031 \| QuestLocalNPCFSM | Quest-local NPC FSM MyQuest check; these files usually describe NPC behavior for the same quest, so this flag likely controls that NPC's quest-specific presence or behavior.
 |===
 

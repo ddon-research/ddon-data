@@ -4,6 +4,7 @@ from __future__ import annotations
 import orjson
 from pathlib import Path
 
+from asciidoc_links import build_json_file_link
 from candidate_finder import collect_candidate_json_hits
 
 
@@ -61,8 +62,13 @@ def main() -> None:
                 hit.get("comment") or "",
             ]
             context = " / ".join(part for part in context_parts if part)
+            file_link = build_json_file_link(
+                str(hit.get("file_path") or ""),
+                report_dir=OUTPUT_ADOC.parent,
+                json_path=str(hit.get("json_path") or ""),
+            )
             lines.append(
-                f"| {hit['evidence_tier']} | {hit['confidence']} | {hit['field_name']} | {hit['file_path']} | {hit['why']} | {context}"
+                f"| {hit['evidence_tier']} | {hit['confidence']} | {hit['field_name']} | {file_link} | {hit['why']} | {context}"
             )
         lines.append("|===")
         lines.append("")

@@ -2,11 +2,11 @@
 Test all user-specified quest/flag combinations and report which ones
 produce zero hits from the structured scanner.
 """
+from pathlib import Path
 import sys, io, orjson
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-from pathlib import Path
 from client_scanner import collect_client_json_hits
 from manifest import AUTHORITATIVE_WORLD_MANAGE_TARGETS
 

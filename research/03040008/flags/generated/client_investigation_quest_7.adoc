@@ -5,9 +5,252 @@
 
 Query mode:: quest
 Query value:: 7
-Generated at:: 2026-04-11T21:41:40.471680+00:00
+Generated at:: 2026-04-12T12:43:22.963449+00:00
 
 toc::[]
+
+Quest family:: q0 -- Main Quest
+Quest family notes:: Story progression quests and adjacent mainline quest-state flows.
+Quest family focus:: local_stage_topology_plus_external_dependencies
+
+== External Owner Indexes
+
+_These are reusable external owner catalogs inferred from stage-neighborhood cues. They are broader than the subset of flags promoted into derived dependency targets._
+
+[cols="2,1,1,2,2,2,4",options="header"]
+|===
+| Owner Quest | Family | Catalog Count | Catalog Flags | Linked Cues | Cue Sources | Why
+
+| 70000001 | q7 | 70 | 1098, 1103, 1104, 1105, 1106, 1109, 1110, 1111, 1112, 1113, 1114, 1115 +58 more | 1109, 1111, 1150, 1201, 1215, 1216, 1217, 1218 +16 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70001001 | q7 | 0 |  | 1851, 1954 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70002001 | q7 | 47 | 1098, 1103, 1104, 1105, 1106, 1109, 1110, 1111, 1112, 1113, 1114, 1115 +35 more | 1113, 1115, 1117, 3859 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70003001 | q7 | 49 | 1098, 1103, 1104, 1105, 1106, 1109, 1110, 1111, 1112, 1113, 1114, 1115 +37 more | 1098, 1104, 1106, 1119, 1121, 1123, 1202, 2429 +2 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70020001 | q7 | 8 | 2736, 3000, 3002, 3003, 3074, 3442, 3805, 4037 | 3002, 4037 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70021001 | q7 | 4 | 3278, 3650, 3753, 3861 | 3650 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70022001 | q7 | 17 | 3949, 3950, 3952, 3953, 3954, 3977, 4033, 4043, 4053, 4063, 4470, 4555 +5 more | 3950, 4043, 4470, 4555, 4557, 4806 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70023001 | q7 | 15 | 4066, 4067, 4372, 4373, 4500, 4506, 4507, 4508, 4511, 4512, 4515, 4516 +3 more | 4372, 4507, 4511, 4516 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70030001 | q7 | 46 | 5396, 5397, 5407, 5552, 5557, 5558, 5581, 5584, 5587, 5588, 5589, 5614 +34 more | 5552, 5557, 5584, 5587, 5589, 5614, 5632, 5634 +17 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70031001 | q7 | 8 | 5553, 5672, 6138, 6194, 6195, 6377, 6425, 7316 | 6194, 7316 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70032001 | q7 | 37 | 7169, 7240, 7241, 7336, 7341, 7342, 7386, 7387, 7388, 7389, 7390, 7438 +25 more | 7240, 7341, 7386, 7496, 7512, 7544, 7549, 7551 +5 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70033001 | q7 | 43 | 7826, 7827, 7876, 7888, 7889, 7916, 7917, 7954, 7955, 7965, 7966, 7967 +31 more | 7888, 7889, 7965, 7967, 7973, 8043, 8044, 8045 +6 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+|===
+
+== Family Relationship Context
+
+_These sections summarize deterministic client-side family metadata and reverse-index relationships. They are context for later owner/dependency inference, not direct quest-target promotion._
+
+=== Quest Sequence
+
+* seq no: 6
+* previous: 6 -- The Girl in the Forest
+* next: 9 -- The Assailed Fort
+
+== ARC Association Context
+
+_ARC associations are contextual only. They show which quest-stage and marker resources are bundled with this quest._
+
+* arc file: link:../../../../client/03040008/quest/q00000007.arc.json#L1[client/03040008/quest/q00000007.arc.json#L1]
+* resource count: 9
+* stage codes: st0414
+* resource families: .fsm, .gmd, .mss, .qmi, .qst, .qtd
+
+=== st0414 -- Kinoza Mineral Springs
+
+* rQuestList: quest/00000007/q00000007_st0414
+* rQuestMarkerInfo: quest/00000007/st0414_marker_npc
+
+=== unclassified
+
+* rGUIMessage: ui/00_message/quest/q00000007
+* rMsgSet: ui/00_message/examine_message/quest/quest_examine_q00000007
+* rGUIMessage: ui/00_message/examine_message/quest/quest_examine_q00000007
+* rMsgSet: ui/00_message/quest/q00000007
+* rAIFSM: quest/00000007/npc/n0012
+* rQuestTextData: ui/00_param/quest_text/q00000007_00
+* rGUIMessage: ui/00_message/quest_info/q00000007_00
+
+== Stage Neighborhood Context
+
+_Stage-neighborhood context summarizes scanner-relevant client files that share the quest's archive stage codes. This is deterministic client topology, not inferred ownership._
+
+* scanner-relevant stage files: 29
+* indexed stage codes: st0414
+
+=== st0414 -- Kinoza Mineral Springs
+
+* scanner files: 29
+* .evsi.json: 1
+* .fsm.json: 4
+* .gpl.json: 3
+* .lot.json: 16
+* .qmi.json: 3
+* .qst.json: 2
+
+== Stage Neighborhood External-State Cues
+
+_These cues are deterministic client-side observations from the quest's stage neighborhood. They are not promoted to direct quest targets yet; they highlight q6/q7-owned external state values co-located in the quest's archive stages._
+
+* cue count: 107
+* owner families: q6, q7
+
+[cols="1,1,1,2,2,2",options="header"]
+|===
+| Value | Kind | Hits | Sources | Owners | Stages
+
+| Flag 1098 | layout_flag | 1 | evsi | 70003001 | st0414
+| Flag 1104 | layout_flag | 1 | evsi | 70003001 | st0414
+| Flag 1106 | layout_flag | 1 | evsi | 70003001 | st0414
+| Flag 1109 | layout_flag | 1 | evsi | 70000001 | st0414
+| Flag 1111 | layout_flag | 1 | evsi | 70000001 | st0414
+| Flag 1113 | layout_flag | 1 | evsi | 70002001 | st0414
+| Flag 1115 | layout_flag | 1 | evsi | 70002001 | st0414
+| Flag 1117 | layout_flag | 1 | evsi | 70002001 | st0414
+| Flag 1119 | layout_flag | 1 | evsi | 70003001 | st0414
+| Flag 1121 | layout_flag | 1 | evsi | 70003001 | st0414
+| Flag 1123 | layout_flag | 1 | evsi | 70003001 | st0414
+| Flag 1150 | layout_flag | 1 | evsi | 70000001 | st0414
+| Flag 1201 | layout_flag | 1 | evsi | 70000001 | st0414
+| Flag 1202 | layout_flag | 1 | evsi | 70003001 | st0414
+| Flag 1215 | layout_flag | 1 | evsi | 70000001 | st0414
+| Flag 1216 | layout_flag | 1 | evsi | 70000001 | st0414
+| Flag 1217 | layout_flag | 1 | evsi | 70000001 | st0414
+| Flag 1218 | layout_flag | 1 | evsi | 70000001 | st0414
+| Flag 1220 | layout_flag | 1 | evsi | 70000001 | st0414
+| Flag 1221 | layout_flag | 1 | evsi | 70000001 | st0414
+| Flag 1223 | layout_flag | 1 | evsi | 70000001 | st0414
+| Flag 1224 | layout_flag | 1 | evsi | 70000001 | st0414
+| Flag 1250 | layout_flag | 1 | evsi | 70000001 | st0414
+| Flag 1262 | layout_flag | 1 | evsi | 70000001 | st0414
+| Flag 1293 | layout_flag | 1 | evsi | 70000001 | st0414
+| Flag 1297 | layout_flag | 1 | evsi | 70000001 | st0414
+| Flag 1310 | layout_flag | 1 | evsi | 70000001 | st0414
+| Flag 1317 | layout_flag | 1 | evsi | 70000001 | st0414
+| Flag 1658 | layout_flag | 1 | evsi | 70000001 | st0414
+| Flag 1671 | layout_flag | 1 | evsi | 70000001 | st0414
+|===
+
+== Bounded Graph Expansion
+
+_This graph summarizes bounded deterministic and inferred edges around the quest: quest archive stages, direct source families, stage-linked owner catalogs, promoted dependencies, reverse-index event/group links, and family-specific table edges._
+
+* max depth: 3
+* node count: 34
+* edge count: 45
+* node kinds: direct_family=5, event_viewer=12, family_context=1, owner_quest=12, quest=1, sequence_quest=2, stage=1
+* derivation: Direct=19, Graph=36, Owner Index=24
+
+=== Mermaid Graph Slice
+
+_This Mermaid flowchart shows a capped slice of the bounded graph so large quest reports stay readable while still exposing the graph structure._
+
+[mermaid]
+....
+flowchart TD
+    node_quest_7["Quest 7"]
+    node_direct_family_evsi["evsi direct hits (4)"]
+    node_direct_family_fsm["fsm direct hits (4)"]
+    node_direct_family_gpl["gpl direct hits (4)"]
+    node_direct_family_qst["qst direct hits (2)"]
+    node_direct_family_smc["smc direct hits (16)"]
+    node_family_context_quest_sequence["Quest Sequence"]
+    node_stage_st0414["st0414 -- Kinoza Mineral Springs"]
+    node_event_viewer_st0414_ev005_70003001["Event st0414/ev005"]
+    node_event_viewer_st0414_ev005_70032001["Event st0414/ev005"]
+    node_event_viewer_st0414_ev005_70020001["Event st0414/ev005"]
+    node_event_viewer_st0414_ev005_70000001["Event st0414/ev005"]
+    node_event_viewer_st0414_ev005_70030001["Event st0414/ev005"]
+    node_event_viewer_st0414_ev005_70033001["Event st0414/ev005"]
+    node_event_viewer_st0414_ev005_70002001["Event st0414/ev005"]
+    node_event_viewer_st0414_ev005_70001001["Event st0414/ev005"]
+    node_event_viewer_st0414_ev005_70031001["Event st0414/ev005"]
+    node_event_viewer_st0414_ev005_70021001["Event st0414/ev005"]
+    node_event_viewer_st0414_ev005_70023001["Event st0414/ev005"]
+    node_event_viewer_st0414_ev005_70022001["Event st0414/ev005"]
+    node_owner_quest_70000001["Owner quest 70000001 (q7)"]
+    node_owner_quest_70001001["Owner quest 70001001 (q7)"]
+    node_owner_quest_70002001["Owner quest 70002001 (q7)"]
+    node_sequence_quest_6["Quest 6"]
+    node_sequence_quest_9["Quest 9"]
+    node_quest_7 -->|direct_source_family| node_direct_family_evsi
+    node_quest_7 -->|direct_source_family| node_direct_family_fsm
+    node_quest_7 -->|direct_source_family| node_direct_family_gpl
+    node_quest_7 -->|direct_source_family| node_direct_family_qst
+    node_quest_7 -->|direct_source_family| node_direct_family_smc
+    node_quest_7 -->|family:quest_sequence| node_family_context_quest_sequence
+    node_quest_7 -->|quest_archive_stage| node_stage_st0414
+    node_family_context_quest_sequence -->|sequence_next| node_sequence_quest_9
+    node_family_context_quest_sequence -->|sequence_previous| node_sequence_quest_6
+    node_stage_st0414 -->|stage_event_viewer| node_event_viewer_st0414_ev005_70000001
+    node_stage_st0414 -->|stage_event_viewer| node_event_viewer_st0414_ev005_70001001
+    node_stage_st0414 -->|stage_event_viewer| node_event_viewer_st0414_ev005_70002001
+    node_stage_st0414 -->|stage_event_viewer| node_event_viewer_st0414_ev005_70003001
+    node_stage_st0414 -->|stage_event_viewer| node_event_viewer_st0414_ev005_70020001
+    node_stage_st0414 -->|stage_event_viewer| node_event_viewer_st0414_ev005_70021001
+    node_stage_st0414 -->|stage_event_viewer| node_event_viewer_st0414_ev005_70022001
+    node_stage_st0414 -->|stage_event_viewer| node_event_viewer_st0414_ev005_70023001
+    node_stage_st0414 -->|stage_event_viewer| node_event_viewer_st0414_ev005_70030001
+    node_stage_st0414 -->|stage_event_viewer| node_event_viewer_st0414_ev005_70031001
+    node_stage_st0414 -->|stage_event_viewer| node_event_viewer_st0414_ev005_70032001
+    node_stage_st0414 -->|stage_event_viewer| node_event_viewer_st0414_ev005_70033001
+    node_stage_st0414 -->|stage_owner_index| node_owner_quest_70000001
+    node_stage_st0414 -->|stage_owner_index| node_owner_quest_70001001
+    node_stage_st0414 -->|stage_owner_index| node_owner_quest_70002001
+    classDef direct_deterministic fill:#e8f5e9,stroke:#2e7d32,stroke-width:1px
+    classDef owner_index fill:#e3f2fd,stroke:#1565c0,stroke-width:1px
+    classDef dependency_inferred fill:#fff3e0,stroke:#ef6c00,stroke-width:1px
+    classDef graph_expanded fill:#f3e5f5,stroke:#7b1fa2,stroke-width:1px
+    classDef lower_confidence fill:#fbe9e7,stroke:#d84315,stroke-width:1px
+    classDef binary_auxiliary fill:#eceff1,stroke:#455a64,stroke-width:1px
+    class node_quest_7,node_direct_family_evsi,node_direct_family_fsm,node_direct_family_gpl,node_direct_family_qst,node_direct_family_smc,node_family_context_quest_sequence,node_stage_st0414,node_sequence_quest_6,node_sequence_quest_9 direct_deterministic
+    class node_owner_quest_70000001,node_owner_quest_70001001,node_owner_quest_70002001 owner_index
+    class node_event_viewer_st0414_ev005_70003001,node_event_viewer_st0414_ev005_70032001,node_event_viewer_st0414_ev005_70020001,node_event_viewer_st0414_ev005_70000001,node_event_viewer_st0414_ev005_70030001,node_event_viewer_st0414_ev005_70033001,node_event_viewer_st0414_ev005_70002001,node_event_viewer_st0414_ev005_70001001,node_event_viewer_st0414_ev005_70031001,node_event_viewer_st0414_ev005_70021001,node_event_viewer_st0414_ev005_70023001,node_event_viewer_st0414_ev005_70022001 graph_expanded
+....
+
+[cols="1,2,2,2,2,4",options="header"]
+|===
+| Depth | Edge | From | To | Derivation | Why
+
+| 1 | direct_source_family | quest:7 | direct-family:evsi | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | direct_source_family | quest:7 | direct-family:fsm | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | direct_source_family | quest:7 | direct-family:gpl | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | direct_source_family | quest:7 | direct-family:qst | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | direct_source_family | quest:7 | direct-family:smc | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | family_context:quest_sequence | quest:7 | family-context:quest_sequence | Direct | Family-specific decoded tables provide deterministic context for this quest.
+| 1 | quest_archive_stage | quest:7 | stage:st0414 | Direct | Quest archive topology directly links this quest to the stage code.
+| 2 | sequence_next | family-context:quest_sequence | sequence-quest:9 | Direct | QuestSequence links this quest to its neighboring sequence quest.
+| 2 | sequence_previous | family-context:quest_sequence | sequence-quest:6 | Direct | QuestSequence links this quest to its neighboring sequence quest.
+| 2 | stage_event_viewer | stage:st0414 | event-viewer:st0414:ev005:70000001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0414 | event-viewer:st0414:ev005:70001001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0414 | event-viewer:st0414:ev005:70002001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0414 | event-viewer:st0414:ev005:70003001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0414 | event-viewer:st0414:ev005:70020001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0414 | event-viewer:st0414:ev005:70021001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0414 | event-viewer:st0414:ev005:70022001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0414 | event-viewer:st0414:ev005:70023001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0414 | event-viewer:st0414:ev005:70030001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0414 | event-viewer:st0414:ev005:70031001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0414 | event-viewer:st0414:ev005:70032001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0414 | event-viewer:st0414:ev005:70033001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_owner_index | stage:st0414 | owner-quest:70000001 | Owner Index | Stage-neighborhood cues on this stage link to the reusable owner catalog.
+| 2 | stage_owner_index | stage:st0414 | owner-quest:70001001 | Owner Index | Stage-neighborhood cues on this stage link to the reusable owner catalog.
+| 2 | stage_owner_index | stage:st0414 | owner-quest:70002001 | Owner Index | Stage-neighborhood cues on this stage link to the reusable owner catalog.
+| 2 | stage_owner_index | stage:st0414 | owner-quest:70003001 | Owner Index | Stage-neighborhood cues on this stage link to the reusable owner catalog.
+| 2 | stage_owner_index | stage:st0414 | owner-quest:70020001 | Owner Index | Stage-neighborhood cues on this stage link to the reusable owner catalog.
+| 2 | stage_owner_index | stage:st0414 | owner-quest:70021001 | Owner Index | Stage-neighborhood cues on this stage link to the reusable owner catalog.
+| 2 | stage_owner_index | stage:st0414 | owner-quest:70022001 | Owner Index | Stage-neighborhood cues on this stage link to the reusable owner catalog.
+| 2 | stage_owner_index | stage:st0414 | owner-quest:70023001 | Owner Index | Stage-neighborhood cues on this stage link to the reusable owner catalog.
+| 2 | stage_owner_index | stage:st0414 | owner-quest:70030001 | Owner Index | Stage-neighborhood cues on this stage link to the reusable owner catalog.
+| 2 | stage_owner_index | stage:st0414 | owner-quest:70031001 | Owner Index | Stage-neighborhood cues on this stage link to the reusable owner catalog.
+| 2 | stage_owner_index | stage:st0414 | owner-quest:70032001 | Owner Index | Stage-neighborhood cues on this stage link to the reusable owner catalog.
+| 2 | stage_owner_index | stage:st0414 | owner-quest:70033001 | Owner Index | Stage-neighborhood cues on this stage link to the reusable owner catalog.
+| 3 | event_owner | event-viewer:st0414:ev005:70000001 | owner-quest:70000001 | Graph | The event-viewer row points to an owner quest already linked in the owner/dependency layer.
+| 3 | event_owner | event-viewer:st0414:ev005:70001001 | owner-quest:70001001 | Graph | The event-viewer row points to an owner quest already linked in the owner/dependency layer.
+| 3 | event_owner | event-viewer:st0414:ev005:70002001 | owner-quest:70002001 | Graph | The event-viewer row points to an owner quest already linked in the owner/dependency layer.
+| 3 | event_owner | event-viewer:st0414:ev005:70003001 | owner-quest:70003001 | Graph | The event-viewer row points to an owner quest already linked in the owner/dependency layer.
+| 3 | event_owner | event-viewer:st0414:ev005:70020001 | owner-quest:70020001 | Graph | The event-viewer row points to an owner quest already linked in the owner/dependency layer.
+| 3 | event_owner | event-viewer:st0414:ev005:70021001 | owner-quest:70021001 | Graph | The event-viewer row points to an owner quest already linked in the owner/dependency layer.
+| 3 | event_owner | event-viewer:st0414:ev005:70022001 | owner-quest:70022001 | Graph | The event-viewer row points to an owner quest already linked in the owner/dependency layer.
+|===
 
 == Flag Summary Matrix
 
@@ -15,12 +258,33 @@ toc::[]
 |===
 | Target | Kind | Hits | Sources | Stages | Relationships | Description
 
+| Flag 980 | layout_flag | 3 | evsi, qst | st0201, st0414 | 🎬 Event State, ⚡ Quest Condition, ❌ Quest Erase | QST local: st0414 \| QuestGroup 1
 | Quest ID 7 | quest_id | 27 | evsi, fsm, gpl, smc | st0101, st0120, st0201, st0405, st0423 +1 | 🎬 Event State, ✏️ FSM Set, 🏗️ Layout Guard +1 | Derived quest-wide association scan
 |===
 
 == Known Documented Targets
 
+* quest 7 -- Flag 980 -- QST local: st0414 | QuestGroup 1
 * Quest ID 7 -- Derived quest-wide association scan [Derived]
+
+== Flag 980 -- Quest 7
+
+origin:: derived_qst_local
+direct hits:: *3*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 3 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00000007/quest/00000007/q00000007_st0414.qst.json[client/03040008/quest/q00000007/quest/00000007/q00000007_st0414.qst.json] | QuestStageList[].QuestGrp[0].Condition | Condition | quest 7 / Kinoza Mineral Springs / "QuestGroup 1" / QuestSet=QuestSetInfoNpc \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00000007/quest/00000007/q00000007_st0414.qst.json[client/03040008/quest/q00000007/quest/00000007/q00000007_st0414.qst.json] | QuestStageList[].QuestGrp[0].EraseCondition | EraseCondition | quest 7 / Kinoza Mineral Springs / "QuestGroup 1" / QuestSet=QuestSetInfoNpc \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0201/view_st0201ev028/event/viewer/view_st0201ev028.evsi.json#L245[client/03040008/event/st0201/view_st0201ev028/event/viewer/view_st0201ev028.evsi.json#L245] | LayoutFlagArray[0].FlagNo | FlagNo | quest 7 (The House of Steam) / Audience Chamber / Event Viewer \| EVENT_NAME_st0201ev028 \| Klaus's thoughts | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+|===
 
 == Quest ID 7
 
@@ -32,44 +296,44 @@ ranked candidates:: *0*
 
 ==== direct -- 23 hit(s)
 
-[cols="1,1,3,3,2,3,3",options="header"]
+[cols="1,1,1,3,3,2,3,3",options="header"]
 |===
-| Family | Confidence | File | JSON Path | Field | Context | Why
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
 
-| GPL | 92 | client/03040008/stage/st0120/st0120/scr/st0120/etc/st0120_n.gpl.json | GroupParamBuff[7].DataLotFlag.LotFlagNo | LotFlagNo | Farana Plains / Farana Plains / GroupParam[7] \| DataCommon.Group=7 \| LayoutAreas=120 \| LayoutRefs=1 | Layout group guard; QuestNo and LayoutFlagNo here usually determine whether a stage group loads, including enemy or object visibility.
-| GPL | 92 | client/03040008/stage/st0201/st0201/scr/st0201/etc/st0201_n.gpl.json | GroupParamBuff[5].DataLotFlag.LotFlagNo | LotFlagNo | Audience Chamber / Hidell Plains / GroupParam[5] \| DataCommon.Group=8 \| LayoutAreas=201 \| LayoutRefs=1 | Layout group guard; QuestNo and LayoutFlagNo here usually determine whether a stage group loads, including enemy or object visibility.
-| GPL | 92 | client/03040008/stage/st0405/st0405/scr/st0405/etc/st0405_n.gpl.json | GroupParamBuff[6].DataLotFlag.LotFlagNo | LotFlagNo | quest 90000117 / Fort Gritten / Betland Plains / GroupParam[6] \| DataCommon.Group=12 \| LayoutAreas=405 \| LayoutRefs=1 \| LikelyLOT=st0405_00m00n_p12.lot.json \| LotTypes=SetInfoOmOld | Layout group guard; QuestNo and LayoutFlagNo here usually determine whether a stage group loads, including enemy or object visibility.
-| GPL | 92 | client/03040008/stage/st0560/st0560/scr/st0560/etc/st0560_n.gpl.json | GroupParamBuff[7].DataLotFlag.LotFlagNo | LotFlagNo | The Rift / Mysree Forest / GroupParam[7] \| DataCommon.Group=7 \| LayoutAreas=560 \| LayoutRefs=1 | Layout group guard; QuestNo and LayoutFlagNo here usually determine whether a stage group loads, including enemy or object visibility.
-| EVSI | 92 | client/03040008/event/st0101/view_st0101ev005/event/viewer/view_st0101ev005.evsi.json | FlagArray[5].FlagNo | FlagNo | quest 1 (Resolutions and Omens) / Battlefield outside Fort Gritten / Event Viewer \| EVENT_NAME_st0101ev005 \| Ark falls | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
-| EVSI | 92 | client/03040008/event/st0423/view_st0423ev000/event/viewer/view_st0423ev000.evsi.json | FlagArray[5].FlagNo | FlagNo | quest 1 (Resolutions and Omens) / Fort Gritten / Event Viewer \| EVENT_NAME_st0423ev000 \| Orc standing in the way | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
-| EVSI | 92 | client/03040008/event/st0423/view_st0423ev005/event/viewer/view_st0423ev005.evsi.json | FlagArray[5].FlagNo | FlagNo | quest 1 (Resolutions and Omens) / Fort Gritten / Event Viewer \| EVENT_NAME_st0423ev005 \| Destruction of orcs | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
-| SMC | 92 | client/03040008/npc/n0002/ui/00_message/npc/base/n0002.smc.json | SituationData.EndQuestId | EndQuestId | quest 7 (The House of Steam) / Mysial / GroupSerial=12681 / "GroupSerial=12681, QuestWindow=27-7 (The Goblin King -> The House of Steam), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0002 \| Quest-gated NPC chatter \| QuestWindow=27-7 (The Goblin King -> The House of Steam) / MSS: Mysial / The White Dragon's recovery has been a step in the | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0002/ui/00_message/npc/base/n0002.smc.json | SituationData.StartQuestId | StartQuestId | quest 7 (The House of Steam) / Mysial / GroupSerial=12654 / "GroupSerial=12654, QuestWindow=7-9 (The House of Steam -> The Assailed Fort), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0002 \| Quest-gated NPC chatter \| QuestWindow=7-9 (The House of Steam -> The Assailed Fort) / MSS: Mysial / Iris is still acting queer. Can you tell her I | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json | SituationData.EndQuestId | EndQuestId | quest 7 (The House of Steam) / Klaus / GroupSerial=12689 / "GroupSerial=12689, QuestWindow=27-7 (The Goblin King -> The House of Steam), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0003 \| Quest-gated NPC chatter \| QuestWindow=27-7 (The Goblin King -> The House of Steam) / MSS: Klaus / Despite the fact that the report on the Ark | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json | SituationData.StartQuestId | StartQuestId | quest 7 (The House of Steam) / Klaus / GroupSerial=12690 / "GroupSerial=12690, QuestWindow=7-9 (The House of Steam -> The Assailed Fort), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0003 \| Quest-gated NPC chatter \| QuestWindow=7-9 (The House of Steam -> The Assailed Fort) / MSS: Klaus / Did you talk to Iris? I cannot help but feel | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json | SituationData.EndQuestId | EndQuestId | quest 7 (The House of Steam) / Joseph / GroupSerial=12732 / "GroupSerial=12732, QuestWindow=27-7 (The Goblin King -> The House of Steam), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0004 \| Quest-gated NPC chatter \| QuestWindow=27-7 (The Goblin King -> The House of Steam) / MSS: Joseph / Did you go somewhere? Hmmm... This has the smell | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json | SituationData.StartQuestId | StartQuestId | quest 7 (The House of Steam) / Joseph / GroupSerial=12733 / "GroupSerial=12733, QuestWindow=7-9 (The House of Steam -> The Assailed Fort), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0004 \| Quest-gated NPC chatter \| QuestWindow=7-9 (The House of Steam -> The Assailed Fort) / MSS: Joseph / Is Iris really okay? | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0005/ui/00_message/npc/base/n0005.smc.json | SituationData.EndQuestId | EndQuestId | quest 7 (The House of Steam) / Leo / GroupSerial=12916 / "GroupSerial=12916, QuestWindow=27-7 (The Goblin King -> The House of Steam), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window end" / NpcChatter=n0005 \| Quest-gated NPC chatter \| QuestWindow=27-7 (The Goblin King -> The House of Steam) / MSS: Leo / You went through a lot of trouble. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0005/ui/00_message/npc/base/n0005.smc.json | SituationData.StartQuestId | StartQuestId | quest 7 (The House of Steam) / Leo / GroupSerial=12917 / "GroupSerial=12917, QuestWindow=7-9 (The House of Steam -> The Assailed Fort), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0005 \| Quest-gated NPC chatter \| QuestWindow=7-9 (The House of Steam -> The Assailed Fort) / MSS: Leo / I've heard that you took action regarding the | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0007/ui/00_message/npc/base/n0007.smc.json | SituationData.StartQuestId | StartQuestId | quest 7 (The House of Steam) / Gerd / GroupSerial=12961 / "GroupSerial=12961, QuestWindow=7-9 (The House of Steam -> The Assailed Fort), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window start" / NpcChatter=n0007 \| Quest-gated NPC chatter \| QuestWindow=7-9 (The House of Steam -> The Assailed Fort) / MSS: Gerd / It seems that Lady Vanessa of Fort Gritten is | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0008/ui/00_message/npc/base/n0008.smc.json | SituationData.EndQuestId | EndQuestId | quest 7 (The House of Steam) / Heinz / GroupSerial=12988 / "GroupSerial=12988, QuestWindow=27-7 (The Goblin King -> The House of Steam), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0008 \| Quest-gated NPC chatter \| QuestWindow=27-7 (The Goblin King -> The House of Steam) / MSS: Heinz / You look different. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0008/ui/00_message/npc/base/n0008.smc.json | SituationData.StartQuestId | StartQuestId | quest 7 (The House of Steam) / Heinz / GroupSerial=12989 / "GroupSerial=12989, QuestWindow=7-9 (The House of Steam -> The Assailed Fort), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window start" / NpcChatter=n0008 \| Quest-gated NPC chatter \| QuestWindow=7-9 (The House of Steam -> The Assailed Fort) / MSS: Heinz / It's rather noisy, isn't it— | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0011/ui/00_message/npc/base/n0011.smc.json | SituationData.EndQuestId | EndQuestId | quest 7 (The House of Steam) / Vanessa / GroupSerial=13059 / "GroupSerial=13059, QuestWindow=27-7 (The Goblin King -> The House of Steam), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0011 \| Quest-gated NPC chatter \| QuestWindow=27-7 (The Goblin King -> The House of Steam) / MSS: Vanessa / How is the temple? | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0011/ui/00_message/npc/base/n0011.smc.json | SituationData.StartQuestId | StartQuestId | quest 7 (The House of Steam) / Vanessa / GroupSerial=13060 / "GroupSerial=13060, QuestWindow=7-9 (The House of Steam -> The Assailed Fort), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0011 \| Quest-gated NPC chatter \| QuestWindow=7-9 (The House of Steam -> The Assailed Fort) / MSS: Vanessa / Don't rush like that. First, talk to Leo for | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0012/ui/00_message/npc/base/n0012.smc.json | SituationData.EndQuestId | EndQuestId | quest 7 (The House of Steam) / Fabio / GroupSerial=13979 / "GroupSerial=13979, QuestWindow=27-7 (The Goblin King -> The House of Steam), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0012 \| Quest-gated NPC chatter \| QuestWindow=27-7 (The Goblin King -> The House of Steam) / MSS: Fabio / Even if you fight, it's in vain—even if you | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0012/ui/00_message/npc/base/n0012.smc.json | SituationData.StartQuestId | StartQuestId | quest 7 (The House of Steam) / Fabio / GroupSerial=13980 / "GroupSerial=13980, QuestWindow=7-9 (The House of Steam -> The Assailed Fort), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0012 \| Quest-gated NPC chatter \| QuestWindow=7-9 (The House of Steam -> The Assailed Fort) / MSS: Fabio / I am a lucky person to have friends who worry | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0014/ui/00_message/npc/base/n0014.smc.json | SituationData.StartQuestId | StartQuestId | quest 7 (The House of Steam) / Mayleaf / GroupSerial=13102 / "GroupSerial=13102, QuestWindow=7-9 (The House of Steam -> The Assailed Fort), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0014 \| Quest-gated NPC chatter \| QuestWindow=7-9 (The House of Steam -> The Assailed Fort) / MSS: Mayleaf / I'm good friends with Iris, so I'm glad she's | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| GPL | Direct | 92 | link:../../../../client/03040008/stage/st0120/st0120/scr/st0120/etc/st0120_n.gpl.json#L934[client/03040008/stage/st0120/st0120/scr/st0120/etc/st0120_n.gpl.json#L934] | GroupParamBuff[7].DataLotFlag.LotFlagNo | LotFlagNo | Farana Plains / Farana Plains / GroupParam[7] \| DataCommon.Group=7 \| LayoutAreas=120 \| LayoutRefs=1 | Layout group guard; QuestNo and LayoutFlagNo here usually determine whether a stage group loads, including enemy or object visibility.
+| GPL | Direct | 92 | link:../../../../client/03040008/stage/st0201/st0201/scr/st0201/etc/st0201_n.gpl.json#L660[client/03040008/stage/st0201/st0201/scr/st0201/etc/st0201_n.gpl.json#L660] | GroupParamBuff[5].DataLotFlag.LotFlagNo | LotFlagNo | Audience Chamber / Hidell Plains / GroupParam[5] \| DataCommon.Group=8 \| LayoutAreas=201 \| LayoutRefs=1 | Layout group guard; QuestNo and LayoutFlagNo here usually determine whether a stage group loads, including enemy or object visibility.
+| GPL | Direct | 92 | link:../../../../client/03040008/stage/st0405/st0405/scr/st0405/etc/st0405_n.gpl.json#L807[client/03040008/stage/st0405/st0405/scr/st0405/etc/st0405_n.gpl.json#L807] | GroupParamBuff[6].DataLotFlag.LotFlagNo | LotFlagNo | quest 90000117 / Fort Gritten / Betland Plains / GroupParam[6] \| DataCommon.Group=12 \| LayoutAreas=405 \| LayoutRefs=1 \| LikelyLOT=st0405_00m00n_p12.lot.json \| LotTypes=SetInfoOmOld | Layout group guard; QuestNo and LayoutFlagNo here usually determine whether a stage group loads, including enemy or object visibility.
+| GPL | Direct | 92 | link:../../../../client/03040008/stage/st0560/st0560/scr/st0560/etc/st0560_n.gpl.json#L906[client/03040008/stage/st0560/st0560/scr/st0560/etc/st0560_n.gpl.json#L906] | GroupParamBuff[7].DataLotFlag.LotFlagNo | LotFlagNo | The Rift / Mysree Forest / GroupParam[7] \| DataCommon.Group=7 \| LayoutAreas=560 \| LayoutRefs=1 | Layout group guard; QuestNo and LayoutFlagNo here usually determine whether a stage group loads, including enemy or object visibility.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0101/view_st0101ev005/event/viewer/view_st0101ev005.evsi.json#L52[client/03040008/event/st0101/view_st0101ev005/event/viewer/view_st0101ev005.evsi.json#L52] | FlagArray[5].FlagNo | FlagNo | quest 1 (Resolutions and Omens) / Battlefield outside Fort Gritten / Event Viewer \| EVENT_NAME_st0101ev005 \| Ark falls | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0423/view_st0423ev000/event/viewer/view_st0423ev000.evsi.json#L52[client/03040008/event/st0423/view_st0423ev000/event/viewer/view_st0423ev000.evsi.json#L52] | FlagArray[5].FlagNo | FlagNo | quest 1 (Resolutions and Omens) / Fort Gritten / Event Viewer \| EVENT_NAME_st0423ev000 \| Orc standing in the way | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0423/view_st0423ev005/event/viewer/view_st0423ev005.evsi.json#L52[client/03040008/event/st0423/view_st0423ev005/event/viewer/view_st0423ev005.evsi.json#L52] | FlagArray[5].FlagNo | FlagNo | quest 1 (Resolutions and Omens) / Fort Gritten / Event Viewer \| EVENT_NAME_st0423ev005 \| Destruction of orcs | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0002/ui/00_message/npc/base/n0002.smc.json[client/03040008/npc/n0002/ui/00_message/npc/base/n0002.smc.json] | SituationData.EndQuestId | EndQuestId | quest 7 (The House of Steam) / Mysial / GroupSerial=12681 / "GroupSerial=12681, QuestWindow=27-7 (The Goblin King -> The House of Steam), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0002 \| Quest-gated NPC chatter \| QuestWindow=27-7 (The Goblin King -> The House of Steam) / MSS: Mysial / The White Dragon's recovery has been a step in the | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0002/ui/00_message/npc/base/n0002.smc.json[client/03040008/npc/n0002/ui/00_message/npc/base/n0002.smc.json] | SituationData.StartQuestId | StartQuestId | quest 7 (The House of Steam) / Mysial / GroupSerial=12654 / "GroupSerial=12654, QuestWindow=7-9 (The House of Steam -> The Assailed Fort), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0002 \| Quest-gated NPC chatter \| QuestWindow=7-9 (The House of Steam -> The Assailed Fort) / MSS: Mysial / Iris is still acting queer. Can you tell her I | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json[client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json] | SituationData.EndQuestId | EndQuestId | quest 7 (The House of Steam) / Klaus / GroupSerial=12689 / "GroupSerial=12689, QuestWindow=27-7 (The Goblin King -> The House of Steam), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0003 \| Quest-gated NPC chatter \| QuestWindow=27-7 (The Goblin King -> The House of Steam) / MSS: Klaus / Despite the fact that the report on the Ark | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json[client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json] | SituationData.StartQuestId | StartQuestId | quest 7 (The House of Steam) / Klaus / GroupSerial=12690 / "GroupSerial=12690, QuestWindow=7-9 (The House of Steam -> The Assailed Fort), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0003 \| Quest-gated NPC chatter \| QuestWindow=7-9 (The House of Steam -> The Assailed Fort) / MSS: Klaus / Did you talk to Iris? I cannot help but feel | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json[client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json] | SituationData.EndQuestId | EndQuestId | quest 7 (The House of Steam) / Joseph / GroupSerial=12732 / "GroupSerial=12732, QuestWindow=27-7 (The Goblin King -> The House of Steam), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0004 \| Quest-gated NPC chatter \| QuestWindow=27-7 (The Goblin King -> The House of Steam) / MSS: Joseph / Did you go somewhere? Hmmm... This has the smell | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json[client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json] | SituationData.StartQuestId | StartQuestId | quest 7 (The House of Steam) / Joseph / GroupSerial=12733 / "GroupSerial=12733, QuestWindow=7-9 (The House of Steam -> The Assailed Fort), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0004 \| Quest-gated NPC chatter \| QuestWindow=7-9 (The House of Steam -> The Assailed Fort) / MSS: Joseph / Is Iris really okay? | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0005/ui/00_message/npc/base/n0005.smc.json[client/03040008/npc/n0005/ui/00_message/npc/base/n0005.smc.json] | SituationData.EndQuestId | EndQuestId | quest 7 (The House of Steam) / Leo / GroupSerial=12916 / "GroupSerial=12916, QuestWindow=27-7 (The Goblin King -> The House of Steam), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window end" / NpcChatter=n0005 \| Quest-gated NPC chatter \| QuestWindow=27-7 (The Goblin King -> The House of Steam) / MSS: Leo / You went through a lot of trouble. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0005/ui/00_message/npc/base/n0005.smc.json[client/03040008/npc/n0005/ui/00_message/npc/base/n0005.smc.json] | SituationData.StartQuestId | StartQuestId | quest 7 (The House of Steam) / Leo / GroupSerial=12917 / "GroupSerial=12917, QuestWindow=7-9 (The House of Steam -> The Assailed Fort), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0005 \| Quest-gated NPC chatter \| QuestWindow=7-9 (The House of Steam -> The Assailed Fort) / MSS: Leo / I've heard that you took action regarding the | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0007/ui/00_message/npc/base/n0007.smc.json[client/03040008/npc/n0007/ui/00_message/npc/base/n0007.smc.json] | SituationData.StartQuestId | StartQuestId | quest 7 (The House of Steam) / Gerd / GroupSerial=12961 / "GroupSerial=12961, QuestWindow=7-9 (The House of Steam -> The Assailed Fort), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window start" / NpcChatter=n0007 \| Quest-gated NPC chatter \| QuestWindow=7-9 (The House of Steam -> The Assailed Fort) / MSS: Gerd / It seems that Lady Vanessa of Fort Gritten is | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0008/ui/00_message/npc/base/n0008.smc.json[client/03040008/npc/n0008/ui/00_message/npc/base/n0008.smc.json] | SituationData.EndQuestId | EndQuestId | quest 7 (The House of Steam) / Heinz / GroupSerial=12988 / "GroupSerial=12988, QuestWindow=27-7 (The Goblin King -> The House of Steam), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0008 \| Quest-gated NPC chatter \| QuestWindow=27-7 (The Goblin King -> The House of Steam) / MSS: Heinz / You look different. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0008/ui/00_message/npc/base/n0008.smc.json[client/03040008/npc/n0008/ui/00_message/npc/base/n0008.smc.json] | SituationData.StartQuestId | StartQuestId | quest 7 (The House of Steam) / Heinz / GroupSerial=12989 / "GroupSerial=12989, QuestWindow=7-9 (The House of Steam -> The Assailed Fort), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window start" / NpcChatter=n0008 \| Quest-gated NPC chatter \| QuestWindow=7-9 (The House of Steam -> The Assailed Fort) / MSS: Heinz / It's rather noisy, isn't it— | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0011/ui/00_message/npc/base/n0011.smc.json[client/03040008/npc/n0011/ui/00_message/npc/base/n0011.smc.json] | SituationData.EndQuestId | EndQuestId | quest 7 (The House of Steam) / Vanessa / GroupSerial=13059 / "GroupSerial=13059, QuestWindow=27-7 (The Goblin King -> The House of Steam), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0011 \| Quest-gated NPC chatter \| QuestWindow=27-7 (The Goblin King -> The House of Steam) / MSS: Vanessa / How is the temple? | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0011/ui/00_message/npc/base/n0011.smc.json[client/03040008/npc/n0011/ui/00_message/npc/base/n0011.smc.json] | SituationData.StartQuestId | StartQuestId | quest 7 (The House of Steam) / Vanessa / GroupSerial=13060 / "GroupSerial=13060, QuestWindow=7-9 (The House of Steam -> The Assailed Fort), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0011 \| Quest-gated NPC chatter \| QuestWindow=7-9 (The House of Steam -> The Assailed Fort) / MSS: Vanessa / Don't rush like that. First, talk to Leo for | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0012/ui/00_message/npc/base/n0012.smc.json[client/03040008/npc/n0012/ui/00_message/npc/base/n0012.smc.json] | SituationData.EndQuestId | EndQuestId | quest 7 (The House of Steam) / Fabio / GroupSerial=13979 / "GroupSerial=13979, QuestWindow=27-7 (The Goblin King -> The House of Steam), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0012 \| Quest-gated NPC chatter \| QuestWindow=27-7 (The Goblin King -> The House of Steam) / MSS: Fabio / Even if you fight, it's in vain—even if you | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0012/ui/00_message/npc/base/n0012.smc.json[client/03040008/npc/n0012/ui/00_message/npc/base/n0012.smc.json] | SituationData.StartQuestId | StartQuestId | quest 7 (The House of Steam) / Fabio / GroupSerial=13980 / "GroupSerial=13980, QuestWindow=7-9 (The House of Steam -> The Assailed Fort), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0012 \| Quest-gated NPC chatter \| QuestWindow=7-9 (The House of Steam -> The Assailed Fort) / MSS: Fabio / I am a lucky person to have friends who worry | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0014/ui/00_message/npc/base/n0014.smc.json[client/03040008/npc/n0014/ui/00_message/npc/base/n0014.smc.json] | SituationData.StartQuestId | StartQuestId | quest 7 (The House of Steam) / Mayleaf / GroupSerial=13102 / "GroupSerial=13102, QuestWindow=7-9 (The House of Steam -> The Assailed Fort), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0014 \| Quest-gated NPC chatter \| QuestWindow=7-9 (The House of Steam -> The Assailed Fort) / MSS: Mayleaf / I'm good friends with Iris, so I'm glad she's | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
 |===
 
 ==== opaque_fsm -- 4 hit(s)
 
-[cols="1,1,3,3,2,3,3",options="header"]
+[cols="1,1,1,3,3,2,3,3",options="header"]
 |===
-| Family | Confidence | File | JSON Path | Field | Context | Why
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
 
-| FSM | 64 | client/03040008/event/st0120/st0120ev050/event/st0120/ev050/fsm/st0120ev050.fsm.json | Process.Parameter.FlagNo | FlagNo | st0120 / SetLayout | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
-| FSM | 64 | client/03040008/event/st0120/st0120ev050/event/st0120/ev050/fsm/st0120ev050.fsm.json | Process.Parameter.FlagNo | FlagNo | st0120 / SetLayout | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
-| FSM | 64 | client/03040008/event/st0201/st0201ev015/event/st0201/ev015/fsm/st0201ev015.fsm.json | Process.Parameter.FlagNo | FlagNo | st0201 / SetLayout | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
-| FSM | 64 | client/03040008/event/st0201/st0201ev015/event/st0201/ev015/fsm/st0201ev015.fsm.json | Process.Parameter.FlagNo | FlagNo | st0201 / SetLayout | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/event/st0120/st0120ev050/event/st0120/ev050/fsm/st0120ev050.fsm.json[client/03040008/event/st0120/st0120ev050/event/st0120/ev050/fsm/st0120ev050.fsm.json] | Process.Parameter.FlagNo | FlagNo | st0120 / SetLayout | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/event/st0120/st0120ev050/event/st0120/ev050/fsm/st0120ev050.fsm.json[client/03040008/event/st0120/st0120ev050/event/st0120/ev050/fsm/st0120ev050.fsm.json] | Process.Parameter.FlagNo | FlagNo | st0120 / SetLayout | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/event/st0201/st0201ev015/event/st0201/ev015/fsm/st0201ev015.fsm.json[client/03040008/event/st0201/st0201ev015/event/st0201/ev015/fsm/st0201ev015.fsm.json] | Process.Parameter.FlagNo | FlagNo | st0201 / SetLayout | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/event/st0201/st0201ev015/event/st0201/ev015/fsm/st0201ev015.fsm.json[client/03040008/event/st0201/st0201ev015/event/st0201/ev015/fsm/st0201ev015.fsm.json] | Process.Parameter.FlagNo | FlagNo | st0201 / SetLayout | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
 |===
 

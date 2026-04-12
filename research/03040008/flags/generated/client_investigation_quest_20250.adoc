@@ -5,9 +5,77 @@
 
 Query mode:: quest
 Query value:: 20250
-Generated at:: 2026-04-11T21:41:40.550235+00:00
+Generated at:: 2026-04-12T12:43:34.457133+00:00
 
 toc::[]
+
+Quest family:: q2 -- World Quest
+Quest family notes:: Regional and area quests outside the main-story progression chain.
+Quest family focus:: local_stage_topology_plus_persistent_world_state
+
+== ARC Association Context
+
+_ARC associations are contextual only. They show which quest-stage and marker resources are bundled with this quest._
+
+* arc file: link:../../../../client/03040008/quest/q00020250.arc.json#L1[client/03040008/quest/q00020250.arc.json#L1]
+* resource count: 4
+* resource families: .gmd, .mss, .qtd
+
+=== unclassified
+
+* rQuestTextData: ui/00_param/quest_text/q00020250_00
+* rGUIMessage: ui/00_message/quest/q00020250
+* rMsgSet: ui/00_message/quest/q00020250
+* rGUIMessage: ui/00_message/quest_info/q00020250_00
+
+== Stage Neighborhood Context
+
+_Stage-neighborhood context summarizes scanner-relevant client files that share the quest's archive stage codes. This is deterministic client topology, not inferred ownership._
+
+* scanner-relevant stage files: 0
+
+== Stage Neighborhood External-State Cues
+
+_These cues are deterministic client-side observations from the quest's stage neighborhood. They are not promoted to direct quest targets yet; they highlight q6/q7-owned external state values co-located in the quest's archive stages._
+
+* cue count: 0
+* owner families: q6, q7
+
+== Bounded Graph Expansion
+
+_This graph summarizes bounded deterministic and inferred edges around the quest: quest archive stages, direct source families, stage-linked owner catalogs, promoted dependencies, reverse-index event/group links, and family-specific table edges._
+
+* max depth: 3
+* node count: 2
+* edge count: 1
+* node kinds: direct_family=1, quest=1
+* derivation: Direct=3
+
+=== Mermaid Graph Slice
+
+_This Mermaid flowchart shows a capped slice of the bounded graph so large quest reports stay readable while still exposing the graph structure._
+
+[mermaid]
+....
+flowchart TD
+    node_quest_20250["Quest 20250"]
+    node_direct_family_smc["smc direct hits (10)"]
+    node_quest_20250 -->|direct_source_family| node_direct_family_smc
+    classDef direct_deterministic fill:#e8f5e9,stroke:#2e7d32,stroke-width:1px
+    classDef owner_index fill:#e3f2fd,stroke:#1565c0,stroke-width:1px
+    classDef dependency_inferred fill:#fff3e0,stroke:#ef6c00,stroke-width:1px
+    classDef graph_expanded fill:#f3e5f5,stroke:#7b1fa2,stroke-width:1px
+    classDef lower_confidence fill:#fbe9e7,stroke:#d84315,stroke-width:1px
+    classDef binary_auxiliary fill:#eceff1,stroke:#455a64,stroke-width:1px
+    class node_quest_20250,node_direct_family_smc direct_deterministic
+....
+
+[cols="1,2,2,2,2,4",options="header"]
+|===
+| Depth | Edge | From | To | Derivation | Why
+
+| 1 | direct_source_family | quest:20250 | direct-family:smc | Direct | Decoded direct hits for the quest targets include this source family.
+|===
 
 == Flag Summary Matrix
 
@@ -32,19 +100,19 @@ ranked candidates:: *0*
 
 ==== direct -- 10 hit(s)
 
-[cols="1,1,3,3,2,3,3",options="header"]
+[cols="1,1,1,3,3,2,3,3",options="header"]
 |===
-| Family | Confidence | File | JSON Path | Field | Context | Why
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
 
-| SMC | 92 | client/03040008/npc/n0001/ui/00_message/npc/base/n0001.smc.json | SituationData.EndQuestId | EndQuestId | quest 20250 (The New Generation) / The White Dragon / GroupSerial=17900 / "GroupSerial=17900, QuestWindow=20240-20250 (Reason and Bonds -> The New Generation), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0001 \| Quest-gated NPC chatter \| QuestWindow=20240-20250 (Reason and Bonds -> The New Generation) / MSS: The White Dragon / A realm untethered from Order shall, by this act, | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json | SituationData.EndQuestId | EndQuestId | quest 20250 (The New Generation) / Klaus / GroupSerial=17910 / "GroupSerial=17910, QuestWindow=20240-20250 (Reason and Bonds -> The New Generation), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0003 \| Quest-gated NPC chatter \| QuestWindow=20240-20250 (Reason and Bonds -> The New Generation) / MSS: Klaus / The number of travelers to Phindym is likely to | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json | SituationData.EndQuestId | EndQuestId | quest 20250 (The New Generation) / Joseph / GroupSerial=17905 / "GroupSerial=17905, QuestWindow=20240-20250 (Reason and Bonds -> The New Generation), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0004 \| Quest-gated NPC chatter \| QuestWindow=20240-20250 (Reason and Bonds -> The New Generation) / MSS: Joseph / The complete recovery of Phindym will still take | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0013/ui/00_message/npc/base/n0013.smc.json | SituationData.EndQuestId | EndQuestId | quest 20250 (The New Generation) / Lise / GroupSerial=17932 / "GroupSerial=17932, QuestWindow=20240-20250 (Reason and Bonds -> The New Generation), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0013 \| Quest-gated NPC chatter \| QuestWindow=20240-20250 (Reason and Bonds -> The New Generation) / MSS: Lise / Sometimes the cave's shining softly, as if it's a | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0021/ui/00_message/npc/base/n0021.smc.json | SituationData.EndQuestId | EndQuestId | quest 20250 (The New Generation) / Elliot / GroupSerial=16978 / "GroupSerial=16978, QuestEnd=20250 (The New Generation), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window end" / NpcChatter=n0021 \| Quest-gated NPC chatter \| QuestEnd=20250 (The New Generation) / MSS: Elliot / Cecily's a bit stiff, or rather... | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0021/ui/00_message/npc/base/n0021.smc.json | SituationData.EndQuestId | EndQuestId | quest 20250 (The New Generation) / Elliot / GroupSerial=17937 / "GroupSerial=17937, QuestWindow=20240-20250 (Reason and Bonds -> The New Generation), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0021 \| Quest-gated NPC chatter \| QuestWindow=20240-20250 (Reason and Bonds -> The New Generation) / MSS: Elliot / Depending on how you look at it, order can be a | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0023/ui/00_message/npc/base/n0023.smc.json | SituationData.EndQuestId | EndQuestId | quest 20250 (The New Generation) / Gearóid / GroupSerial=17915 / "GroupSerial=17915, QuestWindow=20240-20250 (Reason and Bonds -> The New Generation), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0023 \| Quest-gated NPC chatter \| QuestWindow=20240-20250 (Reason and Bonds -> The New Generation) / MSS: Gearóid / I will simply wait for now; my daughter will come | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0501/ui/00_message/npc/base/n0501.smc.json | SituationData.EndQuestId | EndQuestId | quest 20250 (The New Generation) / Gurdolin / GroupSerial=17927 / "GroupSerial=17927, QuestWindow=20240-20250 (Reason and Bonds -> The New Generation), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0501 \| Quest-gated NPC chatter \| QuestWindow=20240-20250 (Reason and Bonds -> The New Generation) / MSS: Gurdolin / I'll be here a little longer just to see where it | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n2500/ui/00_message/npc/base/n2500.smc.json | SituationData.EndQuestId | EndQuestId | quest 20250 (The New Generation) / Pisarr / GroupSerial=17938 / "GroupSerial=17938, QuestWindow=20240-20250 (Reason and Bonds -> The New Generation), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n2500 \| Quest-gated NPC chatter \| QuestWindow=20240-20250 (Reason and Bonds -> The New Generation) / MSS: Pisarr / Can you sense the change in the air and the scent? | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n2610/ui/00_message/npc/base/n2610.smc.json | SituationData.EndQuestId | EndQuestId | quest 20250 (The New Generation) / Mordred / GroupSerial=17917 / "GroupSerial=17917, QuestWindow=20240-20250 (Reason and Bonds -> The New Generation), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n2610 \| Quest-gated NPC chatter \| QuestWindow=20240-20250 (Reason and Bonds -> The New Generation) / MSS: Mordred / Phindym is already fine. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0001/ui/00_message/npc/base/n0001.smc.json[client/03040008/npc/n0001/ui/00_message/npc/base/n0001.smc.json] | SituationData.EndQuestId | EndQuestId | quest 20250 (The New Generation) / The White Dragon / GroupSerial=17900 / "GroupSerial=17900, QuestWindow=20240-20250 (Reason and Bonds -> The New Generation), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0001 \| Quest-gated NPC chatter \| QuestWindow=20240-20250 (Reason and Bonds -> The New Generation) / MSS: The White Dragon / A realm untethered from Order shall, by this act, | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json[client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json] | SituationData.EndQuestId | EndQuestId | quest 20250 (The New Generation) / Klaus / GroupSerial=17910 / "GroupSerial=17910, QuestWindow=20240-20250 (Reason and Bonds -> The New Generation), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0003 \| Quest-gated NPC chatter \| QuestWindow=20240-20250 (Reason and Bonds -> The New Generation) / MSS: Klaus / The number of travelers to Phindym is likely to | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json[client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json] | SituationData.EndQuestId | EndQuestId | quest 20250 (The New Generation) / Joseph / GroupSerial=17905 / "GroupSerial=17905, QuestWindow=20240-20250 (Reason and Bonds -> The New Generation), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0004 \| Quest-gated NPC chatter \| QuestWindow=20240-20250 (Reason and Bonds -> The New Generation) / MSS: Joseph / The complete recovery of Phindym will still take | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0013/ui/00_message/npc/base/n0013.smc.json[client/03040008/npc/n0013/ui/00_message/npc/base/n0013.smc.json] | SituationData.EndQuestId | EndQuestId | quest 20250 (The New Generation) / Lise / GroupSerial=17932 / "GroupSerial=17932, QuestWindow=20240-20250 (Reason and Bonds -> The New Generation), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0013 \| Quest-gated NPC chatter \| QuestWindow=20240-20250 (Reason and Bonds -> The New Generation) / MSS: Lise / Sometimes the cave's shining softly, as if it's a | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0021/ui/00_message/npc/base/n0021.smc.json[client/03040008/npc/n0021/ui/00_message/npc/base/n0021.smc.json] | SituationData.EndQuestId | EndQuestId | quest 20250 (The New Generation) / Elliot / GroupSerial=16978 / "GroupSerial=16978, QuestEnd=20250 (The New Generation), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window end" / NpcChatter=n0021 \| Quest-gated NPC chatter \| QuestEnd=20250 (The New Generation) / MSS: Elliot / Cecily's a bit stiff, or rather... | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0021/ui/00_message/npc/base/n0021.smc.json[client/03040008/npc/n0021/ui/00_message/npc/base/n0021.smc.json] | SituationData.EndQuestId | EndQuestId | quest 20250 (The New Generation) / Elliot / GroupSerial=17937 / "GroupSerial=17937, QuestWindow=20240-20250 (Reason and Bonds -> The New Generation), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0021 \| Quest-gated NPC chatter \| QuestWindow=20240-20250 (Reason and Bonds -> The New Generation) / MSS: Elliot / Depending on how you look at it, order can be a | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0023/ui/00_message/npc/base/n0023.smc.json[client/03040008/npc/n0023/ui/00_message/npc/base/n0023.smc.json] | SituationData.EndQuestId | EndQuestId | quest 20250 (The New Generation) / Gearóid / GroupSerial=17915 / "GroupSerial=17915, QuestWindow=20240-20250 (Reason and Bonds -> The New Generation), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0023 \| Quest-gated NPC chatter \| QuestWindow=20240-20250 (Reason and Bonds -> The New Generation) / MSS: Gearóid / I will simply wait for now; my daughter will come | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0501/ui/00_message/npc/base/n0501.smc.json[client/03040008/npc/n0501/ui/00_message/npc/base/n0501.smc.json] | SituationData.EndQuestId | EndQuestId | quest 20250 (The New Generation) / Gurdolin / GroupSerial=17927 / "GroupSerial=17927, QuestWindow=20240-20250 (Reason and Bonds -> The New Generation), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0501 \| Quest-gated NPC chatter \| QuestWindow=20240-20250 (Reason and Bonds -> The New Generation) / MSS: Gurdolin / I'll be here a little longer just to see where it | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n2500/ui/00_message/npc/base/n2500.smc.json[client/03040008/npc/n2500/ui/00_message/npc/base/n2500.smc.json] | SituationData.EndQuestId | EndQuestId | quest 20250 (The New Generation) / Pisarr / GroupSerial=17938 / "GroupSerial=17938, QuestWindow=20240-20250 (Reason and Bonds -> The New Generation), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n2500 \| Quest-gated NPC chatter \| QuestWindow=20240-20250 (Reason and Bonds -> The New Generation) / MSS: Pisarr / Can you sense the change in the air and the scent? | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n2610/ui/00_message/npc/base/n2610.smc.json[client/03040008/npc/n2610/ui/00_message/npc/base/n2610.smc.json] | SituationData.EndQuestId | EndQuestId | quest 20250 (The New Generation) / Mordred / GroupSerial=17917 / "GroupSerial=17917, QuestWindow=20240-20250 (Reason and Bonds -> The New Generation), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n2610 \| Quest-gated NPC chatter \| QuestWindow=20240-20250 (Reason and Bonds -> The New Generation) / MSS: Mordred / Phindym is already fine. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
 |===
 

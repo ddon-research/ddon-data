@@ -1,11 +1,25 @@
 {
   "format": "client_investigation.v4",
-  "generated_at": "2026-04-11T21:41:41.836538+00:00",
+  "generated_at": "2026-04-12T12:44:10.574616+00:00",
   "query": {
     "mode": "quest",
     "value": 60200050
   },
   "documented_targets": [
+    {
+      "flag_value": 4368,
+      "quest_id": 60200050,
+      "flag_type": "layout_flag",
+      "doc_comment": "QST local: st0550 | QuestGroup 1 | NPCセット_n505",
+      "origin": "derived_qst_local"
+    },
+    {
+      "flag_value": 4369,
+      "quest_id": 60200050,
+      "flag_type": "layout_flag",
+      "doc_comment": "QST local: st0550 | QuestGroup 3 | OMー証",
+      "origin": "derived_qst_local"
+    },
     {
       "flag_value": 60200050,
       "quest_id": 60200050,
@@ -15,6 +29,114 @@
     }
   ],
   "targets": [
+    {
+      "target": {
+        "flag_value": 4368,
+        "quest_id": 60200050,
+        "flag_type": "layout_flag",
+        "origin": "derived_qst_local",
+        "doc_comment": "QST local: st0550 | QuestGroup 1 | NPCセット_n505"
+      },
+      "hits": [
+        {
+          "source_type": "qst",
+          "file_path": "client/03040008/quest/q60200050/quest/60200050/q60200050_st0550.qst.json",
+          "json_path": "QuestStageList[].QuestGrp[0].Condition",
+          "field_name": "Condition",
+          "flag_value": 4368,
+          "flag_kind": "layout_flag",
+          "relationship": "quest_condition",
+          "stage_name": "Training Chapel",
+          "stage_name_jp": "修練の祠",
+          "stage_code": "st0550",
+          "comment": "QuestGroup 1 | NPCセット_n505",
+          "context": "QuestSet=QuestSetInfoNpc | GroupNo=1",
+          "quest_id": 60200050,
+          "stage_no": 550,
+          "resource_family": "QST",
+          "evidence_tier": "direct",
+          "derivation_class": "direct_deterministic",
+          "confidence": 92,
+          "why": "Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes."
+        },
+        {
+          "source_type": "qst",
+          "file_path": "client/03040008/quest/q60200050/quest/60200050/q60200050_st0550.qst.json",
+          "json_path": "QuestStageList[].QuestGrp[1].Condition",
+          "field_name": "Condition",
+          "flag_value": 4368,
+          "flag_kind": "layout_flag",
+          "relationship": "quest_condition",
+          "stage_name": "Training Chapel",
+          "stage_name_jp": "修練の祠",
+          "stage_code": "st0550",
+          "comment": "QuestGroup 2 | NPCセット_n529/530",
+          "context": "QuestSet=QuestSetInfoNpc | GroupNo=2",
+          "quest_id": 60200050,
+          "stage_no": 550,
+          "resource_family": "QST",
+          "evidence_tier": "direct",
+          "derivation_class": "direct_deterministic",
+          "confidence": 92,
+          "why": "Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes."
+        }
+      ],
+      "candidate_hits": []
+    },
+    {
+      "target": {
+        "flag_value": 4369,
+        "quest_id": 60200050,
+        "flag_type": "layout_flag",
+        "origin": "derived_qst_local",
+        "doc_comment": "QST local: st0550 | QuestGroup 3 | OMー証"
+      },
+      "hits": [
+        {
+          "source_type": "qst",
+          "file_path": "client/03040008/quest/q60200050/quest/60200050/q60200050_st0550.qst.json",
+          "json_path": "QuestStageList[].QuestGrp[2].Condition",
+          "field_name": "Condition",
+          "flag_value": 4369,
+          "flag_kind": "layout_flag",
+          "relationship": "quest_condition",
+          "stage_name": "Training Chapel",
+          "stage_name_jp": "修練の祠",
+          "stage_code": "st0550",
+          "comment": "QuestGroup 3 | OMー証",
+          "context": "QuestSet=QuestSetInfoOmText | OmID=522570 | OM_ID_CMN_MSG_POINT | EnableZone | TextNo=744 | TextType=2 | TextQuestNo=60200050 | GroupNo=3",
+          "quest_id": 60200050,
+          "stage_no": 550,
+          "resource_family": "QST",
+          "evidence_tier": "direct",
+          "derivation_class": "direct_deterministic",
+          "confidence": 92,
+          "why": "Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes."
+        },
+        {
+          "source_type": "qst",
+          "file_path": "client/03040008/quest/q60200050/quest/60200050/q60200050_st0550.qst.json",
+          "json_path": "QuestStageList[].QuestGrp[2].EraseCondition",
+          "field_name": "EraseCondition",
+          "flag_value": 4369,
+          "flag_kind": "layout_flag",
+          "relationship": "quest_erase",
+          "stage_name": "Training Chapel",
+          "stage_name_jp": "修練の祠",
+          "stage_code": "st0550",
+          "comment": "QuestGroup 3 | OMー証",
+          "context": "QuestSet=QuestSetInfoOmText | OmID=522570 | OM_ID_CMN_MSG_POINT | EnableZone | TextNo=744 | TextType=2 | TextQuestNo=60200050 | GroupNo=3",
+          "quest_id": 60200050,
+          "stage_no": 550,
+          "resource_family": "QST",
+          "evidence_tier": "direct",
+          "derivation_class": "direct_deterministic",
+          "confidence": 92,
+          "why": "Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes."
+        }
+      ],
+      "candidate_hits": []
+    },
     {
       "target": {
         "flag_value": 60200050,
@@ -41,6 +163,7 @@
           "stage_no": 550,
           "resource_family": "QST",
           "evidence_tier": "direct",
+          "derivation_class": "direct_deterministic",
           "confidence": 92,
           "why": "Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes."
         },
@@ -58,6 +181,7 @@
           "quest_id": 60200050,
           "resource_family": "FSM",
           "evidence_tier": "opaque_fsm",
+          "derivation_class": "direct_deterministic",
           "confidence": 64,
           "why": "Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.",
           "npc_id": 4750,
@@ -78,6 +202,7 @@
           "quest_id": 60200050,
           "resource_family": "FSM",
           "evidence_tier": "opaque_fsm",
+          "derivation_class": "direct_deterministic",
           "confidence": 64,
           "why": "Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.",
           "npc_id": 4750,
@@ -98,6 +223,7 @@
           "quest_id": 60200050,
           "resource_family": "FSM",
           "evidence_tier": "opaque_fsm",
+          "derivation_class": "direct_deterministic",
           "confidence": 64,
           "why": "Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.",
           "npc_id": 4750,
@@ -118,6 +244,7 @@
           "quest_id": 60200050,
           "resource_family": "FSM",
           "evidence_tier": "opaque_fsm",
+          "derivation_class": "direct_deterministic",
           "confidence": 64,
           "why": "Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.",
           "npc_id": 4750,
@@ -138,6 +265,7 @@
           "quest_id": 60200050,
           "resource_family": "JTQ",
           "evidence_tier": "direct",
+          "derivation_class": "direct_deterministic",
           "confidence": 92,
           "why": "Tutorial quest registry; q6 tutorial quests are listed directly in the job tutorial quest table."
         },
@@ -156,6 +284,7 @@
           "quest_id": 60200050,
           "resource_family": "TQG",
           "evidence_tier": "direct",
+          "derivation_class": "direct_deterministic",
           "confidence": 92,
           "why": "Tutorial quest grouping; q6 tutorial quests are clustered into authored tutorial groups here."
         },
@@ -176,6 +305,7 @@
           "quest_id": 60200050,
           "resource_family": "JMC",
           "evidence_tier": "direct",
+          "derivation_class": "direct_deterministic",
           "confidence": 92,
           "why": "Job master control; this resource links tutorial and master-visit quests to a vocation mentor, area, and onboarding flow."
         }
@@ -183,9 +313,80 @@
       "candidate_hits": []
     }
   ],
+  "quest_family": {
+    "key": "q6",
+    "label": "Tutorial / Unlock / Area Trial",
+    "description": "Tutorial, area-trial, unlock, and occasional festival quests.",
+    "discovery_focus": "jtq_tqg_jmc_scaffolding",
+    "supported": true
+  },
+  "quest_family_relationships": {
+    "quest_family": {
+      "key": "q6",
+      "label": "Tutorial / Unlock / Area Trial",
+      "description": "Tutorial, area-trial, unlock, and occasional festival quests.",
+      "discovery_focus": "jtq_tqg_jmc_scaffolding",
+      "supported": true
+    },
+    "quest_sequence": {
+      "quest_id": 60200050,
+      "seq_no": 359,
+      "quest_name": "Spirit Lancer Tactics Trial: A Spirit Lance",
+      "quest_name_jp": "霊槍の証　スピリットランサー戦術試練",
+      "previous": {
+        "quest_id": 60200035,
+        "seq_no": 358,
+        "quest_name": "",
+        "quest_name_jp": ""
+      },
+      "next": {
+        "quest_id": 60200100,
+        "seq_no": 360,
+        "quest_name": "Skill Augmentation: Fighter Trial I",
+        "quest_name_jp": "戦技の継承　ファイター求道試練１"
+      }
+    },
+    "tutorial_scaffolding": {
+      "jtq_count": 1,
+      "tqg_count": 1,
+      "jmc_count": 1,
+      "tutorial_names": [
+        "Spirit Lancer Tactics Trial: A Spirit Lance"
+      ],
+      "group_ids": [
+        1
+      ],
+      "job_links": [
+        {
+          "job_tutorial_quest_id": 60200050,
+          "job_master_tutorial_quest_id": 60200051
+        }
+      ]
+    }
+  },
+  "quest_owner_indexes": [],
+  "quest_dependency_targets": [],
   "quest_archive_context": {
+    "quest_family": {
+      "key": "q6",
+      "label": "Tutorial / Unlock / Area Trial",
+      "description": "Tutorial, area-trial, unlock, and occasional festival quests.",
+      "discovery_focus": "jtq_tqg_jmc_scaffolding",
+      "supported": true
+    },
     "file_path": "client/03040008/quest/q60200050.arc.json",
     "resource_count": 10,
+    "stage_codes": [
+      "st0550"
+    ],
+    "resource_type_extensions": [
+      ".fsm",
+      ".gmd",
+      ".mss",
+      ".qmi",
+      ".qst",
+      ".qtd"
+    ],
     "stages": [
       {
         "stage_code": "st0550",
@@ -252,6 +453,308 @@
             "type_name": "rGUIMessage"
           }
         ]
+      }
+    ]
+  },
+  "quest_stage_neighborhood": {
+    "quest_family": {
+      "key": "q6",
+      "label": "Tutorial / Unlock / Area Trial",
+      "description": "Tutorial, area-trial, unlock, and occasional festival quests.",
+      "discovery_focus": "jtq_tqg_jmc_scaffolding",
+      "supported": true
+    },
+    "stage_codes": [
+      "st0550"
+    ],
+    "scanner_file_count": 101,
+    "stages": [
+      {
+        "stage_code": "st0550",
+        "stage_no": 550,
+        "stage_name": "Training Chapel",
+        "stage_name_jp": "修練の祠",
+        "scanner_file_count": 101,
+        "scanner_suffix_counts": {
+          ".gpl.json": 8,
+          ".lot.json": 23,
+          ".qmi.json": 44,
+          ".qst.json": 26
+        }
+      }
+    ]
+  },
+  "quest_stage_cues": {
+    "quest_family": {
+      "key": "q6",
+      "label": "Tutorial / Unlock / Area Trial",
+      "description": "Tutorial, area-trial, unlock, and occasional festival quests.",
+      "discovery_focus": "jtq_tqg_jmc_scaffolding",
+      "supported": true
+    },
+    "stage_codes": [
+      "st0550"
+    ],
+    "owner_families": [
+      "q6",
+      "q7"
+    ],
+    "cues": [],
+    "cue_count": 0
+  },
+  "quest_graph_expansion": {
+    "max_depth": 3,
+    "node_count": 12,
+    "edge_count": 11,
+    "node_kind_counts": {
+      "direct_family": 5,
+      "family_context": 2,
+      "quest": 1,
+      "sequence_quest": 2,
+      "stage": 1,
+      "tutorial_group": 1
+    },
+    "edge_type_counts": {
+      "direct_source_family": 5,
+      "family_context:quest_sequence": 1,
+      "family_context:tutorial_scaffolding": 1,
+      "quest_archive_stage": 1,
+      "sequence_next": 1,
+      "sequence_previous": 1,
+      "tutorial_group": 1
+    },
+    "derivation_counts": {
+      "direct_deterministic": 23
+    },
+    "nodes": [
+      {
+        "node_id": "quest:60200050",
+        "label": "Quest 60200050",
+        "kind": "quest",
+        "depth": 0,
+        "derivation_class": "direct_deterministic",
+        "metadata": {
+          "quest_id": 60200050,
+          "target_count": 3
+        }
+      },
+      {
+        "node_id": "direct-family:fsm",
+        "label": "fsm direct hits (4)",
+        "kind": "direct_family",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "metadata": {
+          "source_type": "fsm",
+          "hit_count": 4
+        }
+      },
+      {
+        "node_id": "direct-family:jmc",
+        "label": "jmc direct hits (1)",
+        "kind": "direct_family",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "metadata": {
+          "source_type": "jmc",
+          "hit_count": 1
+        }
+      },
+      {
+        "node_id": "direct-family:jtq",
+        "label": "jtq direct hits (1)",
+        "kind": "direct_family",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "metadata": {
+          "source_type": "jtq",
+          "hit_count": 1
+        }
+      },
+      {
+        "node_id": "direct-family:qst",
+        "label": "qst direct hits (5)",
+        "kind": "direct_family",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "metadata": {
+          "source_type": "qst",
+          "hit_count": 5
+        }
+      },
+      {
+        "node_id": "direct-family:tqg",
+        "label": "tqg direct hits (1)",
+        "kind": "direct_family",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "metadata": {
+          "source_type": "tqg",
+          "hit_count": 1
+        }
+      },
+      {
+        "node_id": "family-context:quest_sequence",
+        "label": "Quest Sequence",
+        "kind": "family_context",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "metadata": {
+          "context_key": "quest_sequence"
+        }
+      },
+      {
+        "node_id": "family-context:tutorial_scaffolding",
+        "label": "Tutorial Scaffolding",
+        "kind": "family_context",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "metadata": {
+          "context_key": "tutorial_scaffolding"
+        }
+      },
+      {
+        "node_id": "stage:st0550",
+        "label": "st0550 -- Training Chapel",
+        "kind": "stage",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "metadata": {
+          "stage_code": "st0550"
+        }
+      },
+      {
+        "node_id": "sequence-quest:60200035",
+        "label": "Quest 60200035",
+        "kind": "sequence_quest",
+        "depth": 2,
+        "derivation_class": "direct_deterministic",
+        "metadata": {
+          "quest_id": 60200035,
+          "direction": "previous"
+        }
+      },
+      {
+        "node_id": "sequence-quest:60200100",
+        "label": "Quest 60200100",
+        "kind": "sequence_quest",
+        "depth": 2,
+        "derivation_class": "direct_deterministic",
+        "metadata": {
+          "quest_id": 60200100,
+          "direction": "next"
+        }
+      },
+      {
+        "node_id": "tutorial-group:1",
+        "label": "Tutorial Group 1",
+        "kind": "tutorial_group",
+        "depth": 2,
+        "derivation_class": "direct_deterministic",
+        "metadata": {
+          "group_id": 1
+        }
+      }
+    ],
+    "edges": [
+      {
+        "from": "quest:60200050",
+        "to": "direct-family:fsm",
+        "edge_type": "direct_source_family",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "why": "Decoded direct hits for the quest targets include this source family.",
+        "metadata": {}
+      },
+      {
+        "from": "quest:60200050",
+        "to": "direct-family:jmc",
+        "edge_type": "direct_source_family",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "why": "Decoded direct hits for the quest targets include this source family.",
+        "metadata": {}
+      },
+      {
+        "from": "quest:60200050",
+        "to": "direct-family:jtq",
+        "edge_type": "direct_source_family",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "why": "Decoded direct hits for the quest targets include this source family.",
+        "metadata": {}
+      },
+      {
+        "from": "quest:60200050",
+        "to": "direct-family:qst",
+        "edge_type": "direct_source_family",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "why": "Decoded direct hits for the quest targets include this source family.",
+        "metadata": {}
+      },
+      {
+        "from": "quest:60200050",
+        "to": "direct-family:tqg",
+        "edge_type": "direct_source_family",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "why": "Decoded direct hits for the quest targets include this source family.",
+        "metadata": {}
+      },
+      {
+        "from": "quest:60200050",
+        "to": "family-context:quest_sequence",
+        "edge_type": "family_context:quest_sequence",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "why": "Family-specific decoded tables provide deterministic context for this quest.",
+        "metadata": {}
+      },
+      {
+        "from": "quest:60200050",
+        "to": "family-context:tutorial_scaffolding",
+        "edge_type": "family_context:tutorial_scaffolding",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "why": "Family-specific decoded tables provide deterministic context for this quest.",
+        "metadata": {}
+      },
+      {
+        "from": "quest:60200050",
+        "to": "stage:st0550",
+        "edge_type": "quest_archive_stage",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "why": "Quest archive topology directly links this quest to the stage code.",
+        "metadata": {}
+      },
+      {
+        "from": "family-context:quest_sequence",
+        "to": "sequence-quest:60200100",
+        "edge_type": "sequence_next",
+        "depth": 2,
+        "derivation_class": "direct_deterministic",
+        "why": "QuestSequence links this quest to its neighboring sequence quest.",
+        "metadata": {}
+      },
+      {
+        "from": "family-context:quest_sequence",
+        "to": "sequence-quest:60200035",
+        "edge_type": "sequence_previous",
+        "depth": 2,
+        "derivation_class": "direct_deterministic",
+        "why": "QuestSequence links this quest to its neighboring sequence quest.",
+        "metadata": {}
+      },
+      {
+        "from": "family-context:tutorial_scaffolding",
+        "to": "tutorial-group:1",
+        "edge_type": "tutorial_group",
+        "depth": 2,
+        "derivation_class": "direct_deterministic",
+        "why": "Tutorial quest tables group this quest into an authored tutorial scaffold.",
+        "metadata": {}
       }
     ]
   }

@@ -5,9 +5,314 @@
 
 Query mode:: quest
 Query value:: 16
-Generated at:: 2026-04-11T21:41:40.486776+00:00
+Generated at:: 2026-04-12T12:43:24.805979+00:00
 
 toc::[]
+
+Quest family:: q0 -- Main Quest
+Quest family notes:: Story progression quests and adjacent mainline quest-state flows.
+Quest family focus:: local_stage_topology_plus_external_dependencies
+
+== External Owner Indexes
+
+_These are reusable external owner catalogs inferred from stage-neighborhood cues. They are broader than the subset of flags promoted into derived dependency targets._
+
+[cols="2,1,1,2,2,2,4",options="header"]
+|===
+| Owner Quest | Family | Catalog Count | Catalog Flags | Linked Cues | Cue Sources | Why
+
+| 60310000 | q6 | 7 | 6970, 6972, 6973, 6974, 6975, 6976, 6984 | 6972 | gpl | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70000001 | q7 | 70 | 1098, 1103, 1104, 1105, 1106, 1109, 1110, 1111, 1112, 1113, 1114, 1115 +58 more | 1109, 1110, 1111, 1112, 1150, 1201, 1215, 1216 +39 more | evsi, gpl | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70001001 | q7 | 0 |  | 1851, 1954, 1955 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70002001 | q7 | 47 | 1098, 1103, 1104, 1105, 1106, 1109, 1110, 1111, 1112, 1113, 1114, 1115 +35 more | 1113, 1114, 1115, 1117, 1295, 1601, 3859, 3860 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70003001 | q7 | 49 | 1098, 1103, 1104, 1105, 1106, 1109, 1110, 1111, 1112, 1113, 1114, 1115 +37 more | 1098, 1103, 1104, 1105, 1106, 1119, 1120, 1121 +13 more | evsi, gpl | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70020001 | q7 | 8 | 2736, 3000, 3002, 3003, 3074, 3442, 3805, 4037 | 2736, 3000, 3001, 3002, 3003, 3074, 3442, 3805 +1 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70021001 | q7 | 4 | 3278, 3650, 3753, 3861 | 3278, 3650, 3753 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70022001 | q7 | 17 | 3949, 3950, 3952, 3953, 3954, 3977, 4033, 4043, 4053, 4063, 4470, 4555 +5 more | 3949, 3950, 3952, 3953, 3954, 3977, 4033, 4043 +7 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70023001 | q7 | 15 | 4066, 4067, 4372, 4373, 4500, 4506, 4507, 4508, 4511, 4512, 4515, 4516 +3 more | 4066, 4372, 4373, 4500, 4506, 4507, 4508, 4511 +6 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70030001 | q7 | 46 | 5396, 5397, 5407, 5552, 5557, 5558, 5581, 5584, 5587, 5588, 5589, 5614 +34 more | 5396, 5397, 5407, 5552, 5557, 5558, 5584, 5587 +35 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70031001 | q7 | 8 | 5553, 5672, 6138, 6194, 6195, 6377, 6425, 7316 | 5553, 5672, 6138, 6194, 6195, 6377, 7316 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70032001 | q7 | 37 | 7169, 7240, 7241, 7336, 7341, 7342, 7386, 7387, 7388, 7389, 7390, 7438 +25 more | 7169, 7240, 7241, 7336, 7341, 7342, 7386, 7388 +27 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70033001 | q7 | 43 | 7826, 7827, 7876, 7888, 7889, 7916, 7917, 7954, 7955, 7965, 7966, 7967 +31 more | 7826, 7827, 7876, 7888, 7889, 7917, 7954, 7955 +33 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70034001 | q7 | 3 | 8486, 8630, 8631 | 8486 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+|===
+
+== Derived External Dependency Targets
+
+_These are the promoted subset of external owner-index entries. A flag appears here only when it passes the current family-specific dependency promotion rules for this quest._
+
+[cols="2,1,1,2,2,4",options="header"]
+|===
+| Owner Quest | Family | Flag Count | Flags | Sources | Why
+
+| 60310000 | q6 | 1 | 6972 | gpl | Filtered GPL-backed q6 stage-neighborhood cues intersect the owner q6 quest's client-derived layout catalog built from self-owned client evidence.
+| 70000001 | q7 | 22 | 1109, 1111, 1215, 1218, 1219, 1251, 1261, 1263, 1293, 1294, 1297, 1298 +10 more | evsi, gpl | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70002001 | q7 | 3 | 1113, 1295, 3859 | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70003001 | q7 | 20 | 1098, 1103, 1104, 1105, 1119, 1120, 1121, 1122, 1123, 1124, 1202, 1203 +8 more | evsi, gpl | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70020001 | q7 | 5 | 2736, 3000, 3003, 3074, 3805 | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70021001 | q7 | 2 | 3278, 3753 | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70022001 | q7 | 9 | 3949, 3952, 3953, 3954, 3977, 4033, 4556, 4803, 4968 | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70023001 | q7 | 9 | 4066, 4373, 4500, 4506, 4508, 4512, 4515, 4517, 4973 | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70030001 | q7 | 17 | 5396, 5397, 5407, 5558, 5588, 5635, 5637, 5642, 5658, 5706, 5708, 6196 +5 more | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70031001 | q7 | 4 | 5553, 6138, 6195, 6377 | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70032001 | q7 | 19 | 7241, 7336, 7342, 7390, 7438, 7440, 7497, 7498, 7514, 7545, 7550, 7552 +7 more | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70033001 | q7 | 25 | 7826, 7827, 7876, 7954, 7955, 7966, 7968, 7972, 8016, 8033, 8034, 8035 +13 more | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70034001 | q7 | 1 | 8486 | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+|===
+
+== Family Relationship Context
+
+_These sections summarize deterministic client-side family metadata and reverse-index relationships. They are context for later owner/dependency inference, not direct quest-target promotion._
+
+=== Quest Sequence
+
+* seq no: 14
+* previous: 15 -- Return to Yore
+* next: 17 -- The Course of Life
+
+== ARC Association Context
+
+_ARC associations are contextual only. They show which quest-stage and marker resources are bundled with this quest._
+
+* arc file: link:../../../../client/03040008/quest/q00000016.arc.json#L1[client/03040008/quest/q00000016.arc.json#L1]
+* resource count: 21
+* stage codes: st0100, st0201, st0402
+* resource families: .fmi, .fsm, .gmd, .mss, .qmi, .qst, .qtd, .stqr
+
+=== st0100 -- Lestania
+
+* rQuestList: quest/00000016/q00000016_st0100
+* rQuestMarkerInfo: quest/00000016/st0100_marker_npc
+* rQuestMarkerInfo: quest/00000016/st0100_marker_om
+
+=== st0201 -- Audience Chamber
+
+* rQuestList: quest/00000016/q00000016_st0201
+* rQuestMarkerInfo: quest/00000016/st0201_marker_npc
+
+=== st0402 -- Gardnox Fortress
+
+* rQuestList: quest/00000016/q00000016_st0402
+* rQuestMarkerInfo: quest/00000016/st0402_marker_om
+* rQuestMarkerInfo: quest/00000016/st0402_marker_npc
+
+=== unclassified
+
+* rFieldAreaMarkerInfo: quest/00000016/fa001_marker_om
+* rAIFSM: quest/00000016/npc/n1902
+* rAIFSM: quest/00000016/npc/n1901
+* rSoundStreamRequest: sound/stream/quest/di/jp/q00000016/q00000016_n0005
+* rMsgSet: ui/00_message/examine_message/quest/quest_examine_q00000016
+* rGUIMessage: ui/00_message/examine_message/quest/quest_examine_q00000016
+* rMsgSet: ui/00_message/quest/q00000016
+* rSoundStreamRequest: sound/stream/quest/di/jp/q00000016/q00000016_n0016
+* rAIFSM: quest/00000016/npc/n0535
+* rAIFSM: quest/00000016/npc/n0005
+* rQuestTextData: ui/00_param/quest_text/q00000016_00
+* rGUIMessage: ui/00_message/quest/q00000016
+* rGUIMessage: ui/00_message/quest_info/q00000016_00
+
+== Stage Neighborhood Context
+
+_Stage-neighborhood context summarizes scanner-relevant client files that share the quest's archive stage codes. This is deterministic client topology, not inferred ownership._
+
+* scanner-relevant stage files: 3422
+* indexed stage codes: st0100, st0201, st0402
+
+=== st0100 -- Lestania
+
+* scanner files: 2642
+* .evsi.json: 24
+* .fsm.json: 212
+* .gpl.json: 5
+* .lot.json: 2162
+* .qmi.json: 137
+* .qst.json: 102
+
+=== st0201 -- Audience Chamber
+
+* scanner files: 694
+* .evsi.json: 50
+* .fsm.json: 433
+* .gpl.json: 3
+* .lot.json: 64
+* .qmi.json: 75
+* .qst.json: 69
+
+=== st0402 -- Gardnox Fortress
+
+* scanner files: 86
+* .evsi.json: 2
+* .fsm.json: 17
+* .gpl.json: 5
+* .lot.json: 47
+* .qmi.json: 11
+* .qst.json: 4
+
+== Stage Neighborhood External-State Cues
+
+_These cues are deterministic client-side observations from the quest's stage neighborhood. They are not promoted to direct quest targets yet; they highlight q6/q7-owned external state values co-located in the quest's archive stages._
+
+* cue count: 248
+* owner families: q6, q7
+
+[cols="1,1,1,2,2,2",options="header"]
+|===
+| Value | Kind | Hits | Sources | Owners | Stages
+
+| Flag 1106 | layout_flag | 76 | evsi | 70003001 | st0100, st0201, st0402
+| Flag 1115 | layout_flag | 76 | evsi | 70002001 | st0100, st0201, st0402
+| Flag 1117 | layout_flag | 76 | evsi | 70002001 | st0100, st0201, st0402
+| Flag 1150 | layout_flag | 76 | evsi | 70000001 | st0100, st0201, st0402
+| Flag 1851 | layout_flag | 76 | evsi | 70001001 | st0100, st0201, st0402
+| Flag 2208 | layout_flag | 76 | evsi | 70000001 | st0100, st0201, st0402
+| Flag 2380 | layout_flag | 76 | evsi | 70000001 | st0100, st0201, st0402
+| Flag 3950 | layout_flag | 76 | evsi | 70022001 | st0100, st0201, st0402
+| Flag 5589 | layout_flag | 76 | evsi | 70030001 | st0100, st0201, st0402
+| Flag 5614 | layout_flag | 76 | evsi | 70030001 | st0100, st0201, st0402
+| Flag 5632 | layout_flag | 76 | evsi | 70030001 | st0100, st0201, st0402
+| Flag 6469 | layout_flag | 76 | evsi | 70030001 | st0100, st0201, st0402
+| Flag 6470 | layout_flag | 76 | evsi | 70030001 | st0100, st0201, st0402
+| Flag 6471 | layout_flag | 76 | evsi | 70030001 | st0100, st0201, st0402
+| Flag 6472 | layout_flag | 76 | evsi | 70030001 | st0100, st0201, st0402
+| Flag 6473 | layout_flag | 76 | evsi | 70030001 | st0100, st0201, st0402
+| Flag 6474 | layout_flag | 76 | evsi | 70030001 | st0100, st0201, st0402
+| Flag 7316 | layout_flag | 76 | evsi | 70031001 | st0100, st0201, st0402
+| Flag 8066 | layout_flag | 76 | evsi | 70033001 | st0100, st0201, st0402
+| Flag 1217 | layout_flag | 75 | evsi | 70000001 | st0100, st0201, st0402
+| Flag 1954 | layout_flag | 75 | evsi | 70001001 | st0100, st0201, st0402
+| Flag 1201 | layout_flag | 74 | evsi | 70000001 | st0100, st0201, st0402
+| Flag 1216 | layout_flag | 74 | evsi | 70000001 | st0100, st0201, st0402
+| Flag 1224 | layout_flag | 74 | evsi | 70000001 | st0100, st0201, st0402
+| Flag 1221 | layout_flag | 73 | evsi | 70000001 | st0100, st0201
+| Flag 5557 | layout_flag | 72 | evsi | 70030001 | st0100, st0201, st0402
+| Flag 7496 | layout_flag | 72 | evsi | 70032001 | st0100, st0201, st0402
+| Flag 1222 | layout_flag | 71 | evsi | 70000001 | st0100, st0201, st0402
+| Flag 7888 | layout_flag | 71 | evsi | 70033001 | st0100, st0201, st0402
+| Flag 7889 | layout_flag | 71 | evsi | 70033001 | st0100, st0201, st0402
+|===
+
+== Bounded Graph Expansion
+
+_This graph summarizes bounded deterministic and inferred edges around the quest: quest archive stages, direct source families, stage-linked owner catalogs, promoted dependencies, reverse-index event/group links, and family-specific table edges._
+
+* max depth: 3
+* node count: 958
+* edge count: 1916
+* node kinds: direct_family=5, event_viewer=917, family_context=1, lot_file=4, owner_quest=14, quest=1, sequence_quest=2, stage=3, stage_group=11
+* derivation: Dependency=13, Direct=23, Graph=2785, Owner Index=53
+
+=== Mermaid Graph Slice
+
+_This Mermaid flowchart shows a capped slice of the bounded graph so large quest reports stay readable while still exposing the graph structure._
+
+[mermaid]
+....
+flowchart TD
+    node_quest_16["Quest 16"]
+    node_direct_family_evp["evp direct hits (39)"]
+    node_direct_family_evsi["evsi direct hits (4)"]
+    node_direct_family_fsm["fsm direct hits (10)"]
+    node_direct_family_qst["qst direct hits (8)"]
+    node_direct_family_smc["smc direct hits (17)"]
+    node_family_context_quest_sequence["Quest Sequence"]
+    node_stage_st0100["st0100 -- Lestania"]
+    node_stage_st0201["st0201 -- Audience Chamber"]
+    node_stage_st0402["st0402 -- Gardnox Fortress"]
+    node_owner_quest_60310000["Owner quest 60310000 (q6)"]
+    node_owner_quest_70000001["Owner quest 70000001 (q7)"]
+    node_owner_quest_70002001["Owner quest 70002001 (q7)"]
+    node_owner_quest_70003001["Owner quest 70003001 (q7)"]
+    node_owner_quest_70020001["Owner quest 70020001 (q7)"]
+    node_owner_quest_70021001["Owner quest 70021001 (q7)"]
+    node_owner_quest_70022001["Owner quest 70022001 (q7)"]
+    node_owner_quest_70023001["Owner quest 70023001 (q7)"]
+    node_owner_quest_70030001["Owner quest 70030001 (q7)"]
+    node_owner_quest_70031001["Owner quest 70031001 (q7)"]
+    node_owner_quest_70032001["Owner quest 70032001 (q7)"]
+    node_owner_quest_70033001["Owner quest 70033001 (q7)"]
+    node_owner_quest_70034001["Owner quest 70034001 (q7)"]
+    node_sequence_quest_15["Quest 15"]
+    node_sequence_quest_17["Quest 17"]
+    node_quest_16 -->|direct_source_family| node_direct_family_evp
+    node_quest_16 -->|direct_source_family| node_direct_family_evsi
+    node_quest_16 -->|direct_source_family| node_direct_family_fsm
+    node_quest_16 -->|direct_source_family| node_direct_family_qst
+    node_quest_16 -->|direct_source_family| node_direct_family_smc
+    node_quest_16 -->|family:quest_sequence| node_family_context_quest_sequence
+    node_quest_16 -->|quest_archive_stage| node_stage_st0100
+    node_quest_16 -->|quest_archive_stage| node_stage_st0201
+    node_quest_16 -->|quest_archive_stage| node_stage_st0402
+    node_quest_16 -->|promoted_dependency| node_owner_quest_60310000
+    node_quest_16 -->|promoted_dependency| node_owner_quest_70000001
+    node_quest_16 -->|promoted_dependency| node_owner_quest_70002001
+    node_quest_16 -->|promoted_dependency| node_owner_quest_70003001
+    node_quest_16 -->|promoted_dependency| node_owner_quest_70020001
+    node_quest_16 -->|promoted_dependency| node_owner_quest_70021001
+    node_quest_16 -->|promoted_dependency| node_owner_quest_70022001
+    node_quest_16 -->|promoted_dependency| node_owner_quest_70023001
+    node_quest_16 -->|promoted_dependency| node_owner_quest_70030001
+    node_quest_16 -->|promoted_dependency| node_owner_quest_70031001
+    node_quest_16 -->|promoted_dependency| node_owner_quest_70032001
+    node_quest_16 -->|promoted_dependency| node_owner_quest_70033001
+    node_quest_16 -->|promoted_dependency| node_owner_quest_70034001
+    node_family_context_quest_sequence -->|sequence_next| node_sequence_quest_17
+    node_family_context_quest_sequence -->|sequence_previous| node_sequence_quest_15
+    classDef direct_deterministic fill:#e8f5e9,stroke:#2e7d32,stroke-width:1px
+    classDef owner_index fill:#e3f2fd,stroke:#1565c0,stroke-width:1px
+    classDef dependency_inferred fill:#fff3e0,stroke:#ef6c00,stroke-width:1px
+    classDef graph_expanded fill:#f3e5f5,stroke:#7b1fa2,stroke-width:1px
+    classDef lower_confidence fill:#fbe9e7,stroke:#d84315,stroke-width:1px
+    classDef binary_auxiliary fill:#eceff1,stroke:#455a64,stroke-width:1px
+    class node_quest_16,node_direct_family_evp,node_direct_family_evsi,node_direct_family_fsm,node_direct_family_qst,node_direct_family_smc,node_family_context_quest_sequence,node_stage_st0100,node_stage_st0201,node_stage_st0402,node_sequence_quest_15,node_sequence_quest_17 direct_deterministic
+    class node_owner_quest_60310000,node_owner_quest_70000001,node_owner_quest_70002001,node_owner_quest_70003001,node_owner_quest_70020001,node_owner_quest_70021001,node_owner_quest_70022001,node_owner_quest_70023001,node_owner_quest_70030001,node_owner_quest_70031001,node_owner_quest_70032001,node_owner_quest_70033001,node_owner_quest_70034001 owner_index
+....
+
+[cols="1,2,2,2,2,4",options="header"]
+|===
+| Depth | Edge | From | To | Derivation | Why
+
+| 1 | direct_source_family | quest:16 | direct-family:evp | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | direct_source_family | quest:16 | direct-family:evsi | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | direct_source_family | quest:16 | direct-family:fsm | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | direct_source_family | quest:16 | direct-family:qst | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | direct_source_family | quest:16 | direct-family:smc | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | family_context:quest_sequence | quest:16 | family-context:quest_sequence | Direct | Family-specific decoded tables provide deterministic context for this quest.
+| 1 | quest_archive_stage | quest:16 | stage:st0100 | Direct | Quest archive topology directly links this quest to the stage code.
+| 1 | quest_archive_stage | quest:16 | stage:st0201 | Direct | Quest archive topology directly links this quest to the stage code.
+| 1 | quest_archive_stage | quest:16 | stage:st0402 | Direct | Quest archive topology directly links this quest to the stage code.
+| 2 | promoted_dependency | quest:16 | owner-quest:60310000 | Dependency | Filtered GPL-backed q6 stage-neighborhood cues intersect the owner q6 quest's client-derived layout catalog built from self-owned client evidence.
+| 2 | promoted_dependency | quest:16 | owner-quest:70000001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:16 | owner-quest:70002001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:16 | owner-quest:70003001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:16 | owner-quest:70020001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:16 | owner-quest:70021001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:16 | owner-quest:70022001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:16 | owner-quest:70023001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:16 | owner-quest:70030001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:16 | owner-quest:70031001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:16 | owner-quest:70032001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:16 | owner-quest:70033001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:16 | owner-quest:70034001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | sequence_next | family-context:quest_sequence | sequence-quest:17 | Direct | QuestSequence links this quest to its neighboring sequence quest.
+| 2 | sequence_previous | family-context:quest_sequence | sequence-quest:15 | Direct | QuestSequence links this quest to its neighboring sequence quest.
+| 2 | stage_event_viewer | stage:st0100 | event-viewer:st0100:ev010:70000001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0100 | event-viewer:st0100:ev010:70001001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0100 | event-viewer:st0100:ev010:70002001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0100 | event-viewer:st0100:ev010:70003001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0100 | event-viewer:st0100:ev010:70020001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0100 | event-viewer:st0100:ev010:70021001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0100 | event-viewer:st0100:ev010:70022001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0100 | event-viewer:st0100:ev010:70023001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0100 | event-viewer:st0100:ev010:70030001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0100 | event-viewer:st0100:ev010:70031001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0100 | event-viewer:st0100:ev010:70032001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0100 | event-viewer:st0100:ev010:70033001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0100 | event-viewer:st0100:ev015:70000001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0100 | event-viewer:st0100:ev015:70001001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0100 | event-viewer:st0100:ev015:70002001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0100 | event-viewer:st0100:ev015:70003001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+|===
 
 == Flag Summary Matrix
 
@@ -15,12 +320,96 @@ toc::[]
 |===
 | Target | Kind | Hits | Sources | Stages | Relationships | Description
 
+| Flag 900 | layout_flag | 2 | qst | st0100 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0100 \| QuestGroup 1
+| Flag 916 | layout_flag | 3 | evsi, qst | st0402 | 🎬 Event State, ⚡ Quest Condition, ❌ Quest Erase | QST local: st0402 \| QuestGroup 1
+| Flag 1013 | layout_flag | 4 | evsi, qst | st0201, st0402 | 🎬 Event State, ⚡ Quest Condition, ❌ Quest Erase | QST local: st0201 \| QuestGroup 1
+| Flag 1014 | layout_flag | 3 | evsi, qst | st0402 | 🎬 Event State, ⚡ Quest Condition, ❌ Quest Erase | QST local: st0402 \| QuestGroup 2
 | Quest ID 16 | quest_id | 66 | evp, fsm, smc |  | 🎞️ Event Param, 🔍 FSM Check, ✏️ FSM Set +1 | Derived quest-wide association scan
 |===
 
 == Known Documented Targets
 
+* quest 16 -- Flag 900 -- QST local: st0100 | QuestGroup 1
+* quest 16 -- Flag 916 -- QST local: st0402 | QuestGroup 1
+* quest 16 -- Flag 1013 -- QST local: st0201 | QuestGroup 1
+* quest 16 -- Flag 1014 -- QST local: st0402 | QuestGroup 2
 * Quest ID 16 -- Derived quest-wide association scan [Derived]
+
+== Flag 900 -- Quest 16
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00000016/quest/00000016/q00000016_st0100.qst.json[client/03040008/quest/q00000016/quest/00000016/q00000016_st0100.qst.json] | QuestStageList[].QuestGrp[0].Condition | Condition | quest 16 / Lestania / "QuestGroup 1" / QuestSet=QuestSetInfoOm \| OmID=522450 \| OM_ID_KIRAKIRA_POINT \| EnableZone \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00000016/quest/00000016/q00000016_st0100.qst.json[client/03040008/quest/q00000016/quest/00000016/q00000016_st0100.qst.json] | QuestStageList[].QuestGrp[0].EraseCondition | EraseCondition | quest 16 / Lestania / "QuestGroup 1" / QuestSet=QuestSetInfoOm \| OmID=522450 \| OM_ID_KIRAKIRA_POINT \| EnableZone \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 916 -- Quest 16
+
+origin:: derived_qst_local
+direct hits:: *3*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 3 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00000016/quest/00000016/q00000016_st0402.qst.json[client/03040008/quest/q00000016/quest/00000016/q00000016_st0402.qst.json] | QuestStageList[].QuestGrp[0].Condition | Condition | quest 16 / Gardnox Fortress / "QuestGroup 1" / QuestSet=QuestSetInfoOm \| OM_ID_DOOR_510390 \| KeyNo=1038 (Key to Gardnox Fortress' Front Gate) \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00000016/quest/00000016/q00000016_st0402.qst.json[client/03040008/quest/q00000016/quest/00000016/q00000016_st0402.qst.json] | QuestStageList[].QuestGrp[0].EraseCondition | EraseCondition | quest 16 / Gardnox Fortress / "QuestGroup 1" / QuestSet=QuestSetInfoOm \| OM_ID_DOOR_510390 \| KeyNo=1038 (Key to Gardnox Fortress' Front Gate) \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0402/view_st0402ev005/event/viewer/view_st0402ev005.evsi.json#L297[client/03040008/event/st0402/view_st0402ev005/event/viewer/view_st0402ev005.evsi.json#L297] | LayoutFlagArray[1].FlagNo | FlagNo | quest 16 (A Friendly Visit) / Gardnox Fortress / Event Viewer \| EVENT_NAME_st0402ev005 \| Defeat Mogok | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+|===
+
+== Flag 1013 -- Quest 16
+
+origin:: derived_qst_local
+direct hits:: *4*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 4 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00000016/quest/00000016/q00000016_st0201.qst.json[client/03040008/quest/q00000016/quest/00000016/q00000016_st0201.qst.json] | QuestStageList[].QuestGrp[0].Condition | Condition | quest 16 / Audience Chamber / "QuestGroup 1" / QuestSet=QuestSetInfoNpc \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00000016/quest/00000016/q00000016_st0201.qst.json[client/03040008/quest/q00000016/quest/00000016/q00000016_st0201.qst.json] | QuestStageList[].QuestGrp[0].EraseCondition | EraseCondition | quest 16 / Audience Chamber / "QuestGroup 1" / QuestSet=QuestSetInfoNpc \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0402/view_st0402ev000/event/viewer/view_st0402ev000.evsi.json#L281[client/03040008/event/st0402/view_st0402ev000/event/viewer/view_st0402ev000.evsi.json#L281] | LayoutFlagArray[0].FlagNo | FlagNo | quest 16 (A Friendly Visit) / Gardnox Fortress / Event Viewer \| EVENT_NAME_st0402ev000 \| Appearance of Mogok | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0402/view_st0402ev005/event/viewer/view_st0402ev005.evsi.json#L305[client/03040008/event/st0402/view_st0402ev005/event/viewer/view_st0402ev005.evsi.json#L305] | LayoutFlagArray[2].FlagNo | FlagNo | quest 16 (A Friendly Visit) / Gardnox Fortress / Event Viewer \| EVENT_NAME_st0402ev005 \| Defeat Mogok | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+|===
+
+== Flag 1014 -- Quest 16
+
+origin:: derived_qst_local
+direct hits:: *3*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 3 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00000016/quest/00000016/q00000016_st0402.qst.json[client/03040008/quest/q00000016/quest/00000016/q00000016_st0402.qst.json] | QuestStageList[].QuestGrp[1].Condition | Condition | quest 16 / Gardnox Fortress / "QuestGroup 2" / QuestSet=QuestSetInfoNpc \| GroupNo=2 \|\| QuestSet=QuestSetInfoNpc \| GroupNo=2 \|\| +2 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00000016/quest/00000016/q00000016_st0402.qst.json[client/03040008/quest/q00000016/quest/00000016/q00000016_st0402.qst.json] | QuestStageList[].QuestGrp[1].EraseCondition | EraseCondition | quest 16 / Gardnox Fortress / "QuestGroup 2" / QuestSet=QuestSetInfoNpc \| GroupNo=2 \|\| QuestSet=QuestSetInfoNpc \| GroupNo=2 \|\| +2 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0402/view_st0402ev005/event/viewer/view_st0402ev005.evsi.json#L313[client/03040008/event/st0402/view_st0402ev005/event/viewer/view_st0402ev005.evsi.json#L313] | LayoutFlagArray[3].FlagNo | FlagNo | quest 16 (A Friendly Visit) / Gardnox Fortress / Event Viewer \| EVENT_NAME_st0402ev005 \| Defeat Mogok | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+|===
 
 == Quest ID 16
 
@@ -32,91 +421,91 @@ ranked candidates:: *0*
 
 ==== candidate -- 39 hit(s)
 
-[cols="1,1,3,3,2,3,3",options="header"]
+[cols="1,1,1,3,3,2,3,3",options="header"]
 |===
-| Family | Confidence | File | JSON Path | Field | Context | Why
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
 
-| EVP | 68 | client/03040008/base/event/event_list.evp.json | EventParamList[6].Flag | Flag | Lestania / "EvNo=40" / event/st0100/ev040/fsm/st0100ev040 \| FlagTypes=FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
-| EVP | 68 | client/03040008/base/event/event_list.evp.json | EventParamList[55].Flag | Flag | Erte Deenan / "EvNo=0" / event/st0404/ev000/st0404ev000 \| FlagTypes=FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
-| EVP | 68 | client/03040008/base/event/event_list.evp.json | EventParamList[57].Flag | Flag | Mergoda Ruins: Royal Palace Level / "EvNo=20" / event/st0418/ev020/st0418ev020 \| FlagTypes=FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
-| EVP | 68 | client/03040008/base/event/event_list.evp.json | EventParamList[58].Flag | Flag | Mergoda Ruins: Royal Palace Level / "EvNo=25" / event/st0418/ev025/st0418ev025 \| FlagTypes=FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
-| EVP | 68 | client/03040008/base/event/event_list.evp.json | EventParamList[60].Flag | Flag | Ancient Ritual Ground / "EvNo=300" / event/st0416/ev300/st0416ev300 \| FlagTypes=FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
-| EVP | 68 | client/03040008/base/event/event_list.evp.json | EventParamList[61].Flag | Flag | Cave Harbor / "EvNo=300" / event/st0203/ev300/st0203ev300 \| FlagTypes=FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
-| EVP | 68 | client/03040008/base/event/event_list.evp.json | EventParamList[62].Flag | Flag | Fort Gritten / "EvNo=300" / event/st0405/ev300/st0405ev300 \| FlagTypes=FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
-| EVP | 68 | client/03040008/base/event/event_list.evp.json | EventParamList[64].Flag | Flag | Mergoda Security District / "EvNo=5" / event/st0411/ev005/st0411ev005 \| FlagTypes=FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
-| EVP | 68 | client/03040008/base/event/event_list.evp.json | EventParamList[65].Flag | Flag | Mergoda Ruins: Lower Level / "EvNo=0" / event/st0410/ev000/st0410ev000 \| FlagTypes=FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
-| EVP | 68 | client/03040008/base/event/event_list.evp.json | EventParamList[68].Flag | Flag | Erte Deenan / "EvNo=5" / event/st0404/ev005/st0404ev005 \| FlagTypes=FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
-| EVP | 68 | client/03040008/base/event/event_list.evp.json | EventParamList[70].Flag | Flag | Fort Gritten / "EvNo=10" / event/st0417/ev010/st0417ev010 \| FlagTypes=FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
-| EVP | 68 | client/03040008/base/event/event_list.evp.json | EventParamList[72].Flag | Flag | Mergoda Security District / "EvNo=0" / event/st0411/ev000/st0411ev000 \| FlagTypes=FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
-| EVP | 68 | client/03040008/base/event/event_list.evp.json | EventParamList[77].Flag | Flag | Dreed Castle / "EvNo=5" / event/st0403/ev005/st0403ev005 \| FlagTypes=FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
-| EVP | 68 | client/03040008/base/event/event_list.evp.json | EventParamList[79].Flag | Flag | Lestania / "EvNo=55" / event/st0100/ev055/st0100ev055 \| FlagTypes=FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
-| EVP | 68 | client/03040008/base/event/event_list.evp.json | EventParamList[80].Flag | Flag | Gardnox Fortress / "EvNo=5" / event/st0402/ev005/st0402ev005 \| FlagTypes=FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
-| EVP | 68 | client/03040008/base/event/event_list.evp.json | EventParamList[147].Flag | Flag | Infected Den / "EvNo=0" / event/st0800/ev000/fsm/st0800ev000 \| FlagTypes=FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
-| EVP | 68 | client/03040008/base/event/event_list.evp.json | EventParamList[152].Flag | Flag | Bloodbane Isle / "EvNo=0" / event/st0110/ev000/st0110ev000 \| FlagTypes=FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
-| EVP | 68 | client/03040008/base/event/event_list.evp.json | EventParamList[153].Flag | Flag | Lestania / "EvNo=105" / event/st0100/ev105/st0100ev105 \| FlagTypes=FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
-| EVP | 68 | client/03040008/base/event/event_list.evp.json | EventParamList[154].Flag | Flag | Bloodbane Isle / "EvNo=15" / event/st0110/ev015/st0110ev015 \| FlagTypes=FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
-| EVP | 68 | client/03040008/base/event/event_list.evp.json | EventParamList[155].Flag | Flag | Lestania / "EvNo=125" / event/st0100/ev125/st0100ev125 \| FlagTypes=FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
-| EVP | 68 | client/03040008/base/event/event_list.evp.json | EventParamList[157].Flag | Flag | Bloodbane Isle Summit / "EvNo=0" / event/st0112/ev000/st0112ev000 \| FlagTypes=FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
-| EVP | 68 | client/03040008/base/event/event_list.evp.json | EventParamList[158].Flag | Flag | Bloodbane Isle Summit / "EvNo=10" / event/st0112/ev010/st0112ev010 \| FlagTypes=FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
-| EVP | 68 | client/03040008/base/event/event_list.evp.json | EventParamList[196].Flag | Flag | Hollow of Beginnings / "EvNo=25" / event/st0881/ev025/fsm/st0881ev025 \| FlagTypes=FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
-| EVP | 68 | client/03040008/base/event/event_list.evp.json | EventParamList[201].Flag | Flag | Bloodbane Isle Summit / "EvNo=20" / event/st0112/ev020/st0112ev020 \| FlagTypes=FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
-| EVP | 68 | client/03040008/base/event/event_list.evp.json | EventParamList[202].Flag | Flag | Farana Plains / "EvNo=0" / event/st0120/ev000/st0120ev000 \| FlagTypes=FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
-| EVP | 68 | client/03040008/base/event/event_list.evp.json | EventParamList[208].Flag | Flag | Farana Plains / "EvNo=17" / event/st0120/ev017/st0120ev017 \| FlagTypes=FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
-| EVP | 68 | client/03040008/base/event/event_list.evp.json | EventParamList[209].Flag | Flag | Farana Plains / "EvNo=10" / event/st0120/ev010/st0120ev010 \| FlagTypes=FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
-| EVP | 68 | client/03040008/base/event/event_list.evp.json | EventParamList[220].Flag | Flag | Spirit Dragon's Roost / "EvNo=5" / event/st0435/ev005/st0435ev005 \| FlagTypes=FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
-| EVP | 68 | client/03040008/base/event/event_list.evp.json | EventParamList[221].Flag | Flag | Farana Plains / "EvNo=45" / event/st0120/ev045/st0120ev045 \| FlagTypes=FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
-| EVP | 68 | client/03040008/base/event/event_list.evp.json | EventParamList[262].Flag | Flag | The White Dragon Temple / "EvNo=25" / event/st0200/ev025/st0200ev025 \| FlagTypes=FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
-| EVP | 68 | client/03040008/base/event/event_list.evp.json | EventParamList[263].Flag | Flag | The White Dragon Temple / "EvNo=20" / event/st0200/ev020/st0200ev020 \| FlagTypes=FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
-| EVP | 68 | client/03040008/base/event/event_list.evp.json | EventParamList[264].Flag | Flag | Rathnite Foothills / "EvNo=5" / event/st0130/ev005/st0130ev005 \| FlagTypes=FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
-| EVP | 68 | client/03040008/base/event/event_list.evp.json | EventParamList[271].Flag | Flag | Lookout Castle / "EvNo=0" / event/st0450/ev000/st0450ev000 \| FlagTypes=FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
-| EVP | 68 | client/03040008/base/event/event_list.evp.json | EventParamList[272].Flag | Flag | Feryana Wilderness / "EvNo=5" / event/st0132/ev005/st0132ev005 \| FlagTypes=FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
-| EVP | 68 | client/03040008/base/event/event_list.evp.json | EventParamList[273].Flag | Flag | Before the Secret Spring / "EvNo=0" / event/st1021/ev000/st1021ev000 \| FlagTypes=FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
-| EVP | 68 | client/03040008/base/event/event_list.evp.json | EventParamList[335].Flag | Flag | Alternative Path / "EvNo=0" / event/st3500/ev000/fsm/st3500ev000 \| FlagTypes=FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
-| EVP | 68 | client/03040008/base/event/event_list.evp.json | EventParamList[350].Flag | Flag | Darkness Cloaked Mergoda Royal Palace Lvl. / "EvNo=0" / event/st3212/ev000/fsm/st3212ev000 \| FlagTypes=FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
-| EVP | 68 | client/03040008/base/event/event_list.evp.json | EventParamList[351].Flag | Flag | Darkness Cloaked Mergoda Security District / "EvNo=0" / event/st3411/ev000/fsm/st3411ev000 \| FlagTypes=FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
-| EVP | 68 | client/03040008/base/event/event_list.evp.json | EventParamList[352].Flag | Flag | Audience Chamber / "EvNo=235" / event/st0201/ev235/st0201ev235 \| FlagTypes=FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
+| EVP | Direct | 68 | link:../../../../client/03040008/base/event/event_list.evp.json#L140[client/03040008/base/event/event_list.evp.json#L140] | EventParamList[6].Flag | Flag | Lestania / "EvNo=40" / event/st0100/ev040/fsm/st0100ev040 \| FlagTypes=FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
+| EVP | Direct | 68 | link:../../../../client/03040008/base/event/event_list.evp.json#L1218[client/03040008/base/event/event_list.evp.json#L1218] | EventParamList[55].Flag | Flag | Erte Deenan / "EvNo=0" / event/st0404/ev000/st0404ev000 \| FlagTypes=FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
+| EVP | Direct | 68 | link:../../../../client/03040008/base/event/event_list.evp.json#L1289[client/03040008/base/event/event_list.evp.json#L1289] | EventParamList[57].Flag | Flag | Mergoda Ruins: Royal Palace Level / "EvNo=20" / event/st0418/ev020/st0418ev020 \| FlagTypes=FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
+| EVP | Direct | 68 | link:../../../../client/03040008/base/event/event_list.evp.json#L1311[client/03040008/base/event/event_list.evp.json#L1311] | EventParamList[58].Flag | Flag | Mergoda Ruins: Royal Palace Level / "EvNo=25" / event/st0418/ev025/st0418ev025 \| FlagTypes=FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
+| EVP | Direct | 68 | link:../../../../client/03040008/base/event/event_list.evp.json#L1355[client/03040008/base/event/event_list.evp.json#L1355] | EventParamList[60].Flag | Flag | Ancient Ritual Ground / "EvNo=300" / event/st0416/ev300/st0416ev300 \| FlagTypes=FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
+| EVP | Direct | 68 | link:../../../../client/03040008/base/event/event_list.evp.json#L1377[client/03040008/base/event/event_list.evp.json#L1377] | EventParamList[61].Flag | Flag | Cave Harbor / "EvNo=300" / event/st0203/ev300/st0203ev300 \| FlagTypes=FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
+| EVP | Direct | 68 | link:../../../../client/03040008/base/event/event_list.evp.json#L1462[client/03040008/base/event/event_list.evp.json#L1462] | EventParamList[62].Flag | Flag | Fort Gritten / "EvNo=300" / event/st0405/ev300/st0405ev300 \| FlagTypes=FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
+| EVP | Direct | 68 | link:../../../../client/03040008/base/event/event_list.evp.json#L1515[client/03040008/base/event/event_list.evp.json#L1515] | EventParamList[64].Flag | Flag | Mergoda Security District / "EvNo=5" / event/st0411/ev005/st0411ev005 \| FlagTypes=FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
+| EVP | Direct | 68 | link:../../../../client/03040008/base/event/event_list.evp.json#L1537[client/03040008/base/event/event_list.evp.json#L1537] | EventParamList[65].Flag | Flag | Mergoda Ruins: Lower Level / "EvNo=0" / event/st0410/ev000/st0410ev000 \| FlagTypes=FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
+| EVP | Direct | 68 | link:../../../../client/03040008/base/event/event_list.evp.json#L1630[client/03040008/base/event/event_list.evp.json#L1630] | EventParamList[68].Flag | Flag | Erte Deenan / "EvNo=5" / event/st0404/ev005/st0404ev005 \| FlagTypes=FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
+| EVP | Direct | 68 | link:../../../../client/03040008/base/event/event_list.evp.json#L1692[client/03040008/base/event/event_list.evp.json#L1692] | EventParamList[70].Flag | Flag | Fort Gritten / "EvNo=10" / event/st0417/ev010/st0417ev010 \| FlagTypes=FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
+| EVP | Direct | 68 | link:../../../../client/03040008/base/event/event_list.evp.json#L1790[client/03040008/base/event/event_list.evp.json#L1790] | EventParamList[72].Flag | Flag | Mergoda Security District / "EvNo=0" / event/st0411/ev000/st0411ev000 \| FlagTypes=FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
+| EVP | Direct | 68 | link:../../../../client/03040008/base/event/event_list.evp.json#L1900[client/03040008/base/event/event_list.evp.json#L1900] | EventParamList[77].Flag | Flag | Dreed Castle / "EvNo=5" / event/st0403/ev005/st0403ev005 \| FlagTypes=FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
+| EVP | Direct | 68 | link:../../../../client/03040008/base/event/event_list.evp.json#L1953[client/03040008/base/event/event_list.evp.json#L1953] | EventParamList[79].Flag | Flag | Lestania / "EvNo=55" / event/st0100/ev055/st0100ev055 \| FlagTypes=FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
+| EVP | Direct | 68 | link:../../../../client/03040008/base/event/event_list.evp.json#L1975[client/03040008/base/event/event_list.evp.json#L1975] | EventParamList[80].Flag | Flag | Gardnox Fortress / "EvNo=5" / event/st0402/ev005/st0402ev005 \| FlagTypes=FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
+| EVP | Direct | 68 | link:../../../../client/03040008/base/event/event_list.evp.json#L3458[client/03040008/base/event/event_list.evp.json#L3458] | EventParamList[147].Flag | Flag | Infected Den / "EvNo=0" / event/st0800/ev000/fsm/st0800ev000 \| FlagTypes=FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
+| EVP | Direct | 68 | link:../../../../client/03040008/base/event/event_list.evp.json#L3568[client/03040008/base/event/event_list.evp.json#L3568] | EventParamList[152].Flag | Flag | Bloodbane Isle / "EvNo=0" / event/st0110/ev000/st0110ev000 \| FlagTypes=FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
+| EVP | Direct | 68 | link:../../../../client/03040008/base/event/event_list.evp.json#L3617[client/03040008/base/event/event_list.evp.json#L3617] | EventParamList[153].Flag | Flag | Lestania / "EvNo=105" / event/st0100/ev105/st0100ev105 \| FlagTypes=FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
+| EVP | Direct | 68 | link:../../../../client/03040008/base/event/event_list.evp.json#L3639[client/03040008/base/event/event_list.evp.json#L3639] | EventParamList[154].Flag | Flag | Bloodbane Isle / "EvNo=15" / event/st0110/ev015/st0110ev015 \| FlagTypes=FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
+| EVP | Direct | 68 | link:../../../../client/03040008/base/event/event_list.evp.json#L3661[client/03040008/base/event/event_list.evp.json#L3661] | EventParamList[155].Flag | Flag | Lestania / "EvNo=125" / event/st0100/ev125/st0100ev125 \| FlagTypes=FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
+| EVP | Direct | 68 | link:../../../../client/03040008/base/event/event_list.evp.json#L3705[client/03040008/base/event/event_list.evp.json#L3705] | EventParamList[157].Flag | Flag | Bloodbane Isle Summit / "EvNo=0" / event/st0112/ev000/st0112ev000 \| FlagTypes=FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
+| EVP | Direct | 68 | link:../../../../client/03040008/base/event/event_list.evp.json#L3727[client/03040008/base/event/event_list.evp.json#L3727] | EventParamList[158].Flag | Flag | Bloodbane Isle Summit / "EvNo=10" / event/st0112/ev010/st0112ev010 \| FlagTypes=FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
+| EVP | Direct | 68 | link:../../../../client/03040008/base/event/event_list.evp.json#L4599[client/03040008/base/event/event_list.evp.json#L4599] | EventParamList[196].Flag | Flag | Hollow of Beginnings / "EvNo=25" / event/st0881/ev025/fsm/st0881ev025 \| FlagTypes=FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
+| EVP | Direct | 68 | link:../../../../client/03040008/base/event/event_list.evp.json#L4709[client/03040008/base/event/event_list.evp.json#L4709] | EventParamList[201].Flag | Flag | Bloodbane Isle Summit / "EvNo=20" / event/st0112/ev020/st0112ev020 \| FlagTypes=FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
+| EVP | Direct | 68 | link:../../../../client/03040008/base/event/event_list.evp.json#L4731[client/03040008/base/event/event_list.evp.json#L4731] | EventParamList[202].Flag | Flag | Farana Plains / "EvNo=0" / event/st0120/ev000/st0120ev000 \| FlagTypes=FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
+| EVP | Direct | 68 | link:../../../../client/03040008/base/event/event_list.evp.json#L4863[client/03040008/base/event/event_list.evp.json#L4863] | EventParamList[208].Flag | Flag | Farana Plains / "EvNo=17" / event/st0120/ev017/st0120ev017 \| FlagTypes=FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
+| EVP | Direct | 68 | link:../../../../client/03040008/base/event/event_list.evp.json#L4885[client/03040008/base/event/event_list.evp.json#L4885] | EventParamList[209].Flag | Flag | Farana Plains / "EvNo=10" / event/st0120/ev010/st0120ev010 \| FlagTypes=FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
+| EVP | Direct | 68 | link:../../../../client/03040008/base/event/event_list.evp.json#L5127[client/03040008/base/event/event_list.evp.json#L5127] | EventParamList[220].Flag | Flag | Spirit Dragon's Roost / "EvNo=5" / event/st0435/ev005/st0435ev005 \| FlagTypes=FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
+| EVP | Direct | 68 | link:../../../../client/03040008/base/event/event_list.evp.json#L5149[client/03040008/base/event/event_list.evp.json#L5149] | EventParamList[221].Flag | Flag | Farana Plains / "EvNo=45" / event/st0120/ev045/st0120ev045 \| FlagTypes=FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
+| EVP | Direct | 68 | link:../../../../client/03040008/base/event/event_list.evp.json#L6060[client/03040008/base/event/event_list.evp.json#L6060] | EventParamList[262].Flag | Flag | The White Dragon Temple / "EvNo=25" / event/st0200/ev025/st0200ev025 \| FlagTypes=FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
+| EVP | Direct | 68 | link:../../../../client/03040008/base/event/event_list.evp.json#L6082[client/03040008/base/event/event_list.evp.json#L6082] | EventParamList[263].Flag | Flag | The White Dragon Temple / "EvNo=20" / event/st0200/ev020/st0200ev020 \| FlagTypes=FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
+| EVP | Direct | 68 | link:../../../../client/03040008/base/event/event_list.evp.json#L6104[client/03040008/base/event/event_list.evp.json#L6104] | EventParamList[264].Flag | Flag | Rathnite Foothills / "EvNo=5" / event/st0130/ev005/st0130ev005 \| FlagTypes=FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
+| EVP | Direct | 68 | link:../../../../client/03040008/base/event/event_list.evp.json#L6276[client/03040008/base/event/event_list.evp.json#L6276] | EventParamList[271].Flag | Flag | Lookout Castle / "EvNo=0" / event/st0450/ev000/st0450ev000 \| FlagTypes=FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
+| EVP | Direct | 68 | link:../../../../client/03040008/base/event/event_list.evp.json#L6298[client/03040008/base/event/event_list.evp.json#L6298] | EventParamList[272].Flag | Flag | Feryana Wilderness / "EvNo=5" / event/st0132/ev005/st0132ev005 \| FlagTypes=FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
+| EVP | Direct | 68 | link:../../../../client/03040008/base/event/event_list.evp.json#L6320[client/03040008/base/event/event_list.evp.json#L6320] | EventParamList[273].Flag | Flag | Before the Secret Spring / "EvNo=0" / event/st1021/ev000/st1021ev000 \| FlagTypes=FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
+| EVP | Direct | 68 | link:../../../../client/03040008/base/event/event_list.evp.json#L8026[client/03040008/base/event/event_list.evp.json#L8026] | EventParamList[335].Flag | Flag | Alternative Path / "EvNo=0" / event/st3500/ev000/fsm/st3500ev000 \| FlagTypes=FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
+| EVP | Direct | 68 | link:../../../../client/03040008/base/event/event_list.evp.json#L8410[client/03040008/base/event/event_list.evp.json#L8410] | EventParamList[350].Flag | Flag | Darkness Cloaked Mergoda Royal Palace Lvl. / "EvNo=0" / event/st3212/ev000/fsm/st3212ev000 \| FlagTypes=FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
+| EVP | Direct | 68 | link:../../../../client/03040008/base/event/event_list.evp.json#L8432[client/03040008/base/event/event_list.evp.json#L8432] | EventParamList[351].Flag | Flag | Darkness Cloaked Mergoda Security District / "EvNo=0" / event/st3411/ev000/fsm/st3411ev000 \| FlagTypes=FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
+| EVP | Direct | 68 | link:../../../../client/03040008/base/event/event_list.evp.json#L8454[client/03040008/base/event/event_list.evp.json#L8454] | EventParamList[352].Flag | Flag | Audience Chamber / "EvNo=235" / event/st0201/ev235/st0201ev235 \| FlagTypes=FLAG_CHG_SUB_MIXER | Matched EventParam, but the entry is broad and needs surrounding context.
 |===
 
 ==== direct -- 17 hit(s)
 
-[cols="1,1,3,3,2,3,3",options="header"]
+[cols="1,1,1,3,3,2,3,3",options="header"]
 |===
-| Family | Confidence | File | JSON Path | Field | Context | Why
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
 
-| SMC | 92 | client/03040008/npc/n0002/ui/00_message/npc/base/n0002.smc.json | SituationData.EndQuestId | EndQuestId | quest 16 (A Friendly Visit) / Mysial / GroupSerial=12661 / "GroupSerial=12661, QuestWindow=15-16 (Return to Yore -> A Friendly Visit), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0002 \| Quest-gated NPC chatter \| QuestWindow=15-16 (Return to Yore -> A Friendly Visit) / MSS: Mysial / The life of an elf taken away... What will | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0002/ui/00_message/npc/base/n0002.smc.json | SituationData.StartQuestId | StartQuestId | quest 16 (A Friendly Visit) / Mysial / GroupSerial=12662 / "GroupSerial=12662, QuestWindow=16-17 (A Friendly Visit -> The Course of Life), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0002 \| Quest-gated NPC chatter \| QuestWindow=16-17 (A Friendly Visit -> The Course of Life) / MSS: Mysial / 'Twas a strong, clear life. The way he lived | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json | SituationData.EndQuestId | EndQuestId | quest 16 (A Friendly Visit) / Klaus / GroupSerial=12697 / "GroupSerial=12697, QuestWindow=15-16 (Return to Yore -> A Friendly Visit), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0003 \| Quest-gated NPC chatter \| QuestWindow=15-16 (Return to Yore -> A Friendly Visit) / MSS: Klaus / It's lonely, is it not... I felt like we could | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json | SituationData.StartQuestId | StartQuestId | quest 16 (A Friendly Visit) / Klaus / GroupSerial=12698 / "GroupSerial=12698, QuestWindow=16-17 (A Friendly Visit -> The Course of Life), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0003 \| Quest-gated NPC chatter \| QuestWindow=16-17 (A Friendly Visit -> The Course of Life) / MSS: Klaus / Even if the life was useful to Master White | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json | SituationData.EndQuestId | EndQuestId | quest 16 (A Friendly Visit) / Joseph / GroupSerial=12740 / "GroupSerial=12740, QuestWindow=15-16 (Return to Yore -> A Friendly Visit), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0004 \| Quest-gated NPC chatter \| QuestWindow=15-16 (Return to Yore -> A Friendly Visit) / MSS: Joseph / It's queer-- e'er since I discovered that there | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json | SituationData.StartQuestId | StartQuestId | quest 16 (A Friendly Visit) / Joseph / GroupSerial=12741 / "GroupSerial=12741, QuestWindow=16-17 (A Friendly Visit -> The Course of Life), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0004 \| Quest-gated NPC chatter \| QuestWindow=16-17 (A Friendly Visit -> The Course of Life) / MSS: Joseph / Proud, solitary souls... | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0005/ui/00_message/npc/base/n0005.smc.json | SituationData.EndQuestId | EndQuestId | quest 16 (A Friendly Visit) / Leo / GroupSerial=12923 / "GroupSerial=12923, QuestWindow=15-16 (Return to Yore -> A Friendly Visit), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0005 \| Quest-gated NPC chatter \| QuestWindow=15-16 (Return to Yore -> A Friendly Visit) / MSS: Leo / Mogok, you rotten scoundrel— | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0005/ui/00_message/npc/base/n0005.smc.json | SituationData.StartQuestId | StartQuestId | quest 16 (A Friendly Visit) / Leo / GroupSerial=12924 / "GroupSerial=12924, QuestWindow=16-17 (A Friendly Visit -> The Course of Life), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0005 \| Quest-gated NPC chatter \| QuestWindow=16-17 (A Friendly Visit -> The Course of Life) / MSS: Leo / The death of Kieshildt is by no means in vain. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0007/ui/00_message/npc/base/n0007.smc.json | SituationData.StartQuestId | StartQuestId | quest 16 (A Friendly Visit) / Gerd / GroupSerial=12964 / "GroupSerial=12964, QuestWindow=16-17 (A Friendly Visit -> The Course of Life), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0007 \| Quest-gated NPC chatter \| QuestWindow=16-17 (A Friendly Visit -> The Course of Life) / MSS: Gerd / The words of Lord White Dragon... | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0008/ui/00_message/npc/base/n0008.smc.json | SituationData.EndQuestId | EndQuestId | quest 16 (A Friendly Visit) / Heinz / GroupSerial=13007 / "GroupSerial=13007, QuestWindow=15-16 (Return to Yore -> A Friendly Visit), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0008 \| Quest-gated NPC chatter \| QuestWindow=15-16 (Return to Yore -> A Friendly Visit) / MSS: Heinz / I saw Leo with a stern look on his face—What | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0008/ui/00_message/npc/base/n0008.smc.json | SituationData.StartQuestId | StartQuestId | quest 16 (A Friendly Visit) / Heinz / GroupSerial=13008 / "GroupSerial=13008, QuestWindow=16-17 (A Friendly Visit -> The Course of Life), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0008 \| Quest-gated NPC chatter \| QuestWindow=16-17 (A Friendly Visit -> The Course of Life) / MSS: Heinz / I think this is something you can't miss, you | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0011/ui/00_message/npc/base/n0011.smc.json | SituationData.EndQuestId | EndQuestId | quest 16 (A Friendly Visit) / Vanessa / GroupSerial=13077 / "GroupSerial=13077, QuestWindow=15-16 (Return to Yore -> A Friendly Visit), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0011 \| Quest-gated NPC chatter \| QuestWindow=15-16 (Return to Yore -> A Friendly Visit) / MSS: Vanessa / How's the temple going? I'm thinking of showing | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0011/ui/00_message/npc/base/n0011.smc.json | SituationData.StartQuestId | StartQuestId | quest 16 (A Friendly Visit) / Vanessa / GroupSerial=13079 / "GroupSerial=13079, QuestWindow=16-17 (A Friendly Visit -> The Course of Life), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0011 \| Quest-gated NPC chatter \| QuestWindow=16-17 (A Friendly Visit -> The Course of Life) / MSS: Vanessa / Rumor has it that the atmosphere of the temple | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0012/ui/00_message/npc/base/n0012.smc.json | SituationData.EndQuestId | EndQuestId | quest 16 (A Friendly Visit) / Fabio / GroupSerial=13988 / "GroupSerial=13988, QuestWindow=15-16 (Return to Yore -> A Friendly Visit), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0012 \| Quest-gated NPC chatter \| QuestWindow=15-16 (Return to Yore -> A Friendly Visit) / MSS: Fabio / The knowledge that long-lived Elves possess is | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0012/ui/00_message/npc/base/n0012.smc.json | SituationData.StartQuestId | StartQuestId | quest 16 (A Friendly Visit) / Fabio / GroupSerial=13989 / "GroupSerial=13989, QuestWindow=16-17 (A Friendly Visit -> The Course of Life), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0012 \| Quest-gated NPC chatter \| QuestWindow=16-17 (A Friendly Visit -> The Course of Life) / MSS: Fabio / If the white dragon had been healthy, I wouldn't | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0014/ui/00_message/npc/base/n0014.smc.json | SituationData.EndQuestId | EndQuestId | quest 16 (A Friendly Visit) / Mayleaf / GroupSerial=13108 / "GroupSerial=13108, QuestWindow=15-16 (Return to Yore -> A Friendly Visit), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0014 \| Quest-gated NPC chatter \| QuestWindow=15-16 (Return to Yore -> A Friendly Visit) / MSS: Mayleaf / —This is painful. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0014/ui/00_message/npc/base/n0014.smc.json | SituationData.StartQuestId | StartQuestId | quest 16 (A Friendly Visit) / Mayleaf / GroupSerial=13109 / "GroupSerial=13109, QuestWindow=16-17 (A Friendly Visit -> The Course of Life), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0014 \| Quest-gated NPC chatter \| QuestWindow=16-17 (A Friendly Visit -> The Course of Life) / MSS: Mayleaf / I'm going to live on, for Kieshildt... | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0002/ui/00_message/npc/base/n0002.smc.json[client/03040008/npc/n0002/ui/00_message/npc/base/n0002.smc.json] | SituationData.EndQuestId | EndQuestId | quest 16 (A Friendly Visit) / Mysial / GroupSerial=12661 / "GroupSerial=12661, QuestWindow=15-16 (Return to Yore -> A Friendly Visit), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0002 \| Quest-gated NPC chatter \| QuestWindow=15-16 (Return to Yore -> A Friendly Visit) / MSS: Mysial / The life of an elf taken away... What will | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0002/ui/00_message/npc/base/n0002.smc.json[client/03040008/npc/n0002/ui/00_message/npc/base/n0002.smc.json] | SituationData.StartQuestId | StartQuestId | quest 16 (A Friendly Visit) / Mysial / GroupSerial=12662 / "GroupSerial=12662, QuestWindow=16-17 (A Friendly Visit -> The Course of Life), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0002 \| Quest-gated NPC chatter \| QuestWindow=16-17 (A Friendly Visit -> The Course of Life) / MSS: Mysial / 'Twas a strong, clear life. The way he lived | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json[client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json] | SituationData.EndQuestId | EndQuestId | quest 16 (A Friendly Visit) / Klaus / GroupSerial=12697 / "GroupSerial=12697, QuestWindow=15-16 (Return to Yore -> A Friendly Visit), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0003 \| Quest-gated NPC chatter \| QuestWindow=15-16 (Return to Yore -> A Friendly Visit) / MSS: Klaus / It's lonely, is it not... I felt like we could | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json[client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json] | SituationData.StartQuestId | StartQuestId | quest 16 (A Friendly Visit) / Klaus / GroupSerial=12698 / "GroupSerial=12698, QuestWindow=16-17 (A Friendly Visit -> The Course of Life), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0003 \| Quest-gated NPC chatter \| QuestWindow=16-17 (A Friendly Visit -> The Course of Life) / MSS: Klaus / Even if the life was useful to Master White | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json[client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json] | SituationData.EndQuestId | EndQuestId | quest 16 (A Friendly Visit) / Joseph / GroupSerial=12740 / "GroupSerial=12740, QuestWindow=15-16 (Return to Yore -> A Friendly Visit), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0004 \| Quest-gated NPC chatter \| QuestWindow=15-16 (Return to Yore -> A Friendly Visit) / MSS: Joseph / It's queer-- e'er since I discovered that there | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json[client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json] | SituationData.StartQuestId | StartQuestId | quest 16 (A Friendly Visit) / Joseph / GroupSerial=12741 / "GroupSerial=12741, QuestWindow=16-17 (A Friendly Visit -> The Course of Life), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0004 \| Quest-gated NPC chatter \| QuestWindow=16-17 (A Friendly Visit -> The Course of Life) / MSS: Joseph / Proud, solitary souls... | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0005/ui/00_message/npc/base/n0005.smc.json[client/03040008/npc/n0005/ui/00_message/npc/base/n0005.smc.json] | SituationData.EndQuestId | EndQuestId | quest 16 (A Friendly Visit) / Leo / GroupSerial=12923 / "GroupSerial=12923, QuestWindow=15-16 (Return to Yore -> A Friendly Visit), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0005 \| Quest-gated NPC chatter \| QuestWindow=15-16 (Return to Yore -> A Friendly Visit) / MSS: Leo / Mogok, you rotten scoundrel— | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0005/ui/00_message/npc/base/n0005.smc.json[client/03040008/npc/n0005/ui/00_message/npc/base/n0005.smc.json] | SituationData.StartQuestId | StartQuestId | quest 16 (A Friendly Visit) / Leo / GroupSerial=12924 / "GroupSerial=12924, QuestWindow=16-17 (A Friendly Visit -> The Course of Life), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0005 \| Quest-gated NPC chatter \| QuestWindow=16-17 (A Friendly Visit -> The Course of Life) / MSS: Leo / The death of Kieshildt is by no means in vain. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0007/ui/00_message/npc/base/n0007.smc.json[client/03040008/npc/n0007/ui/00_message/npc/base/n0007.smc.json] | SituationData.StartQuestId | StartQuestId | quest 16 (A Friendly Visit) / Gerd / GroupSerial=12964 / "GroupSerial=12964, QuestWindow=16-17 (A Friendly Visit -> The Course of Life), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0007 \| Quest-gated NPC chatter \| QuestWindow=16-17 (A Friendly Visit -> The Course of Life) / MSS: Gerd / The words of Lord White Dragon... | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0008/ui/00_message/npc/base/n0008.smc.json[client/03040008/npc/n0008/ui/00_message/npc/base/n0008.smc.json] | SituationData.EndQuestId | EndQuestId | quest 16 (A Friendly Visit) / Heinz / GroupSerial=13007 / "GroupSerial=13007, QuestWindow=15-16 (Return to Yore -> A Friendly Visit), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0008 \| Quest-gated NPC chatter \| QuestWindow=15-16 (Return to Yore -> A Friendly Visit) / MSS: Heinz / I saw Leo with a stern look on his face—What | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0008/ui/00_message/npc/base/n0008.smc.json[client/03040008/npc/n0008/ui/00_message/npc/base/n0008.smc.json] | SituationData.StartQuestId | StartQuestId | quest 16 (A Friendly Visit) / Heinz / GroupSerial=13008 / "GroupSerial=13008, QuestWindow=16-17 (A Friendly Visit -> The Course of Life), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0008 \| Quest-gated NPC chatter \| QuestWindow=16-17 (A Friendly Visit -> The Course of Life) / MSS: Heinz / I think this is something you can't miss, you | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0011/ui/00_message/npc/base/n0011.smc.json[client/03040008/npc/n0011/ui/00_message/npc/base/n0011.smc.json] | SituationData.EndQuestId | EndQuestId | quest 16 (A Friendly Visit) / Vanessa / GroupSerial=13077 / "GroupSerial=13077, QuestWindow=15-16 (Return to Yore -> A Friendly Visit), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0011 \| Quest-gated NPC chatter \| QuestWindow=15-16 (Return to Yore -> A Friendly Visit) / MSS: Vanessa / How's the temple going? I'm thinking of showing | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0011/ui/00_message/npc/base/n0011.smc.json[client/03040008/npc/n0011/ui/00_message/npc/base/n0011.smc.json] | SituationData.StartQuestId | StartQuestId | quest 16 (A Friendly Visit) / Vanessa / GroupSerial=13079 / "GroupSerial=13079, QuestWindow=16-17 (A Friendly Visit -> The Course of Life), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0011 \| Quest-gated NPC chatter \| QuestWindow=16-17 (A Friendly Visit -> The Course of Life) / MSS: Vanessa / Rumor has it that the atmosphere of the temple | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0012/ui/00_message/npc/base/n0012.smc.json[client/03040008/npc/n0012/ui/00_message/npc/base/n0012.smc.json] | SituationData.EndQuestId | EndQuestId | quest 16 (A Friendly Visit) / Fabio / GroupSerial=13988 / "GroupSerial=13988, QuestWindow=15-16 (Return to Yore -> A Friendly Visit), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0012 \| Quest-gated NPC chatter \| QuestWindow=15-16 (Return to Yore -> A Friendly Visit) / MSS: Fabio / The knowledge that long-lived Elves possess is | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0012/ui/00_message/npc/base/n0012.smc.json[client/03040008/npc/n0012/ui/00_message/npc/base/n0012.smc.json] | SituationData.StartQuestId | StartQuestId | quest 16 (A Friendly Visit) / Fabio / GroupSerial=13989 / "GroupSerial=13989, QuestWindow=16-17 (A Friendly Visit -> The Course of Life), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0012 \| Quest-gated NPC chatter \| QuestWindow=16-17 (A Friendly Visit -> The Course of Life) / MSS: Fabio / If the white dragon had been healthy, I wouldn't | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0014/ui/00_message/npc/base/n0014.smc.json[client/03040008/npc/n0014/ui/00_message/npc/base/n0014.smc.json] | SituationData.EndQuestId | EndQuestId | quest 16 (A Friendly Visit) / Mayleaf / GroupSerial=13108 / "GroupSerial=13108, QuestWindow=15-16 (Return to Yore -> A Friendly Visit), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0014 \| Quest-gated NPC chatter \| QuestWindow=15-16 (Return to Yore -> A Friendly Visit) / MSS: Mayleaf / —This is painful. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0014/ui/00_message/npc/base/n0014.smc.json[client/03040008/npc/n0014/ui/00_message/npc/base/n0014.smc.json] | SituationData.StartQuestId | StartQuestId | quest 16 (A Friendly Visit) / Mayleaf / GroupSerial=13109 / "GroupSerial=13109, QuestWindow=16-17 (A Friendly Visit -> The Course of Life), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0014 \| Quest-gated NPC chatter \| QuestWindow=16-17 (A Friendly Visit -> The Course of Life) / MSS: Mayleaf / I'm going to live on, for Kieshildt... | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
 |===
 
 ==== opaque_fsm -- 10 hit(s)
 
-[cols="1,1,3,3,2,3,3",options="header"]
+[cols="1,1,1,3,3,2,3,3",options="header"]
 |===
-| Family | Confidence | File | JSON Path | Field | Context | Why
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
 
-| FSM | 78 | client/03040008/quest/q00000016/quest/00000016/npc/n0005.fsm.json | Process.Parameter.QuestId | QuestId | quest 16 (A Friendly Visit) / Leo / checkMyQuestFlag \| NPCFSM=n0005 \| QuestLocalNPCFSM | Quest-local NPC FSM MyQuest check; these files usually describe NPC behavior for the same quest, so this flag likely controls that NPC's quest-specific presence or behavior.
-| FSM | 72 | client/03040008/quest/q00000016/quest/00000016/npc/n0005.fsm.json | Process.Parameter.QuestId | QuestId | quest 16 (A Friendly Visit) / Leo / CallMessage \| NPCFSM=n0005 \| QuestLocalNPCFSM | Quest-local NPC FSM reference; these quest NPC FSM files usually define behavior for the same quest, such as joining fights or changing interactions.
-| FSM | 72 | client/03040008/quest/q00000016/quest/00000016/npc/n0005.fsm.json | Process.Parameter.QuestId | QuestId | quest 16 (A Friendly Visit) / Leo / CallMessage \| NPCFSM=n0005 \| QuestLocalNPCFSM | Quest-local NPC FSM reference; these quest NPC FSM files usually define behavior for the same quest, such as joining fights or changing interactions.
-| FSM | 72 | client/03040008/quest/q00000016/quest/00000016/npc/n0005.fsm.json | Process.Parameter.QuestId | QuestId | quest 16 (A Friendly Visit) / Leo / CallMessage \| NPCFSM=n0005 \| QuestLocalNPCFSM | Quest-local NPC FSM reference; these quest NPC FSM files usually define behavior for the same quest, such as joining fights or changing interactions.
-| FSM | 72 | client/03040008/quest/q00000016/quest/00000016/npc/n0005.fsm.json | Process.Parameter.QuestId | QuestId | quest 16 (A Friendly Visit) / Leo / CallMessage \| NPCFSM=n0005 \| QuestLocalNPCFSM | Quest-local NPC FSM reference; these quest NPC FSM files usually define behavior for the same quest, such as joining fights or changing interactions.
-| FSM | 72 | client/03040008/quest/q00000016/quest/00000016/npc/n0005.fsm.json | Process.Parameter.QuestId | QuestId | quest 16 (A Friendly Visit) / Leo / CallMessage \| NPCFSM=n0005 \| QuestLocalNPCFSM | Quest-local NPC FSM reference; these quest NPC FSM files usually define behavior for the same quest, such as joining fights or changing interactions.
-| FSM | 72 | client/03040008/quest/q00000016/quest/00000016/npc/n0005.fsm.json | Process.Parameter.QuestId | QuestId | quest 16 (A Friendly Visit) / Leo / CallMessage \| NPCFSM=n0005 \| QuestLocalNPCFSM | Quest-local NPC FSM reference; these quest NPC FSM files usually define behavior for the same quest, such as joining fights or changing interactions.
-| FSM | 78 | client/03040008/quest/q00000016/quest/00000016/npc/n0535.fsm.json | Process.Parameter.QuestId | QuestId | quest 16 (A Friendly Visit) / Arisen Corps Regimental Soldier / checkMyQuestFlag \| NPCFSM=n0535 \| QuestLocalNPCFSM | Quest-local NPC FSM MyQuest check; these files usually describe NPC behavior for the same quest, so this flag likely controls that NPC's quest-specific presence or behavior.
-| FSM | 78 | client/03040008/quest/q00000016/quest/00000016/npc/n1901.fsm.json | Process.Parameter.QuestId | QuestId | quest 16 (A Friendly Visit) / Talcott / checkMyQuestFlag \| NPCFSM=n1901 \| QuestLocalNPCFSM | Quest-local NPC FSM MyQuest check; these files usually describe NPC behavior for the same quest, so this flag likely controls that NPC's quest-specific presence or behavior.
-| FSM | 78 | client/03040008/quest/q00000016/quest/00000016/npc/n1902.fsm.json | Process.Parameter.QuestId | QuestId | quest 16 (A Friendly Visit) / Stark / checkMyQuestFlag \| NPCFSM=n1902 \| QuestLocalNPCFSM | Quest-local NPC FSM MyQuest check; these files usually describe NPC behavior for the same quest, so this flag likely controls that NPC's quest-specific presence or behavior.
+| FSM | Direct | 78 | link:../../../../client/03040008/quest/q00000016/quest/00000016/npc/n0005.fsm.json[client/03040008/quest/q00000016/quest/00000016/npc/n0005.fsm.json] | Process.Parameter.QuestId | QuestId | quest 16 (A Friendly Visit) / Leo / checkMyQuestFlag \| NPCFSM=n0005 \| QuestLocalNPCFSM | Quest-local NPC FSM MyQuest check; these files usually describe NPC behavior for the same quest, so this flag likely controls that NPC's quest-specific presence or behavior.
+| FSM | Direct | 72 | link:../../../../client/03040008/quest/q00000016/quest/00000016/npc/n0005.fsm.json[client/03040008/quest/q00000016/quest/00000016/npc/n0005.fsm.json] | Process.Parameter.QuestId | QuestId | quest 16 (A Friendly Visit) / Leo / CallMessage \| NPCFSM=n0005 \| QuestLocalNPCFSM | Quest-local NPC FSM reference; these quest NPC FSM files usually define behavior for the same quest, such as joining fights or changing interactions.
+| FSM | Direct | 72 | link:../../../../client/03040008/quest/q00000016/quest/00000016/npc/n0005.fsm.json[client/03040008/quest/q00000016/quest/00000016/npc/n0005.fsm.json] | Process.Parameter.QuestId | QuestId | quest 16 (A Friendly Visit) / Leo / CallMessage \| NPCFSM=n0005 \| QuestLocalNPCFSM | Quest-local NPC FSM reference; these quest NPC FSM files usually define behavior for the same quest, such as joining fights or changing interactions.
+| FSM | Direct | 72 | link:../../../../client/03040008/quest/q00000016/quest/00000016/npc/n0005.fsm.json[client/03040008/quest/q00000016/quest/00000016/npc/n0005.fsm.json] | Process.Parameter.QuestId | QuestId | quest 16 (A Friendly Visit) / Leo / CallMessage \| NPCFSM=n0005 \| QuestLocalNPCFSM | Quest-local NPC FSM reference; these quest NPC FSM files usually define behavior for the same quest, such as joining fights or changing interactions.
+| FSM | Direct | 72 | link:../../../../client/03040008/quest/q00000016/quest/00000016/npc/n0005.fsm.json[client/03040008/quest/q00000016/quest/00000016/npc/n0005.fsm.json] | Process.Parameter.QuestId | QuestId | quest 16 (A Friendly Visit) / Leo / CallMessage \| NPCFSM=n0005 \| QuestLocalNPCFSM | Quest-local NPC FSM reference; these quest NPC FSM files usually define behavior for the same quest, such as joining fights or changing interactions.
+| FSM | Direct | 72 | link:../../../../client/03040008/quest/q00000016/quest/00000016/npc/n0005.fsm.json[client/03040008/quest/q00000016/quest/00000016/npc/n0005.fsm.json] | Process.Parameter.QuestId | QuestId | quest 16 (A Friendly Visit) / Leo / CallMessage \| NPCFSM=n0005 \| QuestLocalNPCFSM | Quest-local NPC FSM reference; these quest NPC FSM files usually define behavior for the same quest, such as joining fights or changing interactions.
+| FSM | Direct | 72 | link:../../../../client/03040008/quest/q00000016/quest/00000016/npc/n0005.fsm.json[client/03040008/quest/q00000016/quest/00000016/npc/n0005.fsm.json] | Process.Parameter.QuestId | QuestId | quest 16 (A Friendly Visit) / Leo / CallMessage \| NPCFSM=n0005 \| QuestLocalNPCFSM | Quest-local NPC FSM reference; these quest NPC FSM files usually define behavior for the same quest, such as joining fights or changing interactions.
+| FSM | Direct | 78 | link:../../../../client/03040008/quest/q00000016/quest/00000016/npc/n0535.fsm.json[client/03040008/quest/q00000016/quest/00000016/npc/n0535.fsm.json] | Process.Parameter.QuestId | QuestId | quest 16 (A Friendly Visit) / Arisen Corps Regimental Soldier / checkMyQuestFlag \| NPCFSM=n0535 \| QuestLocalNPCFSM | Quest-local NPC FSM MyQuest check; these files usually describe NPC behavior for the same quest, so this flag likely controls that NPC's quest-specific presence or behavior.
+| FSM | Direct | 78 | link:../../../../client/03040008/quest/q00000016/quest/00000016/npc/n1901.fsm.json[client/03040008/quest/q00000016/quest/00000016/npc/n1901.fsm.json] | Process.Parameter.QuestId | QuestId | quest 16 (A Friendly Visit) / Talcott / checkMyQuestFlag \| NPCFSM=n1901 \| QuestLocalNPCFSM | Quest-local NPC FSM MyQuest check; these files usually describe NPC behavior for the same quest, so this flag likely controls that NPC's quest-specific presence or behavior.
+| FSM | Direct | 78 | link:../../../../client/03040008/quest/q00000016/quest/00000016/npc/n1902.fsm.json[client/03040008/quest/q00000016/quest/00000016/npc/n1902.fsm.json] | Process.Parameter.QuestId | QuestId | quest 16 (A Friendly Visit) / Stark / checkMyQuestFlag \| NPCFSM=n1902 \| QuestLocalNPCFSM | Quest-local NPC FSM MyQuest check; these files usually describe NPC behavior for the same quest, so this flag likely controls that NPC's quest-specific presence or behavior.
 |===
 

@@ -1,6 +1,6 @@
 {
   "format": "client_investigation.v4",
-  "generated_at": "2026-04-11T21:41:42.939722+00:00",
+  "generated_at": "2026-04-12T12:44:32.821163+00:00",
   "query": {
     "mode": "quest",
     "value": 90000205
@@ -32,6 +32,7 @@
           "json_path": "QuestSequenceList[522].QuestId",
           "resource_family": ".qsq",
           "evidence_tier": "context",
+          "derivation_class": "lower_confidence",
           "confidence": 45,
           "why": "Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.",
           "class_name": "org.sehkah.ddon.tools.extractor.common.logic.resource.entity.game_common.QuestSequence",
@@ -42,9 +43,62 @@
       ]
     }
   ],
+  "quest_family": {
+    "key": "q9",
+    "label": "Reserved q9",
+    "description": "Reserved or unimplemented quest-family bucket.",
+    "discovery_focus": "unsupported_until_client_evidence",
+    "supported": false
+  },
+  "quest_family_relationships": {
+    "quest_family": {
+      "key": "q9",
+      "label": "Reserved q9",
+      "description": "Reserved or unimplemented quest-family bucket.",
+      "discovery_focus": "unsupported_until_client_evidence",
+      "supported": false
+    },
+    "quest_sequence": {
+      "quest_id": 90000205,
+      "seq_no": 522,
+      "quest_name": "The Crucible of Demons: Heat Wave",
+      "quest_name_jp": "魔物のるつぼ　：熱波",
+      "previous": {
+        "quest_id": 80301072,
+        "seq_no": 521,
+        "quest_name": "[Daily Espionage] Megadosys Plateau: Rescue Friends",
+        "quest_name_jp": "【諜報日課】メガドシス高地　仲間救出"
+      },
+      "next": {
+        "quest_id": 90000206,
+        "seq_no": 523,
+        "quest_name": "The Crucible of Demons: Blaze",
+        "quest_name_jp": "魔物のるつぼ　：火炎"
+      }
+    }
+  },
+  "quest_owner_indexes": [],
+  "quest_dependency_targets": [],
   "quest_archive_context": {
+    "quest_family": {
+      "key": "q9",
+      "label": "Reserved q9",
+      "description": "Reserved or unimplemented quest-family bucket.",
+      "discovery_focus": "unsupported_until_client_evidence",
+      "supported": false
+    },
     "file_path": "client/03040008/quest/q90000205.arc.json",
     "resource_count": 8,
+    "stage_codes": [
+      "st0407"
+    ],
+    "resource_type_extensions": [
+      ".gmd",
+      ".mss",
+      ".qmi",
+      ".qst",
+      ".qtd"
+    ],
     "stages": [
       {
         "stage_code": "st0407",
@@ -101,6 +155,165 @@
             "type_name": "rGUIMessage"
           }
         ]
+      }
+    ]
+  },
+  "quest_stage_neighborhood": {
+    "quest_family": {
+      "key": "q9",
+      "label": "Reserved q9",
+      "description": "Reserved or unimplemented quest-family bucket.",
+      "discovery_focus": "unsupported_until_client_evidence",
+      "supported": false
+    },
+    "stage_codes": [
+      "st0407"
+    ],
+    "scanner_file_count": 39,
+    "stages": [
+      {
+        "stage_code": "st0407",
+        "stage_no": 407,
+        "stage_name": "Dragon's Nest",
+        "stage_name_jp": "竜の巣",
+        "scanner_file_count": 39,
+        "scanner_suffix_counts": {
+          ".gpl.json": 5,
+          ".lot.json": 25,
+          ".qmi.json": 5,
+          ".qst.json": 4
+        }
+      }
+    ]
+  },
+  "quest_stage_cues": {
+    "quest_family": {
+      "key": "q9",
+      "label": "Reserved q9",
+      "description": "Reserved or unimplemented quest-family bucket.",
+      "discovery_focus": "unsupported_until_client_evidence",
+      "supported": false
+    },
+    "stage_codes": [
+      "st0407"
+    ],
+    "owner_families": [
+      "q6",
+      "q7"
+    ],
+    "cues": [],
+    "cue_count": 0
+  },
+  "quest_graph_expansion": {
+    "max_depth": 3,
+    "node_count": 5,
+    "edge_count": 4,
+    "node_kind_counts": {
+      "family_context": 1,
+      "quest": 1,
+      "sequence_quest": 2,
+      "stage": 1
+    },
+    "edge_type_counts": {
+      "family_context:quest_sequence": 1,
+      "quest_archive_stage": 1,
+      "sequence_next": 1,
+      "sequence_previous": 1
+    },
+    "derivation_counts": {
+      "direct_deterministic": 9
+    },
+    "nodes": [
+      {
+        "node_id": "quest:90000205",
+        "label": "Quest 90000205",
+        "kind": "quest",
+        "depth": 0,
+        "derivation_class": "direct_deterministic",
+        "metadata": {
+          "quest_id": 90000205,
+          "target_count": 1
+        }
+      },
+      {
+        "node_id": "family-context:quest_sequence",
+        "label": "Quest Sequence",
+        "kind": "family_context",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "metadata": {
+          "context_key": "quest_sequence"
+        }
+      },
+      {
+        "node_id": "stage:st0407",
+        "label": "st0407 -- Dragon's Nest",
+        "kind": "stage",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "metadata": {
+          "stage_code": "st0407"
+        }
+      },
+      {
+        "node_id": "sequence-quest:80301072",
+        "label": "Quest 80301072",
+        "kind": "sequence_quest",
+        "depth": 2,
+        "derivation_class": "direct_deterministic",
+        "metadata": {
+          "quest_id": 80301072,
+          "direction": "previous"
+        }
+      },
+      {
+        "node_id": "sequence-quest:90000206",
+        "label": "Quest 90000206",
+        "kind": "sequence_quest",
+        "depth": 2,
+        "derivation_class": "direct_deterministic",
+        "metadata": {
+          "quest_id": 90000206,
+          "direction": "next"
+        }
+      }
+    ],
+    "edges": [
+      {
+        "from": "quest:90000205",
+        "to": "family-context:quest_sequence",
+        "edge_type": "family_context:quest_sequence",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "why": "Family-specific decoded tables provide deterministic context for this quest.",
+        "metadata": {}
+      },
+      {
+        "from": "quest:90000205",
+        "to": "stage:st0407",
+        "edge_type": "quest_archive_stage",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "why": "Quest archive topology directly links this quest to the stage code.",
+        "metadata": {}
+      },
+      {
+        "from": "family-context:quest_sequence",
+        "to": "sequence-quest:90000206",
+        "edge_type": "sequence_next",
+        "depth": 2,
+        "derivation_class": "direct_deterministic",
+        "why": "QuestSequence links this quest to its neighboring sequence quest.",
+        "metadata": {}
+      },
+      {
+        "from": "family-context:quest_sequence",
+        "to": "sequence-quest:80301072",
+        "edge_type": "sequence_previous",
+        "depth": 2,
+        "derivation_class": "direct_deterministic",
+        "why": "QuestSequence links this quest to its neighboring sequence quest.",
+        "metadata": {}
       }
     ]
   }

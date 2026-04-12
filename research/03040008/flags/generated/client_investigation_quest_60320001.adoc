@@ -5,16 +5,70 @@
 
 Query mode:: quest
 Query value:: 60320001
-Generated at:: 2026-04-11T21:41:42.035657+00:00
+Generated at:: 2026-04-12T12:44:19.717524+00:00
 
 toc::[]
+
+Quest family:: q6 -- Tutorial / Unlock / Area Trial
+Quest family notes:: Tutorial, area-trial, unlock, and occasional festival quests.
+Quest family focus:: jtq_tqg_jmc_scaffolding
+
+== External Owner Indexes
+
+_These are reusable external owner catalogs inferred from stage-neighborhood cues. They are broader than the subset of flags promoted into derived dependency targets._
+
+[cols="2,1,1,2,2,2,4",options="header"]
+|===
+| Owner Quest | Family | Catalog Count | Catalog Flags | Linked Cues | Cue Sources | Why
+
+| 70000001 | q7 | 70 | 1098, 1103, 1104, 1105, 1106, 1109, 1110, 1111, 1112, 1113, 1114, 1115 +58 more | 1110, 1112, 1150, 1201, 1216, 1217, 1220, 1221 +14 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70001001 | q7 | 0 |  | 1851, 1954 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70002001 | q7 | 47 | 1098, 1103, 1104, 1105, 1106, 1109, 1110, 1111, 1112, 1113, 1114, 1115 +35 more | 1114, 1115, 1117, 1601, 3860 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70003001 | q7 | 49 | 1098, 1103, 1104, 1105, 1106, 1109, 1110, 1111, 1112, 1113, 1114, 1115 +37 more | 1103, 1105, 1106, 1119, 1120, 1121, 1122, 1123 +8 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70020001 | q7 | 8 | 2736, 3000, 3002, 3003, 3074, 3442, 3805, 4037 | 2736, 3003, 3074, 4037 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70021001 | q7 | 4 | 3278, 3650, 3753, 3861 | 3278, 3753 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70022001 | q7 | 17 | 3949, 3950, 3952, 3953, 3954, 3977, 4033, 4043, 4053, 4063, 4470, 4555 +5 more | 3949, 3950, 3952, 3953, 3954, 3977, 4033, 4556 +2 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70023001 | q7 | 15 | 4066, 4067, 4372, 4373, 4500, 4506, 4507, 4508, 4511, 4512, 4515, 4516 +3 more | 4066, 4373, 4500, 4506, 4508, 4512, 4515, 4517 +1 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70030001 | q7 | 46 | 5396, 5397, 5407, 5552, 5557, 5558, 5581, 5584, 5587, 5588, 5589, 5614 +34 more | 5396, 5407, 5557, 5589, 5614, 5632, 5635, 5637 +16 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70031001 | q7 | 8 | 5553, 5672, 6138, 6194, 6195, 6377, 6425, 7316 | 5553, 6195, 6377, 7316 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70032001 | q7 | 37 | 7169, 7240, 7241, 7336, 7341, 7342, 7386, 7387, 7388, 7389, 7390, 7438 +25 more | 7240, 7241, 7336, 7341, 7386, 7438, 7439, 7440 +13 more | evsi, gpl | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70033001 | q7 | 43 | 7826, 7827, 7876, 7888, 7889, 7916, 7917, 7954, 7955, 7965, 7966, 7967 +31 more | 7888, 7889, 7965, 7967, 7973, 8043, 8044, 8045 +6 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+|===
+
+== Derived External Dependency Targets
+
+_These are the promoted subset of external owner-index entries. A flag appears here only when it passes the current family-specific dependency promotion rules for this quest._
+
+[cols="2,1,1,2,2,4",options="header"]
+|===
+| Owner Quest | Family | Flag Count | Flags | Sources | Why
+
+| 70032001 | q7 | 1 | 7240 | evsi, gpl | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+|===
+
+== Family Relationship Context
+
+_These sections summarize deterministic client-side family metadata and reverse-index relationships. They are context for later owner/dependency inference, not direct quest-target promotion._
+
+=== Quest Sequence
+
+* seq no: 488
+* previous: 60320000 -- MP Trial: Material Procurement
+* next: 60320002 -- Megadosys Plateau Liberation Army Support
+
+=== Blocked Spots
+
+* entries: 1
+* spot ids: 1049
 
 == ARC Association Context
 
 _ARC associations are contextual only. They show which quest-stage and marker resources are bundled with this quest._
 
-* arc file: client/03040008/quest/q60320001.arc.json
+* arc file: link:../../../../client/03040008/quest/q60320001.arc.json#L1[client/03040008/quest/q60320001.arc.json#L1]
 * resource count: 13
+* stage codes: st0133
+* resource families: .fmi, .fsm, .gmd, .mss, .qmi, .qst, .qtd
 
 === st0133 -- Megadosys Plateau
 
@@ -35,18 +89,258 @@ _ARC associations are contextual only. They show which quest-stage and marker re
 * rFieldAreaMarkerInfo: quest/60320001/fa006_marker_npc
 * rGUIMessage: ui/00_message/quest_info/q60320001_00
 
+== Stage Neighborhood Context
+
+_Stage-neighborhood context summarizes scanner-relevant client files that share the quest's archive stage codes. This is deterministic client topology, not inferred ownership._
+
+* scanner-relevant stage files: 412
+* indexed stage codes: st0133
+
+=== st0133 -- Megadosys Plateau
+
+* scanner files: 412
+* .evsi.json: 2
+* .fsm.json: 17
+* .gpl.json: 5
+* .lot.json: 344
+* .qmi.json: 26
+* .qst.json: 18
+
+== Stage Neighborhood External-State Cues
+
+_These cues are deterministic client-side observations from the quest's stage neighborhood. They are not promoted to direct quest targets yet; they highlight q6/q7-owned external state values co-located in the quest's archive stages._
+
+* cue count: 133
+* owner families: q6, q7
+
+[cols="1,1,1,2,2,2",options="header"]
+|===
+| Value | Kind | Hits | Sources | Owners | Stages
+
+| Flag 7240 | layout_flag | 3 | evsi, gpl | 70032001 | st0133
+| Flag 7438 | layout_flag | 2 | evsi, gpl | 70032001 | st0133
+| Flag 7241 | layout_flag | 1 | gpl | 70032001 | st0133
+| Flag 7336 | layout_flag | 1 | gpl | 70032001 | st0133
+| Flag 7439 | layout_flag | 1 | gpl | 70032001 | st0133
+| Flag 7440 | layout_flag | 1 | gpl | 70032001 | st0133
+| Flag 7830 | layout_flag | 1 | gpl | 70032001 | st0133
+| Flag 7946 | layout_flag | 1 | gpl | 70032001 | st0133
+| Flag 1103 | layout_flag | 2 | evsi | 70003001 | st0133
+| Flag 1105 | layout_flag | 2 | evsi | 70003001 | st0133
+| Flag 1106 | layout_flag | 2 | evsi | 70003001 | st0133
+| Flag 1110 | layout_flag | 2 | evsi | 70000001 | st0133
+| Flag 1112 | layout_flag | 2 | evsi | 70000001 | st0133
+| Flag 1114 | layout_flag | 2 | evsi | 70002001 | st0133
+| Flag 1115 | layout_flag | 2 | evsi | 70002001 | st0133
+| Flag 1117 | layout_flag | 2 | evsi | 70002001 | st0133
+| Flag 1119 | layout_flag | 2 | evsi | 70003001 | st0133
+| Flag 1120 | layout_flag | 2 | evsi | 70003001 | st0133
+| Flag 1121 | layout_flag | 2 | evsi | 70003001 | st0133
+| Flag 1122 | layout_flag | 2 | evsi | 70003001 | st0133
+| Flag 1123 | layout_flag | 2 | evsi | 70003001 | st0133
+| Flag 1124 | layout_flag | 2 | evsi | 70003001 | st0133
+| Flag 1150 | layout_flag | 2 | evsi | 70000001 | st0133
+| Flag 1201 | layout_flag | 2 | evsi | 70000001 | st0133
+| Flag 1202 | layout_flag | 2 | evsi | 70003001 | st0133
+| Flag 1203 | layout_flag | 2 | evsi | 70003001 | st0133
+| Flag 1216 | layout_flag | 2 | evsi | 70000001 | st0133
+| Flag 1217 | layout_flag | 2 | evsi | 70000001 | st0133
+| Flag 1220 | layout_flag | 2 | evsi | 70000001 | st0133
+| Flag 1221 | layout_flag | 2 | evsi | 70000001 | st0133
+|===
+
+== Bounded Graph Expansion
+
+_This graph summarizes bounded deterministic and inferred edges around the quest: quest archive stages, direct source families, stage-linked owner catalogs, promoted dependencies, reverse-index event/group links, and family-specific table edges._
+
+* max depth: 3
+* node count: 60
+* edge count: 92
+* node kinds: direct_family=3, event_viewer=24, family_context=2, lot_file=7, owner_quest=12, quest=1, sequence_quest=2, stage=1, stage_group=8
+* derivation: Dependency=1, Direct=17, Graph=110, Owner Index=24
+
+=== Mermaid Graph Slice
+
+_This Mermaid flowchart shows a capped slice of the bounded graph so large quest reports stay readable while still exposing the graph structure._
+
+[mermaid]
+....
+flowchart TD
+    node_quest_60320001["Quest 60320001"]
+    node_direct_family_ams["ams direct hits (1)"]
+    node_direct_family_fsm["fsm direct hits (2)"]
+    node_direct_family_qst["qst direct hits (3)"]
+    node_family_context_blocked_spots["Blocked Spots"]
+    node_family_context_quest_sequence["Quest Sequence"]
+    node_stage_st0133["st0133 -- Megadosys Plateau"]
+    node_event_viewer_st0133_ev000_70001001["Event st0133/ev000"]
+    node_event_viewer_st0133_ev000_70030001["Event st0133/ev000"]
+    node_event_viewer_st0133_ev000_70032001["Event st0133/ev000"]
+    node_event_viewer_st0133_ev000_70020001["Event st0133/ev000"]
+    node_event_viewer_st0133_ev000_70002001["Event st0133/ev000"]
+    node_event_viewer_st0133_ev000_70003001["Event st0133/ev000"]
+    node_event_viewer_st0133_ev000_70023001["Event st0133/ev000"]
+    node_event_viewer_st0133_ev000_70000001["Event st0133/ev000"]
+    node_event_viewer_st0133_ev000_70033001["Event st0133/ev000"]
+    node_event_viewer_st0133_ev000_70022001["Event st0133/ev000"]
+    node_event_viewer_st0133_ev000_70021001["Event st0133/ev000"]
+    node_event_viewer_st0133_ev000_70031001["Event st0133/ev000"]
+    node_event_viewer_st0133_ev005_70000001["Event st0133/ev005"]
+    node_event_viewer_st0133_ev005_70001001["Event st0133/ev005"]
+    node_event_viewer_st0133_ev005_70002001["Event st0133/ev005"]
+    node_owner_quest_70032001["Owner quest 70032001 (q7)"]
+    node_sequence_quest_60320000["Quest 60320000"]
+    node_sequence_quest_60320002["Quest 60320002"]
+    node_quest_60320001 -->|direct_source_family| node_direct_family_ams
+    node_quest_60320001 -->|direct_source_family| node_direct_family_fsm
+    node_quest_60320001 -->|direct_source_family| node_direct_family_qst
+    node_quest_60320001 -->|family:blocked_spots| node_family_context_blocked_spots
+    node_quest_60320001 -->|family:quest_sequence| node_family_context_quest_sequence
+    node_quest_60320001 -->|quest_archive_stage| node_stage_st0133
+    node_quest_60320001 -->|promoted_dependency| node_owner_quest_70032001
+    node_family_context_quest_sequence -->|sequence_next| node_sequence_quest_60320002
+    node_family_context_quest_sequence -->|sequence_previous| node_sequence_quest_60320000
+    node_stage_st0133 -->|stage_event_viewer| node_event_viewer_st0133_ev000_70000001
+    node_stage_st0133 -->|stage_event_viewer| node_event_viewer_st0133_ev000_70001001
+    node_stage_st0133 -->|stage_event_viewer| node_event_viewer_st0133_ev000_70002001
+    node_stage_st0133 -->|stage_event_viewer| node_event_viewer_st0133_ev000_70003001
+    node_stage_st0133 -->|stage_event_viewer| node_event_viewer_st0133_ev000_70020001
+    node_stage_st0133 -->|stage_event_viewer| node_event_viewer_st0133_ev000_70021001
+    node_stage_st0133 -->|stage_event_viewer| node_event_viewer_st0133_ev000_70022001
+    node_stage_st0133 -->|stage_event_viewer| node_event_viewer_st0133_ev000_70023001
+    node_stage_st0133 -->|stage_event_viewer| node_event_viewer_st0133_ev000_70030001
+    node_stage_st0133 -->|stage_event_viewer| node_event_viewer_st0133_ev000_70031001
+    node_stage_st0133 -->|stage_event_viewer| node_event_viewer_st0133_ev000_70032001
+    node_stage_st0133 -->|stage_event_viewer| node_event_viewer_st0133_ev000_70033001
+    node_stage_st0133 -->|stage_event_viewer| node_event_viewer_st0133_ev005_70000001
+    node_stage_st0133 -->|stage_event_viewer| node_event_viewer_st0133_ev005_70001001
+    node_stage_st0133 -->|stage_event_viewer| node_event_viewer_st0133_ev005_70002001
+    classDef direct_deterministic fill:#e8f5e9,stroke:#2e7d32,stroke-width:1px
+    classDef owner_index fill:#e3f2fd,stroke:#1565c0,stroke-width:1px
+    classDef dependency_inferred fill:#fff3e0,stroke:#ef6c00,stroke-width:1px
+    classDef graph_expanded fill:#f3e5f5,stroke:#7b1fa2,stroke-width:1px
+    classDef lower_confidence fill:#fbe9e7,stroke:#d84315,stroke-width:1px
+    classDef binary_auxiliary fill:#eceff1,stroke:#455a64,stroke-width:1px
+    class node_quest_60320001,node_direct_family_ams,node_direct_family_fsm,node_direct_family_qst,node_family_context_blocked_spots,node_family_context_quest_sequence,node_stage_st0133,node_sequence_quest_60320000,node_sequence_quest_60320002 direct_deterministic
+    class node_owner_quest_70032001 owner_index
+    class node_event_viewer_st0133_ev000_70001001,node_event_viewer_st0133_ev000_70030001,node_event_viewer_st0133_ev000_70032001,node_event_viewer_st0133_ev000_70020001,node_event_viewer_st0133_ev000_70002001,node_event_viewer_st0133_ev000_70003001,node_event_viewer_st0133_ev000_70023001,node_event_viewer_st0133_ev000_70000001,node_event_viewer_st0133_ev000_70033001,node_event_viewer_st0133_ev000_70022001,node_event_viewer_st0133_ev000_70021001,node_event_viewer_st0133_ev000_70031001,node_event_viewer_st0133_ev005_70000001,node_event_viewer_st0133_ev005_70001001,node_event_viewer_st0133_ev005_70002001 graph_expanded
+....
+
+[cols="1,2,2,2,2,4",options="header"]
+|===
+| Depth | Edge | From | To | Derivation | Why
+
+| 1 | direct_source_family | quest:60320001 | direct-family:ams | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | direct_source_family | quest:60320001 | direct-family:fsm | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | direct_source_family | quest:60320001 | direct-family:qst | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | family_context:blocked_spots | quest:60320001 | family-context:blocked_spots | Direct | Family-specific decoded tables provide deterministic context for this quest.
+| 1 | family_context:quest_sequence | quest:60320001 | family-context:quest_sequence | Direct | Family-specific decoded tables provide deterministic context for this quest.
+| 1 | quest_archive_stage | quest:60320001 | stage:st0133 | Direct | Quest archive topology directly links this quest to the stage code.
+| 2 | promoted_dependency | quest:60320001 | owner-quest:70032001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | sequence_next | family-context:quest_sequence | sequence-quest:60320002 | Direct | QuestSequence links this quest to its neighboring sequence quest.
+| 2 | sequence_previous | family-context:quest_sequence | sequence-quest:60320000 | Direct | QuestSequence links this quest to its neighboring sequence quest.
+| 2 | stage_event_viewer | stage:st0133 | event-viewer:st0133:ev000:70000001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0133 | event-viewer:st0133:ev000:70001001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0133 | event-viewer:st0133:ev000:70002001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0133 | event-viewer:st0133:ev000:70003001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0133 | event-viewer:st0133:ev000:70020001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0133 | event-viewer:st0133:ev000:70021001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0133 | event-viewer:st0133:ev000:70022001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0133 | event-viewer:st0133:ev000:70023001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0133 | event-viewer:st0133:ev000:70030001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0133 | event-viewer:st0133:ev000:70031001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0133 | event-viewer:st0133:ev000:70032001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0133 | event-viewer:st0133:ev000:70033001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0133 | event-viewer:st0133:ev005:70000001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0133 | event-viewer:st0133:ev005:70001001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0133 | event-viewer:st0133:ev005:70002001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0133 | event-viewer:st0133:ev005:70003001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0133 | event-viewer:st0133:ev005:70020001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0133 | event-viewer:st0133:ev005:70021001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0133 | event-viewer:st0133:ev005:70022001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0133 | event-viewer:st0133:ev005:70023001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0133 | event-viewer:st0133:ev005:70030001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0133 | event-viewer:st0133:ev005:70031001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0133 | event-viewer:st0133:ev005:70032001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0133 | event-viewer:st0133:ev005:70033001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_group_reference | stage:st0133 | stage-group:st0133:120 | Graph | Reverse indexes expose GPL group references for this stage.
+| 2 | stage_group_reference | stage:st0133 | stage-group:st0133:121 | Graph | Reverse indexes expose GPL group references for this stage.
+| 2 | stage_group_reference | stage:st0133 | stage-group:st0133:218 | Graph | Reverse indexes expose GPL group references for this stage.
+| 2 | stage_group_reference | stage:st0133 | stage-group:st0133:27 | Graph | Reverse indexes expose GPL group references for this stage.
+| 2 | stage_group_reference | stage:st0133 | stage-group:st0133:43 | Graph | Reverse indexes expose GPL group references for this stage.
+| 2 | stage_group_reference | stage:st0133 | stage-group:st0133:44 | Graph | Reverse indexes expose GPL group references for this stage.
+| 2 | stage_group_reference | stage:st0133 | stage-group:st0133:46 | Graph | Reverse indexes expose GPL group references for this stage.
+|===
+
 == Flag Summary Matrix
 
 [cols="2,1,1,2,2,3,3",options="header"]
 |===
 | Target | Kind | Hits | Sources | Stages | Relationships | Description
 
+| Flag 7448 | layout_flag | 1 | qst | st0133 | ⚡ Quest Condition | QST local: st0133 \| QuestGroup 1 \| 近距離
+| Flag 7449 | layout_flag | 1 | qst | st0133 | ⚡ Quest Condition | QST local: st0133 \| 受注
+| Flag 7450 | layout_flag | 1 | qst | st0133 | ⚡ Quest Condition | QST local: st0133 \| QuestGroup 2 \| 遠距離
 | Quest ID 60320001 | quest_id | 3 | ams, fsm |  | 🔍 FSM Check, 🗺️ Spot Block | Derived quest-wide association scan
 |===
 
 == Known Documented Targets
 
+* quest 60320001 -- Flag 7448 -- QST local: st0133 | QuestGroup 1 | 近距離
+* quest 60320001 -- Flag 7449 -- QST local: st0133 | 受注
+* quest 60320001 -- Flag 7450 -- QST local: st0133 | QuestGroup 2 | 遠距離
 * Quest ID 60320001 -- Derived quest-wide association scan [Derived]
+
+== Flag 7448 -- Quest 60320001
+
+origin:: derived_qst_local
+direct hits:: *1*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 1 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q60320001/quest/60320001/q60320001_st0133.qst.json[client/03040008/quest/q60320001/quest/60320001/q60320001_st0133.qst.json] | QuestStageList[].QuestGrp[1].Condition | Condition | quest 60320001 / Megadosys Plateau / "QuestGroup 1 \| 近距離" / QuestSet=QuestSetInfoNpc \| GroupNo=1 \|\| QuestSet=QuestSetInfoNpc \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 7449 -- Quest 60320001
+
+origin:: derived_qst_local
+direct hits:: *1*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 1 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q60320001/quest/60320001/q60320001_st0133.qst.json[client/03040008/quest/q60320001/quest/60320001/q60320001_st0133.qst.json] | QuestStageList[].QuestGrp[0].Condition | Condition | quest 60320001 / Megadosys Plateau / "受注" / QuestSet=QuestSetInfoNpc | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 7450 -- Quest 60320001
+
+origin:: derived_qst_local
+direct hits:: *1*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 1 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q60320001/quest/60320001/q60320001_st0133.qst.json[client/03040008/quest/q60320001/quest/60320001/q60320001_st0133.qst.json] | QuestStageList[].QuestGrp[2].Condition | Condition | quest 60320001 / Megadosys Plateau / "QuestGroup 2 \| 遠距離" / QuestSet=QuestSetInfoNpc \| GroupNo=2 \|\| QuestSet=QuestSetInfoNpc \| GroupNo=2 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
 
 == Quest ID 60320001
 
@@ -58,20 +352,20 @@ ranked candidates:: *0*
 
 ==== direct -- 1 hit(s)
 
-[cols="1,1,3,3,2,3,3",options="header"]
+[cols="1,1,1,3,3,2,3,3",options="header"]
 |===
-| Family | Confidence | File | JSON Path | Field | Context | Why
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
 
-| AMS | 92 | client/03040008/ui/uGUIAreaMaster/ui/00_param/master/am_spot_20.ams.json | AreaMasterSpotDataList[8].QuestId | QuestId | quest 60320001 (Megadosys Plateau Rescue Request) / Megadosys Plateau / Megadosys Plateau / "SpotId=1049" / QuestBlockedSpot \| Merciful Funeral Hall \| Monster Caution Spots \| RecommendLevel=92 | Area Master spot block; QuestId here indicates the map spot is hidden or blocked by that quest.
+| AMS | Direct | 92 | link:../../../../client/03040008/ui/uGUIAreaMaster/ui/00_param/master/am_spot_20.ams.json#L331[client/03040008/ui/uGUIAreaMaster/ui/00_param/master/am_spot_20.ams.json#L331] | AreaMasterSpotDataList[8].QuestId | QuestId | quest 60320001 (Megadosys Plateau Rescue Request) / Megadosys Plateau / Megadosys Plateau / "SpotId=1049" / QuestBlockedSpot \| Merciful Funeral Hall \| Monster Caution Spots \| RecommendLevel=92 | Area Master spot block; QuestId here indicates the map spot is hidden or blocked by that quest.
 |===
 
 ==== opaque_fsm -- 2 hit(s)
 
-[cols="1,1,3,3,2,3,3",options="header"]
+[cols="1,1,1,3,3,2,3,3",options="header"]
 |===
-| Family | Confidence | File | JSON Path | Field | Context | Why
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
 
-| FSM | 64 | client/03040008/quest/q60320001/quest/60320001/npc/battle_npc00.fsm.json | Process.Parameter.QuestId | QuestId | quest 60320001 (Megadosys Plateau Rescue Request) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
-| FSM | 64 | client/03040008/quest/q60320001/quest/60320001/npc/battle_npc01.fsm.json | Process.Parameter.QuestId | QuestId | quest 60320001 (Megadosys Plateau Rescue Request) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/quest/q60320001/quest/60320001/npc/battle_npc00.fsm.json[client/03040008/quest/q60320001/quest/60320001/npc/battle_npc00.fsm.json] | Process.Parameter.QuestId | QuestId | quest 60320001 (Megadosys Plateau Rescue Request) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/quest/q60320001/quest/60320001/npc/battle_npc01.fsm.json[client/03040008/quest/q60320001/quest/60320001/npc/battle_npc01.fsm.json] | Process.Parameter.QuestId | QuestId | quest 60320001 (Megadosys Plateau Rescue Request) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
 |===
 

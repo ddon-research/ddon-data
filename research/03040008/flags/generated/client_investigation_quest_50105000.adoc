@@ -5,16 +5,30 @@
 
 Query mode:: quest
 Query value:: 50105000
-Generated at:: 2026-04-11T21:41:41.696442+00:00
+Generated at:: 2026-04-12T12:44:03.335702+00:00
 
 toc::[]
+
+Quest family:: q5 -- Extreme / Grand Mission
+Quest family notes:: Extreme and grand mission content with sortie and cycle metadata.
+Quest family focus:: esi_csi_sortie_topology
+
+== Family Relationship Context
+
+_These sections summarize deterministic client-side family metadata and reverse-index relationships. They are context for later owner/dependency inference, not direct quest-target promotion._
+
+=== Repeatable Sortie
+
+* ESI rows: 1
+* CSI rows: 0
 
 == ARC Association Context
 
 _ARC associations are contextual only. They show which quest-stage and marker resources are bundled with this quest._
 
-* arc file: client/03040008/quest/q50105000.arc.json
+* arc file: link:../../../../client/03040008/quest/q50105000.arc.json#L1[client/03040008/quest/q50105000.arc.json#L1]
 * resource count: 4
+* resource families: .gmd, .mss, .qtd
 
 === unclassified
 
@@ -22,6 +36,58 @@ _ARC associations are contextual only. They show which quest-stage and marker re
 * rQuestTextData: ui/00_param/quest_text/q50105000_00
 * rMsgSet: ui/00_message/examine_message/quest/quest_examine_q50105000
 * rGUIMessage: ui/00_message/quest_info/q50105000_00
+
+== Stage Neighborhood Context
+
+_Stage-neighborhood context summarizes scanner-relevant client files that share the quest's archive stage codes. This is deterministic client topology, not inferred ownership._
+
+* scanner-relevant stage files: 0
+
+== Stage Neighborhood External-State Cues
+
+_These cues are deterministic client-side observations from the quest's stage neighborhood. They are not promoted to direct quest targets yet; they highlight q6/q7-owned external state values co-located in the quest's archive stages._
+
+* cue count: 0
+* owner families: q6, q7
+
+== Bounded Graph Expansion
+
+_This graph summarizes bounded deterministic and inferred edges around the quest: quest archive stages, direct source families, stage-linked owner catalogs, promoted dependencies, reverse-index event/group links, and family-specific table edges._
+
+* max depth: 3
+* node count: 3
+* edge count: 2
+* node kinds: direct_family=1, family_context=1, quest=1
+* derivation: Direct=5
+
+=== Mermaid Graph Slice
+
+_This Mermaid flowchart shows a capped slice of the bounded graph so large quest reports stay readable while still exposing the graph structure._
+
+[mermaid]
+....
+flowchart TD
+    node_quest_50105000["Quest 50105000"]
+    node_direct_family_esi["esi direct hits (1)"]
+    node_family_context_repeatable_sortie["Repeatable Sortie"]
+    node_quest_50105000 -->|direct_source_family| node_direct_family_esi
+    node_quest_50105000 -->|family:repeatable_sortie| node_family_context_repeatable_sortie
+    classDef direct_deterministic fill:#e8f5e9,stroke:#2e7d32,stroke-width:1px
+    classDef owner_index fill:#e3f2fd,stroke:#1565c0,stroke-width:1px
+    classDef dependency_inferred fill:#fff3e0,stroke:#ef6c00,stroke-width:1px
+    classDef graph_expanded fill:#f3e5f5,stroke:#7b1fa2,stroke-width:1px
+    classDef lower_confidence fill:#fbe9e7,stroke:#d84315,stroke-width:1px
+    classDef binary_auxiliary fill:#eceff1,stroke:#455a64,stroke-width:1px
+    class node_quest_50105000,node_direct_family_esi,node_family_context_repeatable_sortie direct_deterministic
+....
+
+[cols="1,2,2,2,2,4",options="header"]
+|===
+| Depth | Edge | From | To | Derivation | Why
+
+| 1 | direct_source_family | quest:50105000 | direct-family:esi | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | family_context:repeatable_sortie | quest:50105000 | family-context:repeatable_sortie | Direct | Family-specific decoded tables provide deterministic context for this quest.
+|===
 
 == Flag Summary Matrix
 
@@ -46,10 +112,10 @@ ranked candidates:: *0*
 
 ==== direct -- 1 hit(s)
 
-[cols="1,1,3,3,2,3,3",options="header"]
+[cols="1,1,1,3,3,2,3,3",options="header"]
 |===
-| Family | Confidence | File | JSON Path | Field | Context | Why
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
 
-| ESI | 92 | client/03040008/game_common/quest/rEndContentsSortieInfo.esi.json | EndContentsSortieInfoTable[4].QuestId | QuestId | quest 50105000 (Lestania War Chronicles) / "Unknown1=1, Unknown2=1, Flag=0" / Unknown1=1 \| Unknown2=1 | Repeatable sortie registry; QuestId and Flag here define special q5 repeatable sortie entries and their gate flags.
+| ESI | Direct | 92 | link:../../../../client/03040008/game_common/quest/rEndContentsSortieInfo.esi.json#L94[client/03040008/game_common/quest/rEndContentsSortieInfo.esi.json#L94] | EndContentsSortieInfoTable[4].QuestId | QuestId | quest 50105000 (Lestania War Chronicles) / "Unknown1=1, Unknown2=1, Flag=0" / Unknown1=1 \| Unknown2=1 | Repeatable sortie registry; QuestId and Flag here define special q5 repeatable sortie entries and their gate flags.
 |===
 

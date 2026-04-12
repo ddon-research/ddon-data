@@ -5,16 +5,32 @@
 
 Query mode:: quest
 Query value:: 90020304
-Generated at:: 2026-04-11T21:41:42.970383+00:00
+Generated at:: 2026-04-12T12:44:33.058730+00:00
 
 toc::[]
+
+Quest family:: q9 -- Reserved q9
+Quest family notes:: Reserved or unimplemented quest-family bucket.
+Quest family focus:: unsupported_until_client_evidence
+
+== Family Relationship Context
+
+_These sections summarize deterministic client-side family metadata and reverse-index relationships. They are context for later owner/dependency inference, not direct quest-target promotion._
+
+=== Quest Sequence
+
+* seq no: 528
+* previous: 90020303 -- The Deathly Battle of the Ancient Temple: Minor
+* next: 90020305 -- The Deathly Battle of the Ancient Temple: Peril
 
 == ARC Association Context
 
 _ARC associations are contextual only. They show which quest-stage and marker resources are bundled with this quest._
 
-* arc file: client/03040008/quest/q90020304.arc.json
+* arc file: link:../../../../client/03040008/quest/q90020304.arc.json#L1[client/03040008/quest/q90020304.arc.json#L1]
 * resource count: 7
+* stage codes: st0433
+* resource families: .gmd, .mss, .qmi, .qst, .qtd
 
 === st0433 -- Shadolean Great Temple
 
@@ -29,18 +45,416 @@ _ARC associations are contextual only. They show which quest-stage and marker re
 * rGUIMessage: ui/00_message/examine_message/quest/quest_examine_q90020304
 * rGUIMessage: ui/00_message/quest_info/q90020304_00
 
+== Stage Neighborhood Context
+
+_Stage-neighborhood context summarizes scanner-relevant client files that share the quest's archive stage codes. This is deterministic client topology, not inferred ownership._
+
+* scanner-relevant stage files: 154
+* indexed stage codes: st0433
+
+=== st0433 -- Shadolean Great Temple
+
+* scanner files: 154
+* .fsm.json: 15
+* .gpl.json: 5
+* .lot.json: 116
+* .qmi.json: 13
+* .qst.json: 5
+
+== Stage Neighborhood External-State Cues
+
+_These cues are deterministic client-side observations from the quest's stage neighborhood. They are not promoted to direct quest targets yet; they highlight q6/q7-owned external state values co-located in the quest's archive stages._
+
+* cue count: 0
+* owner families: q6, q7
+
+== Bounded Graph Expansion
+
+_This graph summarizes bounded deterministic and inferred edges around the quest: quest archive stages, direct source families, stage-linked owner catalogs, promoted dependencies, reverse-index event/group links, and family-specific table edges._
+
+* max depth: 3
+* node count: 9
+* edge count: 8
+* node kinds: direct_family=4, family_context=1, quest=1, sequence_quest=2, stage=1
+* derivation: Direct=17
+
+=== Mermaid Graph Slice
+
+_This Mermaid flowchart shows a capped slice of the bounded graph so large quest reports stay readable while still exposing the graph structure._
+
+[mermaid]
+....
+flowchart TD
+    node_quest_90020304["Quest 90020304"]
+    node_direct_family_fsm["fsm direct hits (3)"]
+    node_direct_family_gpl["gpl direct hits (1)"]
+    node_direct_family_lot["lot direct hits (2)"]
+    node_direct_family_qst["qst direct hits (20)"]
+    node_family_context_quest_sequence["Quest Sequence"]
+    node_stage_st0433["st0433 -- Shadolean Great Temple"]
+    node_sequence_quest_90020303["Quest 90020303"]
+    node_sequence_quest_90020305["Quest 90020305"]
+    node_quest_90020304 -->|direct_source_family| node_direct_family_fsm
+    node_quest_90020304 -->|direct_source_family| node_direct_family_gpl
+    node_quest_90020304 -->|direct_source_family| node_direct_family_lot
+    node_quest_90020304 -->|direct_source_family| node_direct_family_qst
+    node_quest_90020304 -->|family:quest_sequence| node_family_context_quest_sequence
+    node_quest_90020304 -->|quest_archive_stage| node_stage_st0433
+    node_family_context_quest_sequence -->|sequence_next| node_sequence_quest_90020305
+    node_family_context_quest_sequence -->|sequence_previous| node_sequence_quest_90020303
+    classDef direct_deterministic fill:#e8f5e9,stroke:#2e7d32,stroke-width:1px
+    classDef owner_index fill:#e3f2fd,stroke:#1565c0,stroke-width:1px
+    classDef dependency_inferred fill:#fff3e0,stroke:#ef6c00,stroke-width:1px
+    classDef graph_expanded fill:#f3e5f5,stroke:#7b1fa2,stroke-width:1px
+    classDef lower_confidence fill:#fbe9e7,stroke:#d84315,stroke-width:1px
+    classDef binary_auxiliary fill:#eceff1,stroke:#455a64,stroke-width:1px
+    class node_quest_90020304,node_direct_family_fsm,node_direct_family_gpl,node_direct_family_lot,node_direct_family_qst,node_family_context_quest_sequence,node_stage_st0433,node_sequence_quest_90020303,node_sequence_quest_90020305 direct_deterministic
+....
+
+[cols="1,2,2,2,2,4",options="header"]
+|===
+| Depth | Edge | From | To | Derivation | Why
+
+| 1 | direct_source_family | quest:90020304 | direct-family:fsm | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | direct_source_family | quest:90020304 | direct-family:gpl | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | direct_source_family | quest:90020304 | direct-family:lot | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | direct_source_family | quest:90020304 | direct-family:qst | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | family_context:quest_sequence | quest:90020304 | family-context:quest_sequence | Direct | Family-specific decoded tables provide deterministic context for this quest.
+| 1 | quest_archive_stage | quest:90020304 | stage:st0433 | Direct | Quest archive topology directly links this quest to the stage code.
+| 2 | sequence_next | family-context:quest_sequence | sequence-quest:90020305 | Direct | QuestSequence links this quest to its neighboring sequence quest.
+| 2 | sequence_previous | family-context:quest_sequence | sequence-quest:90020303 | Direct | QuestSequence links this quest to its neighboring sequence quest.
+|===
+
 == Flag Summary Matrix
 
 [cols="2,1,1,2,2,3,3",options="header"]
 |===
 | Target | Kind | Hits | Sources | Stages | Relationships | Description
 
+| Flag 4861 | layout_flag | 3 | fsm, qst | st0433 | 🔍 FSM Check, ⚡ Quest Condition, ❌ Quest Erase | QST local: st0433 \| QuestGroup 1 \| 序盤連動封鎖壁右１
+| Flag 4862 | layout_flag | 2 | qst | st0433 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0433 \| QuestGroup 2 \| 序盤連動封鎖壁右２
+| Flag 4863 | layout_flag | 2 | qst | st0433 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0433 \| QuestGroup 3 \| 序盤連動封鎖壁左１
+| Flag 4864 | layout_flag | 2 | qst | st0433 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0433 \| QuestGroup 4 \| 序盤連動封鎖壁左２
+| Flag 4865 | layout_flag | 1 | qst | st0433 | ⚡ Quest Condition | QST local: st0433 \| QuestGroup 5 \| 一方通行ワープOM右1
+| Flag 4866 | layout_flag | 1 | qst | st0433 | ⚡ Quest Condition | QST local: st0433 \| QuestGroup 6 \| 一方通行ワープOM右2
+| Flag 4867 | layout_flag | 1 | qst | st0433 | ⚡ Quest Condition | QST local: st0433 \| QuestGroup 7 \| 一方通行ワープOM右3
+| Flag 4868 | layout_flag | 1 | qst | st0433 | ⚡ Quest Condition | QST local: st0433 \| QuestGroup 8 \| 一方通行ワープOM右4
+| Flag 4869 | layout_flag | 1 | qst | st0433 | ⚡ Quest Condition | QST local: st0433 \| QuestGroup 9 \| 一方通行ワープOM左1
+| Flag 4870 | layout_flag | 1 | qst | st0433 | ⚡ Quest Condition | QST local: st0433 \| QuestGroup 10 \| 一方通行ワープOM左2
+| Flag 4871 | layout_flag | 1 | qst | st0433 | ⚡ Quest Condition | QST local: st0433 \| QuestGroup 11 \| 一方通行ワープOM左3
+| Flag 4872 | layout_flag | 1 | qst | st0433 | ⚡ Quest Condition | QST local: st0433 \| QuestGroup 12 \| 一方通行ワープOM左4
+| Flag 4875 | layout_flag | 2 | fsm, qst | st0433 | 🔍 FSM Check, ⚡ Quest Condition | QST local: st0433 \| QuestGroup 13 \| 体力温泉（右側レバー）
+| Flag 4876 | layout_flag | 2 | fsm, qst | st0433 | 🔍 FSM Check, ⚡ Quest Condition | QST local: st0433 \| QuestGroup 14 \| スタミナ温泉（左側レバー）
+| Flag 4882 | layout_flag | 3 | gpl, qst | st0433 | 🏗️ Layout Guard, ⚡ Quest Condition, ❌ Quest Erase | QST local: st0433 \| QuestGroup 15 \| スタート敵連動封鎖壁
 | Quest ID 90020304 | quest_id | 2 | lot | st0433 | 🌀 Warp Gate | Derived quest-wide association scan
 |===
 
 == Known Documented Targets
 
+* quest 90020304 -- Flag 4861 -- QST local: st0433 | QuestGroup 1 | 序盤連動封鎖壁右１
+* quest 90020304 -- Flag 4862 -- QST local: st0433 | QuestGroup 2 | 序盤連動封鎖壁右２
+* quest 90020304 -- Flag 4863 -- QST local: st0433 | QuestGroup 3 | 序盤連動封鎖壁左１
+* quest 90020304 -- Flag 4864 -- QST local: st0433 | QuestGroup 4 | 序盤連動封鎖壁左２
+* quest 90020304 -- Flag 4865 -- QST local: st0433 | QuestGroup 5 | 一方通行ワープOM右1
+* quest 90020304 -- Flag 4866 -- QST local: st0433 | QuestGroup 6 | 一方通行ワープOM右2
+* quest 90020304 -- Flag 4867 -- QST local: st0433 | QuestGroup 7 | 一方通行ワープOM右3
+* quest 90020304 -- Flag 4868 -- QST local: st0433 | QuestGroup 8 | 一方通行ワープOM右4
+* quest 90020304 -- Flag 4869 -- QST local: st0433 | QuestGroup 9 | 一方通行ワープOM左1
+* quest 90020304 -- Flag 4870 -- QST local: st0433 | QuestGroup 10 | 一方通行ワープOM左2
+* quest 90020304 -- Flag 4871 -- QST local: st0433 | QuestGroup 11 | 一方通行ワープOM左3
+* quest 90020304 -- Flag 4872 -- QST local: st0433 | QuestGroup 12 | 一方通行ワープOM左4
+* quest 90020304 -- Flag 4875 -- QST local: st0433 | QuestGroup 13 | 体力温泉（右側レバー）
+* quest 90020304 -- Flag 4876 -- QST local: st0433 | QuestGroup 14 | スタミナ温泉（左側レバー）
+* quest 90020304 -- Flag 4882 -- QST local: st0433 | QuestGroup 15 | スタート敵連動封鎖壁
 * Quest ID 90020304 -- Derived quest-wide association scan [Derived]
+
+== Flag 4861 -- Quest 90020304
+
+origin:: derived_qst_local
+direct hits:: *3*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q90020304/quest/90020304/q90020304_st0433.qst.json[client/03040008/quest/q90020304/quest/90020304/q90020304_st0433.qst.json] | QuestStageList[].QuestGrp[1].Condition | Condition | quest 90020304 / Shadolean Great Temple / "QuestGroup 1 \| 序盤連動封鎖壁右１" / QuestSet=QuestSetInfoOm \| OmID=510445 \| OM_ID_DOOR_510445 \| EnableZone \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q90020304/quest/90020304/q90020304_st0433.qst.json[client/03040008/quest/q90020304/quest/90020304/q90020304_st0433.qst.json] | QuestStageList[].QuestGrp[1].EraseCondition | EraseCondition | quest 90020304 / Shadolean Great Temple / "QuestGroup 1 \| 序盤連動封鎖壁右１" / QuestSet=QuestSetInfoOm \| OmID=510445 \| OM_ID_DOOR_510445 \| EnableZone \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+==== opaque_fsm -- 1 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| FSM | Direct | 64 | link:../../../../client/03040008/quest/q60300032/quest/60300032/npc/work_01.fsm.json[client/03040008/quest/q60300032/quest/60300032/npc/work_01.fsm.json] | Process.Parameter.FlagNo | FlagNo | quest 60300032 (Expose the Dark Side to the One Operating behind the Scenes) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+|===
+
+== Flag 4862 -- Quest 90020304
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q90020304/quest/90020304/q90020304_st0433.qst.json[client/03040008/quest/q90020304/quest/90020304/q90020304_st0433.qst.json] | QuestStageList[].QuestGrp[2].Condition | Condition | quest 90020304 / Shadolean Great Temple / "QuestGroup 2 \| 序盤連動封鎖壁右２" / QuestSet=QuestSetInfoOm \| OmID=510445 \| OM_ID_DOOR_510445 \| EnableZone \| GroupNo=2 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q90020304/quest/90020304/q90020304_st0433.qst.json[client/03040008/quest/q90020304/quest/90020304/q90020304_st0433.qst.json] | QuestStageList[].QuestGrp[2].EraseCondition | EraseCondition | quest 90020304 / Shadolean Great Temple / "QuestGroup 2 \| 序盤連動封鎖壁右２" / QuestSet=QuestSetInfoOm \| OmID=510445 \| OM_ID_DOOR_510445 \| EnableZone \| GroupNo=2 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 4863 -- Quest 90020304
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q90020304/quest/90020304/q90020304_st0433.qst.json[client/03040008/quest/q90020304/quest/90020304/q90020304_st0433.qst.json] | QuestStageList[].QuestGrp[3].Condition | Condition | quest 90020304 / Shadolean Great Temple / "QuestGroup 3 \| 序盤連動封鎖壁左１" / QuestSet=QuestSetInfoOm \| OmID=510445 \| OM_ID_DOOR_510445 \| EnableZone \| GroupNo=3 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q90020304/quest/90020304/q90020304_st0433.qst.json[client/03040008/quest/q90020304/quest/90020304/q90020304_st0433.qst.json] | QuestStageList[].QuestGrp[3].EraseCondition | EraseCondition | quest 90020304 / Shadolean Great Temple / "QuestGroup 3 \| 序盤連動封鎖壁左１" / QuestSet=QuestSetInfoOm \| OmID=510445 \| OM_ID_DOOR_510445 \| EnableZone \| GroupNo=3 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 4864 -- Quest 90020304
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q90020304/quest/90020304/q90020304_st0433.qst.json[client/03040008/quest/q90020304/quest/90020304/q90020304_st0433.qst.json] | QuestStageList[].QuestGrp[4].Condition | Condition | quest 90020304 / Shadolean Great Temple / "QuestGroup 4 \| 序盤連動封鎖壁左２" / QuestSet=QuestSetInfoOm \| OmID=510445 \| OM_ID_DOOR_510445 \| EnableZone \| GroupNo=4 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q90020304/quest/90020304/q90020304_st0433.qst.json[client/03040008/quest/q90020304/quest/90020304/q90020304_st0433.qst.json] | QuestStageList[].QuestGrp[4].EraseCondition | EraseCondition | quest 90020304 / Shadolean Great Temple / "QuestGroup 4 \| 序盤連動封鎖壁左２" / QuestSet=QuestSetInfoOm \| OmID=510445 \| OM_ID_DOOR_510445 \| EnableZone \| GroupNo=4 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 4865 -- Quest 90020304
+
+origin:: derived_qst_local
+direct hits:: *1*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 1 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q90020304/quest/90020304/q90020304_st0433.qst.json[client/03040008/quest/q90020304/quest/90020304/q90020304_st0433.qst.json] | QuestStageList[].QuestGrp[5].Condition | Condition | quest 90020304 / Shadolean Great Temple / "QuestGroup 5 \| 一方通行ワープOM右1" / QuestSet=QuestSetInfoOmWarp \| OmID=522157 \| OM_ID_RIFT_WARP_CRYSTAL_7 \| EnableZone \| GroupNo=5 \|\| QuestSet=QuestSetInfoOmWarp \| OmID=522157 \| OM_ID_RIFT_WARP_CRYSTAL_7 \| EnableZone \| GroupNo=5 \|\| +2 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 4866 -- Quest 90020304
+
+origin:: derived_qst_local
+direct hits:: *1*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 1 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q90020304/quest/90020304/q90020304_st0433.qst.json[client/03040008/quest/q90020304/quest/90020304/q90020304_st0433.qst.json] | QuestStageList[].QuestGrp[6].Condition | Condition | quest 90020304 / Shadolean Great Temple / "QuestGroup 6 \| 一方通行ワープOM右2" / QuestSet=QuestSetInfoOmWarp \| OmID=522157 \| OM_ID_RIFT_WARP_CRYSTAL_7 \| EnableZone \| GroupNo=6 \|\| QuestSet=QuestSetInfoOmWarp \| OmID=522157 \| OM_ID_RIFT_WARP_CRYSTAL_7 \| EnableZone \| GroupNo=6 \|\| +2 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 4867 -- Quest 90020304
+
+origin:: derived_qst_local
+direct hits:: *1*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 1 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q90020304/quest/90020304/q90020304_st0433.qst.json[client/03040008/quest/q90020304/quest/90020304/q90020304_st0433.qst.json] | QuestStageList[].QuestGrp[7].Condition | Condition | quest 90020304 / Shadolean Great Temple / "QuestGroup 7 \| 一方通行ワープOM右3" / QuestSet=QuestSetInfoOmWarp \| OmID=522157 \| OM_ID_RIFT_WARP_CRYSTAL_7 \| EnableZone \| GroupNo=7 \|\| QuestSet=QuestSetInfoOmWarp \| OmID=522157 \| OM_ID_RIFT_WARP_CRYSTAL_7 \| EnableZone \| GroupNo=7 \|\| +2 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 4868 -- Quest 90020304
+
+origin:: derived_qst_local
+direct hits:: *1*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 1 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q90020304/quest/90020304/q90020304_st0433.qst.json[client/03040008/quest/q90020304/quest/90020304/q90020304_st0433.qst.json] | QuestStageList[].QuestGrp[8].Condition | Condition | quest 90020304 / Shadolean Great Temple / "QuestGroup 8 \| 一方通行ワープOM右4" / QuestSet=QuestSetInfoOmWarp \| OmID=522157 \| OM_ID_RIFT_WARP_CRYSTAL_7 \| EnableZone \| GroupNo=8 \|\| QuestSet=QuestSetInfoOmWarp \| OmID=522157 \| OM_ID_RIFT_WARP_CRYSTAL_7 \| EnableZone \| GroupNo=8 \|\| +2 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 4869 -- Quest 90020304
+
+origin:: derived_qst_local
+direct hits:: *1*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 1 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q90020304/quest/90020304/q90020304_st0433.qst.json[client/03040008/quest/q90020304/quest/90020304/q90020304_st0433.qst.json] | QuestStageList[].QuestGrp[9].Condition | Condition | quest 90020304 / Shadolean Great Temple / "QuestGroup 9 \| 一方通行ワープOM左1" / QuestSet=QuestSetInfoOmWarp \| OmID=522157 \| OM_ID_RIFT_WARP_CRYSTAL_7 \| EnableZone \| GroupNo=9 \|\| QuestSet=QuestSetInfoOmWarp \| OmID=522157 \| OM_ID_RIFT_WARP_CRYSTAL_7 \| EnableZone \| GroupNo=9 \|\| +2 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 4870 -- Quest 90020304
+
+origin:: derived_qst_local
+direct hits:: *1*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 1 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q90020304/quest/90020304/q90020304_st0433.qst.json[client/03040008/quest/q90020304/quest/90020304/q90020304_st0433.qst.json] | QuestStageList[].QuestGrp[10].Condition | Condition | quest 90020304 / Shadolean Great Temple / "QuestGroup 10 \| 一方通行ワープOM左2" / QuestSet=QuestSetInfoOmWarp \| OmID=522157 \| OM_ID_RIFT_WARP_CRYSTAL_7 \| EnableZone \| GroupNo=10 \|\| QuestSet=QuestSetInfoOmWarp \| OmID=522157 \| OM_ID_RIFT_WARP_CRYSTAL_7 \| EnableZone \| GroupNo=10 \|\| +2 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 4871 -- Quest 90020304
+
+origin:: derived_qst_local
+direct hits:: *1*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 1 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q90020304/quest/90020304/q90020304_st0433.qst.json[client/03040008/quest/q90020304/quest/90020304/q90020304_st0433.qst.json] | QuestStageList[].QuestGrp[11].Condition | Condition | quest 90020304 / Shadolean Great Temple / "QuestGroup 11 \| 一方通行ワープOM左3" / QuestSet=QuestSetInfoOmWarp \| OmID=522157 \| OM_ID_RIFT_WARP_CRYSTAL_7 \| EnableZone \| GroupNo=11 \|\| QuestSet=QuestSetInfoOmWarp \| OmID=522157 \| OM_ID_RIFT_WARP_CRYSTAL_7 \| EnableZone \| GroupNo=11 \|\| +2 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 4872 -- Quest 90020304
+
+origin:: derived_qst_local
+direct hits:: *1*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 1 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q90020304/quest/90020304/q90020304_st0433.qst.json[client/03040008/quest/q90020304/quest/90020304/q90020304_st0433.qst.json] | QuestStageList[].QuestGrp[12].Condition | Condition | quest 90020304 / Shadolean Great Temple / "QuestGroup 12 \| 一方通行ワープOM左4" / QuestSet=QuestSetInfoOmWarp \| OmID=522157 \| OM_ID_RIFT_WARP_CRYSTAL_7 \| EnableZone \| GroupNo=12 \|\| QuestSet=QuestSetInfoOmWarp \| OmID=522157 \| OM_ID_RIFT_WARP_CRYSTAL_7 \| EnableZone \| GroupNo=12 \|\| +2 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 4875 -- Quest 90020304
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 1 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q90020304/quest/90020304/q90020304_st0433.qst.json[client/03040008/quest/q90020304/quest/90020304/q90020304_st0433.qst.json] | QuestStageList[].QuestGrp[13].Condition | Condition | quest 90020304 / Shadolean Great Temple / "QuestGroup 13 \| 体力温泉（右側レバー）" / QuestSet=QuestSetInfoOmHeal \| OmID=522180 \| UnitID=522180 \| EnableZone \| GroupNo=13 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+==== opaque_fsm -- 1 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| FSM | Direct | 78 | link:../../../../client/03040008/quest/q00030220/quest/00030220/npc/n0004.fsm.json[client/03040008/quest/q00030220/quest/00030220/npc/n0004.fsm.json] | Process.Parameter.FlagNo | FlagNo | quest 30220 (Nedo's Trail) / Joseph / checkMyQuestFlag \| NPCFSM=n0004 \| QuestLocalNPCFSM | Quest-local NPC FSM MyQuest check; these files usually describe NPC behavior for the same quest, so this flag likely controls that NPC's quest-specific presence or behavior.
+|===
+
+== Flag 4876 -- Quest 90020304
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 1 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q90020304/quest/90020304/q90020304_st0433.qst.json[client/03040008/quest/q90020304/quest/90020304/q90020304_st0433.qst.json] | QuestStageList[].QuestGrp[14].Condition | Condition | quest 90020304 / Shadolean Great Temple / "QuestGroup 14 \| スタミナ温泉（左側レバー）" / QuestSet=QuestSetInfoOmHeal \| OmID=522180 \| UnitID=522180 \| EnableZone \| GroupNo=14 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+==== opaque_fsm -- 1 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| FSM | Direct | 78 | link:../../../../client/03040008/quest/q00030220/quest/00030220/npc/n0006.fsm.json[client/03040008/quest/q00030220/quest/00030220/npc/n0006.fsm.json] | Process.Parameter.FlagNo | FlagNo | quest 30220 (Nedo's Trail) / Iris / checkMyQuestFlag \| NPCFSM=n0006 \| QuestLocalNPCFSM | Quest-local NPC FSM MyQuest check; these files usually describe NPC behavior for the same quest, so this flag likely controls that NPC's quest-specific presence or behavior.
+|===
+
+== Flag 4882 -- Quest 90020304
+
+origin:: derived_qst_local
+direct hits:: *3*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 3 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q90020304/quest/90020304/q90020304_st0433.qst.json[client/03040008/quest/q90020304/quest/90020304/q90020304_st0433.qst.json] | QuestStageList[].QuestGrp[15].Condition | Condition | quest 90020304 / Shadolean Great Temple / "QuestGroup 15 \| スタート敵連動封鎖壁" / QuestSet=QuestSetInfoOm \| OmID=510441 \| OM_ID_DOOR_510441 \| EnableZone \| GroupNo=15 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q90020304/quest/90020304/q90020304_st0433.qst.json[client/03040008/quest/q90020304/quest/90020304/q90020304_st0433.qst.json] | QuestStageList[].QuestGrp[15].EraseCondition | EraseCondition | quest 90020304 / Shadolean Great Temple / "QuestGroup 15 \| スタート敵連動封鎖壁" / QuestSet=QuestSetInfoOm \| OmID=510441 \| OM_ID_DOOR_510441 \| EnableZone \| GroupNo=15 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| GPL | Direct | 92 | link:../../../../client/03040008/stage/st0433/st0433/scr/st0433/etc/st0433_p.gpl.json#L7304[client/03040008/stage/st0433/st0433/scr/st0433/etc/st0433_p.gpl.json#L7304] | GroupParamBuff[53].GuardData.LayoutFlagNo | LayoutFlagNo | quest 90020304 (The Deathly Battle of the Ancient Temple: Severe) / Shadolean Great Temple / Kingal Canyon / GroupParam[53] \| DataCommon.Group=225 \| LayoutAreas=433 \| LayoutRefs=1 \| LikelyLOT=st0433_00m00n_p225.lot.json \| LotTypes=SetInfoOmOld | Layout group guard; QuestNo and LayoutFlagNo here usually determine whether a stage group loads, including enemy or object visibility.
+|===
 
 == Quest ID 90020304
 
@@ -52,11 +466,11 @@ ranked candidates:: *0*
 
 ==== direct -- 2 hit(s)
 
-[cols="1,1,3,3,2,3,3",options="header"]
+[cols="1,1,1,3,3,2,3,3",options="header"]
 |===
-| Family | Confidence | File | JSON Path | Field | Context | Why
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
 
-| LOT | 92 | client/03040008/stage/st0433/lot/st0433_00m00n/scr/st0433/etc/st0433_00m00n_p236.lot.json | Array[0].Info.QuestId[1] | QuestId | quest 90020304 / Shadolean Great Temple / Kingal Canyon / SetInfoOmWarp \| om511150 \| om511150 \| MyQuestOnly \| EnableZone \| Destination st0433 Shadolean Great Temple \| Spot Extermination Area: Depths Right \| StartPos=18 | Layout placement reference; LOT hits usually gate warps, NPCs, or interactable objects in the stage layout.
-| LOT | 92 | client/03040008/stage/st0433/lot/st0433_00m00n/scr/st0433/etc/st0433_00m00n_p236.lot.json | Array[0].Info.QuestId[2] | QuestId | quest 90020304 / Shadolean Great Temple / Kingal Canyon / SetInfoOmWarp \| om511150 \| om511150 \| MyQuestOnly \| EnableZone \| Destination st0433 Shadolean Great Temple \| Spot Extermination Area: Depths Left \| StartPos=19 | Layout placement reference; LOT hits usually gate warps, NPCs, or interactable objects in the stage layout.
+| LOT | Direct | 92 | link:../../../../client/03040008/stage/st0433/lot/st0433_00m00n/scr/st0433/etc/st0433_00m00n_p236.lot.json#L59[client/03040008/stage/st0433/lot/st0433_00m00n/scr/st0433/etc/st0433_00m00n_p236.lot.json#L59] | Array[0].Info.QuestId[1] | QuestId | quest 90020304 / Shadolean Great Temple / Kingal Canyon / SetInfoOmWarp \| om511150 \| om511150 \| MyQuestOnly \| EnableZone \| Destination st0433 Shadolean Great Temple \| Spot Extermination Area: Depths Right \| StartPos=18 | Layout placement reference; LOT hits usually gate warps, NPCs, or interactable objects in the stage layout.
+| LOT | Direct | 92 | link:../../../../client/03040008/stage/st0433/lot/st0433_00m00n/scr/st0433/etc/st0433_00m00n_p236.lot.json#L59[client/03040008/stage/st0433/lot/st0433_00m00n/scr/st0433/etc/st0433_00m00n_p236.lot.json#L59] | Array[0].Info.QuestId[2] | QuestId | quest 90020304 / Shadolean Great Temple / Kingal Canyon / SetInfoOmWarp \| om511150 \| om511150 \| MyQuestOnly \| EnableZone \| Destination st0433 Shadolean Great Temple \| Spot Extermination Area: Depths Left \| StartPos=19 | Layout placement reference; LOT hits usually gate warps, NPCs, or interactable objects in the stage layout.
 |===
 

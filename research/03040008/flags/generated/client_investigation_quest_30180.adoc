@@ -5,9 +5,355 @@
 
 Query mode:: quest
 Query value:: 30180
-Generated at:: 2026-04-11T21:41:40.584773+00:00
+Generated at:: 2026-04-12T12:43:40.593768+00:00
 
 toc::[]
+
+Quest family:: q3 -- Light Quest
+Quest family notes:: Light and board-style quests with repeatable or lightweight stage flows.
+Quest family focus:: local_stage_topology_plus_board_repeatability
+
+== External Owner Indexes
+
+_These are reusable external owner catalogs inferred from stage-neighborhood cues. They are broader than the subset of flags promoted into derived dependency targets._
+
+[cols="2,1,1,2,2,2,4",options="header"]
+|===
+| Owner Quest | Family | Catalog Count | Catalog Flags | Linked Cues | Cue Sources | Why
+
+| 70000001 | q7 | 70 | 1098, 1103, 1104, 1105, 1106, 1109, 1110, 1111, 1112, 1113, 1114, 1115 +58 more | 1109, 1110, 1111, 1112, 1150, 1201, 1215, 1216 +36 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70001001 | q7 | 0 |  | 1851, 1954 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70002001 | q7 | 47 | 1098, 1103, 1104, 1105, 1106, 1109, 1110, 1111, 1112, 1113, 1114, 1115 +35 more | 1113, 1114, 1115, 1117, 1295, 1601, 3859, 3860 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70003001 | q7 | 49 | 1098, 1103, 1104, 1105, 1106, 1109, 1110, 1111, 1112, 1113, 1114, 1115 +37 more | 1098, 1103, 1104, 1105, 1106, 1119, 1120, 1121 +13 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70020001 | q7 | 8 | 2736, 3000, 3002, 3003, 3074, 3442, 3805, 4037 | 2736, 3000, 3001, 3002, 3003, 3074, 3442, 3805 +1 more | evsi, gpl | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70021001 | q7 | 4 | 3278, 3650, 3753, 3861 | 3278, 3650, 3753 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70022001 | q7 | 17 | 3949, 3950, 3952, 3953, 3954, 3977, 4033, 4043, 4053, 4063, 4470, 4555 +5 more | 3949, 3950, 3952, 3953, 3954, 3977, 4033, 4043 +7 more | evsi, gpl | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70023001 | q7 | 15 | 4066, 4067, 4372, 4373, 4500, 4506, 4507, 4508, 4511, 4512, 4515, 4516 +3 more | 4066, 4372, 4373, 4500, 4506, 4507, 4508, 4511 +6 more | evsi, gpl | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70030001 | q7 | 46 | 5396, 5397, 5407, 5552, 5557, 5558, 5581, 5584, 5587, 5588, 5589, 5614 +34 more | 5396, 5397, 5407, 5552, 5557, 5558, 5584, 5587 +35 more | evsi, gpl | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70031001 | q7 | 8 | 5553, 5672, 6138, 6194, 6195, 6377, 6425, 7316 | 5553, 5672, 6138, 6194, 6195, 6377, 6425, 7316 | evsi, gpl | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70032001 | q7 | 37 | 7169, 7240, 7241, 7336, 7341, 7342, 7386, 7387, 7388, 7389, 7390, 7438 +25 more | 7169, 7240, 7241, 7336, 7341, 7342, 7386, 7387 +29 more | evsi, gpl | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70033001 | q7 | 43 | 7826, 7827, 7876, 7888, 7889, 7916, 7917, 7954, 7955, 7965, 7966, 7967 +31 more | 7826, 7827, 7876, 7888, 7889, 7917, 7954, 7955 +33 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70034001 | q7 | 3 | 8486, 8630, 8631 | 8486 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+|===
+
+== Derived External Dependency Targets
+
+_These are the promoted subset of external owner-index entries. A flag appears here only when it passes the current family-specific dependency promotion rules for this quest._
+
+[cols="2,1,1,2,2,4",options="header"]
+|===
+| Owner Quest | Family | Flag Count | Flags | Sources | Why
+
+| 70000001 | q7 | 17 | 1109, 1111, 1215, 1218, 1219, 1251, 1261, 1293, 1294, 1297, 1310, 1317 +5 more | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70002001 | q7 | 3 | 1113, 1295, 3859 | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70003001 | q7 | 10 | 1098, 1104, 1119, 1121, 1123, 1202, 1296, 2429, 2431, 2458 | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70020001 | q7 | 6 | 2736, 3000, 3002, 3003, 3074, 3805 | evsi, gpl | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70021001 | q7 | 3 | 3278, 3650, 3753 | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70022001 | q7 | 11 | 3949, 3952, 3953, 3954, 3977, 4033, 4555, 4556, 4557, 4803, 4968 | evsi, gpl | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70023001 | q7 | 10 | 4066, 4373, 4500, 4506, 4508, 4512, 4515, 4517, 4972, 4973 | evsi, gpl | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70030001 | q7 | 18 | 5396, 5397, 5407, 5558, 5588, 5635, 5637, 5642, 5658, 5706, 5708, 6196 +6 more | evsi, gpl | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70031001 | q7 | 4 | 5553, 6138, 6195, 6377 | evsi, gpl | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70032001 | q7 | 20 | 7241, 7336, 7342, 7388, 7390, 7438, 7440, 7497, 7498, 7514, 7545, 7550 +8 more | evsi, gpl | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70033001 | q7 | 25 | 7826, 7827, 7876, 7954, 7955, 7966, 7968, 7972, 8016, 8033, 8034, 8035 +13 more | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70034001 | q7 | 1 | 8486 | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+|===
+
+== Family Relationship Context
+
+_These sections summarize deterministic client-side family metadata and reverse-index relationships. They are context for later owner/dependency inference, not direct quest-target promotion._
+
+=== Quest Sequence
+
+* seq no: 71
+* previous: 30170 -- An Omen of Destruction
+* next: 30190 -- The Plight of Lookout Castle
+
+=== Blocked Spots
+
+* entries: 2
+* spot ids: 1212, 1213
+
+== ARC Association Context
+
+_ARC associations are contextual only. They show which quest-stage and marker resources are bundled with this quest._
+
+* arc file: link:../../../../client/03040008/quest/q00030180.arc.json#L1[client/03040008/quest/q00030180.arc.json#L1]
+* resource count: 24
+* stage codes: st0000, st0110, st0120, st0201, st0451, st0881
+* resource families: .fmi, .gmd, .mss, .qmi, .qst, .qtd
+
+=== st0000
+
+* rQuestMarkerInfo: quest/00030180/st0000_marker_npc
+* rQuestList: quest/00030180/q00030180_st0000
+
+=== st0110 -- Bloodbane Isle
+
+* rQuestMarkerInfo: quest/00030180/st0110_marker_npc
+* rQuestMarkerInfo: quest/00030180/st0110_marker_om
+* rQuestList: quest/00030180/q00030180_st0110
+
+=== st0120 -- Farana Plains
+
+* rQuestMarkerInfo: quest/00030180/st0120_marker_npc
+* rQuestMarkerInfo: quest/00030180/st0120_marker_om
+* rQuestList: quest/00030180/q00030180_st0120
+
+=== st0201 -- Audience Chamber
+
+* rQuestMarkerInfo: quest/00030180/st0201_marker_npc
+* rQuestList: quest/00030180/q00030180_st0201
+
+=== st0451 -- Lookout Castle
+
+* rQuestMarkerInfo: quest/00030180/st0451_marker_npc
+* rQuestList: quest/00030180/q00030180_st0451
+
+=== st0881 -- Hollow of Beginnings
+
+* rQuestMarkerInfo: quest/00030180/st0881_marker_npc
+* rQuestList: quest/00030180/q00030180_st0881
+
+=== unclassified
+
+* rFieldAreaMarkerInfo: quest/00030180/fa004_marker_om
+* rFieldAreaMarkerInfo: quest/00030180/fa005_marker_npc
+* rFieldAreaMarkerInfo: quest/00030180/fa005_marker_om
+* rFieldAreaMarkerInfo: quest/00030180/fa004_marker_npc
+* rMsgSet: ui/00_message/examine_message/quest/quest_examine_q00030180
+* rGUIMessage: ui/00_message/examine_message/quest/quest_examine_q00030180
+* rQuestTextData: ui/00_param/quest_text/q00030180_00
+* rGUIMessage: ui/00_message/quest/q00030180
+* rMsgSet: ui/00_message/quest/q00030180
+* rGUIMessage: ui/00_message/quest_info/q00030180_00
+
+== Stage Neighborhood Context
+
+_Stage-neighborhood context summarizes scanner-relevant client files that share the quest's archive stage codes. This is deterministic client topology, not inferred ownership._
+
+* scanner-relevant stage files: 1656
+* indexed stage codes: st0000, st0110, st0120, st0201, st0451, st0881
+
+=== st0000
+
+* scanner files: 9
+* .qmi.json: 3
+* .qst.json: 6
+
+=== st0110 -- Bloodbane Isle
+
+* scanner files: 188
+* .evsi.json: 5
+* .fsm.json: 23
+* .gpl.json: 5
+* .lot.json: 124
+* .qmi.json: 22
+* .qst.json: 9
+
+=== st0120 -- Farana Plains
+
+* scanner files: 525
+* .evsi.json: 12
+* .fsm.json: 64
+* .gpl.json: 5
+* .lot.json: 403
+* .qmi.json: 26
+* .qst.json: 15
+
+=== st0201 -- Audience Chamber
+
+* scanner files: 694
+* .evsi.json: 50
+* .fsm.json: 433
+* .gpl.json: 3
+* .lot.json: 64
+* .qmi.json: 75
+* .qst.json: 69
+
+=== st0451 -- Lookout Castle
+
+* scanner files: 173
+* .evsi.json: 6
+* .fsm.json: 45
+* .gpl.json: 3
+* .lot.json: 49
+* .qmi.json: 38
+* .qst.json: 32
+
+=== st0881 -- Hollow of Beginnings
+
+* scanner files: 67
+* .evsi.json: 3
+* .fsm.json: 35
+* .gpl.json: 5
+* .lot.json: 13
+* .qmi.json: 7
+* .qst.json: 4
+
+== Stage Neighborhood External-State Cues
+
+_These cues are deterministic client-side observations from the quest's stage neighborhood. They are not promoted to direct quest targets yet; they highlight q6/q7-owned external state values co-located in the quest's archive stages._
+
+* cue count: 246
+* owner families: q6, q7
+
+[cols="1,1,1,2,2,2",options="header"]
+|===
+| Value | Kind | Hits | Sources | Owners | Stages
+
+| Flag 1106 | layout_flag | 76 | evsi | 70003001 | st0110, st0120, st0201, st0451, st0881
+| Flag 1115 | layout_flag | 76 | evsi | 70002001 | st0110, st0120, st0201, st0451, st0881
+| Flag 1117 | layout_flag | 76 | evsi | 70002001 | st0110, st0120, st0201, st0451, st0881
+| Flag 1150 | layout_flag | 76 | evsi | 70000001 | st0110, st0120, st0201, st0451, st0881
+| Flag 1217 | layout_flag | 76 | evsi | 70000001 | st0110, st0120, st0201, st0451, st0881
+| Flag 1224 | layout_flag | 76 | evsi | 70000001 | st0110, st0120, st0201, st0451, st0881
+| Flag 1851 | layout_flag | 76 | evsi | 70001001 | st0110, st0120, st0201, st0451, st0881
+| Flag 1954 | layout_flag | 76 | evsi | 70001001 | st0110, st0120, st0201, st0451, st0881
+| Flag 2208 | layout_flag | 76 | evsi | 70000001 | st0110, st0120, st0201, st0451, st0881
+| Flag 2380 | layout_flag | 76 | evsi | 70000001 | st0110, st0120, st0201, st0451, st0881
+| Flag 3950 | layout_flag | 76 | evsi | 70022001 | st0110, st0120, st0201, st0451, st0881
+| Flag 5589 | layout_flag | 76 | evsi | 70030001 | st0110, st0120, st0201, st0451, st0881
+| Flag 5614 | layout_flag | 76 | evsi | 70030001 | st0110, st0120, st0201, st0451, st0881
+| Flag 5632 | layout_flag | 76 | evsi | 70030001 | st0110, st0120, st0201, st0451, st0881
+| Flag 6469 | layout_flag | 76 | evsi | 70030001 | st0110, st0120, st0201, st0451, st0881
+| Flag 6470 | layout_flag | 76 | evsi | 70030001 | st0110, st0120, st0201, st0451, st0881
+| Flag 6471 | layout_flag | 76 | evsi | 70030001 | st0110, st0120, st0201, st0451, st0881
+| Flag 6472 | layout_flag | 76 | evsi | 70030001 | st0110, st0120, st0201, st0451, st0881
+| Flag 6473 | layout_flag | 76 | evsi | 70030001 | st0110, st0120, st0201, st0451, st0881
+| Flag 6474 | layout_flag | 76 | evsi | 70030001 | st0110, st0120, st0201, st0451, st0881
+| Flag 7316 | layout_flag | 76 | evsi | 70031001 | st0110, st0120, st0201, st0451, st0881
+| Flag 8066 | layout_flag | 76 | evsi | 70033001 | st0110, st0120, st0201, st0451, st0881
+| Flag 1221 | layout_flag | 75 | evsi | 70000001 | st0110, st0120, st0201, st0451, st0881
+| Flag 1201 | layout_flag | 74 | evsi | 70000001 | st0110, st0120, st0201, st0451, st0881
+| Flag 1216 | layout_flag | 74 | evsi | 70000001 | st0110, st0120, st0201, st0451, st0881
+| Flag 1223 | layout_flag | 74 | evsi | 70000001 | st0110, st0120, st0201, st0451, st0881
+| Flag 1220 | layout_flag | 71 | evsi | 70000001 | st0110, st0120, st0201, st0451, st0881
+| Flag 1222 | layout_flag | 71 | evsi | 70000001 | st0110, st0120, st0201, st0451, st0881
+| Flag 1250 | layout_flag | 71 | evsi | 70000001 | st0110, st0120, st0201, st0451, st0881
+| Flag 1262 | layout_flag | 71 | evsi | 70000001 | st0110, st0120, st0201, st0451, st0881
+|===
+
+== Bounded Graph Expansion
+
+_This graph summarizes bounded deterministic and inferred edges around the quest: quest archive stages, direct source families, stage-linked owner catalogs, promoted dependencies, reverse-index event/group links, and family-specific table edges._
+
+* max depth: 3
+* node count: 963
+* edge count: 1949
+* node kinds: direct_family=4, event_viewer=916, family_context=2, lot_file=3, owner_quest=13, quest=1, sequence_quest=2, stage=6, stage_group=16
+* derivation: Dependency=12, Direct=29, Graph=2796, Owner Index=75
+
+=== Mermaid Graph Slice
+
+_This Mermaid flowchart shows a capped slice of the bounded graph so large quest reports stay readable while still exposing the graph structure._
+
+[mermaid]
+....
+flowchart TD
+    node_quest_30180["Quest 30180"]
+    node_direct_family_ams["ams direct hits (2)"]
+    node_direct_family_evsi["evsi direct hits (7)"]
+    node_direct_family_qst["qst direct hits (19)"]
+    node_direct_family_smc["smc direct hits (24)"]
+    node_family_context_blocked_spots["Blocked Spots"]
+    node_family_context_quest_sequence["Quest Sequence"]
+    node_stage_st0000["st0000"]
+    node_stage_st0110["st0110 -- Bloodbane Isle"]
+    node_stage_st0120["st0120 -- Farana Plains"]
+    node_stage_st0201["st0201 -- Audience Chamber"]
+    node_stage_st0451["st0451 -- Lookout Castle"]
+    node_stage_st0881["st0881 -- Hollow of Beginnings"]
+    node_owner_quest_70000001["Owner quest 70000001 (q7)"]
+    node_owner_quest_70002001["Owner quest 70002001 (q7)"]
+    node_owner_quest_70003001["Owner quest 70003001 (q7)"]
+    node_owner_quest_70020001["Owner quest 70020001 (q7)"]
+    node_owner_quest_70021001["Owner quest 70021001 (q7)"]
+    node_owner_quest_70022001["Owner quest 70022001 (q7)"]
+    node_owner_quest_70023001["Owner quest 70023001 (q7)"]
+    node_owner_quest_70030001["Owner quest 70030001 (q7)"]
+    node_owner_quest_70031001["Owner quest 70031001 (q7)"]
+    node_owner_quest_70032001["Owner quest 70032001 (q7)"]
+    node_owner_quest_70033001["Owner quest 70033001 (q7)"]
+    node_owner_quest_70034001["Owner quest 70034001 (q7)"]
+    node_quest_30180 -->|direct_source_family| node_direct_family_ams
+    node_quest_30180 -->|direct_source_family| node_direct_family_evsi
+    node_quest_30180 -->|direct_source_family| node_direct_family_qst
+    node_quest_30180 -->|direct_source_family| node_direct_family_smc
+    node_quest_30180 -->|family:blocked_spots| node_family_context_blocked_spots
+    node_quest_30180 -->|family:quest_sequence| node_family_context_quest_sequence
+    node_quest_30180 -->|quest_archive_stage| node_stage_st0000
+    node_quest_30180 -->|quest_archive_stage| node_stage_st0110
+    node_quest_30180 -->|quest_archive_stage| node_stage_st0120
+    node_quest_30180 -->|quest_archive_stage| node_stage_st0201
+    node_quest_30180 -->|quest_archive_stage| node_stage_st0451
+    node_quest_30180 -->|quest_archive_stage| node_stage_st0881
+    node_quest_30180 -->|promoted_dependency| node_owner_quest_70000001
+    node_quest_30180 -->|promoted_dependency| node_owner_quest_70002001
+    node_quest_30180 -->|promoted_dependency| node_owner_quest_70003001
+    node_quest_30180 -->|promoted_dependency| node_owner_quest_70020001
+    node_quest_30180 -->|promoted_dependency| node_owner_quest_70021001
+    node_quest_30180 -->|promoted_dependency| node_owner_quest_70022001
+    node_quest_30180 -->|promoted_dependency| node_owner_quest_70023001
+    node_quest_30180 -->|promoted_dependency| node_owner_quest_70030001
+    node_quest_30180 -->|promoted_dependency| node_owner_quest_70031001
+    node_quest_30180 -->|promoted_dependency| node_owner_quest_70032001
+    node_quest_30180 -->|promoted_dependency| node_owner_quest_70033001
+    node_quest_30180 -->|promoted_dependency| node_owner_quest_70034001
+    classDef direct_deterministic fill:#e8f5e9,stroke:#2e7d32,stroke-width:1px
+    classDef owner_index fill:#e3f2fd,stroke:#1565c0,stroke-width:1px
+    classDef dependency_inferred fill:#fff3e0,stroke:#ef6c00,stroke-width:1px
+    classDef graph_expanded fill:#f3e5f5,stroke:#7b1fa2,stroke-width:1px
+    classDef lower_confidence fill:#fbe9e7,stroke:#d84315,stroke-width:1px
+    classDef binary_auxiliary fill:#eceff1,stroke:#455a64,stroke-width:1px
+    class node_quest_30180,node_direct_family_ams,node_direct_family_evsi,node_direct_family_qst,node_direct_family_smc,node_family_context_blocked_spots,node_family_context_quest_sequence,node_stage_st0000,node_stage_st0110,node_stage_st0120,node_stage_st0201,node_stage_st0451,node_stage_st0881 direct_deterministic
+    class node_owner_quest_70000001,node_owner_quest_70002001,node_owner_quest_70003001,node_owner_quest_70020001,node_owner_quest_70021001,node_owner_quest_70022001,node_owner_quest_70023001,node_owner_quest_70030001,node_owner_quest_70031001,node_owner_quest_70032001,node_owner_quest_70033001,node_owner_quest_70034001 owner_index
+....
+
+[cols="1,2,2,2,2,4",options="header"]
+|===
+| Depth | Edge | From | To | Derivation | Why
+
+| 1 | direct_source_family | quest:30180 | direct-family:ams | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | direct_source_family | quest:30180 | direct-family:evsi | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | direct_source_family | quest:30180 | direct-family:qst | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | direct_source_family | quest:30180 | direct-family:smc | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | family_context:blocked_spots | quest:30180 | family-context:blocked_spots | Direct | Family-specific decoded tables provide deterministic context for this quest.
+| 1 | family_context:quest_sequence | quest:30180 | family-context:quest_sequence | Direct | Family-specific decoded tables provide deterministic context for this quest.
+| 1 | quest_archive_stage | quest:30180 | stage:st0000 | Direct | Quest archive topology directly links this quest to the stage code.
+| 1 | quest_archive_stage | quest:30180 | stage:st0110 | Direct | Quest archive topology directly links this quest to the stage code.
+| 1 | quest_archive_stage | quest:30180 | stage:st0120 | Direct | Quest archive topology directly links this quest to the stage code.
+| 1 | quest_archive_stage | quest:30180 | stage:st0201 | Direct | Quest archive topology directly links this quest to the stage code.
+| 1 | quest_archive_stage | quest:30180 | stage:st0451 | Direct | Quest archive topology directly links this quest to the stage code.
+| 1 | quest_archive_stage | quest:30180 | stage:st0881 | Direct | Quest archive topology directly links this quest to the stage code.
+| 2 | promoted_dependency | quest:30180 | owner-quest:70000001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30180 | owner-quest:70002001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30180 | owner-quest:70003001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30180 | owner-quest:70020001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30180 | owner-quest:70021001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30180 | owner-quest:70022001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30180 | owner-quest:70023001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30180 | owner-quest:70030001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30180 | owner-quest:70031001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30180 | owner-quest:70032001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30180 | owner-quest:70033001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30180 | owner-quest:70034001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | sequence_next | family-context:quest_sequence | sequence-quest:30190 | Direct | QuestSequence links this quest to its neighboring sequence quest.
+| 2 | sequence_previous | family-context:quest_sequence | sequence-quest:30170 | Direct | QuestSequence links this quest to its neighboring sequence quest.
+| 2 | stage_event_viewer | stage:st0110 | event-viewer:st0110:ev000:70000001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0110 | event-viewer:st0110:ev000:70001001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0110 | event-viewer:st0110:ev000:70002001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0110 | event-viewer:st0110:ev000:70003001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0110 | event-viewer:st0110:ev000:70020001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0110 | event-viewer:st0110:ev000:70021001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0110 | event-viewer:st0110:ev000:70022001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0110 | event-viewer:st0110:ev000:70023001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0110 | event-viewer:st0110:ev000:70030001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0110 | event-viewer:st0110:ev000:70031001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0110 | event-viewer:st0110:ev000:70032001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0110 | event-viewer:st0110:ev000:70033001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0110 | event-viewer:st0110:ev010:70000001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0110 | event-viewer:st0110:ev010:70001001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+|===
 
 == Flag Summary Matrix
 
@@ -15,12 +361,198 @@ toc::[]
 |===
 | Target | Kind | Hits | Sources | Stages | Relationships | Description
 
+| Flag 7093 | layout_flag | 2 | qst | st0201 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0201 \| 受注直後謁見のま
+| Flag 7094 | layout_flag | 3 | evsi, qst | st0881 | 🎬 Event State, ⚡ Quest Condition, ❌ Quest Erase | QST local: st0881 \| ガラダ他
+| Flag 7095 | layout_flag | 3 | evsi, qst | st0120, st0881 | 🎬 Event State, ⚡ Quest Condition, ❌ Quest Erase | QST local: st0120 \| 平原の小塔前
+| Flag 7096 | layout_flag | 3 | evsi, qst | st0110, st0881 | 🎬 Event State, ⚡ Quest Condition, ❌ Quest Erase | QST local: st0110 \| 魔赤島の小塔前
+| Flag 7099 | layout_flag | 3 | evsi, qst | st0120, st0881 | 🎬 Event State, ⚡ Quest Condition, ❌ Quest Erase | QST local: st0120 \| QuestGroup 1 \| 竜力ぽいもの
+| Flag 7100 | layout_flag | 3 | evsi, qst | st0110, st0881 | 🎬 Event State, ⚡ Quest Condition, ❌ Quest Erase | QST local: st0110 \| QuestGroup 1 \| 竜力
+| Flag 7350 | layout_flag | 3 | evsi, qst | st0881 | 🎬 Event State, ⚡ Quest Condition, ❌ Quest Erase | QST local: st0881 \| QuestGroup 1
+| Flag 7533 | layout_flag | 3 | evsi, qst | st0451, st0881 | 🎬 Event State, ⚡ Quest Condition, ❌ Quest Erase | QST local: st0451 \| Condition
+| Flag 7892 | layout_flag | 1 | qst | st0881 | ⚡ Quest Condition | QST local: st0881 \| QuestGroup 2 \| デモ後
 | Quest ID 30180 | quest_id | 28 | ams, qst, smc | st0110, st0120 | 🗣️ NPC Chatter, 🗺️ Spot Block, 💬 Text Quest | Derived quest-wide association scan
 |===
 
 == Known Documented Targets
 
+* quest 30180 -- Flag 7093 -- QST local: st0201 | 受注直後謁見のま
+* quest 30180 -- Flag 7094 -- QST local: st0881 | ガラダ他
+* quest 30180 -- Flag 7095 -- QST local: st0120 | 平原の小塔前
+* quest 30180 -- Flag 7096 -- QST local: st0110 | 魔赤島の小塔前
+* quest 30180 -- Flag 7099 -- QST local: st0120 | QuestGroup 1 | 竜力ぽいもの
+* quest 30180 -- Flag 7100 -- QST local: st0110 | QuestGroup 1 | 竜力
+* quest 30180 -- Flag 7350 -- QST local: st0881 | QuestGroup 1
+* quest 30180 -- Flag 7533 -- QST local: st0451 | Condition
+* quest 30180 -- Flag 7892 -- QST local: st0881 | QuestGroup 2 | デモ後
 * Quest ID 30180 -- Derived quest-wide association scan [Derived]
+
+== Flag 7093 -- Quest 30180
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030180/quest/00030180/q00030180_st0201.qst.json[client/03040008/quest/q00030180/quest/00030180/q00030180_st0201.qst.json] | QuestStageList[].QuestGrp[0].Condition | Condition | quest 30180 / Audience Chamber / "受注直後謁見のま" / QuestSet=QuestSetInfoNpc \|\| QuestSet=QuestSetInfoNpc | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030180/quest/00030180/q00030180_st0201.qst.json[client/03040008/quest/q00030180/quest/00030180/q00030180_st0201.qst.json] | QuestStageList[].QuestGrp[0].EraseCondition | EraseCondition | quest 30180 / Audience Chamber / "受注直後謁見のま" / QuestSet=QuestSetInfoNpc \|\| QuestSet=QuestSetInfoNpc | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 7094 -- Quest 30180
+
+origin:: derived_qst_local
+direct hits:: *3*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 3 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030180/quest/00030180/q00030180_st0881.qst.json[client/03040008/quest/q00030180/quest/00030180/q00030180_st0881.qst.json] | QuestStageList[].QuestGrp[0].Condition | Condition | quest 30180 / Hollow of Beginnings / "ガラダ他" / QuestSet=QuestSetInfoNpc | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030180/quest/00030180/q00030180_st0881.qst.json[client/03040008/quest/q00030180/quest/00030180/q00030180_st0881.qst.json] | QuestStageList[].QuestGrp[0].EraseCondition | EraseCondition | quest 30180 / Hollow of Beginnings / "ガラダ他" / QuestSet=QuestSetInfoNpc | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0881/view_st0881ev035/event/viewer/view_st0881ev035.evsi.json#L541[client/03040008/event/st0881/view_st0881ev035/event/viewer/view_st0881ev035.evsi.json#L541] | LayoutFlagArray[0].FlagNo | FlagNo | quest 30180 (A Brief Dragon Force) / Hollow of Beginnings / Event Viewer \| EVENT_NAME_st0881ev035 \| Awakening of the Spirit Dragon | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+|===
+
+== Flag 7095 -- Quest 30180
+
+origin:: derived_qst_local
+direct hits:: *3*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 3 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030180/quest/00030180/q00030180_st0120.qst.json[client/03040008/quest/q00030180/quest/00030180/q00030180_st0120.qst.json] | QuestStageList[].QuestGrp[0].Condition | Condition | quest 30180 / Farana Plains / "平原の小塔前" / QuestSet=QuestSetInfoNpc | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030180/quest/00030180/q00030180_st0120.qst.json[client/03040008/quest/q00030180/quest/00030180/q00030180_st0120.qst.json] | QuestStageList[].QuestGrp[0].EraseCondition | EraseCondition | quest 30180 / Farana Plains / "平原の小塔前" / QuestSet=QuestSetInfoNpc | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0881/view_st0881ev035/event/viewer/view_st0881ev035.evsi.json#L549[client/03040008/event/st0881/view_st0881ev035/event/viewer/view_st0881ev035.evsi.json#L549] | LayoutFlagArray[1].FlagNo | FlagNo | quest 30180 (A Brief Dragon Force) / Hollow of Beginnings / Event Viewer \| EVENT_NAME_st0881ev035 \| Awakening of the Spirit Dragon | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+|===
+
+== Flag 7096 -- Quest 30180
+
+origin:: derived_qst_local
+direct hits:: *3*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 3 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030180/quest/00030180/q00030180_st0110.qst.json[client/03040008/quest/q00030180/quest/00030180/q00030180_st0110.qst.json] | QuestStageList[].QuestGrp[0].Condition | Condition | quest 30180 / Bloodbane Isle / "魔赤島の小塔前" / QuestSet=QuestSetInfoNpc | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030180/quest/00030180/q00030180_st0110.qst.json[client/03040008/quest/q00030180/quest/00030180/q00030180_st0110.qst.json] | QuestStageList[].QuestGrp[0].EraseCondition | EraseCondition | quest 30180 / Bloodbane Isle / "魔赤島の小塔前" / QuestSet=QuestSetInfoNpc | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0881/view_st0881ev035/event/viewer/view_st0881ev035.evsi.json#L557[client/03040008/event/st0881/view_st0881ev035/event/viewer/view_st0881ev035.evsi.json#L557] | LayoutFlagArray[2].FlagNo | FlagNo | quest 30180 (A Brief Dragon Force) / Hollow of Beginnings / Event Viewer \| EVENT_NAME_st0881ev035 \| Awakening of the Spirit Dragon | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+|===
+
+== Flag 7099 -- Quest 30180
+
+origin:: derived_qst_local
+direct hits:: *3*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 3 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030180/quest/00030180/q00030180_st0120.qst.json[client/03040008/quest/q00030180/quest/00030180/q00030180_st0120.qst.json] | QuestStageList[].QuestGrp[1].Condition | Condition | quest 30180 / Farana Plains / "QuestGroup 1 \| 竜力ぽいもの" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100548 \| TextType=2 \| TextQuestNo=30180 \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030180/quest/00030180/q00030180_st0120.qst.json[client/03040008/quest/q00030180/quest/00030180/q00030180_st0120.qst.json] | QuestStageList[].QuestGrp[1].EraseCondition | EraseCondition | quest 30180 / Farana Plains / "QuestGroup 1 \| 竜力ぽいもの" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100548 \| TextType=2 \| TextQuestNo=30180 \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0881/view_st0881ev035/event/viewer/view_st0881ev035.evsi.json#L565[client/03040008/event/st0881/view_st0881ev035/event/viewer/view_st0881ev035.evsi.json#L565] | LayoutFlagArray[3].FlagNo | FlagNo | quest 30180 (A Brief Dragon Force) / Hollow of Beginnings / Event Viewer \| EVENT_NAME_st0881ev035 \| Awakening of the Spirit Dragon | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+|===
+
+== Flag 7100 -- Quest 30180
+
+origin:: derived_qst_local
+direct hits:: *3*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 3 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030180/quest/00030180/q00030180_st0110.qst.json[client/03040008/quest/q00030180/quest/00030180/q00030180_st0110.qst.json] | QuestStageList[].QuestGrp[1].Condition | Condition | quest 30180 / Bloodbane Isle / "QuestGroup 1 \| 竜力" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100548 \| TextType=2 \| TextQuestNo=30180 \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030180/quest/00030180/q00030180_st0110.qst.json[client/03040008/quest/q00030180/quest/00030180/q00030180_st0110.qst.json] | QuestStageList[].QuestGrp[1].EraseCondition | EraseCondition | quest 30180 / Bloodbane Isle / "QuestGroup 1 \| 竜力" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100548 \| TextType=2 \| TextQuestNo=30180 \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0881/view_st0881ev035/event/viewer/view_st0881ev035.evsi.json#L573[client/03040008/event/st0881/view_st0881ev035/event/viewer/view_st0881ev035.evsi.json#L573] | LayoutFlagArray[4].FlagNo | FlagNo | quest 30180 (A Brief Dragon Force) / Hollow of Beginnings / Event Viewer \| EVENT_NAME_st0881ev035 \| Awakening of the Spirit Dragon | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+|===
+
+== Flag 7350 -- Quest 30180
+
+origin:: derived_qst_local
+direct hits:: *3*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 3 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030180/quest/00030180/q00030180_st0881.qst.json[client/03040008/quest/q00030180/quest/00030180/q00030180_st0881.qst.json] | QuestStageList[].QuestGrp[1].Condition | Condition | quest 30180 / Hollow of Beginnings / "QuestGroup 1" / QuestSet=QuestSetInfoNpc \| GroupNo=1 \|\| QuestSet=QuestSetInfoNpc \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030180/quest/00030180/q00030180_st0881.qst.json[client/03040008/quest/q00030180/quest/00030180/q00030180_st0881.qst.json] | QuestStageList[].QuestGrp[1].EraseCondition | EraseCondition | quest 30180 / Hollow of Beginnings / "QuestGroup 1" / QuestSet=QuestSetInfoNpc \| GroupNo=1 \|\| QuestSet=QuestSetInfoNpc \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0881/view_st0881ev035/event/viewer/view_st0881ev035.evsi.json#L581[client/03040008/event/st0881/view_st0881ev035/event/viewer/view_st0881ev035.evsi.json#L581] | LayoutFlagArray[5].FlagNo | FlagNo | quest 30180 (A Brief Dragon Force) / Hollow of Beginnings / Event Viewer \| EVENT_NAME_st0881ev035 \| Awakening of the Spirit Dragon | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+|===
+
+== Flag 7533 -- Quest 30180
+
+origin:: derived_qst_local
+direct hits:: *3*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 3 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030180/quest/00030180/q00030180_st0451.qst.json[client/03040008/quest/q00030180/quest/00030180/q00030180_st0451.qst.json] | QuestStageList[].QuestGrp[0].Condition | Condition | quest 30180 / Lookout Castle / QuestSet=QuestSetInfoNpc \|\| QuestSet=QuestSetInfoNpc \|\| +2 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030180/quest/00030180/q00030180_st0451.qst.json[client/03040008/quest/q00030180/quest/00030180/q00030180_st0451.qst.json] | QuestStageList[].QuestGrp[0].EraseCondition | EraseCondition | quest 30180 / Lookout Castle / QuestSet=QuestSetInfoNpc \|\| QuestSet=QuestSetInfoNpc \|\| +2 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0881/view_st0881ev035/event/viewer/view_st0881ev035.evsi.json#L589[client/03040008/event/st0881/view_st0881ev035/event/viewer/view_st0881ev035.evsi.json#L589] | LayoutFlagArray[6].FlagNo | FlagNo | quest 30180 (A Brief Dragon Force) / Hollow of Beginnings / Event Viewer \| EVENT_NAME_st0881ev035 \| Awakening of the Spirit Dragon | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+|===
+
+== Flag 7892 -- Quest 30180
+
+origin:: derived_qst_local
+direct hits:: *1*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 1 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030180/quest/00030180/q00030180_st0881.qst.json[client/03040008/quest/q00030180/quest/00030180/q00030180_st0881.qst.json] | QuestStageList[].QuestGrp[2].Condition | Condition | quest 30180 / Hollow of Beginnings / "QuestGroup 2 \| デモ後" / QuestSet=QuestSetInfoNpc \| GroupNo=2 \|\| QuestSet=QuestSetInfoNpc \| GroupNo=2 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
 
 == Quest ID 30180
 
@@ -32,37 +564,37 @@ ranked candidates:: *0*
 
 ==== direct -- 28 hit(s)
 
-[cols="1,1,3,3,2,3,3",options="header"]
+[cols="1,1,1,3,3,2,3,3",options="header"]
 |===
-| Family | Confidence | File | JSON Path | Field | Context | Why
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
 
-| QST | 92 | client/03040008/quest/q00030180/quest/00030180/q00030180_st0110.qst.json | QuestStageList[].QuestGrp[1].QuestSet[0].TextQuestNo | TextQuestNo | quest 30180 / Bloodbane Isle / "QuestGroup 1 \| 竜力 \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100548 \| TextType=2 \| TextQuestNo=30180 \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
-| QST | 92 | client/03040008/quest/q00030180/quest/00030180/q00030180_st0120.qst.json | QuestStageList[].QuestGrp[1].QuestSet[0].TextQuestNo | TextQuestNo | quest 30180 / Farana Plains / "QuestGroup 1 \| 竜力ぽいもの \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100548 \| TextType=2 \| TextQuestNo=30180 \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
-| AMS | 92 | client/03040008/ui/uGUIAreaMaster/ui/00_param/master/am_spot_13.ams.json | AreaMasterSpotDataList[19].QuestId | QuestId | quest 30180 (A Brief Dragon Force) / Bloodbane Isle / Bloodbane Isle / "SpotId=1213" / QuestBlockedSpot \| Sage Tower Ruins \| Adventure Spots \| RecommendLevel=93 | Area Master spot block; QuestId here indicates the map spot is hidden or blocked by that quest.
-| AMS | 92 | client/03040008/ui/uGUIAreaMaster/ui/00_param/master/am_spot_15.ams.json | AreaMasterSpotDataList[24].QuestId | QuestId | quest 30180 (A Brief Dragon Force) / Farana Plains / Farana Plains / "SpotId=1212" / QuestBlockedSpot \| Tarie Small Tower \| Adventure Spots \| RecommendLevel=93 | Area Master spot block; QuestId here indicates the map spot is hidden or blocked by that quest.
-| SMC | 92 | client/03040008/npc/n0001/ui/00_message/npc/base/n0001.smc.json | SituationData.EndQuestId | EndQuestId | quest 30180 (A Brief Dragon Force) / The White Dragon / GroupSerial=24423 / "GroupSerial=24423, QuestWindow=30170-30180 (An Omen of Destruction -> A Brief Dragon Force), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0001 \| Quest-gated NPC chatter \| QuestWindow=30170-30180 (An Omen of Destruction -> A Brief Dragon Force) / MSS: The White Dragon / A voice... I hear... | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0001/ui/00_message/npc/base/n0001.smc.json | SituationData.StartQuestId | StartQuestId | quest 30180 (A Brief Dragon Force) / The White Dragon / GroupSerial=24424 / "GroupSerial=24424, QuestWindow=30180-30190 (A Brief Dragon Force -> The Plight of Lookout Castle), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0001 \| Quest-gated NPC chatter \| QuestWindow=30180-30190 (A Brief Dragon Force -> The Plight of Lookout Castle) / MSS: The White Dragon / But a moment more... | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json | SituationData.EndQuestId | EndQuestId | quest 30180 (A Brief Dragon Force) / Klaus / GroupSerial=24492 / "GroupSerial=24492, QuestWindow=30170-30180 (An Omen of Destruction -> A Brief Dragon Force), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0003 \| Quest-gated NPC chatter \| QuestWindow=30170-30180 (An Omen of Destruction -> A Brief Dragon Force) / MSS: Klaus / I'm hitting various books and such, but this | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json | SituationData.StartQuestId | StartQuestId | quest 30180 (A Brief Dragon Force) / Klaus / GroupSerial=24493 / "GroupSerial=24493, QuestWindow=30180-30190 (A Brief Dragon Force -> The Plight of Lookout Castle), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window start" / NpcChatter=n0003 \| Quest-gated NPC chatter \| QuestWindow=30180-30190 (A Brief Dragon Force -> The Plight of Lookout Castle) / MSS: Klaus / Prithee, I beg you—Retrieve the sword of The | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json | SituationData.EndQuestId | EndQuestId | quest 30180 (A Brief Dragon Force) / Joseph / GroupSerial=24463 / "GroupSerial=24463, QuestWindow=30170-30180 (An Omen of Destruction -> A Brief Dragon Force), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0004 \| Quest-gated NPC chatter \| QuestWindow=30170-30180 (An Omen of Destruction -> A Brief Dragon Force) / MSS: Joseph / We are gathering Blood orbs one after another, but | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json | SituationData.StartQuestId | StartQuestId | quest 30180 (A Brief Dragon Force) / Joseph / GroupSerial=24464 / "GroupSerial=24464, QuestWindow=30180-30190 (A Brief Dragon Force -> The Plight of Lookout Castle), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0004 \| Quest-gated NPC chatter \| QuestWindow=30180-30190 (A Brief Dragon Force -> The Plight of Lookout Castle) / MSS: Joseph / The future of Lestania depends on your actions | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0007/ui/00_message/npc/base/n0007.smc.json | SituationData.EndQuestId | EndQuestId | quest 30180 (A Brief Dragon Force) / Gerd / GroupSerial=24822 / "GroupSerial=24822, QuestWindow=30170-30180 (An Omen of Destruction -> A Brief Dragon Force), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0007 \| Quest-gated NPC chatter \| QuestWindow=30170-30180 (An Omen of Destruction -> A Brief Dragon Force) / MSS: Gerd / The morale of the Knights' Order is high,  | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0007/ui/00_message/npc/base/n0007.smc.json | SituationData.StartQuestId | StartQuestId | quest 30180 (A Brief Dragon Force) / Gerd / GroupSerial=24823 / "GroupSerial=24823, QuestWindow=30180-30190 (A Brief Dragon Force -> The Plight of Lookout Castle), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0007 \| Quest-gated NPC chatter \| QuestWindow=30180-30190 (A Brief Dragon Force -> The Plight of Lookout Castle) / MSS: Gerd / I hear you caught a glimpse of Mysial. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0012/ui/00_message/npc/base/n0012.smc.json | SituationData.EndQuestId | EndQuestId | quest 30180 (A Brief Dragon Force) / Fabio / GroupSerial=24830 / "GroupSerial=24830, QuestWindow=30170-30180 (An Omen of Destruction -> A Brief Dragon Force), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0012 \| Quest-gated NPC chatter \| QuestWindow=30170-30180 (An Omen of Destruction -> A Brief Dragon Force) / MSS: Fabio / B-Blood Orb... I have to find it... | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0012/ui/00_message/npc/base/n0012.smc.json | SituationData.StartQuestId | StartQuestId | quest 30180 (A Brief Dragon Force) / Fabio / GroupSerial=24831 / "GroupSerial=24831, QuestWindow=30180-30190 (A Brief Dragon Force -> The Plight of Lookout Castle), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0012 \| Quest-gated NPC chatter \| QuestWindow=30180-30190 (A Brief Dragon Force -> The Plight of Lookout Castle) / MSS: Fabio / I will do what I can here for the Arisen who fell | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0013/ui/00_message/npc/base/n0013.smc.json | SituationData.StartQuestId | StartQuestId | quest 30180 (A Brief Dragon Force) / Lise / GroupSerial=24552 / "GroupSerial=24552, QuestWindow=30180-30190 (A Brief Dragon Force -> The Plight of Lookout Castle), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0013 \| Quest-gated NPC chatter \| QuestWindow=30180-30190 (A Brief Dragon Force -> The Plight of Lookout Castle) / MSS: Lise / It's okay... It's okay. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0014/ui/00_message/npc/base/n0014.smc.json | SituationData.EndQuestId | EndQuestId | quest 30180 (A Brief Dragon Force) / Mayleaf / GroupSerial=24834 / "GroupSerial=24834, QuestWindow=30170-30180 (An Omen of Destruction -> A Brief Dragon Force), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window end" / NpcChatter=n0014 \| Quest-gated NPC chatter \| QuestWindow=30170-30180 (An Omen of Destruction -> A Brief Dragon Force) / MSS: Mayleaf / Lise, I don't think he can hear me anymore— | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0014/ui/00_message/npc/base/n0014.smc.json | SituationData.StartQuestId | StartQuestId | quest 30180 (A Brief Dragon Force) / Mayleaf / GroupSerial=24835 / "GroupSerial=24835, QuestWindow=30180-30190 (A Brief Dragon Force -> The Plight of Lookout Castle), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0014 \| Quest-gated NPC chatter \| QuestWindow=30180-30190 (A Brief Dragon Force -> The Plight of Lookout Castle) / MSS: Mayleaf / Captain, be careful. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0021/ui/00_message/npc/base/n0021.smc.json | SituationData.EndQuestId | EndQuestId | quest 30180 (A Brief Dragon Force) / Elliot / GroupSerial=24576 / "GroupSerial=24576, QuestWindow=30170-30180 (An Omen of Destruction -> A Brief Dragon Force), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0021 \| Quest-gated NPC chatter \| QuestWindow=30170-30180 (An Omen of Destruction -> A Brief Dragon Force) / MSS: Elliot / If we don't do something soon, even we will | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0021/ui/00_message/npc/base/n0021.smc.json | SituationData.StartQuestId | StartQuestId | quest 30180 (A Brief Dragon Force) / Elliot / GroupSerial=24577 / "GroupSerial=24577, QuestWindow=30180-30190 (A Brief Dragon Force -> The Plight of Lookout Castle), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0021 \| Quest-gated NPC chatter \| QuestWindow=30180-30190 (A Brief Dragon Force -> The Plight of Lookout Castle) / MSS: Elliot / Let's do it, Captain. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0023/ui/00_message/npc/base/n0023.smc.json | SituationData.StartQuestId | StartQuestId | quest 30180 (A Brief Dragon Force) / Gearóid / GroupSerial=24841 / "GroupSerial=24841, QuestWindow=30180-30190 (A Brief Dragon Force -> The Plight of Lookout Castle), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0023 \| Quest-gated NPC chatter \| QuestWindow=30180-30190 (A Brief Dragon Force -> The Plight of Lookout Castle) / MSS: Gearóid / Now, quickly do what needs to be done! | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0032/ui/00_message/npc/base/n0032.smc.json | SituationData.StartQuestId | StartQuestId | quest 30180 (A Brief Dragon Force) / Gerhard / GroupSerial=24777 / "GroupSerial=24777, QuestWindow=30180-30190 (A Brief Dragon Force -> The Plight of Lookout Castle), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0032 \| Quest-gated NPC chatter \| QuestWindow=30180-30190 (A Brief Dragon Force -> The Plight of Lookout Castle) / MSS: Gerhard / I am glad that you stopped by, but it would be | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0033/ui/00_message/npc/base/n0033.smc.json | SituationData.StartQuestId | StartQuestId | quest 30180 (A Brief Dragon Force) / Bertha / GroupSerial=24933 / "GroupSerial=24933, QuestWindow=30180-30190 (A Brief Dragon Force -> The Plight of Lookout Castle), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0033 \| Quest-gated NPC chatter \| QuestWindow=30180-30190 (A Brief Dragon Force -> The Plight of Lookout Castle) / MSS: Bertha / Oh you're back. I still need you guys. I'm | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0034/ui/00_message/npc/base/n0034.smc.json | SituationData.StartQuestId | StartQuestId | quest 30180 (A Brief Dragon Force) / Quintus / GroupSerial=24733 / "GroupSerial=24733, QuestWindow=30180-30190 (A Brief Dragon Force -> The Plight of Lookout Castle), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0034 \| Quest-gated NPC chatter \| QuestWindow=30180-30190 (A Brief Dragon Force -> The Plight of Lookout Castle) / MSS: Quintus / Did you come to see me? | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0501/ui/00_message/npc/base/n0501.smc.json | SituationData.EndQuestId | EndQuestId | quest 30180 (A Brief Dragon Force) / Gurdolin / GroupSerial=24527 / "GroupSerial=24527, QuestWindow=30170-30180 (An Omen of Destruction -> A Brief Dragon Force), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0501 \| Quest-gated NPC chatter \| QuestWindow=30170-30180 (An Omen of Destruction -> A Brief Dragon Force) / MSS: Gurdolin / When you let your mind wander... your strength | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0501/ui/00_message/npc/base/n0501.smc.json | SituationData.StartQuestId | StartQuestId | quest 30180 (A Brief Dragon Force) / Gurdolin / GroupSerial=24528 / "GroupSerial=24528, QuestWindow=30180-30190 (A Brief Dragon Force -> The Plight of Lookout Castle), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0501 \| Quest-gated NPC chatter \| QuestWindow=30180-30190 (A Brief Dragon Force -> The Plight of Lookout Castle) / MSS: Gurdolin / I'll do my best not to be a liability. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n1003/ui/00_message/npc/base/n1003.smc.json | SituationData.EndQuestId | EndQuestId | quest 30180 (A Brief Dragon Force) / Pamela / GroupSerial=24838 / "GroupSerial=24838, QuestWindow=30170-30180 (An Omen of Destruction -> A Brief Dragon Force), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n1003 \| Quest-gated NPC chatter \| QuestWindow=30170-30180 (An Omen of Destruction -> A Brief Dragon Force) / MSS: Pamela / How is The White Dragon's condition? | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n1003/ui/00_message/npc/base/n1003.smc.json | SituationData.StartQuestId | StartQuestId | quest 30180 (A Brief Dragon Force) / Pamela / GroupSerial=24840 / "GroupSerial=24840, QuestWindow=30180-30190 (A Brief Dragon Force -> The Plight of Lookout Castle), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n1003 \| Quest-gated NPC chatter \| QuestWindow=30180-30190 (A Brief Dragon Force -> The Plight of Lookout Castle) / MSS: Pamela / Mysial has appeared, I heard. I wanted to meet | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n2610/ui/00_message/npc/base/n2610.smc.json | SituationData.StartQuestId | StartQuestId | quest 30180 (A Brief Dragon Force) / Mordred / GroupSerial=24842 / "GroupSerial=24842, QuestWindow=30180-30190 (A Brief Dragon Force -> The Plight of Lookout Castle), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n2610 \| Quest-gated NPC chatter \| QuestWindow=30180-30190 (A Brief Dragon Force -> The Plight of Lookout Castle) / MSS: Mordred / It seems that the awakening of our dragon is | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030180/quest/00030180/q00030180_st0110.qst.json[client/03040008/quest/q00030180/quest/00030180/q00030180_st0110.qst.json] | QuestStageList[].QuestGrp[1].QuestSet[0].TextQuestNo | TextQuestNo | quest 30180 / Bloodbane Isle / "QuestGroup 1 \| 竜力 \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100548 \| TextType=2 \| TextQuestNo=30180 \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030180/quest/00030180/q00030180_st0120.qst.json[client/03040008/quest/q00030180/quest/00030180/q00030180_st0120.qst.json] | QuestStageList[].QuestGrp[1].QuestSet[0].TextQuestNo | TextQuestNo | quest 30180 / Farana Plains / "QuestGroup 1 \| 竜力ぽいもの \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100548 \| TextType=2 \| TextQuestNo=30180 \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| AMS | Direct | 92 | link:../../../../client/03040008/ui/uGUIAreaMaster/ui/00_param/master/am_spot_13.ams.json#L730[client/03040008/ui/uGUIAreaMaster/ui/00_param/master/am_spot_13.ams.json#L730] | AreaMasterSpotDataList[19].QuestId | QuestId | quest 30180 (A Brief Dragon Force) / Bloodbane Isle / Bloodbane Isle / "SpotId=1213" / QuestBlockedSpot \| Sage Tower Ruins \| Adventure Spots \| RecommendLevel=93 | Area Master spot block; QuestId here indicates the map spot is hidden or blocked by that quest.
+| AMS | Direct | 92 | link:../../../../client/03040008/ui/uGUIAreaMaster/ui/00_param/master/am_spot_15.ams.json#L915[client/03040008/ui/uGUIAreaMaster/ui/00_param/master/am_spot_15.ams.json#L915] | AreaMasterSpotDataList[24].QuestId | QuestId | quest 30180 (A Brief Dragon Force) / Farana Plains / Farana Plains / "SpotId=1212" / QuestBlockedSpot \| Tarie Small Tower \| Adventure Spots \| RecommendLevel=93 | Area Master spot block; QuestId here indicates the map spot is hidden or blocked by that quest.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0001/ui/00_message/npc/base/n0001.smc.json[client/03040008/npc/n0001/ui/00_message/npc/base/n0001.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30180 (A Brief Dragon Force) / The White Dragon / GroupSerial=24423 / "GroupSerial=24423, QuestWindow=30170-30180 (An Omen of Destruction -> A Brief Dragon Force), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0001 \| Quest-gated NPC chatter \| QuestWindow=30170-30180 (An Omen of Destruction -> A Brief Dragon Force) / MSS: The White Dragon / A voice... I hear... | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0001/ui/00_message/npc/base/n0001.smc.json[client/03040008/npc/n0001/ui/00_message/npc/base/n0001.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30180 (A Brief Dragon Force) / The White Dragon / GroupSerial=24424 / "GroupSerial=24424, QuestWindow=30180-30190 (A Brief Dragon Force -> The Plight of Lookout Castle), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0001 \| Quest-gated NPC chatter \| QuestWindow=30180-30190 (A Brief Dragon Force -> The Plight of Lookout Castle) / MSS: The White Dragon / But a moment more... | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json[client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30180 (A Brief Dragon Force) / Klaus / GroupSerial=24492 / "GroupSerial=24492, QuestWindow=30170-30180 (An Omen of Destruction -> A Brief Dragon Force), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0003 \| Quest-gated NPC chatter \| QuestWindow=30170-30180 (An Omen of Destruction -> A Brief Dragon Force) / MSS: Klaus / I'm hitting various books and such, but this | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json[client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30180 (A Brief Dragon Force) / Klaus / GroupSerial=24493 / "GroupSerial=24493, QuestWindow=30180-30190 (A Brief Dragon Force -> The Plight of Lookout Castle), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window start" / NpcChatter=n0003 \| Quest-gated NPC chatter \| QuestWindow=30180-30190 (A Brief Dragon Force -> The Plight of Lookout Castle) / MSS: Klaus / Prithee, I beg you—Retrieve the sword of The | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json[client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30180 (A Brief Dragon Force) / Joseph / GroupSerial=24463 / "GroupSerial=24463, QuestWindow=30170-30180 (An Omen of Destruction -> A Brief Dragon Force), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0004 \| Quest-gated NPC chatter \| QuestWindow=30170-30180 (An Omen of Destruction -> A Brief Dragon Force) / MSS: Joseph / We are gathering Blood orbs one after another, but | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json[client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30180 (A Brief Dragon Force) / Joseph / GroupSerial=24464 / "GroupSerial=24464, QuestWindow=30180-30190 (A Brief Dragon Force -> The Plight of Lookout Castle), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0004 \| Quest-gated NPC chatter \| QuestWindow=30180-30190 (A Brief Dragon Force -> The Plight of Lookout Castle) / MSS: Joseph / The future of Lestania depends on your actions | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0007/ui/00_message/npc/base/n0007.smc.json[client/03040008/npc/n0007/ui/00_message/npc/base/n0007.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30180 (A Brief Dragon Force) / Gerd / GroupSerial=24822 / "GroupSerial=24822, QuestWindow=30170-30180 (An Omen of Destruction -> A Brief Dragon Force), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0007 \| Quest-gated NPC chatter \| QuestWindow=30170-30180 (An Omen of Destruction -> A Brief Dragon Force) / MSS: Gerd / The morale of the Knights' Order is high,  | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0007/ui/00_message/npc/base/n0007.smc.json[client/03040008/npc/n0007/ui/00_message/npc/base/n0007.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30180 (A Brief Dragon Force) / Gerd / GroupSerial=24823 / "GroupSerial=24823, QuestWindow=30180-30190 (A Brief Dragon Force -> The Plight of Lookout Castle), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0007 \| Quest-gated NPC chatter \| QuestWindow=30180-30190 (A Brief Dragon Force -> The Plight of Lookout Castle) / MSS: Gerd / I hear you caught a glimpse of Mysial. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0012/ui/00_message/npc/base/n0012.smc.json[client/03040008/npc/n0012/ui/00_message/npc/base/n0012.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30180 (A Brief Dragon Force) / Fabio / GroupSerial=24830 / "GroupSerial=24830, QuestWindow=30170-30180 (An Omen of Destruction -> A Brief Dragon Force), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0012 \| Quest-gated NPC chatter \| QuestWindow=30170-30180 (An Omen of Destruction -> A Brief Dragon Force) / MSS: Fabio / B-Blood Orb... I have to find it... | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0012/ui/00_message/npc/base/n0012.smc.json[client/03040008/npc/n0012/ui/00_message/npc/base/n0012.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30180 (A Brief Dragon Force) / Fabio / GroupSerial=24831 / "GroupSerial=24831, QuestWindow=30180-30190 (A Brief Dragon Force -> The Plight of Lookout Castle), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0012 \| Quest-gated NPC chatter \| QuestWindow=30180-30190 (A Brief Dragon Force -> The Plight of Lookout Castle) / MSS: Fabio / I will do what I can here for the Arisen who fell | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0013/ui/00_message/npc/base/n0013.smc.json[client/03040008/npc/n0013/ui/00_message/npc/base/n0013.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30180 (A Brief Dragon Force) / Lise / GroupSerial=24552 / "GroupSerial=24552, QuestWindow=30180-30190 (A Brief Dragon Force -> The Plight of Lookout Castle), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0013 \| Quest-gated NPC chatter \| QuestWindow=30180-30190 (A Brief Dragon Force -> The Plight of Lookout Castle) / MSS: Lise / It's okay... It's okay. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0014/ui/00_message/npc/base/n0014.smc.json[client/03040008/npc/n0014/ui/00_message/npc/base/n0014.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30180 (A Brief Dragon Force) / Mayleaf / GroupSerial=24834 / "GroupSerial=24834, QuestWindow=30170-30180 (An Omen of Destruction -> A Brief Dragon Force), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window end" / NpcChatter=n0014 \| Quest-gated NPC chatter \| QuestWindow=30170-30180 (An Omen of Destruction -> A Brief Dragon Force) / MSS: Mayleaf / Lise, I don't think he can hear me anymore— | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0014/ui/00_message/npc/base/n0014.smc.json[client/03040008/npc/n0014/ui/00_message/npc/base/n0014.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30180 (A Brief Dragon Force) / Mayleaf / GroupSerial=24835 / "GroupSerial=24835, QuestWindow=30180-30190 (A Brief Dragon Force -> The Plight of Lookout Castle), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0014 \| Quest-gated NPC chatter \| QuestWindow=30180-30190 (A Brief Dragon Force -> The Plight of Lookout Castle) / MSS: Mayleaf / Captain, be careful. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0021/ui/00_message/npc/base/n0021.smc.json[client/03040008/npc/n0021/ui/00_message/npc/base/n0021.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30180 (A Brief Dragon Force) / Elliot / GroupSerial=24576 / "GroupSerial=24576, QuestWindow=30170-30180 (An Omen of Destruction -> A Brief Dragon Force), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0021 \| Quest-gated NPC chatter \| QuestWindow=30170-30180 (An Omen of Destruction -> A Brief Dragon Force) / MSS: Elliot / If we don't do something soon, even we will | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0021/ui/00_message/npc/base/n0021.smc.json[client/03040008/npc/n0021/ui/00_message/npc/base/n0021.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30180 (A Brief Dragon Force) / Elliot / GroupSerial=24577 / "GroupSerial=24577, QuestWindow=30180-30190 (A Brief Dragon Force -> The Plight of Lookout Castle), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0021 \| Quest-gated NPC chatter \| QuestWindow=30180-30190 (A Brief Dragon Force -> The Plight of Lookout Castle) / MSS: Elliot / Let's do it, Captain. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0023/ui/00_message/npc/base/n0023.smc.json[client/03040008/npc/n0023/ui/00_message/npc/base/n0023.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30180 (A Brief Dragon Force) / Gearóid / GroupSerial=24841 / "GroupSerial=24841, QuestWindow=30180-30190 (A Brief Dragon Force -> The Plight of Lookout Castle), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0023 \| Quest-gated NPC chatter \| QuestWindow=30180-30190 (A Brief Dragon Force -> The Plight of Lookout Castle) / MSS: Gearóid / Now, quickly do what needs to be done! | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0032/ui/00_message/npc/base/n0032.smc.json[client/03040008/npc/n0032/ui/00_message/npc/base/n0032.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30180 (A Brief Dragon Force) / Gerhard / GroupSerial=24777 / "GroupSerial=24777, QuestWindow=30180-30190 (A Brief Dragon Force -> The Plight of Lookout Castle), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0032 \| Quest-gated NPC chatter \| QuestWindow=30180-30190 (A Brief Dragon Force -> The Plight of Lookout Castle) / MSS: Gerhard / I am glad that you stopped by, but it would be | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0033/ui/00_message/npc/base/n0033.smc.json[client/03040008/npc/n0033/ui/00_message/npc/base/n0033.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30180 (A Brief Dragon Force) / Bertha / GroupSerial=24933 / "GroupSerial=24933, QuestWindow=30180-30190 (A Brief Dragon Force -> The Plight of Lookout Castle), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0033 \| Quest-gated NPC chatter \| QuestWindow=30180-30190 (A Brief Dragon Force -> The Plight of Lookout Castle) / MSS: Bertha / Oh you're back. I still need you guys. I'm | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0034/ui/00_message/npc/base/n0034.smc.json[client/03040008/npc/n0034/ui/00_message/npc/base/n0034.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30180 (A Brief Dragon Force) / Quintus / GroupSerial=24733 / "GroupSerial=24733, QuestWindow=30180-30190 (A Brief Dragon Force -> The Plight of Lookout Castle), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0034 \| Quest-gated NPC chatter \| QuestWindow=30180-30190 (A Brief Dragon Force -> The Plight of Lookout Castle) / MSS: Quintus / Did you come to see me? | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0501/ui/00_message/npc/base/n0501.smc.json[client/03040008/npc/n0501/ui/00_message/npc/base/n0501.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30180 (A Brief Dragon Force) / Gurdolin / GroupSerial=24527 / "GroupSerial=24527, QuestWindow=30170-30180 (An Omen of Destruction -> A Brief Dragon Force), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0501 \| Quest-gated NPC chatter \| QuestWindow=30170-30180 (An Omen of Destruction -> A Brief Dragon Force) / MSS: Gurdolin / When you let your mind wander... your strength | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0501/ui/00_message/npc/base/n0501.smc.json[client/03040008/npc/n0501/ui/00_message/npc/base/n0501.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30180 (A Brief Dragon Force) / Gurdolin / GroupSerial=24528 / "GroupSerial=24528, QuestWindow=30180-30190 (A Brief Dragon Force -> The Plight of Lookout Castle), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0501 \| Quest-gated NPC chatter \| QuestWindow=30180-30190 (A Brief Dragon Force -> The Plight of Lookout Castle) / MSS: Gurdolin / I'll do my best not to be a liability. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n1003/ui/00_message/npc/base/n1003.smc.json[client/03040008/npc/n1003/ui/00_message/npc/base/n1003.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30180 (A Brief Dragon Force) / Pamela / GroupSerial=24838 / "GroupSerial=24838, QuestWindow=30170-30180 (An Omen of Destruction -> A Brief Dragon Force), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n1003 \| Quest-gated NPC chatter \| QuestWindow=30170-30180 (An Omen of Destruction -> A Brief Dragon Force) / MSS: Pamela / How is The White Dragon's condition? | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n1003/ui/00_message/npc/base/n1003.smc.json[client/03040008/npc/n1003/ui/00_message/npc/base/n1003.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30180 (A Brief Dragon Force) / Pamela / GroupSerial=24840 / "GroupSerial=24840, QuestWindow=30180-30190 (A Brief Dragon Force -> The Plight of Lookout Castle), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n1003 \| Quest-gated NPC chatter \| QuestWindow=30180-30190 (A Brief Dragon Force -> The Plight of Lookout Castle) / MSS: Pamela / Mysial has appeared, I heard. I wanted to meet | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n2610/ui/00_message/npc/base/n2610.smc.json[client/03040008/npc/n2610/ui/00_message/npc/base/n2610.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30180 (A Brief Dragon Force) / Mordred / GroupSerial=24842 / "GroupSerial=24842, QuestWindow=30180-30190 (A Brief Dragon Force -> The Plight of Lookout Castle), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n2610 \| Quest-gated NPC chatter \| QuestWindow=30180-30190 (A Brief Dragon Force -> The Plight of Lookout Castle) / MSS: Mordred / It seems that the awakening of our dragon is | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
 |===
 

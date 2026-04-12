@@ -5,16 +5,38 @@
 
 Query mode:: quest
 Query value:: 50203001
-Generated at:: 2026-04-11T21:41:41.702542+00:00
+Generated at:: 2026-04-12T12:44:03.438210+00:00
 
 toc::[]
+
+Quest family:: q5 -- Extreme / Grand Mission
+Quest family notes:: Extreme and grand mission content with sortie and cycle metadata.
+Quest family focus:: esi_csi_sortie_topology
+
+== Family Relationship Context
+
+_These sections summarize deterministic client-side family metadata and reverse-index relationships. They are context for later owner/dependency inference, not direct quest-target promotion._
+
+=== Quest Sequence
+
+* seq no: 324
+* previous: 50203000 -- Earth's Fury
+* next: 50206000 -- Phindym War Chronicles
+
+=== Repeatable Sortie
+
+* ESI rows: 1
+* CSI rows: 0
+* stage tuple: 124, 5, 124
 
 == ARC Association Context
 
 _ARC associations are contextual only. They show which quest-stage and marker resources are bundled with this quest._
 
-* arc file: client/03040008/quest/q50203001.arc.json
+* arc file: link:../../../../client/03040008/quest/q50203001.arc.json#L1[client/03040008/quest/q50203001.arc.json#L1]
 * resource count: 8
+* stage codes: st0124
+* resource families: .fmi, .gmd, .mss, .qmi, .qst, .qtd
 
 === st0124 -- Farana Plains
 
@@ -30,18 +52,161 @@ _ARC associations are contextual only. They show which quest-stage and marker re
 * rFieldAreaMarkerInfo: quest/50203001/fa005_marker_om
 * rGUIMessage: ui/00_message/quest_info/q50203001_00
 
+== Stage Neighborhood Context
+
+_Stage-neighborhood context summarizes scanner-relevant client files that share the quest's archive stage codes. This is deterministic client topology, not inferred ownership._
+
+* scanner-relevant stage files: 80
+* indexed stage codes: st0124
+
+=== st0124 -- Farana Plains
+
+* scanner files: 80
+* .fsm.json: 20
+* .gpl.json: 5
+* .lot.json: 46
+* .qmi.json: 6
+* .qst.json: 3
+
+== Stage Neighborhood External-State Cues
+
+_These cues are deterministic client-side observations from the quest's stage neighborhood. They are not promoted to direct quest targets yet; they highlight q6/q7-owned external state values co-located in the quest's archive stages._
+
+* cue count: 0
+* owner families: q6, q7
+
+== Bounded Graph Expansion
+
+_This graph summarizes bounded deterministic and inferred edges around the quest: quest archive stages, direct source families, stage-linked owner catalogs, promoted dependencies, reverse-index event/group links, and family-specific table edges._
+
+* max depth: 3
+* node count: 9
+* edge count: 8
+* node kinds: direct_family=3, family_context=2, quest=1, sequence_quest=2, stage=1
+* derivation: Direct=17
+
+=== Mermaid Graph Slice
+
+_This Mermaid flowchart shows a capped slice of the bounded graph so large quest reports stay readable while still exposing the graph structure._
+
+[mermaid]
+....
+flowchart TD
+    node_quest_50203001["Quest 50203001"]
+    node_direct_family_esi["esi direct hits (1)"]
+    node_direct_family_lot["lot direct hits (3)"]
+    node_direct_family_qst["qst direct hits (6)"]
+    node_family_context_quest_sequence["Quest Sequence"]
+    node_family_context_repeatable_sortie["Repeatable Sortie"]
+    node_stage_st0124["st0124 -- Farana Plains"]
+    node_sequence_quest_50203000["Quest 50203000"]
+    node_sequence_quest_50206000["Quest 50206000"]
+    node_quest_50203001 -->|direct_source_family| node_direct_family_esi
+    node_quest_50203001 -->|direct_source_family| node_direct_family_lot
+    node_quest_50203001 -->|direct_source_family| node_direct_family_qst
+    node_quest_50203001 -->|family:quest_sequence| node_family_context_quest_sequence
+    node_quest_50203001 -->|family:repeatable_sortie| node_family_context_repeatable_sortie
+    node_quest_50203001 -->|quest_archive_stage| node_stage_st0124
+    node_family_context_quest_sequence -->|sequence_next| node_sequence_quest_50206000
+    node_family_context_quest_sequence -->|sequence_previous| node_sequence_quest_50203000
+    classDef direct_deterministic fill:#e8f5e9,stroke:#2e7d32,stroke-width:1px
+    classDef owner_index fill:#e3f2fd,stroke:#1565c0,stroke-width:1px
+    classDef dependency_inferred fill:#fff3e0,stroke:#ef6c00,stroke-width:1px
+    classDef graph_expanded fill:#f3e5f5,stroke:#7b1fa2,stroke-width:1px
+    classDef lower_confidence fill:#fbe9e7,stroke:#d84315,stroke-width:1px
+    classDef binary_auxiliary fill:#eceff1,stroke:#455a64,stroke-width:1px
+    class node_quest_50203001,node_direct_family_esi,node_direct_family_lot,node_direct_family_qst,node_family_context_quest_sequence,node_family_context_repeatable_sortie,node_stage_st0124,node_sequence_quest_50203000,node_sequence_quest_50206000 direct_deterministic
+....
+
+[cols="1,2,2,2,2,4",options="header"]
+|===
+| Depth | Edge | From | To | Derivation | Why
+
+| 1 | direct_source_family | quest:50203001 | direct-family:esi | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | direct_source_family | quest:50203001 | direct-family:lot | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | direct_source_family | quest:50203001 | direct-family:qst | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | family_context:quest_sequence | quest:50203001 | family-context:quest_sequence | Direct | Family-specific decoded tables provide deterministic context for this quest.
+| 1 | family_context:repeatable_sortie | quest:50203001 | family-context:repeatable_sortie | Direct | Family-specific decoded tables provide deterministic context for this quest.
+| 1 | quest_archive_stage | quest:50203001 | stage:st0124 | Direct | Quest archive topology directly links this quest to the stage code.
+| 2 | sequence_next | family-context:quest_sequence | sequence-quest:50206000 | Direct | QuestSequence links this quest to its neighboring sequence quest.
+| 2 | sequence_previous | family-context:quest_sequence | sequence-quest:50203000 | Direct | QuestSequence links this quest to its neighboring sequence quest.
+|===
+
 == Flag Summary Matrix
 
 [cols="2,1,1,2,2,3,3",options="header"]
 |===
 | Target | Kind | Hits | Sources | Stages | Relationships | Description
 
+| Flag 5061 | layout_flag | 3 | lot, qst | st0124, st1105 | 🛡️ Block Quest, ⚡ Quest Condition, ❌ Quest Erase | QST local: st0124 \| GP1
+| Flag 5068 | layout_flag | 3 | lot, qst | st0124, st1105 | 🛡️ Block Quest, ⚡ Quest Condition, ❌ Quest Erase | QST local: st0124 \| QuestGroup 1 \| GP2/4
+| Flag 5071 | layout_flag | 3 | lot, qst | st0124, st1105 | 🛡️ Block Quest, ⚡ Quest Condition, ❌ Quest Erase | QST local: st0124 \| QuestGroup 2 \| GP1/2/3/4
 | Quest ID 50203001 | quest_id | 1 | esi |  | 🔁 Repeatable Sortie | Derived quest-wide association scan
 |===
 
 == Known Documented Targets
 
+* quest 50203001 -- Flag 5061 -- QST local: st0124 | GP1
+* quest 50203001 -- Flag 5068 -- QST local: st0124 | QuestGroup 1 | GP2/4
+* quest 50203001 -- Flag 5071 -- QST local: st0124 | QuestGroup 2 | GP1/2/3/4
 * Quest ID 50203001 -- Derived quest-wide association scan [Derived]
+
+== Flag 5061 -- Quest 50203001
+
+origin:: derived_qst_local
+direct hits:: *3*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 3 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q50203001/quest/50203001/q50203001_st0124.qst.json[client/03040008/quest/q50203001/quest/50203001/q50203001_st0124.qst.json] | QuestStageList[].QuestGrp[0].Condition | Condition | quest 50203001 / Farana Plains / "GP1" / QuestSet=QuestSetInfoOmBreakTarget \| OmID=522681 \| UnitID=522681 \| EnableZone | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q50203001/quest/50203001/q50203001_st0124.qst.json[client/03040008/quest/q50203001/quest/50203001/q50203001_st0124.qst.json] | QuestStageList[].QuestGrp[0].EraseCondition | EraseCondition | quest 50203001 / Farana Plains / "GP1" / QuestSet=QuestSetInfoOmBreakTarget \| OmID=522681 \| UnitID=522681 \| EnableZone | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| LOT | Direct | 92 | link:../../../../client/03040008/stage/st1105/lot/st1105_00m00n/scr/st1105/etc/st1105_00m00n_p201.lot.json#L90[client/03040008/stage/st1105/lot/st1105_00m00n/scr/st1105/etc/st1105_00m00n_p201.lot.json#L90] | Array[1].Info.BlockQuestFlag | BlockQuestFlag | quest 90030405 / Evil Dragon's Roost / Urteca Mountains / SetInfoOmHugeRimShl \| om522241 \| om522241 \| EnableZone | Layout placement reference; LOT hits usually gate warps, NPCs, or interactable objects in the stage layout.
+|===
+
+== Flag 5068 -- Quest 50203001
+
+origin:: derived_qst_local
+direct hits:: *3*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 3 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q50203001/quest/50203001/q50203001_st0124.qst.json[client/03040008/quest/q50203001/quest/50203001/q50203001_st0124.qst.json] | QuestStageList[].QuestGrp[1].Condition | Condition | quest 50203001 / Farana Plains / "QuestGroup 1 \| GP2/4" / QuestSet=QuestSetInfoOmBreakTarget \| OmID=522681 \| UnitID=522681 \| EnableZone \| GroupNo=1 \|\| QuestSet=QuestSetInfoOmBreakTarget \| OmID=522681 \| UnitID=522681 \| EnableZone \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q50203001/quest/50203001/q50203001_st0124.qst.json[client/03040008/quest/q50203001/quest/50203001/q50203001_st0124.qst.json] | QuestStageList[].QuestGrp[1].EraseCondition | EraseCondition | quest 50203001 / Farana Plains / "QuestGroup 1 \| GP2/4" / QuestSet=QuestSetInfoOmBreakTarget \| OmID=522681 \| UnitID=522681 \| EnableZone \| GroupNo=1 \|\| QuestSet=QuestSetInfoOmBreakTarget \| OmID=522681 \| UnitID=522681 \| EnableZone \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| LOT | Direct | 92 | link:../../../../client/03040008/stage/st1105/lot/st1105_00m00n/scr/st1105/etc/st1105_00m00n_p201.lot.json#L615[client/03040008/stage/st1105/lot/st1105_00m00n/scr/st1105/etc/st1105_00m00n_p201.lot.json#L615] | Array[8].Info.BlockQuestFlag | BlockQuestFlag | quest 90030405 / Evil Dragon's Roost / Urteca Mountains / SetInfoOmHugeRimShl \| om522241 \| om522241 \| EnableZone | Layout placement reference; LOT hits usually gate warps, NPCs, or interactable objects in the stage layout.
+|===
+
+== Flag 5071 -- Quest 50203001
+
+origin:: derived_qst_local
+direct hits:: *3*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 3 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q50203001/quest/50203001/q50203001_st0124.qst.json[client/03040008/quest/q50203001/quest/50203001/q50203001_st0124.qst.json] | QuestStageList[].QuestGrp[2].Condition | Condition | quest 50203001 / Farana Plains / "QuestGroup 2 \| GP1/2/3/4" / QuestSet=QuestSetInfoOmBreakTarget \| OmID=522681 \| UnitID=522681 \| EnableZone \| GroupNo=2 \|\| QuestSet=QuestSetInfoOmBreakTarget \| OmID=522681 \| UnitID=522681 \| EnableZone \| GroupNo=2 \|\| +2 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q50203001/quest/50203001/q50203001_st0124.qst.json[client/03040008/quest/q50203001/quest/50203001/q50203001_st0124.qst.json] | QuestStageList[].QuestGrp[2].EraseCondition | EraseCondition | quest 50203001 / Farana Plains / "QuestGroup 2 \| GP1/2/3/4" / QuestSet=QuestSetInfoOmBreakTarget \| OmID=522681 \| UnitID=522681 \| EnableZone \| GroupNo=2 \|\| QuestSet=QuestSetInfoOmBreakTarget \| OmID=522681 \| UnitID=522681 \| EnableZone \| GroupNo=2 \|\| +2 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| LOT | Direct | 92 | link:../../../../client/03040008/stage/st1105/lot/st1105_00m00n/scr/st1105/etc/st1105_00m00n_p201.lot.json#L840[client/03040008/stage/st1105/lot/st1105_00m00n/scr/st1105/etc/st1105_00m00n_p201.lot.json#L840] | Array[11].Info.BlockQuestFlag | BlockQuestFlag | quest 90030405 / Evil Dragon's Roost / Urteca Mountains / SetInfoOmHugeRimShl \| om522241 \| om522241 \| EnableZone | Layout placement reference; LOT hits usually gate warps, NPCs, or interactable objects in the stage layout.
+|===
 
 == Quest ID 50203001
 
@@ -53,10 +218,10 @@ ranked candidates:: *0*
 
 ==== direct -- 1 hit(s)
 
-[cols="1,1,3,3,2,3,3",options="header"]
+[cols="1,1,1,3,3,2,3,3",options="header"]
 |===
-| Family | Confidence | File | JSON Path | Field | Context | Why
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
 
-| ESI | 92 | client/03040008/game_common/quest/rEndContentsSortieInfo.esi.json | EndContentsSortieInfoTable[20].QuestId | QuestId | quest 50203001 (Earth's Fury: Restricted Stage) / Farana Plains / "Unknown1=2, Unknown2=1, Flag=0" / SortieRoute=st0124 Farana Plains -> st0005 st0005 Sound testing stage -> st0124 Farana Plains \| Unknown1=2 \| Unknown2=1 | Repeatable sortie registry; QuestId and Flag here define special q5 repeatable sortie entries and their gate flags.
+| ESI | Direct | 92 | link:../../../../client/03040008/game_common/quest/rEndContentsSortieInfo.esi.json#L450[client/03040008/game_common/quest/rEndContentsSortieInfo.esi.json#L450] | EndContentsSortieInfoTable[20].QuestId | QuestId | quest 50203001 (Earth's Fury: Restricted Stage) / Farana Plains / "Unknown1=2, Unknown2=1, Flag=0" / SortieRoute=st0124 Farana Plains -> st0005 st0005 Sound testing stage -> st0124 Farana Plains \| Unknown1=2 \| Unknown2=1 | Repeatable sortie registry; QuestId and Flag here define special q5 repeatable sortie entries and their gate flags.
 |===
 

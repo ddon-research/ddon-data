@@ -1,11 +1,25 @@
 {
   "format": "client_investigation.v4",
-  "generated_at": "2026-04-11T21:41:41.948356+00:00",
+  "generated_at": "2026-04-12T12:44:17.417737+00:00",
   "query": {
     "mode": "quest",
     "value": 60300030
   },
   "documented_targets": [
+    {
+      "flag_value": 6412,
+      "quest_id": 60300030,
+      "flag_type": "layout_flag",
+      "doc_comment": "QST local: st0448 | 復興NPC",
+      "origin": "derived_qst_local"
+    },
+    {
+      "flag_value": 6955,
+      "quest_id": 60300030,
+      "flag_type": "layout_flag",
+      "doc_comment": "QST local: st0448 | QuestGroup 1 | 復興NPCイベント後",
+      "origin": "derived_qst_local"
+    },
     {
       "flag_value": 60300030,
       "quest_id": 60300030,
@@ -15,6 +29,93 @@
     }
   ],
   "targets": [
+    {
+      "target": {
+        "flag_value": 6412,
+        "quest_id": 60300030,
+        "flag_type": "layout_flag",
+        "origin": "derived_qst_local",
+        "doc_comment": "QST local: st0448 | 復興NPC"
+      },
+      "hits": [
+        {
+          "source_type": "qst",
+          "file_path": "client/03040008/quest/q60300030/quest/60300030/q60300030_st0448.qst.json",
+          "json_path": "QuestStageList[].QuestGrp[0].Condition",
+          "field_name": "Condition",
+          "flag_value": 6412,
+          "flag_kind": "layout_flag",
+          "relationship": "quest_condition",
+          "stage_name": "Fort Thines: Great Dining Hall",
+          "stage_name_jp": "ティネス砦　大食堂",
+          "stage_code": "st0448",
+          "comment": "復興NPC",
+          "context": "QuestSet=QuestSetInfoNpc",
+          "quest_id": 60300030,
+          "stage_no": 448,
+          "resource_family": "QST",
+          "evidence_tier": "direct",
+          "derivation_class": "direct_deterministic",
+          "confidence": 92,
+          "why": "Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes."
+        },
+        {
+          "source_type": "qst",
+          "file_path": "client/03040008/quest/q60300030/quest/60300030/q60300030_st0448.qst.json",
+          "json_path": "QuestStageList[].QuestGrp[0].EraseCondition",
+          "field_name": "EraseCondition",
+          "flag_value": 6412,
+          "flag_kind": "layout_flag",
+          "relationship": "quest_erase",
+          "stage_name": "Fort Thines: Great Dining Hall",
+          "stage_name_jp": "ティネス砦　大食堂",
+          "stage_code": "st0448",
+          "comment": "復興NPC",
+          "context": "QuestSet=QuestSetInfoNpc",
+          "quest_id": 60300030,
+          "stage_no": 448,
+          "resource_family": "QST",
+          "evidence_tier": "direct",
+          "derivation_class": "direct_deterministic",
+          "confidence": 92,
+          "why": "Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes."
+        }
+      ],
+      "candidate_hits": []
+    },
+    {
+      "target": {
+        "flag_value": 6955,
+        "quest_id": 60300030,
+        "flag_type": "layout_flag",
+        "origin": "derived_qst_local",
+        "doc_comment": "QST local: st0448 | QuestGroup 1 | 復興NPCイベント後"
+      },
+      "hits": [
+        {
+          "source_type": "qst",
+          "file_path": "client/03040008/quest/q60300030/quest/60300030/q60300030_st0448.qst.json",
+          "json_path": "QuestStageList[].QuestGrp[1].Condition",
+          "field_name": "Condition",
+          "flag_value": 6955,
+          "flag_kind": "layout_flag",
+          "relationship": "quest_condition",
+          "stage_name": "Fort Thines: Great Dining Hall",
+          "stage_name_jp": "ティネス砦　大食堂",
+          "stage_code": "st0448",
+          "comment": "QuestGroup 1 | 復興NPCイベント後",
+          "context": "QuestSet=QuestSetInfoNpc | GroupNo=1",
+          "quest_id": 60300030,
+          "stage_no": 448,
+          "resource_family": "QST",
+          "evidence_tier": "direct",
+          "derivation_class": "direct_deterministic",
+          "confidence": 92,
+          "why": "Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes."
+        }
+      ],
+      "candidate_hits": []
+    },
     {
       "target": {
         "flag_value": 60300030,
@@ -38,6 +139,7 @@
           "quest_id": 60300030,
           "resource_family": "FSM",
           "evidence_tier": "opaque_fsm",
+          "derivation_class": "direct_deterministic",
           "confidence": 64,
           "why": "Matched decoded FSM state data; authored semantics remain indirect without deeper correlation."
         }
@@ -45,9 +147,184 @@
       "candidate_hits": []
     }
   ],
+  "quest_family": {
+    "key": "q6",
+    "label": "Tutorial / Unlock / Area Trial",
+    "description": "Tutorial, area-trial, unlock, and occasional festival quests.",
+    "discovery_focus": "jtq_tqg_jmc_scaffolding",
+    "supported": true
+  },
+  "quest_family_relationships": {
+    "quest_family": {
+      "key": "q6",
+      "label": "Tutorial / Unlock / Area Trial",
+      "description": "Tutorial, area-trial, unlock, and occasional festival quests.",
+      "discovery_focus": "jtq_tqg_jmc_scaffolding",
+      "supported": true
+    },
+    "quest_sequence": {
+      "quest_id": 60300030,
+      "seq_no": 419,
+      "quest_name": "Save the Royal Family Cook",
+      "quest_name_jp": "王家を救いし料理番",
+      "previous": {
+        "quest_id": 60300011,
+        "seq_no": 418,
+        "quest_name": "Shining Within a Loyal Heart",
+        "quest_name_jp": "忠心の内に輝くもの"
+      },
+      "next": {
+        "quest_id": 60300031,
+        "seq_no": 420,
+        "quest_name": "Rescue the Genius Commander",
+        "quest_name_jp": "奪還を指揮せし異才者"
+      }
+    }
+  },
+  "quest_owner_indexes": [
+    {
+      "owner_quest_id": 70030001,
+      "owner_family": "q7",
+      "flag_values": [
+        5396,
+        5397,
+        5407,
+        5552,
+        5557,
+        5558,
+        5581,
+        5584,
+        5587,
+        5588,
+        5589,
+        5614,
+        5632,
+        5633,
+        5634,
+        5635,
+        5636,
+        5637,
+        5642,
+        5658,
+        5669,
+        5671,
+        5705,
+        5706,
+        5708,
+        6151,
+        6196,
+        6197,
+        6322,
+        6323,
+        6469,
+        6470,
+        6471,
+        6472,
+        6473,
+        6474,
+        6539,
+        6540,
+        6561,
+        6562,
+        6750,
+        6751,
+        6963,
+        6968,
+        6969,
+        7206
+      ],
+      "flag_count": 46,
+      "local_qst_flag_count": 1,
+      "self_cue_flag_count": 45,
+      "cue_source_types": [
+        "evsi",
+        "gpl"
+      ],
+      "derivation_class": "owner_index",
+      "linked_flag_values": [
+        6409,
+        6463,
+        6464,
+        6465,
+        6466,
+        6467,
+        6468,
+        6469,
+        6470,
+        6471,
+        6472,
+        6473,
+        6474,
+        6481,
+        6482,
+        6483,
+        6484,
+        6485,
+        6486,
+        6487,
+        6488,
+        6489,
+        6490,
+        6491,
+        6619,
+        6620,
+        6621,
+        6763,
+        6876,
+        6877,
+        6916,
+        6917
+      ],
+      "linked_flag_count": 32,
+      "linked_source_types": [
+        "gpl"
+      ],
+      "linked_stage_codes": [
+        "st0448"
+      ],
+      "why": "Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference."
+    }
+  ],
+  "quest_dependency_targets": [
+    {
+      "owner_quest_id": 70030001,
+      "owner_family": "q7",
+      "derivation_class": "dependency_inferred",
+      "flag_values": [
+        6469
+      ],
+      "flag_count": 1,
+      "source_types": [
+        "gpl"
+      ],
+      "stage_codes": [
+        "st0448"
+      ],
+      "why": "Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags."
+    }
+  ],
   "quest_archive_context": {
+    "quest_family": {
+      "key": "q6",
+      "label": "Tutorial / Unlock / Area Trial",
+      "description": "Tutorial, area-trial, unlock, and occasional festival quests.",
+      "discovery_focus": "jtq_tqg_jmc_scaffolding",
+      "supported": true
+    },
     "file_path": "client/03040008/quest/q60300030.arc.json",
     "resource_count": 8,
+    "stage_codes": [
+      "st0448"
+    ],
+    "resource_type_extensions": [
+      ".fsm",
+      ".gmd",
+      ".mss",
+      ".qmi",
+      ".qst",
+      ".qtd",
+      ".stqr"
+    ],
     "stages": [
       {
         "stage_code": "st0448",
@@ -104,6 +381,3097 @@
             "type_name": "rGUIMessage"
           }
         ]
+      }
+    ]
+  },
+  "quest_stage_neighborhood": {
+    "quest_family": {
+      "key": "q6",
+      "label": "Tutorial / Unlock / Area Trial",
+      "description": "Tutorial, area-trial, unlock, and occasional festival quests.",
+      "discovery_focus": "jtq_tqg_jmc_scaffolding",
+      "supported": true
+    },
+    "stage_codes": [
+      "st0448"
+    ],
+    "scanner_file_count": 101,
+    "stages": [
+      {
+        "stage_code": "st0448",
+        "stage_no": 448,
+        "stage_name": "Fort Thines: Great Dining Hall",
+        "stage_name_jp": "ティネス砦　大食堂",
+        "scanner_file_count": 101,
+        "scanner_suffix_counts": {
+          ".fsm.json": 18,
+          ".gpl.json": 3,
+          ".lot.json": 61,
+          ".qmi.json": 11,
+          ".qst.json": 8
+        }
+      }
+    ]
+  },
+  "quest_stage_cues": {
+    "quest_family": {
+      "key": "q6",
+      "label": "Tutorial / Unlock / Area Trial",
+      "description": "Tutorial, area-trial, unlock, and occasional festival quests.",
+      "discovery_focus": "jtq_tqg_jmc_scaffolding",
+      "supported": true
+    },
+    "stage_codes": [
+      "st0448"
+    ],
+    "owner_families": [
+      "q6",
+      "q7"
+    ],
+    "cues": [
+      {
+        "flag_value": 6463,
+        "flag_kind": "layout_flag",
+        "score": 15,
+        "hit_count": 8,
+        "source_types": [
+          "gpl"
+        ],
+        "owner_quests": [
+          70030001
+        ],
+        "owner_families": [
+          "q7"
+        ],
+        "stage_codes": [
+          "st0448"
+        ],
+        "sample_hits": [
+          {
+            "source_type": "gpl",
+            "field_name": "LayoutFlagNo",
+            "relationship": "layout_guard",
+            "quest_id": 70030001,
+            "stage_code": "st0448",
+            "file_path": "client/03040008/stage/st0448/st0448/scr/st0448/etc/st0448_n.gpl.json",
+            "comment": ""
+          },
+          {
+            "source_type": "gpl",
+            "field_name": "LayoutFlagNo",
+            "relationship": "layout_guard",
+            "quest_id": 70030001,
+            "stage_code": "st0448",
+            "file_path": "client/03040008/stage/st0448/st0448/scr/st0448/etc/st0448_p.gpl.json",
+            "comment": ""
+          },
+          {
+            "source_type": "gpl",
+            "field_name": "LayoutFlagNo",
+            "relationship": "layout_guard",
+            "quest_id": 70030001,
+            "stage_code": "st0448",
+            "file_path": "client/03040008/stage/st0448/st0448/scr/st0448/etc/st0448_p.gpl.json",
+            "comment": ""
+          },
+          {
+            "source_type": "gpl",
+            "field_name": "LayoutFlagNo",
+            "relationship": "layout_guard",
+            "quest_id": 70030001,
+            "stage_code": "st0448",
+            "file_path": "client/03040008/stage/st0448/st0448/scr/st0448/etc/st0448_p.gpl.json",
+            "comment": ""
+          },
+          {
+            "source_type": "gpl",
+            "field_name": "LayoutFlagNo",
+            "relationship": "layout_guard",
+            "quest_id": 70030001,
+            "stage_code": "st0448",
+            "file_path": "client/03040008/stage/st0448/st0448/scr/st0448/etc/st0448_p.gpl.json",
+            "comment": ""
+          }
+        ]
+      },
+      {
+        "flag_value": 6467,
+        "flag_kind": "layout_flag",
+        "score": 10,
+        "hit_count": 3,
+        "source_types": [
+          "gpl"
+        ],
+        "owner_quests": [
+          70030001
+        ],
+        "owner_families": [
+          "q7"
+        ],
+        "stage_codes": [
+          "st0448"
+        ],
+        "sample_hits": [
+          {
+            "source_type": "gpl",
+            "field_name": "LayoutFlagNo",
+            "relationship": "layout_guard",
+            "quest_id": 70030001,
+            "stage_code": "st0448",
+            "file_path": "client/03040008/stage/st0448/st0448/scr/st0448/etc/st0448_p.gpl.json",
+            "comment": ""
+          },
+          {
+            "source_type": "gpl",
+            "field_name": "LayoutFlagNo",
+            "relationship": "layout_guard",
+            "quest_id": 70030001,
+            "stage_code": "st0448",
+            "file_path": "client/03040008/stage/st0448/st0448/scr/st0448/etc/st0448_p.gpl.json",
+            "comment": ""
+          },
+          {
+            "source_type": "gpl",
+            "field_name": "LayoutFlagNo",
+            "relationship": "layout_guard",
+            "quest_id": 70030001,
+            "stage_code": "st0448",
+            "file_path": "client/03040008/stage/st0448/st0448/scr/st0448/etc/st0448_p.gpl.json",
+            "comment": ""
+          }
+        ]
+      },
+      {
+        "flag_value": 6469,
+        "flag_kind": "layout_flag",
+        "score": 10,
+        "hit_count": 3,
+        "source_types": [
+          "gpl"
+        ],
+        "owner_quests": [
+          70030001
+        ],
+        "owner_families": [
+          "q7"
+        ],
+        "stage_codes": [
+          "st0448"
+        ],
+        "sample_hits": [
+          {
+            "source_type": "gpl",
+            "field_name": "LayoutFlagNo",
+            "relationship": "layout_guard",
+            "quest_id": 70030001,
+            "stage_code": "st0448",
+            "file_path": "client/03040008/stage/st0448/st0448/scr/st0448/etc/st0448_p.gpl.json",
+            "comment": ""
+          },
+          {
+            "source_type": "gpl",
+            "field_name": "LayoutFlagNo",
+            "relationship": "layout_guard",
+            "quest_id": 70030001,
+            "stage_code": "st0448",
+            "file_path": "client/03040008/stage/st0448/st0448/scr/st0448/etc/st0448_p.gpl.json",
+            "comment": ""
+          },
+          {
+            "source_type": "gpl",
+            "field_name": "LayoutFlagNo",
+            "relationship": "layout_guard",
+            "quest_id": 70030001,
+            "stage_code": "st0448",
+            "file_path": "client/03040008/stage/st0448/st0448/scr/st0448/etc/st0448_p.gpl.json",
+            "comment": ""
+          }
+        ]
+      },
+      {
+        "flag_value": 6409,
+        "flag_kind": "layout_flag",
+        "score": 8,
+        "hit_count": 1,
+        "source_types": [
+          "gpl"
+        ],
+        "owner_quests": [
+          70030001
+        ],
+        "owner_families": [
+          "q7"
+        ],
+        "stage_codes": [
+          "st0448"
+        ],
+        "sample_hits": [
+          {
+            "source_type": "gpl",
+            "field_name": "LayoutFlagNo",
+            "relationship": "layout_guard",
+            "quest_id": 70030001,
+            "stage_code": "st0448",
+            "file_path": "client/03040008/stage/st0448/st0448/scr/st0448/etc/st0448_n.gpl.json",
+            "comment": ""
+          }
+        ]
+      },
+      {
+        "flag_value": 6464,
+        "flag_kind": "layout_flag",
+        "score": 8,
+        "hit_count": 1,
+        "source_types": [
+          "gpl"
+        ],
+        "owner_quests": [
+          70030001
+        ],
+        "owner_families": [
+          "q7"
+        ],
+        "stage_codes": [
+          "st0448"
+        ],
+        "sample_hits": [
+          {
+            "source_type": "gpl",
+            "field_name": "LayoutFlagNo",
+            "relationship": "layout_guard",
+            "quest_id": 70030001,
+            "stage_code": "st0448",
+            "file_path": "client/03040008/stage/st0448/st0448/scr/st0448/etc/st0448_p.gpl.json",
+            "comment": ""
+          }
+        ]
+      },
+      {
+        "flag_value": 6465,
+        "flag_kind": "layout_flag",
+        "score": 8,
+        "hit_count": 1,
+        "source_types": [
+          "gpl"
+        ],
+        "owner_quests": [
+          70030001
+        ],
+        "owner_families": [
+          "q7"
+        ],
+        "stage_codes": [
+          "st0448"
+        ],
+        "sample_hits": [
+          {
+            "source_type": "gpl",
+            "field_name": "LayoutFlagNo",
+            "relationship": "layout_guard",
+            "quest_id": 70030001,
+            "stage_code": "st0448",
+            "file_path": "client/03040008/stage/st0448/st0448/scr/st0448/etc/st0448_p.gpl.json",
+            "comment": ""
+          }
+        ]
+      },
+      {
+        "flag_value": 6466,
+        "flag_kind": "layout_flag",
+        "score": 8,
+        "hit_count": 1,
+        "source_types": [
+          "gpl"
+        ],
+        "owner_quests": [
+          70030001
+        ],
+        "owner_families": [
+          "q7"
+        ],
+        "stage_codes": [
+          "st0448"
+        ],
+        "sample_hits": [
+          {
+            "source_type": "gpl",
+            "field_name": "LayoutFlagNo",
+            "relationship": "layout_guard",
+            "quest_id": 70030001,
+            "stage_code": "st0448",
+            "file_path": "client/03040008/stage/st0448/st0448/scr/st0448/etc/st0448_p.gpl.json",
+            "comment": ""
+          }
+        ]
+      },
+      {
+        "flag_value": 6468,
+        "flag_kind": "layout_flag",
+        "score": 8,
+        "hit_count": 1,
+        "source_types": [
+          "gpl"
+        ],
+        "owner_quests": [
+          70030001
+        ],
+        "owner_families": [
+          "q7"
+        ],
+        "stage_codes": [
+          "st0448"
+        ],
+        "sample_hits": [
+          {
+            "source_type": "gpl",
+            "field_name": "LayoutFlagNo",
+            "relationship": "layout_guard",
+            "quest_id": 70030001,
+            "stage_code": "st0448",
+            "file_path": "client/03040008/stage/st0448/st0448/scr/st0448/etc/st0448_p.gpl.json",
+            "comment": ""
+          }
+        ]
+      },
+      {
+        "flag_value": 6470,
+        "flag_kind": "layout_flag",
+        "score": 8,
+        "hit_count": 1,
+        "source_types": [
+          "gpl"
+        ],
+        "owner_quests": [
+          70030001
+        ],
+        "owner_families": [
+          "q7"
+        ],
+        "stage_codes": [
+          "st0448"
+        ],
+        "sample_hits": [
+          {
+            "source_type": "gpl",
+            "field_name": "LayoutFlagNo",
+            "relationship": "layout_guard",
+            "quest_id": 70030001,
+            "stage_code": "st0448",
+            "file_path": "client/03040008/stage/st0448/st0448/scr/st0448/etc/st0448_p.gpl.json",
+            "comment": ""
+          }
+        ]
+      },
+      {
+        "flag_value": 6471,
+        "flag_kind": "layout_flag",
+        "score": 8,
+        "hit_count": 1,
+        "source_types": [
+          "gpl"
+        ],
+        "owner_quests": [
+          70030001
+        ],
+        "owner_families": [
+          "q7"
+        ],
+        "stage_codes": [
+          "st0448"
+        ],
+        "sample_hits": [
+          {
+            "source_type": "gpl",
+            "field_name": "LayoutFlagNo",
+            "relationship": "layout_guard",
+            "quest_id": 70030001,
+            "stage_code": "st0448",
+            "file_path": "client/03040008/stage/st0448/st0448/scr/st0448/etc/st0448_p.gpl.json",
+            "comment": ""
+          }
+        ]
+      },
+      {
+        "flag_value": 6472,
+        "flag_kind": "layout_flag",
+        "score": 8,
+        "hit_count": 1,
+        "source_types": [
+          "gpl"
+        ],
+        "owner_quests": [
+          70030001
+        ],
+        "owner_families": [
+          "q7"
+        ],
+        "stage_codes": [
+          "st0448"
+        ],
+        "sample_hits": [
+          {
+            "source_type": "gpl",
+            "field_name": "LayoutFlagNo",
+            "relationship": "layout_guard",
+            "quest_id": 70030001,
+            "stage_code": "st0448",
+            "file_path": "client/03040008/stage/st0448/st0448/scr/st0448/etc/st0448_p.gpl.json",
+            "comment": ""
+          }
+        ]
+      },
+      {
+        "flag_value": 6473,
+        "flag_kind": "layout_flag",
+        "score": 8,
+        "hit_count": 1,
+        "source_types": [
+          "gpl"
+        ],
+        "owner_quests": [
+          70030001
+        ],
+        "owner_families": [
+          "q7"
+        ],
+        "stage_codes": [
+          "st0448"
+        ],
+        "sample_hits": [
+          {
+            "source_type": "gpl",
+            "field_name": "LayoutFlagNo",
+            "relationship": "layout_guard",
+            "quest_id": 70030001,
+            "stage_code": "st0448",
+            "file_path": "client/03040008/stage/st0448/st0448/scr/st0448/etc/st0448_p.gpl.json",
+            "comment": ""
+          }
+        ]
+      },
+      {
+        "flag_value": 6474,
+        "flag_kind": "layout_flag",
+        "score": 8,
+        "hit_count": 1,
+        "source_types": [
+          "gpl"
+        ],
+        "owner_quests": [
+          70030001
+        ],
+        "owner_families": [
+          "q7"
+        ],
+        "stage_codes": [
+          "st0448"
+        ],
+        "sample_hits": [
+          {
+            "source_type": "gpl",
+            "field_name": "LayoutFlagNo",
+            "relationship": "layout_guard",
+            "quest_id": 70030001,
+            "stage_code": "st0448",
+            "file_path": "client/03040008/stage/st0448/st0448/scr/st0448/etc/st0448_p.gpl.json",
+            "comment": ""
+          }
+        ]
+      },
+      {
+        "flag_value": 6481,
+        "flag_kind": "layout_flag",
+        "score": 8,
+        "hit_count": 1,
+        "source_types": [
+          "gpl"
+        ],
+        "owner_quests": [
+          70030001
+        ],
+        "owner_families": [
+          "q7"
+        ],
+        "stage_codes": [
+          "st0448"
+        ],
+        "sample_hits": [
+          {
+            "source_type": "gpl",
+            "field_name": "LayoutFlagNo",
+            "relationship": "layout_guard",
+            "quest_id": 70030001,
+            "stage_code": "st0448",
+            "file_path": "client/03040008/stage/st0448/st0448/scr/st0448/etc/st0448_n.gpl.json",
+            "comment": ""
+          }
+        ]
+      },
+      {
+        "flag_value": 6482,
+        "flag_kind": "layout_flag",
+        "score": 8,
+        "hit_count": 1,
+        "source_types": [
+          "gpl"
+        ],
+        "owner_quests": [
+          70030001
+        ],
+        "owner_families": [
+          "q7"
+        ],
+        "stage_codes": [
+          "st0448"
+        ],
+        "sample_hits": [
+          {
+            "source_type": "gpl",
+            "field_name": "LayoutFlagNo",
+            "relationship": "layout_guard",
+            "quest_id": 70030001,
+            "stage_code": "st0448",
+            "file_path": "client/03040008/stage/st0448/st0448/scr/st0448/etc/st0448_n.gpl.json",
+            "comment": ""
+          }
+        ]
+      },
+      {
+        "flag_value": 6483,
+        "flag_kind": "layout_flag",
+        "score": 8,
+        "hit_count": 1,
+        "source_types": [
+          "gpl"
+        ],
+        "owner_quests": [
+          70030001
+        ],
+        "owner_families": [
+          "q7"
+        ],
+        "stage_codes": [
+          "st0448"
+        ],
+        "sample_hits": [
+          {
+            "source_type": "gpl",
+            "field_name": "LayoutFlagNo",
+            "relationship": "layout_guard",
+            "quest_id": 70030001,
+            "stage_code": "st0448",
+            "file_path": "client/03040008/stage/st0448/st0448/scr/st0448/etc/st0448_n.gpl.json",
+            "comment": ""
+          }
+        ]
+      },
+      {
+        "flag_value": 6484,
+        "flag_kind": "layout_flag",
+        "score": 8,
+        "hit_count": 1,
+        "source_types": [
+          "gpl"
+        ],
+        "owner_quests": [
+          70030001
+        ],
+        "owner_families": [
+          "q7"
+        ],
+        "stage_codes": [
+          "st0448"
+        ],
+        "sample_hits": [
+          {
+            "source_type": "gpl",
+            "field_name": "LayoutFlagNo",
+            "relationship": "layout_guard",
+            "quest_id": 70030001,
+            "stage_code": "st0448",
+            "file_path": "client/03040008/stage/st0448/st0448/scr/st0448/etc/st0448_n.gpl.json",
+            "comment": ""
+          }
+        ]
+      },
+      {
+        "flag_value": 6485,
+        "flag_kind": "layout_flag",
+        "score": 8,
+        "hit_count": 1,
+        "source_types": [
+          "gpl"
+        ],
+        "owner_quests": [
+          70030001
+        ],
+        "owner_families": [
+          "q7"
+        ],
+        "stage_codes": [
+          "st0448"
+        ],
+        "sample_hits": [
+          {
+            "source_type": "gpl",
+            "field_name": "LayoutFlagNo",
+            "relationship": "layout_guard",
+            "quest_id": 70030001,
+            "stage_code": "st0448",
+            "file_path": "client/03040008/stage/st0448/st0448/scr/st0448/etc/st0448_n.gpl.json",
+            "comment": ""
+          }
+        ]
+      },
+      {
+        "flag_value": 6486,
+        "flag_kind": "layout_flag",
+        "score": 8,
+        "hit_count": 1,
+        "source_types": [
+          "gpl"
+        ],
+        "owner_quests": [
+          70030001
+        ],
+        "owner_families": [
+          "q7"
+        ],
+        "stage_codes": [
+          "st0448"
+        ],
+        "sample_hits": [
+          {
+            "source_type": "gpl",
+            "field_name": "LayoutFlagNo",
+            "relationship": "layout_guard",
+            "quest_id": 70030001,
+            "stage_code": "st0448",
+            "file_path": "client/03040008/stage/st0448/st0448/scr/st0448/etc/st0448_n.gpl.json",
+            "comment": ""
+          }
+        ]
+      },
+      {
+        "flag_value": 6487,
+        "flag_kind": "layout_flag",
+        "score": 8,
+        "hit_count": 1,
+        "source_types": [
+          "gpl"
+        ],
+        "owner_quests": [
+          70030001
+        ],
+        "owner_families": [
+          "q7"
+        ],
+        "stage_codes": [
+          "st0448"
+        ],
+        "sample_hits": [
+          {
+            "source_type": "gpl",
+            "field_name": "LayoutFlagNo",
+            "relationship": "layout_guard",
+            "quest_id": 70030001,
+            "stage_code": "st0448",
+            "file_path": "client/03040008/stage/st0448/st0448/scr/st0448/etc/st0448_n.gpl.json",
+            "comment": ""
+          }
+        ]
+      },
+      {
+        "flag_value": 6488,
+        "flag_kind": "layout_flag",
+        "score": 8,
+        "hit_count": 1,
+        "source_types": [
+          "gpl"
+        ],
+        "owner_quests": [
+          70030001
+        ],
+        "owner_families": [
+          "q7"
+        ],
+        "stage_codes": [
+          "st0448"
+        ],
+        "sample_hits": [
+          {
+            "source_type": "gpl",
+            "field_name": "LayoutFlagNo",
+            "relationship": "layout_guard",
+            "quest_id": 70030001,
+            "stage_code": "st0448",
+            "file_path": "client/03040008/stage/st0448/st0448/scr/st0448/etc/st0448_n.gpl.json",
+            "comment": ""
+          }
+        ]
+      },
+      {
+        "flag_value": 6489,
+        "flag_kind": "layout_flag",
+        "score": 8,
+        "hit_count": 1,
+        "source_types": [
+          "gpl"
+        ],
+        "owner_quests": [
+          70030001
+        ],
+        "owner_families": [
+          "q7"
+        ],
+        "stage_codes": [
+          "st0448"
+        ],
+        "sample_hits": [
+          {
+            "source_type": "gpl",
+            "field_name": "LayoutFlagNo",
+            "relationship": "layout_guard",
+            "quest_id": 70030001,
+            "stage_code": "st0448",
+            "file_path": "client/03040008/stage/st0448/st0448/scr/st0448/etc/st0448_n.gpl.json",
+            "comment": ""
+          }
+        ]
+      },
+      {
+        "flag_value": 6490,
+        "flag_kind": "layout_flag",
+        "score": 8,
+        "hit_count": 1,
+        "source_types": [
+          "gpl"
+        ],
+        "owner_quests": [
+          70030001
+        ],
+        "owner_families": [
+          "q7"
+        ],
+        "stage_codes": [
+          "st0448"
+        ],
+        "sample_hits": [
+          {
+            "source_type": "gpl",
+            "field_name": "LayoutFlagNo",
+            "relationship": "layout_guard",
+            "quest_id": 70030001,
+            "stage_code": "st0448",
+            "file_path": "client/03040008/stage/st0448/st0448/scr/st0448/etc/st0448_n.gpl.json",
+            "comment": ""
+          }
+        ]
+      },
+      {
+        "flag_value": 6491,
+        "flag_kind": "layout_flag",
+        "score": 8,
+        "hit_count": 1,
+        "source_types": [
+          "gpl"
+        ],
+        "owner_quests": [
+          70030001
+        ],
+        "owner_families": [
+          "q7"
+        ],
+        "stage_codes": [
+          "st0448"
+        ],
+        "sample_hits": [
+          {
+            "source_type": "gpl",
+            "field_name": "LayoutFlagNo",
+            "relationship": "layout_guard",
+            "quest_id": 70030001,
+            "stage_code": "st0448",
+            "file_path": "client/03040008/stage/st0448/st0448/scr/st0448/etc/st0448_n.gpl.json",
+            "comment": ""
+          }
+        ]
+      },
+      {
+        "flag_value": 6619,
+        "flag_kind": "layout_flag",
+        "score": 8,
+        "hit_count": 1,
+        "source_types": [
+          "gpl"
+        ],
+        "owner_quests": [
+          70030001
+        ],
+        "owner_families": [
+          "q7"
+        ],
+        "stage_codes": [
+          "st0448"
+        ],
+        "sample_hits": [
+          {
+            "source_type": "gpl",
+            "field_name": "LayoutFlagNo",
+            "relationship": "layout_guard",
+            "quest_id": 70030001,
+            "stage_code": "st0448",
+            "file_path": "client/03040008/stage/st0448/st0448/scr/st0448/etc/st0448_n.gpl.json",
+            "comment": ""
+          }
+        ]
+      },
+      {
+        "flag_value": 6620,
+        "flag_kind": "layout_flag",
+        "score": 8,
+        "hit_count": 1,
+        "source_types": [
+          "gpl"
+        ],
+        "owner_quests": [
+          70030001
+        ],
+        "owner_families": [
+          "q7"
+        ],
+        "stage_codes": [
+          "st0448"
+        ],
+        "sample_hits": [
+          {
+            "source_type": "gpl",
+            "field_name": "LayoutFlagNo",
+            "relationship": "layout_guard",
+            "quest_id": 70030001,
+            "stage_code": "st0448",
+            "file_path": "client/03040008/stage/st0448/st0448/scr/st0448/etc/st0448_n.gpl.json",
+            "comment": ""
+          }
+        ]
+      },
+      {
+        "flag_value": 6621,
+        "flag_kind": "layout_flag",
+        "score": 8,
+        "hit_count": 1,
+        "source_types": [
+          "gpl"
+        ],
+        "owner_quests": [
+          70030001
+        ],
+        "owner_families": [
+          "q7"
+        ],
+        "stage_codes": [
+          "st0448"
+        ],
+        "sample_hits": [
+          {
+            "source_type": "gpl",
+            "field_name": "LayoutFlagNo",
+            "relationship": "layout_guard",
+            "quest_id": 70030001,
+            "stage_code": "st0448",
+            "file_path": "client/03040008/stage/st0448/st0448/scr/st0448/etc/st0448_n.gpl.json",
+            "comment": ""
+          }
+        ]
+      },
+      {
+        "flag_value": 6763,
+        "flag_kind": "layout_flag",
+        "score": 8,
+        "hit_count": 1,
+        "source_types": [
+          "gpl"
+        ],
+        "owner_quests": [
+          70030001
+        ],
+        "owner_families": [
+          "q7"
+        ],
+        "stage_codes": [
+          "st0448"
+        ],
+        "sample_hits": [
+          {
+            "source_type": "gpl",
+            "field_name": "LayoutFlagNo",
+            "relationship": "layout_guard",
+            "quest_id": 70030001,
+            "stage_code": "st0448",
+            "file_path": "client/03040008/stage/st0448/st0448/scr/st0448/etc/st0448_n.gpl.json",
+            "comment": ""
+          }
+        ]
+      },
+      {
+        "flag_value": 6876,
+        "flag_kind": "layout_flag",
+        "score": 8,
+        "hit_count": 1,
+        "source_types": [
+          "gpl"
+        ],
+        "owner_quests": [
+          70030001
+        ],
+        "owner_families": [
+          "q7"
+        ],
+        "stage_codes": [
+          "st0448"
+        ],
+        "sample_hits": [
+          {
+            "source_type": "gpl",
+            "field_name": "LayoutFlagNo",
+            "relationship": "layout_guard",
+            "quest_id": 70030001,
+            "stage_code": "st0448",
+            "file_path": "client/03040008/stage/st0448/st0448/scr/st0448/etc/st0448_n.gpl.json",
+            "comment": ""
+          }
+        ]
+      },
+      {
+        "flag_value": 6877,
+        "flag_kind": "layout_flag",
+        "score": 8,
+        "hit_count": 1,
+        "source_types": [
+          "gpl"
+        ],
+        "owner_quests": [
+          70030001
+        ],
+        "owner_families": [
+          "q7"
+        ],
+        "stage_codes": [
+          "st0448"
+        ],
+        "sample_hits": [
+          {
+            "source_type": "gpl",
+            "field_name": "LayoutFlagNo",
+            "relationship": "layout_guard",
+            "quest_id": 70030001,
+            "stage_code": "st0448",
+            "file_path": "client/03040008/stage/st0448/st0448/scr/st0448/etc/st0448_n.gpl.json",
+            "comment": ""
+          }
+        ]
+      },
+      {
+        "flag_value": 6916,
+        "flag_kind": "layout_flag",
+        "score": 8,
+        "hit_count": 1,
+        "source_types": [
+          "gpl"
+        ],
+        "owner_quests": [
+          70030001
+        ],
+        "owner_families": [
+          "q7"
+        ],
+        "stage_codes": [
+          "st0448"
+        ],
+        "sample_hits": [
+          {
+            "source_type": "gpl",
+            "field_name": "LayoutFlagNo",
+            "relationship": "layout_guard",
+            "quest_id": 70030001,
+            "stage_code": "st0448",
+            "file_path": "client/03040008/stage/st0448/st0448/scr/st0448/etc/st0448_n.gpl.json",
+            "comment": ""
+          }
+        ]
+      },
+      {
+        "flag_value": 6917,
+        "flag_kind": "layout_flag",
+        "score": 8,
+        "hit_count": 1,
+        "source_types": [
+          "gpl"
+        ],
+        "owner_quests": [
+          70030001
+        ],
+        "owner_families": [
+          "q7"
+        ],
+        "stage_codes": [
+          "st0448"
+        ],
+        "sample_hits": [
+          {
+            "source_type": "gpl",
+            "field_name": "LayoutFlagNo",
+            "relationship": "layout_guard",
+            "quest_id": 70030001,
+            "stage_code": "st0448",
+            "file_path": "client/03040008/stage/st0448/st0448/scr/st0448/etc/st0448_n.gpl.json",
+            "comment": ""
+          }
+        ]
+      }
+    ],
+    "cue_count": 32
+  },
+  "quest_graph_expansion": {
+    "max_depth": 3,
+    "node_count": 73,
+    "edge_count": 115,
+    "node_kind_counts": {
+      "direct_family": 2,
+      "family_context": 1,
+      "lot_file": 23,
+      "owner_quest": 1,
+      "quest": 1,
+      "sequence_quest": 2,
+      "stage": 1,
+      "stage_group": 42
+    },
+    "edge_type_counts": {
+      "direct_source_family": 2,
+      "family_context:quest_sequence": 1,
+      "gpl_owner_guard": 42,
+      "group_lot_reference": 23,
+      "promoted_dependency": 1,
+      "quest_archive_stage": 1,
+      "sequence_next": 1,
+      "sequence_previous": 1,
+      "stage_group_reference": 42,
+      "stage_owner_index": 1
+    },
+    "derivation_counts": {
+      "dependency_inferred": 1,
+      "direct_deterministic": 13,
+      "graph_expanded": 172,
+      "owner_index": 2
+    },
+    "nodes": [
+      {
+        "node_id": "quest:60300030",
+        "label": "Quest 60300030",
+        "kind": "quest",
+        "depth": 0,
+        "derivation_class": "direct_deterministic",
+        "metadata": {
+          "quest_id": 60300030,
+          "target_count": 3
+        }
+      },
+      {
+        "node_id": "direct-family:fsm",
+        "label": "fsm direct hits (1)",
+        "kind": "direct_family",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "metadata": {
+          "source_type": "fsm",
+          "hit_count": 1
+        }
+      },
+      {
+        "node_id": "direct-family:qst",
+        "label": "qst direct hits (3)",
+        "kind": "direct_family",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "metadata": {
+          "source_type": "qst",
+          "hit_count": 3
+        }
+      },
+      {
+        "node_id": "family-context:quest_sequence",
+        "label": "Quest Sequence",
+        "kind": "family_context",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "metadata": {
+          "context_key": "quest_sequence"
+        }
+      },
+      {
+        "node_id": "stage:st0448",
+        "label": "st0448 -- Fort Thines: Great Dining Hall",
+        "kind": "stage",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "metadata": {
+          "stage_code": "st0448"
+        }
+      },
+      {
+        "node_id": "owner-quest:70030001",
+        "label": "Owner quest 70030001 (q7)",
+        "kind": "owner_quest",
+        "depth": 2,
+        "derivation_class": "owner_index",
+        "metadata": {
+          "owner_quest_id": 70030001,
+          "owner_family": "q7",
+          "flag_count": 46
+        }
+      },
+      {
+        "node_id": "sequence-quest:60300011",
+        "label": "Quest 60300011",
+        "kind": "sequence_quest",
+        "depth": 2,
+        "derivation_class": "direct_deterministic",
+        "metadata": {
+          "quest_id": 60300011,
+          "direction": "previous"
+        }
+      },
+      {
+        "node_id": "sequence-quest:60300031",
+        "label": "Quest 60300031",
+        "kind": "sequence_quest",
+        "depth": 2,
+        "derivation_class": "direct_deterministic",
+        "metadata": {
+          "quest_id": 60300031,
+          "direction": "next"
+        }
+      },
+      {
+        "node_id": "stage-group:st0448:10",
+        "label": "GPL group st0448/10",
+        "kind": "stage_group",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "metadata": {
+          "stage_code": "st0448",
+          "group_no": 10
+        }
+      },
+      {
+        "node_id": "stage-group:st0448:11",
+        "label": "GPL group st0448/11",
+        "kind": "stage_group",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "metadata": {
+          "stage_code": "st0448",
+          "group_no": 11
+        }
+      },
+      {
+        "node_id": "stage-group:st0448:110",
+        "label": "GPL group st0448/110",
+        "kind": "stage_group",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "metadata": {
+          "stage_code": "st0448",
+          "group_no": 110
+        }
+      },
+      {
+        "node_id": "stage-group:st0448:111",
+        "label": "GPL group st0448/111",
+        "kind": "stage_group",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "metadata": {
+          "stage_code": "st0448",
+          "group_no": 111
+        }
+      },
+      {
+        "node_id": "stage-group:st0448:112",
+        "label": "GPL group st0448/112",
+        "kind": "stage_group",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "metadata": {
+          "stage_code": "st0448",
+          "group_no": 112
+        }
+      },
+      {
+        "node_id": "stage-group:st0448:113",
+        "label": "GPL group st0448/113",
+        "kind": "stage_group",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "metadata": {
+          "stage_code": "st0448",
+          "group_no": 113
+        }
+      },
+      {
+        "node_id": "stage-group:st0448:114",
+        "label": "GPL group st0448/114",
+        "kind": "stage_group",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "metadata": {
+          "stage_code": "st0448",
+          "group_no": 114
+        }
+      },
+      {
+        "node_id": "stage-group:st0448:115",
+        "label": "GPL group st0448/115",
+        "kind": "stage_group",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "metadata": {
+          "stage_code": "st0448",
+          "group_no": 115
+        }
+      },
+      {
+        "node_id": "stage-group:st0448:116",
+        "label": "GPL group st0448/116",
+        "kind": "stage_group",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "metadata": {
+          "stage_code": "st0448",
+          "group_no": 116
+        }
+      },
+      {
+        "node_id": "stage-group:st0448:117",
+        "label": "GPL group st0448/117",
+        "kind": "stage_group",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "metadata": {
+          "stage_code": "st0448",
+          "group_no": 117
+        }
+      },
+      {
+        "node_id": "stage-group:st0448:118",
+        "label": "GPL group st0448/118",
+        "kind": "stage_group",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "metadata": {
+          "stage_code": "st0448",
+          "group_no": 118
+        }
+      },
+      {
+        "node_id": "stage-group:st0448:12",
+        "label": "GPL group st0448/12",
+        "kind": "stage_group",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "metadata": {
+          "stage_code": "st0448",
+          "group_no": 12
+        }
+      },
+      {
+        "node_id": "stage-group:st0448:120",
+        "label": "GPL group st0448/120",
+        "kind": "stage_group",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "metadata": {
+          "stage_code": "st0448",
+          "group_no": 120
+        }
+      },
+      {
+        "node_id": "stage-group:st0448:121",
+        "label": "GPL group st0448/121",
+        "kind": "stage_group",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "metadata": {
+          "stage_code": "st0448",
+          "group_no": 121
+        }
+      },
+      {
+        "node_id": "stage-group:st0448:122",
+        "label": "GPL group st0448/122",
+        "kind": "stage_group",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "metadata": {
+          "stage_code": "st0448",
+          "group_no": 122
+        }
+      },
+      {
+        "node_id": "stage-group:st0448:123",
+        "label": "GPL group st0448/123",
+        "kind": "stage_group",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "metadata": {
+          "stage_code": "st0448",
+          "group_no": 123
+        }
+      },
+      {
+        "node_id": "stage-group:st0448:124",
+        "label": "GPL group st0448/124",
+        "kind": "stage_group",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "metadata": {
+          "stage_code": "st0448",
+          "group_no": 124
+        }
+      },
+      {
+        "node_id": "stage-group:st0448:125",
+        "label": "GPL group st0448/125",
+        "kind": "stage_group",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "metadata": {
+          "stage_code": "st0448",
+          "group_no": 125
+        }
+      },
+      {
+        "node_id": "stage-group:st0448:126",
+        "label": "GPL group st0448/126",
+        "kind": "stage_group",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "metadata": {
+          "stage_code": "st0448",
+          "group_no": 126
+        }
+      },
+      {
+        "node_id": "stage-group:st0448:127",
+        "label": "GPL group st0448/127",
+        "kind": "stage_group",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "metadata": {
+          "stage_code": "st0448",
+          "group_no": 127
+        }
+      },
+      {
+        "node_id": "stage-group:st0448:13",
+        "label": "GPL group st0448/13",
+        "kind": "stage_group",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "metadata": {
+          "stage_code": "st0448",
+          "group_no": 13
+        }
+      },
+      {
+        "node_id": "stage-group:st0448:130",
+        "label": "GPL group st0448/130",
+        "kind": "stage_group",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "metadata": {
+          "stage_code": "st0448",
+          "group_no": 130
+        }
+      },
+      {
+        "node_id": "stage-group:st0448:131",
+        "label": "GPL group st0448/131",
+        "kind": "stage_group",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "metadata": {
+          "stage_code": "st0448",
+          "group_no": 131
+        }
+      },
+      {
+        "node_id": "stage-group:st0448:134",
+        "label": "GPL group st0448/134",
+        "kind": "stage_group",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "metadata": {
+          "stage_code": "st0448",
+          "group_no": 134
+        }
+      },
+      {
+        "node_id": "stage-group:st0448:136",
+        "label": "GPL group st0448/136",
+        "kind": "stage_group",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "metadata": {
+          "stage_code": "st0448",
+          "group_no": 136
+        }
+      },
+      {
+        "node_id": "stage-group:st0448:137",
+        "label": "GPL group st0448/137",
+        "kind": "stage_group",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "metadata": {
+          "stage_code": "st0448",
+          "group_no": 137
+        }
+      },
+      {
+        "node_id": "stage-group:st0448:14",
+        "label": "GPL group st0448/14",
+        "kind": "stage_group",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "metadata": {
+          "stage_code": "st0448",
+          "group_no": 14
+        }
+      },
+      {
+        "node_id": "stage-group:st0448:15",
+        "label": "GPL group st0448/15",
+        "kind": "stage_group",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "metadata": {
+          "stage_code": "st0448",
+          "group_no": 15
+        }
+      },
+      {
+        "node_id": "stage-group:st0448:16",
+        "label": "GPL group st0448/16",
+        "kind": "stage_group",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "metadata": {
+          "stage_code": "st0448",
+          "group_no": 16
+        }
+      },
+      {
+        "node_id": "stage-group:st0448:17",
+        "label": "GPL group st0448/17",
+        "kind": "stage_group",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "metadata": {
+          "stage_code": "st0448",
+          "group_no": 17
+        }
+      },
+      {
+        "node_id": "stage-group:st0448:18",
+        "label": "GPL group st0448/18",
+        "kind": "stage_group",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "metadata": {
+          "stage_code": "st0448",
+          "group_no": 18
+        }
+      },
+      {
+        "node_id": "stage-group:st0448:19",
+        "label": "GPL group st0448/19",
+        "kind": "stage_group",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "metadata": {
+          "stage_code": "st0448",
+          "group_no": 19
+        }
+      },
+      {
+        "node_id": "stage-group:st0448:2",
+        "label": "GPL group st0448/2",
+        "kind": "stage_group",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "metadata": {
+          "stage_code": "st0448",
+          "group_no": 2
+        }
+      },
+      {
+        "node_id": "stage-group:st0448:20",
+        "label": "GPL group st0448/20",
+        "kind": "stage_group",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "metadata": {
+          "stage_code": "st0448",
+          "group_no": 20
+        }
+      },
+      {
+        "node_id": "stage-group:st0448:22",
+        "label": "GPL group st0448/22",
+        "kind": "stage_group",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "metadata": {
+          "stage_code": "st0448",
+          "group_no": 22
+        }
+      },
+      {
+        "node_id": "stage-group:st0448:23",
+        "label": "GPL group st0448/23",
+        "kind": "stage_group",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "metadata": {
+          "stage_code": "st0448",
+          "group_no": 23
+        }
+      },
+      {
+        "node_id": "stage-group:st0448:3",
+        "label": "GPL group st0448/3",
+        "kind": "stage_group",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "metadata": {
+          "stage_code": "st0448",
+          "group_no": 3
+        }
+      },
+      {
+        "node_id": "stage-group:st0448:4",
+        "label": "GPL group st0448/4",
+        "kind": "stage_group",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "metadata": {
+          "stage_code": "st0448",
+          "group_no": 4
+        }
+      },
+      {
+        "node_id": "stage-group:st0448:5",
+        "label": "GPL group st0448/5",
+        "kind": "stage_group",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "metadata": {
+          "stage_code": "st0448",
+          "group_no": 5
+        }
+      },
+      {
+        "node_id": "stage-group:st0448:6",
+        "label": "GPL group st0448/6",
+        "kind": "stage_group",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "metadata": {
+          "stage_code": "st0448",
+          "group_no": 6
+        }
+      },
+      {
+        "node_id": "stage-group:st0448:7",
+        "label": "GPL group st0448/7",
+        "kind": "stage_group",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "metadata": {
+          "stage_code": "st0448",
+          "group_no": 7
+        }
+      },
+      {
+        "node_id": "stage-group:st0448:8",
+        "label": "GPL group st0448/8",
+        "kind": "stage_group",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "metadata": {
+          "stage_code": "st0448",
+          "group_no": 8
+        }
+      },
+      {
+        "node_id": "lot-file:st0448_00m00n_p110.lot.json",
+        "label": "st0448_00m00n_p110.lot.json",
+        "kind": "lot_file",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "metadata": {
+          "file_path": "client/03040008/stage/st0448/lot/st0448_00m00n/scr/st0448/etc/st0448_00m00n_p110.lot.json",
+          "type_names": [
+            "SetInfoOmOld"
+          ]
+        }
+      },
+      {
+        "node_id": "lot-file:st0448_00m00n_p111.lot.json",
+        "label": "st0448_00m00n_p111.lot.json",
+        "kind": "lot_file",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "metadata": {
+          "file_path": "client/03040008/stage/st0448/lot/st0448_00m00n/scr/st0448/etc/st0448_00m00n_p111.lot.json",
+          "type_names": [
+            "SetInfoOmOld"
+          ]
+        }
+      },
+      {
+        "node_id": "lot-file:st0448_00m00n_p112.lot.json",
+        "label": "st0448_00m00n_p112.lot.json",
+        "kind": "lot_file",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "metadata": {
+          "file_path": "client/03040008/stage/st0448/lot/st0448_00m00n/scr/st0448/etc/st0448_00m00n_p112.lot.json",
+          "type_names": [
+            "SetInfoOmOld"
+          ]
+        }
+      },
+      {
+        "node_id": "lot-file:st0448_00m00n_p113.lot.json",
+        "label": "st0448_00m00n_p113.lot.json",
+        "kind": "lot_file",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "metadata": {
+          "file_path": "client/03040008/stage/st0448/lot/st0448_00m00n/scr/st0448/etc/st0448_00m00n_p113.lot.json",
+          "type_names": [
+            "SetInfoOmOld"
+          ]
+        }
+      },
+      {
+        "node_id": "lot-file:st0448_00m00n_p114.lot.json",
+        "label": "st0448_00m00n_p114.lot.json",
+        "kind": "lot_file",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "metadata": {
+          "file_path": "client/03040008/stage/st0448/lot/st0448_00m00n/scr/st0448/etc/st0448_00m00n_p114.lot.json",
+          "type_names": [
+            "SetInfoOmOld"
+          ]
+        }
+      },
+      {
+        "node_id": "lot-file:st0448_00m00n_p115.lot.json",
+        "label": "st0448_00m00n_p115.lot.json",
+        "kind": "lot_file",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "metadata": {
+          "file_path": "client/03040008/stage/st0448/lot/st0448_00m00n/scr/st0448/etc/st0448_00m00n_p115.lot.json",
+          "type_names": [
+            "SetInfoOmOld"
+          ]
+        }
+      },
+      {
+        "node_id": "lot-file:st0448_00m00n_p116.lot.json",
+        "label": "st0448_00m00n_p116.lot.json",
+        "kind": "lot_file",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "metadata": {
+          "file_path": "client/03040008/stage/st0448/lot/st0448_00m00n/scr/st0448/etc/st0448_00m00n_p116.lot.json",
+          "type_names": [
+            "SetInfoOmOld"
+          ]
+        }
+      },
+      {
+        "node_id": "lot-file:st0448_00m00n_p117.lot.json",
+        "label": "st0448_00m00n_p117.lot.json",
+        "kind": "lot_file",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "metadata": {
+          "file_path": "client/03040008/stage/st0448/lot/st0448_00m00n/scr/st0448/etc/st0448_00m00n_p117.lot.json",
+          "type_names": [
+            "SetInfoOmOld"
+          ]
+        }
+      },
+      {
+        "node_id": "lot-file:st0448_00m00n_p118.lot.json",
+        "label": "st0448_00m00n_p118.lot.json",
+        "kind": "lot_file",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "metadata": {
+          "file_path": "client/03040008/stage/st0448/lot/st0448_00m00n/scr/st0448/etc/st0448_00m00n_p118.lot.json",
+          "type_names": [
+            "SetInfoOmOld"
+          ]
+        }
+      },
+      {
+        "node_id": "lot-file:st0448_00m00n_p120.lot.json",
+        "label": "st0448_00m00n_p120.lot.json",
+        "kind": "lot_file",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "metadata": {
+          "file_path": "client/03040008/stage/st0448/lot/st0448_00m00n/scr/st0448/etc/st0448_00m00n_p120.lot.json",
+          "type_names": [
+            "SetInfoOmOld"
+          ]
+        }
+      },
+      {
+        "node_id": "lot-file:st0448_00m00n_p121.lot.json",
+        "label": "st0448_00m00n_p121.lot.json",
+        "kind": "lot_file",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "metadata": {
+          "file_path": "client/03040008/stage/st0448/lot/st0448_00m00n/scr/st0448/etc/st0448_00m00n_p121.lot.json",
+          "type_names": [
+            "SetInfoOmOld"
+          ]
+        }
+      },
+      {
+        "node_id": "lot-file:st0448_00m00n_p122.lot.json",
+        "label": "st0448_00m00n_p122.lot.json",
+        "kind": "lot_file",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "metadata": {
+          "file_path": "client/03040008/stage/st0448/lot/st0448_00m00n/scr/st0448/etc/st0448_00m00n_p122.lot.json",
+          "type_names": [
+            "SetInfoOmOld"
+          ]
+        }
+      },
+      {
+        "node_id": "lot-file:st0448_00m00n_p123.lot.json",
+        "label": "st0448_00m00n_p123.lot.json",
+        "kind": "lot_file",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "metadata": {
+          "file_path": "client/03040008/stage/st0448/lot/st0448_00m00n/scr/st0448/etc/st0448_00m00n_p123.lot.json",
+          "type_names": [
+            "SetInfoOmOld"
+          ]
+        }
+      },
+      {
+        "node_id": "lot-file:st0448_00m00n_p124.lot.json",
+        "label": "st0448_00m00n_p124.lot.json",
+        "kind": "lot_file",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "metadata": {
+          "file_path": "client/03040008/stage/st0448/lot/st0448_00m00n/scr/st0448/etc/st0448_00m00n_p124.lot.json",
+          "type_names": [
+            "SetInfoOmOld"
+          ]
+        }
+      },
+      {
+        "node_id": "lot-file:st0448_00m00n_p125.lot.json",
+        "label": "st0448_00m00n_p125.lot.json",
+        "kind": "lot_file",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "metadata": {
+          "file_path": "client/03040008/stage/st0448/lot/st0448_00m00n/scr/st0448/etc/st0448_00m00n_p125.lot.json",
+          "type_names": [
+            "SetInfoOmOld"
+          ]
+        }
+      },
+      {
+        "node_id": "lot-file:st0448_00m00n_p126.lot.json",
+        "label": "st0448_00m00n_p126.lot.json",
+        "kind": "lot_file",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "metadata": {
+          "file_path": "client/03040008/stage/st0448/lot/st0448_00m00n/scr/st0448/etc/st0448_00m00n_p126.lot.json",
+          "type_names": [
+            "SetInfoOmOld"
+          ]
+        }
+      },
+      {
+        "node_id": "lot-file:st0448_00m00n_p127.lot.json",
+        "label": "st0448_00m00n_p127.lot.json",
+        "kind": "lot_file",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "metadata": {
+          "file_path": "client/03040008/stage/st0448/lot/st0448_00m00n/scr/st0448/etc/st0448_00m00n_p127.lot.json",
+          "type_names": [
+            "SetInfoOmOld"
+          ]
+        }
+      },
+      {
+        "node_id": "lot-file:st0448_00m00n_p130.lot.json",
+        "label": "st0448_00m00n_p130.lot.json",
+        "kind": "lot_file",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "metadata": {
+          "file_path": "client/03040008/stage/st0448/lot/st0448_00m00n/scr/st0448/etc/st0448_00m00n_p130.lot.json",
+          "type_names": [
+            "SetInfoOmOld"
+          ]
+        }
+      },
+      {
+        "node_id": "lot-file:st0448_00m00n_p131.lot.json",
+        "label": "st0448_00m00n_p131.lot.json",
+        "kind": "lot_file",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "metadata": {
+          "file_path": "client/03040008/stage/st0448/lot/st0448_00m00n/scr/st0448/etc/st0448_00m00n_p131.lot.json",
+          "type_names": [
+            "SetInfoOmOld"
+          ]
+        }
+      },
+      {
+        "node_id": "lot-file:st0448_00m00n_p134.lot.json",
+        "label": "st0448_00m00n_p134.lot.json",
+        "kind": "lot_file",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "metadata": {
+          "file_path": "client/03040008/stage/st0448/lot/st0448_00m00n/scr/st0448/etc/st0448_00m00n_p134.lot.json",
+          "type_names": [
+            "SetInfoOmOld"
+          ]
+        }
+      },
+      {
+        "node_id": "lot-file:st0448_00m00n_p136.lot.json",
+        "label": "st0448_00m00n_p136.lot.json",
+        "kind": "lot_file",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "metadata": {
+          "file_path": "client/03040008/stage/st0448/lot/st0448_00m00n/scr/st0448/etc/st0448_00m00n_p136.lot.json",
+          "type_names": [
+            "SetInfoOmOld"
+          ]
+        }
+      },
+      {
+        "node_id": "lot-file:st0448_00m00n_p137.lot.json",
+        "label": "st0448_00m00n_p137.lot.json",
+        "kind": "lot_file",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "metadata": {
+          "file_path": "client/03040008/stage/st0448/lot/st0448_00m00n/scr/st0448/etc/st0448_00m00n_p137.lot.json",
+          "type_names": [
+            "SetInfoOmOld"
+          ]
+        }
+      },
+      {
+        "node_id": "lot-file:st0448_00m00n_p20.lot.json",
+        "label": "st0448_00m00n_p20.lot.json",
+        "kind": "lot_file",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "metadata": {
+          "file_path": "client/03040008/stage/st0448/lot/st0448_00m00n/scr/st0448/etc/st0448_00m00n_p20.lot.json",
+          "type_names": [
+            "SetInfoOmDoor"
+          ]
+        }
+      }
+    ],
+    "edges": [
+      {
+        "from": "quest:60300030",
+        "to": "direct-family:fsm",
+        "edge_type": "direct_source_family",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "why": "Decoded direct hits for the quest targets include this source family.",
+        "metadata": {}
+      },
+      {
+        "from": "quest:60300030",
+        "to": "direct-family:qst",
+        "edge_type": "direct_source_family",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "why": "Decoded direct hits for the quest targets include this source family.",
+        "metadata": {}
+      },
+      {
+        "from": "quest:60300030",
+        "to": "family-context:quest_sequence",
+        "edge_type": "family_context:quest_sequence",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "why": "Family-specific decoded tables provide deterministic context for this quest.",
+        "metadata": {}
+      },
+      {
+        "from": "quest:60300030",
+        "to": "stage:st0448",
+        "edge_type": "quest_archive_stage",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "why": "Quest archive topology directly links this quest to the stage code.",
+        "metadata": {}
+      },
+      {
+        "from": "quest:60300030",
+        "to": "owner-quest:70030001",
+        "edge_type": "promoted_dependency",
+        "depth": 2,
+        "derivation_class": "dependency_inferred",
+        "why": "Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.",
+        "metadata": {
+          "flag_values": [
+            6469
+          ]
+        }
+      },
+      {
+        "from": "family-context:quest_sequence",
+        "to": "sequence-quest:60300031",
+        "edge_type": "sequence_next",
+        "depth": 2,
+        "derivation_class": "direct_deterministic",
+        "why": "QuestSequence links this quest to its neighboring sequence quest.",
+        "metadata": {}
+      },
+      {
+        "from": "family-context:quest_sequence",
+        "to": "sequence-quest:60300011",
+        "edge_type": "sequence_previous",
+        "depth": 2,
+        "derivation_class": "direct_deterministic",
+        "why": "QuestSequence links this quest to its neighboring sequence quest.",
+        "metadata": {}
+      },
+      {
+        "from": "stage:st0448",
+        "to": "stage-group:st0448:10",
+        "edge_type": "stage_group_reference",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "why": "Reverse indexes expose GPL group references for this stage.",
+        "metadata": {}
+      },
+      {
+        "from": "stage:st0448",
+        "to": "stage-group:st0448:11",
+        "edge_type": "stage_group_reference",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "why": "Reverse indexes expose GPL group references for this stage.",
+        "metadata": {}
+      },
+      {
+        "from": "stage:st0448",
+        "to": "stage-group:st0448:110",
+        "edge_type": "stage_group_reference",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "why": "Reverse indexes expose GPL group references for this stage.",
+        "metadata": {}
+      },
+      {
+        "from": "stage:st0448",
+        "to": "stage-group:st0448:111",
+        "edge_type": "stage_group_reference",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "why": "Reverse indexes expose GPL group references for this stage.",
+        "metadata": {}
+      },
+      {
+        "from": "stage:st0448",
+        "to": "stage-group:st0448:112",
+        "edge_type": "stage_group_reference",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "why": "Reverse indexes expose GPL group references for this stage.",
+        "metadata": {}
+      },
+      {
+        "from": "stage:st0448",
+        "to": "stage-group:st0448:113",
+        "edge_type": "stage_group_reference",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "why": "Reverse indexes expose GPL group references for this stage.",
+        "metadata": {}
+      },
+      {
+        "from": "stage:st0448",
+        "to": "stage-group:st0448:114",
+        "edge_type": "stage_group_reference",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "why": "Reverse indexes expose GPL group references for this stage.",
+        "metadata": {}
+      },
+      {
+        "from": "stage:st0448",
+        "to": "stage-group:st0448:115",
+        "edge_type": "stage_group_reference",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "why": "Reverse indexes expose GPL group references for this stage.",
+        "metadata": {}
+      },
+      {
+        "from": "stage:st0448",
+        "to": "stage-group:st0448:116",
+        "edge_type": "stage_group_reference",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "why": "Reverse indexes expose GPL group references for this stage.",
+        "metadata": {}
+      },
+      {
+        "from": "stage:st0448",
+        "to": "stage-group:st0448:117",
+        "edge_type": "stage_group_reference",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "why": "Reverse indexes expose GPL group references for this stage.",
+        "metadata": {}
+      },
+      {
+        "from": "stage:st0448",
+        "to": "stage-group:st0448:118",
+        "edge_type": "stage_group_reference",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "why": "Reverse indexes expose GPL group references for this stage.",
+        "metadata": {}
+      },
+      {
+        "from": "stage:st0448",
+        "to": "stage-group:st0448:12",
+        "edge_type": "stage_group_reference",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "why": "Reverse indexes expose GPL group references for this stage.",
+        "metadata": {}
+      },
+      {
+        "from": "stage:st0448",
+        "to": "stage-group:st0448:120",
+        "edge_type": "stage_group_reference",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "why": "Reverse indexes expose GPL group references for this stage.",
+        "metadata": {}
+      },
+      {
+        "from": "stage:st0448",
+        "to": "stage-group:st0448:121",
+        "edge_type": "stage_group_reference",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "why": "Reverse indexes expose GPL group references for this stage.",
+        "metadata": {}
+      },
+      {
+        "from": "stage:st0448",
+        "to": "stage-group:st0448:122",
+        "edge_type": "stage_group_reference",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "why": "Reverse indexes expose GPL group references for this stage.",
+        "metadata": {}
+      },
+      {
+        "from": "stage:st0448",
+        "to": "stage-group:st0448:123",
+        "edge_type": "stage_group_reference",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "why": "Reverse indexes expose GPL group references for this stage.",
+        "metadata": {}
+      },
+      {
+        "from": "stage:st0448",
+        "to": "stage-group:st0448:124",
+        "edge_type": "stage_group_reference",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "why": "Reverse indexes expose GPL group references for this stage.",
+        "metadata": {}
+      },
+      {
+        "from": "stage:st0448",
+        "to": "stage-group:st0448:125",
+        "edge_type": "stage_group_reference",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "why": "Reverse indexes expose GPL group references for this stage.",
+        "metadata": {}
+      },
+      {
+        "from": "stage:st0448",
+        "to": "stage-group:st0448:126",
+        "edge_type": "stage_group_reference",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "why": "Reverse indexes expose GPL group references for this stage.",
+        "metadata": {}
+      },
+      {
+        "from": "stage:st0448",
+        "to": "stage-group:st0448:127",
+        "edge_type": "stage_group_reference",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "why": "Reverse indexes expose GPL group references for this stage.",
+        "metadata": {}
+      },
+      {
+        "from": "stage:st0448",
+        "to": "stage-group:st0448:13",
+        "edge_type": "stage_group_reference",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "why": "Reverse indexes expose GPL group references for this stage.",
+        "metadata": {}
+      },
+      {
+        "from": "stage:st0448",
+        "to": "stage-group:st0448:130",
+        "edge_type": "stage_group_reference",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "why": "Reverse indexes expose GPL group references for this stage.",
+        "metadata": {}
+      },
+      {
+        "from": "stage:st0448",
+        "to": "stage-group:st0448:131",
+        "edge_type": "stage_group_reference",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "why": "Reverse indexes expose GPL group references for this stage.",
+        "metadata": {}
+      },
+      {
+        "from": "stage:st0448",
+        "to": "stage-group:st0448:134",
+        "edge_type": "stage_group_reference",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "why": "Reverse indexes expose GPL group references for this stage.",
+        "metadata": {}
+      },
+      {
+        "from": "stage:st0448",
+        "to": "stage-group:st0448:136",
+        "edge_type": "stage_group_reference",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "why": "Reverse indexes expose GPL group references for this stage.",
+        "metadata": {}
+      },
+      {
+        "from": "stage:st0448",
+        "to": "stage-group:st0448:137",
+        "edge_type": "stage_group_reference",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "why": "Reverse indexes expose GPL group references for this stage.",
+        "metadata": {}
+      },
+      {
+        "from": "stage:st0448",
+        "to": "stage-group:st0448:14",
+        "edge_type": "stage_group_reference",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "why": "Reverse indexes expose GPL group references for this stage.",
+        "metadata": {}
+      },
+      {
+        "from": "stage:st0448",
+        "to": "stage-group:st0448:15",
+        "edge_type": "stage_group_reference",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "why": "Reverse indexes expose GPL group references for this stage.",
+        "metadata": {}
+      },
+      {
+        "from": "stage:st0448",
+        "to": "stage-group:st0448:16",
+        "edge_type": "stage_group_reference",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "why": "Reverse indexes expose GPL group references for this stage.",
+        "metadata": {}
+      },
+      {
+        "from": "stage:st0448",
+        "to": "stage-group:st0448:17",
+        "edge_type": "stage_group_reference",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "why": "Reverse indexes expose GPL group references for this stage.",
+        "metadata": {}
+      },
+      {
+        "from": "stage:st0448",
+        "to": "stage-group:st0448:18",
+        "edge_type": "stage_group_reference",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "why": "Reverse indexes expose GPL group references for this stage.",
+        "metadata": {}
+      },
+      {
+        "from": "stage:st0448",
+        "to": "stage-group:st0448:19",
+        "edge_type": "stage_group_reference",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "why": "Reverse indexes expose GPL group references for this stage.",
+        "metadata": {}
+      },
+      {
+        "from": "stage:st0448",
+        "to": "stage-group:st0448:2",
+        "edge_type": "stage_group_reference",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "why": "Reverse indexes expose GPL group references for this stage.",
+        "metadata": {}
+      },
+      {
+        "from": "stage:st0448",
+        "to": "stage-group:st0448:20",
+        "edge_type": "stage_group_reference",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "why": "Reverse indexes expose GPL group references for this stage.",
+        "metadata": {}
+      },
+      {
+        "from": "stage:st0448",
+        "to": "stage-group:st0448:22",
+        "edge_type": "stage_group_reference",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "why": "Reverse indexes expose GPL group references for this stage.",
+        "metadata": {}
+      },
+      {
+        "from": "stage:st0448",
+        "to": "stage-group:st0448:23",
+        "edge_type": "stage_group_reference",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "why": "Reverse indexes expose GPL group references for this stage.",
+        "metadata": {}
+      },
+      {
+        "from": "stage:st0448",
+        "to": "stage-group:st0448:3",
+        "edge_type": "stage_group_reference",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "why": "Reverse indexes expose GPL group references for this stage.",
+        "metadata": {}
+      },
+      {
+        "from": "stage:st0448",
+        "to": "stage-group:st0448:4",
+        "edge_type": "stage_group_reference",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "why": "Reverse indexes expose GPL group references for this stage.",
+        "metadata": {}
+      },
+      {
+        "from": "stage:st0448",
+        "to": "stage-group:st0448:5",
+        "edge_type": "stage_group_reference",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "why": "Reverse indexes expose GPL group references for this stage.",
+        "metadata": {}
+      },
+      {
+        "from": "stage:st0448",
+        "to": "stage-group:st0448:6",
+        "edge_type": "stage_group_reference",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "why": "Reverse indexes expose GPL group references for this stage.",
+        "metadata": {}
+      },
+      {
+        "from": "stage:st0448",
+        "to": "stage-group:st0448:7",
+        "edge_type": "stage_group_reference",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "why": "Reverse indexes expose GPL group references for this stage.",
+        "metadata": {}
+      },
+      {
+        "from": "stage:st0448",
+        "to": "stage-group:st0448:8",
+        "edge_type": "stage_group_reference",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "why": "Reverse indexes expose GPL group references for this stage.",
+        "metadata": {}
+      },
+      {
+        "from": "stage:st0448",
+        "to": "owner-quest:70030001",
+        "edge_type": "stage_owner_index",
+        "depth": 2,
+        "derivation_class": "owner_index",
+        "why": "Stage-neighborhood cues on this stage link to the reusable owner catalog.",
+        "metadata": {
+          "linked_flag_values": [
+            6409,
+            6463,
+            6464,
+            6465,
+            6466,
+            6467,
+            6468,
+            6469,
+            6470,
+            6471,
+            6472,
+            6473,
+            6474,
+            6481,
+            6482,
+            6483,
+            6484,
+            6485,
+            6486,
+            6487,
+            6488,
+            6489,
+            6490,
+            6491,
+            6619,
+            6620,
+            6621,
+            6763,
+            6876,
+            6877,
+            6916,
+            6917
+          ]
+        }
+      },
+      {
+        "from": "stage-group:st0448:10",
+        "to": "owner-quest:70030001",
+        "edge_type": "gpl_owner_guard",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "why": "GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.",
+        "metadata": {
+          "flag_value": 6481
+        }
+      },
+      {
+        "from": "stage-group:st0448:11",
+        "to": "owner-quest:70030001",
+        "edge_type": "gpl_owner_guard",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "why": "GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.",
+        "metadata": {
+          "flag_value": 6482
+        }
+      },
+      {
+        "from": "stage-group:st0448:110",
+        "to": "owner-quest:70030001",
+        "edge_type": "gpl_owner_guard",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "why": "GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.",
+        "metadata": {
+          "flag_value": 6468
+        }
+      },
+      {
+        "from": "stage-group:st0448:111",
+        "to": "owner-quest:70030001",
+        "edge_type": "gpl_owner_guard",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "why": "GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.",
+        "metadata": {
+          "flag_value": 6467
+        }
+      },
+      {
+        "from": "stage-group:st0448:112",
+        "to": "owner-quest:70030001",
+        "edge_type": "gpl_owner_guard",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "why": "GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.",
+        "metadata": {
+          "flag_value": 6466
+        }
+      },
+      {
+        "from": "stage-group:st0448:113",
+        "to": "owner-quest:70030001",
+        "edge_type": "gpl_owner_guard",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "why": "GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.",
+        "metadata": {
+          "flag_value": 6465
+        }
+      },
+      {
+        "from": "stage-group:st0448:114",
+        "to": "owner-quest:70030001",
+        "edge_type": "gpl_owner_guard",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "why": "GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.",
+        "metadata": {
+          "flag_value": 6464
+        }
+      },
+      {
+        "from": "stage-group:st0448:115",
+        "to": "owner-quest:70030001",
+        "edge_type": "gpl_owner_guard",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "why": "GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.",
+        "metadata": {
+          "flag_value": 6463
+        }
+      },
+      {
+        "from": "stage-group:st0448:116",
+        "to": "owner-quest:70030001",
+        "edge_type": "gpl_owner_guard",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "why": "GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.",
+        "metadata": {
+          "flag_value": 6463
+        }
+      },
+      {
+        "from": "stage-group:st0448:117",
+        "to": "owner-quest:70030001",
+        "edge_type": "gpl_owner_guard",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "why": "GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.",
+        "metadata": {
+          "flag_value": 6463
+        }
+      },
+      {
+        "from": "stage-group:st0448:118",
+        "to": "owner-quest:70030001",
+        "edge_type": "gpl_owner_guard",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "why": "GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.",
+        "metadata": {
+          "flag_value": 6463
+        }
+      },
+      {
+        "from": "stage-group:st0448:12",
+        "to": "owner-quest:70030001",
+        "edge_type": "gpl_owner_guard",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "why": "GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.",
+        "metadata": {
+          "flag_value": 6483
+        }
+      },
+      {
+        "from": "stage-group:st0448:120",
+        "to": "owner-quest:70030001",
+        "edge_type": "gpl_owner_guard",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "why": "GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.",
+        "metadata": {
+          "flag_value": 6474
+        }
+      },
+      {
+        "from": "stage-group:st0448:121",
+        "to": "owner-quest:70030001",
+        "edge_type": "gpl_owner_guard",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "why": "GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.",
+        "metadata": {
+          "flag_value": 6473
+        }
+      },
+      {
+        "from": "stage-group:st0448:122",
+        "to": "owner-quest:70030001",
+        "edge_type": "gpl_owner_guard",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "why": "GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.",
+        "metadata": {
+          "flag_value": 6472
+        }
+      },
+      {
+        "from": "stage-group:st0448:123",
+        "to": "owner-quest:70030001",
+        "edge_type": "gpl_owner_guard",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "why": "GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.",
+        "metadata": {
+          "flag_value": 6471
+        }
+      },
+      {
+        "from": "stage-group:st0448:124",
+        "to": "owner-quest:70030001",
+        "edge_type": "gpl_owner_guard",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "why": "GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.",
+        "metadata": {
+          "flag_value": 6470
+        }
+      },
+      {
+        "from": "stage-group:st0448:125",
+        "to": "owner-quest:70030001",
+        "edge_type": "gpl_owner_guard",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "why": "GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.",
+        "metadata": {
+          "flag_value": 6469
+        }
+      },
+      {
+        "from": "stage-group:st0448:126",
+        "to": "owner-quest:70030001",
+        "edge_type": "gpl_owner_guard",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "why": "GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.",
+        "metadata": {
+          "flag_value": 6469
+        }
+      },
+      {
+        "from": "stage-group:st0448:127",
+        "to": "owner-quest:70030001",
+        "edge_type": "gpl_owner_guard",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "why": "GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.",
+        "metadata": {
+          "flag_value": 6469
+        }
+      },
+      {
+        "from": "stage-group:st0448:13",
+        "to": "owner-quest:70030001",
+        "edge_type": "gpl_owner_guard",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "why": "GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.",
+        "metadata": {
+          "flag_value": 6484
+        }
+      },
+      {
+        "from": "stage-group:st0448:130",
+        "to": "owner-quest:70030001",
+        "edge_type": "gpl_owner_guard",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "why": "GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.",
+        "metadata": {
+          "flag_value": 6467
+        }
+      },
+      {
+        "from": "stage-group:st0448:131",
+        "to": "owner-quest:70030001",
+        "edge_type": "gpl_owner_guard",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "why": "GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.",
+        "metadata": {
+          "flag_value": 6467
+        }
+      },
+      {
+        "from": "stage-group:st0448:134",
+        "to": "owner-quest:70030001",
+        "edge_type": "gpl_owner_guard",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "why": "GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.",
+        "metadata": {
+          "flag_value": 6463
+        }
+      },
+      {
+        "from": "stage-group:st0448:136",
+        "to": "owner-quest:70030001",
+        "edge_type": "gpl_owner_guard",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "why": "GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.",
+        "metadata": {
+          "flag_value": 6463
+        }
+      },
+      {
+        "from": "stage-group:st0448:137",
+        "to": "owner-quest:70030001",
+        "edge_type": "gpl_owner_guard",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "why": "GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.",
+        "metadata": {
+          "flag_value": 6463
+        }
+      },
+      {
+        "from": "stage-group:st0448:14",
+        "to": "owner-quest:70030001",
+        "edge_type": "gpl_owner_guard",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "why": "GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.",
+        "metadata": {
+          "flag_value": 6485
+        }
+      },
+      {
+        "from": "stage-group:st0448:15",
+        "to": "owner-quest:70030001",
+        "edge_type": "gpl_owner_guard",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "why": "GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.",
+        "metadata": {
+          "flag_value": 6486
+        }
+      },
+      {
+        "from": "stage-group:st0448:16",
+        "to": "owner-quest:70030001",
+        "edge_type": "gpl_owner_guard",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "why": "GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.",
+        "metadata": {
+          "flag_value": 6487
+        }
+      },
+      {
+        "from": "stage-group:st0448:17",
+        "to": "owner-quest:70030001",
+        "edge_type": "gpl_owner_guard",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "why": "GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.",
+        "metadata": {
+          "flag_value": 6488
+        }
+      },
+      {
+        "from": "stage-group:st0448:18",
+        "to": "owner-quest:70030001",
+        "edge_type": "gpl_owner_guard",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "why": "GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.",
+        "metadata": {
+          "flag_value": 6489
+        }
+      },
+      {
+        "from": "stage-group:st0448:19",
+        "to": "owner-quest:70030001",
+        "edge_type": "gpl_owner_guard",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "why": "GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.",
+        "metadata": {
+          "flag_value": 6490
+        }
+      },
+      {
+        "from": "stage-group:st0448:2",
+        "to": "owner-quest:70030001",
+        "edge_type": "gpl_owner_guard",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "why": "GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.",
+        "metadata": {
+          "flag_value": 6619
+        }
+      },
+      {
+        "from": "stage-group:st0448:20",
+        "to": "owner-quest:70030001",
+        "edge_type": "gpl_owner_guard",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "why": "GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.",
+        "metadata": {
+          "flag_value": 6491
+        }
+      },
+      {
+        "from": "stage-group:st0448:22",
+        "to": "owner-quest:70030001",
+        "edge_type": "gpl_owner_guard",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "why": "GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.",
+        "metadata": {
+          "flag_value": 6916
+        }
+      },
+      {
+        "from": "stage-group:st0448:23",
+        "to": "owner-quest:70030001",
+        "edge_type": "gpl_owner_guard",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "why": "GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.",
+        "metadata": {
+          "flag_value": 6917
+        }
+      },
+      {
+        "from": "stage-group:st0448:3",
+        "to": "owner-quest:70030001",
+        "edge_type": "gpl_owner_guard",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "why": "GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.",
+        "metadata": {
+          "flag_value": 6620
+        }
+      },
+      {
+        "from": "stage-group:st0448:4",
+        "to": "owner-quest:70030001",
+        "edge_type": "gpl_owner_guard",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "why": "GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.",
+        "metadata": {
+          "flag_value": 6621
+        }
+      },
+      {
+        "from": "stage-group:st0448:5",
+        "to": "owner-quest:70030001",
+        "edge_type": "gpl_owner_guard",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "why": "GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.",
+        "metadata": {
+          "flag_value": 6463
+        }
+      },
+      {
+        "from": "stage-group:st0448:6",
+        "to": "owner-quest:70030001",
+        "edge_type": "gpl_owner_guard",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "why": "GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.",
+        "metadata": {
+          "flag_value": 6763
+        }
+      },
+      {
+        "from": "stage-group:st0448:7",
+        "to": "owner-quest:70030001",
+        "edge_type": "gpl_owner_guard",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "why": "GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.",
+        "metadata": {
+          "flag_value": 6876
+        }
+      },
+      {
+        "from": "stage-group:st0448:8",
+        "to": "owner-quest:70030001",
+        "edge_type": "gpl_owner_guard",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "why": "GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.",
+        "metadata": {
+          "flag_value": 6877
+        }
+      },
+      {
+        "from": "stage-group:st0448:110",
+        "to": "lot-file:st0448_00m00n_p110.lot.json",
+        "edge_type": "group_lot_reference",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "why": "LOT association resolves the GPL group to a concrete stage layout file.",
+        "metadata": {}
+      },
+      {
+        "from": "stage-group:st0448:111",
+        "to": "lot-file:st0448_00m00n_p111.lot.json",
+        "edge_type": "group_lot_reference",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "why": "LOT association resolves the GPL group to a concrete stage layout file.",
+        "metadata": {}
+      },
+      {
+        "from": "stage-group:st0448:112",
+        "to": "lot-file:st0448_00m00n_p112.lot.json",
+        "edge_type": "group_lot_reference",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "why": "LOT association resolves the GPL group to a concrete stage layout file.",
+        "metadata": {}
+      },
+      {
+        "from": "stage-group:st0448:113",
+        "to": "lot-file:st0448_00m00n_p113.lot.json",
+        "edge_type": "group_lot_reference",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "why": "LOT association resolves the GPL group to a concrete stage layout file.",
+        "metadata": {}
+      },
+      {
+        "from": "stage-group:st0448:114",
+        "to": "lot-file:st0448_00m00n_p114.lot.json",
+        "edge_type": "group_lot_reference",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "why": "LOT association resolves the GPL group to a concrete stage layout file.",
+        "metadata": {}
+      },
+      {
+        "from": "stage-group:st0448:115",
+        "to": "lot-file:st0448_00m00n_p115.lot.json",
+        "edge_type": "group_lot_reference",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "why": "LOT association resolves the GPL group to a concrete stage layout file.",
+        "metadata": {}
+      },
+      {
+        "from": "stage-group:st0448:116",
+        "to": "lot-file:st0448_00m00n_p116.lot.json",
+        "edge_type": "group_lot_reference",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "why": "LOT association resolves the GPL group to a concrete stage layout file.",
+        "metadata": {}
+      },
+      {
+        "from": "stage-group:st0448:117",
+        "to": "lot-file:st0448_00m00n_p117.lot.json",
+        "edge_type": "group_lot_reference",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "why": "LOT association resolves the GPL group to a concrete stage layout file.",
+        "metadata": {}
+      },
+      {
+        "from": "stage-group:st0448:118",
+        "to": "lot-file:st0448_00m00n_p118.lot.json",
+        "edge_type": "group_lot_reference",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "why": "LOT association resolves the GPL group to a concrete stage layout file.",
+        "metadata": {}
+      },
+      {
+        "from": "stage-group:st0448:120",
+        "to": "lot-file:st0448_00m00n_p120.lot.json",
+        "edge_type": "group_lot_reference",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "why": "LOT association resolves the GPL group to a concrete stage layout file.",
+        "metadata": {}
+      },
+      {
+        "from": "stage-group:st0448:121",
+        "to": "lot-file:st0448_00m00n_p121.lot.json",
+        "edge_type": "group_lot_reference",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "why": "LOT association resolves the GPL group to a concrete stage layout file.",
+        "metadata": {}
+      },
+      {
+        "from": "stage-group:st0448:122",
+        "to": "lot-file:st0448_00m00n_p122.lot.json",
+        "edge_type": "group_lot_reference",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "why": "LOT association resolves the GPL group to a concrete stage layout file.",
+        "metadata": {}
+      },
+      {
+        "from": "stage-group:st0448:123",
+        "to": "lot-file:st0448_00m00n_p123.lot.json",
+        "edge_type": "group_lot_reference",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "why": "LOT association resolves the GPL group to a concrete stage layout file.",
+        "metadata": {}
+      },
+      {
+        "from": "stage-group:st0448:124",
+        "to": "lot-file:st0448_00m00n_p124.lot.json",
+        "edge_type": "group_lot_reference",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "why": "LOT association resolves the GPL group to a concrete stage layout file.",
+        "metadata": {}
+      },
+      {
+        "from": "stage-group:st0448:125",
+        "to": "lot-file:st0448_00m00n_p125.lot.json",
+        "edge_type": "group_lot_reference",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "why": "LOT association resolves the GPL group to a concrete stage layout file.",
+        "metadata": {}
+      },
+      {
+        "from": "stage-group:st0448:126",
+        "to": "lot-file:st0448_00m00n_p126.lot.json",
+        "edge_type": "group_lot_reference",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "why": "LOT association resolves the GPL group to a concrete stage layout file.",
+        "metadata": {}
+      },
+      {
+        "from": "stage-group:st0448:127",
+        "to": "lot-file:st0448_00m00n_p127.lot.json",
+        "edge_type": "group_lot_reference",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "why": "LOT association resolves the GPL group to a concrete stage layout file.",
+        "metadata": {}
+      },
+      {
+        "from": "stage-group:st0448:130",
+        "to": "lot-file:st0448_00m00n_p130.lot.json",
+        "edge_type": "group_lot_reference",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "why": "LOT association resolves the GPL group to a concrete stage layout file.",
+        "metadata": {}
+      },
+      {
+        "from": "stage-group:st0448:131",
+        "to": "lot-file:st0448_00m00n_p131.lot.json",
+        "edge_type": "group_lot_reference",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "why": "LOT association resolves the GPL group to a concrete stage layout file.",
+        "metadata": {}
+      },
+      {
+        "from": "stage-group:st0448:134",
+        "to": "lot-file:st0448_00m00n_p134.lot.json",
+        "edge_type": "group_lot_reference",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "why": "LOT association resolves the GPL group to a concrete stage layout file.",
+        "metadata": {}
+      },
+      {
+        "from": "stage-group:st0448:136",
+        "to": "lot-file:st0448_00m00n_p136.lot.json",
+        "edge_type": "group_lot_reference",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "why": "LOT association resolves the GPL group to a concrete stage layout file.",
+        "metadata": {}
+      },
+      {
+        "from": "stage-group:st0448:137",
+        "to": "lot-file:st0448_00m00n_p137.lot.json",
+        "edge_type": "group_lot_reference",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "why": "LOT association resolves the GPL group to a concrete stage layout file.",
+        "metadata": {}
+      },
+      {
+        "from": "stage-group:st0448:20",
+        "to": "lot-file:st0448_00m00n_p20.lot.json",
+        "edge_type": "group_lot_reference",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "why": "LOT association resolves the GPL group to a concrete stage layout file.",
+        "metadata": {}
       }
     ]
   }

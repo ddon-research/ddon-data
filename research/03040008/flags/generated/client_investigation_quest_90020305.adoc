@@ -5,16 +5,32 @@
 
 Query mode:: quest
 Query value:: 90020305
-Generated at:: 2026-04-11T21:41:42.974837+00:00
+Generated at:: 2026-04-12T12:44:33.087731+00:00
 
 toc::[]
+
+Quest family:: q9 -- Reserved q9
+Quest family notes:: Reserved or unimplemented quest-family bucket.
+Quest family focus:: unsupported_until_client_evidence
+
+== Family Relationship Context
+
+_These sections summarize deterministic client-side family metadata and reverse-index relationships. They are context for later owner/dependency inference, not direct quest-target promotion._
+
+=== Quest Sequence
+
+* seq no: 529
+* previous: 90020304 -- The Deathly Battle of the Ancient Temple: Severe
+* next: 90020401 -- The Dragon Awakened
 
 == ARC Association Context
 
 _ARC associations are contextual only. They show which quest-stage and marker resources are bundled with this quest._
 
-* arc file: client/03040008/quest/q90020305.arc.json
+* arc file: link:../../../../client/03040008/quest/q90020305.arc.json#L1[client/03040008/quest/q90020305.arc.json#L1]
 * resource count: 7
+* stage codes: st0433
+* resource families: .gmd, .mss, .qmi, .qst, .qtd
 
 === st0433 -- Shadolean Great Temple
 
@@ -29,18 +45,550 @@ _ARC associations are contextual only. They show which quest-stage and marker re
 * rGUIMessage: ui/00_message/examine_message/quest/quest_examine_q90020305
 * rGUIMessage: ui/00_message/quest_info/q90020305_00
 
+== Stage Neighborhood Context
+
+_Stage-neighborhood context summarizes scanner-relevant client files that share the quest's archive stage codes. This is deterministic client topology, not inferred ownership._
+
+* scanner-relevant stage files: 154
+* indexed stage codes: st0433
+
+=== st0433 -- Shadolean Great Temple
+
+* scanner files: 154
+* .fsm.json: 15
+* .gpl.json: 5
+* .lot.json: 116
+* .qmi.json: 13
+* .qst.json: 5
+
+== Stage Neighborhood External-State Cues
+
+_These cues are deterministic client-side observations from the quest's stage neighborhood. They are not promoted to direct quest targets yet; they highlight q6/q7-owned external state values co-located in the quest's archive stages._
+
+* cue count: 0
+* owner families: q6, q7
+
+== Bounded Graph Expansion
+
+_This graph summarizes bounded deterministic and inferred edges around the quest: quest archive stages, direct source families, stage-linked owner catalogs, promoted dependencies, reverse-index event/group links, and family-specific table edges._
+
+* max depth: 3
+* node count: 9
+* edge count: 8
+* node kinds: direct_family=4, family_context=1, quest=1, sequence_quest=2, stage=1
+* derivation: Direct=17
+
+=== Mermaid Graph Slice
+
+_This Mermaid flowchart shows a capped slice of the bounded graph so large quest reports stay readable while still exposing the graph structure._
+
+[mermaid]
+....
+flowchart TD
+    node_quest_90020305["Quest 90020305"]
+    node_direct_family_evsi["evsi direct hits (161)"]
+    node_direct_family_gpl["gpl direct hits (1)"]
+    node_direct_family_lot["lot direct hits (2)"]
+    node_direct_family_qst["qst direct hits (20)"]
+    node_family_context_quest_sequence["Quest Sequence"]
+    node_stage_st0433["st0433 -- Shadolean Great Temple"]
+    node_sequence_quest_90020304["Quest 90020304"]
+    node_sequence_quest_90020401["Quest 90020401"]
+    node_quest_90020305 -->|direct_source_family| node_direct_family_evsi
+    node_quest_90020305 -->|direct_source_family| node_direct_family_gpl
+    node_quest_90020305 -->|direct_source_family| node_direct_family_lot
+    node_quest_90020305 -->|direct_source_family| node_direct_family_qst
+    node_quest_90020305 -->|family:quest_sequence| node_family_context_quest_sequence
+    node_quest_90020305 -->|quest_archive_stage| node_stage_st0433
+    node_family_context_quest_sequence -->|sequence_next| node_sequence_quest_90020401
+    node_family_context_quest_sequence -->|sequence_previous| node_sequence_quest_90020304
+    classDef direct_deterministic fill:#e8f5e9,stroke:#2e7d32,stroke-width:1px
+    classDef owner_index fill:#e3f2fd,stroke:#1565c0,stroke-width:1px
+    classDef dependency_inferred fill:#fff3e0,stroke:#ef6c00,stroke-width:1px
+    classDef graph_expanded fill:#f3e5f5,stroke:#7b1fa2,stroke-width:1px
+    classDef lower_confidence fill:#fbe9e7,stroke:#d84315,stroke-width:1px
+    classDef binary_auxiliary fill:#eceff1,stroke:#455a64,stroke-width:1px
+    class node_quest_90020305,node_direct_family_evsi,node_direct_family_gpl,node_direct_family_lot,node_direct_family_qst,node_family_context_quest_sequence,node_stage_st0433,node_sequence_quest_90020304,node_sequence_quest_90020401 direct_deterministic
+....
+
+[cols="1,2,2,2,2,4",options="header"]
+|===
+| Depth | Edge | From | To | Derivation | Why
+
+| 1 | direct_source_family | quest:90020305 | direct-family:evsi | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | direct_source_family | quest:90020305 | direct-family:gpl | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | direct_source_family | quest:90020305 | direct-family:lot | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | direct_source_family | quest:90020305 | direct-family:qst | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | family_context:quest_sequence | quest:90020305 | family-context:quest_sequence | Direct | Family-specific decoded tables provide deterministic context for this quest.
+| 1 | quest_archive_stage | quest:90020305 | stage:st0433 | Direct | Quest archive topology directly links this quest to the stage code.
+| 2 | sequence_next | family-context:quest_sequence | sequence-quest:90020401 | Direct | QuestSequence links this quest to its neighboring sequence quest.
+| 2 | sequence_previous | family-context:quest_sequence | sequence-quest:90020304 | Direct | QuestSequence links this quest to its neighboring sequence quest.
+|===
+
 == Flag Summary Matrix
 
 [cols="2,1,1,2,2,3,3",options="header"]
 |===
 | Target | Kind | Hits | Sources | Stages | Relationships | Description
 
+| Flag 4920 | layout_flag | 32 | evsi, qst | st0100, st0120, st0134, st0200, st0201 +13 | 🎬 Event State, ⚡ Quest Condition, ❌ Quest Erase | QST local: st0433 \| QuestGroup 1 \| 序盤連動封鎖壁右１
+| Flag 4921 | layout_flag | 32 | evsi, qst | st0100, st0120, st0134, st0200, st0201 +13 | 🎬 Event State, ⚡ Quest Condition, ❌ Quest Erase | QST local: st0433 \| QuestGroup 2 \| 序盤連動封鎖壁右２
+| Flag 4922 | layout_flag | 32 | evsi, qst | st0100, st0120, st0134, st0200, st0201 +13 | 🎬 Event State, ⚡ Quest Condition, ❌ Quest Erase | QST local: st0433 \| QuestGroup 3 \| 序盤連動封鎖壁左１
+| Flag 4923 | layout_flag | 32 | evsi, qst | st0100, st0120, st0134, st0200, st0201 +13 | 🎬 Event State, ⚡ Quest Condition, ❌ Quest Erase | QST local: st0433 \| QuestGroup 4 \| 序盤連動封鎖壁左２
+| Flag 4924 | layout_flag | 31 | evsi, qst | st0100, st0120, st0134, st0200, st0201 +13 | 🎬 Event State, ⚡ Quest Condition | QST local: st0433 \| QuestGroup 5 \| 一方通行ワープOM右1
+| Flag 4925 | layout_flag | 3 | evsi, qst | st0433, st1103 | 🎬 Event State, ⚡ Quest Condition | QST local: st0433 \| QuestGroup 6 \| 一方通行ワープOM右2
+| Flag 4926 | layout_flag | 3 | evsi, qst | st0433, st1103 | 🎬 Event State, ⚡ Quest Condition | QST local: st0433 \| QuestGroup 7 \| 一方通行ワープOM右3
+| Flag 4927 | layout_flag | 3 | evsi, qst | st0433, st1103 | 🎬 Event State, ⚡ Quest Condition | QST local: st0433 \| QuestGroup 8 \| 一方通行ワープOM右4
+| Flag 4928 | layout_flag | 3 | evsi, qst | st0433, st1103 | 🎬 Event State, ⚡ Quest Condition | QST local: st0433 \| QuestGroup 9 \| 一方通行ワープOM左1
+| Flag 4929 | layout_flag | 3 | evsi, qst | st0433, st1103 | 🎬 Event State, ⚡ Quest Condition | QST local: st0433 \| QuestGroup 10 \| 一方通行ワープOM左2
+| Flag 4930 | layout_flag | 1 | qst | st0433 | ⚡ Quest Condition | QST local: st0433 \| QuestGroup 11 \| 一方通行ワープOM左3
+| Flag 4931 | layout_flag | 1 | qst | st0433 | ⚡ Quest Condition | QST local: st0433 \| QuestGroup 12 \| 一方通行ワープOM左4
+| Flag 4934 | layout_flag | 1 | qst | st0433 | ⚡ Quest Condition | QST local: st0433 \| QuestGroup 13 \| 体力温泉（右側レバー）
+| Flag 4935 | layout_flag | 1 | qst | st0433 | ⚡ Quest Condition | QST local: st0433 \| QuestGroup 14 \| スタミナ温泉（左側レバー）
+| Flag 4941 | layout_flag | 4 | evsi, gpl, qst | st0433, st1102 | 🎬 Event State, 🏗️ Layout Guard, ⚡ Quest Condition +1 | QST local: st0433 \| QuestGroup 15 \| スタート敵連動封鎖壁
 | Quest ID 90020305 | quest_id | 2 | lot | st0433 | 🌀 Warp Gate | Derived quest-wide association scan
 |===
 
 == Known Documented Targets
 
+* quest 90020305 -- Flag 4920 -- QST local: st0433 | QuestGroup 1 | 序盤連動封鎖壁右１
+* quest 90020305 -- Flag 4921 -- QST local: st0433 | QuestGroup 2 | 序盤連動封鎖壁右２
+* quest 90020305 -- Flag 4922 -- QST local: st0433 | QuestGroup 3 | 序盤連動封鎖壁左１
+* quest 90020305 -- Flag 4923 -- QST local: st0433 | QuestGroup 4 | 序盤連動封鎖壁左２
+* quest 90020305 -- Flag 4924 -- QST local: st0433 | QuestGroup 5 | 一方通行ワープOM右1
+* quest 90020305 -- Flag 4925 -- QST local: st0433 | QuestGroup 6 | 一方通行ワープOM右2
+* quest 90020305 -- Flag 4926 -- QST local: st0433 | QuestGroup 7 | 一方通行ワープOM右3
+* quest 90020305 -- Flag 4927 -- QST local: st0433 | QuestGroup 8 | 一方通行ワープOM右4
+* quest 90020305 -- Flag 4928 -- QST local: st0433 | QuestGroup 9 | 一方通行ワープOM左1
+* quest 90020305 -- Flag 4929 -- QST local: st0433 | QuestGroup 10 | 一方通行ワープOM左2
+* quest 90020305 -- Flag 4930 -- QST local: st0433 | QuestGroup 11 | 一方通行ワープOM左3
+* quest 90020305 -- Flag 4931 -- QST local: st0433 | QuestGroup 12 | 一方通行ワープOM左4
+* quest 90020305 -- Flag 4934 -- QST local: st0433 | QuestGroup 13 | 体力温泉（右側レバー）
+* quest 90020305 -- Flag 4935 -- QST local: st0433 | QuestGroup 14 | スタミナ温泉（左側レバー）
+* quest 90020305 -- Flag 4941 -- QST local: st0433 | QuestGroup 15 | スタート敵連動封鎖壁
 * Quest ID 90020305 -- Derived quest-wide association scan [Derived]
+
+== Flag 4920 -- Quest 90020305
+
+origin:: derived_qst_local
+direct hits:: *32*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 32 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q90020305/quest/90020305/q90020305_st0433.qst.json[client/03040008/quest/q90020305/quest/90020305/q90020305_st0433.qst.json] | QuestStageList[].QuestGrp[1].Condition | Condition | quest 90020305 / Shadolean Great Temple / "QuestGroup 1 \| 序盤連動封鎖壁右１" / QuestSet=QuestSetInfoOm \| OmID=510445 \| OM_ID_DOOR_510445 \| EnableZone \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q90020305/quest/90020305/q90020305_st0433.qst.json[client/03040008/quest/q90020305/quest/90020305/q90020305_st0433.qst.json] | QuestStageList[].QuestGrp[1].EraseCondition | EraseCondition | quest 90020305 / Shadolean Great Temple / "QuestGroup 1 \| 序盤連動封鎖壁右１" / QuestSet=QuestSetInfoOm \| OmID=510445 \| OM_ID_DOOR_510445 \| EnableZone \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0100/view_st0100ev160/event/viewer/view_st0100ev160.evsi.json#L624[client/03040008/event/st0100/view_st0100ev160/event/viewer/view_st0100ev160.evsi.json#L624] | FlagArray[142].FlagNo | FlagNo | quest 70033001 / Lestania / Event Viewer \| EVENT_NAME_st0100ev160 \| Dawn of a New Era | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0120/view_st0120ev050/event/viewer/view_st0120ev050.evsi.json#L532[client/03040008/event/st0120/view_st0120ev050/event/viewer/view_st0120ev050.evsi.json#L532] | FlagArray[129].FlagNo | FlagNo | quest 70033001 / Farana Plains / Event Viewer \| EVENT_NAME_st0120ev050 \| An Omen of Destruction | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0134/view_st0134ev001/event/viewer/view_st0134ev001.evsi.json#L520[client/03040008/event/st0134/view_st0134ev001/event/viewer/view_st0134ev001.evsi.json#L520] | FlagArray[126].FlagNo | FlagNo | quest 70033001 / Urteca Mountains / Event Viewer \| EVENT_NAME_st0134ev001 \| The Pursuers | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0134/view_st0134ev002/event/viewer/view_st0134ev002.evsi.json#L524[client/03040008/event/st0134/view_st0134ev002/event/viewer/view_st0134ev002.evsi.json#L524] | FlagArray[127].FlagNo | FlagNo | quest 70033001 / Urteca Mountains / Event Viewer \| EVENT_NAME_st0134ev002 \| Royal Tomb | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0134/view_st0134ev005/event/viewer/view_st0134ev005.evsi.json#L528[client/03040008/event/st0134/view_st0134ev005/event/viewer/view_st0134ev005.evsi.json#L528] | FlagArray[128].FlagNo | FlagNo | quest 70033001 / Urteca Mountains / Event Viewer \| EVENT_NAME_st0134ev005 \| Terrifying monster blocking the way | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0134/view_st0134ev010/event/viewer/view_st0134ev010.evsi.json#L528[client/03040008/event/st0134/view_st0134ev010/event/viewer/view_st0134ev010.evsi.json#L528] | FlagArray[128].FlagNo | FlagNo | quest 70033001 / Urteca Mountains / Event Viewer \| EVENT_NAME_st0134ev010 \| Bonding with peers | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0200/view_st0200ev030/event/viewer/view_st0200ev030.evsi.json#L624[client/03040008/event/st0200/view_st0200ev030/event/viewer/view_st0200ev030.evsi.json#L624] | FlagArray[142].FlagNo | FlagNo | quest 70033001 / The White Dragon Temple / Event Viewer \| EVENT_NAME_st0200ev030 \| Steps toward the Future, Second Half | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0201/view_st0201ev230/event/viewer/view_st0201ev230.evsi.json#L520[client/03040008/event/st0201/view_st0201ev230/event/viewer/view_st0201ev230.evsi.json#L520] | FlagArray[127].FlagNo | FlagNo | quest 70033001 / Audience Chamber / Event Viewer \| EVENT_NAME_st0201ev230 \| Heir to the Dragon | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0201/view_st0201ev235/event/viewer/view_st0201ev235.evsi.json#L624[client/03040008/event/st0201/view_st0201ev235/event/viewer/view_st0201ev235.evsi.json#L624] | FlagArray[142].FlagNo | FlagNo | quest 70033001 / Audience Chamber / Event Viewer \| EVENT_NAME_st0201ev235 \| 3rd Season Staff Roll | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0201/view_st0201ev240/event/viewer/view_st0201ev240.evsi.json#L532[client/03040008/event/st0201/view_st0201ev240/event/viewer/view_st0201ev240.evsi.json#L532] | FlagArray[129].FlagNo | FlagNo | quest 70033001 / Audience Chamber / Event Viewer \| EVENT_NAME_st0201ev240 \| Continental Anomalies | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0201/view_st0201ev245/event/viewer/view_st0201ev245.evsi.json#L624[client/03040008/event/st0201/view_st0201ev245/event/viewer/view_st0201ev245.evsi.json#L624] | FlagArray[142].FlagNo | FlagNo | quest 70033001 / Audience Chamber / Event Viewer \| EVENT_NAME_st0201ev245 \| Steps toward the Future, First Half | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0451/view_st0451ev020/event/viewer/view_st0451ev020.evsi.json#L528[client/03040008/event/st0451/view_st0451ev020/event/viewer/view_st0451ev020.evsi.json#L528] | FlagArray[128].FlagNo | FlagNo | quest 70033001 / Lookout Castle / Event Viewer \| EVENT_NAME_st0451ev020 \| Thoughts of each of us | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0451/view_st0451ev025/event/viewer/view_st0451ev025.evsi.json#L544[client/03040008/event/st0451/view_st0451ev025/event/viewer/view_st0451ev025.evsi.json#L544] | FlagArray[132].FlagNo | FlagNo | quest 70033001 / Lookout Castle / Event Viewer \| EVENT_NAME_st0451ev025 \| Acre Selund Anomaly | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0465/view_st0465ev000/event/viewer/view_st0465ev000.evsi.json#L528[client/03040008/event/st0465/view_st0465ev000/event/viewer/view_st0465ev000.evsi.json#L528] | FlagArray[127].FlagNo | FlagNo | quest 70033001 / Megado Detached Palace / Event Viewer \| EVENT_NAME_st0465ev000 \| Secret plan | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0470/view_st0470ev000/event/viewer/view_st0470ev000.evsi.json#L520[client/03040008/event/st0470/view_st0470ev000/event/viewer/view_st0470ev000.evsi.json#L520] | FlagArray[127].FlagNo | FlagNo | quest 70033001 / [Event] Black effect room / Event Viewer \| EVENT_NAME_st0470ev000 \| In the dark | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st1102/view_st1102ev000/event/viewer/view_st1102ev000.evsi.json#L532[client/03040008/event/st1102/view_st1102ev000/event/viewer/view_st1102ev000.evsi.json#L532] | FlagArray[128].FlagNo | FlagNo | quest 70033001 / The Royal Family Mausoleum / Event Viewer \| EVENT_NAME_st1102ev000 \| The Prince's Decision | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st1103/view_st1103ev000/event/viewer/view_st1103ev000.evsi.json#L576[client/03040008/event/st1103/view_st1103ev000/event/viewer/view_st1103ev000.evsi.json#L576] | FlagArray[134].FlagNo | FlagNo | quest 70033001 / Evil Dragon's Roost / Event Viewer \| EVENT_NAME_st1103ev000 \| The End of Hope | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st1103/view_st1103ev005/event/viewer/view_st1103ev005.evsi.json#L592[client/03040008/event/st1103/view_st1103ev005/event/viewer/view_st1103ev005.evsi.json#L592] | FlagArray[136].FlagNo | FlagNo | quest 70033001 / Evil Dragon's Roost / Event Viewer \| EVENT_NAME_st1103ev005 \| The whole story | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st3000/view_st3000ev000/event/viewer/view_st3000ev000.evsi.json#L532[client/03040008/event/st3000/view_st3000ev000/event/viewer/view_st3000ev000.evsi.json#L532] | FlagArray[129].FlagNo | FlagNo | quest 70033001 / 3.4 Demo Room / Event Viewer \| EVENT_NAME_st3000ev000 \| The Water Dragon Continent | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st3111/view_st3111ev000/event/viewer/view_st3111ev000.evsi.json#L592[client/03040008/event/st3111/view_st3111ev000/event/viewer/view_st3111ev000.evsi.json#L592] | FlagArray[137].FlagNo | FlagNo | quest 70033001 / Darkness Cloaked Shadolean Great Temple / Event Viewer \| EVENT_NAME_st3111ev000 \| Gate Keeper | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st3111/view_st3111ev005/event/viewer/view_st3111ev005.evsi.json#L592[client/03040008/event/st3111/view_st3111ev005/event/viewer/view_st3111ev005.evsi.json#L592] | FlagArray[137].FlagNo | FlagNo | quest 70033001 / Darkness Cloaked Shadolean Great Temple / Event Viewer \| EVENT_NAME_st3111ev005 \| Reunion with Leo | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st3111/view_st3111ev010/event/viewer/view_st3111ev010.evsi.json#L600[client/03040008/event/st3111/view_st3111ev010/event/viewer/view_st3111ev010.evsi.json#L600] | FlagArray[138].FlagNo | FlagNo | quest 70033001 / Darkness Cloaked Shadolean Great Temple / Event Viewer \| EVENT_NAME_st3111ev010 \| Black Knight and Leo | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st3212/view_st3212ev000/event/viewer/view_st3212ev000.evsi.json#L632[client/03040008/event/st3212/view_st3212ev000/event/viewer/view_st3212ev000.evsi.json#L632] | FlagArray[143].FlagNo | FlagNo | quest 70033001 / Darkness Cloaked Mergoda Royal Palace Lvl. / Event Viewer \| EVENT_NAME_st3212ev000 \| Numerous Arisen | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st3300/view_st3300ev000/event/viewer/view_st3300ev000.evsi.json#L600[client/03040008/event/st3300/view_st3300ev000/event/viewer/view_st3300ev000.evsi.json#L600] | FlagArray[139].FlagNo | FlagNo | quest 70033001 / East Land of Darkness / Event Viewer \| EVENT_NAME_st3300ev000 \| Underworld | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st3300/view_st3300ev005/event/viewer/view_st3300ev005.evsi.json#L612[client/03040008/event/st3300/view_st3300ev005/event/viewer/view_st3300ev005.evsi.json#L612] | FlagArray[141].FlagNo | FlagNo | quest 70033001 / East Land of Darkness / Event Viewer \| EVENT_NAME_st3300ev005 \| The Last Days of the Black Knight | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st3400/view_st3400ev000/event/viewer/view_st3400ev000.evsi.json#L608[client/03040008/event/st3400/view_st3400ev000/event/viewer/view_st3400ev000.evsi.json#L608] | FlagArray[140].FlagNo | FlagNo | quest 70033001 / North Land of Darkness / Event Viewer \| EVENT_NAME_st3400ev000 \| Appearance of the Black Dragon | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st3400/view_st3400ev005/event/viewer/view_st3400ev005.evsi.json#L620[client/03040008/event/st3400/view_st3400ev005/event/viewer/view_st3400ev005.evsi.json#L620] | FlagArray[142].FlagNo | FlagNo | quest 70033001 / North Land of Darkness / Event Viewer \| EVENT_NAME_st3400ev005 \| The Last Days of the Black Dragon | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st3411/view_st3411ev000/event/viewer/view_st3411ev000.evsi.json#L580[client/03040008/event/st3411/view_st3411ev000/event/viewer/view_st3411ev000.evsi.json#L580] | FlagArray[137].FlagNo | FlagNo | quest 70033001 / Darkness Cloaked Mergoda Security District / Event Viewer \| EVENT_NAME_st3411ev000 \| Emergence of Mysial | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st3500/view_st3500ev000/event/viewer/view_st3500ev000.evsi.json#L592[client/03040008/event/st3500/view_st3500ev000/event/viewer/view_st3500ev000.evsi.json#L592] | FlagArray[138].FlagNo | FlagNo | quest 70033001 / Alternative Path / Event Viewer \| EVENT_NAME_st3500ev000 \| Leo's Determination | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st3500/view_st3500ev005/event/viewer/view_st3500ev005.evsi.json#L604[client/03040008/event/st3500/view_st3500ev005/event/viewer/view_st3500ev005.evsi.json#L604] | FlagArray[140].FlagNo | FlagNo | quest 70033001 / Alternative Path / Event Viewer \| EVENT_NAME_st3500ev005 \| Farewell to Leo | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+|===
+
+== Flag 4921 -- Quest 90020305
+
+origin:: derived_qst_local
+direct hits:: *32*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 32 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q90020305/quest/90020305/q90020305_st0433.qst.json[client/03040008/quest/q90020305/quest/90020305/q90020305_st0433.qst.json] | QuestStageList[].QuestGrp[2].Condition | Condition | quest 90020305 / Shadolean Great Temple / "QuestGroup 2 \| 序盤連動封鎖壁右２" / QuestSet=QuestSetInfoOm \| OmID=510445 \| OM_ID_DOOR_510445 \| EnableZone \| GroupNo=2 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q90020305/quest/90020305/q90020305_st0433.qst.json[client/03040008/quest/q90020305/quest/90020305/q90020305_st0433.qst.json] | QuestStageList[].QuestGrp[2].EraseCondition | EraseCondition | quest 90020305 / Shadolean Great Temple / "QuestGroup 2 \| 序盤連動封鎖壁右２" / QuestSet=QuestSetInfoOm \| OmID=510445 \| OM_ID_DOOR_510445 \| EnableZone \| GroupNo=2 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0100/view_st0100ev160/event/viewer/view_st0100ev160.evsi.json#L628[client/03040008/event/st0100/view_st0100ev160/event/viewer/view_st0100ev160.evsi.json#L628] | FlagArray[143].FlagNo | FlagNo | quest 70033001 / Lestania / Event Viewer \| EVENT_NAME_st0100ev160 \| Dawn of a New Era | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0120/view_st0120ev050/event/viewer/view_st0120ev050.evsi.json#L536[client/03040008/event/st0120/view_st0120ev050/event/viewer/view_st0120ev050.evsi.json#L536] | FlagArray[130].FlagNo | FlagNo | quest 70033001 / Farana Plains / Event Viewer \| EVENT_NAME_st0120ev050 \| An Omen of Destruction | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0134/view_st0134ev001/event/viewer/view_st0134ev001.evsi.json#L524[client/03040008/event/st0134/view_st0134ev001/event/viewer/view_st0134ev001.evsi.json#L524] | FlagArray[127].FlagNo | FlagNo | quest 70033001 / Urteca Mountains / Event Viewer \| EVENT_NAME_st0134ev001 \| The Pursuers | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0134/view_st0134ev002/event/viewer/view_st0134ev002.evsi.json#L528[client/03040008/event/st0134/view_st0134ev002/event/viewer/view_st0134ev002.evsi.json#L528] | FlagArray[128].FlagNo | FlagNo | quest 70033001 / Urteca Mountains / Event Viewer \| EVENT_NAME_st0134ev002 \| Royal Tomb | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0134/view_st0134ev005/event/viewer/view_st0134ev005.evsi.json#L532[client/03040008/event/st0134/view_st0134ev005/event/viewer/view_st0134ev005.evsi.json#L532] | FlagArray[129].FlagNo | FlagNo | quest 70033001 / Urteca Mountains / Event Viewer \| EVENT_NAME_st0134ev005 \| Terrifying monster blocking the way | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0134/view_st0134ev010/event/viewer/view_st0134ev010.evsi.json#L532[client/03040008/event/st0134/view_st0134ev010/event/viewer/view_st0134ev010.evsi.json#L532] | FlagArray[129].FlagNo | FlagNo | quest 70033001 / Urteca Mountains / Event Viewer \| EVENT_NAME_st0134ev010 \| Bonding with peers | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0200/view_st0200ev030/event/viewer/view_st0200ev030.evsi.json#L628[client/03040008/event/st0200/view_st0200ev030/event/viewer/view_st0200ev030.evsi.json#L628] | FlagArray[143].FlagNo | FlagNo | quest 70033001 / The White Dragon Temple / Event Viewer \| EVENT_NAME_st0200ev030 \| Steps toward the Future, Second Half | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0201/view_st0201ev230/event/viewer/view_st0201ev230.evsi.json#L524[client/03040008/event/st0201/view_st0201ev230/event/viewer/view_st0201ev230.evsi.json#L524] | FlagArray[128].FlagNo | FlagNo | quest 70033001 / Audience Chamber / Event Viewer \| EVENT_NAME_st0201ev230 \| Heir to the Dragon | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0201/view_st0201ev235/event/viewer/view_st0201ev235.evsi.json#L628[client/03040008/event/st0201/view_st0201ev235/event/viewer/view_st0201ev235.evsi.json#L628] | FlagArray[143].FlagNo | FlagNo | quest 70033001 / Audience Chamber / Event Viewer \| EVENT_NAME_st0201ev235 \| 3rd Season Staff Roll | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0201/view_st0201ev240/event/viewer/view_st0201ev240.evsi.json#L536[client/03040008/event/st0201/view_st0201ev240/event/viewer/view_st0201ev240.evsi.json#L536] | FlagArray[130].FlagNo | FlagNo | quest 70033001 / Audience Chamber / Event Viewer \| EVENT_NAME_st0201ev240 \| Continental Anomalies | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0201/view_st0201ev245/event/viewer/view_st0201ev245.evsi.json#L628[client/03040008/event/st0201/view_st0201ev245/event/viewer/view_st0201ev245.evsi.json#L628] | FlagArray[143].FlagNo | FlagNo | quest 70033001 / Audience Chamber / Event Viewer \| EVENT_NAME_st0201ev245 \| Steps toward the Future, First Half | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0451/view_st0451ev020/event/viewer/view_st0451ev020.evsi.json#L532[client/03040008/event/st0451/view_st0451ev020/event/viewer/view_st0451ev020.evsi.json#L532] | FlagArray[129].FlagNo | FlagNo | quest 70033001 / Lookout Castle / Event Viewer \| EVENT_NAME_st0451ev020 \| Thoughts of each of us | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0451/view_st0451ev025/event/viewer/view_st0451ev025.evsi.json#L548[client/03040008/event/st0451/view_st0451ev025/event/viewer/view_st0451ev025.evsi.json#L548] | FlagArray[133].FlagNo | FlagNo | quest 70033001 / Lookout Castle / Event Viewer \| EVENT_NAME_st0451ev025 \| Acre Selund Anomaly | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0465/view_st0465ev000/event/viewer/view_st0465ev000.evsi.json#L532[client/03040008/event/st0465/view_st0465ev000/event/viewer/view_st0465ev000.evsi.json#L532] | FlagArray[128].FlagNo | FlagNo | quest 70033001 / Megado Detached Palace / Event Viewer \| EVENT_NAME_st0465ev000 \| Secret plan | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0470/view_st0470ev000/event/viewer/view_st0470ev000.evsi.json#L524[client/03040008/event/st0470/view_st0470ev000/event/viewer/view_st0470ev000.evsi.json#L524] | FlagArray[128].FlagNo | FlagNo | quest 70033001 / [Event] Black effect room / Event Viewer \| EVENT_NAME_st0470ev000 \| In the dark | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st1102/view_st1102ev000/event/viewer/view_st1102ev000.evsi.json#L536[client/03040008/event/st1102/view_st1102ev000/event/viewer/view_st1102ev000.evsi.json#L536] | FlagArray[129].FlagNo | FlagNo | quest 70033001 / The Royal Family Mausoleum / Event Viewer \| EVENT_NAME_st1102ev000 \| The Prince's Decision | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st1103/view_st1103ev000/event/viewer/view_st1103ev000.evsi.json#L580[client/03040008/event/st1103/view_st1103ev000/event/viewer/view_st1103ev000.evsi.json#L580] | FlagArray[135].FlagNo | FlagNo | quest 70033001 / Evil Dragon's Roost / Event Viewer \| EVENT_NAME_st1103ev000 \| The End of Hope | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st1103/view_st1103ev005/event/viewer/view_st1103ev005.evsi.json#L596[client/03040008/event/st1103/view_st1103ev005/event/viewer/view_st1103ev005.evsi.json#L596] | FlagArray[137].FlagNo | FlagNo | quest 70033001 / Evil Dragon's Roost / Event Viewer \| EVENT_NAME_st1103ev005 \| The whole story | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st3000/view_st3000ev000/event/viewer/view_st3000ev000.evsi.json#L536[client/03040008/event/st3000/view_st3000ev000/event/viewer/view_st3000ev000.evsi.json#L536] | FlagArray[130].FlagNo | FlagNo | quest 70033001 / 3.4 Demo Room / Event Viewer \| EVENT_NAME_st3000ev000 \| The Water Dragon Continent | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st3111/view_st3111ev000/event/viewer/view_st3111ev000.evsi.json#L596[client/03040008/event/st3111/view_st3111ev000/event/viewer/view_st3111ev000.evsi.json#L596] | FlagArray[138].FlagNo | FlagNo | quest 70033001 / Darkness Cloaked Shadolean Great Temple / Event Viewer \| EVENT_NAME_st3111ev000 \| Gate Keeper | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st3111/view_st3111ev005/event/viewer/view_st3111ev005.evsi.json#L596[client/03040008/event/st3111/view_st3111ev005/event/viewer/view_st3111ev005.evsi.json#L596] | FlagArray[138].FlagNo | FlagNo | quest 70033001 / Darkness Cloaked Shadolean Great Temple / Event Viewer \| EVENT_NAME_st3111ev005 \| Reunion with Leo | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st3111/view_st3111ev010/event/viewer/view_st3111ev010.evsi.json#L604[client/03040008/event/st3111/view_st3111ev010/event/viewer/view_st3111ev010.evsi.json#L604] | FlagArray[139].FlagNo | FlagNo | quest 70033001 / Darkness Cloaked Shadolean Great Temple / Event Viewer \| EVENT_NAME_st3111ev010 \| Black Knight and Leo | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st3212/view_st3212ev000/event/viewer/view_st3212ev000.evsi.json#L636[client/03040008/event/st3212/view_st3212ev000/event/viewer/view_st3212ev000.evsi.json#L636] | FlagArray[144].FlagNo | FlagNo | quest 70033001 / Darkness Cloaked Mergoda Royal Palace Lvl. / Event Viewer \| EVENT_NAME_st3212ev000 \| Numerous Arisen | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st3300/view_st3300ev000/event/viewer/view_st3300ev000.evsi.json#L604[client/03040008/event/st3300/view_st3300ev000/event/viewer/view_st3300ev000.evsi.json#L604] | FlagArray[140].FlagNo | FlagNo | quest 70033001 / East Land of Darkness / Event Viewer \| EVENT_NAME_st3300ev000 \| Underworld | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st3300/view_st3300ev005/event/viewer/view_st3300ev005.evsi.json#L616[client/03040008/event/st3300/view_st3300ev005/event/viewer/view_st3300ev005.evsi.json#L616] | FlagArray[142].FlagNo | FlagNo | quest 70033001 / East Land of Darkness / Event Viewer \| EVENT_NAME_st3300ev005 \| The Last Days of the Black Knight | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st3400/view_st3400ev000/event/viewer/view_st3400ev000.evsi.json#L612[client/03040008/event/st3400/view_st3400ev000/event/viewer/view_st3400ev000.evsi.json#L612] | FlagArray[141].FlagNo | FlagNo | quest 70033001 / North Land of Darkness / Event Viewer \| EVENT_NAME_st3400ev000 \| Appearance of the Black Dragon | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st3400/view_st3400ev005/event/viewer/view_st3400ev005.evsi.json#L624[client/03040008/event/st3400/view_st3400ev005/event/viewer/view_st3400ev005.evsi.json#L624] | FlagArray[143].FlagNo | FlagNo | quest 70033001 / North Land of Darkness / Event Viewer \| EVENT_NAME_st3400ev005 \| The Last Days of the Black Dragon | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st3411/view_st3411ev000/event/viewer/view_st3411ev000.evsi.json#L584[client/03040008/event/st3411/view_st3411ev000/event/viewer/view_st3411ev000.evsi.json#L584] | FlagArray[138].FlagNo | FlagNo | quest 70033001 / Darkness Cloaked Mergoda Security District / Event Viewer \| EVENT_NAME_st3411ev000 \| Emergence of Mysial | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st3500/view_st3500ev000/event/viewer/view_st3500ev000.evsi.json#L596[client/03040008/event/st3500/view_st3500ev000/event/viewer/view_st3500ev000.evsi.json#L596] | FlagArray[139].FlagNo | FlagNo | quest 70033001 / Alternative Path / Event Viewer \| EVENT_NAME_st3500ev000 \| Leo's Determination | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st3500/view_st3500ev005/event/viewer/view_st3500ev005.evsi.json#L608[client/03040008/event/st3500/view_st3500ev005/event/viewer/view_st3500ev005.evsi.json#L608] | FlagArray[141].FlagNo | FlagNo | quest 70033001 / Alternative Path / Event Viewer \| EVENT_NAME_st3500ev005 \| Farewell to Leo | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+|===
+
+== Flag 4922 -- Quest 90020305
+
+origin:: derived_qst_local
+direct hits:: *32*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 32 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q90020305/quest/90020305/q90020305_st0433.qst.json[client/03040008/quest/q90020305/quest/90020305/q90020305_st0433.qst.json] | QuestStageList[].QuestGrp[3].Condition | Condition | quest 90020305 / Shadolean Great Temple / "QuestGroup 3 \| 序盤連動封鎖壁左１" / QuestSet=QuestSetInfoOm \| OmID=510445 \| OM_ID_DOOR_510445 \| EnableZone \| GroupNo=3 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q90020305/quest/90020305/q90020305_st0433.qst.json[client/03040008/quest/q90020305/quest/90020305/q90020305_st0433.qst.json] | QuestStageList[].QuestGrp[3].EraseCondition | EraseCondition | quest 90020305 / Shadolean Great Temple / "QuestGroup 3 \| 序盤連動封鎖壁左１" / QuestSet=QuestSetInfoOm \| OmID=510445 \| OM_ID_DOOR_510445 \| EnableZone \| GroupNo=3 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0100/view_st0100ev160/event/viewer/view_st0100ev160.evsi.json#L632[client/03040008/event/st0100/view_st0100ev160/event/viewer/view_st0100ev160.evsi.json#L632] | FlagArray[144].FlagNo | FlagNo | quest 70033001 / Lestania / Event Viewer \| EVENT_NAME_st0100ev160 \| Dawn of a New Era | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0120/view_st0120ev050/event/viewer/view_st0120ev050.evsi.json#L540[client/03040008/event/st0120/view_st0120ev050/event/viewer/view_st0120ev050.evsi.json#L540] | FlagArray[131].FlagNo | FlagNo | quest 70033001 / Farana Plains / Event Viewer \| EVENT_NAME_st0120ev050 \| An Omen of Destruction | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0134/view_st0134ev001/event/viewer/view_st0134ev001.evsi.json#L528[client/03040008/event/st0134/view_st0134ev001/event/viewer/view_st0134ev001.evsi.json#L528] | FlagArray[128].FlagNo | FlagNo | quest 70033001 / Urteca Mountains / Event Viewer \| EVENT_NAME_st0134ev001 \| The Pursuers | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0134/view_st0134ev002/event/viewer/view_st0134ev002.evsi.json#L532[client/03040008/event/st0134/view_st0134ev002/event/viewer/view_st0134ev002.evsi.json#L532] | FlagArray[129].FlagNo | FlagNo | quest 70033001 / Urteca Mountains / Event Viewer \| EVENT_NAME_st0134ev002 \| Royal Tomb | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0134/view_st0134ev005/event/viewer/view_st0134ev005.evsi.json#L536[client/03040008/event/st0134/view_st0134ev005/event/viewer/view_st0134ev005.evsi.json#L536] | FlagArray[130].FlagNo | FlagNo | quest 70033001 / Urteca Mountains / Event Viewer \| EVENT_NAME_st0134ev005 \| Terrifying monster blocking the way | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0134/view_st0134ev010/event/viewer/view_st0134ev010.evsi.json#L536[client/03040008/event/st0134/view_st0134ev010/event/viewer/view_st0134ev010.evsi.json#L536] | FlagArray[130].FlagNo | FlagNo | quest 70033001 / Urteca Mountains / Event Viewer \| EVENT_NAME_st0134ev010 \| Bonding with peers | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0200/view_st0200ev030/event/viewer/view_st0200ev030.evsi.json#L632[client/03040008/event/st0200/view_st0200ev030/event/viewer/view_st0200ev030.evsi.json#L632] | FlagArray[144].FlagNo | FlagNo | quest 70033001 / The White Dragon Temple / Event Viewer \| EVENT_NAME_st0200ev030 \| Steps toward the Future, Second Half | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0201/view_st0201ev230/event/viewer/view_st0201ev230.evsi.json#L528[client/03040008/event/st0201/view_st0201ev230/event/viewer/view_st0201ev230.evsi.json#L528] | FlagArray[129].FlagNo | FlagNo | quest 70033001 / Audience Chamber / Event Viewer \| EVENT_NAME_st0201ev230 \| Heir to the Dragon | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0201/view_st0201ev235/event/viewer/view_st0201ev235.evsi.json#L632[client/03040008/event/st0201/view_st0201ev235/event/viewer/view_st0201ev235.evsi.json#L632] | FlagArray[144].FlagNo | FlagNo | quest 70033001 / Audience Chamber / Event Viewer \| EVENT_NAME_st0201ev235 \| 3rd Season Staff Roll | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0201/view_st0201ev240/event/viewer/view_st0201ev240.evsi.json#L540[client/03040008/event/st0201/view_st0201ev240/event/viewer/view_st0201ev240.evsi.json#L540] | FlagArray[131].FlagNo | FlagNo | quest 70033001 / Audience Chamber / Event Viewer \| EVENT_NAME_st0201ev240 \| Continental Anomalies | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0201/view_st0201ev245/event/viewer/view_st0201ev245.evsi.json#L632[client/03040008/event/st0201/view_st0201ev245/event/viewer/view_st0201ev245.evsi.json#L632] | FlagArray[144].FlagNo | FlagNo | quest 70033001 / Audience Chamber / Event Viewer \| EVENT_NAME_st0201ev245 \| Steps toward the Future, First Half | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0451/view_st0451ev020/event/viewer/view_st0451ev020.evsi.json#L536[client/03040008/event/st0451/view_st0451ev020/event/viewer/view_st0451ev020.evsi.json#L536] | FlagArray[130].FlagNo | FlagNo | quest 70033001 / Lookout Castle / Event Viewer \| EVENT_NAME_st0451ev020 \| Thoughts of each of us | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0451/view_st0451ev025/event/viewer/view_st0451ev025.evsi.json#L552[client/03040008/event/st0451/view_st0451ev025/event/viewer/view_st0451ev025.evsi.json#L552] | FlagArray[134].FlagNo | FlagNo | quest 70033001 / Lookout Castle / Event Viewer \| EVENT_NAME_st0451ev025 \| Acre Selund Anomaly | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0465/view_st0465ev000/event/viewer/view_st0465ev000.evsi.json#L536[client/03040008/event/st0465/view_st0465ev000/event/viewer/view_st0465ev000.evsi.json#L536] | FlagArray[129].FlagNo | FlagNo | quest 70033001 / Megado Detached Palace / Event Viewer \| EVENT_NAME_st0465ev000 \| Secret plan | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0470/view_st0470ev000/event/viewer/view_st0470ev000.evsi.json#L528[client/03040008/event/st0470/view_st0470ev000/event/viewer/view_st0470ev000.evsi.json#L528] | FlagArray[129].FlagNo | FlagNo | quest 70033001 / [Event] Black effect room / Event Viewer \| EVENT_NAME_st0470ev000 \| In the dark | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st1102/view_st1102ev000/event/viewer/view_st1102ev000.evsi.json#L540[client/03040008/event/st1102/view_st1102ev000/event/viewer/view_st1102ev000.evsi.json#L540] | FlagArray[130].FlagNo | FlagNo | quest 70033001 / The Royal Family Mausoleum / Event Viewer \| EVENT_NAME_st1102ev000 \| The Prince's Decision | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st1103/view_st1103ev000/event/viewer/view_st1103ev000.evsi.json#L584[client/03040008/event/st1103/view_st1103ev000/event/viewer/view_st1103ev000.evsi.json#L584] | FlagArray[136].FlagNo | FlagNo | quest 70033001 / Evil Dragon's Roost / Event Viewer \| EVENT_NAME_st1103ev000 \| The End of Hope | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st1103/view_st1103ev005/event/viewer/view_st1103ev005.evsi.json#L600[client/03040008/event/st1103/view_st1103ev005/event/viewer/view_st1103ev005.evsi.json#L600] | FlagArray[138].FlagNo | FlagNo | quest 70033001 / Evil Dragon's Roost / Event Viewer \| EVENT_NAME_st1103ev005 \| The whole story | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st3000/view_st3000ev000/event/viewer/view_st3000ev000.evsi.json#L540[client/03040008/event/st3000/view_st3000ev000/event/viewer/view_st3000ev000.evsi.json#L540] | FlagArray[131].FlagNo | FlagNo | quest 70033001 / 3.4 Demo Room / Event Viewer \| EVENT_NAME_st3000ev000 \| The Water Dragon Continent | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st3111/view_st3111ev000/event/viewer/view_st3111ev000.evsi.json#L600[client/03040008/event/st3111/view_st3111ev000/event/viewer/view_st3111ev000.evsi.json#L600] | FlagArray[139].FlagNo | FlagNo | quest 70033001 / Darkness Cloaked Shadolean Great Temple / Event Viewer \| EVENT_NAME_st3111ev000 \| Gate Keeper | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st3111/view_st3111ev005/event/viewer/view_st3111ev005.evsi.json#L600[client/03040008/event/st3111/view_st3111ev005/event/viewer/view_st3111ev005.evsi.json#L600] | FlagArray[139].FlagNo | FlagNo | quest 70033001 / Darkness Cloaked Shadolean Great Temple / Event Viewer \| EVENT_NAME_st3111ev005 \| Reunion with Leo | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st3111/view_st3111ev010/event/viewer/view_st3111ev010.evsi.json#L608[client/03040008/event/st3111/view_st3111ev010/event/viewer/view_st3111ev010.evsi.json#L608] | FlagArray[140].FlagNo | FlagNo | quest 70033001 / Darkness Cloaked Shadolean Great Temple / Event Viewer \| EVENT_NAME_st3111ev010 \| Black Knight and Leo | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st3212/view_st3212ev000/event/viewer/view_st3212ev000.evsi.json#L640[client/03040008/event/st3212/view_st3212ev000/event/viewer/view_st3212ev000.evsi.json#L640] | FlagArray[145].FlagNo | FlagNo | quest 70033001 / Darkness Cloaked Mergoda Royal Palace Lvl. / Event Viewer \| EVENT_NAME_st3212ev000 \| Numerous Arisen | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st3300/view_st3300ev000/event/viewer/view_st3300ev000.evsi.json#L608[client/03040008/event/st3300/view_st3300ev000/event/viewer/view_st3300ev000.evsi.json#L608] | FlagArray[141].FlagNo | FlagNo | quest 70033001 / East Land of Darkness / Event Viewer \| EVENT_NAME_st3300ev000 \| Underworld | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st3300/view_st3300ev005/event/viewer/view_st3300ev005.evsi.json#L620[client/03040008/event/st3300/view_st3300ev005/event/viewer/view_st3300ev005.evsi.json#L620] | FlagArray[143].FlagNo | FlagNo | quest 70033001 / East Land of Darkness / Event Viewer \| EVENT_NAME_st3300ev005 \| The Last Days of the Black Knight | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st3400/view_st3400ev000/event/viewer/view_st3400ev000.evsi.json#L616[client/03040008/event/st3400/view_st3400ev000/event/viewer/view_st3400ev000.evsi.json#L616] | FlagArray[142].FlagNo | FlagNo | quest 70033001 / North Land of Darkness / Event Viewer \| EVENT_NAME_st3400ev000 \| Appearance of the Black Dragon | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st3400/view_st3400ev005/event/viewer/view_st3400ev005.evsi.json#L628[client/03040008/event/st3400/view_st3400ev005/event/viewer/view_st3400ev005.evsi.json#L628] | FlagArray[144].FlagNo | FlagNo | quest 70033001 / North Land of Darkness / Event Viewer \| EVENT_NAME_st3400ev005 \| The Last Days of the Black Dragon | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st3411/view_st3411ev000/event/viewer/view_st3411ev000.evsi.json#L588[client/03040008/event/st3411/view_st3411ev000/event/viewer/view_st3411ev000.evsi.json#L588] | FlagArray[139].FlagNo | FlagNo | quest 70033001 / Darkness Cloaked Mergoda Security District / Event Viewer \| EVENT_NAME_st3411ev000 \| Emergence of Mysial | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st3500/view_st3500ev000/event/viewer/view_st3500ev000.evsi.json#L600[client/03040008/event/st3500/view_st3500ev000/event/viewer/view_st3500ev000.evsi.json#L600] | FlagArray[140].FlagNo | FlagNo | quest 70033001 / Alternative Path / Event Viewer \| EVENT_NAME_st3500ev000 \| Leo's Determination | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st3500/view_st3500ev005/event/viewer/view_st3500ev005.evsi.json#L612[client/03040008/event/st3500/view_st3500ev005/event/viewer/view_st3500ev005.evsi.json#L612] | FlagArray[142].FlagNo | FlagNo | quest 70033001 / Alternative Path / Event Viewer \| EVENT_NAME_st3500ev005 \| Farewell to Leo | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+|===
+
+== Flag 4923 -- Quest 90020305
+
+origin:: derived_qst_local
+direct hits:: *32*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 32 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q90020305/quest/90020305/q90020305_st0433.qst.json[client/03040008/quest/q90020305/quest/90020305/q90020305_st0433.qst.json] | QuestStageList[].QuestGrp[4].Condition | Condition | quest 90020305 / Shadolean Great Temple / "QuestGroup 4 \| 序盤連動封鎖壁左２" / QuestSet=QuestSetInfoOm \| OmID=510445 \| OM_ID_DOOR_510445 \| EnableZone \| GroupNo=4 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q90020305/quest/90020305/q90020305_st0433.qst.json[client/03040008/quest/q90020305/quest/90020305/q90020305_st0433.qst.json] | QuestStageList[].QuestGrp[4].EraseCondition | EraseCondition | quest 90020305 / Shadolean Great Temple / "QuestGroup 4 \| 序盤連動封鎖壁左２" / QuestSet=QuestSetInfoOm \| OmID=510445 \| OM_ID_DOOR_510445 \| EnableZone \| GroupNo=4 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0100/view_st0100ev160/event/viewer/view_st0100ev160.evsi.json#L636[client/03040008/event/st0100/view_st0100ev160/event/viewer/view_st0100ev160.evsi.json#L636] | FlagArray[145].FlagNo | FlagNo | quest 70033001 / Lestania / Event Viewer \| EVENT_NAME_st0100ev160 \| Dawn of a New Era | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0120/view_st0120ev050/event/viewer/view_st0120ev050.evsi.json#L544[client/03040008/event/st0120/view_st0120ev050/event/viewer/view_st0120ev050.evsi.json#L544] | FlagArray[132].FlagNo | FlagNo | quest 70033001 / Farana Plains / Event Viewer \| EVENT_NAME_st0120ev050 \| An Omen of Destruction | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0134/view_st0134ev001/event/viewer/view_st0134ev001.evsi.json#L532[client/03040008/event/st0134/view_st0134ev001/event/viewer/view_st0134ev001.evsi.json#L532] | FlagArray[129].FlagNo | FlagNo | quest 70033001 / Urteca Mountains / Event Viewer \| EVENT_NAME_st0134ev001 \| The Pursuers | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0134/view_st0134ev002/event/viewer/view_st0134ev002.evsi.json#L536[client/03040008/event/st0134/view_st0134ev002/event/viewer/view_st0134ev002.evsi.json#L536] | FlagArray[130].FlagNo | FlagNo | quest 70033001 / Urteca Mountains / Event Viewer \| EVENT_NAME_st0134ev002 \| Royal Tomb | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0134/view_st0134ev005/event/viewer/view_st0134ev005.evsi.json#L540[client/03040008/event/st0134/view_st0134ev005/event/viewer/view_st0134ev005.evsi.json#L540] | FlagArray[131].FlagNo | FlagNo | quest 70033001 / Urteca Mountains / Event Viewer \| EVENT_NAME_st0134ev005 \| Terrifying monster blocking the way | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0134/view_st0134ev010/event/viewer/view_st0134ev010.evsi.json#L540[client/03040008/event/st0134/view_st0134ev010/event/viewer/view_st0134ev010.evsi.json#L540] | FlagArray[131].FlagNo | FlagNo | quest 70033001 / Urteca Mountains / Event Viewer \| EVENT_NAME_st0134ev010 \| Bonding with peers | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0200/view_st0200ev030/event/viewer/view_st0200ev030.evsi.json#L636[client/03040008/event/st0200/view_st0200ev030/event/viewer/view_st0200ev030.evsi.json#L636] | FlagArray[145].FlagNo | FlagNo | quest 70033001 / The White Dragon Temple / Event Viewer \| EVENT_NAME_st0200ev030 \| Steps toward the Future, Second Half | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0201/view_st0201ev230/event/viewer/view_st0201ev230.evsi.json#L532[client/03040008/event/st0201/view_st0201ev230/event/viewer/view_st0201ev230.evsi.json#L532] | FlagArray[130].FlagNo | FlagNo | quest 70033001 / Audience Chamber / Event Viewer \| EVENT_NAME_st0201ev230 \| Heir to the Dragon | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0201/view_st0201ev235/event/viewer/view_st0201ev235.evsi.json#L636[client/03040008/event/st0201/view_st0201ev235/event/viewer/view_st0201ev235.evsi.json#L636] | FlagArray[145].FlagNo | FlagNo | quest 70033001 / Audience Chamber / Event Viewer \| EVENT_NAME_st0201ev235 \| 3rd Season Staff Roll | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0201/view_st0201ev240/event/viewer/view_st0201ev240.evsi.json#L544[client/03040008/event/st0201/view_st0201ev240/event/viewer/view_st0201ev240.evsi.json#L544] | FlagArray[132].FlagNo | FlagNo | quest 70033001 / Audience Chamber / Event Viewer \| EVENT_NAME_st0201ev240 \| Continental Anomalies | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0201/view_st0201ev245/event/viewer/view_st0201ev245.evsi.json#L636[client/03040008/event/st0201/view_st0201ev245/event/viewer/view_st0201ev245.evsi.json#L636] | FlagArray[145].FlagNo | FlagNo | quest 70033001 / Audience Chamber / Event Viewer \| EVENT_NAME_st0201ev245 \| Steps toward the Future, First Half | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0451/view_st0451ev020/event/viewer/view_st0451ev020.evsi.json#L540[client/03040008/event/st0451/view_st0451ev020/event/viewer/view_st0451ev020.evsi.json#L540] | FlagArray[131].FlagNo | FlagNo | quest 70033001 / Lookout Castle / Event Viewer \| EVENT_NAME_st0451ev020 \| Thoughts of each of us | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0451/view_st0451ev025/event/viewer/view_st0451ev025.evsi.json#L556[client/03040008/event/st0451/view_st0451ev025/event/viewer/view_st0451ev025.evsi.json#L556] | FlagArray[135].FlagNo | FlagNo | quest 70033001 / Lookout Castle / Event Viewer \| EVENT_NAME_st0451ev025 \| Acre Selund Anomaly | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0465/view_st0465ev000/event/viewer/view_st0465ev000.evsi.json#L540[client/03040008/event/st0465/view_st0465ev000/event/viewer/view_st0465ev000.evsi.json#L540] | FlagArray[130].FlagNo | FlagNo | quest 70033001 / Megado Detached Palace / Event Viewer \| EVENT_NAME_st0465ev000 \| Secret plan | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0470/view_st0470ev000/event/viewer/view_st0470ev000.evsi.json#L532[client/03040008/event/st0470/view_st0470ev000/event/viewer/view_st0470ev000.evsi.json#L532] | FlagArray[130].FlagNo | FlagNo | quest 70033001 / [Event] Black effect room / Event Viewer \| EVENT_NAME_st0470ev000 \| In the dark | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st1102/view_st1102ev000/event/viewer/view_st1102ev000.evsi.json#L544[client/03040008/event/st1102/view_st1102ev000/event/viewer/view_st1102ev000.evsi.json#L544] | FlagArray[131].FlagNo | FlagNo | quest 70033001 / The Royal Family Mausoleum / Event Viewer \| EVENT_NAME_st1102ev000 \| The Prince's Decision | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st1103/view_st1103ev000/event/viewer/view_st1103ev000.evsi.json#L588[client/03040008/event/st1103/view_st1103ev000/event/viewer/view_st1103ev000.evsi.json#L588] | FlagArray[137].FlagNo | FlagNo | quest 70033001 / Evil Dragon's Roost / Event Viewer \| EVENT_NAME_st1103ev000 \| The End of Hope | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st1103/view_st1103ev005/event/viewer/view_st1103ev005.evsi.json#L604[client/03040008/event/st1103/view_st1103ev005/event/viewer/view_st1103ev005.evsi.json#L604] | FlagArray[139].FlagNo | FlagNo | quest 70033001 / Evil Dragon's Roost / Event Viewer \| EVENT_NAME_st1103ev005 \| The whole story | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st3000/view_st3000ev000/event/viewer/view_st3000ev000.evsi.json#L544[client/03040008/event/st3000/view_st3000ev000/event/viewer/view_st3000ev000.evsi.json#L544] | FlagArray[132].FlagNo | FlagNo | quest 70033001 / 3.4 Demo Room / Event Viewer \| EVENT_NAME_st3000ev000 \| The Water Dragon Continent | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st3111/view_st3111ev000/event/viewer/view_st3111ev000.evsi.json#L604[client/03040008/event/st3111/view_st3111ev000/event/viewer/view_st3111ev000.evsi.json#L604] | FlagArray[140].FlagNo | FlagNo | quest 70033001 / Darkness Cloaked Shadolean Great Temple / Event Viewer \| EVENT_NAME_st3111ev000 \| Gate Keeper | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st3111/view_st3111ev005/event/viewer/view_st3111ev005.evsi.json#L604[client/03040008/event/st3111/view_st3111ev005/event/viewer/view_st3111ev005.evsi.json#L604] | FlagArray[140].FlagNo | FlagNo | quest 70033001 / Darkness Cloaked Shadolean Great Temple / Event Viewer \| EVENT_NAME_st3111ev005 \| Reunion with Leo | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st3111/view_st3111ev010/event/viewer/view_st3111ev010.evsi.json#L612[client/03040008/event/st3111/view_st3111ev010/event/viewer/view_st3111ev010.evsi.json#L612] | FlagArray[141].FlagNo | FlagNo | quest 70033001 / Darkness Cloaked Shadolean Great Temple / Event Viewer \| EVENT_NAME_st3111ev010 \| Black Knight and Leo | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st3212/view_st3212ev000/event/viewer/view_st3212ev000.evsi.json#L644[client/03040008/event/st3212/view_st3212ev000/event/viewer/view_st3212ev000.evsi.json#L644] | FlagArray[146].FlagNo | FlagNo | quest 70033001 / Darkness Cloaked Mergoda Royal Palace Lvl. / Event Viewer \| EVENT_NAME_st3212ev000 \| Numerous Arisen | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st3300/view_st3300ev000/event/viewer/view_st3300ev000.evsi.json#L612[client/03040008/event/st3300/view_st3300ev000/event/viewer/view_st3300ev000.evsi.json#L612] | FlagArray[142].FlagNo | FlagNo | quest 70033001 / East Land of Darkness / Event Viewer \| EVENT_NAME_st3300ev000 \| Underworld | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st3300/view_st3300ev005/event/viewer/view_st3300ev005.evsi.json#L624[client/03040008/event/st3300/view_st3300ev005/event/viewer/view_st3300ev005.evsi.json#L624] | FlagArray[144].FlagNo | FlagNo | quest 70033001 / East Land of Darkness / Event Viewer \| EVENT_NAME_st3300ev005 \| The Last Days of the Black Knight | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st3400/view_st3400ev000/event/viewer/view_st3400ev000.evsi.json#L620[client/03040008/event/st3400/view_st3400ev000/event/viewer/view_st3400ev000.evsi.json#L620] | FlagArray[143].FlagNo | FlagNo | quest 70033001 / North Land of Darkness / Event Viewer \| EVENT_NAME_st3400ev000 \| Appearance of the Black Dragon | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st3400/view_st3400ev005/event/viewer/view_st3400ev005.evsi.json#L632[client/03040008/event/st3400/view_st3400ev005/event/viewer/view_st3400ev005.evsi.json#L632] | FlagArray[145].FlagNo | FlagNo | quest 70033001 / North Land of Darkness / Event Viewer \| EVENT_NAME_st3400ev005 \| The Last Days of the Black Dragon | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st3411/view_st3411ev000/event/viewer/view_st3411ev000.evsi.json#L592[client/03040008/event/st3411/view_st3411ev000/event/viewer/view_st3411ev000.evsi.json#L592] | FlagArray[140].FlagNo | FlagNo | quest 70033001 / Darkness Cloaked Mergoda Security District / Event Viewer \| EVENT_NAME_st3411ev000 \| Emergence of Mysial | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st3500/view_st3500ev000/event/viewer/view_st3500ev000.evsi.json#L604[client/03040008/event/st3500/view_st3500ev000/event/viewer/view_st3500ev000.evsi.json#L604] | FlagArray[141].FlagNo | FlagNo | quest 70033001 / Alternative Path / Event Viewer \| EVENT_NAME_st3500ev000 \| Leo's Determination | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st3500/view_st3500ev005/event/viewer/view_st3500ev005.evsi.json#L616[client/03040008/event/st3500/view_st3500ev005/event/viewer/view_st3500ev005.evsi.json#L616] | FlagArray[143].FlagNo | FlagNo | quest 70033001 / Alternative Path / Event Viewer \| EVENT_NAME_st3500ev005 \| Farewell to Leo | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+|===
+
+== Flag 4924 -- Quest 90020305
+
+origin:: derived_qst_local
+direct hits:: *31*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 31 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q90020305/quest/90020305/q90020305_st0433.qst.json[client/03040008/quest/q90020305/quest/90020305/q90020305_st0433.qst.json] | QuestStageList[].QuestGrp[5].Condition | Condition | quest 90020305 / Shadolean Great Temple / "QuestGroup 5 \| 一方通行ワープOM右1" / QuestSet=QuestSetInfoOmWarp \| OmID=522157 \| OM_ID_RIFT_WARP_CRYSTAL_7 \| EnableZone \| GroupNo=5 \|\| QuestSet=QuestSetInfoOmWarp \| OmID=522157 \| OM_ID_RIFT_WARP_CRYSTAL_7 \| EnableZone \| GroupNo=5 \|\| +2 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0100/view_st0100ev160/event/viewer/view_st0100ev160.evsi.json#L640[client/03040008/event/st0100/view_st0100ev160/event/viewer/view_st0100ev160.evsi.json#L640] | FlagArray[146].FlagNo | FlagNo | quest 70033001 / Lestania / Event Viewer \| EVENT_NAME_st0100ev160 \| Dawn of a New Era | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0120/view_st0120ev050/event/viewer/view_st0120ev050.evsi.json#L548[client/03040008/event/st0120/view_st0120ev050/event/viewer/view_st0120ev050.evsi.json#L548] | FlagArray[133].FlagNo | FlagNo | quest 70033001 / Farana Plains / Event Viewer \| EVENT_NAME_st0120ev050 \| An Omen of Destruction | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0134/view_st0134ev001/event/viewer/view_st0134ev001.evsi.json#L536[client/03040008/event/st0134/view_st0134ev001/event/viewer/view_st0134ev001.evsi.json#L536] | FlagArray[130].FlagNo | FlagNo | quest 70033001 / Urteca Mountains / Event Viewer \| EVENT_NAME_st0134ev001 \| The Pursuers | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0134/view_st0134ev002/event/viewer/view_st0134ev002.evsi.json#L540[client/03040008/event/st0134/view_st0134ev002/event/viewer/view_st0134ev002.evsi.json#L540] | FlagArray[131].FlagNo | FlagNo | quest 70033001 / Urteca Mountains / Event Viewer \| EVENT_NAME_st0134ev002 \| Royal Tomb | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0134/view_st0134ev005/event/viewer/view_st0134ev005.evsi.json#L544[client/03040008/event/st0134/view_st0134ev005/event/viewer/view_st0134ev005.evsi.json#L544] | FlagArray[132].FlagNo | FlagNo | quest 70033001 / Urteca Mountains / Event Viewer \| EVENT_NAME_st0134ev005 \| Terrifying monster blocking the way | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0134/view_st0134ev010/event/viewer/view_st0134ev010.evsi.json#L544[client/03040008/event/st0134/view_st0134ev010/event/viewer/view_st0134ev010.evsi.json#L544] | FlagArray[132].FlagNo | FlagNo | quest 70033001 / Urteca Mountains / Event Viewer \| EVENT_NAME_st0134ev010 \| Bonding with peers | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0200/view_st0200ev030/event/viewer/view_st0200ev030.evsi.json#L640[client/03040008/event/st0200/view_st0200ev030/event/viewer/view_st0200ev030.evsi.json#L640] | FlagArray[146].FlagNo | FlagNo | quest 70033001 / The White Dragon Temple / Event Viewer \| EVENT_NAME_st0200ev030 \| Steps toward the Future, Second Half | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0201/view_st0201ev230/event/viewer/view_st0201ev230.evsi.json#L536[client/03040008/event/st0201/view_st0201ev230/event/viewer/view_st0201ev230.evsi.json#L536] | FlagArray[131].FlagNo | FlagNo | quest 70033001 / Audience Chamber / Event Viewer \| EVENT_NAME_st0201ev230 \| Heir to the Dragon | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0201/view_st0201ev235/event/viewer/view_st0201ev235.evsi.json#L640[client/03040008/event/st0201/view_st0201ev235/event/viewer/view_st0201ev235.evsi.json#L640] | FlagArray[146].FlagNo | FlagNo | quest 70033001 / Audience Chamber / Event Viewer \| EVENT_NAME_st0201ev235 \| 3rd Season Staff Roll | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0201/view_st0201ev240/event/viewer/view_st0201ev240.evsi.json#L548[client/03040008/event/st0201/view_st0201ev240/event/viewer/view_st0201ev240.evsi.json#L548] | FlagArray[133].FlagNo | FlagNo | quest 70033001 / Audience Chamber / Event Viewer \| EVENT_NAME_st0201ev240 \| Continental Anomalies | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0201/view_st0201ev245/event/viewer/view_st0201ev245.evsi.json#L640[client/03040008/event/st0201/view_st0201ev245/event/viewer/view_st0201ev245.evsi.json#L640] | FlagArray[146].FlagNo | FlagNo | quest 70033001 / Audience Chamber / Event Viewer \| EVENT_NAME_st0201ev245 \| Steps toward the Future, First Half | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0451/view_st0451ev020/event/viewer/view_st0451ev020.evsi.json#L544[client/03040008/event/st0451/view_st0451ev020/event/viewer/view_st0451ev020.evsi.json#L544] | FlagArray[132].FlagNo | FlagNo | quest 70033001 / Lookout Castle / Event Viewer \| EVENT_NAME_st0451ev020 \| Thoughts of each of us | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0451/view_st0451ev025/event/viewer/view_st0451ev025.evsi.json#L560[client/03040008/event/st0451/view_st0451ev025/event/viewer/view_st0451ev025.evsi.json#L560] | FlagArray[136].FlagNo | FlagNo | quest 70033001 / Lookout Castle / Event Viewer \| EVENT_NAME_st0451ev025 \| Acre Selund Anomaly | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0465/view_st0465ev000/event/viewer/view_st0465ev000.evsi.json#L544[client/03040008/event/st0465/view_st0465ev000/event/viewer/view_st0465ev000.evsi.json#L544] | FlagArray[131].FlagNo | FlagNo | quest 70033001 / Megado Detached Palace / Event Viewer \| EVENT_NAME_st0465ev000 \| Secret plan | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0470/view_st0470ev000/event/viewer/view_st0470ev000.evsi.json#L536[client/03040008/event/st0470/view_st0470ev000/event/viewer/view_st0470ev000.evsi.json#L536] | FlagArray[131].FlagNo | FlagNo | quest 70033001 / [Event] Black effect room / Event Viewer \| EVENT_NAME_st0470ev000 \| In the dark | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st1102/view_st1102ev000/event/viewer/view_st1102ev000.evsi.json#L548[client/03040008/event/st1102/view_st1102ev000/event/viewer/view_st1102ev000.evsi.json#L548] | FlagArray[132].FlagNo | FlagNo | quest 70033001 / The Royal Family Mausoleum / Event Viewer \| EVENT_NAME_st1102ev000 \| The Prince's Decision | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st1103/view_st1103ev000/event/viewer/view_st1103ev000.evsi.json#L592[client/03040008/event/st1103/view_st1103ev000/event/viewer/view_st1103ev000.evsi.json#L592] | FlagArray[138].FlagNo | FlagNo | quest 70033001 / Evil Dragon's Roost / Event Viewer \| EVENT_NAME_st1103ev000 \| The End of Hope | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st1103/view_st1103ev005/event/viewer/view_st1103ev005.evsi.json#L608[client/03040008/event/st1103/view_st1103ev005/event/viewer/view_st1103ev005.evsi.json#L608] | FlagArray[140].FlagNo | FlagNo | quest 70033001 / Evil Dragon's Roost / Event Viewer \| EVENT_NAME_st1103ev005 \| The whole story | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st3000/view_st3000ev000/event/viewer/view_st3000ev000.evsi.json#L548[client/03040008/event/st3000/view_st3000ev000/event/viewer/view_st3000ev000.evsi.json#L548] | FlagArray[133].FlagNo | FlagNo | quest 70033001 / 3.4 Demo Room / Event Viewer \| EVENT_NAME_st3000ev000 \| The Water Dragon Continent | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st3111/view_st3111ev000/event/viewer/view_st3111ev000.evsi.json#L608[client/03040008/event/st3111/view_st3111ev000/event/viewer/view_st3111ev000.evsi.json#L608] | FlagArray[141].FlagNo | FlagNo | quest 70033001 / Darkness Cloaked Shadolean Great Temple / Event Viewer \| EVENT_NAME_st3111ev000 \| Gate Keeper | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st3111/view_st3111ev005/event/viewer/view_st3111ev005.evsi.json#L608[client/03040008/event/st3111/view_st3111ev005/event/viewer/view_st3111ev005.evsi.json#L608] | FlagArray[141].FlagNo | FlagNo | quest 70033001 / Darkness Cloaked Shadolean Great Temple / Event Viewer \| EVENT_NAME_st3111ev005 \| Reunion with Leo | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st3111/view_st3111ev010/event/viewer/view_st3111ev010.evsi.json#L616[client/03040008/event/st3111/view_st3111ev010/event/viewer/view_st3111ev010.evsi.json#L616] | FlagArray[142].FlagNo | FlagNo | quest 70033001 / Darkness Cloaked Shadolean Great Temple / Event Viewer \| EVENT_NAME_st3111ev010 \| Black Knight and Leo | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st3212/view_st3212ev000/event/viewer/view_st3212ev000.evsi.json#L648[client/03040008/event/st3212/view_st3212ev000/event/viewer/view_st3212ev000.evsi.json#L648] | FlagArray[147].FlagNo | FlagNo | quest 70033001 / Darkness Cloaked Mergoda Royal Palace Lvl. / Event Viewer \| EVENT_NAME_st3212ev000 \| Numerous Arisen | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st3300/view_st3300ev000/event/viewer/view_st3300ev000.evsi.json#L616[client/03040008/event/st3300/view_st3300ev000/event/viewer/view_st3300ev000.evsi.json#L616] | FlagArray[143].FlagNo | FlagNo | quest 70033001 / East Land of Darkness / Event Viewer \| EVENT_NAME_st3300ev000 \| Underworld | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st3300/view_st3300ev005/event/viewer/view_st3300ev005.evsi.json#L628[client/03040008/event/st3300/view_st3300ev005/event/viewer/view_st3300ev005.evsi.json#L628] | FlagArray[145].FlagNo | FlagNo | quest 70033001 / East Land of Darkness / Event Viewer \| EVENT_NAME_st3300ev005 \| The Last Days of the Black Knight | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st3400/view_st3400ev000/event/viewer/view_st3400ev000.evsi.json#L624[client/03040008/event/st3400/view_st3400ev000/event/viewer/view_st3400ev000.evsi.json#L624] | FlagArray[144].FlagNo | FlagNo | quest 70033001 / North Land of Darkness / Event Viewer \| EVENT_NAME_st3400ev000 \| Appearance of the Black Dragon | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st3400/view_st3400ev005/event/viewer/view_st3400ev005.evsi.json#L636[client/03040008/event/st3400/view_st3400ev005/event/viewer/view_st3400ev005.evsi.json#L636] | FlagArray[146].FlagNo | FlagNo | quest 70033001 / North Land of Darkness / Event Viewer \| EVENT_NAME_st3400ev005 \| The Last Days of the Black Dragon | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st3411/view_st3411ev000/event/viewer/view_st3411ev000.evsi.json#L596[client/03040008/event/st3411/view_st3411ev000/event/viewer/view_st3411ev000.evsi.json#L596] | FlagArray[141].FlagNo | FlagNo | quest 70033001 / Darkness Cloaked Mergoda Security District / Event Viewer \| EVENT_NAME_st3411ev000 \| Emergence of Mysial | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st3500/view_st3500ev000/event/viewer/view_st3500ev000.evsi.json#L608[client/03040008/event/st3500/view_st3500ev000/event/viewer/view_st3500ev000.evsi.json#L608] | FlagArray[142].FlagNo | FlagNo | quest 70033001 / Alternative Path / Event Viewer \| EVENT_NAME_st3500ev000 \| Leo's Determination | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st3500/view_st3500ev005/event/viewer/view_st3500ev005.evsi.json#L620[client/03040008/event/st3500/view_st3500ev005/event/viewer/view_st3500ev005.evsi.json#L620] | FlagArray[144].FlagNo | FlagNo | quest 70033001 / Alternative Path / Event Viewer \| EVENT_NAME_st3500ev005 \| Farewell to Leo | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+|===
+
+== Flag 4925 -- Quest 90020305
+
+origin:: derived_qst_local
+direct hits:: *3*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 3 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q90020305/quest/90020305/q90020305_st0433.qst.json[client/03040008/quest/q90020305/quest/90020305/q90020305_st0433.qst.json] | QuestStageList[].QuestGrp[6].Condition | Condition | quest 90020305 / Shadolean Great Temple / "QuestGroup 6 \| 一方通行ワープOM右2" / QuestSet=QuestSetInfoOmWarp \| OmID=522157 \| OM_ID_RIFT_WARP_CRYSTAL_7 \| EnableZone \| GroupNo=6 \|\| QuestSet=QuestSetInfoOmWarp \| OmID=522157 \| OM_ID_RIFT_WARP_CRYSTAL_7 \| EnableZone \| GroupNo=6 \|\| +2 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st1103/view_st1103ev000/event/viewer/view_st1103ev000.evsi.json#L28[client/03040008/event/st1103/view_st1103ev000/event/viewer/view_st1103ev000.evsi.json#L28] | FlagArray[2].FlagNo | FlagNo | quest 30260 (Hopes' Bitter End) / Evil Dragon's Roost / Event Viewer \| EVENT_NAME_st1103ev000 \| The End of Hope | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st1103/view_st1103ev005/event/viewer/view_st1103ev005.evsi.json#L36[client/03040008/event/st1103/view_st1103ev005/event/viewer/view_st1103ev005.evsi.json#L36] | FlagArray[3].FlagNo | FlagNo | quest 30260 (Hopes' Bitter End) / Evil Dragon's Roost / Event Viewer \| EVENT_NAME_st1103ev005 \| The whole story | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+|===
+
+== Flag 4926 -- Quest 90020305
+
+origin:: derived_qst_local
+direct hits:: *3*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 3 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q90020305/quest/90020305/q90020305_st0433.qst.json[client/03040008/quest/q90020305/quest/90020305/q90020305_st0433.qst.json] | QuestStageList[].QuestGrp[7].Condition | Condition | quest 90020305 / Shadolean Great Temple / "QuestGroup 7 \| 一方通行ワープOM右3" / QuestSet=QuestSetInfoOmWarp \| OmID=522157 \| OM_ID_RIFT_WARP_CRYSTAL_7 \| EnableZone \| GroupNo=7 \|\| QuestSet=QuestSetInfoOmWarp \| OmID=522157 \| OM_ID_RIFT_WARP_CRYSTAL_7 \| EnableZone \| GroupNo=7 \|\| +2 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st1103/view_st1103ev000/event/viewer/view_st1103ev000.evsi.json#L36[client/03040008/event/st1103/view_st1103ev000/event/viewer/view_st1103ev000.evsi.json#L36] | FlagArray[3].FlagNo | FlagNo | quest 30260 (Hopes' Bitter End) / Evil Dragon's Roost / Event Viewer \| EVENT_NAME_st1103ev000 \| The End of Hope | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st1103/view_st1103ev005/event/viewer/view_st1103ev005.evsi.json#L44[client/03040008/event/st1103/view_st1103ev005/event/viewer/view_st1103ev005.evsi.json#L44] | FlagArray[4].FlagNo | FlagNo | quest 30260 (Hopes' Bitter End) / Evil Dragon's Roost / Event Viewer \| EVENT_NAME_st1103ev005 \| The whole story | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+|===
+
+== Flag 4927 -- Quest 90020305
+
+origin:: derived_qst_local
+direct hits:: *3*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 3 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q90020305/quest/90020305/q90020305_st0433.qst.json[client/03040008/quest/q90020305/quest/90020305/q90020305_st0433.qst.json] | QuestStageList[].QuestGrp[8].Condition | Condition | quest 90020305 / Shadolean Great Temple / "QuestGroup 8 \| 一方通行ワープOM右4" / QuestSet=QuestSetInfoOmWarp \| OmID=522157 \| OM_ID_RIFT_WARP_CRYSTAL_7 \| EnableZone \| GroupNo=8 \|\| QuestSet=QuestSetInfoOmWarp \| OmID=522157 \| OM_ID_RIFT_WARP_CRYSTAL_7 \| EnableZone \| GroupNo=8 \|\| +2 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st1103/view_st1103ev000/event/viewer/view_st1103ev000.evsi.json#L44[client/03040008/event/st1103/view_st1103ev000/event/viewer/view_st1103ev000.evsi.json#L44] | FlagArray[4].FlagNo | FlagNo | quest 30260 (Hopes' Bitter End) / Evil Dragon's Roost / Event Viewer \| EVENT_NAME_st1103ev000 \| The End of Hope | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st1103/view_st1103ev005/event/viewer/view_st1103ev005.evsi.json#L52[client/03040008/event/st1103/view_st1103ev005/event/viewer/view_st1103ev005.evsi.json#L52] | FlagArray[5].FlagNo | FlagNo | quest 30260 (Hopes' Bitter End) / Evil Dragon's Roost / Event Viewer \| EVENT_NAME_st1103ev005 \| The whole story | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+|===
+
+== Flag 4928 -- Quest 90020305
+
+origin:: derived_qst_local
+direct hits:: *3*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 3 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q90020305/quest/90020305/q90020305_st0433.qst.json[client/03040008/quest/q90020305/quest/90020305/q90020305_st0433.qst.json] | QuestStageList[].QuestGrp[9].Condition | Condition | quest 90020305 / Shadolean Great Temple / "QuestGroup 9 \| 一方通行ワープOM左1" / QuestSet=QuestSetInfoOmWarp \| OmID=522157 \| OM_ID_RIFT_WARP_CRYSTAL_7 \| EnableZone \| GroupNo=9 \|\| QuestSet=QuestSetInfoOmWarp \| OmID=522157 \| OM_ID_RIFT_WARP_CRYSTAL_7 \| EnableZone \| GroupNo=9 \|\| +2 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st1103/view_st1103ev000/event/viewer/view_st1103ev000.evsi.json#L52[client/03040008/event/st1103/view_st1103ev000/event/viewer/view_st1103ev000.evsi.json#L52] | FlagArray[5].FlagNo | FlagNo | quest 30260 (Hopes' Bitter End) / Evil Dragon's Roost / Event Viewer \| EVENT_NAME_st1103ev000 \| The End of Hope | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st1103/view_st1103ev005/event/viewer/view_st1103ev005.evsi.json#L60[client/03040008/event/st1103/view_st1103ev005/event/viewer/view_st1103ev005.evsi.json#L60] | FlagArray[6].FlagNo | FlagNo | quest 30260 (Hopes' Bitter End) / Evil Dragon's Roost / Event Viewer \| EVENT_NAME_st1103ev005 \| The whole story | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+|===
+
+== Flag 4929 -- Quest 90020305
+
+origin:: derived_qst_local
+direct hits:: *3*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 3 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q90020305/quest/90020305/q90020305_st0433.qst.json[client/03040008/quest/q90020305/quest/90020305/q90020305_st0433.qst.json] | QuestStageList[].QuestGrp[10].Condition | Condition | quest 90020305 / Shadolean Great Temple / "QuestGroup 10 \| 一方通行ワープOM左2" / QuestSet=QuestSetInfoOmWarp \| OmID=522157 \| OM_ID_RIFT_WARP_CRYSTAL_7 \| EnableZone \| GroupNo=10 \|\| QuestSet=QuestSetInfoOmWarp \| OmID=522157 \| OM_ID_RIFT_WARP_CRYSTAL_7 \| EnableZone \| GroupNo=10 \|\| +2 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st1103/view_st1103ev000/event/viewer/view_st1103ev000.evsi.json#L60[client/03040008/event/st1103/view_st1103ev000/event/viewer/view_st1103ev000.evsi.json#L60] | FlagArray[6].FlagNo | FlagNo | quest 30260 (Hopes' Bitter End) / Evil Dragon's Roost / Event Viewer \| EVENT_NAME_st1103ev000 \| The End of Hope | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st1103/view_st1103ev005/event/viewer/view_st1103ev005.evsi.json#L68[client/03040008/event/st1103/view_st1103ev005/event/viewer/view_st1103ev005.evsi.json#L68] | FlagArray[7].FlagNo | FlagNo | quest 30260 (Hopes' Bitter End) / Evil Dragon's Roost / Event Viewer \| EVENT_NAME_st1103ev005 \| The whole story | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+|===
+
+== Flag 4930 -- Quest 90020305
+
+origin:: derived_qst_local
+direct hits:: *1*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 1 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q90020305/quest/90020305/q90020305_st0433.qst.json[client/03040008/quest/q90020305/quest/90020305/q90020305_st0433.qst.json] | QuestStageList[].QuestGrp[11].Condition | Condition | quest 90020305 / Shadolean Great Temple / "QuestGroup 11 \| 一方通行ワープOM左3" / QuestSet=QuestSetInfoOmWarp \| OmID=522157 \| OM_ID_RIFT_WARP_CRYSTAL_7 \| EnableZone \| GroupNo=11 \|\| QuestSet=QuestSetInfoOmWarp \| OmID=522157 \| OM_ID_RIFT_WARP_CRYSTAL_7 \| EnableZone \| GroupNo=11 \|\| +2 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 4931 -- Quest 90020305
+
+origin:: derived_qst_local
+direct hits:: *1*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 1 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q90020305/quest/90020305/q90020305_st0433.qst.json[client/03040008/quest/q90020305/quest/90020305/q90020305_st0433.qst.json] | QuestStageList[].QuestGrp[12].Condition | Condition | quest 90020305 / Shadolean Great Temple / "QuestGroup 12 \| 一方通行ワープOM左4" / QuestSet=QuestSetInfoOmWarp \| OmID=522157 \| OM_ID_RIFT_WARP_CRYSTAL_7 \| EnableZone \| GroupNo=12 \|\| QuestSet=QuestSetInfoOmWarp \| OmID=522157 \| OM_ID_RIFT_WARP_CRYSTAL_7 \| EnableZone \| GroupNo=12 \|\| +2 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 4934 -- Quest 90020305
+
+origin:: derived_qst_local
+direct hits:: *1*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 1 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q90020305/quest/90020305/q90020305_st0433.qst.json[client/03040008/quest/q90020305/quest/90020305/q90020305_st0433.qst.json] | QuestStageList[].QuestGrp[13].Condition | Condition | quest 90020305 / Shadolean Great Temple / "QuestGroup 13 \| 体力温泉（右側レバー）" / QuestSet=QuestSetInfoOmHeal \| OmID=522180 \| UnitID=522180 \| EnableZone \| GroupNo=13 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 4935 -- Quest 90020305
+
+origin:: derived_qst_local
+direct hits:: *1*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 1 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q90020305/quest/90020305/q90020305_st0433.qst.json[client/03040008/quest/q90020305/quest/90020305/q90020305_st0433.qst.json] | QuestStageList[].QuestGrp[14].Condition | Condition | quest 90020305 / Shadolean Great Temple / "QuestGroup 14 \| スタミナ温泉（左側レバー）" / QuestSet=QuestSetInfoOmHeal \| OmID=522180 \| UnitID=522180 \| EnableZone \| GroupNo=14 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 4941 -- Quest 90020305
+
+origin:: derived_qst_local
+direct hits:: *4*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 4 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q90020305/quest/90020305/q90020305_st0433.qst.json[client/03040008/quest/q90020305/quest/90020305/q90020305_st0433.qst.json] | QuestStageList[].QuestGrp[15].Condition | Condition | quest 90020305 / Shadolean Great Temple / "QuestGroup 15 \| スタート敵連動封鎖壁" / QuestSet=QuestSetInfoOm \| OmID=510441 \| OM_ID_DOOR_510441 \| EnableZone \| GroupNo=15 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q90020305/quest/90020305/q90020305_st0433.qst.json[client/03040008/quest/q90020305/quest/90020305/q90020305_st0433.qst.json] | QuestStageList[].QuestGrp[15].EraseCondition | EraseCondition | quest 90020305 / Shadolean Great Temple / "QuestGroup 15 \| スタート敵連動封鎖壁" / QuestSet=QuestSetInfoOm \| OmID=510441 \| OM_ID_DOOR_510441 \| EnableZone \| GroupNo=15 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| GPL | Direct | 92 | link:../../../../client/03040008/stage/st0433/st0433/scr/st0433/etc/st0433_p.gpl.json#L9521[client/03040008/stage/st0433/st0433/scr/st0433/etc/st0433_p.gpl.json#L9521] | GroupParamBuff[68].GuardData.LayoutFlagNo | LayoutFlagNo | quest 90020305 (The Deathly Battle of the Ancient Temple: Peril) / Shadolean Great Temple / Kingal Canyon / GroupParam[68] \| DataCommon.Group=240 \| LayoutAreas=433 \| LayoutRefs=1 \| LikelyLOT=st0433_00m00n_p240.lot.json \| LotTypes=SetInfoOmOld | Layout group guard; QuestNo and LayoutFlagNo here usually determine whether a stage group loads, including enemy or object visibility.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st1102/view_st1102ev000/event/viewer/view_st1102ev000.evsi.json#L20[client/03040008/event/st1102/view_st1102ev000/event/viewer/view_st1102ev000.evsi.json#L20] | FlagArray[1].FlagNo | FlagNo | quest 30230 (The Royal Family Mausoleum) / The Royal Family Mausoleum / Event Viewer \| EVENT_NAME_st1102ev000 \| The Prince's Decision | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+|===
 
 == Quest ID 90020305
 
@@ -52,11 +600,11 @@ ranked candidates:: *0*
 
 ==== direct -- 2 hit(s)
 
-[cols="1,1,3,3,2,3,3",options="header"]
+[cols="1,1,1,3,3,2,3,3",options="header"]
 |===
-| Family | Confidence | File | JSON Path | Field | Context | Why
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
 
-| LOT | 92 | client/03040008/stage/st0433/lot/st0433_00m00n/scr/st0433/etc/st0433_00m00n_p251.lot.json | Array[0].Info.QuestId[1] | QuestId | quest 90020305 / Shadolean Great Temple / Kingal Canyon / SetInfoOmWarp \| om511150 \| om511150 \| MyQuestOnly \| EnableZone \| Destination st0433 Shadolean Great Temple \| Spot Extermination Area: Depths Right \| StartPos=18 | Layout placement reference; LOT hits usually gate warps, NPCs, or interactable objects in the stage layout.
-| LOT | 92 | client/03040008/stage/st0433/lot/st0433_00m00n/scr/st0433/etc/st0433_00m00n_p251.lot.json | Array[0].Info.QuestId[2] | QuestId | quest 90020305 / Shadolean Great Temple / Kingal Canyon / SetInfoOmWarp \| om511150 \| om511150 \| MyQuestOnly \| EnableZone \| Destination st0433 Shadolean Great Temple \| Spot Extermination Area: Depths Left \| StartPos=19 | Layout placement reference; LOT hits usually gate warps, NPCs, or interactable objects in the stage layout.
+| LOT | Direct | 92 | link:../../../../client/03040008/stage/st0433/lot/st0433_00m00n/scr/st0433/etc/st0433_00m00n_p251.lot.json#L59[client/03040008/stage/st0433/lot/st0433_00m00n/scr/st0433/etc/st0433_00m00n_p251.lot.json#L59] | Array[0].Info.QuestId[1] | QuestId | quest 90020305 / Shadolean Great Temple / Kingal Canyon / SetInfoOmWarp \| om511150 \| om511150 \| MyQuestOnly \| EnableZone \| Destination st0433 Shadolean Great Temple \| Spot Extermination Area: Depths Right \| StartPos=18 | Layout placement reference; LOT hits usually gate warps, NPCs, or interactable objects in the stage layout.
+| LOT | Direct | 92 | link:../../../../client/03040008/stage/st0433/lot/st0433_00m00n/scr/st0433/etc/st0433_00m00n_p251.lot.json#L59[client/03040008/stage/st0433/lot/st0433_00m00n/scr/st0433/etc/st0433_00m00n_p251.lot.json#L59] | Array[0].Info.QuestId[2] | QuestId | quest 90020305 / Shadolean Great Temple / Kingal Canyon / SetInfoOmWarp \| om511150 \| om511150 \| MyQuestOnly \| EnableZone \| Destination st0433 Shadolean Great Temple \| Spot Extermination Area: Depths Left \| StartPos=19 | Layout placement reference; LOT hits usually gate warps, NPCs, or interactable objects in the stage layout.
 |===
 

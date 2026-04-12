@@ -5,16 +5,41 @@
 
 Query mode:: quest
 Query value:: 60200050
-Generated at:: 2026-04-11T21:41:41.836538+00:00
+Generated at:: 2026-04-12T12:44:10.574616+00:00
 
 toc::[]
+
+Quest family:: q6 -- Tutorial / Unlock / Area Trial
+Quest family notes:: Tutorial, area-trial, unlock, and occasional festival quests.
+Quest family focus:: jtq_tqg_jmc_scaffolding
+
+== Family Relationship Context
+
+_These sections summarize deterministic client-side family metadata and reverse-index relationships. They are context for later owner/dependency inference, not direct quest-target promotion._
+
+=== Quest Sequence
+
+* seq no: 359
+* previous: 60200035 -- 
+* next: 60200100 -- Skill Augmentation: Fighter Trial I
+
+=== Tutorial Scaffolding
+
+* JTQ rows: 1
+* TQG rows: 1
+* JMC rows: 1
+* tutorial groups: 1
+* tutorial quest: Spirit Lancer Tactics Trial: A Spirit Lance
+* job link: tutorial 60200050 / master 60200051
 
 == ARC Association Context
 
 _ARC associations are contextual only. They show which quest-stage and marker resources are bundled with this quest._
 
-* arc file: client/03040008/quest/q60200050.arc.json
+* arc file: link:../../../../client/03040008/quest/q60200050.arc.json#L1[client/03040008/quest/q60200050.arc.json#L1]
 * resource count: 10
+* stage codes: st0550
+* resource families: .fsm, .gmd, .mss, .qmi, .qst, .qtd
 
 === st0550 -- Training Chapel
 
@@ -32,18 +57,146 @@ _ARC associations are contextual only. They show which quest-stage and marker re
 * rAIFSM: quest/60200050/npc/n4750_st550
 * rGUIMessage: ui/00_message/examine_message/quest/quest_examine_q60200050
 
+== Stage Neighborhood Context
+
+_Stage-neighborhood context summarizes scanner-relevant client files that share the quest's archive stage codes. This is deterministic client topology, not inferred ownership._
+
+* scanner-relevant stage files: 101
+* indexed stage codes: st0550
+
+=== st0550 -- Training Chapel
+
+* scanner files: 101
+* .gpl.json: 8
+* .lot.json: 23
+* .qmi.json: 44
+* .qst.json: 26
+
+== Stage Neighborhood External-State Cues
+
+_These cues are deterministic client-side observations from the quest's stage neighborhood. They are not promoted to direct quest targets yet; they highlight q6/q7-owned external state values co-located in the quest's archive stages._
+
+* cue count: 0
+* owner families: q6, q7
+
+== Bounded Graph Expansion
+
+_This graph summarizes bounded deterministic and inferred edges around the quest: quest archive stages, direct source families, stage-linked owner catalogs, promoted dependencies, reverse-index event/group links, and family-specific table edges._
+
+* max depth: 3
+* node count: 12
+* edge count: 11
+* node kinds: direct_family=5, family_context=2, quest=1, sequence_quest=2, stage=1, tutorial_group=1
+* derivation: Direct=23
+
+=== Mermaid Graph Slice
+
+_This Mermaid flowchart shows a capped slice of the bounded graph so large quest reports stay readable while still exposing the graph structure._
+
+[mermaid]
+....
+flowchart TD
+    node_quest_60200050["Quest 60200050"]
+    node_direct_family_fsm["fsm direct hits (4)"]
+    node_direct_family_jmc["jmc direct hits (1)"]
+    node_direct_family_jtq["jtq direct hits (1)"]
+    node_direct_family_qst["qst direct hits (5)"]
+    node_direct_family_tqg["tqg direct hits (1)"]
+    node_family_context_quest_sequence["Quest Sequence"]
+    node_family_context_tutorial_scaffolding["Tutorial Scaffolding"]
+    node_stage_st0550["st0550 -- Training Chapel"]
+    node_sequence_quest_60200035["Quest 60200035"]
+    node_sequence_quest_60200100["Quest 60200100"]
+    node_tutorial_group_1["Tutorial Group 1"]
+    node_quest_60200050 -->|direct_source_family| node_direct_family_fsm
+    node_quest_60200050 -->|direct_source_family| node_direct_family_jmc
+    node_quest_60200050 -->|direct_source_family| node_direct_family_jtq
+    node_quest_60200050 -->|direct_source_family| node_direct_family_qst
+    node_quest_60200050 -->|direct_source_family| node_direct_family_tqg
+    node_quest_60200050 -->|family:quest_sequence| node_family_context_quest_sequence
+    node_quest_60200050 -->|family:tutorial_scaffolding| node_family_context_tutorial_scaffolding
+    node_quest_60200050 -->|quest_archive_stage| node_stage_st0550
+    node_family_context_quest_sequence -->|sequence_next| node_sequence_quest_60200100
+    node_family_context_quest_sequence -->|sequence_previous| node_sequence_quest_60200035
+    node_family_context_tutorial_scaffolding -->|tutorial_group| node_tutorial_group_1
+    classDef direct_deterministic fill:#e8f5e9,stroke:#2e7d32,stroke-width:1px
+    classDef owner_index fill:#e3f2fd,stroke:#1565c0,stroke-width:1px
+    classDef dependency_inferred fill:#fff3e0,stroke:#ef6c00,stroke-width:1px
+    classDef graph_expanded fill:#f3e5f5,stroke:#7b1fa2,stroke-width:1px
+    classDef lower_confidence fill:#fbe9e7,stroke:#d84315,stroke-width:1px
+    classDef binary_auxiliary fill:#eceff1,stroke:#455a64,stroke-width:1px
+    class node_quest_60200050,node_direct_family_fsm,node_direct_family_jmc,node_direct_family_jtq,node_direct_family_qst,node_direct_family_tqg,node_family_context_quest_sequence,node_family_context_tutorial_scaffolding,node_stage_st0550,node_sequence_quest_60200035,node_sequence_quest_60200100,node_tutorial_group_1 direct_deterministic
+....
+
+[cols="1,2,2,2,2,4",options="header"]
+|===
+| Depth | Edge | From | To | Derivation | Why
+
+| 1 | direct_source_family | quest:60200050 | direct-family:fsm | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | direct_source_family | quest:60200050 | direct-family:jmc | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | direct_source_family | quest:60200050 | direct-family:jtq | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | direct_source_family | quest:60200050 | direct-family:qst | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | direct_source_family | quest:60200050 | direct-family:tqg | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | family_context:quest_sequence | quest:60200050 | family-context:quest_sequence | Direct | Family-specific decoded tables provide deterministic context for this quest.
+| 1 | family_context:tutorial_scaffolding | quest:60200050 | family-context:tutorial_scaffolding | Direct | Family-specific decoded tables provide deterministic context for this quest.
+| 1 | quest_archive_stage | quest:60200050 | stage:st0550 | Direct | Quest archive topology directly links this quest to the stage code.
+| 2 | sequence_next | family-context:quest_sequence | sequence-quest:60200100 | Direct | QuestSequence links this quest to its neighboring sequence quest.
+| 2 | sequence_previous | family-context:quest_sequence | sequence-quest:60200035 | Direct | QuestSequence links this quest to its neighboring sequence quest.
+| 2 | tutorial_group | family-context:tutorial_scaffolding | tutorial-group:1 | Direct | Tutorial quest tables group this quest into an authored tutorial scaffold.
+|===
+
 == Flag Summary Matrix
 
 [cols="2,1,1,2,2,3,3",options="header"]
 |===
 | Target | Kind | Hits | Sources | Stages | Relationships | Description
 
+| Flag 4368 | layout_flag | 2 | qst | st0550 | ⚡ Quest Condition | QST local: st0550 \| QuestGroup 1 \| NPCセット_n505
+| Flag 4369 | layout_flag | 2 | qst | st0550 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0550 \| QuestGroup 3 \| OMー証
 | Quest ID 60200050 | quest_id | 8 | fsm, jmc, jtq, qst, tqg | st0550 | 🔍 FSM Check, 🧑‍🏫 Job Master, 💬 Text Quest +2 | Derived quest-wide association scan
 |===
 
 == Known Documented Targets
 
+* quest 60200050 -- Flag 4368 -- QST local: st0550 | QuestGroup 1 | NPCセット_n505
+* quest 60200050 -- Flag 4369 -- QST local: st0550 | QuestGroup 3 | OMー証
 * Quest ID 60200050 -- Derived quest-wide association scan [Derived]
+
+== Flag 4368 -- Quest 60200050
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q60200050/quest/60200050/q60200050_st0550.qst.json[client/03040008/quest/q60200050/quest/60200050/q60200050_st0550.qst.json] | QuestStageList[].QuestGrp[0].Condition | Condition | quest 60200050 / Training Chapel / "QuestGroup 1 \| NPCセット_n505" / QuestSet=QuestSetInfoNpc \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q60200050/quest/60200050/q60200050_st0550.qst.json[client/03040008/quest/q60200050/quest/60200050/q60200050_st0550.qst.json] | QuestStageList[].QuestGrp[1].Condition | Condition | quest 60200050 / Training Chapel / "QuestGroup 2 \| NPCセット_n529/530" / QuestSet=QuestSetInfoNpc \| GroupNo=2 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 4369 -- Quest 60200050
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q60200050/quest/60200050/q60200050_st0550.qst.json[client/03040008/quest/q60200050/quest/60200050/q60200050_st0550.qst.json] | QuestStageList[].QuestGrp[2].Condition | Condition | quest 60200050 / Training Chapel / "QuestGroup 3 \| OMー証" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=744 \| TextType=2 \| TextQuestNo=60200050 \| GroupNo=3 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q60200050/quest/60200050/q60200050_st0550.qst.json[client/03040008/quest/q60200050/quest/60200050/q60200050_st0550.qst.json] | QuestStageList[].QuestGrp[2].EraseCondition | EraseCondition | quest 60200050 / Training Chapel / "QuestGroup 3 \| OMー証" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=744 \| TextType=2 \| TextQuestNo=60200050 \| GroupNo=3 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
 
 == Quest ID 60200050
 
@@ -55,25 +208,25 @@ ranked candidates:: *0*
 
 ==== direct -- 4 hit(s)
 
-[cols="1,1,3,3,2,3,3",options="header"]
+[cols="1,1,1,3,3,2,3,3",options="header"]
 |===
-| Family | Confidence | File | JSON Path | Field | Context | Why
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
 
-| QST | 92 | client/03040008/quest/q60200050/quest/60200050/q60200050_st0550.qst.json | QuestStageList[].QuestGrp[2].QuestSet[0].TextQuestNo | TextQuestNo | quest 60200050 / Training Chapel / "QuestGroup 3 \| OMー証 \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=744 \| TextType=2 \| TextQuestNo=60200050 \| GroupNo=3 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
-| JTQ | 92 | client/03040008/game_common/quest/jobTutorialQuestList.jtq.json | JobTutorialQuestList[13].QuestId | QuestId | quest 60200050 (Spirit Lancer Tactics Trial: A Spirit Lance) / Job tutorial quest registry | Tutorial quest registry; q6 tutorial quests are listed directly in the job tutorial quest table.
-| TQG | 92 | client/03040008/game_common/quest/tutorialQuestGroup.tqg.json | TutorialQuestGroupList[0].QuestIdArray[9].QuestId | QuestId | quest 60200050 (Spirit Lancer Tactics Trial: A Spirit Lance) / "GroupId=1" / Tutorial quest group membership | Tutorial quest grouping; q6 tutorial quests are clustered into authored tutorial groups here.
-| JMC | 92 | client/03040008/game_common/etc/jobMasterCtrl.jmc.json | JobMasterCtrlList[9].JobTutorialQuestId | JobTutorialQuestId | quest 60200050 (Spirit Lancer Tactics Trial: A Spirit Lance) / Farana Plains / "JobId=10" / Job tutorial quest \| Spirit Lancer \| Farana Plains \| StartJobLevel=18 | Job master control; this resource links tutorial and master-visit quests to a vocation mentor, area, and onboarding flow.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q60200050/quest/60200050/q60200050_st0550.qst.json[client/03040008/quest/q60200050/quest/60200050/q60200050_st0550.qst.json] | QuestStageList[].QuestGrp[2].QuestSet[0].TextQuestNo | TextQuestNo | quest 60200050 / Training Chapel / "QuestGroup 3 \| OMー証 \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=744 \| TextType=2 \| TextQuestNo=60200050 \| GroupNo=3 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| JTQ | Direct | 92 | link:../../../../client/03040008/game_common/quest/jobTutorialQuestList.jtq.json#L103[client/03040008/game_common/quest/jobTutorialQuestList.jtq.json#L103] | JobTutorialQuestList[13].QuestId | QuestId | quest 60200050 (Spirit Lancer Tactics Trial: A Spirit Lance) / Job tutorial quest registry | Tutorial quest registry; q6 tutorial quests are listed directly in the job tutorial quest table.
+| TQG | Direct | 92 | link:../../../../client/03040008/game_common/quest/tutorialQuestGroup.tqg.json#L78[client/03040008/game_common/quest/tutorialQuestGroup.tqg.json#L78] | TutorialQuestGroupList[0].QuestIdArray[9].QuestId | QuestId | quest 60200050 (Spirit Lancer Tactics Trial: A Spirit Lance) / "GroupId=1" / Tutorial quest group membership | Tutorial quest grouping; q6 tutorial quests are clustered into authored tutorial groups here.
+| JMC | Direct | 92 | link:../../../../client/03040008/game_common/etc/jobMasterCtrl.jmc.json#L272[client/03040008/game_common/etc/jobMasterCtrl.jmc.json#L272] | JobMasterCtrlList[9].JobTutorialQuestId | JobTutorialQuestId | quest 60200050 (Spirit Lancer Tactics Trial: A Spirit Lance) / Farana Plains / "JobId=10" / Job tutorial quest \| Spirit Lancer \| Farana Plains \| StartJobLevel=18 | Job master control; this resource links tutorial and master-visit quests to a vocation mentor, area, and onboarding flow.
 |===
 
 ==== opaque_fsm -- 4 hit(s)
 
-[cols="1,1,3,3,2,3,3",options="header"]
+[cols="1,1,1,3,3,2,3,3",options="header"]
 |===
-| Family | Confidence | File | JSON Path | Field | Context | Why
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
 
-| FSM | 64 | client/03040008/quest/q60200050/quest/60200050/npc/n4750_st550.fsm.json | Process.Parameter.QuestId | QuestId | quest 60200050 (Spirit Lancer Tactics Trial: A Spirit Lance) / Cadell / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
-| FSM | 64 | client/03040008/quest/q60200050/quest/60200050/npc/n4750_st550.fsm.json | Process.Parameter.QuestId | QuestId | quest 60200050 (Spirit Lancer Tactics Trial: A Spirit Lance) / Cadell / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
-| FSM | 64 | client/03040008/quest/q60200050/quest/60200050/npc/n4750_st550.fsm.json | Process.Parameter.QuestId | QuestId | quest 60200050 (Spirit Lancer Tactics Trial: A Spirit Lance) / Cadell / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
-| FSM | 64 | client/03040008/quest/q60300400/quest/60300400/npc/n4750_st550.fsm.json | Process.Parameter.QuestId | QuestId | quest 60200050 (Spirit Lancer Tactics Trial: A Spirit Lance) / Cadell / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/quest/q60200050/quest/60200050/npc/n4750_st550.fsm.json[client/03040008/quest/q60200050/quest/60200050/npc/n4750_st550.fsm.json] | Process.Parameter.QuestId | QuestId | quest 60200050 (Spirit Lancer Tactics Trial: A Spirit Lance) / Cadell / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/quest/q60200050/quest/60200050/npc/n4750_st550.fsm.json[client/03040008/quest/q60200050/quest/60200050/npc/n4750_st550.fsm.json] | Process.Parameter.QuestId | QuestId | quest 60200050 (Spirit Lancer Tactics Trial: A Spirit Lance) / Cadell / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/quest/q60200050/quest/60200050/npc/n4750_st550.fsm.json[client/03040008/quest/q60200050/quest/60200050/npc/n4750_st550.fsm.json] | Process.Parameter.QuestId | QuestId | quest 60200050 (Spirit Lancer Tactics Trial: A Spirit Lance) / Cadell / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/quest/q60300400/quest/60300400/npc/n4750_st550.fsm.json[client/03040008/quest/q60300400/quest/60300400/npc/n4750_st550.fsm.json] | Process.Parameter.QuestId | QuestId | quest 60200050 (Spirit Lancer Tactics Trial: A Spirit Lance) / Cadell / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
 |===
 

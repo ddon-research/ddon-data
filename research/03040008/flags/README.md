@@ -1,182 +1,93 @@
 # Client Flag and Quest Investigation
 
-Tooling for investigating quest, layout, NPC, marker, evidence, and related state associations from decoded Dragon's Dogma Online client resources.
+Technical tooling for resolving quest, layout, marker, NPC, evidence,
+and related state associations from decoded Dragon's Dogma Online client
+resources.
 
-## Scope
+## Business Logic
 
-- Corpus: `client/03040008` (decoded JSON files)
-- Optional executable fallback: `DDO.exe` immediate-operand scan
-- Output: `generated/` (JSON + AsciiDoc per query)
-- Upstream Arrowgene docs are used only for target labels and seed targets, not as primary evidence
+### Investigation Model
 
-Generic for any decoded client quest. Not limited to world-manage quests.
+- Primary evidence comes from decoded client JSON under `client/03040008`.
+- A query resolves target values, scans structured resource families,
+  enriches matching hits, ranks unresolved candidates, and writes JSON plus
+  AsciiDoc reports.
+- Direct authored hits remain separate from reusable owner catalogs,
+  promoted dependency targets, bounded graph context, and lower-confidence
+  candidate matches.
+- Optional `DDO.exe` immediate-operand scanning is a fallback layer, not the
+  primary discovery path.
 
-## Architecture
+### Family-Specific Rules
 
-Entry point: `investigate_flags.py`. Orchestrates corpus indexing, structured scanning, candidate search, enrichment, and report generation.
-
-### Module Map
-
-| Module | Role |
+| Family | Current handling |
 |---|---|
-| `investigate_flags.py` | CLI entry point. Single-quest, batch, and full-corpus modes. |
-| `corpus_index.py` | Single-pass file index classifying ~173K JSON files by scanner suffix. |
-| `json_cache.py` | In-memory cache for ~40K parsed JSON payloads (orjson). |
-| `client_scanner.py` | Structured scan dispatcher. Routes files to handlers via `SCANNER_MAP`. |
-| `handlers/` | Scanner sub-package. 7 modules, 18 scan functions, re-exported via `__init__.py`. |
-| `handlers/_helpers.py` | Shared private helpers (context builders, field extractors). |
-| `handlers/quest_handlers.py` | QST scanner (`scan_qst_file`). |
-| `handlers/layout_handlers.py` | GPL + LOT scanners. |
-| `handlers/fsm_handlers.py` | FSM scanner with recursive process iterator. |
-| `handlers/marker_handlers.py` | EVSI + QMI/FMI scanners. |
-| `handlers/npc_handlers.py` | NLL + NPC/SMC situation data scanners. |
-| `handlers/special_handlers.py` | FAA, EVP, EVD, CSI, ESI, JTQ, TQG, JMC, AMS scanners. |
-| `candidate_finder.py` | Deep recursive JSON walk for unresolved targets. |
-| `scan_models.py` | `FlagHit` frozen dataclass and scanner type aliases. |
-| `scan_utils.py` | JSON loading, path utilities, pattern constants. |
-| `catalog_loader.py` | Target catalog from upstream docs, NPC ledger, world-manage tables. |
-| `source_metadata.py` | Stage names, event names, item names, ARC context, special-resource lookups. |
-| `mss_enrichment.py` | MSS message-set NPC name and excerpt resolution. |
-| `manifest.py` | Authoritative q7 world-manage quest/flag target set. |
-| `report_writer.py` | JSON + AsciiDoc report generation. |
-| `executable_scanner.py` | Optional `DDO.exe` immediate-operand scan. |
-| `validate_targets.py` | Manifest validation: reports targets with zero hits. |
-| `triage_residuals.py` | Candidate triage for zero-hit targets. |
+| `q0` | Main-quest investigations add quest-sequence context in addition to shared stage topology and direct authored references. |
+| `q4` | Light and board quests are treated as local quest-packaging problems, using archive topology and quest text/message resources. |
+| `q5` | Repeatable sortie logic is derived from `ESI` and `CSI`, including sortie flags and `CycleSubNo` associations. |
+| `q6` | Tutorial, unlock, and area-trial quests add `JTQ`, `TQG`, and `JMC` scaffolding and can surface conservative q6 owner dependencies. |
+| `q7` | World-manage queries use curated direct targets plus client-derived owner state from self-owned QST, EVSI, and GPL evidence. |
+| `q8` | Partner Pawn Personal Quest handling recognizes `PQT` packaging and keeps these quests distinct from q6 tutorial logic. |
+| Other families | Use the shared direct-scan, stage-topology, candidate, and graph paths without extra family-specific tables. |
 
-### Data Flow
+### Query Modes
 
-```
-corpus_index  ->  client_scanner  ->  handlers/*  ->  FlagHit[]
-                        |
-json_cache  -----------+
-                        |
-candidate_finder  <-----+  (unresolved targets only)
-                        |
-mss_enrichment  --------+
-                        |
-report_writer  ---------+->  .json + .adoc
-```
-
-In batch mode (`--all-client-quests`), the corpus index and cache are built once, all quests share a single structured scan pass, and unresolved targets across all quests are batched into one candidate search.
-
-## Query Modes
-
-| Mode | Behavior |
+| Mode | Purpose |
 |---|---|
-| `--flag <value>` | Scan one numeric flag value across the corpus. |
-| `--quest <quest_id>` | Investigate one quest: resolve targets, scan, report. |
+| `--flag <value>` | Scan one numeric value across the decoded client corpus. |
+| `--quest <quest_id>` | Resolve one quest's target set and generate reports. |
 | `--all-quests` | Batch the curated q7 world-manage set from `manifest.py`. |
-| `--all-client-quests` | Batch every `q########` folder under `client/03040008/quest/`. |
+| `--all-client-quests` | Batch every decoded client quest archive under `client/03040008/quest/`. |
 
-## Evidence Model
+### Evidence and Derivation
 
-Priority order:
+- `targets[].hits` contains direct decoded matches for resolved quest or flag
+  targets.
+- `targets[].candidate_hits` contains lower-confidence decoded matches for
+  unresolved targets.
+- `quest_owner_indexes` contains reusable external owner catalogs discovered
+  from stage-neighborhood cues.
+- `quest_dependency_targets` contains the promoted subset of owner data that
+  passes current family-specific dependency rules.
+- `quest_graph_expansion` contains bounded graph context across quest, stage,
+  owner, dependency, event-viewer, GPL, LOT, and family-table edges.
+- `derivation_class` records whether a result is direct, owner-index,
+  dependency-inferred, graph-expanded, lower-confidence, or binary-auxiliary.
 
-1. Decoded client JSON under `client/03040008`
-2. Optional executable immediate-operand scan
-3. Upstream docs for target selection and interpretation context only
+## Technical Setup
 
-Container and sequencing resources are not direct evidence unless they expose authored quest, flag, or layout fields.
+### Inputs and Outputs
 
-## Quest-Family Semantics
+- Decoded corpus: `client/03040008`
+- Optional executable scan target: `D:\DDON_03040008\DDO.exe`
+- Generated reports: `generated/`
+- Upstream Arrowgene docs: seed targets and labels only
 
-| Family | Source | Behavior |
-|---|---|---|
-| q5 repeatable sorties | `*.esi.json`, `*.csi.json` | Derive sortie gate flags and `CycleSubNo` targets. |
-| q6 tutorial quests | `*.jtq.json`, `*.tqg.json`, `*.jmc.json` | Quest-wide tutorial association scan + job-master context. |
-| q7 world-manage | `manifest.py` + upstream catalog | Authoritative quest/layout targets merged with decoded evidence. |
-| Evidence-backed | `evidence.evd.json` | Evidence-step quest flags for season 3 investigation substory. |
-| AMS-blocked | `am_spot_*.ams.json` | Quest-id target when a map spot is gated by that quest. |
-| Other | generic `--quest` | Direct authored references + special-resource fallbacks. |
+### Prerequisites
 
-## Client File Families
+- Python 3.14
+- `uv` for environment management
+- `orjson` for runtime JSON parsing and report serialization
+- Optional C compiler plus `mypy` and `setuptools` for `mypyc`
+  acceleration
+- Optional `objdump` if executable fallback scanning is enabled
 
-| Family | Files | Semantics |
-|---|---|---|
-| QST | `quest/q*/**/*.qst.json` | Quest-stage behavior: conditions, erase conditions, text quest refs, OM control chains. |
-| GPL | `stage/**/etc/*.gpl.json` | Layout-group guards: `QuestNo` + `LayoutFlagNo`. |
-| LOT | `stage/**/etc/*.lot.json` | Placed objects: NPCs, enemies, warps, doors, interactables. Turns GPL/marker hits into concrete context. |
-| QMI/FMI | `quest/**/*.qmi.json`, `*.fmi.json` | Quest/field marker data. `GroupNo` links to LOT placements. |
-| FSM | `npc/**/*.fsm.json`, `quest/**/npc/*.fsm.json` | State machine flag checks/sets. NPC visibility, behavior, MyQuest gating. |
-| EVSI | `EventViewRoom/**/ev*.evsi.json` | Event viewer replay/cinematic state references. |
-| EVP | `event/**/*.evp.json` | Event parameter quest/flag associations. |
-| SMC | `npc/**/ui/00_message/**/*.smc.json` | NPC chatter windows: `StartQuestId`/`EndQuestId` + `GroupSerial`. |
-| MSS | `**/*.mss.json` | Message-set text. Resolves `GroupSerial`, NPC names, message excerpts. |
-| NLL | `npc/npc_common/etc/npc/npc.nll.json` | NPC ledger: names, function metadata, fallback name resolution. |
-| FAA | `field_area/**/*.faa.json` | Area-adjoin/stage-transition gating. |
-| ESI/CSI | `game_common/quest/*.esi.json`, `*.csi.json` | Repeatable sortie registry and cycle routing. |
-| JTQ/TQG/JMC | `game_common/quest/*.jtq.json`, `*.tqg.json`, `etc/jobMasterCtrl.jmc.json` | Tutorial quest registry, grouping, job-master onboarding. |
-| EVD | `ui/menu_evidence_list/**/evidence.evd.json` | Evidence-chain registry: items, steps, quest/flag associations. |
-| AMS | `ui/uGUIAreaMaster/**/am_spot_*.ams.json` | Map-spot quest gating. |
+### Environment Setup
 
-## Enrichment
-
-- Stage names: `base/scr/stage_list.slt.json`
-- Event names: `EventViewRoom/ui/00_message/event/event_name.gmd.json`
-- Item names: `base/etc/itemlist.ipa.json`
-- ARC context: `quest/q<id>.arc.json` (bundle association, not direct evidence)
-- NPC names: MSS match first, then NLL fallback by `npc_id` or `n####` asset ID
-
-## Generated Outputs
-
-| File | Format |
-|---|---|
-| `generated/client_investigation_quest_<id>.json` | Structured JSON report |
-| `generated/client_investigation_quest_<id>.adoc` | AsciiDoc report with auto-generated TOC |
-| `generated/client_investigation_flag_<value>.json` | Single-flag JSON report |
-| `generated/client_investigation_flag_<value>.adoc` | Single-flag AsciiDoc report |
-| `generated/empty_flags.json` | Zero-hit targets from validation |
-| `generated/residual_empty_triage.json` | Candidate triage for zero-hit targets |
-| `generated/residual_empty_triage.adoc` | Candidate triage AsciiDoc report |
-
-AsciiDoc reports use `:toc: macro` for automatic table-of-contents generation. Static family interpretations live in this README, not in per-report output.
-
-## Interpretation Notes
-
-- QST OM-control patterns (`ENEMY -> OM`, `OM -> OM`, `ENEMY -> ENEMY -> OM`) indicate key-enemy doors, lever chains, multi-object control logic.
-- GPL-to-LOT association classifies guarded groups as warp, door, or object groups.
-- AMS hits are spot-availability gates, not flavor references.
-- EVD rows are evidence-flow progression data for the season 3 substory system.
-- SMC rows are quest-gated chatter availability, not generic NPC state.
-- QSQ is omitted: drives quest ordering/UI sequencing, not world-state gating.
-
-## Performance
-
-### Dependencies
-
-- [orjson](https://github.com/ijl/orjson) for JSON parsing/serialization (required)
-
-### mypyc Compilation
-
-The hot-path modules compile to C extensions with [mypyc](https://mypyc.readthedocs.io/) for ~30% speedup. Requires a C compiler (MSVC on Windows).
-
-Setup:
+Minimal runtime setup:
 
 ```sh
 uv venv --python 3.14 .venv
-uv pip install mypy setuptools orjson --python .venv/Scripts/python.exe
+uv pip install orjson --python .venv/Scripts/python.exe
 ```
 
-Compile:
+Optional `mypyc` acceleration setup:
 
 ```sh
-.venv/Scripts/python.exe -m mypyc \
-    scan_utils.py scan_models.py client_scanner.py \
-    corpus_index.py json_cache.py candidate_finder.py \
-    handlers/_helpers.py handlers/quest_handlers.py handlers/layout_handlers.py \
-    handlers/fsm_handlers.py handlers/marker_handlers.py handlers/npc_handlers.py \
-    handlers/special_handlers.py
+uv pip install mypy setuptools --python .venv/Scripts/python.exe
 ```
 
-Produces `.pyd` (Windows) or `.so` (Linux) files. CPython prefers compiled extensions at import time. Recompile after modifying any of the above files. Delete `.pyd`/`.so` and `build/` to revert to interpreted mode.
-
-Verify:
-
-```sh
-.venv/Scripts/python.exe -m unittest test_regression -v
-```
-
-## Commands
+### Common Commands
 
 ```sh
 # Single quest
@@ -188,10 +99,111 @@ python investigate_flags.py --flag 1109 --skip-executable-scan
 # Curated q7 world-manage batch
 python investigate_flags.py --all-quests --skip-executable-scan
 
-# All client quests
+# Full client-quest batch
 python investigate_flags.py --all-client-quests --skip-executable-scan
 
-# Validation and triage
+# Validation and analysis
 python validate_targets.py
 python triage_residuals.py
+python benchmark_gap_harness.py
+python graph_residual_experiments.py
 ```
+
+### Optional `mypyc` Build
+
+`mypyc` is only needed for performance work on hot-path modules.
+
+```sh
+.venv/Scripts/python.exe -m mypyc \
+    scan_utils.py scan_models.py client_scanner.py \
+    corpus_index.py json_cache.py candidate_finder.py \
+    handlers/_helpers.py handlers/quest_handlers.py \
+    handlers/layout_handlers.py handlers/fsm_handlers.py \
+    handlers/marker_handlers.py handlers/npc_handlers.py \
+    handlers/special_handlers.py
+```
+
+Remove generated `.pyd` or `.so` artifacts plus `build/` to return to the
+interpreted path.
+
+### Generated Files
+
+| File | Purpose |
+|---|---|
+| `generated/client_investigation_quest_<id>.json` | Structured quest report payload |
+| `generated/client_investigation_quest_<id>.adoc` | AsciiDoc quest report |
+| `generated/client_investigation_flag_<value>.json` | Structured single-flag report |
+| `generated/client_investigation_flag_<value>.adoc` | AsciiDoc single-flag report |
+| `generated/empty_flags.json` | Zero-hit target summary |
+| `generated/residual_empty_triage.json` | Candidate triage payload for zero-hit targets |
+| `generated/residual_empty_triage.adoc` | Candidate triage AsciiDoc report |
+| `generated/benchmark_gap_harness.json` | Owner/dependency benchmark summary |
+| `generated/benchmark_gap_harness.adoc` | Owner/dependency benchmark report |
+| `generated/graph_residual_experiments.json` | Graph-backed residual experiment summary |
+| `generated/graph_residual_experiments.adoc` | Graph-backed residual experiment report |
+
+## Developer Documentation
+
+### Runtime Architecture
+
+| Module | Responsibility |
+|---|---|
+| `investigate_flags.py` | CLI entry point, target resolution, hit orchestration, payload assembly |
+| `corpus_index.py` | Single-pass scanner-oriented index over decoded JSON files |
+| `json_cache.py` | Parsed JSON reuse across scans and report generation |
+| `client_scanner.py` + `handlers/` | Structured extraction for quest, layout, FSM, marker, NPC, and special resource families |
+| `source_metadata.py` | Family context, ARC topology, stage names, owner catalogs, enrichment lookups |
+| `reverse_indexes.py` | Deterministic reverse indexes for flag, stage, event-viewer, and GPL or LOT relationships |
+| `candidate_finder.py` | Recursive unresolved-value search over decoded JSON |
+| `graph_expansion.py` | Bounded graph expansion over direct, owner, dependency, and reverse-index edges |
+| `derivation.py` | Shared derivation-class vocabulary and labels |
+| `report_writer.py` | JSON and AsciiDoc report rendering, including file links and Mermaid graph slices |
+| `validate_targets.py`, `triage_residuals.py`, `benchmark_gap_harness.py`, `graph_residual_experiments.py` | Validation, triage, benchmark, and experiment workflows |
+
+### Data Flow
+
+```text
+corpus_index -> client_scanner -> handlers/* -> direct hits
+      |                               |
+      +-> json_cache -----------------+
+      |
+      +-> candidate_finder -> ranked candidates
+      +-> source_metadata -> family, stage, and owner context
+      +-> reverse_indexes -> event-viewer and GPL or LOT relationships
+      +-> graph_expansion -> bounded quest graph
+      +-> report_writer -> JSON and AsciiDoc output
+```
+
+### Report Structure
+
+- AsciiDoc reports include a generated table of contents.
+- JSON file references in AsciiDoc are emitted as clickable links with line
+  anchors when a JSON path can be resolved.
+- The bounded graph section includes a sampled Mermaid flowchart slice.
+- Graph tables and hit tables use derivation labels consistently.
+
+### Validation Workflow
+
+Use the regression suite before regenerating large output sets:
+
+```sh
+python -m unittest test_regression -v
+```
+
+For end-to-end regeneration and verification:
+
+```sh
+python investigate_flags.py --all-client-quests --skip-executable-scan
+python validate_targets.py
+python triage_residuals.py
+python benchmark_gap_harness.py
+python graph_residual_experiments.py
+```
+
+Regenerate reports whenever you change:
+
+- target resolution rules
+- family-specific business logic
+- owner or dependency promotion logic
+- graph expansion structure
+- report schema or AsciiDoc rendering

@@ -5,9 +5,302 @@
 
 Query mode:: quest
 Query value:: 30240
-Generated at:: 2026-04-11T21:41:40.594894+00:00
+Generated at:: 2026-04-12T12:43:42.460846+00:00
 
 toc::[]
+
+Quest family:: q3 -- Light Quest
+Quest family notes:: Light and board-style quests with repeatable or lightweight stage flows.
+Quest family focus:: local_stage_topology_plus_board_repeatability
+
+== External Owner Indexes
+
+_These are reusable external owner catalogs inferred from stage-neighborhood cues. They are broader than the subset of flags promoted into derived dependency targets._
+
+[cols="2,1,1,2,2,2,4",options="header"]
+|===
+| Owner Quest | Family | Catalog Count | Catalog Flags | Linked Cues | Cue Sources | Why
+
+| 70000001 | q7 | 70 | 1098, 1103, 1104, 1105, 1106, 1109, 1110, 1111, 1112, 1113, 1114, 1115 +58 more | 1110, 1112, 1150, 1201, 1216, 1217, 1220, 1221 +15 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70001001 | q7 | 0 |  | 1851, 1954 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70002001 | q7 | 47 | 1098, 1103, 1104, 1105, 1106, 1109, 1110, 1111, 1112, 1113, 1114, 1115 +35 more | 1114, 1115, 1117, 1601, 3860 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70003001 | q7 | 49 | 1098, 1103, 1104, 1105, 1106, 1109, 1110, 1111, 1112, 1113, 1114, 1115 +37 more | 1103, 1105, 1106, 1119, 1120, 1121, 1122, 1123 +8 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70020001 | q7 | 8 | 2736, 3000, 3002, 3003, 3074, 3442, 3805, 4037 | 2736, 3003, 3074, 4037 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70021001 | q7 | 4 | 3278, 3650, 3753, 3861 | 3278, 3753 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70022001 | q7 | 17 | 3949, 3950, 3952, 3953, 3954, 3977, 4033, 4043, 4053, 4063, 4470, 4555 +5 more | 3949, 3950, 3952, 3953, 3954, 3977, 4033, 4556 +2 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70023001 | q7 | 15 | 4066, 4067, 4372, 4373, 4500, 4506, 4507, 4508, 4511, 4512, 4515, 4516 +3 more | 4066, 4373, 4500, 4506, 4508, 4512, 4515, 4517 +1 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70030001 | q7 | 46 | 5396, 5397, 5407, 5552, 5557, 5558, 5581, 5584, 5587, 5588, 5589, 5614 +34 more | 5396, 5397, 5407, 5557, 5558, 5588, 5589, 5614 +19 more | evsi, gpl | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70031001 | q7 | 8 | 5553, 5672, 6138, 6194, 6195, 6377, 6425, 7316 | 5553, 6138, 6195, 6377, 6425, 7316 | evsi, gpl | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70032001 | q7 | 37 | 7169, 7240, 7241, 7336, 7341, 7342, 7386, 7387, 7388, 7389, 7390, 7438 +25 more | 7240, 7241, 7336, 7341, 7342, 7386, 7388, 7389 +27 more | evsi, gpl | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70033001 | q7 | 43 | 7826, 7827, 7876, 7888, 7889, 7916, 7917, 7954, 7955, 7965, 7966, 7967 +31 more | 7826, 7827, 7876, 7888, 7889, 7954, 7955, 7965 +33 more | evsi, gpl | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70034001 | q7 | 3 | 8486, 8630, 8631 | 8486 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+|===
+
+== Derived External Dependency Targets
+
+_These are the promoted subset of external owner-index entries. A flag appears here only when it passes the current family-specific dependency promotion rules for this quest._
+
+[cols="2,1,1,2,2,4",options="header"]
+|===
+| Owner Quest | Family | Flag Count | Flags | Sources | Why
+
+| 70000001 | q7 | 23 | 1110, 1112, 1150, 1201, 1216, 1217, 1220, 1221, 1222, 1223, 1224, 1250 +11 more | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70002001 | q7 | 5 | 1114, 1115, 1117, 1601, 3860 | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70003001 | q7 | 15 | 1103, 1105, 1106, 1119, 1120, 1121, 1122, 1123, 1124, 1202, 1203, 1713 +3 more | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70020001 | q7 | 4 | 2736, 3003, 3074, 4037 | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70021001 | q7 | 2 | 3278, 3753 | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70022001 | q7 | 10 | 3949, 3950, 3952, 3953, 3954, 3977, 4033, 4556, 4803, 4968 | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70023001 | q7 | 9 | 4066, 4373, 4500, 4506, 4508, 4512, 4515, 4517, 4973 | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70030001 | q7 | 24 | 5396, 5407, 5557, 5589, 5614, 5632, 5635, 5637, 5642, 5658, 5706, 5708 +12 more | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70031001 | q7 | 4 | 5553, 6195, 6377, 7316 | evsi, gpl | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70032001 | q7 | 26 | 7241, 7336, 7342, 7386, 7390, 7438, 7440, 7496, 7498, 7512, 7544, 7545 +14 more | evsi, gpl | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70033001 | q7 | 35 | 7826, 7827, 7876, 7888, 7889, 7954, 7965, 7966, 7967, 7972, 7973, 8033 +23 more | evsi, gpl | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+|===
+
+== Family Relationship Context
+
+_These sections summarize deterministic client-side family metadata and reverse-index relationships. They are context for later owner/dependency inference, not direct quest-target promotion._
+
+=== Quest Sequence
+
+* seq no: 77
+* previous: 30230 -- The Royal Family Mausoleum
+* next: 30250 -- The Relics of the First King
+
+== ARC Association Context
+
+_ARC associations are contextual only. They show which quest-stage and marker resources are bundled with this quest._
+
+* arc file: link:../../../../client/03040008/quest/q00030240.arc.json#L1[client/03040008/quest/q00030240.arc.json#L1]
+* resource count: 13
+* stage codes: st0134, st0139, st0451
+* resource families: .fmi, .gmd, .mss, .qmi, .qst, .qtd
+
+=== st0134 -- Urteca Mountains
+
+* rQuestList: quest/00030240/q00030240_st0134
+* rQuestMarkerInfo: quest/00030240/st0134_marker_npc
+
+=== st0139 -- Firefall Mountain Campsite
+
+* rQuestMarkerInfo: quest/00030240/st0139_marker_npc
+* rQuestList: quest/00030240/q00030240_st0139
+
+=== st0451 -- Lookout Castle
+
+* rQuestMarkerInfo: quest/00030240/st0451_marker_npc
+* rQuestList: quest/00030240/q00030240_st0451
+
+=== unclassified
+
+* rGUIMessage: ui/00_message/quest/q00030240
+* rGUIMessage: ui/00_message/examine_message/quest/quest_examine_q00030240
+* rQuestTextData: ui/00_param/quest_text/q00030240_00
+* rMsgSet: ui/00_message/examine_message/quest/quest_examine_q00030240
+* rMsgSet: ui/00_message/quest/q00030240
+* rFieldAreaMarkerInfo: quest/00030240/fa006_marker_npc
+* rGUIMessage: ui/00_message/quest_info/q00030240_00
+
+== Stage Neighborhood Context
+
+_Stage-neighborhood context summarizes scanner-relevant client files that share the quest's archive stage codes. This is deterministic client topology, not inferred ownership._
+
+* scanner-relevant stage files: 569
+* indexed stage codes: st0134, st0139, st0451
+
+=== st0134 -- Urteca Mountains
+
+* scanner files: 346
+* .evsi.json: 4
+* .fsm.json: 32
+* .gpl.json: 5
+* .lot.json: 291
+* .qmi.json: 9
+* .qst.json: 5
+
+=== st0139 -- Firefall Mountain Campsite
+
+* scanner files: 50
+* .gpl.json: 3
+* .lot.json: 30
+* .qmi.json: 9
+* .qst.json: 8
+
+=== st0451 -- Lookout Castle
+
+* scanner files: 173
+* .evsi.json: 6
+* .fsm.json: 45
+* .gpl.json: 3
+* .lot.json: 49
+* .qmi.json: 38
+* .qst.json: 32
+
+== Stage Neighborhood External-State Cues
+
+_These cues are deterministic client-side observations from the quest's stage neighborhood. They are not promoted to direct quest targets yet; they highlight q6/q7-owned external state values co-located in the quest's archive stages._
+
+* cue count: 181
+* owner families: q6, q7
+
+[cols="1,1,1,2,2,2",options="header"]
+|===
+| Value | Kind | Hits | Sources | Owners | Stages
+
+| Flag 6377 | layout_flag | 12 | evsi, gpl | 70031001 | st0134, st0451
+| Flag 7438 | layout_flag | 10 | evsi, gpl | 70032001 | st0134, st0451
+| Flag 7889 | layout_flag | 9 | evsi, gpl | 70033001 | st0134, st0451
+| Flag 7973 | layout_flag | 9 | evsi, gpl | 70033001 | st0134, st0451
+| Flag 8035 | layout_flag | 9 | evsi, gpl | 70033001 | st0139, st0451
+| Flag 8033 | layout_flag | 7 | evsi, gpl | 70033001 | st0134, st0451
+| Flag 8113 | layout_flag | 7 | evsi, gpl | 70033001 | st0134, st0451
+| Flag 8036 | layout_flag | 6 | evsi, gpl | 70033001 | st0134, st0451
+| Flag 7954 | layout_flag | 4 | evsi, gpl | 70033001 | st0139, st0451
+| Flag 1103 | layout_flag | 10 | evsi | 70003001 | st0134, st0451
+| Flag 1105 | layout_flag | 10 | evsi | 70003001 | st0134, st0451
+| Flag 1106 | layout_flag | 10 | evsi | 70003001 | st0134, st0451
+| Flag 1110 | layout_flag | 10 | evsi | 70000001 | st0134, st0451
+| Flag 1112 | layout_flag | 10 | evsi | 70000001 | st0134, st0451
+| Flag 1114 | layout_flag | 10 | evsi | 70002001 | st0134, st0451
+| Flag 1115 | layout_flag | 10 | evsi | 70002001 | st0134, st0451
+| Flag 1117 | layout_flag | 10 | evsi | 70002001 | st0134, st0451
+| Flag 1119 | layout_flag | 10 | evsi | 70003001 | st0134, st0451
+| Flag 1120 | layout_flag | 10 | evsi | 70003001 | st0134, st0451
+| Flag 1121 | layout_flag | 10 | evsi | 70003001 | st0134, st0451
+| Flag 1122 | layout_flag | 10 | evsi | 70003001 | st0134, st0451
+| Flag 1123 | layout_flag | 10 | evsi | 70003001 | st0134, st0451
+| Flag 1124 | layout_flag | 10 | evsi | 70003001 | st0134, st0451
+| Flag 1150 | layout_flag | 10 | evsi | 70000001 | st0134, st0451
+| Flag 1201 | layout_flag | 10 | evsi | 70000001 | st0134, st0451
+| Flag 1202 | layout_flag | 10 | evsi | 70003001 | st0134, st0451
+| Flag 1203 | layout_flag | 10 | evsi | 70003001 | st0134, st0451
+| Flag 1216 | layout_flag | 10 | evsi | 70000001 | st0134, st0451
+| Flag 1217 | layout_flag | 10 | evsi | 70000001 | st0134, st0451
+| Flag 1220 | layout_flag | 10 | evsi | 70000001 | st0134, st0451
+|===
+
+== Bounded Graph Expansion
+
+_This graph summarizes bounded deterministic and inferred edges around the quest: quest archive stages, direct source families, stage-linked owner catalogs, promoted dependencies, reverse-index event/group links, and family-specific table edges._
+
+* max depth: 3
+* node count: 182
+* edge count: 347
+* node kinds: direct_family=3, event_viewer=123, family_context=1, lot_file=15, owner_quest=13, quest=1, sequence_quest=2, stage=3, stage_group=21
+* derivation: Dependency=11, Direct=19, Graph=460, Owner Index=39
+
+=== Mermaid Graph Slice
+
+_This Mermaid flowchart shows a capped slice of the bounded graph so large quest reports stay readable while still exposing the graph structure._
+
+[mermaid]
+....
+flowchart TD
+    node_quest_30240["Quest 30240"]
+    node_direct_family_evsi["evsi direct hits (2)"]
+    node_direct_family_qst["qst direct hits (3)"]
+    node_direct_family_smc["smc direct hits (19)"]
+    node_family_context_quest_sequence["Quest Sequence"]
+    node_stage_st0134["st0134 -- Urteca Mountains"]
+    node_stage_st0139["st0139 -- Firefall Mountain Campsite"]
+    node_stage_st0451["st0451 -- Lookout Castle"]
+    node_event_viewer_st0134_ev001_70001001["Event st0134/ev001"]
+    node_event_viewer_st0134_ev001_70003001["Event st0134/ev001"]
+    node_event_viewer_st0134_ev001_70002001["Event st0134/ev001"]
+    node_event_viewer_st0134_ev001_70000001["Event st0134/ev001"]
+    node_owner_quest_70000001["Owner quest 70000001 (q7)"]
+    node_owner_quest_70002001["Owner quest 70002001 (q7)"]
+    node_owner_quest_70003001["Owner quest 70003001 (q7)"]
+    node_owner_quest_70020001["Owner quest 70020001 (q7)"]
+    node_owner_quest_70021001["Owner quest 70021001 (q7)"]
+    node_owner_quest_70022001["Owner quest 70022001 (q7)"]
+    node_owner_quest_70023001["Owner quest 70023001 (q7)"]
+    node_owner_quest_70030001["Owner quest 70030001 (q7)"]
+    node_owner_quest_70031001["Owner quest 70031001 (q7)"]
+    node_owner_quest_70032001["Owner quest 70032001 (q7)"]
+    node_owner_quest_70033001["Owner quest 70033001 (q7)"]
+    node_sequence_quest_30230["Quest 30230"]
+    node_sequence_quest_30250["Quest 30250"]
+    node_quest_30240 -->|direct_source_family| node_direct_family_evsi
+    node_quest_30240 -->|direct_source_family| node_direct_family_qst
+    node_quest_30240 -->|direct_source_family| node_direct_family_smc
+    node_quest_30240 -->|family:quest_sequence| node_family_context_quest_sequence
+    node_quest_30240 -->|quest_archive_stage| node_stage_st0134
+    node_quest_30240 -->|quest_archive_stage| node_stage_st0139
+    node_quest_30240 -->|quest_archive_stage| node_stage_st0451
+    node_quest_30240 -->|promoted_dependency| node_owner_quest_70000001
+    node_quest_30240 -->|promoted_dependency| node_owner_quest_70002001
+    node_quest_30240 -->|promoted_dependency| node_owner_quest_70003001
+    node_quest_30240 -->|promoted_dependency| node_owner_quest_70020001
+    node_quest_30240 -->|promoted_dependency| node_owner_quest_70021001
+    node_quest_30240 -->|promoted_dependency| node_owner_quest_70022001
+    node_quest_30240 -->|promoted_dependency| node_owner_quest_70023001
+    node_quest_30240 -->|promoted_dependency| node_owner_quest_70030001
+    node_quest_30240 -->|promoted_dependency| node_owner_quest_70031001
+    node_quest_30240 -->|promoted_dependency| node_owner_quest_70032001
+    node_quest_30240 -->|promoted_dependency| node_owner_quest_70033001
+    node_family_context_quest_sequence -->|sequence_next| node_sequence_quest_30250
+    node_family_context_quest_sequence -->|sequence_previous| node_sequence_quest_30230
+    node_stage_st0134 -->|stage_event_viewer| node_event_viewer_st0134_ev001_70000001
+    node_stage_st0134 -->|stage_event_viewer| node_event_viewer_st0134_ev001_70001001
+    node_stage_st0134 -->|stage_event_viewer| node_event_viewer_st0134_ev001_70002001
+    node_stage_st0134 -->|stage_event_viewer| node_event_viewer_st0134_ev001_70003001
+    classDef direct_deterministic fill:#e8f5e9,stroke:#2e7d32,stroke-width:1px
+    classDef owner_index fill:#e3f2fd,stroke:#1565c0,stroke-width:1px
+    classDef dependency_inferred fill:#fff3e0,stroke:#ef6c00,stroke-width:1px
+    classDef graph_expanded fill:#f3e5f5,stroke:#7b1fa2,stroke-width:1px
+    classDef lower_confidence fill:#fbe9e7,stroke:#d84315,stroke-width:1px
+    classDef binary_auxiliary fill:#eceff1,stroke:#455a64,stroke-width:1px
+    class node_quest_30240,node_direct_family_evsi,node_direct_family_qst,node_direct_family_smc,node_family_context_quest_sequence,node_stage_st0134,node_stage_st0139,node_stage_st0451,node_sequence_quest_30230,node_sequence_quest_30250 direct_deterministic
+    class node_owner_quest_70000001,node_owner_quest_70002001,node_owner_quest_70003001,node_owner_quest_70020001,node_owner_quest_70021001,node_owner_quest_70022001,node_owner_quest_70023001,node_owner_quest_70030001,node_owner_quest_70031001,node_owner_quest_70032001,node_owner_quest_70033001 owner_index
+    class node_event_viewer_st0134_ev001_70001001,node_event_viewer_st0134_ev001_70003001,node_event_viewer_st0134_ev001_70002001,node_event_viewer_st0134_ev001_70000001 graph_expanded
+....
+
+[cols="1,2,2,2,2,4",options="header"]
+|===
+| Depth | Edge | From | To | Derivation | Why
+
+| 1 | direct_source_family | quest:30240 | direct-family:evsi | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | direct_source_family | quest:30240 | direct-family:qst | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | direct_source_family | quest:30240 | direct-family:smc | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | family_context:quest_sequence | quest:30240 | family-context:quest_sequence | Direct | Family-specific decoded tables provide deterministic context for this quest.
+| 1 | quest_archive_stage | quest:30240 | stage:st0134 | Direct | Quest archive topology directly links this quest to the stage code.
+| 1 | quest_archive_stage | quest:30240 | stage:st0139 | Direct | Quest archive topology directly links this quest to the stage code.
+| 1 | quest_archive_stage | quest:30240 | stage:st0451 | Direct | Quest archive topology directly links this quest to the stage code.
+| 2 | promoted_dependency | quest:30240 | owner-quest:70000001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30240 | owner-quest:70002001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30240 | owner-quest:70003001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30240 | owner-quest:70020001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30240 | owner-quest:70021001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30240 | owner-quest:70022001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30240 | owner-quest:70023001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30240 | owner-quest:70030001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30240 | owner-quest:70031001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30240 | owner-quest:70032001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30240 | owner-quest:70033001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | sequence_next | family-context:quest_sequence | sequence-quest:30250 | Direct | QuestSequence links this quest to its neighboring sequence quest.
+| 2 | sequence_previous | family-context:quest_sequence | sequence-quest:30230 | Direct | QuestSequence links this quest to its neighboring sequence quest.
+| 2 | stage_event_viewer | stage:st0134 | event-viewer:st0134:ev001:70000001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0134 | event-viewer:st0134:ev001:70001001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0134 | event-viewer:st0134:ev001:70002001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0134 | event-viewer:st0134:ev001:70003001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0134 | event-viewer:st0134:ev001:70020001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0134 | event-viewer:st0134:ev001:70021001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0134 | event-viewer:st0134:ev001:70022001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0134 | event-viewer:st0134:ev001:70023001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0134 | event-viewer:st0134:ev001:70030001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0134 | event-viewer:st0134:ev001:70031001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0134 | event-viewer:st0134:ev001:70032001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0134 | event-viewer:st0134:ev001:70033001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0134 | event-viewer:st0134:ev002:70000001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0134 | event-viewer:st0134:ev002:70001001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0134 | event-viewer:st0134:ev002:70002001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0134 | event-viewer:st0134:ev002:70003001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0134 | event-viewer:st0134:ev002:70020001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0134 | event-viewer:st0134:ev002:70021001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0134 | event-viewer:st0134:ev002:70022001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0134 | event-viewer:st0134:ev002:70023001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+|===
 
 == Flag Summary Matrix
 
@@ -15,12 +308,71 @@ toc::[]
 |===
 | Target | Kind | Hits | Sources | Stages | Relationships | Description
 
+| Flag 7848 | layout_flag | 3 | evsi, qst | st0134, st0451 | 🎬 Event State, ⚡ Quest Condition | QST local: st0451 \| ベルタ以外
+| Flag 7850 | layout_flag | 1 | qst | st0134 | ⚡ Quest Condition | QST local: st0134 \| ジリアン
+| Flag 7851 | layout_flag | 1 | qst | st0139 | ⚡ Quest Condition | QST local: st0139 \| Condition
 | Quest ID 30240 | quest_id | 19 | smc |  | 🗣️ NPC Chatter | Derived quest-wide association scan
 |===
 
 == Known Documented Targets
 
+* quest 30240 -- Flag 7848 -- QST local: st0451 | ベルタ以外
+* quest 30240 -- Flag 7850 -- QST local: st0134 | ジリアン
+* quest 30240 -- Flag 7851 -- QST local: st0139 | Condition
 * Quest ID 30240 -- Derived quest-wide association scan [Derived]
+
+== Flag 7848 -- Quest 30240
+
+origin:: derived_qst_local
+direct hits:: *3*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 3 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030240/quest/00030240/q00030240_st0451.qst.json[client/03040008/quest/q00030240/quest/00030240/q00030240_st0451.qst.json] | QuestStageList[].QuestGrp[0].Condition | Condition | quest 30240 / Lookout Castle / "ベルタ以外" / QuestSet=QuestSetInfoNpc \|\| QuestSet=QuestSetInfoNpc | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0134/view_st0134ev005/event/viewer/view_st0134ev005.evsi.json#L601[client/03040008/event/st0134/view_st0134ev005/event/viewer/view_st0134ev005.evsi.json#L601] | LayoutFlagArray[0].FlagNo | FlagNo | quest 30240 (The Dreadful Passage) / Urteca Mountains / Event Viewer \| EVENT_NAME_st0134ev005 \| Terrifying monster blocking the way | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0134/view_st0134ev010/event/viewer/view_st0134ev010.evsi.json#L601[client/03040008/event/st0134/view_st0134ev010/event/viewer/view_st0134ev010.evsi.json#L601] | LayoutFlagArray[0].FlagNo | FlagNo | quest 30240 (The Dreadful Passage) / Urteca Mountains / Event Viewer \| EVENT_NAME_st0134ev010 \| Bonding with peers | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+|===
+
+== Flag 7850 -- Quest 30240
+
+origin:: derived_qst_local
+direct hits:: *1*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 1 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030240/quest/00030240/q00030240_st0134.qst.json[client/03040008/quest/q00030240/quest/00030240/q00030240_st0134.qst.json] | QuestStageList[].QuestGrp[0].Condition | Condition | quest 30240 / Urteca Mountains / "ジリアン" / QuestSet=QuestSetInfoNpc | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 7851 -- Quest 30240
+
+origin:: derived_qst_local
+direct hits:: *1*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 1 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030240/quest/00030240/q00030240_st0139.qst.json[client/03040008/quest/q00030240/quest/00030240/q00030240_st0139.qst.json] | QuestStageList[].QuestGrp[0].Condition | Condition | quest 30240 / Firefall Mountain Campsite / QuestSet=QuestSetInfoNpc \|\| QuestSet=QuestSetInfoNpc \|\| +2 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
 
 == Quest ID 30240
 
@@ -32,28 +384,28 @@ ranked candidates:: *0*
 
 ==== direct -- 19 hit(s)
 
-[cols="1,1,3,3,2,3,3",options="header"]
+[cols="1,1,1,3,3,2,3,3",options="header"]
 |===
-| Family | Confidence | File | JSON Path | Field | Context | Why
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
 
-| SMC | 92 | client/03040008/npc/n0001/ui/00_message/npc/base/n0001.smc.json | SituationData.EndQuestId | EndQuestId | quest 30240 (The Dreadful Passage) / The White Dragon / GroupSerial=24429 / "GroupSerial=24429, QuestWindow=30230-30240 (The Royal Family Mausoleum -> The Dreadful Passage), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0001 \| Quest-gated NPC chatter \| QuestWindow=30230-30240 (The Royal Family Mausoleum -> The Dreadful Passage) / MSS: The White Dragon / What principle doth govern the flute the | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0001/ui/00_message/npc/base/n0001.smc.json | SituationData.StartQuestId | StartQuestId | quest 30240 (The Dreadful Passage) / The White Dragon / GroupSerial=27977 / "GroupSerial=27977, QuestWindow=30240-30250 (The Dreadful Passage -> The Relics of the First King), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0001 \| Quest-gated NPC chatter \| QuestWindow=30240-30250 (The Dreadful Passage -> The Relics of the First King) / MSS: The White Dragon / The foe's design is shrouded... | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json | SituationData.EndQuestId | EndQuestId | quest 30240 (The Dreadful Passage) / Klaus / GroupSerial=24498 / "GroupSerial=24498, QuestWindow=30230-30240 (The Royal Family Mausoleum -> The Dreadful Passage), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0003 \| Quest-gated NPC chatter \| QuestWindow=30230-30240 (The Royal Family Mausoleum -> The Dreadful Passage) / MSS: Klaus / Firefall Mountain is the dwelling place of the | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json | SituationData.StartQuestId | StartQuestId | quest 30240 (The Dreadful Passage) / Klaus / GroupSerial=27988 / "GroupSerial=27988, QuestWindow=30240-30250 (The Dreadful Passage -> The Relics of the First King), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0003 \| Quest-gated NPC chatter \| QuestWindow=30240-30250 (The Dreadful Passage -> The Relics of the First King) / MSS: Klaus / Going back and forth, you've had it tough. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json | SituationData.EndQuestId | EndQuestId | quest 30240 (The Dreadful Passage) / Joseph / GroupSerial=24469 / "GroupSerial=24469, QuestWindow=30230-30240 (The Royal Family Mausoleum -> The Dreadful Passage), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0004 \| Quest-gated NPC chatter \| QuestWindow=30230-30240 (The Royal Family Mausoleum -> The Dreadful Passage) / MSS: Joseph / Of course, it is important to promptly ensure the | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json | SituationData.StartQuestId | StartQuestId | quest 30240 (The Dreadful Passage) / Joseph / GroupSerial=27979 / "GroupSerial=27979, QuestWindow=30240-30250 (The Dreadful Passage -> The Relics of the First King), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0004 \| Quest-gated NPC chatter \| QuestWindow=30240-30250 (The Dreadful Passage -> The Relics of the First King) / MSS: Joseph / Hmm... | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0013/ui/00_message/npc/base/n0013.smc.json | SituationData.EndQuestId | EndQuestId | quest 30240 (The Dreadful Passage) / Lise / GroupSerial=24556 / "GroupSerial=24556, QuestWindow=30230-30240 (The Royal Family Mausoleum -> The Dreadful Passage), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0013 \| Quest-gated NPC chatter \| QuestWindow=30230-30240 (The Royal Family Mausoleum -> The Dreadful Passage) / MSS: Lise / I'm worried about the prince, but if we leave it | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0021/ui/00_message/npc/base/n0021.smc.json | SituationData.EndQuestId | EndQuestId | quest 30240 (The Dreadful Passage) / Elliot / GroupSerial=24581 / "GroupSerial=24581, QuestWindow=30230-30240 (The Royal Family Mausoleum -> The Dreadful Passage), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0021 \| Quest-gated NPC chatter \| QuestWindow=30230-30240 (The Royal Family Mausoleum -> The Dreadful Passage) / MSS: Elliot / I'm the captain's right hand man whenever and | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0030/ui/00_message/npc/base/n0030.smc.json | SituationData.EndQuestId | EndQuestId | quest 30240 (The Dreadful Passage) / Gillian / GroupSerial=24609 / "GroupSerial=24609, QuestWindow=30230-30240 (The Royal Family Mausoleum -> The Dreadful Passage), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0030 \| Quest-gated NPC chatter \| QuestWindow=30230-30240 (The Royal Family Mausoleum -> The Dreadful Passage) / MSS: Gillian / When you suddenly realize, you depend on yourself | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0030/ui/00_message/npc/base/n0030.smc.json | SituationData.StartQuestId | StartQuestId | quest 30240 (The Dreadful Passage) / Gillian / GroupSerial=27993 / "GroupSerial=27993, QuestWindow=30240-30250 (The Dreadful Passage -> The Relics of the First King), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0030 \| Quest-gated NPC chatter \| QuestWindow=30240-30250 (The Dreadful Passage -> The Relics of the First King) / MSS: Gillian / The battle against the Evil Dragon is right | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0031/ui/00_message/npc/base/n0031.smc.json | SituationData.EndQuestId | EndQuestId | quest 30240 (The Dreadful Passage) / Meirova / GroupSerial=24759 / "GroupSerial=24759, QuestWindow=30230-30240 (The Royal Family Mausoleum -> The Dreadful Passage), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0031 \| Quest-gated NPC chatter \| QuestWindow=30230-30240 (The Royal Family Mausoleum -> The Dreadful Passage) / MSS: Meirova / The prince is neither crazy nor has he lost his | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0031/ui/00_message/npc/base/n0031.smc.json | SituationData.StartQuestId | StartQuestId | quest 30240 (The Dreadful Passage) / Meirova / GroupSerial=27995 / "GroupSerial=27995, QuestWindow=30240-30250 (The Dreadful Passage -> The Relics of the First King), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0031 \| Quest-gated NPC chatter \| QuestWindow=30240-30250 (The Dreadful Passage -> The Relics of the First King) / MSS: Meirova / Oh, I'm so busy, I have so much to do! I'm in | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0032/ui/00_message/npc/base/n0032.smc.json | SituationData.EndQuestId | EndQuestId | quest 30240 (The Dreadful Passage) / Gerhard / GroupSerial=24782 / "GroupSerial=24782, QuestWindow=30230-30240 (The Royal Family Mausoleum -> The Dreadful Passage), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0032 \| Quest-gated NPC chatter \| QuestWindow=30230-30240 (The Royal Family Mausoleum -> The Dreadful Passage) / MSS: Gerhard / I can't just stand still, | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0032/ui/00_message/npc/base/n0032.smc.json | SituationData.StartQuestId | StartQuestId | quest 30240 (The Dreadful Passage) / Gerhard / GroupSerial=24783 / "GroupSerial=24783, QuestWindow=30240-30260 (The Dreadful Passage -> Hopes' Bitter End), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0032 \| Quest-gated NPC chatter \| QuestWindow=30240-30260 (The Dreadful Passage -> Hopes' Bitter End) / MSS: Gerhard / As soon as preparations are complete, I plan to | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0033/ui/00_message/npc/base/n0033.smc.json | SituationData.EndQuestId | EndQuestId | quest 30240 (The Dreadful Passage) / Bertha / GroupSerial=24938 / "GroupSerial=24938, QuestWindow=30230-30240 (The Royal Family Mausoleum -> The Dreadful Passage), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0033 \| Quest-gated NPC chatter \| QuestWindow=30230-30240 (The Royal Family Mausoleum -> The Dreadful Passage) / MSS: Bertha / The absence of the prince has started to become a | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0033/ui/00_message/npc/base/n0033.smc.json | SituationData.StartQuestId | StartQuestId | quest 30240 (The Dreadful Passage) / Bertha / GroupSerial=27975 / "GroupSerial=27975, QuestWindow=30240-30250 (The Dreadful Passage -> The Relics of the First King), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0033 \| Quest-gated NPC chatter \| QuestWindow=30240-30250 (The Dreadful Passage -> The Relics of the First King) / MSS: Bertha / Life is really unpredictable. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0034/ui/00_message/npc/base/n0034.smc.json | SituationData.EndQuestId | EndQuestId | quest 30240 (The Dreadful Passage) / Quintus / GroupSerial=24738 / "GroupSerial=24738, QuestWindow=30230-30240 (The Royal Family Mausoleum -> The Dreadful Passage), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0034 \| Quest-gated NPC chatter \| QuestWindow=30230-30240 (The Royal Family Mausoleum -> The Dreadful Passage) / MSS: Quintus / I hear a lot of rumors, but I'm not worried. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0034/ui/00_message/npc/base/n0034.smc.json | SituationData.StartQuestId | StartQuestId | quest 30240 (The Dreadful Passage) / Quintus / GroupSerial=24739 / "GroupSerial=24739, QuestWindow=30240-30260 (The Dreadful Passage -> Hopes' Bitter End), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0034 \| Quest-gated NPC chatter \| QuestWindow=30240-30260 (The Dreadful Passage -> Hopes' Bitter End) / MSS: Quintus / When we met you, our hearts were like dark | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
-| SMC | 92 | client/03040008/npc/n0501/ui/00_message/npc/base/n0501.smc.json | SituationData.EndQuestId | EndQuestId | quest 30240 (The Dreadful Passage) / Gurdolin / GroupSerial=24532 / "GroupSerial=24532, QuestWindow=30230-30240 (The Royal Family Mausoleum -> The Dreadful Passage), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0501 \| Quest-gated NPC chatter \| QuestWindow=30230-30240 (The Royal Family Mausoleum -> The Dreadful Passage) / MSS: Gurdolin / Yeah, I'll listen if you want to talk. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0001/ui/00_message/npc/base/n0001.smc.json[client/03040008/npc/n0001/ui/00_message/npc/base/n0001.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30240 (The Dreadful Passage) / The White Dragon / GroupSerial=24429 / "GroupSerial=24429, QuestWindow=30230-30240 (The Royal Family Mausoleum -> The Dreadful Passage), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0001 \| Quest-gated NPC chatter \| QuestWindow=30230-30240 (The Royal Family Mausoleum -> The Dreadful Passage) / MSS: The White Dragon / What principle doth govern the flute the | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0001/ui/00_message/npc/base/n0001.smc.json[client/03040008/npc/n0001/ui/00_message/npc/base/n0001.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30240 (The Dreadful Passage) / The White Dragon / GroupSerial=27977 / "GroupSerial=27977, QuestWindow=30240-30250 (The Dreadful Passage -> The Relics of the First King), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0001 \| Quest-gated NPC chatter \| QuestWindow=30240-30250 (The Dreadful Passage -> The Relics of the First King) / MSS: The White Dragon / The foe's design is shrouded... | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json[client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30240 (The Dreadful Passage) / Klaus / GroupSerial=24498 / "GroupSerial=24498, QuestWindow=30230-30240 (The Royal Family Mausoleum -> The Dreadful Passage), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0003 \| Quest-gated NPC chatter \| QuestWindow=30230-30240 (The Royal Family Mausoleum -> The Dreadful Passage) / MSS: Klaus / Firefall Mountain is the dwelling place of the | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json[client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30240 (The Dreadful Passage) / Klaus / GroupSerial=27988 / "GroupSerial=27988, QuestWindow=30240-30250 (The Dreadful Passage -> The Relics of the First King), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0003 \| Quest-gated NPC chatter \| QuestWindow=30240-30250 (The Dreadful Passage -> The Relics of the First King) / MSS: Klaus / Going back and forth, you've had it tough. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json[client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30240 (The Dreadful Passage) / Joseph / GroupSerial=24469 / "GroupSerial=24469, QuestWindow=30230-30240 (The Royal Family Mausoleum -> The Dreadful Passage), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0004 \| Quest-gated NPC chatter \| QuestWindow=30230-30240 (The Royal Family Mausoleum -> The Dreadful Passage) / MSS: Joseph / Of course, it is important to promptly ensure the | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json[client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30240 (The Dreadful Passage) / Joseph / GroupSerial=27979 / "GroupSerial=27979, QuestWindow=30240-30250 (The Dreadful Passage -> The Relics of the First King), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0004 \| Quest-gated NPC chatter \| QuestWindow=30240-30250 (The Dreadful Passage -> The Relics of the First King) / MSS: Joseph / Hmm... | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0013/ui/00_message/npc/base/n0013.smc.json[client/03040008/npc/n0013/ui/00_message/npc/base/n0013.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30240 (The Dreadful Passage) / Lise / GroupSerial=24556 / "GroupSerial=24556, QuestWindow=30230-30240 (The Royal Family Mausoleum -> The Dreadful Passage), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0013 \| Quest-gated NPC chatter \| QuestWindow=30230-30240 (The Royal Family Mausoleum -> The Dreadful Passage) / MSS: Lise / I'm worried about the prince, but if we leave it | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0021/ui/00_message/npc/base/n0021.smc.json[client/03040008/npc/n0021/ui/00_message/npc/base/n0021.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30240 (The Dreadful Passage) / Elliot / GroupSerial=24581 / "GroupSerial=24581, QuestWindow=30230-30240 (The Royal Family Mausoleum -> The Dreadful Passage), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0021 \| Quest-gated NPC chatter \| QuestWindow=30230-30240 (The Royal Family Mausoleum -> The Dreadful Passage) / MSS: Elliot / I'm the captain's right hand man whenever and | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0030/ui/00_message/npc/base/n0030.smc.json[client/03040008/npc/n0030/ui/00_message/npc/base/n0030.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30240 (The Dreadful Passage) / Gillian / GroupSerial=24609 / "GroupSerial=24609, QuestWindow=30230-30240 (The Royal Family Mausoleum -> The Dreadful Passage), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0030 \| Quest-gated NPC chatter \| QuestWindow=30230-30240 (The Royal Family Mausoleum -> The Dreadful Passage) / MSS: Gillian / When you suddenly realize, you depend on yourself | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0030/ui/00_message/npc/base/n0030.smc.json[client/03040008/npc/n0030/ui/00_message/npc/base/n0030.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30240 (The Dreadful Passage) / Gillian / GroupSerial=27993 / "GroupSerial=27993, QuestWindow=30240-30250 (The Dreadful Passage -> The Relics of the First King), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0030 \| Quest-gated NPC chatter \| QuestWindow=30240-30250 (The Dreadful Passage -> The Relics of the First King) / MSS: Gillian / The battle against the Evil Dragon is right | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0031/ui/00_message/npc/base/n0031.smc.json[client/03040008/npc/n0031/ui/00_message/npc/base/n0031.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30240 (The Dreadful Passage) / Meirova / GroupSerial=24759 / "GroupSerial=24759, QuestWindow=30230-30240 (The Royal Family Mausoleum -> The Dreadful Passage), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0031 \| Quest-gated NPC chatter \| QuestWindow=30230-30240 (The Royal Family Mausoleum -> The Dreadful Passage) / MSS: Meirova / The prince is neither crazy nor has he lost his | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0031/ui/00_message/npc/base/n0031.smc.json[client/03040008/npc/n0031/ui/00_message/npc/base/n0031.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30240 (The Dreadful Passage) / Meirova / GroupSerial=27995 / "GroupSerial=27995, QuestWindow=30240-30250 (The Dreadful Passage -> The Relics of the First King), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0031 \| Quest-gated NPC chatter \| QuestWindow=30240-30250 (The Dreadful Passage -> The Relics of the First King) / MSS: Meirova / Oh, I'm so busy, I have so much to do! I'm in | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0032/ui/00_message/npc/base/n0032.smc.json[client/03040008/npc/n0032/ui/00_message/npc/base/n0032.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30240 (The Dreadful Passage) / Gerhard / GroupSerial=24782 / "GroupSerial=24782, QuestWindow=30230-30240 (The Royal Family Mausoleum -> The Dreadful Passage), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0032 \| Quest-gated NPC chatter \| QuestWindow=30230-30240 (The Royal Family Mausoleum -> The Dreadful Passage) / MSS: Gerhard / I can't just stand still, | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0032/ui/00_message/npc/base/n0032.smc.json[client/03040008/npc/n0032/ui/00_message/npc/base/n0032.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30240 (The Dreadful Passage) / Gerhard / GroupSerial=24783 / "GroupSerial=24783, QuestWindow=30240-30260 (The Dreadful Passage -> Hopes' Bitter End), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0032 \| Quest-gated NPC chatter \| QuestWindow=30240-30260 (The Dreadful Passage -> Hopes' Bitter End) / MSS: Gerhard / As soon as preparations are complete, I plan to | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0033/ui/00_message/npc/base/n0033.smc.json[client/03040008/npc/n0033/ui/00_message/npc/base/n0033.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30240 (The Dreadful Passage) / Bertha / GroupSerial=24938 / "GroupSerial=24938, QuestWindow=30230-30240 (The Royal Family Mausoleum -> The Dreadful Passage), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0033 \| Quest-gated NPC chatter \| QuestWindow=30230-30240 (The Royal Family Mausoleum -> The Dreadful Passage) / MSS: Bertha / The absence of the prince has started to become a | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0033/ui/00_message/npc/base/n0033.smc.json[client/03040008/npc/n0033/ui/00_message/npc/base/n0033.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30240 (The Dreadful Passage) / Bertha / GroupSerial=27975 / "GroupSerial=27975, QuestWindow=30240-30250 (The Dreadful Passage -> The Relics of the First King), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0033 \| Quest-gated NPC chatter \| QuestWindow=30240-30250 (The Dreadful Passage -> The Relics of the First King) / MSS: Bertha / Life is really unpredictable. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0034/ui/00_message/npc/base/n0034.smc.json[client/03040008/npc/n0034/ui/00_message/npc/base/n0034.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30240 (The Dreadful Passage) / Quintus / GroupSerial=24738 / "GroupSerial=24738, QuestWindow=30230-30240 (The Royal Family Mausoleum -> The Dreadful Passage), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0034 \| Quest-gated NPC chatter \| QuestWindow=30230-30240 (The Royal Family Mausoleum -> The Dreadful Passage) / MSS: Quintus / I hear a lot of rumors, but I'm not worried. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0034/ui/00_message/npc/base/n0034.smc.json[client/03040008/npc/n0034/ui/00_message/npc/base/n0034.smc.json] | SituationData.StartQuestId | StartQuestId | quest 30240 (The Dreadful Passage) / Quintus / GroupSerial=24739 / "GroupSerial=24739, QuestWindow=30240-30260 (The Dreadful Passage -> Hopes' Bitter End), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start" / NpcChatter=n0034 \| Quest-gated NPC chatter \| QuestWindow=30240-30260 (The Dreadful Passage -> Hopes' Bitter End) / MSS: Quintus / When we met you, our hearts were like dark | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
+| SMC | Direct | 92 | link:../../../../client/03040008/npc/n0501/ui/00_message/npc/base/n0501.smc.json[client/03040008/npc/n0501/ui/00_message/npc/base/n0501.smc.json] | SituationData.EndQuestId | EndQuestId | quest 30240 (The Dreadful Passage) / Gurdolin / GroupSerial=24532 / "GroupSerial=24532, QuestWindow=30230-30240 (The Royal Family Mausoleum -> The Dreadful Passage), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end" / NpcChatter=n0501 \| Quest-gated NPC chatter \| QuestWindow=30230-30240 (The Royal Family Mausoleum -> The Dreadful Passage) / MSS: Gurdolin / Yeah, I'll listen if you want to talk. | SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.
 |===
 

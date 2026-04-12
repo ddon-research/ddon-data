@@ -1,11 +1,18 @@
 {
   "format": "client_investigation.v4",
-  "generated_at": "2026-04-11T21:41:42.966301+00:00",
+  "generated_at": "2026-04-12T12:44:32.886670+00:00",
   "query": {
     "mode": "quest",
     "value": 90020201
   },
   "documented_targets": [
+    {
+      "flag_value": 3808,
+      "quest_id": 90020201,
+      "flag_type": "layout_flag",
+      "doc_comment": "QST local: st0203 | QuestGroup 1",
+      "origin": "derived_qst_local"
+    },
     {
       "flag_value": 90020201,
       "quest_id": 90020201,
@@ -15,6 +22,39 @@
     }
   ],
   "targets": [
+    {
+      "target": {
+        "flag_value": 3808,
+        "quest_id": 90020201,
+        "flag_type": "layout_flag",
+        "origin": "derived_qst_local",
+        "doc_comment": "QST local: st0203 | QuestGroup 1"
+      },
+      "hits": [
+        {
+          "source_type": "qst",
+          "file_path": "client/03040008/quest/q90020201/quest/90020201/q90020201_st0203.qst.json",
+          "json_path": "QuestStageList[].QuestGrp[0].Condition",
+          "field_name": "Condition",
+          "flag_value": 3808,
+          "flag_kind": "layout_flag",
+          "relationship": "quest_condition",
+          "stage_name": "Cave Harbor",
+          "stage_name_jp": "港洞",
+          "stage_code": "st0203",
+          "comment": "QuestGroup 1",
+          "context": "QuestSet=QuestSetInfoNpc | GroupNo=1",
+          "quest_id": 90020201,
+          "stage_no": 203,
+          "resource_family": "QST",
+          "evidence_tier": "direct",
+          "derivation_class": "direct_deterministic",
+          "confidence": 92,
+          "why": "Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes."
+        }
+      ],
+      "candidate_hits": []
+    },
     {
       "target": {
         "flag_value": 90020201,
@@ -32,6 +72,7 @@
           "json_path": "QuestSequenceList[525].QuestId",
           "resource_family": ".qsq",
           "evidence_tier": "context",
+          "derivation_class": "lower_confidence",
           "confidence": 45,
           "why": "Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.",
           "class_name": "org.sehkah.ddon.tools.extractor.common.logic.resource.entity.game_common.QuestSequence",
@@ -42,9 +83,158 @@
       ]
     }
   ],
+  "quest_family": {
+    "key": "q9",
+    "label": "Reserved q9",
+    "description": "Reserved or unimplemented quest-family bucket.",
+    "discovery_focus": "unsupported_until_client_evidence",
+    "supported": false
+  },
+  "quest_family_relationships": {
+    "quest_family": {
+      "key": "q9",
+      "label": "Reserved q9",
+      "description": "Reserved or unimplemented quest-family bucket.",
+      "discovery_focus": "unsupported_until_client_evidence",
+      "supported": false
+    },
+    "quest_sequence": {
+      "quest_id": 90020201,
+      "seq_no": 525,
+      "quest_name": "Bloodbane Isle's Feast of Madness",
+      "quest_name_jp": "魔赤島の狂宴",
+      "previous": {
+        "quest_id": 90000207,
+        "seq_no": 524,
+        "quest_name": "The Crucible of Demons: Inferno",
+        "quest_name_jp": "魔物のるつぼ　：業火"
+      },
+      "next": {
+        "quest_id": 90020202,
+        "seq_no": 526,
+        "quest_name": "Bloodbane Isle's Feast of Madness",
+        "quest_name_jp": "魔赤島の狂宴"
+      }
+    }
+  },
+  "quest_owner_indexes": [
+    {
+      "owner_quest_id": 70020001,
+      "owner_family": "q7",
+      "flag_values": [
+        2736,
+        3000,
+        3002,
+        3003,
+        3074,
+        3442,
+        3805,
+        4037
+      ],
+      "flag_count": 8,
+      "local_qst_flag_count": 2,
+      "self_cue_flag_count": 6,
+      "cue_source_types": [
+        "evsi",
+        "gpl"
+      ],
+      "derivation_class": "owner_index",
+      "linked_flag_values": [
+        3074
+      ],
+      "linked_flag_count": 1,
+      "linked_source_types": [
+        "gpl"
+      ],
+      "linked_stage_codes": [
+        "st0203"
+      ],
+      "why": "Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference."
+    },
+    {
+      "owner_quest_id": 70032001,
+      "owner_family": "q7",
+      "flag_values": [
+        7169,
+        7240,
+        7241,
+        7336,
+        7341,
+        7342,
+        7386,
+        7387,
+        7388,
+        7389,
+        7390,
+        7438,
+        7439,
+        7440,
+        7496,
+        7497,
+        7498,
+        7512,
+        7514,
+        7544,
+        7545,
+        7549,
+        7550,
+        7551,
+        7552,
+        7553,
+        7554,
+        7555,
+        7556,
+        7557,
+        7558,
+        7562,
+        7746,
+        7927,
+        7928,
+        7929,
+        7930
+      ],
+      "flag_count": 37,
+      "local_qst_flag_count": 8,
+      "self_cue_flag_count": 29,
+      "cue_source_types": [
+        "evsi",
+        "gpl"
+      ],
+      "derivation_class": "owner_index",
+      "linked_flag_values": [
+        7447
+      ],
+      "linked_flag_count": 1,
+      "linked_source_types": [
+        "gpl"
+      ],
+      "linked_stage_codes": [
+        "st0203"
+      ],
+      "why": "Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference."
+    }
+  ],
+  "quest_dependency_targets": [],
   "quest_archive_context": {
+    "quest_family": {
+      "key": "q9",
+      "label": "Reserved q9",
+      "description": "Reserved or unimplemented quest-family bucket.",
+      "discovery_focus": "unsupported_until_client_evidence",
+      "supported": false
+    },
     "file_path": "client/03040008/quest/q90020201.arc.json",
     "resource_count": 6,
+    "stage_codes": [
+      "st0203"
+    ],
+    "resource_type_extensions": [
+      ".gmd",
+      ".mss",
+      ".qmi",
+      ".qst",
+      ".qtd"
+    ],
     "stages": [
       {
         "stage_code": "st0203",
@@ -91,6 +281,413 @@
             "type_name": "rGUIMessage"
           }
         ]
+      }
+    ]
+  },
+  "quest_stage_neighborhood": {
+    "quest_family": {
+      "key": "q9",
+      "label": "Reserved q9",
+      "description": "Reserved or unimplemented quest-family bucket.",
+      "discovery_focus": "unsupported_until_client_evidence",
+      "supported": false
+    },
+    "stage_codes": [
+      "st0203"
+    ],
+    "scanner_file_count": 42,
+    "stages": [
+      {
+        "stage_code": "st0203",
+        "stage_no": 203,
+        "stage_name": "Cave Harbor",
+        "stage_name_jp": "港洞",
+        "scanner_file_count": 42,
+        "scanner_suffix_counts": {
+          ".gpl.json": 4,
+          ".lot.json": 13,
+          ".qmi.json": 16,
+          ".qst.json": 9
+        }
+      }
+    ]
+  },
+  "quest_stage_cues": {
+    "quest_family": {
+      "key": "q9",
+      "label": "Reserved q9",
+      "description": "Reserved or unimplemented quest-family bucket.",
+      "discovery_focus": "unsupported_until_client_evidence",
+      "supported": false
+    },
+    "stage_codes": [
+      "st0203"
+    ],
+    "owner_families": [
+      "q6",
+      "q7"
+    ],
+    "cues": [
+      {
+        "flag_value": 3074,
+        "flag_kind": "layout_flag",
+        "score": 8,
+        "hit_count": 1,
+        "source_types": [
+          "gpl"
+        ],
+        "owner_quests": [
+          70020001
+        ],
+        "owner_families": [
+          "q7"
+        ],
+        "stage_codes": [
+          "st0203"
+        ],
+        "sample_hits": [
+          {
+            "source_type": "gpl",
+            "field_name": "LayoutFlagNo",
+            "relationship": "layout_guard",
+            "quest_id": 70020001,
+            "stage_code": "st0203",
+            "file_path": "client/03040008/stage/st0203/st0203/scr/st0203/etc/st0203_p.gpl.json",
+            "comment": ""
+          }
+        ]
+      },
+      {
+        "flag_value": 7447,
+        "flag_kind": "layout_flag",
+        "score": 8,
+        "hit_count": 1,
+        "source_types": [
+          "gpl"
+        ],
+        "owner_quests": [
+          70032001
+        ],
+        "owner_families": [
+          "q7"
+        ],
+        "stage_codes": [
+          "st0203"
+        ],
+        "sample_hits": [
+          {
+            "source_type": "gpl",
+            "field_name": "LayoutFlagNo",
+            "relationship": "layout_guard",
+            "quest_id": 70032001,
+            "stage_code": "st0203",
+            "file_path": "client/03040008/stage/st0203/st0203/scr/st0203/etc/st0203_p.gpl.json",
+            "comment": ""
+          }
+        ]
+      }
+    ],
+    "cue_count": 2
+  },
+  "quest_graph_expansion": {
+    "max_depth": 3,
+    "node_count": 12,
+    "edge_count": 13,
+    "node_kind_counts": {
+      "direct_family": 1,
+      "family_context": 1,
+      "lot_file": 2,
+      "owner_quest": 2,
+      "quest": 1,
+      "sequence_quest": 2,
+      "stage": 1,
+      "stage_group": 2
+    },
+    "edge_type_counts": {
+      "direct_source_family": 1,
+      "family_context:quest_sequence": 1,
+      "gpl_owner_guard": 2,
+      "group_lot_reference": 2,
+      "quest_archive_stage": 1,
+      "sequence_next": 1,
+      "sequence_previous": 1,
+      "stage_group_reference": 2,
+      "stage_owner_index": 2
+    },
+    "derivation_counts": {
+      "direct_deterministic": 11,
+      "graph_expanded": 10,
+      "owner_index": 4
+    },
+    "nodes": [
+      {
+        "node_id": "quest:90020201",
+        "label": "Quest 90020201",
+        "kind": "quest",
+        "depth": 0,
+        "derivation_class": "direct_deterministic",
+        "metadata": {
+          "quest_id": 90020201,
+          "target_count": 2
+        }
+      },
+      {
+        "node_id": "direct-family:qst",
+        "label": "qst direct hits (1)",
+        "kind": "direct_family",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "metadata": {
+          "source_type": "qst",
+          "hit_count": 1
+        }
+      },
+      {
+        "node_id": "family-context:quest_sequence",
+        "label": "Quest Sequence",
+        "kind": "family_context",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "metadata": {
+          "context_key": "quest_sequence"
+        }
+      },
+      {
+        "node_id": "stage:st0203",
+        "label": "st0203 -- Cave Harbor",
+        "kind": "stage",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "metadata": {
+          "stage_code": "st0203"
+        }
+      },
+      {
+        "node_id": "owner-quest:70020001",
+        "label": "Owner quest 70020001 (q7)",
+        "kind": "owner_quest",
+        "depth": 2,
+        "derivation_class": "owner_index",
+        "metadata": {
+          "owner_quest_id": 70020001,
+          "owner_family": "q7",
+          "flag_count": 8
+        }
+      },
+      {
+        "node_id": "owner-quest:70032001",
+        "label": "Owner quest 70032001 (q7)",
+        "kind": "owner_quest",
+        "depth": 2,
+        "derivation_class": "owner_index",
+        "metadata": {
+          "owner_quest_id": 70032001,
+          "owner_family": "q7",
+          "flag_count": 37
+        }
+      },
+      {
+        "node_id": "sequence-quest:90000207",
+        "label": "Quest 90000207",
+        "kind": "sequence_quest",
+        "depth": 2,
+        "derivation_class": "direct_deterministic",
+        "metadata": {
+          "quest_id": 90000207,
+          "direction": "previous"
+        }
+      },
+      {
+        "node_id": "sequence-quest:90020202",
+        "label": "Quest 90020202",
+        "kind": "sequence_quest",
+        "depth": 2,
+        "derivation_class": "direct_deterministic",
+        "metadata": {
+          "quest_id": 90020202,
+          "direction": "next"
+        }
+      },
+      {
+        "node_id": "stage-group:st0203:24",
+        "label": "GPL group st0203/24",
+        "kind": "stage_group",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "metadata": {
+          "stage_code": "st0203",
+          "group_no": 24
+        }
+      },
+      {
+        "node_id": "stage-group:st0203:27",
+        "label": "GPL group st0203/27",
+        "kind": "stage_group",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "metadata": {
+          "stage_code": "st0203",
+          "group_no": 27
+        }
+      },
+      {
+        "node_id": "lot-file:st0203_00m00n_p24.lot.json",
+        "label": "st0203_00m00n_p24.lot.json",
+        "kind": "lot_file",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "metadata": {
+          "file_path": "client/03040008/stage/st0203/lot/st0203_00m00n/scr/st0203/etc/st0203_00m00n_p24.lot.json",
+          "type_names": [
+            "SetInfoOmWarp",
+            "SetInfoOmOld"
+          ]
+        }
+      },
+      {
+        "node_id": "lot-file:st0203_00m00n_p27.lot.json",
+        "label": "st0203_00m00n_p27.lot.json",
+        "kind": "lot_file",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "metadata": {
+          "file_path": "client/03040008/stage/st0203/lot/st0203_00m00n/scr/st0203/etc/st0203_00m00n_p27.lot.json",
+          "type_names": [
+            "SetInfoOmWarp",
+            "SetInfoOmOld"
+          ]
+        }
+      }
+    ],
+    "edges": [
+      {
+        "from": "quest:90020201",
+        "to": "direct-family:qst",
+        "edge_type": "direct_source_family",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "why": "Decoded direct hits for the quest targets include this source family.",
+        "metadata": {}
+      },
+      {
+        "from": "quest:90020201",
+        "to": "family-context:quest_sequence",
+        "edge_type": "family_context:quest_sequence",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "why": "Family-specific decoded tables provide deterministic context for this quest.",
+        "metadata": {}
+      },
+      {
+        "from": "quest:90020201",
+        "to": "stage:st0203",
+        "edge_type": "quest_archive_stage",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "why": "Quest archive topology directly links this quest to the stage code.",
+        "metadata": {}
+      },
+      {
+        "from": "family-context:quest_sequence",
+        "to": "sequence-quest:90020202",
+        "edge_type": "sequence_next",
+        "depth": 2,
+        "derivation_class": "direct_deterministic",
+        "why": "QuestSequence links this quest to its neighboring sequence quest.",
+        "metadata": {}
+      },
+      {
+        "from": "family-context:quest_sequence",
+        "to": "sequence-quest:90000207",
+        "edge_type": "sequence_previous",
+        "depth": 2,
+        "derivation_class": "direct_deterministic",
+        "why": "QuestSequence links this quest to its neighboring sequence quest.",
+        "metadata": {}
+      },
+      {
+        "from": "stage:st0203",
+        "to": "stage-group:st0203:24",
+        "edge_type": "stage_group_reference",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "why": "Reverse indexes expose GPL group references for this stage.",
+        "metadata": {}
+      },
+      {
+        "from": "stage:st0203",
+        "to": "stage-group:st0203:27",
+        "edge_type": "stage_group_reference",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "why": "Reverse indexes expose GPL group references for this stage.",
+        "metadata": {}
+      },
+      {
+        "from": "stage:st0203",
+        "to": "owner-quest:70020001",
+        "edge_type": "stage_owner_index",
+        "depth": 2,
+        "derivation_class": "owner_index",
+        "why": "Stage-neighborhood cues on this stage link to the reusable owner catalog.",
+        "metadata": {
+          "linked_flag_values": [
+            3074
+          ]
+        }
+      },
+      {
+        "from": "stage:st0203",
+        "to": "owner-quest:70032001",
+        "edge_type": "stage_owner_index",
+        "depth": 2,
+        "derivation_class": "owner_index",
+        "why": "Stage-neighborhood cues on this stage link to the reusable owner catalog.",
+        "metadata": {
+          "linked_flag_values": [
+            7447
+          ]
+        }
+      },
+      {
+        "from": "stage-group:st0203:24",
+        "to": "owner-quest:70020001",
+        "edge_type": "gpl_owner_guard",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "why": "GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.",
+        "metadata": {
+          "flag_value": 3074
+        }
+      },
+      {
+        "from": "stage-group:st0203:27",
+        "to": "owner-quest:70032001",
+        "edge_type": "gpl_owner_guard",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "why": "GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.",
+        "metadata": {
+          "flag_value": 7447
+        }
+      },
+      {
+        "from": "stage-group:st0203:24",
+        "to": "lot-file:st0203_00m00n_p24.lot.json",
+        "edge_type": "group_lot_reference",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "why": "LOT association resolves the GPL group to a concrete stage layout file.",
+        "metadata": {}
+      },
+      {
+        "from": "stage-group:st0203:27",
+        "to": "lot-file:st0203_00m00n_p27.lot.json",
+        "edge_type": "group_lot_reference",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "why": "LOT association resolves the GPL group to a concrete stage layout file.",
+        "metadata": {}
       }
     ]
   }

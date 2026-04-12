@@ -1,11 +1,25 @@
 {
   "format": "client_investigation.v4",
-  "generated_at": "2026-04-11T21:41:40.826333+00:00",
+  "generated_at": "2026-04-12T12:43:52.626484+00:00",
   "query": {
     "mode": "quest",
     "value": 20080001
   },
   "documented_targets": [
+    {
+      "flag_value": 1070,
+      "quest_id": 20080001,
+      "flag_type": "layout_flag",
+      "doc_comment": "QST local: st0508 | QuestGroup 1",
+      "origin": "derived_qst_local"
+    },
+    {
+      "flag_value": 1765,
+      "quest_id": 20080001,
+      "flag_type": "layout_flag",
+      "doc_comment": "QST local: st0508 | QuestGroup 2",
+      "origin": "derived_qst_local"
+    },
     {
       "flag_value": 20080001,
       "quest_id": 20080001,
@@ -15,6 +29,185 @@
     }
   ],
   "targets": [
+    {
+      "target": {
+        "flag_value": 1070,
+        "quest_id": 20080001,
+        "flag_type": "layout_flag",
+        "origin": "derived_qst_local",
+        "doc_comment": "QST local: st0508 | QuestGroup 1"
+      },
+      "hits": [
+        {
+          "source_type": "qst",
+          "file_path": "client/03040008/quest/q20080001/quest/20080001/q20080001_st0508.qst.json",
+          "json_path": "QuestStageList[].QuestGrp[0].Condition",
+          "field_name": "Condition",
+          "flag_value": 1070,
+          "flag_kind": "layout_flag",
+          "relationship": "quest_condition",
+          "stage_name": "Shrine of Resentment",
+          "stage_name_jp": "怨嗟の祠",
+          "stage_code": "st0508",
+          "comment": "QuestGroup 1",
+          "context": "QuestSet=QuestSetInfoNpc | GroupNo=1",
+          "quest_id": 20080001,
+          "stage_no": 508,
+          "resource_family": "QST",
+          "evidence_tier": "direct",
+          "derivation_class": "direct_deterministic",
+          "confidence": 92,
+          "why": "Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes."
+        },
+        {
+          "source_type": "evsi",
+          "file_path": "client/03040008/event/st0213/view_st0213ev015/event/viewer/view_st0213ev015.evsi.json",
+          "json_path": "FlagArray[70].FlagNo",
+          "field_name": "FlagNo",
+          "flag_value": 1070,
+          "flag_kind": "quest_flag",
+          "relationship": "event_state",
+          "quest_name": "Straying Power",
+          "quest_name_jp": "彷徨えし力",
+          "stage_name": "Mayleaf's Bedroom",
+          "stage_name_jp": "メイリーフの寝室",
+          "stage_code": "st0213",
+          "event_code": "ev015",
+          "context": "Event Viewer | EVENT_NAME_st0213ev015 | Cecily wakes up",
+          "quest_id": 20130,
+          "stage_no": 213,
+          "resource_family": "EVSI",
+          "evidence_tier": "direct",
+          "derivation_class": "direct_deterministic",
+          "confidence": 92,
+          "why": "Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event."
+        },
+        {
+          "source_type": "evsi",
+          "file_path": "client/03040008/event/st0408/view_st0408ev015/event/viewer/view_st0408ev015.evsi.json",
+          "json_path": "FlagArray[68].FlagNo",
+          "field_name": "FlagNo",
+          "flag_value": 1070,
+          "flag_kind": "quest_flag",
+          "relationship": "event_state",
+          "quest_name": "Straying Power",
+          "quest_name_jp": "彷徨えし力",
+          "stage_name": "Temple of Purification",
+          "stage_name_jp": "禊の神殿",
+          "stage_code": "st0408",
+          "event_code": "ev015",
+          "context": "Event Viewer | EVENT_NAME_st0408ev015 | To the stagnation of dragon power",
+          "quest_id": 20130,
+          "stage_no": 408,
+          "resource_family": "EVSI",
+          "evidence_tier": "direct",
+          "derivation_class": "direct_deterministic",
+          "confidence": 92,
+          "why": "Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event."
+        },
+        {
+          "source_type": "evsi",
+          "file_path": "client/03040008/event/st0430/view_st0430ev000/event/viewer/view_st0430ev000.evsi.json",
+          "json_path": "FlagArray[68].FlagNo",
+          "field_name": "FlagNo",
+          "flag_value": 1070,
+          "flag_kind": "quest_flag",
+          "relationship": "event_state",
+          "quest_name": "Straying Power",
+          "quest_name_jp": "彷徨えし力",
+          "stage_name": "Vortex of Stagnation",
+          "stage_name_jp": "淀みの渦",
+          "stage_code": "st0430",
+          "event_code": "ev000",
+          "context": "Event Viewer | EVENT_NAME_st0430ev000 | Monster in the form of a white dragon",
+          "quest_id": 20130,
+          "stage_no": 430,
+          "resource_family": "EVSI",
+          "evidence_tier": "direct",
+          "derivation_class": "direct_deterministic",
+          "confidence": 92,
+          "why": "Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event."
+        },
+        {
+          "source_type": "evsi",
+          "file_path": "client/03040008/event/st0430/view_st0430ev005/event/viewer/view_st0430ev005.evsi.json",
+          "json_path": "FlagArray[69].FlagNo",
+          "field_name": "FlagNo",
+          "flag_value": 1070,
+          "flag_kind": "quest_flag",
+          "relationship": "event_state",
+          "quest_name": "Straying Power",
+          "quest_name_jp": "彷徨えし力",
+          "stage_name": "Vortex of Stagnation",
+          "stage_name_jp": "淀みの渦",
+          "stage_code": "st0430",
+          "event_code": "ev005",
+          "context": "Event Viewer | EVENT_NAME_st0430ev005 | Their own way",
+          "quest_id": 20130,
+          "stage_no": 430,
+          "resource_family": "EVSI",
+          "evidence_tier": "direct",
+          "derivation_class": "direct_deterministic",
+          "confidence": 92,
+          "why": "Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event."
+        }
+      ],
+      "candidate_hits": []
+    },
+    {
+      "target": {
+        "flag_value": 1765,
+        "quest_id": 20080001,
+        "flag_type": "layout_flag",
+        "origin": "derived_qst_local",
+        "doc_comment": "QST local: st0508 | QuestGroup 2"
+      },
+      "hits": [
+        {
+          "source_type": "qst",
+          "file_path": "client/03040008/quest/q20080001/quest/20080001/q20080001_st0508.qst.json",
+          "json_path": "QuestStageList[].QuestGrp[1].Condition",
+          "field_name": "Condition",
+          "flag_value": 1765,
+          "flag_kind": "layout_flag",
+          "relationship": "quest_condition",
+          "stage_name": "Shrine of Resentment",
+          "stage_name_jp": "怨嗟の祠",
+          "stage_code": "st0508",
+          "comment": "QuestGroup 2",
+          "context": "QuestSet=QuestSetInfoOmText | OmID=522570 | OM_ID_CMN_MSG_POINT | EnableZone | TextNo=337 | TextType=2 | TextQuestNo=20080001 | GroupNo=2",
+          "quest_id": 20080001,
+          "stage_no": 508,
+          "resource_family": "QST",
+          "evidence_tier": "direct",
+          "derivation_class": "direct_deterministic",
+          "confidence": 92,
+          "why": "Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes."
+        },
+        {
+          "source_type": "qst",
+          "file_path": "client/03040008/quest/q20080001/quest/20080001/q20080001_st0508.qst.json",
+          "json_path": "QuestStageList[].QuestGrp[1].EraseCondition",
+          "field_name": "EraseCondition",
+          "flag_value": 1765,
+          "flag_kind": "layout_flag",
+          "relationship": "quest_erase",
+          "stage_name": "Shrine of Resentment",
+          "stage_name_jp": "怨嗟の祠",
+          "stage_code": "st0508",
+          "comment": "QuestGroup 2",
+          "context": "QuestSet=QuestSetInfoOmText | OmID=522570 | OM_ID_CMN_MSG_POINT | EnableZone | TextNo=337 | TextType=2 | TextQuestNo=20080001 | GroupNo=2",
+          "quest_id": 20080001,
+          "stage_no": 508,
+          "resource_family": "QST",
+          "evidence_tier": "direct",
+          "derivation_class": "direct_deterministic",
+          "confidence": 92,
+          "why": "Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes."
+        }
+      ],
+      "candidate_hits": []
+    },
     {
       "target": {
         "flag_value": 20080001,
@@ -41,6 +234,7 @@
           "stage_no": 508,
           "resource_family": "QST",
           "evidence_tier": "direct",
+          "derivation_class": "direct_deterministic",
           "confidence": 92,
           "why": "Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes."
         }
@@ -48,9 +242,62 @@
       "candidate_hits": []
     }
   ],
+  "quest_family": {
+    "key": "unknown",
+    "label": "Unknown Quest Family",
+    "description": "Quest family could not be inferred from the client quest id pattern.",
+    "discovery_focus": "treat_as_generic",
+    "supported": false
+  },
+  "quest_family_relationships": {
+    "quest_family": {
+      "key": "unknown",
+      "label": "Unknown Quest Family",
+      "description": "Quest family could not be inferred from the client quest id pattern.",
+      "discovery_focus": "treat_as_generic",
+      "supported": false
+    },
+    "quest_sequence": {
+      "quest_id": 20080001,
+      "seq_no": 221,
+      "quest_name": "The Bound Spirit",
+      "quest_name_jp": "囚われの亡霊",
+      "previous": {
+        "quest_id": 20080000,
+        "seq_no": 220,
+        "quest_name": "The Lovely Vintage",
+        "quest_name_jp": "麗しの古酒"
+      },
+      "next": {
+        "quest_id": 20080002,
+        "seq_no": 222,
+        "quest_name": "The Sole Sign",
+        "quest_name_jp": "気配の数だけ"
+      }
+    }
+  },
+  "quest_owner_indexes": [],
+  "quest_dependency_targets": [],
   "quest_archive_context": {
+    "quest_family": {
+      "key": "unknown",
+      "label": "Unknown Quest Family",
+      "description": "Quest family could not be inferred from the client quest id pattern.",
+      "discovery_focus": "treat_as_generic",
+      "supported": false
+    },
     "file_path": "client/03040008/quest/q20080001.arc.json",
     "resource_count": 9,
+    "stage_codes": [
+      "st0508"
+    ],
+    "resource_type_extensions": [
+      ".gmd",
+      ".mss",
+      ".qmi",
+      ".qst",
+      ".qtd"
+    ],
     "stages": [
       {
         "stage_code": "st0508",
@@ -112,6 +359,207 @@
             "type_name": "rGUIMessage"
           }
         ]
+      }
+    ]
+  },
+  "quest_stage_neighborhood": {
+    "quest_family": {
+      "key": "unknown",
+      "label": "Unknown Quest Family",
+      "description": "Quest family could not be inferred from the client quest id pattern.",
+      "discovery_focus": "treat_as_generic",
+      "supported": false
+    },
+    "stage_codes": [
+      "st0508"
+    ],
+    "scanner_file_count": 50,
+    "stages": [
+      {
+        "stage_code": "st0508",
+        "stage_no": 508,
+        "stage_name": "Shrine of Resentment",
+        "stage_name_jp": "怨嗟の祠",
+        "scanner_file_count": 50,
+        "scanner_suffix_counts": {
+          ".gpl.json": 9,
+          ".lot.json": 35,
+          ".qmi.json": 4,
+          ".qst.json": 2
+        }
+      }
+    ]
+  },
+  "quest_stage_cues": {
+    "quest_family": {
+      "key": "unknown",
+      "label": "Unknown Quest Family",
+      "description": "Quest family could not be inferred from the client quest id pattern.",
+      "discovery_focus": "treat_as_generic",
+      "supported": false
+    },
+    "stage_codes": [
+      "st0508"
+    ],
+    "owner_families": [
+      "q6",
+      "q7"
+    ],
+    "cues": [],
+    "cue_count": 0
+  },
+  "quest_graph_expansion": {
+    "max_depth": 3,
+    "node_count": 7,
+    "edge_count": 6,
+    "node_kind_counts": {
+      "direct_family": 2,
+      "family_context": 1,
+      "quest": 1,
+      "sequence_quest": 2,
+      "stage": 1
+    },
+    "edge_type_counts": {
+      "direct_source_family": 2,
+      "family_context:quest_sequence": 1,
+      "quest_archive_stage": 1,
+      "sequence_next": 1,
+      "sequence_previous": 1
+    },
+    "derivation_counts": {
+      "direct_deterministic": 13
+    },
+    "nodes": [
+      {
+        "node_id": "quest:20080001",
+        "label": "Quest 20080001",
+        "kind": "quest",
+        "depth": 0,
+        "derivation_class": "direct_deterministic",
+        "metadata": {
+          "quest_id": 20080001,
+          "target_count": 3
+        }
+      },
+      {
+        "node_id": "direct-family:evsi",
+        "label": "evsi direct hits (4)",
+        "kind": "direct_family",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "metadata": {
+          "source_type": "evsi",
+          "hit_count": 4
+        }
+      },
+      {
+        "node_id": "direct-family:qst",
+        "label": "qst direct hits (4)",
+        "kind": "direct_family",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "metadata": {
+          "source_type": "qst",
+          "hit_count": 4
+        }
+      },
+      {
+        "node_id": "family-context:quest_sequence",
+        "label": "Quest Sequence",
+        "kind": "family_context",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "metadata": {
+          "context_key": "quest_sequence"
+        }
+      },
+      {
+        "node_id": "stage:st0508",
+        "label": "st0508 -- Shrine of Resentment",
+        "kind": "stage",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "metadata": {
+          "stage_code": "st0508"
+        }
+      },
+      {
+        "node_id": "sequence-quest:20080000",
+        "label": "Quest 20080000",
+        "kind": "sequence_quest",
+        "depth": 2,
+        "derivation_class": "direct_deterministic",
+        "metadata": {
+          "quest_id": 20080000,
+          "direction": "previous"
+        }
+      },
+      {
+        "node_id": "sequence-quest:20080002",
+        "label": "Quest 20080002",
+        "kind": "sequence_quest",
+        "depth": 2,
+        "derivation_class": "direct_deterministic",
+        "metadata": {
+          "quest_id": 20080002,
+          "direction": "next"
+        }
+      }
+    ],
+    "edges": [
+      {
+        "from": "quest:20080001",
+        "to": "direct-family:evsi",
+        "edge_type": "direct_source_family",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "why": "Decoded direct hits for the quest targets include this source family.",
+        "metadata": {}
+      },
+      {
+        "from": "quest:20080001",
+        "to": "direct-family:qst",
+        "edge_type": "direct_source_family",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "why": "Decoded direct hits for the quest targets include this source family.",
+        "metadata": {}
+      },
+      {
+        "from": "quest:20080001",
+        "to": "family-context:quest_sequence",
+        "edge_type": "family_context:quest_sequence",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "why": "Family-specific decoded tables provide deterministic context for this quest.",
+        "metadata": {}
+      },
+      {
+        "from": "quest:20080001",
+        "to": "stage:st0508",
+        "edge_type": "quest_archive_stage",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "why": "Quest archive topology directly links this quest to the stage code.",
+        "metadata": {}
+      },
+      {
+        "from": "family-context:quest_sequence",
+        "to": "sequence-quest:20080002",
+        "edge_type": "sequence_next",
+        "depth": 2,
+        "derivation_class": "direct_deterministic",
+        "why": "QuestSequence links this quest to its neighboring sequence quest.",
+        "metadata": {}
+      },
+      {
+        "from": "family-context:quest_sequence",
+        "to": "sequence-quest:20080000",
+        "edge_type": "sequence_previous",
+        "depth": 2,
+        "derivation_class": "direct_deterministic",
+        "why": "QuestSequence links this quest to its neighboring sequence quest.",
+        "metadata": {}
       }
     ]
   }

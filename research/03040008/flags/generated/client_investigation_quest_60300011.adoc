@@ -5,16 +5,32 @@
 
 Query mode:: quest
 Query value:: 60300011
-Generated at:: 2026-04-11T21:41:41.944318+00:00
+Generated at:: 2026-04-12T12:44:17.384516+00:00
 
 toc::[]
+
+Quest family:: q6 -- Tutorial / Unlock / Area Trial
+Quest family notes:: Tutorial, area-trial, unlock, and occasional festival quests.
+Quest family focus:: jtq_tqg_jmc_scaffolding
+
+== Family Relationship Context
+
+_These sections summarize deterministic client-side family metadata and reverse-index relationships. They are context for later owner/dependency inference, not direct quest-target promotion._
+
+=== Quest Sequence
+
+* seq no: 418
+* previous: 60300010 -- Mysterious Summoning Bell
+* next: 60300030 -- Save the Royal Family Cook
 
 == ARC Association Context
 
 _ARC associations are contextual only. They show which quest-stage and marker resources are bundled with this quest._
 
-* arc file: client/03040008/quest/q60300011.arc.json
+* arc file: link:../../../../client/03040008/quest/q60300011.arc.json#L1[client/03040008/quest/q60300011.arc.json#L1]
 * resource count: 14
+* stage codes: st0211, st0562
+* resource families: .fsm, .gmd, .mss, .qmi, .qst, .qtd
 
 === st0211 -- Arisen's Room
 
@@ -39,18 +55,222 @@ _ARC associations are contextual only. They show which quest-stage and marker re
 * rAIFSM: quest/60300011/npc/n2102
 * rGUIMessage: ui/00_message/examine_message/quest/quest_examine_q60300011
 
+== Stage Neighborhood Context
+
+_Stage-neighborhood context summarizes scanner-relevant client files that share the quest's archive stage codes. This is deterministic client topology, not inferred ownership._
+
+* scanner-relevant stage files: 75
+* indexed stage codes: st0211, st0562
+
+=== st0211 -- Arisen's Room
+
+* scanner files: 32
+* .fsm.json: 1
+* .gpl.json: 4
+* .lot.json: 12
+* .qmi.json: 9
+* .qst.json: 6
+
+=== st0562 -- The Rift
+
+* scanner files: 43
+* .gpl.json: 14
+* .lot.json: 21
+* .qmi.json: 6
+* .qst.json: 2
+
+== Stage Neighborhood External-State Cues
+
+_These cues are deterministic client-side observations from the quest's stage neighborhood. They are not promoted to direct quest targets yet; they highlight q6/q7-owned external state values co-located in the quest's archive stages._
+
+* cue count: 0
+* owner families: q6, q7
+
+== Bounded Graph Expansion
+
+_This graph summarizes bounded deterministic and inferred edges around the quest: quest archive stages, direct source families, stage-linked owner catalogs, promoted dependencies, reverse-index event/group links, and family-specific table edges._
+
+* max depth: 3
+* node count: 8
+* edge count: 7
+* node kinds: direct_family=2, family_context=1, quest=1, sequence_quest=2, stage=2
+* derivation: Direct=15
+
+=== Mermaid Graph Slice
+
+_This Mermaid flowchart shows a capped slice of the bounded graph so large quest reports stay readable while still exposing the graph structure._
+
+[mermaid]
+....
+flowchart TD
+    node_quest_60300011["Quest 60300011"]
+    node_direct_family_fsm["fsm direct hits (2)"]
+    node_direct_family_qst["qst direct hits (12)"]
+    node_family_context_quest_sequence["Quest Sequence"]
+    node_stage_st0211["st0211 -- Arisen's Room"]
+    node_stage_st0562["st0562 -- The Rift"]
+    node_sequence_quest_60300010["Quest 60300010"]
+    node_sequence_quest_60300030["Quest 60300030"]
+    node_quest_60300011 -->|direct_source_family| node_direct_family_fsm
+    node_quest_60300011 -->|direct_source_family| node_direct_family_qst
+    node_quest_60300011 -->|family:quest_sequence| node_family_context_quest_sequence
+    node_quest_60300011 -->|quest_archive_stage| node_stage_st0211
+    node_quest_60300011 -->|quest_archive_stage| node_stage_st0562
+    node_family_context_quest_sequence -->|sequence_next| node_sequence_quest_60300030
+    node_family_context_quest_sequence -->|sequence_previous| node_sequence_quest_60300010
+    classDef direct_deterministic fill:#e8f5e9,stroke:#2e7d32,stroke-width:1px
+    classDef owner_index fill:#e3f2fd,stroke:#1565c0,stroke-width:1px
+    classDef dependency_inferred fill:#fff3e0,stroke:#ef6c00,stroke-width:1px
+    classDef graph_expanded fill:#f3e5f5,stroke:#7b1fa2,stroke-width:1px
+    classDef lower_confidence fill:#fbe9e7,stroke:#d84315,stroke-width:1px
+    classDef binary_auxiliary fill:#eceff1,stroke:#455a64,stroke-width:1px
+    class node_quest_60300011,node_direct_family_fsm,node_direct_family_qst,node_family_context_quest_sequence,node_stage_st0211,node_stage_st0562,node_sequence_quest_60300010,node_sequence_quest_60300030 direct_deterministic
+....
+
+[cols="1,2,2,2,2,4",options="header"]
+|===
+| Depth | Edge | From | To | Derivation | Why
+
+| 1 | direct_source_family | quest:60300011 | direct-family:fsm | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | direct_source_family | quest:60300011 | direct-family:qst | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | family_context:quest_sequence | quest:60300011 | family-context:quest_sequence | Direct | Family-specific decoded tables provide deterministic context for this quest.
+| 1 | quest_archive_stage | quest:60300011 | stage:st0211 | Direct | Quest archive topology directly links this quest to the stage code.
+| 1 | quest_archive_stage | quest:60300011 | stage:st0562 | Direct | Quest archive topology directly links this quest to the stage code.
+| 2 | sequence_next | family-context:quest_sequence | sequence-quest:60300030 | Direct | QuestSequence links this quest to its neighboring sequence quest.
+| 2 | sequence_previous | family-context:quest_sequence | sequence-quest:60300010 | Direct | QuestSequence links this quest to its neighboring sequence quest.
+|===
+
 == Flag Summary Matrix
 
 [cols="2,1,1,2,2,3,3",options="header"]
 |===
 | Target | Kind | Hits | Sources | Stages | Relationships | Description
 
+| Flag 7501 | layout_flag | 1 | qst | st0211 | ⚡ Quest Condition | QST local: st0211 \| アルヴァー
+| Flag 7503 | layout_flag | 2 | qst | st0562 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0562 \| QuestGroup 1 \| アルヴァー
+| Flag 7504 | layout_flag | 2 | qst | st0562 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0562 \| キラキラ
+| Flag 7506 | layout_flag | 2 | qst | st0562 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0562 \| QuestGroup 2 \| アルヴァー置き直し
+| Flag 7507 | layout_flag | 2 | qst | st0211 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0211 \| QuestGroup 1 \| はざま行き
+| Flag 7508 | layout_flag | 2 | qst | st0562 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0562 \| QuestGroup 3 \| 帰宅用
 | Quest ID 60300011 | quest_id | 3 | fsm, qst | st0562 | 🔍 FSM Check, 💬 Text Quest | Derived quest-wide association scan
 |===
 
 == Known Documented Targets
 
+* quest 60300011 -- Flag 7501 -- QST local: st0211 | アルヴァー
+* quest 60300011 -- Flag 7503 -- QST local: st0562 | QuestGroup 1 | アルヴァー
+* quest 60300011 -- Flag 7504 -- QST local: st0562 | キラキラ
+* quest 60300011 -- Flag 7506 -- QST local: st0562 | QuestGroup 2 | アルヴァー置き直し
+* quest 60300011 -- Flag 7507 -- QST local: st0211 | QuestGroup 1 | はざま行き
+* quest 60300011 -- Flag 7508 -- QST local: st0562 | QuestGroup 3 | 帰宅用
 * Quest ID 60300011 -- Derived quest-wide association scan [Derived]
+
+== Flag 7501 -- Quest 60300011
+
+origin:: derived_qst_local
+direct hits:: *1*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 1 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q60300011/quest/60300011/q60300011_st0211.qst.json[client/03040008/quest/q60300011/quest/60300011/q60300011_st0211.qst.json] | QuestStageList[].QuestGrp[0].Condition | Condition | quest 60300011 / Arisen's Room / "アルヴァー" / QuestSet=QuestSetInfoNpc | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 7503 -- Quest 60300011
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q60300011/quest/60300011/q60300011_st0562.qst.json[client/03040008/quest/q60300011/quest/60300011/q60300011_st0562.qst.json] | QuestStageList[].QuestGrp[1].Condition | Condition | quest 60300011 / The Rift / "QuestGroup 1 \| アルヴァー" / QuestSet=QuestSetInfoNpc \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q60300011/quest/60300011/q60300011_st0562.qst.json[client/03040008/quest/q60300011/quest/60300011/q60300011_st0562.qst.json] | QuestStageList[].QuestGrp[1].EraseCondition | EraseCondition | quest 60300011 / The Rift / "QuestGroup 1 \| アルヴァー" / QuestSet=QuestSetInfoNpc \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 7504 -- Quest 60300011
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q60300011/quest/60300011/q60300011_st0562.qst.json[client/03040008/quest/q60300011/quest/60300011/q60300011_st0562.qst.json] | QuestStageList[].QuestGrp[0].Condition | Condition | quest 60300011 / The Rift / "キラキラ" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100580 \| TextType=2 \| TextQuestNo=60300011 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q60300011/quest/60300011/q60300011_st0562.qst.json[client/03040008/quest/q60300011/quest/60300011/q60300011_st0562.qst.json] | QuestStageList[].QuestGrp[0].EraseCondition | EraseCondition | quest 60300011 / The Rift / "キラキラ" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100580 \| TextType=2 \| TextQuestNo=60300011 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 7506 -- Quest 60300011
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q60300011/quest/60300011/q60300011_st0562.qst.json[client/03040008/quest/q60300011/quest/60300011/q60300011_st0562.qst.json] | QuestStageList[].QuestGrp[2].Condition | Condition | quest 60300011 / The Rift / "QuestGroup 2 \| アルヴァー置き直し" / QuestSet=QuestSetInfoNpc \| GroupNo=2 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q60300011/quest/60300011/q60300011_st0562.qst.json[client/03040008/quest/q60300011/quest/60300011/q60300011_st0562.qst.json] | QuestStageList[].QuestGrp[2].EraseCondition | EraseCondition | quest 60300011 / The Rift / "QuestGroup 2 \| アルヴァー置き直し" / QuestSet=QuestSetInfoNpc \| GroupNo=2 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 7507 -- Quest 60300011
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q60300011/quest/60300011/q60300011_st0211.qst.json[client/03040008/quest/q60300011/quest/60300011/q60300011_st0211.qst.json] | QuestStageList[].QuestGrp[1].Condition | Condition | quest 60300011 / Arisen's Room / "QuestGroup 1 \| はざま行き" / QuestSet=QuestSetInfoOmWarp \| OmID=511150 \| UnitID=511150 \| EnableZone \| GroupNo=1 \|\| QuestSet=QuestSetInfoOm \| OmID=522452 \| OM_ID_QUEST_TWINKLE \| EnableZone \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q60300011/quest/60300011/q60300011_st0211.qst.json[client/03040008/quest/q60300011/quest/60300011/q60300011_st0211.qst.json] | QuestStageList[].QuestGrp[1].EraseCondition | EraseCondition | quest 60300011 / Arisen's Room / "QuestGroup 1 \| はざま行き" / QuestSet=QuestSetInfoOmWarp \| OmID=511150 \| UnitID=511150 \| EnableZone \| GroupNo=1 \|\| QuestSet=QuestSetInfoOm \| OmID=522452 \| OM_ID_QUEST_TWINKLE \| EnableZone \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 7508 -- Quest 60300011
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q60300011/quest/60300011/q60300011_st0562.qst.json[client/03040008/quest/q60300011/quest/60300011/q60300011_st0562.qst.json] | QuestStageList[].QuestGrp[3].Condition | Condition | quest 60300011 / The Rift / "QuestGroup 3 \| 帰宅用" / QuestSet=QuestSetInfoOmWarp \| OmID=511150 \| UnitID=511150 \| EnableZone \| GroupNo=3 \|\| QuestSet=QuestSetInfoOm \| OmID=522452 \| OM_ID_QUEST_TWINKLE \| EnableZone \| GroupNo=3 \|\| +4 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q60300011/quest/60300011/q60300011_st0562.qst.json[client/03040008/quest/q60300011/quest/60300011/q60300011_st0562.qst.json] | QuestStageList[].QuestGrp[3].EraseCondition | EraseCondition | quest 60300011 / The Rift / "QuestGroup 3 \| 帰宅用" / QuestSet=QuestSetInfoOmWarp \| OmID=511150 \| UnitID=511150 \| EnableZone \| GroupNo=3 \|\| QuestSet=QuestSetInfoOm \| OmID=522452 \| OM_ID_QUEST_TWINKLE \| EnableZone \| GroupNo=3 \|\| +4 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
 
 == Quest ID 60300011
 
@@ -62,20 +282,20 @@ ranked candidates:: *0*
 
 ==== direct -- 1 hit(s)
 
-[cols="1,1,3,3,2,3,3",options="header"]
+[cols="1,1,1,3,3,2,3,3",options="header"]
 |===
-| Family | Confidence | File | JSON Path | Field | Context | Why
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
 
-| QST | 92 | client/03040008/quest/q60300011/quest/60300011/q60300011_st0562.qst.json | QuestStageList[].QuestGrp[0].QuestSet[0].TextQuestNo | TextQuestNo | quest 60300011 / The Rift / "キラキラ \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100580 \| TextType=2 \| TextQuestNo=60300011 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q60300011/quest/60300011/q60300011_st0562.qst.json[client/03040008/quest/q60300011/quest/60300011/q60300011_st0562.qst.json] | QuestStageList[].QuestGrp[0].QuestSet[0].TextQuestNo | TextQuestNo | quest 60300011 / The Rift / "キラキラ \| クエスト指定メッセージOM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=100580 \| TextType=2 \| TextQuestNo=60300011 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
 |===
 
 ==== opaque_fsm -- 2 hit(s)
 
-[cols="1,1,3,3,2,3,3",options="header"]
+[cols="1,1,1,3,3,2,3,3",options="header"]
 |===
-| Family | Confidence | File | JSON Path | Field | Context | Why
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
 
-| FSM | 78 | client/03040008/quest/q60300011/quest/60300011/npc/n0029.fsm.json | Process.Parameter.QuestId | QuestId | quest 60300011 (Shining Within a Loyal Heart) / Nedo / checkMyQuestFlag \| NPCFSM=n0029 \| QuestLocalNPCFSM | Quest-local NPC FSM MyQuest check; these files usually describe NPC behavior for the same quest, so this flag likely controls that NPC's quest-specific presence or behavior.
-| FSM | 78 | client/03040008/quest/q60300011/quest/60300011/npc/n2102.fsm.json | Process.Parameter.QuestId | QuestId | quest 60300011 (Shining Within a Loyal Heart) / Alvar / checkMyQuestFlag \| NPCFSM=n2102 \| QuestLocalNPCFSM | Quest-local NPC FSM MyQuest check; these files usually describe NPC behavior for the same quest, so this flag likely controls that NPC's quest-specific presence or behavior.
+| FSM | Direct | 78 | link:../../../../client/03040008/quest/q60300011/quest/60300011/npc/n0029.fsm.json[client/03040008/quest/q60300011/quest/60300011/npc/n0029.fsm.json] | Process.Parameter.QuestId | QuestId | quest 60300011 (Shining Within a Loyal Heart) / Nedo / checkMyQuestFlag \| NPCFSM=n0029 \| QuestLocalNPCFSM | Quest-local NPC FSM MyQuest check; these files usually describe NPC behavior for the same quest, so this flag likely controls that NPC's quest-specific presence or behavior.
+| FSM | Direct | 78 | link:../../../../client/03040008/quest/q60300011/quest/60300011/npc/n2102.fsm.json[client/03040008/quest/q60300011/quest/60300011/npc/n2102.fsm.json] | Process.Parameter.QuestId | QuestId | quest 60300011 (Shining Within a Loyal Heart) / Alvar / checkMyQuestFlag \| NPCFSM=n2102 \| QuestLocalNPCFSM | Quest-local NPC FSM MyQuest check; these files usually describe NPC behavior for the same quest, so this flag likely controls that NPC's quest-specific presence or behavior.
 |===
 

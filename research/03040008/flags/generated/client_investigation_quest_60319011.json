@@ -1,11 +1,53 @@
 {
   "format": "client_investigation.v4",
-  "generated_at": "2026-04-11T21:41:42.033657+00:00",
+  "generated_at": "2026-04-12T12:44:19.444393+00:00",
   "query": {
     "mode": "quest",
     "value": 60319011
   },
   "documented_targets": [
+    {
+      "flag_value": 5639,
+      "quest_id": 60319011,
+      "flag_type": "layout_flag",
+      "doc_comment": "QST local: st1063 | 進行NPC（共闘）",
+      "origin": "derived_qst_local"
+    },
+    {
+      "flag_value": 6382,
+      "quest_id": 60319011,
+      "flag_type": "layout_flag",
+      "doc_comment": "QST local: st1063 | QuestGroup 1 | 進行NPC（倒れ）",
+      "origin": "derived_qst_local"
+    },
+    {
+      "flag_value": 6383,
+      "quest_id": 60319011,
+      "flag_type": "layout_flag",
+      "doc_comment": "QST local: st1063 | QuestGroup 2 | 進行NPC（死体）",
+      "origin": "derived_qst_local"
+    },
+    {
+      "flag_value": 6384,
+      "quest_id": 60319011,
+      "flag_type": "layout_flag",
+      "doc_comment": "QST local: st1063 | QuestGroup 3 | 進行NPC（死体）",
+      "origin": "derived_qst_local"
+    },
+    {
+      "flag_value": 3375,
+      "quest_id": 60319011,
+      "flag_type": "quest_flag",
+      "doc_comment": "QST local: st1063 | QuestGroup 4 | 封鎖扉（敵連動） | 地下遺跡・敵連動封鎖壁",
+      "origin": "derived_qst_local"
+    },
+    {
+      "flag_value": 3376,
+      "quest_id": 60319011,
+      "flag_type": "quest_flag",
+      "doc_comment": "QST local: st1063 | QuestGroup 4 | 封鎖扉（敵連動） | 地下遺跡・敵連動封鎖壁",
+      "origin": "derived_qst_local"
+    },
     {
       "flag_value": 60319011,
       "quest_id": 60319011,
@@ -15,6 +57,316 @@
     }
   ],
   "targets": [
+    {
+      "target": {
+        "flag_value": 5639,
+        "quest_id": 60319011,
+        "flag_type": "layout_flag",
+        "origin": "derived_qst_local",
+        "doc_comment": "QST local: st1063 | 進行NPC（共闘）"
+      },
+      "hits": [
+        {
+          "source_type": "qst",
+          "file_path": "client/03040008/quest/q60319011/quest/60319011/q60319011_st1063.qst.json",
+          "json_path": "QuestStageList[].QuestGrp[0].Condition",
+          "field_name": "Condition",
+          "flag_value": 5639,
+          "flag_kind": "layout_flag",
+          "relationship": "quest_condition",
+          "stage_name": "Old Tekia Grotto",
+          "stage_name_jp": "古テキア洞窟",
+          "stage_code": "st1063",
+          "comment": "進行NPC（共闘）",
+          "context": "QuestSet=QuestSetInfoNpc",
+          "quest_id": 60319011,
+          "stage_no": 1063,
+          "resource_family": "QST",
+          "evidence_tier": "direct",
+          "derivation_class": "direct_deterministic",
+          "confidence": 92,
+          "why": "Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes."
+        }
+      ],
+      "candidate_hits": []
+    },
+    {
+      "target": {
+        "flag_value": 6382,
+        "quest_id": 60319011,
+        "flag_type": "layout_flag",
+        "origin": "derived_qst_local",
+        "doc_comment": "QST local: st1063 | QuestGroup 1 | 進行NPC（倒れ）"
+      },
+      "hits": [
+        {
+          "source_type": "qst",
+          "file_path": "client/03040008/quest/q60319011/quest/60319011/q60319011_st1063.qst.json",
+          "json_path": "QuestStageList[].QuestGrp[1].Condition",
+          "field_name": "Condition",
+          "flag_value": 6382,
+          "flag_kind": "layout_flag",
+          "relationship": "quest_condition",
+          "stage_name": "Old Tekia Grotto",
+          "stage_name_jp": "古テキア洞窟",
+          "stage_code": "st1063",
+          "comment": "QuestGroup 1 | 進行NPC（倒れ）",
+          "context": "QuestSet=QuestSetInfoNpc | GroupNo=1",
+          "quest_id": 60319011,
+          "stage_no": 1063,
+          "resource_family": "QST",
+          "evidence_tier": "direct",
+          "derivation_class": "direct_deterministic",
+          "confidence": 92,
+          "why": "Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes."
+        },
+        {
+          "source_type": "qst",
+          "file_path": "client/03040008/quest/q60319011/quest/60319011/q60319011_st1063.qst.json",
+          "json_path": "QuestStageList[].QuestGrp[4].Condition",
+          "field_name": "Condition",
+          "flag_value": 6382,
+          "flag_kind": "layout_flag",
+          "relationship": "quest_condition",
+          "stage_name": "Old Tekia Grotto",
+          "stage_name_jp": "古テキア洞窟",
+          "stage_code": "st1063",
+          "comment": "QuestGroup 4 | 封鎖扉（敵連動）",
+          "context": "QuestSet=QuestSetInfoOmDoor | OmID=522801 | OM_ID_DOOR_522801 | EnableZone | QuestFlag=3375 | QuestID=60319011 | QuestFlag=3375 | GroupNo=4 || QuestSet=QuestSetInfoOmDoor | OmID=522801 | OM_ID_DOOR_522801 | EnableZone | QuestFlag=3376 | QuestID=60319011 | QuestFlag=3376 | GroupNo=4",
+          "quest_id": 60319011,
+          "stage_no": 1063,
+          "resource_family": "QST",
+          "evidence_tier": "direct",
+          "derivation_class": "direct_deterministic",
+          "confidence": 92,
+          "why": "Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes."
+        },
+        {
+          "source_type": "qst",
+          "file_path": "client/03040008/quest/q60319011/quest/60319011/q60319011_st1063.qst.json",
+          "json_path": "QuestStageList[].QuestGrp[4].EraseCondition",
+          "field_name": "EraseCondition",
+          "flag_value": 6382,
+          "flag_kind": "layout_flag",
+          "relationship": "quest_erase",
+          "stage_name": "Old Tekia Grotto",
+          "stage_name_jp": "古テキア洞窟",
+          "stage_code": "st1063",
+          "comment": "QuestGroup 4 | 封鎖扉（敵連動）",
+          "context": "QuestSet=QuestSetInfoOmDoor | OmID=522801 | OM_ID_DOOR_522801 | EnableZone | QuestFlag=3375 | QuestID=60319011 | QuestFlag=3375 | GroupNo=4 || QuestSet=QuestSetInfoOmDoor | OmID=522801 | OM_ID_DOOR_522801 | EnableZone | QuestFlag=3376 | QuestID=60319011 | QuestFlag=3376 | GroupNo=4",
+          "quest_id": 60319011,
+          "stage_no": 1063,
+          "resource_family": "QST",
+          "evidence_tier": "direct",
+          "derivation_class": "direct_deterministic",
+          "confidence": 92,
+          "why": "Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes."
+        }
+      ],
+      "candidate_hits": []
+    },
+    {
+      "target": {
+        "flag_value": 6383,
+        "quest_id": 60319011,
+        "flag_type": "layout_flag",
+        "origin": "derived_qst_local",
+        "doc_comment": "QST local: st1063 | QuestGroup 2 | 進行NPC（死体）"
+      },
+      "hits": [
+        {
+          "source_type": "qst",
+          "file_path": "client/03040008/quest/q60319011/quest/60319011/q60319011_st1063.qst.json",
+          "json_path": "QuestStageList[].QuestGrp[2].Condition",
+          "field_name": "Condition",
+          "flag_value": 6383,
+          "flag_kind": "layout_flag",
+          "relationship": "quest_condition",
+          "stage_name": "Old Tekia Grotto",
+          "stage_name_jp": "古テキア洞窟",
+          "stage_code": "st1063",
+          "comment": "QuestGroup 2 | 進行NPC（死体）",
+          "context": "QuestSet=QuestSetInfoOm | OmID=507683 | UnitID=507683 | EnableZone | GroupNo=2 || QuestSet=QuestSetInfoOm | OmID=507682 | UnitID=507682 | EnableZone | GroupNo=2",
+          "quest_id": 60319011,
+          "stage_no": 1063,
+          "resource_family": "QST",
+          "evidence_tier": "direct",
+          "derivation_class": "direct_deterministic",
+          "confidence": 92,
+          "why": "Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes."
+        }
+      ],
+      "candidate_hits": []
+    },
+    {
+      "target": {
+        "flag_value": 6384,
+        "quest_id": 60319011,
+        "flag_type": "layout_flag",
+        "origin": "derived_qst_local",
+        "doc_comment": "QST local: st1063 | QuestGroup 3 | 進行NPC（死体）"
+      },
+      "hits": [
+        {
+          "source_type": "qst",
+          "file_path": "client/03040008/quest/q60319011/quest/60319011/q60319011_st1063.qst.json",
+          "json_path": "QuestStageList[].QuestGrp[3].Condition",
+          "field_name": "Condition",
+          "flag_value": 6384,
+          "flag_kind": "layout_flag",
+          "relationship": "quest_condition",
+          "stage_name": "Old Tekia Grotto",
+          "stage_name_jp": "古テキア洞窟",
+          "stage_code": "st1063",
+          "comment": "QuestGroup 3 | 進行NPC（死体）",
+          "context": "QuestSet=QuestSetInfoOm | OmID=507682 | UnitID=507682 | EnableZone | GroupNo=3 || QuestSet=QuestSetInfoOm | OmID=507685 | UnitID=507685 | EnableZone | GroupNo=3 || +1 more",
+          "quest_id": 60319011,
+          "stage_no": 1063,
+          "resource_family": "QST",
+          "evidence_tier": "direct",
+          "derivation_class": "direct_deterministic",
+          "confidence": 92,
+          "why": "Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes."
+        }
+      ],
+      "candidate_hits": []
+    },
+    {
+      "target": {
+        "flag_value": 3375,
+        "quest_id": 60319011,
+        "flag_type": "quest_flag",
+        "origin": "derived_qst_local",
+        "doc_comment": "QST local: st1063 | QuestGroup 4 | 封鎖扉（敵連動） | 地下遺跡・敵連動封鎖壁"
+      },
+      "hits": [
+        {
+          "source_type": "qst",
+          "file_path": "client/03040008/quest/q60319011/quest/60319011/q60319011_st1063.qst.json",
+          "json_path": "QuestStageList[].QuestGrp[4].QuestSet[0].QuestFlag",
+          "field_name": "QuestFlag",
+          "flag_value": 3375,
+          "flag_kind": "quest_flag",
+          "relationship": "door_gate",
+          "quest_name": "Into the Ancient Darkness",
+          "quest_name_jp": "古代の闇の中へ",
+          "stage_name": "Old Tekia Grotto",
+          "stage_name_jp": "古テキア洞窟",
+          "stage_code": "st1063",
+          "comment": "QuestGroup 4 | 封鎖扉（敵連動） | 地下遺跡・敵連動封鎖壁",
+          "context": "QuestSet=QuestSetInfoOmDoor | OmID=522801 | OM_ID_DOOR_522801 | EnableZone | QuestFlag=3375 | QuestID=60319011 | QuestFlag=3375 | GroupNo=4",
+          "quest_id": 60319011,
+          "stage_no": 1063,
+          "resource_family": "QST",
+          "evidence_tier": "direct",
+          "derivation_class": "direct_deterministic",
+          "confidence": 92,
+          "why": "Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes."
+        },
+        {
+          "source_type": "qst",
+          "file_path": "client/03040008/quest/q60319011/quest/60319011/q60319011_st1063.qst.json",
+          "json_path": "QuestStageList[].QuestGrp[4].QuestSet[0].InfoOm.QuestFlag",
+          "field_name": "QuestFlag",
+          "flag_value": 3375,
+          "flag_kind": "quest_flag",
+          "relationship": "door_gate",
+          "stage_name": "Old Tekia Grotto",
+          "stage_name_jp": "古テキア洞窟",
+          "stage_code": "st1063",
+          "comment": "QuestGroup 4 | 封鎖扉（敵連動） | 地下遺跡・敵連動封鎖壁",
+          "context": "QuestSet=QuestSetInfoOmDoor | OmID=522801 | OM_ID_DOOR_522801 | EnableZone | QuestFlag=3375 | QuestID=60319011 | QuestFlag=3375 | GroupNo=4",
+          "quest_id": 60319011,
+          "stage_no": 1063,
+          "resource_family": "QST",
+          "evidence_tier": "direct",
+          "derivation_class": "direct_deterministic",
+          "confidence": 92,
+          "why": "Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes."
+        }
+      ],
+      "candidate_hits": []
+    },
+    {
+      "target": {
+        "flag_value": 3376,
+        "quest_id": 60319011,
+        "flag_type": "quest_flag",
+        "origin": "derived_qst_local",
+        "doc_comment": "QST local: st1063 | QuestGroup 4 | 封鎖扉（敵連動） | 地下遺跡・敵連動封鎖壁"
+      },
+      "hits": [
+        {
+          "source_type": "qst",
+          "file_path": "client/03040008/quest/q60319011/quest/60319011/q60319011_st1063.qst.json",
+          "json_path": "QuestStageList[].QuestGrp[4].QuestSet[1].QuestFlag",
+          "field_name": "QuestFlag",
+          "flag_value": 3376,
+          "flag_kind": "quest_flag",
+          "relationship": "door_gate",
+          "quest_name": "Into the Ancient Darkness",
+          "quest_name_jp": "古代の闇の中へ",
+          "stage_name": "Old Tekia Grotto",
+          "stage_name_jp": "古テキア洞窟",
+          "stage_code": "st1063",
+          "comment": "QuestGroup 4 | 封鎖扉（敵連動） | 地下遺跡・敵連動封鎖壁",
+          "context": "QuestSet=QuestSetInfoOmDoor | OmID=522801 | OM_ID_DOOR_522801 | EnableZone | QuestFlag=3376 | QuestID=60319011 | QuestFlag=3376 | GroupNo=4",
+          "quest_id": 60319011,
+          "stage_no": 1063,
+          "resource_family": "QST",
+          "evidence_tier": "direct",
+          "derivation_class": "direct_deterministic",
+          "confidence": 92,
+          "why": "Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes."
+        },
+        {
+          "source_type": "qst",
+          "file_path": "client/03040008/quest/q60319011/quest/60319011/q60319011_st1063.qst.json",
+          "json_path": "QuestStageList[].QuestGrp[4].QuestSet[1].InfoOm.QuestFlag",
+          "field_name": "QuestFlag",
+          "flag_value": 3376,
+          "flag_kind": "quest_flag",
+          "relationship": "door_gate",
+          "stage_name": "Old Tekia Grotto",
+          "stage_name_jp": "古テキア洞窟",
+          "stage_code": "st1063",
+          "comment": "QuestGroup 4 | 封鎖扉（敵連動） | 地下遺跡・敵連動封鎖壁",
+          "context": "QuestSet=QuestSetInfoOmDoor | OmID=522801 | OM_ID_DOOR_522801 | EnableZone | QuestFlag=3376 | QuestID=60319011 | QuestFlag=3376 | GroupNo=4",
+          "quest_id": 60319011,
+          "stage_no": 1063,
+          "resource_family": "QST",
+          "evidence_tier": "direct",
+          "derivation_class": "direct_deterministic",
+          "confidence": 92,
+          "why": "Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes."
+        },
+        {
+          "source_type": "gpl",
+          "file_path": "client/03040008/stage/st0843/st0843/scr/st0843/etc/st0843_p.gpl.json",
+          "json_path": "GroupParamBuff[7].GuardData.LayoutFlagNo",
+          "field_name": "LayoutFlagNo",
+          "flag_value": 3376,
+          "flag_kind": "layout_flag",
+          "relationship": "layout_guard",
+          "quest_name": "A Place of Regrets",
+          "quest_name_jp": "悔恨の地",
+          "stage_name": "Hidden Observatory",
+          "stage_name_jp": "秘匿の実験場",
+          "area_name": "Mergoda Ruins",
+          "area_name_jp": "亡都メルゴダ",
+          "stage_code": "st0843",
+          "context": "GroupParam[7] | DataCommon.Group=200 | LayoutAreas=843 | LayoutRefs=1 | LikelyLOT=st0843_04m00n_p200.lot.json | LotTypes=SetInfoOmBadStatus",
+          "quest_id": 21000090,
+          "stage_no": 843,
+          "resource_family": "GPL",
+          "evidence_tier": "direct",
+          "derivation_class": "direct_deterministic",
+          "confidence": 92,
+          "why": "Layout group guard; QuestNo and LayoutFlagNo here usually determine whether a stage group loads, including enemy or object visibility."
+        }
+      ],
+      "candidate_hits": []
+    },
     {
       "target": {
         "flag_value": 60319011,
@@ -43,6 +395,7 @@
           "stage_no": 1063,
           "resource_family": "QST",
           "evidence_tier": "direct",
+          "derivation_class": "direct_deterministic",
           "confidence": 92,
           "why": "Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes."
         },
@@ -65,6 +418,7 @@
           "stage_no": 1063,
           "resource_family": "QST",
           "evidence_tier": "direct",
+          "derivation_class": "direct_deterministic",
           "confidence": 92,
           "why": "Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes."
         },
@@ -82,6 +436,7 @@
           "quest_id": 60319011,
           "resource_family": "FSM",
           "evidence_tier": "opaque_fsm",
+          "derivation_class": "direct_deterministic",
           "confidence": 64,
           "why": "Matched decoded FSM state data; authored semantics remain indirect without deeper correlation."
         },
@@ -99,6 +454,7 @@
           "quest_id": 60319011,
           "resource_family": "FSM",
           "evidence_tier": "opaque_fsm",
+          "derivation_class": "direct_deterministic",
           "confidence": 64,
           "why": "Matched decoded FSM state data; authored semantics remain indirect without deeper correlation."
         },
@@ -116,6 +472,7 @@
           "quest_id": 60319011,
           "resource_family": "FSM",
           "evidence_tier": "opaque_fsm",
+          "derivation_class": "direct_deterministic",
           "confidence": 64,
           "why": "Matched decoded FSM state data; authored semantics remain indirect without deeper correlation."
         }
@@ -123,9 +480,97 @@
       "candidate_hits": []
     }
   ],
+  "quest_family": {
+    "key": "q6",
+    "label": "Tutorial / Unlock / Area Trial",
+    "description": "Tutorial, area-trial, unlock, and occasional festival quests.",
+    "discovery_focus": "jtq_tqg_jmc_scaffolding",
+    "supported": true
+  },
+  "quest_family_relationships": {
+    "quest_family": {
+      "key": "q6",
+      "label": "Tutorial / Unlock / Area Trial",
+      "description": "Tutorial, area-trial, unlock, and occasional festival quests.",
+      "discovery_focus": "jtq_tqg_jmc_scaffolding",
+      "supported": true
+    },
+    "quest_sequence": {
+      "quest_id": 60319011,
+      "seq_no": 486,
+      "quest_name": "Into the Ancient Darkness",
+      "quest_name_jp": "古代の闇の中へ",
+      "previous": {
+        "quest_id": 60319010,
+        "seq_no": 485,
+        "quest_name": "FW Trial: Investigate Sealed Evil",
+        "quest_name_jp": "フェルヤナ荒原　試練：魔の封印捜査"
+      },
+      "next": {
+        "quest_id": 60320000,
+        "seq_no": 487,
+        "quest_name": "MP Trial: Material Procurement",
+        "quest_name_jp": "メガドシス高地　試練：資材調達"
+      }
+    }
+  },
+  "quest_owner_indexes": [
+    {
+      "owner_quest_id": 70031001,
+      "owner_family": "q7",
+      "flag_values": [
+        5553,
+        5672,
+        6138,
+        6194,
+        6195,
+        6377,
+        6425,
+        7316
+      ],
+      "flag_count": 8,
+      "local_qst_flag_count": 1,
+      "self_cue_flag_count": 7,
+      "cue_source_types": [
+        "evsi",
+        "gpl"
+      ],
+      "derivation_class": "owner_index",
+      "linked_flag_values": [
+        6404
+      ],
+      "linked_flag_count": 1,
+      "linked_source_types": [
+        "gpl"
+      ],
+      "linked_stage_codes": [
+        "st1063"
+      ],
+      "why": "Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference."
+    }
+  ],
+  "quest_dependency_targets": [],
   "quest_archive_context": {
+    "quest_family": {
+      "key": "q6",
+      "label": "Tutorial / Unlock / Area Trial",
+      "description": "Tutorial, area-trial, unlock, and occasional festival quests.",
+      "discovery_focus": "jtq_tqg_jmc_scaffolding",
+      "supported": true
+    },
     "file_path": "client/03040008/quest/q60319011.arc.json",
     "resource_count": 11,
+    "stage_codes": [
+      "st1063"
+    ],
+    "resource_type_extensions": [
+      ".fsm",
+      ".gmd",
+      ".mss",
+      ".qmi",
+      ".qst",
+      ".qtd"
+    ],
     "stages": [
       {
         "stage_code": "st1063",
@@ -197,6 +642,407 @@
             "type_name": "rGUIMessage"
           }
         ]
+      }
+    ]
+  },
+  "quest_stage_neighborhood": {
+    "quest_family": {
+      "key": "q6",
+      "label": "Tutorial / Unlock / Area Trial",
+      "description": "Tutorial, area-trial, unlock, and occasional festival quests.",
+      "discovery_focus": "jtq_tqg_jmc_scaffolding",
+      "supported": true
+    },
+    "stage_codes": [
+      "st1063"
+    ],
+    "scanner_file_count": 80,
+    "stages": [
+      {
+        "stage_code": "st1063",
+        "stage_no": 1063,
+        "stage_name": "Old Tekia Grotto",
+        "stage_name_jp": "古テキア洞窟",
+        "scanner_file_count": 80,
+        "scanner_suffix_counts": {
+          ".fsm.json": 14,
+          ".gpl.json": 10,
+          ".lot.json": 51,
+          ".qmi.json": 4,
+          ".qst.json": 1
+        }
+      }
+    ]
+  },
+  "quest_stage_cues": {
+    "quest_family": {
+      "key": "q6",
+      "label": "Tutorial / Unlock / Area Trial",
+      "description": "Tutorial, area-trial, unlock, and occasional festival quests.",
+      "discovery_focus": "jtq_tqg_jmc_scaffolding",
+      "supported": true
+    },
+    "stage_codes": [
+      "st1063"
+    ],
+    "owner_families": [
+      "q6",
+      "q7"
+    ],
+    "cues": [
+      {
+        "flag_value": 6404,
+        "flag_kind": "layout_flag",
+        "score": 9,
+        "hit_count": 2,
+        "source_types": [
+          "gpl"
+        ],
+        "owner_quests": [
+          70031001
+        ],
+        "owner_families": [
+          "q7"
+        ],
+        "stage_codes": [
+          "st1063"
+        ],
+        "sample_hits": [
+          {
+            "source_type": "gpl",
+            "field_name": "LayoutFlagNo",
+            "relationship": "layout_guard",
+            "quest_id": 70031001,
+            "stage_code": "st1063",
+            "file_path": "client/03040008/stage/st1063/st1063/scr/st1063/etc/st1063_p.gpl.json",
+            "comment": ""
+          },
+          {
+            "source_type": "gpl",
+            "field_name": "LayoutFlagNo",
+            "relationship": "layout_guard",
+            "quest_id": 70031001,
+            "stage_code": "st1063",
+            "file_path": "client/03040008/stage/st1063/st1063/scr/st1063/etc/st1063_p.gpl.json",
+            "comment": ""
+          }
+        ]
+      }
+    ],
+    "cue_count": 1
+  },
+  "quest_graph_expansion": {
+    "max_depth": 3,
+    "node_count": 13,
+    "edge_count": 14,
+    "node_kind_counts": {
+      "direct_family": 3,
+      "family_context": 1,
+      "lot_file": 2,
+      "owner_quest": 1,
+      "quest": 1,
+      "sequence_quest": 2,
+      "stage": 1,
+      "stage_group": 2
+    },
+    "edge_type_counts": {
+      "direct_source_family": 3,
+      "family_context:quest_sequence": 1,
+      "gpl_owner_guard": 2,
+      "group_lot_reference": 2,
+      "quest_archive_stage": 1,
+      "sequence_next": 1,
+      "sequence_previous": 1,
+      "stage_group_reference": 2,
+      "stage_owner_index": 1
+    },
+    "derivation_counts": {
+      "direct_deterministic": 15,
+      "graph_expanded": 10,
+      "owner_index": 2
+    },
+    "nodes": [
+      {
+        "node_id": "quest:60319011",
+        "label": "Quest 60319011",
+        "kind": "quest",
+        "depth": 0,
+        "derivation_class": "direct_deterministic",
+        "metadata": {
+          "quest_id": 60319011,
+          "target_count": 7
+        }
+      },
+      {
+        "node_id": "direct-family:fsm",
+        "label": "fsm direct hits (3)",
+        "kind": "direct_family",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "metadata": {
+          "source_type": "fsm",
+          "hit_count": 3
+        }
+      },
+      {
+        "node_id": "direct-family:gpl",
+        "label": "gpl direct hits (1)",
+        "kind": "direct_family",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "metadata": {
+          "source_type": "gpl",
+          "hit_count": 1
+        }
+      },
+      {
+        "node_id": "direct-family:qst",
+        "label": "qst direct hits (12)",
+        "kind": "direct_family",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "metadata": {
+          "source_type": "qst",
+          "hit_count": 12
+        }
+      },
+      {
+        "node_id": "family-context:quest_sequence",
+        "label": "Quest Sequence",
+        "kind": "family_context",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "metadata": {
+          "context_key": "quest_sequence"
+        }
+      },
+      {
+        "node_id": "stage:st1063",
+        "label": "st1063 -- Old Tekia Grotto",
+        "kind": "stage",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "metadata": {
+          "stage_code": "st1063"
+        }
+      },
+      {
+        "node_id": "owner-quest:70031001",
+        "label": "Owner quest 70031001 (q7)",
+        "kind": "owner_quest",
+        "depth": 2,
+        "derivation_class": "owner_index",
+        "metadata": {
+          "owner_quest_id": 70031001,
+          "owner_family": "q7",
+          "flag_count": 8
+        }
+      },
+      {
+        "node_id": "sequence-quest:60319010",
+        "label": "Quest 60319010",
+        "kind": "sequence_quest",
+        "depth": 2,
+        "derivation_class": "direct_deterministic",
+        "metadata": {
+          "quest_id": 60319010,
+          "direction": "previous"
+        }
+      },
+      {
+        "node_id": "sequence-quest:60320000",
+        "label": "Quest 60320000",
+        "kind": "sequence_quest",
+        "depth": 2,
+        "derivation_class": "direct_deterministic",
+        "metadata": {
+          "quest_id": 60320000,
+          "direction": "next"
+        }
+      },
+      {
+        "node_id": "stage-group:st1063:33",
+        "label": "GPL group st1063/33",
+        "kind": "stage_group",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "metadata": {
+          "stage_code": "st1063",
+          "group_no": 33
+        }
+      },
+      {
+        "node_id": "stage-group:st1063:34",
+        "label": "GPL group st1063/34",
+        "kind": "stage_group",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "metadata": {
+          "stage_code": "st1063",
+          "group_no": 34
+        }
+      },
+      {
+        "node_id": "lot-file:st1063_08m00n_p33.lot.json",
+        "label": "st1063_08m00n_p33.lot.json",
+        "kind": "lot_file",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "metadata": {
+          "file_path": "client/03040008/stage/st1063/lot/st1063_08m00n/scr/st1063/etc/st1063_08m00n_p33.lot.json",
+          "type_names": [
+            "SetInfoOmDoor"
+          ]
+        }
+      },
+      {
+        "node_id": "lot-file:st1063_08m00n_p34.lot.json",
+        "label": "st1063_08m00n_p34.lot.json",
+        "kind": "lot_file",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "metadata": {
+          "file_path": "client/03040008/stage/st1063/lot/st1063_08m00n/scr/st1063/etc/st1063_08m00n_p34.lot.json",
+          "type_names": [
+            "SetInfoOmCtrl"
+          ]
+        }
+      }
+    ],
+    "edges": [
+      {
+        "from": "quest:60319011",
+        "to": "direct-family:fsm",
+        "edge_type": "direct_source_family",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "why": "Decoded direct hits for the quest targets include this source family.",
+        "metadata": {}
+      },
+      {
+        "from": "quest:60319011",
+        "to": "direct-family:gpl",
+        "edge_type": "direct_source_family",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "why": "Decoded direct hits for the quest targets include this source family.",
+        "metadata": {}
+      },
+      {
+        "from": "quest:60319011",
+        "to": "direct-family:qst",
+        "edge_type": "direct_source_family",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "why": "Decoded direct hits for the quest targets include this source family.",
+        "metadata": {}
+      },
+      {
+        "from": "quest:60319011",
+        "to": "family-context:quest_sequence",
+        "edge_type": "family_context:quest_sequence",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "why": "Family-specific decoded tables provide deterministic context for this quest.",
+        "metadata": {}
+      },
+      {
+        "from": "quest:60319011",
+        "to": "stage:st1063",
+        "edge_type": "quest_archive_stage",
+        "depth": 1,
+        "derivation_class": "direct_deterministic",
+        "why": "Quest archive topology directly links this quest to the stage code.",
+        "metadata": {}
+      },
+      {
+        "from": "family-context:quest_sequence",
+        "to": "sequence-quest:60320000",
+        "edge_type": "sequence_next",
+        "depth": 2,
+        "derivation_class": "direct_deterministic",
+        "why": "QuestSequence links this quest to its neighboring sequence quest.",
+        "metadata": {}
+      },
+      {
+        "from": "family-context:quest_sequence",
+        "to": "sequence-quest:60319010",
+        "edge_type": "sequence_previous",
+        "depth": 2,
+        "derivation_class": "direct_deterministic",
+        "why": "QuestSequence links this quest to its neighboring sequence quest.",
+        "metadata": {}
+      },
+      {
+        "from": "stage:st1063",
+        "to": "stage-group:st1063:33",
+        "edge_type": "stage_group_reference",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "why": "Reverse indexes expose GPL group references for this stage.",
+        "metadata": {}
+      },
+      {
+        "from": "stage:st1063",
+        "to": "stage-group:st1063:34",
+        "edge_type": "stage_group_reference",
+        "depth": 2,
+        "derivation_class": "graph_expanded",
+        "why": "Reverse indexes expose GPL group references for this stage.",
+        "metadata": {}
+      },
+      {
+        "from": "stage:st1063",
+        "to": "owner-quest:70031001",
+        "edge_type": "stage_owner_index",
+        "depth": 2,
+        "derivation_class": "owner_index",
+        "why": "Stage-neighborhood cues on this stage link to the reusable owner catalog.",
+        "metadata": {
+          "linked_flag_values": [
+            6404
+          ]
+        }
+      },
+      {
+        "from": "stage-group:st1063:33",
+        "to": "owner-quest:70031001",
+        "edge_type": "gpl_owner_guard",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "why": "GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.",
+        "metadata": {
+          "flag_value": 6404
+        }
+      },
+      {
+        "from": "stage-group:st1063:34",
+        "to": "owner-quest:70031001",
+        "edge_type": "gpl_owner_guard",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "why": "GPL guard data on this stage group references an owner quest already linked in the owner/dependency layer.",
+        "metadata": {
+          "flag_value": 6404
+        }
+      },
+      {
+        "from": "stage-group:st1063:33",
+        "to": "lot-file:st1063_08m00n_p33.lot.json",
+        "edge_type": "group_lot_reference",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "why": "LOT association resolves the GPL group to a concrete stage layout file.",
+        "metadata": {}
+      },
+      {
+        "from": "stage-group:st1063:34",
+        "to": "lot-file:st1063_08m00n_p34.lot.json",
+        "edge_type": "group_lot_reference",
+        "depth": 3,
+        "derivation_class": "graph_expanded",
+        "why": "LOT association resolves the GPL group to a concrete stage layout file.",
+        "metadata": {}
       }
     ]
   }

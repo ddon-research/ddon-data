@@ -5,9 +5,403 @@
 
 Query mode:: quest
 Query value:: 30410
-Generated at:: 2026-04-11T21:41:40.602401+00:00
+Generated at:: 2026-04-12T12:43:42.703448+00:00
 
 toc::[]
+
+Quest family:: q3 -- Light Quest
+Quest family notes:: Light and board-style quests with repeatable or lightweight stage flows.
+Quest family focus:: local_stage_topology_plus_board_repeatability
+
+== External Owner Indexes
+
+_These are reusable external owner catalogs inferred from stage-neighborhood cues. They are broader than the subset of flags promoted into derived dependency targets._
+
+[cols="2,1,1,2,2,2,4",options="header"]
+|===
+| Owner Quest | Family | Catalog Count | Catalog Flags | Linked Cues | Cue Sources | Why
+
+| 70000001 | q7 | 70 | 1098, 1103, 1104, 1105, 1106, 1109, 1110, 1111, 1112, 1113, 1114, 1115 +58 more | 1109, 1110, 1111, 1112, 1150, 1201, 1215, 1216 +36 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70001001 | q7 | 0 |  | 1851, 1954 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70002001 | q7 | 47 | 1098, 1103, 1104, 1105, 1106, 1109, 1110, 1111, 1112, 1113, 1114, 1115 +35 more | 1113, 1114, 1115, 1117, 1295, 1601, 3859, 3860 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70003001 | q7 | 49 | 1098, 1103, 1104, 1105, 1106, 1109, 1110, 1111, 1112, 1113, 1114, 1115 +37 more | 1098, 1103, 1104, 1105, 1106, 1119, 1120, 1121 +13 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70020001 | q7 | 8 | 2736, 3000, 3002, 3003, 3074, 3442, 3805, 4037 | 2736, 3000, 3002, 3003, 3074, 3442, 3805, 4037 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70021001 | q7 | 4 | 3278, 3650, 3753, 3861 | 3278, 3650, 3753 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70022001 | q7 | 17 | 3949, 3950, 3952, 3953, 3954, 3977, 4033, 4043, 4053, 4063, 4470, 4555 +5 more | 3949, 3950, 3952, 3953, 3954, 3977, 4033, 4043 +8 more | evsi, gpl | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70023001 | q7 | 15 | 4066, 4067, 4372, 4373, 4500, 4506, 4507, 4508, 4511, 4512, 4515, 4516 +3 more | 4066, 4372, 4373, 4500, 4506, 4507, 4508, 4511 +6 more | evsi, gpl | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70030001 | q7 | 46 | 5396, 5397, 5407, 5552, 5557, 5558, 5581, 5584, 5587, 5588, 5589, 5614 +34 more | 5396, 5397, 5407, 5552, 5557, 5558, 5584, 5587 +35 more | evsi, gpl | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70031001 | q7 | 8 | 5553, 5672, 6138, 6194, 6195, 6377, 6425, 7316 | 5553, 5672, 6138, 6194, 6195, 6377, 7316 | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70032001 | q7 | 37 | 7169, 7240, 7241, 7336, 7341, 7342, 7386, 7387, 7388, 7389, 7390, 7438 +25 more | 7169, 7240, 7241, 7336, 7341, 7342, 7386, 7387 +28 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70033001 | q7 | 43 | 7826, 7827, 7876, 7888, 7889, 7916, 7917, 7954, 7955, 7965, 7966, 7967 +31 more | 7826, 7827, 7876, 7888, 7889, 7917, 7954, 7955 +33 more | evsi | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+| 70034001 | q7 | 3 | 8486, 8630, 8631 | 8486, 8843 | evsi, gpl | Reusable owner catalog derived from the same stage-neighborhood cue set used for dependency inference.
+|===
+
+== Derived External Dependency Targets
+
+_These are the promoted subset of external owner-index entries. A flag appears here only when it passes the current family-specific dependency promotion rules for this quest._
+
+[cols="2,1,1,2,2,4",options="header"]
+|===
+| Owner Quest | Family | Flag Count | Flags | Sources | Why
+
+| 70000001 | q7 | 16 | 1109, 1111, 1215, 1218, 1219, 1251, 1261, 1293, 1294, 1297, 1310, 1317 +4 more | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70002001 | q7 | 3 | 1113, 1295, 3859 | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70003001 | q7 | 10 | 1098, 1104, 1119, 1121, 1123, 1202, 1296, 2429, 2431, 2458 | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70020001 | q7 | 5 | 2736, 3002, 3003, 3074, 3805 | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70021001 | q7 | 3 | 3278, 3650, 3753 | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70022001 | q7 | 12 | 3949, 3952, 3953, 3954, 3977, 4033, 4063, 4555, 4556, 4557, 4803, 4968 | evsi, gpl | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70023001 | q7 | 10 | 4066, 4373, 4500, 4506, 4508, 4512, 4515, 4517, 4972, 4973 | evsi, gpl | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70030001 | q7 | 18 | 5396, 5397, 5407, 5558, 5588, 5635, 5637, 5642, 5658, 5706, 5708, 6196 +6 more | evsi, gpl | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70031001 | q7 | 4 | 5553, 6138, 6195, 6377 | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70032001 | q7 | 19 | 7241, 7336, 7342, 7390, 7438, 7440, 7497, 7498, 7514, 7545, 7550, 7552 +7 more | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70033001 | q7 | 26 | 7826, 7827, 7876, 7917, 7954, 7955, 7966, 7968, 7972, 8016, 8033, 8034 +14 more | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 70034001 | q7 | 1 | 8486 | evsi | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+|===
+
+== Family Relationship Context
+
+_These sections summarize deterministic client-side family metadata and reverse-index relationships. They are context for later owner/dependency inference, not direct quest-target promotion._
+
+=== Quest Sequence
+
+* seq no: 80
+* previous: 30260 -- Hopes' Bitter End
+* next: 30420 -- Spun Together Hope
+
+== ARC Association Context
+
+_ARC associations are contextual only. They show which quest-stage and marker resources are bundled with this quest._
+
+* arc file: link:../../../../client/03040008/quest/q00030410.arc.json#L1[client/03040008/quest/q00030410.arc.json#L1]
+* resource count: 35
+* stage codes: st0120, st0121, st0122, st0201, st0434, st0435, st0881, st3100, st3111
+* resource families: .fmi, .fsm, .gmd, .mss, .qmi, .qst, .qtd, .stqr
+
+=== st0120 -- Farana Plains
+
+* rQuestList: quest/00030410/q00030410_st0120
+* rQuestMarkerInfo: quest/00030410/st0120_marker_npc
+
+=== st0121 -- Elan Water Grove
+
+* rQuestList: quest/00030410/q00030410_st0121
+* rQuestMarkerInfo: quest/00030410/st0121_marker_om
+* rQuestMarkerInfo: quest/00030410/st0121_marker_npc
+
+=== st0122 -- Kingal Canyon
+
+* rQuestList: quest/00030410/q00030410_st0122
+* rQuestMarkerInfo: quest/00030410/st0122_marker_om
+* rQuestMarkerInfo: quest/00030410/st0122_marker_npc
+
+=== st0201 -- Audience Chamber
+
+* rQuestList: quest/00030410/q00030410_st0201
+* rQuestMarkerInfo: quest/00030410/st0201_marker_npc
+
+=== st0434 -- Sacred Drops Chamber
+
+* rQuestList: quest/00030410/q00030410_st0434
+* rQuestMarkerInfo: quest/00030410/st0434_marker_om
+* rQuestMarkerInfo: quest/00030410/st0434_marker_npc
+
+=== st0435 -- Spirit Dragon's Roost
+
+* rQuestList: quest/00030410/q00030410_st0435
+* rQuestMarkerInfo: quest/00030410/st0435_marker_om
+* rQuestMarkerInfo: quest/00030410/st0435_marker_npc
+
+=== st0881 -- Hollow of Beginnings
+
+* rQuestList: quest/00030410/q00030410_st0881
+* rQuestMarkerInfo: quest/00030410/st0881_marker_npc
+* rQuestMarkerInfo: quest/00030410/st0881_marker_om
+
+=== st3100 -- West Land of Darkness
+
+* rQuestList: quest/00030410/q00030410_st3100
+* rQuestMarkerInfo: quest/00030410/st3100_marker_npc
+
+=== st3111 -- Darkness Cloaked Shadolean Great Temple
+
+* rQuestList: quest/00030410/q00030410_st3111
+* rQuestMarkerInfo: quest/00030410/st3111_marker_npc
+* rQuestMarkerInfo: quest/00030410/st3111_marker_om
+
+=== unclassified
+
+* rGUIMessage: ui/00_message/quest/q00030410
+* rAIFSM: quest/00030410/npc/n0001
+* rAIFSM: quest/00030410/npc/n0000
+* rSoundStreamRequest: sound/stream/quest/di/jp/q00030410/q00030410_n0013
+* rSoundStreamRequest: sound/stream/quest/di/jp/q00030410/q00030410_n0501
+* rSoundStreamRequest: sound/stream/quest/di/jp/q00030410/q00030410_n0021
+* rQuestTextData: ui/00_param/quest_text/q00030410_00
+* rMsgSet: ui/00_message/quest/q00030410
+* rFieldAreaMarkerInfo: quest/00030410/fa005_marker_npc
+* rFieldAreaMarkerInfo: quest/00030410/fa005_marker_om
+* rGUIMessage: ui/00_message/quest_info/q00030410_00
+
+== Stage Neighborhood Context
+
+_Stage-neighborhood context summarizes scanner-relevant client files that share the quest's archive stage codes. This is deterministic client topology, not inferred ownership._
+
+* scanner-relevant stage files: 2376
+* indexed stage codes: st0120, st0121, st0122, st0201, st0434, st0435, st0881, st3100, st3111
+
+=== st0120 -- Farana Plains
+
+* scanner files: 525
+* .evsi.json: 12
+* .fsm.json: 64
+* .gpl.json: 5
+* .lot.json: 403
+* .qmi.json: 26
+* .qst.json: 15
+
+=== st0121 -- Elan Water Grove
+
+* scanner files: 546
+* .evsi.json: 3
+* .fsm.json: 28
+* .gpl.json: 5
+* .lot.json: 456
+* .qmi.json: 33
+* .qst.json: 21
+
+=== st0122 -- Kingal Canyon
+
+* scanner files: 394
+* .evsi.json: 2
+* .fsm.json: 6
+* .gpl.json: 5
+* .lot.json: 353
+* .qmi.json: 19
+* .qst.json: 9
+
+=== st0201 -- Audience Chamber
+
+* scanner files: 694
+* .evsi.json: 50
+* .fsm.json: 433
+* .gpl.json: 3
+* .lot.json: 64
+* .qmi.json: 75
+* .qst.json: 69
+
+=== st0434 -- Sacred Drops Chamber
+
+* scanner files: 24
+* .evsi.json: 1
+* .fsm.json: 3
+* .gpl.json: 4
+* .lot.json: 8
+* .qmi.json: 6
+* .qst.json: 2
+
+=== st0435 -- Spirit Dragon's Roost
+
+* scanner files: 32
+* .evsi.json: 2
+* .fsm.json: 9
+* .gpl.json: 4
+* .lot.json: 10
+* .qmi.json: 5
+* .qst.json: 2
+
+=== st0881 -- Hollow of Beginnings
+
+* scanner files: 67
+* .evsi.json: 3
+* .fsm.json: 35
+* .gpl.json: 5
+* .lot.json: 13
+* .qmi.json: 7
+* .qst.json: 4
+
+=== st3100 -- West Land of Darkness
+
+* scanner files: 32
+* .fsm.json: 12
+* .gpl.json: 4
+* .lot.json: 13
+* .qmi.json: 2
+* .qst.json: 1
+
+=== st3111 -- Darkness Cloaked Shadolean Great Temple
+
+* scanner files: 62
+* .evsi.json: 3
+* .fsm.json: 23
+* .gpl.json: 5
+* .lot.json: 27
+* .qmi.json: 3
+* .qst.json: 1
+
+== Stage Neighborhood External-State Cues
+
+_These cues are deterministic client-side observations from the quest's stage neighborhood. They are not promoted to direct quest targets yet; they highlight q6/q7-owned external state values co-located in the quest's archive stages._
+
+* cue count: 245
+* owner families: q6, q7
+
+[cols="1,1,1,2,2,2",options="header"]
+|===
+| Value | Kind | Hits | Sources | Owners | Stages
+
+| Flag 1106 | layout_flag | 76 | evsi | 70003001 | st0120, st0121, st0122, st0201, st0434, st0435, st0881, st3111
+| Flag 1115 | layout_flag | 76 | evsi | 70002001 | st0120, st0121, st0122, st0201, st0434, st0435, st0881, st3111
+| Flag 1117 | layout_flag | 76 | evsi | 70002001 | st0120, st0121, st0122, st0201, st0434, st0435, st0881, st3111
+| Flag 1150 | layout_flag | 76 | evsi | 70000001 | st0120, st0121, st0122, st0201, st0434, st0435, st0881, st3111
+| Flag 1217 | layout_flag | 76 | evsi | 70000001 | st0120, st0121, st0122, st0201, st0434, st0435, st0881, st3111
+| Flag 1224 | layout_flag | 76 | evsi | 70000001 | st0120, st0121, st0122, st0201, st0434, st0435, st0881, st3111
+| Flag 1851 | layout_flag | 76 | evsi | 70001001 | st0120, st0121, st0122, st0201, st0434, st0435, st0881, st3111
+| Flag 1954 | layout_flag | 76 | evsi | 70001001 | st0120, st0121, st0122, st0201, st0434, st0435, st0881, st3111
+| Flag 2208 | layout_flag | 76 | evsi | 70000001 | st0120, st0121, st0122, st0201, st0434, st0435, st0881, st3111
+| Flag 2380 | layout_flag | 76 | evsi | 70000001 | st0120, st0121, st0122, st0201, st0434, st0435, st0881, st3111
+| Flag 3950 | layout_flag | 76 | evsi | 70022001 | st0120, st0121, st0122, st0201, st0434, st0435, st0881, st3111
+| Flag 5589 | layout_flag | 76 | evsi | 70030001 | st0120, st0121, st0122, st0201, st0434, st0435, st0881, st3111
+| Flag 5614 | layout_flag | 76 | evsi | 70030001 | st0120, st0121, st0122, st0201, st0434, st0435, st0881, st3111
+| Flag 5632 | layout_flag | 76 | evsi | 70030001 | st0120, st0121, st0122, st0201, st0434, st0435, st0881, st3111
+| Flag 6469 | layout_flag | 76 | evsi | 70030001 | st0120, st0121, st0122, st0201, st0434, st0435, st0881, st3111
+| Flag 6470 | layout_flag | 76 | evsi | 70030001 | st0120, st0121, st0122, st0201, st0434, st0435, st0881, st3111
+| Flag 6471 | layout_flag | 76 | evsi | 70030001 | st0120, st0121, st0122, st0201, st0434, st0435, st0881, st3111
+| Flag 6472 | layout_flag | 76 | evsi | 70030001 | st0120, st0121, st0122, st0201, st0434, st0435, st0881, st3111
+| Flag 6473 | layout_flag | 76 | evsi | 70030001 | st0120, st0121, st0122, st0201, st0434, st0435, st0881, st3111
+| Flag 6474 | layout_flag | 76 | evsi | 70030001 | st0120, st0121, st0122, st0201, st0434, st0435, st0881, st3111
+| Flag 7316 | layout_flag | 76 | evsi | 70031001 | st0120, st0121, st0122, st0201, st0434, st0435, st0881, st3111
+| Flag 8066 | layout_flag | 76 | evsi | 70033001 | st0120, st0121, st0122, st0201, st0434, st0435, st0881, st3111
+| Flag 1221 | layout_flag | 75 | evsi | 70000001 | st0120, st0121, st0122, st0201, st0434, st0435, st0881, st3111
+| Flag 1201 | layout_flag | 74 | evsi | 70000001 | st0120, st0121, st0122, st0201, st0434, st0435, st0881, st3111
+| Flag 1216 | layout_flag | 74 | evsi | 70000001 | st0120, st0121, st0122, st0201, st0434, st0435, st0881, st3111
+| Flag 1223 | layout_flag | 74 | evsi | 70000001 | st0120, st0121, st0122, st0201, st0434, st0435, st0881, st3111
+| Flag 1222 | layout_flag | 72 | evsi | 70000001 | st0120, st0121, st0122, st0201, st0434, st0435, st0881, st3111
+| Flag 1220 | layout_flag | 71 | evsi | 70000001 | st0120, st0121, st0122, st0201, st0434, st0435, st0881, st3111
+| Flag 1250 | layout_flag | 71 | evsi | 70000001 | st0120, st0121, st0122, st0201, st0434, st0435, st0881, st3111
+| Flag 1262 | layout_flag | 71 | evsi | 70000001 | st0120, st0121, st0122, st0201, st0434, st0435, st0881, st3111
+|===
+
+== Bounded Graph Expansion
+
+_This graph summarizes bounded deterministic and inferred edges around the quest: quest archive stages, direct source families, stage-linked owner catalogs, promoted dependencies, reverse-index event/group links, and family-specific table edges._
+
+* max depth: 3
+* node count: 973
+* edge count: 1998
+* node kinds: direct_family=2, event_viewer=922, family_context=1, lot_file=7, owner_quest=13, quest=1, sequence_quest=2, stage=9, stage_group=16
+* derivation: Dependency=12, Direct=29, Graph=2818, Owner Index=112
+
+=== Mermaid Graph Slice
+
+_This Mermaid flowchart shows a capped slice of the bounded graph so large quest reports stay readable while still exposing the graph structure._
+
+[mermaid]
+....
+flowchart TD
+    node_quest_30410["Quest 30410"]
+    node_direct_family_evsi["evsi direct hits (8)"]
+    node_direct_family_qst["qst direct hits (36)"]
+    node_family_context_quest_sequence["Quest Sequence"]
+    node_stage_st0120["st0120 -- Farana Plains"]
+    node_stage_st0121["st0121 -- Elan Water Grove"]
+    node_stage_st0122["st0122 -- Kingal Canyon"]
+    node_stage_st0201["st0201 -- Audience Chamber"]
+    node_stage_st0434["st0434 -- Sacred Drops Chamber"]
+    node_stage_st0435["st0435 -- Spirit Dragon's Roost"]
+    node_stage_st0881["st0881 -- Hollow of Beginnings"]
+    node_stage_st3100["st3100 -- West Land of Darkness"]
+    node_stage_st3111["st3111 -- Darkness Cloaked Shadolean Great Temple"]
+    node_owner_quest_70000001["Owner quest 70000001 (q7)"]
+    node_owner_quest_70002001["Owner quest 70002001 (q7)"]
+    node_owner_quest_70003001["Owner quest 70003001 (q7)"]
+    node_owner_quest_70020001["Owner quest 70020001 (q7)"]
+    node_owner_quest_70021001["Owner quest 70021001 (q7)"]
+    node_owner_quest_70022001["Owner quest 70022001 (q7)"]
+    node_owner_quest_70023001["Owner quest 70023001 (q7)"]
+    node_owner_quest_70030001["Owner quest 70030001 (q7)"]
+    node_owner_quest_70031001["Owner quest 70031001 (q7)"]
+    node_owner_quest_70032001["Owner quest 70032001 (q7)"]
+    node_owner_quest_70033001["Owner quest 70033001 (q7)"]
+    node_owner_quest_70034001["Owner quest 70034001 (q7)"]
+    node_quest_30410 -->|direct_source_family| node_direct_family_evsi
+    node_quest_30410 -->|direct_source_family| node_direct_family_qst
+    node_quest_30410 -->|family:quest_sequence| node_family_context_quest_sequence
+    node_quest_30410 -->|quest_archive_stage| node_stage_st0120
+    node_quest_30410 -->|quest_archive_stage| node_stage_st0121
+    node_quest_30410 -->|quest_archive_stage| node_stage_st0122
+    node_quest_30410 -->|quest_archive_stage| node_stage_st0201
+    node_quest_30410 -->|quest_archive_stage| node_stage_st0434
+    node_quest_30410 -->|quest_archive_stage| node_stage_st0435
+    node_quest_30410 -->|quest_archive_stage| node_stage_st0881
+    node_quest_30410 -->|quest_archive_stage| node_stage_st3100
+    node_quest_30410 -->|quest_archive_stage| node_stage_st3111
+    node_quest_30410 -->|promoted_dependency| node_owner_quest_70000001
+    node_quest_30410 -->|promoted_dependency| node_owner_quest_70002001
+    node_quest_30410 -->|promoted_dependency| node_owner_quest_70003001
+    node_quest_30410 -->|promoted_dependency| node_owner_quest_70020001
+    node_quest_30410 -->|promoted_dependency| node_owner_quest_70021001
+    node_quest_30410 -->|promoted_dependency| node_owner_quest_70022001
+    node_quest_30410 -->|promoted_dependency| node_owner_quest_70023001
+    node_quest_30410 -->|promoted_dependency| node_owner_quest_70030001
+    node_quest_30410 -->|promoted_dependency| node_owner_quest_70031001
+    node_quest_30410 -->|promoted_dependency| node_owner_quest_70032001
+    node_quest_30410 -->|promoted_dependency| node_owner_quest_70033001
+    node_quest_30410 -->|promoted_dependency| node_owner_quest_70034001
+    classDef direct_deterministic fill:#e8f5e9,stroke:#2e7d32,stroke-width:1px
+    classDef owner_index fill:#e3f2fd,stroke:#1565c0,stroke-width:1px
+    classDef dependency_inferred fill:#fff3e0,stroke:#ef6c00,stroke-width:1px
+    classDef graph_expanded fill:#f3e5f5,stroke:#7b1fa2,stroke-width:1px
+    classDef lower_confidence fill:#fbe9e7,stroke:#d84315,stroke-width:1px
+    classDef binary_auxiliary fill:#eceff1,stroke:#455a64,stroke-width:1px
+    class node_quest_30410,node_direct_family_evsi,node_direct_family_qst,node_family_context_quest_sequence,node_stage_st0120,node_stage_st0121,node_stage_st0122,node_stage_st0201,node_stage_st0434,node_stage_st0435,node_stage_st0881,node_stage_st3100,node_stage_st3111 direct_deterministic
+    class node_owner_quest_70000001,node_owner_quest_70002001,node_owner_quest_70003001,node_owner_quest_70020001,node_owner_quest_70021001,node_owner_quest_70022001,node_owner_quest_70023001,node_owner_quest_70030001,node_owner_quest_70031001,node_owner_quest_70032001,node_owner_quest_70033001,node_owner_quest_70034001 owner_index
+....
+
+[cols="1,2,2,2,2,4",options="header"]
+|===
+| Depth | Edge | From | To | Derivation | Why
+
+| 1 | direct_source_family | quest:30410 | direct-family:evsi | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | direct_source_family | quest:30410 | direct-family:qst | Direct | Decoded direct hits for the quest targets include this source family.
+| 1 | family_context:quest_sequence | quest:30410 | family-context:quest_sequence | Direct | Family-specific decoded tables provide deterministic context for this quest.
+| 1 | quest_archive_stage | quest:30410 | stage:st0120 | Direct | Quest archive topology directly links this quest to the stage code.
+| 1 | quest_archive_stage | quest:30410 | stage:st0121 | Direct | Quest archive topology directly links this quest to the stage code.
+| 1 | quest_archive_stage | quest:30410 | stage:st0122 | Direct | Quest archive topology directly links this quest to the stage code.
+| 1 | quest_archive_stage | quest:30410 | stage:st0201 | Direct | Quest archive topology directly links this quest to the stage code.
+| 1 | quest_archive_stage | quest:30410 | stage:st0434 | Direct | Quest archive topology directly links this quest to the stage code.
+| 1 | quest_archive_stage | quest:30410 | stage:st0435 | Direct | Quest archive topology directly links this quest to the stage code.
+| 1 | quest_archive_stage | quest:30410 | stage:st0881 | Direct | Quest archive topology directly links this quest to the stage code.
+| 1 | quest_archive_stage | quest:30410 | stage:st3100 | Direct | Quest archive topology directly links this quest to the stage code.
+| 1 | quest_archive_stage | quest:30410 | stage:st3111 | Direct | Quest archive topology directly links this quest to the stage code.
+| 2 | promoted_dependency | quest:30410 | owner-quest:70000001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30410 | owner-quest:70002001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30410 | owner-quest:70003001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30410 | owner-quest:70020001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30410 | owner-quest:70021001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30410 | owner-quest:70022001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30410 | owner-quest:70023001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30410 | owner-quest:70030001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30410 | owner-quest:70031001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30410 | owner-quest:70032001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30410 | owner-quest:70033001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | promoted_dependency | quest:30410 | owner-quest:70034001 | Dependency | Filtered stage-neighborhood layout cues intersect the owner q7 quest's client-derived layout catalog built from self-owned stage cues and local q7 QST layout flags.
+| 2 | sequence_next | family-context:quest_sequence | sequence-quest:30420 | Direct | QuestSequence links this quest to its neighboring sequence quest.
+| 2 | sequence_previous | family-context:quest_sequence | sequence-quest:30260 | Direct | QuestSequence links this quest to its neighboring sequence quest.
+| 2 | stage_event_viewer | stage:st0120 | event-viewer:st0120:ev000:70000001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0120 | event-viewer:st0120:ev000:70001001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0120 | event-viewer:st0120:ev000:70002001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0120 | event-viewer:st0120:ev000:70003001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0120 | event-viewer:st0120:ev000:70020001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0120 | event-viewer:st0120:ev000:70021001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0120 | event-viewer:st0120:ev000:70022001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0120 | event-viewer:st0120:ev000:70023001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0120 | event-viewer:st0120:ev000:70030001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0120 | event-viewer:st0120:ev000:70031001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0120 | event-viewer:st0120:ev000:70032001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0120 | event-viewer:st0120:ev000:70033001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0120 | event-viewer:st0120:ev005:70000001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+| 2 | stage_event_viewer | stage:st0120 | event-viewer:st0120:ev005:70001001 | Graph | Reverse indexes expose event-viewer edges on this quest stage.
+|===
 
 == Flag Summary Matrix
 
@@ -15,12 +409,416 @@ toc::[]
 |===
 | Target | Kind | Hits | Sources | Stages | Relationships | Description
 
+| Flag 8320 | layout_flag | 2 | evsi, qst | st0120, st0201 | 🎬 Event State, ⚡ Quest Condition | QST local: st0201 \| 受注前後
+| Flag 8321 | layout_flag | 2 | qst | st0881 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0881 \| 部下３
+| Flag 8322 | layout_flag | 2 | qst | st0121 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0121 \| モードレッド
+| Flag 8323 | layout_flag | 1 | qst | st0121 | ⚡ Quest Condition | QST local: st0121 \| QuestGroup 1 \| 黒剣１
+| Flag 8327 | layout_flag | 1 | qst | st0434 | ⚡ Quest Condition | QST local: st0434 \| 黒剣２
+| Flag 8331 | layout_flag | 1 | qst | st0435 | ⚡ Quest Condition | QST local: st0435 \| 黒剣
+| Flag 8338 | layout_flag | 2 | qst | st0435 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0435 \| QuestGroup 1 \| 共闘
+| Flag 8339 | layout_flag | 5 | evsi, qst | st0435, st3111 | 🎬 Event State, ⚡ Quest Condition, ❌ Quest Erase | QST local: st0435 \| QuestGroup 2 \| 共闘�D置き直し
+| Flag 8340 | layout_flag | 4 | evsi, qst | st0122, st3111 | 🎬 Event State, ⚡ Quest Condition, ❌ Quest Erase | QST local: st0122 \| QuestGroup 1 \| エリオット
+| Flag 8344 | layout_flag | 3 | evsi, qst | st3111 | 🎬 Event State, ⚡ Quest Condition, ❌ Quest Erase | QST local: st3111 \| 共闘
+| Flag 8346 | layout_flag | 3 | evsi, qst | st3100, st3111 | 🎬 Event State, ⚡ Quest Condition, ❌ Quest Erase | QST local: st3100 \| アバドン共闘
+| Flag 8347 | layout_flag | 2 | qst | st3111 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st3111 \| QuestGroup 1 \| アバドン後
+| Flag 8655 | layout_flag | 2 | qst | st0122 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0122 \| QuestGroup 2 \| ガラダ
+| Flag 8656 | layout_flag | 2 | qst | st0881 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0881 \| QuestGroup 1 \| 父ちゃん
+| Flag 8657 | layout_flag | 2 | qst | st0121 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0121 \| QuestGroup 3 \| サリバン前
+| Flag 8658 | layout_flag | 2 | qst | st0121 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0121 \| QuestGroup 2 \| サリバン後
+| Flag 8675 | layout_flag | 2 | qst | st0120 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0120 \| ミューセル
+| Flag 8676 | layout_flag | 2 | qst | st0881 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0881 \| QuestGroup 2 \| ワープOM
+| Flag 8738 | layout_flag | 2 | qst | st0122 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0122 \| QuestGroup 3
+| Flag 8739 | layout_flag | 2 | qst | st0434 | ⚡ Quest Condition, ❌ Quest Erase | QST local: st0434 \| QuestGroup 1 \| ガヴァン
 | Quest ID 30410 | quest_id | 0 |  |  |  | Derived quest-wide association scan
 |===
 
 == Known Documented Targets
 
+* quest 30410 -- Flag 8320 -- QST local: st0201 | 受注前後
+* quest 30410 -- Flag 8321 -- QST local: st0881 | 部下３
+* quest 30410 -- Flag 8322 -- QST local: st0121 | モードレッド
+* quest 30410 -- Flag 8323 -- QST local: st0121 | QuestGroup 1 | 黒剣１
+* quest 30410 -- Flag 8327 -- QST local: st0434 | 黒剣２
+* quest 30410 -- Flag 8331 -- QST local: st0435 | 黒剣
+* quest 30410 -- Flag 8338 -- QST local: st0435 | QuestGroup 1 | 共闘
+* quest 30410 -- Flag 8339 -- QST local: st0435 | QuestGroup 2 | 共闘�D置き直し
+* quest 30410 -- Flag 8340 -- QST local: st0122 | QuestGroup 1 | エリオット
+* quest 30410 -- Flag 8344 -- QST local: st3111 | 共闘
+* quest 30410 -- Flag 8346 -- QST local: st3100 | アバドン共闘
+* quest 30410 -- Flag 8347 -- QST local: st3111 | QuestGroup 1 | アバドン後
+* quest 30410 -- Flag 8655 -- QST local: st0122 | QuestGroup 2 | ガラダ
+* quest 30410 -- Flag 8656 -- QST local: st0881 | QuestGroup 1 | 父ちゃん
+* quest 30410 -- Flag 8657 -- QST local: st0121 | QuestGroup 3 | サリバン前
+* quest 30410 -- Flag 8658 -- QST local: st0121 | QuestGroup 2 | サリバン後
+* quest 30410 -- Flag 8675 -- QST local: st0120 | ミューセル
+* quest 30410 -- Flag 8676 -- QST local: st0881 | QuestGroup 2 | ワープOM
+* quest 30410 -- Flag 8738 -- QST local: st0122 | QuestGroup 3
+* quest 30410 -- Flag 8739 -- QST local: st0434 | QuestGroup 1 | ガヴァン
 * Quest ID 30410 -- Derived quest-wide association scan [Derived]
+
+== Flag 8320 -- Quest 30410
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030410/quest/00030410/q00030410_st0201.qst.json[client/03040008/quest/q00030410/quest/00030410/q00030410_st0201.qst.json] | QuestStageList[].QuestGrp[0].Condition | Condition | quest 30410 / Audience Chamber / "受注前後" / QuestSet=QuestSetInfoNpc \|\| QuestSet=QuestSetInfoNpc \|\| +1 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0120/view_st0120ev050/event/viewer/view_st0120ev050.evsi.json#L625[client/03040008/event/st0120/view_st0120ev050/event/viewer/view_st0120ev050.evsi.json#L625] | LayoutFlagArray[0].FlagNo | FlagNo | quest 30410 (Breakdown of Order) / Farana Plains / Event Viewer \| EVENT_NAME_st0120ev050 \| An Omen of Destruction | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+|===
+
+== Flag 8321 -- Quest 30410
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030410/quest/00030410/q00030410_st0881.qst.json[client/03040008/quest/q00030410/quest/00030410/q00030410_st0881.qst.json] | QuestStageList[].QuestGrp[0].Condition | Condition | quest 30410 / Hollow of Beginnings / "部下３" / QuestSet=QuestSetInfoNpc \|\| QuestSet=QuestSetInfoNpc \|\| +1 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030410/quest/00030410/q00030410_st0881.qst.json[client/03040008/quest/q00030410/quest/00030410/q00030410_st0881.qst.json] | QuestStageList[].QuestGrp[0].EraseCondition | EraseCondition | quest 30410 / Hollow of Beginnings / "部下３" / QuestSet=QuestSetInfoNpc \|\| QuestSet=QuestSetInfoNpc \|\| +1 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 8322 -- Quest 30410
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030410/quest/00030410/q00030410_st0121.qst.json[client/03040008/quest/q00030410/quest/00030410/q00030410_st0121.qst.json] | QuestStageList[].QuestGrp[0].Condition | Condition | quest 30410 / Elan Water Grove / "モードレッド" / QuestSet=QuestSetInfoNpc | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030410/quest/00030410/q00030410_st0121.qst.json[client/03040008/quest/q00030410/quest/00030410/q00030410_st0121.qst.json] | QuestStageList[].QuestGrp[0].EraseCondition | EraseCondition | quest 30410 / Elan Water Grove / "モードレッド" / QuestSet=QuestSetInfoNpc | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 8323 -- Quest 30410
+
+origin:: derived_qst_local
+direct hits:: *1*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 1 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030410/quest/00030410/q00030410_st0121.qst.json[client/03040008/quest/q00030410/quest/00030410/q00030410_st0121.qst.json] | QuestStageList[].QuestGrp[1].Condition | Condition | quest 30410 / Elan Water Grove / "QuestGroup 1 \| 黒剣１" / QuestSet=QuestSetInfoOmBreakTarget \| OmID=523900 \| UnitID=523900 \| EnableZone \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 8327 -- Quest 30410
+
+origin:: derived_qst_local
+direct hits:: *1*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 1 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030410/quest/00030410/q00030410_st0434.qst.json[client/03040008/quest/q00030410/quest/00030410/q00030410_st0434.qst.json] | QuestStageList[].QuestGrp[0].Condition | Condition | quest 30410 / Sacred Drops Chamber / "黒剣２" / QuestSet=QuestSetInfoOmBreakTarget \| OmID=523900 \| UnitID=523900 \| EnableZone | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 8331 -- Quest 30410
+
+origin:: derived_qst_local
+direct hits:: *1*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 1 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030410/quest/00030410/q00030410_st0435.qst.json[client/03040008/quest/q00030410/quest/00030410/q00030410_st0435.qst.json] | QuestStageList[].QuestGrp[0].Condition | Condition | quest 30410 / Spirit Dragon's Roost / "黒剣" / QuestSet=QuestSetInfoOmBreakTarget \| OmID=523900 \| UnitID=523900 \| EnableZone | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 8338 -- Quest 30410
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030410/quest/00030410/q00030410_st0435.qst.json[client/03040008/quest/q00030410/quest/00030410/q00030410_st0435.qst.json] | QuestStageList[].QuestGrp[1].Condition | Condition | quest 30410 / Spirit Dragon's Roost / "QuestGroup 1 \| 共闘" / QuestSet=QuestSetInfoNpc \| GroupNo=1 \|\| QuestSet=QuestSetInfoNpc \| GroupNo=1 \|\| +1 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030410/quest/00030410/q00030410_st0435.qst.json[client/03040008/quest/q00030410/quest/00030410/q00030410_st0435.qst.json] | QuestStageList[].QuestGrp[1].EraseCondition | EraseCondition | quest 30410 / Spirit Dragon's Roost / "QuestGroup 1 \| 共闘" / QuestSet=QuestSetInfoNpc \| GroupNo=1 \|\| QuestSet=QuestSetInfoNpc \| GroupNo=1 \|\| +1 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 8339 -- Quest 30410
+
+origin:: derived_qst_local
+direct hits:: *5*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 5 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030410/quest/00030410/q00030410_st0435.qst.json[client/03040008/quest/q00030410/quest/00030410/q00030410_st0435.qst.json] | QuestStageList[].QuestGrp[2].Condition | Condition | quest 30410 / Spirit Dragon's Roost / "QuestGroup 2 \| 共闘�D置き直し" / QuestSet=QuestSetInfoNpc \| GroupNo=2 \|\| QuestSet=QuestSetInfoNpc \| GroupNo=2 \|\| +1 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030410/quest/00030410/q00030410_st0435.qst.json[client/03040008/quest/q00030410/quest/00030410/q00030410_st0435.qst.json] | QuestStageList[].QuestGrp[2].EraseCondition | EraseCondition | quest 30410 / Spirit Dragon's Roost / "QuestGroup 2 \| 共闘�D置き直し" / QuestSet=QuestSetInfoNpc \| GroupNo=2 \|\| QuestSet=QuestSetInfoNpc \| GroupNo=2 \|\| +1 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st3111/view_st3111ev000/event/viewer/view_st3111ev000.evsi.json#L713[client/03040008/event/st3111/view_st3111ev000/event/viewer/view_st3111ev000.evsi.json#L713] | LayoutFlagArray[2].FlagNo | FlagNo | quest 30410 (Breakdown of Order) / Darkness Cloaked Shadolean Great Temple / Event Viewer \| EVENT_NAME_st3111ev000 \| Gate Keeper | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st3111/view_st3111ev005/event/viewer/view_st3111ev005.evsi.json#L713[client/03040008/event/st3111/view_st3111ev005/event/viewer/view_st3111ev005.evsi.json#L713] | LayoutFlagArray[2].FlagNo | FlagNo | quest 30410 (Breakdown of Order) / Darkness Cloaked Shadolean Great Temple / Event Viewer \| EVENT_NAME_st3111ev005 \| Reunion with Leo | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st3111/view_st3111ev010/event/viewer/view_st3111ev010.evsi.json#L721[client/03040008/event/st3111/view_st3111ev010/event/viewer/view_st3111ev010.evsi.json#L721] | LayoutFlagArray[2].FlagNo | FlagNo | quest 30410 (Breakdown of Order) / Darkness Cloaked Shadolean Great Temple / Event Viewer \| EVENT_NAME_st3111ev010 \| Black Knight and Leo | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+|===
+
+== Flag 8340 -- Quest 30410
+
+origin:: derived_qst_local
+direct hits:: *4*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 4 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030410/quest/00030410/q00030410_st0122.qst.json[client/03040008/quest/q00030410/quest/00030410/q00030410_st0122.qst.json] | QuestStageList[].QuestGrp[1].Condition | Condition | quest 30410 / Kingal Canyon / "QuestGroup 1 \| エリオット" / QuestSet=QuestSetInfoNpc \| GroupNo=1 \|\| QuestSet=QuestSetInfoNpc \| GroupNo=1 \|\| +1 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030410/quest/00030410/q00030410_st0122.qst.json[client/03040008/quest/q00030410/quest/00030410/q00030410_st0122.qst.json] | QuestStageList[].QuestGrp[1].EraseCondition | EraseCondition | quest 30410 / Kingal Canyon / "QuestGroup 1 \| エリオット" / QuestSet=QuestSetInfoNpc \| GroupNo=1 \|\| QuestSet=QuestSetInfoNpc \| GroupNo=1 \|\| +1 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st3111/view_st3111ev000/event/viewer/view_st3111ev000.evsi.json#L721[client/03040008/event/st3111/view_st3111ev000/event/viewer/view_st3111ev000.evsi.json#L721] | LayoutFlagArray[3].FlagNo | FlagNo | quest 30410 (Breakdown of Order) / Darkness Cloaked Shadolean Great Temple / Event Viewer \| EVENT_NAME_st3111ev000 \| Gate Keeper | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st3111/view_st3111ev005/event/viewer/view_st3111ev005.evsi.json#L721[client/03040008/event/st3111/view_st3111ev005/event/viewer/view_st3111ev005.evsi.json#L721] | LayoutFlagArray[3].FlagNo | FlagNo | quest 30410 (Breakdown of Order) / Darkness Cloaked Shadolean Great Temple / Event Viewer \| EVENT_NAME_st3111ev005 \| Reunion with Leo | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+|===
+
+== Flag 8344 -- Quest 30410
+
+origin:: derived_qst_local
+direct hits:: *3*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 3 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030410/quest/00030410/q00030410_st3111.qst.json[client/03040008/quest/q00030410/quest/00030410/q00030410_st3111.qst.json] | QuestStageList[].QuestGrp[0].Condition | Condition | quest 30410 / Darkness Cloaked Shadolean Great Temple / "共闘" / QuestSet=QuestSetInfoNpc \|\| QuestSet=QuestSetInfoNpc \|\| +1 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030410/quest/00030410/q00030410_st3111.qst.json[client/03040008/quest/q00030410/quest/00030410/q00030410_st3111.qst.json] | QuestStageList[].QuestGrp[0].EraseCondition | EraseCondition | quest 30410 / Darkness Cloaked Shadolean Great Temple / "共闘" / QuestSet=QuestSetInfoNpc \|\| QuestSet=QuestSetInfoNpc \|\| +1 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st3111/view_st3111ev005/event/viewer/view_st3111ev005.evsi.json#L737[client/03040008/event/st3111/view_st3111ev005/event/viewer/view_st3111ev005.evsi.json#L737] | LayoutFlagArray[5].FlagNo | FlagNo | quest 30410 (Breakdown of Order) / Darkness Cloaked Shadolean Great Temple / Event Viewer \| EVENT_NAME_st3111ev005 \| Reunion with Leo | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+|===
+
+== Flag 8346 -- Quest 30410
+
+origin:: derived_qst_local
+direct hits:: *3*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 3 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030410/quest/00030410/q00030410_st3100.qst.json[client/03040008/quest/q00030410/quest/00030410/q00030410_st3100.qst.json] | QuestStageList[].QuestGrp[0].Condition | Condition | quest 30410 / West Land of Darkness / "アバドン共闘" / QuestSet=QuestSetInfoNpc \|\| QuestSet=QuestSetInfoNpc \|\| +1 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030410/quest/00030410/q00030410_st3100.qst.json[client/03040008/quest/q00030410/quest/00030410/q00030410_st3100.qst.json] | QuestStageList[].QuestGrp[0].EraseCondition | EraseCondition | quest 30410 / West Land of Darkness / "アバドン共闘" / QuestSet=QuestSetInfoNpc \|\| QuestSet=QuestSetInfoNpc \|\| +1 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st3111/view_st3111ev010/event/viewer/view_st3111ev010.evsi.json#L737[client/03040008/event/st3111/view_st3111ev010/event/viewer/view_st3111ev010.evsi.json#L737] | LayoutFlagArray[4].FlagNo | FlagNo | quest 30410 (Breakdown of Order) / Darkness Cloaked Shadolean Great Temple / Event Viewer \| EVENT_NAME_st3111ev010 \| Black Knight and Leo | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+|===
+
+== Flag 8347 -- Quest 30410
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030410/quest/00030410/q00030410_st3111.qst.json[client/03040008/quest/q00030410/quest/00030410/q00030410_st3111.qst.json] | QuestStageList[].QuestGrp[1].Condition | Condition | quest 30410 / Darkness Cloaked Shadolean Great Temple / "QuestGroup 1 \| アバドン後" / QuestSet=QuestSetInfoNpc \| GroupNo=1 \|\| QuestSet=QuestSetInfoNpc \| GroupNo=1 \|\| +1 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030410/quest/00030410/q00030410_st3111.qst.json[client/03040008/quest/q00030410/quest/00030410/q00030410_st3111.qst.json] | QuestStageList[].QuestGrp[1].EraseCondition | EraseCondition | quest 30410 / Darkness Cloaked Shadolean Great Temple / "QuestGroup 1 \| アバドン後" / QuestSet=QuestSetInfoNpc \| GroupNo=1 \|\| QuestSet=QuestSetInfoNpc \| GroupNo=1 \|\| +1 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 8655 -- Quest 30410
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030410/quest/00030410/q00030410_st0122.qst.json[client/03040008/quest/q00030410/quest/00030410/q00030410_st0122.qst.json] | QuestStageList[].QuestGrp[2].Condition | Condition | quest 30410 / Kingal Canyon / "QuestGroup 2 \| ガラダ" / QuestSet=QuestSetInfoNpc \| GroupNo=2 \|\| QuestSet=QuestSetInfoNpc \| GroupNo=2 \|\| +2 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030410/quest/00030410/q00030410_st0122.qst.json[client/03040008/quest/q00030410/quest/00030410/q00030410_st0122.qst.json] | QuestStageList[].QuestGrp[2].EraseCondition | EraseCondition | quest 30410 / Kingal Canyon / "QuestGroup 2 \| ガラダ" / QuestSet=QuestSetInfoNpc \| GroupNo=2 \|\| QuestSet=QuestSetInfoNpc \| GroupNo=2 \|\| +2 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 8656 -- Quest 30410
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030410/quest/00030410/q00030410_st0881.qst.json[client/03040008/quest/q00030410/quest/00030410/q00030410_st0881.qst.json] | QuestStageList[].QuestGrp[1].Condition | Condition | quest 30410 / Hollow of Beginnings / "QuestGroup 1 \| 父ちゃん" / QuestSet=QuestSetInfoNpc \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030410/quest/00030410/q00030410_st0881.qst.json[client/03040008/quest/q00030410/quest/00030410/q00030410_st0881.qst.json] | QuestStageList[].QuestGrp[1].EraseCondition | EraseCondition | quest 30410 / Hollow of Beginnings / "QuestGroup 1 \| 父ちゃん" / QuestSet=QuestSetInfoNpc \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 8657 -- Quest 30410
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030410/quest/00030410/q00030410_st0121.qst.json[client/03040008/quest/q00030410/quest/00030410/q00030410_st0121.qst.json] | QuestStageList[].QuestGrp[3].Condition | Condition | quest 30410 / Elan Water Grove / "QuestGroup 3 \| サリバン前" / QuestSet=QuestSetInfoNpc \| GroupNo=3 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030410/quest/00030410/q00030410_st0121.qst.json[client/03040008/quest/q00030410/quest/00030410/q00030410_st0121.qst.json] | QuestStageList[].QuestGrp[3].EraseCondition | EraseCondition | quest 30410 / Elan Water Grove / "QuestGroup 3 \| サリバン前" / QuestSet=QuestSetInfoNpc \| GroupNo=3 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 8658 -- Quest 30410
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030410/quest/00030410/q00030410_st0121.qst.json[client/03040008/quest/q00030410/quest/00030410/q00030410_st0121.qst.json] | QuestStageList[].QuestGrp[2].Condition | Condition | quest 30410 / Elan Water Grove / "QuestGroup 2 \| サリバン後" / QuestSet=QuestSetInfoNpc \| GroupNo=2 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030410/quest/00030410/q00030410_st0121.qst.json[client/03040008/quest/q00030410/quest/00030410/q00030410_st0121.qst.json] | QuestStageList[].QuestGrp[2].EraseCondition | EraseCondition | quest 30410 / Elan Water Grove / "QuestGroup 2 \| サリバン後" / QuestSet=QuestSetInfoNpc \| GroupNo=2 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 8675 -- Quest 30410
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030410/quest/00030410/q00030410_st0120.qst.json[client/03040008/quest/q00030410/quest/00030410/q00030410_st0120.qst.json] | QuestStageList[].QuestGrp[0].Condition | Condition | quest 30410 / Farana Plains / "ミューセル" / QuestSet=QuestSetInfoNpc | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030410/quest/00030410/q00030410_st0120.qst.json[client/03040008/quest/q00030410/quest/00030410/q00030410_st0120.qst.json] | QuestStageList[].QuestGrp[0].EraseCondition | EraseCondition | quest 30410 / Farana Plains / "ミューセル" / QuestSet=QuestSetInfoNpc | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 8676 -- Quest 30410
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030410/quest/00030410/q00030410_st0881.qst.json[client/03040008/quest/q00030410/quest/00030410/q00030410_st0881.qst.json] | QuestStageList[].QuestGrp[2].Condition | Condition | quest 30410 / Hollow of Beginnings / "QuestGroup 2 \| ワープOM" / QuestSet=QuestSetInfoOmWarp \| OmID=511150 \| UnitID=511150 \| EnableZone \| GroupNo=2 \|\| QuestSet=QuestSetInfoOm \| OmID=522452 \| OM_ID_QUEST_TWINKLE \| EnableZone \| GroupNo=2 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030410/quest/00030410/q00030410_st0881.qst.json[client/03040008/quest/q00030410/quest/00030410/q00030410_st0881.qst.json] | QuestStageList[].QuestGrp[2].EraseCondition | EraseCondition | quest 30410 / Hollow of Beginnings / "QuestGroup 2 \| ワープOM" / QuestSet=QuestSetInfoOmWarp \| OmID=511150 \| UnitID=511150 \| EnableZone \| GroupNo=2 \|\| QuestSet=QuestSetInfoOm \| OmID=522452 \| OM_ID_QUEST_TWINKLE \| EnableZone \| GroupNo=2 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 8738 -- Quest 30410
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030410/quest/00030410/q00030410_st0122.qst.json[client/03040008/quest/q00030410/quest/00030410/q00030410_st0122.qst.json] | QuestStageList[].QuestGrp[3].Condition | Condition | quest 30410 / Kingal Canyon / "QuestGroup 3" / QuestSet=QuestSetInfoNpc \| GroupNo=3 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030410/quest/00030410/q00030410_st0122.qst.json[client/03040008/quest/q00030410/quest/00030410/q00030410_st0122.qst.json] | QuestStageList[].QuestGrp[3].EraseCondition | EraseCondition | quest 30410 / Kingal Canyon / "QuestGroup 3" / QuestSet=QuestSetInfoNpc \| GroupNo=3 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
+
+== Flag 8739 -- Quest 30410
+
+origin:: derived_qst_local
+direct hits:: *2*
+ranked candidates:: *0*
+
+=== Direct Hits
+
+==== direct -- 2 hit(s)
+
+[cols="1,1,1,3,3,2,3,3",options="header"]
+|===
+| Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
+
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030410/quest/00030410/q00030410_st0434.qst.json[client/03040008/quest/q00030410/quest/00030410/q00030410_st0434.qst.json] | QuestStageList[].QuestGrp[1].Condition | Condition | quest 30410 / Sacred Drops Chamber / "QuestGroup 1 \| ガヴァン" / QuestSet=QuestSetInfoNpc \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q00030410/quest/00030410/q00030410_st0434.qst.json[client/03040008/quest/q00030410/quest/00030410/q00030410_st0434.qst.json] | QuestStageList[].QuestGrp[1].EraseCondition | EraseCondition | quest 30410 / Sacred Drops Chamber / "QuestGroup 1 \| ガヴァン" / QuestSet=QuestSetInfoNpc \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+|===
 
 == Quest ID 30410
 
@@ -32,65 +830,65 @@ _No direct references found in decoded client data._
 
 === Ranked Candidates
 
-[cols="1,1,2,3,3,3",options="header"]
+[cols="1,1,1,2,3,3,3",options="header"]
 |===
-| Tier | Confidence | Field | File | Context | Why
+| Tier | Derivation | Confidence | Field | File | Context | Why
 
-| context | 45 | QuestId | client/03040008/event/st0120/view_st0120ev050/event/viewer/view_st0120ev050.evsi.json | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
-| context | 45 | QuestId | client/03040008/event/st0120/view_st0120ev050/event/viewer/view_st0120ev050.evsi.json | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
-| context | 45 | QuestId | client/03040008/event/st0120/view_st0120ev050/event/viewer/view_st0120ev050.evsi.json | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
-| context | 45 | QuestId | client/03040008/event/st0201/view_st0201ev240/event/viewer/view_st0201ev240.evsi.json | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
-| context | 45 | QuestId | client/03040008/event/st0201/view_st0201ev240/event/viewer/view_st0201ev240.evsi.json | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
-| context | 45 | QuestId | client/03040008/event/st3000/view_st3000ev000/event/viewer/view_st3000ev000.evsi.json | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
-| context | 45 | QuestId | client/03040008/event/st3000/view_st3000ev000/event/viewer/view_st3000ev000.evsi.json | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
-| context | 45 | QuestId | client/03040008/event/st3111/view_st3111ev000/event/viewer/view_st3111ev000.evsi.json | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
-| context | 45 | QuestId | client/03040008/event/st3111/view_st3111ev000/event/viewer/view_st3111ev000.evsi.json | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
-| context | 45 | QuestId | client/03040008/event/st3111/view_st3111ev000/event/viewer/view_st3111ev000.evsi.json | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
-| context | 45 | QuestId | client/03040008/event/st3111/view_st3111ev000/event/viewer/view_st3111ev000.evsi.json | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
-| context | 45 | QuestId | client/03040008/event/st3111/view_st3111ev000/event/viewer/view_st3111ev000.evsi.json | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
-| context | 45 | QuestId | client/03040008/event/st3111/view_st3111ev000/event/viewer/view_st3111ev000.evsi.json | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
-| context | 45 | QuestId | client/03040008/event/st3111/view_st3111ev000/event/viewer/view_st3111ev000.evsi.json | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
-| context | 45 | QuestId | client/03040008/event/st3111/view_st3111ev000/event/viewer/view_st3111ev000.evsi.json | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
-| context | 45 | QuestId | client/03040008/event/st3111/view_st3111ev000/event/viewer/view_st3111ev000.evsi.json | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
-| context | 45 | QuestId | client/03040008/event/st3111/view_st3111ev000/event/viewer/view_st3111ev000.evsi.json | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
-| context | 45 | QuestId | client/03040008/event/st3111/view_st3111ev000/event/viewer/view_st3111ev000.evsi.json | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
-| context | 45 | QuestId | client/03040008/event/st3111/view_st3111ev000/event/viewer/view_st3111ev000.evsi.json | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
-| context | 45 | QuestId | client/03040008/event/st3111/view_st3111ev000/event/viewer/view_st3111ev000.evsi.json | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
-| context | 45 | QuestId | client/03040008/event/st3111/view_st3111ev005/event/viewer/view_st3111ev005.evsi.json | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
-| context | 45 | QuestId | client/03040008/event/st3111/view_st3111ev005/event/viewer/view_st3111ev005.evsi.json | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
-| context | 45 | QuestId | client/03040008/event/st3111/view_st3111ev005/event/viewer/view_st3111ev005.evsi.json | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
-| context | 45 | QuestId | client/03040008/event/st3111/view_st3111ev005/event/viewer/view_st3111ev005.evsi.json | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
-| context | 45 | QuestId | client/03040008/event/st3111/view_st3111ev005/event/viewer/view_st3111ev005.evsi.json | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
-| context | 45 | QuestId | client/03040008/event/st3111/view_st3111ev005/event/viewer/view_st3111ev005.evsi.json | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
-| context | 45 | QuestId | client/03040008/event/st3111/view_st3111ev005/event/viewer/view_st3111ev005.evsi.json | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
-| context | 45 | QuestId | client/03040008/event/st3111/view_st3111ev005/event/viewer/view_st3111ev005.evsi.json | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
-| context | 45 | QuestId | client/03040008/event/st3111/view_st3111ev005/event/viewer/view_st3111ev005.evsi.json | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
-| context | 45 | QuestId | client/03040008/event/st3111/view_st3111ev005/event/viewer/view_st3111ev005.evsi.json | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
-| context | 45 | QuestId | client/03040008/event/st3111/view_st3111ev005/event/viewer/view_st3111ev005.evsi.json | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
-| context | 45 | QuestId | client/03040008/event/st3111/view_st3111ev005/event/viewer/view_st3111ev005.evsi.json | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
-| context | 45 | QuestId | client/03040008/event/st3111/view_st3111ev005/event/viewer/view_st3111ev005.evsi.json | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
-| context | 45 | QuestId | client/03040008/event/st3111/view_st3111ev005/event/viewer/view_st3111ev005.evsi.json | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
-| context | 45 | QuestId | client/03040008/event/st3111/view_st3111ev005/event/viewer/view_st3111ev005.evsi.json | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
-| context | 45 | QuestId | client/03040008/event/st3111/view_st3111ev010/event/viewer/view_st3111ev010.evsi.json | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
-| context | 45 | QuestId | client/03040008/event/st3111/view_st3111ev010/event/viewer/view_st3111ev010.evsi.json | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
-| context | 45 | QuestId | client/03040008/event/st3111/view_st3111ev010/event/viewer/view_st3111ev010.evsi.json | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
-| context | 45 | QuestId | client/03040008/event/st3111/view_st3111ev010/event/viewer/view_st3111ev010.evsi.json | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
-| context | 45 | QuestId | client/03040008/event/st3111/view_st3111ev010/event/viewer/view_st3111ev010.evsi.json | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
-| context | 45 | QuestId | client/03040008/event/st3111/view_st3111ev010/event/viewer/view_st3111ev010.evsi.json | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
-| context | 45 | QuestId | client/03040008/event/st3111/view_st3111ev010/event/viewer/view_st3111ev010.evsi.json | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
-| context | 45 | QuestId | client/03040008/event/st3111/view_st3111ev010/event/viewer/view_st3111ev010.evsi.json | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
-| context | 45 | QuestId | client/03040008/event/st3111/view_st3111ev010/event/viewer/view_st3111ev010.evsi.json | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
-| context | 45 | QuestId | client/03040008/event/st3111/view_st3111ev010/event/viewer/view_st3111ev010.evsi.json | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
-| context | 45 | QuestId | client/03040008/event/st3111/view_st3111ev010/event/viewer/view_st3111ev010.evsi.json | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
-| context | 45 | QuestId | client/03040008/event/st3111/view_st3111ev010/event/viewer/view_st3111ev010.evsi.json | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
-| context | 45 | QuestId | client/03040008/event/st3111/view_st3111ev010/event/viewer/view_st3111ev010.evsi.json | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
-| context | 45 | QuestId | client/03040008/event/st3111/view_st3111ev010/event/viewer/view_st3111ev010.evsi.json | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
-| context | 45 | QuestId | client/03040008/event/st3111/view_st3111ev010/event/viewer/view_st3111ev010.evsi.json | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
-| context | 45 | QuestId | client/03040008/event/st3111/view_st3111ev010/event/viewer/view_st3111ev010.evsi.json | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
-| context | 45 | QuestId | client/03040008/game_common/quest/QuestSequence.qsq.json | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
-| context | 45 | QuestId | client/03040008/marker/st0881_marker/scr/st0881/etc/st0881_adjoin.sal.json | Breakdown of Order / Hollow of Beginnings | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
-| context | 45 | QuestNo | client/03040008/stage/st3111/st3111/scr/st3111/etc/st3111_p.gpl.json | Breakdown of Order / Darkness Cloaked Shadolean Great Temple | Matched a relevant decoded field (QuestNo), but not in the primary field family for this target type.
-| context | 45 | QuestId | client/03040008/ui/history/history_data_001/ui/00_param/history/quest_history_001.qhd.json | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
-| collision | 20 | GroupSerial | client/03040008/quest/q00030440/ui/00_message/quest/q00030440.mss.json | Elliot | Matched a collision-prone numeric field (GroupSerial).
+| context | Lower Confidence | 45 | QuestId | link:../../../../client/03040008/event/st0120/view_st0120ev050/event/viewer/view_st0120ev050.evsi.json#L13[client/03040008/event/st0120/view_st0120ev050/event/viewer/view_st0120ev050.evsi.json#L13] | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
+| context | Lower Confidence | 45 | QuestId | link:../../../../client/03040008/event/st0120/view_st0120ev050/event/viewer/view_st0120ev050.evsi.json#L626[client/03040008/event/st0120/view_st0120ev050/event/viewer/view_st0120ev050.evsi.json#L626] | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
+| context | Lower Confidence | 45 | QuestId | link:../../../../client/03040008/event/st0120/view_st0120ev050/event/viewer/view_st0120ev050.evsi.json#L634[client/03040008/event/st0120/view_st0120ev050/event/viewer/view_st0120ev050.evsi.json#L634] | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
+| context | Lower Confidence | 45 | QuestId | link:../../../../client/03040008/event/st0201/view_st0201ev240/event/viewer/view_st0201ev240.evsi.json#L13[client/03040008/event/st0201/view_st0201ev240/event/viewer/view_st0201ev240.evsi.json#L13] | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
+| context | Lower Confidence | 45 | QuestId | link:../../../../client/03040008/event/st0201/view_st0201ev240/event/viewer/view_st0201ev240.evsi.json#L626[client/03040008/event/st0201/view_st0201ev240/event/viewer/view_st0201ev240.evsi.json#L626] | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
+| context | Lower Confidence | 45 | QuestId | link:../../../../client/03040008/event/st3000/view_st3000ev000/event/viewer/view_st3000ev000.evsi.json#L13[client/03040008/event/st3000/view_st3000ev000/event/viewer/view_st3000ev000.evsi.json#L13] | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
+| context | Lower Confidence | 45 | QuestId | link:../../../../client/03040008/event/st3000/view_st3000ev000/event/viewer/view_st3000ev000.evsi.json#L626[client/03040008/event/st3000/view_st3000ev000/event/viewer/view_st3000ev000.evsi.json#L626] | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
+| context | Lower Confidence | 45 | QuestId | link:../../../../client/03040008/event/st3111/view_st3111ev000/event/viewer/view_st3111ev000.evsi.json#L13[client/03040008/event/st3111/view_st3111ev000/event/viewer/view_st3111ev000.evsi.json#L13] | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
+| context | Lower Confidence | 45 | QuestId | link:../../../../client/03040008/event/st3111/view_st3111ev000/event/viewer/view_st3111ev000.evsi.json#L21[client/03040008/event/st3111/view_st3111ev000/event/viewer/view_st3111ev000.evsi.json#L21] | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
+| context | Lower Confidence | 45 | QuestId | link:../../../../client/03040008/event/st3111/view_st3111ev000/event/viewer/view_st3111ev000.evsi.json#L29[client/03040008/event/st3111/view_st3111ev000/event/viewer/view_st3111ev000.evsi.json#L29] | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
+| context | Lower Confidence | 45 | QuestId | link:../../../../client/03040008/event/st3111/view_st3111ev000/event/viewer/view_st3111ev000.evsi.json#L37[client/03040008/event/st3111/view_st3111ev000/event/viewer/view_st3111ev000.evsi.json#L37] | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
+| context | Lower Confidence | 45 | QuestId | link:../../../../client/03040008/event/st3111/view_st3111ev000/event/viewer/view_st3111ev000.evsi.json#L45[client/03040008/event/st3111/view_st3111ev000/event/viewer/view_st3111ev000.evsi.json#L45] | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
+| context | Lower Confidence | 45 | QuestId | link:../../../../client/03040008/event/st3111/view_st3111ev000/event/viewer/view_st3111ev000.evsi.json#L53[client/03040008/event/st3111/view_st3111ev000/event/viewer/view_st3111ev000.evsi.json#L53] | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
+| context | Lower Confidence | 45 | QuestId | link:../../../../client/03040008/event/st3111/view_st3111ev000/event/viewer/view_st3111ev000.evsi.json#L61[client/03040008/event/st3111/view_st3111ev000/event/viewer/view_st3111ev000.evsi.json#L61] | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
+| context | Lower Confidence | 45 | QuestId | link:../../../../client/03040008/event/st3111/view_st3111ev000/event/viewer/view_st3111ev000.evsi.json#L69[client/03040008/event/st3111/view_st3111ev000/event/viewer/view_st3111ev000.evsi.json#L69] | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
+| context | Lower Confidence | 45 | QuestId | link:../../../../client/03040008/event/st3111/view_st3111ev000/event/viewer/view_st3111ev000.evsi.json#L698[client/03040008/event/st3111/view_st3111ev000/event/viewer/view_st3111ev000.evsi.json#L698] | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
+| context | Lower Confidence | 45 | QuestId | link:../../../../client/03040008/event/st3111/view_st3111ev000/event/viewer/view_st3111ev000.evsi.json#L706[client/03040008/event/st3111/view_st3111ev000/event/viewer/view_st3111ev000.evsi.json#L706] | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
+| context | Lower Confidence | 45 | QuestId | link:../../../../client/03040008/event/st3111/view_st3111ev000/event/viewer/view_st3111ev000.evsi.json#L714[client/03040008/event/st3111/view_st3111ev000/event/viewer/view_st3111ev000.evsi.json#L714] | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
+| context | Lower Confidence | 45 | QuestId | link:../../../../client/03040008/event/st3111/view_st3111ev000/event/viewer/view_st3111ev000.evsi.json#L722[client/03040008/event/st3111/view_st3111ev000/event/viewer/view_st3111ev000.evsi.json#L722] | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
+| context | Lower Confidence | 45 | QuestId | link:../../../../client/03040008/event/st3111/view_st3111ev000/event/viewer/view_st3111ev000.evsi.json#L730[client/03040008/event/st3111/view_st3111ev000/event/viewer/view_st3111ev000.evsi.json#L730] | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
+| context | Lower Confidence | 45 | QuestId | link:../../../../client/03040008/event/st3111/view_st3111ev005/event/viewer/view_st3111ev005.evsi.json#L13[client/03040008/event/st3111/view_st3111ev005/event/viewer/view_st3111ev005.evsi.json#L13] | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
+| context | Lower Confidence | 45 | QuestId | link:../../../../client/03040008/event/st3111/view_st3111ev005/event/viewer/view_st3111ev005.evsi.json#L21[client/03040008/event/st3111/view_st3111ev005/event/viewer/view_st3111ev005.evsi.json#L21] | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
+| context | Lower Confidence | 45 | QuestId | link:../../../../client/03040008/event/st3111/view_st3111ev005/event/viewer/view_st3111ev005.evsi.json#L29[client/03040008/event/st3111/view_st3111ev005/event/viewer/view_st3111ev005.evsi.json#L29] | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
+| context | Lower Confidence | 45 | QuestId | link:../../../../client/03040008/event/st3111/view_st3111ev005/event/viewer/view_st3111ev005.evsi.json#L37[client/03040008/event/st3111/view_st3111ev005/event/viewer/view_st3111ev005.evsi.json#L37] | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
+| context | Lower Confidence | 45 | QuestId | link:../../../../client/03040008/event/st3111/view_st3111ev005/event/viewer/view_st3111ev005.evsi.json#L45[client/03040008/event/st3111/view_st3111ev005/event/viewer/view_st3111ev005.evsi.json#L45] | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
+| context | Lower Confidence | 45 | QuestId | link:../../../../client/03040008/event/st3111/view_st3111ev005/event/viewer/view_st3111ev005.evsi.json#L53[client/03040008/event/st3111/view_st3111ev005/event/viewer/view_st3111ev005.evsi.json#L53] | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
+| context | Lower Confidence | 45 | QuestId | link:../../../../client/03040008/event/st3111/view_st3111ev005/event/viewer/view_st3111ev005.evsi.json#L61[client/03040008/event/st3111/view_st3111ev005/event/viewer/view_st3111ev005.evsi.json#L61] | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
+| context | Lower Confidence | 45 | QuestId | link:../../../../client/03040008/event/st3111/view_st3111ev005/event/viewer/view_st3111ev005.evsi.json#L69[client/03040008/event/st3111/view_st3111ev005/event/viewer/view_st3111ev005.evsi.json#L69] | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
+| context | Lower Confidence | 45 | QuestId | link:../../../../client/03040008/event/st3111/view_st3111ev005/event/viewer/view_st3111ev005.evsi.json#L698[client/03040008/event/st3111/view_st3111ev005/event/viewer/view_st3111ev005.evsi.json#L698] | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
+| context | Lower Confidence | 45 | QuestId | link:../../../../client/03040008/event/st3111/view_st3111ev005/event/viewer/view_st3111ev005.evsi.json#L706[client/03040008/event/st3111/view_st3111ev005/event/viewer/view_st3111ev005.evsi.json#L706] | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
+| context | Lower Confidence | 45 | QuestId | link:../../../../client/03040008/event/st3111/view_st3111ev005/event/viewer/view_st3111ev005.evsi.json#L714[client/03040008/event/st3111/view_st3111ev005/event/viewer/view_st3111ev005.evsi.json#L714] | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
+| context | Lower Confidence | 45 | QuestId | link:../../../../client/03040008/event/st3111/view_st3111ev005/event/viewer/view_st3111ev005.evsi.json#L722[client/03040008/event/st3111/view_st3111ev005/event/viewer/view_st3111ev005.evsi.json#L722] | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
+| context | Lower Confidence | 45 | QuestId | link:../../../../client/03040008/event/st3111/view_st3111ev005/event/viewer/view_st3111ev005.evsi.json#L730[client/03040008/event/st3111/view_st3111ev005/event/viewer/view_st3111ev005.evsi.json#L730] | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
+| context | Lower Confidence | 45 | QuestId | link:../../../../client/03040008/event/st3111/view_st3111ev005/event/viewer/view_st3111ev005.evsi.json#L738[client/03040008/event/st3111/view_st3111ev005/event/viewer/view_st3111ev005.evsi.json#L738] | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
+| context | Lower Confidence | 45 | QuestId | link:../../../../client/03040008/event/st3111/view_st3111ev005/event/viewer/view_st3111ev005.evsi.json#L746[client/03040008/event/st3111/view_st3111ev005/event/viewer/view_st3111ev005.evsi.json#L746] | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
+| context | Lower Confidence | 45 | QuestId | link:../../../../client/03040008/event/st3111/view_st3111ev010/event/viewer/view_st3111ev010.evsi.json#L13[client/03040008/event/st3111/view_st3111ev010/event/viewer/view_st3111ev010.evsi.json#L13] | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
+| context | Lower Confidence | 45 | QuestId | link:../../../../client/03040008/event/st3111/view_st3111ev010/event/viewer/view_st3111ev010.evsi.json#L21[client/03040008/event/st3111/view_st3111ev010/event/viewer/view_st3111ev010.evsi.json#L21] | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
+| context | Lower Confidence | 45 | QuestId | link:../../../../client/03040008/event/st3111/view_st3111ev010/event/viewer/view_st3111ev010.evsi.json#L29[client/03040008/event/st3111/view_st3111ev010/event/viewer/view_st3111ev010.evsi.json#L29] | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
+| context | Lower Confidence | 45 | QuestId | link:../../../../client/03040008/event/st3111/view_st3111ev010/event/viewer/view_st3111ev010.evsi.json#L37[client/03040008/event/st3111/view_st3111ev010/event/viewer/view_st3111ev010.evsi.json#L37] | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
+| context | Lower Confidence | 45 | QuestId | link:../../../../client/03040008/event/st3111/view_st3111ev010/event/viewer/view_st3111ev010.evsi.json#L45[client/03040008/event/st3111/view_st3111ev010/event/viewer/view_st3111ev010.evsi.json#L45] | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
+| context | Lower Confidence | 45 | QuestId | link:../../../../client/03040008/event/st3111/view_st3111ev010/event/viewer/view_st3111ev010.evsi.json#L53[client/03040008/event/st3111/view_st3111ev010/event/viewer/view_st3111ev010.evsi.json#L53] | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
+| context | Lower Confidence | 45 | QuestId | link:../../../../client/03040008/event/st3111/view_st3111ev010/event/viewer/view_st3111ev010.evsi.json#L61[client/03040008/event/st3111/view_st3111ev010/event/viewer/view_st3111ev010.evsi.json#L61] | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
+| context | Lower Confidence | 45 | QuestId | link:../../../../client/03040008/event/st3111/view_st3111ev010/event/viewer/view_st3111ev010.evsi.json#L69[client/03040008/event/st3111/view_st3111ev010/event/viewer/view_st3111ev010.evsi.json#L69] | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
+| context | Lower Confidence | 45 | QuestId | link:../../../../client/03040008/event/st3111/view_st3111ev010/event/viewer/view_st3111ev010.evsi.json#L77[client/03040008/event/st3111/view_st3111ev010/event/viewer/view_st3111ev010.evsi.json#L77] | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
+| context | Lower Confidence | 45 | QuestId | link:../../../../client/03040008/event/st3111/view_st3111ev010/event/viewer/view_st3111ev010.evsi.json#L706[client/03040008/event/st3111/view_st3111ev010/event/viewer/view_st3111ev010.evsi.json#L706] | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
+| context | Lower Confidence | 45 | QuestId | link:../../../../client/03040008/event/st3111/view_st3111ev010/event/viewer/view_st3111ev010.evsi.json#L714[client/03040008/event/st3111/view_st3111ev010/event/viewer/view_st3111ev010.evsi.json#L714] | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
+| context | Lower Confidence | 45 | QuestId | link:../../../../client/03040008/event/st3111/view_st3111ev010/event/viewer/view_st3111ev010.evsi.json#L722[client/03040008/event/st3111/view_st3111ev010/event/viewer/view_st3111ev010.evsi.json#L722] | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
+| context | Lower Confidence | 45 | QuestId | link:../../../../client/03040008/event/st3111/view_st3111ev010/event/viewer/view_st3111ev010.evsi.json#L730[client/03040008/event/st3111/view_st3111ev010/event/viewer/view_st3111ev010.evsi.json#L730] | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
+| context | Lower Confidence | 45 | QuestId | link:../../../../client/03040008/event/st3111/view_st3111ev010/event/viewer/view_st3111ev010.evsi.json#L738[client/03040008/event/st3111/view_st3111ev010/event/viewer/view_st3111ev010.evsi.json#L738] | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
+| context | Lower Confidence | 45 | QuestId | link:../../../../client/03040008/event/st3111/view_st3111ev010/event/viewer/view_st3111ev010.evsi.json#L746[client/03040008/event/st3111/view_st3111ev010/event/viewer/view_st3111ev010.evsi.json#L746] | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
+| context | Lower Confidence | 45 | QuestId | link:../../../../client/03040008/event/st3111/view_st3111ev010/event/viewer/view_st3111ev010.evsi.json#L754[client/03040008/event/st3111/view_st3111ev010/event/viewer/view_st3111ev010.evsi.json#L754] | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
+| context | Lower Confidence | 45 | QuestId | link:../../../../client/03040008/game_common/quest/QuestSequence.qsq.json#L647[client/03040008/game_common/quest/QuestSequence.qsq.json#L647] | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
+| context | Lower Confidence | 45 | QuestId | link:../../../../client/03040008/marker/st0881_marker/scr/st0881/etc/st0881_adjoin.sal.json#L1017[client/03040008/marker/st0881_marker/scr/st0881/etc/st0881_adjoin.sal.json#L1017] | Breakdown of Order / Hollow of Beginnings | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
+| context | Lower Confidence | 45 | QuestNo | link:../../../../client/03040008/stage/st3111/st3111/scr/st3111/etc/st3111_p.gpl.json#L1232[client/03040008/stage/st3111/st3111/scr/st3111/etc/st3111_p.gpl.json#L1232] | Breakdown of Order / Darkness Cloaked Shadolean Great Temple | Matched a relevant decoded field (QuestNo), but not in the primary field family for this target type.
+| context | Lower Confidence | 45 | QuestId | link:../../../../client/03040008/ui/history/history_data_001/ui/00_param/history/quest_history_001.qhd.json#L750[client/03040008/ui/history/history_data_001/ui/00_param/history/quest_history_001.qhd.json#L750] | Breakdown of Order | Matched a relevant decoded field (QuestId), but not in the primary field family for this target type.
+| collision | Lower Confidence | 20 | GroupSerial | link:../../../../client/03040008/quest/q00030440/ui/00_message/quest/q00030440.mss.json#L3322[client/03040008/quest/q00030440/ui/00_message/quest/q00030440.mss.json#L3322] | Elliot | Matched a collision-prone numeric field (GroupSerial).
 |===
 
