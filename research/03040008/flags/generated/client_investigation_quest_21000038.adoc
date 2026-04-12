@@ -5,7 +5,7 @@
 
 Query mode:: quest
 Query value:: 21000038
-Generated at:: 2026-04-12T12:43:55.159406+00:00
+Generated at:: 2026-04-12T14:35:09.421377+00:00
 
 toc::[]
 
@@ -151,18 +151,18 @@ flowchart TD
     node_direct_family_qst["qst direct hits (4)"]
     node_family_context_quest_sequence["Quest Sequence"]
     node_stage_st0400["st0400 -- Fort Gritten"]
+    node_event_viewer_st0400_ev013_70003001["Event st0400/ev013"]
     node_event_viewer_st0400_ev013_70020001["Event st0400/ev013"]
     node_event_viewer_st0400_ev013_70000001["Event st0400/ev013"]
-    node_event_viewer_st0400_ev013_70002001["Event st0400/ev013"]
-    node_event_viewer_st0400_ev013_70023001["Event st0400/ev013"]
-    node_event_viewer_st0400_ev013_70032001["Event st0400/ev013"]
     node_event_viewer_st0400_ev013_70021001["Event st0400/ev013"]
     node_event_viewer_st0400_ev013_70001001["Event st0400/ev013"]
-    node_event_viewer_st0400_ev013_70022001["Event st0400/ev013"]
-    node_event_viewer_st0400_ev013_70003001["Event st0400/ev013"]
-    node_event_viewer_st0400_ev013_70030001["Event st0400/ev013"]
     node_event_viewer_st0400_ev013_70033001["Event st0400/ev013"]
+    node_event_viewer_st0400_ev013_70002001["Event st0400/ev013"]
+    node_event_viewer_st0400_ev013_70032001["Event st0400/ev013"]
+    node_event_viewer_st0400_ev013_70023001["Event st0400/ev013"]
+    node_event_viewer_st0400_ev013_70022001["Event st0400/ev013"]
     node_event_viewer_st0400_ev013_70031001["Event st0400/ev013"]
+    node_event_viewer_st0400_ev013_70030001["Event st0400/ev013"]
     node_owner_quest_70000001["Owner quest 70000001 (q7)"]
     node_owner_quest_70001001["Owner quest 70001001 (q7)"]
     node_owner_quest_70002001["Owner quest 70002001 (q7)"]
@@ -203,7 +203,7 @@ flowchart TD
     classDef binary_auxiliary fill:#eceff1,stroke:#455a64,stroke-width:1px
     class node_quest_21000038,node_direct_family_evsi,node_direct_family_qst,node_family_context_quest_sequence,node_stage_st0400,node_sequence_quest_21000036,node_sequence_quest_21000042 direct_deterministic
     class node_owner_quest_70000001,node_owner_quest_70001001,node_owner_quest_70002001 owner_index
-    class node_event_viewer_st0400_ev013_70020001,node_event_viewer_st0400_ev013_70000001,node_event_viewer_st0400_ev013_70002001,node_event_viewer_st0400_ev013_70023001,node_event_viewer_st0400_ev013_70032001,node_event_viewer_st0400_ev013_70021001,node_event_viewer_st0400_ev013_70001001,node_event_viewer_st0400_ev013_70022001,node_event_viewer_st0400_ev013_70003001,node_event_viewer_st0400_ev013_70030001,node_event_viewer_st0400_ev013_70033001,node_event_viewer_st0400_ev013_70031001,node_stage_group_st0400_1,node_stage_group_st0400_5,node_stage_group_st0400_6 graph_expanded
+    class node_event_viewer_st0400_ev013_70003001,node_event_viewer_st0400_ev013_70020001,node_event_viewer_st0400_ev013_70000001,node_event_viewer_st0400_ev013_70021001,node_event_viewer_st0400_ev013_70001001,node_event_viewer_st0400_ev013_70033001,node_event_viewer_st0400_ev013_70002001,node_event_viewer_st0400_ev013_70032001,node_event_viewer_st0400_ev013_70023001,node_event_viewer_st0400_ev013_70022001,node_event_viewer_st0400_ev013_70031001,node_event_viewer_st0400_ev013_70030001,node_stage_group_st0400_1,node_stage_group_st0400_5,node_stage_group_st0400_6 graph_expanded
 ....
 
 [cols="1,2,2,2,2,4",options="header"]
@@ -285,8 +285,8 @@ ranked candidates:: *0*
 
 | QST | Direct | 92 | link:../../../../client/03040008/quest/q21000038/quest/21000038/q21000038_st0400.qst.json[client/03040008/quest/q21000038/quest/21000038/q21000038_st0400.qst.json] | QuestStageList[].QuestGrp[0].Condition | Condition | quest 21000038 / Fort Gritten / "QuestGroup 1" / QuestSet=QuestSetInfoOmWarp \| OmID=522650 \| OM_ID_MARKER \| EnableZone \| TextType=2 \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
 | QST | Direct | 92 | link:../../../../client/03040008/quest/q21000038/quest/21000038/q21000038_st0400.qst.json[client/03040008/quest/q21000038/quest/21000038/q21000038_st0400.qst.json] | QuestStageList[].QuestGrp[0].EraseCondition | EraseCondition | quest 21000038 / Fort Gritten / "QuestGroup 1" / QuestSet=QuestSetInfoOmWarp \| OmID=522650 \| OM_ID_MARKER \| EnableZone \| TextType=2 \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
-| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0450/view_st0450ev000/event/viewer/view_st0450ev000.evsi.json#L28[client/03040008/event/st0450/view_st0450ev000/event/viewer/view_st0450ev000.evsi.json#L28] | FlagArray[2].FlagNo | FlagNo | quest 30130 (The Battle of Lookout Castle) / Lookout Castle / Event Viewer \| EVENT_NAME_st0450ev000 \| Advent of the Skeleton General | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
 | EVSI | Direct | 92 | link:../../../../client/03040008/event/st0450/view_st0450ev005/event/viewer/view_st0450ev005.evsi.json#L36[client/03040008/event/st0450/view_st0450ev005/event/viewer/view_st0450ev005.evsi.json#L36] | FlagArray[3].FlagNo | FlagNo | quest 30130 (The Battle of Lookout Castle) / Lookout Castle / Event Viewer \| EVENT_NAME_st0450ev005 \| Defeat the Skeleton General | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0450/view_st0450ev000/event/viewer/view_st0450ev000.evsi.json#L28[client/03040008/event/st0450/view_st0450ev000/event/viewer/view_st0450ev000.evsi.json#L28] | FlagArray[2].FlagNo | FlagNo | quest 30130 (The Battle of Lookout Castle) / Lookout Castle / Event Viewer \| EVENT_NAME_st0450ev000 \| Advent of the Skeleton General | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
 |===
 
 == Flag 3767 -- Quest 21000038

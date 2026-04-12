@@ -5,7 +5,7 @@
 
 Query mode:: quest
 Query value:: 80301060
-Generated at:: 2026-04-12T12:44:32.451546+00:00
+Generated at:: 2026-04-12T14:35:45.468781+00:00
 
 toc::[]
 
@@ -187,12 +187,12 @@ flowchart TD
     node_family_context_quest_sequence["Quest Sequence"]
     node_stage_st0137["st0137 -- Feryana Wilderness by Castle"]
     node_stage_st0451["st0451 -- Lookout Castle"]
+    node_event_viewer_st0451_ev000_70002001["Event st0451/ev000"]
+    node_event_viewer_st0451_ev000_70000001["Event st0451/ev000"]
+    node_event_viewer_st0451_ev000_70003001["Event st0451/ev000"]
+    node_event_viewer_st0451_ev000_70021001["Event st0451/ev000"]
     node_event_viewer_st0451_ev000_70020001["Event st0451/ev000"]
     node_event_viewer_st0451_ev000_70001001["Event st0451/ev000"]
-    node_event_viewer_st0451_ev000_70003001["Event st0451/ev000"]
-    node_event_viewer_st0451_ev000_70000001["Event st0451/ev000"]
-    node_event_viewer_st0451_ev000_70021001["Event st0451/ev000"]
-    node_event_viewer_st0451_ev000_70002001["Event st0451/ev000"]
     node_owner_quest_70000001["Owner quest 70000001 (q7)"]
     node_owner_quest_70002001["Owner quest 70002001 (q7)"]
     node_owner_quest_70003001["Owner quest 70003001 (q7)"]
@@ -238,7 +238,7 @@ flowchart TD
     classDef binary_auxiliary fill:#eceff1,stroke:#455a64,stroke-width:1px
     class node_quest_80301060,node_direct_family_fsm,node_direct_family_qst,node_family_context_quest_sequence,node_stage_st0137,node_stage_st0451,node_sequence_quest_80301052,node_sequence_quest_80301061 direct_deterministic
     class node_owner_quest_70000001,node_owner_quest_70002001,node_owner_quest_70003001,node_owner_quest_70020001,node_owner_quest_70021001,node_owner_quest_70022001,node_owner_quest_70023001,node_owner_quest_70030001,node_owner_quest_70031001,node_owner_quest_70032001,node_owner_quest_70033001 owner_index
-    class node_event_viewer_st0451_ev000_70020001,node_event_viewer_st0451_ev000_70001001,node_event_viewer_st0451_ev000_70003001,node_event_viewer_st0451_ev000_70000001,node_event_viewer_st0451_ev000_70021001,node_event_viewer_st0451_ev000_70002001 graph_expanded
+    class node_event_viewer_st0451_ev000_70002001,node_event_viewer_st0451_ev000_70000001,node_event_viewer_st0451_ev000_70003001,node_event_viewer_st0451_ev000_70021001,node_event_viewer_st0451_ev000_70020001,node_event_viewer_st0451_ev000_70001001 graph_expanded
 ....
 
 [cols="1,2,2,2,2,4",options="header"]
@@ -324,8 +324,8 @@ ranked candidates:: *0*
 |===
 | Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
 
-| QST | Direct | 92 | link:../../../../client/03040008/quest/q60300060/quest/60300060/q60300060_st0451.qst.json[client/03040008/quest/q60300060/quest/60300060/q60300060_st0451.qst.json] | QuestStageList[].QuestGrp[0].Condition | Condition | quest 60300060 / Lookout Castle / "復興NPC" / QuestSet=QuestSetInfoNpc | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
 | QST | Direct | 92 | link:../../../../client/03040008/quest/q80301060/quest/80301060/q80301060_st0451.qst.json[client/03040008/quest/q80301060/quest/80301060/q80301060_st0451.qst.json] | QuestStageList[].QuestGrp[0].Condition | Condition | quest 80301060 / Lookout Castle / "復興NPC" / QuestSet=QuestSetInfoNpc | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q60300060/quest/60300060/q60300060_st0451.qst.json[client/03040008/quest/q60300060/quest/60300060/q60300060_st0451.qst.json] | QuestStageList[].QuestGrp[0].Condition | Condition | quest 60300060 / Lookout Castle / "復興NPC" / QuestSet=QuestSetInfoNpc | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
 |===
 
 == Flag 6799 -- Quest 80301060
@@ -342,8 +342,8 @@ ranked candidates:: *0*
 |===
 | Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
 
-| QST | Direct | 92 | link:../../../../client/03040008/quest/q60300060/quest/60300060/q60300060_st0451.qst.json[client/03040008/quest/q60300060/quest/60300060/q60300060_st0451.qst.json] | QuestStageList[].QuestGrp[1].Condition | Condition | quest 60300060 / Lookout Castle / "QuestGroup 1 \| 兵士１" / QuestSet=QuestSetInfoNpc \| GroupNo=1 \|\| QuestSet=QuestSetInfoNpc \| GroupNo=1 \|\| +1 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
 | QST | Direct | 92 | link:../../../../client/03040008/quest/q80301060/quest/80301060/q80301060_st0451.qst.json[client/03040008/quest/q80301060/quest/80301060/q80301060_st0451.qst.json] | QuestStageList[].QuestGrp[1].Condition | Condition | quest 80301060 / Lookout Castle / "QuestGroup 1 \| 兵士１" / QuestSet=QuestSetInfoNpc \| GroupNo=1 \|\| QuestSet=QuestSetInfoNpc \| GroupNo=1 \|\| +1 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q60300060/quest/60300060/q60300060_st0451.qst.json[client/03040008/quest/q60300060/quest/60300060/q60300060_st0451.qst.json] | QuestStageList[].QuestGrp[1].Condition | Condition | quest 60300060 / Lookout Castle / "QuestGroup 1 \| 兵士１" / QuestSet=QuestSetInfoNpc \| GroupNo=1 \|\| QuestSet=QuestSetInfoNpc \| GroupNo=1 \|\| +1 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
 |===
 
 == Flag 6800 -- Quest 80301060
@@ -360,8 +360,8 @@ ranked candidates:: *0*
 |===
 | Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
 
-| QST | Direct | 92 | link:../../../../client/03040008/quest/q60300060/quest/60300060/q60300060_st0451.qst.json[client/03040008/quest/q60300060/quest/60300060/q60300060_st0451.qst.json] | QuestStageList[].QuestGrp[2].Condition | Condition | quest 60300060 / Lookout Castle / "QuestGroup 2 \| 兵士２" / QuestSet=QuestSetInfoNpc \| GroupNo=2 \|\| QuestSet=QuestSetInfoNpc \| GroupNo=2 \|\| +1 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
 | QST | Direct | 92 | link:../../../../client/03040008/quest/q80301060/quest/80301060/q80301060_st0451.qst.json[client/03040008/quest/q80301060/quest/80301060/q80301060_st0451.qst.json] | QuestStageList[].QuestGrp[2].Condition | Condition | quest 80301060 / Lookout Castle / "QuestGroup 2 \| 兵士２" / QuestSet=QuestSetInfoNpc \| GroupNo=2 \|\| QuestSet=QuestSetInfoNpc \| GroupNo=2 \|\| +1 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q60300060/quest/60300060/q60300060_st0451.qst.json[client/03040008/quest/q60300060/quest/60300060/q60300060_st0451.qst.json] | QuestStageList[].QuestGrp[2].Condition | Condition | quest 60300060 / Lookout Castle / "QuestGroup 2 \| 兵士２" / QuestSet=QuestSetInfoNpc \| GroupNo=2 \|\| QuestSet=QuestSetInfoNpc \| GroupNo=2 \|\| +1 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
 |===
 
 == Flag 6801 -- Quest 80301060
@@ -378,8 +378,8 @@ ranked candidates:: *0*
 |===
 | Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
 
-| QST | Direct | 92 | link:../../../../client/03040008/quest/q60300060/quest/60300060/q60300060_st0451.qst.json[client/03040008/quest/q60300060/quest/60300060/q60300060_st0451.qst.json] | QuestStageList[].QuestGrp[3].Condition | Condition | quest 60300060 / Lookout Castle / "QuestGroup 3 \| 兵士３" / QuestSet=QuestSetInfoNpc \| GroupNo=3 \|\| QuestSet=QuestSetInfoNpc \| GroupNo=3 \|\| +1 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
 | QST | Direct | 92 | link:../../../../client/03040008/quest/q80301060/quest/80301060/q80301060_st0451.qst.json[client/03040008/quest/q80301060/quest/80301060/q80301060_st0451.qst.json] | QuestStageList[].QuestGrp[3].Condition | Condition | quest 80301060 / Lookout Castle / "QuestGroup 3 \| 兵士３" / QuestSet=QuestSetInfoNpc \| GroupNo=3 \|\| QuestSet=QuestSetInfoNpc \| GroupNo=3 \|\| +1 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q60300060/quest/60300060/q60300060_st0451.qst.json[client/03040008/quest/q60300060/quest/60300060/q60300060_st0451.qst.json] | QuestStageList[].QuestGrp[3].Condition | Condition | quest 60300060 / Lookout Castle / "QuestGroup 3 \| 兵士３" / QuestSet=QuestSetInfoNpc \| GroupNo=3 \|\| QuestSet=QuestSetInfoNpc \| GroupNo=3 \|\| +1 more | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
 |===
 
 == Flag 6802 -- Quest 80301060
@@ -396,8 +396,8 @@ ranked candidates:: *0*
 |===
 | Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
 
-| QST | Direct | 92 | link:../../../../client/03040008/quest/q60300060/quest/60300060/q60300060_st0451.qst.json[client/03040008/quest/q60300060/quest/60300060/q60300060_st0451.qst.json] | QuestStageList[].QuestGrp[4].Condition | Condition | quest 60300060 / Lookout Castle / "QuestGroup 4 \| 受注NPC" / QuestSet=QuestSetInfoNpc \| GroupNo=4 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
 | QST | Direct | 92 | link:../../../../client/03040008/quest/q80301060/quest/80301060/q80301060_st0451.qst.json[client/03040008/quest/q80301060/quest/80301060/q80301060_st0451.qst.json] | QuestStageList[].QuestGrp[4].Condition | Condition | quest 80301060 / Lookout Castle / "QuestGroup 4 \| 受注NPC" | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
+| QST | Direct | 92 | link:../../../../client/03040008/quest/q60300060/quest/60300060/q60300060_st0451.qst.json[client/03040008/quest/q60300060/quest/60300060/q60300060_st0451.qst.json] | QuestStageList[].QuestGrp[4].Condition | Condition | quest 60300060 / Lookout Castle / "QuestGroup 4 \| 受注NPC" / QuestSet=QuestSetInfoNpc \| GroupNo=4 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
 |===
 
 == Quest ID 80301060
@@ -414,11 +414,11 @@ ranked candidates:: *0*
 |===
 | Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
 
-| FSM | Direct | 64 | link:../../../../client/03040008/quest/q80301060/quest/80301060/npc/work_npc.fsm.json[client/03040008/quest/q80301060/quest/80301060/npc/work_npc.fsm.json] | Process.Parameter.QuestId | QuestId | quest 80301060 ([Daily Council] Lookout Castle - Mission Instructions) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
-| FSM | Direct | 64 | link:../../../../client/03040008/quest/q80301060/quest/80301060/npc/work_npc.fsm.json[client/03040008/quest/q80301060/quest/80301060/npc/work_npc.fsm.json] | Process.Parameter.QuestId | QuestId | quest 80301060 ([Daily Council] Lookout Castle - Mission Instructions) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
-| FSM | Direct | 64 | link:../../../../client/03040008/quest/q80301060/quest/80301060/npc/work_npc.fsm.json[client/03040008/quest/q80301060/quest/80301060/npc/work_npc.fsm.json] | Process.Parameter.QuestId | QuestId | quest 80301060 ([Daily Council] Lookout Castle - Mission Instructions) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
 | FSM | Direct | 64 | link:../../../../client/03040008/quest/q80301070/quest/80301070/npc/work_npc.fsm.json[client/03040008/quest/q80301070/quest/80301070/npc/work_npc.fsm.json] | Process.Parameter.QuestId | QuestId | quest 80301060 ([Daily Council] Lookout Castle - Mission Instructions) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
 | FSM | Direct | 64 | link:../../../../client/03040008/quest/q80301070/quest/80301070/npc/work_npc.fsm.json[client/03040008/quest/q80301070/quest/80301070/npc/work_npc.fsm.json] | Process.Parameter.QuestId | QuestId | quest 80301060 ([Daily Council] Lookout Castle - Mission Instructions) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
 | FSM | Direct | 64 | link:../../../../client/03040008/quest/q80301070/quest/80301070/npc/work_npc.fsm.json[client/03040008/quest/q80301070/quest/80301070/npc/work_npc.fsm.json] | Process.Parameter.QuestId | QuestId | quest 80301060 ([Daily Council] Lookout Castle - Mission Instructions) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/quest/q80301060/quest/80301060/npc/work_npc.fsm.json[client/03040008/quest/q80301060/quest/80301060/npc/work_npc.fsm.json] | Process.Parameter.QuestId | QuestId | quest 80301060 ([Daily Council] Lookout Castle - Mission Instructions) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/quest/q80301060/quest/80301060/npc/work_npc.fsm.json[client/03040008/quest/q80301060/quest/80301060/npc/work_npc.fsm.json] | Process.Parameter.QuestId | QuestId | quest 80301060 ([Daily Council] Lookout Castle - Mission Instructions) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/quest/q80301060/quest/80301060/npc/work_npc.fsm.json[client/03040008/quest/q80301060/quest/80301060/npc/work_npc.fsm.json] | Process.Parameter.QuestId | QuestId | quest 80301060 ([Daily Council] Lookout Castle - Mission Instructions) / checkMyQuestFlag | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
 |===
 

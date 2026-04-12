@@ -5,7 +5,7 @@
 
 Query mode:: quest
 Query value:: 60000016
-Generated at:: 2026-04-12T12:44:09.726316+00:00
+Generated at:: 2026-04-12T14:35:23.740273+00:00
 
 toc::[]
 
@@ -182,10 +182,10 @@ flowchart TD
     node_family_context_quest_sequence["Quest Sequence"]
     node_family_context_tutorial_scaffolding["Tutorial Scaffolding"]
     node_stage_st0201["st0201 -- Audience Chamber"]
-    node_event_viewer_st0201_ev000_70000001["Event st0201/ev000"]
+    node_event_viewer_st0201_ev000_70002001["Event st0201/ev000"]
     node_event_viewer_st0201_ev000_70001001["Event st0201/ev000"]
     node_event_viewer_st0201_ev000_70003001["Event st0201/ev000"]
-    node_event_viewer_st0201_ev000_70002001["Event st0201/ev000"]
+    node_event_viewer_st0201_ev000_70000001["Event st0201/ev000"]
     node_owner_quest_70000001["Owner quest 70000001 (q7)"]
     node_owner_quest_70002001["Owner quest 70002001 (q7)"]
     node_owner_quest_70003001["Owner quest 70003001 (q7)"]
@@ -231,7 +231,7 @@ flowchart TD
     classDef binary_auxiliary fill:#eceff1,stroke:#455a64,stroke-width:1px
     class node_quest_60000016,node_direct_family_fsm,node_direct_family_gpl,node_direct_family_qst,node_direct_family_tqg,node_family_context_quest_sequence,node_family_context_tutorial_scaffolding,node_stage_st0201,node_sequence_quest_60000012,node_sequence_quest_60000017 direct_deterministic
     class node_owner_quest_70000001,node_owner_quest_70002001,node_owner_quest_70003001,node_owner_quest_70020001,node_owner_quest_70021001,node_owner_quest_70022001,node_owner_quest_70023001,node_owner_quest_70030001,node_owner_quest_70031001,node_owner_quest_70032001,node_owner_quest_70033001 owner_index
-    class node_event_viewer_st0201_ev000_70000001,node_event_viewer_st0201_ev000_70001001,node_event_viewer_st0201_ev000_70003001,node_event_viewer_st0201_ev000_70002001 graph_expanded
+    class node_event_viewer_st0201_ev000_70002001,node_event_viewer_st0201_ev000_70001001,node_event_viewer_st0201_ev000_70003001,node_event_viewer_st0201_ev000_70000001 graph_expanded
 ....
 
 [cols="1,2,2,2,2,4",options="header"]
@@ -311,8 +311,8 @@ ranked candidates:: *0*
 
 | QST | Direct | 92 | link:../../../../client/03040008/quest/q60000016/quest/60000016/q60000016_st0201.qst.json[client/03040008/quest/q60000016/quest/60000016/q60000016_st0201.qst.json] | QuestStageList[].QuestGrp[0].Condition | Condition | quest 60000016 / Audience Chamber / "QuestGroup 1" / QuestSet=QuestSetInfoNpc \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
 | QST | Direct | 92 | link:../../../../client/03040008/quest/q60000016/quest/60000016/q60000016_st0201.qst.json[client/03040008/quest/q60000016/quest/60000016/q60000016_st0201.qst.json] | QuestStageList[].QuestGrp[0].EraseCondition | EraseCondition | quest 60000016 / Audience Chamber / "QuestGroup 1" / QuestSet=QuestSetInfoNpc \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
-| GPL | Direct | 92 | link:../../../../client/03040008/stage/st0100/st0100/scr/st0100/etc/st0100_n.gpl.json#L2287[client/03040008/stage/st0100/st0100/scr/st0100/etc/st0100_n.gpl.json#L2287] | GroupParamBuff[18].DataLotFlag.LotFlagNo | LotFlagNo | Lestania / Hidell Plains / GroupParam[18] \| DataCommon.Group=36 \| LayoutAreas=100 \| LayoutRefs=1 | Layout group guard; QuestNo and LayoutFlagNo here usually determine whether a stage group loads, including enemy or object visibility.
 | GPL | Direct | 92 | link:../../../../client/03040008/stage/st0201/st0201/scr/st0201/etc/st0201_n.gpl.json#L168[client/03040008/stage/st0201/st0201/scr/st0201/etc/st0201_n.gpl.json#L168] | GroupParamBuff[1].DataLotFlag.LotFlagNo | LotFlagNo | Audience Chamber / Hidell Plains / GroupParam[1] \| DataCommon.Group=1 \| LayoutAreas=201 \| LayoutRefs=1 | Layout group guard; QuestNo and LayoutFlagNo here usually determine whether a stage group loads, including enemy or object visibility.
+| GPL | Direct | 92 | link:../../../../client/03040008/stage/st0100/st0100/scr/st0100/etc/st0100_n.gpl.json#L2287[client/03040008/stage/st0100/st0100/scr/st0100/etc/st0100_n.gpl.json#L2287] | GroupParamBuff[18].DataLotFlag.LotFlagNo | LotFlagNo | Lestania / Hidell Plains / GroupParam[18] \| DataCommon.Group=36 \| LayoutAreas=100 \| LayoutRefs=1 | Layout group guard; QuestNo and LayoutFlagNo here usually determine whether a stage group loads, including enemy or object visibility.
 |===
 
 ==== opaque_fsm -- 3 hit(s)
@@ -321,9 +321,9 @@ ranked candidates:: *0*
 |===
 | Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
 
-| FSM | Direct | 64 | link:../../../../client/03040008/event/st0100/st0100ev110/event/st0100/ev110/fsm/st0100ev110.fsm.json[client/03040008/event/st0100/st0100ev110/event/st0100/ev110/fsm/st0100ev110.fsm.json] | Process.Parameter.FlagNo | FlagNo | st0100 / SetLayout | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
-| FSM | Direct | 64 | link:../../../../client/03040008/event/st0100/st0100ev110/event/st0100/ev110/fsm/st0100ev110.fsm.json[client/03040008/event/st0100/st0100ev110/event/st0100/ev110/fsm/st0100ev110.fsm.json] | Process.Parameter.FlagNo | FlagNo | st0100 / SetLayout | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
 | FSM | Direct | 64 | link:../../../../client/03040008/event/st0213/st0213ev005/event/st0213/ev005/fsm/st0213ev005.fsm.json[client/03040008/event/st0213/st0213ev005/event/st0213/ev005/fsm/st0213ev005.fsm.json] | Process.Parameter.FlagNo | FlagNo | st0213 / SetLayout | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/event/st0100/st0100ev110/event/st0100/ev110/fsm/st0100ev110.fsm.json[client/03040008/event/st0100/st0100ev110/event/st0100/ev110/fsm/st0100ev110.fsm.json] | Process.Parameter.FlagNo | FlagNo | st0100 / SetLayout | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
+| FSM | Direct | 64 | link:../../../../client/03040008/event/st0100/st0100ev110/event/st0100/ev110/fsm/st0100ev110.fsm.json[client/03040008/event/st0100/st0100ev110/event/st0100/ev110/fsm/st0100ev110.fsm.json] | Process.Parameter.FlagNo | FlagNo | st0100 / SetLayout | Matched decoded FSM state data; authored semantics remain indirect without deeper correlation.
 |===
 
 == Quest ID 60000016

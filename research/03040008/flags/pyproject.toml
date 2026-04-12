@@ -1,0 +1,65 @@
+[build-system]
+requires = ["setuptools>=80", "wheel>=0.45"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ddon-flags"
+version = "0.1.0"
+description = "DDON client flag and quest investigation tooling"
+readme = "README.md"
+requires-python = "==3.14.*"
+dependencies = [
+    "orjson>=3.10,<4",
+]
+
+[project.optional-dependencies]
+dev = [
+    "mypy>=1.16,<1.20",
+]
+mypyc = [
+    "mypy>=1.16,<1.20",
+    "setuptools>=80",
+    "wheel>=0.45",
+]
+
+[project.scripts]
+investigate-flags = "ddon_flags.investigate_flags:main"
+validate-flags-targets = "ddon_flags.validate_targets:main"
+triage-flag-residuals = "ddon_flags.triage_residuals:main"
+benchmark-flag-gaps = "ddon_flags.benchmark_gap_harness:main"
+graph-flag-residuals = "ddon_flags.graph_residual_experiments:main"
+clean-flags-artifacts = "ddon_flags.clean_artifacts:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.mypy]
+python_version = "3.14"
+files = ["src/ddon_flags", "tests"]
+warn_unused_configs = true
+check_untyped_defs = true
+disallow_incomplete_defs = true
+no_implicit_optional = true
+pretty = true
+show_error_codes = true
+
+[[tool.mypy.overrides]]
+module = ["orjson"]
+ignore_missing_imports = true
+
+[tool.pyright]
+include = ["src", "tests"]
+pythonVersion = "3.14"
+pythonPlatform = "Windows"
+extraPaths = ["src"]
+
+[tool.uv]
+managed = true
+
+[dependency-groups]
+dev = [
+    "mypy>=1.16,<1.20",
+]

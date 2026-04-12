@@ -5,7 +5,7 @@
 
 Query mode:: quest
 Query value:: 20050008
-Generated at:: 2026-04-12T12:43:50.981147+00:00
+Generated at:: 2026-04-12T14:35:05.373772+00:00
 
 toc::[]
 
@@ -178,11 +178,11 @@ flowchart TD
     node_direct_family_qst["qst direct hits (31)"]
     node_family_context_quest_sequence["Quest Sequence"]
     node_stage_st0100["st0100 -- Lestania"]
-    node_event_viewer_st0100_ev010_70001001["Event st0100/ev010"]
-    node_event_viewer_st0100_ev010_70000001["Event st0100/ev010"]
-    node_event_viewer_st0100_ev010_70003001["Event st0100/ev010"]
     node_event_viewer_st0100_ev010_70002001["Event st0100/ev010"]
+    node_event_viewer_st0100_ev010_70000001["Event st0100/ev010"]
     node_event_viewer_st0100_ev010_70020001["Event st0100/ev010"]
+    node_event_viewer_st0100_ev010_70001001["Event st0100/ev010"]
+    node_event_viewer_st0100_ev010_70003001["Event st0100/ev010"]
     node_owner_quest_60310000["Owner quest 60310000 (q6)"]
     node_owner_quest_70000001["Owner quest 70000001 (q7)"]
     node_owner_quest_70002001["Owner quest 70002001 (q7)"]
@@ -229,7 +229,7 @@ flowchart TD
     classDef binary_auxiliary fill:#eceff1,stroke:#455a64,stroke-width:1px
     class node_quest_20050008,node_direct_family_evsi,node_direct_family_fsm,node_direct_family_qst,node_family_context_quest_sequence,node_stage_st0100,node_sequence_quest_20050007,node_sequence_quest_20050009 direct_deterministic
     class node_owner_quest_60310000,node_owner_quest_70000001,node_owner_quest_70002001,node_owner_quest_70003001,node_owner_quest_70020001,node_owner_quest_70021001,node_owner_quest_70022001,node_owner_quest_70023001,node_owner_quest_70030001,node_owner_quest_70031001,node_owner_quest_70032001,node_owner_quest_70033001 owner_index
-    class node_event_viewer_st0100_ev010_70001001,node_event_viewer_st0100_ev010_70000001,node_event_viewer_st0100_ev010_70003001,node_event_viewer_st0100_ev010_70002001,node_event_viewer_st0100_ev010_70020001 graph_expanded
+    class node_event_viewer_st0100_ev010_70002001,node_event_viewer_st0100_ev010_70000001,node_event_viewer_st0100_ev010_70020001,node_event_viewer_st0100_ev010_70001001,node_event_viewer_st0100_ev010_70003001 graph_expanded
 ....
 
 [cols="1,2,2,2,2,4",options="header"]
@@ -328,11 +328,11 @@ ranked candidates:: *0*
 | Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
 
 | QST | Direct | 92 | link:../../../../client/03040008/quest/q20050008/quest/20050008/q20050008_st0100.qst.json[client/03040008/quest/q20050008/quest/20050008/q20050008_st0100.qst.json] | QuestStageList[].QuestGrp[0].Condition | Condition | quest 20050008 / Lestania / "QuestGroup 1 \| NPC" / QuestSet=QuestSetInfoNpc \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
-| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0100/view_st0100ev065/event/viewer/view_st0100ev065.evsi.json#L20[client/03040008/event/st0100/view_st0100ev065/event/viewer/view_st0100ev065.evsi.json#L20] | FlagArray[1].FlagNo | FlagNo | quest 21 (The Quandary of Soldiers) / Lestania / Event Viewer \| EVENT_NAME_st0100ev065 \| Mergoda Revival | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
-| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0572/view_st0572ev000/event/viewer/view_st0572ev000.evsi.json#L20[client/03040008/event/st0572/view_st0572ev000/event/viewer/view_st0572ev000.evsi.json#L20] | FlagArray[1].FlagNo | FlagNo | quest 21 (The Quandary of Soldiers) / The Third Ark / Event Viewer \| EVENT_NAME_st0572ev000 \| Leo is cornered | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
-| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0572/view_st0572ev005/event/viewer/view_st0572ev005.evsi.json#L20[client/03040008/event/st0572/view_st0572ev005/event/viewer/view_st0572ev005.evsi.json#L20] | FlagArray[1].FlagNo | FlagNo | quest 21 (The Quandary of Soldiers) / The Third Ark / Event Viewer \| EVENT_NAME_st0572ev005 \| Leo Escapes | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
-| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0572/view_st0572ev010/event/viewer/view_st0572ev010.evsi.json#L20[client/03040008/event/st0572/view_st0572ev010/event/viewer/view_st0572ev010.evsi.json#L20] | FlagArray[1].FlagNo | FlagNo | quest 21 (The Quandary of Soldiers) / The Third Ark / Event Viewer \| EVENT_NAME_st0572ev010 \| Ark Activation | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
 | EVSI | Direct | 92 | link:../../../../client/03040008/event/st0572/view_st0572ev015/event/viewer/view_st0572ev015.evsi.json#L20[client/03040008/event/st0572/view_st0572ev015/event/viewer/view_st0572ev015.evsi.json#L20] | FlagArray[1].FlagNo | FlagNo | quest 21 (The Quandary of Soldiers) / The Third Ark / Event Viewer \| EVENT_NAME_st0572ev015 \| Leo takes flight | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0572/view_st0572ev010/event/viewer/view_st0572ev010.evsi.json#L20[client/03040008/event/st0572/view_st0572ev010/event/viewer/view_st0572ev010.evsi.json#L20] | FlagArray[1].FlagNo | FlagNo | quest 21 (The Quandary of Soldiers) / The Third Ark / Event Viewer \| EVENT_NAME_st0572ev010 \| Ark Activation | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0572/view_st0572ev005/event/viewer/view_st0572ev005.evsi.json#L20[client/03040008/event/st0572/view_st0572ev005/event/viewer/view_st0572ev005.evsi.json#L20] | FlagArray[1].FlagNo | FlagNo | quest 21 (The Quandary of Soldiers) / The Third Ark / Event Viewer \| EVENT_NAME_st0572ev005 \| Leo Escapes | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0572/view_st0572ev000/event/viewer/view_st0572ev000.evsi.json#L20[client/03040008/event/st0572/view_st0572ev000/event/viewer/view_st0572ev000.evsi.json#L20] | FlagArray[1].FlagNo | FlagNo | quest 21 (The Quandary of Soldiers) / The Third Ark / Event Viewer \| EVENT_NAME_st0572ev000 \| Leo is cornered | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0100/view_st0100ev065/event/viewer/view_st0100ev065.evsi.json#L20[client/03040008/event/st0100/view_st0100ev065/event/viewer/view_st0100ev065.evsi.json#L20] | FlagArray[1].FlagNo | FlagNo | quest 21 (The Quandary of Soldiers) / Lestania / Event Viewer \| EVENT_NAME_st0100ev065 \| Mergoda Revival | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
 |===
 
 == Flag 1186 -- Quest 20050008
@@ -405,9 +405,9 @@ ranked candidates:: *0*
 
 | QST | Direct | 92 | link:../../../../client/03040008/quest/q20050008/quest/20050008/q20050008_st0100.qst.json[client/03040008/quest/q20050008/quest/20050008/q20050008_st0100.qst.json] | QuestStageList[].QuestGrp[4].Condition | Condition | quest 20050008 / Lestania / "QuestGroup 5 \| OM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=219 \| TextType=2 \| TextQuestNo=20050008 \| GroupNo=5 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
 | QST | Direct | 92 | link:../../../../client/03040008/quest/q20050008/quest/20050008/q20050008_st0100.qst.json[client/03040008/quest/q20050008/quest/20050008/q20050008_st0100.qst.json] | QuestStageList[].QuestGrp[4].EraseCondition | EraseCondition | quest 20050008 / Lestania / "QuestGroup 5 \| OM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=219 \| TextType=2 \| TextQuestNo=20050008 \| GroupNo=5 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
-| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0100/view_st0100ev115/event/viewer/view_st0100ev115.evsi.json#L256[client/03040008/event/st0100/view_st0100ev115/event/viewer/view_st0100ev115.evsi.json#L256] | FlagArray[61].FlagNo | FlagNo | quest 20020 (The Girl Who Lost Her Memories) / Lestania / Event Viewer \| EVENT_NAME_st0100ev115 \| Black Knight Pawn | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
-| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0100/view_st0100ev120/event/viewer/view_st0100ev120.evsi.json#L268[client/03040008/event/st0100/view_st0100ev120/event/viewer/view_st0100ev120.evsi.json#L268] | FlagArray[63].FlagNo | FlagNo | quest 20020 (The Girl Who Lost Her Memories) / Lestania / Event Viewer \| EVENT_NAME_st0100ev120 \| Memory Clues | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
 | EVSI | Direct | 92 | link:../../../../client/03040008/event/st0201/view_st0201ev115/event/viewer/view_st0201ev115.evsi.json#L268[client/03040008/event/st0201/view_st0201ev115/event/viewer/view_st0201ev115.evsi.json#L268] | FlagArray[63].FlagNo | FlagNo | quest 20020 (The Girl Who Lost Her Memories) / Audience Chamber / Event Viewer \| EVENT_NAME_st0201ev115 \| Audience with the White Dragon | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0100/view_st0100ev120/event/viewer/view_st0100ev120.evsi.json#L268[client/03040008/event/st0100/view_st0100ev120/event/viewer/view_st0100ev120.evsi.json#L268] | FlagArray[63].FlagNo | FlagNo | quest 20020 (The Girl Who Lost Her Memories) / Lestania / Event Viewer \| EVENT_NAME_st0100ev120 \| Memory Clues | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0100/view_st0100ev115/event/viewer/view_st0100ev115.evsi.json#L256[client/03040008/event/st0100/view_st0100ev115/event/viewer/view_st0100ev115.evsi.json#L256] | FlagArray[61].FlagNo | FlagNo | quest 20020 (The Girl Who Lost Her Memories) / Lestania / Event Viewer \| EVENT_NAME_st0100ev115 \| Black Knight Pawn | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
 |===
 
 == Flag 1190 -- Quest 20050008
@@ -426,8 +426,8 @@ ranked candidates:: *0*
 
 | QST | Direct | 92 | link:../../../../client/03040008/quest/q20050008/quest/20050008/q20050008_st0100.qst.json[client/03040008/quest/q20050008/quest/20050008/q20050008_st0100.qst.json] | QuestStageList[].QuestGrp[5].Condition | Condition | quest 20050008 / Lestania / "QuestGroup 6 \| OM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=216 \| TextType=2 \| TextQuestNo=20050008 \| GroupNo=6 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
 | QST | Direct | 92 | link:../../../../client/03040008/quest/q20050008/quest/20050008/q20050008_st0100.qst.json[client/03040008/quest/q20050008/quest/20050008/q20050008_st0100.qst.json] | QuestStageList[].QuestGrp[5].EraseCondition | EraseCondition | quest 20050008 / Lestania / "QuestGroup 6 \| OM" / QuestSet=QuestSetInfoOmText \| OmID=522570 \| OM_ID_CMN_MSG_POINT \| EnableZone \| TextNo=216 \| TextType=2 \| TextQuestNo=20050008 \| GroupNo=6 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
-| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0100/view_st0100ev120/event/viewer/view_st0100ev120.evsi.json#L260[client/03040008/event/st0100/view_st0100ev120/event/viewer/view_st0100ev120.evsi.json#L260] | FlagArray[62].FlagNo | FlagNo | quest 20020 (The Girl Who Lost Her Memories) / Lestania / Event Viewer \| EVENT_NAME_st0100ev120 \| Memory Clues | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
 | EVSI | Direct | 92 | link:../../../../client/03040008/event/st0201/view_st0201ev115/event/viewer/view_st0201ev115.evsi.json#L260[client/03040008/event/st0201/view_st0201ev115/event/viewer/view_st0201ev115.evsi.json#L260] | FlagArray[62].FlagNo | FlagNo | quest 20020 (The Girl Who Lost Her Memories) / Audience Chamber / Event Viewer \| EVENT_NAME_st0201ev115 \| Audience with the White Dragon | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0100/view_st0100ev120/event/viewer/view_st0100ev120.evsi.json#L260[client/03040008/event/st0100/view_st0100ev120/event/viewer/view_st0100ev120.evsi.json#L260] | FlagArray[62].FlagNo | FlagNo | quest 20020 (The Girl Who Lost Her Memories) / Lestania / Event Viewer \| EVENT_NAME_st0100ev120 \| Memory Clues | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
 |===
 
 == Flag 1819 -- Quest 20050008

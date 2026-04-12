@@ -5,7 +5,7 @@
 
 Query mode:: quest
 Query value:: 20060002
-Generated at:: 2026-04-12T12:43:52.278235+00:00
+Generated at:: 2026-04-12T14:35:06.673096+00:00
 
 toc::[]
 
@@ -191,10 +191,10 @@ flowchart TD
     node_family_context_quest_sequence["Quest Sequence"]
     node_stage_st0100["st0100 -- Lestania"]
     node_stage_st0527["st0527 -- Greenleaf Terrace"]
-    node_event_viewer_st0100_ev010_70001001["Event st0100/ev010"]
-    node_event_viewer_st0100_ev010_70000001["Event st0100/ev010"]
-    node_event_viewer_st0100_ev010_70003001["Event st0100/ev010"]
     node_event_viewer_st0100_ev010_70002001["Event st0100/ev010"]
+    node_event_viewer_st0100_ev010_70000001["Event st0100/ev010"]
+    node_event_viewer_st0100_ev010_70001001["Event st0100/ev010"]
+    node_event_viewer_st0100_ev010_70003001["Event st0100/ev010"]
     node_owner_quest_60310000["Owner quest 60310000 (q6)"]
     node_owner_quest_70000001["Owner quest 70000001 (q7)"]
     node_owner_quest_70002001["Owner quest 70002001 (q7)"]
@@ -241,7 +241,7 @@ flowchart TD
     classDef binary_auxiliary fill:#eceff1,stroke:#455a64,stroke-width:1px
     class node_quest_20060002,node_direct_family_evsi,node_direct_family_fsm,node_direct_family_qst,node_family_context_quest_sequence,node_stage_st0100,node_stage_st0527,node_sequence_quest_20060001,node_sequence_quest_20060003 direct_deterministic
     class node_owner_quest_60310000,node_owner_quest_70000001,node_owner_quest_70002001,node_owner_quest_70003001,node_owner_quest_70020001,node_owner_quest_70021001,node_owner_quest_70022001,node_owner_quest_70023001,node_owner_quest_70030001,node_owner_quest_70031001,node_owner_quest_70032001,node_owner_quest_70033001 owner_index
-    class node_event_viewer_st0100_ev010_70001001,node_event_viewer_st0100_ev010_70000001,node_event_viewer_st0100_ev010_70003001,node_event_viewer_st0100_ev010_70002001 graph_expanded
+    class node_event_viewer_st0100_ev010_70002001,node_event_viewer_st0100_ev010_70000001,node_event_viewer_st0100_ev010_70001001,node_event_viewer_st0100_ev010_70003001 graph_expanded
 ....
 
 [cols="1,2,2,2,2,4",options="header"]
@@ -340,9 +340,9 @@ ranked candidates:: *0*
 | Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
 
 | QST | Direct | 92 | link:../../../../client/03040008/quest/q20060002/quest/20060002/q20060002_st0100.qst.json[client/03040008/quest/q20060002/quest/20060002/q20060002_st0100.qst.json] | QuestStageList[].QuestGrp[0].Condition | Condition | quest 20060002 / Lestania / "QuestGroup 1" / QuestSet=QuestSetInfoNpc \| GroupNo=1 | Quest-stage scripting reference; QuestGroup conditions and QuestSetInfo objects describe how doors, warps, levers, text points, and OM controls behave when the quest or flag state changes.
-| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0201/view_st0201ev080/event/viewer/view_st0201ev080.evsi.json#L44[client/03040008/event/st0201/view_st0201ev080/event/viewer/view_st0201ev080.evsi.json#L44] | FlagArray[4].FlagNo | FlagNo | quest 20 (The Entrusted Future) / Audience Chamber / Event Viewer \| EVENT_NAME_st0201ev080 \| Ending at the Abyss | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
-| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0411/view_st0411ev000/event/viewer/view_st0411ev000.evsi.json#L28[client/03040008/event/st0411/view_st0411ev000/event/viewer/view_st0411ev000.evsi.json#L28] | FlagArray[2].FlagNo | FlagNo | quest 20 (The Entrusted Future) / Mergoda Security District / Event Viewer \| EVENT_NAME_st0411ev000 \| The future entrusted to us | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
 | EVSI | Direct | 92 | link:../../../../client/03040008/event/st0411/view_st0411ev005/event/viewer/view_st0411ev005.evsi.json#L44[client/03040008/event/st0411/view_st0411ev005/event/viewer/view_st0411ev005.evsi.json#L44] | FlagArray[4].FlagNo | FlagNo | quest 20 (The Entrusted Future) / Mergoda Security District / Event Viewer \| EVENT_NAME_st0411ev005 \| Our Mutually Conflicting Thoughts | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0411/view_st0411ev000/event/viewer/view_st0411ev000.evsi.json#L28[client/03040008/event/st0411/view_st0411ev000/event/viewer/view_st0411ev000.evsi.json#L28] | FlagArray[2].FlagNo | FlagNo | quest 20 (The Entrusted Future) / Mergoda Security District / Event Viewer \| EVENT_NAME_st0411ev000 \| The future entrusted to us | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
+| EVSI | Direct | 92 | link:../../../../client/03040008/event/st0201/view_st0201ev080/event/viewer/view_st0201ev080.evsi.json#L44[client/03040008/event/st0201/view_st0201ev080/event/viewer/view_st0201ev080.evsi.json#L44] | FlagArray[4].FlagNo | FlagNo | quest 20 (The Entrusted Future) / Audience Chamber / Event Viewer \| EVENT_NAME_st0201ev080 \| Ending at the Abyss | Event Viewer reference; this flag is tied to a replayable cinematic/event state for the resolved stage and event.
 |===
 
 == Flag 1195 -- Quest 20060002
@@ -423,8 +423,8 @@ ranked candidates:: *0*
 |===
 | Family | Derivation | Confidence | File | JSON Path | Field | Context | Why
 
-| FSM | Direct | 74 | link:../../../../client/03040008/quest/q00020090/quest/00020090/npc/n0022.fsm.json[client/03040008/quest/q00020090/quest/00020090/npc/n0022.fsm.json] | Process.Parameter.FlagNo | FlagNo | quest 20030 (The Corruption and the Knights) / Loeg / checkMyQuestFlag \| NPCFSM=n0022 | NPC-related FSM MyQuest check; this flag likely controls NPC visibility, interaction, or behavior for the referenced quest.
 | FSM | Direct | 74 | link:../../../../client/03040008/quest/q00020100/quest/00020100/npc/n0022.fsm.json[client/03040008/quest/q00020100/quest/00020100/npc/n0022.fsm.json] | Process.Parameter.FlagNo | FlagNo | quest 20030 (The Corruption and the Knights) / Loeg / checkMyQuestFlag \| NPCFSM=n0022 | NPC-related FSM MyQuest check; this flag likely controls NPC visibility, interaction, or behavior for the referenced quest.
+| FSM | Direct | 74 | link:../../../../client/03040008/quest/q00020090/quest/00020090/npc/n0022.fsm.json[client/03040008/quest/q00020090/quest/00020090/npc/n0022.fsm.json] | Process.Parameter.FlagNo | FlagNo | quest 20030 (The Corruption and the Knights) / Loeg / checkMyQuestFlag \| NPCFSM=n0022 | NPC-related FSM MyQuest check; this flag likely controls NPC visibility, interaction, or behavior for the referenced quest.
 |===
 
 == Flag 1199 -- Quest 20060002

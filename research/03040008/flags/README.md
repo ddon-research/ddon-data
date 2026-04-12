@@ -63,68 +63,105 @@ resources.
 - Generated reports: `generated/`
 - Upstream Arrowgene docs: seed targets and labels only
 
+### Project Layout
+
+```text
+flags/
+  .python-version
+  pyproject.toml
+  requirements.txt
+  uv.lock
+  build_mypyc.py
+  clean_artifacts.py
+  investigate_flags.py
+  validate_targets.py
+  triage_residuals.py
+  benchmark_gap_harness.py
+  graph_residual_experiments.py
+  src/ddon_flags/
+  tests/
+  generated/
+  test_baselines/
+```
+
+- Implementation code lives under `src/ddon_flags`.
+- Root-level Python scripts are compatibility wrappers that preserve the old
+  command surface.
+- `requirements.txt` exists as a compatibility export. `pyproject.toml` plus
+  `uv.lock` are the primary project definition.
+
 ### Prerequisites
 
-- Python 3.14
-- `uv` for environment management
+- CPython 3.14 only
+- `uv` for environment and dependency management
 - `orjson` for runtime JSON parsing and report serialization
-- Optional C compiler plus `mypy` and `setuptools` for `mypyc`
+- Optional C compiler plus `mypy`, `setuptools`, and `wheel` for `mypyc`
   acceleration
 - Optional `objdump` if executable fallback scanning is enabled
 
 ### Environment Setup
 
-Minimal runtime setup:
+Bootstrap the local project environment with `uv`:
 
 ```sh
-uv venv --python 3.14 .venv
-uv pip install orjson --python .venv/Scripts/python.exe
+uv venv --python 3.14 .venv-cpython314
+uv lock
+uv pip install -e ".[dev,mypyc]" --python .venv-cpython314/Scripts/python.exe
 ```
 
-Optional `mypyc` acceleration setup:
+Notes:
 
-```sh
-uv pip install mypy setuptools --python .venv/Scripts/python.exe
-```
+- `.python-version` pins the project to Python 3.14.
+- The package performs a runtime guard and will refuse non-CPython or non-3.14
+  interpreters.
+- The root `d:/ddon-data/.venv` environment is not used for this subproject.
 
 ### Common Commands
 
+Use the project environment directly:
+
 ```sh
-# Single quest
-python investigate_flags.py --quest 70032001 --skip-executable-scan
+# Single quest via the preserved root wrapper
+.venv-cpython314/Scripts/python.exe investigate_flags.py --quest 70032001 --skip-executable-scan
 
 # Single flag
-python investigate_flags.py --flag 1109 --skip-executable-scan
+.venv-cpython314/Scripts/python.exe investigate_flags.py --flag 1109 --skip-executable-scan
 
 # Curated q7 world-manage batch
-python investigate_flags.py --all-quests --skip-executable-scan
+.venv-cpython314/Scripts/python.exe investigate_flags.py --all-quests --skip-executable-scan
 
 # Full client-quest batch
-python investigate_flags.py --all-client-quests --skip-executable-scan
+.venv-cpython314/Scripts/python.exe investigate_flags.py --all-client-quests --skip-executable-scan
 
 # Validation and analysis
-python validate_targets.py
-python triage_residuals.py
-python benchmark_gap_harness.py
-python graph_residual_experiments.py
+.venv-cpython314/Scripts/python.exe validate_targets.py
+.venv-cpython314/Scripts/python.exe triage_residuals.py
+.venv-cpython314/Scripts/python.exe benchmark_gap_harness.py
+.venv-cpython314/Scripts/python.exe graph_residual_experiments.py
+
+# Unit tests
+.venv-cpython314/Scripts/python.exe -m unittest discover -s tests -v
+
+# Cleanup stale native and cache artifacts
+.venv-cpython314/Scripts/python.exe clean_artifacts.py
 ```
 
 ### Optional `mypyc` Build
 
-`mypyc` is only needed for performance work on hot-path modules.
+`mypyc` is only needed for performance work on the hot-path modules.
 
 ```sh
-.venv/Scripts/python.exe -m mypyc \
-    scan_utils.py scan_models.py client_scanner.py \
-    corpus_index.py json_cache.py candidate_finder.py \
-    handlers/_helpers.py handlers/quest_handlers.py \
-    handlers/layout_handlers.py handlers/fsm_handlers.py \
-    handlers/marker_handlers.py handlers/npc_handlers.py \
-    handlers/special_handlers.py
+.venv-cpython314/Scripts/python.exe build_mypyc.py
 ```
 
-Remove generated `.pyd` or `.so` artifacts plus `build/` to return to the
-interpreted path.
+This compiles the maintained hot-path module set under `src/ddon_flags` and
+`src/ddon_flags/handlers`.
+
+Return to the interpreted path with:
+
+```sh
+.venv-cpython314/Scripts/python.exe clean_artifacts.py
+```
 
 ### Generated Files
 
@@ -148,17 +185,19 @@ interpreted path.
 
 | Module | Responsibility |
 |---|---|
-| `investigate_flags.py` | CLI entry point, target resolution, hit orchestration, payload assembly |
-| `corpus_index.py` | Single-pass scanner-oriented index over decoded JSON files |
-| `json_cache.py` | Parsed JSON reuse across scans and report generation |
-| `client_scanner.py` + `handlers/` | Structured extraction for quest, layout, FSM, marker, NPC, and special resource families |
-| `source_metadata.py` | Family context, ARC topology, stage names, owner catalogs, enrichment lookups |
-| `reverse_indexes.py` | Deterministic reverse indexes for flag, stage, event-viewer, and GPL or LOT relationships |
-| `candidate_finder.py` | Recursive unresolved-value search over decoded JSON |
-| `graph_expansion.py` | Bounded graph expansion over direct, owner, dependency, and reverse-index edges |
-| `derivation.py` | Shared derivation-class vocabulary and labels |
-| `report_writer.py` | JSON and AsciiDoc report rendering, including file links and Mermaid graph slices |
-| `validate_targets.py`, `triage_residuals.py`, `benchmark_gap_harness.py`, `graph_residual_experiments.py` | Validation, triage, benchmark, and experiment workflows |
+| `src/ddon_flags/investigate_flags.py` | Main CLI implementation, target resolution, hit orchestration, payload assembly |
+| `src/ddon_flags/corpus_index.py` | Single-pass scanner-oriented index over decoded JSON files |
+| `src/ddon_flags/json_cache.py` | Parsed JSON reuse across scans and report generation |
+| `src/ddon_flags/client_scanner.py` + `src/ddon_flags/handlers/` | Structured extraction for quest, layout, FSM, marker, NPC, and special resource families |
+| `src/ddon_flags/source_metadata.py` | Family context, ARC topology, stage names, owner catalogs, enrichment lookups |
+| `src/ddon_flags/reverse_indexes.py` | Deterministic reverse indexes for flag, stage, event-viewer, and GPL or LOT relationships |
+| `src/ddon_flags/candidate_finder.py` | Recursive unresolved-value search over decoded JSON |
+| `src/ddon_flags/graph_expansion.py` | Bounded graph expansion over direct, owner, dependency, and reverse-index edges |
+| `src/ddon_flags/derivation.py` | Shared derivation-class vocabulary and labels |
+| `src/ddon_flags/report_writer.py` | JSON and AsciiDoc report rendering, including file links and Mermaid graph slices |
+| `src/ddon_flags/clean_artifacts.py` | Removal of stale build products, caches, and old compiled artifacts |
+| `tests/` | Regression and focused unit tests |
+| Root wrappers (`investigate_flags.py`, `validate_targets.py`, `triage_residuals.py`, `benchmark_gap_harness.py`, `graph_residual_experiments.py`, `clean_artifacts.py`) | Compatibility shims that add `src/` to `sys.path` and call package entrypoints |
 
 ### Data Flow
 
@@ -187,17 +226,17 @@ corpus_index -> client_scanner -> handlers/* -> direct hits
 Use the regression suite before regenerating large output sets:
 
 ```sh
-python -m unittest test_regression -v
+.venv-cpython314/Scripts/python.exe -m unittest discover -s tests -v
 ```
 
 For end-to-end regeneration and verification:
 
 ```sh
-python investigate_flags.py --all-client-quests --skip-executable-scan
-python validate_targets.py
-python triage_residuals.py
-python benchmark_gap_harness.py
-python graph_residual_experiments.py
+.venv-cpython314/Scripts/python.exe investigate_flags.py --all-client-quests --skip-executable-scan
+.venv-cpython314/Scripts/python.exe validate_targets.py
+.venv-cpython314/Scripts/python.exe triage_residuals.py
+.venv-cpython314/Scripts/python.exe benchmark_gap_harness.py
+.venv-cpython314/Scripts/python.exe graph_residual_experiments.py
 ```
 
 Regenerate reports whenever you change:
@@ -207,3 +246,4 @@ Regenerate reports whenever you change:
 - owner or dependency promotion logic
 - graph expansion structure
 - report schema or AsciiDoc rendering
+- package or import layout that affects CLI entrypoints or report output paths

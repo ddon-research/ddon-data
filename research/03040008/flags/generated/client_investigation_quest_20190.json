@@ -1,6 +1,6 @@
 {
   "format": "client_investigation.v4",
-  "generated_at": "2026-04-12T12:43:33.176327+00:00",
+  "generated_at": "2026-04-12T14:34:49.050274+00:00",
   "query": {
     "mode": "quest",
     "value": 20190
@@ -461,7 +461,7 @@
       "hits": [
         {
           "source_type": "smc",
-          "file_path": "client/03040008/npc/n0001/ui/00_message/npc/base/n0001.smc.json",
+          "file_path": "client/03040008/npc/n2610/ui/00_message/npc/base/n2610.smc.json",
           "json_path": "SituationData.EndQuestId",
           "field_name": "EndQuestId",
           "flag_value": 20190,
@@ -469,11 +469,11 @@
           "relationship": "npc_chatter",
           "quest_name": "Gallant Footsteps",
           "quest_name_jp": "勇敢なる足跡",
-          "comment": "GroupSerial=17837, QuestWindow=20180-20190 (Homecoming -> Gallant Footsteps), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end",
-          "context": "NpcChatter=n0001 | Quest-gated NPC chatter | QuestWindow=20180-20190 (Homecoming -> Gallant Footsteps)",
+          "comment": "GroupSerial=17888, QuestWindow=20180-20190 (Homecoming -> Gallant Footsteps), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end",
+          "context": "NpcChatter=n2610 | Quest-gated NPC chatter | QuestWindow=20180-20190 (Homecoming -> Gallant Footsteps)",
           "quest_id": 20190,
-          "group_serial": 17837,
-          "npc_id": 1,
+          "group_serial": 17888,
+          "npc_id": 2610,
           "resource_family": "SMC",
           "evidence_tier": "direct",
           "derivation_class": "direct_deterministic",
@@ -481,110 +481,36 @@
           "why": "SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.",
           "mss_matches": [
             {
-              "file_path": "client/03040008/npc/n0001/ui/00_message/npc/base/n0001.mss.json",
-              "group_serial": 17837,
-              "msg_serial": 447293,
+              "file_path": "client/03040008/npc/n2610/ui/00_message/npc/base/n2610.mss.json",
+              "group_serial": 17888,
+              "msg_serial": 448642,
               "msg_type": 0,
-              "npc_id": 1,
-              "npc_name": "The White Dragon",
-              "npc_name_jp": "白竜",
-              "message": "The Primeval Drop...—alas, 'tis unknown to me.",
-              "message_jp": "《原始の雫》――はて、知らぬわ",
-              "message_excerpt": "The Primeval Drop...—alas, 'tis unknown to me."
-            }
-          ],
-          "npc_name": "The White Dragon",
-          "npc_name_jp": "白竜"
-        },
-        {
-          "source_type": "smc",
-          "file_path": "client/03040008/npc/n0001/ui/00_message/npc/base/n0001.smc.json",
-          "json_path": "SituationData.StartQuestId",
-          "field_name": "StartQuestId",
-          "flag_value": 20190,
-          "flag_kind": "quest_id",
-          "relationship": "npc_chatter",
-          "quest_name": "Gallant Footsteps",
-          "quest_name_jp": "勇敢なる足跡",
-          "comment": "GroupSerial=17838, QuestWindow=20190-20200 (Gallant Footsteps -> The Darkness of the Heart), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start",
-          "context": "NpcChatter=n0001 | Quest-gated NPC chatter | QuestWindow=20190-20200 (Gallant Footsteps -> The Darkness of the Heart)",
-          "quest_id": 20190,
-          "group_serial": 17838,
-          "npc_id": 1,
-          "resource_family": "SMC",
-          "evidence_tier": "direct",
-          "derivation_class": "direct_deterministic",
-          "confidence": 92,
-          "why": "SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.",
-          "mss_matches": [
-            {
-              "file_path": "client/03040008/npc/n0001/ui/00_message/npc/base/n0001.mss.json",
-              "group_serial": 17838,
-              "msg_serial": 447294,
-              "msg_type": 0,
-              "npc_id": 1,
-              "npc_name": "The White Dragon",
-              "npc_name_jp": "白竜",
-              "message": "Dragon, land, and kin—\nTo mend the harmony within shattered balance is no\nsimple task...\nSteel thy spirit,\nand face thy duty with resolve...",
-              "message_jp": "竜と大地と民――\n崩れた均衡を調和の中に戻すのは\n難しい――心して、事に当たれ",
-              "message_excerpt": "Dragon, land, and kin—"
-            }
-          ],
-          "npc_name": "The White Dragon",
-          "npc_name_jp": "白竜"
-        },
-        {
-          "source_type": "smc",
-          "file_path": "client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json",
-          "json_path": "SituationData.EndQuestId",
-          "field_name": "EndQuestId",
-          "flag_value": 20190,
-          "flag_kind": "quest_id",
-          "relationship": "npc_chatter",
-          "quest_name": "Gallant Footsteps",
-          "quest_name_jp": "勇敢なる足跡",
-          "comment": "GroupSerial=17851, QuestWindow=20180-20190 (Homecoming -> Gallant Footsteps), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end",
-          "context": "NpcChatter=n0003 | Quest-gated NPC chatter | QuestWindow=20180-20190 (Homecoming -> Gallant Footsteps)",
-          "quest_id": 20190,
-          "group_serial": 17851,
-          "npc_id": 3,
-          "resource_family": "SMC",
-          "evidence_tier": "direct",
-          "derivation_class": "direct_deterministic",
-          "confidence": 92,
-          "why": "SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.",
-          "mss_matches": [
-            {
-              "file_path": "client/03040008/npc/n0003/ui/00_message/npc/base/n0003.mss.json",
-              "group_serial": 17851,
-              "msg_serial": 448237,
-              "msg_type": 0,
-              "npc_id": 3,
-              "npc_name": "Klaus",
-              "npc_name_jp": "クラウス",
-              "message": "According to what I've heard, Cecily's father is\nnot a warrior or aught, he seems to be an\nordinary person.",
-              "message_jp": "聞くところによると、セシリーのお父さんは\n戦士でもなんでもない、普通の人らしいね",
-              "message_excerpt": "According to what I've heard, Cecily's father is"
+              "npc_id": 2610,
+              "npc_name": "Mordred",
+              "npc_name_jp": "モードレッド",
+              "message": "I am Mordred, from the village of Morfaul,\ncurrently looking after Gearóid's place while he's\naway.",
+              "message_jp": "わたしはモルフォール村のモードレッド\nガラダの留守を預かっている",
+              "message_excerpt": "I am Mordred, from the village of Morfaul,"
             },
             {
-              "file_path": "client/03040008/npc/n0003/ui/00_message/npc/base/n0003.mss.json",
-              "group_serial": 17851,
-              "msg_serial": 448238,
+              "file_path": "client/03040008/npc/n2610/ui/00_message/npc/base/n2610.mss.json",
+              "group_serial": 17888,
+              "msg_serial": 448643,
               "msg_type": 0,
-              "npc_id": 3,
-              "npc_name": "Klaus",
-              "npc_name_jp": "クラウス",
-              "message": "You're worried, too, are you not? You'd better get\nthere as soon as possible.",
-              "message_jp": "君だって、不安だろう？\n早いところ、行った方がいいよ",
-              "message_excerpt": "You're worried, too, are you not? You'd better get"
+              "npc_id": 2610,
+              "npc_name": "Mordred",
+              "npc_name_jp": "モードレッド",
+              "message": "Cecily's benefactor is Gearóid's benefactor, and\nalso my benefactor.\nThere isn't much here, but please make yourself\ncomfortable.",
+              "message_jp": "セシリーの恩人はガラダの恩人\nそしてわたしの恩人でもある\n何もないところだが、くつろいでくれ",
+              "message_excerpt": "Cecily's benefactor is Gearóid's benefactor, and"
             }
           ],
-          "npc_name": "Klaus",
-          "npc_name_jp": "クラウス"
+          "npc_name": "Mordred",
+          "npc_name_jp": "モードレッド"
         },
         {
           "source_type": "smc",
-          "file_path": "client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json",
+          "file_path": "client/03040008/npc/n2610/ui/00_message/npc/base/n2610.smc.json",
           "json_path": "SituationData.StartQuestId",
           "field_name": "StartQuestId",
           "flag_value": 20190,
@@ -592,11 +518,11 @@
           "relationship": "npc_chatter",
           "quest_name": "Gallant Footsteps",
           "quest_name_jp": "勇敢なる足跡",
-          "comment": "GroupSerial=17852, QuestWindow=20190-20200 (Gallant Footsteps -> The Darkness of the Heart), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start",
-          "context": "NpcChatter=n0003 | Quest-gated NPC chatter | QuestWindow=20190-20200 (Gallant Footsteps -> The Darkness of the Heart)",
+          "comment": "GroupSerial=17889, QuestWindow=20190-20200 (Gallant Footsteps -> The Darkness of the Heart), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window start",
+          "context": "NpcChatter=n2610 | Quest-gated NPC chatter | QuestWindow=20190-20200 (Gallant Footsteps -> The Darkness of the Heart)",
           "quest_id": 20190,
-          "group_serial": 17852,
-          "npc_id": 3,
+          "group_serial": 17889,
+          "npc_id": 2610,
           "resource_family": "SMC",
           "evidence_tier": "direct",
           "derivation_class": "direct_deterministic",
@@ -604,184 +530,36 @@
           "why": "SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.",
           "mss_matches": [
             {
-              "file_path": "client/03040008/npc/n0003/ui/00_message/npc/base/n0003.mss.json",
-              "group_serial": 17852,
-              "msg_serial": 448239,
+              "file_path": "client/03040008/npc/n2610/ui/00_message/npc/base/n2610.mss.json",
+              "group_serial": 17889,
+              "msg_serial": 448644,
               "msg_type": 0,
-              "npc_id": 3,
-              "npc_name": "Klaus",
-              "npc_name_jp": "クラウス",
-              "message": "Come on, the guys are waiting for you, aye?\nYou'll handle it—I'm certain a lot of them think so.",
-              "message_jp": "さあ、みんなが待ってるよ？\n君がなんとかしてくれる――\nそう思っている連中も多いはずさ",
-              "message_excerpt": "Come on, the guys are waiting for you, aye?"
-            }
-          ],
-          "npc_name": "Klaus",
-          "npc_name_jp": "クラウス"
-        },
-        {
-          "source_type": "smc",
-          "file_path": "client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json",
-          "json_path": "SituationData.EndQuestId",
-          "field_name": "EndQuestId",
-          "flag_value": 20190,
-          "flag_kind": "quest_id",
-          "relationship": "npc_chatter",
-          "quest_name": "Gallant Footsteps",
-          "quest_name_jp": "勇敢なる足跡",
-          "comment": "GroupSerial=17844, QuestWindow=20180-20190 (Homecoming -> Gallant Footsteps), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end",
-          "context": "NpcChatter=n0004 | Quest-gated NPC chatter | QuestWindow=20180-20190 (Homecoming -> Gallant Footsteps)",
-          "quest_id": 20190,
-          "group_serial": 17844,
-          "npc_id": 4,
-          "resource_family": "SMC",
-          "evidence_tier": "direct",
-          "derivation_class": "direct_deterministic",
-          "confidence": 92,
-          "why": "SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.",
-          "mss_matches": [
-            {
-              "file_path": "client/03040008/npc/n0004/ui/00_message/npc/base/n0004.mss.json",
-              "group_serial": 17844,
-              "msg_serial": 447304,
-              "msg_type": 0,
-              "npc_id": 4,
-              "npc_name": "Joseph",
-              "npc_name_jp": "ジョゼフ",
-              "message": "However, the decision is still up to you. As much\nas I can hope, I can only hope.",
-              "message_jp": "《原始の雫》の到着を座して待つのも\n手持ちぶさただろう\nさあ、フィンダムへ行って、手伝ってやりなさい",
-              "message_excerpt": "However, the decision is still up to you. As much"
-            }
-          ],
-          "npc_name": "Joseph",
-          "npc_name_jp": "ジョゼフ"
-        },
-        {
-          "source_type": "smc",
-          "file_path": "client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json",
-          "json_path": "SituationData.StartQuestId",
-          "field_name": "StartQuestId",
-          "flag_value": 20190,
-          "flag_kind": "quest_id",
-          "relationship": "npc_chatter",
-          "quest_name": "Gallant Footsteps",
-          "quest_name_jp": "勇敢なる足跡",
-          "comment": "GroupSerial=17845, QuestWindow=20190-20200 (Gallant Footsteps -> The Darkness of the Heart), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start",
-          "context": "NpcChatter=n0004 | Quest-gated NPC chatter | QuestWindow=20190-20200 (Gallant Footsteps -> The Darkness of the Heart)",
-          "quest_id": 20190,
-          "group_serial": 17845,
-          "npc_id": 4,
-          "resource_family": "SMC",
-          "evidence_tier": "direct",
-          "derivation_class": "direct_deterministic",
-          "confidence": 92,
-          "why": "SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.",
-          "mss_matches": [
-            {
-              "file_path": "client/03040008/npc/n0004/ui/00_message/npc/base/n0004.mss.json",
-              "group_serial": 17845,
-              "msg_serial": 447305,
-              "msg_type": 0,
-              "npc_id": 4,
-              "npc_name": "Joseph",
-              "npc_name_jp": "ジョゼフ",
-              "message": "The Stolen “Primordial Drop”...\nIt doesn't matter if you go overboard a bit—\nYou must get it back, no matter what.",
-              "message_jp": "奪われた《原始の雫》――\n多少出過ぎた真似をしてもかまわんから\n必ず取り戻すのだぞ",
-              "message_excerpt": "The Stolen “Primordial Drop”..."
-            }
-          ],
-          "npc_name": "Joseph",
-          "npc_name_jp": "ジョゼフ"
-        },
-        {
-          "source_type": "smc",
-          "file_path": "client/03040008/npc/n0013/ui/00_message/npc/base/n0013.smc.json",
-          "json_path": "SituationData.EndQuestId",
-          "field_name": "EndQuestId",
-          "flag_value": 20190,
-          "flag_kind": "quest_id",
-          "relationship": "npc_chatter",
-          "quest_name": "Gallant Footsteps",
-          "quest_name_jp": "勇敢なる足跡",
-          "comment": "GroupSerial=17879, QuestWindow=20180-20190 (Homecoming -> Gallant Footsteps), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end",
-          "context": "NpcChatter=n0013 | Quest-gated NPC chatter | QuestWindow=20180-20190 (Homecoming -> Gallant Footsteps)",
-          "quest_id": 20190,
-          "group_serial": 17879,
-          "npc_id": 13,
-          "resource_family": "SMC",
-          "evidence_tier": "direct",
-          "derivation_class": "direct_deterministic",
-          "confidence": 92,
-          "why": "SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.",
-          "mss_matches": [
-            {
-              "file_path": "client/03040008/npc/n0013/ui/00_message/npc/base/n0013.mss.json",
-              "group_serial": 17879,
-              "msg_serial": 448625,
-              "msg_type": 0,
-              "npc_id": 13,
-              "npc_name": "Lise",
-              "npc_name_jp": "リズ",
-              "message": "We're kind of behind the curve...",
-              "message_jp": "わたしたち、後手後手というか――\n遅れちゃってるよね",
-              "message_excerpt": "We're kind of behind the curve..."
+              "npc_id": 2610,
+              "npc_name": "Mordred",
+              "npc_name_jp": "モードレッド",
+              "message": "Please pray for Gearóid's swift recovery, so that\nhe may heal as soon as possible.",
+              "message_jp": "ガラダが一刻も早く回復するように\n客人たちも祈ってくれ",
+              "message_excerpt": "Please pray for Gearóid's swift recovery, so that"
             },
             {
-              "file_path": "client/03040008/npc/n0013/ui/00_message/npc/base/n0013.mss.json",
-              "group_serial": 17879,
-              "msg_serial": 448626,
+              "file_path": "client/03040008/npc/n2610/ui/00_message/npc/base/n2610.mss.json",
+              "group_serial": 17889,
+              "msg_serial": 448645,
               "msg_type": 0,
-              "npc_id": 13,
-              "npc_name": "Lise",
-              "npc_name_jp": "リズ",
-              "message": "Hey captain, hurry up and take the lead in the\nsituation!",
-              "message_jp": "ねえ、隊長\n急いで、事態の先頭に立とうよ",
-              "message_excerpt": "Hey captain, hurry up and take the lead in the"
+              "npc_id": 2610,
+              "npc_name": "Mordred",
+              "npc_name_jp": "モードレッド",
+              "message": "Praying was not part of our customs, but when we\ntried it, we could feel the thorns being pulled\nout of our hearts.",
+              "message_jp": "祈りなど我々の習慣にはなかったが\nやってみると、心に刺さったトゲが\n抜けていくのがわかるのだ",
+              "message_excerpt": "Praying was not part of our customs, but when we"
             }
           ],
-          "npc_name": "Lise",
-          "npc_name_jp": "リズ"
+          "npc_name": "Mordred",
+          "npc_name_jp": "モードレッド"
         },
         {
           "source_type": "smc",
-          "file_path": "client/03040008/npc/n0013/ui/00_message/npc/base/n0013.smc.json",
-          "json_path": "SituationData.StartQuestId",
-          "field_name": "StartQuestId",
-          "flag_value": 20190,
-          "flag_kind": "quest_id",
-          "relationship": "npc_chatter",
-          "quest_name": "Gallant Footsteps",
-          "quest_name_jp": "勇敢なる足跡",
-          "comment": "GroupSerial=17880, QuestWindow=20190-20200 (Gallant Footsteps -> The Darkness of the Heart), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start",
-          "context": "NpcChatter=n0013 | Quest-gated NPC chatter | QuestWindow=20190-20200 (Gallant Footsteps -> The Darkness of the Heart)",
-          "quest_id": 20190,
-          "group_serial": 17880,
-          "npc_id": 13,
-          "resource_family": "SMC",
-          "evidence_tier": "direct",
-          "derivation_class": "direct_deterministic",
-          "confidence": 92,
-          "why": "SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.",
-          "mss_matches": [
-            {
-              "file_path": "client/03040008/npc/n0013/ui/00_message/npc/base/n0013.mss.json",
-              "group_serial": 17880,
-              "msg_serial": 448627,
-              "msg_type": 0,
-              "npc_id": 13,
-              "npc_name": "Lise",
-              "npc_name_jp": "リズ",
-              "message": "The culprit who took away [Primeval Drops] doesn't\ncare what happens to Phindym after all— I still\ncan't understand their feelings no matter how much\nI think.",
-              "message_jp": "《原始の雫》を持ち去った犯人は\nフィンダムがどうなっても構わない――\nやっぱり、幾ら考えても気持がわからないな",
-              "message_excerpt": "The culprit who took away [Primeval Drops] doesn't"
-            }
-          ],
-          "npc_name": "Lise",
-          "npc_name_jp": "リズ"
-        },
-        {
-          "source_type": "smc",
-          "file_path": "client/03040008/npc/n0020/ui/00_message/npc/base/n0020.smc.json",
+          "file_path": "client/03040008/npc/n2600/ui/00_message/npc/base/n2600.smc.json",
           "json_path": "SituationData.EndQuestId",
           "field_name": "EndQuestId",
           "flag_value": 20190,
@@ -789,11 +567,11 @@
           "relationship": "npc_chatter",
           "quest_name": "Gallant Footsteps",
           "quest_name_jp": "勇敢なる足跡",
-          "comment": "GroupSerial=17860, QuestWindow=20180-20190 (Homecoming -> Gallant Footsteps), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end",
-          "context": "NpcChatter=n0020 | Quest-gated NPC chatter | QuestWindow=20180-20190 (Homecoming -> Gallant Footsteps)",
+          "comment": "GroupSerial=17891, QuestWindow=20180-20190 (Homecoming -> Gallant Footsteps), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end",
+          "context": "NpcChatter=n2600 | Quest-gated NPC chatter | QuestWindow=20180-20190 (Homecoming -> Gallant Footsteps)",
           "quest_id": 20190,
-          "group_serial": 17860,
-          "npc_id": 20,
+          "group_serial": 17891,
+          "npc_id": 2600,
           "resource_family": "SMC",
           "evidence_tier": "direct",
           "derivation_class": "direct_deterministic",
@@ -801,36 +579,85 @@
           "why": "SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.",
           "mss_matches": [
             {
-              "file_path": "client/03040008/npc/n0020/ui/00_message/npc/base/n0020.mss.json",
-              "group_serial": 17860,
-              "msg_serial": 448413,
+              "file_path": "client/03040008/npc/n2600/ui/00_message/npc/base/n2600.mss.json",
+              "group_serial": 17891,
+              "msg_serial": 448648,
               "msg_type": 0,
-              "npc_id": 20,
-              "npc_name": "Cecily",
-              "npc_name_jp": "セシリー",
-              "message": "Captain—If something were to happen to my\nfather—I...",
-              "message_jp": "隊長――\n父に――父にもしものことがあれば\nわたしは――",
-              "message_excerpt": "Captain—If something were to happen to my"
+              "npc_id": 2600,
+              "npc_name": "Arthfael",
+              "npc_name_jp": "アルトフェイル",
+              "message": "There are also those who are skeptical of the\neffects of \"Primeval Drops\".\nHowever, what else should we believe in now?",
+              "message_jp": "《原始の雫》の効能に懐疑的な者もいます\nしかし、今、他に何を信じれば良いというのでしょう",
+              "message_excerpt": "There are also those who are skeptical of the"
             },
             {
-              "file_path": "client/03040008/npc/n0020/ui/00_message/npc/base/n0020.mss.json",
-              "group_serial": 17860,
-              "msg_serial": 448414,
+              "file_path": "client/03040008/npc/n2600/ui/00_message/npc/base/n2600.mss.json",
+              "group_serial": 17891,
+              "msg_serial": 448649,
               "msg_type": 0,
-              "npc_id": 20,
-              "npc_name": "Cecily",
-              "npc_name_jp": "セシリー",
-              "message": "Sorry, I should probably put these personal\nthoughts away for now.",
-              "message_jp": "すいません、今はこんな個人的な思いは\nしまっておくべきですよね",
-              "message_excerpt": "Sorry, I should probably put these personal"
+              "npc_id": 2600,
+              "npc_name": "Arthfael",
+              "npc_name_jp": "アルトフェイル",
+              "message": "Arisen of Lestania, please, walk with us.",
+              "message_jp": "レスタニアの覚者たちよ\nどうか、我々とともに歩んでください",
+              "message_excerpt": "Arisen of Lestania, please, walk with us."
             }
           ],
-          "npc_name": "Cecily",
-          "npc_name_jp": "セシリー"
+          "npc_name": "Arthfael",
+          "npc_name_jp": "アルトフェイル"
         },
         {
           "source_type": "smc",
-          "file_path": "client/03040008/npc/n0020/ui/00_message/npc/base/n0020.smc.json",
+          "file_path": "client/03040008/npc/n0501/ui/00_message/npc/base/n0501.smc.json",
+          "json_path": "SituationData.EndQuestId",
+          "field_name": "EndQuestId",
+          "flag_value": 20190,
+          "flag_kind": "quest_id",
+          "relationship": "npc_chatter",
+          "quest_name": "Gallant Footsteps",
+          "quest_name_jp": "勇敢なる足跡",
+          "comment": "GroupSerial=17873, QuestWindow=20180-20190 (Homecoming -> Gallant Footsteps), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end",
+          "context": "NpcChatter=n0501 | Quest-gated NPC chatter | QuestWindow=20180-20190 (Homecoming -> Gallant Footsteps)",
+          "quest_id": 20190,
+          "group_serial": 17873,
+          "npc_id": 501,
+          "resource_family": "SMC",
+          "evidence_tier": "direct",
+          "derivation_class": "direct_deterministic",
+          "confidence": 92,
+          "why": "SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.",
+          "mss_matches": [
+            {
+              "file_path": "client/03040008/npc/n0501/ui/00_message/npc/base/n0501.mss.json",
+              "group_serial": 17873,
+              "msg_serial": 448617,
+              "msg_type": 0,
+              "npc_id": 501,
+              "npc_name": "Gurdolin",
+              "npc_name_jp": "ガルドリン",
+              "message": "According to what I heard, it seems that\n[Primeval Drops] is not something that can easily\nbe obtained.",
+              "message_jp": "聞いたところによると《原始の雫》は\nそう簡単に手に入るシロモノじゃねえようだ",
+              "message_excerpt": "According to what I heard, it seems that"
+            },
+            {
+              "file_path": "client/03040008/npc/n0501/ui/00_message/npc/base/n0501.mss.json",
+              "group_serial": 17873,
+              "msg_serial": 448618,
+              "msg_type": 0,
+              "npc_id": 501,
+              "npc_name": "Gurdolin",
+              "npc_name_jp": "ガルドリン",
+              "message": "Then you'd have to be a pretty good hand to\nmake a safe return, I'd think.",
+              "message_jp": "となると、相当な手練れじゃないと\n無事の帰還は難しいと思うぜ",
+              "message_excerpt": "Then you'd have to be a pretty good hand to"
+            }
+          ],
+          "npc_name": "Gurdolin",
+          "npc_name_jp": "ガルドリン"
+        },
+        {
+          "source_type": "smc",
+          "file_path": "client/03040008/npc/n0501/ui/00_message/npc/base/n0501.smc.json",
           "json_path": "SituationData.StartQuestId",
           "field_name": "StartQuestId",
           "flag_value": 20190,
@@ -838,11 +665,11 @@
           "relationship": "npc_chatter",
           "quest_name": "Gallant Footsteps",
           "quest_name_jp": "勇敢なる足跡",
-          "comment": "GroupSerial=17861, QuestWindow=20190-20200 (Gallant Footsteps -> The Darkness of the Heart), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window start",
-          "context": "NpcChatter=n0020 | Quest-gated NPC chatter | QuestWindow=20190-20200 (Gallant Footsteps -> The Darkness of the Heart)",
+          "comment": "GroupSerial=17874, QuestWindow=20190-20200 (Gallant Footsteps -> The Darkness of the Heart), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start",
+          "context": "NpcChatter=n0501 | Quest-gated NPC chatter | QuestWindow=20190-20200 (Gallant Footsteps -> The Darkness of the Heart)",
           "quest_id": 20190,
-          "group_serial": 17861,
-          "npc_id": 20,
+          "group_serial": 17874,
+          "npc_id": 501,
           "resource_family": "SMC",
           "evidence_tier": "direct",
           "derivation_class": "direct_deterministic",
@@ -850,20 +677,20 @@
           "why": "SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.",
           "mss_matches": [
             {
-              "file_path": "client/03040008/npc/n0020/ui/00_message/npc/base/n0020.mss.json",
-              "group_serial": 17861,
-              "msg_serial": 448415,
+              "file_path": "client/03040008/npc/n0501/ui/00_message/npc/base/n0501.mss.json",
+              "group_serial": 17874,
+              "msg_serial": 448619,
               "msg_type": 0,
-              "npc_id": 20,
-              "npc_name": "Cecily",
-              "npc_name_jp": "セシリー",
-              "message": "Captain, is Father going to be okay? His wounds\nare not fatal, right?",
-              "message_jp": "隊長、父は元気になりますよね？\n父の傷は、致命傷ではありませんよね？",
-              "message_excerpt": "Captain, is Father going to be okay? His wounds"
+              "npc_id": 501,
+              "npc_name": "Gurdolin",
+              "npc_name_jp": "ガルドリン",
+              "message": "If only we'd come to Phindym a little earlier—\nNo more of that, huh?",
+              "message_jp": "俺たちがもう少し早くこのフィンダムに\n来ていればな――\nそりゃいいっこ無しってか？",
+              "message_excerpt": "If only we'd come to Phindym a little earlier—"
             }
           ],
-          "npc_name": "Cecily",
-          "npc_name_jp": "セシリー"
+          "npc_name": "Gurdolin",
+          "npc_name_jp": "ガルドリン"
         },
         {
           "source_type": "smc",
@@ -965,7 +792,7 @@
         },
         {
           "source_type": "smc",
-          "file_path": "client/03040008/npc/n0501/ui/00_message/npc/base/n0501.smc.json",
+          "file_path": "client/03040008/npc/n0020/ui/00_message/npc/base/n0020.smc.json",
           "json_path": "SituationData.EndQuestId",
           "field_name": "EndQuestId",
           "flag_value": 20190,
@@ -973,11 +800,11 @@
           "relationship": "npc_chatter",
           "quest_name": "Gallant Footsteps",
           "quest_name_jp": "勇敢なる足跡",
-          "comment": "GroupSerial=17873, QuestWindow=20180-20190 (Homecoming -> Gallant Footsteps), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end",
-          "context": "NpcChatter=n0501 | Quest-gated NPC chatter | QuestWindow=20180-20190 (Homecoming -> Gallant Footsteps)",
+          "comment": "GroupSerial=17860, QuestWindow=20180-20190 (Homecoming -> Gallant Footsteps), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end",
+          "context": "NpcChatter=n0020 | Quest-gated NPC chatter | QuestWindow=20180-20190 (Homecoming -> Gallant Footsteps)",
           "quest_id": 20190,
-          "group_serial": 17873,
-          "npc_id": 501,
+          "group_serial": 17860,
+          "npc_id": 20,
           "resource_family": "SMC",
           "evidence_tier": "direct",
           "derivation_class": "direct_deterministic",
@@ -985,36 +812,36 @@
           "why": "SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.",
           "mss_matches": [
             {
-              "file_path": "client/03040008/npc/n0501/ui/00_message/npc/base/n0501.mss.json",
-              "group_serial": 17873,
-              "msg_serial": 448617,
+              "file_path": "client/03040008/npc/n0020/ui/00_message/npc/base/n0020.mss.json",
+              "group_serial": 17860,
+              "msg_serial": 448413,
               "msg_type": 0,
-              "npc_id": 501,
-              "npc_name": "Gurdolin",
-              "npc_name_jp": "ガルドリン",
-              "message": "According to what I heard, it seems that\n[Primeval Drops] is not something that can easily\nbe obtained.",
-              "message_jp": "聞いたところによると《原始の雫》は\nそう簡単に手に入るシロモノじゃねえようだ",
-              "message_excerpt": "According to what I heard, it seems that"
+              "npc_id": 20,
+              "npc_name": "Cecily",
+              "npc_name_jp": "セシリー",
+              "message": "Captain—If something were to happen to my\nfather—I...",
+              "message_jp": "隊長――\n父に――父にもしものことがあれば\nわたしは――",
+              "message_excerpt": "Captain—If something were to happen to my"
             },
             {
-              "file_path": "client/03040008/npc/n0501/ui/00_message/npc/base/n0501.mss.json",
-              "group_serial": 17873,
-              "msg_serial": 448618,
+              "file_path": "client/03040008/npc/n0020/ui/00_message/npc/base/n0020.mss.json",
+              "group_serial": 17860,
+              "msg_serial": 448414,
               "msg_type": 0,
-              "npc_id": 501,
-              "npc_name": "Gurdolin",
-              "npc_name_jp": "ガルドリン",
-              "message": "Then you'd have to be a pretty good hand to\nmake a safe return, I'd think.",
-              "message_jp": "となると、相当な手練れじゃないと\n無事の帰還は難しいと思うぜ",
-              "message_excerpt": "Then you'd have to be a pretty good hand to"
+              "npc_id": 20,
+              "npc_name": "Cecily",
+              "npc_name_jp": "セシリー",
+              "message": "Sorry, I should probably put these personal\nthoughts away for now.",
+              "message_jp": "すいません、今はこんな個人的な思いは\nしまっておくべきですよね",
+              "message_excerpt": "Sorry, I should probably put these personal"
             }
           ],
-          "npc_name": "Gurdolin",
-          "npc_name_jp": "ガルドリン"
+          "npc_name": "Cecily",
+          "npc_name_jp": "セシリー"
         },
         {
           "source_type": "smc",
-          "file_path": "client/03040008/npc/n0501/ui/00_message/npc/base/n0501.smc.json",
+          "file_path": "client/03040008/npc/n0020/ui/00_message/npc/base/n0020.smc.json",
           "json_path": "SituationData.StartQuestId",
           "field_name": "StartQuestId",
           "flag_value": 20190,
@@ -1022,11 +849,11 @@
           "relationship": "npc_chatter",
           "quest_name": "Gallant Footsteps",
           "quest_name_jp": "勇敢なる足跡",
-          "comment": "GroupSerial=17874, QuestWindow=20190-20200 (Gallant Footsteps -> The Darkness of the Heart), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start",
-          "context": "NpcChatter=n0501 | Quest-gated NPC chatter | QuestWindow=20190-20200 (Gallant Footsteps -> The Darkness of the Heart)",
+          "comment": "GroupSerial=17861, QuestWindow=20190-20200 (Gallant Footsteps -> The Darkness of the Heart), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window start",
+          "context": "NpcChatter=n0020 | Quest-gated NPC chatter | QuestWindow=20190-20200 (Gallant Footsteps -> The Darkness of the Heart)",
           "quest_id": 20190,
-          "group_serial": 17874,
-          "npc_id": 501,
+          "group_serial": 17861,
+          "npc_id": 20,
           "resource_family": "SMC",
           "evidence_tier": "direct",
           "derivation_class": "direct_deterministic",
@@ -1034,24 +861,24 @@
           "why": "SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.",
           "mss_matches": [
             {
-              "file_path": "client/03040008/npc/n0501/ui/00_message/npc/base/n0501.mss.json",
-              "group_serial": 17874,
-              "msg_serial": 448619,
+              "file_path": "client/03040008/npc/n0020/ui/00_message/npc/base/n0020.mss.json",
+              "group_serial": 17861,
+              "msg_serial": 448415,
               "msg_type": 0,
-              "npc_id": 501,
-              "npc_name": "Gurdolin",
-              "npc_name_jp": "ガルドリン",
-              "message": "If only we'd come to Phindym a little earlier—\nNo more of that, huh?",
-              "message_jp": "俺たちがもう少し早くこのフィンダムに\n来ていればな――\nそりゃいいっこ無しってか？",
-              "message_excerpt": "If only we'd come to Phindym a little earlier—"
+              "npc_id": 20,
+              "npc_name": "Cecily",
+              "npc_name_jp": "セシリー",
+              "message": "Captain, is Father going to be okay? His wounds\nare not fatal, right?",
+              "message_jp": "隊長、父は元気になりますよね？\n父の傷は、致命傷ではありませんよね？",
+              "message_excerpt": "Captain, is Father going to be okay? His wounds"
             }
           ],
-          "npc_name": "Gurdolin",
-          "npc_name_jp": "ガルドリン"
+          "npc_name": "Cecily",
+          "npc_name_jp": "セシリー"
         },
         {
           "source_type": "smc",
-          "file_path": "client/03040008/npc/n2600/ui/00_message/npc/base/n2600.smc.json",
+          "file_path": "client/03040008/npc/n0013/ui/00_message/npc/base/n0013.smc.json",
           "json_path": "SituationData.EndQuestId",
           "field_name": "EndQuestId",
           "flag_value": 20190,
@@ -1059,11 +886,11 @@
           "relationship": "npc_chatter",
           "quest_name": "Gallant Footsteps",
           "quest_name_jp": "勇敢なる足跡",
-          "comment": "GroupSerial=17891, QuestWindow=20180-20190 (Homecoming -> Gallant Footsteps), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end",
-          "context": "NpcChatter=n2600 | Quest-gated NPC chatter | QuestWindow=20180-20190 (Homecoming -> Gallant Footsteps)",
+          "comment": "GroupSerial=17879, QuestWindow=20180-20190 (Homecoming -> Gallant Footsteps), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end",
+          "context": "NpcChatter=n0013 | Quest-gated NPC chatter | QuestWindow=20180-20190 (Homecoming -> Gallant Footsteps)",
           "quest_id": 20190,
-          "group_serial": 17891,
-          "npc_id": 2600,
+          "group_serial": 17879,
+          "npc_id": 13,
           "resource_family": "SMC",
           "evidence_tier": "direct",
           "derivation_class": "direct_deterministic",
@@ -1071,85 +898,36 @@
           "why": "SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.",
           "mss_matches": [
             {
-              "file_path": "client/03040008/npc/n2600/ui/00_message/npc/base/n2600.mss.json",
-              "group_serial": 17891,
-              "msg_serial": 448648,
+              "file_path": "client/03040008/npc/n0013/ui/00_message/npc/base/n0013.mss.json",
+              "group_serial": 17879,
+              "msg_serial": 448625,
               "msg_type": 0,
-              "npc_id": 2600,
-              "npc_name": "Arthfael",
-              "npc_name_jp": "アルトフェイル",
-              "message": "There are also those who are skeptical of the\neffects of \"Primeval Drops\".\nHowever, what else should we believe in now?",
-              "message_jp": "《原始の雫》の効能に懐疑的な者もいます\nしかし、今、他に何を信じれば良いというのでしょう",
-              "message_excerpt": "There are also those who are skeptical of the"
+              "npc_id": 13,
+              "npc_name": "Lise",
+              "npc_name_jp": "リズ",
+              "message": "We're kind of behind the curve...",
+              "message_jp": "わたしたち、後手後手というか――\n遅れちゃってるよね",
+              "message_excerpt": "We're kind of behind the curve..."
             },
             {
-              "file_path": "client/03040008/npc/n2600/ui/00_message/npc/base/n2600.mss.json",
-              "group_serial": 17891,
-              "msg_serial": 448649,
+              "file_path": "client/03040008/npc/n0013/ui/00_message/npc/base/n0013.mss.json",
+              "group_serial": 17879,
+              "msg_serial": 448626,
               "msg_type": 0,
-              "npc_id": 2600,
-              "npc_name": "Arthfael",
-              "npc_name_jp": "アルトフェイル",
-              "message": "Arisen of Lestania, please, walk with us.",
-              "message_jp": "レスタニアの覚者たちよ\nどうか、我々とともに歩んでください",
-              "message_excerpt": "Arisen of Lestania, please, walk with us."
+              "npc_id": 13,
+              "npc_name": "Lise",
+              "npc_name_jp": "リズ",
+              "message": "Hey captain, hurry up and take the lead in the\nsituation!",
+              "message_jp": "ねえ、隊長\n急いで、事態の先頭に立とうよ",
+              "message_excerpt": "Hey captain, hurry up and take the lead in the"
             }
           ],
-          "npc_name": "Arthfael",
-          "npc_name_jp": "アルトフェイル"
+          "npc_name": "Lise",
+          "npc_name_jp": "リズ"
         },
         {
           "source_type": "smc",
-          "file_path": "client/03040008/npc/n2610/ui/00_message/npc/base/n2610.smc.json",
-          "json_path": "SituationData.EndQuestId",
-          "field_name": "EndQuestId",
-          "flag_value": 20190,
-          "flag_kind": "quest_id",
-          "relationship": "npc_chatter",
-          "quest_name": "Gallant Footsteps",
-          "quest_name_jp": "勇敢なる足跡",
-          "comment": "GroupSerial=17888, QuestWindow=20180-20190 (Homecoming -> Gallant Footsteps), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end",
-          "context": "NpcChatter=n2610 | Quest-gated NPC chatter | QuestWindow=20180-20190 (Homecoming -> Gallant Footsteps)",
-          "quest_id": 20190,
-          "group_serial": 17888,
-          "npc_id": 2610,
-          "resource_family": "SMC",
-          "evidence_tier": "direct",
-          "derivation_class": "direct_deterministic",
-          "confidence": 92,
-          "why": "SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.",
-          "mss_matches": [
-            {
-              "file_path": "client/03040008/npc/n2610/ui/00_message/npc/base/n2610.mss.json",
-              "group_serial": 17888,
-              "msg_serial": 448642,
-              "msg_type": 0,
-              "npc_id": 2610,
-              "npc_name": "Mordred",
-              "npc_name_jp": "モードレッド",
-              "message": "I am Mordred, from the village of Morfaul,\ncurrently looking after Gearóid's place while he's\naway.",
-              "message_jp": "わたしはモルフォール村のモードレッド\nガラダの留守を預かっている",
-              "message_excerpt": "I am Mordred, from the village of Morfaul,"
-            },
-            {
-              "file_path": "client/03040008/npc/n2610/ui/00_message/npc/base/n2610.mss.json",
-              "group_serial": 17888,
-              "msg_serial": 448643,
-              "msg_type": 0,
-              "npc_id": 2610,
-              "npc_name": "Mordred",
-              "npc_name_jp": "モードレッド",
-              "message": "Cecily's benefactor is Gearóid's benefactor, and\nalso my benefactor.\nThere isn't much here, but please make yourself\ncomfortable.",
-              "message_jp": "セシリーの恩人はガラダの恩人\nそしてわたしの恩人でもある\n何もないところだが、くつろいでくれ",
-              "message_excerpt": "Cecily's benefactor is Gearóid's benefactor, and"
-            }
-          ],
-          "npc_name": "Mordred",
-          "npc_name_jp": "モードレッド"
-        },
-        {
-          "source_type": "smc",
-          "file_path": "client/03040008/npc/n2610/ui/00_message/npc/base/n2610.smc.json",
+          "file_path": "client/03040008/npc/n0013/ui/00_message/npc/base/n0013.smc.json",
           "json_path": "SituationData.StartQuestId",
           "field_name": "StartQuestId",
           "flag_value": 20190,
@@ -1157,11 +935,11 @@
           "relationship": "npc_chatter",
           "quest_name": "Gallant Footsteps",
           "quest_name_jp": "勇敢なる足跡",
-          "comment": "GroupSerial=17889, QuestWindow=20190-20200 (Gallant Footsteps -> The Darkness of the Heart), IsStartQuestIdStart=False, IsEndQuestIdStart=True, chatter window start",
-          "context": "NpcChatter=n2610 | Quest-gated NPC chatter | QuestWindow=20190-20200 (Gallant Footsteps -> The Darkness of the Heart)",
+          "comment": "GroupSerial=17880, QuestWindow=20190-20200 (Gallant Footsteps -> The Darkness of the Heart), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start",
+          "context": "NpcChatter=n0013 | Quest-gated NPC chatter | QuestWindow=20190-20200 (Gallant Footsteps -> The Darkness of the Heart)",
           "quest_id": 20190,
-          "group_serial": 17889,
-          "npc_id": 2610,
+          "group_serial": 17880,
+          "npc_id": 13,
           "resource_family": "SMC",
           "evidence_tier": "direct",
           "derivation_class": "direct_deterministic",
@@ -1169,32 +947,254 @@
           "why": "SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.",
           "mss_matches": [
             {
-              "file_path": "client/03040008/npc/n2610/ui/00_message/npc/base/n2610.mss.json",
-              "group_serial": 17889,
-              "msg_serial": 448644,
+              "file_path": "client/03040008/npc/n0013/ui/00_message/npc/base/n0013.mss.json",
+              "group_serial": 17880,
+              "msg_serial": 448627,
               "msg_type": 0,
-              "npc_id": 2610,
-              "npc_name": "Mordred",
-              "npc_name_jp": "モードレッド",
-              "message": "Please pray for Gearóid's swift recovery, so that\nhe may heal as soon as possible.",
-              "message_jp": "ガラダが一刻も早く回復するように\n客人たちも祈ってくれ",
-              "message_excerpt": "Please pray for Gearóid's swift recovery, so that"
-            },
-            {
-              "file_path": "client/03040008/npc/n2610/ui/00_message/npc/base/n2610.mss.json",
-              "group_serial": 17889,
-              "msg_serial": 448645,
-              "msg_type": 0,
-              "npc_id": 2610,
-              "npc_name": "Mordred",
-              "npc_name_jp": "モードレッド",
-              "message": "Praying was not part of our customs, but when we\ntried it, we could feel the thorns being pulled\nout of our hearts.",
-              "message_jp": "祈りなど我々の習慣にはなかったが\nやってみると、心に刺さったトゲが\n抜けていくのがわかるのだ",
-              "message_excerpt": "Praying was not part of our customs, but when we"
+              "npc_id": 13,
+              "npc_name": "Lise",
+              "npc_name_jp": "リズ",
+              "message": "The culprit who took away [Primeval Drops] doesn't\ncare what happens to Phindym after all— I still\ncan't understand their feelings no matter how much\nI think.",
+              "message_jp": "《原始の雫》を持ち去った犯人は\nフィンダムがどうなっても構わない――\nやっぱり、幾ら考えても気持がわからないな",
+              "message_excerpt": "The culprit who took away [Primeval Drops] doesn't"
             }
           ],
-          "npc_name": "Mordred",
-          "npc_name_jp": "モードレッド"
+          "npc_name": "Lise",
+          "npc_name_jp": "リズ"
+        },
+        {
+          "source_type": "smc",
+          "file_path": "client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json",
+          "json_path": "SituationData.EndQuestId",
+          "field_name": "EndQuestId",
+          "flag_value": 20190,
+          "flag_kind": "quest_id",
+          "relationship": "npc_chatter",
+          "quest_name": "Gallant Footsteps",
+          "quest_name_jp": "勇敢なる足跡",
+          "comment": "GroupSerial=17844, QuestWindow=20180-20190 (Homecoming -> Gallant Footsteps), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end",
+          "context": "NpcChatter=n0004 | Quest-gated NPC chatter | QuestWindow=20180-20190 (Homecoming -> Gallant Footsteps)",
+          "quest_id": 20190,
+          "group_serial": 17844,
+          "npc_id": 4,
+          "resource_family": "SMC",
+          "evidence_tier": "direct",
+          "derivation_class": "direct_deterministic",
+          "confidence": 92,
+          "why": "SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.",
+          "mss_matches": [
+            {
+              "file_path": "client/03040008/npc/n0004/ui/00_message/npc/base/n0004.mss.json",
+              "group_serial": 17844,
+              "msg_serial": 447304,
+              "msg_type": 0,
+              "npc_id": 4,
+              "npc_name": "Joseph",
+              "npc_name_jp": "ジョゼフ",
+              "message": "However, the decision is still up to you. As much\nas I can hope, I can only hope.",
+              "message_jp": "《原始の雫》の到着を座して待つのも\n手持ちぶさただろう\nさあ、フィンダムへ行って、手伝ってやりなさい",
+              "message_excerpt": "However, the decision is still up to you. As much"
+            }
+          ],
+          "npc_name": "Joseph",
+          "npc_name_jp": "ジョゼフ"
+        },
+        {
+          "source_type": "smc",
+          "file_path": "client/03040008/npc/n0004/ui/00_message/npc/base/n0004.smc.json",
+          "json_path": "SituationData.StartQuestId",
+          "field_name": "StartQuestId",
+          "flag_value": 20190,
+          "flag_kind": "quest_id",
+          "relationship": "npc_chatter",
+          "quest_name": "Gallant Footsteps",
+          "quest_name_jp": "勇敢なる足跡",
+          "comment": "GroupSerial=17845, QuestWindow=20190-20200 (Gallant Footsteps -> The Darkness of the Heart), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start",
+          "context": "NpcChatter=n0004 | Quest-gated NPC chatter | QuestWindow=20190-20200 (Gallant Footsteps -> The Darkness of the Heart)",
+          "quest_id": 20190,
+          "group_serial": 17845,
+          "npc_id": 4,
+          "resource_family": "SMC",
+          "evidence_tier": "direct",
+          "derivation_class": "direct_deterministic",
+          "confidence": 92,
+          "why": "SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.",
+          "mss_matches": [
+            {
+              "file_path": "client/03040008/npc/n0004/ui/00_message/npc/base/n0004.mss.json",
+              "group_serial": 17845,
+              "msg_serial": 447305,
+              "msg_type": 0,
+              "npc_id": 4,
+              "npc_name": "Joseph",
+              "npc_name_jp": "ジョゼフ",
+              "message": "The Stolen “Primordial Drop”...\nIt doesn't matter if you go overboard a bit—\nYou must get it back, no matter what.",
+              "message_jp": "奪われた《原始の雫》――\n多少出過ぎた真似をしてもかまわんから\n必ず取り戻すのだぞ",
+              "message_excerpt": "The Stolen “Primordial Drop”..."
+            }
+          ],
+          "npc_name": "Joseph",
+          "npc_name_jp": "ジョゼフ"
+        },
+        {
+          "source_type": "smc",
+          "file_path": "client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json",
+          "json_path": "SituationData.EndQuestId",
+          "field_name": "EndQuestId",
+          "flag_value": 20190,
+          "flag_kind": "quest_id",
+          "relationship": "npc_chatter",
+          "quest_name": "Gallant Footsteps",
+          "quest_name_jp": "勇敢なる足跡",
+          "comment": "GroupSerial=17851, QuestWindow=20180-20190 (Homecoming -> Gallant Footsteps), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end",
+          "context": "NpcChatter=n0003 | Quest-gated NPC chatter | QuestWindow=20180-20190 (Homecoming -> Gallant Footsteps)",
+          "quest_id": 20190,
+          "group_serial": 17851,
+          "npc_id": 3,
+          "resource_family": "SMC",
+          "evidence_tier": "direct",
+          "derivation_class": "direct_deterministic",
+          "confidence": 92,
+          "why": "SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.",
+          "mss_matches": [
+            {
+              "file_path": "client/03040008/npc/n0003/ui/00_message/npc/base/n0003.mss.json",
+              "group_serial": 17851,
+              "msg_serial": 448237,
+              "msg_type": 0,
+              "npc_id": 3,
+              "npc_name": "Klaus",
+              "npc_name_jp": "クラウス",
+              "message": "According to what I've heard, Cecily's father is\nnot a warrior or aught, he seems to be an\nordinary person.",
+              "message_jp": "聞くところによると、セシリーのお父さんは\n戦士でもなんでもない、普通の人らしいね",
+              "message_excerpt": "According to what I've heard, Cecily's father is"
+            },
+            {
+              "file_path": "client/03040008/npc/n0003/ui/00_message/npc/base/n0003.mss.json",
+              "group_serial": 17851,
+              "msg_serial": 448238,
+              "msg_type": 0,
+              "npc_id": 3,
+              "npc_name": "Klaus",
+              "npc_name_jp": "クラウス",
+              "message": "You're worried, too, are you not? You'd better get\nthere as soon as possible.",
+              "message_jp": "君だって、不安だろう？\n早いところ、行った方がいいよ",
+              "message_excerpt": "You're worried, too, are you not? You'd better get"
+            }
+          ],
+          "npc_name": "Klaus",
+          "npc_name_jp": "クラウス"
+        },
+        {
+          "source_type": "smc",
+          "file_path": "client/03040008/npc/n0003/ui/00_message/npc/base/n0003.smc.json",
+          "json_path": "SituationData.StartQuestId",
+          "field_name": "StartQuestId",
+          "flag_value": 20190,
+          "flag_kind": "quest_id",
+          "relationship": "npc_chatter",
+          "quest_name": "Gallant Footsteps",
+          "quest_name_jp": "勇敢なる足跡",
+          "comment": "GroupSerial=17852, QuestWindow=20190-20200 (Gallant Footsteps -> The Darkness of the Heart), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start",
+          "context": "NpcChatter=n0003 | Quest-gated NPC chatter | QuestWindow=20190-20200 (Gallant Footsteps -> The Darkness of the Heart)",
+          "quest_id": 20190,
+          "group_serial": 17852,
+          "npc_id": 3,
+          "resource_family": "SMC",
+          "evidence_tier": "direct",
+          "derivation_class": "direct_deterministic",
+          "confidence": 92,
+          "why": "SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.",
+          "mss_matches": [
+            {
+              "file_path": "client/03040008/npc/n0003/ui/00_message/npc/base/n0003.mss.json",
+              "group_serial": 17852,
+              "msg_serial": 448239,
+              "msg_type": 0,
+              "npc_id": 3,
+              "npc_name": "Klaus",
+              "npc_name_jp": "クラウス",
+              "message": "Come on, the guys are waiting for you, aye?\nYou'll handle it—I'm certain a lot of them think so.",
+              "message_jp": "さあ、みんなが待ってるよ？\n君がなんとかしてくれる――\nそう思っている連中も多いはずさ",
+              "message_excerpt": "Come on, the guys are waiting for you, aye?"
+            }
+          ],
+          "npc_name": "Klaus",
+          "npc_name_jp": "クラウス"
+        },
+        {
+          "source_type": "smc",
+          "file_path": "client/03040008/npc/n0001/ui/00_message/npc/base/n0001.smc.json",
+          "json_path": "SituationData.EndQuestId",
+          "field_name": "EndQuestId",
+          "flag_value": 20190,
+          "flag_kind": "quest_id",
+          "relationship": "npc_chatter",
+          "quest_name": "Gallant Footsteps",
+          "quest_name_jp": "勇敢なる足跡",
+          "comment": "GroupSerial=17837, QuestWindow=20180-20190 (Homecoming -> Gallant Footsteps), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window end",
+          "context": "NpcChatter=n0001 | Quest-gated NPC chatter | QuestWindow=20180-20190 (Homecoming -> Gallant Footsteps)",
+          "quest_id": 20190,
+          "group_serial": 17837,
+          "npc_id": 1,
+          "resource_family": "SMC",
+          "evidence_tier": "direct",
+          "derivation_class": "direct_deterministic",
+          "confidence": 92,
+          "why": "SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.",
+          "mss_matches": [
+            {
+              "file_path": "client/03040008/npc/n0001/ui/00_message/npc/base/n0001.mss.json",
+              "group_serial": 17837,
+              "msg_serial": 447293,
+              "msg_type": 0,
+              "npc_id": 1,
+              "npc_name": "The White Dragon",
+              "npc_name_jp": "白竜",
+              "message": "The Primeval Drop...—alas, 'tis unknown to me.",
+              "message_jp": "《原始の雫》――はて、知らぬわ",
+              "message_excerpt": "The Primeval Drop...—alas, 'tis unknown to me."
+            }
+          ],
+          "npc_name": "The White Dragon",
+          "npc_name_jp": "白竜"
+        },
+        {
+          "source_type": "smc",
+          "file_path": "client/03040008/npc/n0001/ui/00_message/npc/base/n0001.smc.json",
+          "json_path": "SituationData.StartQuestId",
+          "field_name": "StartQuestId",
+          "flag_value": 20190,
+          "flag_kind": "quest_id",
+          "relationship": "npc_chatter",
+          "quest_name": "Gallant Footsteps",
+          "quest_name_jp": "勇敢なる足跡",
+          "comment": "GroupSerial=17838, QuestWindow=20190-20200 (Gallant Footsteps -> The Darkness of the Heart), IsStartQuestIdStart=False, IsEndQuestIdStart=False, chatter window start",
+          "context": "NpcChatter=n0001 | Quest-gated NPC chatter | QuestWindow=20190-20200 (Gallant Footsteps -> The Darkness of the Heart)",
+          "quest_id": 20190,
+          "group_serial": 17838,
+          "npc_id": 1,
+          "resource_family": "SMC",
+          "evidence_tier": "direct",
+          "derivation_class": "direct_deterministic",
+          "confidence": 92,
+          "why": "SituationMsgCtrl chatter reference; this NPC-specific .smc file gates which GroupSerial dialogue is available when speaking to that NPC, and StartQuestId/EndQuestId define the quest or quest-series window for that chatter.",
+          "mss_matches": [
+            {
+              "file_path": "client/03040008/npc/n0001/ui/00_message/npc/base/n0001.mss.json",
+              "group_serial": 17838,
+              "msg_serial": 447294,
+              "msg_type": 0,
+              "npc_id": 1,
+              "npc_name": "The White Dragon",
+              "npc_name_jp": "白竜",
+              "message": "Dragon, land, and kin—\nTo mend the harmony within shattered balance is no\nsimple task...\nSteel thy spirit,\nand face thy duty with resolve...",
+              "message_jp": "竜と大地と民――\n崩れた均衡を調和の中に戻すのは\n難しい――心して、事に当たれ",
+              "message_excerpt": "Dragon, land, and kin—"
+            }
+          ],
+          "npc_name": "The White Dragon",
+          "npc_name_jp": "白竜"
         }
       ],
       "candidate_hits": []
@@ -2493,7 +2493,7 @@
             "relationship": "event_state",
             "quest_id": 70003001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -2502,7 +2502,7 @@
             "relationship": "event_state",
             "quest_id": 70003001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -2541,7 +2541,7 @@
             "relationship": "event_state",
             "quest_id": 70003001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -2550,7 +2550,7 @@
             "relationship": "event_state",
             "quest_id": 70003001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -2589,7 +2589,7 @@
             "relationship": "event_state",
             "quest_id": 70003001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -2598,7 +2598,7 @@
             "relationship": "event_state",
             "quest_id": 70003001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -2637,7 +2637,7 @@
             "relationship": "event_state",
             "quest_id": 70000001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -2646,7 +2646,7 @@
             "relationship": "event_state",
             "quest_id": 70000001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -2685,7 +2685,7 @@
             "relationship": "event_state",
             "quest_id": 70000001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -2694,7 +2694,7 @@
             "relationship": "event_state",
             "quest_id": 70000001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -2733,7 +2733,7 @@
             "relationship": "event_state",
             "quest_id": 70002001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -2742,7 +2742,7 @@
             "relationship": "event_state",
             "quest_id": 70002001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -2781,7 +2781,7 @@
             "relationship": "event_state",
             "quest_id": 70002001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -2790,7 +2790,7 @@
             "relationship": "event_state",
             "quest_id": 70002001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -2829,7 +2829,7 @@
             "relationship": "event_state",
             "quest_id": 70002001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -2838,7 +2838,7 @@
             "relationship": "event_state",
             "quest_id": 70002001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -2877,7 +2877,7 @@
             "relationship": "event_state",
             "quest_id": 70003001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -2886,7 +2886,7 @@
             "relationship": "event_state",
             "quest_id": 70003001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -2925,7 +2925,7 @@
             "relationship": "event_state",
             "quest_id": 70003001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -2934,7 +2934,7 @@
             "relationship": "event_state",
             "quest_id": 70003001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -2973,7 +2973,7 @@
             "relationship": "event_state",
             "quest_id": 70003001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -2982,7 +2982,7 @@
             "relationship": "event_state",
             "quest_id": 70003001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -3021,7 +3021,7 @@
             "relationship": "event_state",
             "quest_id": 70000001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -3030,7 +3030,7 @@
             "relationship": "event_state",
             "quest_id": 70000001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -3069,7 +3069,7 @@
             "relationship": "event_state",
             "quest_id": 70000001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -3078,7 +3078,7 @@
             "relationship": "event_state",
             "quest_id": 70000001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -3117,7 +3117,7 @@
             "relationship": "event_state",
             "quest_id": 70003001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -3126,7 +3126,7 @@
             "relationship": "event_state",
             "quest_id": 70003001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -3165,7 +3165,7 @@
             "relationship": "event_state",
             "quest_id": 70000001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -3174,7 +3174,7 @@
             "relationship": "event_state",
             "quest_id": 70000001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -3213,7 +3213,7 @@
             "relationship": "event_state",
             "quest_id": 70000001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -3222,7 +3222,7 @@
             "relationship": "event_state",
             "quest_id": 70000001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -3261,7 +3261,7 @@
             "relationship": "event_state",
             "quest_id": 70000001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -3270,7 +3270,7 @@
             "relationship": "event_state",
             "quest_id": 70000001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -3309,7 +3309,7 @@
             "relationship": "event_state",
             "quest_id": 70000001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -3318,7 +3318,7 @@
             "relationship": "event_state",
             "quest_id": 70000001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -3357,7 +3357,7 @@
             "relationship": "event_state",
             "quest_id": 70000001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -3366,7 +3366,7 @@
             "relationship": "event_state",
             "quest_id": 70000001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -3405,7 +3405,7 @@
             "relationship": "event_state",
             "quest_id": 70000001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -3414,7 +3414,7 @@
             "relationship": "event_state",
             "quest_id": 70000001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -3453,7 +3453,7 @@
             "relationship": "event_state",
             "quest_id": 70000001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -3462,7 +3462,7 @@
             "relationship": "event_state",
             "quest_id": 70000001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -3501,7 +3501,7 @@
             "relationship": "event_state",
             "quest_id": 70000001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -3510,7 +3510,7 @@
             "relationship": "event_state",
             "quest_id": 70000001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -3549,7 +3549,7 @@
             "relationship": "event_state",
             "quest_id": 70000001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -3558,7 +3558,7 @@
             "relationship": "event_state",
             "quest_id": 70000001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -3597,7 +3597,7 @@
             "relationship": "event_state",
             "quest_id": 70000001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -3606,7 +3606,7 @@
             "relationship": "event_state",
             "quest_id": 70000001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -3645,7 +3645,7 @@
             "relationship": "event_state",
             "quest_id": 70003001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -3654,7 +3654,7 @@
             "relationship": "event_state",
             "quest_id": 70003001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -3693,7 +3693,7 @@
             "relationship": "event_state",
             "quest_id": 70000001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -3702,7 +3702,7 @@
             "relationship": "event_state",
             "quest_id": 70000001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -3741,7 +3741,7 @@
             "relationship": "event_state",
             "quest_id": 70000001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -3750,7 +3750,7 @@
             "relationship": "event_state",
             "quest_id": 70000001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -3789,7 +3789,7 @@
             "relationship": "event_state",
             "quest_id": 70000001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -3798,7 +3798,7 @@
             "relationship": "event_state",
             "quest_id": 70000001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -3837,7 +3837,7 @@
             "relationship": "event_state",
             "quest_id": 70000001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -3846,7 +3846,7 @@
             "relationship": "event_state",
             "quest_id": 70000001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -3885,7 +3885,7 @@
             "relationship": "event_state",
             "quest_id": 70002001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -3894,7 +3894,7 @@
             "relationship": "event_state",
             "quest_id": 70002001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -3933,7 +3933,7 @@
             "relationship": "event_state",
             "quest_id": 70000001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -3942,7 +3942,7 @@
             "relationship": "event_state",
             "quest_id": 70000001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -3981,7 +3981,7 @@
             "relationship": "event_state",
             "quest_id": 70003001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -3990,7 +3990,7 @@
             "relationship": "event_state",
             "quest_id": 70003001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -4029,7 +4029,7 @@
             "relationship": "event_state",
             "quest_id": 70001001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -4038,7 +4038,7 @@
             "relationship": "event_state",
             "quest_id": 70001001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -4077,7 +4077,7 @@
             "relationship": "event_state",
             "quest_id": 70001001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -4086,7 +4086,7 @@
             "relationship": "event_state",
             "quest_id": 70001001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -4125,7 +4125,7 @@
             "relationship": "event_state",
             "quest_id": 70000001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -4134,7 +4134,7 @@
             "relationship": "event_state",
             "quest_id": 70000001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -4173,7 +4173,7 @@
             "relationship": "event_state",
             "quest_id": 70000001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -4182,7 +4182,7 @@
             "relationship": "event_state",
             "quest_id": 70000001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -4221,7 +4221,7 @@
             "relationship": "event_state",
             "quest_id": 70000001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -4230,7 +4230,7 @@
             "relationship": "event_state",
             "quest_id": 70000001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -4269,7 +4269,7 @@
             "relationship": "event_state",
             "quest_id": 70003001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -4278,7 +4278,7 @@
             "relationship": "event_state",
             "quest_id": 70003001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -4317,7 +4317,7 @@
             "relationship": "event_state",
             "quest_id": 70003001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -4326,7 +4326,7 @@
             "relationship": "event_state",
             "quest_id": 70003001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -4365,7 +4365,7 @@
             "relationship": "event_state",
             "quest_id": 70003001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -4374,7 +4374,7 @@
             "relationship": "event_state",
             "quest_id": 70003001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -4413,7 +4413,7 @@
             "relationship": "event_state",
             "quest_id": 70020001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -4422,7 +4422,7 @@
             "relationship": "event_state",
             "quest_id": 70020001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -4461,7 +4461,7 @@
             "relationship": "event_state",
             "quest_id": 70020001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -4470,7 +4470,7 @@
             "relationship": "event_state",
             "quest_id": 70020001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -4509,7 +4509,7 @@
             "relationship": "event_state",
             "quest_id": 70020001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -4518,7 +4518,7 @@
             "relationship": "event_state",
             "quest_id": 70020001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -4557,7 +4557,7 @@
             "relationship": "event_state",
             "quest_id": 70021001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -4566,7 +4566,7 @@
             "relationship": "event_state",
             "quest_id": 70021001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -4605,7 +4605,7 @@
             "relationship": "event_state",
             "quest_id": 70021001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -4614,7 +4614,7 @@
             "relationship": "event_state",
             "quest_id": 70021001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -4653,7 +4653,7 @@
             "relationship": "event_state",
             "quest_id": 70002001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -4662,7 +4662,7 @@
             "relationship": "event_state",
             "quest_id": 70002001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -4701,7 +4701,7 @@
             "relationship": "event_state",
             "quest_id": 70022001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -4710,7 +4710,7 @@
             "relationship": "event_state",
             "quest_id": 70022001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -4749,7 +4749,7 @@
             "relationship": "event_state",
             "quest_id": 70022001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -4758,7 +4758,7 @@
             "relationship": "event_state",
             "quest_id": 70022001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -4797,7 +4797,7 @@
             "relationship": "event_state",
             "quest_id": 70022001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -4806,7 +4806,7 @@
             "relationship": "event_state",
             "quest_id": 70022001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -4845,7 +4845,7 @@
             "relationship": "event_state",
             "quest_id": 70022001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -4854,7 +4854,7 @@
             "relationship": "event_state",
             "quest_id": 70022001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -4893,7 +4893,7 @@
             "relationship": "event_state",
             "quest_id": 70022001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -4902,7 +4902,7 @@
             "relationship": "event_state",
             "quest_id": 70022001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -4941,7 +4941,7 @@
             "relationship": "event_state",
             "quest_id": 70022001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -4950,7 +4950,7 @@
             "relationship": "event_state",
             "quest_id": 70022001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -4989,7 +4989,7 @@
             "relationship": "event_state",
             "quest_id": 70022001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -4998,7 +4998,7 @@
             "relationship": "event_state",
             "quest_id": 70022001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -5037,7 +5037,7 @@
             "relationship": "event_state",
             "quest_id": 70020001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -5046,7 +5046,7 @@
             "relationship": "event_state",
             "quest_id": 70020001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -5085,7 +5085,7 @@
             "relationship": "event_state",
             "quest_id": 70022001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -5094,7 +5094,7 @@
             "relationship": "event_state",
             "quest_id": 70022001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -5133,7 +5133,7 @@
             "relationship": "event_state",
             "quest_id": 70023001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -5142,7 +5142,7 @@
             "relationship": "event_state",
             "quest_id": 70023001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -5181,7 +5181,7 @@
             "relationship": "event_state",
             "quest_id": 70022001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -5190,7 +5190,7 @@
             "relationship": "event_state",
             "quest_id": 70022001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -5229,7 +5229,7 @@
             "relationship": "event_state",
             "quest_id": 70023001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -5238,7 +5238,7 @@
             "relationship": "event_state",
             "quest_id": 70023001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -5277,7 +5277,7 @@
             "relationship": "event_state",
             "quest_id": 70023001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -5286,7 +5286,7 @@
             "relationship": "event_state",
             "quest_id": 70023001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -5325,7 +5325,7 @@
             "relationship": "event_state",
             "quest_id": 70023001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -5334,7 +5334,7 @@
             "relationship": "event_state",
             "quest_id": 70023001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -5373,7 +5373,7 @@
             "relationship": "event_state",
             "quest_id": 70022001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -5382,7 +5382,7 @@
             "relationship": "event_state",
             "quest_id": 70022001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -5421,7 +5421,7 @@
             "relationship": "event_state",
             "quest_id": 70022001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -5430,7 +5430,7 @@
             "relationship": "event_state",
             "quest_id": 70022001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -5469,7 +5469,7 @@
             "relationship": "event_state",
             "quest_id": 70022001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -5478,7 +5478,7 @@
             "relationship": "event_state",
             "quest_id": 70022001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -5517,7 +5517,7 @@
             "relationship": "event_state",
             "quest_id": 70022001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -5526,7 +5526,7 @@
             "relationship": "event_state",
             "quest_id": 70022001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -5565,7 +5565,7 @@
             "relationship": "event_state",
             "quest_id": 70030001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -5574,7 +5574,7 @@
             "relationship": "event_state",
             "quest_id": 70030001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -5613,7 +5613,7 @@
             "relationship": "event_state",
             "quest_id": 70030001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -5622,7 +5622,7 @@
             "relationship": "event_state",
             "quest_id": 70030001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -5661,7 +5661,7 @@
             "relationship": "event_state",
             "quest_id": 70030001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -5670,7 +5670,7 @@
             "relationship": "event_state",
             "quest_id": 70030001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -5709,7 +5709,7 @@
             "relationship": "event_state",
             "quest_id": 70030001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -5718,7 +5718,7 @@
             "relationship": "event_state",
             "quest_id": 70030001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -5757,7 +5757,7 @@
             "relationship": "event_state",
             "quest_id": 70030001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -5766,7 +5766,7 @@
             "relationship": "event_state",
             "quest_id": 70030001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -5805,7 +5805,7 @@
             "relationship": "event_state",
             "quest_id": 70030001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -5814,7 +5814,7 @@
             "relationship": "event_state",
             "quest_id": 70030001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -5853,7 +5853,7 @@
             "relationship": "event_state",
             "quest_id": 70030001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -5862,7 +5862,7 @@
             "relationship": "event_state",
             "quest_id": 70030001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -5901,7 +5901,7 @@
             "relationship": "event_state",
             "quest_id": 70030001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -5910,7 +5910,7 @@
             "relationship": "event_state",
             "quest_id": 70030001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -5949,7 +5949,7 @@
             "relationship": "event_state",
             "quest_id": 70030001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -5958,7 +5958,7 @@
             "relationship": "event_state",
             "quest_id": 70030001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -5997,7 +5997,7 @@
             "relationship": "event_state",
             "quest_id": 70030001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -6006,7 +6006,7 @@
             "relationship": "event_state",
             "quest_id": 70030001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -6045,7 +6045,7 @@
             "relationship": "event_state",
             "quest_id": 70030001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -6054,7 +6054,7 @@
             "relationship": "event_state",
             "quest_id": 70030001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -6093,7 +6093,7 @@
             "relationship": "event_state",
             "quest_id": 70030001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -6102,7 +6102,7 @@
             "relationship": "event_state",
             "quest_id": 70030001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -6141,7 +6141,7 @@
             "relationship": "event_state",
             "quest_id": 70031001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -6150,7 +6150,7 @@
             "relationship": "event_state",
             "quest_id": 70031001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -6189,7 +6189,7 @@
             "relationship": "event_state",
             "quest_id": 70030001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -6198,7 +6198,7 @@
             "relationship": "event_state",
             "quest_id": 70030001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -6237,7 +6237,7 @@
             "relationship": "event_state",
             "quest_id": 70030001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -6246,7 +6246,7 @@
             "relationship": "event_state",
             "quest_id": 70030001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -6285,7 +6285,7 @@
             "relationship": "event_state",
             "quest_id": 70030001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -6294,7 +6294,7 @@
             "relationship": "event_state",
             "quest_id": 70030001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -6333,7 +6333,7 @@
             "relationship": "event_state",
             "quest_id": 70030001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -6342,7 +6342,7 @@
             "relationship": "event_state",
             "quest_id": 70030001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -6381,7 +6381,7 @@
             "relationship": "event_state",
             "quest_id": 70030001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -6390,7 +6390,7 @@
             "relationship": "event_state",
             "quest_id": 70030001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -6429,7 +6429,7 @@
             "relationship": "event_state",
             "quest_id": 70030001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -6438,7 +6438,7 @@
             "relationship": "event_state",
             "quest_id": 70030001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -6477,7 +6477,7 @@
             "relationship": "event_state",
             "quest_id": 70030001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -6486,7 +6486,7 @@
             "relationship": "event_state",
             "quest_id": 70030001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -6525,7 +6525,7 @@
             "relationship": "event_state",
             "quest_id": 70030001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -6534,7 +6534,7 @@
             "relationship": "event_state",
             "quest_id": 70030001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -6573,7 +6573,7 @@
             "relationship": "event_state",
             "quest_id": 70030001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -6582,7 +6582,7 @@
             "relationship": "event_state",
             "quest_id": 70030001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -6621,7 +6621,7 @@
             "relationship": "event_state",
             "quest_id": 70030001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -6630,7 +6630,7 @@
             "relationship": "event_state",
             "quest_id": 70030001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -6669,7 +6669,7 @@
             "relationship": "event_state",
             "quest_id": 70030001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -6678,7 +6678,7 @@
             "relationship": "event_state",
             "quest_id": 70030001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -6717,7 +6717,7 @@
             "relationship": "event_state",
             "quest_id": 70030001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -6726,7 +6726,7 @@
             "relationship": "event_state",
             "quest_id": 70030001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -6765,7 +6765,7 @@
             "relationship": "event_state",
             "quest_id": 70030001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -6774,7 +6774,7 @@
             "relationship": "event_state",
             "quest_id": 70030001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -6813,7 +6813,7 @@
             "relationship": "event_state",
             "quest_id": 70032001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -6822,7 +6822,7 @@
             "relationship": "event_state",
             "quest_id": 70032001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -6861,7 +6861,7 @@
             "relationship": "event_state",
             "quest_id": 70031001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -6870,7 +6870,7 @@
             "relationship": "event_state",
             "quest_id": 70031001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -6909,7 +6909,7 @@
             "relationship": "event_state",
             "quest_id": 70032001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -6918,7 +6918,7 @@
             "relationship": "event_state",
             "quest_id": 70032001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -6957,7 +6957,7 @@
             "relationship": "event_state",
             "quest_id": 70032001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -6966,7 +6966,7 @@
             "relationship": "event_state",
             "quest_id": 70032001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -7005,7 +7005,7 @@
             "relationship": "event_state",
             "quest_id": 70032001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -7014,7 +7014,7 @@
             "relationship": "event_state",
             "quest_id": 70032001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -7053,7 +7053,7 @@
             "relationship": "event_state",
             "quest_id": 70032001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -7062,7 +7062,7 @@
             "relationship": "event_state",
             "quest_id": 70032001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -7101,7 +7101,7 @@
             "relationship": "event_state",
             "quest_id": 70032001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -7110,7 +7110,7 @@
             "relationship": "event_state",
             "quest_id": 70032001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -7149,7 +7149,7 @@
             "relationship": "event_state",
             "quest_id": 70032001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -7158,7 +7158,7 @@
             "relationship": "event_state",
             "quest_id": 70032001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -7197,7 +7197,7 @@
             "relationship": "event_state",
             "quest_id": 70032001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -7206,7 +7206,7 @@
             "relationship": "event_state",
             "quest_id": 70032001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -7245,7 +7245,7 @@
             "relationship": "event_state",
             "quest_id": 70032001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -7254,7 +7254,7 @@
             "relationship": "event_state",
             "quest_id": 70032001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -7293,7 +7293,7 @@
             "relationship": "event_state",
             "quest_id": 70032001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -7302,7 +7302,7 @@
             "relationship": "event_state",
             "quest_id": 70032001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -7341,7 +7341,7 @@
             "relationship": "event_state",
             "quest_id": 70032001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -7350,7 +7350,7 @@
             "relationship": "event_state",
             "quest_id": 70032001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -7389,7 +7389,7 @@
             "relationship": "event_state",
             "quest_id": 70033001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -7398,7 +7398,7 @@
             "relationship": "event_state",
             "quest_id": 70033001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -7437,7 +7437,7 @@
             "relationship": "event_state",
             "quest_id": 70033001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -7446,7 +7446,7 @@
             "relationship": "event_state",
             "quest_id": 70033001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -7485,7 +7485,7 @@
             "relationship": "event_state",
             "quest_id": 70032001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -7494,7 +7494,7 @@
             "relationship": "event_state",
             "quest_id": 70032001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -7533,7 +7533,7 @@
             "relationship": "event_state",
             "quest_id": 70032001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -7542,7 +7542,7 @@
             "relationship": "event_state",
             "quest_id": 70032001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -7581,7 +7581,7 @@
             "relationship": "event_state",
             "quest_id": 70033001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -7590,7 +7590,7 @@
             "relationship": "event_state",
             "quest_id": 70033001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -7629,7 +7629,7 @@
             "relationship": "event_state",
             "quest_id": 70033001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -7638,7 +7638,7 @@
             "relationship": "event_state",
             "quest_id": 70033001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -7677,7 +7677,7 @@
             "relationship": "event_state",
             "quest_id": 70033001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -7686,7 +7686,7 @@
             "relationship": "event_state",
             "quest_id": 70033001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -7725,7 +7725,7 @@
             "relationship": "event_state",
             "quest_id": 70033001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -7734,7 +7734,7 @@
             "relationship": "event_state",
             "quest_id": 70033001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -7773,7 +7773,7 @@
             "relationship": "event_state",
             "quest_id": 70033001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -7782,7 +7782,7 @@
             "relationship": "event_state",
             "quest_id": 70033001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -7821,7 +7821,7 @@
             "relationship": "event_state",
             "quest_id": 70033001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -7830,7 +7830,7 @@
             "relationship": "event_state",
             "quest_id": 70033001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -7869,7 +7869,7 @@
             "relationship": "event_state",
             "quest_id": 70033001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -7878,7 +7878,7 @@
             "relationship": "event_state",
             "quest_id": 70033001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -7917,7 +7917,7 @@
             "relationship": "event_state",
             "quest_id": 70033001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -7926,7 +7926,7 @@
             "relationship": "event_state",
             "quest_id": 70033001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -7965,7 +7965,7 @@
             "relationship": "event_state",
             "quest_id": 70033001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -7974,7 +7974,7 @@
             "relationship": "event_state",
             "quest_id": 70033001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -8013,7 +8013,7 @@
             "relationship": "event_state",
             "quest_id": 70033001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -8022,7 +8022,7 @@
             "relationship": "event_state",
             "quest_id": 70033001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -8061,7 +8061,7 @@
             "relationship": "event_state",
             "quest_id": 70033001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -8070,7 +8070,7 @@
             "relationship": "event_state",
             "quest_id": 70033001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
@@ -8109,7 +8109,7 @@
             "relationship": "event_state",
             "quest_id": 70033001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
             "comment": ""
           },
           {
@@ -8118,7 +8118,7 @@
             "relationship": "event_state",
             "quest_id": 70033001,
             "stage_code": "st0123",
-            "file_path": "client/03040008/event/st0123/view_st0123ev005/event/viewer/view_st0123ev005.evsi.json",
+            "file_path": "client/03040008/event/st0123/view_st0123ev000/event/viewer/view_st0123ev000.evsi.json",
             "comment": ""
           },
           {
