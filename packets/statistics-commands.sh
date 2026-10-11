@@ -1,190 +1,168 @@
 #!/usr/bin/env bash
 #
-# fast-count-packets.sh
+# statistics-commands.sh
 #
-# Single-pass normalization + counting for decrypted packet annotations.
-# - much faster than grepping per-unique-line (one awk pass instead)
-# - optional: keep unique packet text files (-k)
-# - optional: sort count files by frequency (-f)
+# Single-pass packet statistics over the Arrowgene CLI annotated dumps in decrypted_annotated/.
+#
+# Writes (next to this script, replaced atomically only after a successful run):
+#   decrypted-tcp-streams-unique-{c2s,s2c,c2l,l2c,unknown}-packets-count.txt
+#       "(group.id.sub) NAME,count" per packet type, by direction
+#   packets-missing-structure-dumps.txt
+#       "NAME group.id.sub" for packet types the CLI has no C# structure for (no StructDump line)
+#   packets-structure-parse-failures.txt
+#       "(group.id.sub) NAME,count" for packets whose C# structure failed to parse
+#       (StructDump line without a JSON structure; see README-decrypt-annotate-streams.adoc)
+#   decrypted-tcp-streams-unique-*-packets.txt   only with -k
 #
 # Usage:
-#   ./fast-count-packets.sh [-k|--keep-unique] [-f|--freq-sort] [-h|--help]
+#   ./statistics-commands.sh [-k|--keep-unique] [-f|--freq-sort] [-h|--help]
 #
-set -euo pipefail
+set -o errexit
+set -o nounset
+set -o pipefail
 
-# ---- Configuration (change if you must) -------------------------------------
-ANNOTATED_DIR="decrypted_annotated"
-OUTDIR="../"
-# -----------------------------------------------------------------------------
+ANNOTATED_DIR=${ANNOTATED_DIR:-decrypted_annotated}
+DIRECTIONS=(c2s s2c c2l l2c unknown)
 
-
-# Print help and exit
 print_help() {
+  sed -n '3,19p' "$0" | sed 's/^# \{0,1\}//'
   cat <<'USAGE'
-fast-count-packets.sh
-
-Single-pass normalize & count annotated packet lines.
-
-Usage:
-  fast-count-packets.sh [options]
-
 Options:
-  -k, --keep-unique    Write and keep the unique packet files:
-                       decrypted-tcp-streams-unique-*-packets.txt
-  -f, --freq-sort      Sort the count files by frequency (descending).
-                       Default sorting is alphabetical by key.
+  -k, --keep-unique    Also write the unique packet lists (decrypted-tcp-streams-unique-*-packets.txt).
+  -f, --freq-sort      Sort count files by count (descending), then by key. Default: by key.
   -h, --help           Show this help and exit.
-
-Behavior:
-  - Reads files under packets/decrypted_annotated (same as your old script).
-  - Produces count files in the parent directory (same names as before).
-  - Keeps the unique files only if -k is provided.
 USAGE
 }
 
+die() { echo "ERROR: $*" >&2; exit 2; }
 
-# Parse CLI flags
 parse_args() {
   KEEP_UNIQUE=0
   FREQ_SORT=0
-
-  while (( "$#" )); do
+  while (( $# )); do
     case "$1" in
       -k|--keep-unique) KEEP_UNIQUE=1; shift ;;
       -f|--freq-sort)   FREQ_SORT=1;   shift ;;
       -h|--help)        print_help; exit 0 ;;
-      *) echo "Unknown option: $1" >&2; print_help; exit 2 ;;
+      *) echo "Unknown option: $1" >&2; print_help >&2; exit 2 ;;
     esac
   done
 }
 
-
-# Ensure environment (directories, required tools)
 validate_env() {
-  if [ ! -d "$ANNOTATED_DIR" ]; then
-    echo "Error: annotated directory not found: $ANNOTATED_DIR" >&2
-    exit 1
-  fi
-  # awk and sort are required; available on any reasonable POSIX system
-  if ! command -v awk >/dev/null 2>&1; then
-    echo "Error: awk not found" >&2
-    exit 1
-  fi
-  if ! command -v sort >/dev/null 2>&1; then
-    echo "Error: sort not found" >&2
-    exit 1
-  fi
+  local cmd
+  for cmd in awk sort mktemp mv rm sed; do
+    command -v "$cmd" >/dev/null 2>&1 || die "required command '$cmd' not found (use Git Bash, MSYS2, or WSL)"
+  done
+  [[ -d "$ANNOTATED_DIR" ]] || die "annotated directory not found: $ANNOTATED_DIR"
+  shopt -s nullglob
+  INPUTS=("$ANNOTATED_DIR"/*.yaml.annotated.txt)
+  shopt -u nullglob
+  (( ${#INPUTS[@]} > 0 )) || die "no *.yaml.annotated.txt files in $ANNOTATED_DIR"
+
+  # A stream must be present either unsplit or as _1.._N pieces, never both (double counting).
+  local dupes
+  dupes=$(printf '%s\n' "${INPUTS[@]##*/}" | sed -E 's/(_[0-9]+)?\.yaml\.annotated\.txt$//' \
+    | LC_ALL=C sort | uniq -c | awk '$1 > 1 { print $2 }' \
+    | while read -r stem; do
+        [[ -e "$ANNOTATED_DIR/$stem.yaml.annotated.txt" ]] && echo "$stem"
+      done || true)
+  [[ -z "$dupes" ]] || die "streams present both unsplit and split (would be counted twice): $dupes"
 }
 
-
-# Remove old output files produced by previous runs
-cleanup_old_outputs() {
-  rm -f "${OUTDIR}decrypted-tcp-streams-unique-"*"-packets.txt" \
-        "${OUTDIR}decrypted-tcp-streams-unique-"*"-packets-count.txt"
-}
-
-
-# Run the single-pass awk normalization + counting
-# Writes per-tag count files and (optionally) per-tag unique files.
+# One awk pass. A packet starts at a header line
+#   "Client #000041 (18.0.1) C2S_..._REQ Pcap(No:10289 Ts:...)"
+# and ends at the next header or end of file. Only header lines are counted; the packet's
+# StructDump line (if any) tells whether a C# structure exists and whether it parsed.
 run_awk() {
-  cd "$ANNOTATED_DIR"
-
-  # Pass keep flag into awk as numeric 0/1
-  awk -v outdir="$OUTDIR" -v keep="$KEEP_UNIQUE" '
-  # normalize(s): trim, remove "Server"/"Client", drop "Pcap..." suffix, remove "#digits", collapse whitespace
-  function normalize(s) {
-    gsub(/Server|Client/,"",s)
-    sub(/Pcap.*$/,"",s)
-    gsub(/#[0-9]+/,"",s)
-    gsub(/[[:space:]]+/," ",s)
-    gsub(/^[[:space:]]+|[[:space:]]+$/,"",s)
-    return s
+  LC_ALL=C awk -v outdir="$1" -v keep="$KEEP_UNIQUE" '
+  function finish() {
+    if (name == "") return
+    if (!has_struct) missing[name " " id] = 1
+    else if (!struct_ok) failed["(" id ") " name]++
+    name = ""
   }
-
-  {
-    tag = ""
-    if (index($0,"C2S")) tag="C2S"
-    else if (index($0,"S2C")) tag="S2C"
-    else if (index($0,"L2C")) tag="L2C"
-    else if (index($0,"C2L")) tag="C2L"
-    else if (index($0,"Unknown Pcap")) tag="Unknown"
-    else next
-
-    key = normalize($0)
-    if (key == "") next
-
-    counts[tag SUBSEP key]++
-
-    if (keep == 1) {
-      # print unique keys once per tag
-      if (!printed[tag SUBSEP key]++) {
-        if (tag == "C2S") fname = outdir "decrypted-tcp-streams-unique-c2s-packets.txt"
-        else if (tag == "S2C") fname = outdir "decrypted-tcp-streams-unique-s2c-packets.txt"
-        else if (tag == "L2C") fname = outdir "decrypted-tcp-streams-unique-l2c-packets.txt"
-        else if (tag == "C2L") fname = outdir "decrypted-tcp-streams-unique-c2l-packets.txt"
-        else fname = outdir "decrypted-tcp-streams-unique-unknown-packets.txt"
-        print key >> fname
-      }
-    }
+  function direction(n) {
+    p = substr(n, 1, 4)
+    if (p == "C2S_") return "c2s"
+    if (p == "S2C_") return "s2c"
+    if (p == "C2L_") return "c2l"
+    if (p == "L2C_") return "l2c"
+    return "unknown"
   }
-
+  FNR == 1 { finish() }
+  /^(Client|Server) #[0-9]+ \([0-9]+\.[0-9]+\.[0-9]+\) [^ ]+ Pcap\(/ {
+    finish()
+    match($0, /\([0-9]+\.[0-9]+\.[0-9]+\)/)
+    id = substr($0, RSTART + 1, RLENGTH - 2)
+    rest = substr($0, RSTART + RLENGTH + 1)
+    name = substr(rest, 1, index(rest, " ") - 1)
+    has_struct = 0; struct_ok = 0
+    key = "(" id ") " name
+    counts[direction(name) SUBSEP key]++
+    headers++
+    next
+  }
+  name != "" && /^StructDump:/ {
+    has_struct = 1
+    struct_ok = ($0 ~ /^StructDump: \{/)
+  }
   END {
+    finish()
     for (k in counts) {
       split(k, a, SUBSEP)
-      tag = a[1]; key = a[2]
-      if (tag == "C2S") fname = outdir "decrypted-tcp-streams-unique-c2s-packets-count.txt"
-      else if (tag == "S2C") fname = outdir "decrypted-tcp-streams-unique-s2c-packets-count.txt"
-      else if (tag == "L2C") fname = outdir "decrypted-tcp-streams-unique-l2c-packets-count.txt"
-      else if (tag == "C2L") fname = outdir "decrypted-tcp-streams-unique-c2l-packets-count.txt"
-      else fname = outdir "decrypted-tcp-streams-unique-unknown-packets-count.txt"
-      print key "," counts[k] >> fname
+      print a[2] "," counts[k] > (outdir "/decrypted-tcp-streams-unique-" a[1] "-packets-count.txt")
+      if (keep) print a[2] > (outdir "/decrypted-tcp-streams-unique-" a[1] "-packets.txt")
     }
+    for (k in missing) print k > (outdir "/packets-missing-structure-dumps.txt")
+    for (k in failed) print k "," failed[k] > (outdir "/packets-structure-parse-failures.txt")
+    printf "%d packets, %d packet types, %d without structure, %d failing to parse\n",
+      headers, length(counts), length(missing), length(failed) > "/dev/stderr"
   }
-  ' *
+  ' "${INPUTS[@]}"
 }
 
-
-# Sort the output files to match previous behavior
-# - unique files: alphabetical
-# - count files: alphabetical by key OR by frequency (if requested)
 sort_outputs() {
-  shopt -s nullglob
-  for f in "${OUTDIR}"decrypted-tcp-streams-unique-*-packets*.txt; do
-    [ -f "$f" ] || continue
-    if [[ "$f" == *-packets-count.txt ]]; then
-      if [ "$FREQ_SORT" -eq 1 ]; then
-        # sort by frequency (second field), numeric, descending
-        sort -t, -k2,2nr -o "$f" "$f"
-      else
-        sort -o "$f" "$f"
-      fi
+  local f
+  for f in "$1"/*.txt; do
+    if [[ "$f" == *-count.txt || "$f" == *parse-failures.txt ]] && (( FREQ_SORT )); then
+      LC_ALL=C sort -t, -k2,2nr -k1,1 -o "$f" "$f"
     else
-      # unique files: alphabetical
-      sort -o "$f" "$f"
+      LC_ALL=C sort -o "$f" "$f"
     fi
   done
-  shopt -u nullglob
 }
 
-
-# Remove the unique packet files unless the user asked to keep them
-remove_unique_if_needed() {
-  if [ "$KEEP_UNIQUE" -eq 0 ]; then
-    rm -f "${OUTDIR}decrypted-tcp-streams-unique-"*"-packets.txt"
-  fi
-}
-
-
-# Main orchestration
 main() {
   parse_args "$@"
+  cd "$(dirname "${BASH_SOURCE[0]}")"
   validate_env
-  cleanup_old_outputs
-  run_awk
-  sort_outputs
-  remove_unique_if_needed
 
-  echo "Done. Count files are in ${OUTDIR} (unique kept: $KEEP_UNIQUE; freq-sort: $FREQ_SORT)."
+  local d f
+  # Global, not local: the EXIT trap runs after main has returned.
+  STAGE=$(mktemp -d ./.statistics.XXXXXX)
+  trap 'rm -rf "${STAGE:?}"' EXIT
+  local stage=$STAGE
+
+  # Every output exists even when empty, so a vanished category is visible as an empty file.
+  for d in "${DIRECTIONS[@]}"; do
+    : >"$stage/decrypted-tcp-streams-unique-$d-packets-count.txt"
+    if (( KEEP_UNIQUE )); then : >"$stage/decrypted-tcp-streams-unique-$d-packets.txt"; fi
+  done
+  : >"$stage/packets-missing-structure-dumps.txt"
+  : >"$stage/packets-structure-parse-failures.txt"
+
+  echo "Reading ${#INPUTS[@]} annotated dump(s) from $ANNOTATED_DIR" >&2
+  run_awk "$stage"
+  sort_outputs "$stage"
+
+  # Publish only after everything succeeded. Drop an empty "unknown" file instead of adding it.
+  (( KEEP_UNIQUE )) || rm -f ./decrypted-tcp-streams-unique-*-packets.txt
+  for f in "$stage"/*.txt; do
+    if [[ ! -s "$f" && "$f" == *-unknown-* ]]; then rm -f "./${f##*/}"; continue; fi
+    mv -f "$f" "./${f##*/}"
+  done
+  echo "Done (unique lists kept: $KEEP_UNIQUE; freq-sort: $FREQ_SORT)." >&2
 }
 
 main "$@"

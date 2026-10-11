@@ -30,6 +30,7 @@ Top-of-script variables you will change or override via environment:
 Notes:
 
 * The script creates a temporary directory (`mktemp -d`) for per-job logs and removes it on exit. To persist logs, set `tmpdir` to a permanent location and remove the `trap` that deletes it.
+* Parallel CLI instances share one log file (`bin/Debug/net10.0/Logs/<date>.log.txt`); a job that loses the race crashes with `IOException ... being used by another process` and exit code 127, without output. The script still exits 0, so check every `JOB DONE` line and rerun failed streams with `MAX_JOBS=1`. To re-export a subset, hard-link the YAMLs into a short-named folder and set `STREAM_DIR` to it.
 
 [[usage]]
 == Usage
@@ -50,3 +51,96 @@ Per-job output (abbreviated):
 * Default: `MAX_JOBS` defaults to the number of logical CPUs.
 * If CLI is I/O-bound, increasing `MAX_JOBS` can help. If CPU-bound, set `MAX_JOBS` to the number of physical cores or fewer.
 * Test with small values first; reduce `MAX_JOBS` if the machine becomes unresponsive.
+
+[[arrowgene-patches]]
+== Required Arrowgene CLI patches
+
+The annotated dumps in `decrypted_annotated/` are produced with a locally patched build of
+`Arrowgene.Ddon.Cli` from the upstream clone
+`C:\Users\morph\Documents\GitHub\Sehkah\Arrowgene.DragonsDogmaOnline.Upstream` (branch `develop`,
+base `e2411fe8`, patches uncommitted). Build it with
+`dotnet build Arrowgene.Ddon.Cli/Arrowgene.Ddon.Cli.csproj -c Debug`. An unpatched build skips the
+affected packets with `Unable to parse structure for resolved packet ... Skipping.` and writes
+`StructDump:` without a structure.
+
+Why the structure patches are needed: `EntitySerializer.ReadServerResponse` reads `Result` as a
+`u16` whenever `Error != 0`, but servers keep writing the full response (`Error` and `Result` as
+`u32`, then the payload). Every field after `Result` is then read 2 bytes early: an empty list's
+count becomes a huge number and parsing runs into the packet's block padding
+(`EndOfStreamException`). The Season 3 client does not read past a non-zero `Error`
+(for example `GROUP_CHAT_GET_MEMBER_LIST_RES` reader `0x809D80` in the PC 03040008 client), so the
+patches stop the same way:
+
+[source,csharp]
+----
+ReadServerResponse(buffer, obj);
+if (obj.Error != 0) return obj;
+----
+
+[cols="2,1,3"]
+|===
+|Patched file (`Arrowgene.Ddon.Shared/Entity/PacketStructure/`) |Packet |Observed error
+
+|`S2CGroupChatGetMemberListRes.cs`
+|18.0.2
+|`0xB79B` ERROR_CODE_GROUP_CHAT_NOT_IN_GROUP in all 41 captures (e.g. stream85 tcp-stream-11, pcap 10290)
+
+|`S2CInstanceEnemyKillRes.cs`
+|
+|same pattern; captures not re-checked when this was written
+
+|`S2CSkillGetAcquirableSkillListRes.cs`
+|
+|same pattern; captures not re-checked when this was written
+
+|`S2CSkillGetAcquirableAbilityListRes.cs`
+|
+|same pattern; captures not re-checked when this was written
+|===
+
+Known limitation: the patched structures report `Result: 0` instead of the sent value, because
+`ReadServerResponse` already consumed only two bytes of it.
+
+`Arrowgene.Ddon.Cli/Command/PacketCommand.cs` is also patched to log
+`No structure for packet: <name> <id>` at debug level, which lists packets that still need a C#
+structure.
+
+A packet that fails to parse is a structure bug, not a capture problem: write an ImHex pattern in
+`../research/03040008/packets/`, check it against the client's `nPacket::Read_*` routine, then fix
+the C# structure.
+
+[[splitting]]
+== Splitting large dumps
+
+`decrypted_annotated/` keeps files under 50 MiB. Split a larger dump at packet boundaries with:
+
+----
+./split-annotated.sh [--force] encrypted_streams/<stream>.yaml.annotated.txt [decrypted_annotated] [max_bytes]
+----
+
+It writes `<stream>_1.yaml.annotated.txt` ... `<stream>_N.yaml.annotated.txt` (or the unsuffixed
+name if the dump fits), never cuts a packet in two, and verifies that concatenating the pieces
+reproduces the input byte for byte before replacing anything. `--force` replaces the stream's
+existing pieces. This replaces the manual `split -C 50M` plus moving cut-off packets by hand.
+
+[[imhex-export]]
+== Exporting packet structures with ImHex
+
+`./imhex-export.sh [--force] <packet-filter> <pattern-name> [jobs]` decodes the per-packet files in
+`decrypted_raw/<stream>/` with `../research/03040008/packets/<pattern-name>-pattern.cpp` and writes
+`decrypted_json/<stream>/<packet-file>.json`. Set `IMHEX` if ImHex is not on `PATH`; output paths
+must stay under 260 characters for the Windows ImHex build.
+
+[[statistics]]
+== Packet statistics
+
+`./statistics-commands.sh [-k] [-f]` reads every dump in `decrypted_annotated/` in one pass and
+rewrites, only after a successful run:
+
+* `decrypted-tcp-streams-unique-{c2s,s2c,c2l,l2c}-packets-count.txt`: `(group.id.sub) NAME,count`;
+* `packets-missing-structure-dumps.txt`: packet types without a C# structure (no `StructDump:` line);
+* `packets-structure-parse-failures.txt`: packets whose structure failed to parse, with counts.
+
+Only packet header lines are counted. It refuses to run when a stream exists both unsplit and as
+`_N` pieces. The results mix CLI versions until every stream is re-exported with the same build:
+packet names come from the CLI that produced each dump.
