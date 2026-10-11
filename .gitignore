@@ -40,7 +40,18 @@ logs/
 *.tmp
 *.temp
 *~
+
+# Claude Code: share settings.json, skills, and agents; keep per-user settings local
 .claude/*
+!.claude/settings.json
+!.claude/skills/
+!.claude/agents/
+
+# Local environments and tool caches
+/.venv/
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
 
 # Generated flags research outputs
 research/03040008/flags/build/

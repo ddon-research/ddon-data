@@ -1,0 +1,43 @@
+name: Knowledge Graph Quality
+
+on:
+  push:
+    paths:
+      - "research/knowledge-graph/**"
+      - ".github/workflows/knowledge-graph-quality.yml"
+  pull_request:
+    paths:
+      - "research/knowledge-graph/**"
+      - ".github/workflows/knowledge-graph-quality.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: research/knowledge-graph
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.14"
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+          cache-dependency-glob: research/knowledge-graph/uv.lock
+      - name: Install locked dependencies
+        run: uv sync --all-groups --frozen
+      - name: Lint
+        run: uv run ruff check --no-fix src tests
+      - name: Check formatting
+        run: uv run ruff format --check src tests
+      - name: Type check
+        run: uv run mypy src tests
+      - name: Test
+        run: uv run pytest
