@@ -27,7 +27,7 @@ Treat it as versioned evidence, not as source code.
 | `research/<build>/` | ImHex patterns `r<Type>-pattern.cpp`, packet patterns, notes, DTI dumps | Hand-authored |
 | `research/03040008/flags/` | `ddon-flags` Python project (quest/layout flag investigation) and `generated/` reports | This repo |
 | `research/knowledge-graph/` | `ddon-knowledge-graph` Python project (Neo4j evidence graph + MCP), own Spec Kit project | This repo |
-| `research/ghidra/`, `research/ida/`, `research/pharos/` | PyGhidra headless analyzer, IDA helpers, Pharos OOAnalyzer (Docker) | This repo |
+| `research/ida/`, `research/pharos/` | IDA helpers, Pharos OOAnalyzer (Docker) | This repo |
 | `plan/` | Older flag-investigation plans | Historical |
 
 - **Disassembler databases** (inputs, never copy them here): `D:\research\DDON-binaries\` holds
@@ -43,6 +43,11 @@ Treat it as versioned evidence, not as source code.
   PS4 DWARF and reads `D:\ddon-data-s2\client\02030004` as an oracle; `D:\ddon-dwarf-reconstructor`
   is the archived Python predecessor, still used by knowledge-graph enrichment. Server emulator:
   `D:\GitHub\Sehkah\Arrowgene.DragonsDogmaOnline` (fork) and its `.Upstream` clone.
+- **Ghidra scripts** (archived): `D:\ddon-ghidra-scripts`
+  (https://github.com/ddon-research/ddon-ghidra-scripts) holds the PyGhidra headless analyzer
+  (DWARF struct export, recursive decompilation, graph export) and standalone Script Manager
+  scripts, formerly `research/ghidra/`. Prefer IDA MCP and the reconstructors for new work; the
+  knowledge graph is moving to them.
 
 ## Evidence rules
 
@@ -99,7 +104,7 @@ POSIX equivalent.
   pipelines over `/mnt/d` only when Git Bash lacks the tool; cross-filesystem I/O is slow.
 - Python: each project uses its own `uv` environment (`uv run` from the project directory) and
   CPython 3.14. Run ad-hoc scripts as `python -X utf8 -I <script>`. The root `.venv` is a legacy
-  PyGhidra stub environment; do not install into it.
+  PyGhidra stub environment, unused since the Ghidra scripts moved out; do not install into it.
 - No TTY: leave `PAGER`/`GIT_PAGER` unset and avoid interactive or ANSI-only tools.
 - Available in Git Bash: `rg fd sd jq dust zstd xxd tshark radare2 uv gh docker`. ImHex CLI is
   not on `PATH`; say so instead of assuming pattern validation ran.
@@ -111,8 +116,8 @@ POSIX equivalent.
   see `D:\ddon-extractor\README.md`), then replace `client/<build>/`. Review the change with
   `git diff --stat` per resource type before committing.
 - **Resource format research**: identify the extension (`research/find-unsupported-extensions.sh`),
-  get the class layout from DWARF and its `load`/`save` methods (IDA MCP or
-  `research/ghidra/headless-scripts/run_ghidra_analysis.sh dwarf|function <name> DDOORBIS.elf`),
+  get the class layout from DWARF and its `load`/`save` methods (IDA MCP, or the archived
+  `D:/ddon-ghidra-scripts/headless-scripts/run_ghidra_analysis.sh dwarf|function <name> DDOORBIS.elf`),
   write `research/<build>/r<Type>-pattern.cpp`, validate with
   `imhex --pl format --pattern <pattern> --input <file>` (`research/validate_pattern.sh`), and
   cross-check against the extractor JSON. See `research/README.adoc`.
@@ -176,4 +181,3 @@ hot paths first.
   `.venv-cpython314` (setup in the README); tests:
   `.venv-cpython314/Scripts/python.exe -m unittest discover -s tests -v`. Regenerating `generated/` rewrites thousands of
   reports: run it only when asked.
-- `research/ghidra/headless-scripts/`: configure `.env` from `.env.template` (PyGhidra path).

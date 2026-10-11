@@ -75,8 +75,9 @@ client data, with generated per-quest reports.
 IDA, Ghidra, reconstructor, and resource observations. Planned with Spec Kit in its own `specs/`.
 |This repository
 
-|`research/ghidra/`, `research/ida/`, `research/pharos/`
-|PyGhidra headless analyzer and standalone Ghidra scripts, IDA helpers, Pharos OOAnalyzer setup.
+|`research/ida/`, `research/pharos/`
+|IDA helpers, Pharos OOAnalyzer setup. The Ghidra/PyGhidra scripts moved to
+link:https://github.com/ddon-research/ddon-ghidra-scripts[ddon-ghidra-scripts].
 |This repository
 
 |`research/` (other)
@@ -107,7 +108,8 @@ stable.
 
 == Toolchain
 
-* Disassembly: IDA Pro 9.5 (with the IDA MCP server and IDA Assist) and Ghidra 11.4 with PyGhidra.
+* Disassembly: IDA Pro 9.5 (with the IDA MCP server and IDA Assist) and Ghidra 11.4 with PyGhidra
+  (scripts in link:https://github.com/ddon-research/ddon-ghidra-scripts[ddon-ghidra-scripts], archived).
 * Resource extraction: https://github.com/ddon-research/ddon-extractor[ddon-extractor].
 * Pattern inspection: ImHex (CLI `imhex --pl format`).
 * Packet analysis: Wireshark and `tshark`;
@@ -130,7 +132,8 @@ stable.
 
 . Find extensions the extractor does not support yet: `research/find-unsupported-extensions.sh`.
 . Recover the class layout and its `load`/`save` methods from the PS4 debug symbols, through IDA
-  or `research/ghidra/headless-scripts/run_ghidra_analysis.sh dwarf|function <name> DDOORBIS.elf`.
+  or the archived link:https://github.com/ddon-research/ddon-ghidra-scripts[ddon-ghidra-scripts]
+  (`headless-scripts/run_ghidra_analysis.sh dwarf|function <name> DDOORBIS.elf`).
 . Write an ImHex pattern in `research/<build>/r<Type>-pattern.cpp` and validate it against real
   files with `imhex --pl format --pattern <pattern> --input <file>`.
 . Cross-check the result against the extractor JSON. `research/README.adoc` describes the

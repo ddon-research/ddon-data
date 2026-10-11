@@ -13,7 +13,7 @@ Systematic workflow for decoding DDON resource files using PS4 debug symbo autom
 
 === Required Tools
 * **ImHex** - Hex editor with pattern language support (CLI enabled)
-* **PyGhidra** - Headless Ghidra automation
+* **PyGhidra** - Headless Ghidra automation via link:https://github.com/ddon-research/ddon-ghidra-scripts[ddon-ghidra-scripts] (archived; clone to `D:/ddon-ghidra-scripts`)
 * **Ghidra 11.4+** - With PS4 DDON project imported
 * **Bash environment** - WSL, Git Bash, or native Linux/macOS for automation scripts
 
@@ -21,7 +21,7 @@ Systematic workflow for decoding DDON resource files using PS4 debug symbo autom
 * **PS4 Debug Symbols** - DWARF symbols imported in Ghidra project
 * **Season 2 Resource Files** - Located in `DDON_02030004/nativePC/rom/`
 * **Season 3 Resource Files** - Located in `DDON_03040008/nativePC/rom/` 
-* **Configuration** - `.env` file in `research/ghidra/headless-scripts/` with paths and settings
+* **Configuration** - `.env` file in `ddon-ghidra-scripts/headless-scripts/` with paths and settings
 
 == Automation Workflow
 
@@ -66,13 +66,13 @@ Analyze the outputs to identify:
 
 **Commands**:
 ```bash
-cd research/ghidra/headless-scripts
+cd D:/ddon-ghidra-scripts/headless-scripts
 
 # Get complete struct definitions with dependencies
-./run_ghidra_analysis.sh dwarf "rResourceName" "DDOORBIS.elf" > ../../rResourceName.h
+./run_ghidra_analysis.sh dwarf "rResourceName" "DDOORBIS.elf" > /d/ddon-data/research/rResourceName.h
 
 # Get load function with magic numbers and binary layout
-./run_ghidra_analysis.sh function "rResourceName::load" "DDOORBIS.elf" > ../../rResourceName_load.cpp
+./run_ghidra_analysis.sh function "rResourceName::load" "DDOORBIS.elf" > /d/ddon-data/research/rResourceName_load.cpp
 ```
 
 === Step 3: Pattern Generation
@@ -193,11 +193,8 @@ research/
 ├── rLandInfo-example.adoc         # Practical example walkthrough  
 ├── 02030004/                      # Season 2 patterns
 │   └── rResourceName-pattern.cpp
-├── 03040008/                      # Season 3 patterns (manual)  
-│   └── rResourceName-pattern.cpp
-└── ghidra/                        # Automation scripts
-    └── headless-scripts/
-        └── run_ghidra_analysis.sh
+└── 03040008/                      # Season 3 patterns (manual)  
+    └── rResourceName-pattern.cpp
 ```
 
 == LLM Integration Points
@@ -219,7 +216,7 @@ research/
 == Reference Files
 
 * **Practical Example**: link:rLandInfo-example.adoc[rLandInfo Walkthrough] - Complete example with actual resource files and validation results
-* **Tool Documentation**: link:ghidra/README.adoc[Ghidra Automation Scripts] - PyGhidra headless analysis setup
+* **Tool Documentation**: link:https://github.com/ddon-research/ddon-ghidra-scripts[ddon-ghidra-scripts] - PyGhidra headless analysis setup (`headless-scripts/ddon-binary-analyzer/README.adoc`)
 * **Pattern Examples**: `research/02030004/` and `research/03040008/` directories with working patterns
 * **Extension Analysis**: link:find-unsupported-extensions.sh[Extension Coverage Script] - Automated identification of reverse engineering targets
 
@@ -230,7 +227,7 @@ research/
 # Resource identification
 grep "\.ext" ddon-extractor/docs/deserialization/supported-file-extensions.csv
 
-# Symbol extraction (from research/ghidra/headless-scripts/)
+# Symbol extraction (from D:/ddon-ghidra-scripts/headless-scripts/)
 ./run_ghidra_analysis.sh dwarf "rResourceName" "DDOORBIS.elf"
 ./run_ghidra_analysis.sh function "rResourceName::load" "DDOORBIS.elf"
 
