@@ -4,7 +4,9 @@
 
 ## Resume
 
-- Root Spec Kit project: no features yet (`specs/` is created by `/speckit-specify`).
+- Root Spec Kit project: no active feature. `specs/001-ps4-static-dumps/` (PS4 ELF static dumps)
+  is closed; its output is `binaries/PS4_02020005/elf-dumps/`, with the comparison material in
+  the gitignored `elf-dumps/archive/`.
 - Knowledge graph: `research/knowledge-graph/specs/001-pre-extraction-knowledge-graph/` is active;
   `research/knowledge-graph/specs/STATUS.md` is the dashboard.
 - Flag investigation: `research/03040008/flags/TODO.md` and `plan/*.md`.

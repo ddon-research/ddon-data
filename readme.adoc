@@ -45,6 +45,13 @@ All data is provided for research, interoperability, and educational purposes.
 (decompiled code, split for size).
 |IDA Pro
 
+|`binaries/PS4_02020005/elf-dumps/`
+|Static dumps of `DDOORBIS.elf` with provenance: program headers with SCE types, the full dynamic
+table, NIDs, relocations, symbols, strings, stack sizes, unwind data, every DWARF section and all
+line tables, each from the most accurate tool. Its `README.adoc` is a status report on the binary
+and the set.
+|Orbis SDK 12 `orbis-bin`, LLVM 23 (`generate-elf-dumps.sh`)
+
 |`binaries/ANDROID_1500/`
 |Decompiled Unity C# scripts and the asset path map of the Android companion app.
 |AssetRipper / ILSpy
@@ -96,6 +103,7 @@ link:https://github.com/ddon-research/ddon-ghidra-scripts[ddon-ghidra-scripts].
 ----
 game clients (D:\DDON_<build>\nativePC\rom) ──ddon-extractor──▶ client/<build>/
 PS4 DDOORBIS.elf (DWARF) ──IDA / Ghidra──▶ binaries/PS4_<build>/, research/ patterns
+PS4 DDOORBIS.elf ──orbis-bin, LLVM (generate-elf-dumps.sh)──▶ binaries/PS4_02020005/elf-dumps/
 packet captures (.pcapng) ──split, key bruteforce, Arrowgene CLI──▶ packets/
 client/ + binaries/ + reconstructor output ──▶ research/knowledge-graph, research/03040008/flags
 ----

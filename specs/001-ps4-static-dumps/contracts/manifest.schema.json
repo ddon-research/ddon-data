@@ -1,0 +1,322 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "elf-dumps manifest entry (one JSON object per line of manifest.jsonl)",
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+(\\.[a-z0-9+-]+)+$"
+    },
+    "categories": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z0-9-]+$"
+      }
+    },
+    "produced": {
+      "type": "object",
+      "required": [
+        "id",
+        "kind",
+        "categories",
+        "role",
+        "file",
+        "storage",
+        "tool",
+        "argv",
+        "cwd",
+        "input",
+        "output",
+        "stderr",
+        "exit",
+        "expected_exit",
+        "status",
+        "seconds",
+        "generated"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "kind": {
+          "enum": [
+            "tool",
+            "derived"
+          ]
+        },
+        "categories": {
+          "$ref": "#/$defs/categories"
+        },
+        "role": {
+          "enum": [
+            "primary",
+            "supplement",
+            "comparison",
+            "intermediate"
+          ]
+        },
+        "file": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "storage": {
+          "enum": [
+            "txt",
+            "zst",
+            "local",
+            "staging"
+          ]
+        },
+        "tool": {
+          "type": "object",
+          "required": [
+            "name",
+            "path",
+            "version",
+            "sha256"
+          ],
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "path": {
+              "type": "string"
+            },
+            "version": {
+              "type": "string"
+            },
+            "sha256": {
+              "$ref": "#/$defs/sha256"
+            }
+          }
+        },
+        "argv": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "cwd": {
+          "type": "string"
+        },
+        "input": {
+          "type": "object",
+          "required": [
+            "path",
+            "origin",
+            "sha256",
+            "size"
+          ],
+          "properties": {
+            "path": {
+              "type": "string"
+            },
+            "origin": {
+              "type": "string"
+            },
+            "sha256": {
+              "const": "4236f598acc8f15893181455ed195e39dfa4dbfda4eeda8b56fcbd82312c63c0"
+            },
+            "size": {
+              "const": 800622848
+            }
+          }
+        },
+        "inputs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "sha256"
+            ],
+            "properties": {
+              "id": {
+                "$ref": "#/$defs/id"
+              },
+              "sha256": {
+                "$ref": "#/$defs/sha256"
+              }
+            }
+          }
+        },
+        "inferred": {
+          "type": "boolean"
+        },
+        "output": {
+          "type": "object",
+          "required": [
+            "sha256",
+            "size",
+            "lines",
+            "stored_size"
+          ],
+          "properties": {
+            "sha256": {
+              "$ref": "#/$defs/sha256"
+            },
+            "size": {
+              "type": "integer"
+            },
+            "lines": {
+              "type": "integer"
+            },
+            "stored_size": {
+              "type": "integer"
+            }
+          }
+        },
+        "stderr": {
+          "type": "object",
+          "required": [
+            "lines"
+          ],
+          "properties": {
+            "file": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "lines": {
+              "type": "integer"
+            },
+            "first": {
+              "type": "string"
+            }
+          }
+        },
+        "exit": {
+          "type": "integer"
+        },
+        "expected_exit": {
+          "type": "integer"
+        },
+        "status": {
+          "enum": [
+            "ok",
+            "failed",
+            "timeout"
+          ]
+        },
+        "seconds": {
+          "type": "number"
+        },
+        "generated": {
+          "type": "string",
+          "format": "date"
+        },
+        "notes": {
+          "type": "string"
+        }
+      },
+      "if": {
+        "properties": {
+          "kind": {
+            "const": "derived"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "inputs",
+          "inferred"
+        ]
+      }
+    },
+    "not_produced": {
+      "type": "object",
+      "required": [
+        "id",
+        "kind",
+        "categories",
+        "reason",
+        "evidence",
+        "generated"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "kind": {
+          "const": "not-produced"
+        },
+        "categories": {
+          "$ref": "#/$defs/categories"
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 10
+        },
+        "evidence": {
+          "$ref": "#/$defs/id"
+        },
+        "generated": {
+          "type": "string",
+          "format": "date"
+        }
+      }
+    },
+    "run_meta": {
+      "type": "object",
+      "required": [
+        "id",
+        "kind",
+        "generated",
+        "zstd_version",
+        "python_version",
+        "uv_version",
+        "script_sha256",
+        "volatile"
+      ],
+      "properties": {
+        "id": {
+          "const": "run.meta"
+        },
+        "kind": {
+          "const": "meta"
+        },
+        "generated": {
+          "type": "string",
+          "format": "date"
+        },
+        "zstd_version": {
+          "type": "string"
+        },
+        "python_version": {
+          "type": "string"
+        },
+        "uv_version": {
+          "type": "string"
+        },
+        "script_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "volatile": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "oneOf": [
+    {
+      "$ref": "#/$defs/run_meta"
+    },
+    {
+      "$ref": "#/$defs/produced"
+    },
+    {
+      "$ref": "#/$defs/not_produced"
+    }
+  ]
+}

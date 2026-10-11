@@ -21,6 +21,7 @@ Treat it as versioned evidence, not as source code.
 | --- | --- | --- |
 | `client/03040008/` | ~173k JSON files mirroring the `nativePC/rom` tree, plus `*-resources.csv`, `*-headers.csv`, `*-extensions.txt` summaries | `D:\ddon-extractor` (Java CLI); input `D:\DDON_03040008`, translations `D:\DDON-translation\gmd.csv` |
 | `binaries/PS4_02020005/` | IDA export `DDOORBIS.elf.h` + `DDOORBIS_{1,2,3}.elf.c` (split for size) | IDA 9.3 dump of `D:\research\DDON-binaries\IDA9.3\PS4_DDON_02020005_2016_12_21\DDOORBIS.elf` |
+| `binaries/PS4_02020005/elf-dumps/` | Reference static dumps of the same `DDOORBIS.elf`, one preferred source per category (headers, SCE dynamic table, NIDs, relocations, symbols, strings, stack sizes, unwind, every DWARF section, all line tables), `manifest.jsonl` provenance, `README.adoc` status report; `local/` (gitignored) holds the multi-GB dumps; `archive/` (gitignored, local only) holds the tool comparison and the closed reconstructor handover | `elf-dumps/generate-elf-dumps.sh` (orbis-bin SDK 12, LLVM 23); spec `specs/001-ps4-static-dumps/` |
 | `binaries/ANDROID_1500/` | Decompiled Unity C# and `path_id_map.json` | `D:\research\DDON-binaries\Android` tools |
 | `packets/` | `encrypted_streams/`, `decrypted_{raw,json,annotated}/`, `keys/`, packet statistics | `D:\research\DDON-pcaps` toolchain: `ddon_pcap_split`, `ddon_common_key_bruteforce`, `Arrowgene.Ddon.Cli` |
 | `patches/` | radare2 `.r2` patch scripts + `.json` metadata for Windows `DDO.exe` builds | Hand-authored; see `patches/README.md` |
@@ -34,6 +35,8 @@ Treat it as versioned evidence, not as source code.
   `IDA9.3\` (packed `.i64` + `.c`/`.h` exports per build), `IDA9.5\` (live databases, see below),
   `Ghidra11.4\` projects, and raw `PC\`, `PS4\`, `PS3\`, `PSV\`, `Android\` dumps. In the canonical
   PS4 folder, `DDOORBIS.elf.llvmdwarfdump.zst` (1.1 GB) must be streamed, never decompressed.
+  The undocumented `*.objdump.*`/`*.readelf.*` text dumps there are superseded by
+  `binaries/PS4_02020005/elf-dumps/` (its README maps each old file to its successor).
 - **Game clients** (inputs): `D:\DDON_01010004`, `D:\DDON_02030004`, `D:\DDON_02030010`,
   `D:\DDON_03040008`, each with `nativePC/rom`.
 - **Readers of this repo**: `D:\ddon-explorer-server` (reads `client/03040008`),
@@ -134,6 +137,13 @@ POSIX equivalent.
   `D:\research\DDON-binaries\IDA9.5\PC_DDON_03040008\2022_01_29_DDO_DUMP_FIX.exe.i64` and
   `D:\research\DDON-binaries\IDA9.5\PS4_DDON_02020005_2016_12_21\DDOORBIS.elf.i64`. Query them
   read-only unless asked to annotate; never overwrite them from a headless copy.
+- **PS4 ELF dumps**: `binaries/PS4_02020005/elf-dumps/generate-elf-dumps.sh` (`--dry-run`,
+  `--skip-local`, `--only <id-glob>`, `--verify`, `--exec <tool> ...`). It reads only a
+  hash-verified copy of the ELF in `.staging/` and never writes to the IDA9.3 folder. For SCE
+  structures trust `orbis-bin`, for DWARF and symbols LLVM, for address → line with inlining
+  `orbis-addr2line -i`; never GNU binutils for symbol values (`elf-dumps/README.adoc` § 5).
+  `elf-dumps/archive/` (gitignored, local only) is a fixed record (comparison, handover); do not regenerate or extend it.
+  The Orbis SDK help texts are "SIE CONFIDENTIAL": keep them in `local/`, never commit them.
 
 ## Conventions
 

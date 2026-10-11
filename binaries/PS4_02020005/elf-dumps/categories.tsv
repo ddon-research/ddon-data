@@ -1,0 +1,52 @@
+category	group	description	primary	reason
+file-header	headers	ELF file header (type ET_SCE_DYNEXEC, entry, header table offsets)	file-header.orbis-bin
+program-headers	headers	Program headers including the SCE types (RELRO, PROCPARAM, DYNLIBDATA, Comment, Version)	program-headers.orbis-bin
+sections	headers	Section headers (name, type, address, size)	sections.orbis-bin
+section-sizes	headers	Text, data, rodata and bss size totals	section-sizes.orbis-bin
+section-segment-map	headers	Which sections lie in which program header, by file offset	section-segment-map.orbis-bin.file
+section-hashes	headers	SHA-256 of each section's file bytes	section-hashes.derived
+segment-hashes	headers	SHA-256 of each program header's file bytes	segment-hashes.derived
+dynamic	dynamic	All PT_DYNAMIC entries with DT_SCE_* tag names	dynamic.orbis-bin
+dynlib	dynamic	SCE dynlib data: needed modules, import and export libraries, attributes, fingerprint	dynamic.orbis-bin
+dynsym	dynamic	SCE dynamic symbols: NID, resolved name, library, module	dynsym.orbis-bin
+dynstr	dynamic	SCE dynamic string table	dynstr.orbis-bin
+symtab	symbols	Static symbol table (.symtab), mangled names with sizes	symtab.llvm-readelf
+functions	symbols	Defined functions (address, size, demangled name)	functions.derived
+data-objects	symbols	Defined data objects (address, size, demangled name)	data-objects.derived
+rtti-vtables	symbols	vtable (_ZTV), typeinfo (_ZTI) and typeinfo-name (_ZTS) symbols	rtti-vtables.derived
+plt-stubs	symbols	Linker stub symbols /PL* (PLT stub), /PG* (PLT GOT slot), /G* (GOT slot), /GC*	plt-stubs.derived
+relocations	relocations	SCE RELA and JMPREL relocations with symbol names	relocations.orbis-bin
+relro-got	relocations	Hex dump of the PT_SCE_RELRO sections (.data.rel.ro, .got, .got.plt)	relro-got.llvm-objdump
+ctors	relocations	Hex dump of .ctors and .dtors	ctors.llvm-objdump
+string-refs	relocations	INFERRED: relocated pointers to the start of a .rodata string	string-refs.derived
+sce-version	sce	Decoded .sceversion component and SDK version table	sce-version.orbis-bin
+sce-process-param	sce	Hex dump of .sce_process_param (ORBI process parameters)	sce-process-param.llvm-objdump
+sce-comment	sce	Hex dump of the SCE Comment segment (same bytes as .prodg_meta_data)	sce-process-param.llvm-objdump
+prodg-metadata	sce	Hex dump of .prodg_meta_data	sce-process-param.llvm-objdump
+strings-rodata	strings	ASCII strings in .rodata with virtual addresses	strings-rodata.rebased
+strings-rodata-utf8	strings	8-bit (UTF-8 and Shift-JIS) strings in .rodata with virtual addresses	strings-rodata-utf8.rebased
+strings-all	strings	ASCII strings in the whole file with file offsets	strings-all.orbis-strings
+stack-sizes	stack	Per-function stack frame sizes from .sce_stack_sizes	stack-sizes.orbis-bin
+unwind-cfa	registers	.eh_frame CIE/FDE records with CFA and register rules	unwind-cfa.llvm-readelf
+register-locations	registers	DWARF location lists naming registers (DW_OP_reg*, DW_OP_breg*)	dwarf-loc.llvm-dwarfdump
+register-usage	registers	Count of each register used in DWARF location lists	register-usage.derived
+dwarf-cu-list	dwarf	Compile-unit DIEs (name, comp_dir, stmt_list, ranges)	dwarf-cu-list.llvm-dwarfdump
+dwarf-source-files	dwarf	Source file and compilation directory of each compile unit	dwarf-source-files.derived
+dwarf-info	dwarf	Full .debug_info DIE tree (local-only)	dwarf-info.llvm-dwarfdump
+dwarf-abbrev	dwarf	.debug_abbrev	dwarf-abbrev.llvm-dwarfdump
+dwarf-line	dwarf	All CU line tables, decoded from a contiguous copy	dwarf-line.derived
+dwarf-line-gaps	dwarf	Byte gaps between line tables in .debug_line	dwarf-line-gaps.derived
+dwarf-loc	dwarf	.debug_loc location lists	dwarf-loc.llvm-dwarfdump
+dwarf-ranges	dwarf	.debug_ranges	dwarf-ranges.llvm-dwarfdump
+dwarf-str	dwarf	.debug_str	dwarf-str.llvm-dwarfdump
+dwarf-frame	dwarf	.debug_frame	dwarf-frame.llvm-dwarfdump
+dwarf-statistics	dwarf	llvm-dwarfdump --statistics (JSON)	dwarf-statistics.llvm-dwarfdump
+dwarf-verify	dwarf	llvm-dwarfdump --verify findings	dwarf-verify.llvm-dwarfdump
+dwarf-section-sizes	dwarf	Size of every DWARF section	dwarf-section-sizes.llvm-dwarfdump
+dwarf-aranges	dwarf	.debug_aranges	not-produced	The ELF has no .debug_aranges section (evidence: dwarf-section-sizes.llvm-dwarfdump)
+dwarf-pubnames	dwarf	.debug_pubnames	not-produced	The ELF has no .debug_pubnames section (evidence: dwarf-section-sizes.llvm-dwarfdump)
+dwarf-pubtypes	dwarf	.debug_pubtypes	not-produced	The ELF has no .debug_pubtypes section (evidence: dwarf-section-sizes.llvm-dwarfdump)
+dwarf-index	dwarf	Accelerator tables and DWARF 5 sections	not-produced	No .debug_names, .apple_*, .gdb_index, .debug_types, .debug_rnglists or .debug_loclists (evidence: dwarf-section-sizes.llvm-dwarfdump)
+elf-notes	absent	ELF notes	not-produced	No SHT_NOTE section or PT_NOTE segment (evidence: sections.orbis-bin)
+symbol-versioning	absent	GNU symbol versioning	not-produced	No .gnu.version* sections (evidence: sections.orbis-bin)
+disassembly	code	Disassembly with source lines and named PLT/GOT targets (local-only)	disassembly.llvm-objdump

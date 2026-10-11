@@ -1,0 +1,310 @@
+= DDOORBIS.elf (PS4 build 02020005): static dump set
+:toc:
+:toc-placement!:
+
+This folder holds a set of static dumps of `DDOORBIS.elf`, the PS4 client executable of build
+02020005. Each information category comes from the tool that renders it most completely and
+correctly for this binary. Every file is tied to the input by hash, and `manifest.jsonl` records
+how it was produced. `generate-elf-dumps.sh` reproduces the committed files byte for byte.
+
+toc::[]
+
+== 1. Input
+
+[cols="1,3"]
+|===
+|File |`D:/research/DDON-binaries/IDA9.3/PS4_DDON_02020005_2016_12_21/DDOORBIS.elf` (read-only input)
+|SHA-256 |`4236f598acc8f15893181455ed195e39dfa4dbfda4eeda8b56fcbd82312c63c0`
+|Size |800,622,848 bytes
+|Type |ELF64, little-endian, OSABI FreeBSD, x86-64; `e_type` 0xFE10 = `ET_SCE_DYNEXEC` (main module, ASLR); entry point 0xd5a8d0
+|Layout |11 program headers, 36 sections; section-name table at index 33
+|Debug information |DWARF 4, 2,305 compile units, producer `clang version 3.5.0 (PS4 clang version 2.50.0.2333)`
+|SDK |2.50.8.051 for every component (`.sceversion`, `.sce_process_param`)
+|===
+
+== 2. Production
+
+=== Tools
+
+[cols="1,1,3",options="header"]
+|===
+|Tool |Version |Categories
+|`orbis-bin` (Orbis SDK 12.000) |12.00.0.2 |SCE-specific structures: file and program headers, sections, the dynamic table and dynlib data, dynamic symbols and NIDs, relocations, stack sizes, `.sceversion`. It is the only tool that names the SCE segment types and dynamic tags and reads the SCE symbol and relocation tables.
+|`orbis-strings` (Orbis SDK 12.000) |binutils 2.22, Orbis 12.00.0.540 |String constants
+|LLVM: `llvm-readelf`, `llvm-objdump`, `llvm-dwarfdump`, `llvm-nm`, `llvm-objcopy` |23.1.3 (MSYS2 ucrt64) |Static symbol table, section hex dumps, unwind tables, all DWARF sections, disassembly with source lines
+|`tools/elfslice.py` |CPython 3.14, standard library only |Byte-level work: section slices, line-table extraction, hashes, string-reference join, disassembly index
+|===
+
+=== Procedure
+
+`generate-elf-dumps.sh`:
+
+. Copies the ELF to `.staging/input/DDOORBIS.elf` and checks its SHA-256.
+. Runs every tool in that directory, so outputs name the input only as `DDOORBIS.elf`.
+. Records name, size, mtime and SHA-256 of every file in the input folder before and after the run,
+  and publishes nothing if anything changed.
+. Removes the line-final CR from the orbis tools' output; LLVM writes LF.
+. Hashes each output, applies the storage rule, publishes only files whose content changed, and
+  writes `manifest.jsonl` last.
+
+=== Provenance
+
+Each entry in `manifest.jsonl` records:
+
+* the categories, the command line, and the tool's path, version and SHA-256;
+* the input hash;
+* the output's content hash, size and line count;
+* the exit status and the expected exit status, the run time and the date.
+
+Derived files also list the ids and hashes of their inputs. They carry `inferred: true` when they
+hold a join rather than a decoded value. Three intermediate tool outputs (`symtab.llvm-nm` and two
+`.rodata` string extractions with slice-relative offsets) feed derived files. They are recorded with
+storage `staging` and are not published. `categories.tsv` maps every category to its dump id. The
+manifest schema is `specs/001-ps4-static-dumps/contracts/manifest.schema.json`.
+
+=== Storage
+
+* Text up to 10 MiB is committed as is (`.txt`, `.tsv`, `.json`).
+* Larger text is committed zstd-compressed (`-19 --long=27`) if the result is 50 MiB or less.
+* The two multi-GB dumps (DIE tree, disassembly) are kept in `local/`, which is gitignored
+  (zstd `-10`). The DIE tree is summarized by the committed compile-unit list and statistics, the
+  disassembly by a per-function index in `derived/`.
+* A file's identity is the SHA-256 of its uncompressed content (`output.sha256`).
+* 41 dumps are committed, 79 MiB as stored. The 2 local-only dumps take 1.15 GiB compressed.
+
+== 3. Contents
+
+[cols="2,3",options="header"]
+|===
+|Category |File
+2+|*Headers*
+|file header |`headers/file-header.orbis-bin.txt`
+|program headers |`headers/program-headers.orbis-bin.txt`
+|sections |`headers/sections.orbis-bin.txt`
+|section sizes |`headers/section-sizes.orbis-bin.txt`
+|section ↔ segment map |`headers/section-segment-map.orbis-bin.file.txt`
+|section and segment hashes |`headers/section-hashes.derived.tsv` (with file offsets), `headers/segment-hashes.derived.tsv`
+2+|*Dynamic linking*
+|dynamic table, dynlib data |`headers/dynamic.orbis-bin.txt`
+|dynamic symbols (NIDs) |`symbols/dynsym.orbis-bin.txt`
+|dynamic string table |`symbols/dynstr.orbis-bin.txt`
+2+|*Symbols*
+|static symbol table |`symbols/symtab.llvm-readelf.txt.zst` (mangled names, sizes, bindings)
+|functions |`symbols/functions.derived.txt` (address, size, type, demangled name)
+|data objects |`symbols/data-objects.derived.txt`
+|vtables and type information |`symbols/rtti-vtables.derived.txt` (`_ZTV`, `_ZTI`, `_ZTS`)
+|linker stubs and GOT slots |`symbols/plt-stubs.derived.txt` (`/PL…`, `/PG…`, `/G…`)
+2+|*Relocations and pointer data*
+|relocations |`relocations/relocations.orbis-bin.txt.zst`
+|RELRO and GOT bytes |`relocations/relro-got.llvm-objdump.txt` (`.data.rel.ro`, `.got`, `.got.plt`)
+|constructor tables |`relocations/ctors.llvm-objdump.txt` (`.ctors`, `.dtors`)
+|string references (*inferred*) |`relocations/string-refs.derived.tsv`
+2+|*SCE metadata*
+|SCE version table |`sce/sce-version.orbis-bin.txt`
+|process parameters, SCE comment |`sce/sce-process-param.llvm-objdump.txt` (hex of `.sce_process_param` and `.prodg_meta_data`)
+2+|*Strings*
+|`.rodata` strings, 7-bit |`strings/strings-rodata.rebased.tsv` (virtual address, string)
+|`.rodata` strings, 8-bit |`strings/strings-rodata-utf8.rebased.tsv`
+|whole-file strings |`strings/strings-all.orbis-strings.txt.zst` (file offsets)
+2+|*Stack and registers*
+|stack sizes |`stack/stack-sizes.orbis-bin.txt`
+|unwind (CFA and register rules) |`registers/unwind-cfa.llvm-readelf.txt.zst`
+|register locations |`dwarf/dwarf-loc.llvm-dwarfdump.txt.zst`
+|register usage |`registers/register-usage.derived.tsv`
+2+|*DWARF*
+|compile units |`dwarf/dwarf-cu-list.llvm-dwarfdump.txt`, `dwarf/dwarf-source-files.derived.tsv`
+|line tables |`dwarf/dwarf-line.derived.txt.zst`, offset map `dwarf/dwarf-line-map.derived.tsv`
+|line-table gaps |`dwarf/dwarf-line-gaps.derived.tsv`
+|abbreviations, location lists, ranges, strings, frames |`dwarf/dwarf-{abbrev,loc,ranges,str,frame}.llvm-dwarfdump.txt[.zst]`
+|statistics |`dwarf/dwarf-statistics.llvm-dwarfdump.json`
+|verifier report |`dwarf/dwarf-verify.llvm-dwarfdump.txt.zst` (exit status 1 is expected)
+|section sizes |`dwarf/dwarf-section-sizes.llvm-dwarfdump.txt`
+|DIE tree |`local/dwarf-info.llvm-dwarfdump.txt.zst` (*local-only*)
+2+|*Code*
+|disassembly with source lines |`local/disassembly.llvm-objdump.txt.zst` (*local-only*; per-function summary `derived/disassembly.standin.tsv`)
+2+|*Absent from the binary*
+|`.debug_aranges`, `.debug_pubnames`, `.debug_pubtypes`, accelerator tables, ELF notes, symbol versioning |recorded as `not-produced` in the manifest
+|===
+
+== 4. Structure of the binary
+
+=== Program headers and sections
+
+Five of the 11 program headers have SCE types:
+
+[cols="1,2,3",options="header"]
+|===
+|Index |Type |Contents
+|1 |`PT_SCE_RELRO` (0x61000010) |`.data.rel.ro` (0x19e5d0 bytes), `.got` (0x368), `.got.plt` (0x10f0)
+|3 |`PT_SCE_PROCPARAM` (0x61000001) |`.sce_process_param`, 0x40 bytes: size 0x40, magic `ORBI`, SDK version 0x02508051 at offset 0x10
+|8 |`PT_SCE_DYNLIBDATA` (0x61000000) |`.sce_special`: the SCE string, symbol, hash and relocation tables (0x3fdef0 bytes)
+|9 |SCE Comment (0x6FFFFF00) |`.prodg_meta_data`, 0x4c bytes
+|10 |SCE Version (0x6FFFFF01) |`.sceversion`: component and SDK version table
+|===
+
+The remaining six are two loadable segments, `PT_DYNAMIC`, the interpreter, TLS (empty) and
+`PT_GNU_EH_FRAME`. Section totals: text 29,271,064 bytes, data 1,879,376, read-only data
+7,797,911, bss 1,098,256.
+
+=== Dynamic linking
+
+* `PT_DYNAMIC` holds 234 entries. Library names, symbols and relocations are reached through
+  `DT_SCE_*` tags that point into the dynlib data, not through `DT_STRTAB` and `DT_SYMTAB`.
+* The module declares 50 `DT_NEEDED`, 50 `DT_SCE_NEEDED_MODULE` and 51 `DT_SCE_IMPORT_LIB`
+  entries. Each import library has an `_ATTR` entry, such as `AUTO_EXPORT|LOOSE_IMPORT`. There is
+  one export library, `DDOORBIS`.
+* The table also records a fingerprint and the original file name
+  `D:/publishDDO_PS4_02_02_Master/DDO_02_02/DD_ONLINE/DDOORBIS.elf`.
+* The SCE dynamic symbol table has 650 entries (`DT_SCE_SYMTABSZ` 15,600 / 24). 648 are imports
+  named by NID, such as `Gl6w5i0JokY#0O#o`. `orbis-bin --dump-dynsym -v` resolves all 648 to a
+  function name, library and module.
+
+=== Symbols
+
+* `.symtab` has 205,738 entries: 125,352 functions (types t/T), 76,752 data objects
+  (d/D/b/B/r/R), and section, file and absolute symbols.
+* 14,583 symbols are vtables or type information.
+* The linker adds 1,187 stub symbols:
+** `/PL<name>`: 539 PLT stubs, one per JMPREL slot;
+** `/PG<name>`: 539 PLT GOT slots;
+** `/G<name>`: GOT slots, including the `/GCALLBACK_…` data pointers.
+
+=== Relocations and pointer data
+
+* `DT_SCE_RELA` holds 172,404 relocations:
+** 171,734 `R_X86_64_RELATIVE`;
+** 668 `R_X86_64_64`: 667 `__cxa_pure_virtual` entries in vtables, plus `Need_sceLibc`;
+** 2 `R_X86_64_GLOB_DAT`: `__stack_chk_guard` and `std::nothrow`.
+* `DT_SCE_JMPREL` holds 539 `R_X86_64_JUMP_SLOT` relocations.
+* In the file, every RELA slot is zero. The pointer value exists only as the relocation addend
+  (RELATIVE) or as the symbol (64, GLOB_DAT). So the hex dump of `.data.rel.ro` is mostly zeros:
+  only 4,586 of its 106,080 lines are non-zero.
+* The 539 `.got.plt` slots are not zero. Each holds the lazy-binding address inside its PLT stub.
+  For example, the slot for `strlen` at 0x24fa958 holds 0x1be82b6, inside `/PLstrlen` at
+  0x1be82b0.
+* *Inferred*: 2,655 RELATIVE slots point at the start of a `.rodata` string
+  (`string-refs.derived.tsv`). Code references (RIP-relative operands) and strings shorter than 4
+  bytes are not included.
+
+=== Strings
+
+* `.rodata` contains 44,527 7-bit strings of 4 or more characters.
+* The 8-bit extraction finds 81,798 strings, of which 50,254 contain a byte ≥ 0x80:
+** 2,050 are valid UTF-8 (Japanese UI text such as `キャンセル`);
+** 26,252 decode as cp932, which accepts most byte pairs;
+** 21,952 decode as neither.
+
+  Many of these are binary data, such as float constants, not text.
+* The whole file yields 1,349,746 strings (`strings-all`, listed by file offset).
+
+=== Stack sizes
+
+* `.sce_stack_sizes` holds 241,724 entries, each a u64 address followed by a ULEB128 size:
+** 125,984 tombstones (address `u64::MAX`: functions the linker removed);
+** 115,740 live entries.
+* `stack-sizes.orbis-bin.txt` prints one row per FUNC symbol in `.symtab` (120,885 rows, names
+  only). The 646 `??` rows are FUNC symbols without an entry.
+* Example: `cWebsocketClient::move()` at 0xe41300 uses 82,344 bytes.
+
+=== Unwind data
+
+* `.eh_frame` holds 115,719 FDE records; `.debug_frame` is 432 bytes.
+* `llvm-readelf --unwind` prints DWARF register numbers (6 = rbp, 3 = rbx, 7 = rsp, 16 = return
+  address).
+
+=== DWARF
+
+* *Sections*: `.debug_info` 671.6 MB, `.debug_loc` 37.6 MB, `.debug_line` 16.6 MB, `.debug_ranges`
+  10.0 MB, `.debug_abbrev` 4.6 MB, `.debug_str` 3.7 MB, `.debug_frame` 432 bytes.
+* *Absent*: `.debug_aranges`, `.debug_pubnames`, `.debug_pubtypes` and accelerator tables. With
+  no address index, address lookups have to walk the compile units' ranges.
+* *Statistics*: 159,644 functions, 611,810 inlined instances, 2,602,083 source variables (1,615,676
+  with a location), 621,688 parameters, and 25,370,131 bytes with line information.
+* *Line tables*: the 2,305 tables (line-table version 3) are not contiguous.
+** A gap follows every table: 318 gaps are 1 byte, 169 are 7 bytes, many are runs of 34–98 zero
+   bytes, and 14 contain non-zero bytes (for example 0x62 at offset 0x1fd). The SDK linker's
+   `--pad-debug-line` option produces this padding.
+** A reader that walks `.debug_line` front to back therefore decodes only the first table. This
+   set copies each table out at its compile unit's `DW_AT_stmt_list` and decodes the copy.
+** The result is 1,679,315 rows: 1,611,308 line entries, which equals the `--statistics` count,
+   plus 68,007 end-of-sequence rows.
+* *Overlapping compile units*: code shared through inlining and template instantiation is
+  attributed to many compile units. For example, address 0x194d8f0 lies within the ranges of
+  1,014 compile units, and the line tables hold 2,026 rows for that address.
+* *Verifier*: `llvm-dwarfdump --verify` reports 21,330 overlapping address ranges, 3,286 ranges not
+  contained in their parent, and 48 overlapping `DW_AT_ranges`. All of them involve
+  `inlined_subroutine` or `lexical_block` DIEs. The verifier checks one unit at a time, so it does
+  not see the overlap across units.
+* *DIE tree*: the dump has 463,660,524 lines.
+
+=== Code
+
+* The disassembly covers 116,279 functions and 6,920,426 instructions in the executable sections,
+  with demangled names and source-line annotations.
+* Calls to imports go through the PLT stubs, and the disassembly labels them with the stub names,
+  such as `</PL_init_env>`.
+
+== 5. Notes on other tools
+
+* GNU binutils (2.47) do not recognize `e_type` 0xFE10 and add the section address to every symbol
+  value: `_start` appears at 0xd5a970 instead of 0xd5a8d0. Their symbol values and disassembly
+  labels are wrong for this binary.
+* readelf and objdump, including the SDK's `orbis-readelf` and `orbis-objdump`, do not name the SCE
+  segment types or dynamic tags. objdump stops listing the dynamic table at the first `NEEDED`,
+  after 26 of 234 entries, and readelf reports no relocations.
+* For address-to-line queries with inlining, use `orbis-addr2line -i`. At 0x194d8f0 it gives
+  `error_condition` twice, then `default_error_condition` (system_error:437), which matches the DIE
+  tree; `llvm-addr2line` returns `??:0` there.
+
+== 6. Verification
+
+* *Spot checks*: 16 values, at least one per category group, were checked against the raw ELF
+  bytes or against a second tool family, and all agree. Among them: the entry point, a program
+  header type, a section header, dynamic-table sizes, a symbol, a string, a stack-size entry, a
+  CFA rule, a compile unit, a line entry and the compile-unit count.
+* *Reproducibility*: regenerating without the local-only dumps reproduces every committed file byte
+  for byte.
+* *Integrity*: `./generate-elf-dumps.sh --verify` re-hashes every published file, including the
+  local-only ones, against the manifest.
+* *Input*: the snapshot of the input folder is compared before and after every run.
+
+== 7. Use and regeneration
+
+Requirements: the Orbis SDK 12.000 under `D:/SCE/ORBIS SDKs/`, LLVM 23 in `C:/msys64/ucrt64/bin`,
+and `jq zstd sha256sum sed rg xxd uv fd` in Git Bash. The script checks every one of them before it
+does any work.
+
+[source,bash]
+----
+cd binaries/PS4_02020005/elf-dumps
+./generate-elf-dumps.sh --dry-run          # check tools and input; write nothing
+./generate-elf-dumps.sh                    # everything: about 70 minutes (the DIE tree dump takes ~1 h)
+./generate-elf-dumps.sh --skip-local       # committed files only: a few minutes
+./generate-elf-dumps.sh --only 'dynsym.*'  # one id (glob) and everything derived from it
+./generate-elf-dumps.sh --verify           # re-hash published files against the manifest
+./generate-elf-dumps.sh --exec orbis-addr2line -i -f -C -e DDOORBIS.elf 0x194d8f0   # one tool, on the staged copy
+./generate-elf-dumps.sh --publish-run .staging/run-<stamp>   # finish an interrupted publish
+----
+
+No time limit applies unless `DUMP_TIMEOUT` or `LOCAL_TIMEOUT` (seconds) is set. Exit status:
+
+* 0: every entry is `ok`;
+* 2: at least one dump failed, which is recorded in the manifest;
+* 1: a precondition or the input guard failed, and nothing was published.
+
+Searching compressed files:
+
+[source,bash]
+----
+zstd -dcqq symbols/symtab.llvm-readelf.txt.zst | rg -m5 'rLandInfo'
+zstd -dcqq dwarf/dwarf-line.derived.txt.zst | rg -m1 '^0x0000000000e41300 '
+zstd -dcqq local/dwarf-info.llvm-dwarfdump.txt.zst | rg -m1 -A40 'DW_AT_name.*"rLandInfo"'   # 27.8 GB stream
+----
+
+* *Line-table offsets*: the line tables are labelled with offsets into the contiguous copy.
+  `dwarf/dwarf-line-map.derived.tsv` maps each one back to its `.debug_line` offset, which is the
+  compile unit's `DW_AT_stmt_list`. Each table lists its file names in a `file_names[N]` block.
+* *File offsets*: `headers/section-hashes.derived.tsv` gives the file offset of every section, for
+  use with `xxd -s` on the staged copy.
+* *SDK help texts*: the Orbis SDK tool help texts are marked "SIE CONFIDENTIAL". They are kept in
+  `local/tool-help/` and are never committed.
