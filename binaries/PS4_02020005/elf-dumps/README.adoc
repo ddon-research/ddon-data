@@ -119,6 +119,7 @@ manifest schema is `specs/001-ps4-static-dumps/contracts/manifest.schema.json`.
 |statistics |`dwarf/dwarf-statistics.llvm-dwarfdump.json`
 |verifier report |`dwarf/dwarf-verify.llvm-dwarfdump.txt.zst` (exit status 1 is expected)
 |section sizes |`dwarf/dwarf-section-sizes.llvm-dwarfdump.txt`
+|inlined call chains, one address per run |`dwarf/inline-chains.orbis-addr2line.tsv` (written by the reconstructor's `inline-dump`, not by this script; see _Inline chains_ below)
 |DIE tree |`local/dwarf-info.llvm-dwarfdump.txt.zst` (*local-only*)
 2+|*Code*
 |disassembly with source lines |`local/disassembly.llvm-objdump.txt.zst` (*local-only*; per-function summary `derived/disassembly.standin.tsv`)
@@ -236,6 +237,18 @@ The remaining six are two loadable segments, `PT_DYNAMIC`, the interpreter, TLS 
   `inlined_subroutine` or `lexical_block` DIEs. The verifier checks one unit at a time, so it does
   not see the overlap across units.
 * *DIE tree*: the dump has 463,660,524 lines.
+
+=== Inline chains
+
+* *File*: `dwarf/inline-chains.orbis-addr2line.tsv`, plain text (under 10 MiB). Its header names the format, the ELF's and the tool's SHA-256, the tool's path and version line, the flags (`-a -f -i -e <ELF> <address>`), "one address per run" and the record count; then one tab-separated line per address in address order, addr2line's function and location pairs verbatim, innermost first. No date, so the same inputs give the same bytes.
+* *Why one address per run*: `orbis-addr2line` (binutils 2.22) answers an address according to the addresses that share its run, since a run keeps the compile units it has read and up to 1,014 of them claim one range (L-10). An address run alone gets the answer that depends on the address only (ddon-dwarf-reconstructor-rust, spec 029 plan-P23 step 1: on 30,904 addresses, 77 answers differ from batches of 256, 75 of them with more frames).
+* *Which addresses*: those the reconstructor's inline check reads for a bundle (each method's first inlined copy, at its first range): 30,904 from golden/029-t11's bundle. A later bundle's new addresses are appended with `--append`, which rewrites the file in address order; the manifest entry is updated with the new hash.
+* *Not produced by this script*: `generate-elf-dumps.sh` does not regenerate it, and `--verify` re-hashes it like every published file. Regenerate it from the reconstructor's checkout (about 46 minutes at 16 jobs):
+
+[source,bash]
+----
+ddon-dwarf-reconstructor inline-dump 'D:\research\DDON-binaries\IDA9.3\PS4_DDON_02020005_2016_12_21\DDOORBIS.elf' --bundle <bundle> --out dwarf/inline-chains.orbis-addr2line.tsv --jobs 16
+----
 
 === Code
 
