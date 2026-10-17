@@ -51,6 +51,23 @@ class AgentCapTest(unittest.TestCase):
         self.assertFalse((self.running / "a1.json").exists())
         self.assertEqual(run("check", SPAWN, self.ledger).returncode, 0)
 
+    def test_finished_receipt_clears_despite_background_work(self):
+        run("start", {"agent_id": "a1", "agent_type": "implementer"}, self.ledger)
+        message = "## Receipt P2\n- branch: b   head: 1\n- state: done\n"
+        run("stop", {"agent_id": "a1", "background_tasks": 1, "last_assistant_message": message},
+            self.ledger)
+        self.assertFalse((self.running / "a1.json").exists())
+        self.assertEqual(run("check", SPAWN, self.ledger).returncode, 0)
+
+    def test_cut_short_receipt_with_background_work_still_refuses(self):
+        run("start", {"agent_id": "a1", "agent_type": "implementer"}, self.ledger)
+        message = "## Receipt P2\n- state: cut short: the check.sh summary\n"
+        run("stop", {"agent_id": "a1", "background_tasks": 1, "last_assistant_message": message},
+            self.ledger)
+        result = run("check", SPAWN, self.ledger)
+        self.assertEqual(result.returncode, 2)
+        self.assertIn(".agent-ledger/running/a1.json", result.stderr)
+
     def test_stop_with_background_work_still_refuses(self):
         run("start", {"agent_id": "a1", "agent_type": "reviewer"}, self.ledger)
         for tasks in ([{"id": "t1"}], 2):

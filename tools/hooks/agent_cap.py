@@ -4,8 +4,11 @@ One script, one mode per hook event (the first argument):
 - `start` (SubagentStart): writes `.agent-ledger/running/<agent id>.json` with
   `{agent_id, agent_type, started}`.
 - `stop` (SubagentStop): removes that file, unless the input names background work
-  (`background_tasks` > 0, read as `subagent_stop.py` reads it): the agent will resume, so it still
-  counts as running.
+  (`background_tasks` > 0, read as `subagent_stop.py` reads it) and the final message is not a
+  finished receipt (a `- state: done` line): such an agent will resume, so it still counts as
+  running. A finished receipt clears the record even with background work left, because an agent
+  that reports done while its last build finishes may never stop again (ddon-hook, 2026-10-17: a
+  landed agent's record blocked the next spawn).
 - `check` (PreToolUse on `Agent`): refuses (exit 2, message on stderr) while a running record
   younger than 4 h exists, naming the agent, its type and its age. Records older than 4 h are stale:
   ignored and deleted. `SendMessage` (resuming an agent) is never refused.
@@ -18,6 +21,7 @@ are not such a record are ignored, and deleted once their mtime is older than 4 
 
 import datetime as dt
 import json
+import re
 import sys
 import time
 from pathlib import Path
@@ -28,6 +32,7 @@ import hooklib  # noqa: E402
 from subagent_stop import agent_of, count  # noqa: E402
 
 STALE_SECONDS = 4 * 3600
+FINISHED = re.compile(r"^- state: done\b", re.MULTILINE)
 RULE = "one subagent at a time (orchestration section 1): land or stop it first, or resume it with SendMessage"
 
 
@@ -48,8 +53,13 @@ def start(data):
     return 0
 
 
+def finished(data):
+    message = data.get("last_assistant_message")
+    return isinstance(message, str) and FINISHED.search(message) is not None
+
+
 def stop(data):
-    if count(data.get("background_tasks")) > 0:
+    if count(data.get("background_tasks")) > 0 and not finished(data):
         return 0
     agent = agent_of(data)
     if agent != "unknown":
@@ -109,7 +119,9 @@ def check(data):
         return 0
     names = "; ".join(f"{r['agent_id']} ({r.get('agent_type') or 'unknown type'}, running {human(age)})"
                       for r, age in live)
-    reason = f"Refused: a subagent is running: {names}. {RULE}."
+    files = ", ".join(f".agent-ledger/running/{r['agent_id']}.json" for r, _ in live)
+    reason = (f"Refused: a subagent is running: {names}. {RULE}. If it has in fact finished "
+              f"(its receipt says done), delete {files} and spawn again.")
     hooklib.record_refusal(data, "agent_cap", reason)
     print(reason, file=sys.stderr)
     return 2
