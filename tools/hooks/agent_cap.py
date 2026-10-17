@@ -9,6 +9,9 @@ One script, one mode per hook event (the first argument):
   running. A finished receipt clears the record even with background work left, because an agent
   that reports done while its last build finishes may never stop again (ddon-hook, 2026-10-17: a
   landed agent's record blocked the next spawn).
+  Only the roles in RECEIPT_ROLES end with a receipt; any other agent's record clears on its
+  stop even with background work left (ddon-data, 2026-10-17: a finished general-purpose
+  researcher with one leftover background shell kept its record and blocked the next spawn).
 - `check` (PreToolUse on `Agent`): refuses (exit 2, message on stderr) while a running record
   younger than 4 h exists, naming the agent, its type and its age. Records older than 4 h are stale:
   ignored and deleted. `SendMessage` (resuming an agent) is never refused.
@@ -33,6 +36,7 @@ from subagent_stop import agent_of, count  # noqa: E402
 
 STALE_SECONDS = 4 * 3600
 FINISHED = re.compile(r"^- state: done\b", re.MULTILINE)
+RECEIPT_ROLES = {"implementer"}
 RULE = "one subagent at a time (orchestration section 1): land or stop it first, or resume it with SendMessage"
 
 
@@ -59,12 +63,22 @@ def finished(data):
 
 
 def stop(data):
-    if count(data.get("background_tasks")) > 0 and not finished(data):
-        return 0
     agent = agent_of(data)
+    if (count(data.get("background_tasks")) > 0 and not finished(data)
+            and recorded_type(agent) in RECEIPT_ROLES):
+        return 0
     if agent != "unknown":
         (running_dir() / f"{agent}.json").unlink(missing_ok=True)
     return 0
+
+
+def recorded_type(agent):
+    """The agent type its start record names, or None."""
+    try:
+        record = json.loads((running_dir() / f"{agent}.json").read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return None
+    return record.get("agent_type") if isinstance(record, dict) else None
 
 
 def age_of(record):
