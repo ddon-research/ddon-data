@@ -39,8 +39,18 @@ files.
       hooks passed (33 + 14), flags and kg not run (no change). Dry runs of all three modes are in its
       receipt. The coordinator registered SessionStart, PreCompact and SubagentStart. The
       SubagentStop record has fired (`.agent-ledger/stops.jsonl`, `reports/<id>.md`).
-- [ ] T004 Coordinator: register the P1/P2 hooks in `.claude/settings.json` (P1's two and P2's three: done); write the first row
-      of `specs/efficiency-ledger.jsonl` (the baseline: 009 fix wave and this feature).
+- [x] P3 `implementer`: `agent_cap.py` refuses a second concurrent subagent (Sam's cap, 2026-10-17;
+      text in orchestration section 1, 67fc6b3). Brief `briefs/P3-agent-cap.md`. Commit ed9edfb
+      (signed); 7 focused tests; `check.sh --since 67fc6b3`: hooks passed (40 + 14), flags and kg
+      not run (no change). It held its tests through the quiet window as told. The coordinator
+      registered check, start and stop.
+- [x] T004 Coordinator: registered the P1, P2 and P3 hooks in `.claude/settings.json`. Wrote the
+      first row of `specs/efficiency-ledger.jsonl`: "002 W1 (baseline)", since 16:00 on 2026-10-17;
+      report `research/retro-002-W1.md`. It reads $36.69 in all, of which the coordinator $24.38
+      (66.4%); 539 turns; refused 2.8%, failed 1.05%; budget overruns 0; 2 agents with no
+      budget. Finding: most spend is the coordinator's per-turn cache reads, and a large share of
+      its turns only relay side-session notes. Ruling: relay turns take one line and no tool calls;
+      compact at milestones. Metric: `cost.coordinator_share_pct` below 50% in the next row.
 - [ ] T005 Coordinator: `.claude/rules/` with `paths:` scoping (R1 gap 9); move domain learnings
       out of `CLAUDE.md` when a spec closes.
 - [ ] T006 ddon-hook: the same mechanisms, handed to that repository's coordinator (session
