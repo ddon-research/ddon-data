@@ -26,7 +26,7 @@ read-only, never save, `close_database` at the end). One subagent at a time.
 - [x] R3 `general-purpose` (patches; 16 min, 75 tool calls, 267k tokens): every patch layer from vanilla to Bunie v7 and ChatEdit,
       each site classified. Brief `briefs/R3-patches.md`; output `R3-patches.md`.
 - [x] S1 Coordinator: synthesis `research/03040008/protections/README.md` with the crash-triage protocol; handed to ddon-hook.
-- [ ] S2 Correct `patches/README.md` (README §6: f1c9 parent, 4GB = checksum, vanilla path, Win7 parent, missing v7 and 100FPS rows, UTF-16 files).
+- [x] S2 Correct `patches/README.md` (README §6: f1c9 parent, 4GB = checksum, vanilla path, Win7 parent, missing v7 and 100FPS rows, UTF-16 files).
 - [ ] C1 Closing: docs audit (`external-references.md` index), light retro, `**Status: done**`.
 
 ## Running

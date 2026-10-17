@@ -52,6 +52,8 @@ rahash2 -a sha256 patched.exe
 
 ### Caveats of layered patching
 
+10 of the 12 `.r2` files are UTF-16LE with a BOM (all but `rootofallthings_chat_edit.r2` and `bunie_5_in_1.r2`). radare2 reads them, but `rg` and `sd` see NUL bytes. All 12 replay to their stated target hashes (checked 2026-10-17).
+
 The `.r2` format is a simple sequence of "write byte X at offset Y" commands.
 
 This means:
@@ -68,7 +70,7 @@ Each patch in the tables lists a Starting Hash and a Target Hash. The patch will
 | DDO.exe | 01010004 | `ef6ca484d217a2e01aa21e0756a215d77c88c324c78adc7438dee75d426ec853` | |
 | DDO.exe | 02030004 | `b36a542d314e8b65b145ba4fb6f5c685bfc37fdb4895f4e414315f6bd4ff8a05` | |
 | DDO.exe | 02030010 | `aaeb752a993050ffa2de71ebbfdd7f282490440447b703aa17e4d24b49acc51b` | |
-| DDO.exe | 03040008 | `01dc41a962ea93a66b28bde36a9c61eec18d38e9d8d91cdb3139a0cb24c784f6` | |
+| DDO.exe | 03040008 | `01dc41a962ea93a66b28bde36a9c61eec18d38e9d8d91cdb3139a0cb24c784f6` | Themida-packed; local copy `D:\DDON_03040008\DDO.exe.bak`. `DDO_v3.05.exe` is an older 2017 build, not this one (`research/03040008/protections/R3-patches.md` §1) |
 | DDO_DUMP.exe | 03040008 | `0a7c5c637aeeaa7f308df25f119b8bb16350336b57edfd93d2db3a3e7dfe5f43` | Dumped 2020-04-26 with Scylla after finding OEP with relocation disabled |
 
 ## Modded Client Hashes
@@ -86,7 +88,7 @@ Each patch in the tables lists a Starting Hash and a Target Hash. The patch will
 | DDO_DUMP_FIX_MUTEX_E.exe | 2022-01-21 | nothilvien | `e50dd5177212f44c2c6e58e3544a2e9e902a8c852921b364878b99842c9060b4` | patches/2022_01_21_ddo_dump_fix_mutex_e.r2 | `526bd9d23cf815ef013d0af4786591b84c3bc829842a73165c11b27700cf6129` | Changed the mutex string to _E. Because modding the mutex code will trigger a CRC error and close client. Allows to have a maximum of 3 clients active at the same time (original, _e and _f version) |
 | DDO_DUMP_FIX_MUTEX_F.exe | 2022-01-21 | nothilvien | `e50dd5177212f44c2c6e58e3544a2e9e902a8c852921b364878b99842c9060b4` | patches/2022_01_21_ddo_dump_fix_mutex_f.r2 | `c3db6f1952a847cf69e4171f709d2681ab9f5e1c792d8be6924c9839cf7e7485` | Changed the mutex string to _F. Because modding the mutex code will trigger a CRC error and close client. Allows to have a maximum of 3 clients active at the same time (original, _e and _f version) |
 | DDO_DUMP_Mutex.exe | 2022-01-21 | nothilvien | `e50dd5177212f44c2c6e58e3544a2e9e902a8c852921b364878b99842c9060b4` | patches/2022_01_21_ddo_dump_mutex.r2 | `9c9542a78fd548a174070e094447eef5fb00e3af8afb36060568cf9d0416c038` | Unlimited Instances |
-| DDO_DUMP_FIX.exe | 2022-01-29 | nothilvien | `9c9542a78fd548a174070e094447eef5fb00e3af8afb36060568cf9d0416c038` | patches/2022_01_29_ddo_dump_fix.r2 | `f1c974d0e529d4bb7dc5f0953d37eea6bbb023f2667f9a1d3a3b878f4919fa20` | Latest, has a few CRC checks removed around RNG, + all previous patches (mutex removed etc) |
+| DDO_DUMP_FIX.exe | 2022-01-29 | nothilvien | `9c9542a78fd548a174070e094447eef5fb00e3af8afb36060568cf9d0416c038` | patches/2022_01_29_ddo_dump_fix.r2 | `f1c974d0e529d4bb7dc5f0953d37eea6bbb023f2667f9a1d3a3b878f4919fa20` | Replays from the Mutex build but writes its 35 bytes back: the content is DDO_DUMP_FIX_3 (`e50d…`) plus 2 bytes, protector descriptor fields zeroed at `0x738B76` and `0xD5C79A`. No instance-limit removal (`research/03040008/protections/R3-patches.md` §2.5) |
 
 ### 2025
 
@@ -96,9 +98,9 @@ Each patch in the tables lists a Starting Hash and a Target Hash. The patch will
 | Name | Date | Publisher | Starting Hash | Patch | Target Hash | Notes |
 |------|------|-----------|---------------|-------|-------------|-------|
 | DDO_ChatEdit.exe | 2025-05-29 | rootofallthings | `f1c974d0e529d4bb7dc5f0953d37eea6bbb023f2667f9a1d3a3b878f4919fa20` | patches/rootofallthings_chat_edit.r2 | `31a30332010e7dd991043416102453b79db374621806a60b7c7092aec81f4041` | |
-| DDO_Windows7Dumped_Mutex.exe | 2025-08-25 | filmmachine_ | | | `1c8cc43a50cd28b669ce2ecd6ce1e90aba8752e53f354a0dffcdd36b4cf6c2f1` | |
-| DDO_DUMP_FIX_Patch3_Win7_Mutex_ChatEdit.exe | 2025-08-27 | techwomanwow | `1c8cc43a50cd28b669ce2ecd6ce1e90aba8752e53f354a0dffcdd36b4cf6c2f1` | patches/techwomanwow_win7_chatedit.r2 | `f2a802295407f2d61669ad4a8a57abb938d6a5188d7ca588cc4d96b4496a8d74` | |
-| DDO_ChatEdit_4GB_RAM.exe | 2025-11-26 | mr.september | `f1c974d0e529d4bb7dc5f0953d37eea6bbb023f2667f9a1d3a3b878f4919fa20` | patches/mr.september_chatedit_4gb_ram.r2 | `bf5107ef7ddf5f369d5d01267237f9a8def955b5a847c36264b9ed80230d8249` | |
+| DDO_Windows7Dumped_Mutex.exe | 2025-08-25 | filmmachine_ | `ef9d18154004e814dad18758fec7e0af7fb3408caa2d5ca72c1b0e41ce221bb7` | (none; re-dump with IAT rebuild, 9,085 bytes differ) | `1c8cc43a50cd28b669ce2ecd6ce1e90aba8752e53f354a0dffcdd36b4cf6c2f1` | Parent is DDO_DUMP_FIX2 by fewest differing bytes; carries none of FIX_3's or FIX's bytes (`research/03040008/protections/R3-patches.md` §1, §2.6) |
+| DDO_DUMP_FIX_Patch3_Win7_Mutex_ChatEdit.exe | 2025-08-27 | techwomanwow | `1c8cc43a50cd28b669ce2ecd6ce1e90aba8752e53f354a0dffcdd36b4cf6c2f1` | patches/techwomanwow_win7_chatedit.r2 | `f2a802295407f2d61669ad4a8a57abb938d6a5188d7ca588cc4d96b4496a8d74` | Built on the Win7 dump, so it has no FIX_3 bytes despite its name; the installed `D:\DDON_03040008\DDO.exe` |
+| DDO_ChatEdit_4GB_RAM.exe | 2025-11-26 | mr.september | `f1c974d0e529d4bb7dc5f0953d37eea6bbb023f2667f9a1d3a3b878f4919fa20` | patches/mr.september_chatedit_4gb_ram.r2 | `bf5107ef7ddf5f369d5d01267237f9a8def955b5a847c36264b9ed80230d8249` | The "4GB" write at `0x1B8` only rewrites the PE checksum: LARGEADDRESSAWARE is already set in the plain dump |
 
 ### 2026
 
@@ -112,4 +114,6 @@ Each patch in the tables lists a Starting Hash and a Target Hash. The patch will
 | DDO_Bunie_5-in-1.exe | 2026-02-18 | bunie | `f1c974d0e529d4bb7dc5f0953d37eea6bbb023f2667f9a1d3a3b878f4919fa20` | patches/bunie_5_in_1.r2 | `268536f0e898060d1e65ad97c11801eddb1aaad97233d37a08692518bfb02dc5` | |
 | DDO_Bunie_DDOPerfPatch_v1.exe | 2026-02-24 | bunie | `f1c974d0e529d4bb7dc5f0953d37eea6bbb023f2667f9a1d3a3b878f4919fa20` | patches/bunie_DDOPerfPatch_v1.r2 | `ac836bcdfb6719bcefe7580c57f6b565f6915b689bde96bb8c988c185ffcbdeb` | |
 | DDO_Bunie_DDOPerfPatch_v2.exe | 2026-02-25 | bunie | `f1c974d0e529d4bb7dc5f0953d37eea6bbb023f2667f9a1d3a3b878f4919fa20` | patches/bunie_DDOPerfPatch_v1.r2 | `ac836bcdfb6719bcefe7580c57f6b565f6915b689bde96bb8c988c185ffcbdeb` | |
-| DDO_Bunie_DDOPerfPatch_v3.exe | 2026-02-28 | bunie | `f1c974d0e529d4bb7dc5f0953d37eea6bbb023f2667f9a1d3a3b878f4919fa20` | patches/bunie_DDOPerfPatch_v1.r2 | `ac836bcdfb6719bcefe7580c57f6b565f6915b689bde96bb8c988c185ffcbdeb` | |
+| DDO_Bunie_DDOPerfPatch_v3.exe | 2026-02-28 | bunie | `f1c974d0e529d4bb7dc5f0953d37eea6bbb023f2667f9a1d3a3b878f4919fa20` | patches/bunie_DDOPerfPatch_v1.r2 | `ac836bcdfb6719bcefe7580c57f6b565f6915b689bde96bb8c988c185ffcbdeb` | v1, v2 and v3 share this exe; their `dinput8.dll` differ |
+| DDO_Bunie_100FPSPatch.exe | | bunie | `f1c974d0e529d4bb7dc5f0953d37eea6bbb023f2667f9a1d3a3b878f4919fa20` | patches/bunie_3_in_1.r2 | `b9b9cf865012768e5a73bdff2b63318675b7974367cea4061880018dcf1d272e` | Byte-identical to DDO_Bunie_3-in-1.exe |
+| Bunie_PerfPatch_v7\DDO.exe | | bunie | `ac836bcdfb6719bcefe7580c57f6b565f6915b689bde96bb8c988c185ffcbdeb` | (none; 8 runs, 98 bytes) | `030623885f5af3a67e453ffdfbbd9dc26eb640c5bb4af25dac400b8920bc9f11` | Not Themida-packed. Its `dinput8.dll` (`8b60d64259d850e718b20e594f3f79a7d841d1d42be1e5db3275df5bf3151596`) hooks with MinHook (`research/03040008/protections/R3-patches.md` §2.10, §4) |
