@@ -3,5 +3,93 @@
   "env": {
     "PYTHONUTF8": "1",
     "BASH_MAX_TIMEOUT_MS": "3600000"
+  },
+  "permissions": {
+    "deny": [
+      "Bash(git push --force:*)",
+      "Bash(git push -f:*)",
+      "Bash(git reset --hard:*)",
+      "Bash(git clean:*)",
+      "Bash(git stash:*)",
+      "Bash(git worktree add:*)",
+      "Bash(git commit --no-gpg-sign:*)",
+      "Bash(git commit --no-verify:*)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash|PowerShell",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python -X utf8 -I D:/ddon-data/tools/hooks/guard_bash.py"
+          },
+          {
+            "type": "command",
+            "command": "python -X utf8 -I D:/ddon-data/tools/hooks/log_tool.py"
+          }
+        ]
+      },
+      {
+        "matcher": "Read",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python -X utf8 -I D:/ddon-data/tools/hooks/guard_read.py"
+          }
+        ]
+      },
+      {
+        "matcher": "Agent|WebFetch|WebSearch|mcp__.*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python -X utf8 -I D:/ddon-data/tools/hooks/log_tool.py"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python -X utf8 -I D:/ddon-data/tools/hooks/log_tool.py"
+          }
+        ]
+      },
+      {
+        "matcher": "Bash|PowerShell|Agent|SendMessage",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python -X utf8 -I D:/ddon-data/tools/hooks/context_watch.py"
+          }
+        ]
+      }
+    ],
+    "PostToolUseFailure": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python -X utf8 -I D:/ddon-data/tools/hooks/log_tool.py"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python -X utf8 -I D:/ddon-data/tools/hooks/context_watch.py"
+          }
+        ]
+      }
+    ]
   }
 }

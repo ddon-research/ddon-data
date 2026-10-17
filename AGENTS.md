@@ -154,6 +154,20 @@ POSIX equivalent.
 - CSV exports: `<build>-<type>.csv` (`03040008-headers.csv`); hex dumps as `00000000: 0100 0000 ....`.
 - Cross-source keys: `NpcId`, `ItemId`, `QuestId`, stage numbers; positions as `{X, Y, Z}`.
 
+## Agents and coordination
+
+- The main session is the coordinator: protocol `specs/orchestration.md`, checklist the
+  `coordinate` skill. Role agents in `.claude/agents/` (`implementer`, `adversarial-reviewer`,
+  `reviewer`, `repository-researcher`, `evidence-researcher`) do one bounded job each from a brief.
+- **No worktrees here** (hundreds of thousands of files): every agent works in this checkout, so
+  at most one writer runs at a time and read-only agents run beside it. Agents inherit the
+  session's effort: set no `effort` on spawns or in role files.
+- The gate is `bash tools/check.sh` (`--since <rev>`, `--all`, `--quick`): hook tests, shell syntax,
+  and the gates of the projects that changed. Hooks in `tools/hooks/` (`.claude/settings.json`)
+  refuse the traps this file names (grep/find/sed -i, blanket staging, unsigned commits, polling,
+  worktrees, unbounded diffs and listings over `client/`/`packets/`, bulk reverts, hand edits of
+  producer output) and log tool calls to `.agent-ledger/`; a refusal names the replacement.
+
 ## Planning with Spec Kit
 
 Spec Kit 1.1.3 (bash scripts, Claude integration) is installed in two projects. The scripts use the

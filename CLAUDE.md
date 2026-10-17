@@ -21,7 +21,11 @@
 - IDA: the `ida` (ida-mcp) and `ida-assist` MCP servers attach to the IDA 9.5 GUI databases listed
   in `AGENTS.md`; the user-level `CLAUDE.md` documents attach steps, database hashes, and the
   headless `ida-domain-scripting` skill. Prefer MCP over the headless skill for those databases.
-- Use subagents for sweeps over `client/` or `packets/`, and keep only their conclusions.
+  With no IDA GUI running, ida-mcp's `open_database` on the IDA 9.5 `.i64` starts a headless
+  idalib session (Sam allows it): query read-only, never save, `close_database` when done.
+- Delegation: load the `coordinate` skill and use the role agents (`AGENTS.md` "Agents and
+  coordination"); sweeps over `client/` or `packets/` go to a `repository-researcher`, and only
+  its conclusions stay here.
 
 ## Bash tool traps
 

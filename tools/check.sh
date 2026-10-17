@@ -1,0 +1,155 @@
+#!/usr/bin/env bash
+# The single local gate for ddon-data. Runs each check that applies to the changed files and whose
+# tools exist, and prints one line per check: passed, failed, or "not run (<reason>)". A check
+# that did not run is never reported as passed.
+#
+#   tools/check.sh                 checks for the files changed since the base (default: merge-base with main)
+#   tools/check.sh --since <rev>   use <rev> as the base
+#   tools/check.sh --all           run every project's gate, changed or not
+#   tools/check.sh --quick         hooks and shell syntax only (no project test suites)
+#
+# Changed files: `git diff --name-only <base>` plus untracked files, limited to the small trees
+# (never client/ or packets/ data). Full logs go to .agent-ledger/check-logs/<check>.log.
+# Exit status: 0 when nothing failed, 1 otherwise.
+set -o errexit -o nounset -o pipefail
+
+ROOT=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)
+LOGS="$ROOT/.agent-ledger/check-logs"
+FLAGS_DIR=research/03040008/flags
+KG_DIR=research/knowledge-graph
+SMALL_TREES=(tools research specs plan patches .claude .specify AGENTS.md CLAUDE.md readme.adoc
+             'packets/*.sh' 'packets/keys/*.sh' 'binaries/PS4_02020005/elf-dumps/*.sh')
+quick=0 all=0 since=""
+
+while [ $# -gt 0 ]; do
+    case "$1" in
+        --quick) quick=1 ;;
+        --all) all=1 ;;
+        --since) since="${2:?--since needs a revision}"; shift ;;
+        -h|--help) sed -n '2,14p' "${BASH_SOURCE[0]}"; exit 0 ;;
+        *) echo "unknown option: $1" >&2; exit 2 ;;
+    esac
+    shift
+done
+
+for tool in git rg; do
+    command -v "$tool" >/dev/null || { echo "check.sh needs $tool" >&2; exit 2; }
+done
+mkdir -p "$LOGS"
+cd "$ROOT"
+
+declare -a lines=()
+failed=0
+
+record() {  # record <check> <passed|failed|not run (...)> [detail]
+    lines+=("$(printf '%-9s %-40s %s' "$1" "$2" "${3:-}")")
+    if [ "$2" = failed ]; then failed=1; fi
+}
+
+run_logged() {  # run_logged <check> <command...>: 0 or the command's status; output in the log
+    local name=$1 start end status=0
+    shift
+    start=$(date +%s)
+    "$@" >"$LOGS/$name.log" 2>&1 || status=$?
+    end=$(date +%s)
+    echo "$((end - start))" >"$LOGS/$name.seconds"
+    if [ "$status" -ne 0 ]; then
+        echo "--- $name failed (exit $status); last lines of $LOGS/$name.log:" >&2
+        tail -n 25 "$LOGS/$name.log" >&2
+    fi
+    return "$status"
+}
+
+seconds() { cat "$LOGS/$1.seconds" 2>/dev/null || echo "?"; }
+
+base=${since:-$(git merge-base HEAD main 2>/dev/null || echo HEAD)}
+changed="$LOGS/changed-files.txt"
+{ git diff --name-only --diff-filter=d "$base" -- "${SMALL_TREES[@]}"
+  git ls-files --others --exclude-standard -- "${SMALL_TREES[@]}"; } | sort -u >"$changed"
+touches() { [ "$all" -eq 1 ] || rg -q "$1" "$changed"; }
+
+# 1. Hook and orchestration unit tests (always).
+python_bin=$(command -v python || command -v python3 || true)
+if [ -z "$python_bin" ]; then
+    record hooks "not run (python missing)"
+else
+    hook_tests() {
+        "$python_bin" -X utf8 -I -m unittest discover -s tools/hooks &&
+            "$python_bin" -X utf8 -I -m unittest discover -s tools/orchestration
+    }
+    if run_logged hooks hook_tests; then
+        record hooks passed "$(rg -o 'Ran [0-9]+ tests?' "$LOGS/hooks.log" | paste -sd ' ' -) ($(seconds hooks) s)"
+    else
+        record hooks failed "see $LOGS/hooks.log"
+    fi
+fi
+
+# 2. Shell syntax of the changed scripts (bash -n; shellcheck when installed).
+scripts="$LOGS/shell-files.txt"
+rg '\.sh$' "$changed" >"$scripts" || true
+count=$(wc -l <"$scripts" | tr -d ' ')
+if [ "$count" -eq 0 ]; then
+    record shell passed "0 scripts changed since $(git rev-parse --short "$base")"
+else
+    syntax() { while IFS= read -r f; do bash -n "$f" || return 1; done <"$scripts"; }
+    if run_logged shell syntax; then
+        if command -v shellcheck >/dev/null; then
+            if run_logged shellcheck xargs -a "$scripts" shellcheck -S warning; then
+                record shell passed "$count scripts: bash -n, shellcheck"
+            else
+                record shell failed "shellcheck on $count scripts"
+            fi
+        else
+            record shell passed "$count scripts: bash -n (shellcheck not run: missing)"
+        fi
+    else
+        record shell failed "bash -n on $count scripts"
+    fi
+fi
+
+# 3. ddon-flags unit tests (CPython 3.14 venv from its README).
+if [ "$quick" -eq 1 ]; then
+    record flags "not run (--quick)"
+elif ! touches "^$FLAGS_DIR/(src|tests|[^/]+\.(py|toml))"; then
+    record flags "not run (no change under $FLAGS_DIR)"
+elif [ ! -x "$FLAGS_DIR/.venv-cpython314/Scripts/python.exe" ]; then
+    record flags "not run ($FLAGS_DIR/.venv-cpython314 missing: see its README)"
+else
+    flags_tests() { (cd "$FLAGS_DIR" && .venv-cpython314/Scripts/python.exe -m unittest discover -s tests); }
+    if run_logged flags flags_tests; then
+        record flags passed "$(rg -o 'Ran [0-9]+ tests?' "$LOGS/flags.log" | tail -n 1) ($(seconds flags) s)"
+    else
+        record flags failed "see $LOGS/flags.log"
+    fi
+fi
+
+# 4. Knowledge-graph gates (its AGENTS.md): pytest, ruff, mypy; Neo4j and real-artifact tests stay opt-in.
+if [ "$quick" -eq 1 ]; then
+    record kg "not run (--quick)"
+elif ! touches "^$KG_DIR/(src|tests|pyproject)"; then
+    record kg "not run (no change under $KG_DIR)"
+elif ! command -v uv >/dev/null; then
+    record kg "not run (uv missing)"
+else
+    kg_gates() {
+        (cd "$KG_DIR" && uv run pytest -q && uv run ruff check --no-fix . && uv run mypy src tests)
+    }
+    if run_logged kg kg_gates; then
+        record kg passed "$(rg -o '[0-9]+ passed' "$LOGS/kg.log" | tail -n 1); ruff; mypy ($(seconds kg) s)"
+    else
+        record kg failed "see $LOGS/kg.log"
+    fi
+fi
+
+# 5. ImHex patterns: validation needs the ImHex CLI, which is not on PATH (AGENTS.md).
+if touches 'r[A-Za-z0-9]+-pattern\.cpp$'; then
+    if command -v imhex >/dev/null; then
+        record imhex "not run (run research/validate_pattern.sh per pattern)"
+    else
+        record imhex "not run (imhex not on PATH)"
+    fi
+fi
+
+echo "check.sh at $(git rev-parse --short HEAD)$(git diff --quiet HEAD -- "${SMALL_TREES[@]}" 2>/dev/null || echo ' + uncommitted changes'), base $(git rev-parse --short "$base"):"
+printf '%s\n' "${lines[@]}"
+exit "$failed"
