@@ -240,6 +240,13 @@ def check_git(words, cwd):
         letters = short_flags(arguments, set())
         if blanket & set(arguments) or "A" in letters or "u" in letters:
             return "Blanket staging (`git add -A`, `.`, `-u`) is not used here: stage the change's explicit paths (this worktree holds other people's dirty work)."
+        # A directory stages every dirty and untracked file under it (2026-10-17, ddon-hook: `git add specs`
+        # swept 377 files of other work into a commit).
+        paths = [word for word in arguments if not word.startswith("-")]
+        folders = [path for path in paths if Path(directory or ".", path).is_dir()]
+        if folders:
+            return (f"`git add {folders[0]}` stages a whole directory, including other people's dirty and untracked "
+                    "files: stage the change's explicit file paths.")
     if sub == "push":
         return check_push(directory, arguments)
     return None

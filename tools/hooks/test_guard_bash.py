@@ -148,6 +148,17 @@ class GuardBashTest(unittest.TestCase):
             with self.subTest(command=command):
                 self.assertIsNone(guard_bash.verdict(data(command, agent=f"x{index}", call=f"a{index}")))
 
+    def test_git_add_directory(self):
+        with tempfile.TemporaryDirectory() as root:
+            (Path(root) / "specs" / "011").mkdir(parents=True)
+            (Path(root) / "specs" / "011" / "tasks.md").write_text("x", encoding="utf-8")
+            check = lambda command: guard_bash.check_git(command.split(), root)  # noqa: E731
+            self.assertIsNotNone(check("git add specs"))
+            self.assertIsNotNone(check("git add specs/011 specs/011/tasks.md"))
+            self.assertIsNotNone(check(f"git -C {root} add specs"))
+            self.assertIsNone(check("git add specs/011/tasks.md"))
+            self.assertIsNone(check("git add -- specs/011/tasks.md missing.txt"))
+
     def test_powershell(self):
         self.assertIsNotNone(guard_bash.verdict(data("Get-Content big.log | Select-Object -First 20", "PowerShell")))
         self.assertIsNotNone(guard_bash.verdict(data("Select-String -Path *.cpp -Pattern x", "PowerShell")))
