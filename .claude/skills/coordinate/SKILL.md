@@ -14,9 +14,11 @@ landing, tick the tasks, then plan and start the next wave. End a turn only when
 on budget, and say exactly what is needed. A side session's brief names the spec's completion as
 its goal, not one wave.
 
-Sub-coordinators (ddon-hook) send approval requests here, not to Sam. Review the changed lines and
-decide routine ones, such as a port of a change Sam already approved. Escalate the big decisions
-above and anything that loosens a guard or a permission (Sam, 2026-10-17).
+Sub-coordinators (ddon-hook) bring their decisions here, not to Sam (Sam, 2026-10-17). Decide the
+routine ones and escalate the big decisions above. One exception: a session's own config
+(`.claude/**`, `AGENTS.md`, hooks, role files) needs Sam's approval in that session itself, because
+a relayed approval does not count there. For those, review the patch, then ask Sam for the one
+click with your verdict attached.
 
 ## Resume
 
