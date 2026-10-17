@@ -52,3 +52,16 @@ could not run is "not run".
 
 Do not commit. Final message: path, line count, and the five most important findings in at most
 ten lines.
+
+## Added after R1 (2026-10-17)
+
+R1's leading hypothesis (H1, `R1-online.md` section 7) is Themida's delayed integrity response:
+a `CHECK_CODE_INTEGRITY`-style check on a 30–60 s thread or timer that corrupts a pointer instead of
+crashing at once. Test it statically: thread and timer creation sites (CreateThread, _beginthreadex,
+timeSetEvent, CreateTimerQueueTimer, SetTimer) and what each thread body does; routines that read
+`.text` bytes as data or hash code ranges, including any not neutralised by DUMP_FIX; SecureEngine
+VM entry stubs or calls into the removed Themida sections that survived the dump; writes that clear
+or overwrite global context pointers from such routines. Also record whether the dump's
+`SetUnhandledExceptionFilter` or crash handler would suppress WER dumps (R1 H-section 5).
+Record any external document you rely on in `research/external-references.jsonl`
+(format: `research/external-references.md`).
