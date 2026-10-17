@@ -147,6 +147,10 @@ POSIX equivalent.
 
 ## Conventions
 
+- **Libraries first** (Sam, 2026-10-17): use a library whenever one fits; never reinvent one. That
+  means the standard library or the project's existing dependencies first (`pyproject.toml`), then
+  well-known packages added through `uv add`. Own code only where none fits, with the reason in the
+  receipt.
 - Resource classes use the `r<Name>` prefix (`rItemList`, `rLayout`); enums keep their DWARF names
   (`rItemList_ITEM_CATEGORY`). Each file extension maps to one resource class.
 - ImHex patterns: `r<ResourceType>-pattern.cpp`, enums from debug symbols, `#pragma pattern_limit`

@@ -55,6 +55,7 @@ a permission or a deny rule.
 Question/objective: ... (build: 03040008 | 02030004 | PS4_02020005)
 Owns: <globs>. Others own: <globs>. Never touch: <dirty paths of other work>, client/, packets/ data.
 Source boundary: <files, IDB path, external docs>.
+Libraries: <existing deps to use>; own code only where no library fits, reason in the receipt.
 Done: <checks>; end with the receipt (role file).
 Stop: budget <N> min; stop and ask if <decision>.
 Base: <sha>. Commit trailer: <Co-Authored-By line>.
