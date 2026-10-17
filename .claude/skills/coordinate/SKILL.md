@@ -80,8 +80,26 @@ records uncommitted until it lands.
 (tasks.md: running agents with ids, next step), then ask the user to run `/compact`. Prefer a fresh
 agent with a handoff over resuming one whose context is large.
 
-## Milestone end
+## Reporting (orchestration section 9)
 
-Run the efficiency retrospective (orchestration section 8): `retro.py --append --out`, read the
-outliers and the instruction files, fix mechanical waste at once, replace stale instruction text,
-record findings and target metrics in the feature.
+Every landing and wave end: start the message with `python -X utf8 -I tools/orchestration/progress.py`
+(tasks done/open, spend, plan usage, context). Call `get_usage` first, which logs the reading. Then
+what landed, the inefficiencies found and what was done, and what is next. Any decision for Sam goes
+last, as one question.
+
+## Wave end
+
+Light retrospective: `retro.py --since <wave start> --label "<feature> W<n>" --append`; a metric past
+its threshold against the previous ledger row is a finding. Then plan the next wave.
+
+## A spec's end (orchestration section 10)
+
+Add these as the spec's closing tasks and run them in order:
+1. `check.sh --all`.
+2. A whole-spec review, plus an adversarial review of the spec's new guards.
+3. A docs audit, then the fixes.
+4. The full retrospective with a researcher on the outliers, the trajectories and the instructions.
+5. Learnings placed and recorded.
+6. `**Status: done**`.
+
+Push and `main` wait for Sam.

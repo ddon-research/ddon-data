@@ -4,6 +4,7 @@ description: Implements one work package in the shared ddon-data checkout (no wo
 background: true
 model: inherit
 disallowedTools: Agent, NotebookEdit, Skill, mcp__*
+autoCompactWindow: 400000
 maxTurns: 300
 hooks:
   PreToolUse:

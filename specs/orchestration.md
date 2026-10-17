@@ -134,3 +134,36 @@ its budget:
    already enforces.
 4. **Decide and record:** mechanical fixes land at once; instruction changes replace text rather
    than add it; record findings and the metric that will show each fix worked.
+
+A wave's end gets the light form: the `retro.py` row only, and a metric past its threshold against
+the previous row becomes a finding. Also run it out of turn when a waste class (refusals, failures,
+repeats) doubles between rows.
+
+## 9. Reporting to Sam
+
+At every landing and every wave's end the coordinator's message starts with the progress block
+(`python -X utf8 -I tools/orchestration/progress.py`): done/open tasks per active feature, spend
+(list $, tokens, agent hours) for the feature and the last package, plan usage (5-hour and weekly
+%, from the newest `get_usage` reading) and the coordinator's context. Below it: what landed, the
+inefficiencies the audit found and what was done about them, and what is next. A decision Sam must
+make goes last, as one question.
+
+## 10. A spec's end
+
+A spec closes only after all of these, in order; each is a task in its `tasks.md`:
+1. `bash tools/check.sh --all`; every `not run` line explained.
+2. A whole-spec `reviewer` (45 min) on the spec's changes against its `spec.md`, and an
+   `adversarial-reviewer` on every guard or check the spec added.
+3. Documentation: a read-only audit of the docs the spec touched (`readme.adoc`, the READMEs of the
+   changed directories, `research/README.adoc`, the knowledge-graph `STATUS.md`, `AGENTS.md`,
+   `CLAUDE.md`), then the fixes.
+4. The full retrospective (section 8) over the spec's window, with one `repository-researcher`
+   (60 min) on the report's ranked outliers, the subagent trajectories (bounded `jq` over the
+   transcripts' tool calls, never whole files) and the instruction files. Its findings each carry a
+   measured cost, a ruling and the metric to watch. Write them to
+   `specs/<feature>/research/retro-<label>.md`.
+5. Learnings: each lasting lesson goes where it will be loaded when relevant (a scoped rule file in
+   `.claude/rules/` with `paths:`, the role file, `AGENTS.md`, or `CLAUDE.md`'s Learnings,
+   capped at 15), replacing stale text. Record where each went.
+6. `tasks.md` marked `**Status: done**`, with the gate lines and the ledger row. Pushing or merging
+   to `main` waits for Sam.

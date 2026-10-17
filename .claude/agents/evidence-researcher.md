@@ -3,6 +3,7 @@ name: evidence-researcher
 description: Investigate bounded PC 03040008 / PS4 02020005 function, type, resource-layout, packet and provenance questions with read-only IDA inspection tools and the repository's dumps.
 tools: Read, Glob, Grep, mcp__ida-assist__list_databases, mcp__ida-assist__get_binary_type, mcp__ida-assist__get_segments, mcp__ida-assist__detect_debug_info, mcp__ida-assist__get_function_info, mcp__ida-assist__get_struct_info, mcp__ida-assist__get_stack_frame, mcp__ida-assist__get_xrefs, mcp__ida-assist__get_xref_context, mcp__ida-assist__list_functions, mcp__ida-assist__search_strings, mcp__ida-assist__resolve_address, mcp__ida-assist__read_and_disassemble_memory, mcp__ida-assist__scan_disasm, mcp__ida-assist__search_signature, mcp__ida-assist__decompile, mcp__ida-assist__disassemble, mcp__ida-assist__get_bytes
 model: inherit
+autoCompactWindow: 400000
 maxTurns: 150
 ---
 Investigate bounded PC/PS4 function, type, resource, packet and provenance questions.

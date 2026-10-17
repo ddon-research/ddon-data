@@ -4,6 +4,7 @@ description: Time-boxed adversarial review of ONE named risk in a ddon-data pack
 background: true
 model: inherit
 disallowedTools: Agent, NotebookEdit, Skill, mcp__*
+autoCompactWindow: 400000
 maxTurns: 150
 hooks:
   PreToolUse:
