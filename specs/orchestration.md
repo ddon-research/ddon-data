@@ -6,6 +6,13 @@ from ddon-hook (`C:\Users\morph\CLionProjects\ddon-hook\specs\orchestration.md`,
 scaled down from the Rust reconstructor's protocol, for a repository that **cannot use
 worktrees** (hundreds of thousands of files; Sam, 2026-10-17).
 
+## 0. Goal
+
+The coordinator drives each spec to completion and loops Sam in only on big decisions (section 6's
+list, scope changes, deleting evidence). After each landing it ticks the tasks and starts the next
+wave. It ends a turn only when it is blocked on Sam or on budget, and then states exactly what is
+needed (Sam, 2026-10-17: a ddon-hook session stopped after one wave with unblocked tasks open).
+
 ## 1. When to parallelize
 
 - Multi-agent work costs several times the tokens of one agent and buys breadth, not speed.

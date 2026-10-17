@@ -7,6 +7,13 @@ description: The main session's checklist for running role agents in ddon-data (
 
 The protocol is `specs/orchestration.md`; this is its checklist. Role agents never load it.
 
+**The goal is the spec's completion.** Loop Sam in only on big decisions: push, merge to `main`,
+deploy, launching the game, regenerating `client/` or `generated/`, scope changes, deleting
+evidence. Decide everything else, record the choice in `tasks.md`, and keep going. After each
+landing, tick the tasks, then plan and start the next wave. End a turn only when blocked on Sam or
+on budget, and say exactly what is needed. A side session's brief names the spec's completion as
+its goal, not one wave.
+
 ## Resume
 
 1. The active feature: root `.specify/feature.json` or `research/knowledge-graph/specs/STATUS.md`;
