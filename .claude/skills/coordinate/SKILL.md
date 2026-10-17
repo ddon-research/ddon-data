@@ -14,6 +14,10 @@ landing, tick the tasks, then plan and start the next wave. End a turn only when
 on budget, and say exactly what is needed. A side session's brief names the spec's completion as
 its goal, not one wave.
 
+Sub-coordinators (ddon-hook) send approval requests here, not to Sam. Review the changed lines and
+decide routine ones, such as a port of a change Sam already approved. Escalate the big decisions
+above and anything that loosens a guard or a permission (Sam, 2026-10-17).
+
 ## Resume
 
 1. The active feature: root `.specify/feature.json` or `research/knowledge-graph/specs/STATUS.md`;
