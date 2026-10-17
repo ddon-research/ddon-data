@@ -19,3 +19,4 @@ survey or a clone. Modelled on the reconstructor's `docs/reference/external-reso
 | Topic | Report | Spec |
 | --- | --- | --- |
 | PC client protections, hooking libraries, anti-anti-debug tools, crash triage | `research/03040008/protections/` | `specs/003-client-protections/` |
+| Claude vision: image token accounting, Claude Code image handling, cheaper capture for automation | `research/claude-vision-tokens.md`, script `research/claude-vision/count_image_tokens.py` | `specs/004-vision-token-economy/` |
