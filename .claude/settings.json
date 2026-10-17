@@ -68,6 +68,25 @@
             "command": "python -X utf8 -I D:/ddon-data/tools/hooks/context_watch.py"
           }
         ]
+      },
+      {
+        "matcher": "mcp__ccd_session_mgmt__get_usage",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python -X utf8 -I D:/ddon-data/tools/hooks/log_usage.py"
+          }
+        ]
+      }
+    ],
+    "SubagentStop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python -X utf8 -I D:/ddon-data/tools/hooks/subagent_stop.py"
+          }
+        ]
       }
     ],
     "PostToolUseFailure": [

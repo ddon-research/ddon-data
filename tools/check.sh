@@ -4,7 +4,7 @@
 # that did not run is never reported as passed.
 #
 #   tools/check.sh                 checks for the files changed since the base (default: merge-base with main)
-#   tools/check.sh --since <rev>   use <rev> as the base
+#   tools/check.sh --since <rev>   only the files committed in <rev>..HEAD (landing a package)
 #   tools/check.sh --all           run every project's gate, changed or not
 #   tools/check.sh --quick         hooks and shell syntax only (no project test suites)
 #
@@ -64,8 +64,12 @@ seconds() { cat "$LOGS/$1.seconds" 2>/dev/null || echo "?"; }
 
 base=${since:-$(git merge-base HEAD main 2>/dev/null || echo HEAD)}
 changed="$LOGS/changed-files.txt"
-{ git diff --name-only --diff-filter=d "$base" -- "${SMALL_TREES[@]}"
-  git ls-files --others --exclude-standard -- "${SMALL_TREES[@]}"; } | sort -u >"$changed"
+if [ -n "$since" ]; then  # landing a package: its commits only, not others' dirty or untracked work
+    git diff --name-only --diff-filter=d "$base" HEAD -- "${SMALL_TREES[@]}" | sort -u >"$changed"
+else
+    { git diff --name-only --diff-filter=d "$base" -- "${SMALL_TREES[@]}"
+      git ls-files --others --exclude-standard -- "${SMALL_TREES[@]}"; } | sort -u >"$changed"
+fi
 touches() { [ "$all" -eq 1 ] || rg -q "$1" "$changed"; }
 
 # 1. Hook and orchestration unit tests (always).

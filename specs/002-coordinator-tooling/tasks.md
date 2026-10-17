@@ -23,13 +23,19 @@ files.
 
 ## Packages
 
-- [ ] P1 `implementer`: cost and usage tooling (R1 gaps 1, 2, 3, 5, 8). Brief `briefs/P1-cost-tooling.md`.
+- [x] P1 `implementer`: cost and usage tooling (R1 gaps 1, 2, 3, 5, 8). Brief `briefs/P1-cost-tooling.md`.
+      Commit 33b0bc5 (signed), 8 min, 43 tool calls, 123k tokens. Focused tests 14 + 10 OK. Gate
+      (coordinator): `check.sh --since 1ed7f1e`: hooks passed (26 + 14), shell passed, flags and kg
+      not run (no change). The worker's own run failed kg on the untracked, other-owned
+      `research/knowledge-graph/`. Fix: `check.sh --since` now counts only `<rev>..HEAD`.
+      Its first real readings (2026-10-17 transcripts): $54.57 in all, the coordinator $37.18 (68%);
+      6 of 13 agents had no findable budget.
   - `retro.py` gains list $ per response, the coordinator's share, instruction tokens, budget
     overruns, `head` and `unavailable`.
   - Ported: `log_usage.py` and `subagent_stop.py` (output to `.agent-ledger/`), `progress.py`,
     `section.py`, with tests.
 - [ ] P2 `implementer`: `session_state.py` without worktrees (R1 gap 7), after P1.
-- [ ] T004 Coordinator: register the P1/P2 hooks in `.claude/settings.json`; write the first row
+- [ ] T004 Coordinator: register the P1/P2 hooks in `.claude/settings.json` (P1's two: done); write the first row
       of `specs/efficiency-ledger.jsonl` (the baseline: 009 fix wave and this feature).
 - [ ] T005 Coordinator: `.claude/rules/` with `paths:` scoping (R1 gap 9); move domain learnings
       out of `CLAUDE.md` when a spec closes.
