@@ -23,10 +23,12 @@ read-only, never save, `close_database` at the end). One subagent at a time.
 - [x] R2 `general-purpose` (IDA, PE; 13 min, 37 tool calls, 197k tokens): inventory of the protections in the DUMP_FIX database and
       the PE-level traits of every PC executable. Brief `briefs/R2-static.md`; output
       `R2-static.md`.
-- [ ] R3 `general-purpose` (patches): every patch layer from vanilla to Bunie v7 and ChatEdit,
+- [x] R3 `general-purpose` (patches; 16 min, 75 tool calls, 267k tokens): every patch layer from vanilla to Bunie v7 and ChatEdit,
       each site classified. Brief `briefs/R3-patches.md`; output `R3-patches.md`.
-- [ ] S1 Coordinator: synthesis `README.md` with the crash-triage protocol; hand it to ddon-hook.
+- [x] S1 Coordinator: synthesis `research/03040008/protections/README.md` with the crash-triage protocol; handed to ddon-hook.
+- [ ] S2 Correct `patches/README.md` (README §6: f1c9 parent, 4GB = checksum, vanilla path, Win7 parent, missing v7 and 100FPS rows, UTF-16 files).
+- [ ] C1 Closing: docs audit (`external-references.md` index), light retro, `**Status: done**`.
 
 ## Running
 
-- R3 general-purpose (patches), started 2026-10-17.
+- (none)
