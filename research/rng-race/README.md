@@ -22,6 +22,21 @@ and what is next. Client build **03040008** (PC) unless stated.
 5. Next step: measure the races in a live client with the ddon-hook monitor (branch
    `rng-monitor`, `docs/reverse-engineering/17-rng-monitor.md`) and size a search from the data.
 
+## Resume here (2026-10-17 15:35)
+
+- ddon-hook `C:\Users\morph\CLionProjects\ddon-hook`, branch `rng-monitor`: monitor implemented
+  and committed (feature 009). A worker was adopting the reconstructor's practices there
+  (feature 010: hooks, roles, coordination protocol, Diátaxis index, `tools/check.sh`); check
+  `git log` and `specs/010-agentic-practices/tasks.md` for what landed.
+- Deployed 2026-10-17: `D:\DDON_03040008\dinput8.dll` is the Zen 5 release build
+  (SHA-256 `e71c454c…ead89`); the previous DLL is `dinput8.dll.bak-2026-10-17-752695bd`.
+  `ddon_hook.env` is **not** placed yet, so the monitor is off and all other hooks run as before.
+- Next: Sam starts a monitor run (copy `config/rng-monitor.env` to
+  `D:\DDON_03040008\ddon_hook.env`), then analyse `ddon_hook_artifacts/evidence/rng_monitor.jsonl`
+  here and size the search (IDEAS S4, M1, M5).
+- Nothing is pushed: ddon-hook `rng-monitor` and ddon-data `claude/project-thread-7tqspy` are
+  local branches. Build logs from the session are in the ignored `scratch-2026-10-17/`.
+
 ## Files
 
 | File | What it is |
