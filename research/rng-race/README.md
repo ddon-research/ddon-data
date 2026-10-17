@@ -37,6 +37,15 @@ and what is next. Client build **03040008** (PC) unless stated.
 - Nothing is pushed: ddon-hook `rng-monitor` and ddon-data `claude/project-thread-7tqspy` are
   local branches. Build logs from the session are in the ignored `scratch-2026-10-17/`.
 
+## Video of the captured sessions
+
+`D:\ddon-longplay\ddon longplay\` holds about 88 screen recordings that match the pcaps
+(`NNN - Dragon's Dogma Online N [id].mkv` plus `.info.json`; 182 GiB, up to 15 GiB and 3.5 h per
+file). Use them to see what happened in game around a capture time, such as a login or a key
+burst. The only clock is the Windows 7 taskbar clock, accurate to the minute. Never copy or decode a
+whole file: read `.info.json` with `jq`, and take single frames with
+`ffmpeg -ss <t> -i <mkv> -frames:v 1 <png>`.
+
 ## Files
 
 | File | What it is |
