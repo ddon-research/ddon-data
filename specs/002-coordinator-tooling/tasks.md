@@ -43,8 +43,12 @@ files.
       of `specs/efficiency-ledger.jsonl` (the baseline: 009 fix wave and this feature).
 - [ ] T005 Coordinator: `.claude/rules/` with `paths:` scoping (R1 gap 9); move domain learnings
       out of `CLAUDE.md` when a spec closes.
-- [ ] T006 ddon-hook: the same mechanisms, handed to that repository's coordinator once P1/P2 land
-      (its own roles and worktrees).
+- [ ] T006 ddon-hook: the same mechanisms, handed to that repository's coordinator (session
+      local_3b681044) on 2026-10-17 at 9a4a55b. The list covers the text sections 0/8/9/10,
+      autoCompactWindow, retro.py with $, progress, section, log_usage, subagent_stop and
+      session_state, the settings registrations and the check.sh `--since` fix. Sam's rule (2026-10-17):
+      ddon-hook's coordinator runs **at most one subagent at a time**, and every later setup change
+      here is ported there. Done when its commits land and its first ledger row exists; verify them.
 
 Not ported (R1 section d): the worktree, train and golden machinery; `receipt.py --verify`; the
 pipeline metrics; the structure tools; `effort`; the concurrency setting.

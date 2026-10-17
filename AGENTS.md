@@ -160,7 +160,7 @@ POSIX equivalent.
   `coordinate` skill. Role agents in `.claude/agents/` (`implementer`, `adversarial-reviewer`,
   `reviewer`, `repository-researcher`, `evidence-researcher`) do one bounded job each from a brief.
 - **No worktrees here** (hundreds of thousands of files): every agent works in this checkout, so
-  at most one writer runs at a time and read-only agents run beside it. Agents inherit the
+  at most one subagent of any role runs at a time (Sam, 2026-10-17; ddon-hook's coordinator too). Agents inherit the
   session's effort: set no `effort` on spawns or in role files.
 - The gate is `bash tools/check.sh` (`--since <rev>`, `--all`, `--quick`): hook tests, shell syntax,
   and the gates of the projects that changed. Hooks in `tools/hooks/` (`.claude/settings.json`)

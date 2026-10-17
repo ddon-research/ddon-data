@@ -13,23 +13,19 @@ list, scope changes, deleting evidence). After each landing it ticks the tasks a
 wave. It ends a turn only when it is blocked on Sam or on budget, and then states exactly what is
 needed (Sam, 2026-10-17: a ddon-hook session stopped after one wave with unblocked tasks open).
 
-## 1. When to parallelize
+## 1. One subagent at a time
 
-- Multi-agent work costs several times the tokens of one agent and buys breadth, not speed.
-  Parallelize only work that is **disjoint in files and in contracts**.
-- Every agent shares one checkout, one branch and one index. So: **at most one writer**
-  (`implementer`) at a time; read-only agents (`reviewer`, `repository-researcher`,
-  `evidence-researcher`) and `adversarial-reviewer`s (which write only to the gitignored
-  `.agent-ledger/canaries/`) may run beside it; at most four agents in total.
-- Good fits: independent read-only research (a packet family, a resource format, a flag family);
-  a review of a landed change while the next package is briefed; evidence research in IDA while
-  the writer works on scripts.
-- Poor fits: two writers anywhere; work on the same Spec Kit feature's artifacts at once;
-  anything needing an IDA database in write mode (annotation is the coordinator's, serialized).
-- **Other repositories are different:** packages in small repositories (ddon-hook, the
-  reconstructor) use their own worktrees and their own role files. Spawn those from a session
-  started in that repository, so its role types and guard hooks load (2026-10-17: ddon-hook
-  reviewers spawned from a ddon-data session ran without their guards).
+- **At most one subagent runs at a time, of any role** (Sam, 2026-10-17: costs and coordination
+  otherwise spiral; the first measurement had the coordinator at 68% of spend). Land or close
+  each agent before the next one is spawned; nothing runs beside it. Multi-agent work costs several
+  times the tokens of one agent and buys breadth, not speed.
+- Every agent shares one checkout, one branch and one index, and anything needing an IDA database
+  in write mode stays with the coordinator (annotation is serialized).
+- Sessions in other repositories (ddon-hook) are sub-coordinators under the same cap: one subagent
+  at a time, their own worktrees and role files. Every change to this setup is ported to them
+  (`specs/002-coordinator-tooling/tasks.md` T006). Spawn their agents from a session started in
+  that repository, so its role types and guard hooks load (2026-10-17: ddon-hook reviewers spawned
+  from a ddon-data session ran without their guards).
 - A small or coupled change stays with the coordinator.
 
 ## 2. Roles and ownership

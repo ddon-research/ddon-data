@@ -24,11 +24,13 @@ its goal, not one wave.
 
 ## Before spawning
 
+- **One subagent at a time, of any role** (Sam, 2026-10-17). Is one running? Then land or close it
+  first. Sub-coordinator sessions (ddon-hook) follow the same cap.
 - Is the work worth an agent? A fact a few tool calls can find, or a change touching files another
   package owns, stays with you.
 - Is the request clear? If an answer would change what is built, regenerated, deleted or deployed,
   ask the user; otherwise pick the default, say so in the reply and in `tasks.md`.
-- Pick the role: `implementer` (code or scripts, **one at a time**, main checkout),
+- Pick the role: `implementer` (code or scripts, main checkout),
   `adversarial-reviewer` (one risk, canaries in `.agent-ledger/canaries/`), `reviewer` (read-only,
   give it the git receipt), `repository-researcher`, `evidence-researcher` (read-only IDA). Not the
   built-in Explore/Plan/general-purpose types for project work: they carry no guards or receipts.
