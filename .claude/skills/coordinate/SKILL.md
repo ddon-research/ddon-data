@@ -17,8 +17,10 @@ its goal, not one wave.
 Sub-coordinators (ddon-hook) bring their decisions here, not to Sam (Sam, 2026-10-17). Decide the
 routine ones and escalate the big decisions above. One exception: a session's own config
 (`.claude/**`, `AGENTS.md`, hooks, role files) needs Sam's approval in that session itself, because
-a relayed approval does not count there. For those, review the patch, then ask Sam for the one
-click with your verdict attached.
+a relayed approval does not count there. So the sub-coordinator sends the patch path to the
+coordinator, which reviews it, applies it in that repository and commits it (Sam, 2026-10-17:
+"Why is it asking for trivial change approval?"). Sam is asked only when the patch loosens a guard,
+a permission or a deny rule.
 
 ## Resume
 
