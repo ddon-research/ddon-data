@@ -51,6 +51,9 @@ files.
       budget. Finding: most spend is the coordinator's per-turn cache reads, and a large share of
       its turns only relay side-session notes. Ruling: relay turns take one line and no tool calls;
       compact at milestones. Metric: `cost.coordinator_share_pct` below 50% in the next row.
+- [ ] T007 `guard_bash.py` false positive: it reads Bash's `type -a X | head` as `cat | head`,
+      because `type` is in READERS (it is Get-Content only in PowerShell). Treat `type` as a reader
+      only for the PowerShell tool. Port the fix to ddon-hook.
 - [ ] T005 Coordinator: `.claude/rules/` with `paths:` scoping (R1 gap 9); move domain learnings
       out of `CLAUDE.md` when a spec closes.
 - [ ] T006 ddon-hook: the same mechanisms, handed to that repository's coordinator (session
