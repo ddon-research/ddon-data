@@ -157,14 +157,18 @@ The remaining six are two loadable segments, `PT_DYNAMIC`, the interpreter, TLS 
 * The table also records a fingerprint and the original file name
   `D:/publishDDO_PS4_02_02_Master/DDO_02_02/DD_ONLINE/DDOORBIS.elf`.
 * The SCE dynamic symbol table has 650 entries (`DT_SCE_SYMTABSZ` 15,600 / 24). 648 are imports
-  named by NID, such as `Gl6w5i0JokY#0O#o`. `orbis-bin --dump-dynsym -v` resolves all 648 to a
-  function name, library and module.
+  named by NID, such as `Gl6w5i0JokY#0O#o`. `orbis-bin --dump-dynsym -v` resolves the library and module
+  of all 648 and the function name of 543. The other 105 stay `<Unknown NID: ...>`
+  (`rg -c '<Unknown NID' symbols/dynsym.orbis-bin.txt`), and no relocation references them. The
+  archived comparison's "resolves all 648" overstates this (found by the reconstructor's
+  inventory, 2026-10-17).
 
 === Symbols
 
 * `.symtab` has 205,738 entries: 125,352 functions (types t/T), 76,752 data objects
   (d/D/b/B/r/R), and section, file and absolute symbols.
-* 14,583 symbols are vtables or type information.
+* 14,583 symbols are vtables (`_ZTV`). There is no C++ RTTI: `symbols/rtti-vtables.derived.txt`
+  has no `_ZTI` or `_ZTS` symbol, which fits the SDK's `-fno-rtti` default.
 * The linker adds 1,187 stub symbols:
 ** `/PL<name>`: 539 PLT stubs, one per JMPREL slot;
 ** `/PG<name>`: 539 PLT GOT slots;
