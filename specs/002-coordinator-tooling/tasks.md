@@ -34,8 +34,12 @@ files.
     overruns, `head` and `unavailable`.
   - Ported: `log_usage.py` and `subagent_stop.py` (output to `.agent-ledger/`), `progress.py`,
     `section.py`, with tests.
-- [ ] P2 `implementer`: `session_state.py` without worktrees (R1 gap 7), after P1.
-- [ ] T004 Coordinator: register the P1/P2 hooks in `.claude/settings.json` (P1's two: done); write the first row
+- [x] P2 `implementer`: `session_state.py` without worktrees (R1 gap 7). Commit 2111f3b (signed),
+      3.6 min, 20 tool calls, 69k tokens. Focused tests 7 OK; worker gate `check.sh --since f5d102f`:
+      hooks passed (33 + 14), flags and kg not run (no change). Dry runs of all three modes are in its
+      receipt. The coordinator registered SessionStart, PreCompact and SubagentStart. The
+      SubagentStop record has fired (`.agent-ledger/stops.jsonl`, `reports/<id>.md`).
+- [ ] T004 Coordinator: register the P1/P2 hooks in `.claude/settings.json` (P1's two and P2's three: done); write the first row
       of `specs/efficiency-ledger.jsonl` (the baseline: 009 fix wave and this feature).
 - [ ] T005 Coordinator: `.claude/rules/` with `paths:` scoping (R1 gap 9); move domain learnings
       out of `CLAUDE.md` when a spec closes.

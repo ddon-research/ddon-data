@@ -79,6 +79,39 @@
         ]
       }
     ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python -X utf8 -I D:/ddon-data/tools/hooks/session_state.py start",
+            "timeout": 90
+          }
+        ]
+      }
+    ],
+    "PreCompact": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python -X utf8 -I D:/ddon-data/tools/hooks/session_state.py precompact",
+            "timeout": 30
+          }
+        ]
+      }
+    ],
+    "SubagentStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python -X utf8 -I D:/ddon-data/tools/hooks/session_state.py subagent",
+            "timeout": 30
+          }
+        ]
+      }
+    ],
     "SubagentStop": [
       {
         "hooks": [
