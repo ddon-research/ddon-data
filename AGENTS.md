@@ -151,6 +151,10 @@ POSIX equivalent.
   means the standard library or the project's existing dependencies first (`pyproject.toml`), then
   well-known packages added through `uv add`. Own code only where none fits, with the reason in the
   receipt.
+- **Clone what you analyse** (Sam, 2026-10-17): read a GitHub repository from a local clone in
+  `D:/GitHub/<owner>/<repo>` (`git clone --depth 1 --filter=blob:none`, or `git pull --ff-only`
+  if present), searched with `rg`; the web only finds repos, issues and articles. Clones are
+  read-only reference: never build or run them. Cite path and commit SHA.
 - Resource classes use the `r<Name>` prefix (`rItemList`, `rLayout`); enums keep their DWARF names
   (`rItemList_ITEM_CATEGORY`). Each file extension maps to one resource class.
 - ImHex patterns: `r<ResourceType>-pattern.cpp`, enums from debug symbols, `#pragma pattern_limit`
