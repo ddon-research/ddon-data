@@ -20,7 +20,7 @@ read-only, never save, `close_database` at the end). One subagent at a time.
       integrity measures; Windows 7 → 11 behaviour changes that matter to a 2019 Win7 client;
       how SafetyHook, MinHook, Detours and PolyHook2 cope; DDON community projects.
       Brief `briefs/R1-online.md`; output `research/03040008/protections/R1-online.md`.
-- [ ] R2 `general-purpose` (IDA, PE): inventory of the protections in the DUMP_FIX database and
+- [x] R2 `general-purpose` (IDA, PE; 13 min, 37 tool calls, 197k tokens): inventory of the protections in the DUMP_FIX database and
       the PE-level traits of every PC executable. Brief `briefs/R2-static.md`; output
       `R2-static.md`.
 - [ ] R3 `general-purpose` (patches): every patch layer from vanilla to Bunie v7 and ChatEdit,
@@ -29,4 +29,4 @@ read-only, never save, `close_database` at the end). One subagent at a time.
 
 ## Running
 
-- R2 general-purpose (IDA, PE), started 2026-10-17. R1 left a background shell, so the cap kept its record; fixed in b027312a1e0 (ddon-hook cb66d89).
+- R3 general-purpose (patches), started 2026-10-17.

@@ -36,3 +36,11 @@ At most 800 lines; group repetitive CRC sites into ranges instead of one row eac
 
 Do not commit. Final message: path, line count, and the five most important findings in at most
 ten lines.
+
+## Added after R2 (2026-10-17)
+
+R2 (`R2-static.md`) says the installed `D:\DDON_03040008\DDO.exe` (f2a8) descends from filmmachine's
+dump, not from f1c9, and lacks the ~120 CRC-read stubs in the second `.text` (`0x240F000+`, the
+captured SecureEngine image). Settle the lineage of every dump by hash and diff, and say which
+layers carry those stubs. Note which hooking library each Bunie build embeds (R2: MinHook) and
+what its Nt* "Themida compatibility" hooks in v7 do, site by site where it can be read.
