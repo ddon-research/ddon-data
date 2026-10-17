@@ -16,7 +16,7 @@ read-only, never save, `close_database` at the end). One subagent at a time.
 
 ## Research (sequential)
 
-- [ ] R1 `general-purpose` (web): Themida/WinLicense 2.x–3.x anti-debug, anti-dump and
+- [x] R1 `general-purpose` (web; 9 min, 43 tool calls, 124k tokens; e529ddf6001): Themida/WinLicense 2.x–3.x anti-debug, anti-dump and
       integrity measures; Windows 7 → 11 behaviour changes that matter to a 2019 Win7 client;
       how SafetyHook, MinHook, Detours and PolyHook2 cope; DDON community projects.
       Brief `briefs/R1-online.md`; output `research/03040008/protections/R1-online.md`.
@@ -29,4 +29,4 @@ read-only, never save, `close_database` at the end). One subagent at a time.
 
 ## Running
 
-- R1 general-purpose (web), started 2026-10-17; R2 and R3 wait for it (one subagent at a time).
+- R2 general-purpose (IDA, PE), started 2026-10-17. R1 left a background shell, so the cap kept its record; fixed in b027312a1e0 (ddon-hook cb66d89).
