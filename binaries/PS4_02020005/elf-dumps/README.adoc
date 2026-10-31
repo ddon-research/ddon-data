@@ -122,6 +122,7 @@ manifest schema is `specs/001-ps4-static-dumps/contracts/manifest.schema.json`.
 |inlined call chains, one address per run |`dwarf/inline-chains.orbis-addr2line.tsv` (written by the reconstructor's `inline-dump`, not by this script; see _Inline chains_ below)
 |DIE tree |`local/dwarf-info.llvm-dwarfdump.txt.zst` (*local-only*)
 2+|*Code*
+|IDA 9.5's jump tables and no-return functions (corroboration) |`ida/functions.ida-9.5.jsonl` (written by the reconstructor's `tools/ida/export.py`, not by this script; see _IDA's jump tables and no-return functions_ below)
 |disassembly with source lines |`local/disassembly.llvm-objdump.txt.zst` (*local-only*; per-function summary `derived/disassembly.standin.tsv`)
 2+|*Absent from the binary*
 |`.debug_aranges`, `.debug_pubnames`, `.debug_pubtypes`, accelerator tables, ELF notes, symbol versioning |recorded as `not-produced` in the manifest
@@ -244,14 +245,25 @@ The remaining six are two loadable segments, `PT_DYNAMIC`, the interpreter, TLS 
 
 === Inline chains
 
-* *File*: `dwarf/inline-chains.orbis-addr2line.tsv`, plain text (under 10 MiB). Its header (format 2) names the format, the ELF's and the tool's SHA-256, the tool's path and version line, the flags (`-a -f -i -e <ELF> <address>`), "one address per run", the record count and `records_sha256`, the SHA-256 of the records as rendered, which the reconstructor checks on load, so an edited record fails closed; then one tab-separated line per address in address order, addr2line's function and location pairs verbatim, innermost first. No date, so the same inputs give the same bytes.
+* *File*: `dwarf/inline-chains.orbis-addr2line.tsv`, plain text (about 27 MiB). Its header (format 2) names the format, the ELF's and the tool's SHA-256, the tool's path and version line, the flags (`-a -f -i -e <ELF> <address>`), "one address per run", the record count and `records_sha256`, the SHA-256 of the records as rendered, which the reconstructor checks on load, so an edited record fails closed; then one tab-separated line per address in address order, addr2line's function and location pairs verbatim, innermost first. No date, so the same inputs give the same bytes.
 * *Why one address per run*: `orbis-addr2line` (binutils 2.22) answers an address according to the addresses that share its run, since a run keeps the compile units it has read and up to 1,014 of them claim one range (L-10). An address run alone gets the answer that depends on the address only (ddon-dwarf-reconstructor-rust, spec 029 plan-P23 step 1: on 30,904 addresses, 77 answers differ from batches of 256, 75 of them with more frames).
-* *Which addresses*: those the reconstructor's inline check reads for a bundle (each method's first inlined copy, at its first range): 30,904 from golden/029-t11's bundle. A later bundle's new addresses are appended with `--append`, which rewrites the file in address order; the manifest entry is updated with the new hash.
-* *Not produced by this script*: `generate-elf-dumps.sh` does not regenerate it, and `--verify` re-hashes it like every published file. Regenerate it from the reconstructor's checkout (about 46 minutes at 16 jobs):
+* *Which addresses*: every address the reconstructor's inline check reads for any bundle: each inlined function's first copy (by caller address and range), at its first range, over the whole ELF (`inline-dump --every-method`), 94,568 addresses (30,904 from golden/029-t11's bundle, 349 appended for later bundles, 63,315 for the rest of the ELF; ddon-dwarf-reconstructor-rust spec 026 plan-P148). A growing bundle adds no address, so `validate` runs `orbis-addr2line` live only for a changed reconstructor rule. `--append` answers only the addresses the file lacks and rewrites it in address order; the manifest entry is updated with the new hash.
+* *Not produced by this script*: `generate-elf-dumps.sh` does not regenerate it, and `--verify` re-hashes it like every published file. Regenerate it from the reconstructor's checkout (about 2 h 40 min at 16 jobs: 63,315 addresses took 2 h 2 min):
 
 [source,bash]
 ----
-ddon-dwarf-reconstructor inline-dump 'D:\research\DDON-binaries\IDA9.3\PS4_DDON_02020005_2016_12_21\DDOORBIS.elf' --bundle <bundle> --out dwarf/inline-chains.orbis-addr2line.tsv --jobs 16
+ddon-dwarf-reconstructor inline-dump 'D:\research\DDON-binaries\IDA9.3\PS4_DDON_02020005_2016_12_21\DDOORBIS.elf' --every-method --out dwarf/inline-chains.orbis-addr2line.tsv --jobs 16
+----
+
+=== IDA's jump tables and no-return functions
+
+* *File*: `ida/functions.ida-9.5.jsonl`, JSON lines (about 10 MiB). A header line names the format (1), the tool, the ELF's SHA-256 (the export refuses a database of another input), the database's path and SHA-256 and IDA's version; then one line per IDA function in address order: its start, its `FUNC_NORET`, its switches (jump, table address, element size, case count, the sorted case targets) and its direct calls to `FUNC_NORET` callees.
+* *Use*: corroboration only. The reconstructor's `validate --ida-export` (or `DDON_IDA_EXPORT`) compares it with its own analysis of every body and reports three counters, `ida.noret_fallthrough`, `ida.noret_only_lift` and `ida.switch_differ`, which gate nothing: DWARF and the bytes decide, and IDA's function boundaries are its own conventions (ddon-dwarf-reconstructor-rust spec 026 P23, P25).
+* *Not produced by this script*: the reconstructor's `tools/ida/export.py` writes it from the IDA 9.5 database `D:/research/DDON-binaries/IDA9.5/PS4_DDON_02020005_2016_12_21/DDOORBIS.elf.i64`, through headless idalib on a private copy opened without auto-analysis and closed without saving, so the database is only read (about 30 s). Rerun it after the database changes, and update the manifest entry with the new hashes:
+
+[source,bash]
+----
+bash tools/ida/export.sh --out 'D:/ddon-data/binaries/PS4_02020005/elf-dumps/ida/functions.ida-9.5.jsonl'
 ----
 
 === Code
