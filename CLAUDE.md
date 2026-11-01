@@ -20,11 +20,13 @@
   `/speckit-implement`, `/speckit-converge`, `/speckit-taskstoissues` (installed in
   `.claude/skills/`, shared by both Spec Kit projects). For knowledge-graph features, run the
   scripts the skills call with `SPECIFY_INIT_DIR=research/knowledge-graph`.
-- IDA: the `ida` (ida-mcp) and `ida-assist` MCP servers attach to the IDA 9.5 GUI databases listed
-  in `AGENTS.md`; the user-level `CLAUDE.md` documents attach steps, database hashes, and the
-  headless `ida-domain-scripting` skill. Prefer MCP over the headless skill for those databases.
-  With no IDA GUI running, ida-mcp's `open_database` on the IDA 9.5 `.i64` starts a headless
-  idalib session (Sam allows it): query read-only, never save, `close_database` when done.
+- IDA: the `ida` server (headless ida-mcp, registered at local scope with
+  `claude mcp add -s local ida -- uv run --no-dev --project <ida-mcp plugin cache dir> ida-mcp stdio --agent=claude`)
+  and the role `evidence-researcher-ida`, which starts its own copy of it. The worker saves what
+  it opens, so open only a private copy: `bash research/ida/private-copy.sh <pc|ps4> <name>`
+  prints its path (beside the original, in `ddon-data-<name>/`); the hook `guard_ida` refuses any
+  other path and `save_database` is denied. Query read-only. Prefer MCP over the raw
+  `binaries/PS4_02020005/*.elf.c` exports and over the `ida-domain-scripting` skill.
 - Delegation: load the `coordinate` skill and use the role agents (`AGENTS.md` "Agents and
   coordination"); sweeps over `client/` or `packets/` go to a `repository-researcher`, and only
   its conclusions stay here.

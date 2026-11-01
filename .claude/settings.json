@@ -13,7 +13,8 @@
       "Bash(git stash:*)",
       "Bash(git worktree add:*)",
       "Bash(git commit --no-gpg-sign:*)",
-      "Bash(git commit --no-verify:*)"
+      "Bash(git commit --no-verify:*)",
+      "mcp__ida__save_database"
     ]
   },
   "hooks": {
@@ -55,6 +56,15 @@
           {
             "type": "command",
             "command": "python -X utf8 -I D:/ddon-data/tools/hooks/agent_cap.py check"
+          }
+        ]
+      },
+      {
+        "matcher": "mcp__ida__open_database",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python -X utf8 -I D:/ddon-data/tools/hooks/guard_ida.py"
           }
         ]
       }

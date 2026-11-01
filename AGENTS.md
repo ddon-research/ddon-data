@@ -168,7 +168,8 @@ POSIX equivalent.
 
 - The main session is the coordinator: protocol `specs/orchestration.md`, checklist the
   `coordinate` skill. Role agents in `.claude/agents/` (`implementer`, `adversarial-reviewer`,
-  `reviewer`, `repository-researcher`, `evidence-researcher`) do one bounded job each from a brief.
+  `reviewer`, `repository-researcher`, `evidence-researcher`, `evidence-researcher-ida`) do one
+  bounded job each from a brief; the `-ida` role runs headless ida-mcp on a private database copy.
 - **No worktrees here** (hundreds of thousands of files): every agent works in this checkout, so
   at most one subagent of any role runs at a time (Sam, 2026-10-17; ddon-hook's coordinator too). Agents inherit the
   session's effort: set no `effort` on spawns or in role files.
