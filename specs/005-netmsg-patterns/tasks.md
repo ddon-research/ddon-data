@@ -81,7 +81,13 @@ raws no longer carry (`S2C_AREA_23_13_16_NTC` = `S2C_AREA_POINT_UP_NTC`, `S2C_EN
   RES Error u16 vs PC s32. R2 review running.) P12 `implementer`: fix and refactor the 36 into shared includes (`Packet.hexpat` and new
   CData includes), rename to the raws' current names with `// packet-id:` lines, fit flags with
   slack as P10 defines, re-export with plbatch; counts per type.
-- [ ] T023 R2 `reviewer` on the 36, then docs.
+- [x] T023 R2 `reviewer` on the 36 (`research/R2-old-patterns-review.md`, 13e3d4c12f): no width
+  errors; medium: QuestEnemyInfo u32 position vs P11a, `@` selector trap on the shared 0.1.x ids;
+  low: RES shape split, dangling reference, unmarked inferred positions; the recompilation has no
+  ReadPacket body for any of the 36; L2C_LOGIN_RES JSON shows the OnetimeToken (already in raws).
+- [ ] T024 P13 (`implementer`, `briefs/P13-r2-fixes-and-docs.md`): R2 fixes and the spec's docs
+  (`research/03040008/packets/README.md`). Then close 005: `check.sh --all`, light retrospective,
+  `**Status: done**`; then open spec 006 (plan in "Next" below).
 - Sam (2026-11-01): changes from fixing wrong or missing fields, enums and id/class coverage are
   expected and fine, but every package lists them for Sam's inspection (per type: the change, why,
   sampled count, one example file with before/after). Some old patterns were never finished (e.g.
