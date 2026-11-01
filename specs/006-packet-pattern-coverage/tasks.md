@@ -30,11 +30,14 @@ Coordinator: main session. One subagent at a time. Method and rules: `spec.md`.
 
 ## Running
 
-- T002c/T002d done (report 83ce3403dd; fix 40f80dc80f + 20a4617cd4: the CLI decodes each
-  direction's first packet with the client's fixed key; exactly 84 `1.0.1` + 166 `44.0.1` raws
-  changed, 146,641 identical; 125 annotated streams re-annotated; 1.0.1 JSON 42/42 fit, selected by
-  the new `// packet-size:`; Sam kept the names). Running: T003 groups 0/1/44 evidence, brief
-  `briefs/T003-connection-server-cert.md`. Tn: `tests/imhex-export-select.sh` is not run by check.sh.
+- T002c/T002d done (report 83ce3403dd; fix 40f80dc80f + 20a4617cd4; 250 raws re-decrypted).
+- T003 evidence done (d6692cf3b9, `research/T003-connection-server-cert.md`: 27/27 ids V, all
+  captures fit; 0.10.16 = SESSION_STATUS_NTC; PC `Send` 0x9d6a20 strips the header of the
+  handshake packet; the 304 B first-packet files are 44.1.16 S2C_CERT_GAME_SERVER_CERT_NTC (PS4
+  `S2C_GAME_SERVER_CERT_NOTICE`) and 1.1.16 L2C_LOGIN_SERVER_CERT_NTC, filed by the CLI under
+  44.0.1/1.0.1; IDA copies deleted). Running: T001d (UTF-8 JSON). Next: T003 patterns (incl. the
+  two CERT_NTC patterns), asked Sam whether to rename the 304 B files now that code names them.
+  Tn: `tests/imhex-export-select.sh` is not run by check.sh.
 - Coordinator housekeeping until 002 T021 lands: after each IDA package, stop its `idat.exe` workers
   (`scratchpad/idaprocs.ps1` lists them) and delete its `ddon-data-<name>` copies.
 
