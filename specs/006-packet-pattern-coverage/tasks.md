@@ -2,7 +2,7 @@
 
 Coordinator: main session. One subagent at a time. Method and rules: `spec.md`.
 
-- [ ] T001 Triage (`evidence-researcher-ida`): for every uncovered packet id in the raws, the PC
+- [x] T001 Triage (2a3408b879: 526 ids; 355 matched / 94 exclusive / 77 unresolved; batch order login, 0, 13, 11, 33, 3, 8, 14, 10, 37; 157 REQs matched by RES pairing only, 22 low-ratio name matches to read by hand) (`evidence-researcher-ida`): for every uncovered packet id in the raws, the PC
   handler/reader/writer VA, PS4 match by code (yes / no = Season 3-exclusive / unresolved), captured
   count, `PacketId.cs` group. Output `research/T001-triage.md` + a machine-readable table
   (`research/T001-triage.tsv`). Large: may run in two or three parts by group range.
