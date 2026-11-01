@@ -73,6 +73,10 @@ Every spawn gets a brief of at most about 40 lines, a new file per package in
 4. **Budget:** one line, in work time (time with the agent's turn ended does not count;
    implementer 90 min by default, reviewer 30, research 30-45) and, for research, the maximum
    length of the answer. Past 300k tokens of context an agent commits and hands off `cut short:`.
+   The budget fits the whole scope: no "if time allows, else a TODO" for in-scope items. At landing,
+   an in-scope item reported not done goes back to the agent while it has budget left, or gets a
+   raised budget or a follow-up at once; only blocked items (missing evidence, Sam's decision) stay
+   open, with the reason (Sam, 2026-11-01: the 9.1.1 save blob was parked twice).
 
 The spawn's description is its title, `<role> · <spec> <package>: <what>`
 (`implementer · 002 P4: reconstructor-port wave 2`), so `/usage` and the retrospective can
