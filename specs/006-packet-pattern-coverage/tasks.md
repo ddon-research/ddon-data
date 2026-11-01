@@ -13,7 +13,7 @@ Coordinator: main session. One subagent at a time. Method and rules: `spec.md`.
   width, and walks 2-3 of the 47 captures bit by bit (the recompilation has only stubs for both);
   then an `implementer` turns it into ImHex bitfields in the 9.1.1/9.0.2 patterns and re-exports.
   Start from P4 § 3.1 (spec 005).
-- [ ] T001c Spec 005's other parked static items, finished, not listed (Sam's rule 2026-11-01): the
+- [x] T001c (done: evidence 3ef33ecaff; patterns + JSON a564bde7f0: 193 re-exported, renames only, all fit) Spec 005's other parked static items, finished, not listed (Sam's rule 2026-11-01): the
   35.12.16 tail (second structure via `0x760480`), the 35.0.2/35.1/35.2/35.4 readers, the start/end
   pairing of 13.44-13.47 (callers `0x8a2670`, `0x8a1d5a`), the CaughtResult/GameEasy sender check,
   the QuestEnemyInfo u32 position (P11a § 1.3); one IDA package, then the pattern fixes.
@@ -26,9 +26,7 @@ Coordinator: main session. One subagent at a time. Method and rules: `spec.md`.
 
 ## Running
 
-- T001c evidence done (3ef33ecaff, `research/T001c-parked-static-items.md`: 5 of 6 items V, item 6
-  partly; P4 § 2.3, P5 item 7 actors and P11a § 1.3 contradicted; IDA copies deleted). Running: the
-  T001c pattern implementer, brief `briefs/T001c2-pattern-fixes.md`. Next: T002 login.
+- T001c done (3ef33ecaff, a564bde7f0). Running: T002 login evidence, brief `briefs/T002-login.md`.
 - Coordinator housekeeping until 002 T021 lands: after each IDA package, stop its `idat.exe` workers
   (`scratchpad/idaprocs.ps1` lists them) and delete its `ddon-data-<name>` copies.
 
