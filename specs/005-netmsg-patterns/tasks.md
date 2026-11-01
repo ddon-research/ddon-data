@@ -90,10 +90,29 @@ file; one client at a time on the fixed dump; restore after every run.
   server, so they run in a session started in `C:\Users\morph\CLionProjects\ddon-hook` with its
   roles; this spec keeps the captures, the pattern fixes and the counts.
 
-## Running agents
+## Resume point (2026-11-01, session restart)
 
-- P3 `implementer` finished (commit 2a9f798b05); its full export still runs in the background
-  (75,725 of 110,065 JSON rewritten at 11:45); landing it is queue item 1.
+Landed today: P3 (patterns + 110,065 JSON, all fit), P4 (context/binary/character wire format),
+P6 (re-export with current names), P7 (ImHex research), P8 (plbatch), the 002 wave 2 tooling, the
+repository tuning. Nothing runs. The index holds three files staged by **other** work
+(`binaries/PS4_02020005/elf-dumps/ida/functions.ida-9.5.jsonl`, `research/external/*`): commit
+only with `-- <paths>`. `research/external-references.jsonl` has 5 uncommitted lines of this spec
+(DDON_RE + 4 WerWolv clones) among other work's lines.
+
+In the new session the edited role files load (`effort: medium`, `repository-researcher` with
+Bash/Write, spawn titles `<role> · <spec> <package>: <what>` checked by `agent_cap.py`), so spawn
+the roles directly. Next, in order (one subagent at a time):
+1. P5 (T008) was stopped for the restart before any IDA analysis: `research/P5-pc-send-side.md`
+   (`state: cut short`) lists all 8 items as not done, with leads. Spawn a fresh
+   `evidence-researcher-ida` with brief `briefs/P5-pc-send-side.md` plus that report; it may reuse
+   the private copies `ddon-data-p5/` it made beside the PC and PS4 databases.
+2. T014 (implementer): patterns for 6.24.16/6.26.16 and the P4/P5 packets; `imhex-export.sh`
+   selects raw files by the `.<g>_<id>_<sub>` suffix.
+3. A `reviewer` on all patterns (T007), then docs.
+4. Phase 2 (T009-T012) from a ddon-hook session, after the static path is exhausted.
+
+## Earlier queue (history)
+
 - P4 done (T013, 15 min of IDA, report 344 lines): every group-35/9/2/13 type located on PC
   and PS4; Season 3 u64 widening and trailing fields in the context structures; 9.1.1 is a fixed
   u8[1024] bit-stream save blob; 20 captured types / 3,654 files end within the cipher padding
