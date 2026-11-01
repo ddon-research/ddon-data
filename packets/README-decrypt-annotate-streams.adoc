@@ -149,6 +149,9 @@ when one of its packets was exported with a pattern (83 of 125 streams have one)
 [[imhex-export]]
 == Exporting packet structures with ImHex
 
+The patterns, their includes, JSON conventions, evidence rules, per-type fit counts and open items
+are described in `../research/03040008/packets/README.md`.
+
 `./imhex-export.sh [--force] [--json-nonfinite=keep|null] <packet-filter> <pattern-name> [jobs]`
 decodes the per-packet files in `decrypted_raw/<stream>/` with
 `../research/03040008/packets/<pattern-name>-pattern.cpp` and writes
