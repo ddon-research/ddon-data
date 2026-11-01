@@ -63,6 +63,37 @@ files.
       ddon-hook's coordinator runs **at most one subagent at a time**, and every later setup change
       here is ported there. Done when its commits land and its first ledger row exists; verify them.
 
+### Wave 2: reconstructor learnings since 2026-10-17 (Sam, 2026-11-01)
+
+Report `research/orchestration-port-2026-11.md` (R2, `repository-researcher`, medium effort,
+4.7 min, 63 tool calls; findings ranked by benefit). Each item cites its finding number.
+
+- [ ] T008 `receipt.py` Stop hook: let a stop through with live background tasks, or a message of at
+      most 3 lines whose first line starts `waiting:` / `blocked:`; tests; one line in
+      `implementer.md` (F1).
+- [ ] T009 Text: the coordinator writes no code, tests or tooling (one exception: a few lines that
+      unblock a landing in progress); replace `orchestration.md:29` and `SKILL.md:37-38` (F2).
+- [ ] T010 Settings, needs Sam's approval: `autoCompactWindow` for the main session and
+      `subagentPromptCacheTtl: "1h"`; replace the skill's `/compact` request with commit-at-breaks;
+      recalibrate `context_watch.py` (F3).
+- [ ] T011 Text: resume an agent only below ~300k tokens and within 55 min of its last turn, else
+      respawn with a handoff (F4); budgets are work time, and past 300k context an agent commits and
+      hands off `cut short:` (F5).
+- [ ] T012 `agent_cap.py check`: role allowlist and description format
+      `<role> · <spec> <package>: <what>`, with tests (F6).
+- [ ] T013 `repository-researcher`: Write limited to `specs/*/research/*` by a `guard_paths` hook,
+      Bash under `guard_bash`; report path + short summary as its final message (F7).
+- [ ] T014 `evidence-researcher-ida`: `guard_paths` hook on Write; deny `close_database` in
+      settings; a `check.sh` test that the ida-mcp plugin path exists; decide on the ida-assist
+      `evidence-researcher` role (F8).
+- [ ] T015 Brief and skill text: quote changed AGENTS.md/CLAUDE.md rules in briefs until the next
+      compaction; one new brief file per package; research framing for adversarial briefs; audit an
+      agent past its work-time budget or 300k context (F10, F11, F12).
+- [ ] T016 Fix the contradictions R2 lists: `orchestration.md:49` and `SKILL.md:45-46` still say
+      "no effort"; `SKILL.md:42-43` misses `evidence-researcher-ida`; `orchestration.md:157-158`
+      asks a role without Bash for `jq`.
+- T007 covers F9's false positive; F9's rewriting guards are deferred.
+
 Not ported (R1 section d): the worktree, train and golden machinery; `receipt.py --verify`; the
 pipeline metrics; the structure tools; `effort`; the concurrency setting.
 

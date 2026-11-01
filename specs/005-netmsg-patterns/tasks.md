@@ -86,8 +86,8 @@ files load in a new session):
    request: the reconstructor's recent orchestration and role learnings); commit list for it in
    the scratchpad `recon-orch-commits.txt` (60 lines; regenerate with the brief's paths if gone).
 3. T013 (P4) done.
-4. The orchestration-port `repository-researcher` (item 2 above) runs while P3's export finishes
-   (read-only, no overlap with `packets/`).
+4. The orchestration-port `repository-researcher` (item 2 above): done, filed as
+   `specs/002-coordinator-tooling/research/orchestration-port-2026-11.md`, tasks T008-T016 there.
 5. T015 (P6: re-export with current names), after P3's JSON is committed.
 6. T008 (P5: PC send side and the open static items) via `evidence-researcher-ida`.
 7. T014 (implementer: the new patterns and the id-based export selection).
