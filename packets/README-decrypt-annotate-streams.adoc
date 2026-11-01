@@ -123,6 +123,29 @@ name if the dump fits), never cuts a packet in two, and verifies that concatenat
 reproduces the input byte for byte before replacing anything. `--force` replaces the stream's
 existing pieces. This replaces the manual `split -C 50M` plus moving cut-off packets by hand.
 
+[[raw-export]]
+== Exporting raw packets
+
+`./decrypt-export-streams.sh [stream.yaml ...]` decrypts every stream (or the given ones) with the
+same CLI (`CLI_PATH`, `KEYS_FILE`, `STREAM_DIR` as above) and writes one file per packet to
+`decrypted_raw/<stream>/` (`OUT_DIR` overrides): header plus payload, named
+`<pcap no>_<PacketId.Name>_<timestamp>.<group>_<id>_<sub>`. Names are the `Name` string of the
+CLI's `PacketId` table, not the C# field name (they differ for 63.11.16: field
+`C2S_63_11_16_NTC`, Name `S2C_63_11_16_NTC`, declared `PacketSource.Server` although the client
+sends it). Streams run one at a time (shared log file); each YAML is copied to a temporary folder
+because the CLI writes `<yaml>.annotated.txt` beside its input. A stream whose output folder exists
+is refused, so exports of different builds never mix.
+
+The current `decrypted_raw/` and the file names in `decrypted_json/` come from the patched build
+above (Upstream `e2411fe8`, net10.0), exported 2026-11-01; they replace the 2024-05-13 export of an
+older CLI. Differences, checked file by file (same 125 streams, same 146,891 files): 51 packet ids
+renamed to the server's current names (1,958 files); timestamps with 100 ns precision instead of
+milliseconds (.NET 7+ `DateTimeOffset.AddSeconds` no longer rounds); and the 43
+`C2S_SERVER_GET_SERVER_LIST_REQ` (1.0.1) files now start with the 9-byte header like every other
+file (the old ones held only the 7-byte payload). All other bytes are identical.
+`decrypted_json/` holds only ImHex output (`imhex-export.sh`), so a stream gets a JSON folder only
+when one of its packets was exported with a pattern (83 of 125 streams have one).
+
 [[imhex-export]]
 == Exporting packet structures with ImHex
 
