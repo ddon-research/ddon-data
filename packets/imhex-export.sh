@@ -3,7 +3,11 @@
 #
 # Usage: ./imhex-export.sh [--force] [--json-nonfinite=keep|null] <packet-filter> <pattern-name> [jobs]
 #   packet-filter  what to select in decrypted_raw/<stream>/ (files only, never directories):
-#                  @              the packet id the pattern declares (`// packet-id: 35.5.16`)
+#                  @              the packet id the pattern declares (`// packet-id: 35.5.16`);
+#                                 when the pattern also declares `// packet-select: <name>`,
+#                                 only the files of that id whose name holds `_<name>_`. An id
+#                                 that login-server (C2L_/L2C_) and game-server (C2S_/S2C_)
+#                                 files share is refused without that line (0.1.1, 0.1.2)
 #                  35.5.16        that packet id: files ending in `.35_5_16`
 #                  anything else  a substring of the file names
 #                                 (e.g. S2C_GROUP_CHAT_GROUP_CHAT_GET_MEMBER_LIST_RES)
@@ -138,13 +142,18 @@ if [[ ! "$JOBS" =~ ^[0-9]+$ ]] || (( JOBS < 1 )); then
   die "jobs must be a positive integer, got '$JOBS'"
 fi
 
-# Packet id selection: the raw file names end in `.<group>_<id>_<sub>`.
+# Packet id selection: the raw file names are `<counter>_<packet name>_<timestamp>.<group>_<id>_<sub>`.
+BY_DECL=0
+SELECT=
 if [[ "$FILTER" == @ ]]; then
+  BY_DECL=1
   FILTER=
   while IFS= read -r line; do
-    if [[ $line =~ ^//\ packet-id:\ ([0-9]+\.[0-9]+\.[0-9]+)[[:space:]]*$ ]]; then
+    [[ $line == //* ]] || break
+    if [[ -z $FILTER && $line =~ ^//\ packet-id:\ ([0-9]+\.[0-9]+\.[0-9]+)[[:space:]]*$ ]]; then
       FILTER=${BASH_REMATCH[1]}
-      break
+    elif [[ -z $SELECT && $line =~ ^//\ packet-select:\ ([A-Za-z0-9_]+)[[:space:]]*$ ]]; then
+      SELECT=${BASH_REMATCH[1]}
     fi
   done < "$PATTERN"
   [[ -n "$FILTER" ]] || die "pattern '$PATTERN' declares no '// packet-id: <group>.<id>.<sub>' line"
@@ -160,6 +169,29 @@ fi
 inputs=()
 for m in "${matches[@]}"; do [[ ! -f "$m" ]] || inputs+=("$m"); done
 (( ${#inputs[@]} > 0 )) || die "no packets in '$RAW_DIR' match '$GLOB'"
+if (( BY_DECL )); then
+  if [[ -n $SELECT ]]; then
+    # `// packet-select: <name>`: keep only the files of the id whose packet name is <name>.
+    selected=()
+    for m in "${inputs[@]}"; do [[ ${m##*/} != *"_${SELECT}_"* ]] || selected+=("$m"); done
+    (( ${#selected[@]} > 0 )) || die "no packets in '$RAW_DIR' match '$GLOB' with the name '$SELECT' (// packet-select)"
+    inputs=("${selected[@]}")
+    GLOB="$GLOB named $SELECT"
+  else
+    # An id that the login server and the game server share (0.1.1 C2L_LOGIN_REQ and
+    # C2S_CONNECTION_LOGIN_REQ, 0.1.2) would decode both servers' packets with one layout, and a
+    # shorter layout still fits (spec 005 R2 F2): refuse unless the pattern names its packet.
+    login=0 game=0
+    for m in "${inputs[@]}"; do
+      name=${m##*/}; name=${name#*_}
+      case ${name:0:4} in
+        C2L_|L2C_) login=1 ;;
+        C2S_|S2C_) game=1 ;;
+      esac
+    done
+    (( login + game < 2 )) || die "packet id $FILTER is shared by login-server (C2L_/L2C_) and game-server (C2S_/S2C_) files; add '// packet-select: <packet name>' to '$PATTERN' or pass the name as the filter"
+  fi
+fi
 
 echo "Exporting ${#inputs[@]} packet(s) matching '$FILTER' with $PATTERN ($JOBS $ENGINE job(s))"
 work=$(mktemp -d)

@@ -167,7 +167,12 @@ their place (`--json-nonfinite=null`). Output that is invalid for any other reas
 `<packet-filter>` selects the raw files three ways:
 
 * `@`: the packet id the pattern declares in a `// packet-id: <group>.<id>.<sub>` header line
-  (`./imhex-export.sh @ C2S_CONTEXT_35_5_16_NTC`);
+  (`./imhex-export.sh @ C2S_CONTEXT_35_5_16_NTC`). A pattern whose id another server shares names
+  its packet in a `// packet-select: <name>` line, and `@` then takes only the files of that id whose
+  name holds `_<name>_` (the login patterns `C2L_LOGIN_REQ`/`L2C_LOGIN_RES` share 0.1.1/0.1.2 with
+  the game server's `CONNECTION_LOGIN`). `@` refuses an id that login-server (`C2L_`/`L2C_`) and
+  game-server (`C2S_`/`S2C_`) files share when the pattern has no such line, since a shorter layout
+  would still fit (spec 005 R2 F2; test: `research/03040008/packets/tests/imhex-export-select.sh`);
 * `<group>.<id>.<sub>` (`35.5.16`): files whose name ends in `.35_5_16`;
 * anything else: a substring of the file names, as before (files only: a matching directory name
   selects nothing).

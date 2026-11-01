@@ -6,10 +6,12 @@
 // the same members {u16 m_usError, s32 m_nResult, MtString m_wstrOnetimeToken}. PC reads Error as
 // s32 (G1). The earlier `u8 pad[14]` is dropped: the client reads nothing after the token; the 14
 // bytes are the cipher block padding (the token length is 31 in every capture) (V, C). The
-// game-server S2C_CONNECTION_LOGIN_RES (reader 0x804a50) shares the id 0.1.2: export with the name
-// filter `L2C_LOGIN_RES`, never with `@`.
+// game-server S2C_CONNECTION_LOGIN_RES (reader 0x804a50) shares the id 0.1.2: `// packet-select:` below
+// makes `@` take only the L2C_LOGIN_RES files
+// (imhex-export.sh refuses `@` on a shared id without it; spec 005 R2 F2).
 // Body: s32 Error [, s32 Result, MtString OnetimeToken] (P11a G1).
 // packet-id: 0.1.2
+// packet-select: L2C_LOGIN_RES
 // Fit flag `fits`: the raws store no body length, so a decode fits when it ends within the
 // last 15 bytes of the file (cipher block padding); reading past the end fails the decode.
 // A fit does not prove field widths: when the slack (`paddingSize`, exported) exceeds a field, a

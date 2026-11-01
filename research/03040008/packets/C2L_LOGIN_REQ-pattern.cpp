@@ -5,9 +5,11 @@
 // 0x1a3c1f0 writes Write_MT_CSTR, Write_u8; DWARF nLoginSession::CPacket_C2L_LOGIN_REQ
 // {m_wstrOnetimeToken, m_ucPlatform} (V PS4). The login-server class attribution of 0x88a390 is I
 // (P11b "Left open"). The game-server C2S_CONNECTION_LOGIN_REQ (writer 0x8243b0: cstr, u8, u32)
-// shares the id 0.1.1: export with the name filter `C2L_LOGIN_REQ`, never with `@`.
+// shares the id 0.1.1: `// packet-select:` below makes `@` take only the C2L_LOGIN_REQ files
+// (imhex-export.sh refuses `@` on a shared id without it; spec 005 R2 F2).
 // Body: MtString OnetimeToken, u8 Platform.
 // packet-id: 0.1.1
+// packet-select: C2L_LOGIN_REQ
 // Fit flag `fits`: the raws store no body length, so a decode fits when it ends within the
 // last 15 bytes of the file (cipher block padding); reading past the end fails the decode.
 // A fit does not prove field widths: when the slack (`paddingSize`, exported) exceeds a field, a
