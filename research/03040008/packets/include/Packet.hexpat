@@ -34,7 +34,25 @@ struct ResHeader {
     if (Error == 0) s32 Result;
 };
 
-// u16 BE length (<= 0x800) + bytes (nPacket::Read_MtString, P4 header).
+// MtTypedArray<T> on the wire: u32 count + count elements. Every PC list reader starts with
+// nPacket::Read_u32 into the count (P11a G5, V).
+struct MtTypedArray<T> {
+    u32 count;
+    T entries[count];
+};
+
+// CDataCommonU32: PC list reader 0x75e8e0 (P11a shared table, V); PS4 DWARF CDataCommonU32
+// {u32 m_unvalue}. The field keeps the m_unValue spelling the group 35 patterns export.
+struct CDataCommonU32 {
+    u32 m_unValue;
+};
+
+// CDataCommonU8: PC list reader 0x75e9b0 (P11a 2, V); PS4 DWARF CDataCommonU8 {u8 m_ucvalue}.
+struct CDataCommonU8 {
+    u8 m_ucValue;
+};
+
+// u16 BE length (<= 0x800) + bytes (nPacket::Read_MtString 0x8bc5b0, P4 header).
 struct MtString {
     u16 length;
     char value[length];

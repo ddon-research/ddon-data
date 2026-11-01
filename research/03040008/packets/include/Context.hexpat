@@ -220,10 +220,7 @@ struct CDataContextJobData {
     u64 m_ullJobPoint;
 };
 
-// PC 0x75e8e0.
-struct CDataCommonU32 {
-    u32 m_unValue;
-};
+// CDataCommonU32 (PC 0x75e8e0) is defined in Packet.hexpat.
 
 // CDataContextPlayerInfo: PC reader 0x75f930, PS4 order; CatchTargetUID widened, two u32 appended.
 struct CDataContextPlayerInfo {
