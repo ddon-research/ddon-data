@@ -12,9 +12,16 @@ One script, one mode per hook event (the first argument):
   Only the roles in RECEIPT_ROLES end with a receipt; any other agent's record clears on its
   stop even with background work left (ddon-data, 2026-10-17: a finished general-purpose
   researcher with one leftover background shell kept its record and blocked the next spawn).
-- `check` (PreToolUse on `Agent`): refuses (exit 2, message on stderr) while a running record
-  younger than 4 h exists, naming the agent, its type and its age. Records older than 4 h are stale:
-  ignored and deleted. `SendMessage` (resuming an agent) is never refused.
+- `check` (PreToolUse on `Agent`): refuses (exit 2, message on stderr) a spawn that is not a
+  project role or not titled (below), then one made while a running record younger than 4 h exists,
+  naming the agent, its type and its age. Records older than 4 h are stale: ignored and deleted.
+  `SendMessage` (resuming an agent) is never refused.
+  The spawn guard (ported from the reconstructor's guard_agent, 002 F6): `subagent_type` is a stem
+  of `.claude/agents/*.md`, or `general-purpose` with a prompt starting "Your role is"
+  (orchestration section 2); the description is `<role> · <spec> <package>: <what>`
+  (`implementer · 002 P4: reconstructor-port wave 2`), its role the agent's own (an `-ida` variant
+  may name its base role) or, for `general-purpose`, any project role. No committed-brief check:
+  ddon-data commits records after landing. When `.claude/agents/` holds no role, the guard is off.
 
 Unparseable input exits 0 in every mode (a hook bug never blocks work), and `check` refuses only on
 a clear running record: a JSON object with an agent id and a parseable `started` time. Files that
@@ -37,6 +44,10 @@ from subagent_stop import agent_of, count  # noqa: E402
 STALE_SECONDS = 4 * 3600
 FINISHED = re.compile(r"^- state: done\b", re.MULTILINE)
 RECEIPT_ROLES = {"implementer"}
+GENERAL = "general-purpose"
+ROLE_PROMPT = "Your role is"
+TITLE = re.compile(r"^(?P<role>[\w-]+) · (?P<spec>\d{3}) (?P<package>\S+?): \S")
+TITLE_EXAMPLE = "implementer · 002 P4: reconstructor-port wave 2"
 RULE = "one subagent at a time (orchestration section 1): land or stop it first, or resume it with SendMessage"
 
 
@@ -125,9 +136,49 @@ def live_records():
     return live
 
 
+def roles():
+    """The project's roles: the stems of `.claude/agents/*.md`, sorted."""
+    directory = hooklib.REPO / ".claude" / "agents"
+    try:
+        return sorted(path.stem for path in directory.glob("*.md") if path.stem)
+    except OSError:
+        return []
+
+
+def spawn_problems(inp, known):
+    """What is wrong with a spawn's type and title; empty when it is a titled project role."""
+    role = inp.get("subagent_type") if isinstance(inp.get("subagent_type"), str) else ""
+    title = inp.get("description") if isinstance(inp.get("description"), str) else ""
+    prompt = inp.get("prompt") if isinstance(inp.get("prompt"), str) else ""
+    found = []
+    general = role == GENERAL and prompt.lstrip().startswith(ROLE_PROMPT)
+    if role not in known and not general:
+        found.append(f"`subagent_type` is {role or 'missing'}: spawn one of the project's roles "
+                     f"({', '.join(known)}), or `{GENERAL}` with a prompt starting \"{ROLE_PROMPT}\" "
+                     f"(orchestration section 2); never another built-in type or a fork")
+    match = TITLE.match(title)
+    if match is None:
+        found.append(f"the description {title!r} is not `<role> · <spec> <package>: <what>` (`{TITLE_EXAMPLE}`)")
+    elif role in known and match["role"] != role and not (
+            role.endswith("-ida") and match["role"] == role.removesuffix("-ida") and match["role"] in known):
+        found.append(f"the description names the role {match['role']!r}, the agent is a {role!r}")
+    elif general and match["role"] not in known:
+        found.append(f"the description names {match['role']!r}, which is not a project role ({', '.join(known)})")
+    return found
+
+
 def check(data):
     if data.get("tool_name") == "SendMessage":
         return 0
+    inp = data.get("tool_input")
+    known = roles()
+    if isinstance(inp, dict) and known:
+        found = spawn_problems(inp, known)
+        if found:
+            reason = "Refused: " + "; ".join(found) + "."
+            hooklib.record_refusal(data, "agent_cap", reason)
+            print(reason, file=sys.stderr)
+            return 2
     live = live_records()
     if not live:
         return 0

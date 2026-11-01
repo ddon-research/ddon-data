@@ -11,7 +11,12 @@ import unittest
 from pathlib import Path
 
 HOOK = Path(__file__).resolve().parent / "agent_cap.py"
-SPAWN = {"tool_name": "Agent", "tool_input": {"subagent_type": "implementer", "prompt": "x"}}
+SPAWN = {"tool_name": "Agent", "tool_input": {"subagent_type": "implementer", "prompt": "x",
+                                              "description": "implementer · 002 P4: reconstructor-port wave 2"}}
+
+
+def spawn(**inp):
+    return {"tool_name": "Agent", "tool_input": {**SPAWN["tool_input"], **inp}}
 
 
 def run(mode, payload, ledger):
@@ -105,6 +110,39 @@ class AgentCapTest(unittest.TestCase):
         done = run("check", SPAWN, self.ledger)
         self.assertEqual(done.returncode, 2)
         self.assertIn("a2 (evidence-researcher, running 1 h 5 min)", done.stderr)
+
+    def test_spawn_guard_allows_titled_roles(self):
+        # The roles are the real `.claude/agents/*.md` stems.
+        for inp in ({},
+                    {"subagent_type": "evidence-researcher-ida",
+                     "description": "evidence-researcher-ida · 005 P2: rNetMsg lobby handlers"},
+                    {"subagent_type": "evidence-researcher-ida",
+                     "description": "evidence-researcher · 005 P2: rNetMsg lobby handlers"},
+                    {"subagent_type": "general-purpose", "prompt": "Your role is reviewer. Review x.",
+                     "description": "reviewer · 002 P5: port review"}):
+            self.assertEqual(run("check", spawn(**inp), self.ledger).returncode, 0, inp)
+
+    def test_spawn_guard_refuses_untyped_or_untitled_spawns(self):
+        cases = {
+            "`subagent_type` is Explore": {"subagent_type": "Explore"},
+            "`subagent_type` is missing": {"subagent_type": None},
+            "`subagent_type` is general-purpose": {"subagent_type": "general-purpose", "prompt": "Review x.",
+                                                   "description": "reviewer · 002 P5: port review"},
+            "is not `<role> · <spec> <package>: <what>`": {"description": "Architecture and anti-debug review"},
+            "names the role 'reviewer', the agent is a 'implementer'": {
+                "description": "reviewer · 002 P4: reconstructor-port wave 2"},
+            "which is not a project role": {"subagent_type": "general-purpose", "prompt": "Your role is x.",
+                                            "description": "planner · 002 P5: plan"},
+        }
+        for part, inp in cases.items():
+            done = run("check", spawn(**inp), self.ledger)
+            self.assertEqual(done.returncode, 2, inp)
+            self.assertIn(part, done.stderr)
+        no_title = dict(SPAWN["tool_input"])
+        del no_title["description"]
+        self.assertEqual(run("check", {"tool_name": "Agent", "tool_input": no_title}, self.ledger).returncode, 2)
+        refusal = json.loads((self.ledger / "tool-calls.jsonl").read_text(encoding="utf-8").splitlines()[-1])
+        self.assertEqual(refusal["hook"], "agent_cap")
 
     def test_bad_input_exits_0(self):
         run("start", {"agent_id": "a1", "agent_type": "implementer"}, self.ledger)
