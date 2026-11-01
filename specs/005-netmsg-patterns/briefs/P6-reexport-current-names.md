@@ -53,4 +53,4 @@ stream file counts before/after, renamed ids with counts, byte-identity result, 
 ids with causes, the ImHex fits, `bash tools/check.sh --since <base>`.
 Stop: budget 90 min. Stop and report on any raw byte difference, a build failure you cannot fix in
 15 min, or a count mismatch you cannot explain.
-Base: <filled at spawn>.
+Base: a02d06b093.
