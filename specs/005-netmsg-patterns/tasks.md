@@ -71,10 +71,14 @@ raws no longer carry (`S2C_AREA_23_13_16_NTC` = `S2C_AREA_POINT_UP_NTC`, `S2C_EN
   (C2S) VA, the Season 3 field table vs the PS4 one (matched by code, never by packet number), the
   existing pattern's errors, the shared CData structures (include candidates), and a byte walk of
   one capture; the server's C# only as a lead.
-- [ ] T022 (P12a done 5c1d58caef..0fb1644208: batch A fixed, includes Quest/Area/Character, 1,053
+- [x] T022 (P12a done 5c1d58caef..0fb1644208: batch A fixed, includes Quest/Area/Character, 1,053
   packets 100% fit; JSON conventions now lowercase header, `count`/`entries`, `length`/`value`,
   `packet` root; recompilation has ReadPacket bodies for 17 of 18 batch A packets missing (81 in
-  S2C.cpp overall), member order in PacketData/*.h matched for 21 structures. P12b running.) P12 `implementer`: fix and refactor the 36 into shared includes (`Packet.hexpat` and new
+  S2C.cpp overall), member order in PacketData/*.h matched for 21 structures. P12b done
+  e44421b3c5..25aa58b571: 1,098 captures fit incl. 63 error responses; includes Clan/Item/Pawn/
+  Skill; 18.0.2's server writes Result + empty list after a non-zero Error (client ignores them,
+  pattern reads them as unk_server*); recompilation disagreements: 13.3.2 Result u32 vs PC s32, PS4
+  RES Error u16 vs PC s32. R2 review running.) P12 `implementer`: fix and refactor the 36 into shared includes (`Packet.hexpat` and new
   CData includes), rename to the raws' current names with `// packet-id:` lines, fit flags with
   slack as P10 defines, re-export with plbatch; counts per type.
 - [ ] T023 R2 `reviewer` on the 36, then docs.
