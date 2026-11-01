@@ -145,7 +145,21 @@ else
     fi
 fi
 
-# 5. ImHex patterns: validation needs the ImHex CLI, which is not on PATH (AGENTS.md).
+# 5. Role files' MCP servers: each `--project` path in .claude/agents/*.md exists (the plugin cache
+#    is versioned, so an ida-mcp update leaves evidence-researcher-ida pointing at a removed folder).
+mcp_paths="$LOGS/mcp-projects.txt"
+rg -o --no-filename '"--project", "([^"]+)"' -r '$1' .claude/agents/ >"$mcp_paths" 2>/dev/null || true
+mcp_count=$(wc -l <"$mcp_paths" | tr -d ' ')
+mcp_missing=$(while IFS= read -r p; do [ -d "$p" ] || printf '%s ' "$p"; done <"$mcp_paths")
+if [ "$mcp_count" -eq 0 ]; then
+    record mcp "not run (no --project path in .claude/agents/)"
+elif [ -n "$mcp_missing" ]; then
+    record mcp failed "missing: $mcp_missing"
+else
+    record mcp passed "$mcp_count role-file MCP project paths exist"
+fi
+
+# 6. ImHex patterns: validation needs the ImHex CLI, which is not on PATH (AGENTS.md).
 if touches 'r[A-Za-z0-9]+-pattern\.cpp$'; then
     if command -v imhex >/dev/null; then
         record imhex "not run (run research/validate_pattern.sh per pattern)"
