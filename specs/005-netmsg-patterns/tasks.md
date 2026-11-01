@@ -31,11 +31,15 @@ named "Unknown" (2.13/2.15/2.19/2.20, 13.44-13.47). Counts in brief P4.
   (`research/P6-name-diff.txt`); then re-run the ImHex export for the four nNetMsg patterns
   (`implementer`, brief `briefs/P6-reexport-current-names.md`; Sam, 2026-11-01).
 
-- [ ] T016 P7 ImHex as a library (Sam, 2026-11-01: P3's per-file `imhex.exe` export of 110,065
+- [x] T016 P7 ImHex as a library (Sam, 2026-11-01: P3's per-file `imhex.exe` export of 110,065
   files took over 2 h): clone PatternLanguage, ImHex, ImHex-Patterns, ImHex-Plugin-Template,
   measure, recommend a long-lived batch runner (`repository-researcher`, brief
   `briefs/P7-imhex-as-library.md`, report `research/P7-imhex-as-library.md`); an implementer
-  package follows the recommendation, then `imhex-export.sh` uses it.
+  package follows the recommendation, then `imhex-export.sh` uses it. Result: process start
+  (150-450 ms) and ~8 Git Bash forks per packet dominate, not the pattern language (~0.3 ms per
+  packet in-process); recommended a C++ driver linking libpl at ImHex 1.38.1's pin `fb6ea061`.
+- [ ] T017 P8 `plbatch` (`implementer`, brief `briefs/P8-plbatch.md`): build the driver, prove
+  byte-identical JSON against `imhex --pl format`, switch `imhex-export.sh` to it.
 
 ### Phase 2: live Season 3 validation (Sam, 2026-11-01: only after the static path is exhausted)
 
@@ -94,10 +98,12 @@ files load in a new session):
 3. T013 (P4) done.
 4. The orchestration-port `repository-researcher` (item 2 above): done, filed as
    `specs/002-coordinator-tooling/research/orchestration-port-2026-11.md`, tasks T008-T016 there.
-5. T015 (P6: re-export with current names), after P3's JSON is committed.
-6. T008 (P5: PC send side and the open static items) via `evidence-researcher-ida`.
-7. T014 (implementer: the new patterns and the id-based export selection).
-8. A `reviewer` on all patterns (T007).
+5. T017 (P8: plbatch), before P6, because P6 re-runs the ImHex export of the four types. P3's
+   JSON is committed after P8 lands (no coordinator commits in `packets/` while it runs).
+6. T015 (P6: re-export with current names), after P3's JSON is committed; its ImHex step uses plbatch.
+7. T008 (P5: PC send side and the open static items) via `evidence-researcher-ida`.
+8. T014 (implementer: the new patterns and the id-based export selection).
+9. A `reviewer` on all patterns (T007).
 
 After P2 lands: brief P3 for an `implementer` (T005 + T006). Decisions taken:
 - Patterns are named after the packets (`C2S_LOBBY_LOBBY_DATA_MSG_REQ`, `S2C_LOBBY_LOBBY_DATA_MSG_NTC`,
