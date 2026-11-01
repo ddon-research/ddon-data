@@ -16,6 +16,7 @@ struct CPacket {
 };
 
 struct C2S_LOBBY_LOBBY_DATA_MSG_REQ : CPacket {
+    bool sourceOk = source == 0x00 [[export]];  // header source byte: 0x00 client (Packet.hexpat)
     LOBBY_PACKET_TYPE Type;
     u32 CharacterId;
     s32 len;
@@ -24,6 +25,7 @@ struct C2S_LOBBY_LOBBY_DATA_MSG_REQ : CPacket {
     str msgId = Data.msgIdFull [[export]];  // Head.mMsgIdFull ("LOBBY_DUMMY", "SHORT" otherwise)
     // Block padding of the decrypted packet (inferred), not fields.
     u128 paddingSize = std::mem::size() - $ [[export]];
+    bool fits = paddingSize <= 15 [[export]];  // the body ended within the last 15 bytes
     if (paddingSize > 0) padding[paddingSize];
 };
 

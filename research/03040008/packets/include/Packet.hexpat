@@ -7,7 +7,11 @@
 //
 // Fit flag: a decode "fits" when it ends within the last 15 bytes of the file
 // (std::mem::size() - $ <= 15); reading past the end fails the decode. This is weaker than the
-// nNetMsg `len` check: a width error smaller than the padding can still fit (P4 0.5).
+// nNetMsg `len` check: a width error smaller than the padding can still fit (P4 0.5). A fit
+// therefore does not prove widths whenever the slack exceeds a field: e.g. a 16-byte packet fits
+// any body of 0-7 bytes, and a missing trailing u32 still fits when the padding was 15 (R1 F3).
+// Patterns export `paddingSize` (the slack) so counts can show it, and `sourceOk`: the header
+// source byte matches the direction their name gives (0x00 client C2S, 0x34 server S2C).
 // Every multi-byte value is big-endian: include this file after `#pragma endian big`.
 
 #pragma once

@@ -18,6 +18,7 @@ struct CPacket {
 };
 
 struct S2C_PARTY_RECV_BINARY_MSG_NTC : CPacket {
+    bool sourceOk = source == 0x34 [[export]];  // header source byte: 0x34 server (Packet.hexpat)
     u32 CharacterId;
     s32 len;
     NetMsg<len> Data;

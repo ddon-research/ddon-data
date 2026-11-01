@@ -16,14 +16,16 @@ struct CPacket {
 };
 
 struct C2S_PARTY_SEND_BINARY_MSG_NTC : CPacket {
+    bool sourceOk = source == 0x00 [[export]];  // header source byte: 0x00 client (Packet.hexpat)
     u32 count;
     u32 CharacterIds[count];
     s32 len;
     NetMsg<len> Data;
     bool msgFits = Data.fits [[export]];  // the NetMsg ended exactly at len
-    str msgId = Data.msgIdFull [[export]];  // Head.mMsgIdFull ("LOBBY_DUMMY", "SHORT" otherwise)
+    str msgId = Data.msgIdFull [[export]];  // Head.mMsgIdFull ("SHORT" when len < 20)
     // Block padding of the decrypted packet (inferred), not fields.
     u128 paddingSize = std::mem::size() - $ [[export]];
+    bool fits = paddingSize <= 15 [[export]];  // the body ended within the last 15 bytes
     if (paddingSize > 0) padding[paddingSize];
 };
 

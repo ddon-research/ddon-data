@@ -4,6 +4,8 @@
 // packet-id: 9.0.2
 // Fit flag `fits`: the raws store no body length, so a decode fits when it ends within the
 // last 15 bytes of the file (cipher block padding); reading past the end fails the decode.
+// A fit does not prove field widths: when the slack (`paddingSize`, exported) exceeds a field, a
+// body that is that field shorter or longer fits too; such widths rest on the PC code (R1 F3).
 #pragma endian big
 
 import std.mem;
@@ -12,9 +14,8 @@ import std.mem;
 
 // cCharacterData::serialize bit stream (P4 3.1; PS4 0x49740, PC serializer 0x467790, flush
 // 0x896a40). Only the two leading u32 are decoded: they read as plain big-endian values in the
-// captures (P4 3.1, PC-cap). After them the stream is not byte-aligned as P4 3.1's field list
-// predicts (the 9.1.1 captures do not show 16 x 96-bit pawn-history entries followed by plain
-// u32 fields at the expected offsets), so a bit-level walk is needed.
+// captures (P4 3.1, PC-cap). The bit-level walk of the rest against P4 3.1's field list was not
+// run (no file, SHA-256 or offset is recorded), so whether it is byte-aligned is open.
 // TODO: decode the rest per P4 3.1 (mCheckPawnHistory[16], mQuestEtcF, stTutorialGuide, the
 // talked flags, mIsAppraiseTalked + 1 new bit, stOptionData (32 bits, 17 u8, 1 u32 on PC),
 // mChatCstmCh[2], u32[16] x 2 new) once the BitWriter bit order and Elias-delta use are read.
@@ -25,6 +26,7 @@ struct CharacterBinSaveData {
 };
 
 struct S2C_BINARY_SAVE_GET_CHARACTER_BIN_SAVEDATA_RES : CPacket {
+    bool sourceOk = source == 0x34 [[export]];  // header source byte: 0x34 server (Packet.hexpat)
     s32 Error;
     if (Error == 0) {
         s32 Result;

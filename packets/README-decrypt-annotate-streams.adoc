@@ -149,23 +149,40 @@ when one of its packets was exported with a pattern (83 of 125 streams have one)
 [[imhex-export]]
 == Exporting packet structures with ImHex
 
-`./imhex-export.sh [--force] <packet-filter> <pattern-name> [jobs]` decodes the per-packet files in
-`decrypted_raw/<stream>/` with `../research/03040008/packets/<pattern-name>-pattern.cpp` and writes
+`./imhex-export.sh [--force] [--json-nonfinite=keep|null] <packet-filter> <pattern-name> [jobs]`
+decodes the per-packet files in `decrypted_raw/<stream>/` with
+`../research/03040008/packets/<pattern-name>-pattern.cpp` and writes
 `decrypted_json/<stream>/<packet-file>.json`. Set `IMHEX` if ImHex is not on `PATH`; output paths
-must stay under 260 characters for the Windows ImHex build.
+must stay under 260 characters for the Windows ImHex build. `./imhex-export.sh` without arguments
+prints the options and every environment override.
+
+A packet that fails writes `<packet-file>.json.err` and removes any `<packet-file>.json` an earlier
+run left, so counts over `decrypted_json` never mix runs. plbatch parses every output with
+nlohmann json: a float that is NaN or Inf comes out of the formatter as a bare `nan`/`inf`, which is
+not valid JSON. Such files are counted as `nonfinite` and kept as printed (default
+`--json-nonfinite=keep`, byte-identical to ImHex; `jq` rejects them) or written with `null` in
+their place (`--json-nonfinite=null`). Output that is invalid for any other reason counts as
+`badjson`, a failure. The ImHex path does not validate.
 
 `<packet-filter>` selects the raw files three ways:
 
 * `@`: the packet id the pattern declares in a `// packet-id: <group>.<id>.<sub>` header line
   (`./imhex-export.sh @ C2S_CONTEXT_35_5_16_NTC`);
 * `<group>.<id>.<sub>` (`35.5.16`): files whose name ends in `.35_5_16`;
-* anything else: a substring of the file names, as before.
+* anything else: a substring of the file names, as before (files only: a matching directory name
+  selects nothing).
 
 The id forms do not depend on the packet name in the file name, which the CLI took from the
 server's `PacketId` at export time: an outdated or "Unknown" name cannot hide packets from them.
 Patterns without a nNetMsg payload (spec 005 P9, `include/Packet.hexpat`) export `fits`: the raw
 files store no body length, so a decode fits when it ends within the last 15 bytes (cipher block
-padding). The nNetMsg patterns export `msgFits` (the message ended exactly at its `len`).
+padding). A fit does not prove field widths: when the slack exceeds a field, a body that is that
+field shorter (or longer, within the padding) fits as well (R1 F3; e.g. the 16-byte packets fit any
+body of 0-7 bytes). Each pattern exports `paddingSize`, the slack, so counts can show it; such
+widths rest on the PC writers, not on the fit. The nNetMsg patterns export `msgFits` (the message
+ended exactly at its `len`) and, after the packet's last field, `fits` (padding of 15 bytes or
+less). Patterns whose name gives the direction export `sourceOk`: the header source byte is 0x00
+(client, C2S) or 0x34 (server, S2C).
 
 Two engines, same JSON byte for byte:
 

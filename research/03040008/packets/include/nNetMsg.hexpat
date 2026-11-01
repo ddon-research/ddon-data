@@ -23,6 +23,7 @@ import std.mem;
 import std.bit;
 import std.io;
 import std.math;
+import std.sys;
 
 // ---------------------------------------------------------------------------------------------
 // Enums
@@ -202,23 +203,25 @@ enum LOBBY_PACKET_TYPE : u8 {
     LOBBY_MSG_SERVER = 0x4
 };
 
-// Arrowgene.Ddon.Shared/Model/OnlineStatus.cs (Arrowgene.DragonsDogmaOnline.Upstream).
+// PS4 DWARF nCharacter::E_ONLINE_STATUS (binaries/PS4_02020005/DDOORBIS.elf.h:97775-97788, an
+// __int32 enum; the packets carry it as u8): 0x0-0xC, ONLINE_STATUS_NUM = 0xD on PS4 02020005.
+// 0xD is named here from the server C# (PtPawn = 0xD, Num = 0xE): Season 3?, server lead, not
+// evidence, and it contradicts the PS4 NUM.
 enum ONLINE_STATUS : u8 {
-    None = 0x0,
-    Online = 0x1,
-    Offline = 0x2,
-    Leaving = 0x3,
-    Busy = 0x4,
-    EntryBoard = 0x5,
-    QuickMatch = 0x6,
-    Event = 0x7,
-    Contents = 0x8,
-    PtLeader = 0x9,
-    PtMember = 0xA,
-    Lost = 0xB,
-    ServerMove = 0xC,
-    PtPawn = 0xD,
-    Num = 0xE
+    ONLINE_STATUS_NONE = 0x0,
+    ONLINE_STATUS_ONLINE = 0x1,
+    ONLINE_STATUS_OFFLINE = 0x2,
+    ONLINE_STATUS_LEAVING = 0x3,
+    ONLINE_STATUS_BUSY = 0x4,
+    ONLINE_STATUS_ENTRY_BOARD = 0x5,
+    ONLINE_STATUS_QUICK_MATCH = 0x6,
+    ONLINE_STATUS_EVENT = 0x7,
+    ONLINE_STATUS_CONTENTS = 0x8,
+    ONLINE_STATUS_PT_LEADER = 0x9,
+    ONLINE_STATUS_PT_MEMBER = 0xA,
+    ONLINE_STATUS_LOST = 0xB,
+    ONLINE_STATUS_SERVER_MOVE = 0xC,
+    ONLINE_STATUS_PT_PAWN_SEASON3_SERVER_LEAD = 0xD
 };
 
 // ---------------------------------------------------------------------------------------------
@@ -903,6 +906,8 @@ struct ToolEasy<auto MsgId> {
 // ---------------------------------------------------------------------------------------------
 
 struct NetMsg<auto Len> {
+    // len is an s32: a negative value would move the cursor backwards (R1 F8).
+    std::assert(Len >= 0, "negative nNetMsg len");
     u128 msgStart = $;
     u128 msgEnd = msgStart + Len;
     bool known = false;
@@ -955,6 +960,7 @@ struct NetMsg<auto Len> {
 // s32 of 0 is the non-RPC dummy `00000000 <s32 mMsgType>`; anything else is an RPC NetMsg whose
 // Head.mSessionId is that value.
 struct LobbyDataMessage<auto Len> {
+    std::assert(Len >= 0, "negative lobby data len");  // R1 F8
     u128 dataStart = $;
     bool fits = false;
     str msgIdFull = "";

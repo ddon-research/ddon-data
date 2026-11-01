@@ -16,6 +16,7 @@ struct CPacket {
 };
 
 struct S2C_LOBBY_LOBBY_DATA_MSG_NTC : CPacket {
+    bool sourceOk = source == 0x34 [[export]];  // header source byte: 0x34 server (Packet.hexpat)
     LOBBY_PACKET_TYPE Type;
     u32 CharacterId;
     s32 len;
@@ -25,6 +26,7 @@ struct S2C_LOBBY_LOBBY_DATA_MSG_NTC : CPacket {
     ONLINE_STATUS OnlineStatus;
     // Block padding of the decrypted packet (inferred), not fields.
     u128 paddingSize = std::mem::size() - $ [[export]];
+    bool fits = paddingSize <= 15 [[export]];  // the body ended within the last 15 bytes
     if (paddingSize > 0) padding[paddingSize];
 };
 
