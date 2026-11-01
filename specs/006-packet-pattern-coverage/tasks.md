@@ -17,7 +17,7 @@ Coordinator: main session. One subagent at a time. Method and rules: `spec.md`.
   35.12.16 tail (second structure via `0x760480`), the 35.0.2/35.1/35.2/35.4 readers, the start/end
   pairing of 13.44-13.47 (callers `0x8a2670`, `0x8a1d5a`), the CaughtResult/GameEasy sender check,
   the QuestEnemyInfo u32 position (P11a § 1.3); one IDA package, then the pattern fixes.
-- [ ] T002 Login group (C2L/L2C, all directions): evidence + patterns (`evidence-researcher-ida`,
+- [x] T002 (done: evidence d7f0cebbf2; patterns + JSON 5421fdf867: 21 patterns, 20 ids exported, 1,235/1,235 fit; 1.0.1 pattern unexported until T002c) Login group (C2L/L2C, all directions): evidence + patterns (`evidence-researcher-ida`,
   then `implementer`), extending `C2L_LOGIN_REQ`/`L2C_LOGIN_RES`.
 - [ ] T003+ One evidence + one implementer package per group, by captured count (13 instance,
   0 connection, 11 quest, 33 job, 62 season dungeon, 23 area, 14, 8 pawn, 10 item, ...), PS4-matched
@@ -26,11 +26,9 @@ Coordinator: main session. One subagent at a time. Method and rules: `spec.md`.
 
 ## Running
 
-- T002 evidence done (d7f0cebbf2, `research/T002-login.md`: 21/21 PS4 matches V by status slot or
-  body; 20/20 walked ids fit, 1,235 files; 5 Arrowgene errors; IDA copies deleted). Running: T002
-  patterns, brief `briefs/T002b-login-patterns.md`. Then T002c: why the 84 `1.0.1`
-  C2L_CLIENT_CHALLENGE_REQ raws are still ciphertext (304/336 B, no plaintext header; the key search
-  starts at 1.0.2) and re-decrypt them (`repository-researcher` on the pcap toolchain + Arrowgene).
+- T002 done (d7f0cebbf2, 5421fdf867). Running: T002c, brief `briefs/T002c-challenge-decrypt.md`:
+  why the 84 `1.0.1` C2L_CLIENT_CHALLENGE_REQ raws are still ciphertext, and the fix. Next: T003
+  group 0 (CONNECTION) evidence.
 - Coordinator housekeeping until 002 T021 lands: after each IDA package, stop its `idat.exe` workers
   (`scratchpad/idaprocs.ps1` lists them) and delete its `ddon-data-<name>` copies.
 
