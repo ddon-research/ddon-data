@@ -25,7 +25,11 @@ Coordinator: main session. One subagent at a time. Method and rules: `spec.md`.
 
 ## Running
 
-- (none)
+- T001b evidence done (59e2475eba, `research/T001b-save-blob.md`: LSB-first bits, big-endian bytes
+  per value, 170 writes, 4170 bits, all 47 captures decode; IDA copies deleted). Running: the
+  T001b pattern implementer, brief `briefs/T001b2-save-blob-pattern.md`. Then T001c, then T002 login.
+- Coordinator housekeeping until 002 T021 lands: after each IDA package, stop its `idat.exe` workers
+  (`scratchpad/idaprocs.ps1` lists them) and delete its `ddon-data-<name>` copies.
 
 ## Next step (2026-11-01)
 
