@@ -5,13 +5,18 @@ One script, one mode per hook event (the first argument):
   `{agent_id, agent_type, started}`.
 - `stop` (SubagentStop): removes that file, unless the input names background work
   (`background_tasks` > 0, read as `subagent_stop.py` reads it) and the final message is not a
-  finished receipt (a `- state: done` line): such an agent will resume, so it still counts as
-  running. A finished receipt clears the record even with background work left, because an agent
-  that reports done while its last build finishes may never stop again (ddon-hook, 2026-10-17: a
-  landed agent's record blocked the next spawn).
+  final receipt (a `## Receipt` block with a `- state:` line, `done` or `cut short`): such an
+  agent will resume, so it still counts as running. A final receipt clears the record even with
+  background work left, because an agent that reports while its last build finishes may never stop
+  again (ddon-hook, 2026-10-17: a landed agent's record blocked the next spawn; ddon-data
+  2026-11-01, T018: 002 P4's `state: cut short` receipt kept its record until deleted by hand).
   Only the roles in RECEIPT_ROLES end with a receipt; any other agent's record clears on its
   stop even with background work left (ddon-data, 2026-10-17: a finished general-purpose
   researcher with one leftover background shell kept its record and blocked the next spawn).
+  A record cleared while background work is left is parked instead of removed when the input
+  names the agent's transcript: `{..., stopped, transcript, transcript_size}`. A parked record
+  does not count as running, unless the transcript has since grown by more than RESUMED_BYTES
+  (the agent was woken by its own background task, 005 P3, T019 note): then it counts again.
 - `check` (PreToolUse on `Agent`): refuses (exit 2, message on stderr) a spawn that is not a
   project role or not titled (below), then one made while a running record younger than 4 h exists,
   naming the agent, its type and its age. Records older than 4 h are stale: ignored and deleted.
@@ -42,7 +47,8 @@ import hooklib  # noqa: E402
 from subagent_stop import agent_of, count  # noqa: E402
 
 STALE_SECONDS = 4 * 3600
-FINISHED = re.compile(r"^- state: done\b", re.MULTILINE)
+FINISHED = re.compile(r"^## Receipt\b.*?^- state: \S", re.MULTILINE | re.DOTALL)
+RESUMED_BYTES = 2048  # inferred: a resumed turn appends a notification and an assistant turn
 RECEIPT_ROLES = {"implementer"}
 GENERAL = "general-purpose"
 ROLE_PROMPT = "Your role is"
@@ -75,12 +81,37 @@ def finished(data):
 
 def stop(data):
     agent = agent_of(data)
-    if (count(data.get("background_tasks")) > 0 and not finished(data)
-            and recorded_type(agent) in RECEIPT_ROLES):
+    background = count(data.get("background_tasks")) > 0
+    if background and not finished(data) and recorded_type(agent) in RECEIPT_ROLES:
         return 0
-    if agent != "unknown":
-        (running_dir() / f"{agent}.json").unlink(missing_ok=True)
+    if agent == "unknown":
+        return 0
+    path = running_dir() / f"{agent}.json"
+    transcript = data.get("agent_transcript_path")
+    if background and isinstance(transcript, str) and transcript and path.exists():
+        try:
+            record = json.loads(path.read_text(encoding="utf-8"))
+            record.update(stopped=hooklib.now_iso(), transcript=transcript,
+                          transcript_size=Path(transcript).stat().st_size)
+            temp = path.with_name(f".{agent}.tmp")
+            temp.write_text(json.dumps(record) + "\n", encoding="utf-8", newline="\n")
+            temp.replace(path)
+            return 0
+        except (OSError, ValueError, AttributeError):
+            pass
+    path.unlink(missing_ok=True)
     return 0
+
+
+def parked(record):
+    """True when a parked record's agent has not resumed since its stop (its transcript has not grown)."""
+    if not record.get("stopped"):
+        return False
+    try:
+        size = Path(str(record.get("transcript"))).stat().st_size
+        return size - int(record.get("transcript_size") or 0) <= RESUMED_BYTES
+    except (OSError, ValueError, TypeError):
+        return True
 
 
 def recorded_type(agent):
@@ -131,6 +162,8 @@ def live_records():
                 path.unlink(missing_ok=True)
                 continue
         except OSError:
+            continue
+        if parked(record):
             continue
         live.append((record, age))
     return live

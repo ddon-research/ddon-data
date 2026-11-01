@@ -64,14 +64,39 @@ class AgentCapTest(unittest.TestCase):
         self.assertFalse((self.running / "a1.json").exists())
         self.assertEqual(run("check", SPAWN, self.ledger).returncode, 0)
 
-    def test_cut_short_receipt_with_background_work_still_refuses(self):
+    def test_cut_short_receipt_clears_despite_background_work(self):
+        # T018: 002 P4 ended `state: cut short` with background work and kept its record.
         run("start", {"agent_id": "a1", "agent_type": "implementer"}, self.ledger)
         message = "## Receipt P2\n- state: cut short: the check.sh summary\n"
         run("stop", {"agent_id": "a1", "background_tasks": 1, "last_assistant_message": message},
             self.ledger)
+        self.assertFalse((self.running / "a1.json").exists())
+        self.assertEqual(run("check", SPAWN, self.ledger).returncode, 0)
+
+    def test_a_state_line_outside_a_receipt_is_not_final(self):
+        run("start", {"agent_id": "a1", "agent_type": "implementer"}, self.ledger)
+        run("stop", {"agent_id": "a1", "background_tasks": 1, "last_assistant_message": "- state: done\n"},
+            self.ledger)
+        self.assertEqual(run("check", SPAWN, self.ledger).returncode, 2)
+
+    def test_parked_record_counts_again_when_the_agent_resumes(self):
+        transcript = Path(self.tmp.name) / "agent-a1.jsonl"
+        transcript.write_text("x" * 100, encoding="utf-8")
+        run("start", {"agent_id": "a1", "agent_type": "implementer"}, self.ledger)
+        message = "## Receipt P2\n- state: done\n"
+        run("stop", {"agent_id": "a1", "background_tasks": 1, "last_assistant_message": message,
+                     "agent_transcript_path": str(transcript)}, self.ledger)
+        record = json.loads((self.running / "a1.json").read_text(encoding="utf-8"))
+        self.assertEqual(record["transcript_size"], 100)
+        self.assertEqual(run("check", SPAWN, self.ledger).returncode, 0)
+        with transcript.open("a", encoding="utf-8") as out:
+            out.write("y" * 5000)  # woken by its own background task
         result = run("check", SPAWN, self.ledger)
         self.assertEqual(result.returncode, 2)
-        self.assertIn(".agent-ledger/running/a1.json", result.stderr)
+        self.assertIn("a1", result.stderr)
+        run("stop", {"agent_id": "a1", "background_tasks": 0, "last_assistant_message": message,
+                     "agent_transcript_path": str(transcript)}, self.ledger)
+        self.assertFalse((self.running / "a1.json").exists())
 
     def test_receiptless_role_clears_despite_background_work(self):
         run("start", {"agent_id": "a1", "agent_type": "general-purpose"}, self.ledger)
