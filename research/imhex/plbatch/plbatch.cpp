@@ -219,7 +219,8 @@ int main(int argc, char **argv) {
         });
 
         auto t1 = Clock::now();
-        const bool success = runtime.executeString(patternCode, patternSource);
+        const int exitCode = runtime.executeString(patternCode, patternSource);   // EXIT_SUCCESS (0) or non-zero, as `plcli format` checks it
+        const bool success = exitCode == 0;
         auto t2 = Clock::now();
         tExec += t2 - t1;
 

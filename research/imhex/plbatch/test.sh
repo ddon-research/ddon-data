@@ -9,6 +9,7 @@
 #   3. --json-nonfinite=null reports "ok-null" and writes valid JSON with null
 #   4. a failing input under --force removes the JSON an earlier run left (no stale JSON)
 #   5. without --force an existing JSON is skipped
+#   6. strings come out as UTF-8 JSON strings (no %XX percent encoding)
 set -o errexit -o nounset -o pipefail
 
 die() { echo "ERROR: $*" >&2; exit 2; }
@@ -48,6 +49,15 @@ check "failure removes the stale JSON" '[[ $log == *"FAIL bad"* && ! -e $work/ou
 opts=()
 log=$(run finite)
 check "existing JSON is skipped without --force" '[[ $log == *"skip finite"* ]]'
+
+# 6. Strings are UTF-8 JSON strings (PatternLanguage f910448, pinned since spec 006 T001d): valid
+#    UTF-8 as is, a quote escaped, an invalid byte as \u00XX; never the old %XX percent encoding.
+#    Bytes: 'Rumi A"' + U+901A U+4FE1 (E9 80 9A E4 BF A1) + a lone 0x80.
+printf 'Rumi A"\xe9\x80\x9a\xe4\xbf\xa1\x80' > "$work/in/text"
+printf 'char s[14] @ 0x00;\n' > "$work/string.pat"
+log=$(printf 'text\n' | "$PLBATCH" --pattern "$work/string.pat" --in-root "$work/in" --out-root "$work/out" --force || true)
+want=$(printf '"s": "Rumi A\\"\xe9\x80\x9a\xe4\xbf\xa1\\u0080"')
+check "strings are UTF-8 JSON strings, not percent-encoded" '[[ $log == *"ok   text"* ]] && grep -qF -- "$want" "$work/out/text.json" && ! grep -qF "%20" "$work/out/text.json"'
 
 (( fails == 0 )) || { echo "$fails check(s) failed" >&2; exit 1; }
 echo "all checks passed"

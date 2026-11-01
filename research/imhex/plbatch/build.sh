@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Build plbatch against PatternLanguage at the commit ImHex 1.38.1 pins, with MSYS2 mingw64.
+# Build plbatch against PatternLanguage master 300d7388 (UTF-8 JSON strings), with MSYS2 mingw64.
 #
 # Usage: research/imhex/plbatch/build.sh
 # Output: research/imhex/plbatch/build/bin/plbatch.exe (the build/ folder is gitignored).
@@ -9,7 +9,7 @@
 #   PL_URL     PatternLanguage remote (default https://github.com/WerWolv/PatternLanguage)
 set -o errexit -o nounset -o pipefail
 
-PL_COMMIT=fb6ea061f7c8b66ed94b44ff1d3a10ee63a82612   # tag ImHex-v1.38.1
+PL_COMMIT=300d7388475dd7ffd04239dfc889b72fe08bae18   # master 2026-09-13: UTF-8 JSON strings (f910448)
 PL_URL=${PL_URL:-https://github.com/WerWolv/PatternLanguage}
 MINGW_BIN=${MINGW_BIN:-/c/msys64/mingw64/bin}
 

@@ -1,7 +1,8 @@
 # plbatch
 
 A batch driver for ImHex patterns: one process runs one pattern over many files and writes one JSON
-file per input, byte-identical to `imhex --pl format`. `packets/imhex-export.sh` uses it when it is
+file per input, as `imhex --pl format` does (byte-identical up to the PatternLanguage pin below,
+which changes how strings are encoded). `packets/imhex-export.sh` uses it when it is
 built. Background and the measurements behind the design:
 `specs/005-netmsg-patterns/research/P7-imhex-as-library.md`.
 
@@ -18,11 +19,26 @@ never forks per file.
 bash research/imhex/plbatch/build.sh
 ```
 
-- Fetches PatternLanguage at **`fb6ea061f7c8b66ed94b44ff1d3a10ee63a82612`** (tag `ImHex-v1.38.1`,
-  the commit ImHex 1.38.1 embeds) with its submodules into `research/imhex/plbatch/build/pl-src`
-  (gitignored). Do not move the pin: newer PatternLanguage changes the JSON string escaping and
-  the `executeString` return type. Never build in the reference clone
-  `D:/GitHub/WerWolv/PatternLanguage`.
+- Fetches PatternLanguage at **`300d7388475dd7ffd04239dfc889b72fe08bae18`** (master, 2026-09-13)
+  with its submodules into `research/imhex/plbatch/build/pl-src` (gitignored). Never build in the
+  reference clone `D:/GitHub/WerWolv/PatternLanguage`.
+- Why this pin (spec 006 T001d, 2026-11-01): ImHex 1.38.1's PatternLanguage (`fb6ea061`, tag
+  `ImHex-v1.38.1`) wrote every string byte outside `[A-Za-z0-9-_.~]` as `%XX`
+  (`"Rumi%20Amestris"`). Upstream `f910448` and `5764389` (2026-01/03,
+  `generators/include/pl/formatters/formatter_json.hpp`) write valid UTF-8 as is, with the JSON
+  escapes `\"`, `\\`, `\b`, `\f`, `\n`, `\r`, `\t`, `\u00XX` for other control characters and
+  0x7F, a surrogate pair above U+FFFF, and `\u00XX` for each byte of invalid UTF-8 (ambiguous with
+  the real code point U+00XX). Other changes since `fb6ea061` that touch evaluation or output:
+  transform functions in the formatter (`27220d5`, `3aeccbb`: a value whose `getValue()` throws now
+  prints `"<error: ...>"`), `std::mem` reads default to the current section (`2751a95`), string
+  display values trim trailing NULs (`ca1ab93`: the ImHex view only, not `toString()`), an optional
+  string codec and `#pragma encoding` (`cf44545`: none is set, so raw bytes as before), `\u`/`\U`
+  escapes in pattern source give a code point (`075eaf9`: the packet patterns use none), and
+  `executeString` returns an exit code (0 = success) instead of `bool`. The packet re-export
+  (2 files per pattern, old vs new) showed no difference other than the string encoding.
+- The ImHex fallback of `packets/imhex-export.sh` (`imhex --pl format`, ImHex 1.38.1) still writes
+  percent-encoded strings: since this pin the two engines agree byte for byte only on files
+  without string bytes outside `[A-Za-z0-9-_.~]`.
 - Compiles with MSYS2 **mingw64** by full path (`/c/msys64/mingw64/bin`: gcc 16.2.0, cmake 4.4.4,
   ninja 1.13.2, lld), never the Strawberry `g++`/`cmake` on `PATH`. Override with `MINGW_BIN`.
   Missing tools: `pacman -S mingw-w64-x86_64-{gcc,cmake,ninja,lld}`.
@@ -50,7 +66,7 @@ plbatch --pattern P [-I DIR]... --in-root IN --out-root OUT [--force] [--time] [
   `badjson rel (see <err>)` or `FAIL rel (see <err>)`, one line per file. Exit 0 when nothing
   failed, 1 when a file failed or was badjson, 2 on a usage error.
 - Tests: `bash research/imhex/plbatch/test.sh` (synthetic inputs: ok, ok-nan, ok-null, stale JSON
-  removed on failure, skip).
+  removed on failure, skip, a UTF-8 string with a quote and an invalid byte).
 - `-I`: pass the ImHex std library (`<imhex>/includes`, which `imhex --pl` adds by itself) and the
   pattern includes (`research/03040008/packets/include`).
 - `--time`: also parse each pattern once more on its own and print parse, execute and format
@@ -60,7 +76,7 @@ Per file the driver does what ImHex does per run: `reset()`, dangerous functions
 paths, `setDataSource` over the file in memory, `executeString(pattern, patternPath)`, then
 `FormatterJson::format()`. Nothing calls `std::exit` per file.
 
-## Verification (2026-11-01, client 03040008 packets)
+## Verification (2026-11-01, client 03040008 packets, at the earlier pin `fb6ea061`)
 
 `imhex.exe` 1.38.1 (portable NoGPU) `--pl format` against plbatch, same patterns, `-I
 research/03040008/packets/include` (plbatch also `-I <imhex>/includes`), byte comparison of every

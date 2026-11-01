@@ -43,6 +43,10 @@ summary, and two lines the export script reads:
 
 **JSON conventions.** The root key is `packet`. Header keys are lowercase (`group`, `id`, `subId`,
 `source`, `packetcounter`). Lists export as `{count, entries}` and strings as `{length, value}`.
+String values are UTF-8 JSON strings, written as is with the standard escapes (`\"`, `\\`, `\n`,
+`\r`, `\t`, `\u00XX` for control characters); there is no percent encoding since spec 006 T001d
+(the export before it wrote `"Rumi%20Amestris"`). A byte that is not valid UTF-8 comes out as
+`\u00XX`, which reads the same as the code point U+00XX.
 
 **RES error guard.** The PC reads `s32 Error`, and reads Result and the body only when Error is 0
 (P11a G1). PS4 reads a u16 Error; the captures back the PC's s32 (R2). Every RES pattern writes the
@@ -84,9 +88,10 @@ The filter selects raw files three ways:
 `@` refuses an id that login-server (`C2L_`/`L2C_`) and game-server (`C2S_`/`S2C_`) files share,
 unless the pattern names its packet with `// packet-select:` (test: `tests/imhex-export-select.sh`).
 
-The engine is plbatch (`research/imhex/plbatch`, built with its `build.sh`): PatternLanguage at the
-commit ImHex 1.38.1 embeds, one process per shard. Without plbatch, the script runs one
-`imhex --pl format` per packet. The summary line counts:
+The engine is plbatch (`research/imhex/plbatch`, built with its `build.sh`): PatternLanguage master
+`300d7388` (UTF-8 strings), one process per shard. Without plbatch, the script runs one
+`imhex --pl format` per packet; ImHex 1.38.1 still percent-encodes strings, so its JSON differs
+from the committed export wherever a string holds a byte outside `[A-Za-z0-9-_.~]`. The summary line counts:
 
 - `exported`, `skipped` and `failed` packets;
 - `nonfinite`: outputs holding a bare `nan` or `inf`, which is not valid JSON unless you pass

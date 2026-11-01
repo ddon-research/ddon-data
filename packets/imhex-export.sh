@@ -31,8 +31,8 @@
 # --json-nonfinite=null), "badjson" files whose output was invalid for another reason (failures).
 # The ImHex path does not validate its output.
 #
-# Engine: plbatch (research/imhex/plbatch, PatternLanguage at the commit ImHex 1.38.1 embeds, so the
-# JSON is byte-identical to `imhex --pl format`) when built, one long-lived process per shard;
+# Engine: plbatch (research/imhex/plbatch, PatternLanguage master 300d7388: UTF-8 JSON strings, where
+# ImHex 1.38.1's `imhex --pl format` writes %XX) when built, one long-lived process per shard;
 # otherwise one `imhex --pl format` process per packet.
 #
 # Environment overrides:

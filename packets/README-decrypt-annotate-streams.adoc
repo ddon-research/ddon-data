@@ -211,11 +211,16 @@ ended exactly at its `len`) and, after the packet's last field, `fits` (padding 
 less). Patterns whose name gives the direction export `sourceOk`: the header source byte is 0x00
 (client, C2S) or 0x34 (server, S2C).
 
-Two engines, same JSON byte for byte:
+String values in the JSON are UTF-8 JSON strings, written as is with the standard escapes (`\"`,
+`\\`, `\n`, `\r`, `\t`, `\u00XX` for control characters); a byte that is not valid UTF-8 comes out
+as `\u00XX`. There is no percent encoding since spec 006 T001d; the export before it, and ImHex
+1.38.1 still, wrote every byte outside `[A-Za-z0-9-_.~]` as `%XX` (`"Rumi%20Amestris"`).
+
+Two engines, same JSON byte for byte except for that string encoding:
 
 * *plbatch* (default when built): `bash ../research/imhex/plbatch/build.sh` builds
-  `../research/imhex/plbatch/build/bin/plbatch.exe`, PatternLanguage at the commit ImHex 1.38.1
-  embeds (`fb6ea061`), with MSYS2 mingw64 (see `research/imhex/plbatch/README.md`). The script
+  `../research/imhex/plbatch/build/bin/plbatch.exe`, PatternLanguage master `300d7388` (UTF-8
+  strings; ImHex 1.38.1 embeds `fb6ea061`), with MSYS2 mingw64 (see `research/imhex/plbatch/README.md`). The script
   deals the file list into `jobs` shards (default `nproc`) and runs one plbatch process per shard;
   no process is started per packet. It takes the std library from `<imhex dir>/includes`
   (`IMHEX_INCLUDES` overrides). Set `PLBATCH` to another build, or `PLBATCH=none` for ImHex.
@@ -227,7 +232,7 @@ Measured 2026-11-01 (client 03040008, contended machine): plbatch did 100 `S2C_L
 packets in 2.84 s ± 0.11 in one process (about 35/s; parsing the pattern costs ~25 ms per packet,
 evaluation under 1 ms), against 534 ms ± 317 per packet for `imhex.exe`. On 3,028 packets (1,000
 per nNetMsg type, all 8 `C2S_PARTY_SEND_BINARY_MSG_ALL_NTC`, P7's 20 samples) the JSON of both
-engines was byte-identical. Error logs (`.json.err`) differ in wording; plbatch adds the stack trace.
+engines was byte-identical (plbatch then at `fb6ea061`). Error logs (`.json.err`) differ in wording; plbatch adds the stack trace.
 
 [[statistics]]
 == Packet statistics
