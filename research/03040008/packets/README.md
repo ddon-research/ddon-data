@@ -22,6 +22,7 @@ carry now. Every pattern starts with `#pragma endian big` and includes what it n
 | `Login.hexpat` | login-server CData (T002 §15): URL info, login setting, game server list info, error message, and the character list types (matching profile, Season 3 equip item info, character list info); includes Character, Context and GP | 4 |
 | `GP.hexpat` | GP course info, effect param and the Season 3 GP course valid (T002 §10, §11) | 1, and 5.0.2 through Login |
 | `Cert.hexpat` | `CDataServerCert`, the server certificate notice body: modulus[256], exponent[16], SHA-1 u32[5] (T003 §1, §15) | 1.1.16, 44.1.16 |
+| `Server.hexpat` | game-server connection setup CData (T003 §18): cheat info (ping), game setting with its Season 3 changes and element types, weather forecast, game time base info, weather loop/schedule, moon schedule; includes Login | 0.0.1, 1.0.2, 1.1.2, 1.7.2, 1.8.2 |
 
 Each structure comment names the PC reader or writer VA (PC 03040008 database, image base 0x400000)
 and the PS4 02020005 DWARF type, and carries a mark: V means read in IDA, I means inferred. A name
@@ -37,6 +38,7 @@ summary, and two lines the export script reads:
   `S2C_CONNECTION_LOGIN_RES` use the same ids (R2 F2).
   Every login pattern (`C2L_`/`L2C_`) carries it: the game server reuses the login ids 0.0.x,
   0.2.x, 1.0.x and 3.0.x, and naming the packet keeps a later game-server capture out of the export.
+  The game-server patterns of the shared ids carry it as well (0.0.1-0.2.2, 1.0.1, 1.0.2; T003b).
 - `// packet-size: <bytes>`: only where two packets share both id and file name. `@` then keeps
   only files of that size. No pattern needs it now: `1.0.1 C2L_CLIENT_CHALLENGE_REQ` carried
   `// packet-size: 336` while the CLI filed the server's 304-byte certificate notice under the same
@@ -129,18 +131,45 @@ those names. T001b is `specs/006-packet-pattern-coverage/research/T001b-save-blo
 blob that 9.0.2 and 9.1.1 share through `include/CharacterData.hexpat`. T001c is
 `specs/006-packet-pattern-coverage/research/T001c-parked-static-items.md` (spec 005's parked items).
 T002 is `specs/006-packet-pattern-coverage/research/T002-login.md` (the login group).
+T003 is `specs/006-packet-pattern-coverage/research/T003-connection-server-cert.md` (groups 0
+CONNECTION, 1 SERVER and 44 CERT of the game server; counts after their first export, T003b).
 
 | Id | Pattern | Report | Status |
 | --- | --- | --- | --- |
 | 0.0.1 | `C2L_PING_REQ` | T002 §1 | 75/75 fit |
 | 0.0.2 | `L2C_PING_RES` | T002 §1 | 75/75 fit |
+| 0.0.1 | `C2S_CONNECTION_PING_REQ` | T003 §2 | 2134/2134 fit |
+| 0.0.2 | `S2C_CONNECTION_PING_RES` | T003 §2 | 2133/2133 fit |
 | 0.1.1 | `C2L_LOGIN_REQ` | P11b §2 | 42/42 fit |
 | 0.1.2 | `L2C_LOGIN_RES` | P11b §3 | 42/42 fit |
+| 0.1.1 | `C2S_CONNECTION_LOGIN_REQ` | T003 §3 | 42/42 fit |
+| 0.1.2 | `S2C_CONNECTION_LOGIN_RES` | T003 §3 | 42/42 fit |
 | 0.2.1 | `C2L_LOGOUT_REQ` | T002 §2 | 42/42 fit |
 | 0.2.2 | `L2C_LOGOUT_RES` | T002 §2 | 42/42 fit |
+| 0.2.1 | `C2S_CONNECTION_LOGOUT_REQ` | T003 §4 | 42/42 fit |
+| 0.2.2 | `S2C_CONNECTION_LOGOUT_RES` | T003 §4 | 42/42 fit |
+| 0.3.1 | `C2S_CONNECTION_GET_LOGIN_ANNOUNCEMENT_REQ` | T003 §5 | 41/41 fit |
+| 0.3.2 | `S2C_CONNECTION_GET_LOGIN_ANNOUNCEMENT_RES` | T003 §5 | 41/41 fit |
+| 0.5.1 | `C2S_CONNECTION_MOVE_IN_SERVER_REQ` | T003 §6 | 41/41 fit |
+| 0.5.2 | `S2C_CONNECTION_MOVE_IN_SERVER_RES` | T003 §6 | 41/41 fit |
+| 0.6.1 | `C2S_CONNECTION_MOVE_OUT_SERVER_REQ` | T003 §7 | 41/41 fit |
+| 0.6.2 | `S2C_CONNECTION_MOVE_OUT_SERVER_RES` | T003 §7 | 41/41 fit |
+| 0.7.1 | `C2S_CONNECTION_RESERVE_SERVER_REQ` | T003 §8 | 41/41 fit |
+| 0.7.2 | `S2C_CONNECTION_RESERVE_SERVER_RES` | T003 §8 | 41/41 fit |
+| 0.10.16 | `S2C_CONNECTION_0_10_16_NTC` | T003 §9 | 2/2 fit (code name SESSION_STATUS_NTC, V) |
 | 1.0.1 | `C2L_CLIENT_CHALLENGE_REQ` | T002 §3, T002c | 42/42 fit (no header, body at offset 0) |
 | 1.0.2 | `L2C_CLIENT_CHALLENGE_RES` | T002 §4 | 42/42 fit |
+| 1.0.1 | `C2S_SERVER_GET_SERVER_LIST_REQ` | T003 §10 | 43/43 fit |
+| 1.0.2 | `S2C_SERVER_GET_SERVER_LIST_RES` | T003 §10 | 43/43 fit |
+| 1.1.1 | `C2S_SERVER_GET_GAME_SETTING_REQ` | T003 §11 | 42/42 fit |
+| 1.1.2 | `S2C_SERVER_GET_GAME_SETTING_RES` | T003 §11 | 42/42 fit, slack 1 |
 | 1.1.16 | `L2C_LOGIN_SERVER_CERT_NTC` | T003 §1, §15 | 42/42 fit, slack 12 (no header; layout by the game reader and the capture SHA-1 check) |
+| 1.4.1 | `C2S_SERVER_GET_REAL_TIME_REQ` | T003 §12 | 87/87 fit |
+| 1.4.2 | `S2C_SERVER_GET_REAL_TIME_RES` | T003 §12 | 87/87 fit |
+| 1.7.1 | `C2S_SERVER_WEATHER_FORECAST_GET_REQ` | T003 §13 | 1/1 fit |
+| 1.7.2 | `S2C_SERVER_WEATHER_FORECAST_GET_RES` | T003 §13 | 1/1 fit |
+| 1.8.1 | `C2S_SERVER_GAME_TIME_GET_BASEINFO_REQ` | T003 §14 | 41/41 fit |
+| 1.8.2 | `S2C_SERVER_GAME_TIME_GET_BASEINFO_RES` | T003 §14 | 41/41 fit |
 | 2.1.1 | `C2L_GET_GAME_SESSION_KEY_REQ` | T002 §5 | 42/42 fit |
 | 2.1.2 | `L2C_GET_GAME_SESSION_KEY_RES` | T002 §5 | 42/42 fit |
 | 2.2.1 | `C2L_GET_LOGIN_SETTING_REQ` | T002 §6 | 41/41 fit |
@@ -215,6 +244,8 @@ T002 is `specs/006-packet-pattern-coverage/research/T002-login.md` (the login gr
 | 35.13.16 | `S2C_CONTEXT_SET_CONTEXT_NTC` | P4 §2.3 | 24/24 fit |
 | 35.14.16 | `S2C_CONTEXT_MASTER_CHANGE_NTC` | P4 §2.3 | 948/948 fit |
 | 35.15.16 | `S2C_CONTEXT_MASTER_INFO_NTC` | P4 §2.3 | 43/43 fit |
+| 44.0.1 | `C2S_CERT_CLIENT_CHALLENGE_REQ` | T003 §15 | 83/83 fit, slack 12 (no header, body at offset 0) |
+| 44.0.2 | `S2C_CERT_CLIENT_CHALLENGE_RES` | T003 §16 | 83/83 fit |
 | 44.1.16 | `S2C_CERT_GAME_SERVER_CERT_NTC` | T003 §1, §15 | 83/83 fit, slack 12 (no header, body at offset 0) |
 | 51.0.2 | `S2C_DISPEL_GET_DISPEL_ITEM_LIST_RES` | P11a §6 | 1/1 fit |
 | 52.1.2 | `S2C_MY_ROOM_FURNITURE_LIST_GET_RES` | P11a §10 | 20/20 fit |
@@ -225,9 +256,18 @@ T002 is `specs/006-packet-pattern-coverage/research/T002-login.md` (the login gr
 
 ## Open items
 
-- **44.0.1 without a pattern:** the 83 `C2S_CERT_CLIENT_CHALLENGE_REQ` 44.0.1 files (all 336
-  bytes since T002e filed the server's certificate notice as 44.1.16) have the 1.0.1 body layout
-  (T003 §15: 83/83 fit as a walk), but no 44.0.1 pattern exists yet.
+- **0.10.16 name:** the raws and the pattern keep the CLI's name `S2C_CONNECTION_0_10_16_NTC`;
+  the code-backed name is `SESSION_STATUS_NTC` (T003 §9, V by behaviour: the handler sets the
+  SessionStatus byte of the lobby member with that CharacterID). Which of the PS4 lobby-member
+  bytes Platform/ClientVersion Season 3 dropped is I.
+- **Game setting names without code backing (T003 §11, §20):** the Season 3 tail of
+  `CDataGameSetting` (`unk_bool`, `unk_u32_0..2`, `unk_u16`, and the element names of
+  `CDataWalletLimit`, `CDataExpSetting`, `CDataExpRequirement`, all server leads, I), and the
+  position of PawnPresentItemID/Num after Season 3 dropped the two CapLink strings (I: width
+  alignment plus one value match).
+- **Game-server RES error branch untested:** no captured RES of groups 0, 1 and 44 has
+  Error != 0; `CDataMoonSchedule`, the ping CheatInfo list beyond one element and every list count
+  above those seen are code-only (T003 §17).
 - **1.1.16 login reader not decoded:** the login certificate notice reuses the game body
   (`include/Cert.hexpat`) on the strength of the captures (42/42 SHA-1 match, T002c §4) and the
   shared receive path (T003 §1); the reader behind handler `0x886b00` is not decoded (T003 §20).

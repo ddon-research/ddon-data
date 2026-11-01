@@ -8,8 +8,8 @@
 #                                 only the files of that id whose name holds `_<name>_`. An id
 #                                 that login-server (C2L_/L2C_) and game-server (C2S_/S2C_)
 #                                 files share is refused without that line (0.1.1, 0.1.2);
-#                                 `// packet-size: <bytes>` keeps only files of that size (1.0.1:
-#                                 the client's 336-byte challenge, not the server's 304-byte key)
+#                                 `// packet-size: <bytes>` keeps only files of that size (for two
+#                                 packets that share both id and file name; no pattern needs it now)
 #                  35.5.16        that packet id: files ending in `.35_5_16`
 #                  anything else  a substring of the file names
 #                                 (e.g. S2C_GROUP_CHAT_GROUP_CHAT_GET_MEMBER_LIST_RES)
