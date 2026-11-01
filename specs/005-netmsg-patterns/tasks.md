@@ -95,6 +95,10 @@ matched by code to a PS4 02020005 handler. Season 3-exclusive handlers (no PS4 c
 listed, not patterned: a later spec handles them with context from the new Season 3 client files.
 006's first package is therefore a triage: per uncovered id, the PC handler VA and whether a PS4
 match exists (by code: reader body, callers, strings), ranked by captured count.
+Cross-check rule (Sam, 2026-11-01): IDA can misread stack arguments and their order; every layout
+is checked against the PS4 recompilation C++ (`D:/ddon-data-s2/recompilation/src/DD_ONLINE/prog/Protocol/`:
+`UserSession/{C2S,S2C}.cpp` ReadPacket/WritePacket, `LoginSession/`, `PacketData/*.cpp`), the PS4
+baseline where it exists; disagreements go back to IDA. Applies to P12a/P12b (sent to P12a) and 006.
 
 ### Phase 2: live Season 3 validation (Sam, 2026-11-01: only after the static path is exhausted)
 
