@@ -41,3 +41,41 @@ struct CDataWalletPoint {
     E_WALLET_POINT_TYPE Type;
     u32 Value;
 };
+
+// CDataJobBaseInfo: PC reader 0x76b190 {u8, u8} (P11b shared table, V); PS4 CDataJobBaseInfo
+// {u8 m_ucJob, u8 m_ucLv}.
+struct CDataJobBaseInfo {
+    u8 Job;
+    u8 Lv;
+};
+
+// CDataCharacterName: read inline by PC 0x75ccf0 as two MtStrings (P11b 4, V); PS4
+// CDataCharacterName {MtString m_wstrFirstName, MtString m_wstrLastName}.
+struct CDataCharacterName {
+    MtString FirstName;
+    MtString LastName;
+};
+
+// CDataCommunityCharacterBaseInfo: read inline by PC 0x75ccf0 {u32, MtString x3} (V); PS4
+// CDataCommunityCharacterBaseInfo {u32 m_unCharacterID, CDataCharacterName m_CharacterName,
+// MtString m_wstrClanName}.
+struct CDataCommunityCharacterBaseInfo {
+    u32 CharacterID;
+    CDataCharacterName CharacterName;
+    MtString ClanName;
+};
+
+// CDataCharacterListElement: PC reader 0x75ccf0 (nPacket::Read_CDataCharacterListElement_), list
+// reader 0x75cbd0 {u32, MtString x3, u16, u8, JobBaseInfo x2, MtString, u8} (P11b shared table, V).
+// PS4 CDataCharacterListElement (and the PS4 recompilation, PacketData/Community.h) has the same
+// members up to m_wstrMatchingPlofile and no trailing u8: the u8 is Season 3, name open. Users:
+// CDataClanMemberInfo (31.29.2, 31.4.2), 18.0.2.
+struct CDataCharacterListElement {
+    CDataCommunityCharacterBaseInfo BaseInfo;
+    u16 ServerID;
+    u8 OnlineStatus;
+    CDataJobBaseInfo CurrentJobInfo;
+    CDataJobBaseInfo EntryJobInfo;
+    MtString MatchingPlofile;   // PS4 DWARF spelling (m_wstrMatchingPlofile)
+    u8 unk_u8;                  // Season 3 (PC 0x75ccf0), no PS4 member
+};

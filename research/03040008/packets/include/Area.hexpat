@@ -34,3 +34,47 @@ struct CDataAreaUnkU32BoolS64 {
     bool unk_bool;
     s64 unk_s64;
 };
+
+// CDataSpotEnemyInfo: PC sublist reader loc_779c00 {u32, u8} (P11b 11, V); PS4 CDataSpotEnemyInfo
+// {u32 m_unEnemyID, u8 m_ucEnemyLv}.
+struct CDataSpotEnemyInfo {
+    u32 EnemyID;
+    u8 EnemyLv;
+};
+
+// CDataSpotItemInfo: PC sublist reader 0x779e50 {u32, u8} (P11b 11, V); PS4 CDataSpotItemInfo
+// {u32 m_unItemId, u8 m_ucPawnTakeRate}.
+struct CDataSpotItemInfo {
+    u32 ItemId;
+    u8 PawnTakeRate;
+};
+
+// CDataSpotInfo: PC list reader 0x779cf0, element 0x779db0 (P11b 11, V); PS4 CDataSpotInfo, same
+// order (PS4 OnPacket_S2C_GET_SPOT_INFO_LIST_RES 0x303540; PS4 recompilation
+// PacketData/AreaMaster.h). User: 23.11.2.
+struct CDataSpotInfo {
+    u32 SpotID;
+    u32 TextIndex;
+    u32 StageID;
+    bool IsRelease;
+    bool IsNew;
+    MtTypedArray<CDataSpotEnemyInfo> SpotEnemyInfoList;
+    MtTypedArray<CDataSpotItemInfo> SpotItemInfoList;
+    u32 QuickPartyPopularity;
+};
+
+// CDataRewardItemInfo: PC list reader 0x7773b0 {u32, u32, u8} (P11b 10, V); PS4
+// CDataRewardItemInfo {u32 m_unIndex, u32 m_ulItemId, u8 m_ucNum}. User: 23.3.2.
+struct CDataRewardItemInfo {
+    u32 Index;
+    u32 ItemId;
+    u8 Num;
+};
+
+// CDataSelectItemInfo: PC list writer 0x780ea0 {u32, u8} (P11b 9, V); PS4 CDataSelectItemInfo
+// (CPacket_C2S_GET_AREA_SUPPLY_REQ::WritePacket 0x1a34990; no class in the PS4 recompilation).
+// User: 23.4.1.
+struct CDataSelectItemInfo {
+    u32 Index;
+    u8 Num;
+};
