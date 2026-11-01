@@ -111,6 +111,14 @@ Report `research/orchestration-port-2026-11.md` (R2, `repository-researcher`, me
       record different stat fields, so each full-refreshed the 437k-entry index after the other
       (MSYS 54-105 s, GfW 9 s). `core.checkStat minimal` + `core.trustctime false` cut that to
       MSYS 7-22 s, GfW 0.8-2.4 s; Sam uses Git for Windows only from now on); `git repack -d` packed the loose objects (141,809 -> 1,020 unreachable leftovers, 70 s; `maintenance run --task=loose-objects` packed none). Sam approved T020's tuning on 2026-11-01.
+- [ ] T021 Private IDA copies are never removed (2026-11-01: 10 `ddon-data-*` copies, ~7 GB, in
+      `D:/research/DDON-binaries/IDA9.5/*/`; the coordinator stopped six orphaned `idat.exe` workers
+      and deleted them). Cause: the ida-mcp server keeps one `idat.exe` per opened database alive
+      after the agent ends, and `close_database` is denied. Fix: allow `mcp__ida__close_database`
+      (guard_ida checks the path is a private copy; saving into a private copy is harmless); the
+      `-ida` role closes its databases before its final message; `research/ida/private-copy.sh
+      --remove <pc|ps4> <name>` deletes a closed copy; the coordinator runs it at landing (skill
+      step) and `session_state.py` lists leftover copies and orphaned `idat.exe` workers.
 - [x] T017 Guard: refuse `git commit` without a `-- <paths>` pathspec while the index holds staged
       paths of other work. P4's b204c9daad committed three files another session had staged (Sam
       approved the rewrite: soft reset to 1d0ab74e1a, the four commits remade with explicit paths
