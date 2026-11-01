@@ -85,9 +85,12 @@ raws no longer carry (`S2C_AREA_23_13_16_NTC` = `S2C_AREA_POINT_UP_NTC`, `S2C_EN
   errors; medium: QuestEnemyInfo u32 position vs P11a, `@` selector trap on the shared 0.1.x ids;
   low: RES shape split, dangling reference, unmarked inferred positions; the recompilation has no
   ReadPacket body for any of the 36; L2C_LOGIN_RES JSON shows the OnetimeToken (already in raws).
-- [ ] T024 P13 (`implementer`, `briefs/P13-r2-fixes-and-docs.md`): R2 fixes and the spec's docs
-  (`research/03040008/packets/README.md`). Then close 005: `check.sh --all`, light retrospective,
-  `**Status: done**`; then open spec 006 (plan in "Next" below).
+- [x] T024 P13 done 6efb9bef14..8fdf5d84db: R2 F1-F6, F8; `// packet-select:` for the shared
+  0.1.1/0.1.2 ids; inline RES convention (35.7.2 re-exported, 608); README
+  `research/03040008/packets/README.md` (67 patterns, open items). The coordinator re-exported the 67
+  quest files for the QuestEnemyInfo rename (cfb3fc57fe). **Static phase of 005 done.** Open in 005:
+  phase 2 (T009-T012, live, from a ddon-hook session), T018 (optional parse-once plbatch), the 9.1.1
+  save-blob bit walk, the QuestEnemyInfo u32 position, Season 3 field names. Next: spec 006.
 - Sam (2026-11-01): changes from fixing wrong or missing fields, enums and id/class coverage are
   expected and fine, but every package lists them for Sam's inspection (per type: the change, why,
   sampled count, one example file with before/after). Some old patterns were never finished (e.g.
