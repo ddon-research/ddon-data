@@ -1,15 +1,16 @@
 {
-    "S2C_CLAN_GET_MY_MEMBER_LIST_RES": {
+    "packet": {
         "group": 31,
         "id": 4,
         "subId": 2,
         "source": 52,
         "packetcounter": 0,
+        "sourceOk": true,
         "Error": 0,
         "Result": 0,
         "MemberList": {
-            "num": 1,
-            "array": [
+            "count": 1,
+            "entries": [
                 {
                     "Rank": 1,
                     "Created": 1563682762,
@@ -21,17 +22,17 @@
                             "CharacterID": 2184603,
                             "CharacterName": {
                                 "FirstName": {
-                                    "strLen": 6,
-                                    "string": "Kendra"
+                                    "length": 6,
+                                    "value": "Kendra"
                                 },
                                 "LastName": {
-                                    "strLen": 4,
-                                    "string": "Shaw"
+                                    "length": 4,
+                                    "value": "Shaw"
                                 }
                             },
                             "ClanName": {
-                                "strLen": 3,
-                                "string": "BSP"
+                                "length": 3,
+                                "value": "BSP"
                             }
                         },
                         "ServerID": 5,
@@ -45,13 +46,15 @@
                             "Lv": 0
                         },
                         "MatchingPlofile": {
-                            "strLen": 0,
-                            "string": ""
+                            "length": 0,
+                            "value": ""
                         },
-                        "unknown": 0
+                        "unk_u8": 0
                     }
                 }
             ]
-        }
+        },
+        "paddingSize": 10,
+        "fits": true
     }
 }
