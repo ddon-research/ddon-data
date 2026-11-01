@@ -19,6 +19,6 @@ Coordinator: main session. One subagent at a time. Method and rules: `spec.md`.
 
 ## Next step (2026-11-01)
 
-Brief T001 (triage). Inventory input: the raw ids by suffix (`fd -t f . packets/decrypted_raw | awk
+T001 (triage) running, brief `briefs/T001-triage.md`. Inventory input: the raw ids by suffix (`fd -t f . packets/decrypted_raw | awk
 -F. '{print $NF}' | sort | uniq -c`, bounded with `| wc -l` by the guard: write it to a file) minus
 the `// packet-id:` lines of `research/03040008/packets/*-pattern.cpp`.
