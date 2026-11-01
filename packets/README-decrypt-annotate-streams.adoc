@@ -131,6 +131,24 @@ existing pieces. This replaces the manual `split -C 50M` plus moving cut-off pac
 `decrypted_json/<stream>/<packet-file>.json`. Set `IMHEX` if ImHex is not on `PATH`; output paths
 must stay under 260 characters for the Windows ImHex build.
 
+Two engines, same JSON byte for byte:
+
+* *plbatch* (default when built): `bash ../research/imhex/plbatch/build.sh` builds
+  `../research/imhex/plbatch/build/bin/plbatch.exe`, PatternLanguage at the commit ImHex 1.38.1
+  embeds (`fb6ea061`), with MSYS2 mingw64 (see `research/imhex/plbatch/README.md`). The script
+  deals the file list into `jobs` shards (default `nproc`) and runs one plbatch process per shard;
+  no process is started per packet. It takes the std library from `<imhex dir>/includes`
+  (`IMHEX_INCLUDES` overrides). Set `PLBATCH` to another build, or `PLBATCH=none` for ImHex.
+* *ImHex* (fallback): one `imhex --pl format` per packet, about 0.25-0.5 s each for process start
+  and plugin init; default `nproc / 2` jobs, since every MSYS process creation slows down as more
+  jobs fork at once (P3's export of 110,065 nNetMsg packets ran at about 6 packets/s).
+
+Measured 2026-11-01 (client 03040008, contended machine): plbatch did 100 `S2C_LOBBY_LOBBY_DATA_MSG_NTC`
+packets in 2.84 s ± 0.11 in one process (about 35/s; parsing the pattern costs ~25 ms per packet,
+evaluation under 1 ms), against 534 ms ± 317 per packet for `imhex.exe`. On 3,028 packets (1,000
+per nNetMsg type, all 8 `C2S_PARTY_SEND_BINARY_MSG_ALL_NTC`, P7's 20 samples) the JSON of both
+engines was byte-identical. Error logs (`.json.err`) differ in wording; plbatch adds the stack trace.
+
 [[statistics]]
 == Packet statistics
 

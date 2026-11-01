@@ -53,9 +53,17 @@ paths, `setDataSource` over the file in memory, `executeString(pattern, patternP
 ## Verification (2026-11-01, client 03040008 packets)
 
 `imhex.exe` 1.38.1 (portable NoGPU) `--pl format` against plbatch, same patterns, `-I
-research/03040008/packets/include` (plbatch also `-I <imhex>/includes`), compared with `cmp`:
-see the P8 receipt in `specs/005-netmsg-patterns/` for the counts and the throughput. The `.err`
-text differs (plbatch adds the stack trace from the log); the set of failing files must match.
+research/03040008/packets/include` (plbatch also `-I <imhex>/includes`), byte comparison of every
+output: 3,028 files (1,000 each of `C2S_PARTY_SEND_BINARY_MSG_NTC`, `S2C_LOBBY_LOBBY_DATA_MSG_NTC`,
+`C2S_LOBBY_LOBBY_DATA_MSG_REQ`, every 1,000th-ish file of the sorted `packets/decrypted_raw` list;
+all 8 `C2S_PARTY_SEND_BINARY_MSG_ALL_NTC`; P7's 20 samples): 3,028 identical, 0 differing, 0
+failures on either side. A deliberately truncated packet failed in both, through
+`packets/imhex-export.sh` with each engine, and the two output trees were otherwise identical. The
+`.err` text differs (plbatch adds the stack trace from the log).
+
+Throughput (hyperfine 2.0.0, `-N`, contended 32-CPU machine): plbatch over 100 packets 2.837 s ±
+0.111 (5 runs, ~35 packets/s per process); `imhex.exe --pl format` over one packet 534.0 ms ± 317.0
+(15 runs, ~1.9 packets/s per process, before any shell overhead).
 
 ## Cost per file
 

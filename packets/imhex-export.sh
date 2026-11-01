@@ -6,21 +6,28 @@
 #                  (e.g. S2C_GROUP_CHAT_GROUP_CHAT_GET_MEMBER_LIST_RES)
 #   pattern-name   pattern in ../research/03040008/packets/<name>-pattern.cpp
 #                  (e.g. S2C_GROUP_CHAT_GROUP_CHAT_GET_MEMBER_LIST_RES)
-#   jobs           parallel ImHex processes (default: nproc)
+#   jobs           parallel worker processes (default: nproc with plbatch, nproc/2 with ImHex)
 #   --force        re-export packets whose JSON already exists
 #
 # Output: decrypted_json/<stream>/<packet-file>.json (one file per packet).
-# Failures keep their ImHex error log as <packet-file>.json.err and make the script exit 1.
+# Failures keep their error log as <packet-file>.json.err and make the script exit 1.
+#
+# Engine: plbatch (research/imhex/plbatch, PatternLanguage at the commit ImHex 1.38.1 embeds, so the
+# JSON is byte-identical to `imhex --pl format`) when built, one long-lived process per shard;
+# otherwise one `imhex --pl format` process per packet.
 #
 # Environment overrides:
-#   IMHEX        ImHex executable (default: imhex on PATH, then the portable install below)
+#   PLBATCH      plbatch executable (default: ../research/imhex/plbatch/build/bin/plbatch.exe if
+#                built); PLBATCH=none forces the ImHex path
+#   IMHEX        ImHex executable (default: imhex on PATH, then the portable install below); with
+#                plbatch, its includes/ folder supplies the std library
 #   RAW_DIR      input root  (default: decrypted_raw)
 #   JSON_DIR     output root (default: decrypted_json)
 #   PATTERN_DIR  pattern dir (default: ../research/03040008/packets); its include/ folder, when
-#                present, is passed to ImHex with -I, so patterns can share
+#                present, is passed with -I, so patterns can share
 #                `#include "nNetMsg.hexpat"` and the like
 #
-# Example: ./imhex-export.sh --force C2S_PARTY_SEND_BINARY_MSG_NTC C2S_PARTY_SEND_BINARY_MSG_NTC 32
+# Example: ./imhex-export.sh --force C2S_PARTY_SEND_BINARY_MSG_NTC C2S_PARTY_SEND_BINARY_MSG_NTC 16
 #   then:  fd -g '*_C2S_PARTY_SEND_BINARY_MSG_NTC_*.json' decrypted_json -X jq -r '.packet | "\(.msgId) \(.msgFits)"' | sort | uniq -c
 set -o errexit
 set -o nounset
@@ -53,16 +60,16 @@ JSON_DIR=${JSON_DIR:-decrypted_json}
 PATTERN_DIR=${PATTERN_DIR:-../research/03040008/packets}
 PATTERN="$PATTERN_DIR/$PATTERN_NAME-pattern.cpp"
 
-require basename dirname grep mkdir mktemp mv rm tee xargs
+require grep mkdir mktemp mv rm tee xargs
 [[ -d "$RAW_DIR" ]] || die "input directory '$RAW_DIR' not found"
 [[ -f "$PATTERN" ]] || die "pattern file '$PATTERN' not found"
 
-# Shared pattern headers. Native Windows ImHex needs a Windows path for -I.
+# Native Windows programs need Windows paths; convert each root once, never per packet.
+winpath() { if command -v cygpath >/dev/null 2>&1; then cygpath -aw "$1"; else printf '%s\n' "$1"; fi; }
+
+# Shared pattern headers.
 INCLUDE_DIR=
-if [[ -d "$PATTERN_DIR/include" ]]; then
-  INCLUDE_DIR="$PATTERN_DIR/include"
-  if command -v cygpath >/dev/null 2>&1; then INCLUDE_DIR=$(cygpath -aw "$INCLUDE_DIR"); fi
-fi
+if [[ -d "$PATTERN_DIR/include" ]]; then INCLUDE_DIR=$(winpath "$PATTERN_DIR/include"); fi
 
 if [[ -z ${IMHEX:-} ]]; then
   if command -v imhex >/dev/null 2>&1; then
@@ -71,11 +78,29 @@ if [[ -z ${IMHEX:-} ]]; then
     IMHEX="/e/Software/imhex-1.38.1-Windows-Portable-NoGPU-x86_64/imhex.exe"
   fi
 fi
-[[ -x "$IMHEX" ]] || die "ImHex not found or not executable: '$IMHEX' (set IMHEX=/path/to/imhex)"
-"$IMHEX" --pl format --help >/dev/null 2>&1 || die "'$IMHEX' does not support '--pl format' (needs ImHex 1.30+)"
+
+if [[ -z ${PLBATCH:-} && -x ../research/imhex/plbatch/build/bin/plbatch.exe ]]; then
+  PLBATCH=../research/imhex/plbatch/build/bin/plbatch.exe
+fi
+[[ ${PLBATCH:-} != none ]] || PLBATCH=
+
+if [[ -n "${PLBATCH:-}" ]]; then
+  [[ -x "$PLBATCH" ]] || die "plbatch not found or not executable: '$PLBATCH' (build: research/imhex/plbatch/build.sh, or PLBATCH=none)"
+  # The std library (std.mem, std.io, ...) that `imhex --pl` adds by itself.
+  STD_DIR=${IMHEX_INCLUDES:-$(dirname "$IMHEX")/includes}
+  [[ -d "$STD_DIR" ]] || die "ImHex std library not found: '$STD_DIR' (set IMHEX_INCLUDES or IMHEX)"
+  STD_DIR=$(winpath "$STD_DIR")
+  ENGINE=plbatch
+else
+  [[ -x "$IMHEX" ]] || die "ImHex not found or not executable: '$IMHEX' (set IMHEX=/path/to/imhex)"
+  "$IMHEX" --pl format --help >/dev/null 2>&1 || die "'$IMHEX' does not support '--pl format' (needs ImHex 1.30+)"
+  ENGINE=imhex
+fi
 
 if [[ -z "$JOBS" ]]; then
   JOBS=$(nproc 2>/dev/null || getconf _NPROCESSORS_ONLN 2>/dev/null || echo 1)
+  # Each ImHex packet costs several MSYS process creations, which contend with each other.
+  [[ $ENGINE == plbatch ]] || JOBS=$(( JOBS > 1 ? JOBS / 2 : 1 ))
 fi
 if [[ ! "$JOBS" =~ ^[0-9]+$ ]] || (( JOBS < 1 )); then
   die "jobs must be a positive integer, got '$JOBS'"
@@ -84,54 +109,84 @@ fi
 inputs=("$RAW_DIR"/**/*"$FILTER"*)
 (( ${#inputs[@]} > 0 )) || die "no packets in '$RAW_DIR' match '*$FILTER*'"
 
-# Export one packet. ImHex refuses to overwrite its output, so write to a temp file and
-# move it into place: an interrupted run never leaves a truncated JSON behind.
-export_one() {
-  local input=$1 rel out tmp
-  rel=${input#"$RAW_DIR"/}
-  out="$JSON_DIR/$rel.json"
-  if [[ -e "$out" && $FORCE -eq 0 ]]; then
-    echo "skip $rel"
-    return 0
-  fi
-  mkdir -p "$(dirname "$out")"
-  tmp="$out.tmp.$$"
-  # Native Windows ImHex cannot create files whose path exceeds MAX_PATH (260 characters).
-  if command -v cygpath >/dev/null 2>&1; then
-    local winpath
-    winpath=$(cygpath -aw "$tmp")
-    # shellcheck disable=SC1003  # literal \\?\ long-path prefix, not an escape
-    winpath=${winpath#'\\?\'}
-    if (( ${#winpath} >= 260 )); then
-      echo "path too long (${#winpath} chars, Windows limit 260): $winpath" >"$out.err"
+echo "Exporting ${#inputs[@]} packet(s) matching '$FILTER' with $PATTERN ($JOBS $ENGINE job(s))"
+work=$(mktemp -d)
+trap 'rm -rf "$work"' EXIT
+log=$work/log
+
+if [[ $ENGINE == plbatch ]]; then
+  # File list relative to RAW_DIR, built with parameter expansion only, dealt round-robin into
+  # JOBS shards; one plbatch process per shard writes JSON_DIR/<rel>.json and the ok/skip/FAIL lines.
+  shards=()
+  for (( k = 0; k < JOBS; k++ )); do shards+=(""); done
+  for (( i = 0; i < ${#inputs[@]}; i++ )); do
+    shards[i % JOBS]+="${inputs[i]#"$RAW_DIR"/}"$'\n'
+  done
+  plargs=(--pattern "$(winpath "$PATTERN")" -I "$STD_DIR" --in-root "$(winpath "$RAW_DIR")")
+  [[ -z "$INCLUDE_DIR" ]] || plargs+=(-I "$INCLUDE_DIR")
+  mkdir -p "$JSON_DIR"
+  plargs+=(--out-root "$(winpath "$JSON_DIR")")
+  (( FORCE == 0 )) || plargs+=(--force)
+  for (( k = 0; k < JOBS; k++ )); do
+    [[ -n "${shards[k]}" ]] || continue
+    printf '%s' "${shards[k]}" > "$work/shard.$k"
+    # plbatch exits 1 when a packet failed; the per-packet log below is the source of truth.
+    { "$PLBATCH" "${plargs[@]}" < "$work/shard.$k" || true; } > "$work/out.$k" &
+  done
+  wait
+  cat "$work"/out.* | tee "$log"
+else
+  # Export one packet. ImHex refuses to overwrite its output, so write to a temp file and move
+  # it into place: an interrupted run never leaves a truncated JSON behind. No subshells here:
+  # with many jobs every MSYS process creation costs hundreds of ms.
+  export_one() {
+    local input=$1 rel out tmp wtmp
+    rel=${input#"$RAW_DIR"/}
+    out="$JSON_DIR/$rel.json"
+    if [[ -e "$out" && $FORCE -eq 0 ]]; then
+      echo "skip $rel"
+      return 0
+    fi
+    tmp="$out.tmp.$$"
+    # Native Windows ImHex cannot create files whose path exceeds MAX_PATH (260 characters).
+    wtmp="$JSON_ROOT_WIN\\${tmp#"$JSON_DIR"/}"
+    wtmp=${wtmp//\//\\}
+    if (( ${#wtmp} >= 260 )); then
+      echo "path too long (${#wtmp} chars, Windows limit 260): $wtmp" >"$out.err"
       echo "FAIL $rel (see $out.err)"
       return 1
     fi
-  fi
-  rm -f "$tmp"
-  local includes=()
-  [[ -z "$INCLUDE_DIR" ]] || includes=(-I "$INCLUDE_DIR")
-  if "$IMHEX" --pl format "${includes[@]}" --pattern "$PATTERN" --input "$input" --output "$tmp" >"$out.err" 2>&1 \
-      && [[ -s "$tmp" ]]; then
-    mv -f "$tmp" "$out"
-    rm -f "$out.err"
-    echo "ok   $rel"
-  else
-    rm -f "$tmp"
-    echo "FAIL $rel (see $out.err)"
-    return 1
-  fi
-}
-export -f export_one
-export IMHEX PATTERN RAW_DIR JSON_DIR FORCE INCLUDE_DIR
-
-echo "Exporting ${#inputs[@]} packet(s) matching '$FILTER' with $PATTERN ($JOBS job(s))"
-log=$(mktemp)
-trap 'rm -f "$log"' EXIT
-# xargs exits non-zero when any export fails; the per-packet log below is the source of truth.
-# shellcheck disable=SC2016  # $1 is expanded by the inner bash, not here
-printf '%s\0' "${inputs[@]}" \
-  | xargs -0 -P "$JOBS" -I {} bash -c 'export_one "$1"' _ {} | tee "$log" || true
+    local includes=() errlog="$WORK/err.$$"
+    [[ -z "$INCLUDE_DIR" ]] || includes=(-I "$INCLUDE_DIR")
+    if "$IMHEX" --pl format "${includes[@]}" --pattern "$PATTERN" --input "$input" --output "$tmp" >"$errlog" 2>&1 \
+        && [[ -s "$tmp" ]]; then
+      mv -f "$tmp" "$out"
+      [[ ! -e "$out.err" ]] || rm -f "$out.err"
+      echo "ok   $rel"
+    else
+      [[ ! -e "$tmp" ]] || rm -f "$tmp"
+      mv -f "$errlog" "$out.err"
+      echo "FAIL $rel (see $out.err)"
+      return 1
+    fi
+  }
+  # Create every output directory with one mkdir before the jobs start.
+  mkdir -p "$JSON_DIR"
+  JSON_ROOT_WIN=$(winpath "$JSON_DIR")
+  declare -A dirs=()
+  for input in "${inputs[@]}"; do
+    rel=${input#"$RAW_DIR"/}
+    [[ $rel != */* ]] || dirs["$JSON_DIR/${rel%/*}"]=1
+  done
+  (( ${#dirs[@]} == 0 )) || printf '%s\0' "${!dirs[@]}" | xargs -0 mkdir -p
+  WORK=$work
+  export -f export_one
+  export IMHEX PATTERN RAW_DIR JSON_DIR JSON_ROOT_WIN FORCE INCLUDE_DIR WORK
+  # xargs exits non-zero when any export fails; the per-packet log below is the source of truth.
+  # shellcheck disable=SC2016  # $1 is expanded by the inner bash, not here
+  printf '%s\0' "${inputs[@]}" \
+    | xargs -0 -P "$JOBS" -I {} bash -c 'export_one "$1"' _ {} | tee "$log" || true
+fi
 
 ok=$(grep -c '^ok ' "$log" || true)
 skip=$(grep -c '^skip ' "$log" || true)
