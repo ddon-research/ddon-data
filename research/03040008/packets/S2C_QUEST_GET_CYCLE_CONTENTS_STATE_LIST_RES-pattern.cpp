@@ -1,83 +1,43 @@
-#pragma pattern_limit 3200000
-#pragma array_limit 3200000
-
+// 11.37.2 S2C_QUEST_GET_CYCLE_CONTENTS_STATE_LIST_RES (client 03040008).
+// Evidence: specs/005-netmsg-patterns/research/P11a-old-patterns.md section 12. PC handler 0x7f1080
+// (string 0x1bc94e0; on-stack 11, 37, 2), reader 0x816010 (V). PS4 counterpart by code:
+// OnPacket_S2C_GET_CYCLE_CONTENTS_STATE_LIST_RES 0x2ee2f0, CDataCycleContentsStateList, identical.
+// Enums: nQuest::CYCLE_CONTENTS_CATEGORY / _SUB_CATEGORY (PS4 DWARF, Quest.hexpat); the enum
+// views over the u8 / u32 are display only.
+// Body: s32 Error [, s32 Result, list] (P11a G1).
+// packet-id: 11.37.2
+// Fit flag `fits`: the raws store no body length, so a decode fits when it ends within the
+// last 15 bytes of the file (cipher block padding); reading past the end fails the decode.
+// A fit does not prove field widths: when the slack (`paddingSize`, exported) exceeds a field, a
+// body that is that field shorter or longer fits too; such widths rest on the PC code (R1 F3).
 #pragma endian big
 
-#define b8 bool
+import std.mem;
 
-#define MtTypedArray MtTypedArr
+#include "Packet.hexpat"
+#include "Quest.hexpat"
 
-enum CYCLE_CONTENTS_TYPE : s32
-{
-    CYCLE_CONTENTS_TYPE_NONE = 0x0,
-    CYCLE_CONTENTS_TYPE_FORT_DEFENSE = 0x1,
-    CYCLE_CONTENTS_TYPE_DRAGON_NEST = 0x2,
-    CYCLE_CONTENTS_TYPE_RAID_FOREST = 0x3,
-    CYCLE_CONTENTS_TYPE_RAID_GOLD_DRAGON = 0x4,
-    CYCLE_CONTENTS_TYPE_RAID_ZULU = 0x5,
-    CYCLE_CONTENTS_TYPE_BORD_TUNNEL = 0x6,
-    CYCLE_CONTENTS_TYPE_RAID_ZULU_SECOND = 0x7,
-    CYCLE_CONTENTS_TYPE_SHRINE = 0x8,
-    CYCLE_CONTENTS_TYPE_NUM_ALL = 0x9,
-};
-
-enum CYCLE_CONTENTS_CATEGORY : s32
-{
-    CYCLE_CONTENTS_CATEGORY_NONE = 0x0,
-    CYCLE_CONTENTS_CATEGORY_FORT_DEFENSE = 0x1,
-    CYCLE_CONTENTS_CATEGORY_RAID_BOSS = 0x3,
-};
-
-enum CYCLE_CONTENTS_SUB_CATEGORY : s32
-{
-    CYCLE_CONTENTS_SUB_CATEGORY_NONE = 0x0,
-    CYCLE_CONTENTS_SUB_CATEGORY_FORT_DEFENSE_NORMAL = 0x3E9,        // 1001
-    CYCLE_CONTENTS_SUB_CATEGORY_FORT_DEFENSE_NEST = 0x3EA,          // 1002
-    CYCLE_CONTENTS_SUB_CATEGORY_FORT_DEFENSE_BORD = 0x3EB,          // 1003
-    CYCLE_CONTENTS_SUB_CATEGORY_FORT_DEFENSE_SHRINE = 0x3EC,        // 1004
-    CYCLE_CONTENTS_SUB_CATEGORY_FORT_DEFENSE_DACREIM = 0x3ED,       // 1005
-    CYCLE_CONTENTS_SUB_CATEGORY_FORT_DEFENSE_JIFULE = 0x3EE,        // 1006
-    CYCLE_CONTENTS_SUB_CATEGORY_FORT_DEFENSE_FORST_MIST = 0x3EF,    // 1007
-    CYCLE_CONTENTS_SUB_CATEGORY_FORT_DEFENSE_FLAME_DESPAIR = 0x3F0, // 1008
-    CYCLE_CONTENTS_SUB_CATEGORY_FORT_DEFENSE_ACRE_SELUND = 0x3F1,   // 1009
-    CYCLE_CONTENTS_SUB_CATEGORY_RAID_FOREST = 0xBBA,                // 3002
-    CYCLE_CONTENTS_SUB_CATEGORY_RAID_GOLD_DRAGON = 0xBBB,           // 3003
-    CYCLE_CONTENTS_SUB_CATEGORY_RAID_ZULU = 0xBBC,                  // 3004
-    CYCLE_CONTENTS_SUB_CATEGORY_RAID_FOREST_GOLD = 0xBBD,           // 3005
-    CYCLE_CONTENTS_SUB_CATEGORY_RAID_ZULU_SECOND = 0xBBE,           // 3006
-    CYCLE_CONTENTS_SUB_CATEGORY_RAID_DRAGON_AWAKENED = 0xBBF,       // 3007
-};
-
-struct MtTypedArr<T>
-{
-    u32 arraySize;
-    T arr[arraySize];
-};
-
-struct CPacket
-{
-    u8 group;
-    u16 id;
-    u8 subId;
-    u8 source;
-    u32 packetcounter;
-};
-
-struct CDataCycleContentsStateList
-{
+// PC list 0x762100 {u32, u8, u32, u8}.
+struct CDataCycleContentsStateList {
     u32 CycleContentsScheduleId;
     u8 Category;
-    CYCLE_CONTENTS_CATEGORY CategoryName = Category[[export]];
+    CYCLE_CONTENTS_CATEGORY CategoryName = Category [[export]];
     u32 CategoryType;
-    CYCLE_CONTENTS_SUB_CATEGORY CategoryTypeName = CategoryType[[export]];
+    CYCLE_CONTENTS_SUB_CATEGORY CategoryTypeName = CategoryType [[export]];
     u8 State;
 };
 
-struct CPacket_S2C_GET_CYCLE_CONTENTS_STATE_LIST_RES : CPacket
-{
-    u32 Error;
-    s32 Result;
-    MtTypedArray<CDataCycleContentsStateList> CycleContentsStateList;
+struct S2C_QUEST_GET_CYCLE_CONTENTS_STATE_LIST_RES : CPacket {
+    bool sourceOk = source == 0x34 [[export]];  // header source byte: 0x34 server (Packet.hexpat)
+    s32 Error;
+    if (Error == 0) {
+        s32 Result;
+        MtTypedArray<CDataCycleContentsStateList> CycleContentsStateList;
+    }
+    // Fit: the decode ends within the last 15 bytes (cipher block padding; Packet.hexpat).
+    u128 paddingSize = std::mem::size() - $ [[export]];
+    bool fits = paddingSize <= 15 [[export]];
+    if (paddingSize > 0) padding[paddingSize];
 };
 
-CPacket_S2C_GET_CYCLE_CONTENTS_STATE_LIST_RES S2C_GET_CYCLE_CONTENTS_STATE_LIST_RES @0x00;
+S2C_QUEST_GET_CYCLE_CONTENTS_STATE_LIST_RES packet @ 0x00;
