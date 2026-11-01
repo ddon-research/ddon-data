@@ -102,6 +102,11 @@ matched by code to a PS4 02020005 handler. Season 3-exclusive handlers (no PS4 c
 listed, not patterned: a later spec handles them with context from the new Season 3 client files.
 006's first package is therefore a triage: per uncovered id, the PC handler VA and whether a PS4
 match exists (by code: reader body, callers, strings), ranked by captured count.
+Batching (Sam, 2026-11-01): one batch per packet group as `PacketId.cs` groups them (the group number;
+the server's grouping is a lead for organisation only, never for layouts), so a batch's packets relate
+and share data classes and one include per group follows naturally. Login first (C2L/L2C, every
+direction: small, fast, shared with the existing `C2L_LOGIN_REQ`/`L2C_LOGIN_RES`), then the groups by
+captured count. Within a group, PS4-matched ids only (scope rule below).
 Cross-check rule (Sam, 2026-11-01): IDA can misread stack arguments and their order; every layout
 is checked against the PS4 recompilation C++ (`D:/ddon-data-s2/recompilation/src/DD_ONLINE/prog/Protocol/`:
 `UserSession/{C2S,S2C}.cpp` ReadPacket/WritePacket, `LoginSession/`, `PacketData/*.cpp`), the PS4
