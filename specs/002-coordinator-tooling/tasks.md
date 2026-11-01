@@ -111,6 +111,10 @@ Report `research/orchestration-port-2026-11.md` (R2, `repository-researcher`, me
       record different stat fields, so each full-refreshed the 437k-entry index after the other
       (MSYS 54-105 s, GfW 9 s). `core.checkStat minimal` + `core.trustctime false` cut that to
       MSYS 7-22 s, GfW 0.8-2.4 s; Sam uses Git for Windows only from now on); `git repack -d` packed the loose objects (141,809 -> 1,020 unreachable leftovers, 70 s; `maintenance run --task=loose-objects` packed none). Sam approved T020's tuning on 2026-11-01.
+- [ ] T022 T018 does not clear an agent whose earlier stops were `waiting:` with background tasks
+      (2026-11-01, 006 T001c2 `a0f489bb719bbe4f0`: three `waiting:` stops, then a final receipt with
+      `state: done`; its running record stayed and refused the next spawn as "running 0 min"; T001c's
+      record also stayed). Clear on a final stop with no live background tasks, with a test.
 - [ ] T021 Private IDA copies are never removed (2026-11-01: 10 `ddon-data-*` copies, ~7 GB, in
       `D:/research/DDON-binaries/IDA9.5/*/`; the coordinator stopped six orphaned `idat.exe` workers
       and deleted them). Cause: the ida-mcp server keeps one `idat.exe` per opened database alive
