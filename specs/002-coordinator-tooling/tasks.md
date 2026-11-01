@@ -89,6 +89,9 @@ Report `research/orchestration-port-2026-11.md` (R2, `repository-researcher`, me
       `evidence-researcher` role (F8). Done in P4: the hook and the check.sh `mcp` line; the
       coordinator added the `close_database` deny to `.claude/settings.json`. Open: the ida-assist
       decision (P4 found no ida-assist server registered: `claude mcp list` shows only `ida`).
+- [ ] T018 `agent_cap.py`: a finished agent stays in `.agent-ledger/running/` (2026-11-01, twice:
+      005 P3 and 002 P4 had to be deleted by hand before the next spawn); clear the entry when the
+      agent's completion notification fires (SubagentStop), with a test.
 - [ ] T017 Guard: refuse `git commit` without a `-- <paths>` pathspec while the index holds staged
       paths of other work. P4's b204c9daad committed three files another session had staged (Sam
       approved the rewrite: soft reset to 1d0ab74e1a, the four commits remade with explicit paths
