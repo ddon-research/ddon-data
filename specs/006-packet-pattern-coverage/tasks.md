@@ -35,10 +35,14 @@ Coordinator: main session. One subagent at a time. Method and rules: `spec.md`.
   captures fit; 0.10.16 = SESSION_STATUS_NTC; PC `Send` 0x9d6a20 strips the header of the
   handshake packet; the 304 B first-packet files are 44.1.16 S2C_CERT_GAME_SERVER_CERT_NTC (PS4
   `S2C_GAME_SERVER_CERT_NOTICE`) and 1.1.16 L2C_LOGIN_SERVER_CERT_NTC, filed by the CLI under
-  44.0.1/1.0.1; IDA copies deleted). Running: T002e. Next: T003 patterns (incl. the
-  two CERT_NTC patterns), Sam (2026-11-01): rename the 304 B files
-  to their code-backed ids/names: T002e, brief `briefs/T002e-cert-ntc-rename.md`, after T001d.
+  44.0.1/1.0.1; IDA copies deleted). Running: T003 patterns, brief `briefs/T003b-connection-patterns.md`. Next: T004 group 13 evidence (incl. the
+  two CERT_NTC patterns), T002e done (70201832e1: 125 raws renamed
+  byte-identical to `.1_1_16`/`.44_1_16`, CLI relabel, 2 cert NTC patterns 42/42 + 83/83 fit).
   Tn: `tests/imhex-export-select.sh` is not run by check.sh.
+- Tn: raws whose names are placeholders but code names them (first: 0.10.16 = SESSION_STATUS_NTC,
+  T003 § 9): one CLI `PacketId` relabel + rename package at spec end (Sam 2026-11-01 chose renaming
+  for code-backed names).
+- Sam is away 2026-11-01 evening for ~8 h: keep coordinating; park decisions with a recommendation.
 - Coordinator housekeeping until 002 T021 lands: after each IDA package, stop its `idat.exe` workers
   (`scratchpad/idaprocs.ps1` lists them) and delete its `ddon-data-<name>` copies.
 
