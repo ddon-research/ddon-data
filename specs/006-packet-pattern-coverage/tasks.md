@@ -6,7 +6,8 @@ Coordinator: main session. One subagent at a time. Method and rules: `spec.md`.
   handler/reader/writer VA, PS4 match by code (yes / no = Season 3-exclusive / unresolved), captured
   count, `PacketId.cs` group. Output `research/T001-triage.md` + a machine-readable table
   (`research/T001-triage.tsv`). Large: may run in two or three parts by group range.
-- [ ] T001b Save blob 9.1.1 (Sam, 2026-11-01: right after T001, before T002): `evidence-researcher-ida`
+- [x] T001b (done: evidence 59e2475eba, patterns adda42cc98 + JSON 6ae1ba81e7; 47/47 captures equal the
+  walk script field by field, 8,225 values; 9.0.2 checked on synthetic versions 0x19/0x13/0x0C) Save blob 9.1.1 (Sam, 2026-11-01: right after T001, before T002): `evidence-researcher-ida`
   reads `BitWriter` (bit order, `writeU32(val, nBits)`, bool packing, alignment/flush) and the PC
   `cCharacterData::serialize` (`sub_467790`, called from `0x87edd0`; PS4 `0x49740`) with every bit
   width, and walks 2-3 of the 47 captures bit by bit (the recompilation has only stubs for both);
@@ -27,7 +28,9 @@ Coordinator: main session. One subagent at a time. Method and rules: `spec.md`.
 
 - T001b evidence done (59e2475eba, `research/T001b-save-blob.md`: LSB-first bits, big-endian bytes
   per value, 170 writes, 4170 bits, all 47 captures decode; IDA copies deleted). Running: the
-  T001b pattern implementer, brief `briefs/T001b2-save-blob-pattern.md`. Then T001c, then T002 login.
+  T001b pattern implementer, brief `briefs/T001b2-save-blob-pattern.md` (done). Next: brief and
+  spawn T001c (`evidence-researcher-ida`, items listed in T001c above), then its pattern fixes, then
+  T002 login.
 - Coordinator housekeeping until 002 T021 lands: after each IDA package, stop its `idat.exe` workers
   (`scratchpad/idaprocs.ps1` lists them) and delete its `ddon-data-<name>` copies.
 
