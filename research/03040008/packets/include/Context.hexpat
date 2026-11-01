@@ -115,7 +115,36 @@ struct CDataContextSetAdditional {
     u8 m_ucCatchJointNo;
     u64 m_unCatchTargetUID;       // PS4 u32
     u32 m_unQuestID;
-    u32 unk_u32[4];               // Season 3, new (PC writer 0x77d0e0; server: Unk0)
+    u32 unk_u32[4];               // Season 3, new (PC writer 0x77d0e0; server: Unk0). Enemy-context
+                                  // array cContext+0xC48, applied only to cContextInstEm
+                                  // (0x850010 / 0x479fd0); same array as CtrlAction 0x3C (T001c 1, V)
+};
+
+// CDataContextEnemyStatus (name I, T001c 1): the second structure of 35.12.16, PC reader 0x760480
+// into the 200-byte object of ctor 0x783270. No PS4 counterpart. Field names by shared setter with
+// SetAdditional (T001c 1): the apply 0x850b30 calls the same setters as the SetAdditional apply
+// 0x850010 (setter identity V, names from the PS4 DWARF CDataContextSetAdditional). Wire order V.
+// 159 B plus the two Ocd lists (2n each).
+struct CDataContextEnemyStatus {
+    u64 m_ullHp[10];                  // setter 0x47a770
+    u64 m_ullEnemyBitCtrlCollision;   // 0x479df0
+    u64 m_ullEnemyBitCtrlParts;       // 0x479d90
+    u64 m_ullEnemyBitCtrlWorkRate;    // 0x47a2f0
+    u64 m_ullEnemyBitCtrlScale;       // 0x479ff0
+    u64 m_ullEnemyBitCtrlMontage;     // 0x479e50
+    u32 ocdActiveCount;
+    CDataOcdActive m_OcdActiveList[ocdActiveCount];       // PC 0x76fb30
+    u32 ocdImmuneLvCount;
+    CDataOcdImmuneLv m_OcdImmuneLvList[ocdImmuneLvCount]; // PC 0x76fc20 {u8, u8}
+    u32 m_unEnemyBitCtrlSyncBit;      // 0x479eb0
+    u32 m_unStateLive;                // 0x47bf90
+    u16 m_usUseRegionBit;             // 0x47c110
+    u16 m_usCommonWork;               // 0x479980
+    u16 m_usCustomWork;               // 0x479a10
+    u8 m_ucEnemyCtrlRegionSelectNo;   // 0x479f50
+    u32 unk_u32[4];                   // PC 0x757e60: fixed u32[4], no count on the wire. Season 3,
+                                      // unnamed: same enemy-context array as SetAdditional
+                                      // unk_u32[4] (setter 0x479fd0, cContextInstEm only)
 };
 
 // SetBase + SetAdditional: 35.9.16 (C2S), 35.13.16 (S2C).
@@ -399,4 +428,43 @@ struct CDataEditInfo {
     u16 m_usFat;
     u16 m_usMuscle;
     u16 m_usMotionFilter;
+};
+
+// Context body variants of the packets without captures (T001c 2; no captures, unvalidated; no
+// pattern uses them yet). Order V from the PC readers, names from the PS4 DWARF types:
+// - CDataLobbyContextPlayer: 35.0.2 RES (PC reader 0x804fb0 -> 0x76d6a0) and 35.0.16; no Resist.
+// - CDataPartyContextPlayer: 35.1.2 RES / 35.1.16 NTC (0x8051b0 / 0x805140 -> 0x771280).
+// - CDataAllContextPlayer: 35.2.2 RES / 35.2.16 NTC (0x804e80 / 0x804e10 -> 0x758d10, a copy of
+//   0x771280). Party and All add CDataContextResist between PlayerInfo and EditInfo; spec 005 P4
+//   2.3's "35.1.16/35.2.16 equal 35.0.16" is contradicted (T001c 2, C).
+// - CDataPartyContextPawn: 35.3.2 / 35.4.2 RES, 35.4.16 NTC (0x8050b0 / 0x8052b0 / 0x805240 ->
+//   0x771200).
+// The packets wrap them as: RES `s32 Error; if (Error == 0) { s32 Result; u32 CharacterID (pawn:
+// PawnID); <context> }`; NTC `u32 CharacterID (pawn: PawnID); <context>`.
+struct CDataLobbyContextPlayer {
+    CDataContextBase m_Base;
+    CDataContextPlayerInfo m_PlayerInfo;
+    CDataEditInfo m_EditInfo;
+};
+
+struct CDataPartyContextPlayer {
+    CDataContextBase m_Base;
+    CDataContextPlayerInfo m_PlayerInfo;
+    CDataContextResist m_ResistInfo;
+    CDataEditInfo m_EditInfo;
+};
+
+struct CDataAllContextPlayer {
+    CDataContextBase m_Base;
+    CDataContextPlayerInfo m_PlayerInfo;
+    CDataContextResist m_ResistInfo;
+    CDataEditInfo m_EditInfo;
+};
+
+struct CDataPartyContextPawn {
+    CDataContextBase m_Base;
+    CDataContextPlayerInfo m_PlayerInfo;
+    CDataContextPawnInfo m_PawnInfo;
+    CDataContextResist m_ResistInfo;
+    CDataEditInfo m_EditInfo;
 };

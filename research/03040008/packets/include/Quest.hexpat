@@ -283,12 +283,14 @@ struct CDataRewardItem {
 };
 
 // CDataQuestEnemyInfo: PC list reader 0x773d90 {u32, u32, u16, bool} (V); PS4 {u32 m_unGroupId,
-// u16 m_usLv, b8 m_bIsPartyRecommend}: one of the two u32s is Season 3. GroupId is one of these,
-// position unresolved (P11a §1.3 vs include): P11a says PS4 EnemyInfo lacks the leading u32
-// (Season 3 u32 first), the earlier include put it after GroupId. Both stay unk_* (spec 005 R2 F1).
+// u16 m_usLv, b8 m_bIsPartyRecommend}. The first u32 is GroupId, the second is Season 3 (T001c 5,
+// V by consumer match): PC 0x9d2590 (= PS4 cQuestTask::setEnemyInfoParam 0x54dc30) copies element
+// +4 to the mEnemyGroupId slot and element +8 to a new trailing member of
+// cQuestTask::cEnemyGroupInfo, part of its dedupe key. P11a §1.3 ("Season 3 u32 first") is
+// contradicted (C).
 struct CDataQuestEnemyInfo {
-    u32 unk_u32_0;
-    u32 unk_u32_1;
+    u32 GroupId;   // PS4 m_unGroupId
+    u32 unk_u32;   // Season 3; trailing member of cQuestTask::cEnemyGroupInfo (dedupe key)
     u16 Lv;
     bool IsPartyRecommend;
 };

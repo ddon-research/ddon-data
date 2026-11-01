@@ -482,21 +482,27 @@ struct CatchRequest {
     u64 mCatchRequestUid;  // PS4 u32
     u8 mCatchRequestType;
     u8 mCatchJointNo;
-    u64 unk_u64;           // Season 3, second catch target UID (inferred role, P5 1; no name found)
-    u8 unk_u8_0;           // Season 3, second catch type (inferred role, P5 1)
-    u8 unk_u8_1;           // Season 3, second catch joint no (inferred role, P5 1)
+    // Season 3: the second triple = cpCatchCtrl::mCaughtInfo (PS4 cCaughtInfo {mCatchUid,
+    // mCatchType, mJointNo}; "Caught" prefix ours). T001c 6 (V): PC 0x8e7220 = disconnectEscape
+    // writes the second triple, 0x8e72f0 = forceCancel the first.
+    u64 mCaughtUid;
+    u8 mCaughtType;
+    u8 mCaughtJointNo;
     NormalPos mCatchHitPos;
 };
 
 // CAUGHT_RESULT / ACT_CAUGHT block: PC 0x6000b0; ids 0x1F, 0x20. The PC apply 0x88f6e0 reads only
-// the second triple (P5 1).
+// the second triple (P5 1). The sender 0x891f60 (send switch 0x8915e3, cases 31/32) writes the same
+// six fields in this order (T001c 4, V).
 struct CatchInfo {
     u8 mCatchType;
     u64 mCatchUid;   // PS4 u32
     u8 mJointNo;
-    u8 unk_u8_0;     // Season 3, second catch type (inferred role, P5 1; no name found)
-    u64 unk_u64;     // Season 3, second catch UID (inferred role, P5 1)
-    u8 unk_u8_1;     // Season 3, second catch joint no (inferred role, P5 1)
+    // Season 3: cpCatchCtrl::mCaughtInfo (PS4 cCaughtInfo; "Caught" prefix ours). T001c 6 (V):
+    // PC 0x8e7220 = disconnectEscape, 0x8e72f0 = forceCancel.
+    u8 mCaughtType;
+    u64 mCaughtUid;
+    u8 mCaughtJointNo;
 };
 
 // receiveMsgOmRelease: PC 0x6018a0 (PS4 0x174bc0); ids 0x21, 0x22.
@@ -649,9 +655,13 @@ struct CtrlAction<auto MsgId> {
         }
         (0x3B): ShlRequestFromSlave mShlRequestFromSlave;
         (0x3C): u32 unk_0x3C[4];                     // PC 0x600900, struct +0x658; context array
-                                                     // cContext+0xC48, absolute (P5 1)
+                                                     // cContext+0xC48, absolute (P5 1); same
+                                                     // array as SetAdditional unk_u32[4] and
+                                                     // 35.12.16 u32[4], cContextInstEm only
+                                                     // (setter 0x479fd0, T001c 6, V); name open
         (0x3D): s32 unk_0x3D;                        // PC 0x6008a0, struct +0x668; signed gauge
-                                                     // delta for uEm024000 (P5 1)
+                                                     // delta for uEm024000 into slot 0 of that
+                                                     // array (P5 1); name open
         (_): {}
     }
 };
@@ -720,6 +730,9 @@ struct GameNormal<auto MsgId> {
         (0x10): u32 unk_u32;           // Season 3, PC 0x601030; sEnemyManager+0xDB0+0x28 (P5 2)
         // 0x11, 0x12: the PC senders 0x8958b0 / 0x895870 write the u32 only when sGame+0x74 is
         // non-null, else an empty body (P5 2), so the u32 is read only when bytes remain.
+        // Names of 0x0F-0x12 unresolved (T001c 6: no strings in the callers): 0x0F/0x10 feed the
+        // sEnemyManager+0xDB0 block (0xb551e0), 0x11/0x12 cContextInstPl+0x3A94 (setter 0x478e40) /
+        // +0x3A90 (getter 0x477380).
         (0x11 | 0x12): {               // Season 3, PC 0x601300 / 0x6012d0
             if ($ + 4 <= parent.msgEnd) u32 unk_u32;
         }
@@ -727,17 +740,20 @@ struct GameNormal<auto MsgId> {
     }
 };
 
-// GameEasy PRT_SET entry (PC 0x600d10). Float order mPos.x/y/z, mScale is inferred.
+// GameEasy PRT_SET entry (PC 0x600d10). Wire order V (T001c 4): the PC decoder stores each field in
+// the slot of PS4 DWARF nNetMsgData::GameEasy::stPRTData {u16 mStageNo +0, u16 mQuestNo +2,
+// u8 mBlockNo +4, u8 mProcessNo +5, u32 mSetMember +8, stVector3 mPos +12, f32 mScale +24}, and the
+// sender 0x895163 writes the same order. The PC client always sends mSetMember = 0.
 struct PRTSet {
     u32 mSetMember;
     u16 mStageNo;
     u16 mQuestNo;
     u8 mBlockNo;
     u8 mProcessNo;
-    float mPosX;    // inferred order
-    float mPosY;    // inferred order
-    float mPosZ;    // inferred order
-    float mScale;   // inferred order
+    float mPosX;
+    float mPosY;
+    float mPosZ;
+    float mScale;   // sender default 1.0f
 };
 
 // nNetMsgData::GameEasy: PC 0x5ff050 (PS4 0x1761c0). PC ids = PS4 ids + 4.
@@ -745,7 +761,7 @@ struct GameEasy<auto MsgId> {
     u8 mType;
     match (MsgId) {
         (0x15): {                      // PRT_SET, PC 0x600d10
-            u32 mPRTNum;               // clamped to 30
+            u32 mPRTNum;               // clamped to 30 on receive; sender 0x895163 does not clamp
             PRTSet mPRT[std::math::min(mPRTNum, 30)];
         }
         (0x16): {                      // PRT_INFO, PC 0x600be0
@@ -757,10 +773,11 @@ struct GameEasy<auto MsgId> {
             bool mIsReadyOK;
         }
         (0x17): {                      // AREA_RELEASE, PC 0x600ab0
-            u32 mAreaReleaseIdNum;     // clamped to 200
+            u32 mAreaReleaseIdNum;     // clamped to 200 on receive; sender 0x8953a5 does not clamp
             u32 mAreaReleaseId[std::math::min(mAreaReleaseIdNum, 200)];
         }
-        (0x18): {                      // EVENT, PC 0x600b40
+        (0x18): {                      // EVENT, PC 0x600b40. Sender 0x8953f6 writes 0/1 flags: its
+                                       // own member's bit in sEventManager +0xE4/+0xE8/+0xEC (T001c 4)
             u32 mReadyBit;
             u32 mCancelBit;
             u32 mFinishBit;
@@ -829,9 +846,11 @@ struct SetCreateContext {
         u8 mCatchType;
         u8 mCatchJointNo;
         u64 mCatchTargetUID;  // PS4 u32
-        u8 unk_u8_0;          // Season 3, struct +0x458; second catch type (inferred role, P5 1)
-        u8 unk_u8_1;          // Season 3, struct +0x459; second catch joint no (inferred role)
-        u64 unk_u64;          // Season 3, struct +0x460; second catch target UID (inferred role)
+        // Season 3: the caught triple by shape (inferred, shape; T001c 6, I): same shape after the
+        // catch triple as cpCatchCtrl::mCaughtInfo; no consumer found in defined code.
+        u8 mCaughtType;       // struct +0x458 (inferred, shape)
+        u8 mCaughtJointNo;    // struct +0x459 (inferred, shape)
+        u64 mCaughtUid;       // struct +0x460 (inferred, shape)
     }
 };
 

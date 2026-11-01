@@ -1,8 +1,10 @@
 // 13.47.16 C2S_INSTANCE_ENEMY_BAD_STATUS_END_NTC (client 03040008).
-// Body: u32, u8, u32, u32, u32, u32. P4 4, P5 7 (PC writer 0x841170 / 0x82b650; sent for a player character).
-// The client name is unresolved (P5 7); the raw-file name is the server's. Server names
-// (StageId, LayerNo, GroupId, PosId, Unk4, Unk5) are leads only; the last u32 looks like a
-// status id (captures: 0x100c, I).
+// Body: u32, u8, u32, u32, u32, u32. P4 4, P5 7, T001c 3 (PC writer 0x841170 / 0x82b650, sender
+// 0x604d80 from 0x96d5a0). Status end: sent from cOcdBase::final (PC 0x8a1c80 = PS4 0x39a690,
+// matched by code) for an enemy (mIsEnemy or mIsHumanEnemy) the client is master of, when the uid
+// satisfies (uid & 0xF000) == 0x1000 (V). This corrects P5 7 ("player character", C). Widths from
+// the pushes at the call site. The client name is unresolved (no PC string, no PS4 sender); the
+// raw-file name is the server's.
 // packet-id: 13.47.16
 // Fit flag `fits`: the raws store no body length, so a decode fits when it ends within the
 // last 15 bytes of the file (cipher block padding); reading past the end fails the decode.
@@ -16,12 +18,15 @@ import std.mem;
 
 struct C2S_INSTANCE_ENEMY_BAD_STATUS_END_NTC : CPacket {
     bool sourceOk = source == 0x00 [[export]];  // header source byte: 0x00 client (Packet.hexpat)
-    u32 unk_u32_0;  // server: StageId (lead)
-    u8 unk_u8;      // server: LayerNo (lead)
-    u32 unk_u32_1;  // server: GroupId (lead)
-    u32 unk_u32_2;
-    u32 unk_u32_3;
-    u32 unk_u32_4;  // status id (inferred)
+    // CDataStageLayoutId (T001c 3, V): StageId = convertStageNoToId(sGame stageNo) (PC 0xa29c30),
+    // LayerNo = obj+0x80, GroupId = obj+0x1C & 0x1FF; obj from 0x4d9e70 (model+6992), I: the
+    // enemy's set-group record.
+    u32 StageId;
+    u8 LayerNo;
+    u32 GroupId;
+    u32 unk_u32;     // obj+0x30, unresolved (getter 0x4d9e70 is a protected thunk); server: PosId (lead)
+    u32 unk_zero;    // always 0: client constant (`push 0` at 0x604dea); captures 61/61 zero
+    u32 m_unOcdUID;  // PS4 cOcdBase::mOcdUID (T001c 3, V)
     // Fit: the decode ends within the last 15 bytes (cipher block padding; Packet.hexpat).
     u128 paddingSize = std::mem::size() - $ [[export]];
     bool fits = paddingSize <= 15 [[export]];

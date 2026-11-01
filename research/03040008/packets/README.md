@@ -104,12 +104,14 @@ packet structures with ImHex".
 ## Patterns
 
 Status `n/m fit` means that n of the m JSON files of that type in `packets/decrypted_json` have
-`fits` true (counted 2026-11-01 after commit cc7ebd0fb3; no type has a `.json.err`). `no capture`
+`fits` true (counted 2026-11-01 after commit cc7ebd0fb3, and for 11.15.2, 11.71.2, 11.89.16 and
+13.44-13.47.16 again after the T001c re-export; no type has a `.json.err`). `no capture`
 means no raw file exists, so the pattern was checked on synthetic input at most. The Report column
 gives the section the pattern header cites: P11a and P11b are
 `specs/005-netmsg-patterns/research/P11*-old-patterns.md`, and P1, P4 and P5 are the reports of
 those names. T001b is `specs/006-packet-pattern-coverage/research/T001b-save-blob.md`, the save
-blob that 9.0.2 and 9.1.1 share through `include/CharacterData.hexpat`.
+blob that 9.0.2 and 9.1.1 share through `include/CharacterData.hexpat`. T001c is
+`specs/006-packet-pattern-coverage/research/T001c-parked-static-items.md` (spec 005's parked items).
 
 | Id | Pattern | Report | Status |
 | --- | --- | --- | --- |
@@ -140,10 +142,10 @@ blob that 9.0.2 and 9.1.1 share through `include/CharacterData.hexpat`.
 | 11.120.16 | `S2C_QUEST_PARTY_QUEST_PROGRESS_NTC` | P11a §3 | no capture |
 | 12.0.2 | `S2C_STAGE_GET_STAGE_LIST_RES` | P11a §7 | 42/42 fit |
 | 13.3.2 | `S2C_INSTANCE_ENEMY_KILL_RES` | P11b §15 | 412/412 fit |
-| 13.44.16 | `C2S_INSTANCE_CHARACTER_START_BAD_STATUS_NTC` | P4 §4, P5 §7 | 19/19 fit |
-| 13.45.16 | `C2S_INSTANCE_CHARACTER_END_BAD_STATUS_NTC` | P4 §4, P5 §7 | 19/19 fit |
-| 13.46.16 | `C2S_INSTANCE_ENEMY_BAD_STATUS_START_NTC` | P4 §4, P5 §7 | 31/31 fit |
-| 13.47.16 | `C2S_INSTANCE_ENEMY_BAD_STATUS_END_NTC` | P4 §4, P5 §7 | 30/30 fit |
+| 13.44.16 | `C2S_INSTANCE_CHARACTER_START_BAD_STATUS_NTC` | P4 §4, T001c §3 | 19/19 fit |
+| 13.45.16 | `C2S_INSTANCE_CHARACTER_END_BAD_STATUS_NTC` | P4 §4, T001c §3 | 19/19 fit |
+| 13.46.16 | `C2S_INSTANCE_ENEMY_BAD_STATUS_START_NTC` | P4 §4, T001c §3 | 31/31 fit |
+| 13.47.16 | `C2S_INSTANCE_ENEMY_BAD_STATUS_END_NTC` | P4 §4, T001c §3 | 30/30 fit |
 | 18.0.2 | `S2C_GROUP_CHAT_GROUP_CHAT_GET_MEMBER_LIST_RES` | P11b §18 | 41/41 fit |
 | 19.1.2 | `S2C_SKILL_GET_ACQUIRABLE_SKILL_LIST_RES` | P11b §16 | 4/4 fit |
 | 19.2.2 | `S2C_SKILL_GET_ACQUIRABLE_ABILITY_LIST_RES` | P11b §17 | 16/16 fit |
@@ -170,7 +172,7 @@ blob that 9.0.2 and 9.1.1 share through `include/CharacterData.hexpat`.
 | 35.8.16 | `C2S_CONTEXT_SET_CONTEXT_BASE_NTC` | P4 §2.3 | no capture |
 | 35.9.16 | `C2S_CONTEXT_SET_CONTEXT_NTC` | P4 §2.3 | 763/763 fit |
 | 35.11.16 | `S2C_CONTEXT_SET_CONTEXT_BASE_NTC` | P4 §2.3 | 526/526 fit |
-| 35.12.16 | `S2C_CONTEXT_35_12_16_NTC` | P4 §2.3, P5 §7 | no capture |
+| 35.12.16 | `S2C_CONTEXT_35_12_16_NTC` | P4 §2.3, T001c §1 | no capture (synthetic: one file built from T001c §1's field table, every value read back; a truncated copy fails) |
 | 35.13.16 | `S2C_CONTEXT_SET_CONTEXT_NTC` | P4 §2.3 | 24/24 fit |
 | 35.14.16 | `S2C_CONTEXT_MASTER_CHANGE_NTC` | P4 §2.3 | 948/948 fit |
 | 35.15.16 | `S2C_CONTEXT_MASTER_INFO_NTC` | P4 §2.3 | 43/43 fit |
@@ -183,16 +185,22 @@ blob that 9.0.2 and 9.1.1 share through `include/CharacterData.hexpat`.
 
 ## Open items
 
-- **35.12.16 tail:** `S2C_CONTEXT_35_12_16_NTC` decodes up to its second list. The list element that
-  PC 0x76fc20 reads and the count that 0x757e60 reads are not decoded (P4 §5), so `decoded` is
-  false. There is no capture.
-- **Unnamed 13.44-13.47.16:** the client names are unresolved (P5 §7). The pattern names are the
-  names in the raws, which come from the server.
-- **QuestEnemyInfo u32 position:** PC reads {u32, u32, u16, bool}; PS4 has {u32 GroupId, u16, bool}.
-  P11a §1.3 puts the Season 3 u32 first, while the earlier include put it second, so both are now
-  `unk_u32_0` and `unk_u32_1` (R2 F1). The committed JSON of 11.89.16, 11.71.2 and 11.15.2 (67 files)
-  keeps the old keys `GroupId` and `unk_u32` until those types are re-exported. A scratch re-export
-  showed the rename as the only change.
+- **Unnamed 35.12.16 and 13.44-13.47.16:** no PC string and no PS4 sender, so the client names
+  are unresolved (T001c §1, §3); the pattern names are the names in the raws, which come from the
+  server. Their roles are V: 35.12.16 is an enemy status snapshot (`CDataContextEnemyStatus`, name
+  I); 13.44/13.45 are status start/end (`cOcdBase::init`/`final`) for the master player character,
+  13.46/13.47 the same for an enemy the client is master of (P5 §7's actors are contradicted).
+- **13.46/13.47 `unk_u32`:** the set-group record's +0x30 (server: PosId, lead); its getter
+  `0x4d9e70` is a protected thunk (T001c §3).
+- **Context variants without captures:** `include/Context.hexpat` holds the 35.0.2, 35.1.x, 35.2.x
+  and 35.3.2/35.4.x bodies as types (`CDataLobbyContextPlayer`, `CDataPartyContextPlayer`,
+  `CDataAllContextPlayer`, `CDataPartyContextPawn`; T001c §2), unvalidated; no pattern uses them.
+- **Season 3 nNetMsg names (T001c §6):** the second catch triple of CatchRequest/CatchInfo is
+  `cpCatchCtrl::mCaughtInfo` (V); SetCreateContext's triple carries the same names by shape only (I).
+  Unresolved: CtrlAction 0x3C (the cContextInstEm u32[4] at cContext+0xC48, shared with
+  SetAdditional `unk_u32[4]` and 35.12.16) and 0x3D (signed delta into its slot 0), GameNormal
+  0x0F/0x10 (feed the sEnemyManager+0xDB0 block) and 0x11/0x12 (cContextInstPl+0x3A94/+0x3A90).
 - **Season 3 field names:** fields new in Season 3 are `unk_*`. Where PC adds one field to a run of
   same-width fields, its position is inferred: BoxGacha u32, AreaBonus u16, MyRoomFurniture u32, and
-  the CDataQuestOrderList u32s and u64s (R2 F5).
+  the CDataQuestOrderList u32s and u64s (R2 F5). QuestEnemyInfo is settled: {GroupId, Season 3
+  `unk_u32`, Lv, IsPartyRecommend} (T001c §5, V; P11a §1.3 contradicted).
