@@ -23,6 +23,7 @@ carry now. Every pattern starts with `#pragma endian big` and includes what it n
 | `GP.hexpat` | GP course info, effect param and the Season 3 GP course valid (T002 §10, §11) | 1, and 5.0.2 through Login |
 | `Cert.hexpat` | `CDataServerCert`, the server certificate notice body: modulus[256], exponent[16], SHA-1 u32[5] (T003 §1, §15) | 1.1.16, 44.1.16 |
 | `Server.hexpat` | game-server connection setup CData (T003 §18): cheat info (ping), game setting with its Season 3 changes and element types, weather forecast, game time base info, weather loop/schedule, moon schedule; includes Login | 0.0.1, 1.0.2, 1.1.2, 1.7.2, 1.8.2 |
+| `Instance.hexpat` | group 13 INSTANCE CData (T004 §20): stage layout id, enemy set (enemy info with the Season 3 sixth bool, drop item set, named enemy param), layout item data, gathering item element (Season 3, 17 bytes), get request, the Season 3 gathering restriction and its item amount, OM data (Season 3 u64 key); includes Packet and Character | 25 group-13 patterns |
 
 Each structure comment names the PC reader or writer VA (PC 03040008 database, image base 0x400000)
 and the PS4 02020005 DWARF type, and carries a mark: V means read in IDA, I means inferred. A name
@@ -123,7 +124,7 @@ packet structures with ImHex".
 Status `n/m fit` means that n of the m JSON files of that type in `packets/decrypted_json` have
 `fits` true (counted 2026-11-01 after commit cc7ebd0fb3, and for 11.15.2, 11.71.2, 11.89.16 and
 13.44-13.47.16 again after the T001c re-export, and for the login ids of T002 after their first
-export; no type has a `.json.err`). `no capture`
+export, and for the group 13 ids of T004 after their first export (2026-11-02, T004b); no type has a `.json.err`). `no capture`
 means no raw file exists, so the pattern was checked on synthetic input at most. The Report column
 gives the section the pattern header cites: P11a and P11b are
 `specs/005-netmsg-patterns/research/P11*-old-patterns.md`, and P1, P4 and P5 are the reports of
@@ -133,6 +134,8 @@ blob that 9.0.2 and 9.1.1 share through `include/CharacterData.hexpat`. T001c is
 T002 is `specs/006-packet-pattern-coverage/research/T002-login.md` (the login group).
 T003 is `specs/006-packet-pattern-coverage/research/T003-connection-server-cert.md` (groups 0
 CONNECTION, 1 SERVER and 44 CERT of the game server; counts after their first export, T003b).
+T004 is `specs/006-packet-pattern-coverage/research/T004-instance.md` (group 13 INSTANCE; counts
+after their first export, T004b).
 
 | Id | Pattern | Report | Status |
 | --- | --- | --- | --- |
@@ -209,7 +212,34 @@ CONNECTION, 1 SERVER and 44 CERT of the game server; counts after their first ex
 | 11.89.16 | `S2C_QUEST_JOIN_LOBBY_QUEST_INFO_NTC` | P11a §1 | 41/41 fit |
 | 11.120.16 | `S2C_QUEST_PARTY_QUEST_PROGRESS_NTC` | P11a §3 | no capture |
 | 12.0.2 | `S2C_STAGE_GET_STAGE_LIST_RES` | P11a §7 | 42/42 fit |
+| 13.0.1 | `C2S_INSTANCE_GET_ENEMY_SET_LIST_REQ` | T004 §2 | 563/563 fit |
+| 13.0.2 | `S2C_INSTANCE_GET_ENEMY_SET_LIST_RES` | T004 §2 | 667/667 fit (NamedParamList never non-empty) |
+| 13.1.16 | `C2S_INSTANCE_ENEMY_GROUP_ENTRY_NTC` | T004 §3 | 202/202 fit, slack 14 (PS4 ENEMY_GROUP_ENTRY_NOTICE, V by behaviour) |
+| 13.2.16 | `C2S_INSTANCE_ENEMY_GROUP_LEAVE_NTC` | T004 §3 | 184/184 fit, slack 14 (PS4 ENEMY_GROUP_LEAVE_NOTICE, V by behaviour) |
+| 13.3.1 | `C2S_INSTANCE_ENEMY_KILL_REQ` | T004 §4 | 391/391 fit, slack 12 |
 | 13.3.2 | `S2C_INSTANCE_ENEMY_KILL_RES` | P11b §15 | 412/412 fit |
+| 13.5.1 | `C2S_INSTANCE_GET_ITEM_SET_LIST_REQ` | T004 §5 | 118/118 fit, slack 14 |
+| 13.5.2 | `S2C_INSTANCE_GET_ITEM_SET_LIST_RES` | T004 §5 | 258/258 fit |
+| 13.6.1 | `C2S_INSTANCE_GET_GATHERING_ITEM_LIST_REQ` | T004 §6 | 155/155 fit |
+| 13.6.2 | `S2C_INSTANCE_GET_GATHERING_ITEM_LIST_RES` | T004 §6 | 155/155 fit (restriction list never non-empty) |
+| 13.8.1 | `C2S_INSTANCE_GET_GATHERING_ITEM_REQ` | T004 §7 | 51/51 fit |
+| 13.8.2 | `S2C_INSTANCE_GET_GATHERING_ITEM_RES` | T004 §7 | 51/51 fit |
+| 13.10.1 | `C2S_INSTANCE_GET_DROP_ITEM_LIST_REQ` | T004 §8 | 88/88 fit |
+| 13.10.2 | `S2C_INSTANCE_GET_DROP_ITEM_LIST_RES` | T004 §8 | 88/88 fit |
+| 13.11.1 | `C2S_INSTANCE_GET_DROP_ITEM_REQ` | T004 §9 | 44/44 fit |
+| 13.11.2 | `S2C_INSTANCE_GET_DROP_ITEM_RES` | T004 §9 | 44/44 fit |
+| 13.20.1 | `C2S_INSTANCE_SET_OM_INSTANT_KEY_VALUE_REQ` | T004 §11 | 542/542 fit |
+| 13.20.2 | `S2C_INSTANCE_SET_OM_INSTANT_KEY_VALUE_RES` | T004 §11 | 559/559 fit |
+| 13.20.16 | `S2C_INSTANCE_SET_OM_INSTANT_KEY_VALUE_NTC` | T004 §11 | 571/571 fit (PS4 SET_OM_INSTANT_KEY_VALUE_NOTICE, V by behaviour) |
+| 13.22.1 | `C2S_INSTANCE_GET_OM_INSTANT_KEY_VALUE_ALL_REQ` | T004 §12 | 150/150 fit (no body) |
+| 13.22.2 | `S2C_INSTANCE_GET_OM_INSTANT_KEY_VALUE_ALL_RES` | T004 §12 | 150/150 fit |
+| 13.23.1 | `C2S_INSTANCE_EXCHANGE_OM_INSTANT_KEY_VALUE_REQ` | T004 §13 | 44/44 fit |
+| 13.23.2 | `S2C_INSTANCE_EXCHANGE_OM_INSTANT_KEY_VALUE_RES` | T004 §13 | 46/46 fit |
+| 13.31.16 | `S2C_INSTANCE_ENEMY_GROUP_DESTROY_NTC` | T004 §14 | 81/81 fit, slack 13 (V by behaviour) |
+| 13.32.16 | `S2C_INSTANCE_ENEMY_GROUP_RESET_NTC` | T004 §15 | 130/130 fit, slack 14 (PS4 ENEMY_GROUP_RESET_NOTICE, V by behaviour) |
+| 13.39.16 | `S2C_INSTANCE_POP_DROP_ITEM_NTC` | T004 §16 | 74/74 fit |
+| 13.40.16 | `S2C_INSTANCE_ENEMY_REPOP_NTC` | T004 §17 | 41/41 fit |
+| 13.42.16 | `S2C_INSTANCE_AREA_RESET_NTC` | T004 §18 | 120/120 fit (no body; V by behaviour) |
 | 13.44.16 | `C2S_INSTANCE_CHARACTER_START_BAD_STATUS_NTC` | P4 §4, T001c §3 | 19/19 fit |
 | 13.45.16 | `C2S_INSTANCE_CHARACTER_END_BAD_STATUS_NTC` | P4 §4, T001c §3 | 19/19 fit |
 | 13.46.16 | `C2S_INSTANCE_ENEMY_BAD_STATUS_START_NTC` | P4 §4, T001c §3 | 31/31 fit |
@@ -297,3 +327,28 @@ CONNECTION, 1 SERVER and 44 CERT of the game server; counts after their first ex
   same-width fields, its position is inferred: BoxGacha u32, AreaBonus u16, MyRoomFurniture u32, and
   the CDataQuestOrderList u32s and u64s (R2 F5). QuestEnemyInfo is settled: {GroupId, Season 3
   `unk_u32`, Lv, IsPartyRecommend} (T001c §5, V; P11a §1.3 contradicted).
+- **Season 3-exclusive, not patterned (T004):** 13.16.1/13.16.2 TREASURE_POINT_GET_CATEGORY_LIST
+  and 13.17.1/13.17.2 TREASURE_POINT_GET_LIST (T004 §10: no PS4 counterpart, V by code; one capture
+  each) and 13.23.16 S2C_INSTANCE_EXCHANGE_OM_INSTANT_KEY_VALUE_NTC (T004 §13: no PS4 handler, V by
+  code; 46 captures). Season 3-exclusive ids go to a later spec (Sam); T004 §10 and §13 hold their
+  PC readers and wire layouts.
+- **Group 13 widths that fit either way (T004 §19):** three Season 3 widths rest on the PC code
+  alone, because the slack absorbs the difference: the 13.3.1 second bool (`unk_bool`), the
+  13.40.16 sixth enemy-info bool (`EnemyInfo.unk_bool`, also V by the 13.0.2 counter-test) and the
+  13.20.16 u64 Key (also V by the 13.20.2 counter-test). The 9-byte bodies of 13.1.16, 13.2.16,
+  13.5.1 and 13.32.16, the 13.31.16 bool and the empty 13.22.1 and 13.42.16 rest on the code too.
+- **Group 13 lists never non-empty in captures (T004 §19, §22):** the 13.0.2 `NamedParamList`
+  (`CDataNamedEnemyParamClient`) and the 13.6.2 `unk_RestrictionList` (`CDataGatheringItemRestriction`
+  with its wallet-point and item-amount lists): their elements are code-only.
+- **Group 13 names without code backing (T004 §22):** the Season 3 fields are `unk_*` with the
+  server name as lead: the 13.3.1 and 13.11.1 bools, the 13.6.2 `unk_bool` and restriction list, the
+  13.8.1 bool and u32 (server: EquipToCharacter, RestrictionId), the enemy-info sixth bool (server:
+  IsHighOrbEnemy), the `CDataGatheringItemElement` u32 and bool (server: Quality, IsHidden), the
+  restriction element fields. Which 13.6.2 bool is the PS4 IsGatheringItemBreak, and that the first
+  13.3.1 bool is the PS4 IsNoBattleReword, are I (position). The PC sOmManager callbacks are protected
+  thunks; their identity rests on call shape. No captured group-13 RES has Error != 0: the guard is
+  code-only. The 13.44-13.47.16 patterns keep their inline layout triplet (same fields and JSON as
+  `CDataStageLayoutId`, unchanged).
+- **u64 OM Key in JSON:** `CDataOmData.Key` carries the high bit (0x80000000_001415b3), so the JSON
+  integer exceeds 2^53; a reader that parses numbers as doubles rounds it (Python `json` keeps it
+  exact).
