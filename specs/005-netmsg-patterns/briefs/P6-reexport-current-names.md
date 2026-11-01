@@ -29,7 +29,10 @@ Do:
    `PacketId.cs:315`); fix such a declaration only as a further local CLI patch, listed in the README
    patch table. Input for those fixes: `research/P4-context-binary-character.md` § 7 (client-verified
    misplacements, e.g. 2.19-2.21.16 sources and aliases, 35.8.16 missing); patch only names,
-   sources and ids, never a structure layout in this package.
+   sources and ids, never a structure layout in this package. Read the report's coordinator
+   correction first: PS4 packet numbers never name a PC packet, so do not rename 35.5.16 or
+   13.44-13.47.16 from P4; a new PacketId such as 35.8.16 keeps a placeholder name
+   (`C2S_CONTEXT_35_8_16_NTC`) until PC-side evidence names it.
 4. Replace `decrypted_raw/` and `decrypted_json/` with the verified output. JSON order: the CLI
    rewrites the four nNetMsg packet types that `imhex-export.sh` decodes into `decrypted_json`
    (those JSON files are committed by the coordinator before you start). Re-run `imhex-export.sh` for

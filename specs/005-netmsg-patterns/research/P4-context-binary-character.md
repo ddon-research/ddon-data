@@ -20,6 +20,15 @@ Method and PC address basis as P2 (`research/P2-pc-deltas.md`).
   Vec3 = 3 x f32; MtString = u16 BE length (<= 0x800) + bytes (`nPacket::Read_MtString`, V);
   list = u32 count + elements; bool = 1 byte.
 
+> **Coordinator correction (Sam, 2026-11-01).** PS4 02020005 uses an entirely different packet id
+> scheme (a flat u16 number), so a PS4 number never names a PC 03040008 packet. The per-group
+> offsets in summary item 3, the 35.5.16 = CHARACTER_START_BAD_STATUS claim (§ 2.6, § 7 rows 1 and
+> 13) and any other name taken from the numbering are **withdrawn as naming evidence**; those PC
+> names stay unresolved. Wire layouts read from the PC writers and readers are unaffected. A PC name
+> needs PC-side evidence: a handler or log string in the PC binary, or the PC caller of the
+> writer matched to a PS4 symbol by code (callers, strings, data it reads), never by number.
+> Open for P5 (T008): 35.5.16, 13.44-13.47.16, and the names of 35.8.16 and 35.12.16.
+
 ## 0. Summary
 
 1. **Every group-35 S2C handler on PC was located** in the static handler table filled by

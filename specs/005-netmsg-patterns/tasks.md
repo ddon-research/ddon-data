@@ -44,7 +44,10 @@ file; one client at a time on the fixed dump; restore after every run.
 - [ ] T008 Static exhaustion check: list what static work leaves open after T007 (unnamed Season 3
   fields, CtrlAction 0x3D, GameNormal 0x0F-0x12, CREATE_CONTEXT bool polarity (P1 vs P2), the
   75 -> 100 clamp, SetNormal/ToolEasy/ToolNormal never captured, PC send methods not read), and
-  close each one IDA can close (a P5 on the PC send side) before any live run.
+  close each one IDA can close (a P5 on the PC send side) before any live run. Also name, from
+  PC-side evidence only, 35.5.16, 13.44-13.47.16, 35.8.16 and 35.12.16: PS4 02020005 numbers its
+  packets differently (flat u16), so P4's numbering offsets are withdrawn as naming evidence
+  (Sam, 2026-11-01; correction at the top of the P4 report).
 - [ ] T009 Server lab patch, logging: `Arrowgene.Ddon.Cli/Program.cs` `IgnorePacketIds` mutes
   `C2S/S2C_LOBBY_LOBBY_DATA_MSG_*` and `C2S_PARTY_SEND_BINARY_MSG_NTC` at debug level; make that
   opt-in (a setting, default unchanged), and log each nNetMsg payload as one prefixed hex line
@@ -68,7 +71,8 @@ file; one client at a time on the fixed dump; restore after every run.
   and PS4; Season 3 u64 widening and trailing fields in the context structures; 9.1.1 is a fixed
   u8[1024] bit-stream save blob; 20 captured types / 3,654 files end within the cipher padding
   (raws carry no `len`, so this is weaker than P2's walk); 15 server misplacements in report § 7
-  (35.5.16 misnamed, 35.8.16 missing, 2.19-2.21 declared `PacketSource.Server` with one alias).
+  (35.8.16 missing, 2.19-2.21 declared `PacketSource.Server` with one alias; rows 1 and 13 rest
+  on PS4 numbering and are withdrawn).
   Open items in report § 5.
 
 ## Next step (2026-11-01)
