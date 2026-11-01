@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # Decode decrypted packets with an ImHex pattern and export them as JSON.
 #
-# Usage: ./imhex-export.sh [--force] <packet-filter> <pattern-name> [jobs]
-#   packet-filter  what to select in decrypted_raw/<stream>/:
+# Usage: ./imhex-export.sh [--force] [--json-nonfinite=keep|null] <packet-filter> <pattern-name> [jobs]
+#   packet-filter  what to select in decrypted_raw/<stream>/ (files only, never directories):
 #                  @              the packet id the pattern declares (`// packet-id: 35.5.16`)
 #                  35.5.16        that packet id: files ending in `.35_5_16`
 #                  anything else  a substring of the file names
@@ -13,9 +13,17 @@
 #                  (e.g. S2C_GROUP_CHAT_GROUP_CHAT_GET_MEMBER_LIST_RES)
 #   jobs           parallel worker processes (default: nproc with plbatch, nproc/2 with ImHex)
 #   --force        re-export packets whose JSON already exists
+#   --json-nonfinite=keep|null
+#                  plbatch only: NaN/Inf floats, which the formatter prints as bare nan/inf (not
+#                  valid JSON), are kept as printed (keep, the default: byte-identical to ImHex)
+#                  or written as null
 #
 # Output: decrypted_json/<stream>/<packet-file>.json (one file per packet).
-# Failures keep their error log as <packet-file>.json.err and make the script exit 1.
+# Failures keep their error log as <packet-file>.json.err, remove any <packet-file>.json an earlier
+# run left (so counts never mix runs) and make the script exit 1.
+# plbatch parses every output: "nonfinite" counts files holding nan/inf (invalid JSON unless
+# --json-nonfinite=null), "badjson" files whose output was invalid for another reason (failures).
+# The ImHex path does not validate its output.
 #
 # Engine: plbatch (research/imhex/plbatch, PatternLanguage at the commit ImHex 1.38.1 embeds, so the
 # JSON is byte-identical to `imhex --pl format`) when built, one long-lived process per shard;
@@ -26,6 +34,7 @@
 #                built); PLBATCH=none forces the ImHex path
 #   IMHEX        ImHex executable (default: imhex on PATH, then the portable install below); with
 #                plbatch, its includes/ folder supplies the std library
+#   IMHEX_INCLUDES  std library folder for plbatch (default: <dir of IMHEX>/includes)
 #   RAW_DIR      input root  (default: decrypted_raw)
 #   JSON_DIR     output root (default: decrypted_json)
 #   PATTERN_DIR  pattern dir (default: ../research/03040008/packets); its include/ folder, when
@@ -40,7 +49,17 @@ set -o pipefail
 shopt -s nullglob globstar
 
 die() { echo "ERROR: $*" >&2; exit 2; }
-usage() { sed -n '2,19p' "$0" | sed 's/^# \{0,1\}//' >&2; exit 2; }
+# Print the header comment (everything from line 2 to the first non-comment line), env overrides included.
+usage() {
+  local line n=0
+  while IFS= read -r line; do
+    (( ++n > 1 )) || continue
+    [[ $line == '#'* ]] || break
+    line=${line#\#}
+    printf '%s\n' "${line# }"
+  done < "${BASH_SOURCE[0]}" >&2
+  exit 2
+}
 require() {
   local cmd
   for cmd in "$@"; do
@@ -49,7 +68,15 @@ require() {
 }
 
 FORCE=0
-if [[ ${1:-} == --force ]]; then FORCE=1; shift; fi
+NONFINITE=keep
+while [[ ${1:-} == --* ]]; do
+  case $1 in
+    --force) FORCE=1 ;;
+    --json-nonfinite=keep|--json-nonfinite=null) NONFINITE=${1#--json-nonfinite=} ;;
+    *) usage ;;
+  esac
+  shift
+done
 [[ $# -ge 2 && $# -le 3 ]] || usage
 FILTER=$1
 PATTERN_NAME=$2
@@ -59,13 +86,13 @@ JOBS=${3:-}
 [[ "$FILTER" != */* && "$PATTERN_NAME" != */* ]] || die "filter and pattern name must not contain '/'"
 
 # Resolve paths relative to this script so it works from any working directory.
+require cat dirname grep mkdir mktemp mv rm tee xargs
 cd "$(dirname "${BASH_SOURCE[0]}")"
 RAW_DIR=${RAW_DIR:-decrypted_raw}
 JSON_DIR=${JSON_DIR:-decrypted_json}
 PATTERN_DIR=${PATTERN_DIR:-../research/03040008/packets}
 PATTERN="$PATTERN_DIR/$PATTERN_NAME-pattern.cpp"
 
-require grep mkdir mktemp mv rm tee xargs
 [[ -d "$RAW_DIR" ]] || die "input directory '$RAW_DIR' not found"
 [[ -f "$PATTERN" ]] || die "pattern file '$PATTERN' not found"
 
@@ -103,7 +130,7 @@ else
 fi
 
 if [[ -z "$JOBS" ]]; then
-  JOBS=$(nproc 2>/dev/null || getconf _NPROCESSORS_ONLN 2>/dev/null || echo 1)
+  if command -v nproc >/dev/null 2>&1; then JOBS=$(nproc); else JOBS=$(getconf _NPROCESSORS_ONLN 2>/dev/null || echo 1); fi
   # Each ImHex packet costs several MSYS process creations, which contend with each other.
   [[ $ENGINE == plbatch ]] || JOBS=$(( JOBS > 1 ? JOBS / 2 : 1 ))
 fi
@@ -124,11 +151,14 @@ if [[ "$FILTER" == @ ]]; then
 fi
 if [[ "$FILTER" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
   GLOB="*.${FILTER//./_}"
-  inputs=("$RAW_DIR"/**/$GLOB)
+  matches=("$RAW_DIR"/**/$GLOB)
 else
   GLOB="*$FILTER*"
-  inputs=("$RAW_DIR"/**/*"$FILTER"*)
+  matches=("$RAW_DIR"/**/*"$FILTER"*)
 fi
+# Files only: a directory whose name matches would become a "cannot read input" failure.
+inputs=()
+for m in "${matches[@]}"; do [[ ! -f "$m" ]] || inputs+=("$m"); done
 (( ${#inputs[@]} > 0 )) || die "no packets in '$RAW_DIR' match '$GLOB'"
 
 echo "Exporting ${#inputs[@]} packet(s) matching '$FILTER' with $PATTERN ($JOBS $ENGINE job(s))"
@@ -149,6 +179,7 @@ if [[ $ENGINE == plbatch ]]; then
   mkdir -p "$JSON_DIR"
   plargs+=(--out-root "$(winpath "$JSON_DIR")")
   (( FORCE == 0 )) || plargs+=(--force)
+  plargs+=(--json-nonfinite="$NONFINITE")
   for (( k = 0; k < JOBS; k++ )); do
     [[ -n "${shards[k]}" ]] || continue
     printf '%s' "${shards[k]}" > "$work/shard.$k"
@@ -158,6 +189,7 @@ if [[ $ENGINE == plbatch ]]; then
   wait
   cat "$work"/out.* | tee "$log"
 else
+  [[ $NONFINITE == keep ]] || die "--json-nonfinite=$NONFINITE needs plbatch (the ImHex path writes ImHex's output unchanged)"
   # Export one packet. ImHex refuses to overwrite its output, so write to a temp file and move
   # it into place: an interrupted run never leaves a truncated JSON behind. No subshells here:
   # with many jobs every MSYS process creation costs hundreds of ms.
@@ -187,6 +219,8 @@ else
       echo "ok   $rel"
     else
       [[ ! -e "$tmp" ]] || rm -f "$tmp"
+      # A JSON from an earlier run must not outlive this failure.
+      [[ ! -e "$out" ]] || rm -f "$out"
       mv -f "$errlog" "$out.err"
       echo "FAIL $rel (see $out.err)"
       return 1
@@ -211,8 +245,12 @@ else
 fi
 
 ok=$(grep -c '^ok ' "$log" || true)
+nonfinite=$(grep -c '^ok-n' "$log" || true)
 skip=$(grep -c '^skip ' "$log" || true)
+badjson=$(grep -c '^badjson ' "$log" || true)
 fail=$(grep -c '^FAIL ' "$log" || true)
-echo "Done: $ok exported, $skip skipped, $fail failed"
-(( ok + skip + fail == ${#inputs[@]} )) || { echo "ERROR: $(( ${#inputs[@]} - ok - skip - fail )) packet(s) reported no result" >&2; exit 1; }
-(( fail == 0 )) || exit 1
+if [[ $ENGINE == plbatch ]]; then checked="$nonfinite nonfinite ($NONFINITE), $badjson badjson"; else checked="JSON not validated (ImHex path)"; fi
+echo "Done: $(( ok + nonfinite )) exported, $skip skipped, $fail failed; $checked"
+(( ok + nonfinite + skip + fail + badjson == ${#inputs[@]} )) \
+  || { echo "ERROR: $(( ${#inputs[@]} - ok - nonfinite - skip - fail - badjson )) packet(s) reported no result" >&2; exit 1; }
+(( fail + badjson == 0 )) || exit 1

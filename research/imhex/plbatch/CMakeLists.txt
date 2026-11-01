@@ -17,7 +17,9 @@ set(LIBPL_SHARED_LIBRARY OFF CACHE BOOL "" FORCE)
 add_subdirectory("${PL_SOURCE_DIR}" pl EXCLUDE_FROM_ALL)
 
 add_executable(plbatch plbatch.cpp)
-target_link_libraries(plbatch PRIVATE libpl libpl-gen ${FMT_LIBRARIES})
+# nlohmann_json: the copy PatternLanguage bundles (its target is global; the variable is not), used
+# to validate every JSON output.
+target_link_libraries(plbatch PRIVATE libpl libpl-gen nlohmann_json ${FMT_LIBRARIES})
 if (MINGW)
     # One self-contained exe: no libstdc++/libgcc/winpthread DLLs beside it.
     target_link_options(plbatch PRIVATE -static)
