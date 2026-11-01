@@ -24,7 +24,8 @@ Coordinator: main session. One subagent at a time. Method and rules: `spec.md`.
   re-export everything, verify by sample (`implementer`, brief `briefs/T001d-utf8-json-strings.md`);
   runs right after T003's evidence.
 - [x] T003 Groups 0/1/44 (done: evidence d6692cf3b9; patterns 383373ed28 + JSON 5bc4846af8: 27 patterns, 5,359/5,359 fit).
-- [ ] T004+ One evidence + one implementer package per group, by captured count (13 instance,
+- [x] T004 Group 13 (done: evidence f7efade6c6; patterns + JSON d7d48b68f6: 27 patterns, 5,567/5,567 fit; 13.16.x/13.17.x/13.23.16 Season 3-exclusive, not patterned).
+- [ ] T005+ One evidence + one implementer package per group, by captured count (13 instance,
   0 connection, 11 quest, 33 job, 62 season dungeon, 23 area, 14, 8 pawn, 10 item, ...), PS4-matched
   ids only; a reviewer after every few groups.
 - [ ] Tn List of Season 3-exclusive ids for the later spec; README table; close.
