@@ -1,65 +1,39 @@
+// 23.11.2 S2C_AREA_GET_SPOT_INFO_LIST_RES (client 03040008).
+// Evidence: specs/005-netmsg-patterns/research/P11b-old-patterns.md section 11. PC handler 0x7c46b0
+// (string 0x1bcdb28), ctor 0x785e70, reader 0x800150: RES, list CDataSpotInfo (0x779cf0), list
+// {u32, u32, s64} (0x7696e0), list {u32, bool, s64} (0x76d440), list u32 (0x75e8e0) (V). PS4
+// OnPacket_S2C_GET_SPOT_INFO_LIST_RES 0x303540 (and the PS4 recompilation, UserSession/S2C.h) has
+// only the first list: the three trailing lists are Season 3, the same readers as 23.8.2 lists 2
+// and 3 (P11a 15). Fixed: the earlier `u32 Unknown1` is the count of list 0x7696e0; its {u32, bool,
+// u64} list is s64; the trailing u32 list was missing (P11b G7: lists 2 and 4 are empty in every
+// capture).
+// Body: s32 Error [, s32 Result, four lists] (P11a G1).
+// packet-id: 23.11.2
+// Fit flag `fits`: the raws store no body length, so a decode fits when it ends within the
+// last 15 bytes of the file (cipher block padding); reading past the end fails the decode.
+// A fit does not prove field widths: when the slack (`paddingSize`, exported) exceeds a field, a
+// body that is that field shorter or longer fits too; such widths rest on the PC code (R1 F3).
 #pragma endian big
 
-#define b8 bool
+import std.mem;
 
-#define SpotEnemyInfoVec MtTypedArray<CDataSpotEnemyInfo>
-#define SpotItemInfoVec MtTypedArray<CDataSpotItemInfo>
+#include "Packet.hexpat"
+#include "Area.hexpat"
 
-struct MtTypedArray<T>
-{
-    u32 ArraySize;
-    T Arr[ArraySize];
+struct S2C_AREA_GET_SPOT_INFO_LIST_RES : CPacket {
+    bool sourceOk = source == 0x34 [[export]];  // header source byte: 0x34 server (Packet.hexpat)
+    s32 Error;
+    if (Error == 0) {
+        s32 Result;
+        MtTypedArray<CDataSpotInfo> SpotInfoList;             // PC 0x779cf0
+        MtTypedArray<CDataAreaUnkU32U32S64> unk_list_0;      // PC 0x7696e0, Season 3
+        MtTypedArray<CDataAreaUnkU32BoolS64> unk_list_1;     // PC 0x76d440, Season 3
+        MtTypedArray<CDataCommonU32> unk_list_2;             // PC 0x75e8e0, Season 3
+    }
+    // Fit: the decode ends within the last 15 bytes (cipher block padding; Packet.hexpat).
+    u128 paddingSize = std::mem::size() - $ [[export]];
+    bool fits = paddingSize <= 15 [[export]];
+    if (paddingSize > 0) padding[paddingSize];
 };
 
-struct CPacket
-{
-    u8 Group;
-    u16 Id;
-    u8 SubId;
-    u8 Source;
-    u32 PacketCounter;
-};
-
-struct CDataSpotEnemyInfo
-{
-    u32 EnemyID;
-    u8 EnemyLv;
-};
-
-struct CDataSpotItemInfo
-{
-    u32 ItemId;
-    u8 PawnTakeRate;
-};
-
-struct CDataSpotInfoS3
-{
-    // These always correspond to the last spot ID in ams18 - ams21
-    u32 SpotID;
-    bool DeadlineReached;
-    u64 Deadline;
-};
-
-struct CDataSpotInfo
-{
-    u32 SpotID;
-    u32 TextIndex;
-    u32 StageID;
-    b8 IsRelease;
-    b8 IsNew;
-    SpotEnemyInfoVec SpotEnemyInfoList;
-    SpotItemInfoVec SpotItemInfoList;
-    u32 QuickPartyPopularity;
-};
-
-struct CPacket_S2C_GET_SPOT_INFO_LIST_RES : CPacket
-{
-    u32 Error;
-    s32 Result;
-    MtTypedArray<CDataSpotInfo> SpotInfoList;
-    // new season 3-specific structures, some form of timed delivery / daily reset?
-    u32 Unknown1;
-    MtTypedArray<CDataSpotInfoS3> SpotInfoListSeason3;
-};
-
-CPacket_S2C_GET_SPOT_INFO_LIST_RES S2C_GET_SPOT_INFO_LIST_RES @0x00;
+S2C_AREA_GET_SPOT_INFO_LIST_RES packet @ 0x00;

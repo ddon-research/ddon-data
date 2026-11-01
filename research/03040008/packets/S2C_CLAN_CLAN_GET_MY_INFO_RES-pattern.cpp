@@ -1,113 +1,33 @@
+// 31.29.2 S2C_CLAN_CLAN_GET_MY_INFO_RES (client 03040008).
+// Evidence: specs/005-netmsg-patterns/research/P11b-old-patterns.md section 4. PC handler 0x7cb2b0
+// (string 0x1bce704; 31, 29, 2), reader 0x8034d0 (V). PS4
+// CPacket_S2C_CLAN_GET_MY_INFO_RES::ReadPacket 0x19db590 reads the same sequence; PS4
+// CDataCharacterListElement lacks the Season 3 trailing u8 (V PS4).
+// Body: s32 Error [, s32 Result, CDataClanParam, s64 LeaveTime] (P11a G1).
+// packet-id: 31.29.2
+// Fit flag `fits`: the raws store no body length, so a decode fits when it ends within the
+// last 15 bytes of the file (cipher block padding); reading past the end fails the decode.
+// A fit does not prove field widths: when the slack (`paddingSize`, exported) exceeds a field, a
+// body that is that field shorter or longer fits too; such widths rest on the PC code (R1 F3).
 #pragma endian big
-#define b8 bool
-#define CDataClanParam CClanParam
-#define CDataClanUserParam CClanUserParam
-#define CDataClanServerParam CClanServerParam
-#define CDataClanMemberInfo CClanMemberInfo
-#define CDataCharacterListElement CCharacterListElement
-#define CDataJobBaseInfo CJobBaseInfo
-#define CDataCommunityCharacterBaseInfo CCommunityCharacterBaseInfo
-#define CDataCharacterName CCharacterName
 
-struct MtString
-{
-    u16 strLen;
-    char string[strLen];
+import std.mem;
+
+#include "Packet.hexpat"
+#include "Clan.hexpat"
+
+struct S2C_CLAN_CLAN_GET_MY_INFO_RES : CPacket {
+    bool sourceOk = source == 0x34 [[export]];  // header source byte: 0x34 server (Packet.hexpat)
+    s32 Error;
+    if (Error == 0) {
+        s32 Result;
+        CDataClanParam CreateParam;         // PC 0x75d730
+        s64 LeaveTime;
+    }
+    // Fit: the decode ends within the last 15 bytes (cipher block padding; Packet.hexpat).
+    u128 paddingSize = std::mem::size() - $ [[export]];
+    bool fits = paddingSize <= 15 [[export]];
+    if (paddingSize > 0) padding[paddingSize];
 };
 
-struct CPacket
-{
-    u8 group;
-    u16 id;
-    u8 subId;
-    u8 source;
-    u32 packetcounter;
-};
-
-struct CDataJobBaseInfo
-{
-    u8 Job;
-    u8 Lv;
-};
-
-struct CDataCharacterName
-{
-    MtString FirstName;
-    MtString LastName;
-};
-
-struct CDataCommunityCharacterBaseInfo
-{
-    u32 CharacterID;
-    CCharacterName CharacterName;
-    MtString ClanName;
-};
-
-struct CDataCharacterListElement
-{
-    CCommunityCharacterBaseInfo BaseInfo;
-    u16 ServerID;
-    u8 OnlineStatus;
-    CJobBaseInfo CurrentJobInfo;
-    CJobBaseInfo EntryJobInfo;
-    MtString MatchingPlofile;
-    u8 unknown;
-};
-
-struct CDataClanMemberInfo
-{
-    u32 Rank;
-    s64 Created;
-    s64 LastLoginTime;
-    s64 LeaveTime;
-    u32 Permission;
-    CCharacterListElement CharacterListElement;
-};
-
-struct CDataClanServerParam
-{
-    u32 ID;
-    u16 Lv;
-    u16 MemberNum;
-    CClanMemberInfo MasterInfo;
-    b8 IsSystemRestriction;
-    b8 IsClanBaseRelease;
-    b8 CanClanBaseRelease;
-    u32 TotalClanPoint;
-    u32 MoneyClanPoint;
-    u32 NextClanPoint;
-};
-
-struct CDataClanUserParam
-{
-    MtString Name;
-    MtString ShortName;
-    u8 EmblemMarkType;
-    u8 EmblemBaseType;
-    u8 EmblemBaseMainColor;
-    u8 EmblemBaseSubColor;
-    u32 Motto;
-    u32 ActiveDays;
-    u32 ActiveTime;
-    u32 Characteristic;
-    b8 IsPublish;
-    MtString Comment;
-    MtString BoardMessage;
-    s64 Created;
-};
-
-struct CDataClanParam
-{
-    CClanUserParam ClanUserParam;
-    CClanServerParam ClanServerParam;
-};
-
-struct CPacket_S2C_CLAN_GET_MY_INFO_RES : CPacket
-{
-    u32 Error;
-    s32 Result;
-    CClanParam CreateParam;
-    s64 LeaveTime;
-};
-
-CPacket_S2C_CLAN_GET_MY_INFO_RES S2C_CLAN_GET_MY_INFO_RES @0x00;
+S2C_CLAN_CLAN_GET_MY_INFO_RES packet @ 0x00;
