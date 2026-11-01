@@ -104,7 +104,13 @@ Report `research/orchestration-port-2026-11.md` (R2, `repository-researcher`, me
       Repository tuning (Sam approved, applied by the coordinator in `.git/config`):
       `feature.manyFiles` (index v4 + skipHash: index 89.3 -> 61.2 MB; `git status -uno` 172 ->
       136 ms, with untracked 412 -> 294 ms, hyperfine 3 runs), `commitGraph.changedPaths` + a
-      commit-graph rewrite with Bloom filters; `git repack -d` packed the loose objects (141,809 -> 1,020 unreachable leftovers, 70 s; `maintenance run --task=loose-objects` packed none). Sam approved T020's tuning on 2026-11-01.
+      commit-graph rewrite with Bloom filters (`feature.manyFiles` reverted the same day: Sam's viewer
+      showed every `client/` JSON as modified and many files untracked while git itself was clean,
+      most likely a reader without index v4/skipHash support; now `index.skipHash false`, index v2;
+      the reader was MSYS2's own `/usr/bin/git` (Cygwin build, no fsmonitor): it and Git for Windows
+      record different stat fields, so each full-refreshed the 437k-entry index after the other
+      (MSYS 54-105 s, GfW 9 s). `core.checkStat minimal` + `core.trustctime false` cut that to
+      MSYS 7-22 s, GfW 0.8-2.4 s; Sam uses Git for Windows only from now on); `git repack -d` packed the loose objects (141,809 -> 1,020 unreachable leftovers, 70 s; `maintenance run --task=loose-objects` packed none). Sam approved T020's tuning on 2026-11-01.
 - [ ] T017 Guard: refuse `git commit` without a `-- <paths>` pathspec while the index holds staged
       paths of other work. P4's b204c9daad committed three files another session had staged (Sam
       approved the rewrite: soft reset to 1d0ab74e1a, the four commits remade with explicit paths
