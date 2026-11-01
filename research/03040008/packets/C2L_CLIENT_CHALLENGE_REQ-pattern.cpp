@@ -13,13 +13,13 @@
 // and on the wire the body starts at byte 0 (CommonKeySrcSize = 0x30 in 42/42, T002c 3, 4).
 // The pattern therefore reads the body at offset 0 and does not use CPacket or `sourceOk`.
 // Raws re-decrypted with the fixed key in T002d (patched CLI, packets README arrowgene-patches).
-// The server's first packet (its RSA public key, 304 bytes) shares this file name and id; it is
-// not this packet, so `// packet-size: 336` keeps only the client's 336-byte files.
+// The server's first packet (its certificate notice, 304 bytes) shared this file name and id until
+// T002e, which files it as 1.1.16 L2C_LOGIN_SERVER_CERT_NTC (L2C_LOGIN_SERVER_CERT_NTC-pattern.cpp);
+// every `.1_0_1` file of this name is now the client's 336-byte challenge, so no size selector.
 // Body: u8 CommonKeySrcSize, u8 CommonKeyEnc[259], u8 PasswordSrcSize, u8 PasswordEncSize,
 // u8 PasswordEnc[62] (324 B), then 12 bytes of cipher block padding (336 B).
 // packet-id: 1.0.1
 // packet-select: C2L_CLIENT_CHALLENGE_REQ
-// packet-size: 336
 // Fit flag `fits`: the raws store no body length, so a decode fits when it ends within the
 // last 15 bytes of the file (cipher block padding); reading past the end fails the decode.
 // A fit does not prove field widths: when the slack (`paddingSize`, exported) exceeds a field, a

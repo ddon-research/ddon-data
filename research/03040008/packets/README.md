@@ -21,6 +21,7 @@ carry now. Every pattern starts with `#pragma endian big` and includes what it n
 | `Clan.hexpat`, `Item.hexpat`, `Pawn.hexpat`, `Skill.hexpat` | the CData of those groups (P11b) | 1-2 each |
 | `Login.hexpat` | login-server CData (T002 §15): URL info, login setting, game server list info, error message, and the character list types (matching profile, Season 3 equip item info, character list info); includes Character, Context and GP | 4 |
 | `GP.hexpat` | GP course info, effect param and the Season 3 GP course valid (T002 §10, §11) | 1, and 5.0.2 through Login |
+| `Cert.hexpat` | `CDataServerCert`, the server certificate notice body: modulus[256], exponent[16], SHA-1 u32[5] (T003 §1, §15) | 1.1.16, 44.1.16 |
 
 Each structure comment names the PC reader or writer VA (PC 03040008 database, image base 0x400000)
 and the PS4 02020005 DWARF type, and carries a mark: V means read in IDA, I means inferred. A name
@@ -37,9 +38,10 @@ summary, and two lines the export script reads:
   Every login pattern (`C2L_`/`L2C_`) carries it: the game server reuses the login ids 0.0.x,
   0.2.x, 1.0.x and 3.0.x, and naming the packet keeps a later game-server capture out of the export.
 - `// packet-size: <bytes>`: only where two packets share both id and file name. `@` then keeps
-  only files of that size. `1.0.1 C2L_CLIENT_CHALLENGE_REQ` carries `// packet-size: 336`: the CLI
-  names the first packet of each direction after the client challenge, so the server's 304-byte
-  RSA public key shares its `.1_0_1` name (T002c §3).
+  only files of that size. No pattern needs it now: `1.0.1 C2L_CLIENT_CHALLENGE_REQ` carried
+  `// packet-size: 336` while the CLI filed the server's 304-byte certificate notice under the same
+  `.1_0_1` name (T002c §3); since T002e the notice is `1.1.16 L2C_LOGIN_SERVER_CERT_NTC`, and the
+  42 C2L JSON files came out byte-identical without the line. The feature and its test stay.
 
 **JSON conventions.** The root key is `packet`. Header keys are lowercase (`group`, `id`, `subId`,
 `source`, `packetcounter`). Lists export as `{count, entries}` and strings as `{length, value}`.
@@ -136,8 +138,9 @@ T002 is `specs/006-packet-pattern-coverage/research/T002-login.md` (the login gr
 | 0.1.2 | `L2C_LOGIN_RES` | P11b §3 | 42/42 fit |
 | 0.2.1 | `C2L_LOGOUT_REQ` | T002 §2 | 42/42 fit |
 | 0.2.2 | `L2C_LOGOUT_RES` | T002 §2 | 42/42 fit |
-| 1.0.1 | `C2L_CLIENT_CHALLENGE_REQ` | T002 §3, T002c | 42/42 fit (336-byte client files only; no header, body at offset 0) |
+| 1.0.1 | `C2L_CLIENT_CHALLENGE_REQ` | T002 §3, T002c | 42/42 fit (no header, body at offset 0) |
 | 1.0.2 | `L2C_CLIENT_CHALLENGE_RES` | T002 §4 | 42/42 fit |
+| 1.1.16 | `L2C_LOGIN_SERVER_CERT_NTC` | T003 §1, §15 | 42/42 fit, slack 12 (no header; layout by the game reader and the capture SHA-1 check) |
 | 2.1.1 | `C2L_GET_GAME_SESSION_KEY_REQ` | T002 §5 | 42/42 fit |
 | 2.1.2 | `L2C_GET_GAME_SESSION_KEY_RES` | T002 §5 | 42/42 fit |
 | 2.2.1 | `C2L_GET_LOGIN_SETTING_REQ` | T002 §6 | 41/41 fit |
@@ -212,6 +215,7 @@ T002 is `specs/006-packet-pattern-coverage/research/T002-login.md` (the login gr
 | 35.13.16 | `S2C_CONTEXT_SET_CONTEXT_NTC` | P4 §2.3 | 24/24 fit |
 | 35.14.16 | `S2C_CONTEXT_MASTER_CHANGE_NTC` | P4 §2.3 | 948/948 fit |
 | 35.15.16 | `S2C_CONTEXT_MASTER_INFO_NTC` | P4 §2.3 | 43/43 fit |
+| 44.1.16 | `S2C_CERT_GAME_SERVER_CERT_NTC` | T003 §1, §15 | 83/83 fit, slack 12 (no header, body at offset 0) |
 | 51.0.2 | `S2C_DISPEL_GET_DISPEL_ITEM_LIST_RES` | P11a §6 | 1/1 fit |
 | 52.1.2 | `S2C_MY_ROOM_FURNITURE_LIST_GET_RES` | P11a §10 | 20/20 fit |
 | 57.0.2 | `S2C_BOX_GACHA_BOX_GACHA_LIST_RES` | P11a §8 | 3/3 fit |
@@ -221,13 +225,12 @@ T002 is `specs/006-packet-pattern-coverage/research/T002-login.md` (the login gr
 
 ## Open items
 
-- **First packets without a pattern (T002c, T002d):** the 42 304-byte `.1_0_1` files and the 83
-  304-byte `.44_0_1` files are the server's RSA public key (modulus[256], exponent[16] = 0x11,
-  SHA-1[20], 12 unknown bytes; stdlib check 42/42 and 83/83), not a C2L/C2S packet, and get no JSON;
-  their name is the CLI's, not the client's (naming open, Sam). The 83 336-byte
-  `C2S_CERT_CLIENT_CHALLENGE_REQ` 44.0.1 files have the 1.0.1 body layout by stdlib check (83/83:
-  0x30, 3 zero bytes, 0x10, 0x10), but no 44.0.1 pattern exists yet. The PC path that sends 1.0.1
-  without the header its writer `0x88a900` asks for is not traced (T002c §3).
+- **44.0.1 without a pattern:** the 83 `C2S_CERT_CLIENT_CHALLENGE_REQ` 44.0.1 files (all 336
+  bytes since T002e filed the server's certificate notice as 44.1.16) have the 1.0.1 body layout
+  (T003 §15: 83/83 fit as a walk), but no 44.0.1 pattern exists yet.
+- **1.1.16 login reader not decoded:** the login certificate notice reuses the game body
+  (`include/Cert.hexpat`) on the strength of the captures (42/42 SHA-1 match, T002c §4) and the
+  shared receive path (T003 §1); the reader behind handler `0x886b00` is not decoded (T003 §20).
 - **Login RES error branch untested:** no captured login RES has Error != 0, so the
   `if (Error == 0)` guard of the ten login RES patterns is code-only (V code, not run on
   captures; T002 §14). The same holds for the 2.3.16 Error, which is read unconditionally.

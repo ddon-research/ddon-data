@@ -114,12 +114,27 @@ client's fixed key `f23e98HafJdSoaj80QBjhh23oajgklSa` and IV `$cbM6WP)aX=%J^zA`,
 before the first packet, so those 250 raws (84 `.1_0_1`, 166 `.44_0_1`) held wrong-key bytes. The
 patch drops the up-front `SetCamelliaKey` calls and switches each factory to the session key after
 its first resolved packet. Safe for these captures because every first packet arrives in its own
-TCP segment (250/250, T002c section 3). File names are unchanged: both first packets still carry
+TCP segment (250/250, T002c section 3). File names were unchanged by this patch (T002e below renames the server's): both first packets still carried
 the client challenge's name and no header (`Packet.GetHeaderBytes()`), so a `.1_0_1` file of
-304 bytes is the server's key and one of 336 bytes is the client's challenge.
+304 bytes was the server's key and one of 336 bytes the client's challenge.
 Build of 2026-11-01 (net10.0, Debug): `Arrowgene.Ddon.Cli.dll` sha256
 `d75b26ef7fcce075205e3a830e660781622687420dafad21447355dd4c6a32b1`, `Arrowgene.Ddon.Cli.exe`
 `d624bc12ef8f661d48e6c104d2ae40a811d9663f260ba6de408d68f4b45ca344`.
+
+`PacketCommand.DecryptPackets` is patched a third time (spec 006 T002e,
+`../specs/006-packet-pattern-coverage/research/T003-connection-server-cert.md` sections 1 and 15):
+the server's first packet is its certificate notice, which the client's receive path (`0x9d6d20`)
+dispatches under a synthesised header, so the patch relabels the server factory's first resolved
+packet as `S2C_CERT_GAME_SERVER_CERT_NTC` 44.1.16 (game) or `L2C_LOGIN_SERVER_CERT_NTC` 1.1.16
+(login), source `Server`, counter 0. Both ids already exist in the CLI's `PacketId.cs` (lines 1737
+and 162). A helper `HeaderBytes` in `PacketCommand` keeps these two raws header-less, as the client
+challenge is (`Packet.GetHeaderBytes()` itself is unchanged). The 125 raws (42 `.1_0_1`, 83
+`.44_0_1` of 304 bytes) became `*_L2C_LOGIN_SERVER_CERT_NTC_*.1_1_16` and
+`*_S2C_CERT_GAME_SERVER_CERT_NTC_*.44_1_16`, byte-identical; the annotated dumps label them
+`Server #000000 (44.1.16) S2C_CERT_GAME_SERVER_CERT_NTC` and no longer try the client challenge
+structure on them. Build of 2026-11-01 (net10.0, Debug): `Arrowgene.Ddon.Cli.dll` sha256
+`d311f08d2278e65dc6fdb1e02797899a2bbcd180d12ded268e51bb5446da03d0`, `Arrowgene.Ddon.Cli.exe`
+`d624bc12ef8f661d48e6c104d2ae40a811d9663f260ba6de408d68f4b45ca344` (unchanged apphost).
 
 A packet that fails to parse is a structure bug, not a capture problem: write an ImHex pattern in
 `../research/03040008/packets/`, check it against the client's `nPacket::Read_*` routine, then fix
@@ -162,6 +177,10 @@ file (the old ones held only the 7-byte payload). All other bytes are identical.
 The 250 first-packet raws (84 `*.1_0_1`, 166 `*.44_0_1`) were replaced on 2026-11-01 by an export
 with the fixed-key patch above (spec 006 T002d); the other files of that export were
 byte-identical to the ones here.
+On 2026-11-01 (spec 006 T002e) a full export with the relabelling patch above reproduced all
+146,891 files: 146,766 byte-identical under the same name, the 125 server certificate notices
+byte-identical under their new names (42 `.1_0_1` -> `.1_1_16`, 83 `.44_0_1` -> `.44_1_16`), no
+other difference; those 125 were renamed here with `git mv`.
 `decrypted_json/` holds only ImHex output (`imhex-export.sh`), so a stream gets a JSON folder only
 when one of its packets was exported with a pattern (125 of 125 streams have one since the login patterns of spec 006 T002).
 
