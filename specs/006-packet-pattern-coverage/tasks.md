@@ -19,6 +19,10 @@ Coordinator: main session. One subagent at a time. Method and rules: `spec.md`.
   the QuestEnemyInfo u32 position (P11a § 1.3); one IDA package, then the pattern fixes.
 - [x] T002 (done: evidence d7f0cebbf2; patterns + JSON 5421fdf867: 21 patterns, 20 ids exported, 1,235/1,235 fit; 1.0.1 pattern unexported until T002c) Login group (C2L/L2C, all directions): evidence + patterns (`evidence-researcher-ida`,
   then `implementer`), extending `C2L_LOGIN_REQ`/`L2C_LOGIN_RES`.
+- [ ] T001d Plain UTF-8 JSON strings (Sam, 2026-11-01): plbatch's PatternLanguage pin `fb6ea061`
+  percent-encodes strings (110,872 JSON files); upstream master writes UTF-8. Bump the pin, rebuild,
+  re-export everything, verify by sample (`implementer`, brief `briefs/T001d-utf8-json-strings.md`);
+  runs right after T003's evidence.
 - [ ] T003+ One evidence + one implementer package per group, by captured count (13 instance,
   0 connection, 11 quest, 33 job, 62 season dungeon, 23 area, 14, 8 pawn, 10 item, ...), PS4-matched
   ids only; a reviewer after every few groups.
