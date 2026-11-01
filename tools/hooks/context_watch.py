@@ -1,6 +1,9 @@
 """PostToolUse and UserPromptSubmit hook for the main session: one reminder each time the
-coordinator's context crosses a threshold, so it asks the user to `/compact` at a natural break
-instead of drifting into the automatic compaction mid-step.
+coordinator's context crosses a threshold, so it commits its records at a natural break before
+the automatic compaction at the 550k window (`autoCompactWindow` in `.claude/settings.local.json`,
+Sam, 2026-11-01) instead of mid-step. It never asks for `/compact`: a manual one throws away the
+prompt cache (the reconstructor's rule, 002 report F3). The thresholds start about 100k before the
+window.
 
 The context is the last response's input + cache-creation + cache-read tokens, read from the
 transcript's tail. Subagents are skipped (their input carries `agent_id`). The state (the highest
@@ -17,8 +20,9 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import hooklib  # noqa: E402
 
-THRESHOLDS = (300_000, 500_000, 700_000, 850_000, 930_000)
-COMPACT_NOW = 700_000
+WINDOW = 550_000
+THRESHOLDS = (450_000, 500_000, 530_000)
+COMMIT_NOW = 500_000
 TAIL = 1_000_000
 
 
@@ -66,12 +70,14 @@ def reminder(data):
     directory.mkdir(parents=True, exist_ok=True)
     stamp.write_text(str(crossed), encoding="utf-8")
     head = f"Context check: this session's context is {tokens // 1000}k tokens (over {crossed // 1000}k). "
-    if tokens < COMPACT_NOW:
-        todo = ("Finish the step in hand; at the next natural break, record state in the feature's tasks.md and "
-                "ask the user to run /compact.")
+    if tokens < COMMIT_NOW:
+        todo = (f"Finish the step in hand; at the next natural break, commit the records (the feature's tasks.md: "
+                f"running agent ids, next step) before the automatic compaction at {WINDOW // 1000}k. "
+                f"Never ask the user for /compact.")
     else:
-        todo = ("Compact at this break: commit the records (tasks.md, receipts, running agent ids), then ask the "
-                "user to run /compact. Spawn fresh agents with briefs instead of resuming large ones.")
+        todo = (f"Commit the records at this break (tasks.md, receipts, running agent ids, next step): the "
+                f"automatic compaction at {WINDOW // 1000}k is near. Never ask the user for /compact. Spawn "
+                f"fresh agents with briefs instead of resuming large ones.")
     return head + todo
 
 

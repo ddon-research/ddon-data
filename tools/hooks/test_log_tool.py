@@ -65,16 +65,24 @@ class ContextWatchTest(unittest.TestCase):
     def test_reminds_once_per_threshold_and_skips_subagents(self):
         with tempfile.TemporaryDirectory() as tmp:
             ledger, transcript = Path(tmp), Path(tmp, "session.jsonl")
-            transcript.write_text(response(100_000) + "\n" + response(320_000) + "\n", encoding="utf-8")
+            transcript.write_text(response(100_000) + "\n" + response(440_000) + "\n", encoding="utf-8")
             data = {"transcript_path": str(transcript), "hook_event_name": "PostToolUse", "tool_name": "Bash"}
+            self.assertEqual(run("context_watch.py", data, ledger).stdout.strip(), "", "below 450k: quiet")
+            with open(transcript, "a", encoding="utf-8") as handle:
+                handle.write(response(460_000) + "\n")
             first = run("context_watch.py", data, ledger)
-            self.assertIn("320k", first.stdout)
+            self.assertIn("460k", first.stdout)
+            self.assertIn("next natural break", first.stdout)
             self.assertEqual(json.loads(first.stdout)["hookSpecificOutput"]["hookEventName"], "PostToolUse")
             self.assertEqual(run("context_watch.py", data, ledger).stdout.strip(), "")
             self.assertEqual(run("context_watch.py", {**data, "agent_id": "a"}, ledger).stdout.strip(), "")
             with open(transcript, "a", encoding="utf-8") as handle:
-                handle.write(response(720_000) + "\n")
-            self.assertIn("Compact at this break", run("context_watch.py", data, ledger).stdout)
+                handle.write(response(510_000) + "\n")
+            late = run("context_watch.py", data, ledger).stdout
+            self.assertIn("Commit the records at this break", late)
+            self.assertIn("550k", late)
+            for text in (first.stdout, late):
+                self.assertNotIn("run /compact", text, "never ask the user for /compact")
 
 
 if __name__ == "__main__":
