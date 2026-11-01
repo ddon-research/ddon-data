@@ -16,10 +16,12 @@
 #   IMHEX        ImHex executable (default: imhex on PATH, then the portable install below)
 #   RAW_DIR      input root  (default: decrypted_raw)
 #   JSON_DIR     output root (default: decrypted_json)
-#   PATTERN_DIR  pattern dir (default: ../research/03040008/packets)
+#   PATTERN_DIR  pattern dir (default: ../research/03040008/packets); its include/ folder, when
+#                present, is passed to ImHex with -I, so patterns can share
+#                `#include "nNetMsg.hexpat"` and the like
 #
-# Example: ./imhex-export.sh S2C_JOIN_LOBBY_QUEST_INFO_NTC S2C_JOIN_LOBBY_QUEST_INFO_NOTICE 8
-#   then:  rg -o -h 'msgId.*' -g '*LOBBY_DATA_MSG_NTC*.json' decrypted_json | sort -u
+# Example: ./imhex-export.sh --force C2S_PARTY_SEND_BINARY_MSG_NTC C2S_PARTY_SEND_BINARY_MSG_NTC 32
+#   then:  fd -g '*_C2S_PARTY_SEND_BINARY_MSG_NTC_*.json' decrypted_json -X jq -r '.packet | "\(.msgId) \(.msgFits)"' | sort | uniq -c
 set -o errexit
 set -o nounset
 set -o pipefail
@@ -54,6 +56,13 @@ PATTERN="$PATTERN_DIR/$PATTERN_NAME-pattern.cpp"
 require basename dirname grep mkdir mktemp mv rm tee xargs
 [[ -d "$RAW_DIR" ]] || die "input directory '$RAW_DIR' not found"
 [[ -f "$PATTERN" ]] || die "pattern file '$PATTERN' not found"
+
+# Shared pattern headers. Native Windows ImHex needs a Windows path for -I.
+INCLUDE_DIR=
+if [[ -d "$PATTERN_DIR/include" ]]; then
+  INCLUDE_DIR="$PATTERN_DIR/include"
+  if command -v cygpath >/dev/null 2>&1; then INCLUDE_DIR=$(cygpath -aw "$INCLUDE_DIR"); fi
+fi
 
 if [[ -z ${IMHEX:-} ]]; then
   if command -v imhex >/dev/null 2>&1; then
@@ -100,7 +109,9 @@ export_one() {
     fi
   fi
   rm -f "$tmp"
-  if "$IMHEX" --pl format --pattern "$PATTERN" --input "$input" --output "$tmp" >"$out.err" 2>&1 \
+  local includes=()
+  [[ -z "$INCLUDE_DIR" ]] || includes=(-I "$INCLUDE_DIR")
+  if "$IMHEX" --pl format "${includes[@]}" --pattern "$PATTERN" --input "$input" --output "$tmp" >"$out.err" 2>&1 \
       && [[ -s "$tmp" ]]; then
     mv -f "$tmp" "$out"
     rm -f "$out.err"
@@ -112,7 +123,7 @@ export_one() {
   fi
 }
 export -f export_one
-export IMHEX PATTERN RAW_DIR JSON_DIR FORCE
+export IMHEX PATTERN RAW_DIR JSON_DIR FORCE INCLUDE_DIR
 
 echo "Exporting ${#inputs[@]} packet(s) matching '$FILTER' with $PATTERN ($JOBS job(s))"
 log=$(mktemp)
