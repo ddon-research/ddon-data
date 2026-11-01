@@ -8,7 +8,13 @@ the prompt. Each refusal names the replacement:
 - `sd` with a newline in its pattern but without `-A` (matches nothing, exits 0);
 - unsigned or unverified commits (`--no-gpg-sign`, `-c commit.gpgsign=false`, `--no-verify`,
   `commit -n`);
-- blanket staging (`git add -A|--all|.|:/|-u`, `git commit -a`): stage explicit paths;
+- blanket staging (`git add -A|--all|.|:/`, bare `git add -u`, `git commit -a`, a directory without
+  `--`): stage explicit paths, or owned folders as `git add -- <dir> <dir>` (at most MAX_FOLDERS,
+  never the checkout, a parent of it or a glob; T020);
+- `--pathspec-from-file` (quadratic against the 437k-entry index): `git update-index --add --remove
+  -z --stdin` instead (T020);
+- a `git commit` without `-- <paths>` (or with `-i`) while the index holds staged paths the same
+  command line does not `git add`: other sessions' staged work would ride along (T017);
 - forced or deleting pushes, and pushes of any branch other than the current one;
 - polling: a `while`/`until` loop around `sleep`, or a wait-and-look command (sleep, date, process
   lists, `tail`) again within 60 s from the same agent: use `run_in_background` and end the turn.
@@ -48,6 +54,7 @@ WAITS = {"sleep", "start-sleep", "wait", "wait-process", "wait-job", "wait-event
 PROBES = WAITS | {"date", "get-date", "uptime", "tasklist", "ps", "get-process", "tail"}
 LOOPS = {"while", "until"}
 COMMIT_VALUED = set("mFCct")
+MAX_FOLDERS = 5
 
 
 def without_heredocs(command):
@@ -221,7 +228,107 @@ def short_flags(arguments, valued):
     return letters
 
 
-def check_git(words, cwd):
+def after_dashdash(arguments):
+    """The words after the first `--`, or None when there is no `--`."""
+    return arguments[arguments.index("--") + 1:] if "--" in arguments else None
+
+
+def check_add(directory, arguments):
+    """Blanket staging is refused; owned folders are staged as `git add -- <dir> ...` (T020)."""
+    blanket = {"-A", "--all", ".", "./", ":/", ":", "*", "--no-ignore-removal"}
+    letters = short_flags(arguments, set())
+    paths = after_dashdash(arguments)
+    if blanket & set(arguments) or "A" in letters:
+        return "Blanket staging (`git add -A`, `.`, `-u`) is not used here: stage the change's explicit paths (this worktree holds other people's dirty work)."
+    if ("u" in letters or "--update" in arguments) and not paths:
+        return ("Bare `git add -u` stages every tracked change in the checkout, other people's included: name the "
+                "paths after `--` (`git add -u -- <dir>`).")
+    # A directory stages every dirty and untracked file under it (2026-10-17, ddon-hook: `git add specs`
+    # swept 377 files of other work into a commit). After `--` it is a deliberate folder pathspec for a
+    # folder the brief owns (T020, 005 P6: 290k literal paths took 45 min), allowed up to MAX_FOLDERS.
+    base = Path(directory or ".")
+    if paths is None:
+        named = [word for word in arguments if not word.startswith("-")]
+        folders = [path for path in named if (base / path).is_dir()]
+        if folders:
+            return (f"`git add {folders[0]}` stages a whole directory, including other people's dirty and untracked "
+                    f"files: stage the change's explicit file paths, or, for folders your brief owns, "
+                    f"`git add -- {folders[0]}` (at most {MAX_FOLDERS} folders).")
+        return None
+    folders = [path for path in paths if (base / path).is_dir()]
+    try:
+        here = base.resolve()
+        broad = [path for path in folders if (base / path).resolve() in (here, *here.parents)]
+    except OSError:
+        broad = []
+    if broad or any(any(ch in path for ch in "*?[") or path.startswith(":") for path in paths):
+        return ("`git add --` takes owned folders or files, never the checkout itself, a parent of it, a glob or a "
+                "magic pathspec: name the folders your brief owns.")
+    if len(folders) > MAX_FOLDERS:
+        return (f"`git add --` with {len(folders)} folders: at most {MAX_FOLDERS} folder pathspecs; for a long path "
+                "list use `git update-index --add --remove -z --stdin`.")
+    return None
+
+
+def staged_paths(directory):
+    """The repository root and the staged paths (root-relative), or None when git cannot say."""
+    try:
+        top = subprocess.run(["git", "-C", directory, "rev-parse", "--show-toplevel"],
+                             capture_output=True, text=True, encoding="utf-8", timeout=10)
+        diff = subprocess.run(["git", "-C", directory, "diff", "--cached", "--name-only", "-z"],
+                              capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=30)
+    except (OSError, subprocess.SubprocessError):
+        return None
+    if top.returncode != 0 or diff.returncode != 0:
+        return None
+    return Path(top.stdout.strip()), [p for p in diff.stdout.split("\0") if p]
+
+
+def check_commit_scope(directory, arguments, letters, added):
+    """A commit without `-- <paths>` takes the whole index: refuse it while the index holds paths this
+    command line does not stage itself (T017: 002 P4's b204c9daad committed three files another session
+    had staged). `-i`/`--include` adds the index to the named paths, so it counts as bare."""
+    paths = after_dashdash(arguments)
+    if paths and "i" not in letters and "--include" not in arguments:
+        return None
+    found = staged_paths(directory or ".")
+    if found is None:
+        return ("Could not read the index to check what a bare `git commit` would take: commit with "
+                "`git commit -m <msg> -- <paths or owned folders>`.")
+    top, staged = found
+    try:
+        top = top.resolve()
+        mine = [(Path(where) / path).resolve() for where, path in added]
+    except OSError:
+        mine = []
+    others = []
+    for path in staged:
+        full = (top / path).resolve()
+        if not any(full == own or own in full.parents for own in mine):
+            others.append(path)
+    if not others:
+        return None
+    sample = ", ".join(others[:3]) + (f" and {len(others) - 3} more" if len(others) > 3 else "")
+    return (f"A `git commit` without `-- <paths>` commits the whole index, which holds {len(others)} staged "
+            f"paths this command does not stage ({sample}): commit with `git commit -m <msg> -- <your paths "
+            "or owned folders>`.")
+
+
+def added_paths(line, cwd):
+    """(directory, path) for every path a `git add` in this command line stages."""
+    added = []
+    for stages in line:
+        for words in stages:
+            if words and name_of(words[0]) == "git":
+                _, directory, sub, arguments = git_parts(words, cwd)
+                if sub == "add":
+                    after = after_dashdash(arguments)
+                    named = after if after is not None else [w for w in arguments if not w.startswith("-")]
+                    added += [(directory, path) for path in named]
+    return added
+
+
+def check_git(words, cwd, added=()):
     settings, directory, sub, arguments = git_parts(words, cwd)
     if sub is None:
         return None
@@ -229,24 +336,20 @@ def check_git(words, cwd):
     if sub in ("commit", "merge", "rebase", "cherry-pick", "revert", "am", "pull", "tag", "commit-tree"):
         if "--no-gpg-sign" in arguments or unsigned & set(settings) or "--no-verify" in arguments:
             return "Commits stay signed and verified (AGENTS.md): no `--no-gpg-sign`, `commit.gpgsign=false` or `--no-verify`. If signing fails, stop and report."
+    if sub in ("add", "commit", "rm", "restore", "checkout", "reset") and any(
+            word == "--pathspec-from-file" or word.startswith("--pathspec-from-file=") for word in arguments):
+        return ("`--pathspec-from-file` matches each listed path against the whole index (quadratic: 005 P6's "
+                "~290k-path `git add` ran 45 min). Stage owned folders as `git add -- <dir> <dir>`, or a path "
+                "list with `git update-index --add --remove -z --stdin < <NUL-separated list>`.")
     if sub == "commit":
         letters = short_flags(arguments, COMMIT_VALUED)
         if "n" in letters:
             return "`git commit -n` skips the hooks (`--no-verify`): commit without it."
         if "a" in letters or "--all" in arguments:
             return "`git commit -a` stages every tracked change: `git add` the change's explicit paths, then commit."
+        return check_commit_scope(directory, arguments, letters, added)
     if sub == "add":
-        blanket = {"-A", "--all", ".", "./", ":/", ":", "*", "-u", "--update", "--no-ignore-removal"}
-        letters = short_flags(arguments, set())
-        if blanket & set(arguments) or "A" in letters or "u" in letters:
-            return "Blanket staging (`git add -A`, `.`, `-u`) is not used here: stage the change's explicit paths (this worktree holds other people's dirty work)."
-        # A directory stages every dirty and untracked file under it (2026-10-17, ddon-hook: `git add specs`
-        # swept 377 files of other work into a commit).
-        paths = [word for word in arguments if not word.startswith("-")]
-        folders = [path for path in paths if Path(directory or ".", path).is_dir()]
-        if folders:
-            return (f"`git add {folders[0]}` stages a whole directory, including other people's dirty and untracked "
-                    "files: stage the change's explicit file paths.")
+        return check_add(directory, arguments)
     if sub == "push":
         return check_push(directory, arguments)
     return None
@@ -422,13 +525,14 @@ def verdict(data):
     shell = "powershell" if data.get("tool_name") == "PowerShell" else "bash"
     cwd = data.get("cwd") or "."
     line = pipelines(command)
+    added = added_paths(line, cwd)
     for stages in line:
         reason = check_tools(stages, shell) or check_large_output(stages)
         if reason:
             return reason
         for words in stages:
             if words and name_of(words[0]) == "git":
-                reason = check_git(words, cwd)
+                reason = check_git(words, cwd, added)
                 if reason:
                     return reason
     return check_sd(command) or check_polling(data, command, line)

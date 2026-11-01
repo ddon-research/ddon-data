@@ -132,8 +132,11 @@ class GuardBashTest(unittest.TestCase):
         self.env.start()
         self.branch = mock.patch.object(guard_bash, "current_branch", return_value="rng-monitor")
         self.branch.start()
+        self.staged = mock.patch.object(guard_bash, "staged_paths", return_value=(Path(".").resolve(), []))
+        self.staged.start()
 
     def tearDown(self):
+        self.staged.stop()
         self.branch.stop()
         self.env.stop()
         self.tmp.cleanup()
@@ -158,6 +161,42 @@ class GuardBashTest(unittest.TestCase):
             self.assertIsNotNone(check(f"git -C {root} add specs"))
             self.assertIsNone(check("git add specs/011/tasks.md"))
             self.assertIsNone(check("git add -- specs/011/tasks.md missing.txt"))
+            # T020: owned folders after `--`, a handful at most; never the checkout, a parent or a glob.
+            for i in range(6):
+                (Path(root) / "d" / str(i)).mkdir(parents=True)
+            self.assertIsNone(check("git add -- specs/011 d/0"))
+            self.assertIsNone(check("git add -u -- d/0"))
+            self.assertIsNotNone(check("git add -- d/0 d/1 d/2 d/3 d/4 d/5"))
+            self.assertIsNotNone(check("git add -- d/.."))
+            self.assertIsNotNone(check("git add -- specs/.."))
+            self.assertIsNotNone(check("git add -- d/*"))
+            self.assertIsNotNone(check("git add -- ."))
+            self.assertIsNotNone(check("git add -A -- d/0"))
+            self.assertIsNotNone(check("git add -u"))
+            for command in ("git add --pathspec-from-file=list.txt", "git add --pathspec-from-file list.txt",
+                            "git commit -m x --pathspec-from-file=list.txt"):
+                self.assertIn("update-index", check(command))
+
+    def test_bare_commit_with_other_staged_paths(self):
+        # T017: a commit without `-- <paths>` takes the whole index, other sessions' staged files included.
+        root = Path(self.tmp.name).resolve()
+        cwd = str(root)
+        others = (root, ["research/external/flag-smasher.csx", "tools/hooks/a.py"])
+        own = (root, ["tools/hooks/a.py", "tools/hooks/sub/b.py"])
+
+        def verdict(command, staged):
+            with mock.patch.object(guard_bash, "staged_paths", return_value=staged):
+                return guard_bash.verdict({**data(command, call=command), "cwd": cwd})
+
+        reason = verdict("git add tools/hooks/a.py && git commit -m x", others)
+        self.assertIn("flag-smasher.csx", reason)
+        self.assertIn("-- <your paths", reason)
+        self.assertIsNotNone(verdict("git commit -m x", own))
+        self.assertIsNotNone(verdict("git commit -i -m x -- tools/hooks/a.py", others))
+        self.assertIsNotNone(verdict("git commit -m x", None))
+        self.assertIsNone(verdict("git add -- tools/hooks/a.py tools/hooks/sub && git commit -m x", own))
+        self.assertIsNone(verdict("git commit -m x -- tools/hooks/a.py", others))
+        self.assertIsNone(verdict("git commit -m x", (root, [])))
 
     def test_powershell(self):
         self.assertIsNotNone(guard_bash.verdict(data("Get-Content big.log | Select-Object -First 20", "PowerShell")))
