@@ -29,8 +29,8 @@ Coordinator: main session. One subagent at a time. Method and rules: `spec.md`.
 - T002c done (`research/T002c-challenge-decrypt.md`: the first packet of each direction uses the
   client's fixed Camellia key; the CLI used the session key; the 304 B files are the server's public
   key packet misnamed 1.0.1; same defect for 166 `44.0.1` files). Running: T002d re-decryption, brief
-  `briefs/T002d-challenge-redecrypt.md`, names unchanged. Open for Sam: a name for the server's
-  first packet (no PC/PS4 name found). Next: T003 group 0 (CONNECTION) evidence.
+  `briefs/T002d-challenge-redecrypt.md`, names unchanged. Sam (2026-11-01): keep the current names
+  for the server's first packet (no PC/PS4 name; patterns select by size). Next: T003 group 0 (CONNECTION) evidence.
 - Coordinator housekeeping until 002 T021 lands: after each IDA package, stop its `idat.exe` workers
   (`scratchpad/idaprocs.ps1` lists them) and delete its `ddon-data-<name>` copies.
 
