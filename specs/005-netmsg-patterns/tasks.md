@@ -16,3 +16,11 @@ Coordinator: main session. One subagent at a time.
 ## Running agents
 
 (none)
+
+## Next step (2026-11-01)
+
+The `ida` server (local scope) and the role `evidence-researcher-ida` (commit da7e67ad74e) load
+only in a new session. In the new session: check `mcp__ida__*` is listed, then spawn
+`evidence-researcher-ida` with `briefs/P1-ps4-wire-format.md` (T003); P2 (PC deltas) follows from
+its report. The coordinator read the PS4 decoder only as far as `research.md` records (from the
+`.elf.c` export, before Sam asked for IDA MCP instead); P1 re-reads it in IDA.
