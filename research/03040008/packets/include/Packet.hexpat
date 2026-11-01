@@ -28,11 +28,9 @@ struct CPacket {
 };
 
 // RES header (P4 1): s32 Error; only if Error == 0 an s32 Result follows (PC readers 0x805340,
-// 0x8015b0, 0x801530).
-struct ResHeader {
-    s32 Error;
-    if (Error == 0) s32 Result;
-};
+// 0x8015b0, 0x801530). Convention (spec 005 R2 F3): every RES pattern writes it inline,
+// `s32 Error; if (Error == 0) { s32 Result; ... }`, so the JSON holds `packet.Error` and
+// `packet.Result` for every RES; there is no shared ResHeader struct.
 
 // MtTypedArray<T> on the wire: u32 count + count elements. Every PC list reader starts with
 // nPacket::Read_u32 into the count (P11a G5, V).

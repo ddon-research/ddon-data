@@ -13,7 +13,11 @@ import std.mem;
 
 struct S2C_CONTEXT_GET_SET_CONTEXT_RES : CPacket {
     bool sourceOk = source == 0x34 [[export]];  // header source byte: 0x34 server (Packet.hexpat)
-    ResHeader res;
+    // RES convention (spec 005 R2 F3): Error inline, Result only when Error == 0.
+    s32 Error;
+    if (Error == 0) {
+        s32 Result;
+    }
     // Fit: the decode ends within the last 15 bytes (cipher block padding; Packet.hexpat).
     u128 paddingSize = std::mem::size() - $ [[export]];
     bool fits = paddingSize <= 15 [[export]];
