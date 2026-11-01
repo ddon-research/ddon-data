@@ -10,6 +10,9 @@
 ddon-data (ported from ddon-hook 4c625de): role agents share the main checkout, which holds other
 work, so `status` covers only the files the receipt's commits touch, not the whole tree. A second stop in a row
       (`stop_hook_active`) and any internal failure let the agent stop (exit 0).
+An interim stop also passes (ported from the reconstructor, retro-029 F5): one with live background
+tasks (`background_tasks` > 0), or a message of at most 3 lines whose first starts `waiting:` or
+`blocked:` (the agent waits for a run or asks the coordinator; its receipt comes later).
 
 The block:
     ## Receipt <package>
@@ -32,10 +35,13 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import hooklib  # noqa: E402
+from subagent_stop import count  # noqa: E402
 
 HEX = re.compile(r"^[0-9a-f]{7,40}$")
 REFUSED = "receipt refused:"
 IGNORED_STATUS = (".claude/settings.local.json",)
+INTERIM = ("waiting:", "blocked:")
+INTERIM_LINES = 3
 
 
 def git(cwd, *args):
@@ -127,18 +133,29 @@ def problems(claimed, ident):
     return found
 
 
+def interim(message):
+    """True for a short `waiting:` or `blocked:` stop: at most 3 non-blank lines, the first one so."""
+    lines = [line for line in message.strip().splitlines() if line.strip()]
+    return 0 < len(lines) <= INTERIM_LINES and lines[0].strip().lower().startswith(INTERIM)
+
+
 def check(data):
     """0 lets the agent stop, 2 refuses its final message."""
     if data.get("stop_hook_active"):
         return 0
+    if count(data.get("background_tasks")) > 0:
+        return 0  # it waits for its own background run, whose completion wakes it
     message = data.get("last_assistant_message")
     if not isinstance(message, str):
         return 0  # this Claude Code version does not pass the message: fail open
+    if interim(message):
+        return 0
     claimed = parse(message)
     if claimed is None:
         print(f"{REFUSED} end your final message with the receipt block: run "
               f"`python -X utf8 -I {Path(__file__).as_posix()} --print --base <base> --package <name>` "
-              f"and fill in gates and state.", file=sys.stderr)
+              f"and fill in gates and state. To wait or ask instead, end with at most 3 lines, the first "
+              f"starting `waiting: <what>` or `blocked: <why>`.", file=sys.stderr)
         return 2
     base = claimed.get("base", "")
     if not HEX.match(base):

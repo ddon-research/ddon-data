@@ -90,6 +90,22 @@ class ReceiptTest(unittest.TestCase):
         self.assertEqual(unsigned.returncode, 2, "the throwaway commit is unsigned")
         self.assertEqual(stop({"cwd": str(self.repo), "last_assistant_message": "x", "stop_hook_active": True}).returncode, 0)
         self.assertEqual(stop({"cwd": str(self.repo)}).returncode, 0, "no message: fail open")
+        self.assertIn("waiting:", missing.stderr, "the refusal names the interim form")
+
+    def test_interim_stops_pass(self):
+        # Ported from the reconstructor (retro-029 F5): waiting for a run or asking is not a final stop.
+        def check(**data):
+            return receipt.check({"cwd": str(self.repo), **data})
+
+        self.assertEqual(check(last_assistant_message="All done.", background_tasks=1), 0)
+        self.assertEqual(check(last_assistant_message="All done.", background_tasks=[{"id": "t"}]), 0)
+        self.assertEqual(check(last_assistant_message="All done.", background_tasks=[]), 2)
+        self.assertEqual(check(last_assistant_message="All done.", background_tasks=0), 2)
+        for text in ("waiting: check.sh in the background", "blocked: signing failed\nsee above",
+                     "\nWaiting: a\nb\nc\n", "blocked:x\n\n\nline 2\nline 3"):
+            self.assertEqual(check(last_assistant_message=text), 0, text)
+        for text in ("waiting: a\nb\nc\nd", "I am waiting: soon", "", "done\nwaiting: x"):
+            self.assertEqual(check(last_assistant_message=text), 2, text)
 
 
 if __name__ == "__main__":
