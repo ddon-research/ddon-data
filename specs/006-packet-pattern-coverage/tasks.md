@@ -26,7 +26,11 @@ Coordinator: main session. One subagent at a time. Method and rules: `spec.md`.
 
 ## Running
 
-- T001c done (3ef33ecaff, a564bde7f0). Running: T002 login evidence, brief `briefs/T002-login.md`.
+- T002 evidence done (d7f0cebbf2, `research/T002-login.md`: 21/21 PS4 matches V by status slot or
+  body; 20/20 walked ids fit, 1,235 files; 5 Arrowgene errors; IDA copies deleted). Running: T002
+  patterns, brief `briefs/T002b-login-patterns.md`. Then T002c: why the 84 `1.0.1`
+  C2L_CLIENT_CHALLENGE_REQ raws are still ciphertext (304/336 B, no plaintext header; the key search
+  starts at 1.0.2) and re-decrypt them (`repository-researcher` on the pcap toolchain + Arrowgene).
 - Coordinator housekeeping until 002 T021 lands: after each IDA package, stop its `idat.exe` workers
   (`scratchpad/idaprocs.ps1` lists them) and delete its `ddon-data-<name>` copies.
 
