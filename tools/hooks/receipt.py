@@ -45,10 +45,42 @@ INTERIM_LINES = 3
 
 
 def git(cwd, *args):
-    run = subprocess.run(["git", "-C", str(cwd), *args], capture_output=True, text=True, timeout=30)
+    run = subprocess.run(["git", "-C", str(cwd), *args], capture_output=True, text=True, encoding="utf-8",
+                         errors="replace", timeout=120)
     if run.returncode != 0:
         raise RuntimeError(run.stderr.strip() or f"git {' '.join(args)} failed")
     return run.stdout
+
+
+def dirty(porcelain_z, touched):
+    """The `XY path` status lines of `git status --porcelain -z` output whose path is in `touched`.
+
+    One status call without pathspecs, filtered here: a pathspec per touched path overflows the
+    Windows command line (WinError 206 at ~32k characters, 005 P3: 110,065 paths), and a pathspec
+    file is quadratic against the 437k-entry index (002 P5, T019). A rename entry carries its
+    source as the next NUL field; an untracked directory (`?? dir/`) counts when a touched path
+    lies under it.
+    """
+    found, fields, i = [], porcelain_z.split("\0"), 0
+    while i < len(fields):
+        entry = fields[i]
+        i += 1
+        if len(entry) < 4:
+            continue
+        code, path = entry[:2], entry[3:]
+        paths = [path]
+        if "R" in code or "C" in code:
+            if i < len(fields):
+                paths.append(fields[i])
+            i += 1
+        if path.endswith(IGNORED_STATUS):
+            continue
+        hit = any(p in touched for p in paths)
+        if not hit and path.endswith("/"):
+            hit = any(t.startswith(path) for t in touched)
+        if hit:
+            found.append(entry)
+    return found
 
 
 def identity(cwd, base):
@@ -56,9 +88,8 @@ def identity(cwd, base):
     branch = git(cwd, "rev-parse", "--abbrev-ref", "HEAD").strip()
     head = git(cwd, "rev-parse", "HEAD").strip()
     base_sha = git(cwd, "rev-parse", "--verify", f"{base}^{{commit}}").strip()
-    touched = [p for p in git(cwd, "diff", "--name-only", f"{base_sha}..HEAD").splitlines() if p]
-    status = [line for line in git(cwd, "status", "--porcelain", "--", *touched).splitlines()
-              if line and not line[3:].strip().endswith(IGNORED_STATUS)] if touched else []
+    touched = {p for p in git(cwd, "diff", "--name-only", "-z", f"{base_sha}..HEAD").split("\0") if p}
+    status = dirty(git(cwd, "status", "--porcelain", "-z"), touched) if touched else []
     log = git(cwd, "log", "--format=%H %G? %s", f"{base_sha}..HEAD").splitlines()
     commits = [(line.split(" ", 2)[0], line.split(" ", 2)[2] if line.count(" ") >= 2 else "") for line in log]
     signatures = [line.split(" ", 2)[1] for line in log]

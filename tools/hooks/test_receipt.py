@@ -75,6 +75,38 @@ class ReceiptTest(unittest.TestCase):
             other.unlink()
             (self.repo / "b.txt").write_text("b\n", encoding="utf-8")
 
+    def test_200k_touched_paths_never_reach_the_command_line(self):
+        # T019: 005 P3's 110,065-path commit overflowed the command line (WinError 206).
+        touched = [f"packets/decrypted_json/s{i // 1000}/p{i}.json" for i in range(200_000)]
+        status = "\0".join([" M packets/decrypted_json/s7/p7001.json", " M other/work.txt",
+                            "R  packets/new.json", "packets/decrypted_json/s9/p9000.json",
+                            "?? packets/decrypted_json/s199/", "?? elsewhere/", ""])
+        calls = []
+
+        def fake_git(cwd, *args):
+            calls.append(args)
+            if args[0] == "diff":
+                return "\0".join(touched) + "\0"
+            if args[0] == "status":
+                return status
+            if args[0] == "log":
+                return "a" * 40 + " G Add JSON\n"
+            return "a" * 40 + "\n"
+
+        original = receipt.git
+        receipt.git = fake_git
+        try:
+            ident = receipt.identity(self.repo, "base")
+        finally:
+            receipt.git = original
+        self.assertEqual(ident["status"], [" M packets/decrypted_json/s7/p7001.json", "R  packets/new.json",
+                                           "?? packets/decrypted_json/s199/"])
+        self.assertLess(max(sum(len(a) for a in args) for args in calls), 200)
+
+    def test_status_sees_a_renamed_committed_file(self):
+        self.assertEqual(receipt.dirty("R  c.txt\0b.txt\0 M x\0", {"b.txt"}), ["R  c.txt"])
+        self.assertEqual(receipt.dirty("", {"b.txt"}), [])
+
     def test_stop_hook(self):
         script = HERE / "receipt.py"
 
