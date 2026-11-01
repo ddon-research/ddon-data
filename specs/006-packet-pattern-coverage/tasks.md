@@ -32,17 +32,15 @@ Coordinator: main session. One subagent at a time. Method and rules: `spec.md`.
 
 ## Running
 
-- T002c/T002d done (report 83ce3403dd; fix 40f80dc80f + 20a4617cd4; 250 raws re-decrypted).
-- T003 evidence done (d6692cf3b9, `research/T003-connection-server-cert.md`: 27/27 ids V, all
-  captures fit; 0.10.16 = SESSION_STATUS_NTC; PC `Send` 0x9d6a20 strips the header of the
-  handshake packet; the 304 B first-packet files are 44.1.16 S2C_CERT_GAME_SERVER_CERT_NTC (PS4
-  `S2C_GAME_SERVER_CERT_NOTICE`) and 1.1.16 L2C_LOGIN_SERVER_CERT_NTC, filed by the CLI under
-  44.0.1/1.0.1; IDA copies deleted). T003 patterns done (383373ed28, 5bc4846af8). T004 evidence done (f7efade6c6: 32/32 ids,
-  5,617/5,617 fit; 7 unresolved settled, 13.23.16 + 13.16.x/13.17.x Season 3-exclusive). Running: T004
-  patterns, brief `briefs/T004b-instance-patterns.md`; then, then a reviewer over T002-T004 (incl. the
-  two CERT_NTC patterns), T002e done (70201832e1: 125 raws renamed
-  byte-identical to `.1_1_16`/`.44_1_16`, CLI relabel, 2 cert NTC patterns 42/42 + 83/83 fit).
-  Tn: `tests/imhex-export-select.sh` is not run by check.sh.
+- Landed: T002c/T002d (83ce3403dd; 40f80dc80f + 20a4617cd4: 250 first-packet raws re-decrypted);
+  T002e (70201832e1: the 304 B first packets renamed byte-identical to 1.1.16
+  L2C_LOGIN_SERVER_CERT_NTC / 44.1.16 S2C_CERT_GAME_SERVER_CERT_NTC, 2 patterns 42/42 + 83/83 fit);
+  T003 (d6692cf3b9; 383373ed28 + 5bc4846af8: 0.10.16 = SESSION_STATUS_NTC; PC `Send` 0x9d6a20 strips
+  the handshake packet's header); T004 (f7efade6c6; d7d48b68f6).
+- Running: R1 reviewer over T002-T004 (`briefs/R1-review-T002-T004.md`). Next: T005 group 11
+  (`briefs/T005-quest.md`), its patterns, then groups 33, 3, 8, 14, 10, 37 by the triage order.
+- Tn: `tests/imhex-export-select.sh` is not run by check.sh; the u64 OM `Key` (13.20.x/13.22.2) exceeds
+  2^53 in JSON (README note).
 - Tn: raws whose names are placeholders but code names them (first: 0.10.16 = SESSION_STATUS_NTC,
   T003 § 9): one CLI `PacketId` relabel + rename package at spec end (Sam 2026-11-01 chose renaming
   for code-backed names).
