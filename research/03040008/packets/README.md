@@ -108,7 +108,8 @@ Status `n/m fit` means that n of the m JSON files of that type in `packets/decry
 means no raw file exists, so the pattern was checked on synthetic input at most. The Report column
 gives the section the pattern header cites: P11a and P11b are
 `specs/005-netmsg-patterns/research/P11*-old-patterns.md`, and P1, P4 and P5 are the reports of
-those names.
+those names. T001b is `specs/006-packet-pattern-coverage/research/T001b-save-blob.md`, the save
+blob that 9.0.2 and 9.1.1 share through `include/CharacterData.hexpat`.
 
 | Id | Pattern | Report | Status |
 | --- | --- | --- | --- |
@@ -127,8 +128,8 @@ those names.
 | 6.25.16 | `C2S_PARTY_SEND_BINARY_MSG_NTC` | P1 §1.1 | 29176/29176 fit |
 | 6.26.16 | `S2C_PARTY_RECV_BINARY_MSG_NTC` | P1 §1.1 | no capture |
 | 8.30.2 | `S2C_PAWN_GET_NORA_PAWN_LIST_RES` | P11b §14 | 41/41 fit |
-| 9.0.2 | `S2C_BINARY_SAVE_GET_CHARACTER_BIN_SAVEDATA_RES` | P4 §3 | no capture |
-| 9.1.1 | `C2S_BINARY_SAVE_SET_CHARACTER_BIN_SAVEDATA_REQ` | P4 §3 | 47/47 fit |
+| 9.0.2 | `S2C_BINARY_SAVE_GET_CHARACTER_BIN_SAVEDATA_RES` | P4 §3, T001b §4 | no capture (synthetic: versions 0x19, 0x13, 0x0C) |
+| 9.1.1 | `C2S_BINARY_SAVE_SET_CHARACTER_BIN_SAVEDATA_REQ` | P4 §3, T001b | 47/47 fit; 47/47 equal T001b's walk field by field |
 | 10.9.2 | `S2C_ITEM_GET_ITEM_STORAGE_INFO_RES` | P11b §13 | 4/4 fit |
 | 11.15.2 | `S2C_QUEST_GET_CYCLE_CONTENTS_NEWS_LIST_RES` | P11a §5 | 6/6 fit |
 | 11.19.2 | `S2C_QUEST_GET_AREA_BONUS_LIST_RES` | P11a §9 | 182/182 fit |
@@ -182,9 +183,6 @@ those names.
 
 ## Open items
 
-- **Save blob bit walk (9.1.1):** `C2S_BINARY_SAVE_SET_CHARACTER_BIN_SAVEDATA_REQ` decodes the two
-  version fields. The rest of the `cCharacterData::serialize` bit stream stays `undecoded` bytes
-  until someone reads the BitWriter bit order (P4 §3.1).
 - **35.12.16 tail:** `S2C_CONTEXT_35_12_16_NTC` decodes up to its second list. The list element that
   PC 0x76fc20 reads and the count that 0x757e60 reads are not decoded (P4 §5), so `decoded` is
   false. There is no capture.

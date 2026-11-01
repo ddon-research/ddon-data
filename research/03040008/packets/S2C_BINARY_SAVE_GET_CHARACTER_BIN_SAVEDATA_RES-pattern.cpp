@@ -11,19 +11,14 @@
 import std.mem;
 
 #include "Packet.hexpat"
+#include "CharacterData.hexpat"
 
-// cCharacterData::serialize bit stream (P4 3.1; PS4 0x49740, PC serializer 0x467790, flush
-// 0x896a40). Only the two leading u32 are decoded: they read as plain big-endian values in the
-// captures (P4 3.1, PC-cap). The bit-level walk of the rest against P4 3.1's field list was not
-// run (no file, SHA-256 or offset is recorded), so whether it is byte-aligned is open.
-// TODO: decode the rest per P4 3.1 (mCheckPawnHistory[16], mQuestEtcF, stTutorialGuide, the
-// talked flags, mIsAppraiseTalked + 1 new bit, stOptionData (32 bits, 17 u8, 1 u32 on PC),
-// mChatCstmCh[2], u32[16] x 2 new) once the BitWriter bit order and Elias-delta use are read.
-struct CharacterBinSaveData {
-    u32 mVersion;          // captures: 0x19
-    u32 mReleaseVersion;   // captures: 0x3040
-    u8 undecoded[1016];    // TODO (bit stream, see above)
-};
+// cCharacterData save blob (include/CharacterData.hexpat; T001b =
+// specs/006-packet-pattern-coverage/research/T001b-save-blob.md 4). The handler (PC 0x7c68de)
+// reads it with the BitReader mirror of the writer through sub_466560, which tests the blob's
+// mVersion before each field (V): g_cdGated applies those gates. At version 0x19 the decode
+// equals the 9.1.1 one (checked on a synthetic response built from a 9.1.1 blob).
+g_cdGated = true;
 
 struct S2C_BINARY_SAVE_GET_CHARACTER_BIN_SAVEDATA_RES : CPacket {
     bool sourceOk = source == 0x34 [[export]];  // header source byte: 0x34 server (Packet.hexpat)
