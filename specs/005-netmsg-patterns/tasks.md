@@ -56,6 +56,28 @@ named "Unknown" (2.13/2.15/2.19/2.20, 13.44-13.47). Counts in brief P4.
   process, estimated; uses PatternLanguage internals, `reset()` drops `#pragma` settings). Only if
   sharded plbatch turns out too slow for the full packet and `client/` exports.
 
+### Old packet patterns (Sam, 2026-11-01: after P10)
+
+The 36 packet patterns in `research/03040008/packets/` created before 2026-11-01 (2024-05-13 to
+2026-10-11, 3,383 lines; list via `git log --diff-filter=A` per file): check for errors, combine
+shared logic into includes with comments, revalidate PS4 -> PC, re-export. Several use names the
+raws no longer carry (`S2C_AREA_23_13_16_NTC` = `S2C_AREA_POINT_UP_NTC`, `S2C_ENEMY_KILL_RES`,
+`S2C_GET_NORA_PAWN_LIST_RES_RES`, `..._NOTICE` forms).
+
+- [ ] T021 P11 `evidence-researcher-ida`, two batches of 18: per packet the PC reader (S2C) or writer
+  (C2S) VA, the Season 3 field table vs the PS4 one (matched by code, never by packet number), the
+  existing pattern's errors, the shared CData structures (include candidates), and a byte walk of
+  one capture; the server's C# only as a lead.
+- [ ] T022 P12 `implementer`: fix and refactor the 36 into shared includes (`Packet.hexpat` and new
+  CData includes), rename to the raws' current names with `// packet-id:` lines, fit flags with
+  slack as P10 defines, re-export with plbatch; counts per type.
+- [ ] T023 R2 `reviewer` on the 36, then docs.
+- Sam (2026-11-01): changes from fixing wrong or missing fields, enums and id/class coverage are
+  expected and fine, but every package lists them for Sam's inspection (per type: the change, why,
+  sampled count, one example file with before/after). Some old patterns were never finished (e.g.
+  `S2C_MANDRAGORA_GET_MY_MANDRAGORA_RES`): P11 marks each pattern finished / partial / stub, and P12
+  completes the partial ones. Verify re-exports by prediction + stratified sample, not per-file diffs.
+
 ### Phase 2: live Season 3 validation (Sam, 2026-11-01: only after the static path is exhausted)
 
 The 2019 captures cover 30 CtrlAction ids, 4 GameEasy/GameNormal ids and no SetNormal/ToolEasy
@@ -117,7 +139,12 @@ the roles directly. Next, in order (one subagent at a time):
    R1 review done (`research/R1-pattern-review.md`): no layout contradicts P1/P2/P5; 10 findings
    (stale JSON on failed `--force`, `-nan` counted ok, weak 15-byte fit flags, group-2 PS4 citations
    from withdrawn numbering, ONLINE_STATUS from server C#, script hygiene). Its fit-flag analysis
-   replaces the planned adversarial check. Running: P10 fixes (`briefs/P10-review-fixes.md`).
+   replaces the planned adversarial check. P10 done (a4597912c0..80cbbf75dc): all ten findings
+   fixed; plbatch validates JSON (0 badjson; nonfinite counted: 61 + 4 in the SET_CONTEXT types),
+   `--json-nonfinite=null` option, stale JSON removed on failure; new keys `sourceOk`, `fits`,
+   `paddingSize`; ONLINE_STATUS names from PS4 DWARF (0xD, in 3,499 of 21,000 3.4.16 packets, is a
+   Season 3 value past PS4's NUM); 63.11.16 has source 0x00 (client) despite its S2C name; slack >= 8
+   bytes in many packets (fit does not confirm widths there). Running: P11a (`briefs/P11-old-patterns-evidence.md`).
    Then: docs, the save-blob bit walk (optional, IDA), spec closing.
 1. (done) P5 (T008) was stopped for the restart before any IDA analysis: `research/P5-pc-send-side.md`
    (`state: cut short`) lists all 8 items as not done, with leads. Spawn a fresh
