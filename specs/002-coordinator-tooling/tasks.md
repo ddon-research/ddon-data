@@ -92,6 +92,10 @@ Report `research/orchestration-port-2026-11.md` (R2, `repository-researcher`, me
 - [ ] T018 `agent_cap.py`: a finished agent stays in `.agent-ledger/running/` (2026-11-01, twice:
       005 P3 and 002 P4 had to be deleted by hand before the next spawn); clear the entry when the
       agent's completion notification fires (SubagentStop), with a test.
+- [ ] T019 `receipt.py --print` fails with WinError 206 on a commit touching 110,065 paths (005 P3's
+      JSON commit 5ce0ff6988): it passes every path to `git status`; use a pathspec file or batches.
+      The same agent was resumed by its own background task's completion after its ledger entry was
+      deleted (see T018), so two agents ran at once for a few minutes.
 - [ ] T017 Guard: refuse `git commit` without a `-- <paths>` pathspec while the index holds staged
       paths of other work. P4's b204c9daad committed three files another session had staged (Sam
       approved the rewrite: soft reset to 1d0ab74e1a, the four commits remade with explicit paths

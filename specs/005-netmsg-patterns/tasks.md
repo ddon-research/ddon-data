@@ -10,8 +10,11 @@ Coordinator: main session. One subagent at a time.
   `briefs/P1-ps4-wire-format.md`, report `research/P1-ps4-wire-format.md`).
 - [x] T004 P2 PC 03040008 deltas against P1 (include table, added fields, framing), brief
   `briefs/P2-pc-deltas.md`, report `research/P2-pc-deltas.md`.
-- [ ] T005 Patterns: shared `nNetMsg` include + 4 packet patterns.
-- [ ] T006 `packets/imhex-export.sh` updates; run over `decrypted_raw`; counts.
+- [x] T005 Patterns: shared `nNetMsg` include + 4 packet patterns (P3, 2a9f798b05).
+- [x] T006 `packets/imhex-export.sh` updates; run over `decrypted_raw`; counts (P3, JSON commit
+  5ce0ff6988): 110,065 packets exported, 0 `.json.err`, every message `msgFits` true; 3.3.16
+  59,881 (23 msg ids), 3.4.16 21,000 (8), 6.25.16 29,176 (25), 6.23.16 8 (1); per-id counts equal
+  P2 6.1. The export took about 4 h (per-file imhex.exe), which led to P7/P8.
 - [ ] T007 Review, docs, commit.
 
 ### Scope widening (Sam, 2026-11-01): relays, context, binary save, character notices
@@ -38,8 +41,15 @@ named "Unknown" (2.13/2.15/2.19/2.20, 13.44-13.47). Counts in brief P4.
   package follows the recommendation, then `imhex-export.sh` uses it. Result: process start
   (150-450 ms) and ~8 Git Bash forks per packet dominate, not the pattern language (~0.3 ms per
   packet in-process); recommended a C++ driver linking libpl at ImHex 1.38.1's pin `fb6ea061`.
-- [ ] T017 P8 `plbatch` (`implementer`, brief `briefs/P8-plbatch.md`): build the driver, prove
-  byte-identical JSON against `imhex --pl format`, switch `imhex-export.sh` to it.
+- [x] T017 P8 `plbatch` (`implementer`, brief `briefs/P8-plbatch.md`): build the driver, prove
+  byte-identical JSON against `imhex --pl format`, switch `imhex-export.sh` to it. Done:
+  2dbc15e036, a390e0d6fb; 3,028/3,028 files byte-identical to ImHex, failures match; ~35
+  packets/s per process (parse 24-25 ms, evaluate 0.5-0.7 ms per file) vs ~1.9/s for imhex.exe,
+  run as `JOBS` shards; build `bash research/imhex/plbatch/build.sh` (MSYS2 mingw64, PL pin
+  fb6ea061).
+- [ ] T018 Optional: parse each pattern once and evaluate per file in plbatch (~1,000 packets/s per
+  process, estimated; uses PatternLanguage internals, `reset()` drops `#pragma` settings). Only if
+  sharded plbatch turns out too slow for the full packet and `client/` exports.
 
 ### Phase 2: live Season 3 validation (Sam, 2026-11-01: only after the static path is exhausted)
 
@@ -98,7 +108,7 @@ files load in a new session):
 3. T013 (P4) done.
 4. The orchestration-port `repository-researcher` (item 2 above): done, filed as
    `specs/002-coordinator-tooling/research/orchestration-port-2026-11.md`, tasks T008-T016 there.
-5. T017 (P8: plbatch), before P6, because P6 re-runs the ImHex export of the four types. P3's
+5. T017 (P8: plbatch) done, before P6, because P6 re-runs the ImHex export of the four types. P3's
    JSON is committed after P8 lands (no coordinator commits in `packets/` while it runs).
 6. T015 (P6: re-export with current names), after P3's JSON is committed; its ImHex step uses plbatch.
 7. T008 (P5: PC send side and the open static items) via `evidence-researcher-ida`.
