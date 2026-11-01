@@ -26,11 +26,9 @@ Coordinator: main session. One subagent at a time. Method and rules: `spec.md`.
 
 ## Running
 
-- T001b evidence done (59e2475eba, `research/T001b-save-blob.md`: LSB-first bits, big-endian bytes
-  per value, 170 writes, 4170 bits, all 47 captures decode; IDA copies deleted). Running: the
-  T001b pattern implementer, brief `briefs/T001b2-save-blob-pattern.md` (done). Next: brief and
-  spawn T001c (`evidence-researcher-ida`, items listed in T001c above), then its pattern fixes, then
-  T002 login.
+- T001c evidence done (3ef33ecaff, `research/T001c-parked-static-items.md`: 5 of 6 items V, item 6
+  partly; P4 § 2.3, P5 item 7 actors and P11a § 1.3 contradicted; IDA copies deleted). Running: the
+  T001c pattern implementer, brief `briefs/T001c2-pattern-fixes.md`. Next: T002 login.
 - Coordinator housekeeping until 002 T021 lands: after each IDA package, stop its `idat.exe` workers
   (`scratchpad/idaprocs.ps1` lists them) and delete its `ddon-data-<name>` copies.
 
