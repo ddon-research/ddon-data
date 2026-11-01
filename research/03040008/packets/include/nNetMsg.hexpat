@@ -4,6 +4,7 @@
 // Sources (transcribed, not re-derived):
 //   P1 specs/005-netmsg-patterns/research/P1-ps4-wire-format.md  PS4 02020005 baseline
 //   P2 specs/005-netmsg-patterns/research/P2-pc-deltas.md        PC 03040008 deltas (override P1)
+//   P5 specs/005-netmsg-patterns/research/P5-pc-send-side.md     PC send side, Season 3 field roles
 // "PC 0x..." is the decoder VA in the PC 03040008 database (image base 0x400000, P2 section 1),
 // "PS4 0x..." the matching DDOORBIS.elf VA (P1). Every multi-byte value is big-endian: include
 // this file after `#pragma endian big`. No type here depends on the default endianness otherwise.
@@ -478,20 +479,21 @@ struct CatchRequest {
     u64 mCatchRequestUid;  // PS4 u32
     u8 mCatchRequestType;
     u8 mCatchJointNo;
-    u64 unk_u64;           // Season 3, no name found
-    u8 unk_u8_0;           // Season 3, no name found
-    u8 unk_u8_1;           // Season 3, no name found
+    u64 unk_u64;           // Season 3, second catch target UID (inferred role, P5 1; no name found)
+    u8 unk_u8_0;           // Season 3, second catch type (inferred role, P5 1)
+    u8 unk_u8_1;           // Season 3, second catch joint no (inferred role, P5 1)
     NormalPos mCatchHitPos;
 };
 
-// CAUGHT_RESULT / ACT_CAUGHT block: PC 0x6000b0; ids 0x1F, 0x20.
+// CAUGHT_RESULT / ACT_CAUGHT block: PC 0x6000b0; ids 0x1F, 0x20. The PC apply 0x88f6e0 reads only
+// the second triple (P5 1).
 struct CatchInfo {
     u8 mCatchType;
     u64 mCatchUid;   // PS4 u32
     u8 mJointNo;
-    u8 unk_u8_0;     // Season 3, no name found
-    u64 unk_u64;     // Season 3, no name found
-    u8 unk_u8_1;     // Season 3, no name found
+    u8 unk_u8_0;     // Season 3, second catch type (inferred role, P5 1; no name found)
+    u64 unk_u64;     // Season 3, second catch UID (inferred role, P5 1)
+    u8 unk_u8_1;     // Season 3, second catch joint no (inferred role, P5 1)
 };
 
 // receiveMsgOmRelease: PC 0x6018a0 (PS4 0x174bc0); ids 0x21, 0x22.
@@ -607,7 +609,8 @@ struct CtrlAction<auto MsgId> {
     if (inc & INC_ENEMYSTATUS_CTRL) EnemyStatusCtrl mEnemyStatusCtrl;
     if (inc & INC_ENEMYWAITTING) bool mEnemyWaitting;
     if (inc & INC_ENEMYSTARTWAIT) bool mEnemyStartWait;
-    if (inc & INC_CORE_POINT) {   // read before DAMAGE_ACT (the PS4 sender writes it after)
+    if (inc & INC_CORE_POINT) {   // read before DAMAGE_ACT (the PS4 and PC senders write it after;
+                                  // no include mask sets both bits, P5 6)
         u16 mRegionCorePointID;
         u16 mActiveTimer;
     }
@@ -642,8 +645,10 @@ struct CtrlAction<auto MsgId> {
             u16 mSoulAbsorpHealVal;
         }
         (0x3B): ShlRequestFromSlave mShlRequestFromSlave;
-        (0x3C): u32 unk_0x3C[4];                     // PC 0x600900, struct +0x658
-        (0x3D): u32 unk_0x3D;                        // PC 0x6008a0, struct +0x668
+        (0x3C): u32 unk_0x3C[4];                     // PC 0x600900, struct +0x658; context array
+                                                     // cContext+0xC48, absolute (P5 1)
+        (0x3D): s32 unk_0x3D;                        // PC 0x6008a0, struct +0x668; signed gauge
+                                                     // delta for uEm024000 (P5 1)
         (_): {}
     }
 };
@@ -706,10 +711,15 @@ struct GameNormal<auto MsgId> {
         }
         (0xF): {                       // Season 3, PC 0x601060
             u32 unk_u32;
-            u64 unk_uid_0;             // inferred: a UID (receive handler 0x894bf0 looks it up)
-            u64 unk_uid_1;             // inferred: a UID
+            u64 unk_uid_0;             // a UID: receive 0x894bf0 looks it up (P5 2), sEnemyManager+0xDB0 block
+            u64 unk_uid_1;             // a UID (P5 2)
         }
-        (0x10 | 0x11 | 0x12): u32 unk_u32;  // Season 3, PC 0x601030 / 0x601300 / 0x6012d0
+        (0x10): u32 unk_u32;           // Season 3, PC 0x601030; sEnemyManager+0xDB0+0x28 (P5 2)
+        // 0x11, 0x12: the PC senders 0x8958b0 / 0x895870 write the u32 only when sGame+0x74 is
+        // non-null, else an empty body (P5 2), so the u32 is read only when bytes remain.
+        (0x11 | 0x12): {               // Season 3, PC 0x601300 / 0x6012d0
+            if ($ + 4 <= parent.msgEnd) u32 unk_u32;
+        }
         (_): {}
     }
 };
@@ -773,8 +783,9 @@ struct SetRequestCreateContext {
     s32 mEncountArea;
 };
 
-// receiveMsgSetCreateContext: PC 0x601b80 (PS4 0x177060). On PC the whole tail, including the s32,
-// is read only when mAdditionalData != 0 (P2 2.25; P1 reads the s32 when it is zero).
+// receiveMsgSetCreateContext: PC 0x601b80 (PS4 0x177060). On both platforms the whole tail,
+// including the s32, is read only when mAdditionalData != 0 (P2 2.25; P5 3: PS4 0x177060 returns
+// when it is zero).
 struct SetCreateContext {
     u32 mId;
     u64 mUniqueId;          // PS4 u32
@@ -815,9 +826,9 @@ struct SetCreateContext {
         u8 mCatchType;
         u8 mCatchJointNo;
         u64 mCatchTargetUID;  // PS4 u32
-        u8 unk_u8_0;          // Season 3, struct +0x458
-        u8 unk_u8_1;          // Season 3, struct +0x459
-        u64 unk_u64;          // Season 3, struct +0x460
+        u8 unk_u8_0;          // Season 3, struct +0x458; second catch type (inferred role, P5 1)
+        u8 unk_u8_1;          // Season 3, struct +0x459; second catch joint no (inferred role)
+        u64 unk_u64;          // Season 3, struct +0x460; second catch target UID (inferred role)
     }
 };
 
@@ -871,7 +882,7 @@ struct DamageProfileNode {
 };
 
 // nNetMsgData::ToolEasy: PC 0x5ff3e0 (jump table 0x5ff468; PS4 0x177d90). ToolBase and
-// ToolNormal read nothing (PS4; not checked on PC).
+// ToolNormal read nothing (checked on PC: 0x5ff3c0, 0x5ff480; P5 5).
 struct ToolEasy<auto MsgId> {
     match (MsgId) {
         (0x4): u8 mDipData[448];       // DIP, PC 0x6008d0
