@@ -66,7 +66,12 @@ messages the captures never exercise. Method: ddon-hook's
 in `C:\ddon-automation\Arrowgene` (branch `automation`, never push), each change a `LAB-ONLY` patch
 file; one client at a time on the fixed dump; restore after every run.
 
-- [ ] T008 Static exhaustion check: list what static work leaves open after T007 (unnamed Season 3
+- [x] T008 Static exhaustion check (P5 done 2026-11-01, `research/P5-pc-send-side.md`: CREATE_CONTEXT
+  reads on non-zero (P1 wrong); 75 -> 100 clamp already in the include; 0x3D is s32; GameNormal
+  0x11/0x12 u32 optional; Set/Tool senders write no body; 35.5.16 = C2S_CHARACTER_START_BAD_STATUS_NOTICE
+  and 35.8.16 = C2S_SET_CONTEXT_BASE_NOTICE by caller code match; 63.11.16 is C2S; 35.12.16 and
+  13.44-13.47.16 unnamed. Small static leftovers in its last section: start/end pairing of 13.44-13.47
+  (callers `0x8a2670`, `0x8a1d5a`), the CaughtResult/GameEasy sender comparison.) Original task: list what static work leaves open after T007 (unnamed Season 3
   fields, CtrlAction 0x3D, GameNormal 0x0F-0x12, CREATE_CONTEXT bool polarity (P1 vs P2), the
   75 -> 100 clamp, SetNormal/ToolEasy/ToolNormal never captured, PC send methods not read), and
   close each one IDA can close (a P5 on the PC send side) before any live run. Also name, from
@@ -102,7 +107,9 @@ only with `-- <paths>`. `research/external-references.jsonl` has 5 uncommitted l
 In the new session the edited role files load (`effort: medium`, `repository-researcher` with
 Bash/Write, spawn titles `<role> · <spec> <package>: <what>` checked by `agent_cap.py`), so spawn
 the roles directly. Next, in order (one subagent at a time):
-1. P5 (T008) was stopped for the restart before any IDA analysis: `research/P5-pc-send-side.md`
+0. Done after the restart: P5 (T008). Running: P9 = T014 (`implementer`, brief
+   `briefs/P9-new-patterns.md`).
+1. (done) P5 (T008) was stopped for the restart before any IDA analysis: `research/P5-pc-send-side.md`
    (`state: cut short`) lists all 8 items as not done, with leads. Spawn a fresh
    `evidence-researcher-ida` with brief `briefs/P5-pc-send-side.md` plus that report; it may reuse
    the private copies `ddon-data-p5/` it made beside the PC and PS4 databases.
