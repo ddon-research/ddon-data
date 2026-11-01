@@ -171,8 +171,9 @@ POSIX equivalent.
   `reviewer`, `repository-researcher`, `evidence-researcher`, `evidence-researcher-ida`) do one
   bounded job each from a brief; the `-ida` role runs headless ida-mcp on a private database copy.
 - **No worktrees here** (hundreds of thousands of files): every agent works in this checkout, so
-  at most one subagent of any role runs at a time (Sam, 2026-10-17; ddon-hook's coordinator too). Agents inherit the
-  session's effort: set no `effort` on spawns or in role files.
+  at most one subagent of any role runs at a time (Sam, 2026-10-17; ddon-hook's coordinator too). Subagents run
+  Opus 5.5 at **medium** effort (Sam, 2026-11-01): every role file sets `model: inherit` and
+  `effort: medium`, because inheriting gave them `high`; never set another effort.
 - The gate is `bash tools/check.sh` (`--since <rev>`, `--all`, `--quick`): hook tests, shell syntax,
   and the gates of the projects that changed. Hooks in `tools/hooks/` (`.claude/settings.json`)
   refuse the traps this file names (grep/find/sed -i, blanket staging, unsigned commits, polling,

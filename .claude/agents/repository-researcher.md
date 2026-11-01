@@ -3,6 +3,7 @@ name: repository-researcher
 description: Trace bounded questions through ddon-data's scripts, research projects, notes, specs and extracted data, and the sibling repositories (ddon-data-s1/-s2, ddon-extractor, Arrowgene, ddon-hook), without editing.
 tools: Read, Glob, Grep
 model: inherit
+effort: medium
 autoCompactWindow: 400000
 maxTurns: 120
 ---

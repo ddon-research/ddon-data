@@ -3,6 +3,7 @@ name: implementer
 description: Implements one work package in the shared ddon-data checkout (no worktree) on the files its brief names, within the brief's time budget; runs the gates, commits signed with explicit paths, and ends with a receipt checked against git. One subagent of any role at a time. Use for every code, script or tooling package the coordinator hands out in ddon-data.
 background: true
 model: inherit
+effort: medium
 disallowedTools: Agent, NotebookEdit, Skill, mcp__*
 autoCompactWindow: 400000
 maxTurns: 300

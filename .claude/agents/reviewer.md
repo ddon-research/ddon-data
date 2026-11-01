@@ -3,6 +3,7 @@ name: reviewer
 description: Independently review substantive ddon-data changes (scripts, research tools, patterns, notes, generated-report producers) against AGENTS.md, the active Spec Kit feature and source evidence. Read-only.
 tools: Read, Glob, Grep
 model: inherit
+effort: medium
 autoCompactWindow: 400000
 maxTurns: 120
 ---

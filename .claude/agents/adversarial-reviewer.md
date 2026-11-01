@@ -3,6 +3,7 @@ name: adversarial-reviewer
 description: Time-boxed adversarial review of ONE named risk in a ddon-data package (a check or gate that passes silently, a decryption or key search that reports success wrongly, an extraction or regeneration path that rewrites or deletes evidence, a layout or provenance claim stated as fact, a guard that misses a spelling). Reproduces each finding; returns only reproduced findings. Works in the shared checkout without editing tracked files.
 background: true
 model: inherit
+effort: medium
 disallowedTools: Agent, NotebookEdit, Skill, mcp__*
 autoCompactWindow: 400000
 maxTurns: 150

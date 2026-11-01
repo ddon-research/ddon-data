@@ -2,6 +2,7 @@
 name: evidence-researcher-ida
 description: Investigate bounded PC 03040008 / PS4 02020005 function, type, packet and wire-format questions through IDA's headless MCP server (ida-mcp) on a private copy of the IDA 9.5 database. Read-only in substance; writes only its report under the brief's report path.
 model: inherit
+effort: medium
 autoCompactWindow: 400000
 maxTurns: 200
 disallowedTools: Agent, NotebookEdit, Skill, mcp__ida__save_database, mcp__ida__close_database
