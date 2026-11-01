@@ -31,6 +31,12 @@ named "Unknown" (2.13/2.15/2.19/2.20, 13.44-13.47). Counts in brief P4.
   (`research/P6-name-diff.txt`); then re-run the ImHex export for the four nNetMsg patterns
   (`implementer`, brief `briefs/P6-reexport-current-names.md`; Sam, 2026-11-01).
 
+- [ ] T016 P7 ImHex as a library (Sam, 2026-11-01: P3's per-file `imhex.exe` export of 110,065
+  files took over 2 h): clone PatternLanguage, ImHex, ImHex-Patterns, ImHex-Plugin-Template,
+  measure, recommend a long-lived batch runner (`repository-researcher`, brief
+  `briefs/P7-imhex-as-library.md`, report `research/P7-imhex-as-library.md`); an implementer
+  package follows the recommendation, then `imhex-export.sh` uses it.
+
 ### Phase 2: live Season 3 validation (Sam, 2026-11-01: only after the static path is exhausted)
 
 The 2019 captures cover 30 CtrlAction ids, 4 GameEasy/GameNormal ids and no SetNormal/ToolEasy
