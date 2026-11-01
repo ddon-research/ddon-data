@@ -64,7 +64,10 @@ shared logic into includes with comments, revalidate PS4 -> PC, re-export. Sever
 raws no longer carry (`S2C_AREA_23_13_16_NTC` = `S2C_AREA_POINT_UP_NTC`, `S2C_ENEMY_KILL_RES`,
 `S2C_GET_NORA_PAWN_LIST_RES_RES`, `..._NOTICE` forms).
 
-- [ ] T021 P11 `evidence-researcher-ida`, two batches of 18: per packet the PC reader (S2C) or writer
+- [x] T021 (done: P11a 06c0bd0ea6, P11b; A: 10 finished / 7 partial / 1 stub; every RES pattern
+  reads Error/Result unconditionally where the PC reads Result and body only when Error == 0;
+  layout errors in 23.8.2, 11.89.16, 11.120.16, 51.0.2, 19.2.2, 19.1.2, 13.3.2, 23.13.16 =
+  S2C_AREA_POINT_UP_NTC, 23.11.2, 0.1.2, 31.17.2 does not compile; walks 1,053 + 1,098 files) P11 `evidence-researcher-ida`, two batches of 18: per packet the PC reader (S2C) or writer
   (C2S) VA, the Season 3 field table vs the PS4 one (matched by code, never by packet number), the
   existing pattern's errors, the shared CData structures (include candidates), and a byte walk of
   one capture; the server's C# only as a lead.
