@@ -29,10 +29,15 @@ named "Unknown" (2.13/2.15/2.19/2.20, 13.44-13.47). Counts in brief P4.
 - [ ] T014 Patterns for S2C_PARTY_RECV_BINARY_MSG_ALL_NTC (6.24.16) and _NTC (6.26.16) from P1/P2
   (no captures; the live runs will produce them), and for every T013 packet; `imhex-export.sh`
   must select raw files by the id suffix, since their names may be "Unknown" or outdated.
-- [ ] T015 P6 re-export `decrypted_raw`/`decrypted_json` (last exported 2024-05-13 by an older CLI)
+- [x] T015 P6 re-export `decrypted_raw`/`decrypted_json` (last exported 2024-05-13 by an older CLI)
   with the patched e2411fe8 CLI so files carry the server's current names: 51 ids, 1,958 raw files
   (`research/P6-name-diff.txt`); then re-run the ImHex export for the four nNetMsg patterns
-  (`implementer`, brief `briefs/P6-reexport-current-names.md`; Sam, 2026-11-01).
+  (`implementer`, brief `briefs/P6-reexport-current-names.md`; Sam, 2026-11-01). Done:
+  171beb5082, 3a155a532f, ca504d234b (258,141 files); 125 streams, 146,891 raw files, bytes
+  identical except the 43 `C2S_SERVER_GET_SERVER_LIST_REQ` (1.0.1) files that gained their 9-byte
+  header; every name now carries 100 ns timestamps (Sam: "Yes, replace all"); 50/51 renames as
+  listed, 63.11.16 = `S2C_63_11_16_NTC` (server Name string, see T008); plbatch re-export of the
+  four types: 110,065, 0 failures, all fit. `decrypted_json` holds only ImHex output (83 streams).
 
 - [x] T016 P7 ImHex as a library (Sam, 2026-11-01: P3's per-file `imhex.exe` export of 110,065
   files took over 2 h): clone PatternLanguage, ImHex, ImHex-Patterns, ImHex-Plugin-Template,
@@ -67,7 +72,9 @@ file; one client at a time on the fixed dump; restore after every run.
   close each one IDA can close (a P5 on the PC send side) before any live run. Also name, from
   PC-side evidence only, 35.5.16, 13.44-13.47.16, 35.8.16 and 35.12.16: PS4 02020005 numbers its
   packets differently (flat u16), so P4's numbering offsets are withdrawn as naming evidence
-  (Sam, 2026-11-01; correction at the top of the P4 report).
+  (Sam, 2026-11-01; correction at the top of the P4 report). Also 63.11.16: `PacketId.cs:2013`
+  declares field `C2S_63_11_16_NTC` with Name `S2C_63_11_16_NTC` and `PacketSource.Server`
+  (found by P6); settle its direction from the PC client.
 - [ ] T009 Server lab patch, logging: `Arrowgene.Ddon.Cli/Program.cs` `IgnorePacketIds` mutes
   `C2S/S2C_LOBBY_LOBBY_DATA_MSG_*` and `C2S_PARTY_SEND_BINARY_MSG_NTC` at debug level; make that
   opt-in (a setting, default unchanged), and log each nNetMsg payload as one prefixed hex line

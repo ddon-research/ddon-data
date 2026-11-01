@@ -96,6 +96,15 @@ Report `research/orchestration-port-2026-11.md` (R2, `repository-researcher`, me
       JSON commit 5ce0ff6988): it passes every path to `git status`; use a pathspec file or batches.
       The same agent was resumed by its own background task's completion after its ledger entry was
       deleted (see T018), so two agents ran at once for a few minutes.
+- [ ] T020 Rule + guard: stage owned folders as directory pathspecs, never hundreds of thousands of
+      literal paths (005 P6, 2026-11-01: `git add --pathspec-from-file` with ~290k paths ran 45 min,
+      quadratic pathspec matching against 437k index entries; killed and redone with two folder
+      pathspecs refused by the blanket-staging guard, so `git update-index --add --remove -z
+      --stdin` from the path list: 44 s). The guard needs an allowed form for folders an agent owns.
+      Repository tuning (Sam approved, applied by the coordinator in `.git/config`):
+      `feature.manyFiles` (index v4 + skipHash: index 89.3 -> 61.2 MB; `git status -uno` 172 ->
+      136 ms, with untracked 412 -> 294 ms, hyperfine 3 runs), `commitGraph.changedPaths` + a
+      commit-graph rewrite with Bloom filters; `git repack -d` packed the loose objects (141,809 -> 1,020 unreachable leftovers, 70 s; `maintenance run --task=loose-objects` packed none). Sam approved T020's tuning on 2026-11-01.
 - [ ] T017 Guard: refuse `git commit` without a `-- <paths>` pathspec while the index holds staged
       paths of other work. P4's b204c9daad committed three files another session had staged (Sam
       approved the rewrite: soft reset to 1d0ab74e1a, the four commits remade with explicit paths
