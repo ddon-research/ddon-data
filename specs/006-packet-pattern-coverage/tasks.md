@@ -26,11 +26,11 @@ Coordinator: main session. One subagent at a time. Method and rules: `spec.md`.
 
 ## Running
 
-- T002c done (`research/T002c-challenge-decrypt.md`: the first packet of each direction uses the
-  client's fixed Camellia key; the CLI used the session key; the 304 B files are the server's public
-  key packet misnamed 1.0.1; same defect for 166 `44.0.1` files). Running: T002d re-decryption, brief
-  `briefs/T002d-challenge-redecrypt.md`, names unchanged. Sam (2026-11-01): keep the current names
-  for the server's first packet (no PC/PS4 name; patterns select by size). Next: T003 group 0 (CONNECTION) evidence.
+- T002c/T002d done (report 83ce3403dd; fix 40f80dc80f + 20a4617cd4: the CLI decodes each
+  direction's first packet with the client's fixed key; exactly 84 `1.0.1` + 166 `44.0.1` raws
+  changed, 146,641 identical; 125 annotated streams re-annotated; 1.0.1 JSON 42/42 fit, selected by
+  the new `// packet-size:`; Sam kept the names). Running: T003 groups 0/1/44 evidence, brief
+  `briefs/T003-connection-server-cert.md`. Tn: `tests/imhex-export-select.sh` is not run by check.sh.
 - Coordinator housekeeping until 002 T021 lands: after each IDA package, stop its `idat.exe` workers
   (`scratchpad/idaprocs.ps1` lists them) and delete its `ddon-data-<name>` copies.
 
