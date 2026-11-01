@@ -89,14 +89,14 @@ Report `research/orchestration-port-2026-11.md` (R2, `repository-researcher`, me
       `evidence-researcher` role (F8). Done in P4: the hook and the check.sh `mcp` line; the
       coordinator added the `close_database` deny to `.claude/settings.json`. Open: the ida-assist
       decision (P4 found no ida-assist server registered: `claude mcp list` shows only `ida`).
-- [ ] T018 `agent_cap.py`: a finished agent stays in `.agent-ledger/running/` (2026-11-01, twice:
+- [x] T018 `agent_cap.py`: a finished agent stays in `.agent-ledger/running/` (2026-11-01, twice:
       005 P3 and 002 P4 had to be deleted by hand before the next spawn); clear the entry when the
       agent's completion notification fires (SubagentStop), with a test.
-- [ ] T019 `receipt.py --print` fails with WinError 206 on a commit touching 110,065 paths (005 P3's
+- [x] T019 `receipt.py --print` fails with WinError 206 on a commit touching 110,065 paths (005 P3's
       JSON commit 5ce0ff6988): it passes every path to `git status`; use a pathspec file or batches.
       The same agent was resumed by its own background task's completion after its ledger entry was
       deleted (see T018), so two agents ran at once for a few minutes.
-- [ ] T020 Rule + guard: stage owned folders as directory pathspecs, never hundreds of thousands of
+- [x] T020 Rule + guard: stage owned folders as directory pathspecs, never hundreds of thousands of
       literal paths (005 P6, 2026-11-01: `git add --pathspec-from-file` with ~290k paths ran 45 min,
       quadratic pathspec matching against 437k index entries; killed and redone with two folder
       pathspecs refused by the blanket-staging guard, so `git update-index --add --remove -z
@@ -111,7 +111,7 @@ Report `research/orchestration-port-2026-11.md` (R2, `repository-researcher`, me
       record different stat fields, so each full-refreshed the 437k-entry index after the other
       (MSYS 54-105 s, GfW 9 s). `core.checkStat minimal` + `core.trustctime false` cut that to
       MSYS 7-22 s, GfW 0.8-2.4 s; Sam uses Git for Windows only from now on); `git repack -d` packed the loose objects (141,809 -> 1,020 unreachable leftovers, 70 s; `maintenance run --task=loose-objects` packed none). Sam approved T020's tuning on 2026-11-01.
-- [ ] T017 Guard: refuse `git commit` without a `-- <paths>` pathspec while the index holds staged
+- [x] T017 Guard: refuse `git commit` without a `-- <paths>` pathspec while the index holds staged
       paths of other work. P4's b204c9daad committed three files another session had staged (Sam
       approved the rewrite: soft reset to 1d0ab74e1a, the four commits remade with explicit paths
       as 010b1ee2f6, 3e81c269a4, cce5b04632, 0a384f100f; the three files are staged again)

@@ -47,6 +47,8 @@ A finished spec stays finished: new work on its output is a package of the activ
   outside `specs/*/tasks.md` (its receipt lists the commits `base..HEAD`; a coordinator commit in
   between makes the receipt mismatch). Record running agents in `tasks.md` uncommitted, commit after
   the landing.
+- Large commits: folder pathspecs after `--` (at most five) or `git update-index --add --remove -z
+  --stdin`; every commit names its paths after `--` (`guard_bash`, 002 T017/T020).
 - Coordinator-owned files and producer output (`client/`, `packets/` data, `binaries/` dumps,
   `research/03040008/flags/generated/`) are refused to role agents by
   `tools/hooks/guard_paths.py --deny-owned`; agents propose text in their receipt instead.

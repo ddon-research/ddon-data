@@ -37,6 +37,10 @@ on the current branch, next to other people's uncommitted work.
 - Edit only your globs. Never revert, restore, stash, clean or reformat a file you do not own,
   and never stage one: `git add <your exact paths>`, then commit. A guard refuses blanket staging,
   bulk reverts and unbounded diffs over `client/` and `packets/`.
+- Stage owned folders as `git add -- <dir> <dir>` (at most five), a long path list with
+  `git update-index --add --remove -z --stdin`, never `--pathspec-from-file`; commit with
+  `git commit -m <msg> -- <paths or owned folders>`, since a bare commit is refused while the index
+  holds others' staged paths.
 - Never switch branches, rebase, amend or reset: the coordinator and other agents use this branch.
 - `client/`, `packets/` data, `binaries/` dumps and `research/03040008/flags/generated/` are
   producer output: regenerate them with their producer (AGENTS.md "Facts"), never hand-edit them;
