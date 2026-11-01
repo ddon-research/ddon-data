@@ -1,5 +1,6 @@
 // 1.0.1 C2L_CLIENT_CHALLENGE_REQ (client 03040008).
-// Evidence: specs/006-packet-pattern-coverage/research/T002-login.md section 3.
+// Evidence: specs/006-packet-pattern-coverage/research/T002-login.md section 3 (layout),
+// T002c-challenge-decrypt.md sections 1-4 (key, no header, 304/336 split).
 // PC writer 0x88a900: WritePacket(p, 1, 0, 1, -1), Write_u8, loop Write_u8 x 0x103 (0x77cfa0),
 // Write_u8, Write_u8, loop Write_u8 x 0x3e (0x77cfe0) (V, disassembly pushes). PS4
 // nLoginSession::CPacket_C2L_CLIENT_CHALLENGE_REQ::WritePacket 0x1a409b0 (u8 in_CommonKeySrcSize,
@@ -7,15 +8,18 @@
 // const u8 (*in_PasswordEnc)[62]): the same five fields and array lengths (V by body).
 // Server lead misplacements: CommonKeyEnc is 259 bytes, not 256 + 3 padding; PasswordEnc is a
 // fixed 62 bytes, not zero-terminated (T002 section 16).
-// RAWS NOT DECRYPTED, UNVALIDATED: all 84 raws of 1.0.1 C2L_CLIENT_CHALLENGE_REQ are still
-// ciphertext (they fail the header check; the packet precedes the session key), so this
-// pattern was never run on a capture. It deliberately declares no `// packet-id:` line, so
-// `packets/imhex-export.sh @ C2L_CLIENT_CHALLENGE_REQ` refuses ("declares no '// packet-id:'
-// line") instead of publishing JSON decoded from ciphertext. Restore the line
-// `// packet-id: 1.0.1` (with the packet-select below) once the raws are re-decrypted.
+// NO HEADER: this is the client's first packet, encrypted with the fixed client key (T002c 1).
+// The CLI writes it without the 9-byte header (Packet.cs GetHeaderBytes() is empty for this id),
+// and on the wire the body starts at byte 0 (CommonKeySrcSize = 0x30 in 42/42, T002c 3, 4).
+// The pattern therefore reads the body at offset 0 and does not use CPacket or `sourceOk`.
+// Raws re-decrypted with the fixed key in T002d (patched CLI, packets README arrowgene-patches).
+// The server's first packet (its RSA public key, 304 bytes) shares this file name and id; it is
+// not this packet, so `// packet-size: 336` keeps only the client's 336-byte files.
 // Body: u8 CommonKeySrcSize, u8 CommonKeyEnc[259], u8 PasswordSrcSize, u8 PasswordEncSize,
-// u8 PasswordEnc[62] (324 B).
+// u8 PasswordEnc[62] (324 B), then 12 bytes of cipher block padding (336 B).
+// packet-id: 1.0.1
 // packet-select: C2L_CLIENT_CHALLENGE_REQ
+// packet-size: 336
 // Fit flag `fits`: the raws store no body length, so a decode fits when it ends within the
 // last 15 bytes of the file (cipher block padding); reading past the end fails the decode.
 // A fit does not prove field widths: when the slack (`paddingSize`, exported) exceeds a field, a
@@ -24,16 +28,13 @@
 
 import std.mem;
 
-#include "Packet.hexpat"
-
-struct C2L_CLIENT_CHALLENGE_REQ : CPacket {
-    bool sourceOk = source == 0x00 [[export]];  // header source byte: 0x00 client (Packet.hexpat)
-    u8 CommonKeySrcSize;
-    u8 CommonKeyEnc[259];
-    u8 PasswordSrcSize;
-    u8 PasswordEncSize;
-    u8 PasswordEnc[62];
-    // Fit: the decode ends within the last 15 bytes (cipher block padding; Packet.hexpat).
+struct C2L_CLIENT_CHALLENGE_REQ {
+    u8 CommonKeySrcSize;      // 48 in 42/42 captures (T002c 1; session key length, I)
+    u8 CommonKeyEnc[259];     // RSA-PKCS#1 session key (256 B) + 3 zero bytes in 42/42
+    u8 PasswordSrcSize;       // 0x10 in 42/42
+    u8 PasswordEncSize;       // 0x10 in 42/42
+    u8 PasswordEnc[62];       // Blowfish-ECB of the fixed password, 16 B + zeros (T002c 1)
+    // Fit: the decode ends within the last 15 bytes (cipher block padding).
     u128 paddingSize = std::mem::size() - $ [[export]];
     bool fits = paddingSize <= 15 [[export]];
     if (paddingSize > 0) padding[paddingSize];

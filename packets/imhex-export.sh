@@ -7,7 +7,9 @@
 #                                 when the pattern also declares `// packet-select: <name>`,
 #                                 only the files of that id whose name holds `_<name>_`. An id
 #                                 that login-server (C2L_/L2C_) and game-server (C2S_/S2C_)
-#                                 files share is refused without that line (0.1.1, 0.1.2)
+#                                 files share is refused without that line (0.1.1, 0.1.2);
+#                                 `// packet-size: <bytes>` keeps only files of that size (1.0.1:
+#                                 the client's 336-byte challenge, not the server's 304-byte key)
 #                  35.5.16        that packet id: files ending in `.35_5_16`
 #                  anything else  a substring of the file names
 #                                 (e.g. S2C_GROUP_CHAT_GROUP_CHAT_GET_MEMBER_LIST_RES)
@@ -145,6 +147,7 @@ fi
 # Packet id selection: the raw file names are `<counter>_<packet name>_<timestamp>.<group>_<id>_<sub>`.
 BY_DECL=0
 SELECT=
+SIZE=
 if [[ "$FILTER" == @ ]]; then
   BY_DECL=1
   FILTER=
@@ -154,6 +157,8 @@ if [[ "$FILTER" == @ ]]; then
       FILTER=${BASH_REMATCH[1]}
     elif [[ -z $SELECT && $line =~ ^//\ packet-select:\ ([A-Za-z0-9_]+)[[:space:]]*$ ]]; then
       SELECT=${BASH_REMATCH[1]}
+    elif [[ -z $SIZE && $line =~ ^//\ packet-size:\ ([0-9]+)[[:space:]]*$ ]]; then
+      SIZE=${BASH_REMATCH[1]}
     fi
   done < "$PATTERN"
   [[ -n "$FILTER" ]] || die "pattern '$PATTERN' declares no '// packet-id: <group>.<id>.<sub>' line"
@@ -190,6 +195,15 @@ if (( BY_DECL )); then
       esac
     done
     (( login + game < 2 )) || die "packet id $FILTER is shared by login-server (C2L_/L2C_) and game-server (C2S_/S2C_) files; add '// packet-select: <packet name>' to '$PATTERN' or pass the name as the filter"
+  fi
+  if [[ -n $SIZE ]]; then
+    # `// packet-size: <bytes>`: keep only files of that size (two packets share one id and name).
+    require stat
+    selected=()
+    for m in "${inputs[@]}"; do [[ $(stat -c %s "$m") != "$SIZE" ]] || selected+=("$m"); done
+    (( ${#selected[@]} > 0 )) || die "no packets in '$RAW_DIR' match '$GLOB' with $SIZE bytes (// packet-size)"
+    inputs=("${selected[@]}")
+    GLOB="$GLOB of $SIZE bytes"
   fi
 fi
 

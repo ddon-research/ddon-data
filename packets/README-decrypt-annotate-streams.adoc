@@ -105,6 +105,22 @@ Known limitation: the patched structures report `Result: 0` instead of the sent 
 `No structure for packet: <name> <id>` at debug level, which lists packets that still need a C#
 structure.
 
+`PacketCommand.DecryptPackets` is patched a second time (spec 006 T002d,
+`../specs/006-packet-pattern-coverage/research/T002c-challenge-decrypt.md`): the first packet of
+each direction (the server's RSA public key and the client's `C2L_CLIENT_CHALLENGE_REQ` 1.0.1, or
+`C2S_CERT_CLIENT_CHALLENGE_REQ` 44.0.1 on the game server) is Camellia-256-CBC encrypted with the
+client's fixed key `f23e98HafJdSoaj80QBjhh23oajgklSa` and IV `$cbM6WP)aX=%J^zA`, which the
+`PacketFactory` constructor sets. The unpatched CLI keyed both factories with the session key
+before the first packet, so those 250 raws (84 `.1_0_1`, 166 `.44_0_1`) held wrong-key bytes. The
+patch drops the up-front `SetCamelliaKey` calls and switches each factory to the session key after
+its first resolved packet. Safe for these captures because every first packet arrives in its own
+TCP segment (250/250, T002c section 3). File names are unchanged: both first packets still carry
+the client challenge's name and no header (`Packet.GetHeaderBytes()`), so a `.1_0_1` file of
+304 bytes is the server's key and one of 336 bytes is the client's challenge.
+Build of 2026-11-01 (net10.0, Debug): `Arrowgene.Ddon.Cli.dll` sha256
+`d75b26ef7fcce075205e3a830e660781622687420dafad21447355dd4c6a32b1`, `Arrowgene.Ddon.Cli.exe`
+`d624bc12ef8f661d48e6c104d2ae40a811d9663f260ba6de408d68f4b45ca344`.
+
 A packet that fails to parse is a structure bug, not a capture problem: write an ImHex pattern in
 `../research/03040008/packets/`, check it against the client's `nPacket::Read_*` routine, then fix
 the C# structure.
@@ -143,8 +159,11 @@ renamed to the server's current names (1,958 files); timestamps with 100 ns prec
 milliseconds (.NET 7+ `DateTimeOffset.AddSeconds` no longer rounds); and the 43
 `C2S_SERVER_GET_SERVER_LIST_REQ` (1.0.1) files now start with the 9-byte header like every other
 file (the old ones held only the 7-byte payload). All other bytes are identical.
+The 250 first-packet raws (84 `*.1_0_1`, 166 `*.44_0_1`) were replaced on 2026-11-01 by an export
+with the fixed-key patch above (spec 006 T002d); the other files of that export were
+byte-identical to the ones here.
 `decrypted_json/` holds only ImHex output (`imhex-export.sh`), so a stream gets a JSON folder only
-when one of its packets was exported with a pattern (83 of 125 streams have one).
+when one of its packets was exported with a pattern (125 of 125 streams have one since the login patterns of spec 006 T002).
 
 [[imhex-export]]
 == Exporting packet structures with ImHex

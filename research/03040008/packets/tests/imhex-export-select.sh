@@ -10,10 +10,12 @@
 #   2. `@` with `// packet-select: C2L_LOGIN_REQ` takes only the C2L_LOGIN_REQ file of that id
 #   3. `@` on an unshared id takes every file of the id, whatever its name
 #   4. `// packet-select:` with a name no file of the id carries refuses
+#   5. `// packet-size: 336` takes only the 336-byte file of an id and name that a 304-byte file
+#      shares (1.0.1), and refuses a size no file has
 set -o errexit -o nounset -o pipefail
 
 die() { echo "ERROR: $*" >&2; exit 2; }
-for cmd in mktemp rm mkdir printf chmod dirname; do command -v "$cmd" >/dev/null 2>&1 || die "$cmd not found"; done
+for cmd in mktemp rm mkdir printf chmod dirname head; do command -v "$cmd" >/dev/null 2>&1 || die "$cmd not found"; done
 
 here=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 script=$(cd "$here/../../../../packets" && pwd)/imhex-export.sh
@@ -26,6 +28,8 @@ mkdir -p "$work/raw/s1" "$work/raw/s2" "$work/json" "$work/pat" "$work/std"
 : > "$work/raw/s2/2_C2S_CONNECTION_LOGIN_REQ_2019-07-06T11_05_34.1-07_00.0_1_1"
 : > "$work/raw/s1/3_S2C_CONTEXT_GET_SET_CONTEXT_RES_2019-07-06T11_05_35.1-07_00.35_7_2"
 : > "$work/raw/s2/4_S2C_UNKNOWN_OLD_NAME_2019-07-06T11_05_36.1-07_00.35_7_2"
+head -c 304 /dev/zero > "$work/raw/s1/5_C2L_CLIENT_CHALLENGE_REQ_2019-07-06T11_05_37.1-07_00.1_0_1"
+head -c 336 /dev/zero > "$work/raw/s1/6_C2L_CLIENT_CHALLENGE_REQ_2019-07-06T11_05_38.1-07_00.1_0_1"
 printf '#!/usr/bin/env bash\nwhile IFS= read -r f; do echo "ok   $f"; done\n' > "$work/plbatch"
 chmod +x "$work/plbatch"
 pattern() { printf '%s\n' "// test pattern" "$@" "#pragma endian big" > "$work/pat/$name-pattern.cpp"; }
@@ -53,6 +57,14 @@ check "unshared id takes every name" '(( rc == 0 )) && [[ $log == *"Done: 2 expo
 name=MISSING; pattern "// packet-id: 0.1.1" "// packet-select: L2C_LOGIN_RES"
 run
 check "packet-select without a match refuses" '(( rc == 2 )) && [[ $log == *"with the name '"'"'L2C_LOGIN_RES'"'"'"* ]]'
+
+name=SIZED; pattern "// packet-id: 1.0.1" "// packet-select: C2L_CLIENT_CHALLENGE_REQ" "// packet-size: 336"
+run
+check "packet-size takes only files of its size" '(( rc == 0 )) && [[ $log == *"ok   s1/6_C2L_CLIENT_CHALLENGE_REQ_"* && $log != *"s1/5_C2L"* && $log == *"Done: 1 exported"* ]]'
+
+name=NOSIZE; pattern "// packet-id: 1.0.1" "// packet-size: 320"
+run
+check "packet-size without a match refuses" '(( rc == 2 )) && [[ $log == *"with 320 bytes"* ]]'
 
 (( fails == 0 )) || { echo "$fails check(s) failed" >&2; exit 1; }
 echo "all checks passed"

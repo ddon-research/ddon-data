@@ -36,8 +36,10 @@ summary, and two lines the export script reads:
   `S2C_CONNECTION_LOGIN_RES` use the same ids (R2 F2).
   Every login pattern (`C2L_`/`L2C_`) carries it: the game server reuses the login ids 0.0.x,
   0.2.x, 1.0.x and 3.0.x, and naming the packet keeps a later game-server capture out of the export.
-- `1.0.1 C2L_CLIENT_CHALLENGE_REQ` deliberately has **no** `// packet-id:` line: its raws are still
-  ciphertext (raws not decrypted, unvalidated), so `@` refuses it instead of exporting garbage JSON.
+- `// packet-size: <bytes>`: only where two packets share both id and file name. `@` then keeps
+  only files of that size. `1.0.1 C2L_CLIENT_CHALLENGE_REQ` carries `// packet-size: 336`: the CLI
+  names the first packet of each direction after the client challenge, so the server's 304-byte
+  RSA public key shares its `.1_0_1` name (T002c §3).
 
 **JSON conventions.** The root key is `packet`. Header keys are lowercase (`group`, `id`, `subId`,
 `source`, `packetcounter`). Lists export as `{count, entries}` and strings as `{length, value}`.
@@ -129,7 +131,7 @@ T002 is `specs/006-packet-pattern-coverage/research/T002-login.md` (the login gr
 | 0.1.2 | `L2C_LOGIN_RES` | P11b §3 | 42/42 fit |
 | 0.2.1 | `C2L_LOGOUT_REQ` | T002 §2 | 42/42 fit |
 | 0.2.2 | `L2C_LOGOUT_RES` | T002 §2 | 42/42 fit |
-| 1.0.1 | `C2L_CLIENT_CHALLENGE_REQ` | T002 §3 | not exported: raws not decrypted (84 ciphertext raws), unvalidated; synthetic plaintext only |
+| 1.0.1 | `C2L_CLIENT_CHALLENGE_REQ` | T002 §3, T002c | 42/42 fit (336-byte client files only; no header, body at offset 0) |
 | 1.0.2 | `L2C_CLIENT_CHALLENGE_RES` | T002 §4 | 42/42 fit |
 | 2.1.1 | `C2L_GET_GAME_SESSION_KEY_REQ` | T002 §5 | 42/42 fit |
 | 2.1.2 | `L2C_GET_GAME_SESSION_KEY_RES` | T002 §5 | 42/42 fit |
@@ -214,10 +216,13 @@ T002 is `specs/006-packet-pattern-coverage/research/T002-login.md` (the login gr
 
 ## Open items
 
-- **1.0.1 C2L_CLIENT_CHALLENGE_REQ: raws not decrypted, unvalidated.** All 84 raws are still
-  ciphertext (they fail the header check; the packet precedes the session key), so the pattern
-  (PC writer 0x88a900, V by code) ran only on a synthetic plaintext file and is not exported; it
-  has no `// packet-id:` line until the raws are re-decrypted (T002 §3).
+- **First packets without a pattern (T002c, T002d):** the 42 304-byte `.1_0_1` files and the 83
+  304-byte `.44_0_1` files are the server's RSA public key (modulus[256], exponent[16] = 0x11,
+  SHA-1[20], 12 unknown bytes; stdlib check 42/42 and 83/83), not a C2L/C2S packet, and get no JSON;
+  their name is the CLI's, not the client's (naming open, Sam). The 83 336-byte
+  `C2S_CERT_CLIENT_CHALLENGE_REQ` 44.0.1 files have the 1.0.1 body layout by stdlib check (83/83:
+  0x30, 3 zero bytes, 0x10, 0x10), but no 44.0.1 pattern exists yet. The PC path that sends 1.0.1
+  without the header its writer `0x88a900` asks for is not traced (T002c §3).
 - **Login RES error branch untested:** no captured login RES has Error != 0, so the
   `if (Error == 0)` guard of the ten login RES patterns is code-only (V code, not run on
   captures; T002 §14). The same holds for the 2.3.16 Error, which is read unconditionally.
