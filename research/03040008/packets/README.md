@@ -19,6 +19,8 @@ carry now. Every pattern starts with `#pragma endian big` and includes what it n
 | `Area.hexpat` | group 23 AREA CData (P11a, P11b) | 4 |
 | `Character.hexpat` | E_WALLET_POINT_TYPE, CDataWalletPoint, job base info, character name and list element | 2 |
 | `Clan.hexpat`, `Item.hexpat`, `Pawn.hexpat`, `Skill.hexpat` | the CData of those groups (P11b) | 1-2 each |
+| `Login.hexpat` | login-server CData (T002 §15): URL info, login setting, game server list info, error message, and the character list types (matching profile, Season 3 equip item info, character list info); includes Character, Context and GP | 4 |
+| `GP.hexpat` | GP course info, effect param and the Season 3 GP course valid (T002 §10, §11) | 1, and 5.0.2 through Login |
 
 Each structure comment names the PC reader or writer VA (PC 03040008 database, image base 0x400000)
 and the PS4 02020005 DWARF type, and carries a mark: V means read in IDA, I means inferred. A name
@@ -32,6 +34,10 @@ summary, and two lines the export script reads:
   the files of that id whose name holds `_<name>_`. `C2L_LOGIN_REQ` (0.1.1) and `L2C_LOGIN_RES`
   (0.1.2) carry it, because the game server's `C2S_CONNECTION_LOGIN_REQ` and
   `S2C_CONNECTION_LOGIN_RES` use the same ids (R2 F2).
+  Every login pattern (`C2L_`/`L2C_`) carries it: the game server reuses the login ids 0.0.x,
+  0.2.x, 1.0.x and 3.0.x, and naming the packet keeps a later game-server capture out of the export.
+- `1.0.1 C2L_CLIENT_CHALLENGE_REQ` deliberately has **no** `// packet-id:` line: its raws are still
+  ciphertext (raws not decrypted, unvalidated), so `@` refuses it instead of exporting garbage JSON.
 
 **JSON conventions.** The root key is `packet`. Header keys are lowercase (`group`, `id`, `subId`,
 `source`, `packetcounter`). Lists export as `{count, entries}` and strings as `{length, value}`.
@@ -105,26 +111,49 @@ packet structures with ImHex".
 
 Status `n/m fit` means that n of the m JSON files of that type in `packets/decrypted_json` have
 `fits` true (counted 2026-11-01 after commit cc7ebd0fb3, and for 11.15.2, 11.71.2, 11.89.16 and
-13.44-13.47.16 again after the T001c re-export; no type has a `.json.err`). `no capture`
+13.44-13.47.16 again after the T001c re-export, and for the login ids of T002 after their first
+export; no type has a `.json.err`). `no capture`
 means no raw file exists, so the pattern was checked on synthetic input at most. The Report column
 gives the section the pattern header cites: P11a and P11b are
 `specs/005-netmsg-patterns/research/P11*-old-patterns.md`, and P1, P4 and P5 are the reports of
 those names. T001b is `specs/006-packet-pattern-coverage/research/T001b-save-blob.md`, the save
 blob that 9.0.2 and 9.1.1 share through `include/CharacterData.hexpat`. T001c is
 `specs/006-packet-pattern-coverage/research/T001c-parked-static-items.md` (spec 005's parked items).
+T002 is `specs/006-packet-pattern-coverage/research/T002-login.md` (the login group).
 
 | Id | Pattern | Report | Status |
 | --- | --- | --- | --- |
+| 0.0.1 | `C2L_PING_REQ` | T002 §1 | 75/75 fit |
+| 0.0.2 | `L2C_PING_RES` | T002 §1 | 75/75 fit |
 | 0.1.1 | `C2L_LOGIN_REQ` | P11b §2 | 42/42 fit |
 | 0.1.2 | `L2C_LOGIN_RES` | P11b §3 | 42/42 fit |
+| 0.2.1 | `C2L_LOGOUT_REQ` | T002 §2 | 42/42 fit |
+| 0.2.2 | `L2C_LOGOUT_RES` | T002 §2 | 42/42 fit |
+| 1.0.1 | `C2L_CLIENT_CHALLENGE_REQ` | T002 §3 | not exported: raws not decrypted (84 ciphertext raws), unvalidated; synthetic plaintext only |
+| 1.0.2 | `L2C_CLIENT_CHALLENGE_RES` | T002 §4 | 42/42 fit |
+| 2.1.1 | `C2L_GET_GAME_SESSION_KEY_REQ` | T002 §5 | 42/42 fit |
+| 2.1.2 | `L2C_GET_GAME_SESSION_KEY_RES` | T002 §5 | 42/42 fit |
+| 2.2.1 | `C2L_GET_LOGIN_SETTING_REQ` | T002 §6 | 41/41 fit |
+| 2.2.2 | `L2C_GET_LOGIN_SETTING_RES` | T002 §6 | 41/41 fit |
+| 2.3.16 | `L2C_NEXT_CONNECT_SERVER_NTC` | T002 §7 | 42/42 fit |
 | 2.13.16 | `C2S_CHARACTER_CHARACTER_DOWN_NTC` | P4 §4 | 14/14 fit |
 | 2.14.16 | `C2S_CHARACTER_CHARACTER_DOWN_CANCEL_NTC` | P4 §4 | no capture |
 | 2.15.16 | `C2S_CHARACTER_CHARACTER_DEAD_NTC` | P4 §4 | 7/7 fit |
 | 2.19.16 | `C2S_CHARACTER_PAWN_DOWN_NTC` | P4 §4 | 20/20 fit |
 | 2.20.16 | `C2S_CHARACTER_PAWN_DOWN_CANCEL_NTC` | P4 §4 | 10/10 fit |
 | 2.21.16 | `C2S_CHARACTER_PAWN_DEAD_NTC` | P4 §4 | no capture |
+| 3.0.1 | `C2L_GET_ERROR_MESSAGE_LIST_REQ` | T002 §8 | 41/41 fit |
+| 3.0.2 | `L2C_GET_ERROR_MESSAGE_LIST_RES` | T002 §8 | 41/41 fit |
+| 3.0.16 | `L2C_GET_ERROR_MESSAGE_LIST_NTC` | T002 §9 | 410/410 fit |
 | 3.3.16 | `C2S_LOBBY_LOBBY_DATA_MSG_REQ` | P1 §1.1 | 59881/59881 fit |
 | 3.4.16 | `S2C_LOBBY_LOBBY_DATA_MSG_NTC` | P1 §1.1 | 21000/21000 fit |
+| 4.0.1 | `C2L_GP_COURSE_GET_INFO_REQ` | T002 §10 | 41/41 fit |
+| 4.0.2 | `L2C_GP_COURSE_GET_INFO_RES` | T002 §10 | 41/41 fit |
+| 5.0.1 | `C2L_GET_CHARACTER_LIST_REQ` | T002 §11 | 42/42 fit |
+| 5.0.2 | `L2C_GET_CHARACTER_LIST_RES` | T002 §11 | 42/42 fit |
+| 5.1.1 | `C2L_DECIDE_CHARACTER_ID_REQ` | T002 §12 | 42/42 fit |
+| 5.1.2 | `L2C_DECIDE_CHARACTER_ID_RES` | T002 §12 | 42/42 fit |
+| 5.5.16 | `L2C_LOGIN_WAIT_NUM_NTC` | T002 §13 | 9/9 fit |
 | 6.23.16 | `C2S_PARTY_SEND_BINARY_MSG_ALL_NTC` | P1 §1.1 | 8/8 fit |
 | 6.24.16 | `S2C_PARTY_RECV_BINARY_MSG_ALL_NTC` | P1 §1.1 | no capture |
 | 6.25.16 | `C2S_PARTY_SEND_BINARY_MSG_NTC` | P1 §1.1 | 29176/29176 fit |
@@ -185,6 +214,17 @@ blob that 9.0.2 and 9.1.1 share through `include/CharacterData.hexpat`. T001c is
 
 ## Open items
 
+- **1.0.1 C2L_CLIENT_CHALLENGE_REQ: raws not decrypted, unvalidated.** All 84 raws are still
+  ciphertext (they fail the header check; the packet precedes the session key), so the pattern
+  (PC writer 0x88a900, V by code) ran only on a synthetic plaintext file and is not exported; it
+  has no `// packet-id:` line until the raws are re-decrypted (T002 §3).
+- **Login RES error branch untested:** no captured login RES has Error != 0, so the
+  `if (Error == 0)` guard of the ten login RES patterns is code-only (V code, not run on
+  captures; T002 §14). The same holds for the 2.3.16 Error, which is read unconditionally.
+- **Login names without code backing (T002 §17):** 2.3.16 `Error` (I), 3.0.16 `RemainingNum` (I),
+  the CDataEquipItemInfo fields after ItemID (`unk_*`; ItemID, Color, PlusValue I) and the
+  CDataGPCourseValid second MtString (`unk_MtString`). CDataGPCourseValid is not capture-tested:
+  every captured list is empty.
 - **Unnamed 35.12.16 and 13.44-13.47.16:** no PC string and no PS4 sender, so the client names
   are unresolved (T001c §1, §3); the pattern names are the names in the raws, which come from the
   server. Their roles are V: 35.12.16 is an enemy status snapshot (`CDataContextEnemyStatus`, name
