@@ -122,7 +122,8 @@ m_unUniqueID), u8/s8 MasterIndex (PS4 s8 m_cMasterIndex). V.
 Wire order is the PS4 declaration order; only the differences are listed (all V):
 ActFreeWork **u64** (PS4 u32); ClimbEnemyID **u64** (u32); TargetUID **u64** (u32); CatchTargetUID
 **u64** (u32); **new trailing u32[4]** after QuestID (writer `0x77d0e0`, 4 x u32; server `Unk0`
-u32 array). Fixed size apart from the two Ocd lists: 575 B + 2 x (4 + 2n). Full order:
+u32 array). Fixed size apart from the two Ocd lists: 567 B + 2 x (4 + 2n) (2026-11-01: corrected
+by P10 from R1 F7; was "575 B + 2 x (4 + 2n)", which counted the two list counts twice). Full order:
 s32 MasterIndex, bool MasterChangeFlag, NetPos Pos, f32 MoveSpeed, f32 MoveAngle, f32 AngleY,
 u32 ActNo, u8 ActReqPrio, u16 ActAtkAdjustUniqueID, u64 ActFreeWork, u64 Hp[10], u16 UseRegionBit,
 u64 HpWhite, u16 CommonWork, u16 CustomWork, list OcdActive {u8 OcdUID, u8 OcdActiveLv},
