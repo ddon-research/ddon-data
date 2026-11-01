@@ -26,7 +26,7 @@ named "Unknown" (2.13/2.15/2.19/2.20, 13.44-13.47). Counts in brief P4.
 - [x] T013 P4 wire format of the CONTEXT group 35 (all ids), BINARY_SAVE group 9 (packet + save
   blob) and the character notices (`evidence-researcher-ida`, brief
   `briefs/P4-context-binary-character.md`, report `research/P4-context-binary-character.md`).
-- [ ] T014 Patterns for S2C_PARTY_RECV_BINARY_MSG_ALL_NTC (6.24.16) and _NTC (6.26.16) from P1/P2
+- [x] T014 (P9) Patterns for S2C_PARTY_RECV_BINARY_MSG_ALL_NTC (6.24.16) and _NTC (6.26.16) from P1/P2
   (no captures; the live runs will produce them), and for every T013 packet; `imhex-export.sh`
   must select raw files by the id suffix, since their names may be "Unknown" or outdated.
 - [x] T015 P6 re-export `decrypted_raw`/`decrypted_json` (last exported 2024-05-13 by an older CLI)
@@ -107,8 +107,13 @@ only with `-- <paths>`. `research/external-references.jsonl` has 5 uncommitted l
 In the new session the edited role files load (`effort: medium`, `repository-researcher` with
 Bash/Write, spawn titles `<role> · <spec> <package>: <what>` checked by `agent_cap.py`), so spawn
 the roles directly. Next, in order (one subagent at a time):
-0. Done after the restart: P5 (T008). Running: P9 = T014 (`implementer`, brief
-   `briefs/P9-new-patterns.md`).
+0. Done after the restart: P5 (T008) and P9 = T014 (04418e2c4b..b9c1cd5f90): every captured type
+   of groups 2/13/35/63 and 9.1.1 exports and fits 100% (3,654 + 47 files), the nNetMsg JSON is
+   unchanged (110,065), 6.24/6.26, 9.0.2, 35.8, 2.14, 2.21 checked on synthetic files only;
+   `imhex-export.sh @` selects by the pattern's `// packet-id:`. Open: the 9.1.1 save blob beyond
+   its two version fields (P4 § 3.1 does not line up byte-aligned: needs a bit-level walk); the
+   35.12.16 tail; ImHex/plbatch writes NaN as `-nan`, which is not valid JSON (35.9.16).
+   Next: the reviewer (T007), then docs.
 1. (done) P5 (T008) was stopped for the restart before any IDA analysis: `research/P5-pc-send-side.md`
    (`state: cut short`) lists all 8 items as not done, with leads. Spawn a fresh
    `evidence-researcher-ida` with brief `briefs/P5-pc-send-side.md` plus that report; it may reuse
