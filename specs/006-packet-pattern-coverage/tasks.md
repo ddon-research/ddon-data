@@ -6,6 +6,12 @@ Coordinator: main session. One subagent at a time. Method and rules: `spec.md`.
   handler/reader/writer VA, PS4 match by code (yes / no = Season 3-exclusive / unresolved), captured
   count, `PacketId.cs` group. Output `research/T001-triage.md` + a machine-readable table
   (`research/T001-triage.tsv`). Large: may run in two or three parts by group range.
+- [ ] T001b Save blob 9.1.1 (Sam, 2026-11-01: right after T001, before T002): `evidence-researcher-ida`
+  reads `BitWriter` (bit order, `writeU32(val, nBits)`, bool packing, alignment/flush) and the PC
+  `cCharacterData::serialize` (`sub_467790`, called from `0x87edd0`; PS4 `0x49740`) with every bit
+  width, and walks 2-3 of the 47 captures bit by bit (the recompilation has only stubs for both);
+  then an `implementer` turns it into ImHex bitfields in the 9.1.1/9.0.2 patterns and re-exports.
+  Start from P4 § 3.1 (spec 005).
 - [ ] T002 Login group (C2L/L2C, all directions): evidence + patterns (`evidence-researcher-ida`,
   then `implementer`), extending `C2L_LOGIN_REQ`/`L2C_LOGIN_RES`.
 - [ ] T003+ One evidence + one implementer package per group, by captured count (13 instance,
