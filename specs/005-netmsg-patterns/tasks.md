@@ -8,7 +8,7 @@ Coordinator: main session. One subagent at a time.
 - [x] T003 P1 PS4 02020005 wire format of every `nNetMsgData` decoder, the include table and the
   send/receive framing of 3.3.16 / 3.4.16 / 6.23.16 / 6.25.16 (`evidence-researcher-ida`, brief
   `briefs/P1-ps4-wire-format.md`, report `research/P1-ps4-wire-format.md`).
-- [ ] T004 P2 PC 03040008 deltas against P1 (include table, added fields, framing), brief
+- [x] T004 P2 PC 03040008 deltas against P1 (include table, added fields, framing), brief
   `briefs/P2-pc-deltas.md`, report `research/P2-pc-deltas.md`.
 - [ ] T005 Patterns: shared `nNetMsg` include + 4 packet patterns.
 - [ ] T006 `packets/imhex-export.sh` updates; run over `decrypted_raw`; counts.
@@ -16,12 +16,16 @@ Coordinator: main session. One subagent at a time.
 
 ## Running agents
 
-- P2 `evidence-researcher-ida` (T004), brief `briefs/P2-pc-deltas.md`.
+- (none)
 
 ## Next step (2026-11-01)
 
-The `ida` server (local scope) and the role `evidence-researcher-ida` (commit da7e67ad74e) load
-only in a new session. In the new session: check `mcp__ida__*` is listed, then spawn
-`evidence-researcher-ida` with `briefs/P1-ps4-wire-format.md` (T003); P2 (PC deltas) follows from
-its report. The coordinator read the PS4 decoder only as far as `research.md` records (from the
-`.elf.c` export, before Sam asked for IDA MCP instead); P1 re-reads it in IDA.
+After P2 lands: brief P3 for an `implementer` (T005 + T006). Decisions taken:
+- Patterns are named after the packets (`C2S_LOBBY_LOBBY_DATA_MSG_REQ`, `S2C_LOBBY_LOBBY_DATA_MSG_NTC`,
+  `C2S_PARTY_SEND_BINARY_MSG_NTC`, `C2S_PARTY_SEND_BINARY_MSG_ALL_NTC`), so the export filter and
+  pattern name are the same; the three stubs are removed (Sam: "feel free to completely revamp").
+- One shared `include/nNetMsg.hexpat` (the export script passes `include/` with `-I`, done).
+- Every pattern exports whether the message ended exactly at `len`, so fits can be counted per
+  msg id; trailing bytes after the packet body are block padding (and `OnlineStatus` on S2C).
+- The run rewrites the tracked JSON of these four packet types in `packets/decrypted_json`
+  (110,065 files; Sam asked to run the patterns over this data).

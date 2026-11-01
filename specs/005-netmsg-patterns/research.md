@@ -57,4 +57,7 @@ header, the outer fields, then u32s of the payload; 15 s).
 - Q3 The include-packet table and per-message decoders on PC 03040008, and every field Season 3
   added (P2).
 
-Reports: `research/P1-ps4-wire-format.md` (PS4 decoders with VAs, include table, enums).
+Reports: `research/P1-ps4-wire-format.md` (PS4 decoders with VAs, include table, enums);
+`research/P2-pc-deltas.md` (PC 03040008 decoder VAs and deltas: u64 ids, added fields, new msg
+ids 0x3C/0x3D and GameNormal 0x0F-0x12, GameEasy ids +4; a walker with the PC rules ends all
+89,065 captured C2S payloads exactly at `len`). Q3 answered by P2.
