@@ -12,9 +12,10 @@
 #include "Packet.hexpat"
 
 // nCharacter::E_WALLET_POINT_TYPE (PS4 DWARF, __int32; values 1-8 named there). Read as u8 on the
-// wire. Values 9-16 are not in PS4 DWARF (server lead: HighOrbs, DominionPoints,
-// AdventurePassPoints, UnknownTickets, BitterBlackMazeResetTicket / CustomMadeServiceTickets,
-// GoldenDragonMark, SilverDragonMark, RedDragonMark).
+// wire. PS4 DWARF names 9 only as WALLET_POINT_TYPE_MAX, a sentinel (DDOORBIS.elf.h:111944), so
+// 9-16 stay UNK_<value> (server lead: HighOrbs, DominionPoints, AdventurePassPoints,
+// UnknownTickets, BitterBlackMazeResetTicket / CustomMadeServiceTickets, GoldenDragonMark,
+// SilverDragonMark, RedDragonMark).
 enum E_WALLET_POINT_TYPE : u8 {
     WALLET_POINT_TYPE_INVALID = 0x0,
     WALLET_POINT_TYPE_GOLD = 0x1,

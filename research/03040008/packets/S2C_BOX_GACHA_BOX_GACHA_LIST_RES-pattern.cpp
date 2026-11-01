@@ -27,7 +27,7 @@ struct CDataBoxGachaSettlementInfo {
     u32 PurchaseMaxNum;
     u32 SpecialPriceNum;
     u32 SpecialPriceMaxNum;
-    u32 unk_u32;               // Season 3
+    u32 unk_u32;               // Season 3; position I: PC reads 5 u32s here, PS4 4 (R2 F5)
 };
 
 // PC list 0x75ab40 {u32 x5, f64, u16}.

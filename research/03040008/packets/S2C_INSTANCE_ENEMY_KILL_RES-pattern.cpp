@@ -3,8 +3,8 @@
 // (string 0x1bc9b9c; 13, 3, 2), reader 0x80ad10: s32 Error; if 0: s32 Result, u32 EnemyID, u32
 // KillNum (V). PS4 OnPacket_S2C_ENEMY_KILL_RES 0x2f3f10 reads u16, u32 m_unResult, u32, u32 (V
 // PS4); the PS4 recompilation (UserSession/S2C.h) also declares u32 m_unResult. PC reads Result as
-// s32: kept s32 (P11b), see "Recompilation disagreements". Two captures carry Error 0x3e90 (PS4
-// nError INSTANCE_AREA_ENEMY_NOT_CREATED) and nothing after it (P11b G2b).
+// s32: kept s32 (P11b), since the width is the same and the PC reader decides PC signedness.
+// Two captures carry Error 0x3e90 (PS4 nError INSTANCE_AREA_ENEMY_NOT_CREATED) and nothing after it (P11b G2b).
 // Body: s32 Error [, s32 Result, u32 EnemyID, u32 KillNum] (P11a G1).
 // packet-id: 13.3.2
 // Fit flag `fits`: the raws store no body length, so a decode fits when it ends within the

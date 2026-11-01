@@ -283,10 +283,12 @@ struct CDataRewardItem {
 };
 
 // CDataQuestEnemyInfo: PC list reader 0x773d90 {u32, u32, u16, bool} (V); PS4 {u32 m_unGroupId,
-// u16 m_usLv, b8 m_bIsPartyRecommend}: the second u32 is Season 3.
+// u16 m_usLv, b8 m_bIsPartyRecommend}: one of the two u32s is Season 3. GroupId is one of these,
+// position unresolved (P11a §1.3 vs include): P11a says PS4 EnemyInfo lacks the leading u32
+// (Season 3 u32 first), the earlier include put it after GroupId. Both stay unk_* (spec 005 R2 F1).
 struct CDataQuestEnemyInfo {
-    u32 GroupId;
-    u32 unk_u32;    // Season 3 (no PS4 counterpart)
+    u32 unk_u32_0;
+    u32 unk_u32_1;
     u16 Lv;
     bool IsPartyRecommend;
 };
@@ -415,9 +417,11 @@ struct CDataQuestOrderList {
     u16 ContentJoinItemRank;
     MtTypedArray<CDataWalletPoint> BaseGold;   // PC 0x77c5a0; name I (PS4 u32 m_unBaseGold here)
     MtTypedArray<CDataQuestExp> BaseExp;       // PC 0x76c780; name I (PS4 u32 m_unBaseExp here)
-    u32 OrderNpcId;
-    u32 NameMsgId;
-    u32 DetailMsgId;
+    // The three u32 names are PS4's (I): PC replaced PS4's six u32s here with the two lists above
+    // plus these three, so which PS4 fields survive is unresolved (R2 F5).
+    u32 OrderNpcId;   // name I
+    u32 NameMsgId;    // name I
+    u32 DetailMsgId;  // name I
     // PC reads 3 x u64 (0x774b0c-0x774b75); PS4 has two. Which one is new is unresolved: the
     // names OrderDate / EndDistributionDate on the last two are I.
     u64 unk_u64;

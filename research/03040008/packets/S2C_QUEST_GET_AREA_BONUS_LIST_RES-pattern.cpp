@@ -21,7 +21,7 @@ struct CDataAreaBonus {
     u16 ExpRatio;
     u16 RimRatio;
     u16 AreaPointRatio;
-    u16 unk_u16;               // Season 3
+    u16 unk_u16;               // Season 3; position I: PC reads 5 u16s, PS4 4 (R2 F5)
 };
 
 struct S2C_QUEST_GET_AREA_BONUS_LIST_RES : CPacket {

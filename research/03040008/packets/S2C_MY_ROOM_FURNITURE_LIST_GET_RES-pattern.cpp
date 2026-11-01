@@ -26,7 +26,7 @@ struct CDataFurnitureLayout {
 struct CDataMyRoomOption {
     MtTypedArray<CDataCommonU32> BgmAcquirementNoList;
     u32 BgmAcquirementNo;
-    u32 unk_u32;               // Season 3
+    u32 unk_u32;               // Season 3; position I: PC reads 2 u32s, PS4 1 (R2 F5)
 };
 
 struct S2C_MY_ROOM_FURNITURE_LIST_GET_RES : CPacket {

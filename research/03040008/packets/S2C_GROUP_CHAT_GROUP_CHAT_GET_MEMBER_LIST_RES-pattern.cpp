@@ -29,7 +29,8 @@ struct S2C_GROUP_CHAT_GROUP_CHAT_GET_MEMBER_LIST_RES : CPacket {
         // The client stops after a non-zero Error (PC 0x809d80), but the server writes Result and
         // an empty list after it (P11b G2b, PC-cap 41/41: slack 19). More than 15 bytes left
         // cannot be cipher padding, so they are decoded as that server tail; the client never
-        // reads them.
+        // reads them. PS4 framing (I): the recompiled ACTIVATE_JOB_ORDER_RES::ReadPacket (S2C.cpp
+        // 188-206) reads Result after any Error and accepts a short packet.
         s32 unk_serverResult;
         u32 unk_serverListCount;
     }
