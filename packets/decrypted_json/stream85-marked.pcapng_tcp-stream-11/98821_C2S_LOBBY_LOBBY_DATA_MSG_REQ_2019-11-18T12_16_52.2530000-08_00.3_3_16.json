@@ -1,18 +1,88 @@
 {
-    "cpacket_c2s_lobby_data_msg_req_at_0x00": {
+    "packet": {
         "group": 3,
         "id": 3,
         "subId": 16,
         "source": 0,
         "packetcounter": 61514,
-        "Type": 2,
-        "LOBBY_MSG_TYPE": "nNetSv_LOBBY_MSG_TYPE%3A%3ALOBBY_MSG_ALL",
-        "CharacterID": 0,
-        "netMsgSize": 179,
-        "unknown1": 2,
-        "unknown2": 0,
-        "RpcId": 2001,
-        "netMsgDTI": "NET_MSG_DTI%3A%3AcNetMsgCtrlAction",
-        "msgId": "nNetMsgData_nCtrl_NET_MSG_ID%3A%3ANET_MSG_ID_ACT_CLIFF_HANG"
+        "Type": "LOBBY_PACKET_TYPE%3A%3ALOBBY_MSG_ALL",
+        "CharacterId": 0,
+        "len": 179,
+        "Data": {
+            "msg": {
+                "head": {
+                    "mSessionId": 2,
+                    "mRpcId": 2001,
+                    "mMsgIdFull": 1073807372,
+                    "mSearchId": 14454766
+                },
+                "msgName": "NET_MSG_ID%3A%3ANET_MSG_ID_ACT_CLIFF_HANG",
+                "ctrlBase": {
+                    "mUniqueId": 9223372036854775841
+                },
+                "ctrlAction": {
+                    "inc": 1065,
+                    "mIsEnemy": false,
+                    "mIsCharacter": true,
+                    "mIsHuman": true,
+                    "mIsEnemyLarge": false,
+                    "mPos": {
+                        "mPos": {
+                            "x": -4765.00048828125,
+                            "y": 12924.814453125,
+                            "z": 33.0279655456543
+                        },
+                        "mMoveSpeed": 1,
+                        "mMoveAngle": -2.033874988555908
+                    },
+                    "mAngleY": -2.033874988555908,
+                    "mAction": {
+                        "mActNo": 118,
+                        "mActReqPrio": 1,
+                        "mActAtkAdjustUniqueId": 0,
+                        "mActFreeWork": 2049
+                    },
+                    "mCondition": {
+                        "mHp": 3240,
+                        "mHpWhite": 3240,
+                        "mStamina": 1612,
+                        "mUseRegionBit": 15,
+                        "mRegionRateBit": 0,
+                        "mCommonWork": 0,
+                        "mCustomWork": 0,
+                        "mOcdActiveMsgNum": 0,
+                        "mOcdActiveMsgArray": [
+                        ],
+                        "mEnchantRate": 0.10000002384185791,
+                        "mAilmentDamage": 30
+                    },
+                    "mCliffHang": {
+                        "mCliffPos": {
+                            "x": -4833.6826171875,
+                            "y": 13063.1328125,
+                            "z": 2.3063859939575195
+                        },
+                        "mCliffNormal": {
+                            "x": 0.9877692461013794,
+                            "y": 0.10603250563144684,
+                            "z": -0.11431997269392014
+                        },
+                        "mCliffStartPos": {
+                            "x": -4752.51953125,
+                            "y": 12900.1142578125,
+                            "z": 39.25955581665039
+                        },
+                        "mCliffStartOldPos": {
+                            "x": -4752.51953125,
+                            "y": 12900.1142578125,
+                            "z": 39.25955581665039
+                        }
+                    }
+                }
+            }
+        },
+        "msgFits": true,
+        "msgId": "0x4001000C",
+        "paddingSize": 11
     }
 }

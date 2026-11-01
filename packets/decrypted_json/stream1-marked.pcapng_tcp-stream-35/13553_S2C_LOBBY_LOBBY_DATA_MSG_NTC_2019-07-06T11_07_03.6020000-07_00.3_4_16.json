@@ -1,27 +1,31 @@
 {
-    "cpacket_c2s_lobby_data_msg_req_at_0x00": {
+    "packet": {
         "group": 3,
         "id": 4,
         "subId": 16,
         "source": 52,
         "packetcounter": 662,
-        "Type": 2,
-        "LOBBY_MSG_TYPE": "nNetSv_LOBBY_MSG_TYPE%3A%3ALOBBY_MSG_ALL",
-        "CharacterID": 375870,
-        "netMsgSize": 28,
-        "unknown1": 2,
-        "unknown2": 0,
-        "RpcId": 1010,
-        "netMsgDTI": "NET_MSG_DTI%3A%3AcNetMsgGameNormal",
-        "msgId": "nNetMsgData_nGame_NET_MSG_ID_GAME%3A%3ANET_MSG_ID_GAME_STAGE",
-        "msg": {
-            "mpMsgGameBaseData": {
-                "dummy": 0
-            },
-            "mpMsgGameNormalData": {
-                "mStageNo": 201,
-                "mStartPosNo": 0
+        "Type": "LOBBY_PACKET_TYPE%3A%3ALOBBY_MSG_ALL",
+        "CharacterId": 375870,
+        "len": 28,
+        "Data": {
+            "msg": {
+                "head": {
+                    "mSessionId": 2,
+                    "mRpcId": 1010,
+                    "mMsgIdFull": 1090519041,
+                    "mSearchId": 0
+                },
+                "msgName": "NET_MSG_ID_GAME%3A%3ANET_MSG_ID_GAME_STAGE",
+                "gameNormal": {
+                    "mStageNo": 201,
+                    "mStartPosNo": 0
+                }
             }
-        }
+        },
+        "msgFits": true,
+        "msgId": "0x41000001",
+        "OnlineStatus": "ONLINE_STATUS%3A%3APtLeader",
+        "paddingSize": 1
     }
 }

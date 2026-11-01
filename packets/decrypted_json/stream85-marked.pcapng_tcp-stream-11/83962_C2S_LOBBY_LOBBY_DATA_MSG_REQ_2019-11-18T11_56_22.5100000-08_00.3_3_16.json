@@ -1,18 +1,117 @@
 {
-    "cpacket_c2s_lobby_data_msg_req_at_0x00": {
+    "packet": {
         "group": 3,
         "id": 3,
         "subId": 16,
         "source": 0,
         "packetcounter": 50764,
-        "Type": 2,
-        "LOBBY_MSG_TYPE": "nNetSv_LOBBY_MSG_TYPE%3A%3ALOBBY_MSG_ALL",
-        "CharacterID": 0,
-        "netMsgSize": 145,
-        "unknown1": 2,
-        "unknown2": 0,
-        "RpcId": 2000,
-        "netMsgDTI": "NET_MSG_DTI%3A%3AcNetMsgCtrlAction",
-        "msgId": "nNetMsgData_nCtrl_NET_MSG_ID%3A%3ANET_MSG_ID_ACT_ENEMY_CLIMB"
+        "Type": "LOBBY_PACKET_TYPE%3A%3ALOBBY_MSG_ALL",
+        "CharacterId": 0,
+        "len": 145,
+        "Data": {
+            "msg": {
+                "head": {
+                    "mSessionId": 2,
+                    "mRpcId": 2000,
+                    "mMsgIdFull": 1073807371,
+                    "mSearchId": 0
+                },
+                "msgName": "NET_MSG_ID%3A%3ANET_MSG_ID_ACT_ENEMY_CLIMB",
+                "ctrlBase": {
+                    "mUniqueId": 9223372036854775809
+                },
+                "ctrlAction": {
+                    "inc": 2089,
+                    "mIsEnemy": false,
+                    "mIsCharacter": true,
+                    "mIsHuman": true,
+                    "mIsEnemyLarge": false,
+                    "mPos": {
+                        "mPos": {
+                            "x": -912.63232421875,
+                            "y": -2172.892822265625,
+                            "z": -115830.34375
+                        },
+                        "mMoveSpeed": 0,
+                        "mMoveAngle": -2.8613810539245605
+                    },
+                    "mAngleY": 0.3510483503341675,
+                    "mAction": {
+                        "mActNo": 8211,
+                        "mActReqPrio": 1,
+                        "mActAtkAdjustUniqueId": 18,
+                        "mActFreeWork": 6
+                    },
+                    "mCondition": {
+                        "mHp": 4265,
+                        "mHpWhite": 4265,
+                        "mStamina": 2899,
+                        "mUseRegionBit": 15,
+                        "mRegionRateBit": 0,
+                        "mCommonWork": 65534,
+                        "mCustomWork": 2049,
+                        "mOcdActiveMsgNum": 5,
+                        "mOcdActiveMsgArray": [
+                            {
+                                "bankIndex": 48,
+                                "activeImmuneLv": 16,
+                                "mBank": 1,
+                                "mIndex": 16,
+                                "mActiveLv": 1,
+                                "mImmuneLv": 0
+                            },
+                            {
+                                "bankIndex": 56,
+                                "activeImmuneLv": 16,
+                                "mBank": 1,
+                                "mIndex": 24,
+                                "mActiveLv": 1,
+                                "mImmuneLv": 0
+                            },
+                            {
+                                "bankIndex": 68,
+                                "activeImmuneLv": 16,
+                                "mBank": 2,
+                                "mIndex": 4,
+                                "mActiveLv": 1,
+                                "mImmuneLv": 0
+                            },
+                            {
+                                "bankIndex": 98,
+                                "activeImmuneLv": 16,
+                                "mBank": 3,
+                                "mIndex": 2,
+                                "mActiveLv": 1,
+                                "mImmuneLv": 0
+                            },
+                            {
+                                "bankIndex": 114,
+                                "activeImmuneLv": 16,
+                                "mBank": 3,
+                                "mIndex": 18,
+                                "mActiveLv": 1,
+                                "mImmuneLv": 0
+                            }
+                        ],
+                        "mEnchantRate": 0.10000002384185791,
+                        "mAilmentDamage": 30
+                    },
+                    "mEnemyClimb": {
+                        "mClimbEnemyUId": 9223372037090321154,
+                        "mJointNo": 73,
+                        "mJointOffset": {
+                            "x": 17.009763717651367,
+                            "y": 32.638668060302734,
+                            "z": -5.406249523162842
+                        },
+                        "mNodeIndex": 4,
+                        "mGeomIndex": 7
+                    }
+                }
+            }
+        },
+        "msgFits": true,
+        "msgId": "0x4001000B",
+        "paddingSize": 13
     }
 }

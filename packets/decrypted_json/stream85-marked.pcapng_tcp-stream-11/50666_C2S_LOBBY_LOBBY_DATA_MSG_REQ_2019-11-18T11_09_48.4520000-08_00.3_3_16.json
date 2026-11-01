@@ -1,18 +1,54 @@
 {
-    "cpacket_c2s_lobby_data_msg_req_at_0x00": {
+    "packet": {
         "group": 3,
         "id": 3,
         "subId": 16,
         "source": 0,
         "packetcounter": 27104,
-        "Type": 2,
-        "LOBBY_MSG_TYPE": "nNetSv_LOBBY_MSG_TYPE%3A%3ALOBBY_MSG_ALL",
-        "CharacterID": 0,
-        "netMsgSize": 72,
-        "unknown1": 2,
-        "unknown2": 0,
-        "RpcId": 2000,
-        "netMsgDTI": "NET_MSG_DTI%3A%3AcNetMsgCtrlAction",
-        "msgId": "nNetMsgData_nCtrl_NET_MSG_ID%3A%3ANET_MSG_ID_STICK_SHL"
+        "Type": "LOBBY_PACKET_TYPE%3A%3ALOBBY_MSG_ALL",
+        "CharacterId": 0,
+        "len": 72,
+        "Data": {
+            "msg": {
+                "head": {
+                    "mSessionId": 2,
+                    "mRpcId": 2000,
+                    "mMsgIdFull": 1073807397,
+                    "mSearchId": 0
+                },
+                "msgName": "NET_MSG_ID%3A%3ANET_MSG_ID_STICK_SHL",
+                "ctrlBase": {
+                    "mUniqueId": 9223372036854775809
+                },
+                "ctrlAction": {
+                    "inc": 0,
+                    "mIsEnemy": false,
+                    "mIsCharacter": true,
+                    "mIsHuman": true,
+                    "mIsEnemyLarge": false,
+                    "mStickShl": {
+                        "mStickCreateControl": 1,
+                        "mStickShlUniqueId": 153078,
+                        "mStickUniqueId": 9223372036922155778,
+                        "mStickJointNo": 145,
+                        "mStickShlGroup": 3,
+                        "mStickShlIndex": 0,
+                        "mStickJointOffset": {
+                            "x": -1.0952632427215576,
+                            "y": -1.1802618503570557,
+                            "z": -4.733643531799316
+                        },
+                        "mStickDirection": {
+                            "x": 0.03525221347808838,
+                            "y": 0.01494708564132452,
+                            "z": 0.9992666840553284
+                        }
+                    }
+                }
+            }
+        },
+        "msgFits": true,
+        "msgId": "0x40010025",
+        "paddingSize": 6
     }
 }

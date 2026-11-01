@@ -1,18 +1,62 @@
 {
-    "cpacket_c2s_lobby_data_msg_req_at_0x00": {
+    "packet": {
         "group": 3,
         "id": 3,
         "subId": 16,
         "source": 0,
         "packetcounter": 50305,
-        "Type": 2,
-        "LOBBY_MSG_TYPE": "nNetSv_LOBBY_MSG_TYPE%3A%3ALOBBY_MSG_ALL",
-        "CharacterID": 0,
-        "netMsgSize": 124,
-        "unknown1": 2,
-        "unknown2": 0,
-        "RpcId": 2005,
-        "netMsgDTI": "NET_MSG_DTI%3A%3AcNetMsgCtrlAction",
-        "msgId": "nNetMsgData_nCtrl_NET_MSG_ID%3A%3ANET_MSG_ID_PERIODIC_POS"
+        "Type": "LOBBY_PACKET_TYPE%3A%3ALOBBY_MSG_ALL",
+        "CharacterId": 0,
+        "len": 124,
+        "Data": {
+            "msg": {
+                "head": {
+                    "mSessionId": 2,
+                    "mRpcId": 2005,
+                    "mMsgIdFull": 1073807383,
+                    "mSearchId": 14455514
+                },
+                "msgName": "NET_MSG_ID%3A%3ANET_MSG_ID_PERIODIC_POS",
+                "ctrlBase": {
+                    "mUniqueId": 9223372036854775969
+                },
+                "ctrlAction": {
+                    "inc": 8425473,
+                    "mIsEnemy": false,
+                    "mIsCharacter": true,
+                    "mIsHuman": true,
+                    "mIsEnemyLarge": false,
+                    "mPos": {
+                        "mPos": {
+                            "x": -522.6826171875,
+                            "y": -2132.95458984375,
+                            "z": -117371.59375
+                        },
+                        "mMoveSpeed": 1,
+                        "mMoveAngle": 3.0978596210479736
+                    },
+                    "mAngleY": 3.0978596210479736,
+                    "mTargetUid": 0,
+                    "mTargetPos": {
+                        "x": -845.8218994140625,
+                        "y": -2337.46728515625,
+                        "z": -115135.6640625
+                    },
+                    "mEncountArea": [
+                        10,
+                        -1,
+                        -1
+                    ],
+                    "mSafePos": {
+                        "x": -522.2035522460938,
+                        "y": -2352.39697265625,
+                        "z": -117382.546875
+                    }
+                }
+            }
+        },
+        "msgFits": true,
+        "msgId": "0x40010017",
+        "paddingSize": 2
     }
 }

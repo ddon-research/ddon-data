@@ -1,18 +1,73 @@
 {
-    "cpacket_c2s_lobby_data_msg_req_at_0x00": {
+    "packet": {
         "group": 3,
         "id": 3,
         "subId": 16,
         "source": 0,
         "packetcounter": 93843,
-        "Type": 2,
-        "LOBBY_MSG_TYPE": "nNetSv_LOBBY_MSG_TYPE%3A%3ALOBBY_MSG_ALL",
-        "CharacterID": 0,
-        "netMsgSize": 143,
-        "unknown1": 2,
-        "unknown2": 0,
-        "RpcId": 2001,
-        "netMsgDTI": "NET_MSG_DTI%3A%3AcNetMsgCtrlAction",
-        "msgId": "nNetMsgData_nCtrl_NET_MSG_ID%3A%3ANET_MSG_ID_ACT_DAMAGE"
+        "Type": "LOBBY_PACKET_TYPE%3A%3ALOBBY_MSG_ALL",
+        "CharacterId": 0,
+        "len": 143,
+        "Data": {
+            "msg": {
+                "head": {
+                    "mSessionId": 2,
+                    "mRpcId": 2001,
+                    "mMsgIdFull": 1073807412,
+                    "mSearchId": 14454766
+                },
+                "msgName": "NET_MSG_ID%3A%3ANET_MSG_ID_ACT_DAMAGE",
+                "ctrlBase": {
+                    "mUniqueId": 9223372036854775841
+                },
+                "ctrlAction": {
+                    "inc": 528425,
+                    "mIsEnemy": false,
+                    "mIsCharacter": true,
+                    "mIsHuman": true,
+                    "mIsEnemyLarge": false,
+                    "mPos": {
+                        "mPos": {
+                            "x": 916.6595458984375,
+                            "y": 500.1070251464844,
+                            "z": 12126.353515625
+                        },
+                        "mMoveSpeed": 0,
+                        "mMoveAngle": -1.5055060386657715
+                    },
+                    "mAngleY": -0.7043468952178955,
+                    "mAction": {
+                        "mActNo": 127,
+                        "mActReqPrio": 8,
+                        "mActAtkAdjustUniqueId": 12,
+                        "mActFreeWork": 2304
+                    },
+                    "mCondition": {
+                        "mHp": 1934,
+                        "mHpWhite": 2776,
+                        "mStamina": 1587,
+                        "mUseRegionBit": 15,
+                        "mRegionRateBit": 0,
+                        "mCommonWork": 0,
+                        "mCustomWork": 1,
+                        "mOcdActiveMsgNum": 0,
+                        "mOcdActiveMsgArray": [
+                        ],
+                        "mEnchantRate": 0.10000002384185791,
+                        "mAilmentDamage": 30
+                    },
+                    "mTargetUid": 0,
+                    "mTargetPos": {
+                        "x": 28.329206466674805,
+                        "y": 626.069580078125,
+                        "z": 13171.759765625
+                    },
+                    "mAttackParamUIDForDmVec": 1144459542860398597
+                }
+            }
+        },
+        "msgFits": true,
+        "msgId": "0x40010034",
+        "paddingSize": 15
     }
 }

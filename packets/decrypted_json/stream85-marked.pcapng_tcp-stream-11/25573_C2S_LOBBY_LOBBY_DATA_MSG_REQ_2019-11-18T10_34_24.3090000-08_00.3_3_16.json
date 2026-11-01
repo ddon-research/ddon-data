@@ -1,18 +1,43 @@
 {
-    "cpacket_c2s_lobby_data_msg_req_at_0x00": {
+    "packet": {
         "group": 3,
         "id": 3,
         "subId": 16,
         "source": 0,
         "packetcounter": 9755,
-        "Type": 4,
-        "LOBBY_MSG_TYPE": "nNetSv_LOBBY_MSG_TYPE%3A%3ALOBBY_MSG_SERVER",
-        "CharacterID": 0,
-        "netMsgSize": 62,
-        "unknown1": 2,
-        "unknown2": 0,
-        "RpcId": 2000,
-        "netMsgDTI": "NET_MSG_DTI%3A%3AcNetMsgCtrlAction",
-        "msgId": "nNetMsgData_nCtrl_NET_MSG_ID%3A%3ANET_MSG_ID_SERVER_DAMAGE"
+        "Type": "LOBBY_PACKET_TYPE%3A%3ALOBBY_MSG_SERVER",
+        "CharacterId": 0,
+        "len": 62,
+        "Data": {
+            "msg": {
+                "head": {
+                    "mSessionId": 2,
+                    "mRpcId": 2000,
+                    "mMsgIdFull": 1073807415,
+                    "mSearchId": 0
+                },
+                "msgName": "NET_MSG_ID%3A%3ANET_MSG_ID_SERVER_DAMAGE",
+                "ctrlBase": {
+                    "mUniqueId": 9223372036854775809
+                },
+                "ctrlAction": {
+                    "inc": 0,
+                    "mIsEnemy": false,
+                    "mIsCharacter": true,
+                    "mIsHuman": true,
+                    "mIsEnemyLarge": false,
+                    "mSlaveDamageSv": {
+                        "mAtkUID": 9223372037125251826,
+                        "mAtkParamUID": 6384294398162632718,
+                        "mdfdNodeUID": 6350395509785559041,
+                        "mAtkAdjustUniqueId": 2,
+                        "mAttackAttr": 1
+                    }
+                }
+            }
+        },
+        "msgFits": true,
+        "msgId": "0x40010037",
+        "paddingSize": 0
     }
 }

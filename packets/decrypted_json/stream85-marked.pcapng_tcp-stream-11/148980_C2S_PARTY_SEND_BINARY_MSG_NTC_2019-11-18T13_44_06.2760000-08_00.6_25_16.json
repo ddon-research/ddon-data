@@ -1,20 +1,55 @@
 {
-    "C2S_SEND_BINARY_MSG_NOTICE": {
+    "packet": {
         "group": 6,
         "id": 25,
         "subId": 16,
         "source": 0,
         "packetcounter": 95868,
-        "CharacterIDList": {
-            "arraySize": 0,
-            "array": [
-            ]
+        "count": 0,
+        "CharacterIds": [
+        ],
+        "len": 97,
+        "Data": {
+            "head": {
+                "mSessionId": 0,
+                "mRpcId": 9223372036888605866,
+                "mMsgIdFull": 1073807406,
+                "mSearchId": 0
+            },
+            "msgName": "NET_MSG_ID%3A%3ANET_MSG_ID_ENEMYSTATUS_CTRL",
+            "ctrlBase": {
+                "mUniqueId": 9223372036888602866
+            },
+            "ctrlAction": {
+                "inc": 65536,
+                "mIsEnemy": true,
+                "mIsCharacter": true,
+                "mIsHuman": false,
+                "mIsEnemyLarge": false,
+                "mEnemyStatusCtrl": {
+                    "mEnemyStatusGroupNoNum": 2,
+                    "mGroups": [
+                        {
+                            "mEnemyStatusGroupNo": 1,
+                            "mEnemyStatusSubGroupNo": 0
+                        },
+                        {
+                            "mEnemyStatusGroupNo": 0,
+                            "mEnemyStatusSubGroupNo": 0
+                        }
+                    ],
+                    "mEnemyBitCtrlCollision": 1,
+                    "mEnemyCtrlRegionSelectNo": 1,
+                    "mEnemyBitCtrlParts": 0,
+                    "mEnemyBitCtrlWorkRate": 0,
+                    "mEnemyBitCtrlScale": 0,
+                    "mEnemyBitCtrlMontage": 1028,
+                    "mEnemyBitCtrlSyncBit": 0
+                }
+            }
         },
-        "netMsgSize": 97,
-        "unknown1": 0,
-        "unknown2": 2147483648,
-        "RpcId": 33830058,
-        "netMsgDTI": "NET_MSG_DTI%3A%3AcNetMsgCtrlAction",
-        "msgId": "nNetMsgData_nCtrl_NET_MSG_ID%3A%3ANET_MSG_ID_ENEMYSTATUS_CTRL"
+        "msgFits": true,
+        "msgId": "0x4001002E",
+        "paddingSize": 14
     }
 }
