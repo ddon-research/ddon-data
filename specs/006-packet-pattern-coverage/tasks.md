@@ -12,6 +12,10 @@ Coordinator: main session. One subagent at a time. Method and rules: `spec.md`.
   width, and walks 2-3 of the 47 captures bit by bit (the recompilation has only stubs for both);
   then an `implementer` turns it into ImHex bitfields in the 9.1.1/9.0.2 patterns and re-exports.
   Start from P4 § 3.1 (spec 005).
+- [ ] T001c Spec 005's other parked static items, finished, not listed (Sam's rule 2026-11-01): the
+  35.12.16 tail (second structure via `0x760480`), the 35.0.2/35.1/35.2/35.4 readers, the start/end
+  pairing of 13.44-13.47 (callers `0x8a2670`, `0x8a1d5a`), the CaughtResult/GameEasy sender check,
+  the QuestEnemyInfo u32 position (P11a § 1.3); one IDA package, then the pattern fixes.
 - [ ] T002 Login group (C2L/L2C, all directions): evidence + patterns (`evidence-researcher-ida`,
   then `implementer`), extending `C2L_LOGIN_REQ`/`L2C_LOGIN_RES`.
 - [ ] T003+ One evidence + one implementer package per group, by captured count (13 instance,
