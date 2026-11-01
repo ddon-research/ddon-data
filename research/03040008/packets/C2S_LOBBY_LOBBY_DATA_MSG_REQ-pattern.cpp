@@ -1,5 +1,6 @@
 // 3.3.16 C2S_LOBBY_LOBBY_DATA_MSG_REQ (client 03040008). Body: P1 1.1, P2 5
 // (writer PC 0x841b60, sender PC 0x82ed10).
+// packet-id: 3.3.16
 // Payload decoders: include/nNetMsg.hexpat (spec 005).
 #pragma endian big
 

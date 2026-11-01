@@ -2,8 +2,13 @@
 # Decode decrypted packets with an ImHex pattern and export them as JSON.
 #
 # Usage: ./imhex-export.sh [--force] <packet-filter> <pattern-name> [jobs]
-#   packet-filter  substring of the file names in decrypted_raw/<stream>/
-#                  (e.g. S2C_GROUP_CHAT_GROUP_CHAT_GET_MEMBER_LIST_RES)
+#   packet-filter  what to select in decrypted_raw/<stream>/:
+#                  @              the packet id the pattern declares (`// packet-id: 35.5.16`)
+#                  35.5.16        that packet id: files ending in `.35_5_16`
+#                  anything else  a substring of the file names
+#                                 (e.g. S2C_GROUP_CHAT_GROUP_CHAT_GET_MEMBER_LIST_RES)
+#                  The id forms ignore the packet name, which an outdated or "Unknown" name
+#                  in the raw file would otherwise hide.
 #   pattern-name   pattern in ../research/03040008/packets/<name>-pattern.cpp
 #                  (e.g. S2C_GROUP_CHAT_GROUP_CHAT_GET_MEMBER_LIST_RES)
 #   jobs           parallel worker processes (default: nproc with plbatch, nproc/2 with ImHex)
@@ -35,7 +40,7 @@ set -o pipefail
 shopt -s nullglob globstar
 
 die() { echo "ERROR: $*" >&2; exit 2; }
-usage() { sed -n '2,13p' "$0" | sed 's/^# \{0,1\}//' >&2; exit 2; }
+usage() { sed -n '2,19p' "$0" | sed 's/^# \{0,1\}//' >&2; exit 2; }
 require() {
   local cmd
   for cmd in "$@"; do
@@ -106,8 +111,25 @@ if [[ ! "$JOBS" =~ ^[0-9]+$ ]] || (( JOBS < 1 )); then
   die "jobs must be a positive integer, got '$JOBS'"
 fi
 
-inputs=("$RAW_DIR"/**/*"$FILTER"*)
-(( ${#inputs[@]} > 0 )) || die "no packets in '$RAW_DIR' match '*$FILTER*'"
+# Packet id selection: the raw file names end in `.<group>_<id>_<sub>`.
+if [[ "$FILTER" == @ ]]; then
+  FILTER=
+  while IFS= read -r line; do
+    if [[ $line =~ ^//\ packet-id:\ ([0-9]+\.[0-9]+\.[0-9]+)[[:space:]]*$ ]]; then
+      FILTER=${BASH_REMATCH[1]}
+      break
+    fi
+  done < "$PATTERN"
+  [[ -n "$FILTER" ]] || die "pattern '$PATTERN' declares no '// packet-id: <group>.<id>.<sub>' line"
+fi
+if [[ "$FILTER" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+  GLOB="*.${FILTER//./_}"
+  inputs=("$RAW_DIR"/**/$GLOB)
+else
+  GLOB="*$FILTER*"
+  inputs=("$RAW_DIR"/**/*"$FILTER"*)
+fi
+(( ${#inputs[@]} > 0 )) || die "no packets in '$RAW_DIR' match '$GLOB'"
 
 echo "Exporting ${#inputs[@]} packet(s) matching '$FILTER' with $PATTERN ($JOBS $ENGINE job(s))"
 work=$(mktemp -d)

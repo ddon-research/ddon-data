@@ -1,5 +1,6 @@
 // 3.4.16 S2C_LOBBY_LOBBY_DATA_MSG_NTC (client 03040008). Body: P1 1.1, P2 5
 // (handler PC 0x7e2ad0, reader PC 0x80e970).
+// packet-id: 3.4.16
 // Payload decoders: include/nNetMsg.hexpat (spec 005).
 #pragma endian big
 

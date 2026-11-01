@@ -1,5 +1,6 @@
 // 6.25.16 C2S_PARTY_SEND_BINARY_MSG_NTC (client 03040008). Body: P1 1.1, P2 5
 // (writer PC 0x841d20, list writer PC 0x77df90, sender PC 0x832360).
+// packet-id: 6.25.16
 // Payload decoders: include/nNetMsg.hexpat (spec 005).
 #pragma endian big
 

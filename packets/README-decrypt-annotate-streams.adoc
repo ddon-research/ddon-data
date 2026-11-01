@@ -154,6 +154,19 @@ when one of its packets was exported with a pattern (83 of 125 streams have one)
 `decrypted_json/<stream>/<packet-file>.json`. Set `IMHEX` if ImHex is not on `PATH`; output paths
 must stay under 260 characters for the Windows ImHex build.
 
+`<packet-filter>` selects the raw files three ways:
+
+* `@`: the packet id the pattern declares in a `// packet-id: <group>.<id>.<sub>` header line
+  (`./imhex-export.sh @ C2S_CONTEXT_35_5_16_NTC`);
+* `<group>.<id>.<sub>` (`35.5.16`): files whose name ends in `.35_5_16`;
+* anything else: a substring of the file names, as before.
+
+The id forms do not depend on the packet name in the file name, which the CLI took from the
+server's `PacketId` at export time: an outdated or "Unknown" name cannot hide packets from them.
+Patterns without a nNetMsg payload (spec 005 P9, `include/Packet.hexpat`) export `fits`: the raw
+files store no body length, so a decode fits when it ends within the last 15 bytes (cipher block
+padding). The nNetMsg patterns export `msgFits` (the message ended exactly at its `len`).
+
 Two engines, same JSON byte for byte:
 
 * *plbatch* (default when built): `bash ../research/imhex/plbatch/build.sh` builds
