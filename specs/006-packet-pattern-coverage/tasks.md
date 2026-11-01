@@ -36,7 +36,8 @@ Coordinator: main session. One subagent at a time. Method and rules: `spec.md`.
   handshake packet; the 304 B first-packet files are 44.1.16 S2C_CERT_GAME_SERVER_CERT_NTC (PS4
   `S2C_GAME_SERVER_CERT_NOTICE`) and 1.1.16 L2C_LOGIN_SERVER_CERT_NTC, filed by the CLI under
   44.0.1/1.0.1; IDA copies deleted). Running: T001d (UTF-8 JSON). Next: T003 patterns (incl. the
-  two CERT_NTC patterns), asked Sam whether to rename the 304 B files now that code names them.
+  two CERT_NTC patterns), Sam (2026-11-01): rename the 304 B files
+  to their code-backed ids/names: T002e, brief `briefs/T002e-cert-ntc-rename.md`, after T001d.
   Tn: `tests/imhex-export-select.sh` is not run by check.sh.
 - Coordinator housekeeping until 002 T021 lands: after each IDA package, stop its `idat.exe` workers
   (`scratchpad/idaprocs.ps1` lists them) and delete its `ddon-data-<name>` copies.
