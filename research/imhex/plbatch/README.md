@@ -32,15 +32,25 @@ bash research/imhex/plbatch/build.sh
 ## Use
 
 ```sh
-plbatch --pattern P [-I DIR]... --in-root IN --out-root OUT [--force] [--time] < list
+plbatch --pattern P [-I DIR]... --in-root IN --out-root OUT [--force] [--time] [--json-nonfinite=keep|null] < list
 ```
 
 - `list`: newline-separated paths relative to `IN`.
 - For each `rel`: `OUT/rel.json`, written to `OUT/rel.json.tmp.<pid>` and renamed into place; on
   failure no JSON and `OUT/rel.json.err` with the compile or evaluation error and the stack trace.
   Paths of 260+ characters fail like the export script's guard.
-- stdout: `ok   rel`, `skip rel` (JSON exists, no `--force`) or `FAIL rel (see <err>)`, one line
-  per file. Exit 0 when nothing failed, 1 when a file failed, 2 on a usage error.
+- On failure (also under `--force`) an existing `OUT/rel.json` from an earlier run is removed, so
+  counts never mix runs.
+- Every output is parsed with nlohmann json (the copy PatternLanguage bundles). The formatter
+  prints NaN/Inf floats as bare `nan`/`inf`, which is not JSON: such a file is written unchanged
+  and reported `ok-nan` (default `--json-nonfinite=keep`, byte-identical to ImHex), or written
+  with `null` in their place and reported `ok-null` (`--json-nonfinite=null`). Output invalid for
+  another reason is `badjson`: a failure with a `.json.err`, no JSON.
+- stdout: `ok   rel`, `ok-nan rel`, `ok-null rel`, `skip rel` (JSON exists, no `--force`),
+  `badjson rel (see <err>)` or `FAIL rel (see <err>)`, one line per file. Exit 0 when nothing
+  failed, 1 when a file failed or was badjson, 2 on a usage error.
+- Tests: `bash research/imhex/plbatch/test.sh` (synthetic inputs: ok, ok-nan, ok-null, stale JSON
+  removed on failure, skip).
 - `-I`: pass the ImHex std library (`<imhex>/includes`, which `imhex --pl` adds by itself) and the
   pattern includes (`research/03040008/packets/include`).
 - `--time`: also parse each pattern once more on its own and print parse, execute and format
