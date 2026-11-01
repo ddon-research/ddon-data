@@ -81,6 +81,21 @@ raws no longer carry (`S2C_AREA_23_13_16_NTC` = `S2C_AREA_POINT_UP_NTC`, `S2C_EN
   `S2C_MANDRAGORA_GET_MY_MANDRAGORA_RES`): P11 marks each pattern finished / partial / stub, and P12
   completes the partial ones. Verify re-exports by prediction + stratified sample, not per-file diffs.
 
+### Next: patterns for every remaining raw packet type (Sam, 2026-11-01, after P12 and R2)
+
+`packets/decrypted_raw` holds 575 distinct packet ids (146,891 files); 31 carry a `// packet-id:`
+pattern today and P12 adds the 36 old ones, leaving about 508 ids without a pattern (of the 551
+uncovered now: 223 REQ, 225 RES, 103 NTC; 32,733 packets). Same method as T021-T023 (IDA evidence
+per batch, matched by code; implementer per batch with shared includes; sampled verification; an
+inspection list for Sam; reviewer). This is a scope of its own: open it as spec 006
+(`specs/006-packet-pattern-coverage/`) when 005 closes, batched by packet group (25-30 ids per
+IDA batch; trivial empty REQs in bulk), most-captured groups first.
+Scope rule (Sam, 2026-11-01): 006 covers only packet ids whose PC handler/reader/writer can be
+matched by code to a PS4 02020005 handler. Season 3-exclusive handlers (no PS4 counterpart) are
+listed, not patterned: a later spec handles them with context from the new Season 3 client files.
+006's first package is therefore a triage: per uncovered id, the PC handler VA and whether a PS4
+match exists (by code: reader body, callers, strings), ranked by captured count.
+
 ### Phase 2: live Season 3 validation (Sam, 2026-11-01: only after the static path is exhausted)
 
 The 2019 captures cover 30 CtrlAction ids, 4 GameEasy/GameNormal ids and no SetNormal/ToolEasy
