@@ -36,8 +36,9 @@ Coordinator: main session. One subagent at a time. Method and rules: `spec.md`.
   captures fit; 0.10.16 = SESSION_STATUS_NTC; PC `Send` 0x9d6a20 strips the header of the
   handshake packet; the 304 B first-packet files are 44.1.16 S2C_CERT_GAME_SERVER_CERT_NTC (PS4
   `S2C_GAME_SERVER_CERT_NOTICE`) and 1.1.16 L2C_LOGIN_SERVER_CERT_NTC, filed by the CLI under
-  44.0.1/1.0.1; IDA copies deleted). T003 patterns done (383373ed28, 5bc4846af8). Running: T004 group 13 evidence, brief `briefs/T004-instance.md`;
-  then its patterns, then a reviewer over T002-T004 (incl. the
+  44.0.1/1.0.1; IDA copies deleted). T003 patterns done (383373ed28, 5bc4846af8). T004 evidence done (f7efade6c6: 32/32 ids,
+  5,617/5,617 fit; 7 unresolved settled, 13.23.16 + 13.16.x/13.17.x Season 3-exclusive). Running: T004
+  patterns, brief `briefs/T004b-instance-patterns.md`; then, then a reviewer over T002-T004 (incl. the
   two CERT_NTC patterns), T002e done (70201832e1: 125 raws renamed
   byte-identical to `.1_1_16`/`.44_1_16`, CLI relabel, 2 cert NTC patterns 42/42 + 83/83 fit).
   Tn: `tests/imhex-export-select.sh` is not run by check.sh.
