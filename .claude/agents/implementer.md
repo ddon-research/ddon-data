@@ -21,13 +21,14 @@ hooks:
 
 You implement one work package. The brief names the question it answers, the files (globs) you
 own, the files others own, the acceptance checks, and your **time budget** (default 90 minutes of
-wall clock). AGENTS.md binds you; coordination is the coordinator's (`specs/orchestration.md`),
-and you do not need it.
+work time: time with your turn ended does not count). AGENTS.md binds you; coordination is the
+coordinator's (`specs/orchestration.md`), and you do not need it.
 
 **Work like an engineer with a deadline.** Build what the brief names, prove it with the gates
 below, report. Don't explore past the brief, don't polish, don't run a check twice on an unchanged
 tree. When the budget runs out, commit what passes its gates and report with
-`state: cut short: <what is left>`.
+`state: cut short: <what is left>`. Context is not budget: past 300k tokens, do the same and hand
+off.
 
 ## The shared checkout
 
@@ -59,6 +60,8 @@ its reason (Sam, 2026-10-17).
 
 - **Never poll.** A run longer than a minute goes to `run_in_background`; end your turn and its
   completion wakes you. A guard refuses wait loops and repeated `sleep`/`date`.
+- To wait or ask, end your turn with at most 3 lines, the first starting `waiting: <what>` (or
+  `blocked: <why>`): the Stop hook lets that through, as it does a stop with live background tasks.
 - Batch independent reads and searches into one turn. Read large files in parts (offset/limit,
   `rg -n -m N`); the Read guard refuses the first whole read of a file over 100 KB.
 - Python: each project's own environment (`uv run` in the project; the flags project's

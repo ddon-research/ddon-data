@@ -12,7 +12,8 @@ deploy, launching the game, regenerating `client/` or `generated/`, scope change
 evidence. Decide everything else, record the choice in `tasks.md`, and keep going. After each
 landing, tick the tasks, then plan and start the next wave. End a turn only when blocked on Sam or
 on budget, and say exactly what is needed. A side session's brief names the spec's completion as
-its goal, not one wave.
+its goal, not one wave. A finished spec stays finished: new work on its output is a package of the
+active spec.
 
 Sub-coordinators (ddon-hook) bring their decisions here, not to Sam (Sam, 2026-10-17). Decide the
 routine ones and escalate the big decisions above. One exception: a session's own config
@@ -34,21 +35,27 @@ a permission or a deny rule.
 
 - **One subagent at a time, of any role** (Sam, 2026-10-17). Is one running? Then land or close it
   first. Sub-coordinator sessions (ddon-hook) follow the same cap.
-- Is the work worth an agent? A fact a few tool calls can find, or a change touching files another
-  package owns, stays with you.
+- You write no code, tests or tooling: every such change, however small, goes to a role agent with
+  a short brief. The one exception is a fix of a few lines that unblocks a landing already under
+  way; run its tests before committing. A fact a few tool calls can find stays with you.
 - Is the request clear? If an answer would change what is built, regenerated, deleted or deployed,
   ask the user; otherwise pick the default, say so in the reply and in `tasks.md`.
 - Pick the role: `implementer` (code or scripts, main checkout),
   `adversarial-reviewer` (one risk, canaries in `.agent-ledger/canaries/`), `reviewer` (read-only,
-  give it the git receipt), `repository-researcher`, `evidence-researcher` (read-only IDA). Not the
-  built-in Explore/Plan/general-purpose types for project work: they carry no guards or receipts.
-- **No `isolation: worktree` and no `effort`** on any spawn: ddon-data has no worktrees, and agents
-  inherit the session's effort (Sam: medium).
+  give it the git receipt), `repository-researcher` (writes its report under `specs/*/research/`),
+  `evidence-researcher-ida` (ida-mcp on a private IDA copy; report under `specs/*/research/`),
+  `evidence-researcher` (ida-assist, read-only). Not the built-in Explore/Plan types, and
+  `general-purpose` only as "Your role is ..." for a role file not loaded yet: `agent_cap.py check`
+  refuses the rest.
+- The description is the title `<role> · <spec> <package>: <what>`
+  (`implementer · 002 P4: reconstructor-port wave 2`); `agent_cap.py check` refuses another form.
+- **No `isolation: worktree` and no `effort`** on any spawn: ddon-data has no worktrees, and every
+  role file sets `model: inherit` and `effort: medium` (Sam, 2026-11-01).
 - Work in another repository (ddon-hook, the reconstructor) uses that repository's roles,
   worktrees and guards: run it from a session started there.
 - New or changed role files load only in a new session; commit them first.
 
-## The brief (orchestration section 3), in `specs/<feature>/briefs/`
+## The brief (orchestration section 3): a new file per package in `specs/<feature>/briefs/`
 
 ```
 <feature> <package>: <title>
@@ -57,11 +64,14 @@ Owns: <globs>. Others own: <globs>. Never touch: <dirty paths of other work>, cl
 Source boundary: <files, IDB path, external docs>.
 Libraries: <existing deps to use>; own code only where no library fits, reason in the receipt.
 Done: <checks>; end with the receipt (role file).
-Stop: budget <N> min; stop and ask if <decision>.
+Stop: budget <N> min of work time; stop and ask if <decision>.
 Base: <sha>. Commit trailer: <Co-Authored-By line>.
 ```
 
-Quote the rule the agent needs; don't send it to read a large spec file whole.
+Quote the rule the agent needs; don't send it to read a large spec file whole. The agent gets your
+loaded copy of AGENTS.md and CLAUDE.md, not the file on disk: after editing either, quote the changed
+rule in every brief until the next compaction. No shell recipes the role file covers. Frame an
+adversarial brief as research (the claim to falsify): a safety-classifier stop ends it with nothing.
 
 ## While an implementer runs
 
@@ -78,7 +88,8 @@ records uncommitted until it lands.
    30 minutes. Reproduce its canaries yourself before routing them.
 3. Land: `bash tools/check.sh --since <base>` (background; wait for the notification, don't poll),
    record in `tasks.md` (package, commits, gate lines), commit the records.
-4. Audit the agent's tool use: `python -X utf8 -I tools/orchestration/retro.py --since <its spawn time> --label "<package>"`,
+4. For an agent past its work-time budget or 300k context, audit its tool use:
+   `python -X utf8 -I tools/orchestration/retro.py --since <its spawn time> --label "<package>"`,
    and, for a spawn whose settings matter (effort, model), its transcript's metadata:
    `jq -c . ~/.claude/projects/D--ddon-data/<session>/subagents/agent-<id>.meta.json` and
    `rg -o -m 3 '"perTurnEffort":"[a-z]+"' <its .jsonl>`. A repeated failure or refusal class
@@ -86,10 +97,12 @@ records uncommitted until it lands.
 
 ## Context check
 
-`tools/hooks/context_watch.py` adds one reminder as the main session crosses 300k, 500k, 700k,
-850k and 930k tokens. At the next natural break (a landing, a milestone) commit the records
-(tasks.md: running agents with ids, next step), then ask the user to run `/compact`. Prefer a fresh
-agent with a handoff over resuming one whose context is large.
+The session compacts itself at its 550k window (`autoCompactWindow` in the gitignored
+`.claude/settings.local.json`, Sam, 2026-11-01). **Never ask the user to run `/compact`**: a manual
+one throws away the prompt cache. `tools/hooks/context_watch.py` adds one reminder as the context
+crosses 450k, 500k and 530k tokens; from the first, commit the records (tasks.md: running agents with
+ids, next step) at each natural break (a landing, a milestone). Resume an agent only below about 300k
+tokens and within 55 minutes of its last turn; past either, spawn a fresh one with a handoff.
 
 ## Reporting (orchestration section 9)
 
