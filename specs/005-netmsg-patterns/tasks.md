@@ -114,6 +114,11 @@ the roles directly. Next, in order (one subagent at a time):
    its two version fields (P4 § 3.1 does not line up byte-aligned: needs a bit-level walk); the
    35.12.16 tail; ImHex/plbatch writes NaN as `-nan`, which is not valid JSON (35.9.16).
    Next: the reviewer (T007), then docs.
+   R1 review done (`research/R1-pattern-review.md`): no layout contradicts P1/P2/P5; 10 findings
+   (stale JSON on failed `--force`, `-nan` counted ok, weak 15-byte fit flags, group-2 PS4 citations
+   from withdrawn numbering, ONLINE_STATUS from server C#, script hygiene). Its fit-flag analysis
+   replaces the planned adversarial check. Running: P10 fixes (`briefs/P10-review-fixes.md`).
+   Then: docs, the save-blob bit walk (optional, IDA), spec closing.
 1. (done) P5 (T008) was stopped for the restart before any IDA analysis: `research/P5-pc-send-side.md`
    (`state: cut short`) lists all 8 items as not done, with leads. Spawn a fresh
    `evidence-researcher-ida` with brief `briefs/P5-pc-send-side.md` plus that report; it may reuse
