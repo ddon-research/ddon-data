@@ -91,6 +91,11 @@ JOBS=${3:-}
 [[ -n "$FILTER" ]] || die "packet filter must not be empty (it would match every packet)"
 [[ "$FILTER" != */* && "$PATTERN_NAME" != */* ]] || die "filter and pattern name must not contain '/'"
 
+# Read nothing from the caller's stdin: a `while read` loop around this script would otherwise lose
+# its remaining input to a child that reads stdin (spec 006 T011b). Every child below inherits
+# /dev/null; plbatch gets its file list from a shard file, xargs from a pipe.
+exec </dev/null
+
 # Resolve paths relative to this script so it works from any working directory.
 require cat dirname grep mkdir mktemp mv rm tee xargs
 cd "$(dirname "${BASH_SOURCE[0]}")"

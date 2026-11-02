@@ -8,6 +8,9 @@
 #   tools/check.sh --all           run every project's gate, changed or not
 #   tools/check.sh --quick         hooks and shell syntax only (no project test suites)
 #
+# Sections: hooks, shell, flags, kg, export (research/03040008/packets/tests/imhex-export-select.sh,
+# when packets/imhex-export.sh or research/03040008/packets/ changed), mcp, imhex.
+#
 # Changed files: `git diff --name-only <base>` plus untracked files, limited to the small trees
 # (never client/ or packets/ data). Full logs go to .agent-ledger/check-logs/<check>.log.
 # Exit status: 0 when nothing failed, 1 otherwise.
@@ -26,7 +29,7 @@ while [ $# -gt 0 ]; do
         --quick) quick=1 ;;
         --all) all=1 ;;
         --since) since="${2:?--since needs a revision}"; shift ;;
-        -h|--help) sed -n '2,14p' "${BASH_SOURCE[0]}"; exit 0 ;;
+        -h|--help) sed -n '2,16p' "${BASH_SOURCE[0]}"; exit 0 ;;
         *) echo "unknown option: $1" >&2; exit 2 ;;
     esac
     shift
@@ -142,6 +145,20 @@ else
         record kg passed "$(rg -o '[0-9]+ passed' "$LOGS/kg.log" | tail -n 1); ruff; mypy ($(seconds kg) s)"
     else
         record kg failed "see $LOGS/kg.log"
+    fi
+fi
+
+# 4b. Packet export selection tests (stubbed plbatch, synthetic raw files; spec 005 P13, spec 006 TC1).
+EXPORT_TEST=research/03040008/packets/tests/imhex-export-select.sh
+if [ "$quick" -eq 1 ]; then
+    record export "not run (--quick)"
+elif ! touches "^(packets/imhex-export\.sh|research/03040008/packets/)"; then
+    record export "not run (no change to packets/imhex-export.sh or research/03040008/packets/)"
+else
+    if run_logged export bash "$EXPORT_TEST"; then
+        record export passed "$(rg -c '^pass: ' "$LOGS/export.log") checks of $EXPORT_TEST ($(seconds export) s)"
+    else
+        record export failed "see $LOGS/export.log"
     fi
 fi
 

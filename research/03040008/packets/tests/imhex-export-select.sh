@@ -12,6 +12,8 @@
 #   4. `// packet-select:` with a name no file of the id carries refuses
 #   5. `// packet-size: 336` takes only the 336-byte file of an id and name that a 304-byte file
 #      shares (1.0.1), and refuses a size no file has
+#   6. a `while read` loop over two pattern names exports both: the script reads nothing from
+#      stdin, even when a child would (a `cygpath` stub that drains stdin stands in for one)
 set -o errexit -o nounset -o pipefail
 
 die() { echo "ERROR: $*" >&2; exit 2; }
@@ -65,6 +67,19 @@ check "packet-size takes only files of its size" '(( rc == 0 )) && [[ $log == *"
 name=NOSIZE; pattern "// packet-id: 1.0.1" "// packet-size: 320"
 run
 check "packet-size without a match refuses" '(( rc == 2 )) && [[ $log == *"with 320 bytes"* ]]'
+
+# 6. A stub `cygpath` first on PATH drains its stdin, as a stdin-reading child would; without the
+#    script's `exec </dev/null` it swallows the second name and only LOGIN is exported.
+mkdir -p "$work/bin"
+printf '%s\n' '#!/usr/bin/env bash' 'cat >/dev/null' 'printf "%s\n" "${!#}"' > "$work/bin/cygpath"
+chmod +x "$work/bin/cygpath"
+name=LOGIN; pattern "// packet-id: 0.1.1" "// packet-select: C2L_LOGIN_REQ"
+name=CONTEXT; pattern "// packet-id: 35.7.2"
+loop_log=$(printf '%s\n' LOGIN CONTEXT | while IFS= read -r name; do
+  PATH="$work/bin:$PATH" PLBATCH="$work/plbatch" IMHEX_INCLUDES="$work/std" RAW_DIR="$work/raw" \
+    JSON_DIR="$work/json" PATTERN_DIR="$work/pat" bash "$script" --force @ "$name" 1 2>&1 || true
+done)
+check "while-read loop exports both patterns" '[[ $loop_log == *"LOGIN-pattern.cpp"* && $loop_log == *"CONTEXT-pattern.cpp"* && $loop_log == *"Done: 2 exported"* ]]'
 
 (( fails == 0 )) || { echo "$fails check(s) failed" >&2; exit 1; }
 echo "all checks passed"
