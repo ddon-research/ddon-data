@@ -7,6 +7,12 @@ confirm or reject the value-correlation candidates of `specs/006-packet-pattern-
 Continuation: T014b part 1 (3ea5fa4399, `research/T014b-consumer-property-names.{md,tsv}`) settled 24
 of 244 distinct fields and found no property tables naming packet data (read its method and that
 finding; do not redo it). This part covers the open rows of: every include and pattern except `include/Context.hexpat` and `include/CharacterData.hexpat` (Quest, Login, Shop, Pawn, Craft, Item, Character, Instance, Server, EntryBoard, Area, Mandragora, Dispel, …). Run after T014b2; start with `include/Quest.hexpat`.
+Part 2 (e02ddd6843) corrected part 1: the PC binary has 1,227 functions that call
+`MtPropertyList::insert` (`0x4236b0`), 7,237 name/offset pairs extracted from the decompiler output
+(md § "Property tables: correction to part 1"). Re-extract them first and save the table as
+`specs/006-packet-pattern-coverage/research/pc-property-names.tsv` (function VA, owning class/vtable if
+known, property name, type, offset) so later work reuses it; then match each field's storage member
+(object + offset) against it before anything else.
 Update those rows of the TSV in place (proposed name, mark, basis, VAs) and append a dated section
 to the md for this part; do not touch other rows. A row stays open only with a concrete reason
 (e.g. the value is never read by the client: say which reader discards it).
@@ -24,7 +30,7 @@ remaining unknowns by how often they occur in captures. Per field:
 Also look first for PC `createProperty` / property-name tables of the classes the packet data lands
 in (cQuestTask, cContext*, pawn/character data, …): one table can name many fields at once.
 
-Owns: only the rows named above of `specs/006-packet-pattern-coverage/research/T014b-consumer-property-names.tsv`
+Owns: `research/pc-property-names.tsv`, the rows named above of `specs/006-packet-pattern-coverage/research/T014b-consumer-property-names.tsv`
 and a new section of its `.md`. Never touch patterns, packets/, client/. Private copies:
 `bash research/ida/private-copy.sh <pc|ps4> t014b3`.
 Libraries: ida-mcp `execute_python`.
