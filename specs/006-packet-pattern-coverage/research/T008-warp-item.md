@@ -459,3 +459,11 @@ Misplacements:
 - PC code read linearly only: `0x7ddb80`, `0x7ddab0`, `0x80ca00`, `0x75e6e0`, `0x766af0`, `0x83f910`.
 - GUI message indices (10.10.16 PC `0x1BA` vs PS4 `0x1BC`): message tables not compared.
 - ImHex not run (not on `PATH`); no pattern written (outside this package).
+
+## Errata (R2, 2026-11-02)
+
+- § 2.7 (14.10.16): "`aStage::move_menu_warp 0x107bd`" is not the function's address. The PS4
+  symbol table (`binaries/PS4_02020005/elf-dumps/symbols/functions.derived.txt`) gives
+  `aStage::move_menu_warp()` at `0x10410`, size `0x40f`; `0x107bd` lies inside it (start + `0x3ad`),
+  so it is an address within the function, presumably the `warpEndNotice` call site (I, not re-read
+  in IDA). The conclusion (PS4 C2S_WARP_END_NTC = PC 14.10.16) does not depend on it.

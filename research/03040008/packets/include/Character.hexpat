@@ -70,7 +70,7 @@ struct CDataCommunityCharacterBaseInfo {
 // reader 0x75cbd0 {u32, MtString x3, u16, u8, JobBaseInfo x2, MtString, u8} (P11b shared table, V).
 // PS4 CDataCharacterListElement (and the PS4 recompilation, PacketData/Community.h) has the same
 // members up to m_wstrMatchingPlofile and no trailing u8: the u8 is Season 3, name open. Users:
-// CDataClanMemberInfo (31.29.2, 31.4.2), 18.0.2.
+// CDataClanMemberInfo (31.29.2, 31.4.2), 18.0.2, CDataPartyMember (8.37.16).
 struct CDataCharacterListElement {
     CDataCommunityCharacterBaseInfo BaseInfo;
     u16 ServerID;

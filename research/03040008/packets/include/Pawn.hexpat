@@ -274,9 +274,9 @@ struct CDataOrbGainExtendParam {
     u16 SupportPawnSlot;
 };
 
-// Season 3 tail of CDataPawnInfo: PC reader 0x772e80, u32 x5 (V widths); no PS4 type. Type name I
-// (server: CDataPawnTrainingProfile, lead); fields unk.
-struct CDataPawnTrainingProfile {
+// Season 3 member of CDataPawnInfo: PC reader 0x772e80, u32 x5 (V widths); no PS4 type. Names unk.
+// server: CDataPawnTrainingProfile (lead)
+struct CDataPawnInfo_unk_0 {
     u32 unk_u32_0;              // server: TrainingExp (lead)
     u32 unk_u32_1;              // server: DialogCount (lead)
     u32 unk_u32_2;              // server: DialogCountMax (lead)
@@ -288,8 +288,9 @@ struct CDataPawnTrainingProfile {
 // CDataPawnInfo. Items 1-12 and 14-29 match the PS4 members in order (V), with the Season 3
 // CDataEquipItemInfo inside the equip lists. Season 3 adds item 13 (list {u8, u16}, reader 0x766210,
 // the reader of CDataEquipItemInfo's third list: EquipStatParam shape) and items 30-32 (u8[64] by
-// 0x772aa0, u32 x5 by 0x772e80, list {u8, u8} by 0x772950), the same three additions as Context's
-// CDataContextPawnInfo (V). The PS4 body fails 72/72 (8.3.2) and 2/2 (8.9.2) captures.
+// 0x772aa0, u32 x5 by 0x772e80, list {u8, u8} by 0x772950). Two of them (u8[64], the {u8, u8} list)
+// are also in Context's CDataContextPawnInfo (PC 0x75f8d0, V); the u32 x5 has only this reader
+// behind it (0x772e80). The PS4 body fails 72/72 (8.3.2) and 2/2 (8.9.2) captures.
 // Users: 8.3.2, 8.9.2.
 struct CDataPawnInfo {
     u32 Version;
@@ -322,7 +323,7 @@ struct CDataPawnInfo {
     u8 ShareRange;
     u32 Likability;
     u8 unk_u8[64];                                            // Season 3, PC 0x772aa0; server: TrainingStatus (lead)
-    CDataPawnTrainingProfile unk_TrainingProfile;             // Season 3, PC 0x772e80
+    CDataPawnInfo_unk_0 unk_u32x5;                            // Season 3, PC 0x772e80; server: TrainingProfile (lead)
     MtTypedArray<SpSkill> unk_SpSkillList;                    // Season 3, PC 0x772950; server: SpSkillList (lead)
 };
 

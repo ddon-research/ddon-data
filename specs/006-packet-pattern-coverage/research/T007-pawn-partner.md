@@ -557,3 +557,12 @@ calls the u8 `PawnNumber` (PS4 `in_SlotNo`). Absent (no structure to check): 58.
   exercised by 58.9.1). 58.5.2's list always holds exactly 1 element (the list prefix is code-only).
 - PC code read linearly only: `0x7ea0a0`, `0x7ebeb0`, `0x759f80`.
 - ImHex not run (not on `PATH`); no pattern written (outside this package).
+
+## Errata (R2, 2026-11-02)
+
+- § 1.1 (after the item table): "Items 30-32 are the same three Season 3 additions as
+  `CDataContextPawnInfo`" is wrong. `CDataContextPawnInfo` (Context.hexpat, PC `0x75f8d0`) has the
+  reaction list, `unk_u8[64]` and the {u8, u8} list (`0x772950`) only, no u32 x5 (the 35.3.16 export
+  fits with those). Two of the three additions are shared (items 30 and 32); item 31, the u32 x5,
+  has only the `CDataPawnInfo` reader behind it (`0x772e80`). Fixed in `include/Pawn.hexpat` (R2b),
+  where the member is now `unk_u32x5` of type `CDataPawnInfo_unk_0`.

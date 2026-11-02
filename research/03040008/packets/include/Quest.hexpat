@@ -397,13 +397,15 @@ struct CDataQuestUnkU32S64 {
     s64 unk_s64;
 };
 
-// Season 3 list element {u32, u16, u16, u16}: PC list 0x762fb0 (V), no PS4 counterpart in
-// CDataQuestOrderList.
+// Season 3 list element {u32, u16, u16, u16}: PC list 0x762fb0 (V widths), no PS4 counterpart in
+// CDataQuestOrderList. Basis for the names: the PS4 CDataQuestList element CDataDeliveryItem
+// {u32 m_unItemId, u16 m_usNum} (DWARF; T005 1.1 row 23); ItemId and Num are I by position (the PC
+// element adds two u16); the two added u16 have no basis and stay unk.
 struct CDataQuestDeliveryItem {
-    u32 ItemId;
-    u16 ItemNum;
-    u16 NeedNum;
-    u16 unk_u16;
+    u32 ItemId;      // I (position, PS4 m_unItemId)
+    u16 Num;         // I (position, PS4 m_usNum)
+    u16 unk_u16_0;   // Season 3; server: NeedNum (lead)
+    u16 unk_u16_1;   // Season 3
 };
 
 // CDataQuestOrderList: PC element reader 0x774a70 (lists 0x7749a0, 0x76eb40, 0x77b2a0, 0x770ab0;
@@ -618,7 +620,8 @@ struct CDataQuestUnkU32Bool {
     bool unk_bool;
 };
 
-struct CDataTimeGainQuestUnkRestriction {
+// server: Restrictions (lead)
+struct CDataTimeGainQuestList_unk_0 {
     u32 unk_u32;
     MtTypedArray<u32> unk_u32_list;
     MtTypedArray<CDataQuestUnkU32Bool> unk_u32_bool_list;   // PC 0x75edd0
@@ -628,34 +631,39 @@ struct CDataTimeGainQuestUnkRestriction {
 };
 
 // Season 3 element of PC list 0x772ef0: {list CDataWalletPoint, list 0x7731b0 {u32, u16}} (V
-// shape); server: RequiredItemsList (lead). Names open.
+// shape). Names open.
 struct CDataQuestUnkU32U16 {
     u32 unk_u32;
     u16 unk_u16;
 };
 
-struct CDataTimeGainQuestUnkRequirement {
+// server: RequiredItemsList (lead)
+struct CDataTimeGainQuestList_unk_1 {
     MtTypedArray<CDataWalletPoint> unk_WalletPointList;
     MtTypedArray<CDataQuestUnkU32U16> unk_u32_u16_list;     // PC 0x7731b0
 };
 
 // CDataTimeGainQuestList: PC element 0x77b080 (V); PS4 0x1a248e0 {m_Param, u32 m_unPlayTimeSec,
-// b8 x4, u8 m_ucJoinPawnNum, MtTypedArray<CDataRewardItemDetail>}. Season 3: a fifth bool and two
-// trailing members. Which bool is new is I: the four PS4 names stay in order on the first four
-// (position, I); the server lead orders them IsNoTimeup, Unk0, IsJoinCharacter, IsJoinPawn, Unk1,
-// which disagrees.
+// b8 x4 (IsNoTimeup, IsJoinCharacter, IsJoinPawn, IsJoinSupportPawn), u8 m_ucJoinPawnNum,
+// MtTypedArray<CDataRewardItemDetail>}. Season 3: a fifth bool and two trailing members. Which bool
+// is new is open, so the five stay unk_bool_0..4. Two candidate readings (I): PS4 position puts the
+// PS4 names on bools 0-3 (new bool 4); the server lead orders them IsNoTimeup, Unk0,
+// IsJoinCharacter, IsJoinPawn, Unk1. Capture stream85-marked tcp-stream-11 packet 138774 (11.10.2)
+// has bool 1 false beside bools 2 and 3 true and JoinPawnNum 3, which favours the server order
+// (bool 1 = IsJoinCharacter would be false); not settled by code (open item: the PC consumer of
+// the element).
 struct CDataTimeGainQuestList {
     CDataQuestList Param;
     u32 PlayTimeSec;
-    bool IsNoTimeup;           // name I (position)
-    bool IsJoinCharacter;      // name I (position)
-    bool IsJoinPawn;           // name I (position)
-    bool IsJoinSupportPawn;    // name I (position)
-    bool unk_bool;             // Season 3 (I position)
+    bool unk_bool_0;           // PS4 position: IsNoTimeup; server: IsNoTimeup (lead)
+    bool unk_bool_1;           // PS4 position: IsJoinCharacter; server: Unk0 (lead)
+    bool unk_bool_2;           // PS4 position: IsJoinPawn; server: IsJoinCharacter (lead)
+    bool unk_bool_3;           // PS4 position: IsJoinSupportPawn; server: IsJoinPawn (lead)
+    bool unk_bool_4;           // PS4 position: new in Season 3; server: Unk1 (lead)
     u8 JoinPawnNum;
     MtTypedArray<CDataRewardItemDetail> RewardItemDetailList;
-    CDataTimeGainQuestUnkRestriction unk_Restriction;                    // Season 3, PC 0x75ed50
-    MtTypedArray<CDataTimeGainQuestUnkRequirement> unk_RequirementList;  // Season 3, PC 0x772ef0
+    CDataTimeGainQuestList_unk_0 unk_Struct_0;                    // Season 3, PC 0x75ed50; server: Restriction (lead)
+    MtTypedArray<CDataTimeGainQuestList_unk_1> unk_List_0;        // Season 3, PC 0x772ef0; server: RequirementList (lead)
 };
 
 // CDataSetQuestInfoList: PC element 0x778230 (V); PS4 0x1a1e150. Season 3: a second u64 (which

@@ -34,7 +34,8 @@ carry now. Every pattern starts with `#pragma endian big` and includes what it n
 Each structure comment names the PC reader or writer VA (PC 03040008 database, image base 0x400000)
 and the PS4 02020005 DWARF type, and carries a mark: V means read in IDA, I means inferred. A field
 name is code-backed (V), inferred and marked (I) with its basis, or `unk_*`; a server name alone
-never becomes a field name (it goes in a `server: <name> (lead)` comment). A Season 3 field with no
+never becomes a field or type name, not even as the suffix of `unk_` (`unk_u32x5`, `unk_List_0`,
+`CDataPawnInfo_unk_0`, never `unk_TrainingProfile`): it goes in a `server: <name> (lead)` comment. A Season 3 field with no
 PS4 counterpart is labelled that way.
 
 **Header comment.** It gives the packet id and name, the evidence (report section, PC VAs), a body
@@ -528,10 +529,15 @@ ITEM_SORT; counts after their first export, 2026-11-02, T008b).
   PS4 has BaseGold/BaseExp/BaseRim) with OrderNpcId/NameMsgId/DetailMsgId (I, position);
   `CDataLightQuestDetail` stays `unk_u32_0..6` and `CDataSetQuestDetail` keeps `unk_u16_0/1` and its
   two unnamed lists (as 11.89.16 had them; the captured lists hold 100 per entry, ratio-like); the
-  `CDataTimeGainQuestList` bool order (PS4 names on the first four, I) and its two Season 3
-  members; the 11.14.2 extra u64 and trailing condition list; the 11.45.16 lead `unk_s32` and middle
+  `CDataTimeGainQuestList` bools (`unk_bool_0..4`, R2b: the PS4-position reading and the server
+  order are both in the include comment; one 11.10.2 capture favours the server order) and its two
+  Season 3 members (`unk_Struct_0`, `unk_List_0`); `CDataQuestDeliveryItem` (`ItemId`, `Num` I by
+  position against the PS4 `CDataDeliveryItem`, then `unk_u16_0/1`); the 11.14.2 extra u64 and trailing condition list; the 11.45.16 lead `unk_s32` and middle
   u32s (PlayTimeMillSec on the 7th u32 is I by capture timestamps); the 11.95.16 extra u64 and
   {u32, u32} list; the 11.101.16 bools and u8 list; the 11.117.16 u16 roles (count/capacity, I).
+- **`CDataTimeGainQuestList` bool order (R2b):** settle which of the five bools is new, and their
+  names, from the PC consumer of the element (the code that reads the 11.10.2 entries), not from
+  the reader, which only gives five bools.
 - **Group 11 code-only (T005 §43, §46):** the 11.9.2 list is never non-empty; the 11.117.16 u16 pair
   and the empty 11.103.16 body fit within the slack, so they rest on the PC code; no captured group-11
   RES has Error != 0. The PC handlers of 11.0.2, 11.2.2, 11.4.2, 11.21.2, 11.31.2, 11.33.2, 11.34.2
@@ -581,7 +587,7 @@ ITEM_SORT; counts after their first export, 2026-11-02, T008b).
 - **Groups 8, 53, 58 names without code backing (T007 §8):** the three `CDataPawnList` tail u32
   (`unk_u32_0..2`; server: Unk0, TrainingExp, Unk2), the `CDataPawnInfo` Season 3 members (`unk_List`
   {u8, u16}, server: CharacterItemSlotInfoList; `unk_u8[64]`, server: TrainingStatus;
-  `unk_TrainingProfile` u32 x5, type name I by server lead; `unk_SpSkillList`), the second 8.36.16 list
+  `unk_u32x5`, type `CDataPawnInfo_unk_0`, server: TrainingProfile; `unk_SpSkillList`), the second 8.36.16 list
   (`unk_JobOrbStatusList`; server: JobOrbHiBOStatusList) and the 58.5.2 second bool (`unk_bool`;
   `IsGoldenSally` on the first is I by position).
 - **Groups 8, 53, 58 code-only (T007 §5, §8):** never non-empty in the captures: the 8.20.2 list
