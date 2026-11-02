@@ -1,4 +1,4 @@
-// 11.60.16 C2S_QUEST_11_60_16_NTC (client 03040008).
+// 11.60.16 C2S_QUEST_PRT_READY_SET_RETURN_SESSION_NTC (client 03040008); CLI name until spec 006 TC2: C2S_QUEST_11_60_16_NTC.
 // Evidence: specs/006-packet-pattern-coverage/research/T005-quest.md
 // section 25 (section 44 for the shared types in include/Quest.hexpat).
 // Client to server (source 0x00). Code name
@@ -18,7 +18,7 @@ import std.mem;
 
 #include "Quest.hexpat"
 
-struct C2S_QUEST_11_60_16_NTC : CPacket {
+struct C2S_QUEST_PRT_READY_SET_RETURN_SESSION_NTC : CPacket {
     bool sourceOk = source == 0x00 [[export]];  // header source byte: 0x00 client (Packet.hexpat)
     bool IsReturnSession;
     // Fit: the decode ends within the last 15 bytes (cipher block padding; Packet.hexpat).
@@ -27,4 +27,4 @@ struct C2S_QUEST_11_60_16_NTC : CPacket {
     if (paddingSize > 0) padding[paddingSize];
 };
 
-C2S_QUEST_11_60_16_NTC packet @ 0x00;
+C2S_QUEST_PRT_READY_SET_RETURN_SESSION_NTC packet @ 0x00;

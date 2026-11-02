@@ -1,8 +1,8 @@
-// 0.10.16 S2C_CONNECTION_0_10_16_NTC (client 03040008).
+// 0.10.16 S2C_CONNECTION_SESSION_STATUS_NTC (client 03040008); CLI name until spec 006 TC2: S2C_CONNECTION_0_10_16_NTC.
 // Evidence: specs/006-packet-pattern-coverage/research/T003-connection-server-cert.md
 // section 9.
-// Code-backed name: SESSION_STATUS_NTC (V by behaviour, T003 9). The file and pattern keep the
-// name the raws carry (the CLI's); PS4 cSeedGameSvConnection::OnPacket_S2C_SESSION_STATUS_NTC
+// Code-backed name: SESSION_STATUS_NTC (V by behaviour, T003 9), carried by the raws and this
+// pattern since the CLI relabel of spec 006 TC2; PS4 cSeedGameSvConnection::OnPacket_S2C_SESSION_STATUS_NTC
 // 0x2deb90; Arrowgene S2C_CONNECTION_0_10_16_NTC / S2CConnection_10_Ntc (lead).
 // PC handler 0x7cec00 (no name string), reader 0x804da0: Read_u32 (+16), Read_u8 (+20), no error
 // header (V). The handler finds the lobby member whose CharacterID equals the u32 and stores the
@@ -21,7 +21,7 @@ import std.mem;
 
 #include "Packet.hexpat"
 
-struct S2C_CONNECTION_0_10_16_NTC : CPacket {
+struct S2C_CONNECTION_SESSION_STATUS_NTC : CPacket {
     bool sourceOk = source == 0x34 [[export]];  // header source byte: 0x34 server (Packet.hexpat)
     u32 CharacterID;
     u8 SessionStatus;
@@ -31,4 +31,4 @@ struct S2C_CONNECTION_0_10_16_NTC : CPacket {
     if (paddingSize > 0) padding[paddingSize];
 };
 
-S2C_CONNECTION_0_10_16_NTC packet @ 0x00;
+S2C_CONNECTION_SESSION_STATUS_NTC packet @ 0x00;

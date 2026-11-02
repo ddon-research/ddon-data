@@ -203,7 +203,7 @@ export, 2026-11-02, T012b). T013 is
 | 0.6.2 | `S2C_CONNECTION_MOVE_OUT_SERVER_RES` | T003 §7 | 41/41 fit |
 | 0.7.1 | `C2S_CONNECTION_RESERVE_SERVER_REQ` | T003 §8 | 41/41 fit |
 | 0.7.2 | `S2C_CONNECTION_RESERVE_SERVER_RES` | T003 §8 | 41/41 fit |
-| 0.10.16 | `S2C_CONNECTION_0_10_16_NTC` | T003 §9 | 2/2 fit (code name SESSION_STATUS_NTC, V by behaviour) |
+| 0.10.16 | `S2C_CONNECTION_SESSION_STATUS_NTC` | T003 §9 | 2/2 fit (renamed in TC2 from `S2C_CONNECTION_0_10_16_NTC`; code name SESSION_STATUS_NTC, V by behaviour) |
 | 1.0.1 | `C2L_CLIENT_CHALLENGE_REQ` | T002 §3, T002c | 42/42 fit (no header, body at offset 0) |
 | 1.0.1 | `C2S_SERVER_GET_SERVER_LIST_REQ` | T003 §10 | 43/43 fit |
 | 1.0.2 | `L2C_CLIENT_CHALLENGE_RES` | T002 §4 | 42/42 fit |
@@ -376,7 +376,7 @@ export, 2026-11-02, T012b). T013 is
 | 11.56.2 | `S2C_QUEST_GET_AREA_INFO_LIST_RES` | P11a §11 | 1/1 fit |
 | 11.57.1 | `C2S_QUEST_GET_QUEST_PARTY_BONUS_LIST_REQ` | T005 §12 | 84/84 fit (no body) |
 | 11.57.2 | `S2C_QUEST_GET_QUEST_PARTY_BONUS_LIST_RES` | T005 §24 | 84/84 fit |
-| 11.60.16 | `C2S_QUEST_11_60_16_NTC` | T005 §25 | 7/7 fit (client to server; code name PRT_READY_SET_RETURN_SESSION, V by behaviour) |
+| 11.60.16 | `C2S_QUEST_PRT_READY_SET_RETURN_SESSION_NTC` (was `C2S_QUEST_11_60_16_NTC`) | T005 §25 | 7/7 fit (client to server; code name PRT_READY_SET_RETURN_SESSION, V by behaviour) |
 | 11.62.1 | `C2S_QUEST_GET_REWARD_BOX_LIST_REQ` | T005 §12 | 8/8 fit (no body) |
 | 11.62.2 | `S2C_QUEST_GET_REWARD_BOX_LIST_RES` | T005 §26 | 8/8 fit |
 | 11.64.1 | `C2S_QUEST_GET_REWARD_BOX_ITEM_REQ` | T005 §27 | 6/6 fit |
@@ -389,14 +389,14 @@ export, 2026-11-02, T012b). T013 is
 | 11.70.16 | `S2C_QUEST_DECIDE_DELIVERY_ITEM_NTC` | T005 §30 | 1/1 fit, slack 15 (PS4 DECIDE_DELIVERY_ITEM_NOTICE, V by notice class) |
 | 11.71.1 | `C2S_QUEST_GET_PARTY_QUEST_PROGRESS_INFO_REQ` | T005 §12 | 43/43 fit (no body) |
 | 11.71.2 | `S2C_QUEST_GET_PARTY_QUEST_PROGRESS_INFO_RES` | P11a §4 | 43/43 fit |
-| 11.83.16 | `S2C_QUEST_11_83_16_NTC` | T005 §31 | 20/20 fit, slack 15 (code name SET_QUEST_UNRELEASED_AREA_NOTICE, V by notice class) |
+| 11.83.16 | `S2C_QUEST_SET_QUEST_UNRELEASED_AREA_NTC` (was `S2C_QUEST_11_83_16_NTC`) | T005 §31 | 20/20 fit, slack 15 (code name SET_QUEST_UNRELEASED_AREA_NOTICE, V by notice class) |
 | 11.89.16 | `S2C_QUEST_JOIN_LOBBY_QUEST_INFO_NTC` | P11a §1 | 41/41 fit |
 | 11.90.16 | `S2C_QUEST_PROGRESS_WORK_SAVE_NTC` | T005 §33 | 11/11 fit |
 | 11.91.16 | `S2C_QUEST_QUEST_COMPLETE_NTC` | T005 §34 | 4/4 fit, slack 12 |
-| 11.95.16 | `S2C_QUEST_11_95_16_NTC` | T005 §35 | 48/48 fit (code name FORT_DEFENSE_NOTICE, V by notice class) |
+| 11.95.16 | `S2C_QUEST_FORT_DEFENSE_NTC` (was `S2C_QUEST_11_95_16_NTC`) | T005 §35 | 48/48 fit (code name FORT_DEFENSE_NOTICE, V by notice class) |
 | 11.101.16 | `S2C_QUEST_TIME_GAIN_QUEST_PLAY_START_NTC` | T005 §36 | 1/1 fit |
-| 11.103.16 | `S2C_QUEST_11_103_16_NTC` | T005 §37 | 1/1 fit (code name PLAY_STOP_TIMER_NOTICE, V by notice class; no body) |
-| 11.117.16 | `S2C_QUEST_11_117_16_NTC` | T005 §38 | 47/47 fit (code name REWARD_BOX_LIST_NUM_NOTICE, V by behaviour; the PS4 u8-only body fits too) |
+| 11.103.16 | `S2C_QUEST_PLAY_STOP_TIMER_NTC` (was `S2C_QUEST_11_103_16_NTC`) | T005 §37 | 1/1 fit (code name PLAY_STOP_TIMER_NOTICE, V by notice class; no body) |
+| 11.117.16 | `S2C_QUEST_REWARD_BOX_LIST_NUM_NTC` (was `S2C_QUEST_11_117_16_NTC`) | T005 §38 | 47/47 fit (code name REWARD_BOX_LIST_NUM_NOTICE, V by behaviour; the PS4 u8-only body fits too) |
 | 11.120.16 | `S2C_QUEST_PARTY_QUEST_PROGRESS_NTC` | P11a §3 | no capture |
 | 12.0.1 | `C2S_STAGE_GET_STAGE_LIST_REQ` | T006 §3.1 | 42/42 fit (no body) |
 | 12.0.2 | `S2C_STAGE_GET_STAGE_LIST_RES` | P11a §7 | 42/42 fit |
@@ -446,7 +446,7 @@ export, 2026-11-02, T012b). T013 is
 | 14.8.2 | `S2C_WARP_GET_AREA_WARP_POINT_LIST_RES` | T008 §2.5 | 1/1 fit, slack 15 |
 | 14.9.1 | `C2S_WARP_AREA_WARP_REQ` | T008 §2.6 | 18/18 fit |
 | 14.9.2 | `S2C_WARP_AREA_WARP_RES` | T008 §2.6 | 18/18 fit |
-| 14.10.16 | `C2S_WARP_WARP_START_NTC` | T008 §2.7 | 62/62 fit (no body; code name C2S_WARP_END_NTC, V by call site: the raw name WARP_START is contradicted) |
+| 14.10.16 | `C2S_WARP_WARP_END_NTC` (was `C2S_WARP_WARP_START_NTC`) | T008 §2.7 | 62/62 fit (no body; code name C2S_WARP_END_NTC, V by call site: the old name WARP_START is contradicted) |
 | 14.12.1 | `C2S_WARP_GET_RETURN_LOCATION_REQ` | T008 §2.9 | 9/9 fit (no body) |
 | 14.12.2 | `S2C_WARP_GET_RETURN_LOCATION_RES` | T008 §2.9 | 9/9 fit |
 | 15.0.16 | `C2S_EVENT_START_NTC` | T013 §12 | 8/8 fit (no body; V by call graph) |
@@ -666,10 +666,18 @@ export, 2026-11-02, T012b). T013 is
 
 ## Open items
 
-- **0.10.16 name:** the raws and the pattern keep the CLI's name `S2C_CONNECTION_0_10_16_NTC`;
-  the code-backed name is `SESSION_STATUS_NTC` (T003 §9, V by behaviour: the handler sets the
-  SessionStatus byte of the lobby member with that CharacterID). Which of the PS4 lobby-member
-  bytes Platform/ClientVersion Season 3 dropped is I.
+- **Code-backed renames (spec 006 TC2):** the patched CLI names eight ids from code instead of
+  Arrowgene's placeholder or contradicted names; raws, patterns and JSON carry the new names
+  (`../../../packets/README-decrypt-annotate-streams.adoc` § arrowgene-patches): 0.10.16
+  `S2C_CONNECTION_0_10_16_NTC` -> `S2C_CONNECTION_SESSION_STATUS_NTC` (T003 §9), 11.60.16
+  `C2S_QUEST_11_60_16_NTC` -> `C2S_QUEST_PRT_READY_SET_RETURN_SESSION_NTC` (T005 §25), 11.83.16 ->
+  `S2C_QUEST_SET_QUEST_UNRELEASED_AREA_NTC` (§31), 11.95.16 -> `S2C_QUEST_FORT_DEFENSE_NTC` (§35),
+  11.103.16 -> `S2C_QUEST_PLAY_STOP_TIMER_NTC` (§37), 11.117.16 -> `S2C_QUEST_REWARD_BOX_LIST_NUM_NTC`
+  (§38), 14.10.16 `C2S_WARP_WARP_START_NTC` -> `C2S_WARP_WARP_END_NTC` (T008 §2.7) and, to free that
+  name, 14.11.16 `C2S_WARP_WARP_END_NTC` -> `C2S_WARP_14_11_16_NTC` (T008 §2.8: PS4's WARP_END is
+  14.10.16's call site; 14.11.16 has no code-backed name).
+- **0.10.16 lobby member:** which of the PS4 lobby-member bytes Platform/ClientVersion Season 3
+  dropped is I (T003 §9).
 - **Game setting names without code backing (T003 §11, §20):** the Season 3 tail of
   `CDataGameSetting` (`unk_bool`, `unk_u32_0..2`, `unk_u16`, the lists `unk_List_0/1` and the elements
   of `CDataGameSetting_unk_0/1/2`: struct names neutral since TC1, the server's CDataWalletLimit,
@@ -806,12 +814,12 @@ export, 2026-11-02, T012b). T013 is
   byte-identical after re-export. `CDataPartyMember` joined `Character.hexpat` and the group 58 types
   the new `PawnExpedition.hexpat`; no include cycle (Pawn -> Login -> Character, Context, GP;
   PawnExpedition -> Packet).
-- **14.10.16 name:** the raws and the pattern keep the CLI name `C2S_WARP_WARP_START_NTC`; the
-  code-backed name is `C2S_WARP_END_NTC` (T008 §2.7, V by call site: the PC writer `0x840160` and PS4
+- **14.10.16 name:** renamed in spec 006 TC2 from `C2S_WARP_WARP_START_NTC` to
+  `C2S_WARP_WARP_END_NTC`: PS4 `C2S_WARP_END_NTC` (T008 §2.7, V by call site: the PC writer `0x840160` and PS4
   `Send_C2S_WARP_END_NTC` are both called once, from `aStage::move_menu_warp`, after the same store,
-  with the same empty body). PS4 has no WARP_START symbol, so the raw name is contradicted (C).
+  with the same empty body). PS4 has no WARP_START symbol, so the old name is contradicted (C).
 - **Season 3-exclusive, not patterned (T008):** 14.14.1/14.14.2 GET_START_POINT_LIST (T008 §2.10:
-  no PS4 symbol or type, V; 42 captures each), 14.11.16 `C2S_WARP_WARP_END_NTC` (§2.8: the PC writes
+  no PS4 symbol or type, V; 42 captures each), 14.11.16 `C2S_WARP_14_11_16_NTC` (CLI name before TC2 `C2S_WARP_WARP_END_NTC`; §2.8: the PC writes
   a u32, no PS4 counterpart, I by absence; 57 captures), 10.14.16
   `S2C_ITEM_ACHIEVEMENT_REWARD_RECEIVE_NTC` (§3.10: u16 + list {u8, u32}, I by absence; 1 capture) and
   50.0.16 `S2C_ITEM_SORT_GET_ITEM_SORTDATA_BIN_NTC` (§4.2: list CDataItemSort, V by the reader's only

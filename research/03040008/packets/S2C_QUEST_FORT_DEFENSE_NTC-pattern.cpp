@@ -1,4 +1,4 @@
-// 11.95.16 S2C_QUEST_11_95_16_NTC (client 03040008).
+// 11.95.16 S2C_QUEST_FORT_DEFENSE_NTC (client 03040008); CLI name until spec 006 TC2: S2C_QUEST_11_95_16_NTC.
 // Evidence: specs/006-packet-pattern-coverage/research/T005-quest.md
 // section 35 (section 44 for the shared types in include/Quest.hexpat).
 // Code name FORT_DEFENSE_NOTICE (V): PC handler 0x7f0480, reader 0x815860 (no header): list
@@ -21,7 +21,7 @@ import std.mem;
 
 #include "Quest.hexpat"
 
-struct S2C_QUEST_11_95_16_NTC : CPacket {
+struct S2C_QUEST_FORT_DEFENSE_NTC : CPacket {
     bool sourceOk = source == 0x34 [[export]];  // header source byte: 0x34 server (Packet.hexpat)
     MtTypedArray<CDataFortDefenseNoticeData> FortDefenseNoticeDataList;
     MtTypedArray<CDataQuestContentsSituationInfoDetail> SituationInfoDetailList;
@@ -31,4 +31,4 @@ struct S2C_QUEST_11_95_16_NTC : CPacket {
     if (paddingSize > 0) padding[paddingSize];
 };
 
-S2C_QUEST_11_95_16_NTC packet @ 0x00;
+S2C_QUEST_FORT_DEFENSE_NTC packet @ 0x00;

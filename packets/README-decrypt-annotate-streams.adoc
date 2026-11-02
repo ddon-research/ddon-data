@@ -136,6 +136,36 @@ structure on them. Build of 2026-11-01 (net10.0, Debug): `Arrowgene.Ddon.Cli.dll
 `d311f08d2278e65dc6fdb1e02797899a2bbcd180d12ded268e51bb5446da03d0`, `Arrowgene.Ddon.Cli.exe`
 `d624bc12ef8f661d48e6c104d2ae40a811d9663f260ba6de408d68f4b45ca344` (unchanged apphost).
 
+`Arrowgene.Ddon.Shared/Network/PacketId.cs` is patched for spec 006 TC2: eight ids get the name
+the client code backs (spec 006 reports T003, T005, T008; V) instead of Arrowgene's placeholder or
+contradicted one. Only the `Name` string changes (the C# fields keep their names; the old name
+moves to `originalName`). Rule: direction prefix, CLI group name, then the PS4 packet name without
+its direction, `NOTICE` -> `NTC` as the existing names do, and `_NTC` appended where the PS4 name
+has no kind suffix (11.60.16).
+
+[cols="1,3,3,2"]
+|===
+|Id |Old name |New name |Evidence
+
+|0.10.16 |`S2C_CONNECTION_0_10_16_NTC` |`S2C_CONNECTION_SESSION_STATUS_NTC` |T003 § 9, V by behaviour
+|11.60.16 |`C2S_QUEST_11_60_16_NTC` |`C2S_QUEST_PRT_READY_SET_RETURN_SESSION_NTC` |T005 § 25, V by behaviour
+|11.83.16 |`S2C_QUEST_11_83_16_NTC` |`S2C_QUEST_SET_QUEST_UNRELEASED_AREA_NTC` |T005 § 31, V by notice class
+|11.95.16 |`S2C_QUEST_11_95_16_NTC` |`S2C_QUEST_FORT_DEFENSE_NTC` |T005 § 35, V by notice class
+|11.103.16 |`S2C_QUEST_11_103_16_NTC` |`S2C_QUEST_PLAY_STOP_TIMER_NTC` |T005 § 37, V by notice class
+|11.117.16 |`S2C_QUEST_11_117_16_NTC` |`S2C_QUEST_REWARD_BOX_LIST_NUM_NTC` |T005 § 38, V by behaviour
+|14.10.16 |`C2S_WARP_WARP_START_NTC` |`C2S_WARP_WARP_END_NTC` |T008 § 2.7, V by call site (old name C)
+|14.11.16 |`C2S_WARP_WARP_END_NTC` |`C2S_WARP_14_11_16_NTC` |T008 § 2.8: PS4's WARP_END is 14.10.16; no code name (placeholder, frees the name)
+|===
+
+A full export with this build reproduced all 146,891 files: 146,647 byte-identical under the same
+name, the 244 files of these ids byte-identical under their new names (0.10.16: 2, 11.60.16: 7,
+11.83.16: 20, 11.95.16: 48, 11.103.16: 1, 11.117.16: 47, 14.10.16: 62, 14.11.16: 57), no other
+difference; they were renamed in `decrypted_raw/` with `git mv` and the 41 streams holding them
+re-annotated. Build of 2026-11-02 (net10.0, Debug): `Arrowgene.Ddon.Shared.dll` sha256
+`5d2455d51b2e1f0a0d482ab25d4743671885f23f8aabbefc2e51c377aad5ca6b`; `Arrowgene.Ddon.Cli.dll`
+`d311f08d2278e65dc6fdb1e02797899a2bbcd180d12ded268e51bb5446da03d0` and `Arrowgene.Ddon.Cli.exe`
+`d624bc12ef8f661d48e6c104d2ae40a811d9663f260ba6de408d68f4b45ca344` unchanged.
+
 A packet that fails to parse is a structure bug, not a capture problem: write an ImHex pattern in
 `../research/03040008/packets/`, check it against the client's `nPacket::Read_*` routine, then fix
 the C# structure.
@@ -181,6 +211,9 @@ On 2026-11-01 (spec 006 T002e) a full export with the relabelling patch above re
 146,891 files: 146,766 byte-identical under the same name, the 125 server certificate notices
 byte-identical under their new names (42 `.1_0_1` -> `.1_1_16`, 83 `.44_0_1` -> `.44_1_16`), no
 other difference; those 125 were renamed here with `git mv`.
+On 2026-11-02 (spec 006 TC2) a full export with the `PacketId` rename patch above reproduced all
+146,891 files: 146,647 byte-identical under the same name and the 244 files of the eight renamed
+ids byte-identical under their new names; those 244 were renamed here with `git mv`.
 `decrypted_json/` holds only ImHex output (`imhex-export.sh`), so a stream gets a JSON folder only
 when one of its packets was exported with a pattern (125 of 125 streams have one since the login patterns of spec 006 T002).
 

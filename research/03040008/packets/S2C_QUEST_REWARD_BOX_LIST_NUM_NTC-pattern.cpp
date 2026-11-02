@@ -1,4 +1,4 @@
-// 11.117.16 S2C_QUEST_11_117_16_NTC (client 03040008).
+// 11.117.16 S2C_QUEST_REWARD_BOX_LIST_NUM_NTC (client 03040008); CLI name until spec 006 TC2: S2C_QUEST_11_117_16_NTC.
 // Evidence: specs/006-packet-pattern-coverage/research/T005-quest.md
 // section 38 (section 44 for the shared types in include/Quest.hexpat).
 // Code name REWARD_BOX_LIST_NUM_NOTICE (V by behaviour): PC handler 0x7f4e10, reader 0x818760:
@@ -19,7 +19,7 @@ import std.mem;
 
 #include "Quest.hexpat"
 
-struct S2C_QUEST_11_117_16_NTC : CPacket {
+struct S2C_QUEST_REWARD_BOX_LIST_NUM_NTC : CPacket {
     bool sourceOk = source == 0x34 [[export]];  // header source byte: 0x34 server (Packet.hexpat)
     u16 unk_u16_0;   // Season 3; compared against unk_u16_1 (>= and >= 80 %): a count, I
     u16 unk_u16_1;   // Season 3; the limit of that comparison: a capacity, I
@@ -30,4 +30,4 @@ struct S2C_QUEST_11_117_16_NTC : CPacket {
     if (paddingSize > 0) padding[paddingSize];
 };
 
-S2C_QUEST_11_117_16_NTC packet @ 0x00;
+S2C_QUEST_REWARD_BOX_LIST_NUM_NTC packet @ 0x00;

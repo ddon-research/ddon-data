@@ -1,8 +1,8 @@
-// 14.10.16 C2S_WARP_WARP_START_NTC (client 03040008).
+// 14.10.16 C2S_WARP_WARP_END_NTC (client 03040008); CLI name until spec 006 TC2: C2S_WARP_WARP_START_NTC.
 // Evidence: specs/006-packet-pattern-coverage/research/T008-warp-item.md
 // section 2.7.
-// Code name: C2S_WARP_END_NTC (V by call site). The raws and this pattern keep the CLI name
-// WARP_START_NTC, which the PS4 name of the same call contradicts (C).
+// Code name: C2S_WARP_END_NTC (V by call site), carried by the raws and this pattern since the
+// CLI relabel of spec 006 TC2. The old CLI name WARP_START_NTC is contradicted by PS4 (C).
 // PC writer 0x840160 (14, 10, 0x10): no body (V); called once, from aStage::move_menu_warp
 // 0x415470 (via 0x8865f0 at 0x4155ff), after `mov [manager+0x9df0], 1`. PS4
 // cNetGameServer::warpEndNotice -> Send_C2S_WARP_END_NTC 0x19bf340 (no body) is called once, from
@@ -20,7 +20,7 @@ import std.mem;
 
 #include "Packet.hexpat"
 
-struct C2S_WARP_WARP_START_NTC : CPacket {
+struct C2S_WARP_WARP_END_NTC : CPacket {
     bool sourceOk = source == 0x00 [[export]];  // header source byte: 0x00 client (Packet.hexpat)
     // Fit: the decode ends within the last 15 bytes (cipher block padding; Packet.hexpat).
     u128 paddingSize = std::mem::size() - $ [[export]];
@@ -28,4 +28,4 @@ struct C2S_WARP_WARP_START_NTC : CPacket {
     if (paddingSize > 0) padding[paddingSize];
 };
 
-C2S_WARP_WARP_START_NTC packet @ 0x00;
+C2S_WARP_WARP_END_NTC packet @ 0x00;
