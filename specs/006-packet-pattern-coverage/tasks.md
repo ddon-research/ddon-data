@@ -50,7 +50,10 @@ Coordinator: main session. One subagent at a time. Method and rules: `spec.md`.
   exclusive). T006 patterns done (bc9279f6c0). T007 evidence done
   (d5da913504: 43 ids, 1,569/1,569 fit; 8.37.16, 53.9.16 settled). T007 patterns done (441febe4f2).
   T008 evidence done (2,038/2,038 fit; 14.10.16 = C2S_WARP_END_NTC,
-  raw name WARP_START wrong: add to the Tn rename list). T008 patterns done (4abc0b4b80). Running: R2 reviewer over T005-T008\n  (`briefs/R2-review-T005-T008.md`); next T009 (`briefs/T009-mail-stamp-character.md`); later batches by related groups:
+  raw name WARP_START wrong: add to the Tn rename list). T008 patterns done (4abc0b4b80). Running: R2 reviewer over T005-T008\n  (`briefs/R2-review-T005-T008.md`); next T009 (`briefs/T009-mail-stamp-character.md`); then T010 28 GP + 31 CLAN (`briefs/T010-gp-clan.md`); T011 6 PARTY + 26 PROFILE +
+  16 FRIEND + 17 BLACK + 5 + 24; T012 27 ACHIEVEMENT + 29 EQUIP + 19 SKILL + 39 GACHA + 25 ORB + 43
+  LOADING + 20; T013 the small rest (30, 34, 63, 9, 18, 52, 15, 41, 54, 57, 51); all-exclusive groups
+  (70, 72, 60, 71, 61, 64, 59, 65, 62) go to the Tn list. Earlier plan:
   8+58 PAWN + 53 PARTNER; 14 WARP + 10/50 ITEM; 37 MAIL + 45 STAMP + 2 CHARACTER; then the rest by count
   (62 SEASON is all Season 3-exclusive: out of scope). Was: then groups 33, 3, 8, 14, 10, 37 by the triage order.
 - Tn: `tests/imhex-export-select.sh` is not run by check.sh; the u64 OM `Key` (13.20.x/13.22.2) exceeds
