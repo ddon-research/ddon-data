@@ -53,7 +53,9 @@ Coordinator: main session. One subagent at a time. Method and rules: `spec.md`.
 - T013 evidence done (27173aa74c: 48 ids, 242/242 fit). T013 patterns done (e7437df0bb). R3 review done (no wrong-data defects; 6 naming/selector/
   errata findings, folded into TC1). TC1 done (2ae4d5d0a7, 42527e6035, 544b342ddd: export stdin
   fix + gate; naming sweep, 1,271 files re-exported, R3's "server names" mostly PS4 DWARF names (V);
-  Season 3-exclusive list: 115 ids = 37 V + 75 I + 3 unresolved). Running: TC2; was: the closing packages TC1 (tooling, naming sweep,
+  Season 3-exclusive list: 115 ids = 37 V + 75 I + 3 unresolved). TC2 done (e525c97cc6: 8 ids, 244 raws renamed byte-identical; 7
+  patterns renamed, 187 JSON identical). TC2 found raw name collisions dropping packets (11.95.16: 96
+  annotated, 48 raws). Running: TC3 (`briefs/TC3-raw-name-collisions.md`), then T014a-c; was: the closing packages TC1 (tooling, naming sweep,
   Season 3-exclusive list; `briefs/TC1-close-tooling-naming-exclusive.md`) and TC2 (code-backed raw
   renames; `briefs/TC2-code-backed-renames.md`), then the spec-end procedure (orchestration § 10).
 - All-exclusive groups (62, 70, 72, 60, 71, 61, 64, 59, 65) go to the Season 3-exclusive list.
