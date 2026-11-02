@@ -17,8 +17,10 @@ carry now. Every pattern starts with `#pragma endian big` and includes what it n
 | `Context.hexpat` | group 35 CONTEXT structures (P4) | 11 group-35 patterns |
 | `Quest.hexpat` | group 11 QUEST CData and the enums ORDER_CONDITION_TYPE, CYCLE_CONTENTS_CATEGORY, CYCLE_CONTENTS_SUB_CATEGORY, COMMAND_CHECK_LIST (P11a); since T005b also the Season 3 `CDataQuestList` (PC `0x774530`, beside `CDataQuestOrderList`) and the list, detail, play start/end, priority, reward box and fort defense types of T005 §44 | 72 |
 | `Area.hexpat` | group 23 AREA CData (P11a, P11b) | 4 |
-| `Character.hexpat` | E_WALLET_POINT_TYPE, CDataWalletPoint, job base info, character name and list element; since T006b `CDataCharacterLevelParam` (PC `0x75cb00`) and the Season 3 `CDataLobbyMemberInfo` (PC `0x76d7f0`, 3 u8) | 2, and 3.0.2, 3.2.16, 33.12/13/16/17.16 |
-| `Clan.hexpat`, `Item.hexpat`, `Pawn.hexpat`, `Skill.hexpat` | the CData of those groups (P11b) | 1-2 each |
+| `Character.hexpat` | E_WALLET_POINT_TYPE, CDataWalletPoint, job base info, character name and list element; since T006b `CDataCharacterLevelParam` (PC `0x75cb00`) and the Season 3 `CDataLobbyMemberInfo` (PC `0x76d7f0`, 3 u8); since T007b `CDataPartyMember` (PC `0x771580`) | 2, and 3.0.2, 3.2.16, 33.12/13/16/17.16, 8.37.16 |
+| `Clan.hexpat`, `Item.hexpat`, `Skill.hexpat` | the CData of those groups (P11b) | 1-2 each |
+| `Pawn.hexpat` | group 8 PAWN CData (P11b §14); since T007b the Season 3 `CDataPawnInfo` (PC `0x772180`) with its job, equip, craft and orb-extend types, the pawn list, rented, lost and history elements, profile, total score, orb status, and `CDataPartnerPawnData`/`CDataPartnerPawnReward`, shared with group 53 (T007 §1, §6); includes Login | 8.30.2, 10 group-8 and 3 group-53 patterns |
+| `PawnExpedition.hexpat` | group 58 PAWN_EXPEDITION CData (T007 §4, §6): `CDataAreaSpotSet`, `CDataPawnExpeditionClanSallySpotInfo`, `CDataBattleResultInfo`; includes Packet only (group 58 also uses Packet's common types and Instance's gathering-item element and get request) | 58.0.2, 58.5.2 |
 | `Login.hexpat` | login-server CData (T002 §15): URL info, login setting, game server list info, error message, and the character list types (matching profile, Season 3 equip item info, character list info); includes Character, Context and GP | 4 |
 | `GP.hexpat` | GP course info, effect param and the Season 3 GP course valid (T002 §10, §11) | 1, and 5.0.2 through Login |
 | `Cert.hexpat` | `CDataServerCert`, the server certificate notice body: modulus[256], exponent[16], SHA-1 u32[5] (T003 §1, §15) | 1.1.16, 44.1.16 |
@@ -142,7 +144,9 @@ T004 is `specs/006-packet-pattern-coverage/research/T004-instance.md` (group 13 
 after their first export, T004b). T005 is `specs/006-packet-pattern-coverage/research/T005-quest.md`
 (group 11 QUEST; counts after their first export, 2026-11-02, T005b). T006 is
 `specs/006-packet-pattern-coverage/research/T006-job-lobby-area-stage.md` (groups 33 JOB, 3 LOBBY,
-23 AREA and 12 STAGE; counts after their first export, 2026-11-02, T006b).
+23 AREA and 12 STAGE; counts after their first export, 2026-11-02, T006b). T007 is
+`specs/006-packet-pattern-coverage/research/T007-pawn-partner.md` (groups 8 PAWN, 53 PARTNER_PAWN and
+58 PAWN_EXPEDITION; counts after their first export, 2026-11-02, T007b).
 
 | Id | Pattern | Report | Status |
 | --- | --- | --- | --- |
@@ -195,12 +199,12 @@ after their first export, T004b). T005 is `specs/006-packet-pattern-coverage/res
 | 3.0.1 | `C2S_LOBBY_LOBBY_JOIN_REQ` | T006 §2.1 | 41/41 fit, slack 15 (packet-select: the login id 3.0.1 shares the suffix) |
 | 3.0.2 | `S2C_LOBBY_LOBBY_JOIN_RES` | T006 §2.1 | 41/41 fit (packet-select; the 3-u8 member rests on the PC reader: PS4's 4 u8 fit too) |
 | 3.0.2 | `L2C_GET_ERROR_MESSAGE_LIST_RES` | T002 §8 | 41/41 fit |
+| 3.0.16 | `L2C_GET_ERROR_MESSAGE_LIST_NTC` | T002 §9 | 410/410 fit |
 | 3.1.1 | `C2S_LOBBY_LOBBY_LEAVE_REQ` | T006 §2.2 | 41/41 fit (no body) |
 | 3.1.2 | `S2C_LOBBY_LOBBY_LEAVE_RES` | T006 §2.2 | 41/41 fit, slack 15 |
 | 3.2.1 | `C2S_LOBBY_LOBBY_CHAT_MSG_REQ` | T006 §2.3 | 328/328 fit |
 | 3.2.2 | `S2C_LOBBY_LOBBY_CHAT_MSG_RES` | T006 §2.3 | 382/382 fit, slack 15 |
 | 3.2.16 | `S2C_LOBBY_LOBBY_CHAT_MSG_NTC` | T006 §2.4 | 463/463 fit |
-| 3.0.16 | `L2C_GET_ERROR_MESSAGE_LIST_NTC` | T002 §9 | 410/410 fit |
 | 3.3.16 | `C2S_LOBBY_LOBBY_DATA_MSG_REQ` | P1 §1.1 | 59881/59881 fit |
 | 3.4.16 | `S2C_LOBBY_LOBBY_DATA_MSG_NTC` | P1 §1.1 | 21000/21000 fit |
 | 4.0.1 | `C2L_GP_COURSE_GET_INFO_REQ` | T002 §10 | 41/41 fit |
@@ -214,7 +218,27 @@ after their first export, T004b). T005 is `specs/006-packet-pattern-coverage/res
 | 6.24.16 | `S2C_PARTY_RECV_BINARY_MSG_ALL_NTC` | P1 §1.1 | no capture |
 | 6.25.16 | `C2S_PARTY_SEND_BINARY_MSG_NTC` | P1 §1.1 | 29176/29176 fit |
 | 6.26.16 | `S2C_PARTY_RECV_BINARY_MSG_NTC` | P1 §1.1 | no capture |
+| 8.2.1 | `C2S_PAWN_GET_MYPAWN_LIST_REQ` | T007 §2.1 | 119/119 fit (no body) |
+| 8.2.2 | `S2C_PAWN_GET_MYPAWN_LIST_RES` | T007 §2.1 | 119/119 fit (Season 3: three u32 per pawn, V; the PS4 element fails 119/119) |
+| 8.3.1 | `C2S_PAWN_GET_MYPAWN_DATA_REQ` | T007 §2.2 | 72/72 fit |
+| 8.3.2 | `S2C_PAWN_GET_MYPAWN_DATA_RES` | T007 §2.2 | 72/72 fit (Season 3 `CDataPawnInfo`; the PS4 body fails 72/72) |
+| 8.8.1 | `C2S_PAWN_GET_RENTED_PAWN_LIST_REQ` | T007 §2.3 | 54/54 fit (no body) |
+| 8.8.2 | `S2C_PAWN_GET_RENTED_PAWN_LIST_RES` | T007 §2.3 | 54/54 fit |
+| 8.9.1 | `C2S_PAWN_GET_RENTED_PAWN_DATA_REQ` | T007 §2.2 | 2/2 fit |
+| 8.9.2 | `S2C_PAWN_GET_RENTED_PAWN_DATA_RES` | T007 §2.2 | 2/2 fit (Season 3 `CDataPawnInfo`; the PS4 body fails 2/2) |
+| 8.12.1 | `C2S_PAWN_JOIN_PARTY_MYPAWN_REQ` | T007 §2.4 | 7/7 fit |
+| 8.12.2 | `S2C_PAWN_JOIN_PARTY_MYPAWN_RES` | T007 §2.4 | 9/9 fit, slack 15 |
+| 8.20.1 | `C2S_PAWN_GET_LOST_PAWN_LIST_REQ` | T007 §2.5 | 20/20 fit (no body) |
+| 8.20.2 | `S2C_PAWN_GET_LOST_PAWN_LIST_RES` | T007 §2.5 | 20/20 fit (list never non-empty) |
+| 8.28.1 | `C2S_PAWN_GET_PAWN_HISTORY_LIST_REQ` | T007 §2.6 | 20/20 fit |
+| 8.28.2 | `S2C_PAWN_GET_PAWN_HISTORY_LIST_RES` | T007 §2.6 | 20/20 fit |
+| 8.30.1 | `C2S_PAWN_GET_NORA_PAWN_LIST_REQ` | T007 §2.7 | 41/41 fit (no body) |
 | 8.30.2 | `S2C_PAWN_GET_NORA_PAWN_LIST_RES` | P11b §14 | 41/41 fit |
+| 8.33.16 | `S2C_PAWN_GET_PAWN_PROFILE_NTC` | T007 §2.8 | 74/74 fit |
+| 8.34.16 | `S2C_PAWN_GET_PAWN_HISTORY_INFO_NTC` | T007 §2.9 | 74/74 fit |
+| 8.35.16 | `S2C_PAWN_GET_PAWN_TOTAL_SCORE_INFO_NTC` | T007 §2.10 | 74/74 fit |
+| 8.36.16 | `S2C_PAWN_GET_PAWN_ORB_DEVOTE_INFO_NTC` | T007 §2.11 | 74/74 fit (Season 3: second job orb list, V; the PS4 body fails 72/74) |
+| 8.37.16 | `S2C_PAWN_JOIN_PARTY_PAWN_NTC` | T007 §2.12 | 9/9 fit (code name JOIN_PARTY_PAWN_NOTICE, V: unique PS4 reader + guard) |
 | 9.0.2 | `S2C_BINARY_SAVE_GET_CHARACTER_BIN_SAVEDATA_RES` | P4 §3, T001b §4 | no capture (synthetic: versions 0x19, 0x13, 0x0C) |
 | 9.1.1 | `C2S_BINARY_SAVE_SET_CHARACTER_BIN_SAVEDATA_REQ` | P4 §3, T001b | 47/47 fit; 47/47 equal T001b's walk field by field |
 | 10.9.2 | `S2C_ITEM_GET_ITEM_STORAGE_INFO_RES` | P11b §13 | 4/4 fit |
@@ -376,7 +400,30 @@ after their first export, T004b). T005 is `specs/006-packet-pattern-coverage/res
 | 44.1.16 | `S2C_CERT_GAME_SERVER_CERT_NTC` | T003 §1, §15 | 83/83 fit, slack 12 (no header, body at offset 0) |
 | 51.0.2 | `S2C_DISPEL_GET_DISPEL_ITEM_LIST_RES` | P11a §6 | 1/1 fit |
 | 52.1.2 | `S2C_MY_ROOM_FURNITURE_LIST_GET_RES` | P11a §10 | 20/20 fit |
+| 53.4.1 | `C2S_PARTNER_PAWN_PAWN_LIKABILITY_REWARD_LIST_GET_REQ` | T007 §3.1 | 40/40 fit (no body) |
+| 53.4.2 | `S2C_PARTNER_PAWN_PAWN_LIKABILITY_REWARD_LIST_GET_RES` | T007 §3.1 | 40/40 fit (list never non-empty) |
+| 53.6.1 | `C2S_PARTNER_PAWN_PAWN_LIKABILITY_RELEASED_REWARD_LIST_GET_REQ` | T007 §3.1 | 41/41 fit (no body) |
+| 53.6.2 | `S2C_PARTNER_PAWN_PAWN_LIKABILITY_RELEASED_REWARD_LIST_GET_RES` | T007 §3.1 | 41/41 fit |
+| 53.7.1 | `C2S_PARTNER_PAWN_PARTNER_PAWN_NEXT_PRESENT_TIME_GET_REQ` | T007 §3.2 | 20/20 fit (no body) |
+| 53.7.2 | `S2C_PARTNER_PAWN_PARTNER_PAWN_NEXT_PRESENT_TIME_GET_RES` | T007 §3.2 | 20/20 fit |
+| 53.8.1 | `C2S_PARTNER_PAWN_PRESENT_FOR_PARTNER_PAWN_REQ` | T007 §3.3 | 20/20 fit |
+| 53.8.2 | `S2C_PARTNER_PAWN_PRESENT_FOR_PARTNER_PAWN_RES` | T007 §3.3 | 20/20 fit |
+| 53.9.16 | `S2C_PARTNER_PAWN_LIKABILITY_UP_NTC` | T007 §3.4 | 23/23 fit (code name PAWN_LIKABILITY_UP_NTC, V by behaviour; the PS4 framing fits too) |
 | 57.0.2 | `S2C_BOX_GACHA_BOX_GACHA_LIST_RES` | P11a §8 | 3/3 fit |
+| 58.0.1 | `C2S_PAWN_EXPEDITION_PAWN_EXPEDITION_GET_SALLY_INFO_REQ` | T007 §4.1 | 30/30 fit (no body) |
+| 58.0.2 | `S2C_PAWN_EXPEDITION_PAWN_EXPEDITION_GET_SALLY_INFO_RES` | T007 §4.1 | 30/30 fit (ActiveBuffLineup and ClanSallySpot lists never non-empty) |
+| 58.3.1 | `C2S_PAWN_EXPEDITION_PAWN_EXPEDITION_SALLY_REQ` | T007 §4.2 | 25/25 fit, slack 15 |
+| 58.3.2 | `S2C_PAWN_EXPEDITION_PAWN_EXPEDITION_SALLY_RES` | T007 §4.2 | 25/25 fit, slack 15 |
+| 58.4.1 | `C2S_PAWN_EXPEDITION_PAWN_EXPEDITION_CHANGE_GOLDEN_SALLY_REQ` | T007 §4.3 | 4/4 fit |
+| 58.4.2 | `S2C_PAWN_EXPEDITION_PAWN_EXPEDITION_CHANGE_GOLDEN_SALLY_RES` | T007 §4.3 | 4/4 fit, slack 15 |
+| 58.5.1 | `C2S_PAWN_EXPEDITION_PAWN_EXPEDITION_GET_SALLY_REWARD_REQ` | T007 §4.4 | 25/25 fit (no body) |
+| 58.5.2 | `S2C_PAWN_EXPEDITION_PAWN_EXPEDITION_GET_SALLY_REWARD_RES` | T007 §4.4 | 25/25 fit (Season 3 list + bool, V by code; every list holds 1 element, so the PS4 body fits too) |
+| 58.7.1 | `C2S_PAWN_EXPEDITION_PAWN_EXPEDITION_GET_REWARD_DROP_REQ` | T007 §4.5 | 25/25 fit (no body) |
+| 58.7.2 | `S2C_PAWN_EXPEDITION_PAWN_EXPEDITION_GET_REWARD_DROP_RES` | T007 §4.5 | 25/25 fit |
+| 58.8.1 | `C2S_PAWN_EXPEDITION_PAWN_EXPEDITION_GET_REWARD_DROP_ITEM_LIST_REQ` | T007 §4.6 | 50/50 fit |
+| 58.8.2 | `S2C_PAWN_EXPEDITION_PAWN_EXPEDITION_GET_REWARD_DROP_ITEM_LIST_RES` | T007 §4.6 | 50/50 fit (Season 3 17-byte element; the PS4 element fails 10/50) |
+| 58.9.1 | `C2S_PAWN_EXPEDITION_PAWN_EXPEDITION_GET_REWARD_DROP_ITEM_REQ` | T007 §4.7 | 25/25 fit |
+| 58.9.2 | `S2C_PAWN_EXPEDITION_PAWN_EXPEDITION_GET_REWARD_DROP_ITEM_RES` | T007 §4.7 | 25/25 fit (list never non-empty) |
 | 60.0.1 | `C2S_NPC_GET_NPC_EXTENDED_FACILITY_REQ` | P11b §12 | 219/219 fit |
 | 63.11.16 | `S2C_63_11_16_NTC` | P5 §7 | 1/1 fit |
 | 64.0.2 | `S2C_MANDRAGORA_GET_MY_MANDRAGORA_RES` | P11a §2 | 20/20 fit |
@@ -495,6 +542,27 @@ after their first export, T004b). T005 is `specs/006-packet-pattern-coverage/res
   thunks; their identity rests on call shape. No captured group-13 RES has Error != 0: the guard is
   code-only. The 13.44-13.47.16 patterns keep their inline layout triplet (same fields and JSON as
   `CDataStageLayoutId`, unchanged).
+- **Groups 8, 53, 58 names without code backing (T007 §8):** the three `CDataPawnList` tail u32
+  (`unk_u32_0..2`; server: Unk0, TrainingExp, Unk2), the `CDataPawnInfo` Season 3 members (`unk_List`
+  {u8, u16}, server: CharacterItemSlotInfoList; `unk_u8[64]`, server: TrainingStatus;
+  `unk_TrainingProfile` u32 x5, type name I by server lead; `unk_SpSkillList`), the second 8.36.16 list
+  (`unk_JobOrbStatusList`; server: JobOrbHiBOStatusList) and the 58.5.2 second bool (`unk_bool`;
+  `IsGoldenSally` on the first is I by position).
+- **Groups 8, 53, 58 code-only (T007 §5, §8):** never non-empty in the captures: the 8.20.2 list
+  (`CDataLostPawnList`), the 53.4.2 list (its element is exercised by 53.6.2), the 58.0.2
+  ActiveBuffLineup and ClanSallySpot lists and the 58.9.2 list (element exercised by 58.9.1); the
+  58.5.2 list always holds one element, so its count prefix and second bool rest on the PC reader; the
+  8.37.16 `CharacterListElement.unk_u8` and the no-header framing of 53.9.16 fit either way. No
+  captured RES of these groups has Error != 0. PC code read linearly only: `0x7ea0a0` (58.0.2
+  handler), `0x7ebeb0` (8.37.16 handler), `0x759f80` (58.5.2 list reader).
+- **53.9.16 message index:** the PC handler announces message 0x1CC, PS4 0x1CE; the message tables
+  were not compared (I: shifted table).
+- **Pawn types added, no existing pattern changed (T007b):** T007 shows no layout error in an
+  existing pattern (no existing pattern used a PS4 `CDataPawnInfo`). `Pawn.hexpat` now includes
+  `Login.hexpat`; the 41 JSON files of 8.30.2 (the only earlier user of `Pawn.hexpat`) came out
+  byte-identical after re-export. `CDataPartyMember` joined `Character.hexpat` and the group 58 types
+  the new `PawnExpedition.hexpat`; no include cycle (Pawn -> Login -> Character, Context, GP;
+  PawnExpedition -> Packet).
 - **u64 OM Key in JSON:** `CDataOmData.Key` carries the high bit (0x80000000_001415b3), so the JSON
   integer exceeds 2^53; a reader that parses numbers as doubles rounds it (Python `json` keeps it
   exact).

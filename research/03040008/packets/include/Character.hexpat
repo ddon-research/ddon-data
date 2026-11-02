@@ -113,3 +113,21 @@ struct CDataLobbyMemberInfo {
     u8 SessionStatus;           // V (T003 9: 0.10.16 writes +0x21)
     u8 OnlineStatus;            // I (position after SessionStatus, PS4 order); server: OnlineStatus (lead)
 };
+
+// CDataPartyMember: PC reader 0x771580 {CDataCharacterListElement 0x75ccf0, u8, s32, u32, bool x3,
+// u8, u8[8] (0x757ce0), u8} (T007 1.3, V); PS4 Read_CDataPartyMember_ 0x1a2b2f0 {m_CharacterListElement,
+// u8 m_ucMemberType, s32 m_nMemberIndex, u32 m_unPawnId, b8 m_bIsLeader, b8 m_bIsPawn,
+// b8 m_bIsPlayEntry, u8 m_ucJoinState, u8 m_ucAnyValueList[8], u8 m_ucSessionStatus} (V). It differs
+// from PS4 only by the list element's Season 3 trailing u8. User: 8.37.16.
+struct CDataPartyMember {
+    CDataCharacterListElement CharacterListElement;
+    u8 MemberType;
+    s32 MemberIndex;
+    u32 PawnId;
+    bool IsLeader;
+    bool IsPawn;
+    bool IsPlayEntry;
+    u8 JoinState;
+    u8 AnyValueList[8];
+    u8 SessionStatus;
+};
