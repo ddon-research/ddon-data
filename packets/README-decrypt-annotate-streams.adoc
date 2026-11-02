@@ -166,6 +166,19 @@ re-annotated. Build of 2026-11-02 (net10.0, Debug): `Arrowgene.Ddon.Shared.dll` 
 `d311f08d2278e65dc6fdb1e02797899a2bbcd180d12ded268e51bb5446da03d0` and `Arrowgene.Ddon.Cli.exe`
 `d624bc12ef8f661d48e6c104d2ae40a811d9663f260ba6de408d68f4b45ca344` unchanged.
 
+`PacketCommand.DecryptPackets` is patched a fourth time (spec 006 TC3): the raw file name
+(`<pcap no>_<name>_<timestamp>.<group>_<id>_<sub>`) did not tell apart several packets of one id in
+one TCP frame, so each overwrote the one before and only the frame's last packet was kept: 13,724
+of 160,615 packets in 41 streams (13,492 in stream85 tcp-stream-11; 3.3.16 lost 6,394, 6.25.16
+5,431, 35.7.1 560, 32 more ids fewer). The patch counts each name per frame first: the last packet
+keeps the unsuffixed name (the file that survived before, so no existing raw changes), and each
+earlier one gets `_<n>`, its 1-based position among the frame's packets of that name, before the
+extension. Helpers `RawStem` and `RawExtension` build the two parts. The annotated dump code is
+unchanged. Build of 2026-11-02 (net10.0, Debug): `Arrowgene.Ddon.Cli.dll` sha256
+`78e33c4a9d544a02ec967482510771aa3aa54a2aaa6850244cc231b91f486052`; `Arrowgene.Ddon.Cli.exe`
+`d624bc12ef8f661d48e6c104d2ae40a811d9663f260ba6de408d68f4b45ca344` and `Arrowgene.Ddon.Shared.dll`
+`5d2455d51b2e1f0a0d482ab25d4743671885f23f8aabbefc2e51c377aad5ca6b` unchanged.
+
 A packet that fails to parse is a structure bug, not a capture problem: write an ImHex pattern in
 `../research/03040008/packets/`, check it against the client's `nPacket::Read_*` routine, then fix
 the C# structure.
@@ -214,6 +227,20 @@ other difference; those 125 were renamed here with `git mv`.
 On 2026-11-02 (spec 006 TC2) a full export with the `PacketId` rename patch above reproduced all
 146,891 files: 146,647 byte-identical under the same name and the 244 files of the eight renamed
 ids byte-identical under their new names; those 244 were renamed here with `git mv`.
+On 2026-11-02 (spec 006 TC3) a full export with the file name patch above wrote 160,615 files,
+one per packet of the annotated dumps: all 146,891 files here byte-identical under the same name,
+plus 13,724 new ones, each the payload of its annotated packet; those were copied in. A frame with
+several packets of one id now gives `<pcap no>_<name>_<timestamp>_<n>.<group>_<id>_<sub>` for all
+but the last of them (n = 1, 2, ...; up to 26 in this capture set), which keeps the unsuffixed name:
+`12008_S2C_QUEST_FORT_DEFENSE_NTC_2019-07-06T11_05_43.1647770-07_00_1.11_95_16` is the first of two
+packets whose second is `..._2019-07-06T11_05_43.1647770-07_00.11_95_16`. Order within the frame
+is `_1`, `_2`, ..., then the unsuffixed file. The suffix sits in the stem, so the id filters of
+`imhex-export.sh` (extension) and `// packet-select` (`_<name>_`) select these files unchanged;
+`// packet-size` is no longer needed to tell apart packets that shared a file name.
+Their JSON was exported with the 32 patterns of their ids (`imhex-export.sh @ <name>`, existing
+JSON skipped): 13,633 of 13,633 fit (`msgFits` too for the nNetMsg ids 3.3.16, 3.4.16, 6.25.16;
+`sourceOk` everywhere); the other 91 (62.26.16: 74, 27.10.1: 14, 27.10.2: 2, 63.10.16: 1) have no
+pattern yet.
 `decrypted_json/` holds only ImHex output (`imhex-export.sh`), so a stream gets a JSON folder only
 when one of its packets was exported with a pattern (125 of 125 streams have one since the login patterns of spec 006 T002).
 
