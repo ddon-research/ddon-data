@@ -678,3 +678,106 @@ params) are not confirmed: the code gives the roles above; the character-list ro
 
 `CDataGachaSettlementInfo.unk_u32` (element `0x768830`, +36): map the settlement element offsets in
 `0xd9fef0` / `0xda2620` (box: element reader `0x75ade0`) and find the reader of +36.
+
+## Part 7 (2026-11-02, T014b7): the last rows left "not traced"
+
+Builds and databases: PC 03040008 private copy
+`D:/research/DDON-binaries/IDA9.5/PC_DDON_03040008/ddon-data-t014b7/2022_01_29_DDO_DUMP_FIX.exe.i64`
+(32-bit, image base 0x400000, checked with `idc.get_idb_path()`); PS4 02020005 private copy
+`D:/research/DDON-binaries/IDA9.5/PS4_DDON_02020005_2016_12_21/ddon-data-t014b7/DDOORBIS.elf.i64` (64-bit,
+base 0). Both read-only; SHA-256 of the copies not computed (not run). All addresses are VAs. Rows are
+updated by `T014b4-upd.py` from `T014b7-<include>.json` (only rows still `open` change).
+
+### Gacha and BoxGacha (39.x, 40.x LIST_RES)
+
+- `CDataGachaSettlementInfo.unk_u32` (+36) and `CDataBoxGachaSettlementInfo.unk_u32` (+40) = **ChargeId** (V flow,
+  I name). `0xd9fef0` copies each settlement into a price slot (`0xda2f00`, slot +128/+140); `0xda5f90` passes
+  the slot value to `0xd9df40` as `chargeId` of `sGame::isChargeEffect` (bit 0x100: GP course effect not
+  active), and `0xda55f0` labels the price "Service Benefit (GG) x%d" / "Service Benefit (Free)" (gacha_res
+  0x64 / 0x60) when it is non-zero. PS4 `sGame::isChargeEffect` `0x7854a0` names the argument
+  `chargeId` (`nGpCourse::E_GP_COURSE_EFFECT`).
+- `CDataBoxGachaInfo.unk_bool` (+24): open, not read (no byte read of +0x18 in the 19 getter call sites of
+  `0x869100` or elsewhere in the gacha UI range 0xd9c000-0xdab000).
+
+### Instance (13.x): enemy info, gathering, C2S requests (`T014b7-instance.json`, drop row in `T014b7-stage.json`)
+
+- `CDataStageLayoutEnemyPresetEnemyInfoClient.unk_bool` (element +34, 2 rows): **V (role)**. Both ENEMY_SET_LIST
+  (`0x7db4c0` -> `0xbfe8a0` -> `0xaa7330`) and REPOP (`0xaa6cb0`) copy the info into the 80-byte set object
+  (dti__5393, `0xaa3050`) at +8; `0x752540` copies set +41 (IsBloodEnemy) to enemy record +489 and +42 (this) to
+  +490. `0xc405c0` reads +490; `0xf11f20` returns enemy gauge kind 2 for it (1 for IsBloodEnemy), and `0x4d11a0`
+  runs a separate effect for it. A second special-enemy kind beside IsBloodEnemy; the server lead IsHighOrbEnemy
+  fits but no client string names it, so the name stays `unk_bool`.
+- GATHERING_ITEM_LIST_RES: `unk_bool` is stored at conn +0x9E74 (`0x880b30`) and never read (raw displacement
+  search: writers `0x880b91`, `0x846e72` only). The restriction list (+0x34, `GatheringItemListRes_unk_0/1`) is
+  passed only as an unused argument of `0xbfe9d0`: not read (3 rows open).
+- C2S GET_GATHERING_ITEM_REQ: the request record (`0xb91260`: +16 PosId, +20, +24) is registered by the undefined
+  `0xb627d0` and sent by the callback `0xb93fb0`. `unk_u32` (+20) is the element +4 of the first entry of the
+  cpOmGather list +528 (`0xf00d90`, V source, name open). `unk_bool` (+24) has no writer found (open); after the
+  send it selects request +66 = 75 or 1. GET_DROP_ITEM_REQ `unk_bool` has the same shape (`0xb93ead`, 0x4C or 1;
+  open).
+- ENEMY_KILL_REQ `unk_bool`: `0xbfd900` sends 1 unless a living member slot passes `0x478d40` / `0x475c50`;
+  the decompiled `0x475c50` returns 0, so the value is 1 (I).
+- BAD_STATUS START/END: `unk_zero` is the constant 0 (V source); `unk_u32` is +0x30 of the record at enemy +0x1B50
+  (`0x4d9e70`, protected copy thunk), not the enemy set object: open.
+
+### Stage attributes (`T014b7-stage.json`)
+
+- `CDataStageAttribute.unk_bool_0` / `unk_bool_1`: copied by `0x883d30` / `0x7a6030` into the stage table at conn
+  +0x9E44 (entry +33 / +34). The 27 functions that address the table read +8, +26 (`0x875ca0`) and +28
+  (`0x875c50`) only: open (stored, no reader).
+
+### Stamp (`T014b7-stamp.json`)
+
+- GET_LIST handler `0x7fe140` (read by instruction) keeps the packet at conn sub +0x478 (getter `0x871bd0`,
+  caller `0xebcaf0`). `CDataStampBonus.unk_u32` (and the StampBonusTotal row) is the bonus kind: when it is 1,
+  bonus +8 is mapped by `0xebb610` (1..5 -> 7789, 7792, 7795, 10682, 10664), else shown as is; +12 is the
+  amount (V role). The pattern's PS4-position names BonusType (+8) / BonusValue (+12) do not fit this code (I).
+- `CDataStampBonusDailyGroup.unk_u32_0` is the group key matched with UI +0x25A8; CHECK_RES (`0x65cbd0`, getter
+  `0x871bc0`) stores element +4 / +8 (`CDataStampBonusCheckRes_unk_0.unk_u32_0` / `unk_u32_1`) at UI +0x25A8 /
+  +0x25AC, which `0x8785c0` (request 561) sends (V role / V flow). `DailyGroup.unk_u32_1` is not read (open).
+
+### nNetMsg (`T014b7-nnetmsg.json`)
+
+- `CtrlAction.unk_0x3C` (and the PARTY_SEND_BINARY_MSG_NTC Data row) / `unk_0x3D`: the cContext +0xC48 4-slot
+  work array (setter `0x479fd0`, getter `0x475520` used by enemy code `0xccddc0`, `0xcd5c80` and others); V flow,
+  role I, name open.
+- `GameNormal` 0x0F `unk_u32` / `unk_uid_0` / `unk_uid_1`: receive `0x894bf0` adds {u32, uid, uid} to the
+  sEnemyManager +0xDB0 block (`0x4d3060`); `0x5a12b0` queries it by a pair of character UIDs (`0x4d2fd0`) to start
+  action 3. V flow, role I, names open.
+
+### Single-pattern rows (`T014b7-single.json`)
+
+- GROUP_CHAT GET_MEMBER_LIST `unk_serverResult` / `unk_serverListCount`: open, never read (the reader `0x809d80`
+  stops after a non-zero Error).
+- AREA_GET_SPOT_INFO_LIST `unk_list_2`: `0xd40fd0` sets UI spot entry +85 when the spot id is in the list (V flow);
+  no reader of +85 found.
+- `CDataMyRoomOption.unk_u32` (+0x1C): not read by the copy `0x10db890` (open; a wider reader search not run).
+
+### T014a candidates in these rows
+
+All are weak; none is confirmed. GROUP_CHAT `unk_serverResult` (ErrorID) is never read by the client; the stamp
+check `unk_u32_1` (GP EffectUID) is the value paired with the daily group key; BAD_STATUS `unk_u32` (mCommonWork)
+stays unresolved.
+
+### Counts (part 7: 34 struct.field pairs, 35 TSV rows)
+
+| Verdict | Rows | Distinct struct.field |
+| --- | --- | --- |
+| V (flow, source or role read; names I where marked) | 20 | 19 |
+| I only | 0 | 0 |
+| open, with a concrete reason (not read, stored without reader, never read, source or record not found) | 15 | 15 |
+
+- **Cut short** (tool-call budget): 25 TSV rows (23 struct.field) still carry "not traced": PENALTY_REVIVE,
+  MAIL GET_ALL_ITEM, SKILL ACQUIRABLE x2, ITEM_SORT, PAWN_EXPEDITION `unk_bool`, PLAY_END `unk_s32`,
+  `CDataContentsPlayEnd` x3, `CDataContentsPlayStartData` x4, `CDataQuestContents` x2 (4 rows),
+  `CDataQuestUnkU32Bool` x2, `CDataQuestUnkU32S64` x2, `CDataQuestUnkU32U32.unk_u32_0` (and its `unk_u32_1` row),
+  `CDataCycleContentsNoticeData.unk_u64`, `CDataGPCourseValid.unk_MtString`.
+- Leads: the PAWN_EXPEDITION packet is kept at conn +1216 (`0x7ea150`); the C2S writers are reached through
+  `cSeedGameSvConnection::Send_*` callers as in the instance rows.
+- Not run: SHA-256 of the private copies; a reader scan for UI spot entry +85 outside 0xd30000-0xd50000; a reader
+  search for MyRoomOption +0x1C beyond `0x10db890`.
+
+### Next field
+
+`CDataContentsPlayStartData.unk_bool_0` (TIME_GAIN_QUEST_PLAY_START_NTC, reader `0x75f030`, caller `0x7f5830`):
+follow the notice object from `0x7f5830` to its consumer.
