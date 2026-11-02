@@ -18,7 +18,8 @@ carry now. Every pattern starts with `#pragma endian big` and includes what it n
 | `Quest.hexpat` | group 11 QUEST CData and the enums ORDER_CONDITION_TYPE, CYCLE_CONTENTS_CATEGORY, CYCLE_CONTENTS_SUB_CATEGORY, COMMAND_CHECK_LIST (P11a); since T005b also the Season 3 `CDataQuestList` (PC `0x774530`, beside `CDataQuestOrderList`) and the list, detail, play start/end, priority, reward box and fort defense types of T005 §44 | 72 |
 | `Area.hexpat` | group 23 AREA CData (P11a, P11b) | 4 |
 | `Character.hexpat` | E_WALLET_POINT_TYPE, CDataWalletPoint, job base info, character name and list element; since T006b `CDataCharacterLevelParam` (PC `0x75cb00`) and the Season 3 `CDataLobbyMemberInfo` (PC `0x76d7f0`, 3 u8); since T007b `CDataPartyMember` (PC `0x771580`) | 2, and 3.0.2, 3.2.16, 33.12/13/16/17.16, 8.37.16 |
-| `Clan.hexpat`, `Item.hexpat`, `Skill.hexpat` | the CData of those groups (P11b) | 1-2 each |
+| `Clan.hexpat`, `Skill.hexpat` | the CData of those groups (P11b) | 1-2 each |
+| `Item.hexpat` | item storage types (P11b §13); since T008b the Season 3 `CDataItemList` (PC `0x76aca0`), `CDataItemUpdateResult`, `CDataUpdateWalletPoint`, `CDataSwitchStorage` (Season 3 u16), `CDataMoveItemUIDFromTo` and `CDataItemSort` (T008 §1, §6); includes Packet, Character and Context | 10.9.2, 10.3.2, 10.6.2, 10.7.1, 10.9.1, 10.12.16, 10.13.16, 50.0.2, 50.1.1 |
 | `Pawn.hexpat` | group 8 PAWN CData (P11b §14); since T007b the Season 3 `CDataPawnInfo` (PC `0x772180`) with its job, equip, craft and orb-extend types, the pawn list, rented, lost and history elements, profile, total score, orb status, and `CDataPartnerPawnData`/`CDataPartnerPawnReward`, shared with group 53 (T007 §1, §6); includes Login | 8.30.2, 10 group-8 and 3 group-53 patterns |
 | `PawnExpedition.hexpat` | group 58 PAWN_EXPEDITION CData (T007 §4, §6): `CDataAreaSpotSet`, `CDataPawnExpeditionClanSallySpotInfo`, `CDataBattleResultInfo`; includes Packet only (group 58 also uses Packet's common types and Instance's gathering-item element and get request) | 58.0.2, 58.5.2 |
 | `Login.hexpat` | login-server CData (T002 §15): URL info, login setting, game server list info, error message, and the character list types (matching profile, Season 3 equip item info, character list info); includes Character, Context and GP | 4 |
@@ -28,6 +29,7 @@ carry now. Every pattern starts with `#pragma endian big` and includes what it n
 | `Instance.hexpat` | group 13 INSTANCE CData (T004 §20): stage layout id, enemy set (enemy info with the Season 3 sixth bool, drop item set, named enemy param), layout item data, gathering item element (Season 3, 17 bytes), get request, the Season 3 gathering restriction and its item amount, OM data (Season 3 u64 key); includes Packet and Character | 25 group-13 patterns |
 | `Job.hexpat` | group 33 JOB CData (T006 §1.1, §6): job change info (with Login's Season 3 `CDataEquipItemInfo`), pawn job change info, play point data and job play point; includes Login | 33.0.2 |
 | `Stage.hexpat` | group 12 STAGE CData (T006 §3.2, §6): the two Season 3 element types of 12.1.2 (`CDataAreaChangeUnk0/1`, names unk) | 12.1.2 |
+| `Warp.hexpat` | group 14 WARP CData (T008 §1.2, §6): `CDataWarpPoint`, `CDataFavoriteWarpPoint`, `CDataAreaWarpPoint`, `CDataJumpLocation`; includes Packet only | 14.2.2, 14.4.2, 14.8.2, 14.12.2 |
 
 Each structure comment names the PC reader or writer VA (PC 03040008 database, image base 0x400000)
 and the PS4 02020005 DWARF type, and carries a mark: V means read in IDA, I means inferred. A field
@@ -146,7 +148,9 @@ after their first export, T004b). T005 is `specs/006-packet-pattern-coverage/res
 `specs/006-packet-pattern-coverage/research/T006-job-lobby-area-stage.md` (groups 33 JOB, 3 LOBBY,
 23 AREA and 12 STAGE; counts after their first export, 2026-11-02, T006b). T007 is
 `specs/006-packet-pattern-coverage/research/T007-pawn-partner.md` (groups 8 PAWN, 53 PARTNER_PAWN and
-58 PAWN_EXPEDITION; counts after their first export, 2026-11-02, T007b).
+58 PAWN_EXPEDITION; counts after their first export, 2026-11-02, T007b). T008 is
+`specs/006-packet-pattern-coverage/research/T008-warp-item.md` (groups 14 WARP, 10 ITEM and 50
+ITEM_SORT; counts after their first export, 2026-11-02, T008b).
 
 | Id | Pattern | Report | Status |
 | --- | --- | --- | --- |
@@ -241,7 +245,20 @@ after their first export, T004b). T005 is `specs/006-packet-pattern-coverage/res
 | 8.37.16 | `S2C_PAWN_JOIN_PARTY_PAWN_NTC` | T007 §2.12 | 9/9 fit (code name JOIN_PARTY_PAWN_NOTICE, V: unique PS4 reader + guard) |
 | 9.0.2 | `S2C_BINARY_SAVE_GET_CHARACTER_BIN_SAVEDATA_RES` | P4 §3, T001b §4 | no capture (synthetic: versions 0x19, 0x13, 0x0C) |
 | 9.1.1 | `C2S_BINARY_SAVE_SET_CHARACTER_BIN_SAVEDATA_REQ` | P4 §3, T001b | 47/47 fit; 47/47 equal T001b's walk field by field |
+| 10.0.1 | `C2S_ITEM_USE_BAG_ITEM_REQ` | T008 §3.1 | 18/18 fit |
+| 10.0.2 | `S2C_ITEM_USE_BAG_ITEM_RES` | T008 §3.1 | 21/21 fit, slack 15 |
+| 10.0.16 | `S2C_ITEM_USE_BAG_ITEM_NTC` | T008 §3.2 | 18/18 fit (code name USE_BAG_ITEM_NOTICE, V by behaviour; the PS4 framing fits too) |
+| 10.3.1 | `C2S_ITEM_GET_STORAGE_ITEM_LIST_REQ` | T008 §3.3 | 136/136 fit |
+| 10.3.2 | `S2C_ITEM_GET_STORAGE_ITEM_LIST_RES` | T008 §3.3 | 136/136 fit (Season 3 `CDataItemList`; the PS4 element fails 130/136) |
+| 10.6.1 | `C2S_ITEM_GET_POST_ITEM_LIST_REQ` | T008 §3.4 | 3/3 fit (no body) |
+| 10.6.2 | `S2C_ITEM_GET_POST_ITEM_LIST_RES` | T008 §3.4 | 3/3 fit (Season 3 `CDataItemList`; the PS4 element fails 3/3) |
+| 10.7.1 | `C2S_ITEM_MOVE_ITEM_REQ` | T008 §3.5 | 6/6 fit |
+| 10.7.2 | `S2C_ITEM_MOVE_ITEM_RES` | T008 §3.5 | 6/6 fit, slack 15 |
+| 10.9.1 | `C2S_ITEM_GET_ITEM_STORAGE_INFO_REQ` | T008 §3.6 | 4/4 fit |
 | 10.9.2 | `S2C_ITEM_GET_ITEM_STORAGE_INFO_RES` | P11b §13 | 4/4 fit |
+| 10.10.16 | `S2C_ITEM_EXTEND_ITEM_SLOT_NTC` | T008 §3.7 | 43/43 fit (code name EXTEND_ITEM_SLOT_NTC, V by behaviour and unique shape; the PS4 framing fits too) |
+| 10.12.16 | `S2C_ITEM_UPDATE_CHARACTER_ITEM_NTC` | T008 §3.8 | 390/390 fit (Season 3 `CDataItemList`; the PS4 element fails 245/390) |
+| 10.13.16 | `S2C_SWITCH_STORAGE_NTC` | T008 §3.9 | 2/2 fit (Season 3 u16 element field: code-only, the PS4 u8 fits too) |
 | 11.0.1 | `C2S_QUEST_GET_LIGHT_QUEST_LIST_REQ` | T005 §2 | 1/1 fit |
 | 11.0.2 | `S2C_QUEST_GET_LIGHT_QUEST_LIST_RES` | T005 §2 | 1/1 fit |
 | 11.1.1 | `C2S_QUEST_GET_SET_QUEST_LIST_REQ` | T005 §3 | 179/179 fit |
@@ -352,6 +369,21 @@ after their first export, T004b). T005 is `specs/006-packet-pattern-coverage/res
 | 13.45.16 | `C2S_INSTANCE_CHARACTER_END_BAD_STATUS_NTC` | P4 §4, T001c §3 | 19/19 fit |
 | 13.46.16 | `C2S_INSTANCE_ENEMY_BAD_STATUS_START_NTC` | P4 §4, T001c §3 | 31/31 fit |
 | 13.47.16 | `C2S_INSTANCE_ENEMY_BAD_STATUS_END_NTC` | P4 §4, T001c §3 | 30/30 fit |
+| 14.1.1 | `C2S_WARP_GET_RELEASE_WARP_POINT_LIST_REQ` | T008 §2.1 | 41/41 fit (no body) |
+| 14.1.2 | `S2C_WARP_GET_RELEASE_WARP_POINT_LIST_RES` | T008 §2.1 | 41/41 fit |
+| 14.2.1 | `C2S_WARP_GET_WARP_POINT_LIST_REQ` | T008 §2.2 | 178/178 fit |
+| 14.2.2 | `S2C_WARP_GET_WARP_POINT_LIST_RES` | T008 §2.2 | 178/178 fit |
+| 14.3.1 | `C2S_WARP_WARP_REQ` | T008 §2.3 | 44/44 fit |
+| 14.3.2 | `S2C_WARP_WARP_RES` | T008 §2.3 | 44/44 fit |
+| 14.4.1 | `C2S_WARP_GET_FAVORITE_WARP_POINT_LIST_REQ` | T008 §2.4 | 104/104 fit |
+| 14.4.2 | `S2C_WARP_GET_FAVORITE_WARP_POINT_LIST_RES` | T008 §2.4 | 104/104 fit |
+| 14.8.1 | `C2S_WARP_GET_AREA_WARP_POINT_LIST_REQ` | T008 §2.5 | 1/1 fit |
+| 14.8.2 | `S2C_WARP_GET_AREA_WARP_POINT_LIST_RES` | T008 §2.5 | 1/1 fit, slack 15 |
+| 14.9.1 | `C2S_WARP_AREA_WARP_REQ` | T008 §2.6 | 18/18 fit |
+| 14.9.2 | `S2C_WARP_AREA_WARP_RES` | T008 §2.6 | 18/18 fit |
+| 14.10.16 | `C2S_WARP_WARP_START_NTC` | T008 §2.7 | 62/62 fit (no body; code name C2S_WARP_END_NTC, V by call site: the raw name WARP_START is contradicted) |
+| 14.12.1 | `C2S_WARP_GET_RETURN_LOCATION_REQ` | T008 §2.9 | 9/9 fit (no body) |
+| 14.12.2 | `S2C_WARP_GET_RETURN_LOCATION_RES` | T008 §2.9 | 9/9 fit |
 | 18.0.2 | `S2C_GROUP_CHAT_GROUP_CHAT_GET_MEMBER_LIST_RES` | P11b §18 | 41/41 fit |
 | 19.1.2 | `S2C_SKILL_GET_ACQUIRABLE_SKILL_LIST_RES` | P11b §16 | 4/4 fit |
 | 19.2.2 | `S2C_SKILL_GET_ACQUIRABLE_ABILITY_LIST_RES` | P11b §17 | 16/16 fit |
@@ -398,6 +430,10 @@ after their first export, T004b). T005 is `specs/006-packet-pattern-coverage/res
 | 44.0.1 | `C2S_CERT_CLIENT_CHALLENGE_REQ` | T003 §15 | 83/83 fit, slack 12 (no header, body at offset 0) |
 | 44.0.2 | `S2C_CERT_CLIENT_CHALLENGE_RES` | T003 §16 | 83/83 fit |
 | 44.1.16 | `S2C_CERT_GAME_SERVER_CERT_NTC` | T003 §1, §15 | 83/83 fit, slack 12 (no header, body at offset 0) |
+| 50.0.1 | `C2S_ITEM_SORT_GET_ITEM_SORTDATA_BIN_REQ` | T008 §4.1 | 46/46 fit |
+| 50.0.2 | `S2C_ITEM_SORT_GET_ITEM_SORTDATA_BIN_RES` | T008 §4.1 | 46/46 fit (list never non-empty) |
+| 50.1.1 | `C2S_ITEM_SORT_SET_ITEM_SORTDATA_BIN_REQ` | T008 §4.3 | 59/59 fit (Season 3 trailing bool: code-only, the PS4 body fits too) |
+| 50.1.2 | `S2C_ITEM_SORT_SET_ITEM_SORTDATA_BIN_RES` | T008 §4.3 | 59/59 fit, slack 15 |
 | 51.0.2 | `S2C_DISPEL_GET_DISPEL_ITEM_LIST_RES` | P11a §6 | 1/1 fit |
 | 52.1.2 | `S2C_MY_ROOM_FURNITURE_LIST_GET_RES` | P11a §10 | 20/20 fit |
 | 53.4.1 | `C2S_PARTNER_PAWN_PAWN_LIKABILITY_REWARD_LIST_GET_REQ` | T007 §3.1 | 40/40 fit (no body) |
@@ -563,6 +599,36 @@ after their first export, T004b). T005 is `specs/006-packet-pattern-coverage/res
   byte-identical after re-export. `CDataPartyMember` joined `Character.hexpat` and the group 58 types
   the new `PawnExpedition.hexpat`; no include cycle (Pawn -> Login -> Character, Context, GP;
   PawnExpedition -> Packet).
+- **14.10.16 name:** the raws and the pattern keep the CLI name `C2S_WARP_WARP_START_NTC`; the
+  code-backed name is `C2S_WARP_END_NTC` (T008 §2.7, V by call site: the PC writer `0x840160` and PS4
+  `Send_C2S_WARP_END_NTC` are both called once, from `aStage::move_menu_warp`, after the same store,
+  with the same empty body). PS4 has no WARP_START symbol, so the raw name is contradicted (C).
+- **Season 3-exclusive, not patterned (T008):** 14.14.1/14.14.2 GET_START_POINT_LIST (T008 §2.10:
+  no PS4 symbol or type, V; 42 captures each), 14.11.16 `C2S_WARP_WARP_END_NTC` (§2.8: the PC writes
+  a u32, no PS4 counterpart, I by absence; 57 captures), 10.14.16
+  `S2C_ITEM_ACHIEVEMENT_REWARD_RECEIVE_NTC` (§3.10: u16 + list {u8, u32}, I by absence; 1 capture) and
+  50.0.16 `S2C_ITEM_SORT_GET_ITEM_SORTDATA_BIN_NTC` (§4.2: list CDataItemSort, V by the reader's only
+  PS4 caller; 48 captures). Their PC readers and wire layouts are in those sections; they go to a later
+  spec with the other exclusive ids. The 10.14.16 element type (`CDataItemRewardEntry`, T008 §6) is not
+  in `include/Item.hexpat` yet: no pattern in scope uses it.
+- **Groups 10, 14, 50 names without code backing (T008 §8):** the `CDataItemList` fields after
+  `ItemUId` (ItemId, ItemNum, StorageType, SlotNo, Color, PlusValue, Bind are I with the basis in the
+  include; the three Equip u32 carry PS4 names in the server's order, I; the Season 3 u8 and three
+  lists are `unk_*`), the `CDataSwitchStorage` second field (`ChangeStorageType`, I by position; the
+  same PC list reader `0x75c570` serves `Server.hexpat`'s `CDataCharacterItemSlotInfo` {u8, u16}) and
+  the 50.1.1 trailing `unk_bool`.
+- **Groups 10, 14, 50 code-only (T008 §5, §8):** the 10.13.16 u16 element field and the 50.1.1
+  trailing bool fit either way (the PS4 bodies fit too); the no-header framing of 10.0.16 and 10.10.16
+  fits either way; the 50.0.2 list is never non-empty (its element is exercised by the unpatterned
+  50.0.16); the three `CDataItemList` element lists are always empty in 10.6.2. No captured RES of these
+  groups has Error != 0. PC code read linearly only: `0x7ddb80` (50.0.2 handler), `0x80ca00` (its
+  reader), `0x75e6e0` (CDataItemSort list), `0x766af0` (CDataFavoriteWarpPoint list), `0x83f910` (14.8.1
+  writer). The 10.10.16 GUI message index differs (PC `0x1BA`, PS4 `0x1BC`); the tables were not compared.
+- **Item and warp types added, no existing pattern changed (T008b):** no existing pattern used a PS4
+  `CDataItemList` or `CDataSwitchStorage` layout (searched: neither type nor their PC readers `0x76aca0`
+  / `0x76abe0` appear in any earlier pattern), so none was wrong for Season 3. `include/Item.hexpat`
+  now includes Character and Context; the 4 JSON files of 10.9.2 (its only earlier user) came out
+  byte-identical after re-export (4/4, `cmp`). No include cycle (Item -> Packet, Character, Context; Warp -> Packet).
 - **u64 OM Key in JSON:** `CDataOmData.Key` carries the high bit (0x80000000_001415b3), so the JSON
   integer exceeds 2^53; a reader that parses numbers as doubles rounds it (Python `json` keeps it
   exact).
