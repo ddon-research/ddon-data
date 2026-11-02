@@ -37,7 +37,7 @@ Coordinator: main session. One subagent at a time. Method and rules: `spec.md`.
 - [x] T003-T013 batches: one evidence + one implementer package per group, by captured count (13 instance,
   0 connection, 11 quest, 33 job, 62 season dungeon, 23 area, 14, 8 pawn, 10 item, ...), PS4-matched
   ids only; a reviewer after every few groups.
-- [ ] T014 Inferred names for unknown fields (Sam, 2026-11-02; spec § "Naming unknown fields by
+- [x] T014 (done: T014a 3d86f848d0; T014b parts 1-8 3ea5fa4399..d9f19fc48a, 478 rows = 257 V / 91 I / 130 open; T014c 58956082fd + e72e999f3c: 97 fields named (78 V, 19 I), 154 kept `unk_*` with role or reason; 2,879 JSON re-exported, all fit; NaN -> null default, 0 nan/inf left) Inferred names for unknown fields (Sam, 2026-11-02; spec § "Naming unknown fields by
   inference"): T014a value correlation over the JSON (`implementer`, tool + report,
   `briefs/T014a-value-correlation.md`); T014b PC consumers, createProperty and binary hints, confirming
   T014a (`evidence-researcher-ida`, `briefs/T014b-consumer-property-names.md`); T014c apply names and
@@ -72,7 +72,8 @@ Coordinator: main session. One subagent at a time. Method and rules: `spec.md`.
   character-list u8 = GameMode), then T014b7 (cut short: 35 rows, 20 V / 15 open with reasons; gacha
   ChargeId; stamp: the pattern's BonusType/BonusValue are wrong, unk_u32 selects how +8 is read), then
   T014b8 (d9f19fc48a: all rows settled). T014b done: 478 rows = 257 V / 91 I / 130 open with reasons.
-  Running: T014c (`briefs/T014c-apply-inferred-names.md`), each writing rows per include. Then T014c; was: the closing packages TC1 (tooling, naming sweep,
+  T014c done (58956082fd, e72e999f3c). Running: spec close (orchestration § 10): R4 adversarial review of
+  the V/I marks (`briefs/R4-adversarial-marks.md`), then `check.sh --all`, docs, retro, status done; each writing rows per include. Then T014c; was: the closing packages TC1 (tooling, naming sweep,
   Season 3-exclusive list; `briefs/TC1-close-tooling-naming-exclusive.md`) and TC2 (code-backed raw
   renames; `briefs/TC2-code-backed-renames.md`), then the spec-end procedure (orchestration § 10).
 - All-exclusive groups (62, 70, 72, 60, 71, 61, 64, 59, 65) go to the Season 3-exclusive list.
