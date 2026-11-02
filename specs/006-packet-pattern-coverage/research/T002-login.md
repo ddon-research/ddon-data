@@ -418,3 +418,23 @@ Clone `D:/GitHub/Sehkah/Arrowgene.DragonsDogmaOnline` at `88d82caf07b980c031ec7f
 - Names without code backing: 2.3.16 `Error` (I), 3.0.16 `RemainingNum` (I), CDataEquipItemInfo
   fields after ItemID, CDataGPCourseValid second MtString.
 - CDataGPCourseValid is not capture-tested (all lists empty).
+
+## Errata (R1, 2026-11-02)
+
+Appended after the R1 review of T002-T004; the sections above stay as written.
+
+- **§ 12, sample bytes and body size.** The grouping `0020b8f8 30401b01 02 00 00000000 01` is
+  wrong, and "(14 B)" for the REQ (also the § 14 table) undercounts. Correct: CharacterID
+  0x0020b8f8, ClientVersion 0x3040001b, Type 1, RotationServerID 2, WaitNum 0, Counter 1; the body is
+  4 + 4 + 1 + 1 + 4 + 1 = 15 B (9 + 15 = 0x18 = the stated end; paddingSize 8 in the 32-byte file).
+  Source: the plbatch export of `stream1-marked.pcapng_tcp-stream-33/11853_…5_1_1.json`
+  (ClientVersion 809500699, Type 1, RotationServerID 2, paddingSize 8); T003 § 3.
+- **§ 5, session-key length.** "key length 0x20" is wrong: the length is 0x1f (31), which the
+  section's own end 0x34 implies (0x09 + 4 + 4 + 2 + 31 + 2 = 0x34). Source: the export of
+  `stream1-marked.pcapng_tcp-stream-33/11860_…2_1_2.json` (`SessionKey.length` 31, paddingSize 12).
+- **§ 3, § 14, § 17, 1.0.1 not walkable.** Superseded. The raws are now re-decrypted with the fixed
+  client key (T002c § 1, § 5; T002d, commit 40f80dc80fa); 336 = 324 + 12 bytes of cipher block
+  padding, not 9 + 324 + 3, and the packet carries no header (T002c § 3; T003 § 1: `Send` drops
+  the 9 header bytes). The 304-byte files are the server's certificate notice, filed since T002e
+  (commit 70201832e19) as 1.1.16 L2C_LOGIN_SERVER_CERT_NTC. Walk: 42/42 fit
+  (`C2L_CLIENT_CHALLENGE_REQ-pattern.cpp`; packets README).

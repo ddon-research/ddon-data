@@ -487,3 +487,16 @@ Clone `D:/GitHub/Sehkah/Arrowgene.DragonsDogmaOnline` at `88d82caf07b980c031ec7f
 - Login follow-up for T002/T002b: the 42 login 304-byte `*.1_0_1` files are L2C_LOGIN_SERVER_CERT_NTC
   1.1.16 (same reader shape expected as 44.1.16; the login reader behind `0x886b00` was not decoded here).
 - ImHex not run (not on `PATH`); no pattern written (outside this package).
+
+## Errata (R1, 2026-11-02)
+
+Appended after the R1 review of T002-T004; the sections above stay as written.
+
+- **§ 10, § 15 (and § 18), `packet-size` selectors.** The recommendation to tell the 304- and
+  336-byte files apart with `// packet-size:` is superseded by T002e (commit 70201832e19): the
+  patched CLI files the 304-byte notices as 1.1.16 L2C_LOGIN_SERVER_CERT_NTC (42 raws, `.1_0_1` →
+  `.1_1_16`) and 44.1.16 S2C_CERT_GAME_SERVER_CERT_NTC (83 raws, `.44_0_1` → `.44_1_16`), so every
+  `.1_0_1` / `.44_0_1` challenge file is the 336-byte REQ and no pattern carries `packet-size`
+  (`C2L_CLIENT_CHALLENGE_REQ-pattern.cpp`, `C2S_CERT_CLIENT_CHALLENGE_REQ-pattern.cpp`).
+- **§ 1 (b), citation.** "the client reads 292 bytes (§ 27)": there is no § 27. The 292-byte read
+  is § 15 (PC reader `0x801a80`).

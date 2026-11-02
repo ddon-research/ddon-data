@@ -186,3 +186,14 @@ and adds a second producer for `decrypted_raw/`, so the CLI patch is the recomme
   decrypting with it (V for the wire) and on PS4 02020005 code.
 - The first-packet header skip in the PC writer `0x88a900` path was not traced (§ 3 contradiction).
 - ImHex not run (not on `PATH`).
+
+## Errata (R1, 2026-11-02)
+
+Appended after the R1 review of T002-T004; the sections above stay as written.
+
+- **§ 3, the 304-byte packet.** "`unknown[12]` (… probably uninitialised memory; I)" and "304 =
+  19×16, so no padding" are wrong: the body is 292 bytes (`u8 OpenModulo[256]; u8 OpenExpo[16];
+  u32 OpenHash[5]`), and its last 12 bytes are cipher block padding (292 + 12 = 304). Source: T003
+  § 1 (b) and § 15 (PC reader `0x801a80` reads 0x100 + 0x10 + 5×4 bytes, V). The packet is the
+  server's certificate notice, filed since T002e as 1.1.16 L2C_LOGIN_SERVER_CERT_NTC (login) and
+  44.1.16 S2C_CERT_GAME_SERVER_CERT_NTC (game).
