@@ -1,6 +1,7 @@
 // 44.0.1 C2S_CERT_CLIENT_CHALLENGE_REQ (client 03040008), the client's first packet to the game server.
 // Evidence: specs/006-packet-pattern-coverage/research/T003-connection-server-cert.md
-// sections 1 and 15; the login twin 1.0.1 C2L_CLIENT_CHALLENGE_REQ (T002 section 3, T002c).
+// sections 1 and 15 (T003 Errata R1: the packet-size advice is superseded by T002e); the login
+// twin 1.0.1 C2L_CLIENT_CHALLENGE_REQ (T002 section 3 layout, superseded walk per T002 Errata R1; T002c).
 // PC writer 0x840630: WritePacket(p, 0x2c, 0, 1, -1), Write_u8, loop Write_u8 x 0x103 (0x77cfa0),
 // Write_u8, Write_u8, loop Write_u8 x 0x3e (0x77cfe0) (V): the body of login 1.0.1 (writer
 // 0x88a900), only group and id differ. PS4 CPacket_C2S_CLIENT_CHALLENGE_REQ::WritePacket 0x1a3aaf0

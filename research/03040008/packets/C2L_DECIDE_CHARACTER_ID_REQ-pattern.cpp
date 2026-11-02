@@ -7,7 +7,7 @@
 // writes (V).
 // Walk: 42/42 fit, slack 8.
 // Body: u32 CharacterID, u32 ClientVersion, u8 Type, u8 RotationServerID, u32 WaitNum, u8 Counter
-// (14 B).
+// (15 B; T002 section 12 says 14 B, see its Errata R1).
 // packet-id: 5.1.1
 // packet-select: C2L_DECIDE_CHARACTER_ID_REQ
 // Fit flag `fits`: the raws store no body length, so a decode fits when it ends within the

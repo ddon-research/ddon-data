@@ -48,10 +48,10 @@ struct CDataJewelryEquipLimit {
 };
 
 // CDataWalletLimit (name I, server lead): PC list reader 0x77c4b0 {u32, u32} (V widths). Season 3,
-// no PS4 counterpart; field names are server leads (I). Captures: 16 pairs, ids 1-16.
+// no PS4 counterpart; no PS4 or PC field name (unk_*). Captures: 16 pairs, ids 1-16.
 struct CDataWalletLimit {
-    u32 WalletType;           // I (server lead)
-    u32 MaxValue;             // I (server lead)
+    u32 unk_u32_0;            // Season 3, no PS4 member; server: WalletType (lead)
+    u32 unk_u32_1;            // Season 3, no PS4 member; server: MaxValue (lead)
 };
 
 // CDataExpRequirement (name I, server lead): PC list reader 0x766910 {u8, u32} (V widths). Season 3,
@@ -64,7 +64,7 @@ struct CDataExpRequirement {
 // CDataExpSetting (name I, server lead): PC list reader 0x766800 {u8, list 0x766910} (V widths).
 // Season 3, no PS4 counterpart. Captures: two entries (1, 2) with 120 and 55 rows.
 struct CDataExpSetting {
-    u8 Type;                  // I (server lead)
+    u8 unk_u8;                // Season 3, no PS4 member; server: Type (lead)
     MtTypedArray<CDataExpRequirement> unk_ExpRequirementList;
 };
 

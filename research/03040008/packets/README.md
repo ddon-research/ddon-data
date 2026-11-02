@@ -12,7 +12,7 @@ carry now. Every pattern starts with `#pragma endian big` and includes what it n
 
 | Include | Holds | Patterns |
 | --- | --- | --- |
-| `Packet.hexpat` | the raw framing `CPacket` (u8 group, u16 id, u8 sub, u8 source, u32 counter; body at 0x09), `MtTypedArray<T>` (u32 count + entries), `MtString` (u16 length + bytes), `CDataCommonU32`/`CDataCommonU8`, the fit-flag rules and the RES convention | every pattern without nNetMsg |
+| `Packet.hexpat` | the raw framing `CPacket` (u8 group, u16 id, u8 sub, u8 source, u32 counter; body at 0x09), `MtTypedArray<T>` (u32 count + entries), `MtString` (u16 length + bytes), `CDataCommonU32`/`CDataCommonU8`, the fit-flag rules and the RES convention | every pattern without nNetMsg, except the four header-less ones (1.0.1, 1.1.16, 44.0.1, 44.1.16), which read the body at offset 0 without `CPacket` |
 | `nNetMsg.hexpat` | the nNetMsg (cNetMsg RPC) payload of the lobby and party binary packets: ids, DTI enum, message structures (P1, P2, P3) | 3.3.16, 3.4.16, 6.23-6.26.16 |
 | `Context.hexpat` | group 35 CONTEXT structures (P4) | 11 group-35 patterns |
 | `Quest.hexpat` | group 11 QUEST CData and the enums ORDER_CONDITION_TYPE, CYCLE_CONTENTS_CATEGORY, CYCLE_CONTENTS_SUB_CATEGORY, COMMAND_CHECK_LIST (P11a) | 5 |
@@ -26,8 +26,10 @@ carry now. Every pattern starts with `#pragma endian big` and includes what it n
 | `Instance.hexpat` | group 13 INSTANCE CData (T004 §20): stage layout id, enemy set (enemy info with the Season 3 sixth bool, drop item set, named enemy param), layout item data, gathering item element (Season 3, 17 bytes), get request, the Season 3 gathering restriction and its item amount, OM data (Season 3 u64 key); includes Packet and Character | 25 group-13 patterns |
 
 Each structure comment names the PC reader or writer VA (PC 03040008 database, image base 0x400000)
-and the PS4 02020005 DWARF type, and carries a mark: V means read in IDA, I means inferred. A name
-that is not proven stays `unk_*`. A Season 3 field with no PS4 counterpart is labelled that way.
+and the PS4 02020005 DWARF type, and carries a mark: V means read in IDA, I means inferred. A field
+name is code-backed (V), inferred and marked (I) with its basis, or `unk_*`; a server name alone
+never becomes a field name (it goes in a `server: <name> (lead)` comment). A Season 3 field with no
+PS4 counterpart is labelled that way.
 
 **Header comment.** It gives the packet id and name, the evidence (report section, PC VAs), a body
 summary, and two lines the export script reads:
@@ -159,7 +161,7 @@ after their first export, T004b).
 | 0.6.2 | `S2C_CONNECTION_MOVE_OUT_SERVER_RES` | T003 §7 | 41/41 fit |
 | 0.7.1 | `C2S_CONNECTION_RESERVE_SERVER_REQ` | T003 §8 | 41/41 fit |
 | 0.7.2 | `S2C_CONNECTION_RESERVE_SERVER_RES` | T003 §8 | 41/41 fit |
-| 0.10.16 | `S2C_CONNECTION_0_10_16_NTC` | T003 §9 | 2/2 fit (code name SESSION_STATUS_NTC, V) |
+| 0.10.16 | `S2C_CONNECTION_0_10_16_NTC` | T003 §9 | 2/2 fit (code name SESSION_STATUS_NTC, V by behaviour) |
 | 1.0.1 | `C2L_CLIENT_CHALLENGE_REQ` | T002 §3, T002c | 42/42 fit (no header, body at offset 0) |
 | 1.0.2 | `L2C_CLIENT_CHALLENGE_RES` | T002 §4 | 42/42 fit |
 | 1.0.1 | `C2S_SERVER_GET_SERVER_LIST_REQ` | T003 §10 | 43/43 fit |
@@ -291,8 +293,9 @@ after their first export, T004b).
   SessionStatus byte of the lobby member with that CharacterID). Which of the PS4 lobby-member
   bytes Platform/ClientVersion Season 3 dropped is I.
 - **Game setting names without code backing (T003 §11, §20):** the Season 3 tail of
-  `CDataGameSetting` (`unk_bool`, `unk_u32_0..2`, `unk_u16`, and the element names of
-  `CDataWalletLimit`, `CDataExpSetting`, `CDataExpRequirement`, all server leads, I), and the
+  `CDataGameSetting` (`unk_bool`, `unk_u32_0..2`, `unk_u16`, and the elements of
+  `CDataWalletLimit`, `CDataExpSetting`, `CDataExpRequirement`: struct names I by server lead, fields
+  `unk_*` with the server names as `server: <name> (lead)` comments since R1b), and the
   position of PawnPresentItemID/Num after Season 3 dropped the two CapLink strings (I: width
   alignment plus one value match).
 - **Game-server RES error branch untested:** no captured RES of groups 0, 1 and 44 has

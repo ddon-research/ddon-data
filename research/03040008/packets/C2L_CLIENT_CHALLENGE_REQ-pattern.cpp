@@ -1,6 +1,7 @@
 // 1.0.1 C2L_CLIENT_CHALLENGE_REQ (client 03040008).
-// Evidence: specs/006-packet-pattern-coverage/research/T002-login.md section 3 (layout),
-// T002c-challenge-decrypt.md sections 1-4 (key, no header, 304/336 split).
+// Evidence: specs/006-packet-pattern-coverage/research/T002-login.md section 3 (layout; its walk,
+// 336 = 9 + 324 + 3 and header statements are superseded, T002 Errata R1),
+// T002c-challenge-decrypt.md sections 1-4 (key, no header, 304/336 split; T002c Errata R1).
 // PC writer 0x88a900: WritePacket(p, 1, 0, 1, -1), Write_u8, loop Write_u8 x 0x103 (0x77cfa0),
 // Write_u8, Write_u8, loop Write_u8 x 0x3e (0x77cfe0) (V, disassembly pushes). PS4
 // nLoginSession::CPacket_C2L_CLIENT_CHALLENGE_REQ::WritePacket 0x1a409b0 (u8 in_CommonKeySrcSize,

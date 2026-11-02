@@ -1,6 +1,8 @@
 // 44.1.16 S2C_CERT_GAME_SERVER_CERT_NTC (client 03040008), the game server's first packet.
 // Evidence: specs/006-packet-pattern-coverage/research/T003-connection-server-cert.md sections 1
 // and 15; T002c-challenge-decrypt.md sections 3 and 4 (fixed key, 304-byte files, SHA-1 check).
+// Errata R1 of both reports: T002c 3's "unknown[12]" is cipher padding; T003 15's packet-size
+// selector advice is superseded by T002e (files renamed); T003 1(b) cites section 15, not 27.
 // PC receive 0x9d6d20 decrypts the first packet with the fixed client key and synthesises the
 // header group 0x2c, id 1, sub 0x10 (game vtable +0x60/+0x68) (V); handler 0x7c7250, reader
 // 0x801a80 (V). Arrowgene PacketId.cs:1737; PS4 S2C_GAME_SERVER_CERT_NOTICE
