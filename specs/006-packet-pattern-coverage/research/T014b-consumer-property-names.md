@@ -371,3 +371,97 @@ PC copyContextParam_0 (`0x84ab50`) is the counterpart of PS4 `cNetGameServer::co
 None remains in this scope. Two leads for a later pass:
 - a reader of the enhance ctrl +14/+16 (`unk_u16_1`), likely in the uGUIEquipEnhance code;
 - a reader of cContext +8860, to fix the SpSkill id/level order.
+
+## Part 4 (2026-11-02, T014b4): Quest, Login, Server, GP, Stamp, nNetMsg, QUEST/LOBBY/STAMP/GP patterns
+
+Builds and databases: PC 03040008 private copy
+`D:/research/DDON-binaries/IDA9.5/PC_DDON_03040008/ddon-data-t014b4/2022_01_29_DDO_DUMP_FIX.exe.i64`
+(32-bit, image base 0x400000, checked with `idc.get_idb_path()`); PS4 02020005 private copy
+`D:/research/DDON-binaries/IDA9.5/PS4_DDON_02020005_2016_12_21/ddon-data-t014b4/DDOORBIS.elf.i64` (64-bit,
+base 0). Both read-only; SHA-256 of the copies not computed (not run). All addresses are VAs. Row updates
+are applied by `T014b4-upd.py` from `T014b4-updates.json` (only rows still `open` change). A
+displacement/immediate index of all PC functions was rebuilt (45 s) for consumer searches.
+
+### Server.hexpat: CDataGameSetting tail (packet kept at conn+392, getter `0x86c6b0`)
+
+- Handler `0x7f9070` (OnPacket_SERVER_GET_GAME_SETTING_RES) copies most members into sGame.
+- `CDataGameSetting_unk_0` {u32, u32} = **WalletType** / **MaxValue** (V flow, names I, lead agrees):
+  `0xb61880` stores the value per type 1..16 at sGame +14768; the getter `0xb5f590(type)` is compared with
+  the owned amount `sItemManager 0xb997b0(type)` (`0x67cd40`, `0x6556a0`, `0xf18d20`).
+- `CDataGameSetting_unk_1.unk_u8` = **Type** (V role) and `CDataGameSetting_unk_2` {u8, u32} = **Level** (V) /
+  **Exp** (V role, I name): `0xb5f420(level, type)` picks the type element, then returns the u32 of the inner
+  element whose u8 == level+1.
+- `unk_u16` (150): I role only, stored at sGame +14566 and used by uGUIEntryBoardSearch (`0xe34b90`,
+  `0xdf7fd0`) as the upper bound of a range slider beside JobLevelMax.
+- `unk_u32_1` (10000): I role only, denominator of a three-step gauge in `0x62e4c0` (0.33 / 0.66).
+- `unk_bool`: copied to conn-owner +41814, no reader (open). `unk_u32_0`, `unk_u32_2`: no reader in the
+  handler or the getter's callers (open).
+
+### Quest.hexpat
+
+- `CDataQuestTalkInfo.unk_u32` = **QuestId** (V): the PC setTaskParam variants (`0x9d2ce0`, `0x9d32f0`,
+  `0x9d41d0`; PS4 `0x54d850`, `0x54e0e0`, `0x54e4d0`) wrap element +4 in `nQuest::QUEST_ID` and pass it to
+  addTalkData `0x9ce880` (PS4 `cQuestPersonalData::addTalkData` `0x54f100`), which stores it in a new
+  `nQuest::cTalkData` member (+24). The weak T014a candidate QuestId agrees.
+- `CDataQuestDeliveryItem.unk_u16_0` / `unk_u16_1` = **MsgTagKey0** / **MsgTagKey1** (V role, I name). setTaskParam
+  `0x9d2ce0` copies the element into `cQuestTask::cDeliveryItemInfo` (DTI `dti__55`; PS4 has only mItemId and
+  mItemNum) at +12/+16. `0x9cf870` / `0x9cf8b0` find the entry whose pair equals the two numbers of the message
+  tag `<QDEL NAME a b>` / `<QDEL NUM a b>` (`sGUIExt::analyzeTagExtend` `0xb688e0`; e.g. quest q22018013
+  `<QDEL NUM 0 3>`) and return ItemId / Num. The server lead NeedNum is contradicted.
+- `CDataTimeGainQuestList` and `CDataTimeGainQuestList_unk_0` (packet END_CONTENTS_GROUP kept at conn+484,
+  getter `0x86b090`, consumer `0xed89f0`, texts from `ui/.../Quest_res.gmd.json`):
+  - `unk_bool_1` = **IsEquipRestriction** (V; Quest_res 0x90 "Equipment restrictions"). The PS4-position name
+    IsJoinCharacter is contradicted.
+  - `unk_bool_2` / `unk_bool_3`: I role only, bits 1/2 of a party-join mode read beside JoinPawnNum.
+  - `unk_bool_0`, `unk_bool_4`: open (no reader among the getter's 17 callers).
+  - `unk_0.unk_bool_0` = **IsNoEquipArmor** (0x92 "Armor cannot be equipped."), `unk_0.unk_bool_1` =
+    **IsNoEquipJewelry** (0x93), `unk_0.unk_u32_list` = **NoEquipAbilityList** (0x94, names via `0xb772b0`), all V.
+  - `CDataQuestUnkU32U16` = **ItemId** / **Num** (I): a list with its layout at quest object +112 is printed
+    with 0xB1 "%s x%d (Have: %d)"; the copy into that object was not traced.
+- `CDataQuestExp.unk_u8`: open; no setTaskParam variant reads the BaseExp list.
+- `CDataQuestUnkU32U32` (FORT_DEFENSE): open; the packet becomes a `cQuestSvNotCycle01Phase` notice and no
+  reader was reached.
+
+### Login.hexpat: CDataEquipItemInfo (`0xb959c0`, called by addItemNotice `0xb941e0`)
+
+- `unk_u8_1` = **EquipType** (V): 1 for item StorageType 14/15, 2 for 16/17; it selects the performance or
+  visual list.
+- `unk_u16` = **EquipSlot** (V copy of the item SlotNo, CDataItemList +18; I name).
+- `unk_u8_0`: V copy of CDataItemList.unk_u8 (item +16), itself unnamed.
+
+### QUEST, LOBBY, STAMP, GP pattern files
+
+- REWARD_BOX_LIST_NUM_NTC `unk_u16_0` / `unk_u16_1` = **RewardItemSlotNum** / **RewardItemSlotMax** (V; handler
+  `0x7f4e10` announces system_log 300 "item slots ... full" at >= and 301 "running low" at 80 %). The T014a
+  medium candidate StageNo is rejected.
+- LOBBY_CHAT_MSG REQ `unk_u8` / `unk_u32_0` / `unk_u32_1` = **MessageFlavor** / **PhrasesCategory** /
+  **PhrasesIndex** (V role, lead agrees): `0xb291b0` sends (0,0,0) for typed chat, (1, category+1, index) from
+  the preset-phrase path `0xb29160` / `0xb76030`, kind 3 from `0x588b80`. NTC: I, same triple.
+- AREA_BONUS `unk_u16`: the consumer `0xbd4e40` reads only the first four u16, so the Season 3 u16 is the
+  fifth (V position); name open.
+- CYCLE_CONTENTS_NEWS: `CDataCycleContentsRank.unk_u32` / `unk_u8` are dropped by the consumer `0xbd53e0`
+  (open; the T014a medium StageNo candidate is not confirmed). `CDataCycleContentsUnk` s64 pair: V copy into
+  an nQuest object (+16/+24), name open.
+- JOIN_LOBBY `CDataQuestJoinLobbyUnkOrderList` (element +384/+388): open; the medium StageNo candidate is
+  unconfirmed.
+- GP lineup: the packet getter `0x86be20` has no code xref (callers sit in undefined code). The BUY_REQ
+  writer `0x829f00` has no caller. STAMP handlers are not functions. All stay open with that reason.
+- nNetMsg `CtrlAction` and `GameNormal`, `CDataContentsPlay*`, `CDataQuestContents`, `CDataQuestUnkU32S64`,
+  `CDataCycleContentsNoticeData.unk_u64` and the JoinLobby Season 3 lists were not traced. Their values are
+  constant or absent in the captures.
+
+### Counts (174 TSV rows in scope, including the rows settled in part 1)
+
+| Verdict | Rows | Distinct struct.field |
+| --- | --- | --- |
+| V | 72 | 27 |
+| I | 39 | 20 |
+| open, with the reason in the TSV | 63 | 53 |
+
+Not run: SHA-256 of the private copies; a raw byte scan for calls into the undefined handlers (GP, STAMP,
+PLAY_END, LOBBY NTC).
+
+### Next field
+
+`CDataQuestJoinLobbyUnkOrderList.unk_u32` (JOIN_LOBBY row 7, element +384, T014a medium). Find the consumer of
+the `cQuestSvNotJoinLobbyQuestInfo` notice (dti__1502) and follow packet +136.

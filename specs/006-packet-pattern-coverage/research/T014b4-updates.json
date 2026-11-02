@@ -1,0 +1,688 @@
+[
+{
+"struct": "CDataQuestTalkInfo",
+"field": "unk_u32",
+"proposed_name": "QuestId",
+"mark": "V (consumer); name V (nQuest::QUEST_ID)",
+"basis": "PC quest-task setters copy each TalkInfo element: element +4 (this field) is wrapped by nQuest::QUEST_ID::QUEST_ID_0 and its value passed as the 5th argument of addTalkData 0x9ce880 (PS4 cQuestPersonalData::addTalkData 0x54f100: npcId, groupSerial), which stores it at nQuest::cTalkData +24 (ctor 0xa34d40 default nQuest::SCHEDULE_ID_0 slot beside a QUEST_ID vtable at +20); element +12 NpcId and +8 TalkNo go to +8/+4 as in PS4; values 0 or 30410 fit quest ids",
+"vas": "PC reader 0x7757e0; setters 0x9d2ce0, 0x9d32f0, 0x9d41d0 (PS4 counterparts cQuestTask::setTaskParam_0 0x54d850, setTaskParam_1 0x54e0e0, setTaskParamForParty 0x54e4d0: same TalkInfo loop); addTalkData 0x9ce880; cTalkData ctor 0xa34d40 (DTI nQuest::cTalkData dti__1183); PS4 0x54f100",
+"verdict": "confirmed (weak candidate QuestId agrees with code)"
+},
+{
+"struct": "CDataGameSetting_unk_0",
+"field": "unk_u32_0",
+"proposed_name": "WalletType",
+"mark": "V (consumer); I (name; lead agrees)",
+"basis": "handler 0x7f9070 loops setting +244 and calls 0xb61880(sGame, u32_0, u32_1) for u32_0 in 1..16, storing sGame +14768+4*u32_0; getter 0xb5f590(type) is compared with sItemManager 0xb997b0(type) (current wallet amount) in 0x67cd40, 0x6556a0, 0xf18d20, 0xb94100",
+"vas": "PC 0x7f9070 (OnPacket_SERVER_GET_GAME_SETTING_RES), 0xb61880, 0xb5f590, 0xb997b0, 0x67cd40"
+},
+{
+"struct": "CDataGameSetting_unk_0",
+"field": "unk_u32_1",
+"proposed_name": "MaxValue",
+"mark": "V (consumer); I (name; lead agrees)",
+"basis": "stored per wallet type by 0xb61880; 0x67cd40 tests owned+added > 0xb5f590(type) (limit check), 0xb94100 / 0xb9f610 compare an amount >= it; value 999999999 fits a cap",
+"vas": "PC 0x7f9070, 0xb61880, 0xb5f590, 0x67cd40, 0xb94100, 0xb9f610"
+},
+{
+"struct": "CDataGameSetting_unk_1",
+"field": "unk_u8",
+"proposed_name": "Type",
+"mark": "V (role: lookup key); I (name; lead agrees)",
+"basis": "0xb5f370 / 0xb5f420 search the setting +268 list for the element whose u8 equals the requested type (default sGame +3711*4) and use its inner list; values 1, 2 with 120 and 55 levels",
+"vas": "PC getter 0x86c6b0 (packet kept at conn+392); 0xb5f370 (level count), 0xb5f420 (exp for level)"
+},
+{
+"struct": "CDataGameSetting_unk_2",
+"field": "unk_u8",
+"proposed_name": "Level",
+"mark": "V (consumer)",
+"basis": "0xb5f420(level index a2, type) returns the inner element whose u8 == a2+1, so the u8 is the 1-based level key",
+"vas": "PC 0xb5f420 (caller 0x4845d0)"
+},
+{
+"struct": "CDataGameSetting_unk_2",
+"field": "unk_u32",
+"proposed_name": "Exp",
+"mark": "V (role: value returned per level); I (name: value, lead agrees)",
+"basis": "0xb5f420 returns the u32 of the element found by level; captured values grow from 0 to 226000000 with the level",
+"vas": "PC 0xb5f420"
+},
+{
+"struct": "CDataGameSetting",
+"field": "unk_u16",
+"proposed_name": "unk_u16",
+"mark": "I (consumer, role only)",
+"basis": "0x7f9070 stores setting +264 at sGame +14566 (u16, beside JobLevelMax +14552 and CraftLevelMax); read by uGUIEntryBoardSearch (vtable 0x1d15a68): 0xe34b90 uses it as the maximum of two range sliders (0xd7ee40, v3+688/+734) next to a JobLevelMax slider, 0xdf7fd0 initialises a search range 1..value beside 1..JobLevelMax; 0xdfe200 likewise. A level/rank upper bound for the entry-board search (likely item rank; not proven)",
+"vas": "PC 0x7f9070, 0xe34b90, 0xdf7fd0, 0xdfe200; uGUIEntryBoardSearch dti_72"
+},
+{
+"struct": "CDataGameSetting",
+"field": "unk_bool",
+"proposed_name": "unk_bool",
+"mark": "open (stored, no reader)",
+"basis": "0x7f9070 copies setting +228 to the connection owner +41814 (byte); the displacement scan finds no other function using +41814",
+"vas": "PC 0x7f9070"
+},
+{
+"struct": "CDataGameSetting",
+"field": "unk_u32_1",
+"proposed_name": "unk_u32_1",
+"mark": "I (consumer, role only)",
+"basis": "packet+260 (= setting +236) is the denominator in 0x62e4c0: element+100 / value, thresholds 0.33 / 0.66 (0x1b8b288) select message 84/85/86, element+104 != 0 gives 87 (a three-step fill gauge); 0xd52bb0 passes it with four other values to 0x4efe80. Value 10000",
+"vas": "PC getter 0x86c6b0, 0x62e4c0, 0xd52bb0"
+},
+{
+"struct": "CDataGameSetting",
+"field": "unk_u32_0",
+"proposed_name": "unk_u32_0",
+"mark": "open (no consumer found)",
+"basis": "neither the handler 0x7f9070 nor any caller of the packet getter 0x86c6b0 reads packet+256 (setting +232)",
+"vas": "PC 0x7f9070, 0x86c6b0 callers"
+},
+{
+"struct": "CDataGameSetting",
+"field": "unk_u32_2",
+"proposed_name": "unk_u32_2",
+"mark": "open (no consumer found)",
+"basis": "neither the handler 0x7f9070 nor any caller of the packet getter 0x86c6b0 reads packet+264 (setting +240)",
+"vas": "PC 0x7f9070, 0x86c6b0 callers"
+},
+{
+"struct": "CDataQuestDeliveryItem",
+"field": "unk_u16_0",
+"proposed_name": "MsgTagKey0",
+"mark": "V (role: lookup key); I (name)",
+"basis": "setTaskParam 0x9d2ce0 copies the element into cQuestTask::cDeliveryItemInfo (vtable 0x1c07288, DTI dti__55; PS4 has only mItemId/mItemNum) +12; 0x9cf870 / 0x9cf8b0 find the entry whose +12/+16 equal two numbers and return ItemId / Num; their only caller sGUIExt::analyzeTagExtend 0xb688e0 takes the numbers from the message tag <QDEL NAME a b> / <QDEL NUM a b> (tag 'QDEL', e.g. client quest q22018013 gmd '<QDEL NUM 0 3>'). So the u16 pair is the message-tag key; the server lead NeedNum is contradicted",
+"vas": "PC reader 0x762fb0; 0x9d2ce0; 0x9cf870, 0x9cf8b0; 0xb688e0",
+"verdict": "T014a weak candidate (Param02) not supported; lead NeedNum contradicted"
+},
+{
+"struct": "CDataQuestDeliveryItem",
+"field": "unk_u16_1",
+"proposed_name": "MsgTagKey1",
+"mark": "V (role: lookup key); I (name)",
+"basis": "second number of the <QDEL NAME|NUM a b> message tag: 0x9cf870 / 0x9cf8b0 match cDeliveryItemInfo +16 (this field) with it (see unk_u16_0)",
+"vas": "PC 0x9d2ce0; 0x9cf870, 0x9cf8b0; 0xb688e0",
+"verdict": "T014a weak candidate (Param02) not supported"
+},
+{
+"struct": "CDataQuestExp",
+"field": "unk_u8",
+"proposed_name": "unk_u8",
+"mark": "open (no consumer found)",
+"basis": "0x64dd10 reads only the element +5 (Type); the setTaskParam variants 0x9d2ce0, 0x9d32f0, 0x9d41d0 and 0x9d3f10 do not read the BaseExp list (CDataQuestList +44, CDataQuestOrderList +48)",
+"vas": "PC reader 0x76c780; 0x64dd10, 0x9d2ce0, 0x9d32f0, 0x9d41d0, 0x9d3f10"
+},
+{
+"struct": "CDataTimeGainQuestList",
+"field": "unk_bool_1",
+"proposed_name": "IsEquipRestriction",
+"mark": "V (consumer); I (name from UI text)",
+"basis": "0xed89f0 reads element +357 and, when set, shows Quest_res 0x90 QUEST_MSG_MISSION_INFO_NOEQUIP_HEADER 'Equipment restrictions' followed by the restriction lines from unk_Struct_0; the PS4-position name IsJoinCharacter is contradicted",
+"vas": "PC getter 0x86b090 (QUEST_GET_END_CONTENTS_GROUP_RES packet kept at conn+484, handler 0x7f1180); consumer 0xed89f0 (uGUIMissionInfo area; messages from Quest_res.gmd, client/03040008/ui/uGUIAreaMaster/ui/00_message/ui/Quest_res.gmd.json)"
+},
+{
+"struct": "CDataTimeGainQuestList",
+"field": "unk_bool_2",
+"proposed_name": "unk_bool_2",
+"mark": "I (consumer, role only)",
+"basis": "0xed89f0: element +358 sets bit 1 and +359 sets bit 2 of a mode word (GUI +6980), read next to JoinPawnNum (+361 -> GUI +6984); both bits -> GUI state 6, else state 5 with label 0x68 (bit 1) or 0x69 from another message table: party-join flags, which one is not fixed",
+"vas": "PC getter 0x86b090 (QUEST_GET_END_CONTENTS_GROUP_RES packet kept at conn+484, handler 0x7f1180); consumer 0xed89f0 (uGUIMissionInfo area; messages from Quest_res.gmd, client/03040008/ui/uGUIAreaMaster/ui/00_message/ui/Quest_res.gmd.json)"
+},
+{
+"struct": "CDataTimeGainQuestList",
+"field": "unk_bool_3",
+"proposed_name": "unk_bool_3",
+"mark": "I (consumer, role only)",
+"basis": "see unk_bool_2: element +359 is bit 2 of the same join mode word",
+"vas": "PC getter 0x86b090 (QUEST_GET_END_CONTENTS_GROUP_RES packet kept at conn+484, handler 0x7f1180); consumer 0xed89f0 (uGUIMissionInfo area; messages from Quest_res.gmd, client/03040008/ui/uGUIAreaMaster/ui/00_message/ui/Quest_res.gmd.json)"
+},
+{
+"struct": "CDataTimeGainQuestList",
+"field": "unk_bool_0",
+"proposed_name": "unk_bool_0",
+"mark": "open (no consumer found)",
+"basis": "element +356 is not read by 0xed89f0 nor by the other 16 callers of the getter 0x86b090",
+"vas": "PC getter 0x86b090 (QUEST_GET_END_CONTENTS_GROUP_RES packet kept at conn+484, handler 0x7f1180); consumer 0xed89f0 (uGUIMissionInfo area; messages from Quest_res.gmd, client/03040008/ui/uGUIAreaMaster/ui/00_message/ui/Quest_res.gmd.json)"
+},
+{
+"struct": "CDataTimeGainQuestList",
+"field": "unk_bool_4",
+"proposed_name": "unk_bool_4",
+"mark": "open (no consumer found)",
+"basis": "element +360 is not read by 0xed89f0 nor by the other 16 callers of the getter 0x86b090",
+"vas": "PC getter 0x86b090 (QUEST_GET_END_CONTENTS_GROUP_RES packet kept at conn+484, handler 0x7f1180); consumer 0xed89f0 (uGUIMissionInfo area; messages from Quest_res.gmd, client/03040008/ui/uGUIAreaMaster/ui/00_message/ui/Quest_res.gmd.json)"
+},
+{
+"struct": "CDataTimeGainQuestList_unk_0",
+"field": "unk_bool_0",
+"proposed_name": "IsNoEquipArmor",
+"mark": "V (consumer); I (name from UI text)",
+"basis": "0xed89f0: struct +48 (element +432) adds Quest_res 0x92 QUEST_MSG_MISSION_INFO_NOEQUIP_ARMOR 'Armor cannot be equipped.'",
+"vas": "PC getter 0x86b090 (QUEST_GET_END_CONTENTS_GROUP_RES packet kept at conn+484, handler 0x7f1180); consumer 0xed89f0 (uGUIMissionInfo area; messages from Quest_res.gmd, client/03040008/ui/uGUIAreaMaster/ui/00_message/ui/Quest_res.gmd.json)"
+},
+{
+"struct": "CDataTimeGainQuestList_unk_0",
+"field": "unk_bool_1",
+"proposed_name": "IsNoEquipJewelry",
+"mark": "V (consumer); I (name from UI text)",
+"basis": "0xed89f0: struct +49 (element +433) adds Quest_res 0x93 QUEST_MSG_MISSION_INFO_NOEQUIP_JEWELRY 'Jewelry cannot be equipped.'",
+"vas": "PC getter 0x86b090 (QUEST_GET_END_CONTENTS_GROUP_RES packet kept at conn+484, handler 0x7f1180); consumer 0xed89f0 (uGUIMissionInfo area; messages from Quest_res.gmd, client/03040008/ui/uGUIAreaMaster/ui/00_message/ui/Quest_res.gmd.json)"
+},
+{
+"struct": "CDataTimeGainQuestList_unk_0",
+"field": "unk_u32_list",
+"proposed_name": "NoEquipAbilityList",
+"mark": "V (consumer); I (name from UI text)",
+"basis": "0xed89f0: when the list (element +392) is not empty it adds Quest_res 0x94 QUEST_MSG_MISSION_INFO_NOEQUIP_ABILITY 'The following abilities cannot be equipped' and prints each u32 through 0xb772b0 (ability-name lookup, ids up to 0x1F9)",
+"vas": "PC getter 0x86b090 (QUEST_GET_END_CONTENTS_GROUP_RES packet kept at conn+484, handler 0x7f1180); consumer 0xed89f0 (uGUIMissionInfo area; messages from Quest_res.gmd, client/03040008/ui/uGUIAreaMaster/ui/00_message/ui/Quest_res.gmd.json); 0xb772b0"
+},
+{
+"struct": "CDataTimeGainQuestList_unk_0",
+"field": "unk_u32",
+"proposed_name": "unk_u32",
+"mark": "open (no consumer found)",
+"basis": "struct +4 (element +388) is not read by 0xed89f0; the u32/bool list (+412) only gates Quest_res 0x91 'Additional Equipment Rewards', whose text comes from sQuestManager 0xbdf650, so its elements stay unread",
+"vas": "PC getter 0x86b090 (QUEST_GET_END_CONTENTS_GROUP_RES packet kept at conn+484, handler 0x7f1180); consumer 0xed89f0 (uGUIMissionInfo area; messages from Quest_res.gmd, client/03040008/ui/uGUIAreaMaster/ui/00_message/ui/Quest_res.gmd.json)"
+},
+{
+"struct": "CDataTimeGainQuestList_unk_0",
+"field": "unk_u8_list",
+"proposed_name": "unk_u8_list",
+"mark": "open (no consumer found)",
+"basis": "struct +52 (element +436) is not read by 0xed89f0",
+"vas": "PC getter 0x86b090 (QUEST_GET_END_CONTENTS_GROUP_RES packet kept at conn+484, handler 0x7f1180); consumer 0xed89f0 (uGUIMissionInfo area; messages from Quest_res.gmd, client/03040008/ui/uGUIAreaMaster/ui/00_message/ui/Quest_res.gmd.json)"
+},
+{
+"struct": "CDataQuestUnkU32U16",
+"field": "unk_u32",
+"proposed_name": "ItemId",
+"mark": "I (consumer of the same layout)",
+"basis": "0xed89f0 prints a {u32 +4, u16 +8} list found at quest object +112 (+28 count, +40 array: the offsets of the CDataTimeGainQuestList_unk_1 element, wallet list +4, this list +24) with Quest_res 0xB1 QUEST_MSG_UI_REWARD_TRADE_ITEM '%s x%d (Have: %d)': u32 -> item name (0x67a880) and owned count (0xb99400). The copy into object +112 was not traced",
+"vas": "PC getter 0x86b090 (QUEST_GET_END_CONTENTS_GROUP_RES packet kept at conn+484, handler 0x7f1180); consumer 0xed89f0 (uGUIMissionInfo area; messages from Quest_res.gmd, client/03040008/ui/uGUIAreaMaster/ui/00_message/ui/Quest_res.gmd.json); reader 0x7731b0, 0x772ef0"
+},
+{
+"struct": "CDataQuestUnkU32U16",
+"field": "unk_u16",
+"proposed_name": "Num",
+"mark": "I (consumer of the same layout)",
+"basis": "the u16 at +8 is the required count in Quest_res 0xB1 '%s x%d (Have: %d)' and is compared with the owned count (see unk_u32)",
+"vas": "PC getter 0x86b090 (QUEST_GET_END_CONTENTS_GROUP_RES packet kept at conn+484, handler 0x7f1180); consumer 0xed89f0 (uGUIMissionInfo area; messages from Quest_res.gmd, client/03040008/ui/uGUIAreaMaster/ui/00_message/ui/Quest_res.gmd.json); reader 0x7731b0"
+},
+{
+"struct": "CDataEquipItemInfo",
+"field": "unk_u8_1",
+"proposed_name": "EquipType",
+"mark": "V (consumer); I (name: PS4 m_ucEquipType role)",
+"basis": "0xb959c0 sets +9 to 1 when the item StorageType (CDataItemList +17) is 14/15 and to 2 when it is 16/17, then files the element in the first (performance) list for 1 and the second (visual) list for 2; values 1-2 in captures. Lead EquipType agrees",
+"vas": "PC 0xb959c0 (builds a CDataEquipItemInfo from a client item, called by addItemNotice 0xb941e0; item object = 1:1 copy of CDataItemList by setItemList 0x880cf0); reader 0x766070"
+},
+{
+"struct": "CDataEquipItemInfo",
+"field": "unk_u16",
+"proposed_name": "EquipSlot",
+"mark": "V (copy); I (name)",
+"basis": "0xb959c0 copies the item SlotNo (CDataItemList +18 u16, setItemList 0x880cf0) into +10; captured 1-15 fit the equip slots (PS4 m_ucEquipSlot). Lead EquipSlot agrees",
+"vas": "PC 0xb959c0 (builds a CDataEquipItemInfo from a client item, called by addItemNotice 0xb941e0; item object = 1:1 copy of CDataItemList by setItemList 0x880cf0); reader 0x766070"
+},
+{
+"struct": "CDataEquipItemInfo",
+"field": "unk_u8_0",
+"proposed_name": "unk_u8_0",
+"mark": "V (copy), name open",
+"basis": "0xb959c0 copies the item byte +16, which is CDataItemList.unk_u8 (Season 3, open in part 1; lead SafetySetting); same unnamed field, all captured values 0",
+"vas": "PC 0xb959c0 (builds a CDataEquipItemInfo from a client item, called by addItemNotice 0xb941e0; item object = 1:1 copy of CDataItemList by setItemList 0x880cf0); reader 0x766070"
+},
+{
+"struct": "C2S_LOBBY_LOBBY_CHAT_MSG_REQ",
+"field": "unk_u8",
+"proposed_name": "MessageFlavor",
+"mark": "V (role); I (name; lead agrees)",
+"basis": "0xb291b0(text, kind, a, b) sends kind/a/b as unk_u8/unk_u32_0/unk_u32_1: typed chat passes 0,0,0 (0xdd5e50, 0xb76030); the preset-phrase path 0xb29160 passes kind 1 with text '%d'; 0x588b80 passes kind 3. A message-kind selector",
+"vas": "PC writer 0x841ad0 <- 0x82ec30 <- 0x87dab0 <- 0x89a780/0x89a7b0/0x89a7e0/0x89a810/0x89a840/0x89a880 <- 0xb291b0 (chat send); preset path 0xb29160 <- 0xb76030 case 4 (0xb79b80 phrase lookup); 0x588b80"
+},
+{
+"struct": "C2S_LOBBY_LOBBY_CHAT_MSG_REQ",
+"field": "unk_u32_0",
+"proposed_name": "PhrasesCategory",
+"mark": "V (role); I (name; lead agrees)",
+"basis": "preset path 0xb29160 sends category+1 (from 0xb76030 case 4, after the phrase lookup 0xb79b80(category, index)); 0 for typed chat",
+"vas": "PC writer 0x841ad0 <- 0x82ec30 <- 0x87dab0 <- 0x89a780/0x89a7b0/0x89a7e0/0x89a810/0x89a840/0x89a880 <- 0xb291b0 (chat send); preset path 0xb29160 <- 0xb76030 case 4 (0xb79b80 phrase lookup); 0x588b80"
+},
+{
+"struct": "C2S_LOBBY_LOBBY_CHAT_MSG_REQ",
+"field": "unk_u32_1",
+"proposed_name": "PhrasesIndex",
+"mark": "V (role); I (name; lead agrees)",
+"basis": "preset path 0xb29160 sends the index returned by 0xb79b80(category, index); 0 for typed chat; captured 0-150",
+"vas": "PC writer 0x841ad0 <- 0x82ec30 <- 0x87dab0 <- 0x89a780/0x89a7b0/0x89a7e0/0x89a810/0x89a840/0x89a880 <- 0xb291b0 (chat send); preset path 0xb29160 <- 0xb76030 case 4 (0xb79b80 phrase lookup); 0x588b80"
+},
+{
+"struct": "S2C_LOBBY_LOBBY_CHAT_MSG_NTC",
+"field": "unk_u8",
+"proposed_name": "MessageFlavor",
+"mark": "I (mirror of the REQ field)",
+"basis": "the NTC carries the same u8/u32/u32 triple after the sender as the REQ (reader 0x80e840); same value ranges; receive-side consumer (handler 0x7e29b0, not a function) not traced",
+"vas": "PC reader 0x80e840; REQ evidence PC writer 0x841ad0 <- 0x82ec30 <- 0x87dab0 <- 0x89a780/0x89a7b0/0x89a7e0/0x89a810/0x89a840/0x89a880 <- 0xb291b0 (chat send); preset path 0xb29160 <- 0xb76030 case 4 (0xb79b80 phrase lookup); 0x588b80"
+},
+{
+"struct": "S2C_LOBBY_LOBBY_CHAT_MSG_NTC",
+"field": "unk_u32_0",
+"proposed_name": "PhrasesCategory",
+"mark": "I (mirror of the REQ field)",
+"basis": "same triple as the REQ (see unk_u8); receive-side consumer not traced",
+"vas": "PC reader 0x80e840"
+},
+{
+"struct": "S2C_LOBBY_LOBBY_CHAT_MSG_NTC",
+"field": "unk_u32_1",
+"proposed_name": "PhrasesIndex",
+"mark": "I (mirror of the REQ field)",
+"basis": "same triple as the REQ (see unk_u8); captured 0-150 as in the REQ; receive-side consumer not traced",
+"vas": "PC reader 0x80e840"
+},
+{
+"struct": "S2C_QUEST_REWARD_BOX_LIST_NUM_NTC",
+"field": "unk_u16_0",
+"proposed_name": "RewardItemSlotNum",
+"mark": "V (consumer); I (name from UI text)",
+"basis": "handler 0x7f4e10: if u16_0 >= u16_1 it announces system_log 300 syslog_reward_box_limit_over_item 'The item slots in your reward box are full', else if u16_0 >= 80 % of u16_1 it announces 301 syslog_reward_box_limit_notion_item 'The item slots of the reward box are running low' (messages client/03040008/ui/gui_cmn/ui/00_message/ui/system_log.gmd.json; ListNum gates 202/218 of the same table). So u16_0 is the used reward-box item-slot count",
+"vas": "PC handler 0x7f4e10, reader 0x818760",
+"verdict": "T014a medium candidate StageNo rejected by code"
+},
+{
+"struct": "S2C_QUEST_REWARD_BOX_LIST_NUM_NTC",
+"field": "unk_u16_1",
+"proposed_name": "RewardItemSlotMax",
+"mark": "V (consumer); I (name from UI text)",
+"basis": "the capacity of the same comparison (full at >=, warning at 80 %); constant 800 in captures",
+"vas": "PC handler 0x7f4e10"
+},
+{
+"struct": "CDataAreaBonus",
+"field": "unk_u16",
+"proposed_name": "unk_u16",
+"mark": "V (position: the Season 3 u16 is the fifth); name open",
+"basis": "consumer 0xbd4e40 takes the maximum of element +8/+10/+12/+14 (the four PS4 ratios, Gold/Exp/Rim/AreaPoint) and never reads +16, so the new u16 is the last one, as the pattern places it; no reader of it found; constant 100",
+"vas": "PC handler 0x7f0960 (kept at conn+476, getter 0x868730), consumer 0xbd4e40, element reader 0x759010"
+},
+{
+"struct": "CDataCycleContentsRank",
+"field": "unk_u32",
+"proposed_name": "unk_u32",
+"mark": "open (dropped by the consumer)",
+"basis": "0xbd53e0 copies each rank element (news +72 list) into a 24-byte object (vtable 0x1c455d8) from +8/+12/+16/+20 only; element +24 (this field) is not copied or read",
+"vas": "PC handler 0x7f0b70 (CYCLE_CONTENTS_NEWS_LIST_RES kept at conn+468, getter 0x86a4a0); consumer 0xbd53e0; news element reader 0x7616b0",
+"verdict": "T014a medium candidate StageNo not confirmed (no reader)"
+},
+{
+"struct": "CDataCycleContentsRank",
+"field": "unk_u8",
+"proposed_name": "unk_u8",
+"mark": "open (dropped by the consumer)",
+"basis": "0xbd53e0 does not copy or read rank element +28",
+"vas": "PC handler 0x7f0b70 (CYCLE_CONTENTS_NEWS_LIST_RES kept at conn+468, getter 0x86a4a0); consumer 0xbd53e0; news element reader 0x7616b0"
+},
+{
+"struct": "CDataCycleContentsUnk",
+"field": "unk_s64_0",
+"proposed_name": "unk_s64_0",
+"mark": "V (copy), name open",
+"basis": "0xbd53e0 copies each element of the news +124 list (reader 0x774e80): +4 is wrapped as nQuest::SCHEDULE_ID, the two s64 (+8, +16) go to +16/+24 of a 32-byte nQuest object (ctor 0xa33d40); no reader of those members traced; no captured values",
+"vas": "PC handler 0x7f0b70 (CYCLE_CONTENTS_NEWS_LIST_RES kept at conn+468, getter 0x86a4a0); consumer 0xbd53e0; news element reader 0x7616b0; 0xa33d40"
+},
+{
+"struct": "CDataCycleContentsUnk",
+"field": "unk_s64_1",
+"proposed_name": "unk_s64_1",
+"mark": "V (copy), name open",
+"basis": "see unk_s64_0 (second s64, element +16 -> object +24)",
+"vas": "PC handler 0x7f0b70 (CYCLE_CONTENTS_NEWS_LIST_RES kept at conn+468, getter 0x86a4a0); consumer 0xbd53e0; news element reader 0x7616b0; 0xa33d40"
+},
+{
+"struct": "CDataQuestJoinLobbyUnkOrderList",
+"field": "unk_u32",
+"proposed_name": "unk_u32",
+"mark": "open (not traced)",
+"basis": "reader 0x76efd0 stores it at element +384 (u8 at +388), packet list +136; the notice is pushed as cQuestSvNotJoinLobbyQuestInfo (dti__1502); an offset scan for +384/+388 with the list fields gave no consumer in budget",
+"vas": "PC handler 0x7f2a20, reader 0x817340, list 0x76efd0",
+"verdict": "T014a medium candidate StageNo not confirmed"
+},
+{
+"struct": "CDataQuestJoinLobbyUnkOrderList",
+"field": "unk_u8",
+"proposed_name": "unk_u8",
+"mark": "open (not traced)",
+"basis": "element +388; see unk_u32",
+"vas": "PC reader 0x76efd0"
+},
+{
+"struct": "CDataQuestUnkU32U32",
+"field": "unk_u32_0",
+"proposed_name": "unk_u32_0",
+"mark": "open (not traced)",
+"basis": "list +64 of CDataQuestContentsSituationInfoDetail (0x773c60); FORT_DEFENSE handler 0x7f047f pushes the packet as a cQuestSvNotCycle01Phase notice (vtable 0x1b8e958) into cQuestSvNoticeManager; the notice methods do not read it; consumer not traced within the T014b4 budget (150 tool calls)",
+"vas": "PC 0x7f047f, reader 0x815860, 0x773c60, list 0x77c780"
+},
+{
+"struct": "CDataQuestUnkU32U32",
+"field": "unk_u32_1",
+"proposed_name": "unk_u32_1",
+"mark": "open (not traced)",
+"basis": "see unk_u32_0",
+"vas": "PC 0x7f047f, 0x773c60, list 0x77c780"
+},
+{
+"struct": "CDataGPShopDisplayLineup",
+"field": "unk_MtString",
+"proposed_name": "unk_MtString",
+"mark": "open (getter without callers)",
+"basis": "handler 0x7d8650 keeps the packet at conn+776; its getter 0x86be20 has no code xref in the database (the callers sit in undefined code), so no consumer was reached",
+"vas": "PC handler 0x7d8650, reader 0x809980, getter 0x86be20"
+},
+{
+"struct": "CDataGPShopDisplayLineup",
+"field": "unk_u32_0",
+"proposed_name": "unk_u32_0",
+"mark": "open (getter without callers)",
+"basis": "packet kept at conn+776, getter 0x86be20 has no code xref (see unk_MtString)",
+"vas": "PC 0x7d8650, 0x86be20"
+},
+{
+"struct": "CDataGPShopDisplayLineup",
+"field": "unk_u32_1",
+"proposed_name": "unk_u32_1",
+"mark": "open (getter without callers)",
+"basis": "packet kept at conn+776, getter 0x86be20 has no code xref (see unk_MtString)",
+"vas": "PC 0x7d8650, 0x86be20"
+},
+{
+"struct": "CDataGPShopDisplayLineup",
+"field": "unk_u32_2",
+"proposed_name": "unk_u32_2",
+"mark": "open (getter without callers)",
+"basis": "packet kept at conn+776, getter 0x86be20 has no code xref (see unk_MtString)",
+"vas": "PC 0x7d8650, 0x86be20"
+},
+{
+"struct": "CDataGPShopDisplayLineup",
+"field": "unk_u32_3",
+"proposed_name": "unk_u32_3",
+"mark": "open (getter without callers)",
+"basis": "packet kept at conn+776, getter 0x86be20 has no code xref (see unk_MtString)",
+"vas": "PC 0x7d8650, 0x86be20"
+},
+{
+"struct": "CDataGPCourseValid",
+"field": "unk_MtString",
+"proposed_name": "unk_MtString",
+"mark": "open (not traced)",
+"basis": "no captured value (lists empty) and consumer not traced within the T014b4 budget (150 tool calls)",
+"vas": "PC reader (GP.hexpat)"
+},
+{
+"struct": "C2S_GP_GP_SHOP_DISPLAY_BUY_REQ",
+"field": "unk_u32",
+"proposed_name": "unk_u32",
+"mark": "open (no caller found)",
+"basis": "writer 0x829f00 is not a function and has no code xref, so the caller that supplies the u32 was not found",
+"vas": "PC 0x829f00"
+},
+{
+"struct": "CDataStampBonus",
+"field": "unk_u32",
+"proposed_name": "unk_u32",
+"mark": "open (not traced)",
+"basis": "STAMP_BONUS handlers 0x7fe140 (GET_LIST) and CHECK are not functions in the database; consumer not traced within the T014b4 budget (150 tool calls)",
+"vas": "PC 0x7fe140, reader 0x81d170, list 0x77a380"
+},
+{
+"struct": "CDataStampBonusDailyGroup",
+"field": "unk_u32_0",
+"proposed_name": "unk_u32_0",
+"mark": "open (not traced)",
+"basis": "handler 0x7fe140 not a function; consumer not traced within the T014b4 budget (150 tool calls)",
+"vas": "PC 0x7fe140, list 0x77a490"
+},
+{
+"struct": "CDataStampBonusDailyGroup",
+"field": "unk_u32_1",
+"proposed_name": "unk_u32_1",
+"mark": "open (not traced)",
+"basis": "handler 0x7fe140 not a function; consumer not traced within the T014b4 budget (150 tool calls)",
+"vas": "PC 0x7fe140, list 0x77a490"
+},
+{
+"struct": "CDataStampBonusCheckRes_unk_0",
+"field": "unk_u32_0",
+"proposed_name": "unk_u32_0",
+"mark": "open (not traced)",
+"basis": "CHECK_RES handler not a function; consumer not traced within the T014b4 budget (150 tool calls)",
+"vas": "PC list 0x77a5c0"
+},
+{
+"struct": "CDataStampBonusCheckRes_unk_0",
+"field": "unk_u32_1",
+"proposed_name": "unk_u32_1",
+"mark": "open (not traced)",
+"basis": "CHECK_RES handler not a function; consumer not traced within the T014b4 budget (150 tool calls)",
+"vas": "PC list 0x77a5c0"
+},
+{
+"struct": "S2C_STAMP_BONUS_GET_LIST_RES",
+"field": "StampBonusTotal",
+"proposed_name": "StampBonusTotal",
+"mark": "open (not traced)",
+"basis": "handler 0x7fe140 not a function; consumer not traced within the T014b4 budget (150 tool calls)",
+"vas": "PC 0x7fe140, 0x77a7d0"
+},
+{
+"struct": "CDataContentsPlayEnd",
+"field": "unk_u32_0",
+"proposed_name": "unk_u32_0",
+"mark": "open (not traced)",
+"basis": "consumer not traced within the T014b4 budget (150 tool calls); values constant or absent in captures",
+"vas": "PC 0x75ef90 (PLAY_END handler 0x7f3270 / reader 0x817a10 not functions; notice cQuestSvNotEndContentsPlayEnd)"
+},
+{
+"struct": "CDataContentsPlayEnd",
+"field": "unk_u32_1",
+"proposed_name": "unk_u32_1",
+"mark": "open (not traced)",
+"basis": "consumer not traced within the T014b4 budget (150 tool calls); values constant or absent in captures",
+"vas": "PC 0x75ef90 (PLAY_END handler 0x7f3270 / reader 0x817a10 not functions; notice cQuestSvNotEndContentsPlayEnd)"
+},
+{
+"struct": "CDataContentsPlayEnd",
+"field": "unk_u32_2",
+"proposed_name": "unk_u32_2",
+"mark": "open (not traced)",
+"basis": "consumer not traced within the T014b4 budget (150 tool calls); values constant or absent in captures",
+"vas": "PC 0x75ef90 (PLAY_END handler 0x7f3270 / reader 0x817a10 not functions; notice cQuestSvNotEndContentsPlayEnd)"
+},
+{
+"struct": "S2C_QUEST_PLAY_END_NTC",
+"field": "unk_s32",
+"proposed_name": "unk_s32",
+"mark": "open (not traced)",
+"basis": "consumer not traced within the T014b4 budget (150 tool calls); values constant or absent in captures",
+"vas": "PC 0x7f3270, 0x817a10 (not functions)"
+},
+{
+"struct": "CDataContentsPlayStartData",
+"field": "unk_bool_0",
+"proposed_name": "unk_bool_0",
+"mark": "open (not traced)",
+"basis": "consumer not traced within the T014b4 budget (150 tool calls); values constant or absent in captures",
+"vas": "PC reader 0x75f030 (caller 0x7f5830)"
+},
+{
+"struct": "CDataContentsPlayStartData",
+"field": "unk_bool_1",
+"proposed_name": "unk_bool_1",
+"mark": "open (not traced)",
+"basis": "consumer not traced within the T014b4 budget (150 tool calls); values constant or absent in captures",
+"vas": "PC reader 0x75f030 (caller 0x7f5830)"
+},
+{
+"struct": "CDataContentsPlayStartData",
+"field": "unk_bool_2",
+"proposed_name": "unk_bool_2",
+"mark": "open (not traced)",
+"basis": "consumer not traced within the T014b4 budget (150 tool calls); values constant or absent in captures",
+"vas": "PC reader 0x75f030 (caller 0x7f5830)"
+},
+{
+"struct": "CDataContentsPlayStartData",
+"field": "unk_u8_list",
+"proposed_name": "unk_u8_list",
+"mark": "open (not traced)",
+"basis": "consumer not traced within the T014b4 budget (150 tool calls); values constant or absent in captures",
+"vas": "PC reader 0x75f030 (caller 0x7f5830)"
+},
+{
+"struct": "CDataCycleContentsNoticeData",
+"field": "unk_u64",
+"proposed_name": "unk_u64",
+"mark": "open (not traced)",
+"basis": "consumer not traced within the T014b4 budget (150 tool calls); values constant or absent in captures",
+"vas": "PC reader 0x761970"
+},
+{
+"struct": "CDataQuestContents",
+"field": "unk_u16_0",
+"proposed_name": "unk_u16_0",
+"mark": "open (not traced)",
+"basis": "consumer not traced within the T014b4 budget (150 tool calls); values constant or absent in captures",
+"vas": "PC reader 0x773a20"
+},
+{
+"struct": "CDataQuestContents",
+"field": "unk_u16_1",
+"proposed_name": "unk_u16_1",
+"mark": "open (not traced)",
+"basis": "consumer not traced within the T014b4 budget (150 tool calls); values constant or absent in captures",
+"vas": "PC reader 0x773a20"
+},
+{
+"struct": "CDataQuestUnkU32S64",
+"field": "unk_u32",
+"proposed_name": "unk_u32",
+"mark": "open (not traced)",
+"basis": "consumer not traced within the T014b4 budget (150 tool calls); values constant or absent in captures",
+"vas": "PC list 0x775900"
+},
+{
+"struct": "CDataQuestUnkU32S64",
+"field": "unk_s64",
+"proposed_name": "unk_s64",
+"mark": "open (not traced)",
+"basis": "consumer not traced within the T014b4 budget (150 tool calls); values constant or absent in captures",
+"vas": "PC list 0x775900"
+},
+{
+"struct": "CDataQuestUnkU32Bool",
+"field": "unk_u32",
+"proposed_name": "unk_u32",
+"mark": "open (not traced)",
+"basis": "consumer not traced within the T014b4 budget (150 tool calls); values constant or absent in captures",
+"vas": "PC list 0x75edd0 (gates Quest_res 0x91 'Additional Equipment Rewards' in 0xed89f0, elements unread)"
+},
+{
+"struct": "CDataQuestUnkU32Bool",
+"field": "unk_bool",
+"proposed_name": "unk_bool",
+"mark": "open (not traced)",
+"basis": "consumer not traced within the T014b4 budget (150 tool calls); values constant or absent in captures",
+"vas": "PC list 0x75edd0 (gates Quest_res 0x91 'Additional Equipment Rewards' in 0xed89f0, elements unread)"
+},
+{
+"struct": "CDataQuestJoinLobbyUnk",
+"field": "unk_u32",
+"proposed_name": "unk_u32",
+"mark": "open (not traced)",
+"basis": "consumer not traced within the T014b4 budget (150 tool calls); values constant or absent in captures",
+"vas": "PC list 0x7709a0"
+},
+{
+"struct": "CDataQuestJoinLobbyUnkElement",
+"field": "unk_u32",
+"proposed_name": "unk_u32",
+"mark": "open (not traced)",
+"basis": "consumer not traced within the T014b4 budget (150 tool calls); values constant or absent in captures",
+"vas": "PC list 0x770b90"
+},
+{
+"struct": "CDataQuestJoinLobbyUnkElement",
+"field": "unk_s32_0",
+"proposed_name": "unk_s32_0",
+"mark": "open (not traced)",
+"basis": "consumer not traced within the T014b4 budget (150 tool calls); values constant or absent in captures",
+"vas": "PC list 0x770b90"
+},
+{
+"struct": "CDataQuestJoinLobbyUnkElement",
+"field": "unk_s32_1",
+"proposed_name": "unk_s32_1",
+"mark": "open (not traced)",
+"basis": "consumer not traced within the T014b4 budget (150 tool calls); values constant or absent in captures",
+"vas": "PC list 0x770b90"
+},
+{
+"struct": "CDataQuestJoinLobbyUnkElement",
+"field": "unk_u32_list",
+"proposed_name": "unk_u32_list",
+"mark": "open (not traced)",
+"basis": "consumer not traced within the T014b4 budget (150 tool calls); values constant or absent in captures",
+"vas": "PC list 0x770b90"
+},
+{
+"struct": "CDataQuestJoinLobbyUnkElement",
+"field": "unk_bool",
+"proposed_name": "unk_bool",
+"mark": "open (not traced)",
+"basis": "consumer not traced within the T014b4 budget (150 tool calls); values constant or absent in captures",
+"vas": "PC list 0x770b90"
+},
+{
+"struct": "CtrlAction",
+"field": "unk_0x3C",
+"proposed_name": "unk_0x3C",
+"mark": "open (not traced)",
+"basis": "consumer not traced within the T014b4 budget (150 tool calls); values constant or absent in captures",
+"vas": "nNetMsg.hexpat"
+},
+{
+"struct": "CtrlAction",
+"field": "unk_0x3D",
+"proposed_name": "unk_0x3D",
+"mark": "open (not traced)",
+"basis": "consumer not traced within the T014b4 budget (150 tool calls); values constant or absent in captures",
+"vas": "nNetMsg.hexpat"
+},
+{
+"struct": "GameNormal",
+"field": "unk_u32",
+"proposed_name": "unk_u32",
+"mark": "open (not traced)",
+"basis": "consumer not traced within the T014b4 budget (150 tool calls); values constant or absent in captures",
+"vas": "nNetMsg.hexpat"
+},
+{
+"struct": "GameNormal",
+"field": "unk_uid_0",
+"proposed_name": "unk_uid_0",
+"mark": "open (not traced)",
+"basis": "consumer not traced within the T014b4 budget (150 tool calls); values constant or absent in captures",
+"vas": "nNetMsg.hexpat"
+},
+{
+"struct": "GameNormal",
+"field": "unk_uid_1",
+"proposed_name": "unk_uid_1",
+"mark": "open (not traced)",
+"basis": "consumer not traced within the T014b4 budget (150 tool calls); values constant or absent in captures",
+"vas": "nNetMsg.hexpat"
+}
+]
