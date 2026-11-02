@@ -23,7 +23,7 @@
 // CDataCharacterInfo. Items 1-14 and 16-31 match the PS4 members in order (V), with the Season 3
 // CDataEquipItemInfo (Login.hexpat) inside the two equip lists. Season 3 adds item 15, a list
 // {u8, u16} read by 0x766210: the reader of CDataPawnInfo.unk_List (Pawn.hexpat) and of
-// CDataEquipItemInfo's third list, EquipStatParam shape (Context.hexpat). The PS4 body (without
+// CDataEquipItemInfo's third list, CDataContextBase_unk_0 shape (Context.hexpat). The PS4 body (without
 // item 15) fails 22/42 captures of 2.0.2, the 22 with a non-empty list (up to 17 elements).
 // User: 2.0.2.
 struct CDataCharacterInfo {
@@ -41,15 +41,15 @@ struct CDataCharacterInfo {
     MtTypedArray<CDataCharacterEquipData> CharacterEquipViewDataList;       // PC 0x75c190
     MtTypedArray<CDataEquipJobItem> CharacterEquipJobItemList;              // PC 0x766120
     u8 JewelrySlotNum;
-    MtTypedArray<EquipStatParam> unk_List;                                  // Season 3, PC 0x766210 {u8, u16}; server: EmblemStatList (lead)
+    MtTypedArray<CDataContextBase_unk_0> unk_List;                                  // Season 3, PC 0x766210 {u8, u16}; server: EmblemStatList (lead)
     MtTypedArray<CDataCharacterItemSlotInfo> CharacterItemSlotInfoList;     // PC 0x75c570
     MtTypedArray<CDataWalletPoint> WalletPointList;                         // PC 0x77c5a0
     u8 MyPawnSlotNum;
     u8 RentalPawnSlotNum;
     MtTypedArray<CDataOrbPageStatus> OrbStatusList;                         // PC 0x7702d0
     MtTypedArray<CDataCharacterMsgSet> MsgSetList;                          // PC 0x75cee0
-    MtTypedArray<CDataShortCut> ShortCutList;                               // PC 0x778990; field name I (PS4 member not in T009)
-    MtTypedArray<CDataCommunicationShortCut> CommunicationShortCutList;     // PC 0x75ea80; field name I (PS4 member not in T009)
+    MtTypedArray<CDataShortCut> ShortCutList;                               // PC 0x778990; PS4 m_ShortCutList (V, TC1)
+    MtTypedArray<CDataCommunicationShortCut> CommunicationShortCutList;     // PC 0x75ea80; PS4 m_CommunicationShortCutList (V, TC1)
     CDataMatchingProfile MatchingProfile;                                   // PC 0x76ed10
     CDataArisenProfile ArisenProfile;                                       // PC 0x7596f0
     bool HideEquipHead;

@@ -126,21 +126,23 @@ struct CDataGatheringItemGetRequest {
     u32 Num;
 };
 
-// Season 3 element of the CDataGatheringItemRestriction item list: PC list reader 0x7731b0 element
+// Season 3 element of the GatheringItemListRes_unk_0 second list (struct name neutral; server:
+// CDataItemAmount, lead): PC list reader 0x7731b0 element
 // {u32, u16} (V widths); no PS4 type. Type name I (T004 20); same shape as Quest CDataRewardItem but
 // read by another reader (0x7771b0 there).
-struct CDataItemAmount {
+struct GatheringItemListRes_unk_1 {
     u32 unk_u32;                // server: ItemId (lead)
     u16 unk_u16;                // server: Num (lead)
 };
 
-// Season 3 CDataGatheringItemRestriction (type name I, server lead): PC list reader 0x773060 element
+// Season 3 GatheringItemListRes_unk_0 (struct name neutral; server: CDataGatheringItemRestriction,
+// lead): PC list reader 0x773060 element
 // (alloc 0x34) {u32, list 0x77c5a0 (CDataWalletPoint), list 0x7731b0} (V widths); no PS4 type. The
 // 13.6.2 restriction list is never non-empty in the captures: the element is code-only (T004 6, 22).
-struct CDataGatheringItemRestriction {
+struct GatheringItemListRes_unk_0 {
     u32 unk_u32;                                       // server: RestrictionId (lead)
     MtTypedArray<CDataWalletPoint> unk_WalletPointList;  // server: Unk1 (lead)
-    MtTypedArray<CDataItemAmount> unk_ItemList;          // server: RequiredItems (lead)
+    MtTypedArray<GatheringItemListRes_unk_1> unk_ItemList;          // server: RequiredItems (lead)
 };
 
 // CDataOmData (COmData): PC reader 0x76fe10, list reader 0x76fd10 {Read_u64, Read_u32} (V); PS4

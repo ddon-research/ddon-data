@@ -161,8 +161,9 @@ struct EquipElementParam {
     u16 unk_u16;
 };
 
-// CDataAddStatusParam position (PC 0x765ba0); server names EnhanceType, Unk0, EnhanceId, Unk1.
-struct AddStatusParam {
+// Season 3 list element of CDataContextEquipData (PC 0x765ba0), no PS4 counterpart; struct name neutral
+// (TC1). server: CDataAddStatusParam {EnhanceType, Unk0, EnhanceId, Unk1} (lead).
+struct CDataContextEquipData_unk_0 {
     u8 unk_u8_0;
     u8 unk_u8_1;
     u16 unk_u16_0;
@@ -177,7 +178,7 @@ struct CDataContextEquipData {
     u32 elementCount;
     EquipElementParam unk_ElementList[elementCount];   // Season 3
     u32 addStatusCount;
-    AddStatusParam unk_AddStatusList[addStatusCount];  // Season 3
+    CDataContextEquipData_unk_0 unk_List[addStatusCount];  // Season 3; server: AddStatusParamList (lead)
 };
 
 // PC 0x75f5d0.
@@ -198,9 +199,9 @@ struct CDataContextAcquirementData {
     u8 m_ucAcquirementLv;
 };
 
-// New trailing list of CDataContextBase (PC 0x75f7e0 -> 0x7605e0); server: EmblemStatList of
-// CDataEquipStatParam {EffectID, EffectValue}, no PS4 counterpart.
-struct EquipStatParam {
+// New trailing list of CDataContextBase (PC 0x75f7e0 -> 0x7605e0), no PS4 counterpart; struct name
+// neutral (TC1). server: EmblemStatList of CDataEquipStatParam {EffectID, EffectValue} (lead).
+struct CDataContextBase_unk_0 {
     u8 unk_u8;
     u16 unk_u16;
 };
@@ -238,7 +239,7 @@ struct CDataContextBase {
     u32 m_unAbilityCostSum;
     u32 m_unAbilityCostMax;
     u32 equipStatCount;
-    EquipStatParam unk_EquipStatList[equipStatCount];  // Season 3
+    CDataContextBase_unk_0 unk_List[equipStatCount];  // Season 3; server: EmblemStatList (lead)
 };
 
 // PC 0x75f6c0.
@@ -306,8 +307,9 @@ struct CDataPawnReaction {
     u32 m_unMotionNo;
 };
 
-// PC 0x772950; server: SpSkillList.
-struct SpSkill {
+// Season 3 list element of CDataContextPawnInfo (PC 0x772950), no PS4 counterpart; struct name
+// neutral (TC1). server: SpSkillList of CDataSpSkill (lead).
+struct CDataContextPawnInfo_unk_0 {
     u8 unk_u8_0;
     u8 unk_u8_1;
 };
@@ -318,116 +320,117 @@ struct CDataContextPawnInfo {
     CDataPawnReaction m_PawnReactionList[pawnReactionCount];
     u8 unk_u8[64];                // Season 3 (server: TrainingStatus)
     u32 spSkillCount;
-    SpSkill unk_SpSkillList[spSkillCount];  // Season 3
+    CDataContextPawnInfo_unk_0 unk_List[spSkillCount];  // Season 3; server: SpSkillList (lead)
 };
 
-// CDataContextResist: PC 0x75fcc0, 30 x u8 (= PS4).
+// CDataContextResist: PC 0x75fcc0, 30 x u8 (= PS4). Field names: the PS4 members without m_uc (TC1).
 struct CDataContextResist {
-    u8 m_ucFireResist;
-    u8 m_ucIceResist;
-    u8 m_ucThunderResist;
-    u8 m_ucHolyResist;
-    u8 m_ucDarkResist;
-    u8 m_ucSpreadResist;
-    u8 m_ucFreezeResist;
-    u8 m_ucShockResist;
-    u8 m_ucAbsorbResist;
-    u8 m_ucDarkElmResist;
-    u8 m_ucPoisonResist;
-    u8 m_ucSlowResist;
-    u8 m_ucSleepResist;
-    u8 m_ucStunResist;
-    u8 m_ucWetResist;
-    u8 m_ucOilResist;
-    u8 m_ucSealResist;
-    u8 m_ucCurseResist;
-    u8 m_ucSoftResist;
-    u8 m_ucStoneResist;
-    u8 m_ucGoldResist;
-    u8 m_ucFireReduceResist;
-    u8 m_ucIceReduceResist;
-    u8 m_ucThunderReduceResist;
-    u8 m_ucHolyReduceResist;
-    u8 m_ucDarkReduceResist;
-    u8 m_ucAtkDownResist;
-    u8 m_ucDefDownResist;
-    u8 m_ucMAtkDownResist;
-    u8 m_ucMDefDownResist;
+    u8 FireResist;
+    u8 IceResist;
+    u8 ThunderResist;
+    u8 HolyResist;
+    u8 DarkResist;
+    u8 SpreadResist;
+    u8 FreezeResist;
+    u8 ShockResist;
+    u8 AbsorbResist;
+    u8 DarkElmResist;
+    u8 PoisonResist;
+    u8 SlowResist;
+    u8 SleepResist;
+    u8 StunResist;
+    u8 WetResist;
+    u8 OilResist;
+    u8 SealResist;
+    u8 CurseResist;
+    u8 SoftResist;
+    u8 StoneResist;
+    u8 GoldResist;
+    u8 FireReduceResist;
+    u8 IceReduceResist;
+    u8 ThunderReduceResist;
+    u8 HolyReduceResist;
+    u8 DarkReduceResist;
+    u8 AtkDownResist;
+    u8 DefDownResist;
+    u8 MAtkDownResist;
+    u8 MDefDownResist;
 };
 
-// CDataEditInfo: PC reader 0x764550, 122 B, identical to PS4.
+// CDataEditInfo: PC reader 0x764550, 122 B, identical to PS4. Field names: the PS4 members without
+// m_uc/m_us (TC1).
 struct CDataEditInfo {
-    u8 m_ucSex;
-    u8 m_ucVoice;
-    u16 m_usVoicePitch;
-    u8 m_ucPersonality;
-    u8 m_ucSpeechFreq;
-    u8 m_ucBodyType;
-    u8 m_ucHair;
-    u8 m_ucBeard;
-    u8 m_ucMakeup;
-    u8 m_ucScar;
-    u8 m_ucEyePresetNo;
-    u8 m_ucNosePresetNo;
-    u8 m_ucMouthPresetNo;
-    u8 m_ucEyebrowTexNo;
-    u8 m_ucColorSkin;
-    u8 m_ucColorHair;
-    u8 m_ucColorBeard;
-    u8 m_ucColorEyebrow;
-    u8 m_ucColorREye;
-    u8 m_ucColorLEye;
-    u8 m_ucColorMakeup;
-    u16 m_usSokutobu;
-    u16 m_usHitai;
-    u16 m_usMimiJyouge;
-    u16 m_usKannkaku;
-    u16 m_usMabisasiJyouge;
-    u16 m_usHanakuchiJyouge;
-    u16 m_usAgoSakiHaba;
-    u16 m_usAgoZengo;
-    u16 m_usAgoSakiJyouge;
-    u16 m_usHitomiOokisa;
-    u16 m_usMeOokisa;
-    u16 m_usMeKaiten;
-    u16 m_usMayuKaiten;
-    u16 m_usMimiOokisa;
-    u16 m_usMimiMuki;
-    u16 m_usElfMimi;
-    u16 m_usMikenTakasa;
-    u16 m_usMikenHaba;
-    u16 m_usHohoboneRyou;
-    u16 m_usHohoboneJyouge;
-    u16 m_usHohoniku;
-    u16 m_usErahoneJyouge;
-    u16 m_usErahoneHaba;
-    u16 m_usHanaJyouge;
-    u16 m_usHanaHaba;
-    u16 m_usHanaTakasa;
-    u16 m_usHanaKakudo;
-    u16 m_usKuchiHaba;
-    u16 m_usKuchiAtsusa;
-    u16 m_usEyebrowUVOffsetX;
-    u16 m_usEyebrowUVOffsetY;
-    u16 m_usWrinkle;
-    u16 m_usWrinkleAlbedoBlendRate;
-    u16 m_usWrinkleDetailNormalPower;
-    u16 m_usMuscleAlbedoBlendRate;
-    u16 m_usMuscleDetailNormalPower;
-    u16 m_usHeight;
-    u16 m_usHeadSize;
-    u16 m_usNeckOffset;
-    u16 m_usNeckScale;
-    u16 m_usUpperBodyScaleX;
-    u16 m_usBellySize;
-    u16 m_usTeatScale;
-    u16 m_usTekubiSize;
-    u16 m_usKoshiOffset;
-    u16 m_usKoshiSize;
-    u16 m_usAnkleOffset;
-    u16 m_usFat;
-    u16 m_usMuscle;
-    u16 m_usMotionFilter;
+    u8 Sex;
+    u8 Voice;
+    u16 VoicePitch;
+    u8 Personality;
+    u8 SpeechFreq;
+    u8 BodyType;
+    u8 Hair;
+    u8 Beard;
+    u8 Makeup;
+    u8 Scar;
+    u8 EyePresetNo;
+    u8 NosePresetNo;
+    u8 MouthPresetNo;
+    u8 EyebrowTexNo;
+    u8 ColorSkin;
+    u8 ColorHair;
+    u8 ColorBeard;
+    u8 ColorEyebrow;
+    u8 ColorREye;
+    u8 ColorLEye;
+    u8 ColorMakeup;
+    u16 Sokutobu;
+    u16 Hitai;
+    u16 MimiJyouge;
+    u16 Kannkaku;
+    u16 MabisasiJyouge;
+    u16 HanakuchiJyouge;
+    u16 AgoSakiHaba;
+    u16 AgoZengo;
+    u16 AgoSakiJyouge;
+    u16 HitomiOokisa;
+    u16 MeOokisa;
+    u16 MeKaiten;
+    u16 MayuKaiten;
+    u16 MimiOokisa;
+    u16 MimiMuki;
+    u16 ElfMimi;
+    u16 MikenTakasa;
+    u16 MikenHaba;
+    u16 HohoboneRyou;
+    u16 HohoboneJyouge;
+    u16 Hohoniku;
+    u16 ErahoneJyouge;
+    u16 ErahoneHaba;
+    u16 HanaJyouge;
+    u16 HanaHaba;
+    u16 HanaTakasa;
+    u16 HanaKakudo;
+    u16 KuchiHaba;
+    u16 KuchiAtsusa;
+    u16 EyebrowUVOffsetX;
+    u16 EyebrowUVOffsetY;
+    u16 Wrinkle;
+    u16 WrinkleAlbedoBlendRate;
+    u16 WrinkleDetailNormalPower;
+    u16 MuscleAlbedoBlendRate;
+    u16 MuscleDetailNormalPower;
+    u16 Height;
+    u16 HeadSize;
+    u16 NeckOffset;
+    u16 NeckScale;
+    u16 UpperBodyScaleX;
+    u16 BellySize;
+    u16 TeatScale;
+    u16 TekubiSize;
+    u16 KoshiOffset;
+    u16 KoshiSize;
+    u16 AnkleOffset;
+    u16 Fat;
+    u16 Muscle;
+    u16 MotionFilter;
 };
 
 // Context body variants of the packets without captures (T001c 2; no captures, unvalidated; no

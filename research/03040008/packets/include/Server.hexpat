@@ -47,25 +47,25 @@ struct CDataJewelryEquipLimit {
     u8 EquipNumMax;
 };
 
-// CDataWalletLimit (name I, server lead): PC list reader 0x77c4b0 {u32, u32} (V widths). Season 3,
+// CDataGameSetting_unk_0 (struct name neutral; server: CDataWalletLimit, lead): PC list reader 0x77c4b0 {u32, u32} (V widths). Season 3,
 // no PS4 counterpart; no PS4 or PC field name (unk_*). Captures: 16 pairs, ids 1-16.
-struct CDataWalletLimit {
+struct CDataGameSetting_unk_0 {
     u32 unk_u32_0;            // Season 3, no PS4 member; server: WalletType (lead)
     u32 unk_u32_1;            // Season 3, no PS4 member; server: MaxValue (lead)
 };
 
-// CDataExpRequirement (name I, server lead): PC list reader 0x766910 {u8, u32} (V widths). Season 3,
+// CDataGameSetting_unk_2 (struct name neutral; server: CDataExpRequirement, lead): PC list reader 0x766910 {u8, u32} (V widths). Season 3,
 // no PS4 counterpart. Captures: (1, 0), (2, 300), ... read as (level, exp), I.
-struct CDataExpRequirement {
+struct CDataGameSetting_unk_2 {
     u8 unk_u8;                // level (I)
     u32 unk_u32;              // exp (I)
 };
 
-// CDataExpSetting (name I, server lead): PC list reader 0x766800 {u8, list 0x766910} (V widths).
+// CDataGameSetting_unk_1 (struct name neutral; server: CDataExpSetting, lead): PC list reader 0x766800 {u8, list 0x766910} (V widths).
 // Season 3, no PS4 counterpart. Captures: two entries (1, 2) with 120 and 55 rows.
-struct CDataExpSetting {
+struct CDataGameSetting_unk_1 {
     u8 unk_u8;                // Season 3, no PS4 member; server: Type (lead)
-    MtTypedArray<CDataExpRequirement> unk_ExpRequirementList;
+    MtTypedArray<CDataGameSetting_unk_2> unk_List;    // PC 0x766910
 };
 
 // CDataGameSetting: PC reader 0x768bb0 (V, T003 section 11): u32 x9, u8, list 0x75c570, u32, u8,
@@ -122,9 +122,9 @@ struct CDataGameSetting {
     u32 unk_u32_0;
     u32 unk_u32_1;
     u32 unk_u32_2;
-    MtTypedArray<CDataWalletLimit> unk_WalletLimitList;                  // PC 0x77c4b0 (name I)
+    MtTypedArray<CDataGameSetting_unk_0> unk_List_0;                           // PC 0x77c4b0; server: WalletLimits (lead)
     u16 unk_u16;
-    MtTypedArray<CDataExpSetting> unk_ExpSettingList;                    // PC 0x766800 (name I)
+    MtTypedArray<CDataGameSetting_unk_1> unk_List_1;                            // PC 0x766800; server: ExpSettings (lead)
 };
 
 // CDataWeatherForecast: PC list reader 0x77c960 {u32} (V); PS4 {u32 m_unWeather} (V).

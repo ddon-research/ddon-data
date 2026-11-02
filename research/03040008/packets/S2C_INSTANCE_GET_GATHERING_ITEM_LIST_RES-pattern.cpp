@@ -9,8 +9,8 @@
 // fit, slack 3-14; the PS4 layout fits 66/155; the restriction list is never non-empty
 // (code-only).
 // Body: s32 Error [, s32 Result, LayoutId, u32 PosId, MtString GatheringItemUID, bool
-// IsGatheringItemBreak, bool unk_bool, MtTypedArray<CDataGatheringItemRestriction>
-// unk_RestrictionList, MtTypedArray<CDataGatheringItemElement> ItemList].
+// IsGatheringItemBreak, bool unk_bool, MtTypedArray<GatheringItemListRes_unk_0>
+// unk_List, MtTypedArray<CDataGatheringItemElement> ItemList].
 // packet-id: 13.6.2
 // Fit flag `fits`: the raws store no body length, so a decode fits when it ends within the
 // last 15 bytes of the file (cipher block padding); reading past the end fails the decode.
@@ -32,7 +32,7 @@ struct S2C_INSTANCE_GET_GATHERING_ITEM_LIST_RES : CPacket {
         MtString GatheringItemUID;
         bool IsGatheringItemBreak;   // PS4 member; that it is the first of the two bools is I (position)
         bool unk_bool;               // Season 3, no PS4 member (PC reader 0x80b480, V width); server: Unk0 (lead)
-        MtTypedArray<CDataGatheringItemRestriction> unk_RestrictionList;  // Season 3 (V width); server: RestrictionList (lead); never non-empty in captures
+        MtTypedArray<GatheringItemListRes_unk_0> unk_List;  // Season 3 (V width); server: RestrictionList (lead); never non-empty in captures
         MtTypedArray<CDataGatheringItemElement> ItemList;
     }
     // Fit: the decode ends within the last 15 bytes (cipher block padding; Packet.hexpat).

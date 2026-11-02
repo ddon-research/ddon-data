@@ -8,7 +8,7 @@
 // dropped) unless marked. Marks: V = read in IDA, I = inferred. A Season 3 field without a PS4
 // member is `unk_*`; server C# (Arrowgene) names are leads only ("server: <name> (lead)").
 // Includes Packet.hexpat, Character.hexpat (CDataWalletPoint) and Context.hexpat (EquipElementParam,
-// AddStatusParam, EquipStatParam); none of them includes this file (no include cycle).
+// CDataContextEquipData_unk_0, CDataContextBase_unk_0); none of them includes this file (no include cycle).
 // Every multi-byte value is big-endian: include this file after `#pragma endian big`.
 
 #pragma once
@@ -48,12 +48,12 @@ struct CDataItemList {
     u8 Color;                    // I: PS4 m_ucColor, u8 pair before the bool
     u8 PlusValue;                // I: PS4 m_ucPlusValue
     bool Bind;                   // I: PS4 b8 m_bBind, the only bool
-    u32 EquipPoint;              // I: PS4 has these three u32; their order is the server's (lead)
-    u32 EquipCharacterID;        // I: as EquipPoint
-    u32 EquipPawnID;             // I: as EquipPoint
+    u32 unk_u32_0;               // PS4 has three u32 here (m_unEquipCharacterID, m_unEquipPawnID,
+    u32 unk_u32_1;               // m_unEquipPoint); which is which has no code basis. server:
+    u32 unk_u32_2;               // EquipPoint, EquipCharacterID, EquipPawnID in this order (lead)
     MtTypedArray<EquipElementParam> unk_ElementList;     // PC 0x765a90 {u8, u32, u16} (Season 3 u16)
-    MtTypedArray<AddStatusParam> unk_AddStatusList;      // PC 0x765ba0, Season 3
-    MtTypedArray<EquipStatParam> unk_EquipStatList;      // PC 0x766210, shape {u8, u16}, Season 3
+    MtTypedArray<CDataContextEquipData_unk_0> unk_List_0;   // PC 0x765ba0, Season 3
+    MtTypedArray<CDataContextBase_unk_0> unk_List_1;        // PC 0x766210, shape {u8, u16}, Season 3
 };
 
 // CDataItemUpdateResult: PC list 0x76aec0 element {CDataItemList, s32} (V); PS4 {CItemList

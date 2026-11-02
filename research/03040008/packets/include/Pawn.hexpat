@@ -287,7 +287,7 @@ struct CDataPawnInfo_unk_0 {
 // CDataPawnInfo (Season 3): PC reader 0x772180 (V, T007 1.1); PS4 Read_CDataPawnInfo_ 0x1a2bfc0,
 // CDataPawnInfo. Items 1-12 and 14-29 match the PS4 members in order (V), with the Season 3
 // CDataEquipItemInfo inside the equip lists. Season 3 adds item 13 (list {u8, u16}, reader 0x766210,
-// the reader of CDataEquipItemInfo's third list: EquipStatParam shape) and items 30-32 (u8[64] by
+// the reader of CDataEquipItemInfo's third list: CDataContextBase_unk_0 shape) and items 30-32 (u8[64] by
 // 0x772aa0, u32 x5 by 0x772e80, list {u8, u8} by 0x772950). Two of them (u8[64], the {u8, u8} list)
 // are also in Context's CDataContextPawnInfo (PC 0x75f8d0, V); the u32 x5 has only this reader
 // behind it (0x772e80). The PS4 body fails 72/72 (8.3.2) and 2/2 (8.9.2) captures.
@@ -305,7 +305,7 @@ struct CDataPawnInfo {
     MtTypedArray<CDataCharacterEquipData> CharacterEquipViewDataList;
     MtTypedArray<CDataEquipJobItem> CharacterEquipJobItemList;
     u8 JewelrySlotNum;
-    MtTypedArray<EquipStatParam> unk_List;                    // Season 3, PC 0x766210 {u8, u16}; server: CharacterItemSlotInfoList (lead)
+    MtTypedArray<CDataContextBase_unk_0> unk_List_0;                  // Season 3, PC 0x766210 {u8, u16}; server: CharacterItemSlotInfoList (lead)
     CDataPawnCraftData CraftData;
     MtTypedArray<CDataPawnReaction> PawnReactionList;         // PC 0x772860
     bool HideEquipHead;
@@ -324,7 +324,7 @@ struct CDataPawnInfo {
     u32 Likability;
     u8 unk_u8[64];                                            // Season 3, PC 0x772aa0; server: TrainingStatus (lead)
     CDataPawnInfo_unk_0 unk_u32x5;                            // Season 3, PC 0x772e80; server: TrainingProfile (lead)
-    MtTypedArray<SpSkill> unk_SpSkillList;                    // Season 3, PC 0x772950; server: SpSkillList (lead)
+    MtTypedArray<CDataContextPawnInfo_unk_0> unk_List_1;                         // Season 3, PC 0x772950; server: SpSkillList (lead)
 };
 
 // CDataPartnerPawnRewardParam: read inline by the PC element reader of list 0x7710f0 {u32, u32} (V);

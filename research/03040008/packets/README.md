@@ -60,8 +60,10 @@ summary, and two lines the export script reads:
   (0.1.2) carry it, because the game server's `C2S_CONNECTION_LOGIN_REQ` and
   `S2C_CONNECTION_LOGIN_RES` use the same ids (R2 F2).
   Every login pattern (`C2L_`/`L2C_`) carries it: the game server reuses the login ids 0.0.x,
-  0.2.x, 1.0.x and 3.0.x, and naming the packet keeps a later game-server capture out of the export.
-  The game-server patterns of the shared ids carry it as well (0.0.1-0.2.2, 1.0.1, 1.0.2; T003b).
+  0.2.x, 1.0.x, 2.0.1, 2.0.2, 3.0.x and 5.3.16 (`PacketId.cs:164-187`, lead), and naming the packet
+  keeps a later capture of the other server out of the export. The game-server patterns of the shared
+  ids carry it as well (0.0.1-0.2.2, 1.0.1, 1.0.2; T003b; 2.0.1, 2.0.2 and 5.3.16 since TC1, where no
+  login-server file of those ids is captured, so their selection is unchanged).
 - `// packet-size: <bytes>`: only where two packets share both id and file name. `@` then keeps
   only files of that size. No pattern needs it now: `1.0.1 C2L_CLIENT_CHALLENGE_REQ` carried
   `// packet-size: 336` while the CLI filed the server's 304-byte certificate notice under the same
@@ -669,9 +671,10 @@ export, 2026-11-02, T012b). T013 is
   SessionStatus byte of the lobby member with that CharacterID). Which of the PS4 lobby-member
   bytes Platform/ClientVersion Season 3 dropped is I.
 - **Game setting names without code backing (T003 §11, §20):** the Season 3 tail of
-  `CDataGameSetting` (`unk_bool`, `unk_u32_0..2`, `unk_u16`, and the elements of
-  `CDataWalletLimit`, `CDataExpSetting`, `CDataExpRequirement`: struct names I by server lead, fields
-  `unk_*` with the server names as `server: <name> (lead)` comments since R1b), and the
+  `CDataGameSetting` (`unk_bool`, `unk_u32_0..2`, `unk_u16`, the lists `unk_List_0/1` and the elements
+  of `CDataGameSetting_unk_0/1/2`: struct names neutral since TC1, the server's CDataWalletLimit,
+  CDataExpSetting, CDataExpRequirement as leads; fields `unk_*` with the server names as
+  `server: <name> (lead)` comments since R1b), and the
   position of PawnPresentItemID/Num after Season 3 dropped the two CapLink strings (I: width
   alignment plus one value match).
 - **Game-server RES error branch untested:** no captured RES of groups 0, 1 and 44 has
@@ -770,7 +773,7 @@ export, 2026-11-02, T012b). T013 is
   13.20.16 u64 Key (also V by the 13.20.2 counter-test). The 9-byte bodies of 13.1.16, 13.2.16,
   13.5.1 and 13.32.16, the 13.31.16 bool and the empty 13.22.1 and 13.42.16 rest on the code too.
 - **Group 13 lists never non-empty in captures (T004 §19, §22):** the 13.0.2 `NamedParamList`
-  (`CDataNamedEnemyParamClient`) and the 13.6.2 `unk_RestrictionList` (`CDataGatheringItemRestriction`
+  (`CDataNamedEnemyParamClient`) and the 13.6.2 `unk_List` (`GatheringItemListRes_unk_0`, TC1)
   with its wallet-point and item-amount lists): their elements are code-only.
 - **Group 13 names without code backing (T004 §22):** the Season 3 fields are `unk_*` with the
   server name as lead: the 13.3.1 and 13.11.1 bools, the 13.6.2 `unk_bool` and restriction list, the
@@ -782,9 +785,10 @@ export, 2026-11-02, T012b). T013 is
   code-only. The 13.44-13.47.16 patterns keep their inline layout triplet (same fields and JSON as
   `CDataStageLayoutId`, unchanged).
 - **Groups 8, 53, 58 names without code backing (T007 §8):** the three `CDataPawnList` tail u32
-  (`unk_u32_0..2`; server: Unk0, TrainingExp, Unk2), the `CDataPawnInfo` Season 3 members (`unk_List`
+  (`unk_u32_0..2`; server: Unk0, TrainingExp, Unk2), the `CDataPawnInfo` Season 3 members (`unk_List_0`
   {u8, u16}, server: CharacterItemSlotInfoList; `unk_u8[64]`, server: TrainingStatus;
-  `unk_u32x5`, type `CDataPawnInfo_unk_0`, server: TrainingProfile; `unk_SpSkillList`), the second 8.36.16 list
+  `unk_u32x5`, type `CDataPawnInfo_unk_0`, server: TrainingProfile; `unk_List_1`, server: SpSkillList;
+  names since TC1), the second 8.36.16 list
   (`unk_JobOrbStatusList`; server: JobOrbHiBOStatusList) and the 58.5.2 second bool (`unk_bool`;
   `IsGoldenSally` on the first is I by position).
 - **Groups 8, 53, 58 code-only (T007 §5, §8):** never non-empty in the captures: the 8.20.2 list
@@ -851,7 +855,10 @@ export, 2026-11-02, T012b). T013 is
   element keeps the PS4 name `CDataStampBonusDaily` with `CDataStampBonusTotal` as an alias (same PS4
   members, one PC reader `0x77a6b0`); the report's `CDataStampBonusAsset` and `CDataStampCheck` are
   server names and stay leads. `CDataCharacterMsgSet.CharacterMessageList`, `ShortCutList` and
-  `CommunicationShortCutList` are I (element type; T009 gives no PS4 member name).
+  `CommunicationShortCutList` are V since TC1: the PS4 DWARF members `m_CharacterMessageList`
+  (`CDataCharacterMsgSet`), `m_ShortCutList` and `m_CommunicationShortCutList` (`CDataCharacterInfo`,
+  `DDOORBIS.elf.h:73485-73486`); the 26.12.1/26.14.1 `ShortcutList` is the member of those packet
+  classes (`m_ShortcutList`, T011 §15), so the two spellings follow two DWARF classes.
 - **2.29.16/2.30.16 identity (T009 §11):** the layout (u32 CharacterID) is V for all four PS4
   `*_OTHER_NOTICE`; which of them each id is (START/FINISH_LANTERN_OTHER) rests on ordering (I).
 - **Groups 2, 37, 45 code-only (T009 §24):** fit either way, so the layout rests on the PC code: the
@@ -937,7 +944,8 @@ export, 2026-11-02, T012b). T013 is
   `CHANGE_CHARACTER_EQUIP_JOB_ITEM_NOTICE` is rejected (element 18 bytes, not 5). Its capture shape
   (u32, list {u32, u32, u32, u8, u32, u8}, I, 2/2) is in that section.
 - **Groups 19, 20, 25, 27, 29, 39, 43 names without code backing (T012 §21):** 19.1.1/19.2.1
-  `CharacterId` (I: the player's CharacterID in the same stream), 20.0.2 `ShopID` (I: echoes 20.0.1),
+  `unk_u32` (since TC1; was `CharacterId`: one value, 2144504, equal to the player's CharacterID in
+  the same stream, which is also the server name, so no name), 20.0.2 `ShopID` (I: echoes 20.0.1),
   its two u8 (`unk_u8_0`, `unk_u8_1`) and the goods and requirement fields of `include/Shop.hexpat`
   (`Index` I: every 20.1.1 GoodsIndex is one, 17/17; `Price` I: unit price x 20.1.1 Num = 20.1.1
   Price, 17/17; the rest `unk_`), 20.1.2 `PointType` (I: first PS4 member), 27.8.16 `Category` (I:
@@ -978,7 +986,8 @@ export, 2026-11-02, T012b). T013 is
   `unk_u32_0/1`, `unk_List` with `CDataCraftSettingUnkElement`; struct names I); the 30.15.2 list name
   `unk_RateList` (the PS4 reader keeps it in a local); the Season 3 entry-board u32 and bool additions
   (`CDataEntryRecruitData.unk_u32`, `CDataEntryMemberData.unk_u32`, `CDataEntryItem.unk_bool`, the
-  search parameter's `unk_u32_0/1`; 0 in every capture) and `EnableJobList` (I: element type); the
+  search parameter's `unk_u32_0/1`; 0 in every capture) and `EnableJobList` (V since TC1: PS4 DWARF
+  `CDataEntryRecruitData.m_EnableJobList`, `DDOORBIS.elf.h:71284`); the
   41.3.1 `unk_Price` as `CDataWalletPoint` (I: the value pair matches a 41.8.2 price entry); the 51.2.1
   `unk_u32`, the 51.2.2 `unk_bool` and the 54.0.2 material `unk_bool`.
 - **Groups 30, 34, 41, 51, 54 code-only (T013 §18):** the `CDataCraftProgress` element (the progress
@@ -995,3 +1004,23 @@ export, 2026-11-02, T012b). T013 is
   type names only; no existing include changed, so no existing JSON changes. 9.1.2 needs none of
   9.1.1's save-blob includes (header-only response). No include cycle (Craft -> Packet, Pawn -> Login ->
   Character, Context, GP; EntryBoard -> Packet, Character; Dispel -> Packet).
+- **Naming sweep (TC1, 2026-11-02):** names whose only basis was a server lead are gone. Keys
+  renamed (old -> new): `CDataEditInfo` and `CDataContextResist` members drop `m_uc`/`m_us` (`m_ucSex`
+  -> `Sex`, 71 + 30 keys); `CDataItemList` `EquipPoint`, `EquipCharacterID`, `EquipPawnID` ->
+  `unk_u32_0..2` (PS4 has the three u32, but which is which was the server's order); the Season 3 lists
+  `unk_AddStatusList`/`unk_EquipStatList` -> `unk_List_0/1` (`CDataItemList`, `CDataEquipItemInfo`) or
+  `unk_List` (`CDataContextEquipData`, `CDataContextBase`), `unk_SpSkillList` -> `unk_List`
+  (`CDataContextPawnInfo`) or, with the stat list, `unk_List_0/1` (`CDataPawnInfo`), 13.6.2
+  `unk_RestrictionList` -> `unk_List`, game-setting `unk_WalletLimitList`/`unk_ExpSettingList` ->
+  `unk_List_0/1` and `unk_ExpRequirementList` -> `unk_List`, 19.1.1/19.2.1 `CharacterId` -> `unk_u32`.
+  Types renamed (no key changes): `SpSkill`, `AddStatusParam`, `EquipStatParam` ->
+  `CDataContextPawnInfo_unk_0`, `CDataContextEquipData_unk_0`, `CDataContextBase_unk_0`;
+  `CDataWalletLimit`, `CDataExpSetting`, `CDataExpRequirement` -> `CDataGameSetting_unk_0/1/2`;
+  `CDataGatheringItemRestriction`, `CDataItemAmount` -> `GatheringItemListRes_unk_0/1`. Kept, now V by
+  PS4 DWARF: `EnableJobList`, `CharacterMessageList`, `ShortCutList`, `CommunicationShortCutList`,
+  `CDataDeliveredItem.ItemNum/NeedNum` (R3 read them as server names). Re-export: the 17 patterns that
+  reach a renamed key (predicted by struct reachability; 1,271 files, all fit before and after; 1,120
+  changed, the rest have only empty item lists): 41.3.1, 19.1.1, 19.2.1, L 5.0.2, 2.0.2, 31.40.2,
+  35.0.16, 35.3.16, 29.17.16, 13.6.2, 10.6.2, 10.3.2, 10.12.16, 33.0.2, 8.3.2, 8.9.2, 1.1.2. Sample of
+  the smallest and largest file per pattern (33 files): only the renamed keys differ, values and shapes
+  identical.

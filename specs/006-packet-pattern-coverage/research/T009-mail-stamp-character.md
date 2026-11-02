@@ -518,3 +518,9 @@ Clone `D:/GitHub/Sehkah/Arrowgene.DragonsDogmaOnline` at `88d82caf07b980c031ec7f
 - PC handlers 37.9.2, 45.0.2, 45.1.2, 45.3.2 and writer 45.4.1 lie in undefined code; read by linear
   decoding only.
 - ImHex not run (not on `PATH`); no pattern written (outside this package).
+
+## Errata (R3, 2026-11-02)
+
+- § 19, 45.1.2 walk sample `stream10-musicplayer-marked.pcapng_tcp-stream-9/10426_…45_1_2` (32 B,
+  `28b1f236d6d53e55`): after the element `(1, 77)` the body reads `4D 01 01`, so both trailing u8 flags
+  are 1, not "u8 0, u8 1" (`xxd` of the raw file, TC1). End 0x1f and the fit are unchanged.

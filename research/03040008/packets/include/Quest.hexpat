@@ -455,6 +455,8 @@ struct CDataQuestIdScheduleId {
     u32 QuestScheduleId;
 };
 
+// CDataDeliveredItem: PS4 {u32 m_unItemId, u16 m_usItemNum, u16 m_usNeedNum} (V names,
+// DDOORBIS.elf.h:71939, TC1).
 struct CDataDeliveredItem {
     u32 ItemId;
     u16 ItemNum;

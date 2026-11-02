@@ -6,7 +6,7 @@
 // 0x400000); "PS4" names the PS4 02020005 DWARF type, whose member names the fields carry unless
 // marked. Marks: V = read in IDA, I = inferred, C = contradicted. Server C# names are leads only.
 // The character-list types live here, not in Character.hexpat, because they need Context.hexpat
-// (CDataEditInfo, EquipElementParam, AddStatusParam, EquipStatParam) and GP.hexpat; this file
+// (CDataEditInfo, EquipElementParam, CDataContextEquipData_unk_0, CDataContextBase_unk_0) and GP.hexpat; this file
 // includes all of them, and none of them includes this one (no include cycle).
 // Every multi-byte value is big-endian: include this file after `#pragma endian big`.
 
@@ -88,7 +88,7 @@ struct CDataMatchingProfile {
 // no PS4 name carries over by position. ItemID, Color and PlusValue are I (width sequence); the
 // u8/u8/u16 triple has no code-backed name (server: SafetySetting, EquipType, u16 EquipSlot, lead).
 // The first two lists use the readers of Context.hexpat's EquipElementParam (0x765a90) and
-// AddStatusParam (0x765ba0) (V); the third has the shape of EquipStatParam {u8, u16} but its own
+// CDataContextEquipData_unk_0 (0x765ba0) (V); the third has the shape of CDataContextBase_unk_0 {u8, u16} but its own
 // reader 0x766210 (Context uses 0x7605e0): shape only.
 struct CDataEquipItemInfo {
     u32 ItemID;                 // I
@@ -98,8 +98,8 @@ struct CDataEquipItemInfo {
     u8 Color;                   // I
     u8 PlusValue;               // I
     MtTypedArray<EquipElementParam> unk_ElementList;     // PC 0x765a90
-    MtTypedArray<AddStatusParam> unk_AddStatusList;      // PC 0x765ba0
-    MtTypedArray<EquipStatParam> unk_EquipStatList;      // PC 0x766210, shape {u8, u16}
+    MtTypedArray<CDataContextEquipData_unk_0> unk_List_0;   // PC 0x765ba0
+    MtTypedArray<CDataContextBase_unk_0> unk_List_1;        // PC 0x766210, shape {u8, u16}
 };
 
 // CDataCharacterListInfo: PC reader 0x8878c0 (list 0x8877f0) (V): CDataCharacterListElement

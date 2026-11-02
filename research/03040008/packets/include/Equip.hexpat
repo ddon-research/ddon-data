@@ -8,7 +8,7 @@
 // type prefix dropped) unless marked. Marks: V = read in IDA, I = inferred. A Season 3 field without
 // a PS4 member is `unk_*`; server C# (Arrowgene) names are leads only ("server: <name> (lead)").
 // Includes Packet.hexpat and Pawn.hexpat (CDataEquipJobItem; Pawn -> Login -> Character, Context
-// (EquipElementParam, EquipStatParam), GP); none of them includes this file (no include cycle).
+// (EquipElementParam, CDataContextBase_unk_0), GP); none of them includes this file (no include cycle).
 // Users: 29.0.2, 29.1.1, 29.1.2, 29.2.1, 29.2.2, 29.15.2.
 // Every multi-byte value is big-endian: include this file after `#pragma endian big`.
 
@@ -47,9 +47,9 @@ struct CDataItemEquipElement {
 // 0x766210 {u8, u16}} (V shape). 0x765f70 has 12 callers, among them 29.1.2, 29.2.2, 29.1.16, 29.4.2, 29.4.16,
 // 29.5.2 and four group-7 readers (T012 1, 13); this is the one type for all of them. No PS4
 // counterpart. Consumer 0x7d4760 compares the u8 with the current job (sGamePointer[3142]) and passes
-// u8 and list to sub_B9E8C0 (I: a job id; captures 10). The list has the shape of EquipStatParam
+// u8 and list to sub_B9E8C0 (I: a job id; captures 10). The list has the shape of CDataContextBase_unk_0
 // (Context.hexpat). Server: CDataJobChangeJobResUnk0 {Unk0, List<CDataCharacterItemSlotInfo>} (lead).
 struct CDataEquipChangeUnk {
     u8 Job;                                                      // Season 3; I: compared with the current job
-    MtTypedArray<EquipStatParam> unk_List;                       // PC 0x766210 {u8, u16}
+    MtTypedArray<CDataContextBase_unk_0> unk_List;                       // PC 0x766210 {u8, u16}
 };

@@ -476,3 +476,13 @@ Clone `D:/GitHub/Sehkah/Arrowgene.DragonsDogmaOnline` at `88d82caf07b980c031ec7f
 - 63.3.16 and 63.0.16 read the header u32 at `m_pStart+5`; that `m_pStart` is the header start is inferred
   from the `WritePacket` layout (I).
 - ImHex not run (not on `PATH`); no pattern written (outside this package).
+
+## Errata (R3, 2026-11-02)
+
+- § 8, 34.14.16 sample `stream85-…-11/138932_…34_14_16` (64 B, `78cb5da07b8705b2`): the list element
+  ends `09 64 00 00 00 00 01`; its trailing byte is 1, not 0 (`xxd` of the raw file, TC1). End 0x32 and
+  the fit are unchanged.
+- § 16, `CDataEntryRecruitData.EnableJobList` (and § 18's "I: element type"): the name is V, the PS4
+  DWARF member `CDataEntryRecruitData::m_EnableJobList` (`binaries/PS4_02020005/DDOORBIS.elf.h:71284`,
+  element `CDataEntryRecruitJob`); that it equals Arrowgene's name does not make it a server name. The
+  pattern comment and the packets README say so since TC1; no key changed.

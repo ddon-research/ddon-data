@@ -15,8 +15,8 @@
 
 // CDataEntryRecruitData (Season 3): PC list reader 0x765750, C2S writer 0x77f340 {u16, u32, list u8}
 // (V); PS4 0x19fc7c0 {u16 m_usID, list CDataEntryRecruitJob {u8 m_ucjob}}: Season 3 adds the u32
-// (0 in all 12 captured entries). server: Unk1 (lead). EnableJobList: I (the PS4 member list holds
-// CDataEntryRecruitJob; the u8 list reader is the CDataCommonU8 one).
+// (0 in all 12 captured entries). server: Unk1 (lead). EnableJobList: PS4 m_EnableJobList (V, DDOORBIS.elf.h:71284,
+// TC1); the PS4 element is CDataEntryRecruitJob, the PC u8 list reader the CDataCommonU8 one.
 struct CDataEntryRecruitData {
     u16 ID;
     u32 unk_u32;

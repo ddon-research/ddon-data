@@ -8,6 +8,7 @@
 // Walk: 162/162 fit, slack 3-15; PS4 framing fails 162/162; lists up to 9.
 // Body: list CDataCommonU32.
 // packet-id: 5.3.16
+// packet-select: S2C_USER_LIST_LEAVE_NTC
 // Fit flag `fits`: the raws store no body length, so a decode fits when it ends within the
 // last 15 bytes of the file (cipher block padding); reading past the end fails the decode.
 // A fit does not prove field widths: when the slack (`paddingSize`, exported) exceeds a field, a

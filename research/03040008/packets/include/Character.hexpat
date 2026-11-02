@@ -172,11 +172,11 @@ struct CDataCharacterMessage {
 
 // CDataCharacterMsgSet: PC list reader 0x75cee0, element {u32, MtString, list 0x75cdc0} (T009 1.3
 // item 21, V); PS4 CDataCharacterMsgSet {u32 m_unSetNo, MtString m_wstrMsgSetName,
-// MtTypedArray<CDataCharacterMessage>} (V).
+// MtTypedArray<CDataCharacterMessage> m_CharacterMessageList} (V; DDOORBIS.elf.h:53675, TC1).
 struct CDataCharacterMsgSet {
     u32 SetNo;
     MtString MsgSetName;
-    MtTypedArray<CDataCharacterMessage> CharacterMessageList;  // PC 0x75cdc0; field name I (element type)
+    MtTypedArray<CDataCharacterMessage> CharacterMessageList;  // PC 0x75cdc0; PS4 m_CharacterMessageList (V)
 };
 
 // CDataShortCut: PC list reader 0x778990, element 0x778a80 {u32 x5, u8} (T009 1.3 item 22, V); PS4

@@ -5,6 +5,7 @@
 // m_unCharacterID (V). Walk: 42/42 fit, slack 3.
 // Body: u32 CharacterID (4 bytes).
 // packet-id: 2.0.1
+// packet-select: C2S_CHARACTER_DECIDE_CHARACTER_ID_REQ
 // Fit flag `fits`: the raws store no body length, so a decode fits when it ends within the
 // last 15 bytes of the file (cipher block padding); reading past the end fails the decode.
 // A fit does not prove field widths: when the slack (`paddingSize`, exported) exceeds a field, a

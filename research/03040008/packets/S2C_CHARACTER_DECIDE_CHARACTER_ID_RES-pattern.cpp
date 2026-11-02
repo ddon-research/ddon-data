@@ -10,6 +10,7 @@
 // Body: s32 Error [, s32 Result, u32 CharacterID, CDataCharacterInfo, bool IsReturnPrepare, u8[1024]
 // save blob, u8] (variable).
 // packet-id: 2.0.2
+// packet-select: S2C_CHARACTER_DECIDE_CHARACTER_ID_RES
 // Fit flag `fits`: the raws store no body length, so a decode fits when it ends within the
 // last 15 bytes of the file (cipher block padding); reading past the end fails the decode.
 // A fit does not prove field widths: when the slack (`paddingSize`, exported) exceeds a field, a
