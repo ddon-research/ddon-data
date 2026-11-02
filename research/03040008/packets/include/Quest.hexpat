@@ -485,3 +485,341 @@ struct CDataPartyQuestProgressInfo {
     MtTypedArray<CDataDeliveredItemRecord> DeliveredItemRecordList;
     MtTypedArray<CDataQuestKeyItemPointRecord> QuestKeyItemPointRecordList;
 };
+
+// ---------------------------------------------------------------------------------------------
+// Spec 006 T005 additions (specs/006-packet-pattern-coverage/research/T005-quest.md sections 1,
+// 44). Names are the PS4 02020005 DWARF member names without m_ (V) unless marked (I) with the
+// basis; a Season 3 member without a PS4 counterpart is `unk_*`, with any server name as a lead.
+// ---------------------------------------------------------------------------------------------
+
+// CDataQuestList: PC reader 0x774530 (T005 1.1, V order and widths); PS4 CDataQuestList (=
+// CQuestList, Read_CDataQuestList_ 0x1a249a0). A smaller reader than CDataQuestOrderList above.
+// Season 3: PS4's u32 BaseGold/BaseExp/BaseRim become two lists, a second u64 and a u32 list
+// appear; the talk info, enemy info and delivery item elements take their Season 3 shapes.
+struct CDataQuestList {
+    u32 KeyId;
+    u32 QuestScheduleId;
+    u32 QuestId;
+    u32 BaseLevel;
+    u16 ContentJoinItemRank;
+    MtTypedArray<CDataWalletPoint> BaseWalletPoint;  // PC 0x77c5a0; name I (wallet points in place of PS4 BaseGold, BaseRim)
+    MtTypedArray<CDataQuestExp> BaseExp;             // PC 0x76c780; name I (in place of PS4 u32 BaseExp)
+    // PS4 has six u32 here (BaseGold, BaseExp, BaseRim, OrderNpcId, NameMsgId, DetailMsgId); PC
+    // reads the two lists above plus three u32. Names I by position (the last three PS4 names).
+    u32 OrderNpcId;   // name I
+    u32 NameMsgId;    // name I
+    u32 DetailMsgId;  // name I
+    // PC reads 2 x u64, PS4 one (EndDistributionDate). Which one is new is unresolved (I).
+    u64 unk_u64;               // Season 3 (I position); server: DistributionStartDate (lead)
+    u64 EndDistributionDate;   // name I (position)
+    MtTypedArray<CDataRewardItem> FixedRewardItemList;
+    MtTypedArray<CDataRewardItem> FixedRewardSelectItemList;
+    MtTypedArray<u32> unk_u32_list;                  // PC 0x75eec0, Season 3; server: ContentsReleaseList (lead)
+    MtTypedArray<CDataQuestOrderConditionParam> QuestOrderConditionParamList;
+    CDataQuestLog QuestLog;                          // PC 0x774850
+    MtTypedArray<CDataQuestFlag> QuestFlagList;
+    MtTypedArray<CDataQuestLayoutFlag> QuestLayoutFlagList;
+    MtTypedArray<CDataQuestProcessState> QuestProcessStateList;
+    MtTypedArray<CDataQuestEnemyInfo> QuestEnemyInfoList;
+    MtTypedArray<CDataQuestLayoutFlagSetInfo> QuestLayoutFlagSetInfoList;
+    MtTypedArray<CDataQuestDeliveryItem> DeliveryItemList;  // PC 0x762fb0 (Season 3 shape)
+    bool IsClientOrder;
+};
+
+// CDataQuestContents: PC 0x773a20 (V); PS4 CDataQuestContents {u8 Type, s32 Param01-04}.
+struct CDataQuestContents {
+    u8 Type;
+    s32 Param01;
+    s32 Param02;
+    s32 Param03;
+    s32 Param04;
+    u16 unk_u16_0;   // Season 3; server: Unk0 (lead)
+    u16 unk_u16_1;   // Season 3; server: Unk1 (lead)
+};
+
+// CDataLightQuestDetail: PC 0x76d1c0 reads 7 x u32 (V); PS4 has 6 (m_unAreaId, m_unBaseAreaPoint,
+// m_unGetCP, m_unOrderLimit, m_unClearNum, m_unBoardType). Which of the 7 is new is unresolved,
+// so all stay unk_* (moved here from the 11.89.16 pattern, unchanged; server order AreaId,
+// BoardId, GetAp, GetCp, OrderLimit, ClearNum, BoardType is a lead only).
+struct CDataLightQuestDetail {
+    u32 unk_u32_0;
+    u32 unk_u32_1;
+    u32 unk_u32_2;
+    u32 unk_u32_3;
+    u32 unk_u32_4;
+    u32 unk_u32_5;
+    u32 unk_u32_6;
+};
+
+// CDataLightQuestList: element of PC list 0x76d250 (V); PS4 {m_Param, m_Detail, m_Contents}.
+struct CDataLightQuestList {
+    CDataQuestList Param;
+    CDataLightQuestDetail Detail;
+    CDataQuestContents Contents;
+};
+
+// CDataSetQuestDetail: PC 0x778040 (V): u32 x4, list WalletPoint, list QuestExp, u16, u16, u8 x5,
+// bool. PS4 0x1a23b80 has u16 x5 (UndiscoveryGoldRatio, UndiscoveryExpRatio, UndiscoveryRimRatio,
+// LeaderCompleteNum, RepeatRewardType) where PC reads two lists and two u16: which u16 survive is
+// unresolved (moved here from the 11.89.16 pattern, unchanged).
+struct CDataSetQuestDetail {
+    u32 ImageId;
+    u32 ClearCount;
+    u32 ClearCharacterNum;
+    u32 BaseAreaPoint;
+    MtTypedArray<CDataWalletPoint> unk_wallet_point_list;   // PC 0x77c5a0, Season 3
+    MtTypedArray<CDataQuestExp> unk_quest_exp_list;         // PC 0x76c780, Season 3
+    u16 unk_u16_0;
+    u16 unk_u16_1;
+    u8 RepeatRewardValue;
+    u8 RepeatRewardCompleteNum;
+    u8 RandomRewardNum;
+    u8 ChargeRewardNum;
+    u8 ProgressBonusNum;
+    bool IsDiscovery;
+};
+
+// CDataSetQuestList: element of PC list 0x7783d0 (V); PS4 {m_Param, m_Detail}.
+struct CDataSetQuestList {
+    CDataQuestList Param;
+    CDataSetQuestDetail Detail;
+};
+
+// CDataTutorialQuestList: PC list 0x77b690 (V); PS4 {m_Param, u8 m_ucEnableCancel}.
+struct CDataTutorialQuestList {
+    CDataQuestList Param;
+    u8 EnableCancel;
+};
+
+// CDataWorldManageQuestList: PC list 0x77cd60 (V); PS4 {m_Param, u8 m_ucIsTutorialGuide}.
+struct CDataWorldManageQuestList {
+    CDataQuestList Param;
+    u8 IsTutorialGuide;
+};
+
+// CDataLotQuestList: element of PC list 0x76dae0 (V); PS4 {m_Param, CQuestContents m_Contents}.
+struct CDataLotQuestList {
+    CDataQuestList Param;
+    CDataQuestContents Contents;
+};
+
+// CDataRewardItemDetail: PC list 0x7772a0 (V); PS4 {u32 ItemId, u16 Num, u8 Type}.
+struct CDataRewardItemDetail {
+    u32 ItemId;
+    u16 Num;
+    u8 Type;
+};
+
+// Season 3 member of CDataTimeGainQuestList: PC 0x75ed50 {u32, list u32, list 0x75edd0 {u32,
+// bool}, bool, bool, list u8 0x75e9b0} (V shape), no PS4 counterpart; server: Restrictions
+// (lead). Struct and field names open.
+struct CDataQuestUnkU32Bool {
+    u32 unk_u32;
+    bool unk_bool;
+};
+
+struct CDataTimeGainQuestUnkRestriction {
+    u32 unk_u32;
+    MtTypedArray<u32> unk_u32_list;
+    MtTypedArray<CDataQuestUnkU32Bool> unk_u32_bool_list;   // PC 0x75edd0
+    bool unk_bool_0;
+    bool unk_bool_1;
+    MtTypedArray<CDataCommonU8> unk_u8_list;                // PC 0x75e9b0
+};
+
+// Season 3 element of PC list 0x772ef0: {list CDataWalletPoint, list 0x7731b0 {u32, u16}} (V
+// shape); server: RequiredItemsList (lead). Names open.
+struct CDataQuestUnkU32U16 {
+    u32 unk_u32;
+    u16 unk_u16;
+};
+
+struct CDataTimeGainQuestUnkRequirement {
+    MtTypedArray<CDataWalletPoint> unk_WalletPointList;
+    MtTypedArray<CDataQuestUnkU32U16> unk_u32_u16_list;     // PC 0x7731b0
+};
+
+// CDataTimeGainQuestList: PC element 0x77b080 (V); PS4 0x1a248e0 {m_Param, u32 m_unPlayTimeSec,
+// b8 x4, u8 m_ucJoinPawnNum, MtTypedArray<CDataRewardItemDetail>}. Season 3: a fifth bool and two
+// trailing members. Which bool is new is I: the four PS4 names stay in order on the first four
+// (position, I); the server lead orders them IsNoTimeup, Unk0, IsJoinCharacter, IsJoinPawn, Unk1,
+// which disagrees.
+struct CDataTimeGainQuestList {
+    CDataQuestList Param;
+    u32 PlayTimeSec;
+    bool IsNoTimeup;           // name I (position)
+    bool IsJoinCharacter;      // name I (position)
+    bool IsJoinPawn;           // name I (position)
+    bool IsJoinSupportPawn;    // name I (position)
+    bool unk_bool;             // Season 3 (I position)
+    u8 JoinPawnNum;
+    MtTypedArray<CDataRewardItemDetail> RewardItemDetailList;
+    CDataTimeGainQuestUnkRestriction unk_Restriction;                    // Season 3, PC 0x75ed50
+    MtTypedArray<CDataTimeGainQuestUnkRequirement> unk_RequirementList;  // Season 3, PC 0x772ef0
+};
+
+// CDataSetQuestInfoList: PC element 0x778230 (V); PS4 0x1a1e150. Season 3: a second u64 (which
+// one is new: I), wallet and exp lists in place of PS4 u32 DiscoverRewardBonusGold/Exp/Rim, and a
+// trailing condition list.
+struct CDataSetQuestInfoList {
+    u32 QuestScheduleId;
+    u32 QuestId;
+    u64 unk_u64;               // Season 3 (I position); server: OrderDate (lead)
+    u64 EndDistributionDate;   // name I (position)
+    u32 ImageId;
+    u32 BaseLevel;
+    u16 ContentJoinItemRank;
+    u32 DiscoverRewardItemId;
+    MtTypedArray<CDataWalletPoint> DiscoverRewardWalletPoint;  // name I (in place of PS4 DiscoverRewardBonusGold, BonusRim)
+    MtTypedArray<CDataQuestExp> DiscoverRewardExp;             // name I (in place of PS4 DiscoverRewardBonusExp)
+    u32 QuickPartyPopularity;
+    MtTypedArray<CDataCommonU32> SelectRewardItemIdList;
+    u8 RandomRewardNum;
+    u8 ChargeRewardNum;
+    u16 CompleteNum;
+    bool IsDiscovery;
+    MtTypedArray<CDataQuestEnemyInfo> QuestEnemyInfoList;
+    MtTypedArray<CDataQuestLayoutFlagSetInfo> QuestLayoutFlagSetInfoList;
+    MtTypedArray<CDataQuestDeliveryItem> DeliveryItemList;
+    MtTypedArray<CDataQuestOrderConditionParam> unk_QuestOrderConditionParamList;  // Season 3
+};
+
+// CDataQuestId: PC list 0x773f80 (V); PS4 0x1a1ef20 {u32 m_unQuestId} (also 11.89.16 rows 11-12).
+struct CDataQuestId {
+    u32 QuestId;
+};
+
+// CDataPriorityQuest: PC list 0x7735b0 (V); PS4 0x1a1e9e0 (also 11.89.16 row 13).
+struct CDataPriorityQuest {
+    u32 QuestScheduleId;
+    u32 QuestId;
+    MtTypedArray<CDataQuestAnnounce> QuestAnnounceList;   // PC 0x773820
+    MtTypedArray<CDataQuestProgressWork> WorkList;        // PC 0x7754a0
+};
+
+// CDataPriorityQuestSetting: PC list 0x773710 (V); PS4 {u32 m_unCharacterId, list}.
+struct CDataPriorityQuestSetting {
+    u32 CharacterId;
+    MtTypedArray<CDataPriorityQuest> PriorityQuestList;
+};
+
+// CDataQuestContentsSituationInfo: PC list 0x773ab0 (V); PS4 0x1a19940.
+struct CDataQuestContentsSituationInfo {
+    u32 QuestScheduleId;
+    u32 QuestId;
+};
+
+// CDataQuestPartyBonusInfo: PC 0x774de0 (V); PS4 0x1a2d3e0, same.
+struct CDataQuestPartyBonusInfo {
+    u32 QuestScheduleId;
+    u32 QuestId;
+    u16 GoldRatio;
+    u16 ExpRatio;
+    u16 RimRatio;
+    u16 AreaPointRatio;
+    u32 Dorb;
+    bool IsReceived;
+};
+
+// CDataRewardBoxItem / CDataRewardBoxRecord: PC 0x777000 / list 0x777080 (V); PS4 same.
+struct CDataRewardBoxItem {
+    u32 ItemId;
+    u16 Num;
+    MtString UID;
+    u8 Type;
+    bool IsCharge;
+    bool IsHelp;
+};
+
+struct CDataRewardBoxRecord {
+    u32 ListNo;
+    u32 QuestId;
+    MtTypedArray<CDataRewardBoxItem> RewardItemList;
+};
+
+// CDataContentsPlayEnd: PC 0x75ef90 = 7 x u32 + list CDataRewardItemDetail (V); PS4 {u32 Gold,
+// Exp, Rim, PlayTimeMillSec, list}. Season 3 adds three u32. Positions I: the only capture
+// (T005 23) has the 7th u32 = 1,045,461 and the others 0, and PLAY_START to this notice is
+// 1,058 s, so the 7th is the play time in ms; Gold, Exp, Rim keep the first three places.
+struct CDataContentsPlayEnd {
+    u32 Gold;              // name I (position)
+    u32 Exp;               // name I (position)
+    u32 Rim;               // name I (position)
+    u32 unk_u32_0;         // Season 3
+    u32 unk_u32_1;         // Season 3
+    u32 unk_u32_2;         // Season 3
+    u32 PlayTimeMillSec;   // name I (capture timestamps)
+    MtTypedArray<CDataRewardItemDetail> RewardItemDetailList;
+};
+
+// CDataContentsPlayStartData: PC 0x75f030 (V); PS4 0x1a2df70 lacks the three bools and the u8
+// list (Season 3, names open).
+struct CDataContentsPlayStartData {
+    u32 KeyId;
+    u32 QuestScheduleId;
+    u32 QuestId;
+    u32 BaseLevel;
+    u8 StartPos;
+    bool unk_bool_0;   // Season 3
+    bool unk_bool_1;   // Season 3
+    bool unk_bool_2;   // Season 3
+    MtTypedArray<CDataQuestProcessState> QuestProcessStateList;
+    MtTypedArray<CDataQuestEnemyInfo> QuestEnemyInfoList;
+    MtTypedArray<CDataQuestLayoutFlagSetInfo> QuestLayoutFlagSetInfoList;
+    MtTypedArray<CDataCommonU32> QuestPhaseGroupIdList;
+    MtTypedArray<CDataCommonU8> unk_u8_list;   // Season 3, PC 0x75e9b0
+};
+
+// CDataCycleContentsNoticeData: PC 0x761970 (V); PS4 {u32 x4, u64 m_ullEnd, u8 x3, b8 x2, list}.
+// Season 3: a second u64; which one is new is I.
+struct CDataCycleContentsNoticeData {
+    u32 CycleContentsScheduleId;
+    u32 QuestScheduleId;
+    u32 QuestId;
+    u32 CategoryType;
+    u64 unk_u64;   // Season 3 (I position)
+    u64 End;       // name I (position)
+    u8 NoticeType;
+    u8 IsSystemNotice;
+    u8 PartyMemberNum;
+    bool IsPlay;
+    bool IsGetReward;
+    MtTypedArray<CDataQuestProcessState> QuestProcessStateList;
+};
+
+// CDataFortDefenseNoticeData: element of PC list 0x766c00 (V); PS4 {CCycleContentsNoticeData
+// m_Common}.
+struct CDataFortDefenseNoticeData {
+    CDataCycleContentsNoticeData Common;
+};
+
+// Season 3 element of PC list 0x77c780 {u32, u32} (V shape), names open.
+struct CDataQuestUnkU32U32 {
+    u32 unk_u32_0;
+    u32 unk_u32_1;
+};
+
+// CDataQuestContentsSituationInfoDetail: PC 0x773c60 (V); PS4 same without the Season 3 list.
+struct CDataQuestContentsSituationInfoDetail {
+    u32 QuestScheduleId;
+    u32 QuestId;
+    u32 BaseLevel;
+    u16 ContentJoinItemRank;
+    u8 NoticeType;
+    MtTypedArray<CDataQuestOrderConditionParam> QuestOrderConditionParamList;
+    MtTypedArray<CDataRewardItem> RewardItemList;
+    u32 ClearTimePointBonus;
+    MtTypedArray<CDataQuestUnkU32U32> unk_u32_u32_list;   // Season 3, PC 0x77c780
+    bool IsEnable;
+};
+
+// CDataItemUIDList: PC writer 0x77fd30 element {MtString, u32} (V); PS4 {m_wstrUID, u32 m_unNum}.
+struct CDataItemUIDList {
+    MtString UID;
+    u32 Num;
+};
+
+// CDataGetRewardBoxItem: PC writer 0x77faf0 element {MtString} (V); PS4 {m_wstrUID}.
+struct CDataGetRewardBoxItem {
+    MtString UID;
+};

@@ -19,44 +19,13 @@ import std.mem;
 #include "Packet.hexpat"
 #include "Quest.hexpat"
 
-// CDataLightQuestDetail: PC 0x76d1c0 reads 7 x u32 (V); PS4 has 6 (m_unAreaId, m_unBaseAreaPoint,
-// m_unGetCP, m_unOrderLimit, m_unClearNum, m_unBoardType). Which of the 7 is new is unresolved,
-// so all stay unk_*.
-struct CDataLightQuestDetail {
-    u32 unk_u32_0;
-    u32 unk_u32_1;
-    u32 unk_u32_2;
-    u32 unk_u32_3;
-    u32 unk_u32_4;
-    u32 unk_u32_5;
-    u32 unk_u32_6;
-};
+// CDataLightQuestDetail, CDataSetQuestDetail, CDataQuestId (rows 11-12, PC 0x773f80) and
+// CDataPriorityQuest (row 13, PC 0x7735b0) live in Quest.hexpat since 006 T005b (moved unchanged).
 
 // Row 1, PC list 0x76d350.
 struct CDataLightQuestOrderList {
     CDataQuestOrderList Param;
     CDataLightQuestDetail Detail;
-};
-
-// CDataSetQuestDetail: PC 0x778040 (V): u32 x4, list WalletPoint, list QuestExp, u16, u16, u8 x5,
-// bool. PS4 has u16 x5 (UndiscoveryGoldRatio, UndiscoveryExpRatio, UndiscoveryRimRatio,
-// LeaderCompleteNum, RepeatRewardType) where PC reads two lists and two u16: which u16 survive is
-// unresolved.
-struct CDataSetQuestDetail {
-    u32 ImageId;
-    u32 ClearCount;
-    u32 ClearCharacterNum;
-    u32 BaseAreaPoint;
-    MtTypedArray<CDataWalletPoint> unk_wallet_point_list;   // PC 0x77c5a0, Season 3
-    MtTypedArray<CDataQuestExp> unk_quest_exp_list;         // PC 0x76c780, Season 3
-    u16 unk_u16_0;
-    u16 unk_u16_1;
-    u8 RepeatRewardValue;
-    u8 RepeatRewardCompleteNum;
-    u8 RandomRewardNum;
-    u8 ChargeRewardNum;
-    u8 ProgressBonusNum;
-    bool IsDiscovery;
 };
 
 // Row 2, PC list 0x7785f0.
@@ -116,19 +85,6 @@ struct CDataWorldManageQuestOrderList {
 struct CDataExpiredQuestList {
     u32 QuestScheduleId;
     u32 QuestId;
-};
-
-// Rows 11-12, PC list 0x773f80.
-struct CDataQuestId {
-    u32 QuestId;
-};
-
-// Row 13, PC list 0x7735b0.
-struct CDataPriorityQuest {
-    u32 QuestScheduleId;
-    u32 QuestId;
-    MtTypedArray<CDataQuestAnnounce> QuestAnnounceList;   // PC 0x773820
-    MtTypedArray<CDataQuestProgressWork> WorkList;        // PC 0x7754a0
 };
 
 // Row 14, PC list 0x7592d0.

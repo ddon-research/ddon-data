@@ -15,7 +15,7 @@ carry now. Every pattern starts with `#pragma endian big` and includes what it n
 | `Packet.hexpat` | the raw framing `CPacket` (u8 group, u16 id, u8 sub, u8 source, u32 counter; body at 0x09), `MtTypedArray<T>` (u32 count + entries), `MtString` (u16 length + bytes), `CDataCommonU32`/`CDataCommonU8`, the fit-flag rules and the RES convention | every pattern without nNetMsg, except the four header-less ones (1.0.1, 1.1.16, 44.0.1, 44.1.16), which read the body at offset 0 without `CPacket` |
 | `nNetMsg.hexpat` | the nNetMsg (cNetMsg RPC) payload of the lobby and party binary packets: ids, DTI enum, message structures (P1, P2, P3) | 3.3.16, 3.4.16, 6.23-6.26.16 |
 | `Context.hexpat` | group 35 CONTEXT structures (P4) | 11 group-35 patterns |
-| `Quest.hexpat` | group 11 QUEST CData and the enums ORDER_CONDITION_TYPE, CYCLE_CONTENTS_CATEGORY, CYCLE_CONTENTS_SUB_CATEGORY, COMMAND_CHECK_LIST (P11a) | 5 |
+| `Quest.hexpat` | group 11 QUEST CData and the enums ORDER_CONDITION_TYPE, CYCLE_CONTENTS_CATEGORY, CYCLE_CONTENTS_SUB_CATEGORY, COMMAND_CHECK_LIST (P11a); since T005b also the Season 3 `CDataQuestList` (PC `0x774530`, beside `CDataQuestOrderList`) and the list, detail, play start/end, priority, reward box and fort defense types of T005 §44 | 72 |
 | `Area.hexpat` | group 23 AREA CData (P11a, P11b) | 4 |
 | `Character.hexpat` | E_WALLET_POINT_TYPE, CDataWalletPoint, job base info, character name and list element | 2 |
 | `Clan.hexpat`, `Item.hexpat`, `Pawn.hexpat`, `Skill.hexpat` | the CData of those groups (P11b) | 1-2 each |
@@ -137,21 +137,22 @@ T002 is `specs/006-packet-pattern-coverage/research/T002-login.md` (the login gr
 T003 is `specs/006-packet-pattern-coverage/research/T003-connection-server-cert.md` (groups 0
 CONNECTION, 1 SERVER and 44 CERT of the game server; counts after their first export, T003b).
 T004 is `specs/006-packet-pattern-coverage/research/T004-instance.md` (group 13 INSTANCE; counts
-after their first export, T004b).
+after their first export, T004b). T005 is `specs/006-packet-pattern-coverage/research/T005-quest.md`
+(group 11 QUEST; counts after their first export, 2026-11-02, T005b).
 
 | Id | Pattern | Report | Status |
 | --- | --- | --- | --- |
 | 0.0.1 | `C2L_PING_REQ` | T002 §1 | 75/75 fit |
-| 0.0.2 | `L2C_PING_RES` | T002 §1 | 75/75 fit |
 | 0.0.1 | `C2S_CONNECTION_PING_REQ` | T003 §2 | 2134/2134 fit |
+| 0.0.2 | `L2C_PING_RES` | T002 §1 | 75/75 fit |
 | 0.0.2 | `S2C_CONNECTION_PING_RES` | T003 §2 | 2133/2133 fit |
 | 0.1.1 | `C2L_LOGIN_REQ` | P11b §2 | 42/42 fit |
-| 0.1.2 | `L2C_LOGIN_RES` | P11b §3 | 42/42 fit |
 | 0.1.1 | `C2S_CONNECTION_LOGIN_REQ` | T003 §3 | 42/42 fit |
+| 0.1.2 | `L2C_LOGIN_RES` | P11b §3 | 42/42 fit |
 | 0.1.2 | `S2C_CONNECTION_LOGIN_RES` | T003 §3 | 42/42 fit |
 | 0.2.1 | `C2L_LOGOUT_REQ` | T002 §2 | 42/42 fit |
-| 0.2.2 | `L2C_LOGOUT_RES` | T002 §2 | 42/42 fit |
 | 0.2.1 | `C2S_CONNECTION_LOGOUT_REQ` | T003 §4 | 42/42 fit |
+| 0.2.2 | `L2C_LOGOUT_RES` | T002 §2 | 42/42 fit |
 | 0.2.2 | `S2C_CONNECTION_LOGOUT_RES` | T003 §4 | 42/42 fit |
 | 0.3.1 | `C2S_CONNECTION_GET_LOGIN_ANNOUNCEMENT_REQ` | T003 §5 | 41/41 fit |
 | 0.3.2 | `S2C_CONNECTION_GET_LOGIN_ANNOUNCEMENT_RES` | T003 §5 | 41/41 fit |
@@ -163,8 +164,8 @@ after their first export, T004b).
 | 0.7.2 | `S2C_CONNECTION_RESERVE_SERVER_RES` | T003 §8 | 41/41 fit |
 | 0.10.16 | `S2C_CONNECTION_0_10_16_NTC` | T003 §9 | 2/2 fit (code name SESSION_STATUS_NTC, V by behaviour) |
 | 1.0.1 | `C2L_CLIENT_CHALLENGE_REQ` | T002 §3, T002c | 42/42 fit (no header, body at offset 0) |
-| 1.0.2 | `L2C_CLIENT_CHALLENGE_RES` | T002 §4 | 42/42 fit |
 | 1.0.1 | `C2S_SERVER_GET_SERVER_LIST_REQ` | T003 §10 | 43/43 fit |
+| 1.0.2 | `L2C_CLIENT_CHALLENGE_RES` | T002 §4 | 42/42 fit |
 | 1.0.2 | `S2C_SERVER_GET_SERVER_LIST_RES` | T003 §10 | 43/43 fit |
 | 1.1.1 | `C2S_SERVER_GET_GAME_SETTING_REQ` | T003 §11 | 42/42 fit |
 | 1.1.2 | `S2C_SERVER_GET_GAME_SETTING_RES` | T003 §11 | 42/42 fit, slack 1 |
@@ -206,12 +207,79 @@ after their first export, T004b).
 | 9.0.2 | `S2C_BINARY_SAVE_GET_CHARACTER_BIN_SAVEDATA_RES` | P4 §3, T001b §4 | no capture (synthetic: versions 0x19, 0x13, 0x0C) |
 | 9.1.1 | `C2S_BINARY_SAVE_SET_CHARACTER_BIN_SAVEDATA_REQ` | P4 §3, T001b | 47/47 fit; 47/47 equal T001b's walk field by field |
 | 10.9.2 | `S2C_ITEM_GET_ITEM_STORAGE_INFO_RES` | P11b §13 | 4/4 fit |
+| 11.0.1 | `C2S_QUEST_GET_LIGHT_QUEST_LIST_REQ` | T005 §2 | 1/1 fit |
+| 11.0.2 | `S2C_QUEST_GET_LIGHT_QUEST_LIST_RES` | T005 §2 | 1/1 fit |
+| 11.1.1 | `C2S_QUEST_GET_SET_QUEST_LIST_REQ` | T005 §3 | 179/179 fit |
+| 11.1.2 | `S2C_QUEST_GET_SET_QUEST_LIST_RES` | T005 §3 | 179/179 fit |
+| 11.2.1 | `C2S_QUEST_GET_MAIN_QUEST_LIST_REQ` | T005 §4 | 44/44 fit (no body) |
+| 11.2.2 | `S2C_QUEST_GET_MAIN_QUEST_LIST_RES` | T005 §4 | 44/44 fit |
+| 11.3.1 | `C2S_QUEST_GET_TUTORIAL_QUEST_LIST_REQ` | T005 §5 | 146/146 fit |
+| 11.3.2 | `S2C_QUEST_GET_TUTORIAL_QUEST_LIST_RES` | T005 §5 | 146/146 fit |
+| 11.4.1 | `C2S_QUEST_GET_LOT_QUEST_LIST_REQ` | T005 §6 | 20/20 fit |
+| 11.4.2 | `S2C_QUEST_GET_LOT_QUEST_LIST_RES` | T005 §6 | 20/20 fit |
+| 11.9.1 | `C2S_QUEST_GET_WORLD_MANAGE_QUEST_LIST_REQ` | T005 §9 | 42/42 fit (no body) |
+| 11.9.2 | `S2C_QUEST_GET_WORLD_MANAGE_QUEST_LIST_RES` | T005 §9 | 42/42 fit (list never non-empty) |
+| 11.10.1 | `C2S_QUEST_GET_END_CONTENTS_GROUP_REQ` | T005 §10 | 3/3 fit |
+| 11.10.2 | `S2C_QUEST_GET_END_CONTENTS_GROUP_RES` | T005 §10 | 3/3 fit |
+| 11.14.1 | `C2S_QUEST_GET_SET_QUEST_INFO_LIST_REQ` | T005 §11 | 2/2 fit |
+| 11.14.2 | `S2C_QUEST_GET_SET_QUEST_INFO_LIST_RES` | T005 §11 | 2/2 fit |
+| 11.15.1 | `C2S_QUEST_GET_CYCLE_CONTENTS_NEWS_LIST_REQ` | T005 §12 | 6/6 fit (no body) |
 | 11.15.2 | `S2C_QUEST_GET_CYCLE_CONTENTS_NEWS_LIST_RES` | P11a §5 | 6/6 fit |
+| 11.19.1 | `C2S_QUEST_GET_AREA_BONUS_LIST_REQ` | T005 §12 | 182/182 fit (no body) |
 | 11.19.2 | `S2C_QUEST_GET_AREA_BONUS_LIST_RES` | P11a §9 | 182/182 fit |
+| 11.20.1 | `C2S_QUEST_QUEST_ORDER_REQ` | T005 §12 | 1/1 fit |
+| 11.20.2 | `S2C_QUEST_QUEST_ORDER_RES` | T005 §13 | 1/1 fit |
+| 11.21.1 | `C2S_QUEST_QUEST_PROGRESS_REQ` | T005 §14 | 705/705 fit |
+| 11.21.2 | `S2C_QUEST_QUEST_PROGRESS_RES` | T005 §14 | 705/705 fit |
+| 11.23.1 | `C2S_QUEST_LIGHT_QUEST_GP_COMPLETE_REQ` | T005 §12 | 1/1 fit |
+| 11.23.2 | `S2C_QUEST_LIGHT_QUEST_GP_COMPLETE_RES` | T005 §15 | 1/1 fit, slack 15 |
+| 11.31.1 | `C2S_QUEST_GET_QUEST_COMPLETE_LIST_REQ` | T005 §12 | 86/86 fit |
+| 11.31.2 | `S2C_QUEST_GET_QUEST_COMPLETE_LIST_RES` | T005 §16 | 86/86 fit |
+| 11.32.1 | `C2S_QUEST_SET_PRIORITY_QUEST_REQ` | T005 §12 | 3/3 fit |
+| 11.32.2 | `S2C_QUEST_SET_PRIORITY_QUEST_RES` | T005 §17 | 3/3 fit |
+| 11.32.16 | `S2C_QUEST_SET_PRIORITY_QUEST_NTC` | T005 §18 | 5/5 fit |
+| 11.33.2 | `S2C_QUEST_CANCEL_PRIORITY_QUEST_RES` | T005 §17 | 2/2 fit |
+| 11.34.1 | `C2S_QUEST_GET_PRIORITY_QUEST_REQ` | T005 §12 | 45/45 fit (no body) |
+| 11.34.2 | `S2C_QUEST_GET_PRIORITY_QUEST_RES` | T005 §19 | 45/45 fit |
+| 11.37.1 | `C2S_QUEST_GET_CYCLE_CONTENTS_STATE_LIST_REQ` | T005 §12 | 41/41 fit (no body) |
 | 11.37.2 | `S2C_QUEST_GET_CYCLE_CONTENTS_STATE_LIST_RES` | P11a §12 | 41/41 fit |
+| 11.38.1 | `C2S_QUEST_GET_CYCLE_CONTENTS_SITUATION_INFO_LIST_REQ` | T005 §12 | 2/2 fit |
+| 11.38.2 | `S2C_QUEST_GET_CYCLE_CONTENTS_SITUATION_INFO_LIST_RES` | T005 §20 | 2/2 fit |
+| 11.39.1 | `C2S_QUEST_PLAY_ENTRY_REQ` | T005 §12 | 1/1 fit (no body) |
+| 11.39.2 | `S2C_QUEST_PLAY_ENTRY_RES` | T005 §21 | 1/1 fit, slack 15 |
+| 11.39.16 | `S2C_QUEST_PLAY_ENTRY_NTC` | T005 §22 | 1/1 fit (PS4 PLAY_ENTRY_NOTICE, V by behaviour) |
+| 11.41.1 | `C2S_QUEST_PLAY_START_REQ` | T005 §12 | 1/1 fit |
+| 11.41.2 | `S2C_QUEST_PLAY_START_RES` | T005 §21 | 1/1 fit, slack 15 |
+| 11.42.1 | `C2S_QUEST_PLAY_START_TIMER_REQ` | T005 §12 | 1/1 fit (no body) |
+| 11.42.2 | `S2C_QUEST_PLAY_START_TIMER_RES` | T005 §21 | 1/1 fit, slack 15 |
+| 11.45.1 | `C2S_QUEST_PLAY_END_REQ` | T005 §12 | 1/1 fit (no body) |
+| 11.45.2 | `S2C_QUEST_PLAY_END_RES` | T005 §21 | 1/1 fit, slack 15 |
+| 11.45.16 | `S2C_QUEST_PLAY_END_NTC` | T005 §23 | 1/1 fit, slack 12 |
+| 11.56.1 | `C2S_QUEST_GET_AREA_INFO_LIST_REQ` | T005 §12 | 1/1 fit (no body) |
 | 11.56.2 | `S2C_QUEST_GET_AREA_INFO_LIST_RES` | P11a §11 | 1/1 fit |
+| 11.57.1 | `C2S_QUEST_GET_QUEST_PARTY_BONUS_LIST_REQ` | T005 §12 | 84/84 fit (no body) |
+| 11.57.2 | `S2C_QUEST_GET_QUEST_PARTY_BONUS_LIST_RES` | T005 §24 | 84/84 fit |
+| 11.60.16 | `C2S_QUEST_11_60_16_NTC` | T005 §25 | 7/7 fit (client to server; code name PRT_READY_SET_RETURN_SESSION, V by behaviour) |
+| 11.62.1 | `C2S_QUEST_GET_REWARD_BOX_LIST_REQ` | T005 §12 | 8/8 fit (no body) |
+| 11.62.2 | `S2C_QUEST_GET_REWARD_BOX_LIST_RES` | T005 §26 | 8/8 fit |
+| 11.64.1 | `C2S_QUEST_GET_REWARD_BOX_ITEM_REQ` | T005 §27 | 6/6 fit |
+| 11.64.2 | `S2C_QUEST_GET_REWARD_BOX_ITEM_RES` | T005 §27 | 6/6 fit, slack 15 |
+| 11.69.1 | `C2S_QUEST_DELIVER_ITEM_REQ` | T005 §29 | 1/1 fit, slack 15 |
+| 11.69.2 | `S2C_QUEST_DELIVER_ITEM_RES` | T005 §29 | 1/1 fit |
+| 11.69.16 | `S2C_QUEST_DELIVER_ITEM_NTC` | T005 §29 | 1/1 fit |
+| 11.70.1 | `C2S_QUEST_DECIDE_DELIVERY_ITEM_REQ` | T005 §30 | 1/1 fit |
+| 11.70.2 | `S2C_QUEST_DECIDE_DELIVERY_ITEM_RES` | T005 §30 | 1/1 fit |
+| 11.70.16 | `S2C_QUEST_DECIDE_DELIVERY_ITEM_NTC` | T005 §30 | 1/1 fit, slack 15 (PS4 DECIDE_DELIVERY_ITEM_NOTICE, V by notice class) |
+| 11.71.1 | `C2S_QUEST_GET_PARTY_QUEST_PROGRESS_INFO_REQ` | T005 §12 | 43/43 fit (no body) |
 | 11.71.2 | `S2C_QUEST_GET_PARTY_QUEST_PROGRESS_INFO_RES` | P11a §4 | 43/43 fit |
+| 11.83.16 | `S2C_QUEST_11_83_16_NTC` | T005 §31 | 20/20 fit, slack 15 (code name SET_QUEST_UNRELEASED_AREA_NOTICE, V by notice class) |
 | 11.89.16 | `S2C_QUEST_JOIN_LOBBY_QUEST_INFO_NTC` | P11a §1 | 41/41 fit |
+| 11.90.16 | `S2C_QUEST_PROGRESS_WORK_SAVE_NTC` | T005 §33 | 11/11 fit |
+| 11.91.16 | `S2C_QUEST_QUEST_COMPLETE_NTC` | T005 §34 | 4/4 fit, slack 12 |
+| 11.95.16 | `S2C_QUEST_11_95_16_NTC` | T005 §35 | 48/48 fit (code name FORT_DEFENSE_NOTICE, V by notice class) |
+| 11.101.16 | `S2C_QUEST_TIME_GAIN_QUEST_PLAY_START_NTC` | T005 §36 | 1/1 fit |
+| 11.103.16 | `S2C_QUEST_11_103_16_NTC` | T005 §37 | 1/1 fit (code name PLAY_STOP_TIMER_NOTICE, V by notice class; no body) |
+| 11.117.16 | `S2C_QUEST_11_117_16_NTC` | T005 §38 | 47/47 fit (code name REWARD_BOX_LIST_NUM_NOTICE, V by behaviour; the PS4 u8-only body fits too) |
 | 11.120.16 | `S2C_QUEST_PARTY_QUEST_PROGRESS_NTC` | P11a §3 | no capture |
 | 12.0.2 | `S2C_STAGE_GET_STAGE_LIST_RES` | P11a §7 | 42/42 fit |
 | 13.0.1 | `C2S_INSTANCE_GET_ENEMY_SET_LIST_REQ` | T004 §2 | 563/563 fit |
@@ -335,6 +403,33 @@ after their first export, T004b).
   each) and 13.23.16 S2C_INSTANCE_EXCHANGE_OM_INSTANT_KEY_VALUE_NTC (T004 §13: no PS4 handler, V by
   code; 46 captures). Season 3-exclusive ids go to a later spec (Sam); T004 §10 and §13 hold their
   PC readers and wire layouts.
+- **Season 3-exclusive, not patterned (T005):** 11.5.1/11.5.2 GET_PACKAGE_QUEST_LIST (T005 §7),
+  11.7.16 `S2C_QUEST_11_7_16_NTC` (MobHuntQuestListNum, §8; the triage's PS4 candidate is
+  contradicted), 11.68.16 QUEST_BOARD_RELOAD_NTC (§28, exclusive by absence, I), 11.121.x
+  GET_LEVEL_BONUS_LIST (§40), 11.122.x GET_ADVENTURE_GUIDE_QUEST_LIST (§41) and 11.123.x
+  GET_ADVENTURE_GUIDE_QUEST_NTC (§42). Their PC readers and wire layouts are in those sections; they
+  go to a later spec with the other exclusive ids.
+- **Group 11 unresolved, not patterned (T005):** 11.88.16 (§32: the PC handler is `return 1`, empty
+  body) and 11.118.16 (§39: the PC handler discards one u8). With no-op PC handlers neither shape nor
+  behaviour selects a PS4 counterpart.
+- **Group 11 names without code backing (T005 §46):** in `CDataQuestList`, which u64 is new
+  (`unk_u64`, then `EndDistributionDate` by position; in every capture checked the first is 0 and
+  the second a date), the `unk_u32_list`, and `BaseWalletPoint`/`BaseExp` (I: the lists sit where
+  PS4 has BaseGold/BaseExp/BaseRim) with OrderNpcId/NameMsgId/DetailMsgId (I, position);
+  `CDataLightQuestDetail` stays `unk_u32_0..6` and `CDataSetQuestDetail` keeps `unk_u16_0/1` and its
+  two unnamed lists (as 11.89.16 had them; the captured lists hold 100 per entry, ratio-like); the
+  `CDataTimeGainQuestList` bool order (PS4 names on the first four, I) and its two Season 3
+  members; the 11.14.2 extra u64 and trailing condition list; the 11.45.16 lead `unk_s32` and middle
+  u32s (PlayTimeMillSec on the 7th u32 is I by capture timestamps); the 11.95.16 extra u64 and
+  {u32, u32} list; the 11.101.16 bools and u8 list; the 11.117.16 u16 roles (count/capacity, I).
+- **Group 11 code-only (T005 §43, §46):** the 11.9.2 list is never non-empty; the 11.117.16 u16 pair
+  and the empty 11.103.16 body fit within the slack, so they rest on the PC code; no captured group-11
+  RES has Error != 0. The PC handlers of 11.0.2, 11.2.2, 11.4.2, 11.21.2, 11.31.2, 11.33.2, 11.34.2
+  and 11.45.16 lie in undefined code (read by linear decoding only). 11.120.16 still has no capture.
+- **Shared quest types moved (T005b):** `CDataLightQuestDetail`, `CDataSetQuestDetail`,
+  `CDataQuestId` and `CDataPriorityQuest` moved unchanged from the 11.89.16 pattern into
+  `include/Quest.hexpat`; its 41 JSON files came out byte-identical. No existing quest pattern had a
+  layout error in T005, so none changed its layout.
 - **Group 13 widths that fit either way (T004 §19):** three Season 3 widths rest on the PC code
   alone, because the slack absorbs the difference: the 13.3.1 second bool (`unk_bool`), the
   13.40.16 sixth enemy-info bool (`EnemyInfo.unk_bool`, also V by the 13.0.2 counter-test) and the
