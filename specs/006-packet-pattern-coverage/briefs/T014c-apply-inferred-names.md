@@ -1,10 +1,13 @@
 006 T014c: apply the inferred names to the patterns and re-export
 
 Objective (build 03040008): apply `specs/006-packet-pattern-coverage/research/T014b-consumer-property-names.tsv`
-(and the T014a value-correlation candidates T014b confirmed) to `research/03040008/packets/` per spec
+(478 rows after parts 1-8, d9f19fc48a: 257 V, 91 I, 130 open; the md's eight parts give the bases;
+the T014a value-correlation candidates T014b confirmed are in it) to `research/03040008/packets/` per spec
 § "Naming unknown fields by inference": each renamed field gets its mark and basis in a comment (V, or
 I with consumer / value counts / hint; `lead agrees` where the server name matches); rejected or
-unsettled fields stay `unk_*`. Update the README naming rule section with the four bases and the
+unsettled fields stay `unk_*`, with the TSV's open reason in a comment (e.g. "never read by the
+client"). Where a row's role is known but its name is not, keep `unk_*` and put the role in the comment.
+Part 7 found the stamp pattern's position names `BonusType`/`BonusValue` wrong: apply the TSV's names. Update the README naming rule section with the four bases and the
 mark format.
 
 Also: 65 group-35 CONTEXT JSON files in `stream85-marked.pcapng_tcp-stream-11` are invalid JSON

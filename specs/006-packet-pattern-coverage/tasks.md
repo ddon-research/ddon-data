@@ -71,7 +71,8 @@ Coordinator: main session. One subagent at a time. Method and rules: `spec.md`.
   reasons; shop data path read, two server flag names contradicted), then T014b6 (cut short: 49 rows, 32 V / 17 open with reasons;
   character-list u8 = GameMode), then T014b7 (cut short: 35 rows, 20 V / 15 open with reasons; gacha
   ChargeId; stamp: the pattern's BonusType/BonusValue are wrong, unk_u32 selects how +8 is read), then
-  T014b8 (the last 25 rows; `briefs/T014b8-remaining-4.md`; running), each writing rows per include. Then T014c; was: the closing packages TC1 (tooling, naming sweep,
+  T014b8 (d9f19fc48a: all rows settled). T014b done: 478 rows = 257 V / 91 I / 130 open with reasons.
+  Running: T014c (`briefs/T014c-apply-inferred-names.md`), each writing rows per include. Then T014c; was: the closing packages TC1 (tooling, naming sweep,
   Season 3-exclusive list; `briefs/TC1-close-tooling-naming-exclusive.md`) and TC2 (code-backed raw
   renames; `briefs/TC2-code-backed-renames.md`), then the spec-end procedure (orchestration § 10).
 - All-exclusive groups (62, 70, 72, 60, 71, 61, 64, 59, 65) go to the Season 3-exclusive list.
