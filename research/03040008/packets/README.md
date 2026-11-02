@@ -20,7 +20,7 @@ carry now. Every pattern starts with `#pragma endian big` and includes what it n
 | `Character.hexpat` | E_WALLET_POINT_TYPE, CDataWalletPoint, job base info, character name and list element; since T006b `CDataCharacterLevelParam` (PC `0x75cb00`) and the Season 3 `CDataLobbyMemberInfo` (PC `0x76d7f0`, 3 u8); since T007b `CDataPartyMember` (PC `0x771580`); since T009b `CDataStatusInfo`, `CDataCharacterMsgSet`/`CDataCharacterMessage`, `CDataShortCut`, `CDataCommunicationShortCut`, `CDataUpdateMatchingProfileInfo` and `CDataCharacterReleaseElement` (T009 §1.3, §22); since T011b `CDataFriendInfo` (Season 3 through its list element), `CDataHistoryElement` and `CDataAchieveCategoryStatus` (T011 §1, §18) | 2, and 3.0.2, 3.2.16, 33.12/13/16/17.16, 8.37.16, 2.6.16, 2.7.16, 37.x through Mail, and since T011b 5.2.16, 6.8.16, 16.0.2, 16.6.2, 17.0.2, 26.1.2, 26.12.1, 26.14.1 |
 | `Clan.hexpat` | group 31 CLAN CData (P11b); since T010b the join request, history element, base info members (function, dungeon, `CDataPawnExpeditionInformation`, partner pawn, concierge, shop lineup name, value info), shop buff item/info and the Season 3 `CDataNoraPawnInfo` (T010 §1.2, §25); includes Packet, Character, Pawn and Furniture | 31.4.2, 31.29.2, 31.9.2, 31.30.2, 31.31.2, 31.34.2, 31.40.2 |
 | `Furniture.hexpat` | `CDataFurnitureLayout` (PC list `0x766f90`, T010 §1.2), moved in T010b from the 52.1.2 pattern; includes Packet only | 52.1.2, 31.31.2 through Clan |
-| `Skill.hexpat` | the CData of that group (P11b) | 1-2 |
+| `Skill.hexpat` | the CData of that group (P11b); since T012b `CDataNormalSkillParam` and `CDataSetAcquirementParam` (T012 §1, §19) | 1-2, and 19.28.2 since T012b |
 | `Item.hexpat` | item storage types (P11b §13); since T008b the Season 3 `CDataItemList` (PC `0x76aca0`), `CDataItemUpdateResult`, `CDataUpdateWalletPoint`, `CDataSwitchStorage` (Season 3 u16), `CDataMoveItemUIDFromTo` and `CDataItemSort` (T008 §1, §6); includes Packet, Character and Context | 10.9.2, 10.3.2, 10.6.2, 10.7.1, 10.9.1, 10.12.16, 10.13.16, 50.0.2, 50.1.1 |
 | `Pawn.hexpat` | group 8 PAWN CData (P11b §14); since T007b the Season 3 `CDataPawnInfo` (PC `0x772180`) with its job, equip, craft and orb-extend types, the pawn list, rented, lost and history elements, profile, total score, orb status, and `CDataPartnerPawnData`/`CDataPartnerPawnReward`, shared with group 53 (T007 §1, §6); includes Login | 8.30.2, 10 group-8 and 3 group-53 patterns, 26.1.2 (T011b) |
 | `PawnExpedition.hexpat` | group 58 PAWN_EXPEDITION CData (T007 §4, §6): `CDataAreaSpotSet`, `CDataPawnExpeditionClanSallySpotInfo`, `CDataBattleResultInfo`; includes Packet only (group 58 also uses Packet's common types and Instance's gathering-item element and get request) | 58.0.2, 58.5.2 |
@@ -35,6 +35,11 @@ carry now. Every pattern starts with `#pragma endian big` and includes what it n
 | `Mail.hexpat` | group 37 MAIL CData (T009 §1.1, §22): `CDataMailInfo`, the attachment classes (`CDataMailAttachmentInfo`, item, GP, option course, legend pawn; mail's own, not the `Item.hexpat` types), `CDataMailAttachmentList`, `CDataMailTextInfo`; includes Packet and Character | 37.1.2, 37.7.2, 37.9.2, 37.11.2, 37.13.16 |
 | `Stamp.hexpat` | group 45 STAMP CData, Season 3 shapes (T009 §1.2, §22): `CDataStampBonus` (3 u32), `CDataStampBonusDaily` (alias `CDataStampBonusTotal`), `CDataStampBonusDailyGroup` (name I), `CDataStampBonusCheckRes_unk_0`; includes Packet only | 45.0.2, 45.1.2 |
 | `CharacterInfo.hexpat` | the Season 3 `CDataCharacterInfo` (PC `0x75c2a0`, T009 §1.3); its own include because it needs Character, Context, Login, Pawn, Job and Server (no include cycle) | 2.0.2 |
+| `Achievement.hexpat` | group 27 ACHIEVEMENT CData (T012 §1, §19): `CDataAchievementProgress`, `CDataAchievementRewardProgress`, `CDataAchievementFurnitureReward`, `CDataAchieveRewardCommon`, the Season 3 `CDataAchievementCompleteElement` {u32, u8} (struct name I); includes Packet and Pawn (`CDataAchievementIdentifier`) | 27.0.2, 27.1.2, 27.2.2, 27.3.2, 27.4.1, 27.4.2, 27.8.16, 27.9.16 |
+| `Equip.hexpat` | group 29 EQUIP CData (T012 §1, §13, §19): `CDataS2CCharacterEquipInfo` (also the C2S element), `CDataPawnEquipInfo`, `CDataItemEquipElement` (Season 3 through `EquipElementParam`'s u16), and `CDataEquipChangeUnk` (struct name I), the one type for the Season 3 tail of PC reader `0x765f70` {u8, list {u8, u16}} (12 callers); includes Packet and Pawn. The report proposed `Item.hexpat`; a separate file keeps Pawn out of Item's includes | 29.0.2, 29.1.1, 29.1.2, 29.2.1, 29.2.2, 29.15.2 |
+| `Shop.hexpat` | group 20 SHOP Season 3 CData (T012 §6, §19): `CDataGoodsParam` and `CDataGoodsRequirement` (names I with basis, or `unk_`); includes Packet only | 20.0.2 |
+| `Gacha.hexpat` | group 39 GACHA CData (T012 §1, §16, §19): `CDataGachaItemInfo`, the Season 3 `CDataGachaSettlementInfo` (+ u32), `CDataGachaDrawInfo`, `CDataGachaDrawGroupInfo`, `CDataGachaInfo`; distinct from 57.0.2's box gacha types; includes Packet only | 39.0.2, 39.1.2 |
+| `Loading.hexpat` | `CDataLoadingInfoSchedule` (T012 §1, §17); includes Packet only | 43.0.2 |
 
 Each structure comment names the PC reader or writer VA (PC 03040008 database, image base 0x400000)
 and the PS4 02020005 DWARF type, and carries a mark: V means read in IDA, I means inferred. A field
@@ -162,7 +167,10 @@ MAIL and 45 STAMP; counts after their first export, 2026-11-02, T009b). T010 is
 `specs/006-packet-pattern-coverage/research/T010-gp-clan.md` (groups 28 GP and 31 CLAN; counts after
 their first export, 2026-11-02, T010b). T011 is
 `specs/006-packet-pattern-coverage/research/T011-party-profile-friend.md` (groups 5 (user list), 6
-PARTY, 16 FRIEND, 17 BLACK_LIST and 26 PROFILE; counts after their first export, 2026-11-02, T011b).
+PARTY, 16 FRIEND, 17 BLACK_LIST and 26 PROFILE; counts after their first export, 2026-11-02, T011b). T012 is
+`specs/006-packet-pattern-coverage/research/T012-achievement-equip-skill.md` (groups 19 SKILL, 20
+SHOP, 25 ORB_DEVOTE, 27 ACHIEVEMENT, 29 EQUIP, 39 GACHA and 43 LOADING_INFO; counts after their first
+export, 2026-11-02, T012b).
 
 | Id | Pattern | Report | Status |
 | --- | --- | --- | --- |
@@ -438,8 +446,16 @@ PARTY, 16 FRIEND, 17 BLACK_LIST and 26 PROFILE; counts after their first export,
 | 17.0.1 | `C2S_BLACK_LIST_GET_BLACK_LIST_REQ` | T011 §12 | 41/41 fit (no body) |
 | 17.0.2 | `S2C_BLACK_LIST_GET_BLACK_LIST_RES` | T011 §12 | 41/41 fit (list never non-empty) |
 | 18.0.2 | `S2C_GROUP_CHAT_GROUP_CHAT_GET_MEMBER_LIST_RES` | P11b §18 | 41/41 fit |
+| 19.1.1 | `C2S_SKILL_GET_ACQUIRABLE_SKILL_LIST_REQ` | T012 §2 | 4/4 fit, slack 2 (Season 3 + u32; the PS4 body fits too: the PC writer decides) |
 | 19.1.2 | `S2C_SKILL_GET_ACQUIRABLE_SKILL_LIST_RES` | P11b §16 | 4/4 fit |
+| 19.2.1 | `C2S_SKILL_GET_ACQUIRABLE_ABILITY_LIST_REQ` | T012 §2 | 16/16 fit, slack 2 (Season 3 + u32; the PS4 body fits too: the PC writer decides) |
 | 19.2.2 | `S2C_SKILL_GET_ACQUIRABLE_ABILITY_LIST_RES` | P11b §17 | 16/16 fit |
+| 19.28.1 | `C2S_SKILL_GET_CURRENT_SET_SKILL_LIST_REQ` | T012 §3 | 41/41 fit (no body) |
+| 19.28.2 | `S2C_SKILL_GET_CURRENT_SET_SKILL_LIST_RES` | T012 §3 | 41/41 fit |
+| 20.0.1 | `C2S_SHOP_GET_SHOP_GOODS_LIST_REQ` | T012 §4 | 18/18 fit |
+| 20.0.2 | `S2C_SHOP_GET_SHOP_GOODS_LIST_RES` | T012 §6 | 18/18 fit (Season 3 body; the PS4 body fails 18/18) |
+| 20.1.1 | `C2S_SHOP_BUY_SHOP_GOODS_REQ` | T012 §5 | 17/17 fit, slack 10 |
+| 20.1.2 | `S2C_SHOP_BUY_SHOP_GOODS_RES` | T012 §7 | 17/17 fit, slack 14 (Season 3 drops the PS4 u32, V by the PC reader) |
 | 23.0.1 | `C2S_AREA_GET_AREA_MASTER_INFO_REQ` | P11a §18 | 42/42 fit |
 | 23.0.2 | `S2C_AREA_GET_AREA_MASTER_INFO_RES` | P11a §17 | 42/42 fit |
 | 23.3.1 | `C2S_AREA_GET_AREA_SUPPLY_INFO_REQ` | T006 §4 | 13/13 fit |
@@ -455,12 +471,26 @@ PARTY, 16 FRIEND, 17 BLACK_LIST and 26 PROFILE; counts after their first export,
 | 23.12.1 | `C2S_AREA_GET_AREA_BASE_INFO_LIST_REQ` | T006 §4 | 72/72 fit (no body) |
 | 23.12.2 | `S2C_AREA_GET_AREA_BASE_INFO_LIST_RES` | P11a §16 | 72/72 fit |
 | 23.13.16 | `S2C_AREA_POINT_UP_NTC` | P11b §7 | 29/29 fit |
+| 25.5.1 | `C2S_ORB_DEVOTE_GET_ORB_GAIN_EXTEND_PARAM_REQ` | T012 §8 | 43/43 fit (no body) |
+| 25.5.2 | `S2C_ORB_DEVOTE_GET_ORB_GAIN_EXTEND_PARAM_RES` | T012 §8 | 43/43 fit |
 | 26.1.1 | `C2S_PROFILE_GET_MY_CHARACTER_PROFILE_REQ` | T011 §14 | 4/4 fit (no body) |
 | 26.1.2 | `S2C_PROFILE_GET_MY_CHARACTER_PROFILE_RES` | T011 §14 | 4/4 fit, slack 0 (Season 3: second job orb list, V; the PS4 body fails 4/4) |
 | 26.12.1 | `C2S_PROFILE_SET_SHORTCUT_LIST_REQ` | T011 §15 | 42/42 fit |
 | 26.12.2 | `S2C_PROFILE_SET_SHORTCUT_LIST_RES` | T011 §15 | 42/42 fit, slack 15 |
 | 26.14.1 | `C2S_PROFILE_SET_COMMUNICATION_SHORTCUT_LIST_REQ` | T011 §16 | 41/41 fit |
 | 26.14.2 | `S2C_PROFILE_SET_COMMUNICATION_SHORTCUT_LIST_RES` | T011 §16 | 41/41 fit, slack 15 |
+| 27.0.1 | `C2S_ACHIEVEMENT_ACHIEVEMENT_GET_PROGRESS_LIST_REQ` | T012 §9 | 1/1 fit (no body) |
+| 27.0.2 | `S2C_ACHIEVEMENT_ACHIEVEMENT_GET_PROGRESS_LIST_RES` | T012 §9 | 1/1 fit (678 entries) |
+| 27.1.1 | `C2S_ACHIEVEMENT_ACHIEVEMENT_GET_REWARD_LIST_REQ` | T012 §9 | 1/1 fit (no body) |
+| 27.1.2 | `S2C_ACHIEVEMENT_ACHIEVEMENT_GET_REWARD_LIST_RES` | T012 §9 | 1/1 fit, slack 1 (50 entries) |
+| 27.2.1 | `C2S_ACHIEVEMENT_ACHIEVEMENT_GET_FURNITURE_REWARD_LIST_REQ` | T012 §9 | 2/2 fit (no body) |
+| 27.2.2 | `S2C_ACHIEVEMENT_ACHIEVEMENT_GET_FURNITURE_REWARD_LIST_RES` | T012 §9 | 2/2 fit (136 entries) |
+| 27.3.1 | `C2S_ACHIEVEMENT_ACHIEVEMENT_GET_RECEIVABLE_REWARD_LIST_REQ` | T012 §9 | 42/42 fit (no body) |
+| 27.3.2 | `S2C_ACHIEVEMENT_ACHIEVEMENT_GET_RECEIVABLE_REWARD_LIST_RES` | T012 §9 | 42/42 fit |
+| 27.4.1 | `C2S_ACHIEVEMENT_ACHIEVEMENT_REWARD_RECEIVE_REQ` | T012 §9 | 1/1 fit, slack 14 |
+| 27.4.2 | `S2C_ACHIEVEMENT_ACHIEVEMENT_REWARD_RECEIVE_RES` | T012 §9 | 1/1 fit (both lists empty: code-only) |
+| 27.8.16 | `S2C_ACHIEVEMENT_ACHIEVEMENT_COMPLETE_NTC` | T012 §10 | 8/8 fit, slack 14 (code name V by behaviour; Season 3 element {u32, u8}; the PS4 framing fails 8/8, the PS4 element fits: the PC reader decides) |
+| 27.9.16 | `S2C_ACHIEVEMENT_ACHIEVEMENT_RECEIVABLE_REWARD_NTC` | T012 §11 | 3/3 fit, slack 14 (code name V by list type and behaviour; the PS4 framing fails 3/3) |
 | 28.0.1 | `C2S_GP_GET_GP_REQ` | T010 §2 | 4/4 fit (no body) |
 | 28.0.2 | `S2C_GP_GET_GP_RES` | T010 §2 | 4/4 fit |
 | 28.2.1 | `C2S_GP_GET_GP_PERIOD_REQ` | T010 §3 | 42/42 fit (no body) |
@@ -481,6 +511,15 @@ PARTY, 16 FRIEND, 17 BLACK_LIST and 26 PROFILE; counts after their first export,
 | 28.22.2 | `S2C_GP_GP_EDIT_GET_VOICE_LIST_RES` | T010 §10 | 2/2 fit |
 | 28.25.16 | `S2C_GP_COURSE_START_NTC` | T010 §13 | 22/22 fit (code name V by behaviour; the PS4 framing fits too) |
 | 28.26.16 | `S2C_GP_COURSE_EXTEND_NTC` | T010 §14 | 21/21 fit (code name V by behaviour; the PS4 framing fits too) |
+| 29.0.1 | `C2S_EQUIP_GET_CHARACTER_EQUIP_LIST_REQ` | T012 §13 | 41/41 fit (no body) |
+| 29.0.2 | `S2C_EQUIP_GET_CHARACTER_EQUIP_LIST_RES` | T012 §13 | 41/41 fit |
+| 29.1.1 | `C2S_EQUIP_CHANGE_CHARACTER_EQUIP_REQ` | T012 §13 | 5/5 fit |
+| 29.1.2 | `S2C_EQUIP_CHANGE_CHARACTER_EQUIP_RES` | T012 §13 | 5/5 fit (Season 3 tail `CDataEquipChangeUnk`, always Job 10 + empty list; the PS4 body fits too: the PC reader decides) |
+| 29.2.1 | `C2S_EQUIP_CHANGE_CHARACTER_STORAGE_EQUIP_REQ` | T012 §13 | 2/2 fit |
+| 29.2.2 | `S2C_EQUIP_CHANGE_CHARACTER_STORAGE_EQUIP_RES` | T012 §13 | 2/2 fit, slack 10 (Season 3 tail as 29.1.2) |
+| 29.15.1 | `C2S_EQUIP_GET_CRAFT_LOCKED_ELEMENT_LIST_REQ` | T012 §13 | 2/2 fit (no body) |
+| 29.15.2 | `S2C_EQUIP_GET_CRAFT_LOCKED_ELEMENT_LIST_RES` | T012 §13 | 2/2 fit (list never non-empty: Season 3 element code-only) |
+| 29.17.16 | `S2C_EQUIP_CHANGE_CHARACTER_EQUIP_LOBBY_NTC` | T012 §14 | 23/23 fit (code name V by shape and lobby check; Season 3 `CDataEquipItemInfo`: the PS4 element fails 23/23, the PS4 framing 23/23) |
 | 31.4.1 | `C2S_CLAN_CLAN_GET_MY_MEMBER_LIST_REQ` | T010 §16 | 41/41 fit (no body) |
 | 31.4.2 | `S2C_CLAN_CLAN_GET_MY_MEMBER_LIST_RES` | P11b §6 | 41/41 fit |
 | 31.9.1 | `C2S_CLAN_CLAN_GET_JOIN_REQUESTED_LIST_REQ` | T010 §16 | 21/21 fit (no body) |
@@ -535,6 +574,12 @@ PARTY, 16 FRIEND, 17 BLACK_LIST and 26 PROFILE; counts after their first export,
 | 37.11.1 | `C2S_MAIL_SYSTEM_MAIL_GET_ALL_ITEM_REQ` | T009 §16 | 5/5 fit (Season 3 u8: code-only, the PS4 body fits too) |
 | 37.11.2 | `S2C_MAIL_SYSTEM_MAIL_GET_ALL_ITEM_RES` | T009 §16 | 5/5 fit |
 | 37.13.16 | `S2C_MAIL_SYSTEM_MAIL_SEND_NTC` | T009 §17 | 5/5 fit (code name V by behaviour; the PS4 framing fits too) |
+| 39.0.1 | `C2S_GACHA_GACHA_LIST_REQ` | T012 §16 | 26/26 fit (no body) |
+| 39.0.2 | `S2C_GACHA_GACHA_LIST_RES` | T012 §16 | 26/26 fit (Season 3 settlement u32; the PS4 settlement fails 26/26) |
+| 39.1.1 | `C2S_GACHA_GACHA_BUY_REQ` | T012 §16 | 21/21 fit |
+| 39.1.2 | `S2C_GACHA_GACHA_BUY_RES` | T012 §16 | 21/21 fit, slack 15 |
+| 43.0.1 | `C2S_LOADING_INFO_LOADING_GET_INFO_REQ` | T012 §17 | 42/42 fit (no body) |
+| 43.0.2 | `S2C_LOADING_INFO_LOADING_GET_INFO_RES` | T012 §17 | 42/42 fit |
 | 44.0.1 | `C2S_CERT_CLIENT_CHALLENGE_REQ` | T003 §15 | 83/83 fit, slack 12 (no header, body at offset 0) |
 | 44.0.2 | `S2C_CERT_CLIENT_CHALLENGE_RES` | T003 §16 | 83/83 fit |
 | 44.1.16 | `S2C_CERT_GAME_SERVER_CERT_NTC` | T003 §1, §15 | 83/83 fit, slack 12 (no header, body at offset 0) |
@@ -841,3 +886,35 @@ PARTY, 16 FRIEND, 17 BLACK_LIST and 26 PROFILE; counts after their first export,
 - **u64 OM Key in JSON:** `CDataOmData.Key` carries the high bit (0x80000000_001415b3), so the JSON
   integer exceeds 2^53; a reader that parses numbers as doubles rounds it (Python `json` keeps it
   exact).
+- **Season 3-exclusive, not patterned (T012):** 27.10.1/27.10.2 ACHIEVEMENT_GET_CATEGORY_PROGRESS_LIST
+  (T012 §12: no PS4 symbol, string or packet, V; REQ `0x81dc90` writes one u8, RES reader `0x7ff650`
+  uses the 27.0.2 list reader `0x758810`, so its body is `MtTypedArray<CDataAchievementProgress>` of
+  `include/Achievement.hexpat`). 5 + 17 captures, 5/5 + 17/17 fit in the walk. They go to a later spec
+  with the other exclusive ids.
+- **Group 29 unresolved, not patterned (T012):** 29.23.16 `S2C_EQUIP_29_23_16_NTC` (T012 §15): the PC
+  handler `0x7d5730` is `mov eax, 1; retn 4` and reads nothing (V); the PS4 candidate
+  `CHANGE_CHARACTER_EQUIP_JOB_ITEM_NOTICE` is rejected (element 18 bytes, not 5). Its capture shape
+  (u32, list {u32, u32, u32, u8, u32, u8}, I, 2/2) is in that section.
+- **Groups 19, 20, 25, 27, 29, 39, 43 names without code backing (T012 §21):** 19.1.1/19.2.1
+  `CharacterId` (I: the player's CharacterID in the same stream), 20.0.2 `ShopID` (I: echoes 20.0.1),
+  its two u8 (`unk_u8_0`, `unk_u8_1`) and the goods and requirement fields of `include/Shop.hexpat`
+  (`Index` I: every 20.1.1 GoodsIndex is one, 17/17; `Price` I: unit price x 20.1.1 Num = 20.1.1
+  Price, 17/17; the rest `unk_`), 20.1.2 `PointType` (I: first PS4 member), 27.8.16 `Category` (I:
+  PC tests it == 6 where PS4 tests mCategory == 6), the `CDataEquipChangeUnk` tail (`Job` I: compared
+  with the current job; `unk_List`) and the 39.0.2 settlement `unk_u32` (0 in 520/520).
+- **Groups 19, 20, 25, 27, 29, 39, 43 code-only (T012 §21):** never non-empty in the captures: the
+  27.4.2 lists, the 29.15.2 list (so the Season 3 `CDataItemEquipElement` is untested), the
+  29.1.2/29.2.2 tail list; the 20.0.2 s64 pairs are always 0. Counter tests that cannot separate PC
+  from PS4 (the PC code decides): 19.1.1/19.2.1 (slack), 20.1.2 (by length; the PS4 u32 reads
+  padding), the 27.8.16 element (single elements), the 29.1.2/29.2.2 tail (slack). No captured RES of
+  these groups has Error != 0. Consumers not traced: the 20.0.2 goods and requirement fields, the
+  `0x765f70` tail list beyond `sub_B9E8C0`, the gacha settlement u32.
+- **Types added (T012b):** new includes `Achievement.hexpat`, `Equip.hexpat`, `Shop.hexpat`,
+  `Gacha.hexpat`, `Loading.hexpat`; `Skill.hexpat` gains `CDataNormalSkillParam` and
+  `CDataSetAcquirementParam`. No existing type changed: `EquipElementParam` (Context) already has the
+  Season 3 u16, `CDataEquipItemInfo` (Login), `CDataEquipJobItem`, `CDataOrbGainExtendParam` and
+  `CDataAchievementIdentifier` (Pawn) are reused as they are. The JSON of the existing Skill.hexpat
+  users 19.1.2 and 19.2.2 came out byte-identical on re-export (20/20: 4 + 16, `cmp`). No include
+  cycle (Achievement, Equip -> Pawn -> Login -> Character, Context, GP; Shop, Gacha, Loading ->
+  Packet). Server misplacement found (T012 §20, lead only): Arrowgene's `CDataNormalSkillParam` swaps
+  SkillNo and Index; its 27.8.16 element lacks the u8.
