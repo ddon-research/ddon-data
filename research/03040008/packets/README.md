@@ -40,6 +40,9 @@ carry now. Every pattern starts with `#pragma endian big` and includes what it n
 | `Shop.hexpat` | group 20 SHOP Season 3 CData (T012 §6, §19): `CDataGoodsParam` and `CDataGoodsRequirement` (names I with basis, or `unk_`); includes Packet only | 20.0.2 |
 | `Gacha.hexpat` | group 39 GACHA CData (T012 §1, §16, §19): `CDataGachaItemInfo`, the Season 3 `CDataGachaSettlementInfo` (+ u32), `CDataGachaDrawInfo`, `CDataGachaDrawGroupInfo`, `CDataGachaInfo`; distinct from 57.0.2's box gacha types; includes Packet only | 39.0.2, 39.1.2 |
 | `Loading.hexpat` | `CDataLoadingInfoSchedule` (T012 §1, §17); includes Packet only | 43.0.2 |
+| `Craft.hexpat` | group 30 CRAFT and 54 CRAFT_RECIPE CData (T013 §1, §16): `CDataCraftPawnInfo`, the Season 3 `CDataCraftProgress` (+ u32 list, + u16), `CDataCraftPawnList`, `CDataCraftTimeSaveCost`, `CDataCraftSkillRate`, the Season 3 craft-setting tail types `CDataCraftSettingUnkPawn` and `CDataCraftSettingUnkElement` (struct names I), the Season 3 `CDataMDataCraftMaterial` (+ bool) and `CDataMDataCraftRecipe`; includes Packet and Pawn (`CDataPawnCraftSkill`) | 30.0.2, 30.13.2, 30.15.2, 54.0.2 |
+| `EntryBoard.hexpat` | group 34 ENTRY_BOARD CData (T013 §1, §16), Season 3 shapes: `CDataEntryRecruitData` (+ u32), `CDataEntryItemParam`, `CDataEntryMemberData` (+ u32), `CDataEntryItem` (+ trailing bool), `CDataEntryBoardItemSearchParameter` (+ u32 x2); includes Packet and Character | 34.1.1, 34.1.2, 34.2.1, 34.2.2, 34.14.16 |
+| `Dispel.hexpat` | the Season 3 `CDataDispelCategoryInfo` {u32, MtString} (T013 §1, §10, §16); includes Packet only. 51.0.2 keeps its own dispel item types | 51.2.2 |
 
 Each structure comment names the PC reader or writer VA (PC 03040008 database, image base 0x400000)
 and the PS4 02020005 DWARF type, and carries a mark: V means read in IDA, I means inferred. A field
@@ -170,7 +173,11 @@ their first export, 2026-11-02, T010b). T011 is
 PARTY, 16 FRIEND, 17 BLACK_LIST and 26 PROFILE; counts after their first export, 2026-11-02, T011b). T012 is
 `specs/006-packet-pattern-coverage/research/T012-achievement-equip-skill.md` (groups 19 SKILL, 20
 SHOP, 25 ORB_DEVOTE, 27 ACHIEVEMENT, 29 EQUIP, 39 GACHA and 43 LOADING_INFO; counts after their first
-export, 2026-11-02, T012b).
+export, 2026-11-02, T012b). T013 is
+`specs/006-packet-pattern-coverage/research/T013-small-groups.md` (groups 9 (save response), 15
+(event notices), 18 (group chat request), 30 CRAFT, 34 ENTRY_BOARD, 41 CHARACTER_EDIT, 51 DISPEL, 52
+(furniture request), 54 CRAFT_RECIPE and 57 (box gacha request); counts after their first export,
+2026-11-02, T013b).
 
 | Id | Pattern | Report | Status |
 | --- | --- | --- | --- |
@@ -300,6 +307,7 @@ export, 2026-11-02, T012b).
 | 8.37.16 | `S2C_PAWN_JOIN_PARTY_PAWN_NTC` | T007 §2.12 | 9/9 fit (code name JOIN_PARTY_PAWN_NOTICE, V: unique PS4 reader + guard) |
 | 9.0.2 | `S2C_BINARY_SAVE_GET_CHARACTER_BIN_SAVEDATA_RES` | P4 §3, T001b §4 | no capture (synthetic: versions 0x19, 0x13, 0x0C) |
 | 9.1.1 | `C2S_BINARY_SAVE_SET_CHARACTER_BIN_SAVEDATA_REQ` | P4 §3, T001b | 47/47 fit; 47/47 equal T001b's walk field by field |
+| 9.1.2 | `S2C_BINARY_SAVE_SET_CHARACTER_BIN_SAVEDATA_RES` | T013 §11 | 47/47 fit, slack 15 (header only) |
 | 10.0.1 | `C2S_ITEM_USE_BAG_ITEM_REQ` | T008 §3.1 | 18/18 fit |
 | 10.0.2 | `S2C_ITEM_USE_BAG_ITEM_RES` | T008 §3.1 | 21/21 fit, slack 15 |
 | 10.0.16 | `S2C_ITEM_USE_BAG_ITEM_NTC` | T008 §3.2 | 18/18 fit (code name USE_BAG_ITEM_NOTICE, V by behaviour; the PS4 framing fits too) |
@@ -439,12 +447,15 @@ export, 2026-11-02, T012b).
 | 14.10.16 | `C2S_WARP_WARP_START_NTC` | T008 §2.7 | 62/62 fit (no body; code name C2S_WARP_END_NTC, V by call site: the raw name WARP_START is contradicted) |
 | 14.12.1 | `C2S_WARP_GET_RETURN_LOCATION_REQ` | T008 §2.9 | 9/9 fit (no body) |
 | 14.12.2 | `S2C_WARP_GET_RETURN_LOCATION_RES` | T008 §2.9 | 9/9 fit |
+| 15.0.16 | `C2S_EVENT_START_NTC` | T013 §12 | 8/8 fit (no body; V by call graph) |
+| 15.1.16 | `C2S_EVENT_END_NTC` | T013 §12 | 8/8 fit (no body; V by call graph) |
 | 16.0.1 | `C2S_FRIEND_GET_FRIEND_LIST_REQ` | T011 §10 | 41/41 fit (no body) |
 | 16.0.2 | `S2C_FRIEND_GET_FRIEND_LIST_RES` | T011 §10 | 41/41 fit (Season 3 through the list element's u8; the PS4 `CDataFriendInfo` fails 20/41) |
 | 16.6.1 | `C2S_FRIEND_GET_RECENT_CHARACTER_LIST_REQ` | T011 §11 | 41/41 fit (no body) |
 | 16.6.2 | `S2C_FRIEND_GET_RECENT_CHARACTER_LIST_RES` | T011 §11 | 41/41 fit (list never non-empty) |
 | 17.0.1 | `C2S_BLACK_LIST_GET_BLACK_LIST_REQ` | T011 §12 | 41/41 fit (no body) |
 | 17.0.2 | `S2C_BLACK_LIST_GET_BLACK_LIST_RES` | T011 §12 | 41/41 fit (list never non-empty) |
+| 18.0.1 | `C2S_GROUP_CHAT_GROUP_CHAT_GET_MEMBER_LIST_REQ` | T013 §11 | 41/41 fit (GroupID 0 in all) |
 | 18.0.2 | `S2C_GROUP_CHAT_GROUP_CHAT_GET_MEMBER_LIST_RES` | P11b §18 | 41/41 fit |
 | 19.1.1 | `C2S_SKILL_GET_ACQUIRABLE_SKILL_LIST_REQ` | T012 §2 | 4/4 fit, slack 2 (Season 3 + u32; the PS4 body fits too: the PC writer decides) |
 | 19.1.2 | `S2C_SKILL_GET_ACQUIRABLE_SKILL_LIST_RES` | P11b §16 | 4/4 fit |
@@ -520,6 +531,16 @@ export, 2026-11-02, T012b).
 | 29.15.1 | `C2S_EQUIP_GET_CRAFT_LOCKED_ELEMENT_LIST_REQ` | T012 §13 | 2/2 fit (no body) |
 | 29.15.2 | `S2C_EQUIP_GET_CRAFT_LOCKED_ELEMENT_LIST_RES` | T012 §13 | 2/2 fit (list never non-empty: Season 3 element code-only) |
 | 29.17.16 | `S2C_EQUIP_CHANGE_CHARACTER_EQUIP_LOBBY_NTC` | T012 §14 | 23/23 fit (code name V by shape and lobby check; Season 3 `CDataEquipItemInfo`: the PS4 element fails 23/23, the PS4 framing 23/23) |
+| 30.0.1 | `C2S_CRAFT_GET_CRAFT_PROGRESS_LIST_REQ` | T013 §2 | 10/10 fit (no body) |
+| 30.0.2 | `S2C_CRAFT_GET_CRAFT_PROGRESS_LIST_RES` | T013 §1, §2 | 10/10 fit (progress list never non-empty: Season 3 `CDataCraftProgress` code-only) |
+| 30.10.1 | `C2S_CRAFT_CRAFT_SKILL_UP_REQ` | T013 §3 | 1/1 fit |
+| 30.10.2 | `S2C_CRAFT_CRAFT_SKILL_UP_RES` | T013 §3 | 1/1 fit |
+| 30.12.1 | `C2S_CRAFT_RESET_CRAFTPOINT_REQ` | T013 §3 | 1/1 fit |
+| 30.12.2 | `S2C_CRAFT_RESET_CRAFTPOINT_RES` | T013 §3 | 1/1 fit (5 skills) |
+| 30.13.1 | `C2S_CRAFT_GET_CRAFT_SETTING_REQ` | T013 §4 | 2/2 fit (no body) |
+| 30.13.2 | `S2C_CRAFT_GET_CRAFT_SETTING_RES` | T013 §1, §4 | 2/2 fit, slack 1 (Season 3 tail; the PS4 body fails 2/2) |
+| 30.15.1 | `C2S_CRAFT_GET_CRAFT_IR_COLLECTION_VALUE_LIST_REQ` | T013 §3 | 2/2 fit (no body) |
+| 30.15.2 | `S2C_CRAFT_GET_CRAFT_IR_COLLECTION_VALUE_LIST_RES` | T013 §3 | 2/2 fit (10 rates) |
 | 31.4.1 | `C2S_CLAN_CLAN_GET_MY_MEMBER_LIST_REQ` | T010 §16 | 41/41 fit (no body) |
 | 31.4.2 | `S2C_CLAN_CLAN_GET_MY_MEMBER_LIST_RES` | P11b §6 | 41/41 fit |
 | 31.9.1 | `C2S_CLAN_CLAN_GET_JOIN_REQUESTED_LIST_REQ` | T010 §16 | 21/21 fit (no body) |
@@ -545,6 +566,17 @@ export, 2026-11-02, T012b).
 | 33.16.16 | `S2C_JOB_PAWN_JOB_LEVEL_UP_NTC` | T006 §1.6 | 3/3 fit, slack 2 |
 | 33.17.16 | `S2C_JOB_PAWN_JOB_LEVEL_UP_MEMBER_NTC` | T006 §1.7 | 3/3 fit |
 | 33.20.16 | `S2C_JOB_PLAY_POINT_NTC` | T006 §1.8 | 14/14 fit (code name UPDATE_PLAY_POINT_NOTICE, V by behaviour) |
+| 34.1.1 | `C2S_ENTRY_BOARD_ENTRY_BOARD_ITEM_LIST_REQ` | T013 §6 | 3/3 fit, slack 1 (Season 3 search u32 x2; the PS4 body fits too: the PC writer decides) |
+| 34.1.2 | `S2C_ENTRY_BOARD_ENTRY_BOARD_ITEM_LIST_RES` | T013 §1, §6 | 3/3 fit (one item with 8 members; the PS4 element fails 1/3) |
+| 34.2.1 | `C2S_ENTRY_BOARD_ENTRY_BOARD_ITEM_CREATE_REQ` | T013 §6 | 1/1 fit (Season 3 recruit; the PS4 body fails 1/1) |
+| 34.2.2 | `S2C_ENTRY_BOARD_ENTRY_BOARD_ITEM_CREATE_RES` | T013 §6 | 1/1 fit (Season 3 item; the PS4 body fails 1/1) |
+| 34.6.1 | `C2S_ENTRY_BOARD_ENTRY_BOARD_ITEM_READY_REQ` | T013 §7 | 1/1 fit (no body) |
+| 34.6.2 | `S2C_ENTRY_BOARD_ENTRY_BOARD_ITEM_READY_RES` | T013 §7 | 1/1 fit, slack 15 (header only) |
+| 34.6.16 | `S2C_ENTRY_BOARD_ENTRY_BOARD_ITEM_READY_NTC` | T013 §7 | 1/1 fit (V by behaviour; the PS4 framing fails 1/1) |
+| 34.7.1 | `C2S_ENTRY_BOARD_ENTRY_BOARD_ITEM_FORCE_START_REQ` | T013 §7 | 1/1 fit (no body) |
+| 34.7.2 | `S2C_ENTRY_BOARD_ENTRY_BOARD_ITEM_FORCE_START_RES` | T013 §7 | 1/1 fit, slack 15 (header only) |
+| 34.14.16 | `S2C_ENTRY_BOARD_ENTRY_BOARD_ITEM_CHANGE_MEMBER_NTC` | T013 §8 | 1/1 fit (the PS4 element and framing fail 1/1) |
+| 34.16.16 | `S2C_ENTRY_BOARD_ENTRY_BOARD_ITEM_RESERVE_NTC` | T013 §8 | 1/1 fit, slack 15 (match and names I: unique {u32, u32} shape; the PS4 framing fits too) |
 | 35.0.16 | `S2C_CONTEXT_GET_LOBBY_PLAYER_CONTEXT_NTC` | P4 §2.3 | 264/264 fit |
 | 35.3.16 | `S2C_CONTEXT_GET_PARTY_MYPAWN_CONTEXT_NTC` | P4 §2.2 | 9/9 fit |
 | 35.5.16 | `C2S_CONTEXT_35_5_16_NTC` | P4 §2.3 | 2/2 fit |
@@ -578,6 +610,8 @@ export, 2026-11-02, T012b).
 | 39.0.2 | `S2C_GACHA_GACHA_LIST_RES` | T012 §16 | 26/26 fit (Season 3 settlement u32; the PS4 settlement fails 26/26) |
 | 39.1.1 | `C2S_GACHA_GACHA_BUY_REQ` | T012 §16 | 21/21 fit |
 | 39.1.2 | `S2C_GACHA_GACHA_BUY_RES` | T012 §16 | 21/21 fit, slack 15 |
+| 41.3.1 | `C2S_CHARACTER_EDIT_UPDATE_PAWN_EDIT_PARAM_REQ` | T013 §9 | 1/1 fit, slack 6 (Season 3 price {u8, u32}; the PS4 body fits too: the PC writer decides) |
+| 41.3.2 | `S2C_CHARACTER_EDIT_UPDATE_PAWN_EDIT_PARAM_RES` | T013 §9 | 1/1 fit, slack 15 (header only: Season 3 drops the PS4 u32 GP; the PS4 body fits too) |
 | 43.0.1 | `C2S_LOADING_INFO_LOADING_GET_INFO_REQ` | T012 §17 | 42/42 fit (no body) |
 | 43.0.2 | `S2C_LOADING_INFO_LOADING_GET_INFO_RES` | T012 §17 | 42/42 fit |
 | 44.0.1 | `C2S_CERT_CLIENT_CHALLENGE_REQ` | T003 §15 | 83/83 fit, slack 12 (no header, body at offset 0) |
@@ -591,7 +625,11 @@ export, 2026-11-02, T012b).
 | 50.0.2 | `S2C_ITEM_SORT_GET_ITEM_SORTDATA_BIN_RES` | T008 §4.1 | 46/46 fit (list never non-empty) |
 | 50.1.1 | `C2S_ITEM_SORT_SET_ITEM_SORTDATA_BIN_REQ` | T008 §4.3 | 59/59 fit (Season 3 trailing bool: code-only, the PS4 body fits too) |
 | 50.1.2 | `S2C_ITEM_SORT_SET_ITEM_SORTDATA_BIN_RES` | T008 §4.3 | 59/59 fit, slack 15 |
+| 51.0.1 | `C2S_DISPEL_GET_DISPEL_ITEM_LIST_REQ` | T013 §10 | 1/1 fit |
 | 51.0.2 | `S2C_DISPEL_GET_DISPEL_ITEM_LIST_RES` | P11a §6 | 1/1 fit |
+| 51.2.1 | `C2S_DISPEL_GET_DISPEL_ITEM_SETTING_REQ` | T013 §10 | 1/1 fit (Season 3 u32; the empty PS4 body fits too) |
+| 51.2.2 | `S2C_DISPEL_GET_DISPEL_ITEM_SETTING_RES` | T013 §1, §10 | 1/1 fit (Season 3 u32 Category + bool; the PS4 body fails 1/1) |
+| 52.1.1 | `C2S_MY_ROOM_FURNITURE_LIST_GET_REQ` | T013 §11 | 20/20 fit (no body) |
 | 52.1.2 | `S2C_MY_ROOM_FURNITURE_LIST_GET_RES` | P11a §10 | 20/20 fit (T010b: `CDataFurnitureLayout` from `include/Furniture.hexpat`, `unOmID` renamed `OmID`) |
 | 53.4.1 | `C2S_PARTNER_PAWN_PAWN_LIKABILITY_REWARD_LIST_GET_REQ` | T007 §3.1 | 40/40 fit (no body) |
 | 53.4.2 | `S2C_PARTNER_PAWN_PAWN_LIKABILITY_REWARD_LIST_GET_RES` | T007 §3.1 | 40/40 fit (list never non-empty) |
@@ -602,6 +640,9 @@ export, 2026-11-02, T012b).
 | 53.8.1 | `C2S_PARTNER_PAWN_PRESENT_FOR_PARTNER_PAWN_REQ` | T007 §3.3 | 20/20 fit |
 | 53.8.2 | `S2C_PARTNER_PAWN_PRESENT_FOR_PARTNER_PAWN_RES` | T007 §3.3 | 20/20 fit |
 | 53.9.16 | `S2C_PARTNER_PAWN_LIKABILITY_UP_NTC` | T007 §3.4 | 23/23 fit (code name PAWN_LIKABILITY_UP_NTC, V by behaviour; the PS4 framing fits too) |
+| 54.0.1 | `C2S_CRAFT_RECIPE_GET_CRAFT_RECIPE_REQ` | T013 §14 | 3/3 fit |
+| 54.0.2 | `S2C_CRAFT_RECIPE_GET_CRAFT_RECIPE_RES` | T013 §1, §14 | 3/3 fit (Season 3 material bool; the PS4 material fails 3/3) |
+| 57.0.1 | `C2S_BOX_GACHA_BOX_GACHA_LIST_REQ` | T013 §11 | 3/3 fit (no body) |
 | 57.0.2 | `S2C_BOX_GACHA_BOX_GACHA_LIST_RES` | P11a §8 | 3/3 fit |
 | 58.0.1 | `C2S_PAWN_EXPEDITION_PAWN_EXPEDITION_GET_SALLY_INFO_REQ` | T007 §4.1 | 30/30 fit (no body) |
 | 58.0.2 | `S2C_PAWN_EXPEDITION_PAWN_EXPEDITION_GET_SALLY_INFO_RES` | T007 §4.1 | 30/30 fit (ActiveBuffLineup and ClanSallySpot lists never non-empty) |
@@ -918,3 +959,39 @@ export, 2026-11-02, T012b).
   cycle (Achievement, Equip -> Pawn -> Login -> Character, Context, GP; Shop, Gacha, Loading ->
   Packet). Server misplacement found (T012 §20, lead only): Arrowgene's `CDataNormalSkillParam` swaps
   SkillNo and Index; its 27.8.16 element lacks the u8.
+- **Season 3-exclusive or without PS4 counterpart, not patterned (T013):** 34.0.1/34.0.2
+  ENTRY_BOARD_LIST (T013 §5: no PS4 symbol, string or element, exclusive V; 1 + 1 captures),
+  41.5.1/41.5.2 UPDATE_CHARACTER_EDIT_PARAM_EX (§9: no PS4 `EDIT_PARAM_EX` symbol or string,
+  exclusive V; 1 + 1), 41.8.1/41.8.2 GET_SHOP_PRICE (§9: exclusive V; 4 + 4), and group 63 (§13:
+  63.0.16, 63.1.16, 63.2.16, 63.3.16, 63.5.16, 63.6.16, 63.7.16, 63.10.16; no PS4 counterpart, layouts
+  settled by PC code; 45 captures). Their PC readers and wire layouts are in those sections and §16 (the
+  34.0.x element, `CDataCharacterEditPriceInfo` and the group-63 types are not in the includes yet);
+  they go to a later spec with the other exclusive ids. 63.11.16 keeps its spec-005 pattern.
+- **15.0.16/15.1.16 and 34.6.16 identity (T013 §7, §12):** the event start/end notices are matched by
+  call graph (V: same guard and the same 1+1 and 3+3+1 call pattern from the stage event code), 34.6.16
+  by behaviour (V: same calls and SE id 0x134). 34.16.16 RESERVE_NTC is matched by shape only (I: the
+  only {u32, u32} body among the 22 PS4 entry-board packets; the PC handler discards the body), so its
+  field names `NowMember`, `MaxMember` are I.
+- **Groups 30, 34, 41, 51, 54 names without code backing (T013 §18):** the `CDataCraftProgress` u16
+  (`unk_u16`) and u32 list (`unk_u32_list`) with the positions of ItemID, ToppingID and RemainTime
+  around the u16 (I, order); the 30.13.2 Season 3 tail (`unk_PawnList` with `CDataCraftSettingUnkPawn`,
+  `unk_u32_0/1`, `unk_List` with `CDataCraftSettingUnkElement`; struct names I); the 30.15.2 list name
+  `unk_RateList` (the PS4 reader keeps it in a local); the Season 3 entry-board u32 and bool additions
+  (`CDataEntryRecruitData.unk_u32`, `CDataEntryMemberData.unk_u32`, `CDataEntryItem.unk_bool`, the
+  search parameter's `unk_u32_0/1`; 0 in every capture) and `EnableJobList` (I: element type); the
+  41.3.1 `unk_Price` as `CDataWalletPoint` (I: the value pair matches a 41.8.2 price entry); the 51.2.1
+  `unk_u32`, the 51.2.2 `unk_bool` and the 54.0.2 material `unk_bool`.
+- **Groups 30, 34, 41, 51, 54 code-only (T013 §18):** the `CDataCraftProgress` element (the progress
+  list is empty in 10/10). Counter tests that cannot separate PC from PS4 (the PC code decides): 34.1.1
+  (slack), the 34.16.16 PS4 framing (slack 15), 41.3.1, 41.3.2 and 51.2.1 (slack). No captured RES of
+  these groups has Error != 0. PC code read linearly only: the 30.13.2 handler `0x7d0bf0`, list readers
+  `0x760b60` (30.0.2) and `0x76e000` (54.0.2). Consumers not traced: the 30.13.2 tail and the 34 Season 3
+  fields. Server misplacement found (T013 §17, lead only): Arrowgene's `CDataCraftProgress` reads a third
+  `CDataCraftPawnInfo` list where the PC reads a u32 list.
+- **Craft, entry-board and dispel types added; no existing pattern changed (T013b):** no earlier
+  pattern used a type T013 changes (searched the patterns and includes for the craft, entry-board and
+  dispel types: only `CDataPawnCraftSkill` (Pawn.hexpat) is reused, unchanged, and 51.0.2's
+  `CDataDispel*` item types are distinct from `CDataDispelCategoryInfo`). The three new includes add new
+  type names only; no existing include changed, so no existing JSON changes. 9.1.2 needs none of
+  9.1.1's save-blob includes (header-only response). No include cycle (Craft -> Packet, Pawn -> Login ->
+  Character, Context, GP; EntryBoard -> Packet, Character; Dispel -> Packet).
