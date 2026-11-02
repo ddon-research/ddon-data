@@ -40,26 +40,15 @@ Coordinator: main session. One subagent at a time. Method and rules: `spec.md`.
 
 ## Running
 
-- Landed: T002c/T002d (83ce3403dd; 40f80dc80f + 20a4617cd4: 250 first-packet raws re-decrypted);
-  T002e (70201832e1: the 304 B first packets renamed byte-identical to 1.1.16
-  L2C_LOGIN_SERVER_CERT_NTC / 44.1.16 S2C_CERT_GAME_SERVER_CERT_NTC, 2 patterns 42/42 + 83/83 fit);
-  T003 (d6692cf3b9; 383373ed28 + 5bc4846af8: 0.10.16 = SESSION_STATUS_NTC; PC `Send` 0x9d6a20 strips
-  the handshake packet's header); T004 (f7efade6c6; d7d48b68f6).
-- R1 review done (2026-11-02: no wrong-data defects; 8 smaller findings: Arrowgene names as field
-  names in `Server.hexpat`, comment/README slips, report errata). R1b fixes done (45d29a2c57, 7ef48a26de: 1.1.2
-  server-lead keys now `unk_*`, 42/42 re-exported; errata appended to T002/T002c/T003). T005 evidence done (1159abe264: 79 ids,
-  4,352/4,352 fit; Season 3 `CDataQuestList`; 9/11 unresolved settled; 11.7.16, 11.68.16 (I) exclusive;
-  11.88.16, 11.118.16 unresolved: empty PC handlers). T005 patterns done (d6c1a1f061). T006 evidence
-  done (722283dcf1: 23 ids, 3,712/3,712 fit; 33.20.16 = UPDATE_PLAY_POINT_NOTICE; 12.5.x, 12.9.16
-  exclusive). T006 patterns done (bc9279f6c0). T007 evidence done
-  (d5da913504: 43 ids, 1,569/1,569 fit; 8.37.16, 53.9.16 settled). T007 patterns done (441febe4f2).
-  T008 evidence done (2,038/2,038 fit; 14.10.16 = C2S_WARP_END_NTC,
-  raw name WARP_START wrong: add to the Tn rename list). T008 patterns done (4abc0b4b80). Running: R2 reviewer over T005-T008\n  (`briefs/R2-review-T005-T008.md`); next T009 (`briefs/T009-mail-stamp-character.md`); then T010 28 GP + 31 CLAN (`briefs/T010-gp-clan.md`); T011 6 PARTY + 26 PROFILE +
-  16 FRIEND + 17 BLACK + 5 + 24; T012 27 ACHIEVEMENT + 29 EQUIP + 19 SKILL + 39 GACHA + 25 ORB + 43
-  LOADING + 20; T013 the small rest (30, 34, 63, 9, 18, 52, 15, 41, 54, 57, 51); all-exclusive groups
-  (70, 72, 60, 71, 61, 64, 59, 65, 62) go to the Tn list. Earlier plan:
-  8+58 PAWN + 53 PARTNER; 14 WARP + 10/50 ITEM; 37 MAIL + 45 STAMP + 2 CHARACTER; then the rest by count
-  (62 SEASON is all Season 3-exclusive: out of scope). Was: then groups 33, 3, 8, 14, 10, 37 by the triage order.
+- Landed (details in the checkbox lines above and in each report): T002c/T002d/T002e (first-packet
+  decryption and the cert notice rename), T003-T012 evidence + patterns, R1/R1b and R2/R2b reviews.
+  Code-backed names found on the way: 0.10.16 = SESSION_STATUS_NTC (T003 § 9), 33.20.16 =
+  UPDATE_PLAY_POINT_NOTICE (T006), 14.10.16 = C2S_WARP_END_NTC (T008, raw name WARP_START wrong).
+- Running: T013 small groups evidence (`briefs/T013-small-groups.md`). Next: T013 patterns, R3 review
+  (`briefs/R3-review-T009-T013.md`) and its fixes, then the closing packages TC1 (tooling, naming sweep,
+  Season 3-exclusive list; `briefs/TC1-close-tooling-naming-exclusive.md`) and TC2 (code-backed raw
+  renames; `briefs/TC2-code-backed-renames.md`), then the spec-end procedure (orchestration § 10).
+- All-exclusive groups (62, 70, 72, 60, 71, 61, 64, 59, 65) go to the Season 3-exclusive list.
 - Tn: `tests/imhex-export-select.sh` is not run by check.sh; the u64 OM `Key` (13.20.x/13.22.2) exceeds
   2^53 in JSON (README note).
 - Tn: `packets/imhex-export.sh` reads stdin, so a `while read` loop around it loses its input
