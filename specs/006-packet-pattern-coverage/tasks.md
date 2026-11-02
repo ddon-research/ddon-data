@@ -58,7 +58,9 @@ Coordinator: main session. One subagent at a time. Method and rules: `spec.md`.
   annotated, 48 raws). TC3 done (480c26aa46: 13,724 lost raws
   recovered in 35 ids / 41 streams, existing 146,891 byte-identical; the overwrite kept the frame's last
   packet under today's name, earlier ones get `_1`, `_2`, ...; 13,633/13,633 new JSON fit). Scratch
-  folders for Sam to delete: D:/tc2raw, D:/tc2ann, D:/tc3raw. Running: T014a, then T014b-c; was: the closing packages TC1 (tooling, naming sweep,
+  folders for Sam to delete: D:/tc2raw, D:/tc2ann, D:/tc3raw. T014a done (3d86f848d0: 443 unknown fields over
+  155,663 JSON files / 41 sessions; 8 strong + 10 medium candidates, e.g. item list u32s = CharacterID /
+  PawnID, Area s64 = timestamps; 65 CONTEXT JSON invalid `-nan`, fixed in T014c). Running: T014b, then T014c; was: the closing packages TC1 (tooling, naming sweep,
   Season 3-exclusive list; `briefs/TC1-close-tooling-naming-exclusive.md`) and TC2 (code-backed raw
   renames; `briefs/TC2-code-backed-renames.md`), then the spec-end procedure (orchestration § 10).
 - All-exclusive groups (62, 70, 72, 60, 71, 61, 64, 59, 65) go to the Season 3-exclusive list.
