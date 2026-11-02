@@ -80,3 +80,36 @@ struct CDataCharacterListElement {
     MtString MatchingPlofile;   // PS4 DWARF spelling (m_wstrMatchingPlofile)
     u8 unk_u8;                  // Season 3 (PC 0x75ccf0), no PS4 member
 };
+
+// CDataCharacterLevelParam: PC reader 0x75cb00, 10 x u16 (T006 1.3, V); PS4
+// Read_CDataCharacterLevelParam_, CDataCharacterLevelParam {u16 m_usAttack .. m_usGuts}: same widths,
+// count and order (V). Users: 33.12.16, 33.13.16, 33.16.16, 33.17.16.
+struct CDataCharacterLevelParam {
+    u16 Attack;
+    u16 MagAttack;
+    u16 Defence;
+    u16 MagDefence;
+    u16 Strength;
+    u16 DownPower;
+    u16 ShakePower;
+    u16 StunPower;
+    u16 Constitution;
+    u16 Guts;
+};
+
+// CDataLobbyMemberInfo: PC element reader 0x76d7f0 (list 0x76d6f0, read linearly) {u32, MtString x3,
+// u32, u8, u8, u8} into a 0x24-byte element (u8 at +0x20, +0x21, +0x22) (T006 2.1, T003 9; V). PS4
+// Read_CDataLobbyMemberInfo__0 0x1a2f460: {CDataCommunityCharacterBaseInfo
+// m_CommunityCharacterBaseInfo, u32 m_unPawnId, u8 m_ucPlatform, u8 m_ucClientVersion,
+// u8 m_ucSessionStatus, u8 m_ucOnlineStatus} (V). Season 3 reads 3 u8, PS4 4 (V by code).
+// SessionStatus: 0.10.16 (SESSION_STATUS_NTC) writes the element's +0x21, the second u8 (T003 9, V
+// by behaviour). Which of Platform/ClientVersion was dropped is open: the first u8 stays unk.
+// OnlineStatus on the third is I (position: it follows SessionStatus as in PS4). The PS4 4-u8 body
+// also fits every capture (T006 2.1): the 3-u8 count rests on the PC reader. User: 3.0.2.
+struct CDataLobbyMemberInfo {
+    CDataCommunityCharacterBaseInfo CommunityCharacterBaseInfo;
+    u32 PawnId;
+    u8 unk_u8;                  // PS4 Platform or ClientVersion (open); server: Unk0 "most likely Platform" (lead)
+    u8 SessionStatus;           // V (T003 9: 0.10.16 writes +0x21)
+    u8 OnlineStatus;            // I (position after SessionStatus, PS4 order); server: OnlineStatus (lead)
+};

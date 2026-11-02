@@ -17,13 +17,15 @@ carry now. Every pattern starts with `#pragma endian big` and includes what it n
 | `Context.hexpat` | group 35 CONTEXT structures (P4) | 11 group-35 patterns |
 | `Quest.hexpat` | group 11 QUEST CData and the enums ORDER_CONDITION_TYPE, CYCLE_CONTENTS_CATEGORY, CYCLE_CONTENTS_SUB_CATEGORY, COMMAND_CHECK_LIST (P11a); since T005b also the Season 3 `CDataQuestList` (PC `0x774530`, beside `CDataQuestOrderList`) and the list, detail, play start/end, priority, reward box and fort defense types of T005 §44 | 72 |
 | `Area.hexpat` | group 23 AREA CData (P11a, P11b) | 4 |
-| `Character.hexpat` | E_WALLET_POINT_TYPE, CDataWalletPoint, job base info, character name and list element | 2 |
+| `Character.hexpat` | E_WALLET_POINT_TYPE, CDataWalletPoint, job base info, character name and list element; since T006b `CDataCharacterLevelParam` (PC `0x75cb00`) and the Season 3 `CDataLobbyMemberInfo` (PC `0x76d7f0`, 3 u8) | 2, and 3.0.2, 3.2.16, 33.12/13/16/17.16 |
 | `Clan.hexpat`, `Item.hexpat`, `Pawn.hexpat`, `Skill.hexpat` | the CData of those groups (P11b) | 1-2 each |
 | `Login.hexpat` | login-server CData (T002 §15): URL info, login setting, game server list info, error message, and the character list types (matching profile, Season 3 equip item info, character list info); includes Character, Context and GP | 4 |
 | `GP.hexpat` | GP course info, effect param and the Season 3 GP course valid (T002 §10, §11) | 1, and 5.0.2 through Login |
 | `Cert.hexpat` | `CDataServerCert`, the server certificate notice body: modulus[256], exponent[16], SHA-1 u32[5] (T003 §1, §15) | 1.1.16, 44.1.16 |
 | `Server.hexpat` | game-server connection setup CData (T003 §18): cheat info (ping), game setting with its Season 3 changes and element types, weather forecast, game time base info, weather loop/schedule, moon schedule; includes Login | 0.0.1, 1.0.2, 1.1.2, 1.7.2, 1.8.2 |
 | `Instance.hexpat` | group 13 INSTANCE CData (T004 §20): stage layout id, enemy set (enemy info with the Season 3 sixth bool, drop item set, named enemy param), layout item data, gathering item element (Season 3, 17 bytes), get request, the Season 3 gathering restriction and its item amount, OM data (Season 3 u64 key); includes Packet and Character | 25 group-13 patterns |
+| `Job.hexpat` | group 33 JOB CData (T006 §1.1, §6): job change info (with Login's Season 3 `CDataEquipItemInfo`), pawn job change info, play point data and job play point; includes Login | 33.0.2 |
+| `Stage.hexpat` | group 12 STAGE CData (T006 §3.2, §6): the two Season 3 element types of 12.1.2 (`CDataAreaChangeUnk0/1`, names unk) | 12.1.2 |
 
 Each structure comment names the PC reader or writer VA (PC 03040008 database, image base 0x400000)
 and the PS4 02020005 DWARF type, and carries a mark: V means read in IDA, I means inferred. A field
@@ -138,7 +140,9 @@ T003 is `specs/006-packet-pattern-coverage/research/T003-connection-server-cert.
 CONNECTION, 1 SERVER and 44 CERT of the game server; counts after their first export, T003b).
 T004 is `specs/006-packet-pattern-coverage/research/T004-instance.md` (group 13 INSTANCE; counts
 after their first export, T004b). T005 is `specs/006-packet-pattern-coverage/research/T005-quest.md`
-(group 11 QUEST; counts after their first export, 2026-11-02, T005b).
+(group 11 QUEST; counts after their first export, 2026-11-02, T005b). T006 is
+`specs/006-packet-pattern-coverage/research/T006-job-lobby-area-stage.md` (groups 33 JOB, 3 LOBBY,
+23 AREA and 12 STAGE; counts after their first export, 2026-11-02, T006b).
 
 | Id | Pattern | Report | Status |
 | --- | --- | --- | --- |
@@ -188,7 +192,14 @@ after their first export, T004b). T005 is `specs/006-packet-pattern-coverage/res
 | 2.20.16 | `C2S_CHARACTER_PAWN_DOWN_CANCEL_NTC` | P4 §4 | 10/10 fit |
 | 2.21.16 | `C2S_CHARACTER_PAWN_DEAD_NTC` | P4 §4 | no capture |
 | 3.0.1 | `C2L_GET_ERROR_MESSAGE_LIST_REQ` | T002 §8 | 41/41 fit |
+| 3.0.1 | `C2S_LOBBY_LOBBY_JOIN_REQ` | T006 §2.1 | 41/41 fit, slack 15 (packet-select: the login id 3.0.1 shares the suffix) |
+| 3.0.2 | `S2C_LOBBY_LOBBY_JOIN_RES` | T006 §2.1 | 41/41 fit (packet-select; the 3-u8 member rests on the PC reader: PS4's 4 u8 fit too) |
 | 3.0.2 | `L2C_GET_ERROR_MESSAGE_LIST_RES` | T002 §8 | 41/41 fit |
+| 3.1.1 | `C2S_LOBBY_LOBBY_LEAVE_REQ` | T006 §2.2 | 41/41 fit (no body) |
+| 3.1.2 | `S2C_LOBBY_LOBBY_LEAVE_RES` | T006 §2.2 | 41/41 fit, slack 15 |
+| 3.2.1 | `C2S_LOBBY_LOBBY_CHAT_MSG_REQ` | T006 §2.3 | 328/328 fit |
+| 3.2.2 | `S2C_LOBBY_LOBBY_CHAT_MSG_RES` | T006 §2.3 | 382/382 fit, slack 15 |
+| 3.2.16 | `S2C_LOBBY_LOBBY_CHAT_MSG_NTC` | T006 §2.4 | 463/463 fit |
 | 3.0.16 | `L2C_GET_ERROR_MESSAGE_LIST_NTC` | T002 §9 | 410/410 fit |
 | 3.3.16 | `C2S_LOBBY_LOBBY_DATA_MSG_REQ` | P1 §1.1 | 59881/59881 fit |
 | 3.4.16 | `S2C_LOBBY_LOBBY_DATA_MSG_NTC` | P1 §1.1 | 21000/21000 fit |
@@ -281,7 +292,10 @@ after their first export, T004b). T005 is `specs/006-packet-pattern-coverage/res
 | 11.103.16 | `S2C_QUEST_11_103_16_NTC` | T005 §37 | 1/1 fit (code name PLAY_STOP_TIMER_NOTICE, V by notice class; no body) |
 | 11.117.16 | `S2C_QUEST_11_117_16_NTC` | T005 §38 | 47/47 fit (code name REWARD_BOX_LIST_NUM_NOTICE, V by behaviour; the PS4 u8-only body fits too) |
 | 11.120.16 | `S2C_QUEST_PARTY_QUEST_PROGRESS_NTC` | P11a §3 | no capture |
+| 12.0.1 | `C2S_STAGE_GET_STAGE_LIST_REQ` | T006 §3.1 | 42/42 fit (no body) |
 | 12.0.2 | `S2C_STAGE_GET_STAGE_LIST_RES` | P11a §7 | 42/42 fit |
+| 12.1.1 | `C2S_STAGE_AREA_CHANGE_REQ` | T006 §3.2 | 150/150 fit, slack 15 |
+| 12.1.2 | `S2C_STAGE_AREA_CHANGE_RES` | T006 §3.2 | 150/150 fit |
 | 13.0.1 | `C2S_INSTANCE_GET_ENEMY_SET_LIST_REQ` | T004 §2 | 563/563 fit |
 | 13.0.2 | `S2C_INSTANCE_GET_ENEMY_SET_LIST_RES` | T004 §2 | 667/667 fit (NamedParamList never non-empty) |
 | 13.1.16 | `C2S_INSTANCE_ENEMY_GROUP_ENTRY_NTC` | T004 §3 | 202/202 fit, slack 14 (PS4 ENEMY_GROUP_ENTRY_NOTICE, V by behaviour) |
@@ -319,19 +333,32 @@ after their first export, T004b). T005 is `specs/006-packet-pattern-coverage/res
 | 19.2.2 | `S2C_SKILL_GET_ACQUIRABLE_ABILITY_LIST_RES` | P11b §17 | 16/16 fit |
 | 23.0.1 | `C2S_AREA_GET_AREA_MASTER_INFO_REQ` | P11a §18 | 42/42 fit |
 | 23.0.2 | `S2C_AREA_GET_AREA_MASTER_INFO_RES` | P11a §17 | 42/42 fit |
+| 23.3.1 | `C2S_AREA_GET_AREA_SUPPLY_INFO_REQ` | T006 §4 | 13/13 fit |
 | 23.3.2 | `S2C_AREA_GET_AREA_SUPPLY_INFO_RES` | P11b §10 | 13/13 fit |
 | 23.4.1 | `C2S_AREA_GET_AREA_SUPPLY_REQ` | P11b §9 | 12/12 fit |
+| 23.4.2 | `S2C_AREA_GET_AREA_SUPPLY_RES` | T006 §4 | 12/12 fit, slack 15 |
+| 23.8.1 | `C2S_AREA_GET_LEADER_AREA_RELEASE_LIST_REQ` | T006 §4 | 131/131 fit (no body) |
 | 23.8.2 | `S2C_AREA_GET_LEADER_AREA_RELEASE_LIST_RES` | P11a §15 | 131/131 fit |
 | 23.9.1 | `C2S_AREA_GET_AREA_QUEST_HINT_LIST_REQ` | P11a §14 | 183/183 fit |
 | 23.9.2 | `S2C_AREA_GET_AREA_QUEST_HINT_LIST_RES` | P11a §13 | 183/183 fit |
 | 23.11.1 | `C2S_AREA_GET_SPOT_INFO_LIST_REQ` | P11b §8 | 29/29 fit |
 | 23.11.2 | `S2C_AREA_GET_SPOT_INFO_LIST_RES` | P11b §11 | 29/29 fit |
+| 23.12.1 | `C2S_AREA_GET_AREA_BASE_INFO_LIST_REQ` | T006 §4 | 72/72 fit (no body) |
 | 23.12.2 | `S2C_AREA_GET_AREA_BASE_INFO_LIST_RES` | P11a §16 | 72/72 fit |
 | 23.13.16 | `S2C_AREA_POINT_UP_NTC` | P11b §7 | 29/29 fit |
 | 31.4.2 | `S2C_CLAN_CLAN_GET_MY_MEMBER_LIST_RES` | P11b §6 | 41/41 fit |
 | 31.17.2 | `S2C_CLAN_CLAN_SETTING_UPDATE_RES` | P11b §5 | 42/42 fit |
 | 31.29.1 | `C2S_CLAN_CLAN_GET_MY_INFO_REQ` | P11b §1 | 41/41 fit |
 | 31.29.2 | `S2C_CLAN_CLAN_GET_MY_INFO_RES` | P11b §4 | 41/41 fit |
+| 33.0.1 | `C2S_JOB_GET_JOB_CHANGE_LIST_REQ` | T006 §1.1 | 42/42 fit (no body) |
+| 33.0.2 | `S2C_JOB_GET_JOB_CHANGE_LIST_RES` | T006 §1.1 | 42/42 fit |
+| 33.11.16 | `S2C_JOB_CHARACTER_JOB_EXP_UP_NTC` | T006 §1.2 | 417/417 fit |
+| 33.12.16 | `S2C_JOB_CHARACTER_JOB_LEVEL_UP_NTC` | T006 §1.3 | 1/1 fit |
+| 33.13.16 | `S2C_JOB_CHARACTER_JOB_LEVEL_UP_MEMBER_NTC` | T006 §1.4 | 1/1 fit |
+| 33.15.16 | `S2C_JOB_PAWN_JOB_EXP_UP_NTC` | T006 §1.5 | 1245/1245 fit |
+| 33.16.16 | `S2C_JOB_PAWN_JOB_LEVEL_UP_NTC` | T006 §1.6 | 3/3 fit, slack 2 |
+| 33.17.16 | `S2C_JOB_PAWN_JOB_LEVEL_UP_MEMBER_NTC` | T006 §1.7 | 3/3 fit |
+| 33.20.16 | `S2C_JOB_PLAY_POINT_NTC` | T006 §1.8 | 14/14 fit (code name UPDATE_PLAY_POINT_NOTICE, V by behaviour) |
 | 35.0.16 | `S2C_CONTEXT_GET_LOBBY_PLAYER_CONTEXT_NTC` | P4 §2.3 | 264/264 fit |
 | 35.3.16 | `S2C_CONTEXT_GET_PARTY_MYPAWN_CONTEXT_NTC` | P4 §2.2 | 9/9 fit |
 | 35.5.16 | `C2S_CONTEXT_35_5_16_NTC` | P4 §2.3 | 2/2 fit |
@@ -430,6 +457,27 @@ after their first export, T004b). T005 is `specs/006-packet-pattern-coverage/res
   `CDataQuestId` and `CDataPriorityQuest` moved unchanged from the 11.89.16 pattern into
   `include/Quest.hexpat`; its 41 JSON files came out byte-identical. No existing quest pattern had a
   layout error in T005, so none changed its layout.
+- **Season 3-exclusive, not patterned (T006):** 12.5.1/12.5.2 STAGE_UNISON_AREA_CHANGE_BEGIN_RECRUITMENT
+  (T006 §3.3: no PS4 symbol, type or string, V by code; 3 captures each) and 12.9.16
+  `S2C_STAGE_DUNGEON_START_NTC` (§3.4: no PS4 reader with its member sequence, exclusive by absence,
+  X(I); 3 captures; the packet name has no PC string). Their PC readers and wire layouts are in those
+  sections; they go to a later spec with the other exclusive ids.
+- **Groups 3, 12, 23, 33 names without code backing (T006 §8):** the three Season 3 fields of 3.2.1 and
+  3.2.16 (`unk_u8`, `unk_u32_0/1`; server: MessageFlavor, PhrasesCategory, PhrasesIndex), the first
+  `CDataLobbyMemberInfo` u8 (which PS4 byte, Platform or ClientVersion, Season 3 dropped is open) and
+  `OnlineStatus` on the third (I, position; `SessionStatus` on the second is V by 0.10.16, T003 §9),
+  the 3.0.2 list name `LobbyMemberInfoList` (I, element type), and the two 12.1.2 lists (`unk_List0/1`,
+  element types `CDataAreaChangeUnk0/1` in `include/Stage.hexpat`).
+- **Groups 3, 12, 23, 33 code-only (T006 §5, §8):** the 3.0.2 member u8 count (the PS4 4-u8 body also
+  fits 41/41); the no-header framing of the 33.x NTCs (PS4 framing also fits them); the empty bodies of
+  3.1.1, 12.0.1, 23.8.1, 23.12.1 and 33.0.1. No captured RES of these groups has Error != 0. PC code
+  read linearly only: `0x82ede0` (3.0.1 writer), `0x7e2e00` (3.1.2 handler), `0x7e29b0` (3.2.16
+  handler), `0x76d6f0` and `0x77246d` (list readers). The T001 `recompiled_body yes` of 3.2.1, 33.0.2,
+  33.12.16, 33.16.16 and 33.17.16 is a `DDON_STUB` (T006 §5). The 3.0.1/3.0.2 suffixes also match 41 +
+  41 login-server files: the LOBBY patterns select by name (`// packet-select:`).
+- **No existing pattern changed (T006b):** T006 shows no layout error in an existing pattern;
+  `CDataStageInfo` stays local to 12.0.2 (one user), and the new types are new names in the includes
+  (no include cycle: Job includes Login, Login includes Character, Context and GP).
 - **Group 13 widths that fit either way (T004 §19):** three Season 3 widths rest on the PC code
   alone, because the slack absorbs the difference: the 13.3.1 second bool (`unk_bool`), the
   13.40.16 sixth enemy-info bool (`EnemyInfo.unk_bool`, also V by the 13.0.2 counter-test) and the
