@@ -26,7 +26,8 @@ Coordinator: main session. One subagent at a time. Method and rules: `spec.md`.
 - [x] T003 Groups 0/1/44 (done: evidence d6692cf3b9; patterns 383373ed28 + JSON 5bc4846af8: 27 patterns, 5,359/5,359 fit).
 - [x] T004 Group 13 (done: evidence f7efade6c6; patterns + JSON d7d48b68f6: 27 patterns, 5,567/5,567 fit; 13.16.x/13.17.x/13.23.16 Season 3-exclusive, not patterned).
 - [x] T005 Group 11 (done: evidence 1159abe264; patterns + JSON d6c1a1f061: 67 patterns, 3,505/3,505 fit over the 73 captured in-scope ids; 4 shared types moved into Quest.hexpat, older JSON byte-identical).
-- [ ] T006+ One evidence + one implementer package per group, by captured count (13 instance,
+- [x] T006 Groups 33/3/23/12 (done: evidence 722283dcf1; patterns + JSON bc9279f6c0: 23 patterns, 3,675/3,675 fit; the report's total 3,712 exceeds the per-id sum by 28 files, per-id counts agree).
+- [ ] T007+ One evidence + one implementer package per group, by captured count (13 instance,
   0 connection, 11 quest, 33 job, 62 season dungeon, 23 area, 14, 8 pawn, 10 item, ...), PS4-matched
   ids only; a reviewer after every few groups.
 - [ ] Tn List of Season 3-exclusive ids for the later spec; README table; close.
@@ -44,7 +45,7 @@ Coordinator: main session. One subagent at a time. Method and rules: `spec.md`.
   4,352/4,352 fit; Season 3 `CDataQuestList`; 9/11 unresolved settled; 11.7.16, 11.68.16 (I) exclusive;
   11.88.16, 11.118.16 unresolved: empty PC handlers). T005 patterns done (d6c1a1f061). T006 evidence
   done (722283dcf1: 23 ids, 3,712/3,712 fit; 33.20.16 = UPDATE_PLAY_POINT_NOTICE; 12.5.x, 12.9.16
-  exclusive). Running: T006 patterns (`briefs/T006b-job-lobby-area-stage-patterns.md`), then T007
+  exclusive). T006 patterns done (bc9279f6c0). Running: T007
   (`briefs/T007-pawn-partner.md`); later batches by related groups:
   8+58 PAWN + 53 PARTNER; 14 WARP + 10/50 ITEM; 37 MAIL + 45 STAMP + 2 CHARACTER; then the rest by count
   (62 SEASON is all Season 3-exclusive: out of scope). Was: then groups 33, 3, 8, 14, 10, 37 by the triage order.
