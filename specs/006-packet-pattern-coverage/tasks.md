@@ -45,8 +45,9 @@ Coordinator: main session. One subagent at a time. Method and rules: `spec.md`.
   4,352/4,352 fit; Season 3 `CDataQuestList`; 9/11 unresolved settled; 11.7.16, 11.68.16 (I) exclusive;
   11.88.16, 11.118.16 unresolved: empty PC handlers). T005 patterns done (d6c1a1f061). T006 evidence
   done (722283dcf1: 23 ids, 3,712/3,712 fit; 33.20.16 = UPDATE_PLAY_POINT_NOTICE; 12.5.x, 12.9.16
-  exclusive). T006 patterns done (bc9279f6c0). Running: T007
-  (`briefs/T007-pawn-partner.md`); later batches by related groups:
+  exclusive). T006 patterns done (bc9279f6c0). T007 evidence done
+  (d5da913504: 43 ids, 1,569/1,569 fit; 8.37.16, 53.9.16 settled). Running: T007 patterns
+  (`briefs/T007b-pawn-partner-patterns.md`), then T008 (`briefs/T008-warp-item.md`); later batches by related groups:
   8+58 PAWN + 53 PARTNER; 14 WARP + 10/50 ITEM; 37 MAIL + 45 STAMP + 2 CHARACTER; then the rest by count
   (62 SEASON is all Season 3-exclusive: out of scope). Was: then groups 33, 3, 8, 14, 10, 37 by the triage order.
 - Tn: `tests/imhex-export-select.sh` is not run by check.sh; the u64 OM `Key` (13.20.x/13.22.2) exceeds
