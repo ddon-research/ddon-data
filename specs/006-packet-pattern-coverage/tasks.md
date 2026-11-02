@@ -27,7 +27,8 @@ Coordinator: main session. One subagent at a time. Method and rules: `spec.md`.
 - [x] T004 Group 13 (done: evidence f7efade6c6; patterns + JSON d7d48b68f6: 27 patterns, 5,567/5,567 fit; 13.16.x/13.17.x/13.23.16 Season 3-exclusive, not patterned).
 - [x] T005 Group 11 (done: evidence 1159abe264; patterns + JSON d6c1a1f061: 67 patterns, 3,505/3,505 fit over the 73 captured in-scope ids; 4 shared types moved into Quest.hexpat, older JSON byte-identical).
 - [x] T006 Groups 33/3/23/12 (done: evidence 722283dcf1; patterns + JSON bc9279f6c0: 23 patterns, 3,675/3,675 fit; the report's total 3,712 exceeds the per-id sum by 28 files, per-id counts agree).
-- [ ] T007+ One evidence + one implementer package per group, by captured count (13 instance,
+- [x] T007 Groups 8/58/53 (done: evidence d5da913504; patterns + JSON 441febe4f2: 43 patterns, 1,569/1,569 fit; 8.30.2 JSON byte-identical).
+- [ ] T008+ One evidence + one implementer package per group, by captured count (13 instance,
   0 connection, 11 quest, 33 job, 62 season dungeon, 23 area, 14, 8 pawn, 10 item, ...), PS4-matched
   ids only; a reviewer after every few groups.
 - [ ] Tn List of Season 3-exclusive ids for the later spec; README table; close.
@@ -46,8 +47,8 @@ Coordinator: main session. One subagent at a time. Method and rules: `spec.md`.
   11.88.16, 11.118.16 unresolved: empty PC handlers). T005 patterns done (d6c1a1f061). T006 evidence
   done (722283dcf1: 23 ids, 3,712/3,712 fit; 33.20.16 = UPDATE_PLAY_POINT_NOTICE; 12.5.x, 12.9.16
   exclusive). T006 patterns done (bc9279f6c0). T007 evidence done
-  (d5da913504: 43 ids, 1,569/1,569 fit; 8.37.16, 53.9.16 settled). Running: T007 patterns
-  (`briefs/T007b-pawn-partner-patterns.md`), then T008 (`briefs/T008-warp-item.md`); later batches by related groups:
+  (d5da913504: 43 ids, 1,569/1,569 fit; 8.37.16, 53.9.16 settled). T007 patterns done (441febe4f2).
+  Running: T008 (`briefs/T008-warp-item.md`), then its patterns, then R2 reviewer over T005-T008; later batches by related groups:
   8+58 PAWN + 53 PARTNER; 14 WARP + 10/50 ITEM; 37 MAIL + 45 STAMP + 2 CHARACTER; then the rest by count
   (62 SEASON is all Season 3-exclusive: out of scope). Was: then groups 33, 3, 8, 14, 10, 37 by the triage order.
 - Tn: `tests/imhex-export-select.sh` is not run by check.sh; the u64 OM `Key` (13.20.x/13.22.2) exceeds
