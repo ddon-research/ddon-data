@@ -41,7 +41,10 @@ Coordinator: main session. One subagent at a time. Method and rules: `spec.md`.
   names in `Server.hexpat`, comment/README slips, report errata). R1b fixes done (45d29a2c57, 7ef48a26de: 1.1.2
   server-lead keys now `unk_*`, 42/42 re-exported; errata appended to T002/T002c/T003). T005 evidence done (1159abe264: 79 ids,
   4,352/4,352 fit; Season 3 `CDataQuestList`; 9/11 unresolved settled; 11.7.16, 11.68.16 (I) exclusive;
-  11.88.16, 11.118.16 unresolved: empty PC handlers). Running: T005 patterns (`briefs/T005b-quest-patterns.md`). Next: then groups 33, 3, 8, 14, 10, 37 by the triage order.
+  11.88.16, 11.118.16 unresolved: empty PC handlers). Running: T005 patterns (`briefs/T005b-quest-patterns.md`). Next:
+  T006 groups 33/3/23/12 (`briefs/T006-job-lobby-area-stage.md`); later batches by related groups:
+  8+58 PAWN + 53 PARTNER; 14 WARP + 10/50 ITEM; 37 MAIL + 45 STAMP + 2 CHARACTER; then the rest by count
+  (62 SEASON is all Season 3-exclusive: out of scope). Was: then groups 33, 3, 8, 14, 10, 37 by the triage order.
 - Tn: `tests/imhex-export-select.sh` is not run by check.sh; the u64 OM `Key` (13.20.x/13.22.2) exceeds
   2^53 in JSON (README note).
 - Tn: raws whose names are placeholders but code names them (first: 0.10.16 = SESSION_STATUS_NTC,
