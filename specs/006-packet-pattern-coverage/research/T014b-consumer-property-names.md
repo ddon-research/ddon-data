@@ -586,3 +586,95 @@ displacement/immediate index of all PC functions was rebuilt (39 s).
 
 `CDataCharacterListElement.unk_u8` (L2C_GET_CHARACTER_LIST_RES): the last u8 of reader `0x75ccf0` (element
 +52). Find the login character-list handler, then the reader of the copied +52.
+
+## Part 6 (2026-11-02, T014b6): Character list, Craft, Dispel, EntryBoard (cut short)
+
+Builds and databases: PC 03040008 private copy
+`D:/research/DDON-binaries/IDA9.5/PC_DDON_03040008/ddon-data-t014b6/2022_01_29_DDO_DUMP_FIX.exe.i64`
+(32-bit, image base 0x400000, checked with `idc.get_idb_path()`); PS4 02020005 private copy
+`D:/research/DDON-binaries/IDA9.5/PS4_DDON_02020005_2016_12_21/ddon-data-t014b6/DDOORBIS.elf.i64` (64-bit,
+base 0). Both read-only; SHA-256 of the copies not computed (not run). All addresses are VAs. Rows are
+updated by `T014b4-upd.py` from `T014b6-{character,craft,dispel,entryboard}.json` (only rows still `open`
+change; two dispel rows re-worded with `force`). A displacement index of all PC functions was rebuilt (29 s).
+
+### Character list: CDataCharacterListElement.unk_u8 = GameMode (10 rows; DECIDE_CHARACTER_ID_RES.unk_u8 too)
+
+- `0xef0ec0` passes element +52 to `0xef0c00`, which colours the row differently when the value is not 0
+  and differs from sGame +0x39FC. sGame +0x39FC is the current game mode: `0xb5ff70` accepts a land when
+  `rLandInfo::cLandInfo.mGameMode` (+9, PC property table `0xa9ef10`; land looked up by `mLandId` +4 in
+  `0xb5f050`) is 0 or equal to it, and `0xb5fd10` / `0xb5fea0` test it for 1 and 2.
+- DECIDE_CHARACTER_ID_RES (`0x7c7f20`): when IsReturnPrepare != 0 the trailing u8 is stored in sGame
+  +0x39F8 and +0x39FC (copied +0x39F8 -> +0x39FC again in `0x4044b0`). Mark V (compare / store), I (name,
+  from the property name). The server's `unk2` "Party type?" does not agree; its GameMode enum (1 Normal,
+  2 BitterblackMaze) agrees with the compares. PS4 sGame has no such member (Season 3).
+
+### Craft.hexpat and 30.13.2 CRAFT_GET_CRAFT_SETTING_RES
+
+- Handler `0x7d0bf0` (not a function) keeps the packet at conn sub-object +0x32C (getter `0x86a2c0`, 22
+  callers + undefined `0x53243f`) and gives the pawn list to `0x87f610`, which builds pawn entries (the 112-byte
+  class that `0x881310` fills from CDataPawnList).
+- CDataCraftSettingUnkPawn: `unk_u32_2` = **PawnId** (V: entry +4, lookup key in `0xb37d10`, `0xb397e0`,
+  `0xb39c40`), `unk_Name` = **PawnName** (V: entry +12), `unk_u32_3` = **CraftRank** (V role: `0xb39c40` kind 3
+  returns it where kinds 1/2 return pawn entry +52, the member PS4 `sCraftManager::getPawnRank` `0x761ac0`
+  returns; I name), `unk_u8` = **WalletType** and `unk_u32_1` = **Price** (V role: `0xb397e0` sums +12 *
+  create count when +8 == 5; `0xe02a20` compares count * +12 with the owned amount of wallet 5, `0xb997b0`;
+  I names). `unk_u32_0`: open, no reader.
+- CDataCraftSettingUnkElement (packet +108): `unk_u32_0` = **ItemId** (V: `0xb3d310`, `0xb3aca0`,
+  `0xb3ad60`). The other u32 pairs are rate/cap pairs (V role: `+8 * itemParam vfunc+80` capped at +12;
+  `+16 * ...` capped at +20); `unk_bool` lets a listed item past its level cap (`0xb3d310`). Names open.
+- Packet `unk_u32_0` / `unk_u32_1` (+100/+104): open, no reader among the getter callers.
+- CDataCraftProgress (progress list, packet conn +0x320, getter `0x86c670`, 27 callers): `unk_u32_list` =
+  pawn ids printed by name after the support pawns in `0xe03c80` (`0xb79e30`, pawn id -> name); proposed
+  **LegendPawnIdList** (V role, I name). `unk_u16` (+76) is passed to `0xdfe5c0`, which does not use it: open.
+- CDataMDataCraftMaterial.unk_bool: open, not read (`0xb3ff00` sorts by SortNo `0xb414c0` and copies
+  ItemId/Num only).
+
+### Dispel (51.0.2, 51.2.1, 51.2.2)
+
+- ITEM_LIST_RES packet at conn +0x4A8 (getter `0x86ab90`, one caller, the sorter `0xe8e420`).
+  `CDataDispelBaseItem.unk_u16_0` = **ExchangeLimit**, `unk_u16_1` = **ExchangeCount** (V role: `0xe94d40`
+  prints limit - count; `0xe93760` disables the entry at the limit; `0xe8e2e0` sets the count from
+  DISPEL_EXCHANGE_DISPEL_ITEM_RES, conn +0x4AC, reader `0x8067b0`; I names). `unk_u32` is a second key with
+  Id in that match (V role). `CDataDispelLotItem.unk_u8` and `CDataDispelLotCrest.unk_u8_0` are the first
+  (descending) sort keys of the lot and crest sorters `0xe957d0` / `0xe95760` (V role).
+- Open with reason: LotItem `unk_bool`, LotCrest `unk_u8_1`, the CrestUnk list (not read on the dispel list
+  path; a full reader scan was not run), SETTING_RES `unk_bool` (its two consumers read the list only).
+  SETTING_REQ `unk_u32` is the dispel UI byte +2012 (`0xe905b0` -> `0x86ac30` -> `0x826750`); meaning open.
+
+### EntryBoard.hexpat
+
+- `CDataEntryRecruitData.unk_u32` (3 rows): copied by `0xa2a050` / `0x585600`; `0x4e5890` (uGUIEntryBoard)
+  sums it over the recruit slots and shows the sum via `0xe18db0`; V role (per-slot amount), name open.
+- `CDataEntryMemberData.unk_u32`: copied to the member copy +8 (`0xa2aa80`), no reader identified: open.
+- `CDataEntryItem.unk_bool`: not read by the copy `0xa2a050` nor by the ITEM_LIST_RES getter callers: open.
+- `CDataEntryBoardItemSearchParameter.unk_u32_0/1`: the search object at conn +0x4748 is never written at
+  +60/+64 (no displacement or raw-byte hit for +0x4784/+0x4788): open, constant.
+
+### T014a candidates in these rows
+
+All are weak; none is confirmed. The craft-pawn candidates (party-quest progress values, GP course
+params) are not confirmed: the code gives the roles above; the character-list row had no candidate.
+
+### Counts (part 6: 35 struct.field pairs, 49 TSV rows)
+
+| Verdict | Rows | Distinct struct.field |
+| --- | --- | --- |
+| V (flow or role read; names I where marked) | 32 | 21 |
+| I only | 0 | 0 |
+| open, with a concrete reason (no reader, not read, never written, passed and unused) | 17 | 14 |
+
+- **Cut short** (tool-call budget): 60 TSV rows (57 struct.field) still carry "not traced": Gacha/BoxGacha,
+  Instance (REPOP enemy-info bool at element +34 of `0x77a1b0`; gathering lists), Stage attributes, STAMP,
+  nNetMsg, ContentsPlay*, QuestContents, CDataQuestUnkU32*, CDataCycleContentsNoticeData, GP course, and the
+  single-pattern rows (C2S INSTANCE/SKILL/MAIL/ITEM_SORT/PENALTY, GROUP_CHAT, MY_ROOM, PAWN_EXPEDITION,
+  PLAY_END, AREA spot list).
+- Partial leads: GACHA_LIST_RES packet conn +0x460 (getter `0x86c250`), BOX_GACHA_LIST_RES conn +0x468
+  (getter `0x869100`); their 12 UI callers (`0xd9df40`..`0xda6410`) read the settlement elements, e.g.
+  `0xd9fef0` reads box settlement +4..+40. For the enemy-info bool, the byte-offset scan +0x1d..+0x22 gives 9
+  functions; `0xbf11e0`, `0xbef510`, `0x9fec20` are not the consumer.
+- Not run: SHA-256 of the private copies; a full reader scan for the CrestUnk list.
+
+### Next field
+
+`CDataGachaSettlementInfo.unk_u32` (element `0x768830`, +36): map the settlement element offsets in
+`0xd9fef0` / `0xda2620` (box: element reader `0x75ade0`) and find the reader of +36.
