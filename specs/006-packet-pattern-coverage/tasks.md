@@ -42,7 +42,9 @@ Coordinator: main session. One subagent at a time. Method and rules: `spec.md`.
   `briefs/T014a-value-correlation.md`); T014b PC consumers, createProperty and binary hints, confirming
   T014a (`evidence-researcher-ida`, `briefs/T014b-consumer-property-names.md`); T014c apply names and
   re-export (`implementer`, `briefs/T014c-apply-inferred-names.md`). Order: TC1, TC2, T014a-c, close.
-- [ ] Tn List of Season 3-exclusive ids for the later spec; README table; close.
+- [x] Tn (done 2026-11-02) Season 3-exclusive list (TC1 544b342ddd: 115 ids), README table (per batch),
+  tooling (TC1), code-backed renames (TC2 e525c97cc6), raw collision recovery (TC3 480c26aa46), R1-R4
+  reviews and fixes; close below.
 
 ## Running
 
@@ -75,7 +77,7 @@ Coordinator: main session. One subagent at a time. Method and rules: `spec.md`.
   T014c done (58956082fd, e72e999f3c). R4 adversarial review done (567dafe56a: ~25 field groups re-read; one
   over-claimed mark (EnhanceType/Id), one rename (GameSetting Type = GameMode), one under-claim, one
   lead-name comment). R4b done (f0df9a424f: EnhanceType/Id name marked I; GameSetting Type -> GameMode;
-  DistributionStartDate V role; chat fields neutral MessageKind/PresetCategory/PresetEntryId). Running: the spec close:  `check.sh --all`, docs, retro, status done; each writing rows per include. Then T014c; was: the closing packages TC1 (tooling, naming sweep,
+  DistributionStartDate V role; chat fields neutral MessageKind/PresetCategory/PresetEntryId). Closed 2026-11-02 (see `## Close`). Was: the spec close:  `check.sh --all`, docs, retro, status done; each writing rows per include. Then T014c; was: the closing packages TC1 (tooling, naming sweep,
   Season 3-exclusive list; `briefs/TC1-close-tooling-naming-exclusive.md`) and TC2 (code-backed raw
   renames; `briefs/TC2-code-backed-renames.md`), then the spec-end procedure (orchestration § 10).
 - All-exclusive groups (62, 70, 72, 60, 71, 61, 64, 59, 65) go to the Season 3-exclusive list.
@@ -98,3 +100,20 @@ Coordinator: main session. One subagent at a time. Method and rules: `spec.md`.
 T001 (triage) running, brief `briefs/T001-triage.md`. Inventory input: the raw ids by suffix (`fd -t f . packets/decrypted_raw | awk
 -F. '{print $NF}' | sort | uniq -c`, bounded with `| wc -l` by the guard: write it to a file) minus
 the `// packet-id:` lines of `research/03040008/packets/*-pattern.cpp`.
+
+## Close (2026-11-02)
+
+- Gate: `bash tools/check.sh --all` at 28b4c76827: hooks, shell, flags, export, mcp passed; imhex not run
+  (not on PATH); kg failed on `test_production_size_budgets` (`bundle_io.py` 853 lines) in the untracked,
+  other-owned `research/knowledge-graph/`: no 006 commit touches it.
+- Result: 411 of the 526 uncovered ids patterned with code-checked layouts (every capture fits per id);
+  115 listed in `research/season3-exclusive.tsv`; 478 unknown-field rows settled (257 V / 91 I / 130 open
+  with reasons), 97 fields renamed; JSON strings UTF-8 (T001d); first packets and 13,724 overwritten raws
+  recovered (T002d, TC3).
+- Retro: (1) IDA sweeps over many fields hit the 200-turn cap twice (T014b3, T014b8): briefs now batch
+  lookups per struct and write rows per include. (2) Agents' running records stayed after `waiting:`
+  stops every time (002 T022 open). (3) Reviews found no wrong data in four rounds but repeated naming
+  slips: the naming rule (spec § Naming unknown fields) is the fix. (4) Data defects surfaced late
+  (first-packet key, name collisions): a per-id annotated-vs-raw count belongs in the export checks.
+- Open for later specs: Season 3-exclusive ids (list above); live phase of 005 (T009-T012); 002 T021/T022.
+- For Sam: delete the scratch folders D:/tc2raw, D:/tc2ann, D:/tc3raw.

@@ -1,6 +1,6 @@
 # 006 Packet pattern coverage (every PS4-matched packet in the captures)
 
-**Status: active** (opened 2026-11-01, Sam's request; follows spec 005)
+**Status: done** (opened 2026-11-01, closed 2026-11-02; follows spec 005)
 
 ## Goal
 
