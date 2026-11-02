@@ -64,7 +64,9 @@ Coordinator: main session. One subagent at a time. Method and rules: `spec.md`.
   fields settled; item list EquipCharacterId/EquipPawnId V; no property tables name packet data; 220
   open). T014b2 done (e02ddd6843: 141 rows, 77 V / 44 I / 20 open with
   reasons; 1,227 PC property-registration functions found, RoomNo/PlayerStatusFlag V; Season 3 equip
-  enhancement EnhanceType/SlotNo/Id V). Running: T014b3 (the rest, saves `pc-property-names.tsv`), then T014c; was: the closing packages TC1 (tooling, naming sweep,
+  enhancement EnhanceType/SlotNo/Id V). T014b3 hit the 200-turn limit at
+  306k context: only `pc-property-names.tsv` landed (201ad9a587); its 285 open rows are re-split as
+  T014b4 (quest/login/server; running) and T014b5 (the rest), each writing rows per include. Then T014c; was: the closing packages TC1 (tooling, naming sweep,
   Season 3-exclusive list; `briefs/TC1-close-tooling-naming-exclusive.md`) and TC2 (code-backed raw
   renames; `briefs/TC2-code-backed-renames.md`), then the spec-end procedure (orchestration § 10).
 - All-exclusive groups (62, 70, 72, 60, 71, 61, 64, 59, 65) go to the Season 3-exclusive list.
