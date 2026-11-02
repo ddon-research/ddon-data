@@ -22,6 +22,7 @@ code shows (property string, UI text, PS4 DWARF member on the same path), not fr
 file per sampled pattern matches the pattern's name.
 
 Report only reproduced findings, each with the field, the claimed mark/basis, what the code shows
-(VAs), and the fix (lower the mark, rename, or `unk_*`). Owns nothing in the repository: final message
-only (findings, then what was checked and not checked). Stop: budget 90 min of work time.
+(VAs), and the fix (lower the mark, rename, or `unk_*`). Owns only
+`specs/006-packet-pattern-coverage/research/R4-adversarial-marks.md` (findings, then what was checked
+and not checked); never touch patterns, packets/, client/. Stop: budget 90 min of work time.
 Base: the head when you start.
