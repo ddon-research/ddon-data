@@ -781,3 +781,90 @@ stays unresolved.
 
 `CDataContentsPlayStartData.unk_bool_0` (TIME_GAIN_QUEST_PLAY_START_NTC, reader `0x75f030`, caller `0x7f5830`):
 follow the notice object from `0x7f5830` to its consumer.
+
+## Part 8 (2026-11-02, T014b8): the last 25 rows
+
+Builds and databases: PC 03040008 private copy
+`D:/research/DDON-binaries/IDA9.5/PC_DDON_03040008/ddon-data-t014b8/2022_01_29_DDO_DUMP_FIX.exe.i64`
+(32-bit, image base 0x400000, checked with `idc.get_idb_path()`); PS4 02020005 private copy
+`D:/research/DDON-binaries/IDA9.5/PS4_DDON_02020005_2016_12_21/ddon-data-t014b8/DDOORBIS.elf.i64` (64-bit,
+base 0). Both read-only; SHA-256 of the copies not computed (not run). All addresses are VAs. Code that is
+not a function in the database was decoded instruction by instruction (`ida_ua.decode_insn`); callback
+registrations were found by raw byte search for the DTI address. Rows are updated by `T014b4-upd.py` from
+`T014b8-<include>.json`.
+
+### Play start and play end (`T014b8-playstartend.json`)
+
+- TIME_GAIN_QUEST_PLAY_START_NTC handler `0x7f5830` (PS4 `0x2eeff0` / `0x36e530`):
+  - `unk_bool_2` (+23) = **IsRecoverOcd** (V role, I name): `0x7f5770` runs the player / pawn-owner party loop
+    calling `0x486c70` only when it is 1; PS4 runs the same loop unconditionally as
+    `cContextPlayerInfo::recoverOcdPlayStartContents`.
+  - `unk_bool_1` (+22): stored by `0x4d0a10` at END_CONTENTS manager +233 (Season 3 member; PS4
+    `cEndContentsManager` ends at mStartPos). No reader (disp32 0xE9 byte-read scan: 11 hits, none on it). Open.
+  - `unk_bool_0` (+21) and `unk_u8_list` (+104): read, never addressed, destroyed (`0x790380`). Open.
+- PLAY_END_NTC handler `0x7f3270` (not a function): `unk_s32` = **Error** (V role): it sits in the Error slot
+  (+0x10) and, when non-zero, goes to the error report `0xbb3980` (the routine `callOnPacketFunc` `0x878860`
+  uses for response errors). The notice callback `0xbd49b0` (registered at `0xbcee28`; PS4
+  `callbackEndContentsPlayEnd` `0x8248f0`) reads PlayTimeMillSec and the reward list only:
+  `CDataContentsPlayEnd.unk_u32_0..2` are not read (open), like Gold/Exp/Rim.
+
+### CDataQuestContents (`T014b8-questcontents.json`, 4 rows)
+
+- LIGHT_QUEST_LIST (packet at conn sub +0x1A4, getters `0x86d830`/`0x86d840`) and LOT_QUEST_LIST (+0x1C0, getter
+  `0x86db50`, one caller `0x59cee0`): every consumer reads contents Type and Param01..03 only. `unk_u16_0` /
+  `unk_u16_1` (and Param04) are not read: open, 4 rows.
+
+### Quest lists: FORT_DEFENSE, timers, restrictions (`T014b8-quest.json`)
+
+- `CDataQuestUnkU32U32` = **Rank** / **RankPoint** (V role, I names). FORT_DEFENSE_NTC becomes notice dti
+  `0x21896b4`; its callback `0x48e9a0` (PS4 `cCycle01QuestManager::callbackPhase`) hands the situation list to
+  `0x493020`, and `0xa3edf0` copies {+4, +8} into the situation object (+84, getter `0xa3b650`). The UIs `0xed7c70`
+  and `0xf57fa0` print, for kinds 1..5, message 113..117 with `%d` of +8. By index fit (8 indices agree) that
+  message file is `entry_board.gmd`: 113..117 = "S Rank: <VAL DP>" .. "D Rank: <VAL DP>". The T014a weak candidates
+  (Param01, StageNo) are rejected.
+- `CDataCycleContentsNoticeData.unk_u64` (Common +24): the same callback stores it at cCycleQuestSubCategoryManager
+  +0x68 (`0x4937d0`); no reader found (V flow, open). PS4 reads no u64 there.
+- `CDataQuestUnkU32S64` = **TimerIdx** / **EndTime** (V role, I names): setTaskParam `0x9d32f0` calls
+  `cQuestTaskParam::setTimer(idx, max(0, s64 - server time))` (PS4 `0x1c6400` argument names idx, sec).
+- `CDataQuestUnkU32Bool`: only the list count is read (`0xed89f0` shows the 0x91 "Additional Equipment Rewards"
+  block, text from the quest resource); the elements are not read. Open, 2 rows.
+
+### GP course string (`T014b8-gp.json`)
+
+- `CDataGPCourseValid.unk_MtString` (L2C_GET_CHARACTER_LIST_RES): the packet is kept at login connection sub +0x164;
+  its two readers (`0x88b600`, `0x88cca0`) never address the GpCourseValid list (+248). Open (not read).
+
+### Pattern fields (`T014b8-patterns.json`)
+
+- PENALTY_REVIVE `unk_u32` = **NoBadHpMax** (V source, I name): `0x879940` sends the int of cContextPlayerInfo +0x172C
+  and +0x1730; PS4 `reqCharacterPenaltyRevive` `0x3682a0` sends only mWeakHpMax_pri, whose DWARF successor is
+  mNoBadHpMax_pri.
+- MAIL GET_ALL_ITEM `unk_u8` = **StorageType** (V role, lead agrees): the mail dialog (`0x54cbd0`) maps "Receive in
+  Post / item bag / storage" (common_dialog 0x1F8 / 0x1F9 / 0x1F7) to 13 / 19 / 20.
+- PAWN_EXPEDITION GET_SALLY_REWARD `unk_bool` (+0x3D) = **IsHotSign** (V role, I name): `0x5ef5ab` posts system_log 0x128
+  `syslog_pawn_expedition_hotsign` when it is 1 (IsGoldenSally +0x3C posts 0x100 `sp_delivery`, confirming it).
+- ITEM_SORT `unk_bool`: a caller constant of the sItemManager flush (`0xb9ddb0` / `0xb9de30`; 0 or 1 by caller),
+  never read by the client: V source, role open.
+- SKILL ACQUIRABLE SKILL/ABILITY `unk_u32`: request-queue slot +8 (`0x4ec740` / `0x4ec6a0`, queue ctor `0x4ea310`);
+  no store to the slot +8 was found by three whole-binary scans: open (writer not found).
+
+### T014a candidates in these rows
+
+`CDataQuestUnkU32U32.unk_u32_0` (weak Param01) and `unk_u32_1` (weak StageNo): rejected, the code reads a rank kind
+and its DP threshold. The other rows had no T014a candidate (no-data or unexplained); PENALTY_REVIVE, MAIL and SKILL
+weak candidates (ctrlAction, ShortcutID, CharacterID) are not confirmed by code (the SKILL CharacterID match remains a
+capture observation only).
+
+### Counts (part 8: 26 TSV rows, 26 struct.field pairs)
+
+| Verdict | Rows |
+| --- | --- |
+| V role or source with a proposed name (names I where marked) | 9 |
+| V source, role open | 1 |
+| open with a concrete reason (read and dropped, stored without reader, not read, writer not found) | 16 |
+
+- No row in scope says "not traced" any more. Still carrying the words outside this scope: the three
+  LOBBY_CHAT_MSG_NTC rows and `CDataQuestUnkU32U16.unk_u32` (all already I; receive-side consumer and the copy into
+  quest object +112 not traced).
+- Not run: SHA-256 of the private copies. The binding of UI message file +0x760 to `entry_board.gmd` rests on 8
+  matching indices (I), not on a load path.
