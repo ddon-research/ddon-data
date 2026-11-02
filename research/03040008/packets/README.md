@@ -17,12 +17,12 @@ carry now. Every pattern starts with `#pragma endian big` and includes what it n
 | `Context.hexpat` | group 35 CONTEXT structures (P4) | 11 group-35 patterns |
 | `Quest.hexpat` | group 11 QUEST CData and the enums ORDER_CONDITION_TYPE, CYCLE_CONTENTS_CATEGORY, CYCLE_CONTENTS_SUB_CATEGORY, COMMAND_CHECK_LIST (P11a); since T005b also the Season 3 `CDataQuestList` (PC `0x774530`, beside `CDataQuestOrderList`) and the list, detail, play start/end, priority, reward box and fort defense types of T005 §44 | 72 |
 | `Area.hexpat` | group 23 AREA CData (P11a, P11b) | 4 |
-| `Character.hexpat` | E_WALLET_POINT_TYPE, CDataWalletPoint, job base info, character name and list element; since T006b `CDataCharacterLevelParam` (PC `0x75cb00`) and the Season 3 `CDataLobbyMemberInfo` (PC `0x76d7f0`, 3 u8); since T007b `CDataPartyMember` (PC `0x771580`); since T009b `CDataStatusInfo`, `CDataCharacterMsgSet`/`CDataCharacterMessage`, `CDataShortCut`, `CDataCommunicationShortCut`, `CDataUpdateMatchingProfileInfo` and `CDataCharacterReleaseElement` (T009 §1.3, §22) | 2, and 3.0.2, 3.2.16, 33.12/13/16/17.16, 8.37.16, 2.6.16, 2.7.16, 37.x through Mail |
+| `Character.hexpat` | E_WALLET_POINT_TYPE, CDataWalletPoint, job base info, character name and list element; since T006b `CDataCharacterLevelParam` (PC `0x75cb00`) and the Season 3 `CDataLobbyMemberInfo` (PC `0x76d7f0`, 3 u8); since T007b `CDataPartyMember` (PC `0x771580`); since T009b `CDataStatusInfo`, `CDataCharacterMsgSet`/`CDataCharacterMessage`, `CDataShortCut`, `CDataCommunicationShortCut`, `CDataUpdateMatchingProfileInfo` and `CDataCharacterReleaseElement` (T009 §1.3, §22); since T011b `CDataFriendInfo` (Season 3 through its list element), `CDataHistoryElement` and `CDataAchieveCategoryStatus` (T011 §1, §18) | 2, and 3.0.2, 3.2.16, 33.12/13/16/17.16, 8.37.16, 2.6.16, 2.7.16, 37.x through Mail, and since T011b 5.2.16, 6.8.16, 16.0.2, 16.6.2, 17.0.2, 26.1.2, 26.12.1, 26.14.1 |
 | `Clan.hexpat` | group 31 CLAN CData (P11b); since T010b the join request, history element, base info members (function, dungeon, `CDataPawnExpeditionInformation`, partner pawn, concierge, shop lineup name, value info), shop buff item/info and the Season 3 `CDataNoraPawnInfo` (T010 §1.2, §25); includes Packet, Character, Pawn and Furniture | 31.4.2, 31.29.2, 31.9.2, 31.30.2, 31.31.2, 31.34.2, 31.40.2 |
 | `Furniture.hexpat` | `CDataFurnitureLayout` (PC list `0x766f90`, T010 §1.2), moved in T010b from the 52.1.2 pattern; includes Packet only | 52.1.2, 31.31.2 through Clan |
 | `Skill.hexpat` | the CData of that group (P11b) | 1-2 |
 | `Item.hexpat` | item storage types (P11b §13); since T008b the Season 3 `CDataItemList` (PC `0x76aca0`), `CDataItemUpdateResult`, `CDataUpdateWalletPoint`, `CDataSwitchStorage` (Season 3 u16), `CDataMoveItemUIDFromTo` and `CDataItemSort` (T008 §1, §6); includes Packet, Character and Context | 10.9.2, 10.3.2, 10.6.2, 10.7.1, 10.9.1, 10.12.16, 10.13.16, 50.0.2, 50.1.1 |
-| `Pawn.hexpat` | group 8 PAWN CData (P11b §14); since T007b the Season 3 `CDataPawnInfo` (PC `0x772180`) with its job, equip, craft and orb-extend types, the pawn list, rented, lost and history elements, profile, total score, orb status, and `CDataPartnerPawnData`/`CDataPartnerPawnReward`, shared with group 53 (T007 §1, §6); includes Login | 8.30.2, 10 group-8 and 3 group-53 patterns |
+| `Pawn.hexpat` | group 8 PAWN CData (P11b §14); since T007b the Season 3 `CDataPawnInfo` (PC `0x772180`) with its job, equip, craft and orb-extend types, the pawn list, rented, lost and history elements, profile, total score, orb status, and `CDataPartnerPawnData`/`CDataPartnerPawnReward`, shared with group 53 (T007 §1, §6); includes Login | 8.30.2, 10 group-8 and 3 group-53 patterns, 26.1.2 (T011b) |
 | `PawnExpedition.hexpat` | group 58 PAWN_EXPEDITION CData (T007 §4, §6): `CDataAreaSpotSet`, `CDataPawnExpeditionClanSallySpotInfo`, `CDataBattleResultInfo`; includes Packet only (group 58 also uses Packet's common types and Instance's gathering-item element and get request) | 58.0.2, 58.5.2 |
 | `Login.hexpat` | login-server CData (T002 §15): URL info, login setting, game server list info, error message, and the character list types (matching profile, Season 3 equip item info, character list info); includes Character, Context and GP | 4 |
 | `GP.hexpat` | GP course info, effect param and the Season 3 GP course valid (T002 §10, §11); since T010b `CDataGPPeriod`, `CDataGPShopDisplayType`, the Season 3 `CDataGPShopDisplayLineup` and `CDataGPCourseAvailable`, `CDataEditParam` with `CDataEditParamPalette` (T010 §1.1, §25) | 4.0.2, 28.2.2, 28.7.2, 28.8.2, 28.17.2, 28.22.2, and 5.0.2 through Login |
@@ -160,7 +160,9 @@ ITEM_SORT; counts after their first export, 2026-11-02, T008b). T009 is
 `specs/006-packet-pattern-coverage/research/T009-mail-stamp-character.md` (groups 2 CHARACTER, 37
 MAIL and 45 STAMP; counts after their first export, 2026-11-02, T009b). T010 is
 `specs/006-packet-pattern-coverage/research/T010-gp-clan.md` (groups 28 GP and 31 CLAN; counts after
-their first export, 2026-11-02, T010b).
+their first export, 2026-11-02, T010b). T011 is
+`specs/006-packet-pattern-coverage/research/T011-party-profile-friend.md` (groups 5 (user list), 6
+PARTY, 16 FRIEND, 17 BLACK_LIST and 26 PROFILE; counts after their first export, 2026-11-02, T011b).
 
 | Id | Pattern | Report | Status |
 | --- | --- | --- | --- |
@@ -233,7 +235,7 @@ their first export, 2026-11-02, T010b).
 | 2.38.2 | `S2C_CHARACTER_SET_ONLINE_STATUS_RES` | T009 §12 | 2/2 fit |
 | 3.0.1 | `C2L_GET_ERROR_MESSAGE_LIST_REQ` | T002 §8 | 41/41 fit |
 | 3.0.1 | `C2S_LOBBY_LOBBY_JOIN_REQ` | T006 §2.1 | 41/41 fit, slack 15 (packet-select: the login id 3.0.1 shares the suffix) |
-| 3.0.2 | `S2C_LOBBY_LOBBY_JOIN_RES` | T006 §2.1 | 41/41 fit (packet-select; the 3-u8 member rests on the PC reader: PS4's 4 u8 fit too) |
+| 3.0.2 | `S2C_LOBBY_LOBBY_JOIN_RES` | T006 §2.1 | 41/41 fit (packet-select; PS4's 4-u8 member fits these too: the 3 u8 rest on the PC reader and the 5.2.16 captures, T011 §2) |
 | 3.0.2 | `L2C_GET_ERROR_MESSAGE_LIST_RES` | T002 §8 | 41/41 fit |
 | 3.0.16 | `L2C_GET_ERROR_MESSAGE_LIST_NTC` | T002 §9 | 410/410 fit |
 | 3.1.1 | `C2S_LOBBY_LOBBY_LEAVE_REQ` | T006 §2.2 | 41/41 fit (no body) |
@@ -249,7 +251,20 @@ their first export, 2026-11-02, T010b).
 | 5.0.2 | `L2C_GET_CHARACTER_LIST_RES` | T002 §11 | 42/42 fit |
 | 5.1.1 | `C2L_DECIDE_CHARACTER_ID_REQ` | T002 §12 | 42/42 fit |
 | 5.1.2 | `L2C_DECIDE_CHARACTER_ID_RES` | T002 §12 | 42/42 fit |
+| 5.2.16 | `S2C_USER_LIST_JOIN_NTC` | T011 §2 | 148/148 fit (code name V by behaviour; Season 3 3-u8 member: the PS4 element fails 50/148, the PS4 framing 148/148) |
+| 5.3.16 | `S2C_USER_LIST_LEAVE_NTC` | T011 §3 | 162/162 fit (code name V by behaviour; the PS4 framing fails 162/162) |
 | 5.5.16 | `L2C_LOGIN_WAIT_NUM_NTC` | T002 §13 | 9/9 fit |
+| 6.0.1 | `C2S_PARTY_PARTY_CREATE_REQ` | T011 §4 | 42/42 fit (no body) |
+| 6.0.2 | `S2C_PARTY_PARTY_CREATE_RES` | T011 §4 | 42/42 fit |
+| 6.8.1 | `C2S_PARTY_PARTY_JOIN_REQ` | T011 §5 | 1/1 fit |
+| 6.8.2 | `S2C_PARTY_PARTY_JOIN_RES` | T011 §5 | 1/1 fit |
+| 6.8.16 | `S2C_PARTY_PARTY_JOIN_NTC` | T011 §6 | 43/43 fit (code name V by behaviour; Season 3 through the list element's u8, which the PS4 element fits too; the PS4 framing fails 43/43) |
+| 6.10.1 | `C2S_PARTY_PARTY_LEAVE_REQ` | T011 §7 | 43/43 fit (no body) |
+| 6.10.2 | `S2C_PARTY_PARTY_LEAVE_RES` | T011 §7 | 43/43 fit, slack 15 |
+| 6.10.16 | `S2C_PARTY_PARTY_LEAVE_NTC` | T011 §7 | 43/43 fit (code name V by behaviour; the PS4 framing fits too) |
+| 6.15.1 | `C2S_PARTY_PARTY_MEMBER_SET_VALUE_REQ` | T011 §8 | 6/6 fit |
+| 6.15.2 | `S2C_PARTY_PARTY_MEMBER_SET_VALUE_RES` | T011 §8 | 6/6 fit, slack 15 |
+| 6.18.16 | `S2C_PARTY_PARTY_INVITE_ACCEPT_NTC` | T011 §9 | 1/1 fit (code name V by code shape and capture flow; the PS4 framing fits too) |
 | 6.23.16 | `C2S_PARTY_SEND_BINARY_MSG_ALL_NTC` | P1 §1.1 | 8/8 fit |
 | 6.24.16 | `S2C_PARTY_RECV_BINARY_MSG_ALL_NTC` | P1 §1.1 | no capture |
 | 6.25.16 | `C2S_PARTY_SEND_BINARY_MSG_NTC` | P1 §1.1 | 29176/29176 fit |
@@ -416,6 +431,12 @@ their first export, 2026-11-02, T010b).
 | 14.10.16 | `C2S_WARP_WARP_START_NTC` | T008 §2.7 | 62/62 fit (no body; code name C2S_WARP_END_NTC, V by call site: the raw name WARP_START is contradicted) |
 | 14.12.1 | `C2S_WARP_GET_RETURN_LOCATION_REQ` | T008 §2.9 | 9/9 fit (no body) |
 | 14.12.2 | `S2C_WARP_GET_RETURN_LOCATION_RES` | T008 §2.9 | 9/9 fit |
+| 16.0.1 | `C2S_FRIEND_GET_FRIEND_LIST_REQ` | T011 §10 | 41/41 fit (no body) |
+| 16.0.2 | `S2C_FRIEND_GET_FRIEND_LIST_RES` | T011 §10 | 41/41 fit (Season 3 through the list element's u8; the PS4 `CDataFriendInfo` fails 20/41) |
+| 16.6.1 | `C2S_FRIEND_GET_RECENT_CHARACTER_LIST_REQ` | T011 §11 | 41/41 fit (no body) |
+| 16.6.2 | `S2C_FRIEND_GET_RECENT_CHARACTER_LIST_RES` | T011 §11 | 41/41 fit (list never non-empty) |
+| 17.0.1 | `C2S_BLACK_LIST_GET_BLACK_LIST_REQ` | T011 §12 | 41/41 fit (no body) |
+| 17.0.2 | `S2C_BLACK_LIST_GET_BLACK_LIST_RES` | T011 §12 | 41/41 fit (list never non-empty) |
 | 18.0.2 | `S2C_GROUP_CHAT_GROUP_CHAT_GET_MEMBER_LIST_RES` | P11b §18 | 41/41 fit |
 | 19.1.2 | `S2C_SKILL_GET_ACQUIRABLE_SKILL_LIST_RES` | P11b §16 | 4/4 fit |
 | 19.2.2 | `S2C_SKILL_GET_ACQUIRABLE_ABILITY_LIST_RES` | P11b §17 | 16/16 fit |
@@ -434,6 +455,12 @@ their first export, 2026-11-02, T010b).
 | 23.12.1 | `C2S_AREA_GET_AREA_BASE_INFO_LIST_REQ` | T006 §4 | 72/72 fit (no body) |
 | 23.12.2 | `S2C_AREA_GET_AREA_BASE_INFO_LIST_RES` | P11a §16 | 72/72 fit |
 | 23.13.16 | `S2C_AREA_POINT_UP_NTC` | P11b §7 | 29/29 fit |
+| 26.1.1 | `C2S_PROFILE_GET_MY_CHARACTER_PROFILE_REQ` | T011 §14 | 4/4 fit (no body) |
+| 26.1.2 | `S2C_PROFILE_GET_MY_CHARACTER_PROFILE_RES` | T011 §14 | 4/4 fit, slack 0 (Season 3: second job orb list, V; the PS4 body fails 4/4) |
+| 26.12.1 | `C2S_PROFILE_SET_SHORTCUT_LIST_REQ` | T011 §15 | 42/42 fit |
+| 26.12.2 | `S2C_PROFILE_SET_SHORTCUT_LIST_RES` | T011 §15 | 42/42 fit, slack 15 |
+| 26.14.1 | `C2S_PROFILE_SET_COMMUNICATION_SHORTCUT_LIST_REQ` | T011 §16 | 41/41 fit |
+| 26.14.2 | `S2C_PROFILE_SET_COMMUNICATION_SHORTCUT_LIST_RES` | T011 §16 | 41/41 fit, slack 15 |
 | 28.0.1 | `C2S_GP_GET_GP_REQ` | T010 §2 | 4/4 fit (no body) |
 | 28.0.2 | `S2C_GP_GET_GP_RES` | T010 §2 | 4/4 fit |
 | 28.2.1 | `C2S_GP_GET_GP_PERIOD_REQ` | T010 §3 | 42/42 fit (no body) |
@@ -785,6 +812,29 @@ their first export, 2026-11-02, T010b).
   the JSON of 31.4.2, 31.17.2, 31.29.2, 4.0.2 and 5.0.2 came out byte-identical on re-export
   (207/207: 41 + 42 + 41 + 41 + 42, `cmp`). No include cycle (Clan -> Pawn -> Login -> Character, Context, GP; Clan ->
   Furniture -> Packet).
+- **Season 3-exclusive, not patterned (T011):** 24.6.16 S2C_JOB_MASTER_MARK_TARGETS_NTC (raw name;
+  group 24 is JOB_MASTER, V by its RES strings): T011 §13, exclusive V by code (element reader `0x76c5f0`
+  has one caller, the 24.6.16 handler `0x7e0b70`; no PS4 packet reads this element; the PS4
+  `CDataJobOrderProgress` list fails 117/150). 150 captures, 150/150 fit in the walk; its wire layout
+  (count + {u8, u32, u8, u8, u32, u32}, names I or `unk_`) is in that section and §18. It goes to a
+  later spec with the other exclusive ids.
+- **Groups 5, 6, 16, 17, 26 names without code backing (T011 §20):** the 26.1.2 second
+  `CDataJobOrbTreeStatus` list (`unk_JobOrbTreeStatusList`; element type V, the consumer `0x84d1f0`
+  fills a second 11-job table from it; server: JobOrbHiBOStatusList, lead), and through the includes
+  the first u8 of `CDataLobbyMemberInfo` and the trailing u8 of `CDataCharacterListElement`.
+  The NTC names 5.2.16, 5.3.16, 6.8.16, 6.10.16 rest on handler behaviour (V), 6.18.16 on its read
+  shape and the capture flow (its PC consumer `sub_4096F0` was not traced).
+- **Groups 5, 6, 16, 17, 26 code-only (T011 §20):** never non-empty in the captures: the 16.0.2
+  Applying/Approving lists, the 16.6.2 and 17.0.2 lists and the 26.1.2 OrbPage inner lists. Counter
+  tests that cannot separate PC from PS4 (the PC reader decides): the 6.8.16 member element (43/43 fit
+  both), the PS4 framing of 6.10.16 and 6.18.16 (slack), 16.6.2 (always empty). No captured RES of
+  these groups has Error != 0. The recompilation writers of 26.12.1 and 26.14.1 are `DDON_STUB`.
+- **Character types added (T011b):** `include/Character.hexpat` gains `CDataFriendInfo`,
+  `CDataHistoryElement` and `CDataAchieveCategoryStatus`; no existing type changed (the
+  `CDataLobbyMemberInfo`, `CDataCharacterListElement` and `CDataPartyMember` comments now name the
+  new users and the 5.2.16 counter test). The JSON of the existing users 3.0.2, 8.37.16, 2.7.16 and
+  18.0.2 came out byte-identical on re-export (202/202: 41 + 9 + 111 + 41, `cmp`). No include cycle
+  (26.1.2 includes Packet, Character, Pawn; Pawn -> Login -> Character).
 - **StatusInfo MaxHp (T010 §23):** `CDataStatusInfo` keeps its order and names; MaxHp and MaxStamina
   are base values (760/450 in all 42 2.0.2 captures), so `Hp > MaxHp` is expected. The basis is in
   the comment of `include/Character.hexpat`.

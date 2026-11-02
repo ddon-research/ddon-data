@@ -71,7 +71,8 @@ struct CDataCommunityCharacterBaseInfo {
 // PS4 CDataCharacterListElement (and the PS4 recompilation, PacketData/Community.h) has the same
 // members up to m_wstrMatchingPlofile and no trailing u8: the u8 is Season 3, name open. Users:
 // CDataClanMemberInfo (31.29.2, 31.4.2), 18.0.2, CDataPartyMember (8.37.16), CDataCharacterListInfo
-// (login character list), 2.7.16 (T009 5: the PS4 element without the u8 fails 107/111).
+// (login character list), 2.7.16 (T009 5: the PS4 element without the u8 fails 107/111),
+// CDataFriendInfo (16.0.2, T011 10: the PS4 element fails 20/41), 16.6.2, CDataPartyMember (6.8.16).
 struct CDataCharacterListElement {
     CDataCommunityCharacterBaseInfo BaseInfo;
     u16 ServerID;
@@ -105,8 +106,10 @@ struct CDataCharacterLevelParam {
 // u8 m_ucSessionStatus, u8 m_ucOnlineStatus} (V). Season 3 reads 3 u8, PS4 4 (V by code).
 // SessionStatus: 0.10.16 (SESSION_STATUS_NTC) writes the element's +0x21, the second u8 (T003 9, V
 // by behaviour). Which of Platform/ClientVersion was dropped is open: the first u8 stays unk.
-// OnlineStatus on the third is I (position: it follows SessionStatus as in PS4). The PS4 4-u8 body
-// also fits every capture (T006 2.1): the 3-u8 count rests on the PC reader. User: 3.0.2.
+// OnlineStatus on the third is I (position: it follows SessionStatus as in PS4). The 3-u8 count no
+// longer rests on the reader alone: the PS4 4-u8 body fits every 3.0.2 capture (T006 2.1), but the
+// 5.2.16 USER_LIST_JOIN_NTC captures reject the PS4 4-u8 element 50/148 (T011 2, V by capture).
+// Users: 3.0.2, 5.2.16.
 struct CDataLobbyMemberInfo {
     CDataCommunityCharacterBaseInfo CommunityCharacterBaseInfo;
     u32 PawnId;
@@ -119,7 +122,7 @@ struct CDataLobbyMemberInfo {
 // u8, u8[8] (0x757ce0), u8} (T007 1.3, V); PS4 Read_CDataPartyMember_ 0x1a2b2f0 {m_CharacterListElement,
 // u8 m_ucMemberType, s32 m_nMemberIndex, u32 m_unPawnId, b8 m_bIsLeader, b8 m_bIsPawn,
 // b8 m_bIsPlayEntry, u8 m_ucJoinState, u8 m_ucAnyValueList[8], u8 m_ucSessionStatus} (V). It differs
-// from PS4 only by the list element's Season 3 trailing u8. User: 8.37.16.
+// from PS4 only by the list element's Season 3 trailing u8. Users: 8.37.16, 6.8.16.
 struct CDataPartyMember {
     CDataCharacterListElement CharacterListElement;
     u8 MemberType;
@@ -210,4 +213,34 @@ struct CDataUpdateMatchingProfileInfo {
 // Read_CDataCharacterReleaseElement_ {u32 m_unReleaseElementNo} (V). User: 2.6.16.
 struct CDataCharacterReleaseElement {
     u32 ReleaseElementNo;
+};
+
+// CDataFriendInfo: PC list reader 0x766e20, element {CDataCharacterListElement 0x75ccf0, u8, u32,
+// bool} (T011 1, 18, V); PS4 Read_CDataFriendInfo_ 0x1a0b520 {CCharacterListElement
+// m_CharacterListElement, u8 m_ucPendingStatus, u32 m_unFriendNo, b8 m_bFavorite} (V). It differs
+// from PS4 only by the list element's Season 3 trailing u8 (the PS4 element fails 20/41 16.0.2
+// captures, T011 10). User: 16.0.2.
+struct CDataFriendInfo {
+    CDataCharacterListElement CharacterListElement;
+    u8 PendingStatus;
+    u32 FriendNo;
+    bool Favorite;
+};
+
+// CDataHistoryElement: PC list reader 0x7698c0, element {u8, u32, u32, u64} (T011 1, 18, V); PS4
+// 0x19f19a0 {u8 m_ucType, u32 m_unTargetID, u32 m_unParam, u64 m_ullDateTime}: same (V).
+// User: 26.1.2.
+struct CDataHistoryElement {
+    u8 Type;
+    u32 TargetID;
+    u32 Param;
+    u64 DateTime;
+};
+
+// CDataAchieveCategoryStatus: PC list reader 0x7583b0, element {u8, u16, u16} (T011 1, 18, V); PS4
+// 0x19f16a0 {u8 m_ucCategoryID, u16 m_usAchieveNum, u16 m_usTargetNum}: same (V). User: 26.1.2.
+struct CDataAchieveCategoryStatus {
+    u8 CategoryID;
+    u16 AchieveNum;
+    u16 TargetNum;
 };
