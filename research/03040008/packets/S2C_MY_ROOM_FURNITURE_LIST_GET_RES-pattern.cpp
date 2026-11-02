@@ -14,13 +14,7 @@
 import std.mem;
 
 #include "Packet.hexpat"
-
-// PC list 0x766f90 {u32, u32, u8}.
-struct CDataFurnitureLayout {
-    u32 ItemID;
-    u32 unOmID;
-    u8 LayoutID;
-};
+#include "Furniture.hexpat"   // CDataFurnitureLayout, PC list 0x766f90 (moved there in 006 T010b; field unOmID -> OmID)
 
 // PC 0x76f300: list CDataCommonU32 (0x75e8e0), u32, u32.
 struct CDataMyRoomOption {

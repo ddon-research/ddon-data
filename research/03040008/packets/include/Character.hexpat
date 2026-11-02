@@ -137,6 +137,11 @@ struct CDataPartyMember {
 // {u32 m_unHp, m_unStamina, u8 m_ucRevivePoint, u32 m_unMaxHp, m_unMaxStamina, m_unWhiteHp,
 // m_unGainHp, m_unGainStamina, m_unGainAttack, m_unGainDefense, m_unGainMagicAttack,
 // m_unGainMagicDefense}: same widths and order (V). User: CDataCharacterInfo (2.0.2).
+// MaxHp and MaxStamina are base values (760 and 450 in all 42 2.0.2 captures), not the cap: PS4
+// cNetGameServer::copyRecvCharacterData 0x36e7a0 copies m_unMaxHp into cHumanBaseInfo mMaxHP and
+// calls setFinalMaxHP, and the client recomputes the effective cap from base + Gain* + equipment
+// (I), so Hp > MaxHp is expected. Order and roles match PC consumer 0x84eaf0 (V; MaxHp's two PC
+// setters are obfuscated thunks, I). Source: T010-gp-clan.md section 23.
 struct CDataStatusInfo {
     u32 Hp;
     u32 Stamina;

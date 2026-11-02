@@ -18,12 +18,14 @@ carry now. Every pattern starts with `#pragma endian big` and includes what it n
 | `Quest.hexpat` | group 11 QUEST CData and the enums ORDER_CONDITION_TYPE, CYCLE_CONTENTS_CATEGORY, CYCLE_CONTENTS_SUB_CATEGORY, COMMAND_CHECK_LIST (P11a); since T005b also the Season 3 `CDataQuestList` (PC `0x774530`, beside `CDataQuestOrderList`) and the list, detail, play start/end, priority, reward box and fort defense types of T005 §44 | 72 |
 | `Area.hexpat` | group 23 AREA CData (P11a, P11b) | 4 |
 | `Character.hexpat` | E_WALLET_POINT_TYPE, CDataWalletPoint, job base info, character name and list element; since T006b `CDataCharacterLevelParam` (PC `0x75cb00`) and the Season 3 `CDataLobbyMemberInfo` (PC `0x76d7f0`, 3 u8); since T007b `CDataPartyMember` (PC `0x771580`); since T009b `CDataStatusInfo`, `CDataCharacterMsgSet`/`CDataCharacterMessage`, `CDataShortCut`, `CDataCommunicationShortCut`, `CDataUpdateMatchingProfileInfo` and `CDataCharacterReleaseElement` (T009 §1.3, §22) | 2, and 3.0.2, 3.2.16, 33.12/13/16/17.16, 8.37.16, 2.6.16, 2.7.16, 37.x through Mail |
-| `Clan.hexpat`, `Skill.hexpat` | the CData of those groups (P11b) | 1-2 each |
+| `Clan.hexpat` | group 31 CLAN CData (P11b); since T010b the join request, history element, base info members (function, dungeon, `CDataPawnExpeditionInformation`, partner pawn, concierge, shop lineup name, value info), shop buff item/info and the Season 3 `CDataNoraPawnInfo` (T010 §1.2, §25); includes Packet, Character, Pawn and Furniture | 31.4.2, 31.29.2, 31.9.2, 31.30.2, 31.31.2, 31.34.2, 31.40.2 |
+| `Furniture.hexpat` | `CDataFurnitureLayout` (PC list `0x766f90`, T010 §1.2), moved in T010b from the 52.1.2 pattern; includes Packet only | 52.1.2, 31.31.2 through Clan |
+| `Skill.hexpat` | the CData of that group (P11b) | 1-2 |
 | `Item.hexpat` | item storage types (P11b §13); since T008b the Season 3 `CDataItemList` (PC `0x76aca0`), `CDataItemUpdateResult`, `CDataUpdateWalletPoint`, `CDataSwitchStorage` (Season 3 u16), `CDataMoveItemUIDFromTo` and `CDataItemSort` (T008 §1, §6); includes Packet, Character and Context | 10.9.2, 10.3.2, 10.6.2, 10.7.1, 10.9.1, 10.12.16, 10.13.16, 50.0.2, 50.1.1 |
 | `Pawn.hexpat` | group 8 PAWN CData (P11b §14); since T007b the Season 3 `CDataPawnInfo` (PC `0x772180`) with its job, equip, craft and orb-extend types, the pawn list, rented, lost and history elements, profile, total score, orb status, and `CDataPartnerPawnData`/`CDataPartnerPawnReward`, shared with group 53 (T007 §1, §6); includes Login | 8.30.2, 10 group-8 and 3 group-53 patterns |
 | `PawnExpedition.hexpat` | group 58 PAWN_EXPEDITION CData (T007 §4, §6): `CDataAreaSpotSet`, `CDataPawnExpeditionClanSallySpotInfo`, `CDataBattleResultInfo`; includes Packet only (group 58 also uses Packet's common types and Instance's gathering-item element and get request) | 58.0.2, 58.5.2 |
 | `Login.hexpat` | login-server CData (T002 §15): URL info, login setting, game server list info, error message, and the character list types (matching profile, Season 3 equip item info, character list info); includes Character, Context and GP | 4 |
-| `GP.hexpat` | GP course info, effect param and the Season 3 GP course valid (T002 §10, §11) | 1, and 5.0.2 through Login |
+| `GP.hexpat` | GP course info, effect param and the Season 3 GP course valid (T002 §10, §11); since T010b `CDataGPPeriod`, `CDataGPShopDisplayType`, the Season 3 `CDataGPShopDisplayLineup` and `CDataGPCourseAvailable`, `CDataEditParam` with `CDataEditParamPalette` (T010 §1.1, §25) | 4.0.2, 28.2.2, 28.7.2, 28.8.2, 28.17.2, 28.22.2, and 5.0.2 through Login |
 | `Cert.hexpat` | `CDataServerCert`, the server certificate notice body: modulus[256], exponent[16], SHA-1 u32[5] (T003 §1, §15) | 1.1.16, 44.1.16 |
 | `Server.hexpat` | game-server connection setup CData (T003 §18): cheat info (ping), game setting with its Season 3 changes and element types, weather forecast, game time base info, weather loop/schedule, moon schedule; includes Login | 0.0.1, 1.0.2, 1.1.2, 1.7.2, 1.8.2 |
 | `Instance.hexpat` | group 13 INSTANCE CData (T004 §20): stage layout id, enemy set (enemy info with the Season 3 sixth bool, drop item set, named enemy param), layout item data, gathering item element (Season 3, 17 bytes), get request, the Season 3 gathering restriction and its item amount, OM data (Season 3 u64 key); includes Packet and Character | 25 group-13 patterns |
@@ -156,7 +158,9 @@ after their first export, T004b). T005 is `specs/006-packet-pattern-coverage/res
 `specs/006-packet-pattern-coverage/research/T008-warp-item.md` (groups 14 WARP, 10 ITEM and 50
 ITEM_SORT; counts after their first export, 2026-11-02, T008b). T009 is
 `specs/006-packet-pattern-coverage/research/T009-mail-stamp-character.md` (groups 2 CHARACTER, 37
-MAIL and 45 STAMP; counts after their first export, 2026-11-02, T009b).
+MAIL and 45 STAMP; counts after their first export, 2026-11-02, T009b). T010 is
+`specs/006-packet-pattern-coverage/research/T010-gp-clan.md` (groups 28 GP and 31 CLAN; counts after
+their first export, 2026-11-02, T010b).
 
 | Id | Pattern | Report | Status |
 | --- | --- | --- | --- |
@@ -430,10 +434,42 @@ MAIL and 45 STAMP; counts after their first export, 2026-11-02, T009b).
 | 23.12.1 | `C2S_AREA_GET_AREA_BASE_INFO_LIST_REQ` | T006 §4 | 72/72 fit (no body) |
 | 23.12.2 | `S2C_AREA_GET_AREA_BASE_INFO_LIST_RES` | P11a §16 | 72/72 fit |
 | 23.13.16 | `S2C_AREA_POINT_UP_NTC` | P11b §7 | 29/29 fit |
+| 28.0.1 | `C2S_GP_GET_GP_REQ` | T010 §2 | 4/4 fit (no body) |
+| 28.0.2 | `S2C_GP_GET_GP_RES` | T010 §2 | 4/4 fit |
+| 28.2.1 | `C2S_GP_GET_GP_PERIOD_REQ` | T010 §3 | 42/42 fit (no body) |
+| 28.2.2 | `S2C_GP_GET_GP_PERIOD_RES` | T010 §3 | 42/42 fit |
+| 28.3.1 | `C2S_GP_GET_CAP_REQ` | T010 §4 | 2/2 fit (no body) |
+| 28.3.2 | `S2C_GP_GET_CAP_RES` | T010 §4 | 2/2 fit |
+| 28.6.1 | `C2S_GP_COG_GET_ID_REQ` | T010 §5 | 2/2 fit (no body) |
+| 28.6.2 | `S2C_GP_COG_GET_ID_RES` | T010 §5 | 2/2 fit |
+| 28.7.1 | `C2S_GP_GP_SHOP_DISPLAY_GET_TYPE_REQ` | T010 §6 | 2/2 fit (no body) |
+| 28.7.2 | `S2C_GP_GP_SHOP_DISPLAY_GET_TYPE_RES` | T010 §6 | 2/2 fit |
+| 28.8.1 | `C2S_GP_GP_SHOP_DISPLAY_GET_LINEUP_REQ` | T010 §7 | 38/38 fit |
+| 28.8.2 | `S2C_GP_GP_SHOP_DISPLAY_GET_LINEUP_RES` | T010 §1.1, §7 | 38/38 fit (Season 3 element +MtString +u32; the PS4 element fails 38/38) |
+| 28.9.1 | `C2S_GP_GP_SHOP_DISPLAY_BUY_REQ` | T010 §8 | 9/9 fit, slack 15 (Season 3 +u32; the PS4 body fails 9/9) |
+| 28.9.2 | `S2C_GP_GP_SHOP_DISPLAY_BUY_RES` | T010 §8 | 9/9 fit (CommonIdList never non-empty) |
+| 28.17.1 | `C2S_GP_GP_COURSE_GET_AVAILABLE_LIST_REQ` | T010 §9 | 10/10 fit (no body) |
+| 28.17.2 | `S2C_GP_GP_COURSE_GET_AVAILABLE_LIST_RES` | T010 §1.1, §9 | 10/10 fit (list never non-empty: Season 3 element code-only) |
+| 28.22.1 | `C2S_GP_GP_EDIT_GET_VOICE_LIST_REQ` | T010 §10 | 2/2 fit (no body) |
+| 28.22.2 | `S2C_GP_GP_EDIT_GET_VOICE_LIST_RES` | T010 §10 | 2/2 fit |
+| 28.25.16 | `S2C_GP_COURSE_START_NTC` | T010 §13 | 22/22 fit (code name V by behaviour; the PS4 framing fits too) |
+| 28.26.16 | `S2C_GP_COURSE_EXTEND_NTC` | T010 §14 | 21/21 fit (code name V by behaviour; the PS4 framing fits too) |
+| 31.4.1 | `C2S_CLAN_CLAN_GET_MY_MEMBER_LIST_REQ` | T010 §16 | 41/41 fit (no body) |
 | 31.4.2 | `S2C_CLAN_CLAN_GET_MY_MEMBER_LIST_RES` | P11b §6 | 41/41 fit |
+| 31.9.1 | `C2S_CLAN_CLAN_GET_JOIN_REQUESTED_LIST_REQ` | T010 §16 | 21/21 fit (no body) |
+| 31.9.2 | `S2C_CLAN_CLAN_GET_JOIN_REQUESTED_LIST_RES` | T010 §17 | 21/21 fit (list never non-empty) |
+| 31.17.1 | `C2S_CLAN_CLAN_SETTING_UPDATE_REQ` | T010 §16 | 42/42 fit |
 | 31.17.2 | `S2C_CLAN_CLAN_SETTING_UPDATE_RES` | P11b §5 | 42/42 fit |
 | 31.29.1 | `C2S_CLAN_CLAN_GET_MY_INFO_REQ` | P11b §1 | 41/41 fit |
 | 31.29.2 | `S2C_CLAN_CLAN_GET_MY_INFO_RES` | P11b §4 | 41/41 fit |
+| 31.30.1 | `C2S_CLAN_CLAN_GET_HISTORY_REQ` | T010 §16 | 1/1 fit (no body) |
+| 31.30.2 | `S2C_CLAN_CLAN_GET_HISTORY_RES` | T010 §18 | 1/1 fit (87 entries) |
+| 31.31.1 | `C2S_CLAN_CLAN_BASE_GET_INFO_REQ` | T010 §16 | 27/27 fit (no body) |
+| 31.31.2 | `S2C_CLAN_CLAN_BASE_GET_INFO_RES` | T010 §19 | 27/27 fit (Season 3 furniture list; the PS4 body fails 27/27) |
+| 31.34.1 | `C2S_CLAN_CLAN_SHOP_GET_BUFF_ITEM_LIST_REQ` | T010 §16 | 25/25 fit (no body) |
+| 31.34.2 | `S2C_CLAN_CLAN_SHOP_GET_BUFF_ITEM_LIST_RES` | T010 §20 | 25/25 fit |
+| 31.40.1 | `C2S_CLAN_CLAN_PARTNER_PAWN_DATA_GET_REQ` | T010 §21 | 28/28 fit (PS4 DWARF type; the triage's exclusive mark is contradicted) |
+| 31.40.2 | `S2C_CLAN_CLAN_PARTNER_PAWN_DATA_GET_RES` | T010 §1.2, §21 | 28/28 fit (Season 3 second equip list; the PS4 body fails 22/28) |
 | 33.0.1 | `C2S_JOB_GET_JOB_CHANGE_LIST_REQ` | T006 §1.1 | 42/42 fit (no body) |
 | 33.0.2 | `S2C_JOB_GET_JOB_CHANGE_LIST_RES` | T006 §1.1 | 42/42 fit |
 | 33.11.16 | `S2C_JOB_CHARACTER_JOB_EXP_UP_NTC` | T006 §1.2 | 417/417 fit |
@@ -484,7 +520,7 @@ MAIL and 45 STAMP; counts after their first export, 2026-11-02, T009b).
 | 50.1.1 | `C2S_ITEM_SORT_SET_ITEM_SORTDATA_BIN_REQ` | T008 §4.3 | 59/59 fit (Season 3 trailing bool: code-only, the PS4 body fits too) |
 | 50.1.2 | `S2C_ITEM_SORT_SET_ITEM_SORTDATA_BIN_RES` | T008 §4.3 | 59/59 fit, slack 15 |
 | 51.0.2 | `S2C_DISPEL_GET_DISPEL_ITEM_LIST_RES` | P11a §6 | 1/1 fit |
-| 52.1.2 | `S2C_MY_ROOM_FURNITURE_LIST_GET_RES` | P11a §10 | 20/20 fit |
+| 52.1.2 | `S2C_MY_ROOM_FURNITURE_LIST_GET_RES` | P11a §10 | 20/20 fit (T010b: `CDataFurnitureLayout` from `include/Furniture.hexpat`, `unOmID` renamed `OmID`) |
 | 53.4.1 | `C2S_PARTNER_PAWN_PAWN_LIKABILITY_REWARD_LIST_GET_REQ` | T007 §3.1 | 40/40 fit (no body) |
 | 53.4.2 | `S2C_PARTNER_PAWN_PAWN_LIKABILITY_REWARD_LIST_GET_RES` | T007 §3.1 | 40/40 fit (list never non-empty) |
 | 53.6.1 | `C2S_PARTNER_PAWN_PAWN_LIKABILITY_RELEASED_REWARD_LIST_GET_REQ` | T007 §3.1 | 41/41 fit (no body) |
@@ -717,6 +753,41 @@ MAIL and 45 STAMP; counts after their first export, 2026-11-02, T009b).
   `CDataCharacterInfo`. So no existing pattern changed its layout; `Character.hexpat` only gained
   types, and the 174 JSON files of those five patterns (5.0.2 42, 31.29.2 41, 31.4.2 41, 18.0.2 41,
   8.37.16 9) came out byte-identical on re-export (174/174, `cmp`).
+- **Season 3-exclusive, not patterned (T010):** 28.23.1/28.23.2 GP_SHOP_CAN_BUY (T010 §11: no PS4
+  packet, V; 9 + 9 captures), 28.34.1/28.34.2 GET_UPDATE_APP_COURSE_BONUS_FLAG (§15: no PS4 function or
+  type, V; 42 + 42), 28.24.16 `S2C_GP_28_24_16_NTC` (§12: one u32, no PS4 GP notice left for it,
+  exclusive I; 84), 31.53.1/31.53.2 CLAN_GET_FURNITURE (§16, §22: no PS4 clan furniture packet, V; the
+  triage's PS4 candidate `RELEASED_EDIT_PARTS_LIST_GET_RES` is rejected; 27 + 27). Their PC readers and
+  wire layouts are in those sections (§25 lists the bodies); they go to a later spec with the other
+  exclusive ids.
+- **Groups 28, 31 names without code backing (T010 §27):** the `CDataGPShopDisplayLineup` Season 3
+  `unk_MtString` and its four trailing u32 (`unk_u32_0..3`: which of PS4's BackIconID, FrameIconID,
+  BehaviorAfterBuyingType survive, and where the new u32 sits, is open); the `CDataGPCourseAvailable`
+  `unk_MtString` (with CourseID and LineupID I by position); the 28.9.1 `DisplayLineupId` (I,
+  position) and `unk_u32`; the 31.31.2 `ClanFurnitureList` (I: element type V) and the 31.40.2
+  `CharacterEquipViewDataList` (I: the same list pair as in `CDataPawnInfo`). The report's
+  `CDataClanPawnExpeditionInfo` is the PS4 DWARF `CDataPawnExpeditionInformation`; the include uses
+  the DWARF name.
+- **Groups 28, 31 code-only (T010 §27):** never non-empty in the captures: the 28.17.2 list (Season 3
+  `CDataGPCourseAvailable`), the 31.9.2 list (`CDataClanJoinRequest`) and the 28.9.2 CommonIdList. The
+  NTC framing of 28.25.16 and 28.26.16 (no error header) fits either way and rests on the PC readers.
+  No captured RES of these groups has Error != 0. PC code read linearly only: handlers `0x7d8700`
+  (28.7.2), `0x7d8590` (28.9.2), `0x7d7980` (28.17.2), `0x7cb030` (31.9.2); readers `0x809a00`,
+  `0x809380`; list readers `0x767d00`, `0x75d430`, `0x75e2a0`; the 28.9.1 writer `0x829f00`. The PS4
+  writer of 31.40.1 was not located (the DWARF type `CPacket_C2S_CLAN_PARTNER_PAWN_DATA_GET_REQ`
+  backs it). 28.28/28.29.16 (START/END_PARTY) are outside this package.
+- **GP and clan types added; one existing pattern changed (T010b):** T010 changes no layout an
+  existing pattern used (`CDataGPCourseAvailable` is new; `CDataGPCourseValid` already had its Season 3
+  MtString; no earlier pattern used a clan type of T010). `CDataFurnitureLayout` moved from the 52.1.2
+  pattern into the new `include/Furniture.hexpat`, so 31.31.2 shares it; its second field, `unOmID`
+  (a leftover of the DWARF `m_unOmID`), is now `OmID`. 52.1.2 before/after: 20/20 fit both; the 20
+  JSON files differ only in that key (20/20 differ only by `unOmID` -> `OmID`, checked by substituting the key in the old JSON and diffing). `Clan.hexpat` now includes Pawn and Furniture;
+  the JSON of 31.4.2, 31.17.2, 31.29.2, 4.0.2 and 5.0.2 came out byte-identical on re-export
+  (207/207: 41 + 42 + 41 + 41 + 42, `cmp`). No include cycle (Clan -> Pawn -> Login -> Character, Context, GP; Clan ->
+  Furniture -> Packet).
+- **StatusInfo MaxHp (T010 §23):** `CDataStatusInfo` keeps its order and names; MaxHp and MaxStamina
+  are base values (760/450 in all 42 2.0.2 captures), so `Hp > MaxHp` is expected. The basis is in
+  the comment of `include/Character.hexpat`.
 - **u64 OM Key in JSON:** `CDataOmData.Key` carries the high bit (0x80000000_001415b3), so the JSON
   integer exceeds 2^53; a reader that parses numbers as doubles rounds it (Python `json` keeps it
   exact).
