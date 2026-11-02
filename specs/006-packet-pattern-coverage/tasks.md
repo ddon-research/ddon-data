@@ -25,7 +25,8 @@ Coordinator: main session. One subagent at a time. Method and rules: `spec.md`.
   runs right after T003's evidence.
 - [x] T003 Groups 0/1/44 (done: evidence d6692cf3b9; patterns 383373ed28 + JSON 5bc4846af8: 27 patterns, 5,359/5,359 fit).
 - [x] T004 Group 13 (done: evidence f7efade6c6; patterns + JSON d7d48b68f6: 27 patterns, 5,567/5,567 fit; 13.16.x/13.17.x/13.23.16 Season 3-exclusive, not patterned).
-- [ ] T005+ One evidence + one implementer package per group, by captured count (13 instance,
+- [x] T005 Group 11 (done: evidence 1159abe264; patterns + JSON d6c1a1f061: 67 patterns, 3,505/3,505 fit over the 73 captured in-scope ids; 4 shared types moved into Quest.hexpat, older JSON byte-identical).
+- [ ] T006+ One evidence + one implementer package per group, by captured count (13 instance,
   0 connection, 11 quest, 33 job, 62 season dungeon, 23 area, 14, 8 pawn, 10 item, ...), PS4-matched
   ids only; a reviewer after every few groups.
 - [ ] Tn List of Season 3-exclusive ids for the later spec; README table; close.
@@ -41,7 +42,7 @@ Coordinator: main session. One subagent at a time. Method and rules: `spec.md`.
   names in `Server.hexpat`, comment/README slips, report errata). R1b fixes done (45d29a2c57, 7ef48a26de: 1.1.2
   server-lead keys now `unk_*`, 42/42 re-exported; errata appended to T002/T002c/T003). T005 evidence done (1159abe264: 79 ids,
   4,352/4,352 fit; Season 3 `CDataQuestList`; 9/11 unresolved settled; 11.7.16, 11.68.16 (I) exclusive;
-  11.88.16, 11.118.16 unresolved: empty PC handlers). Running: T005 patterns (`briefs/T005b-quest-patterns.md`). Next:
+  11.88.16, 11.118.16 unresolved: empty PC handlers). T005 patterns done (d6c1a1f061). Running:
   T006 groups 33/3/23/12 (`briefs/T006-job-lobby-area-stage.md`); later batches by related groups:
   8+58 PAWN + 53 PARTNER; 14 WARP + 10/50 ITEM; 37 MAIL + 45 STAMP + 2 CHARACTER; then the rest by count
   (62 SEASON is all Season 3-exclusive: out of scope). Was: then groups 33, 3, 8, 14, 10, 37 by the triage order.
