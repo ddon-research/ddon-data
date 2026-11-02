@@ -364,8 +364,10 @@ def check_push(directory, arguments):
     for word in arguments:
         if skip:
             skip = False
-        elif word in ("-o", "--push-option", "--repo", "--receive-pack", "--exec"):
-            skip = True
+        elif word in ("-o", "--push-option", "--repo", "--receive-pack", "--exec") or re.fullmatch(r"\d*(>>?|<)", word):
+            skip = True  # an option value or a redirection target (`2>&1` lexes as `2>`, `&`, `1`)
+        elif re.match(r"\d*(>>?|<)", word):  # `2>/dev/null`, `>log`
+            continue
         elif not word.startswith("-"):
             positional.append(word)
     refspecs = positional[1:]

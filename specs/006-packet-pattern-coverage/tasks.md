@@ -116,4 +116,4 @@ the `// packet-id:` lines of `research/03040008/packets/*-pattern.cpp`.
   slips: the naming rule (spec § Naming unknown fields) is the fix. (4) Data defects surfaced late
   (first-packet key, name collisions): a per-id annotated-vs-raw count belongs in the export checks.
 - Open for later specs: Season 3-exclusive ids (list above); live phase of 005 (T009-T012); 002 T021/T022.
-- For Sam: delete the scratch folders D:/tc2raw, D:/tc2ann, D:/tc3raw.
+- Scratch folders D:/tc2raw, D:/tc2ann, D:/tc3raw: gone (checked 2026-11-02; none left on D:, temp or WSL).
