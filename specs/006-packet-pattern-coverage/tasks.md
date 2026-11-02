@@ -45,8 +45,8 @@ Coordinator: main session. One subagent at a time. Method and rules: `spec.md`.
   decryption and the cert notice rename), T003-T012 evidence + patterns, R1/R1b and R2/R2b reviews.
   Code-backed names found on the way: 0.10.16 = SESSION_STATUS_NTC (T003 § 9), 33.20.16 =
   UPDATE_PLAY_POINT_NOTICE (T006), 14.10.16 = C2S_WARP_END_NTC (T008, raw name WARP_START wrong).
-- T013 evidence done (27173aa74c: 48 ids, 242/242 fit). T013 patterns done (e7437df0bb). Running: R3 review
-  (`briefs/R3-review-T009-T013.md`) and its fixes, then the closing packages TC1 (tooling, naming sweep,
+- T013 evidence done (27173aa74c: 48 ids, 242/242 fit). T013 patterns done (e7437df0bb). R3 review done (no wrong-data defects; 6 naming/selector/
+  errata findings, folded into TC1). Running: the closing packages TC1 (tooling, naming sweep,
   Season 3-exclusive list; `briefs/TC1-close-tooling-naming-exclusive.md`) and TC2 (code-backed raw
   renames; `briefs/TC2-code-backed-renames.md`), then the spec-end procedure (orchestration § 10).
 - All-exclusive groups (62, 70, 72, 60, 71, 61, 64, 59, 65) go to the Season 3-exclusive list.
