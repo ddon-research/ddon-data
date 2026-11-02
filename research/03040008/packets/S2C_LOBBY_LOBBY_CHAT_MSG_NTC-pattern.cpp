@@ -25,14 +25,14 @@ struct S2C_LOBBY_LOBBY_CHAT_MSG_NTC : CPacket {
     CDataCommunityCharacterBaseInfo CharacterBaseInfo;
     // T014b I (mirror of the REQ field): the NTC carries the same u8/u32/u32 triple after the
     // sender as the REQ (reader 0x80e840); same value ranges; receive-side consumer (handler
-    // 0x7e29b0, not a function) not traced
-    u8 MessageFlavor;                  // Season 3; server: MessageFlavor (lead)
+    // 0x7e29b0, not a function) not traced; name as the REQ's (R4 F4, was MessageFlavor)
+    u8 MessageKind;                  // Season 3; server: MessageFlavor (lead)
     // T014b I (mirror of the REQ field): same triple as the REQ (see unk_u8); receive-side consumer
-    // not traced
-    u32 PhrasesCategory;              // Season 3; server: PhrasesCategory (lead)
+    // not traced; name as the REQ's (R4 F4, was PhrasesCategory)
+    u32 PresetCategory;              // Season 3; server: PhrasesCategory (lead)
     // T014b I (mirror of the REQ field): same triple as the REQ (see unk_u8); captured 0-150 as in
-    // the REQ; receive-side consumer not traced
-    u32 PhrasesIndex;              // Season 3; server: PhrasesIndex (lead)
+    // the REQ; receive-side consumer not traced; name as the REQ's (R4 F4, was PhrasesIndex)
+    u32 PresetEntryId;              // Season 3; server: PhrasesIndex (lead)
     MtString Message;
     // Fit: the decode ends within the last 15 bytes (cipher block padding; Packet.hexpat).
     u128 paddingSize = std::mem::size() - $ [[export]];

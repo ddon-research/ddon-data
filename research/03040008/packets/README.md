@@ -793,7 +793,8 @@ export, 2026-11-02, T012b). T013 is
   X(I); 3 captures; the packet name has no PC string). Their PC readers and wire layouts are in those
   sections; they go to a later spec with the other exclusive ids.
 - **Groups 3, 12, 23, 33 names without code backing (T006 §8):** the three Season 3 fields of 3.2.1 and
-  3.2.16 (`unk_u8`, `unk_u32_0/1`; server: MessageFlavor, PhrasesCategory, PhrasesIndex), the first
+  3.2.16 (`unk_u8`, `unk_u32_0/1`; server: MessageFlavor, PhrasesCategory, PhrasesIndex; named by role
+  since T014b and R4: MessageKind, PresetCategory, PresetEntryId), the first
   `CDataLobbyMemberInfo` u8 (which PS4 byte, Platform or ClientVersion, Season 3 dropped is open) and
   `OnlineStatus` on the third (I, position; `SessionStatus` on the second is V by 0.10.16, T003 §9),
   the 3.0.2 list name `LobbyMemberInfoList` (I, element type), and the two 12.1.2 lists (`unk_List0/1`,

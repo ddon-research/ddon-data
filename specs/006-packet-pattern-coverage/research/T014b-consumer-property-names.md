@@ -133,6 +133,12 @@ negative evidence.
     EndDistributionDate 2145884400.
   - The server lead for CDataSetQuestInfoList says OrderDate. The code puts this u64 in the same new slot
     as CDataQuestList's, not in an order-date slot.
+- Errata (R4, 2026-11-02): F3 found a code consumer for cQuestTaskParam +376. Getter `0x64d260` (caller
+  `0x9d04c0`) returns true when (+376 != 0 and +376 > now) or (+296 != 0 and +296 < now), now being the
+  current-time qword at +2856 (as for the shop, `0x5fa060`): a distribution-window test, +376 the start.
+  CDataQuestList and CDataQuestOrderList `DistributionStartDate` are now **V (consumer); I (name)** without
+  "(proposed)"; the lead agreement is a side note. CDataSetQuestInfoList's u64 (nQuest +112) is not covered
+  by this getter and keeps its "(proposed)" I mark.
 - `unk_u32_list` of CDataQuestList (+136) and CDataQuestOrderList (+144): I (consumer). `0x64d700` wraps
   each u32 as `mIdx` of a `cQuestPoint` (PC DTI name) in a new cQuestTaskParam array (+384). There is no
   PS4 counterpart and no name.
@@ -272,6 +278,11 @@ Names:
 - `unk_u16_0` = **EnhanceId** (V; lead agrees).
 - `unk_u16_1`: I (consumer), kept unnamed. No reader of ctrl +14/+16 was found by the word-access scan, and
   the ctrl copy `0x5f7ed0` copies +14 only.
+- Errata (R4, 2026-11-02): F1. No string names `EnhanceType` or `EnhanceId`; the names come from the role
+  and the ctrl class `nEquipEnhanced`, with the lead agreeing, and the step from `0x4dde40`'s table to
+  rEnhancedParamList is not reproduced. Both are now **V (consumer); I (name: role + class nEquipEnhanced;
+  lead agrees)** (spec rule 4 has no `V (...; lead agrees)` form). `EquipElementParam.SlotNo` keeps V: PS4
+  DWARF `CDataEquipElementParam.m_ucSlotNo`.
 
 ### Equip parameter list: CDataContextBase_unk_0 (V value, I kind)
 
@@ -394,6 +405,11 @@ displacement/immediate index of all PC functions was rebuilt (45 s) for consumer
 - `unk_u16` (150): I role only, stored at sGame +14566 and used by uGUIEntryBoardSearch (`0xe34b90`,
   `0xdf7fd0`) as the upper bound of a range slider beside JobLevelMax.
 - `unk_u32_1` (10000): I role only, denominator of a three-step gauge in `0x62e4c0` (0.33 / 0.66).
+- Errata (R4, 2026-11-02): F2. The `CDataGameSetting_unk_1` key is the game mode: `0xb5f420`'s default key
+  is sGame +0x39FC (caller `0x4845d0`), the dword `0xb5fd10` / `0xb5fea0` test for 1 / 2, where
+  DECIDE_CHARACTER_ID_RES (`0x7c7f20`) stores CDataCharacterListElement.GameMode and `0xb5ff70` compares
+  with rLandInfo `mGameMode`. `Type` is renamed **GameMode**, V (role: lookup key compared with
+  sGame+0x39FC); I (name). JSON key `Type` -> `GameMode` in SERVER_GET_GAME_SETTING_RES.
 - `unk_bool`: copied to conn-owner +41814, no reader (open). `unk_u32_0`, `unk_u32_2`: no reader in the
   handler or the getter's callers (open).
 
@@ -437,6 +453,11 @@ displacement/immediate index of all PC functions was rebuilt (45 s) for consumer
 - LOBBY_CHAT_MSG REQ `unk_u8` / `unk_u32_0` / `unk_u32_1` = **MessageFlavor** / **PhrasesCategory** /
   **PhrasesIndex** (V role, lead agrees): `0xb291b0` sends (0,0,0) for typed chat, (1, category+1, index) from
   the preset-phrase path `0xb29160` / `0xb76030`, kind 3 from `0x588b80`. NTC: I, same triple.
+- Errata (R4, 2026-11-02): F4. The names came from the lead; the code shows a message kind, category+1 and
+  the u16 at +4 of the selected entry of `0xb79b80`'s per-category table (an entry id, not the index), and
+  no code string says "phrase" or "flavor". Spec rule 4 is not met (the code contradicts "Index"), so the
+  three fields take neutral role names: `MessageFlavor` -> **MessageKind**, `PhrasesCategory` ->
+  **PresetCategory**, `PhrasesIndex` -> **PresetEntryId**; REQ V (role); I (name: role), NTC I (mirror).
 - AREA_BONUS `unk_u16`: the consumer `0xbd4e40` reads only the first four u16, so the Season 3 u16 is the
   fifth (V position); name open.
 - CYCLE_CONTENTS_NEWS: `CDataCycleContentsRank.unk_u32` / `unk_u8` are dropped by the consumer `0xbd53e0`

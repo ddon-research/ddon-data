@@ -164,8 +164,8 @@ struct ContextSetInfo {
 // CDataEquipElementParam position of the EquipData element (PC 0x765a90); server names
 // SlotNo, CrestId, Add are leads.
 struct EquipElementParam {
-    // T014b V (consumer; lead agrees): basis 1: 0x4fa0d0 accepts 1..4 and fills cCrestParam[u8-1];
-    // matches PS4 m_ucSlotNo
+    // T014b V (consumer; name: PS4 DWARF CDataEquipElementParam m_ucSlotNo; lead agrees): basis 1:
+    // 0x4fa0d0 accepts 1..4 and fills cCrestParam[u8-1] (R4 F1: V stands)
     u8 SlotNo;
     // T014b V (consumer): basis 1: stored as the crest item number and resolved with the item-param
     // lookup 0xb98c80 (the lookup addItemNotice uses for CDataItemList ItemId); PS4 counterpart
@@ -180,14 +180,16 @@ struct EquipElementParam {
 // Season 3 list element of CDataContextEquipData (PC 0x765ba0), no PS4 counterpart; struct name neutral
 // (TC1). server: CDataAddStatusParam {EnhanceType, Unk0, EnhanceId, Unk1} (lead).
 struct CDataContextEquipData_unk_0 {
-    // T014b V (consumer; lead agrees): basis 1: setter 0x5f8030 switches on it: 1 -> ctrl +4, 2 ->
+    // T014b V (consumer); I (name: role + class nEquipEnhanced; lead agrees) (R4 F1: no string
+    // names the field; "Type" is the role of a three-way switch): basis 1: setter 0x5f8030 switches on it: 1 -> ctrl +4, 2 ->
     // ctrl +6/+8/+10 by unk_u8_1, 3 -> ctrl +12; getters 0x5f7f40/0x5f7f80 and status calc 0x4dce10
     // loop the same three types; values 1..3; server lead EnhanceType
     u8 EnhanceType;
     // T014b V (consumer): basis 1: setter 0x5f8030 uses it only for type 2, as a 1-based slot (a3-1
     // <= 2 -> ctrl +6+2*(a3-1)); values 1..3; name from the role (no string); server lead Unk0
     u8 EnhanceSlotNo;
-    // T014b V (consumer; lead agrees): basis 1: stored as the enhance id of its type/slot; 0x4dde40
+    // T014b V (consumer); I (name: role + class nEquipEnhanced; lead agrees) (R4 F1: no string
+    // names the field; 0x4dde40's table not yet traced to rEnhancedParamList): basis 1: stored as the enhance id of its type/slot; 0x4dde40
     // rejects 0 and ids above the rEnhancedParamList count and applies entry id-1 (EnhancedDataList
     // {ParamId, ParamValue}) through table 0x1b0fcb8 (...)
     u16 EnhanceId;

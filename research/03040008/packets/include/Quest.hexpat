@@ -452,6 +452,9 @@ struct CDataQuestOrderList {
     // T014b I (consumer + value): PC reader 0x774a70 reads u64 at +80, +88, +96; PC 0x64d690 passes
     // +96 as EndDistributionDate (V) and +80 as the same new argument as the CDataQuestList first
     // u64 (-> cQuestTaskParam +376) (...)
+    // R4 F3: V (consumer); I (name): getter 0x64d260 (caller 0x9d04c0) returns true when (+376 != 0
+    // and +376 > now) or (+296 != 0 and +296 < now), now = the current-time qword at +2856 (as shop
+    // 0x5fa060): a distribution-window test, +376 the start, +296 the end; server lead agrees
     u64 DistributionStartDate;
     u64 OrderDate;
     u64 EndDistributionDate;
@@ -543,6 +546,9 @@ struct CDataQuestList {
     // T014b I (consumer + value; lead agrees): PC 0x64d620 passes +88 where PS4 passes
     // m_ullEndDistributionDate (-> cQuestTaskParam +296; EndDistributionDate V) and +80 as a new
     // trailing argument stored at cQuestTaskParam +376 (no PS4 member) (...)
+    // R4 F3: V (consumer); I (name): getter 0x64d260 (caller 0x9d04c0) returns true when (+376 != 0
+    // and +376 > now) or (+296 != 0 and +296 < now), now = the current-time qword at +2856 (as shop
+    // 0x5fa060): a distribution-window test, +376 the start, +296 the end; server lead agrees
     u64 DistributionStartDate;               // Season 3 (I position); server: DistributionStartDate (lead)
     u64 EndDistributionDate;   // name I (position)
     MtTypedArray<CDataRewardItem> FixedRewardItemList;

@@ -73,10 +73,13 @@ struct CDataGameSetting_unk_2 {
 // CDataGameSetting_unk_1 (struct name neutral; server: CDataExpSetting, lead): PC list reader 0x766800 {u8, list 0x766910} (V widths).
 // Season 3, no PS4 counterpart. Captures: two entries (1, 2) with 120 and 55 rows.
 struct CDataGameSetting_unk_1 {
-    // T014b V (role: lookup key); I (name; lead agrees): 0xb5f370 / 0xb5f420 search the setting
-    // +268 list for the element whose u8 equals the requested type (default sGame +3711*4) and use
-    // its inner list; values 1, 2 with 120 and 55 levels
-    u8 Type;                // Season 3, no PS4 member; server: Type (lead)
+    // T014b V (role: lookup key compared with sGame+0x39FC); I (name) (R4 F2, was Type): 0xb5f420
+    // walks the setting +296/+308 list for the element whose u8 equals a3 ?: sGame[3711]
+    // (sGame+0x39FC, caller 0x4845d0) and returns the inner element +8 for level a2+1. That dword is
+    // the game mode: 0xb5fd10 / 0xb5fea0 test it for 1 / 2, DECIDE_CHARACTER_ID_RES handler 0x7c7f20
+    // stores CDataCharacterListElement.GameMode there, 0xb5ff70 compares it with rLandInfo mGameMode;
+    // values 1, 2 with 120 and 55 levels
+    u8 GameMode;            // Season 3, no PS4 member; server: Type (lead, generic)
     MtTypedArray<CDataGameSetting_unk_2> unk_List;    // PC 0x766910
 };
 
