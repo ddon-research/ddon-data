@@ -55,6 +55,9 @@ Coordinator: main session. One subagent at a time. Method and rules: `spec.md`.
   (62 SEASON is all Season 3-exclusive: out of scope). Was: then groups 33, 3, 8, 14, 10, 37 by the triage order.
 - Tn: `tests/imhex-export-select.sh` is not run by check.sh; the u64 OM `Key` (13.20.x/13.22.2) exceeds
   2^53 in JSON (README note).
+- Tn naming sweep (README rule after R2b: an `unk_` name carries no server name): `unk_SpSkillList` / type
+  `SpSkill` (Context, Pawn), 13.6.2 `unk_RestrictionList`, `CDataDeliveredItem.ItemNum/NeedNum`
+  (Quest.hexpat:456); grep all includes for server-derived names before close; F2 bool order open.
 - Tn: raws whose names are placeholders but code names them (0.10.16 = SESSION_STATUS_NTC, T003 § 9;
   14.10.16 = C2S_WARP_END_NTC, T008): one CLI `PacketId` relabel + rename package at spec end (Sam 2026-11-01 chose renaming
   for code-backed names).
