@@ -20,6 +20,11 @@ Unresolved: settle by code or give the concrete reason; exclusive: confirm by co
 Cross-check `D:/ddon-data-s2/recompilation/src/DD_ONLINE/prog/Protocol/UserSession/{C2S,S2C}.cpp` +
 `PacketData`. Arrowgene structures are leads only; list misplacements.
 
+Extra item (from T009b): in 2.0.2 sample 10055 `CDataStatusInfo` (PC reader `0x77a810`,
+`include/Character.hexpat:136-152`) decodes Hp 4507 but MaxHp 760. Read the PC reader's stores and a
+consumer of the fields to say whether the order or the PS4 names are wrong for PC (V/I), or whether
+the values are consistent (e.g. MaxHp is not the cap); one section in the report.
+
 Owns: only `specs/006-packet-pattern-coverage/research/T010-gp-clan.md`. Never touch
 patterns, packets/, client/. Private copies: `bash research/ida/private-copy.sh <pc|ps4> t010`.
 Save the capture walk as `research/T010-walk.py` (re-runnable from the repo root).
