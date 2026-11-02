@@ -194,3 +194,180 @@ negative evidence.
 The first open field by capture frequency is `include/Context.hexpat`
 `CDataContextEquipData_unk_0.unk_u16_0` (T014a medium rows; PC reader `0x765ba0`). To trace it, start from
 the copy loop in `0x880210` (setItemList's second list) to its consumer.
+
+## Part 2 (2026-11-02): Context.hexpat and CharacterData.hexpat
+
+Scope: the 141 TSV rows of `include/Context.hexpat` and `include/CharacterData.hexpat`. They cover 25
+distinct struct.field pairs, counting each CharacterBinSaveData bit-stream member separately.
+
+Builds and databases:
+- PC 03040008: private copy
+  `D:/research/DDON-binaries/IDA9.5/PC_DDON_03040008/ddon-data-t014b2/2022_01_29_DDO_DUMP_FIX.exe.i64`
+  (32-bit, image base 0x400000, checked with `idc.get_idb_path()`).
+- PS4 02020005: private copy
+  `D:/research/DDON-binaries/IDA9.5/PS4_DDON_02020005_2016_12_21/ddon-data-t014b2/DDOORBIS.elf.i64`
+  (64-bit, base 0).
+
+Both copies were used read-only. The SHA-256 of the copies was not computed (not run). All addresses are VAs.
+
+| Verdict | Rows | Distinct struct.field |
+| --- | --- | --- |
+| V (data flow read in full) | 77 | 8 |
+| I (consumer, binary hint, enum range) | 44 | 8 (5 named, 3 role only) |
+| open, with the reason in the TSV | 20 | 9 |
+
+### Property tables: correction to part 1
+
+Part 1 searched the PC strings and found no property table that names packet data. That search missed the
+tables. The PC binary has 1,227 functions that call `MtPropertyList::insert` (`0x4236b0`). Their
+registrations were extracted from the decompiler output: 7,237 name/offset pairs.
+
+- The context class has four tables:
+  - `0x471180`: HumanType, PawnType, CharId (+8676), PawnId (+8680), ...
+  - `0x4708e0`
+  - `0x471b20`: mUniqueId, Stage, mMasterIndex, ...
+  - `0x471a50`: **mRoomNo** at +14992 and **mPlayerStatusFlag** at +14996 (type 6, u32).
+- The equip classes below have no table: `cItemEquipParam`, `cCraftParam`, `cCrestParam` and
+  `nEquipEnhanced::cEquipEnhancedCtrl` all use the shared empty createProperty `0x402470` in their vtables.
+- No table covers cCharacterData +8968 (stOptionData) or +13508..13637.
+
+### T014a candidates
+
+| Row (tier) | Candidate | Verdict |
+| --- | --- | --- |
+| CDataContextEquipData_unk_0.unk_u16_0 (3 medium) | StageNo, Param01 | **rejected** by code: the field is an rEnhancedParamList index (EnhanceId, below) |
+| CDataContextEquipData_unk_0.unk_u16_1 (1 medium) | StageNo | **rejected** (I): the field is stored beside the enhance ids in the enhance ctrl |
+| CharacterBinSaveData unk_u32_13508 (2 strong) | PawnID | unchanged from part 1: no PC consumer, value match only |
+
+### Equip enhancement list: CDataContextEquipData_unk_0 (V)
+
+Data flow, PC:
+- Reader `0x765ba0` fills a 16-byte element: u8 at +8, u8 at +9, u16 at +10 and u16 at +12.
+- Item lists (reader `0x76aca0`, list at +56):
+  - addItemNotice `0xb941e0` passes `[esi+38h]` to `0x4fad50`, which calls `0x4fa120`.
+  - `0x4fa120` resets the ctrl, then calls the setter `0x5f8030(ctrl, +8, +9, +10, +12)` for each element.
+  - The ctrl sits at cItemEquipParam +92. cItemEquipParam (DTI `dti__123`, 120 B) hangs at cItemParam +40.
+- Context:
+  - copyContextParam (`0x84aca0`) passes equip element +32 to `0x4fad50` at `0x84afda`. IDA cuts this
+    function short at `0x84aeaf`, so the code after it was read as disassembly.
+  - The equip-list path `0xb959c0` copies the item list +56 to +36, and `0xb9e3d0` passes it on (`0xb9e4a5`).
+- The ctrl class has ctor `0x5f7e30` and vtable `0x1b79948`. The vtable is followed by the string
+  `nEquipEnhanced::cEquipEnhancedCtrl`. Related Season 3 strings: `OnPacket_EQUIP_ENHANCED_*`,
+  `uGUIEquipEnhance`.
+- Setter `0x5f8030`:
+  - type 1: the id goes to +4, `unk_u16_1` to +14;
+  - type 2 with slot 1..3: the id goes to +6/+8/+10; slot 1 also writes `unk_u16_1` to +16;
+  - type 3: the id goes to +12.
+- Consumer: status calc `0x4dd630`.
+  - `0x4dcda0` loops types 1..3 and calls `0x4dce10` (count `0x5f7f80`, getter `0x5f7f40`), which calls
+    `0x4dde40(id)`.
+  - `0x4dde40` ignores id 0 and ids above the rEnhancedParamList count. Otherwise it applies entry id-1
+    through the stat table `0x1b0fcb8`.
+  - `client/03040008/enhanced_param/param/enhancedParamList.epl.json` has 947 entries; the captured
+    `unk_u16_0` values reach 944.
+
+Names:
+- `unk_u8_0` = **EnhanceType** (V; lead agrees).
+- `unk_u8_1` = **EnhanceSlotNo** (V; the name comes from the role).
+- `unk_u16_0` = **EnhanceId** (V; lead agrees).
+- `unk_u16_1`: I (consumer), kept unnamed. No reader of ctrl +14/+16 was found by the word-access scan, and
+  the ctrl copy `0x5f7ed0` copies +14 only.
+
+### Equip parameter list: CDataContextBase_unk_0 (V value, I kind)
+
+- The same {u8, u16} struct serves two lists: the item's third list (reader `0x766210`, item +76) and the
+  CDataContextBase trailing list (`0x7605e0`, base +216).
+- Item path: addItemNotice `[esi+4Ch]` -> `0x4fae60` -> `0x4fa310` -> `0x5fc610`. The setter writes u8 to +4
+  and u16 to +6 of an element of the cItemEquipParam +80 list.
+- Context path: `0x84afc0` passes base +216 to `0x4fae30`. `0x4fae30` applies the list through `0x4fa190`,
+  and only to the equip item whose rItemParam category is 10 and subcategory 5 (`0x4f9620`).
+- Consumer: status calc `0x4dd630` loops the +80 list and calls `table_0x1b0fcb8[u8](this, arg, u16)` for
+  u8 < 0x4B.
+  - The same table applies rEnhancedParamList `ParamId`/`ParamValue` (`0x4dde40`).
+  - The first loop of `0x4dd630` sorts the rItemList equip params by the kind ranges of the PS4 DWARF enum
+    `rItemList::KIND_TYPE`; the PC ranges are shifted by one.
+- Names:
+  - `unk_u8` = **EquipParamKind** (I: consumer + enum range).
+  - `unk_u16` = **EquipParamValue** (V).
+  - The leads EffectID / EffectValue (EmblemStatList) agree in role.
+
+### Crest element: EquipElementParam (V, one I)
+
+- Reader `0x765a90`: u8 -> +4, u32 -> +12, u16 -> +16.
+- Item path `0x4fa0d0`:
+  - u8 must be 1..4 and selects cCrestParam[u8-1].
+  - u32 goes to crest +4; the item lookup `0xb98c80(u32)` writes crest +8. addItemNotice uses the same
+    lookup for the CDataItemList ItemId.
+  - u16 goes to crest +12.
+- Context path `0x84af60..0x84afa6` -> `0x4fa090` does the same, taking the slot from the list position.
+- Classes by DTI name: four `cCrestParam` (`dti__796`, 16 B) inside `cCraftParam` (`dti__795`), which sits
+  at cItemEquipParam +4. PS4 counterpart: `cCraftParam.mCraftElementItemNo[4]` / `mpElementParam[4]`.
+- Consumer of the u16: status calc `0x4dd630` -> `0x4f9be0`, which passes crest +12 to the callback
+  `0x4ddaf0`. Its handlers (e.g. `0x4ddb80`) add the u16 to each crest param value.
+- Names:
+  - `unk_u8` = **SlotNo** (V; part 1 had I).
+  - `unk_u32` = **ItemId** (V; part 1 had a proposed I).
+  - `unk_u16` = **Add** (I, consumer; lead agrees).
+
+### Pawn info: CDataContextPawnInfo (I, binary hints)
+
+PC copyContextParam_0 (`0x84ab50`) is the counterpart of PS4 `cNetGameServer::copyContextParam_0`
+(`0x35bf70`): it calls copyContextParam, then loops the reactions into the auto-motion setter.
+
+- `unk_u8[64]` = **TrainingStatus**, I (binary hint; lead agrees).
+  - The 64 bytes are copied as one block (`rep movsd` into the `0x5fd640` object), then pass through
+    `0xb14d10` to `0x47b6a0`.
+  - Reader `0x772aa0` fills the same object for PAWN_TRAINING_GET_TRAINING_STATUS_RES (handler `0x7ed6d0`,
+    named by its `OnPacket_` string), which stores it at pawn data +1964.
+  - All 576 captured bytes are 0.
+- `unk_List` {u8, u8} = **SpSkillId** / **SpSkillLv**, I (binary hint; lead agrees).
+  - copyContextParam_0 takes up to three elements, writes +4 to a[i] and +5 to b[i], then calls
+    `0x6042c0` -> `0x473be0` (cContext +8860).
+  - The same reader `0x772950` serves PAWN_SP_SKILL_GET_ACTIVE_SKILL_RES (69.0.2, `0x813510`). The group-69
+    NTC handler `0x7ec870` builds the same record for `0x6042c0`.
+  - Values 2..9 fit the ten `ui/00_common/pspskill/pspskill_000..009` icons. The id/level order rests on the
+    lead and the value ranges, not on a reader of +8860.
+
+### Player info: CDataContextPlayerInfo (V, property names)
+
+- Reader `0x75f930` puts the two u32 at +324/+328. copyContextParam copies them (`0x84b174`, `0x84b18f`).
+- They are applied at two calls:
+  - `0x84c049` (`sub_47bad0`): cContext +14992 = v. A nonzero value on the own player sets bit 0x20 of h+0xE4.
+  - `0x84c079` (`sub_478e20`): cContext +14996 |= v.
+- createProperty `0x471a50` names both members:
+  - `unk_u32_0` = **RoomNo** (`mRoomNo`). Its readers `0xbb12b0`/`0xbb1300` compare it with the own CharId
+    (`0x4770b0`, property CharId +8676).
+  - `unk_u32_1` = **PlayerStatusFlag** (`mPlayerStatusFlag`).
+- Captured values: 0.
+
+### Open with reasons
+
+- `CDataContextSetBase.unk_u32`:
+  - Received values go to the context +84 (`0x850010` -> `0x47bc80`). No getter of that member was found,
+    and no createProperty table names it.
+  - The C2S builder `0x851700` never writes the field, and ctor `0x783220` zeroes it. The client therefore
+    always sends 0, which matches all 2,264 captured values.
+- `CDataContextSetAdditional.unk_u32[4]` and `CDataContextEnemyStatus.unk_u32[4]`: role I, no name.
+  - Both write the enemy-context array cContext +3144 (setter `0x479fd0`, getter `0x475520`).
+  - `0xcd5c80` uses element 1 as a bitfield: bit 0 is a state flag, bits 1..4 and 5..8 are two 4-bit timers.
+- CharacterBinSaveData `unk_bit_09`, `unk_u8_37`, `unk_bit_96..98` (stOptionData +9/+37/+96..98): no reader
+  outside the serializer. The displacement scan of all 151,366 PC functions finds cCharacterData
+  +8977/+9005/+9064..9066 only in other classes, and no function returns the option base +8968.
+- `unk_bit_13637`: only copy `0x465700`, deserialize `0x466560` and serialize `0x467790` touch it;
+  `0x14f50f0` is another class.
+- `unk_u32_13572` and `unk_u32_13508`: only init, copy, deserialize and serialize touch them. The part 1
+  result was re-checked for +13572: `0xe78e60` stores a vtable at that offset of another class.
+
+### Method notes
+
+- The displacement/immediate index of all PC functions was rebuilt: 151,366 functions in 42 s.
+- Word-access scans looked for reads of the enhance ctrl +14/+16.
+- IDA does not make some consumers into functions: copyContextParam is cut at `0x84aeaf`, and `0x4ddaf0`
+  starts with data. Those parts were read as disassembly. Missing decompiler output there is a coverage gap,
+  not negative evidence.
+
+### Next field
+
+None remains in this scope. Two leads for a later pass:
+- a reader of the enhance ctrl +14/+16 (`unk_u16_1`), likely in the uGUIEquipEnhance code;
+- a reader of cContext +8860, to fix the SpSkill id/level order.
