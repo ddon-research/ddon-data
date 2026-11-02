@@ -36,7 +36,9 @@ struct S2C_CHARACTER_DECIDE_CHARACTER_ID_RES : CPacket {
         CDataCharacterInfo CharacterInfo;                   // PC 0x75c2a0
         bool IsReturnPrepare;
         CharacterBinSaveData Bin;                           // PC 0x757de0 (CharacterData.hexpat)
-        u8 unk_u8;                                          // Season 3, no PS4 member; server: Unk1 (lead)
+        // T014b V (store); I (name): PC handler 0x7c7f20 (reader 0x802060): when IsReturnPrepare !=
+        // 0 the trailing u8 goes to sGame+0x39F8 and +0x39FC and conn dword 10428 (...)
+        u8 GameMode;                                          // Season 3, no PS4 member; server: Unk1 (lead)
     }
     // Fit: the decode ends within the last 15 bytes (cipher block padding; Packet.hexpat).
     u128 paddingSize = std::mem::size() - $ [[export]];

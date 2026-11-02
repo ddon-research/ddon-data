@@ -260,9 +260,9 @@ prints the options and every environment override.
 A packet that fails writes `<packet-file>.json.err` and removes any `<packet-file>.json` an earlier
 run left, so counts over `decrypted_json` never mix runs. plbatch parses every output with
 nlohmann json: a float that is NaN or Inf comes out of the formatter as a bare `nan`/`inf`, which is
-not valid JSON. Such files are counted as `nonfinite` and kept as printed (default
-`--json-nonfinite=keep`, byte-identical to ImHex; `jq` rejects them) or written with `null` in
-their place (`--json-nonfinite=null`). Output that is invalid for any other reason counts as
+not valid JSON. Such files are counted as `nonfinite` and written with `null` in their place
+(default `--json-nonfinite=null` since spec 006 T014c; the raw keeps the float bytes) or kept as
+printed (`--json-nonfinite=keep`, byte-identical to ImHex; `jq` rejects them). Output that is invalid for any other reason counts as
 `badjson`, a failure. The ImHex path does not validate.
 
 `<packet-filter>` selects the raw files three ways:

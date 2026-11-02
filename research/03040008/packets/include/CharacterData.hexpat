@@ -135,6 +135,9 @@ bitfield CdOptionData {
         mCamRangeBow : 8;                          // V (gate 0x11)
     }
     mCamPosType : 8;                               // V
+    // T014b open (no reader), kept unk: the PC displacement scan finds the option members only in
+    // the serializer 0x467790/0x4678f0, deserializer 0x466560, copy 0x465700, init 0x467df0 and
+    // character-info copy 0x84d710; no option getter, no createProperty entry
     if (cd_open(0x15)) bool unk_bit_09 : 1;        // PC new, option +9, reader gate >= 0x15 (V)
     bool mIsMenuWindowOffAuto : 1;                 // V/I
     if (cd_open(0x13)) mDefaultRimWarpTabPos : 8;  // V (gate 0x13)
@@ -176,6 +179,9 @@ bitfield CdOptionData {
     bool mIsAchievementDispAnnounce : 1;           // V/I
     bool mIsRewardBoxDispWarning : 1;              // V/I
     if (cd_open(0x12)) bool mIsMiniMapAutoScale : 1; // V (gate 0x12), written after the clock bits
+    // T014b open (no reader), kept unk: the PC displacement scan finds unk_u8_37, unk_bit_96..98 only in
+    // the serializer 0x467790/0x4678f0, deserializer 0x466560, copy 0x465700, init 0x467df0 and
+    // character-info copy 0x84d710; no option getter, no createProperty entry
     if (cd_open(0x14)) unk_u8_37 : 8;              // PC new u8, option +37, gate >= 0x14 (V)
     if (cd_open(0x17)) bool unk_bit_96 : 1;        // PC new, option +96, gate >= 0x17 (V)
     if (cd_open(0x18)) {
@@ -188,13 +194,19 @@ bitfield CdOptionData {
 bitfield CdBitStream {
     if (cd_open(0x0F)) bool mIsAppraiseTalked : 1;  // V
     // PC new bool at +13637, reader gate >= 0x19 (V); meaning unknown.
+    // T014b open (no reader), kept unk: +13637 appears only in copy 0x465700, deserialize 0x466560,
+    // serialize 0x467790 (0x14f50f0 is another class).
     if (cd_open(0x19)) bool unk_bit_13637 : 1;
     if (cd_open(0x07)) CdOptionData mOption;        // V (sub_4678F0(this + 8968))
     if (cd_open(0x0A)) CdChatCstmCh mChatCstmCh[2]; // V
     if (cd_open(0x16)) {
         // Two PC-only u32[16] at +13508 and +13572, reader gate >= 0x16 (V). Meaning (I, weak,
         // PC-cap): the first repeats mCheckPawnHistory pawn ids, the second holds small values.
+        // T014b open (value only), kept unk: +0x34C4 is touched only by init 0x467df0, copy 0x465700,
+        // deserialize 0x466560, serialize 0x467790; no consumer, no PS4 member. The pawn-id match is
+        // basis 2 only (T014a).
         CdBeU32 unk_u32_13508[16];
+        // T014b open (no reader), kept unk: +13572 only in init, copy, deserialize and serialize.
         CdBeU32 unk_u32_13572[16];
     }
     // flushBits: the rest of the last byte, zero (T001b 1, V).

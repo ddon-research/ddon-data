@@ -43,6 +43,9 @@ struct CDataGPCourseValid {
     u32 ID;
     u32 CourseID;
     MtString Name;
+    // T014b open (not read), kept unk: element +16 (reader 0x7675d0, list 0x7674d0). In
+    // L2C_GET_CHARACTER_LIST_RES the list is character element +248 (element reader 0x8878c0, list
+    // 0x8877f0, packet reader 0x8898a0) (...)
     MtString unk_MtString;      // Season 3 (PS4: u32 m_unIconID); server: NameB (lead)
     u64 StartTime;
     u64 EndTime;
@@ -87,10 +90,21 @@ struct CDataGPShopDisplayLineup {
     MtString Name;
     MtString Comment;
     u32 LineupID;
+    // T014b open (getter without callers), kept unk: handler 0x7d8650 keeps the packet at conn+776;
+    // its getter 0x86be20 has no code xref in the database (the callers sit in undefined code), so
+    // no consumer was reached
     MtString unk_MtString;      // Season 3
+    // T014b open (getter without callers), kept unk: packet kept at conn+776, getter 0x86be20 has
+    // no code xref (see unk_MtString)
     u32 unk_u32_0;              // PS4 has BackIconID, FrameIconID, BehaviorAfterBuyingType here (3 u32)
+    // T014b open (getter without callers), kept unk: packet kept at conn+776, getter 0x86be20 has
+    // no code xref (see unk_MtString)
     u32 unk_u32_1;
+    // T014b open (getter without callers), kept unk: packet kept at conn+776, getter 0x86be20 has
+    // no code xref (see unk_MtString)
     u32 unk_u32_2;
+    // T014b open (getter without callers), kept unk: packet kept at conn+776, getter 0x86be20 has
+    // no code xref (see unk_MtString)
     u32 unk_u32_3;
 };
 

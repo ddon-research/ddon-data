@@ -21,6 +21,10 @@ struct CDataAreaBonus {
     u16 ExpRatio;
     u16 RimRatio;
     u16 AreaPointRatio;
+    // T014b V (position: the Season 3 u16 is the fifth); name open: consumer 0xbd4e40 takes the
+    // maximum of element +8/+10/+12/+14 (the four PS4 ratios, Gold/Exp/Rim/AreaPoint) and never
+    // reads +16, so the new u16 is the last one, as the pattern places it; no reader of it found;
+    // constant 100
     u16 unk_u16;               // Season 3; position I: PC reads 5 u16s, PS4 4 (R2 F5)
 };
 

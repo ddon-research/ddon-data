@@ -30,7 +30,9 @@ struct S2C_PAWN_EXPEDITION_PAWN_EXPEDITION_GET_SALLY_REWARD_RES : CPacket {
         u8 SearchSpotType;
         MtTypedArray<CDataBattleResultInfo> BattleResultList;  // Season 3 list (PS4 one m_BattleResult), PC 0x759f80
         bool IsGoldenSally;                                     // I (position)
-        bool unk_bool;                                          // Season 3, no PS4 member
+        // T014b V (role); name I: reader 0x811d40 reads it to packet +0x3D (IsGoldenSally +0x3C);
+        // handler 0x7ea150 keeps the packet at conn sub +0x4C0 (getter 0x86f4a0) (...)
+        bool IsHotSign;                                          // Season 3, no PS4 member
     }
     // Fit: the decode ends within the last 15 bytes (cipher block padding; Packet.hexpat).
     u128 paddingSize = std::mem::size() - $ [[export]];

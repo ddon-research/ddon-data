@@ -20,6 +20,9 @@ import std.mem;
 struct CDataMyRoomOption {
     MtTypedArray<CDataCommonU32> BgmAcquirementNoList;
     u32 BgmAcquirementNo;
+    // T014b open (not read in the copy), kept unk: option +0x1C (reader 0x76f300: list +4, u32
+    // +0x18, u32 +0x1C). Handler 0x7e5a90 passes the option to 0x10db890, which keeps +0x18
+    // (BgmAcquirementNo) at +168 and copies the list; +0x1C is not read there (...)
     u32 unk_u32;               // Season 3; position I: PC reads 2 u32s, PS4 1 (R2 F5)
 };
 

@@ -26,7 +26,11 @@ struct CDataStageAttribute {
     bool IsNotSessionReturn;
     bool IsEnableBaggage;
     bool IsClanBase;
+    // T014b open (stored, no reader), kept unk: attribute +0xD (reader 0x779f40; stage element
+    // 0x77a130 holds the attribute at +0x14) (...)
     bool unk_bool_0;           // Season 3
+    // T014b open (stored, no reader), kept unk: attribute +0xE = stage table entry +34; as
+    // unk_bool_0, no function addressing the table (displacement 0x9E44) reads +34
     bool unk_bool_1;           // Season 3
 };
 

@@ -24,6 +24,9 @@ struct S2C_DISPEL_GET_DISPEL_ITEM_SETTING_RES : CPacket {
     if (Error == 0) {
         s32 Result;
         MtTypedArray<CDataDispelCategoryInfo> DispelCategoryInfo;   // PC 0x763390
+        // T014b open (no reader), kept unk: packet +44 (reader 0x8068b0; +45 is the valid flag);
+        // the getter 0x86aba0 (conn+0x4A4) has two callers, 0xe8e3c0 and 0xe8e7b0, which read only
+        // the category list (+28/+40)
         bool unk_bool;   // Season 3, 0 in the capture; server: Unk1 (lead)
     }
     // Fit: the decode ends within the last 15 bytes (cipher block padding; Packet.hexpat).

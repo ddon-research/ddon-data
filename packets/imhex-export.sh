@@ -21,14 +21,15 @@
 #   --force        re-export packets whose JSON already exists
 #   --json-nonfinite=keep|null
 #                  plbatch only: NaN/Inf floats, which the formatter prints as bare nan/inf (not
-#                  valid JSON), are kept as printed (keep, the default: byte-identical to ImHex)
-#                  or written as null
+#                  valid JSON), are written as null (null, the default with plbatch: no reader
+#                  needs the bare token, and the raw keeps the float's bytes) or kept as printed
+#                  (keep: byte-identical to ImHex; the ImHex path always keeps them)
 #
 # Output: decrypted_json/<stream>/<packet-file>.json (one file per packet).
 # Failures keep their error log as <packet-file>.json.err, remove any <packet-file>.json an earlier
 # run left (so counts never mix runs) and make the script exit 1.
-# plbatch parses every output: "nonfinite" counts files holding nan/inf (invalid JSON unless
-# --json-nonfinite=null), "badjson" files whose output was invalid for another reason (failures).
+# plbatch parses every output: "nonfinite" counts files holding NaN/Inf (written as null, or as
+# invalid bare nan/inf with --json-nonfinite=keep), "badjson" files whose output was invalid for another reason (failures).
 # The ImHex path does not validate its output.
 #
 # Engine: plbatch (research/imhex/plbatch, PatternLanguage master 300d7388: UTF-8 JSON strings, where
@@ -74,7 +75,7 @@ require() {
 }
 
 FORCE=0
-NONFINITE=keep
+NONFINITE=
 while [[ ${1:-} == --* ]]; do
   case $1 in
     --force) FORCE=1 ;;
@@ -134,6 +135,7 @@ if [[ -n "${PLBATCH:-}" ]]; then
   [[ -d "$STD_DIR" ]] || die "ImHex std library not found: '$STD_DIR' (set IMHEX_INCLUDES or IMHEX)"
   STD_DIR=$(winpath "$STD_DIR")
   ENGINE=plbatch
+  NONFINITE=${NONFINITE:-null}
 else
   [[ -x "$IMHEX" ]] || die "ImHex not found or not executable: '$IMHEX' (set IMHEX=/path/to/imhex)"
   "$IMHEX" --pl format --help >/dev/null 2>&1 || die "'$IMHEX' does not support '--pl format' (needs ImHex 1.30+)"
@@ -240,6 +242,7 @@ if [[ $ENGINE == plbatch ]]; then
   wait
   cat "$work"/out.* | tee "$log"
 else
+  NONFINITE=${NONFINITE:-keep}
   [[ $NONFINITE == keep ]] || die "--json-nonfinite=$NONFINITE needs plbatch (the ImHex path writes ImHex's output unchanged)"
   # Export one packet. ImHex refuses to overwrite its output, so write to a temp file and move
   # it into place: an interrupted run never leaves a truncated JSON behind. No subshells here:

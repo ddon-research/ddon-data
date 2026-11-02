@@ -51,6 +51,34 @@ never becomes a field or type name, not even as the suffix of `unk_` (`unk_u32x5
 `CDataPawnInfo_unk_0`, never `unk_TrainingProfile`): it goes in a `server: <name> (lead)` comment. A Season 3 field with no
 PS4 counterpart is labelled that way.
 
+**Naming unknown fields by inference** (spec 006 § "Naming unknown fields by inference", Sam,
+2026-11-02). An `unk_*` field may get a name when the name states its basis. The bases, strongest
+first:
+
+1. **Consumer and property names (PC code):** the field is traced from the reader to where the client
+   stores or uses it, and a `createProperty` name, debug/assert/UI string, or a PS4 DWARF member on
+   the same code path names it. `V` when the data flow was read in full, else `I (consumer)`.
+2. **Value correlation (captures):** its values match, in the same session or stream, a code-backed
+   field (`PawnId`, `CharacterId`, `ItemId`, `StageId`, `QuestId`, UID, timestamp). `I (value: n/m
+   match <field> in <packet>)`, with the counts and the coincidence ruled out.
+3. **Other binary hints:** strings or constants near the reader or consumer, the same reader used by a
+   known structure, DWARF enum ranges. `I (binary hint)`.
+4. **Server leads (Arrowgene):** corroboration only. A server name becomes the field name only when a
+   basis from 1-3 agrees: `I (<basis>; lead agrees)`. A lead alone keeps `unk_*` with the lead in a
+   comment.
+
+Mark format: the comment line(s) above the field read `// T014b <mark>: <basis>`, where `<mark>`
+is the verdict of `specs/006-packet-pattern-coverage/research/T014b-consumer-property-names.tsv`
+(e.g. `V (consumer)`, `V (consumer); I (name; lead agrees)`, `I (consumer, member order)`,
+`V (role)`). The mark may split the data flow from the name: `V (role); I (name)` means the code
+role is read in IDA and the name is inferred from it. `(...)` ends a basis shortened in the
+comment; the TSV row (struct, field, packet) holds it in full. A field whose role is known but
+whose name is not keeps `unk_*`, and the comment gives the role. A rejected or unsettled field keeps
+`unk_*` with `// T014b open (<reason>), kept unk: ...`, e.g. `open (never read by the client)`,
+`open (no reader found)`, `open (value only)`. T014c applied the 478 TSV rows (251 struct.field
+pairs) this way; the "Open items" notes below describe the names as each batch left them, and the
+patterns plus the TSV are authoritative where they differ.
+
 **Header comment.** It gives the packet id and name, the evidence (report section, PC VAs), a body
 summary, and two lines the export script reads:
 
@@ -72,7 +100,11 @@ summary, and two lines the export script reads:
 
 **JSON conventions.** The root key is `packet`. Header keys are lowercase (`group`, `id`, `subId`,
 `source`, `packetcounter`). Lists export as `{count, entries}` and strings as `{length, value}`.
-String values are UTF-8 JSON strings, written as is with the standard escapes (`\"`, `\\`, `\n`,
+A NaN or infinite float is written as `null` (export default since T014c,
+`--json-nonfinite=null`; no reader of `decrypted_json/` needs a bare `nan`); the raw file keeps the
+float's bytes, so the value is recoverable from `decrypted_raw/`. The only such values are the 65
+group-35 CONTEXT packets of `stream85-marked.pcapng_tcp-stream-11` (35.9.16, 35.13.16; `"y": -nan`,
+T014a). String values are UTF-8 JSON strings, written as is with the standard escapes (`\"`, `\\`, `\n`,
 `\r`, `\t`, `\u00XX` for control characters); there is no percent encoding since spec 006 T001d
 (the export before it wrote `"Rumi%20Amestris"`). A byte that is not valid UTF-8 comes out as
 `\u00XX`, which reads the same as the code point U+00XX.
@@ -123,8 +155,9 @@ The engine is plbatch (`research/imhex/plbatch`, built with its `build.sh`): Pat
 from the committed export wherever a string holds a byte outside `[A-Za-z0-9-_.~]`. The summary line counts:
 
 - `exported`, `skipped` and `failed` packets;
-- `nonfinite`: outputs holding a bare `nan` or `inf`, which is not valid JSON unless you pass
-  `--json-nonfinite=null`;
+- `nonfinite`: outputs holding a NaN or infinite float, written as `null` by default
+  (`--json-nonfinite=keep` writes the formatter's bare `nan`/`inf`, which is not valid JSON; the
+  ImHex path always keeps them);
 - `badjson`: invalid output, counted as a failure.
 
 A failed packet leaves `<file>.json.err` and removes its old JSON. Output paths must stay under 260
@@ -855,7 +888,8 @@ export, 2026-11-02, T012b). T013 is
   Unk1) and `CDataCharacterInfo.unk_List` ({u8, u16}, the reader of `CDataPawnInfo.unk_List`; server:
   EmblemStatList); the 2.18.1 second u32 (`unk_u32`; `HpMax` on the first is I, position); the 37.11.1
   `unk_u8` (server: StorageType); the `CDataStampBonus` new u32 (`unk_u32`, placed first, I) with
-  BonusType/BonusValue after it (I); the `CDataStampBonusDailyGroup` and `CDataStampBonusCheckRes_unk_0`
+  BonusType/BonusValue after it (I; T014c renamed them `unk_u32_1`/`unk_u32_2`, since T014b part 7
+  shows +4 is the bonus kind, +8 an id and +12 the amount); the `CDataStampBonusDailyGroup` and `CDataStampBonusCheckRes_unk_0`
   u32 pairs (`unk_u32_0/1`; (1, 77) in every capture, the 45.3.1 request pair too); the
   `CDataStampBonusDailyGroup` type name and the 45.0.2 `DailyGroupList` (I: it wraps PS4's daily list;
   report and server called it the daily group / CDataStampBonusDaily), `TotalStampNum` before the total

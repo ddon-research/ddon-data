@@ -19,7 +19,10 @@ import std.mem;
 struct C2S_MAIL_SYSTEM_MAIL_GET_ALL_ITEM_REQ : CPacket {
     bool sourceOk = source == 0x00 [[export]];  // header source byte: 0x00 client (Packet.hexpat)
     u64 Id;
-    u8 unk_u8;                  // Season 3, no PS4 member; server: StorageType (lead)
+    // T014b V (role); name I (lead agrees): writer 0x82f590 <- 0x872050 <- mail UI 0x54cbd0 /
+    // 0x54d360. 0x54cbd0 opens the dialog 0x525b20 -> 0x67eb00 with options in order common_dialog
+    // 0x1F8 'Receive in Post', 0x1F9 'Receive in item bag' (disabled outside the lobby, (...)
+    u8 StorageType;                  // Season 3, no PS4 member; server: StorageType (lead)
     // Fit: the decode ends within the last 15 bytes (cipher block padding; Packet.hexpat).
     u128 paddingSize = std::mem::size() - $ [[export]];
     bool fits = paddingSize <= 15 [[export]];

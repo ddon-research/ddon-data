@@ -50,21 +50,33 @@ struct CDataJewelryEquipLimit {
 // CDataGameSetting_unk_0 (struct name neutral; server: CDataWalletLimit, lead): PC list reader 0x77c4b0 {u32, u32} (V widths). Season 3,
 // no PS4 counterpart; no PS4 or PC field name (unk_*). Captures: 16 pairs, ids 1-16.
 struct CDataGameSetting_unk_0 {
-    u32 unk_u32_0;            // Season 3, no PS4 member; server: WalletType (lead)
-    u32 unk_u32_1;            // Season 3, no PS4 member; server: MaxValue (lead)
+    // T014b V (consumer); I (name; lead agrees): handler 0x7f9070 loops setting +244 and calls
+    // 0xb61880(sGame, u32_0, u32_1) for u32_0 in 1..16, storing sGame +14768+4*u32_0 (...)
+    u32 WalletType;            // Season 3, no PS4 member; server: WalletType (lead)
+    // T014b V (consumer); I (name; lead agrees): stored per wallet type by 0xb61880; 0x67cd40 tests
+    // owned+added > 0xb5f590(type) (limit check), 0xb94100 / 0xb9f610 compare an amount >= it;
+    // value 999999999 fits a cap
+    u32 MaxValue;            // Season 3, no PS4 member; server: MaxValue (lead)
 };
 
 // CDataGameSetting_unk_2 (struct name neutral; server: CDataExpRequirement, lead): PC list reader 0x766910 {u8, u32} (V widths). Season 3,
 // no PS4 counterpart. Captures: (1, 0), (2, 300), ... read as (level, exp), I.
 struct CDataGameSetting_unk_2 {
-    u8 unk_u8;                // level (I)
-    u32 unk_u32;              // exp (I)
+    // T014b V (consumer): 0xb5f420(level index a2, type) returns the inner element whose u8 ==
+    // a2+1, so the u8 is the 1-based level key
+    u8 Level;                // level (I)
+    // T014b V (role: value returned per level); I (name: value, lead agrees): 0xb5f420 returns the
+    // u32 of the element found by level; captured values grow from 0 to 226000000 with the level
+    u32 Exp;              // exp (I)
 };
 
 // CDataGameSetting_unk_1 (struct name neutral; server: CDataExpSetting, lead): PC list reader 0x766800 {u8, list 0x766910} (V widths).
 // Season 3, no PS4 counterpart. Captures: two entries (1, 2) with 120 and 55 rows.
 struct CDataGameSetting_unk_1 {
-    u8 unk_u8;                // Season 3, no PS4 member; server: Type (lead)
+    // T014b V (role: lookup key); I (name; lead agrees): 0xb5f370 / 0xb5f420 search the setting
+    // +268 list for the element whose u8 equals the requested type (default sGame +3711*4) and use
+    // its inner list; values 1, 2 with 120 and 55 levels
+    u8 Type;                // Season 3, no PS4 member; server: Type (lead)
     MtTypedArray<CDataGameSetting_unk_2> unk_List;    // PC 0x766910
 };
 
@@ -118,11 +130,22 @@ struct CDataGameSetting {
     MtTypedArray<CDataCommonU32> ClanBaseStageList;                      // PC 0x75e8e0
     u32 MailCacheExpireTime;
     // Season 3 tail (V widths, no names).
+    // T014b open (stored, no reader), kept unk: 0x7f9070 copies setting +228 to the connection
+    // owner +41814 (byte); the displacement scan finds no other function using +41814
     bool unk_bool;
+    // T014b open (no consumer found), kept unk: neither the handler 0x7f9070 nor any caller of the
+    // packet getter 0x86c6b0 reads packet+256 (setting +232)
     u32 unk_u32_0;
+    // T014b I (consumer, role only): packet+260 (= setting +236) is the denominator in 0x62e4c0:
+    // element+100 / value, thresholds 0.33 / 0.66 (0x1b8b288) select message 84/85/86, element+104
+    // != 0 gives 87 (a three-step fill gauge) (...)
     u32 unk_u32_1;
+    // T014b open (no consumer found), kept unk: neither the handler 0x7f9070 nor any caller of the
+    // packet getter 0x86c6b0 reads packet+264 (setting +240)
     u32 unk_u32_2;
     MtTypedArray<CDataGameSetting_unk_0> unk_List_0;                           // PC 0x77c4b0; server: WalletLimits (lead)
+    // T014b I (consumer, role only): 0x7f9070 stores setting +264 at sGame +14566 (u16, beside
+    // JobLevelMax +14552 and CraftLevelMax) (...)
     u16 unk_u16;
     MtTypedArray<CDataGameSetting_unk_1> unk_List_1;                            // PC 0x766800; server: ExpSettings (lead)
 };

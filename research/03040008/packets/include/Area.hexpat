@@ -22,16 +22,29 @@ struct CDataReleaseAreaInfoSet {
 // Season 3 list element {u32, u32, s64}: PC list reader 0x7696e0 (V), no PS4 type. Users: 23.8.2
 // list 2, 23.11.2 list 2 (P11b). Server lead: MonsterGatheringSpots.
 struct CDataAreaUnkU32U32S64 {
-    u32 unk_u32_0;
+    // T014b V (consumer); I (name): PC 0xd40fd0 finds the element whose +4 equals
+    // CDataSpotInfo.SpotID (spot list element +4) and takes +8; PC 0xbfe8e0 builds +4*1000 + +8
+    // (0x5df870, both > 0) and registers it in sSetManager (0xbf8250, type 1) (...)
+    u32 SpotId;
+    // T014b I (consumer): PC 0xd40fd0 stores it per spot (UI object +60); PC 0xbfe8e0 uses it as
+    // the low part of SpotId*1000 + x for sSetManager 0xbf8250 type 1; no PS4 counterpart, no name
     u32 unk_u32_1;
+    // T014b open (value only), kept unk: no consumer found (0xbfe8e0, 0xd40fd0) reads element +16;
+    // epoch seconds by value
     s64 unk_s64;
 };
 
 // Season 3 list element {u32, bool, s64}: PC list reader 0x76d440 (V), no PS4 type. Users: 23.8.2
 // list 3, 23.11.2 list 3 (P11b). Server lead: PeriodicallyReleasedSpots.
 struct CDataAreaUnkU32BoolS64 {
-    u32 unk_u32;
+    // T014b V (consumer); I (name): PC 0xd40fd0 compares +4 with the spot id (CDataSpotInfo.SpotID)
+    // and 0x9784f0 with a set unit id (+0x1b8), returning +8; values 1068..1080
+    u32 SpotId;
+    // T014b I (consumer): PC 0x9784f0 returns +8 for the spot; callers 0x98e990, 0x9927e0, 0xf185f0
+    // branch on it; 0xd40fd0 stores it per spot; no code name
     bool unk_bool;
+    // T014b open (value only), kept unk: no consumer found reads element +16; epoch seconds by
+    // value
     s64 unk_s64;
 };
 

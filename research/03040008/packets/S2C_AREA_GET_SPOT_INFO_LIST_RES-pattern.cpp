@@ -28,6 +28,8 @@ struct S2C_AREA_GET_SPOT_INFO_LIST_RES : CPacket {
         MtTypedArray<CDataSpotInfo> SpotInfoList;             // PC 0x779cf0
         MtTypedArray<CDataAreaUnkU32U32S64> unk_list_0;      // PC 0x7696e0, Season 3
         MtTypedArray<CDataAreaUnkU32BoolS64> unk_list_1;     // PC 0x76d440, Season 3
+        // T014b V (flow); I (role): packet +0x54 (reader 0x800150, u32 list 0x75e8e0; packet kept
+        // at conn +1020, getter 0x871b30, one caller) (...)
         MtTypedArray<CDataCommonU32> unk_list_2;             // PC 0x75e8e0, Season 3
     }
     // Fit: the decode ends within the last 15 bytes (cipher block padding; Packet.hexpat).

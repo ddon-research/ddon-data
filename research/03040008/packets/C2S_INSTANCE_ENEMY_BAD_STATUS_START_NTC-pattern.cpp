@@ -24,7 +24,12 @@ struct C2S_INSTANCE_ENEMY_BAD_STATUS_START_NTC : CPacket {
     u32 StageId;
     u8 LayerNo;
     u32 GroupId;
+    // T014b open (record not identified), kept unk: 0x604e40 pushes [rec+0x30], rec =
+    // 0x4d9e70(enemy) = the pointer at enemy +0x1B50 read through the protected copy thunk
+    // 0x3d940e1; the record also gives LayerNo (+0x80) and GroupId (+0x1C & 0x1FF) (...)
     u32 unk_u32;     // obj+0x30, unresolved (getter 0x4d9e70 is a protected thunk); server: PosId (lead)
+    // T014b V (source: constant 0): sender 0x604e40 pushes 0 for this field (0x604eaa); no client
+    // value exists to name it
     u32 unk_zero;    // always 0: client constant (`push 0` at 0x604eaa); captures 61/61 zero
     u32 m_unOcdUID;  // PS4 cOcdBase::mOcdUID (T001c 3, V)
     // Fit: the decode ends within the last 15 bytes (cipher block padding; Packet.hexpat).

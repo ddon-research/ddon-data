@@ -35,7 +35,10 @@ struct CDataGachaSettlementInfo {
     u32 PurchaseMaxNum;
     u32 SpecialPriceNum;
     u32 SpecialPriceMaxNum;
-    u32 unk_u32;                                   // Season 3
+    // T014b V (flow); I (name): PC 0xd9fef0 (gacha UI, packet getter 0x86c250, conn sub +0x460)
+    // passes settlement +36 as arg 5 of 0xda2f00, which stores it in the price slot (+128/+140)
+    // (...)
+    u32 ChargeId;                                   // Season 3
 };
 
 // CDataGachaDrawInfo: PC list reader 0x768310 {u32, bool, list 0x7685e0} (V); PS4 0x19efcf0 {u32

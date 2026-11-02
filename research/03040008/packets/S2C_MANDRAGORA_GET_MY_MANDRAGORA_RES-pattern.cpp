@@ -24,26 +24,46 @@ struct CDataMyMandragoraFurnitureItem {
 
 // PC list 0x75b360 {u32, u16}.
 struct CDataMyMandragoraUnkItem {
+    // T014b open (V store; no reader found), kept unk: 0x10dbff0 copies each list element (+52
+    // list) into a 12-byte object: u32 +4
     u32 unk_u32;
+    // T014b open (V store; no reader found), kept unk: same copy: u16 +8
     u16 unk_u16;
 };
 
 // PC 0x75bc70 {u32, u32, list, s64}.
 struct CDataMyMandragoraUnkState {
+    // T014b open (V store; no reader found), kept unk: 0x10dbff0 copies element +44 (struct +4) to
+    // the manager slot table [387 + 10*index]; no reader found in the manager range
     u32 unk_u32_0;
+    // T014b V (consumer); I (role: state input): copied to [388 + 10*index]; != 0 selects slot
+    // state 5 (with a time) or 6 (without), == 0 allows state 2
     u32 unk_u32_1;
     MtTypedArray<CDataMyMandragoraUnkItem> unk_list;
+    // T014b V (consumer); I (role: time): copied to [394..395 + 10*index] and compared with the
+    // current time: >= now -> state 4
     s64 unk_s64;
 };
 
 // PC list 0x75bb10.
 struct CDataMyMandragora {
+    // T014b open (V store; no reader found), kept unk: handler 0x7e4dc0 passes each element (packet
+    // +44 list) to 0x10dbff0, which copies +4 into the slot object +12 (slot index = MandragoraId
+    // +12, < 4); no reader of the slot +12 found
     u32 unk_u32_0;
+    // T014b open (V store; no reader found), kept unk: 0x10dbff0 copies +8 into the slot object +16
     u8 unk_u8;
     u32 MandragoraId;          // name guessed by the earlier pattern ("Maybe")
     MtString MandragoraName;
+    // T014b V (consumer); I (role: state input): 0x10dbff0 copies +20 to slot +20; slot state 2 is
+    // set when u32_2 != 0, this == 0 and UnkState.unk_u32_1 == 0
     u32 unk_u32_1;
+    // T014b V (consumer); I (role: time): 0x10dbff0 copies +24 to slot +32 (qword) and compares it
+    // with the current time (sGame +2856): >= now -> state 4; nonzero with UnkState.unk_u32_1 != 0
+    // -> state 5
     s64 unk_s64;
+    // T014b V (consumer); I (role: state input): 0x10dbff0 copies +32 to slot +40; 0 -> state 3
+    // (when not in states 4..6)
     u32 unk_u32_2;
     CDataMyMandragoraUnkState unk_state;
 };
@@ -56,7 +76,11 @@ struct CDataMyMandragoraCraftCategory {
 
 // PC list 0x75b270 {u8, u32}.
 struct CDataMyMandragoraUnkU8U32 {
+    // T014b V (consumer); I (role: kind selector): 0x7e4dc0 copies each element (packet +84 list)
+    // into a 12-byte object and, when the u8 is 5, stores the u32 at manager +1880
     u8 unk_u8;
+    // T014b open (V store; no reader found), kept unk: value of the kind above; kind 5 goes to
+    // manager +1880, read by no other function in the displacement scan
     u32 unk_u32;
 };
 
@@ -93,6 +117,9 @@ struct S2C_MANDRAGORA_GET_MY_MANDRAGORA_RES : CPacket {
         MtTypedArray<CDataMyMandragoraBreedType> MandragoraBreedTypeList;
         MtTypedArray<CDataMyMandragoraRarityLevel> RarityLevelList;
         MtTypedArray<CDataCommonU8> FreeMandragoraIdList;   // PC 0x75e9b0; name guessed
+        // T014b open (V store; no reader found), kept unk: 0x7e4dc0 stores packet +188 at manager
+        // +1904 (v6[476]); the displacement scan finds no other function using +1904 in the handler
+        // and manager ranges
         u32 unk_u32;
     }
     // Fit: the decode ends within the last 15 bytes (cipher block padding; Packet.hexpat).

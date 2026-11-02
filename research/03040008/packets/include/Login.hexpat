@@ -92,9 +92,18 @@ struct CDataMatchingProfile {
 // reader 0x766210 (Context uses 0x7605e0): shape only.
 struct CDataEquipItemInfo {
     u32 ItemID;                 // I
+    // T014b V (copy), name open: 0xb959c0 copies the item byte +16, which is CDataItemList.unk_u8
+    // (Season 3, open in part 1; lead SafetySetting); same unnamed field, all captured values 0
     u8 unk_u8_0;
-    u8 unk_u8_1;
-    u16 unk_u16;
+    // T014b V (consumer); I (name: PS4 m_ucEquipType role): 0xb959c0 sets +9 to 1 when the item
+    // StorageType (CDataItemList +17) is 14/15 and to 2 when it is 16/17, then files the element in
+    // the first (performance) list for 1 and the second (visual) list for 2; values 1-2 in captures
+    // (...)
+    u8 EquipType;
+    // T014b V (copy); I (name): 0xb959c0 copies the item SlotNo (CDataItemList +18 u16, setItemList
+    // 0x880cf0) into +10; captured 1-15 fit the equip slots (PS4 m_ucEquipSlot). Lead EquipSlot
+    // agrees
+    u16 EquipSlot;
     u8 Color;                   // I
     u8 PlusValue;               // I
     MtTypedArray<EquipElementParam> unk_ElementList;     // PC 0x765a90

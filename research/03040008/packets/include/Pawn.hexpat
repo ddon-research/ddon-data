@@ -70,8 +70,15 @@ struct CDataPawnList {
     u8 PawnState;
     u8 ShareRange;
     CDataPawnListData PawnListData;
+    // T014b V (consumer); I (role): handler 0x7eab80 -> 0x7eaac0 calls sGame_0 0xbcdac0(PawnId +4,
+    // element +72) for every element: a 16-slot PawnId -> value table (+196); the getter 0xbccbd0
+    // is read by 0x9a1940, which switches a mode when the value is >= 2
     u32 unk_u32_0;              // Season 3, no PS4 member; server: Unk0 (lead)
+    // T014b open (V store; no reader found), kept unk: 0x881da0 copies element +76 to the pawn
+    // entry +100 (conn +18436 list); no reader of that member was found
     u32 unk_u32_1;              // Season 3, no PS4 member; server: TrainingExp (lead)
+    // T014b open (V store; no reader found), kept unk: 0x881da0 copies element +80 to the pawn
+    // entry +104 (conn +18436 list); no reader of that member was found
     u32 unk_u32_2;              // Season 3, no PS4 member; server: Unk2 (lead)
 };
 
@@ -277,10 +284,25 @@ struct CDataOrbGainExtendParam {
 // Season 3 member of CDataPawnInfo: PC reader 0x772e80, u32 x5 (V widths); no PS4 type. Names unk.
 // server: CDataPawnTrainingProfile (lead)
 struct CDataPawnInfo_unk_0 {
+    // T014b open (no reader found), kept unk: CDataPawnInfo +500 (reader 0x772e80, only behind
+    // CDataPawnInfo 0x772180 of 8.3.2/8.9.2/8.11.2); the MYPAWN packet is kept whole at the pawn
+    // entry +88 (0x881d10, conn +18436 list) (...)
     u32 unk_u32_0;              // server: TrainingExp (lead)
+    // T014b open (no reader found), kept unk: CDataPawnInfo +500 (reader 0x772e80, only behind
+    // CDataPawnInfo 0x772180 of 8.3.2/8.9.2/8.11.2); the MYPAWN packet is kept whole at the pawn
+    // entry +88 (0x881d10, conn +18436 list) (...)
     u32 unk_u32_1;              // server: DialogCount (lead)
+    // T014b open (no reader found), kept unk: CDataPawnInfo +500 (reader 0x772e80, only behind
+    // CDataPawnInfo 0x772180 of 8.3.2/8.9.2/8.11.2); the MYPAWN packet is kept whole at the pawn
+    // entry +88 (0x881d10, conn +18436 list) (...)
     u32 unk_u32_2;              // server: DialogCountMax (lead)
+    // T014b open (no reader found), kept unk: CDataPawnInfo +500 (reader 0x772e80, only behind
+    // CDataPawnInfo 0x772180 of 8.3.2/8.9.2/8.11.2); the MYPAWN packet is kept whole at the pawn
+    // entry +88 (0x881d10, conn +18436 list) (...)
     u32 unk_u32_3;              // server: AttackFrequencyAndDistance (lead)
+    // T014b open (no reader found), kept unk: CDataPawnInfo +500 (reader 0x772e80, only behind
+    // CDataPawnInfo 0x772180 of 8.3.2/8.9.2/8.11.2); the MYPAWN packet is kept whole at the pawn
+    // entry +88 (0x881d10, conn +18436 list) (...)
     u32 unk_u32_4;              // server: TrainingLv (lead)
 };
 
@@ -322,7 +344,10 @@ struct CDataPawnInfo {
     u8 PawnType;
     u8 ShareRange;
     u32 Likability;
-    u8 unk_u8[64];                                            // Season 3, PC 0x772aa0; server: TrainingStatus (lead)
+    // T014b I (binary hint: shared reader; lead agrees): the u8[64] at CDataPawnInfo +432 is read
+    // by 0x772aa0, the reader that also fills PAWN_TRAINING_GET_TRAINING_STATUS_RES (handler
+    // 0x7ed6d0); same naming as CDataContextPawnInfo.unk_u8 in part 2
+    u8 TrainingStatus[64];                                            // Season 3, PC 0x772aa0; server: TrainingStatus (lead)
     CDataPawnInfo_unk_0 unk_u32x5;                            // Season 3, PC 0x772e80; server: TrainingProfile (lead)
     MtTypedArray<CDataContextPawnInfo_unk_0> unk_List_1;                         // Season 3, PC 0x772950; server: SpSkillList (lead)
 };

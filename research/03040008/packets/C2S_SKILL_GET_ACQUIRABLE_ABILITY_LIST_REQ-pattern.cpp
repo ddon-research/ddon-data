@@ -19,6 +19,9 @@ import std.mem;
 
 struct C2S_SKILL_GET_ACQUIRABLE_ABILITY_LIST_REQ : CPacket {
     bool sourceOk = source == 0x00 [[export]];  // header source byte: 0x00 client (Packet.hexpat)
+    // T014b V (flow); open (writer of the source not found): writer 0x83cc00 (push order: Job last
+    // arg, u32 first) <- 0x868350 <- 0x4ec6a0, request slot +8 of the same queue (ability slot,
+    // +0x2C); see the SKILL row for the store scans
     u32 unk_u32;        // Season 3, no PS4 member; 2144504 in 16/16 = the player's CharacterID in the same stream (T011 7, one value; TC1); server: CharacterId (lead)
     u8 Job;
     // Fit: the decode ends within the last 15 bytes (cipher block padding; Packet.hexpat).

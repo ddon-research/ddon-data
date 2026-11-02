@@ -20,6 +20,8 @@ import std.mem;
 struct C2S_GP_GP_SHOP_DISPLAY_BUY_REQ : CPacket {
     bool sourceOk = source == 0x00 [[export]];  // header source byte: 0x00 client (Packet.hexpat)
     u32 DisplayLineupId;        // I: position (PS4 writes only this u32)
+    // T014b open (no caller found), kept unk: writer 0x829f00 is not a function and has no code
+    // xref, so the caller that supplies the u32 was not found
     u32 unk_u32;                // Season 3
     // Fit: the decode ends within the last 15 bytes (cipher block padding; Packet.hexpat).
     u128 paddingSize = std::mem::size() - $ [[export]];

@@ -22,7 +22,13 @@ struct C2S_INSTANCE_GET_GATHERING_ITEM_REQ : CPacket {
     bool sourceOk = source == 0x00 [[export]];  // header source byte: 0x00 client (Packet.hexpat)
     CDataStageLayoutId LayoutId;
     u32 PosId;
+    // T014b open (source not found), kept unk: request record byte +24 (copied by 0xb91260, sent by
+    // 0x82bf80); the record fillers 0xf00d90 / 0xf00ee0 write +4..+20 only and the record comes
+    // from the pool 0xb786c0; no writer of +24 was found (...)
     bool unk_bool;   // Season 3, no PS4 member (PC Write_bool, V width); server: EquipToCharacter (lead)
+    // T014b V (source); I (role): writer 0x8416e0 <- 0x82bf80 <- 0x86c400 <- request callback
+    // 0xb93fb0, which copies the 28-byte request record (0xb91260: +16 PosId, +20 this field, +24
+    // the bool) registered by 0xb627d0 (undefined, called from 0xb825bd) (...)
     u32 unk_u32;     // Season 3, no PS4 member (V width); server: RestrictionId (lead; I: pairs with the 13.6.2 restriction list)
     MtTypedArray<CDataGatheringItemGetRequest> GatheringItemGetRequestList;
     // Fit: the decode ends within the last 15 bytes (cipher block padding; Packet.hexpat).

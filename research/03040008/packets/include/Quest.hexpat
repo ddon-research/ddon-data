@@ -290,6 +290,9 @@ struct CDataRewardItem {
 // contradicted (C).
 struct CDataQuestEnemyInfo {
     u32 GroupId;   // PS4 m_unGroupId
+    // T014b I (consumer, earlier): T001c 5 (Quest.hexpat): PC 0x9d2590 (= PS4
+    // cQuestTask::setEnemyInfoParam 0x54dc30) copies it to a new trailing member of
+    // cQuestTask::cEnemyGroupInfo, part of its dedupe key; no name
     u32 unk_u32;   // Season 3; trailing member of cQuestTask::cEnemyGroupInfo (dedupe key)
     u16 Lv;
     bool IsPartyRecommend;
@@ -342,7 +345,11 @@ struct CDataQuestAnnounce {
 // CDataQuestTalkInfo element of PC list 0x7757e0 {u32, u32, u16, bool} (V); PS4 TalkInfo lacks
 // the leading u32.
 struct CDataQuestTalkInfo {
-    u32 unk_u32;    // Season 3 (no PS4 counterpart)
+    // T014b V (consumer); name V (nQuest::QUEST_ID): PC quest-task setters copy each TalkInfo
+    // element: element +4 (this field) is wrapped by nQuest::QUEST_ID::QUEST_ID_0 and its value
+    // passed as the 5th argument of addTalkData 0x9ce880 (PS4 cQuestPersonalData::addTalkData
+    // 0x54f100: (...)
+    u32 QuestId;    // Season 3 (no PS4 counterpart)
     u32 TalkNo;
     u16 NpcId;
     bool IsOneOnly;
@@ -386,6 +393,9 @@ struct CDataQuestLayoutFlagSetInfo {
 // The second u8 had the enum ExpType, which has no PS4 DWARF source (P11a G6; server lead:
 // 1 ExperiencePoints, 2 ClanPoints, 3 PlayPoints): plain u8.
 struct CDataQuestExp {
+    // T014b open (no consumer found), kept unk: 0x64dd10 reads only the element +5 (Type); the
+    // setTaskParam variants 0x9d2ce0, 0x9d32f0, 0x9d41d0 and 0x9d3f10 do not read the BaseExp list
+    // (CDataQuestList +44, CDataQuestOrderList +48)
     u8 unk_u8;
     u8 Type;
     u32 Value;
@@ -393,8 +403,14 @@ struct CDataQuestExp {
 
 // Season 3 list element {u32, s64}: PC list 0x775900 (V; the s64 is R.s64), no PS4 counterpart.
 struct CDataQuestUnkU32S64 {
-    u32 unk_u32;
-    s64 unk_s64;
+    // T014b V (role); name I: CDataQuestOrderList list +328 (reader 0x774a70 -> 0x775900).
+    // setTaskParam 0x9d32f0 loops over it: when 0x64d200(task, +4) is false it calls
+    // cQuestTaskParam::setTimer(task, +4, max(0, (s32)+8 - now)), now = server time at sGame (...)
+    u32 TimerIdx;
+    // T014b V (role); name I: 0x9d32f0 subtracts the server time (sGame +0xB28) from the low dword
+    // of +8 and passes the result, clamped at 0, as setTimer's sec: the absolute end time of quest
+    // timer +4
+    s64 EndTime;
 };
 
 // Season 3 list element {u32, u16, u16, u16}: PC list 0x762fb0 (V widths), no PS4 counterpart in
@@ -404,8 +420,13 @@ struct CDataQuestUnkU32S64 {
 struct CDataQuestDeliveryItem {
     u32 ItemId;      // I (position, PS4 m_unItemId)
     u16 Num;         // I (position, PS4 m_usNum)
-    u16 unk_u16_0;   // Season 3; server: NeedNum (lead)
-    u16 unk_u16_1;   // Season 3
+    // T014b V (role: lookup key); I (name): setTaskParam 0x9d2ce0 copies the element into
+    // cQuestTask::cDeliveryItemInfo (vtable 0x1c07288, DTI dti__55; PS4 has only mItemId/mItemNum)
+    // +12 (...)
+    u16 MsgTagKey0;   // Season 3; server: NeedNum (lead)
+    // T014b V (role: lookup key); I (name): second number of the <QDEL NAME|NUM a b> message tag:
+    // 0x9cf870 / 0x9cf8b0 match cDeliveryItemInfo +16 (this field) with it (see unk_u16_0)
+    u16 MsgTagKey1;   // Season 3
 };
 
 // CDataQuestOrderList: PC element reader 0x774a70 (lists 0x7749a0, 0x76eb40, 0x77b2a0, 0x770ab0;
@@ -428,11 +449,16 @@ struct CDataQuestOrderList {
     u32 DetailMsgId;  // name I
     // PC reads 3 x u64 (0x774b0c-0x774b75); PS4 has two. Which one is new is unresolved: the
     // names OrderDate / EndDistributionDate on the last two are I.
-    u64 unk_u64;
+    // T014b I (consumer + value): PC reader 0x774a70 reads u64 at +80, +88, +96; PC 0x64d690 passes
+    // +96 as EndDistributionDate (V) and +80 as the same new argument as the CDataQuestList first
+    // u64 (-> cQuestTaskParam +376) (...)
+    u64 DistributionStartDate;
     u64 OrderDate;
     u64 EndDistributionDate;
     MtTypedArray<CDataRewardItem> FixedRewardItemList;
     MtTypedArray<CDataRewardItem> FixedRewardSelectItemList;
+    // T014b I (consumer): PC 0x64d690 passes +144 as the same cQuestPoint list argument as
+    // CDataQuestList.unk_u32_list
     MtTypedArray<u32> unk_u32_list;            // PC 0x75eec0, Season 3
     CDataQuestLog QuestLog;
     MtTypedArray<CDataQuestFlag> QuestFlagList;
@@ -514,10 +540,15 @@ struct CDataQuestList {
     u32 NameMsgId;    // name I
     u32 DetailMsgId;  // name I
     // PC reads 2 x u64, PS4 one (EndDistributionDate). Which one is new is unresolved (I).
-    u64 unk_u64;               // Season 3 (I position); server: DistributionStartDate (lead)
+    // T014b I (consumer + value; lead agrees): PC 0x64d620 passes +88 where PS4 passes
+    // m_ullEndDistributionDate (-> cQuestTaskParam +296; EndDistributionDate V) and +80 as a new
+    // trailing argument stored at cQuestTaskParam +376 (no PS4 member) (...)
+    u64 DistributionStartDate;               // Season 3 (I position); server: DistributionStartDate (lead)
     u64 EndDistributionDate;   // name I (position)
     MtTypedArray<CDataRewardItem> FixedRewardItemList;
     MtTypedArray<CDataRewardItem> FixedRewardSelectItemList;
+    // T014b I (consumer): PC 0x64d700 wraps each u32 as mIdx of a cQuestPoint (DTI name in the PC
+    // database) in a new cQuestTaskParam array (+384); no PS4 counterpart; values 1..93
     MtTypedArray<u32> unk_u32_list;                  // PC 0x75eec0, Season 3; server: ContentsReleaseList (lead)
     MtTypedArray<CDataQuestOrderConditionParam> QuestOrderConditionParamList;
     CDataQuestLog QuestLog;                          // PC 0x774850
@@ -537,7 +568,12 @@ struct CDataQuestContents {
     s32 Param02;
     s32 Param03;
     s32 Param04;
+    // T014b open (not read), kept unk: reader 0x773a20 puts it at contents +24 (light element +408,
+    // lot element +376). LIGHT_QUEST_LIST: handler 0x7f13f0 (not a function) keeps the packet at
+    // conn sub +0x1A4; getters 0x86d830 / 0x86d840 (list) (...)
     u16 unk_u16_0;   // Season 3; server: Unk0 (lead)
+    // T014b open (not read), kept unk: contents +26 (light element +410, lot +378); same consumers
+    // as unk_u16_0, none reads it (Param04 at +20 is unread too)
     u16 unk_u16_1;   // Season 3; server: Unk1 (lead)
 };
 
@@ -546,13 +582,27 @@ struct CDataQuestContents {
 // so all stay unk_* (moved here from the 11.89.16 pattern, unchanged; server order AreaId,
 // BoardId, GetAp, GetCp, OrderLimit, ClearNum, BoardType is a lead only).
 struct CDataLightQuestDetail {
-    u32 unk_u32_0;
+    // T014b V (consumer): 0x9d2af0: +4 -> taskParam +367; 0x64d690 stores
+    // CDataQuestOrderList.AreaId to the same +367 (PS4 mAreaId)
+    u32 AreaId;
+    // T014b I (consumer): 0x9d2af0: +8 -> taskParam +368, a byte with no PS4 member (PS4
+    // mRandomRewardNum is PC +369 per 0x64dd10); server lead BoardId, no code name
     u32 unk_u32_1;
-    u32 unk_u32_2;
-    u32 unk_u32_3;
-    u32 unk_u32_4;
-    u32 unk_u32_5;
-    u32 unk_u32_6;
+    // T014b V (consumer): 0x9d2af0: +12 -> taskParam +312; PC setSetQuestDetail 0x64dd10 stores
+    // CDataSetQuestDetail.BaseAreaPoint there (PS4 mAreaPoint = m_unBaseAreaPoint)
+    u32 BaseAreaPoint;
+    // T014b I (consumer, member order): 0x9d2af0: +16 -> dword +360, 4 bytes before BoardType +364;
+    // PS4 mGetCP 480 is 4 bytes before mBoardType 484
+    u32 GetCP;
+    // T014b I (consumer, member order): 0x9d2af0: +20 -> word +356, right after ClearNum +354 (V);
+    // PS4 mClearNum 474, mOrderLimit 476
+    u32 OrderLimit;
+    // T014b V (consumer): 0x9d2af0: +24 -> word +354; 0x64dd10 stores ClearCount there (PS4
+    // mClearNum = m_unClearCount)
+    u32 ClearNum;
+    // T014b I (consumer, member order): 0x9d2af0: +28 -> byte +364, 3 bytes before AreaId +367; PS4
+    // mBoardType 484, mAreaId 487
+    u32 BoardType;
 };
 
 // CDataLightQuestList: element of PC list 0x76d250 (V); PS4 {m_Param, m_Detail, m_Contents}.
@@ -573,8 +623,13 @@ struct CDataSetQuestDetail {
     u32 BaseAreaPoint;
     MtTypedArray<CDataWalletPoint> unk_wallet_point_list;   // PC 0x77c5a0, Season 3
     MtTypedArray<CDataQuestExp> unk_quest_exp_list;         // PC 0x76c780, Season 3
-    u16 unk_u16_0;
-    u16 unk_u16_1;
+    // T014b I (elimination): 0x64dd10 does not read +60; of the five PS4 u16 the three ratios
+    // became the wallet/exp lists (0x64dd10 applies them to mUndiscoveryGold/Rim/Exp) and
+    // RepeatRewardType is +62, leaving LeaderCompleteNum (also unread by PS4 (...)
+    u16 LeaderCompleteNum;
+    // T014b V (consumer): 0x64dd10: +62 -> taskParam +204 beside +208 = RepeatRewardValue and +212
+    // = the CompleteNum formula, as PS4 mRepeatBonus.mType = m_usRepeatRewardType
+    u16 RepeatRewardType;
     u8 RepeatRewardValue;
     u8 RepeatRewardCompleteNum;
     u8 RandomRewardNum;
@@ -618,25 +673,45 @@ struct CDataRewardItemDetail {
 // bool}, bool, bool, list u8 0x75e9b0} (V shape), no PS4 counterpart; server: Restrictions
 // (lead). Struct and field names open.
 struct CDataQuestUnkU32Bool {
+    // T014b open (not read), kept unk: CDataTimeGainQuestList_unk_0 list (element +412, count +416,
+    // array +428) (...)
     u32 unk_u32;
+    // T014b open (not read), kept unk: see unk_u32: only the list count is read (0xed89f0)
     bool unk_bool;
 };
 
 // server: Restrictions (lead)
 struct CDataTimeGainQuestList_unk_0 {
+    // T014b open (no consumer found), kept unk: struct +4 (element +388) is not read by 0xed89f0;
+    // the u32/bool list (+412) only gates Quest_res 0x91 'Additional Equipment Rewards', whose text
+    // comes from sQuestManager 0xbdf650, so its elements stay unread
     u32 unk_u32;
-    MtTypedArray<u32> unk_u32_list;
+    // T014b V (consumer); I (name from UI text): 0xed89f0: when the list (element +392) is not
+    // empty it adds Quest_res 0x94 QUEST_MSG_MISSION_INFO_NOEQUIP_ABILITY 'The following abilities
+    // cannot be equipped' and prints each u32 through 0xb772b0 (ability-name lookup, ids up to
+    // (...)
+    MtTypedArray<u32> NoEquipAbilityList;
     MtTypedArray<CDataQuestUnkU32Bool> unk_u32_bool_list;   // PC 0x75edd0
-    bool unk_bool_0;
-    bool unk_bool_1;
+    // T014b V (consumer); I (name from UI text): 0xed89f0: struct +48 (element +432) adds Quest_res
+    // 0x92 QUEST_MSG_MISSION_INFO_NOEQUIP_ARMOR 'Armor cannot be equipped.'
+    bool IsNoEquipArmor;
+    // T014b V (consumer); I (name from UI text): 0xed89f0: struct +49 (element +433) adds Quest_res
+    // 0x93 QUEST_MSG_MISSION_INFO_NOEQUIP_JEWELRY 'Jewelry cannot be equipped.'
+    bool IsNoEquipJewelry;
+    // T014b open (no consumer found), kept unk: struct +52 (element +436) is not read by 0xed89f0
     MtTypedArray<CDataCommonU8> unk_u8_list;                // PC 0x75e9b0
 };
 
 // Season 3 element of PC list 0x772ef0: {list CDataWalletPoint, list 0x7731b0 {u32, u16}} (V
 // shape). Names open.
 struct CDataQuestUnkU32U16 {
-    u32 unk_u32;
-    u16 unk_u16;
+    // T014b I (consumer of the same layout): 0xed89f0 prints a {u32 +4, u16 +8} list found at quest
+    // object +112 (+28 count, +40 array: the offsets of the CDataTimeGainQuestList_unk_1 element,
+    // wallet list +4, this list +24) with Quest_res 0xB1 QUEST_MSG_UI_REWARD_TRADE_ITEM (...)
+    u32 ItemId;
+    // T014b I (consumer of the same layout): the u16 at +8 is the required count in Quest_res 0xB1
+    // '%s x%d (Have: %d)' and is compared with the owned count (see unk_u32)
+    u16 Num;
 };
 
 // server: RequiredItemsList (lead)
@@ -657,10 +732,21 @@ struct CDataTimeGainQuestList_unk_1 {
 struct CDataTimeGainQuestList {
     CDataQuestList Param;
     u32 PlayTimeSec;
+    // T014b open (no consumer found), kept unk: element +356 is not read by 0xed89f0 nor by the
+    // other 16 callers of the getter 0x86b090
     bool unk_bool_0;           // PS4 position: IsNoTimeup; server: IsNoTimeup (lead)
-    bool unk_bool_1;           // PS4 position: IsJoinCharacter; server: Unk0 (lead)
+    // T014b V (consumer); I (name from UI text): 0xed89f0 reads element +357 and, when set, shows
+    // Quest_res 0x90 QUEST_MSG_MISSION_INFO_NOEQUIP_HEADER 'Equipment restrictions' followed by the
+    // restriction lines from unk_Struct_0 (...)
+    bool IsEquipRestriction;           // PS4 position: IsJoinCharacter; server: Unk0 (lead)
+    // T014b I (consumer, role only): 0xed89f0: element +358 sets bit 1 and +359 sets bit 2 of a
+    // mode word (GUI +6980), read next to JoinPawnNum (+361 -> GUI +6984) (...)
     bool unk_bool_2;           // PS4 position: IsJoinPawn; server: IsJoinCharacter (lead)
+    // T014b I (consumer, role only): see unk_bool_2: element +359 is bit 2 of the same join mode
+    // word
     bool unk_bool_3;           // PS4 position: IsJoinSupportPawn; server: IsJoinPawn (lead)
+    // T014b open (no consumer found), kept unk: element +360 is not read by 0xed89f0 nor by the
+    // other 16 callers of the getter 0x86b090
     bool unk_bool_4;           // PS4 position: new in Season 3; server: Unk1 (lead)
     u8 JoinPawnNum;
     MtTypedArray<CDataRewardItemDetail> RewardItemDetailList;
@@ -674,7 +760,11 @@ struct CDataTimeGainQuestList {
 struct CDataSetQuestInfoList {
     u32 QuestScheduleId;
     u32 QuestId;
-    u64 unk_u64;               // Season 3 (I position); server: OrderDate (lead)
+    // T014b I (consumer): PC 0xbd6b40 (counterpart of PS4
+    // sQuestManagerExt::callbackGetSetQuestInfoList: ImageId % 0xC + 1 fallback,
+    // QUEST_ID/SCHEDULE_ID): +24 -> nQuest +104 with the MtTime update check (PS4
+    // mEndDistributionDate; EndDistributionDate V) (...)
+    u64 DistributionStartDate;               // Season 3 (I position); server: OrderDate (lead)
     u64 EndDistributionDate;   // name I (position)
     u32 ImageId;
     u32 BaseLevel;
@@ -755,8 +845,14 @@ struct CDataContentsPlayEnd {
     u32 Gold;              // name I (position)
     u32 Exp;               // name I (position)
     u32 Rim;               // name I (position)
+    // T014b open (not read), kept unk: packet +0x24. The only consumers: handler 0x7f3270 (reads
+    // +0x10) and the notice callback 0xbd49b0 (registered for dti 0x2189794 by sQuestManagerExt at
+    // 0xbcee28 (...)
     u32 unk_u32_0;         // Season 3
+    // T014b open (not read), kept unk: packet +0x28; see unk_u32_0 (callback 0xbd49b0 reads +0x30,
+    // +0x38, +0x44 only)
     u32 unk_u32_1;         // Season 3
+    // T014b open (not read), kept unk: packet +0x2C; see unk_u32_0
     u32 unk_u32_2;         // Season 3
     u32 PlayTimeMillSec;   // name I (capture timestamps)
     MtTypedArray<CDataRewardItemDetail> RewardItemDetailList;
@@ -770,13 +866,26 @@ struct CDataContentsPlayStartData {
     u32 QuestId;
     u32 BaseLevel;
     u8 StartPos;
+    // T014b open (read, never used), kept unk: read at +21 by 0x75f030; the only caller, handler
+    // 0x7f5830 (TIME_GAIN_QUEST_PLAY_START_NTC), uses +12 (via 0x7f5770), +16, +20, +22, +24, +44,
+    // +64 and +23 (in 0x7f5770) (...)
     bool unk_bool_0;   // Season 3
+    // T014b V (flow); open (stored, no reader): handler 0x7f5830 passes +22 to 0x4d0a10, which
+    // stores it at QuestManager(8 = END_CONTENTS, PS4 cEndContentsManager) +233, beside +224
+    // (StartPos, PS4 mStartPos) and +232 (set by 0x4d0a20 from 0x4cf6a0() == 2) (...)
     bool unk_bool_1;   // Season 3
-    bool unk_bool_2;   // Season 3
+    // T014b V (role); name I: 0x7f5770 (PC counterpart of PS4
+    // cNetGameServer::OnPacket_S2C_TIME_GAIN_QUEST_PLAY_START_NOTICE 0x36e530:
+    // sGame::startEndContents = 0xb61900, then the player and pawn-owner party loop) runs the loop
+    // only when +23 == 1: for the own (...)
+    bool IsRecoverOcd;   // Season 3
     MtTypedArray<CDataQuestProcessState> QuestProcessStateList;
     MtTypedArray<CDataQuestEnemyInfo> QuestEnemyInfoList;
     MtTypedArray<CDataQuestLayoutFlagSetInfo> QuestLayoutFlagSetInfoList;
     MtTypedArray<CDataCommonU32> QuestPhaseGroupIdList;
+    // T014b open (read, never used), kept unk: read at +104 by 0x75e9b0 inside 0x75f030; handler
+    // 0x7f5830 passes only +24, +44, +64 to 0x4d07a0 (PS4 cEndContentsManager::registMainTask takes
+    // the same three lists); +84 and +104 are never addressed and are destroyed by 0x790380
     MtTypedArray<CDataCommonU8> unk_u8_list;   // Season 3, PC 0x75e9b0
 };
 
@@ -787,6 +896,9 @@ struct CDataCycleContentsNoticeData {
     u32 QuestScheduleId;
     u32 QuestId;
     u32 CategoryType;
+    // T014b V (flow); open (stored, no reader): callback 0x48e9a0 reads per FortDefenseNoticeData
+    // element (Common at +8): +12 CycleContentsScheduleId, +24 CategoryType (subcategory), +48
+    // NoticeType (0x492610 = setCycleContentsPeriod), +52 IsGetReward (0x4925c0 = (...)
     u64 unk_u64;   // Season 3 (I position)
     u64 End;       // name I (position)
     u8 NoticeType;
@@ -805,8 +917,13 @@ struct CDataFortDefenseNoticeData {
 
 // Season 3 element of PC list 0x77c780 {u32, u32} (V shape), names open.
 struct CDataQuestUnkU32U32 {
-    u32 unk_u32_0;
-    u32 unk_u32_1;
+    // T014b V (role); name I: FORT_DEFENSE_NTC (handler 0x7f047f, reader 0x815860) becomes notice
+    // dti 0x21896b4, whose callback 0x48e9a0 (registered at 0x48e5fd (...)
+    u32 Rank;
+    // T014b V (role); name I: element +8 (getter 0xa3ae00) is formatted '%d' next to the rank label
+    // 'S Rank: <VAL DP>' .. 'D Rank: <VAL DP>' in 0xed7c70 / 0xf57fa0: the DP threshold of that
+    // rank (captures 0..19000) (...)
+    u32 RankPoint;
 };
 
 // CDataQuestContentsSituationInfoDetail: PC 0x773c60 (V); PS4 same without the Season 3 list.

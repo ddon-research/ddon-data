@@ -33,7 +33,12 @@ struct S2C_CRAFT_GET_CRAFT_SETTING_RES : CPacket {
         u32 CraftItemLv;
         u8 CreateCountMax;
         MtTypedArray<CDataCraftSettingUnkPawn> unk_PawnList;          // Season 3, PC 0x77abd0
+        // T014b open (no reader), kept unk: packet +100: none of the 22 callers of the getter
+        // 0x86a2c0 nor the undefined caller 0x53243f reads +100; the handler 0x7d0bf0 only passes
+        // +80 (pawn list) to 0x87f610
         u32 unk_u32_0;                                                // Season 3
+        // T014b open (no reader), kept unk: packet +104: no reader among the getter 0x86a2c0
+        // callers or the handler
         u32 unk_u32_1;                                                // Season 3
         MtTypedArray<CDataCraftSettingUnkElement> unk_List;           // Season 3, PC 0x760db0
     }

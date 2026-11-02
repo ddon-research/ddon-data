@@ -18,6 +18,9 @@ import std.mem;
 
 struct C2S_DISPEL_GET_DISPEL_ITEM_SETTING_REQ : CPacket {
     bool sourceOk = source == 0x00 [[export]];  // header source byte: 0x00 client (Packet.hexpat)
+    // T014b V (source); name open: PC writer 0x826750 is called only by 0x86ac30, called by
+    // 0xe905b0 with the dispel UI byte +2012 (zero-extended); the meaning of UI +2012 was not
+    // identified (writers in 0xe84040..0xe9cd80 store 0/1 or a register)
     u32 unk_u32;   // Season 3, no PS4 member; server: ShopType (lead)
     // Fit: the decode ends within the last 15 bytes (cipher block padding; Packet.hexpat).
     u128 paddingSize = std::mem::size() - $ [[export]];

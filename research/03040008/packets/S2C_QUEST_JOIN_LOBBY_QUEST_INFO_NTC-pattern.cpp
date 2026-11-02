@@ -54,24 +54,47 @@ struct CDataLotQuestOrderList {
 
 // Row 6 element, PC list 0x770b90 (V; Season 3, no PS4 counterpart).
 struct CDataQuestJoinLobbyUnkElement {
+    // T014b V (consumer); I (role: package sequence key): 0x597310 stores element +4 at
+    // cPackageSequence +8; 0x5983a0 finds an existing sequence by (+4 PackageId, +8 this value) and
+    // stores it at task +584 (0x9d2b10) for every order of the element
     u32 unk_u32;
-    s32 unk_s32_0;
-    s32 unk_s32_1;
-    MtTypedArray<CDataCommonU32> unk_u32_list;          // PC 0x75e8e0
+    // T014b V (consumer); I (name): 0x597310 stores element +8 at cPackageSequence +16; when the
+    // sequence exists 0x5983a0 writes it to +16 clamped to +12 (unk_s32_1), i.e. a current count
+    // bounded by a maximum
+    s32 Progress;
+    // T014b V (consumer); I (name): 0x597310 stores element +12 at cPackageSequence +12, the upper
+    // bound 0x5983a0 applies to +16 (unk_s32_0)
+    s32 ProgressMax;
+    // T014b V (consumer); I (name): 0x597310 makes one dti
+    // cPackageQuestManager::cPackageSequence::cClientNpc object per list entry with the u32 at +4
+    // (DTI name; the property mClientInfo of rPackageQuestInfo 0xabe130 is the resource
+    // counterpart)
+    MtTypedArray<CDataCommonU32> ClientNpcList;          // PC 0x75e8e0
+    // T014b open (not read), kept unk: 0x5983a0 and 0x597310 read element +4, +8, +12, +16 (list)
+    // and +40 (order list) but not +36; the sequence ctor sets its own +36 to 0
     bool unk_bool;
     MtTypedArray<CDataQuestOrderList> unk_order_list;   // PC 0x770ab0
 };
 
 // Row 6, PC list 0x7709a0 (V; Season 3).
 struct CDataQuestJoinLobbyUnk {
-    u32 unk_u32;
+    // T014b V (consumer); I (name): 0xbd73c0 passes packet +116 to 0x5983a0 of quest manager kind
+    // 11, which allocates dti cPackageQuestManager::cPackageSequence objects (0x597310) and stores
+    // this u32 at sequence +4 and at task +580 (0x9d2b10) (...)
+    u32 PackageId;
     MtTypedArray<CDataQuestJoinLobbyUnkElement> unk_list;
 };
 
 // Row 7 element, PC list 0x76efd0 (V; Season 3; server lead: WildHuntQuestOrderList).
 struct CDataQuestJoinLobbyUnkOrderList {
     CDataQuestOrderList Param;
+    // T014b open (V store; no reader of the member found), kept unk: the notice callback 0xbd73c0
+    // (registered for dti__1502 at 0xbcefa3, code not made a function; read as raw instructions)
+    // passes packet +136 to registTask 0x597160 of quest manager kind 12 (...)
     u32 unk_u32;
+    // T014b open (V store; no reader of the member found), kept unk: stored by 0x64dc20 at task
+    // param +404 beside unk_u32 (+408); 0x5da6b0 stores 0 there for another list, so it reads as a
+    // kind selector for the u32; no reader found
     u8 unk_u8;
 };
 

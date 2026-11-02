@@ -47,6 +47,9 @@ struct CDataStageLayoutEnemyPresetEnemyInfoClient {
     bool IsManualSet;
     bool IsAreaBoss;
     bool IsBloodEnemy;
+    // T014b V (role): element +34 (reader 0x77a1b0, after IsBloodEnemy +33). ENEMY_SET_LIST handler
+    // 0x7db4c0 -> 0xbfe8a0 -> 0xaa7330 and REPOP 0xaa6cb0 copy the info (0x7858b0, 0xaa2910) into
+    // the 80-byte set object (dti__5393, 0xaa3050) at +8, so the (...)
     bool unk_bool;              // Season 3, no PS4 member (PC 0x77a1b0, V width); server: IsHighOrbEnemy (lead)
 };
 
@@ -115,7 +118,13 @@ struct CDataGatheringItemElement {
     u32 Id;
     u32 ItemId;
     u32 Num;
+    // T014b open (V store; no reader found), kept unk: DROP_ITEM_LIST: handler 0x7db2a0 ->
+    // sSetManager 0xbfe6e0 -> cpOmDropItem 0x995ff0, which skips ItemId (+8) 0x1e73..0x1e75 and Num
+    // (+12) 0 and item ids unknown to 0xb98c80, then 0x994560 fills one of 12 slots: +4, +8, +12
+    // and this (...)
     u32 unk_u32;                // Season 3, no PS4 member; server: Quality (lead)
+    // T014b open (V store; no reader found), kept unk: stored by the protected setter 0x996160 at
+    // the cpOmDropItem slot +20 (1 byte) in 0x994560; no reader found
     bool unk_bool;              // Season 3, no PS4 member; server: IsHidden (lead)
 };
 
@@ -131,7 +140,10 @@ struct CDataGatheringItemGetRequest {
 // {u32, u16} (V widths); no PS4 type. Type name I (T004 20); same shape as Quest CDataRewardItem but
 // read by another reader (0x7771b0 there).
 struct GatheringItemListRes_unk_1 {
+    // T014b open (list not read), kept unk: element of the GatheringItemListRes_unk_0 list (reader
+    // 0x7731b0); the outer list is not read (see GatheringItemListRes_unk_0.unk_u32)
     u32 unk_u32;                // server: ItemId (lead)
+    // T014b open (list not read), kept unk: as GatheringItemListRes_unk_1.unk_u32
     u16 unk_u16;                // server: Num (lead)
 };
 
@@ -140,6 +152,9 @@ struct GatheringItemListRes_unk_1 {
 // (alloc 0x34) {u32, list 0x77c5a0 (CDataWalletPoint), list 0x7731b0} (V widths); no PS4 type. The
 // 13.6.2 restriction list is never non-empty in the captures: the element is code-only (T004 6, 22).
 struct GatheringItemListRes_unk_0 {
+    // T014b open (list not read), kept unk: packet list +0x34 (reader 0x773060). The handler
+    // 0x7db750 passes its address only as the 9th argument of 0xbfe9d0, which does not use it;
+    // 0x7db6e0 / 0x880b30 copy only the item list (+0x48) and the flags (...)
     u32 unk_u32;                                       // server: RestrictionId (lead)
     MtTypedArray<CDataWalletPoint> unk_WalletPointList;  // server: Unk1 (lead)
     MtTypedArray<GatheringItemListRes_unk_1> unk_ItemList;          // server: RequiredItems (lead)

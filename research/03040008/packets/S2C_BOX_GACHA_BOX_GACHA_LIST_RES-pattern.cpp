@@ -27,7 +27,9 @@ struct CDataBoxGachaSettlementInfo {
     u32 PurchaseMaxNum;
     u32 SpecialPriceNum;
     u32 SpecialPriceMaxNum;
-    u32 unk_u32;               // Season 3; position I: PC reads 5 u32s here, PS4 4 (R2 F5)
+    // T014b V (flow); I (name): PC 0xd9fef0 box path (getter 0x869100, conn sub +0x468) passes box
+    // settlement +40 (reader 0x75ade0: +4 DrawId . (...)
+    u32 ChargeId;               // Season 3; position I: PC reads 5 u32s here, PS4 4 (R2 F5)
 };
 
 // PC list 0x75ab40 {u32 x5, f64, u16}.
@@ -46,6 +48,9 @@ struct CDataBoxGachaInfo {
     u32 Id;
     s64 Begin;
     s64 End;
+    // T014b open (not read), kept unk: box info +24 (reader 0x75aa30: +4 Id, +8/+16 s64, +24 bool,
+    // +28 Name). The only access to the list is the getter 0x869100 (19 call sites in 0x558410 and
+    // 0xd9df40..0xda6410) (...)
     bool unk_bool;             // Season 3
     MtString Name;
     MtString Description;

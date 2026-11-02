@@ -42,15 +42,24 @@ struct CDataItemList {
     MtString ItemUId;            // PS4 m_wstrUID (V by type)
     u32 ItemId;                  // I: PS4 m_unItemID, first of the u32 run
     u32 ItemNum;                 // I: PS4 m_unItemNum, second of the u32 run
+    // T014b open, kept unk: PC 0x880cf0 copies +16 to item +16; addItemNotice 0xb941e0 does not
+    // read it; no PS4 member
     u8 unk_u8;                   // Season 3, new (server: SafetySetting, lead)
     u8 StorageType;              // I: capture values 1-6, 13, 14 are storage types
     u16 SlotNo;                  // I: PS4 m_usSlotNo is the only u16 member
     u8 Color;                    // I: PS4 m_ucColor, u8 pair before the bool
     u8 PlusValue;                // I: PS4 m_ucPlusValue
     bool Bind;                   // I: PS4 b8 m_bBind, the only bool
-    u32 unk_u32_0;               // PS4 has three u32 here (m_unEquipCharacterID, m_unEquipPawnID,
-    u32 unk_u32_1;               // m_unEquipPoint); which is which has no code basis. server:
-    u32 unk_u32_2;               // EquipPoint, EquipCharacterID, EquipPawnID in this order (lead)
+    // T014b I (consumer; lead agrees): PC 0xb941e0 reads item+24 where PS4 0x7cee20 reads
+    // m_unEquipPoint and stores it (u16, sub-object +76); the other two u32 are V, so EquipPoint by
+    // elimination; server lead EquipPoint agrees
+    u32 EquipPoint;               // PS4 has three u32 here (m_unEquipCharacterID, m_unEquipPawnID,
+    // T014b V: PC 0xb941e0: item+28 != 0 -> equip owner = it, owner type 1; PS4 0x7cee20 the same
+    // with m_unEquipCharacterID
+    u32 EquipCharacterId;               // m_unEquipPoint); which is which has no code basis. server:
+    // T014b V: PC 0xb941e0: else item+32 -> owner, owner type 2; PS4 0x7cee20: else
+    // m_unEquipPawnID, mEquipCharType = 2*(id != 0)
+    u32 EquipPawnId;               // EquipPoint, EquipCharacterID, EquipPawnID in this order (lead)
     MtTypedArray<EquipElementParam> unk_ElementList;     // PC 0x765a90 {u8, u32, u16} (Season 3 u16)
     MtTypedArray<CDataContextEquipData_unk_0> unk_List_0;   // PC 0x765ba0, Season 3
     MtTypedArray<CDataContextBase_unk_0> unk_List_1;        // PC 0x766210, shape {u8, u16}, Season 3

@@ -21,8 +21,14 @@ import std.mem;
 
 struct S2C_QUEST_REWARD_BOX_LIST_NUM_NTC : CPacket {
     bool sourceOk = source == 0x34 [[export]];  // header source byte: 0x34 server (Packet.hexpat)
-    u16 unk_u16_0;   // Season 3; compared against unk_u16_1 (>= and >= 80 %): a count, I
-    u16 unk_u16_1;   // Season 3; the limit of that comparison: a capacity, I
+    // T014b V (consumer); I (name from UI text): handler 0x7f4e10: if u16_0 >= u16_1 it announces
+    // system_log 300 syslog_reward_box_limit_over_item 'The item slots in your reward box are
+    // full', else if u16_0 >= 80 % of u16_1 it announces 301 syslog_reward_box_limit_notion_item
+    // (...)
+    u16 RewardItemSlotNum;   // Season 3; compared against unk_u16_1 (>= and >= 80 %): a count, I
+    // T014b V (consumer); I (name from UI text): the capacity of the same comparison (full at >=,
+    // warning at 80 %); constant 800 in captures
+    u16 RewardItemSlotMax;   // Season 3; the limit of that comparison: a capacity, I
     u8 ListNum;
     // Fit: the decode ends within the last 15 bytes (cipher block padding; Packet.hexpat).
     u128 paddingSize = std::mem::size() - $ [[export]];

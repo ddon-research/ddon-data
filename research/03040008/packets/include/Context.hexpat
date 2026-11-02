@@ -33,6 +33,9 @@ struct CDataContextSetBase {
     s32 m_nStageNo;
     s32 m_nEncountArea;
     s32 m_nMasterIndex;
+    // T014b open (stored, no reader), kept unk: receive: 0x850010 stores it with sub_47bc80 into
+    // the context +84; no getter of that +84 found (0x4745c0 reads +84 of another object as a
+    // float) (...)
     u32 unk_u32;          // Season 3, new (server: Unk0)
 };
 
@@ -115,6 +118,9 @@ struct CDataContextSetAdditional {
     u8 m_ucCatchJointNo;
     u64 m_unCatchTargetUID;       // PS4 u32
     u32 m_unQuestID;
+    // T014b I (consumer): basis 1: enemy-context array cContext +3144 (setter 0x479fd0, getter
+    // 0x475520, block copy 0x4754e0/0x479fa0); read in enemy code, e.g. 0xcd5c80 uses element 1 as
+    // a bitfield (bit 0 state, bits 1..4 and 5..8 4-bit timers) (...)
     u32 unk_u32[4];               // Season 3, new (PC writer 0x77d0e0; server: Unk0). Enemy-context
                                   // array cContext+0xC48, applied only to cContextInstEm
                                   // (0x850010 / 0x479fd0); same array as CtrlAction 0x3C (T001c 1, V)
@@ -142,6 +148,8 @@ struct CDataContextEnemyStatus {
     u16 m_usCommonWork;               // 0x479980
     u16 m_usCustomWork;               // 0x479a10
     u8 m_ucEnemyCtrlRegionSelectNo;   // 0x479f50
+    // T014b I (consumer): same array as CDataContextSetAdditional.unk_u32 (setter 0x479fd0 via the
+    // apply 0x850b30); open: role without a name; no captures
     u32 unk_u32[4];                   // PC 0x757e60: fixed u32[4], no count on the wire. Season 3,
                                       // unnamed: same enemy-context array as SetAdditional
                                       // unk_u32[4] (setter 0x479fd0, cContextInstEm only)
@@ -156,17 +164,36 @@ struct ContextSetInfo {
 // CDataEquipElementParam position of the EquipData element (PC 0x765a90); server names
 // SlotNo, CrestId, Add are leads.
 struct EquipElementParam {
-    u8 unk_u8;
-    u32 unk_u32;
-    u16 unk_u16;
+    // T014b V (consumer; lead agrees): basis 1: 0x4fa0d0 accepts 1..4 and fills cCrestParam[u8-1];
+    // matches PS4 m_ucSlotNo
+    u8 SlotNo;
+    // T014b V (consumer): basis 1: stored as the crest item number and resolved with the item-param
+    // lookup 0xb98c80 (the lookup addItemNotice uses for CDataItemList ItemId); PS4 counterpart
+    // cCraftParam.mCraftElementItemNo[4]/mpElementParam[4] (...)
+    u32 ItemId;
+    // T014b I (consumer; lead agrees): basis 1: cCrestParam +12, passed by 0x4f9be0 to the crest
+    // param callback 0x4ddaf0, whose handlers (e.g. 0x4ddb80) add it to the crest param value; no
+    // PS4 member; server lead Add
+    u16 Add;
 };
 
 // Season 3 list element of CDataContextEquipData (PC 0x765ba0), no PS4 counterpart; struct name neutral
 // (TC1). server: CDataAddStatusParam {EnhanceType, Unk0, EnhanceId, Unk1} (lead).
 struct CDataContextEquipData_unk_0 {
-    u8 unk_u8_0;
-    u8 unk_u8_1;
-    u16 unk_u16_0;
+    // T014b V (consumer; lead agrees): basis 1: setter 0x5f8030 switches on it: 1 -> ctrl +4, 2 ->
+    // ctrl +6/+8/+10 by unk_u8_1, 3 -> ctrl +12; getters 0x5f7f40/0x5f7f80 and status calc 0x4dce10
+    // loop the same three types; values 1..3; server lead EnhanceType
+    u8 EnhanceType;
+    // T014b V (consumer): basis 1: setter 0x5f8030 uses it only for type 2, as a 1-based slot (a3-1
+    // <= 2 -> ctrl +6+2*(a3-1)); values 1..3; name from the role (no string); server lead Unk0
+    u8 EnhanceSlotNo;
+    // T014b V (consumer; lead agrees): basis 1: stored as the enhance id of its type/slot; 0x4dde40
+    // rejects 0 and ids above the rEnhancedParamList count and applies entry id-1 (EnhancedDataList
+    // {ParamId, ParamValue}) through table 0x1b0fcb8 (...)
+    u16 EnhanceId;
+    // T014b I (consumer): basis 1: setter 0x5f8030 keeps it only for type 1 (ctrl +14) and for type
+    // 2 slot 1 (ctrl +16); no reader of ctrl +14/+16 found (word-access scan for cItemEquipParam
+    // +106/+108 after [x+28h] and ctrl +14/+16 after +5Ch) (...)
     u16 unk_u16_1;
 };
 
@@ -202,8 +229,14 @@ struct CDataContextAcquirementData {
 // New trailing list of CDataContextBase (PC 0x75f7e0 -> 0x7605e0), no PS4 counterpart; struct name
 // neutral (TC1). server: EmblemStatList of CDataEquipStatParam {EffectID, EffectValue} (lead).
 struct CDataContextBase_unk_0 {
-    u8 unk_u8;
-    u16 unk_u16;
+    // T014b I (consumer + enum range): basis 1/3: selects the stat handler in table 0x1b0fcb8 (kind
+    // < 0x4B) in status calc 0x4dd630, the same table and kind space as rEnhancedParamList ParamId
+    // (0x4dde40) and the rItemList equip-param kinds (PS4 DWARF enum (...)
+    u8 EquipParamKind;
+    // T014b V (consumer): basis 1: the value argument of the kind handler (0x4dd630: handler(this,
+    // arg, u16)); values 0..5000; the context list is applied only to the category-10/sub-5 equip
+    // item (0x4f9620); server lead EffectValue (EmblemStatList)
+    u16 EquipParamValue;
 };
 
 // CDataContextBase: PC reader 0x75f250.
@@ -297,8 +330,13 @@ struct CDataContextPlayerInfo {
     u8 m_ucCatchJointNo;
     u64 m_unCatchTargetUID;       // PS4 u32
     u16 m_usCustomWork;
-    u32 unk_u32_0;                // Season 3, new
-    u32 unk_u32_1;                // Season 3, new
+    // T014b V (property name): basis 1: stored into cContext +14992, which PC createProperty
+    // 0x471a50 names mRoomNo; 0xbb12b0 compares the own mRoomNo with the own CharId (property
+    // CharId +8676 in 0x471180, getter 0x4770b0) (...)
+    u32 RoomNo;                // Season 3, new
+    // T014b V (property name): basis 1: OR-ed into cContext +14996, which PC createProperty
+    // 0x471a50 names mPlayerStatusFlag; captures 0
+    u32 PlayerStatusFlag;                // Season 3, new
 };
 
 // PC 0x772860.
@@ -310,15 +348,23 @@ struct CDataPawnReaction {
 // Season 3 list element of CDataContextPawnInfo (PC 0x772950), no PS4 counterpart; struct name
 // neutral (TC1). server: SpSkillList of CDataSpSkill (lead).
 struct CDataContextPawnInfo_unk_0 {
-    u8 unk_u8_0;
-    u8 unk_u8_1;
+    // T014b I (binary hint; lead agrees): basis 3: same element reader 0x772950 and consumer
+    // 0x6042c0 as the PAWN_SP_SKILL group (69.0.2 reader 0x813510, string
+    // OnPacket_PAWN_SP_SKILL_GET_ACTIVE_SKILL_RES; 69.6.16 handler 0x7ec870 builds the same
+    // 3+3-byte record) (...)
+    u8 SpSkillId;
+    // T014b I (binary hint; lead agrees): basis 3: second byte of the same pawn special-skill pair
+    // (record b[i]); values 1..3; server lead SpSkillLv
+    u8 SpSkillLv;
 };
 
 // CDataContextPawnInfo: PC 0x75f8d0. PS4 has only the reaction list.
 struct CDataContextPawnInfo {
     u32 pawnReactionCount;
     CDataPawnReaction m_PawnReactionList[pawnReactionCount];
-    u8 unk_u8[64];                // Season 3 (server: TrainingStatus)
+    // T014b I (binary hint; lead agrees): basis 3: the 64 bytes go as one block (0x5fd640 object)
+    // into the pawn context (...)
+    u8 TrainingStatus[64];                // Season 3 (server: TrainingStatus)
     u32 spSkillCount;
     CDataContextPawnInfo_unk_0 unk_List[spSkillCount];  // Season 3; server: SpSkillList (lead)
 };

@@ -80,7 +80,9 @@ struct CDataCharacterListElement {
     CDataJobBaseInfo CurrentJobInfo;
     CDataJobBaseInfo EntryJobInfo;
     MtString MatchingPlofile;   // PS4 DWARF spelling (m_wstrMatchingPlofile)
-    u8 unk_u8;                  // Season 3 (PC 0x75ccf0), no PS4 member
+    // T014b V (compare); I (name): PC 0xef0ec0 passes element +52 to 0xef0c00, which picks the row
+    // colour by (+52 != 0 && +52 != sGame+0x39FC) (...)
+    u8 GameMode;                  // Season 3 (PC 0x75ccf0), no PS4 member
 };
 
 // CDataCharacterLevelParam: PC reader 0x75cb00, 10 x u16 (T006 1.3, V); PS4
@@ -113,6 +115,9 @@ struct CDataCharacterLevelParam {
 struct CDataLobbyMemberInfo {
     CDataCommunityCharacterBaseInfo CommunityCharacterBaseInfo;
     u32 PawnId;
+    // T014b open (V copy; no reader identified), kept unk: element reader 0x76d7f0 puts it at
+    // element +34 (after PawnId +28 and two u8 +32/+33); handler 0x7e2ce0 -> 0x7e2c60 -> 0x8814e0
+    // copies every element whole (0x7a5ea0) into the conn +17880 list (...)
     u8 unk_u8;                  // PS4 Platform or ClientVersion (open); server: Unk0 "most likely Platform" (lead)
     u8 SessionStatus;           // V (T003 9: 0.10.16 writes +0x21)
     u8 OnlineStatus;            // I (position after SessionStatus, PS4 order); server: OnlineStatus (lead)

@@ -16,12 +16,22 @@
 #include "Packet.hexpat"
 
 // CDataStampBonus: PC list reader 0x77a380, element {u32, u32, u32} (V widths). PS4 CDataStampBonus
-// {u32 m_unBonusType, u32 m_unBonusValue}: Season 3 adds one u32. Which u32 is new is I: the PS4
-// pair is placed last (server lead: Unk0, BonusType, BonusValue, the new one first).
+// {u32 m_unBonusType, u32 m_unBonusValue}: Season 3 adds one u32. T014b part 7 (stamp UI 0xebcaf0)
+// rejects the PS4-position names BonusType (+8) / BonusValue (+12) that T009b gave the last two:
+// +4 is the bonus kind, +8 an id (mapped by 0xebb610 when +4 == 1), +12 the amount. Which u32 is
+// the PS4 pair stays open, so all three are `unk_*` with their roles (server lead: Unk0,
+// BonusType, BonusValue).
 struct CDataStampBonus {
-    u32 unk_u32;                // Season 3; server: Unk0 (lead)
-    u32 BonusType;              // I (PS4 member, position)
-    u32 BonusValue;             // I (PS4 member, position)
+    // T014b V (role): STAMP_BONUS_GET_LIST_RES handler 0x7fe140 (not a function, read by
+    // instruction) keeps the packet at conn sub +0x478 (getter 0x871bd0, one caller) (...)
+    u32 unk_u32;                // Season 3; server: Unk0 (lead). Role (V): bonus kind
+    // T014b V (role), kept unk: the bonus id; 0xebcaf0 maps it by 0xebb610 (1..5 -> 7789, 7792,
+    // 7795, 10682, 10664) when unk_u32 == 1, else shows it as is. Was BonusType (PS4 position, I),
+    // rejected; server: BonusType (lead)
+    u32 unk_u32_1;
+    // T014b V (role), kept unk: the amount (multiplied by the u16 of a 0xebcaf0 switch). Was
+    // BonusValue (PS4 position, I), rejected; server: BonusValue (lead)
+    u32 unk_u32_2;
 };
 
 // CDataStampBonusDaily: PC list reader 0x77a6b0, element {list 0x77a380, u16, u8} (V order); PS4
@@ -42,7 +52,12 @@ using CDataStampBonusTotal = CDataStampBonusDaily;
 // element {u32, u32, list 0x77a6b0} (V shape); no PS4 type. User: 45.0.2.
 // server: CDataStampBonusDaily {Unk0, Unk1, AssetList} (lead; not the PS4 class of that name).
 struct CDataStampBonusDailyGroup {
+    // T014b V (role): 0xebcaf0 selects the daily group whose +4 (this field) equals stamp UI
+    // +0x25A8 (...)
     u32 unk_u32_0;              // server: Unk0 (lead)
+    // T014b open (not read), kept unk: group +8: 0xebcaf0, the only caller of the GET_LIST getter
+    // 0x871bd0, reads group +4 and the daily list (+12/+16) only. Captures give 77, the value of
+    // CHECK_RES element +8 that the UI keeps at +0x25AC (I)
     u32 unk_u32_1;              // server: Unk1 (lead)
     MtTypedArray<CDataStampBonusDaily> StampBonusDaily;         // PC 0x77a6b0
 };
@@ -50,6 +65,11 @@ struct CDataStampBonusDailyGroup {
 // Season 3 element of 45.1.2 (it replaces PS4's u16 m_usTotalStampNum): PC list reader 0x77a5c0,
 // element {u32, u32} (V shape); no PS4 type, name unk. server: CDataStampCheck (lead).
 struct CDataStampBonusCheckRes_unk_0 {
+    // T014b V (role): 0x65cbd0 (getter 0x871bc0, list +28/+40) takes the element whose +4 == 1 and
+    // stores +4 / +8 in the stamp talk UI (dti__4246) at +0x25A8 / +0x25AC (...)
     u32 unk_u32_0;              // server: Unk0 (lead)
+    // T014b V (flow); role open: stored with unk_u32_0 by 0x65cbd0 at UI +0x25AC and pushed with
+    // +0x25A8 to 0x8785c0 (request 561, whose send body is not visible in the decompiled function);
+    // no other reader
     u32 unk_u32_1;              // server: Unk1 (lead)
 };

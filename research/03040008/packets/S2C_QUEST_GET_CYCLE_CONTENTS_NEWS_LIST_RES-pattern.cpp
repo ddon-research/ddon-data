@@ -30,14 +30,23 @@ struct CDataCycleContentsRank {
     u32 Rank;
     u32 Score;
     u64 UpdateDate;
+    // T014b open (dropped by the consumer), kept unk: 0xbd53e0 copies each rank element (news +72
+    // list) into a 24-byte object (vtable 0x1c455d8) from +8/+12/+16/+20 only; element +24 (this
+    // field) is not copied or read
     u32 unk_u32;
+    // T014b open (dropped by the consumer), kept unk: 0xbd53e0 does not copy or read rank element
+    // +28
     u8 unk_u8;
 };
 
 // PC list 0x774e80 {u32, s64, s64} (V; both R.s64), Season 3.
 struct CDataCycleContentsUnk {
     u32 StageNo;               // name from the earlier pattern (I)
+    // T014b V (copy), name open: 0xbd53e0 copies each element of the news +124 list (reader
+    // 0x774e80): +4 is wrapped as nQuest::SCHEDULE_ID, the two s64 (+8, +16) go to +16/+24 of a
+    // 32-byte nQuest object (ctor 0xa33d40); no reader of those members traced (...)
     s64 unk_s64_0;
+    // T014b V (copy), name open: see unk_s64_0 (second s64, element +16 -> object +24)
     s64 unk_s64_1;
 };
 

@@ -30,6 +30,9 @@ struct S2C_STAMP_BONUS_GET_LIST_RES : CPacket {
         s32 Result;
         MtTypedArray<CDataStampBonusDailyGroup> DailyGroupList;    // PC 0x77a490; Season 3, field name I (Stamp.hexpat)
         u16 TotalStampNum;                                          // PC 0x77a7d0; I (position, PS4 member)
+        // T014b V (role): the total list (packet +52) is read by 0xebcaf0 in mode 0 with the same
+        // per-day code as the daily list: StampBonus +4 (this unk_u32) selects the id mapping
+        // 0xebb610 for +8; see CDataStampBonus.unk_u32
         MtTypedArray<CDataStampBonusTotal> StampBonusTotal;         // PC 0x77a6b0 (inside 0x77a7d0)
     }
     // Fit: the decode ends within the last 15 bytes (cipher block padding; Packet.hexpat).

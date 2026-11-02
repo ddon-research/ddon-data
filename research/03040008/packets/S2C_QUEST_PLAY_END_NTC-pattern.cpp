@@ -19,7 +19,9 @@ import std.mem;
 
 struct S2C_QUEST_PLAY_END_NTC : CPacket {
     bool sourceOk = source == 0x34 [[export]];  // header source byte: 0x34 server (Packet.hexpat)
-    s32 unk_s32;   // read into the RES Error slot (+16), unconditionally (V); role I; server: Unk0 (lead)
+    // T014b V (role); name I: reader 0x817a10 reads it into packet +0x10 (the RES Error slot) with
+    // no u16 error before it (...)
+    s32 Error;   // read into the RES Error slot (+16), unconditionally (V); role I; server: Unk0 (lead)
     CDataContentsPlayEnd ContentsPlayEnd;
     // Fit: the decode ends within the last 15 bytes (cipher block padding; Packet.hexpat).
     u128 paddingSize = std::mem::size() - $ [[export]];

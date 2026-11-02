@@ -31,7 +31,13 @@ struct S2C_GROUP_CHAT_GROUP_CHAT_GET_MEMBER_LIST_RES : CPacket {
         // cannot be cipher padding, so they are decoded as that server tail; the client never
         // reads them. PS4 framing (I): the recompiled ACTIVATE_JOB_ORDER_RES::ReadPacket (S2C.cpp
         // 188-206) reads Result after any Error and accepts a short packet.
+        // T014b open (never read by the client), kept unk: the field exists only after a non-zero
+        // Error; the reader 0x809d80 stops after a non-zero Error (copies Error to Result) and the
+        // handler 0x7d8d40 uses only Error/Result and the member list (0x84cef0 to conn +41640)
+        // (...)
         s32 unk_serverResult;
+        // T014b open (never read by the client), kept unk: as unk_serverResult: after a non-zero
+        // Error the reader 0x809d80 reads nothing more
         u32 unk_serverListCount;
     }
     // Fit: the decode ends within the last 15 bytes (cipher block padding; Packet.hexpat).

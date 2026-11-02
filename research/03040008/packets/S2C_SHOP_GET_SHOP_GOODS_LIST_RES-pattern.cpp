@@ -26,8 +26,13 @@ struct S2C_SHOP_GET_SHOP_GOODS_LIST_RES : CPacket {
     if (Error == 0) {
         s32 Result;
         u32 ShopID;         // I: echoes the 20.0.1 ShopID in 18/18 pairs
+        // T014b open (not read), kept unk: the only caller of the packet getter 0x86c800 is
+        // 0xb9f0f0, which copies +33 and the goods list but not packet +32
         u8 unk_u8_0;        // always 0
-        u8 unk_u8_1;        // 11 (17), 10 (1); 11 is the 20.1.2 PointType value; server: WalletType (lead)
+        // T014b V (consumer); I (name; lead agrees): 0xb9f0f0 stores packet +33 at cShop
+        // sItemManager +104; 0x547580 passes it (when its own override +0x84 is 0) to the uGUIShop
+        // factory 0x52eba0, which stores it at uGUIShop +2032 (...)
+        u8 WalletType;        // 11 (17), 10 (1); 11 is the 20.1.2 PointType value; server: WalletType (lead)
         MtTypedArray<CDataGoodsParam> GoodsParamList;   // PC 0x769330 (Season 3 element)
     }
     // Fit: the decode ends within the last 15 bytes (cipher block padding; Packet.hexpat).

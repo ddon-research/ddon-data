@@ -658,10 +658,16 @@ struct CtrlAction<auto MsgId> {
                                                      // cContext+0xC48, absolute (P5 1); same
                                                      // array as SetAdditional unk_u32[4] and
                                                      // 35.12.16 u32[4], cContextInstEm only
-                                                     // (setter 0x479fd0, T001c 6, V); name open
+                                                     // (setter 0x479fd0, T001c 6, V); name open.
+                                                     // T014b V (flow); I (role): a per-enemy work
+                                                     // array synchronised to the party, read via
+                                                     // getter 0x475520 by 0x851700, 0x8927f0 and
+                                                     // enemy code (0xccddc0, 0xcd5c80); no string
+                                                     // or PS4 member names it
         (0x3D): s32 unk_0x3D;                        // PC 0x6008a0, struct +0x668; signed gauge
                                                      // delta for uEm024000 into slot 0 of that
-                                                     // array (P5 1); name open
+                                                     // array (P5 1); name open. T014b V (flow),
+                                                     // name open: readers are those of unk_0x3C
         (_): {}
     }
 };
@@ -723,8 +729,16 @@ struct GameNormal<auto MsgId> {
             u32 mPawnOrderNo;
         }
         (0xF): {                       // Season 3, PC 0x601060
+            // T014b V (flow); I (role): GameNormal 0x0F: receive 0x894bf0 builds {u32 (+60 of the
+            // message), uid (+64), uid (+72)} and adds it to the sEnemyManager +0xDB0 block (getter
+            // 0xb551e0) with 0x4d3060 (...)
             u32 unk_u32;
+            // T014b V (flow); I (role): first UID of the GameNormal 0x0F entry stored in the
+            // sEnemyManager +0xDB0 block (0x894bf0 -> 0x4d3060); 0x5a12b0 looks up the block by a
+            // pair of character UIDs (0x4d2fd0). Which UID of the pair is which was not resolved;
+            // name open
             u64 unk_uid_0;             // a UID: receive 0x894bf0 looks it up (P5 2), sEnemyManager+0xDB0 block
+            // T014b V (flow); I (role): second UID of the same entry; see GameNormal.unk_uid_0
             u64 unk_uid_1;             // a UID (P5 2)
         }
         (0x10): u32 unk_u32;           // Season 3, PC 0x601030; sEnemyManager+0xDB0+0x28 (P5 2)

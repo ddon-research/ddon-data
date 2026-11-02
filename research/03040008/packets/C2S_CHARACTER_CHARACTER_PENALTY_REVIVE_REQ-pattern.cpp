@@ -19,7 +19,11 @@ import std.mem;
 struct C2S_CHARACTER_CHARACTER_PENALTY_REVIVE_REQ : CPacket {
     bool sourceOk = source == 0x00 [[export]];  // header source byte: 0x00 client (Packet.hexpat)
     u32 HpMax;                  // I (PS4 position); server: Unk0 (lead)
-    u32 unk_u32;                // Season 3, no PS4 member; server: Unk1 (lead)
+    // T014b V (source); name I (PS4 member order): 0x879940 (PC counterpart of PS4
+    // cNetGameServer::reqCharacterPenaltyRevive 0x3682a0) sends to writer 0x820e00 (push ebp, push
+    // ebx) ebx = (int) float at cContextPlayerInfo (context +8896) +0x172C via 0x872760 and ebp =
+    // (int) float (...)
+    u32 NoBadHpMax;                // Season 3, no PS4 member; server: Unk1 (lead)
     // Fit: the decode ends within the last 15 bytes (cipher block padding; Packet.hexpat).
     u128 paddingSize = std::mem::size() - $ [[export]];
     bool fits = paddingSize <= 15 [[export]];

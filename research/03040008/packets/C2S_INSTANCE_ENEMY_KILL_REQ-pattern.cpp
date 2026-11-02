@@ -28,6 +28,9 @@ struct C2S_INSTANCE_ENEMY_KILL_REQ : CPacket {
     float DropPosY;
     double DropPosZ;
     bool IsNoBattleReword;   // PS4 m_bIsNoBattleReword (DWARF spelling); slot I (position)
+    // T014b V (source); I (value): 0xbfd900 -> 0x85cb10 -> Send_C2S_INSTANCE_ENEMY_KILL_REQ: the
+    // bool is v23 = 1 unless one of the 10 member slots of the killed enemy's context is alive
+    // (cContextInterface::isDead == 0), passes 0x478d40 and has a non-zero 64-bit (...)
     bool unk_bool;           // Season 3, no PS4 member (PC writer 0x8413d0, V width); server: Unk0 (lead)
     u32 RegionFlag;          // 10-region dead mask (isDead loop, V both platforms)
     // Fit: the decode ends within the last 15 bytes (cipher block padding; Packet.hexpat).

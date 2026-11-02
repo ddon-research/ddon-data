@@ -22,6 +22,9 @@ struct C2S_INSTANCE_GET_DROP_ITEM_REQ : CPacket {
     bool sourceOk = source == 0x00 [[export]];  // header source byte: 0x00 client (Packet.hexpat)
     CDataStageLayoutId LayoutId;
     u32 Id;
+    // T014b open (source not found), kept unk: writer 0x841560 <- 0x82bd10 <- 0x86acc0 (undefined),
+    // called from the request callback at 0xb93ead, which builds the packet from a request record
+    // copied on the stack (+0x2C / +0x30 of the frame) (...)
     bool unk_bool;   // Season 3, no PS4 member (PC Write_bool, V width); server: Unk0 (lead)
     MtTypedArray<CDataGatheringItemGetRequest> GatheringItemGetRequestList;
     // Fit: the decode ends within the last 15 bytes (cipher block padding; Packet.hexpat).

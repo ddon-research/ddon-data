@@ -14,10 +14,11 @@
 #      shares (1.0.1), and refuses a size no file has
 #   6. a `while read` loop over two pattern names exports both: the script reads nothing from
 #      stdin, even when a child would (a `cygpath` stub that drains stdin stands in for one)
+#   7. plbatch gets `--json-nonfinite=null` by default (spec 006 T014c), `keep` when asked
 set -o errexit -o nounset -o pipefail
 
 die() { echo "ERROR: $*" >&2; exit 2; }
-for cmd in mktemp rm mkdir printf chmod dirname head; do command -v "$cmd" >/dev/null 2>&1 || die "$cmd not found"; done
+for cmd in mktemp rm mkdir printf chmod dirname head grep; do command -v "$cmd" >/dev/null 2>&1 || die "$cmd not found"; done
 
 here=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 script=$(cd "$here/../../../../packets" && pwd)/imhex-export.sh
@@ -32,7 +33,8 @@ mkdir -p "$work/raw/s1" "$work/raw/s2" "$work/json" "$work/pat" "$work/std"
 : > "$work/raw/s2/4_S2C_UNKNOWN_OLD_NAME_2019-07-06T11_05_36.1-07_00.35_7_2"
 head -c 304 /dev/zero > "$work/raw/s1/5_C2L_CLIENT_CHALLENGE_REQ_2019-07-06T11_05_37.1-07_00.1_0_1"
 head -c 336 /dev/zero > "$work/raw/s1/6_C2L_CLIENT_CHALLENGE_REQ_2019-07-06T11_05_38.1-07_00.1_0_1"
-printf '#!/usr/bin/env bash\nwhile IFS= read -r f; do echo "ok   $f"; done\n' > "$work/plbatch"
+# The stub also records its arguments, one per line, in plbatch.args (check 7).
+printf '#!/usr/bin/env bash\nprintf "%%s\\n" "$@" >> "%s/plbatch.args"\nwhile IFS= read -r f; do echo "ok   $f"; done\n' "$work" > "$work/plbatch"
 chmod +x "$work/plbatch"
 pattern() { printf '%s\n' "// test pattern" "$@" "#pragma endian big" > "$work/pat/$name-pattern.cpp"; }
 
@@ -80,6 +82,17 @@ loop_log=$(printf '%s\n' LOGIN CONTEXT | while IFS= read -r name; do
     JSON_DIR="$work/json" PATTERN_DIR="$work/pat" bash "$script" --force @ "$name" 1 2>&1 || true
 done)
 check "while-read loop exports both patterns" '[[ $loop_log == *"LOGIN-pattern.cpp"* && $loop_log == *"CONTEXT-pattern.cpp"* && $loop_log == *"Done: 2 exported"* ]]'
+
+# 7. The nonfinite default reaches plbatch: null unless --json-nonfinite=keep is given.
+name=CONTEXT; pattern "// packet-id: 35.7.2"
+: > "$work/plbatch.args"
+run
+check "nonfinite default is null" '(( rc == 0 )) && grep -qx -e "--json-nonfinite=null" "$work/plbatch.args" && ! grep -q -e "--json-nonfinite=keep" "$work/plbatch.args"'
+: > "$work/plbatch.args"
+rc=0
+log=$(PLBATCH="$work/plbatch" IMHEX_INCLUDES="$work/std" RAW_DIR="$work/raw" JSON_DIR="$work/json" \
+  PATTERN_DIR="$work/pat" bash "$script" --force --json-nonfinite=keep @ "$name" 1 2>&1) || rc=$?
+check "nonfinite keep is passed on" '(( rc == 0 )) && grep -qx -e "--json-nonfinite=keep" "$work/plbatch.args"'
 
 (( fails == 0 )) || { echo "$fails check(s) failed" >&2; exit 1; }
 echo "all checks passed"

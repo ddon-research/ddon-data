@@ -21,6 +21,8 @@ import std.mem;
 struct C2S_ITEM_SORT_SET_ITEM_SORTDATA_BIN_REQ : CPacket {
     bool sourceOk = source == 0x00 [[export]];  // header source byte: 0x00 client (Packet.hexpat)
     CDataItemSort SortData;
+    // T014b V (source); role open: writer 0x841860 <- 0x82d630 <- 0x880e90(storage index, bool) <-
+    // sItemManager 0xb9ddb0 / 0xb9de30 (per-storage flush every 300 s or when forced) (...)
     bool unk_bool;                                         // Season 3, new
     // Fit: the decode ends within the last 15 bytes (cipher block padding; Packet.hexpat).
     u128 paddingSize = std::mem::size() - $ [[export]];

@@ -21,9 +21,16 @@ struct C2S_LOBBY_LOBBY_CHAT_MSG_REQ : CPacket {
     bool sourceOk = source == 0x00 [[export]];  // header source byte: 0x00 client (Packet.hexpat)
     u8 Type;
     u32 TargetID;
-    u8 unk_u8;                  // Season 3; server: MessageFlavor (lead)
-    u32 unk_u32_0;              // Season 3; server: PhrasesCategory (lead)
-    u32 unk_u32_1;              // Season 3; server: PhrasesIndex (lead)
+    // T014b V (role); I (name; lead agrees): 0xb291b0(text, kind, a, b) sends kind/a/b as
+    // unk_u8/unk_u32_0/unk_u32_1: typed chat passes 0,0,0 (0xdd5e50, 0xb76030); the preset-phrase
+    // path 0xb29160 passes kind 1 with text '%d'; 0x588b80 passes kind 3. A message-kind selector
+    u8 MessageFlavor;                  // Season 3; server: MessageFlavor (lead)
+    // T014b V (role); I (name; lead agrees): preset path 0xb29160 sends category+1 (from 0xb76030
+    // case 4, after the phrase lookup 0xb79b80(category, index)); 0 for typed chat
+    u32 PhrasesCategory;              // Season 3; server: PhrasesCategory (lead)
+    // T014b V (role); I (name; lead agrees): preset path 0xb29160 sends the index returned by
+    // 0xb79b80(category, index); 0 for typed chat; captured 0-150
+    u32 PhrasesIndex;              // Season 3; server: PhrasesIndex (lead)
     MtString Message;
     // Fit: the decode ends within the last 15 bytes (cipher block padding; Packet.hexpat).
     u128 paddingSize = std::mem::size() - $ [[export]];

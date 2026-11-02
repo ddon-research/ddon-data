@@ -20,6 +20,8 @@ struct C2S_PARTY_SEND_BINARY_MSG_NTC : CPacket {
     u32 count;
     u32 CharacterIds[count];
     s32 len;
+    // T014b V (flow); I (role): Data.ctrlAction.unk_0x3C[] is the cContext +0xC48 4-slot array
+    // (setter 0x479fd0, getter 0x475520); see nNetMsg.hexpat CtrlAction 0x3C.
     NetMsg<len> Data;
     bool msgFits = Data.fits [[export]];  // the NetMsg ended exactly at len
     str msgId = Data.msgIdFull [[export]];  // Head.mMsgIdFull ("SHORT" when len < 20)

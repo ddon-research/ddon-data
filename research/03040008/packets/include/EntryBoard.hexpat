@@ -19,6 +19,9 @@
 // TC1); the PS4 element is CDataEntryRecruitJob, the PC u8 list reader the CDataCommonU8 one.
 struct CDataEntryRecruitData {
     u16 ID;
+    // T014b V (role): PC 0xa2a050 (CREATE_RES path, also the ITEM_LIST_RES consumers) copies each
+    // recruit element (+4 ID, +8 this u32, +12 job list) by 0x585600 and sets board +200 when any
+    // element +8 != 0 (...)
     u32 unk_u32;
     MtTypedArray<CDataCommonU8> EnableJobList;
 };
@@ -49,6 +52,9 @@ struct CDataEntryItemParam {
 struct CDataEntryMemberData {
     u16 ID;
     bool IsReady;
+    // T014b open (V copy, no reader found), kept unk: PC 0xa2aa80 (from 0xa2a050) copies member +8
+    // into the 0x44-byte member copy +8 of the board object +156 list; no reader of that member was
+    // identified (the displacement +8 is too common for the index scan to isolate it)
     u32 unk_u32;
     CDataCharacterListElement CharacterListElement;
 };
@@ -64,6 +70,9 @@ struct CDataEntryItem {
     u16 BoardRequiredAvgItemRank;
     u16 TimeOut;
     u32 LeaderPartyId;
+    // T014b open (not read), kept unk: element +88: the copy 0xa2a050 reads +4..+80 only; among the
+    // four callers of the ITEM_LIST_RES getter 0x86b4a0 (conn+0x41C: 0x4e5890, 0x586640, 0x588340,
+    // 0xe29f40) only 0xe29f40 reads a byte +88, of another object (+16 of a list (...)
     bool unk_bool;
 };
 
@@ -83,6 +92,9 @@ struct CDataEntryBoardItemSearchParameter {
     bool IsNoPassword;
     u32 RequiredItemRankMin;
     u32 RequiredItemRankMax;
+    // T014b open (never written), kept unk: PC writer 0x77f170 sends +60/+64 of the search object
+    // at conn+0x4748 (0x86b400 -> 0x8272e0 -> 0x840ec0) (...)
     u32 unk_u32_0;
+    // T014b open (never written), kept unk: as unk_u32_0 (+64)
     u32 unk_u32_1;
 };

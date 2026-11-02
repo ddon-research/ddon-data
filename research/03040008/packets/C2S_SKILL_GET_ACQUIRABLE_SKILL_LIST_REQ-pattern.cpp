@@ -19,6 +19,10 @@ import std.mem;
 
 struct C2S_SKILL_GET_ACQUIRABLE_SKILL_LIST_REQ : CPacket {
     bool sourceOk = source == 0x00 [[export]];  // header source byte: 0x00 client (Packet.hexpat)
+    // T014b V (flow); open (writer of the source not found): writer 0x83ccf0 <- 0x8683e0(job, u32)
+    // <- 0x4ec740, which takes the u32 from request slot +8 of a 25-slot request queue (object
+    // vtable 0x1b14354, ctor 0x4ea310, slots at +4, 16 bytes each, dispatched by the jump table
+    // 0x4ec37c: (...)
     u32 unk_u32;        // Season 3, no PS4 member; 2144504 in 4/4 = the player's CharacterID in the same stream (T011 7, one value; TC1); server: CharacterId (lead)
     u8 Job;
     // Fit: the decode ends within the last 15 bytes (cipher block padding; Packet.hexpat).

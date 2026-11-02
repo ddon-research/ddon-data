@@ -31,6 +31,9 @@ struct S2C_INSTANCE_GET_GATHERING_ITEM_LIST_RES : CPacket {
         u32 PosId;
         MtString GatheringItemUID;
         bool IsGatheringItemBreak;   // PS4 member; that it is the first of the two bools is I (position)
+        // T014b open (stored, no reader), kept unk: packet +0x31 (reader 0x80b480). Handler
+        // 0x7db750 -> 0x7db6e0 -> 0x880b30 stores it at conn +0x9E74 (40564) beside the gather
+        // window data (+0x9E64..+0x9E70); 0xbfe9d0 receives it as an unused argument (...)
         bool unk_bool;               // Season 3, no PS4 member (PC reader 0x80b480, V width); server: Unk0 (lead)
         MtTypedArray<GatheringItemListRes_unk_0> unk_List;  // Season 3 (V width); server: RestrictionList (lead); never non-empty in captures
         MtTypedArray<CDataGatheringItemElement> ItemList;
