@@ -48,13 +48,15 @@ Coordinator: main session. One subagent at a time. Method and rules: `spec.md`.
   done (722283dcf1: 23 ids, 3,712/3,712 fit; 33.20.16 = UPDATE_PLAY_POINT_NOTICE; 12.5.x, 12.9.16
   exclusive). T006 patterns done (bc9279f6c0). T007 evidence done
   (d5da913504: 43 ids, 1,569/1,569 fit; 8.37.16, 53.9.16 settled). T007 patterns done (441febe4f2).
-  Running: T008 (`briefs/T008-warp-item.md`), then its patterns, then R2 reviewer over T005-T008; later batches by related groups:
+  T008 evidence done (2,038/2,038 fit; 14.10.16 = C2S_WARP_END_NTC,
+  raw name WARP_START wrong: add to the Tn rename list). Running: T008 patterns
+  (`briefs/T008b-warp-item-patterns.md`), then then R2 reviewer over T005-T008; later batches by related groups:
   8+58 PAWN + 53 PARTNER; 14 WARP + 10/50 ITEM; 37 MAIL + 45 STAMP + 2 CHARACTER; then the rest by count
   (62 SEASON is all Season 3-exclusive: out of scope). Was: then groups 33, 3, 8, 14, 10, 37 by the triage order.
 - Tn: `tests/imhex-export-select.sh` is not run by check.sh; the u64 OM `Key` (13.20.x/13.22.2) exceeds
   2^53 in JSON (README note).
-- Tn: raws whose names are placeholders but code names them (first: 0.10.16 = SESSION_STATUS_NTC,
-  T003 § 9): one CLI `PacketId` relabel + rename package at spec end (Sam 2026-11-01 chose renaming
+- Tn: raws whose names are placeholders but code names them (0.10.16 = SESSION_STATUS_NTC, T003 § 9;
+  14.10.16 = C2S_WARP_END_NTC, T008): one CLI `PacketId` relabel + rename package at spec end (Sam 2026-11-01 chose renaming
   for code-backed names).
 - Sam is away 2026-11-01 evening for ~8 h: keep coordinating; park decisions with a recommendation.
 - Coordinator housekeeping until 002 T021 lands: after each IDA package, stop its `idat.exe` workers
