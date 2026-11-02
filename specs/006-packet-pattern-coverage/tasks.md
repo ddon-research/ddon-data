@@ -44,7 +44,8 @@ Coordinator: main session. One subagent at a time. Method and rules: `spec.md`.
   decryption and the cert notice rename), T003-T012 evidence + patterns, R1/R1b and R2/R2b reviews.
   Code-backed names found on the way: 0.10.16 = SESSION_STATUS_NTC (T003 § 9), 33.20.16 =
   UPDATE_PLAY_POINT_NOTICE (T006), 14.10.16 = C2S_WARP_END_NTC (T008, raw name WARP_START wrong).
-- Running: T013 small groups evidence (`briefs/T013-small-groups.md`). Next: T013 patterns, R3 review
+- T013 evidence done (27173aa74c: 48 ids, 242/242 fit). Running: T013 patterns
+  (`briefs/T013b-small-groups-patterns.md`). Next: R3 review
   (`briefs/R3-review-T009-T013.md`) and its fixes, then the closing packages TC1 (tooling, naming sweep,
   Season 3-exclusive list; `briefs/TC1-close-tooling-naming-exclusive.md`) and TC2 (code-backed raw
   renames; `briefs/TC2-code-backed-renames.md`), then the spec-end procedure (orchestration § 10).
