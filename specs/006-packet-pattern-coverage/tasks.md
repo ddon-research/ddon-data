@@ -37,7 +37,9 @@ Coordinator: main session. One subagent at a time. Method and rules: `spec.md`.
   L2C_LOGIN_SERVER_CERT_NTC / 44.1.16 S2C_CERT_GAME_SERVER_CERT_NTC, 2 patterns 42/42 + 83/83 fit);
   T003 (d6692cf3b9; 383373ed28 + 5bc4846af8: 0.10.16 = SESSION_STATUS_NTC; PC `Send` 0x9d6a20 strips
   the handshake packet's header); T004 (f7efade6c6; d7d48b68f6).
-- Running: R1 reviewer over T002-T004 (`briefs/R1-review-T002-T004.md`). Next: T005 group 11
+- R1 review done (2026-11-02: no wrong-data defects; 8 smaller findings: Arrowgene names as field
+  names in `Server.hexpat`, comment/README slips, report errata). Running: R1b fixes
+  (`briefs/R1b-review-fixes.md`). Next: T005 group 11
   (`briefs/T005-quest.md`), its patterns, then groups 33, 3, 8, 14, 10, 37 by the triage order.
 - Tn: `tests/imhex-export-select.sh` is not run by check.sh; the u64 OM `Key` (13.20.x/13.22.2) exceeds
   2^53 in JSON (README note).
