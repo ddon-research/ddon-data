@@ -465,3 +465,124 @@ PLAY_END, LOBBY NTC).
 
 `CDataQuestJoinLobbyUnkOrderList.unk_u32` (JOIN_LOBBY row 7, element +384, T014a medium). Find the consumer of
 the `cQuestSvNotJoinLobbyQuestInfo` notice (dti__1502) and follow packet +136.
+
+## Part 5 (2026-11-02, T014b5): remaining includes and patterns, and the rows left "not traced"
+
+Builds and databases: PC 03040008 private copy
+`D:/research/DDON-binaries/IDA9.5/PC_DDON_03040008/ddon-data-t014b5/2022_01_29_DDO_DUMP_FIX.exe.i64`
+(32-bit, image base 0x400000, checked with `idc.get_idb_path()`); PS4 02020005 private copy
+`D:/research/DDON-binaries/IDA9.5/PS4_DDON_02020005_2016_12_21/ddon-data-t014b5/DDOORBIS.elf.i64` (64-bit,
+base 0). Both read-only; SHA-256 of the copies not computed (not run). All addresses are VAs. Rows are
+updated by `T014b4-upd.py` from `T014b5-*.json` (one file per include; only rows still `open` change). A
+displacement/immediate index of all PC functions was rebuilt (39 s).
+
+### Shop.hexpat and 20.0.2 SHOP_GET_SHOP_GOODS_LIST_RES
+
+- Path: handler `0x7fa010` keeps the packet at conn+972; the getter `0x86c800` has one caller, the cShop
+  receive callback `0xb9f0f0`, which moves the goods element pointers into the cShop at sItemManager +88
+  (array +108, data +124) and stores packet +33 at +104. `unk_u8_0` (packet +32) is not copied (open, not read).
+- Goods element (V flow; names I, the server leads agree): `unk_u32` = **ItemId** (item-param lookup
+  `0xb98c80` in the list builder `0xfccd30`); `unk_u8` = **Stock** (signed char, 255 = -1 = unlimited; buy
+  dialog `0xfd05a0` via `0xfcd5a0`, message 0xE in `0xf52d20`); `unk_bool` = **HideIfReqsUnmet** (`0xfccd30`
+  lists the entry when it is 0 or `0xfcc020` says all requirements are met); `unk_s64_0` / `unk_s64_1` =
+  **SalesPeriodStart** / **SalesPeriodEnd** (`0x5fa060` states 1 not yet, 2 no end, 3 on sale, 4 ended;
+  dates printed by `0xf51ac0`).
+- Requirement element (reader `0xf50470`, loop `0xf502f0`): `unk_u32_1` = **Condition** (switch 2, 3/6, 4,
+  5), `unk_bool_0` = **IsCleared** (met flag: `0xfcc020`, text greyed when 0; lead IgnoreRequirements
+  contradicted), `unk_bool_1` = **IsDisplayed** (line shown when != 0; lead HideRequirementDetails has the
+  opposite polarity), `unk_u32_2` = **Progress**, `unk_u32_3` = **Param1** (target count), `unk_u32_4` =
+  Param2 (id among 15 fixed ids 1001, 1002, 3002.. resolved by `0xbdbaf0`), `unk_u32_5` = Param3 (id resolved
+  to a message by `0xb783f0`; the medium GroupId candidate is not confirmed), `unk_s64_0` / `unk_s64_1` =
+  **PeriodStart** / **PeriodEnd** (messages 0x11..0x15). `unk_u32_0`, `unk_u32_6`, `unk_u32_7`: open (no reader).
+- `S2C_SHOP_GET_SHOP_GOODS_LIST_RES.unk_u8_1` = **WalletType** (V: cShop +104 -> `0x547580` -> uGUIShop
+  factory `0x52eba0` -> uGUIShop +2032 -> owned amount `0xb997b0`).
+
+### JOIN_LOBBY_QUEST_INFO_NTC Season 3 lists (rows 6 and 7)
+
+- The notice callback is not a function in the database: the raw byte search for `dti__1502` finds the
+  registration at `0xbcefa3` inside the undefined sQuestManagerExt constructor code (`addCallbackFunc` +
+  `setCallbackFunc(0xbd73c0)`). `0xbd73c0` (read instruction by instruction, also undefined) hands each
+  packet list to the registTask of a quest manager kind: row 6 (+116) to `0x5983a0` (kind 11), row 7 (+136)
+  to `0x597160` (kind 12).
+- Row 6 = package quests (`dti cPackageQuestManager::cPackageSequence`, ctor `0x597310`):
+  `CDataQuestJoinLobbyUnk.unk_u32` = **PackageId** (sequence +4; name I from the class and the resource
+  property `rPackageQuestInfo.mPackageId`, PC `0xabe130`); element `unk_u32` = sequence key (+8);
+  `unk_s32_0` / `unk_s32_1` = **Progress** / **ProgressMax** (+16 clamped to +12); `unk_u32_list` =
+  **ClientNpcList** (one `cClientNpc` per u32). `unk_bool` is not read (open).
+- Row 7: per element `0x9d2b00` -> `0x64dc20` stores `unk_u8` / `unk_u32` at task param +404 / +408. No
+  reader of those members was found; both stay open and the medium StageNo candidate is not confirmed.
+
+### Stage.hexpat: 12.1.2 AREA_CHANGE_RES Season 3 lists
+
+- Handler `0x7fd690` -> `0x7fd490` copies both lists into the sArea stage object: list 0 by `0x416a20`
+  (max 64), list 1 by `0x4169b0`.
+- `CDataAreaChangeUnk0`: `unk_u32_0` = **StageNo** (same table lookup `0x84a200` as the RES StageNo; the
+  medium candidate is not the basis), `unk_u32_1` = **GroupId** (key `stage | group << 16`; sSetManager
+  type 2 add/remove in `0xbfec20`), `unk_u32_2` = second key (role), `unk_u8_1` = state (role: 1 removes;
+  63..76 kept by `0x5bd670`), `unk_u8_0` not read (open).
+- `CDataAreaChangeUnk1`: `unk_u32` = object id key (`0x40c530` from `0x752f50`), `unk_bool_0` = suppress flag
+  (role), `unk_bool_1` not read (open).
+
+### Pawn.hexpat
+
+- `CDataPawnInfo.unk_u8` (u8[64]) = **TrainingStatus**, I: same reader `0x772aa0` as
+  PAWN_TRAINING_GET_TRAINING_STATUS_RES (as in part 2 for CDataContextPawnInfo).
+- `CDataPawnInfo_unk_0` u32 x5: open. The reader `0x772e80` sits only behind CDataPawnInfo; the packet is
+  kept at the pawn entry +88 (`0x881d10`) and no reader of info +504..+520 was found.
+- `CDataPawnList.unk_u32_0`: role I, a PawnId -> value table in sGame_0 (`0xbcdac0`, getter `0xbccbd0`,
+  threshold >= 2 in `0x9a1940`); `unk_u32_1` / `unk_u32_2` are copied to the pawn entry +100/+104 by
+  `0x881da0` with no reader found (open).
+
+### Instance.hexpat: CDataGatheringItemElement (DROP_ITEM_LIST)
+
+- Handler `0x7db2a0` hands the list to sSetManager `0xbfe6e0`, which finds the layout object and calls
+  cpOmDropItem `0x995ff0`: it drops ItemId 0x1e73..0x1e75, Num 0 and unknown items, then `0x994560` fills a
+  24-byte slot (12 slots) through protected setters (memcpy via obfuscated stubs): +4, +8 ItemId, +12 Num,
+  +16 `unk_u32` (`0x995e60`), +20 `unk_bool` (`0x996160`). No reader of slot +16/+20 was found: both open
+  (V store).
+
+### 64.0.2 MANDRAGORA_GET_MY_MANDRAGORA_RES (no PS4 counterpart)
+
+- Handler `0x7e4dc0` consumes the packet itself. Each CDataMyMandragora goes to `0x10dbff0`, slot =
+  MandragoraId (< 4). It derives a slot state 2..6 from `unk_u32_1`, `unk_u32_2`, `unk_s64` (a time
+  compared with now) and UnkState `unk_u32_1` / `unk_s64` (roles V, names open). `unk_u32_0`, `unk_u8`,
+  UnkState `unk_u32_0` and the UnkItem pair are copied with no reader found.
+- `CDataMyMandragoraUnkU8U32`: kind 5 stores the u32 at manager +1880. Packet `unk_u32` (+188) is stored at
+  manager +1904. No reader was found for either.
+
+### Character.hexpat: CDataLobbyMemberInfo.unk_u8
+
+- Element +34 (reader `0x76d7f0`). LOBBY_JOIN handler `0x7e2ce0` -> `0x8814e0` copies each element whole into
+  the conn +17880 list. None of the 16 functions using that list reads +34: open (V copy, no reader).
+
+### Method notes (part 5)
+
+- Notice callbacks and handlers that IDA did not make functions were read as raw instructions decoded
+  with `ida_ua.decode_insn` (no item created, database unchanged). The `dti__1502` registration was found
+  by a raw byte search for the DTI address.
+- The cpOmDropItem slot setters are protected stubs (memcpy through obfuscated thunks); their getters were
+  not identified.
+
+### Counts (part 5: 60 struct.field pairs updated, 71 TSV rows)
+
+| Verdict | Rows | Distinct struct.field |
+| --- | --- | --- |
+| V (data flow read; most names I, see the mark) | 33 | 33 |
+| I | 2 | 1 |
+| open, with the reason in the TSV (no reader found, not read, or V store only) | 36 | 26 |
+
+- T014a candidates decided in part 5: the goods and requirement timestamps (weak) are confirmed; the
+  requirement Price and equip-item-id candidates (weak) are rejected; GoodsRequirement.unk_u32_5 GroupId
+  (medium), JoinLobbyUnkOrderList.unk_u32 StageNo (medium) and AreaChangeUnk0.unk_u32_0 (medium) are not
+  confirmed. AreaChangeUnk0.unk_u32_0 is named StageNo from the code instead.
+- **Cut short.** 109 rows (92 struct.field) still carry "consumer not traced" in the TSV: Craft, Dispel,
+  EntryBoard, Gacha/BoxGacha, Character list `unk_u8`, the Instance REPOP/gathering lists, the small
+  single-pattern rows, the T014b4 leftovers (GP lineup, STAMP, nNetMsg, ContentsPlay*, QuestContents,
+  CDataQuestUnkU32*), and the remaining Season 3 rows. Part 5 rows are listed in `T014b5-*.json`.
+- Not run: SHA-256 of the private copies; a reader search for the PC pawn-entry members +100/+104; getters of
+  the protected cpOmDropItem slots.
+
+### Next field
+
+`CDataCharacterListElement.unk_u8` (L2C_GET_CHARACTER_LIST_RES): the last u8 of reader `0x75ccf0` (element
++52). Find the login character-list handler, then the reader of the copied +52.

@@ -1,0 +1,74 @@
+[
+{
+"struct": "CDataPawnInfo_unk_0",
+"field": "unk_u32_0",
+"proposed_name": "unk_u32_0",
+"mark": "open (no reader found)",
+"basis": "CDataPawnInfo +500 (reader 0x772e80, only behind CDataPawnInfo 0x772180 of 8.3.2/8.9.2/8.11.2); the MYPAWN packet is kept whole at the pawn entry +88 (0x881d10, conn +18436 list); the displacement scan finds no function reading packet +532..+548 or info +504..+520 besides the CDataPawnInfo ctor/dtor (0x784b70, 0x7a3fa0)",
+"vas": "PC 0x7ea9d0, 0x812350, 0x772180, 0x772e80, 0x881d10"
+},
+{
+"struct": "CDataPawnInfo_unk_0",
+"field": "unk_u32_1",
+"proposed_name": "unk_u32_1",
+"mark": "open (no reader found)",
+"basis": "CDataPawnInfo +500 (reader 0x772e80, only behind CDataPawnInfo 0x772180 of 8.3.2/8.9.2/8.11.2); the MYPAWN packet is kept whole at the pawn entry +88 (0x881d10, conn +18436 list); the displacement scan finds no function reading packet +532..+548 or info +504..+520 besides the CDataPawnInfo ctor/dtor (0x784b70, 0x7a3fa0)",
+"vas": "PC 0x7ea9d0, 0x812350, 0x772180, 0x772e80, 0x881d10"
+},
+{
+"struct": "CDataPawnInfo_unk_0",
+"field": "unk_u32_2",
+"proposed_name": "unk_u32_2",
+"mark": "open (no reader found)",
+"basis": "CDataPawnInfo +500 (reader 0x772e80, only behind CDataPawnInfo 0x772180 of 8.3.2/8.9.2/8.11.2); the MYPAWN packet is kept whole at the pawn entry +88 (0x881d10, conn +18436 list); the displacement scan finds no function reading packet +532..+548 or info +504..+520 besides the CDataPawnInfo ctor/dtor (0x784b70, 0x7a3fa0)",
+"vas": "PC 0x7ea9d0, 0x812350, 0x772180, 0x772e80, 0x881d10"
+},
+{
+"struct": "CDataPawnInfo_unk_0",
+"field": "unk_u32_3",
+"proposed_name": "unk_u32_3",
+"mark": "open (no reader found)",
+"basis": "CDataPawnInfo +500 (reader 0x772e80, only behind CDataPawnInfo 0x772180 of 8.3.2/8.9.2/8.11.2); the MYPAWN packet is kept whole at the pawn entry +88 (0x881d10, conn +18436 list); the displacement scan finds no function reading packet +532..+548 or info +504..+520 besides the CDataPawnInfo ctor/dtor (0x784b70, 0x7a3fa0)",
+"vas": "PC 0x7ea9d0, 0x812350, 0x772180, 0x772e80, 0x881d10"
+},
+{
+"struct": "CDataPawnInfo_unk_0",
+"field": "unk_u32_4",
+"proposed_name": "unk_u32_4",
+"mark": "open (no reader found)",
+"basis": "CDataPawnInfo +500 (reader 0x772e80, only behind CDataPawnInfo 0x772180 of 8.3.2/8.9.2/8.11.2); the MYPAWN packet is kept whole at the pawn entry +88 (0x881d10, conn +18436 list); the displacement scan finds no function reading packet +532..+548 or info +504..+520 besides the CDataPawnInfo ctor/dtor (0x784b70, 0x7a3fa0)",
+"vas": "PC 0x7ea9d0, 0x812350, 0x772180, 0x772e80, 0x881d10"
+},
+{
+"struct": "CDataPawnInfo",
+"field": "unk_u8",
+"proposed_name": "TrainingStatus",
+"mark": "I (binary hint: shared reader; lead agrees)",
+"basis": "the u8[64] at CDataPawnInfo +432 is read by 0x772aa0, the reader that also fills PAWN_TRAINING_GET_TRAINING_STATUS_RES (handler 0x7ed6d0); same naming as CDataContextPawnInfo.unk_u8 in part 2",
+"vas": "PC 0x772180, 0x772aa0, 0x7ed6d0"
+},
+{
+"struct": "CDataPawnList",
+"field": "unk_u32_0",
+"proposed_name": "unk_u32_0",
+"mark": "V (consumer); I (role)",
+"basis": "handler 0x7eab80 -> 0x7eaac0 calls sGame_0 0xbcdac0(PawnId +4, element +72) for every element: a 16-slot PawnId -> value table (+196); the getter 0xbccbd0 is read by 0x9a1940, which switches a mode when the value is >= 2",
+"vas": "PC 0x7eab80, 0x8123e0, 0x772680, 0x7eaac0, 0xbcdac0, 0xbccbd0, 0x9a1940"
+},
+{
+"struct": "CDataPawnList",
+"field": "unk_u32_1",
+"proposed_name": "unk_u32_1",
+"mark": "open (V store; no reader found)",
+"basis": "0x881da0 copies element +76 to the pawn entry +100 (conn +18436 list); no reader of that member was found",
+"vas": "PC 0x7eaac0, 0x881da0"
+},
+{
+"struct": "CDataPawnList",
+"field": "unk_u32_2",
+"proposed_name": "unk_u32_2",
+"mark": "open (V store; no reader found)",
+"basis": "0x881da0 copies element +80 to the pawn entry +104 (conn +18436 list); no reader of that member was found",
+"vas": "PC 0x7eaac0, 0x881da0"
+}
+]

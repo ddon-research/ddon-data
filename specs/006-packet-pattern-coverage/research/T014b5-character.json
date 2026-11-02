@@ -1,0 +1,3 @@
+[
+{"struct":"CDataLobbyMemberInfo","field":"unk_u8","proposed_name":"unk_u8","mark":"open (V copy; no reader identified)","basis":"element reader 0x76d7f0 puts it at element +34 (after PawnId +28 and two u8 +32/+33); handler 0x7e2ce0 -> 0x7e2c60 -> 0x8814e0 copies every element whole (0x7a5ea0) into the conn +17880 list; the handler itself reads only +8 and +28 (0xb5c870). Of the 16 functions using that list (displacement scan of +17884/+17896), none reads element +34 (0x843a80 and 0x843be0 read +34 of another record)","vas":"PC 0x7e2ce0, 0x80ea20, 0x76d6f0, 0x76d7f0, 0x7e2c60, 0x8814e0, 0x7a5ea0"}
+]
