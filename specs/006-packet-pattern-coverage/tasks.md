@@ -68,8 +68,8 @@ Coordinator: main session. One subagent at a time. Method and rules: `spec.md`.
   306k context: only `pc-property-names.tsv` landed (201ad9a587); its 285 open rows are re-split as
   T014b4 (done b1c685869f: 174 rows, 72 V / 39 I / 63 open; 36 rows
   "not traced within the budget" moved to T014b5) and T014b5 (e44690e100, cut short: 71 rows, 33 V / 2 I / 36 open with
-  reasons; shop data path read, two server flag names contradicted), then T014b6 (the last 109 rows;
-  `briefs/T014b6-remaining-2.md`; running), each writing rows per include. Then T014c; was: the closing packages TC1 (tooling, naming sweep,
+  reasons; shop data path read, two server flag names contradicted), then T014b6 (cut short: 49 rows, 32 V / 17 open with reasons;
+  character-list u8 = GameMode), then T014b7 (the last 60 rows; `briefs/T014b7-remaining-3.md`; running), each writing rows per include. Then T014c; was: the closing packages TC1 (tooling, naming sweep,
   Season 3-exclusive list; `briefs/TC1-close-tooling-naming-exclusive.md`) and TC2 (code-backed raw
   renames; `briefs/TC2-code-backed-renames.md`), then the spec-end procedure (orchestration § 10).
 - All-exclusive groups (62, 70, 72, 60, 71, 61, 64, 59, 65) go to the Season 3-exclusive list.
