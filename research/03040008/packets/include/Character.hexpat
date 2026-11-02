@@ -70,7 +70,8 @@ struct CDataCommunityCharacterBaseInfo {
 // reader 0x75cbd0 {u32, MtString x3, u16, u8, JobBaseInfo x2, MtString, u8} (P11b shared table, V).
 // PS4 CDataCharacterListElement (and the PS4 recompilation, PacketData/Community.h) has the same
 // members up to m_wstrMatchingPlofile and no trailing u8: the u8 is Season 3, name open. Users:
-// CDataClanMemberInfo (31.29.2, 31.4.2), 18.0.2, CDataPartyMember (8.37.16).
+// CDataClanMemberInfo (31.29.2, 31.4.2), 18.0.2, CDataPartyMember (8.37.16), CDataCharacterListInfo
+// (login character list), 2.7.16 (T009 5: the PS4 element without the u8 fails 107/111).
 struct CDataCharacterListElement {
     CDataCommunityCharacterBaseInfo BaseInfo;
     u16 ServerID;
@@ -130,4 +131,78 @@ struct CDataPartyMember {
     u8 JoinState;
     u8 AnyValueList[8];
     u8 SessionStatus;
+};
+
+// CDataStatusInfo: PC reader 0x77a810 {u32, u32, u8, u32 x9} (T009 1.3 item 7, V); PS4 CStatusInfo
+// {u32 m_unHp, m_unStamina, u8 m_ucRevivePoint, u32 m_unMaxHp, m_unMaxStamina, m_unWhiteHp,
+// m_unGainHp, m_unGainStamina, m_unGainAttack, m_unGainDefense, m_unGainMagicAttack,
+// m_unGainMagicDefense}: same widths and order (V). User: CDataCharacterInfo (2.0.2).
+struct CDataStatusInfo {
+    u32 Hp;
+    u32 Stamina;
+    u8 RevivePoint;
+    u32 MaxHp;
+    u32 MaxStamina;
+    u32 WhiteHp;
+    u32 GainHp;
+    u32 GainStamina;
+    u32 GainAttack;
+    u32 GainDefense;
+    u32 GainMagicAttack;
+    u32 GainMagicDefense;
+};
+
+// CDataCharacterMessage: PC list reader 0x75cdc0, element {u32, MtString, u32, bool} (T009 1.3
+// item 21, V); PS4 CDataCharacterMessage {u32 m_unMessageNo, MtString m_wstrMessage,
+// u32 m_unEmotion, b8 m_bEmotoChat} (V).
+struct CDataCharacterMessage {
+    u32 MessageNo;
+    MtString Message;
+    u32 Emotion;
+    bool EmotoChat;             // PS4 DWARF spelling (m_bEmotoChat)
+};
+
+// CDataCharacterMsgSet: PC list reader 0x75cee0, element {u32, MtString, list 0x75cdc0} (T009 1.3
+// item 21, V); PS4 CDataCharacterMsgSet {u32 m_unSetNo, MtString m_wstrMsgSetName,
+// MtTypedArray<CDataCharacterMessage>} (V).
+struct CDataCharacterMsgSet {
+    u32 SetNo;
+    MtString MsgSetName;
+    MtTypedArray<CDataCharacterMessage> CharacterMessageList;  // PC 0x75cdc0; field name I (element type)
+};
+
+// CDataShortCut: PC list reader 0x778990, element 0x778a80 {u32 x5, u8} (T009 1.3 item 22, V); PS4
+// CDataShortCut {u32 m_unPageNo, m_unButtonNo, m_unShortcutID, m_unU32Data, m_unF32Data,
+// u8 m_ucExexType} (V).
+struct CDataShortCut {
+    u32 PageNo;
+    u32 ButtonNo;
+    u32 ShortcutID;
+    u32 U32Data;
+    u32 F32Data;                // u32 on the wire (PS4 m_unF32Data)
+    u8 ExexType;                // PS4 DWARF spelling (m_ucExexType)
+};
+
+// CDataCommunicationShortCut: PC list reader 0x75ea80, element {u32, u32, u8, u8, u32} (T009 1.3
+// item 23, V); PS4 CDataCommunicationShortCut {u32 m_unPageNo, m_unButtonNo, u8 m_ucType,
+// m_ucCategory, u32 m_unId} (V).
+struct CDataCommunicationShortCut {
+    u32 PageNo;
+    u32 ButtonNo;
+    u8 Type;
+    u8 Category;
+    u32 Id;
+};
+
+// CDataUpdateMatchingProfileInfo: PC list reader 0x77c0d0, element {u32, MtString} (T009 5, V); PS4
+// CDataUpdateMatchingProfileInfo {u32 m_unCharacterID, MtString m_wstrComment} (V). User: 2.7.16.
+struct CDataUpdateMatchingProfileInfo {
+    u32 CharacterID;
+    MtString Comment;
+};
+
+// CDataCharacterReleaseElement: PC list reader 0x75d050, element {u32} (T009 4, V); PS4
+// Read_CDataCharacterReleaseElement_ {u32 m_unReleaseElementNo} (V). User: 2.6.16.
+struct CDataCharacterReleaseElement {
+    u32 ReleaseElementNo;
 };

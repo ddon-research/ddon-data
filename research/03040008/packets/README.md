@@ -17,7 +17,7 @@ carry now. Every pattern starts with `#pragma endian big` and includes what it n
 | `Context.hexpat` | group 35 CONTEXT structures (P4) | 11 group-35 patterns |
 | `Quest.hexpat` | group 11 QUEST CData and the enums ORDER_CONDITION_TYPE, CYCLE_CONTENTS_CATEGORY, CYCLE_CONTENTS_SUB_CATEGORY, COMMAND_CHECK_LIST (P11a); since T005b also the Season 3 `CDataQuestList` (PC `0x774530`, beside `CDataQuestOrderList`) and the list, detail, play start/end, priority, reward box and fort defense types of T005 §44 | 72 |
 | `Area.hexpat` | group 23 AREA CData (P11a, P11b) | 4 |
-| `Character.hexpat` | E_WALLET_POINT_TYPE, CDataWalletPoint, job base info, character name and list element; since T006b `CDataCharacterLevelParam` (PC `0x75cb00`) and the Season 3 `CDataLobbyMemberInfo` (PC `0x76d7f0`, 3 u8); since T007b `CDataPartyMember` (PC `0x771580`) | 2, and 3.0.2, 3.2.16, 33.12/13/16/17.16, 8.37.16 |
+| `Character.hexpat` | E_WALLET_POINT_TYPE, CDataWalletPoint, job base info, character name and list element; since T006b `CDataCharacterLevelParam` (PC `0x75cb00`) and the Season 3 `CDataLobbyMemberInfo` (PC `0x76d7f0`, 3 u8); since T007b `CDataPartyMember` (PC `0x771580`); since T009b `CDataStatusInfo`, `CDataCharacterMsgSet`/`CDataCharacterMessage`, `CDataShortCut`, `CDataCommunicationShortCut`, `CDataUpdateMatchingProfileInfo` and `CDataCharacterReleaseElement` (T009 §1.3, §22) | 2, and 3.0.2, 3.2.16, 33.12/13/16/17.16, 8.37.16, 2.6.16, 2.7.16, 37.x through Mail |
 | `Clan.hexpat`, `Skill.hexpat` | the CData of those groups (P11b) | 1-2 each |
 | `Item.hexpat` | item storage types (P11b §13); since T008b the Season 3 `CDataItemList` (PC `0x76aca0`), `CDataItemUpdateResult`, `CDataUpdateWalletPoint`, `CDataSwitchStorage` (Season 3 u16), `CDataMoveItemUIDFromTo` and `CDataItemSort` (T008 §1, §6); includes Packet, Character and Context | 10.9.2, 10.3.2, 10.6.2, 10.7.1, 10.9.1, 10.12.16, 10.13.16, 50.0.2, 50.1.1 |
 | `Pawn.hexpat` | group 8 PAWN CData (P11b §14); since T007b the Season 3 `CDataPawnInfo` (PC `0x772180`) with its job, equip, craft and orb-extend types, the pawn list, rented, lost and history elements, profile, total score, orb status, and `CDataPartnerPawnData`/`CDataPartnerPawnReward`, shared with group 53 (T007 §1, §6); includes Login | 8.30.2, 10 group-8 and 3 group-53 patterns |
@@ -30,6 +30,9 @@ carry now. Every pattern starts with `#pragma endian big` and includes what it n
 | `Job.hexpat` | group 33 JOB CData (T006 §1.1, §6): job change info (with Login's Season 3 `CDataEquipItemInfo`), pawn job change info, play point data and job play point; includes Login | 33.0.2 |
 | `Stage.hexpat` | group 12 STAGE CData (T006 §3.2, §6): the two Season 3 element types of 12.1.2 (`CDataAreaChangeUnk0/1`, names unk) | 12.1.2 |
 | `Warp.hexpat` | group 14 WARP CData (T008 §1.2, §6): `CDataWarpPoint`, `CDataFavoriteWarpPoint`, `CDataAreaWarpPoint`, `CDataJumpLocation`; includes Packet only | 14.2.2, 14.4.2, 14.8.2, 14.12.2 |
+| `Mail.hexpat` | group 37 MAIL CData (T009 §1.1, §22): `CDataMailInfo`, the attachment classes (`CDataMailAttachmentInfo`, item, GP, option course, legend pawn; mail's own, not the `Item.hexpat` types), `CDataMailAttachmentList`, `CDataMailTextInfo`; includes Packet and Character | 37.1.2, 37.7.2, 37.9.2, 37.11.2, 37.13.16 |
+| `Stamp.hexpat` | group 45 STAMP CData, Season 3 shapes (T009 §1.2, §22): `CDataStampBonus` (3 u32), `CDataStampBonusDaily` (alias `CDataStampBonusTotal`), `CDataStampBonusDailyGroup` (name I), `CDataStampBonusCheckRes_unk_0`; includes Packet only | 45.0.2, 45.1.2 |
+| `CharacterInfo.hexpat` | the Season 3 `CDataCharacterInfo` (PC `0x75c2a0`, T009 §1.3); its own include because it needs Character, Context, Login, Pawn, Job and Server (no include cycle) | 2.0.2 |
 
 Each structure comment names the PC reader or writer VA (PC 03040008 database, image base 0x400000)
 and the PS4 02020005 DWARF type, and carries a mark: V means read in IDA, I means inferred. A field
@@ -151,7 +154,9 @@ after their first export, T004b). T005 is `specs/006-packet-pattern-coverage/res
 `specs/006-packet-pattern-coverage/research/T007-pawn-partner.md` (groups 8 PAWN, 53 PARTNER_PAWN and
 58 PAWN_EXPEDITION; counts after their first export, 2026-11-02, T007b). T008 is
 `specs/006-packet-pattern-coverage/research/T008-warp-item.md` (groups 14 WARP, 10 ITEM and 50
-ITEM_SORT; counts after their first export, 2026-11-02, T008b).
+ITEM_SORT; counts after their first export, 2026-11-02, T008b). T009 is
+`specs/006-packet-pattern-coverage/research/T009-mail-stamp-character.md` (groups 2 CHARACTER, 37
+MAIL and 45 STAMP; counts after their first export, 2026-11-02, T009b).
 
 | Id | Pattern | Report | Status |
 | --- | --- | --- | --- |
@@ -189,17 +194,39 @@ ITEM_SORT; counts after their first export, 2026-11-02, T008b).
 | 1.7.2 | `S2C_SERVER_WEATHER_FORECAST_GET_RES` | T003 §13 | 1/1 fit |
 | 1.8.1 | `C2S_SERVER_GAME_TIME_GET_BASEINFO_REQ` | T003 §14 | 41/41 fit |
 | 1.8.2 | `S2C_SERVER_GAME_TIME_GET_BASEINFO_RES` | T003 §14 | 41/41 fit |
+| 2.0.1 | `C2S_CHARACTER_DECIDE_CHARACTER_ID_REQ` | T009 §2 | 42/42 fit |
+| 2.0.2 | `S2C_CHARACTER_DECIDE_CHARACTER_ID_RES` | T009 §1.3, §2 | 42/42 fit (Season 3 `CDataCharacterInfo` list and trailing u8; the PS4 body fails 22/42) |
 | 2.1.1 | `C2L_GET_GAME_SESSION_KEY_REQ` | T002 §5 | 42/42 fit |
 | 2.1.2 | `L2C_GET_GAME_SESSION_KEY_RES` | T002 §5 | 42/42 fit |
 | 2.2.1 | `C2L_GET_LOGIN_SETTING_REQ` | T002 §6 | 41/41 fit |
 | 2.2.2 | `L2C_GET_LOGIN_SETTING_RES` | T002 §6 | 41/41 fit |
 | 2.3.16 | `L2C_NEXT_CONNECT_SERVER_NTC` | T002 §7 | 42/42 fit |
+| 2.6.16 | `S2C_CHARACTER_CONTENTS_RELEASE_ELEMENT_NTC` | T009 §4 | 41/41 fit (code name V by behaviour; the PS4 framing fails 41/41) |
+| 2.7.16 | `S2C_CHARACTER_COMMUNITY_CHARACTER_STATUS_UPDATE_NTC` | T009 §5 | 111/111 fit (Season 3 list element u8; the PS4 element fails 107/111) |
+| 2.12.1 | `C2S_CHARACTER_COMMUNITY_CHARACTER_STATUS_GET_REQ` | T009 §6 | 45/45 fit |
+| 2.12.2 | `S2C_CHARACTER_COMMUNITY_CHARACTER_STATUS_GET_RES` | T009 §6 | 45/45 fit, slack 15 |
 | 2.13.16 | `C2S_CHARACTER_CHARACTER_DOWN_NTC` | P4 §4 | 14/14 fit |
 | 2.14.16 | `C2S_CHARACTER_CHARACTER_DOWN_CANCEL_NTC` | P4 §4 | no capture |
 | 2.15.16 | `C2S_CHARACTER_CHARACTER_DEAD_NTC` | P4 §4 | 7/7 fit |
+| 2.16.1 | `C2S_CHARACTER_CHARACTER_POINT_REVIVE_REQ` | T009 §7 | 5/5 fit |
+| 2.16.2 | `S2C_CHARACTER_CHARACTER_POINT_REVIVE_RES` | T009 §7 | 5/5 fit |
+| 2.18.1 | `C2S_CHARACTER_CHARACTER_PENALTY_REVIVE_REQ` | T009 §8 | 2/2 fit (Season 3 +u32; the PS4 body fails 2/2) |
+| 2.18.2 | `S2C_CHARACTER_CHARACTER_PENALTY_REVIVE_RES` | T009 §8 | 2/2 fit, slack 15 |
 | 2.19.16 | `C2S_CHARACTER_PAWN_DOWN_NTC` | P4 §4 | 20/20 fit |
 | 2.20.16 | `C2S_CHARACTER_PAWN_DOWN_CANCEL_NTC` | P4 §4 | 10/10 fit |
 | 2.21.16 | `C2S_CHARACTER_PAWN_DEAD_NTC` | P4 §4 | no capture |
+| 2.24.1 | `C2S_CHARACTER_GET_REVIVE_CHARGEABLE_TIME_REQ` | T009 §9 | 3/3 fit (no body) |
+| 2.24.2 | `S2C_CHARACTER_GET_REVIVE_CHARGEABLE_TIME_RES` | T009 §9 | 3/3 fit |
+| 2.25.1 | `C2S_CHARACTER_CHARGE_REVIVE_POINT_REQ` | T009 §10 | 2/2 fit (no body) |
+| 2.25.2 | `S2C_CHARACTER_CHARGE_REVIVE_POINT_RES` | T009 §10 | 2/2 fit |
+| 2.27.16 | `S2C_CHARACTER_START_LANTERN_NTC` | T009 §11 | 25/25 fit (code name V by behaviour; the PS4 framing fits too) |
+| 2.28.16 | `S2C_CHARACTER_FINISH_LANTERN_NTC` | T009 §11 | 9/9 fit (no body; code name V by behaviour) |
+| 2.29.16 | `S2C_CHARACTER_START_LANTERN_OTHER_NTC` | T009 §11 | 3/3 fit (layout V; which OTHER notice is I, by ordering) |
+| 2.30.16 | `S2C_CHARACTER_FINISH_LANTERN_OTHER_NTC` | T009 §11 | 1/1 fit (layout V; which OTHER notice is I, by ordering) |
+| 2.31.16 | `S2C_CHARACTER_START_DEATH_PENALTY_NTC` | T009 §11 | 2/2 fit (code name V by behaviour) |
+| 2.32.16 | `S2C_CHARACTER_FINISH_DEATH_PENALTY_NTC` | T009 §11 | 1/1 fit (no body; code name V by behaviour) |
+| 2.38.1 | `C2S_CHARACTER_SET_ONLINE_STATUS_REQ` | T009 §12 | 2/2 fit |
+| 2.38.2 | `S2C_CHARACTER_SET_ONLINE_STATUS_RES` | T009 §12 | 2/2 fit |
 | 3.0.1 | `C2L_GET_ERROR_MESSAGE_LIST_REQ` | T002 §8 | 41/41 fit |
 | 3.0.1 | `C2S_LOBBY_LOBBY_JOIN_REQ` | T006 §2.1 | 41/41 fit, slack 15 (packet-select: the login id 3.0.1 shares the suffix) |
 | 3.0.2 | `S2C_LOBBY_LOBBY_JOIN_RES` | T006 §2.1 | 41/41 fit (packet-select; the 3-u8 member rests on the PC reader: PS4's 4 u8 fit too) |
@@ -428,9 +455,30 @@ ITEM_SORT; counts after their first export, 2026-11-02, T008b).
 | 35.13.16 | `S2C_CONTEXT_SET_CONTEXT_NTC` | P4 §2.3 | 24/24 fit |
 | 35.14.16 | `S2C_CONTEXT_MASTER_CHANGE_NTC` | P4 §2.3 | 948/948 fit |
 | 35.15.16 | `S2C_CONTEXT_MASTER_INFO_NTC` | P4 §2.3 | 43/43 fit |
+| 37.0.1 | `C2S_MAIL_MAIL_GET_LIST_HEAD_REQ` | T009 §13 | 42/42 fit (no body) |
+| 37.0.2 | `S2C_MAIL_MAIL_GET_LIST_HEAD_RES` | T009 §13 | 42/42 fit |
+| 37.1.1 | `C2S_MAIL_MAIL_GET_LIST_DATA_REQ` | T009 §13 | 42/42 fit |
+| 37.1.2 | `S2C_MAIL_MAIL_GET_LIST_DATA_RES` | T009 §13 | 42/42 fit |
+| 37.2.1 | `C2S_MAIL_MAIL_GET_LIST_FOOT_REQ` | T009 §13 | 42/42 fit (no body) |
+| 37.2.2 | `S2C_MAIL_MAIL_GET_LIST_FOOT_RES` | T009 §13 | 42/42 fit, slack 15 |
+| 37.6.1 | `C2S_MAIL_SYSTEM_MAIL_GET_LIST_HEAD_REQ` | T009 §14 | 42/42 fit (no body) |
+| 37.6.2 | `S2C_MAIL_SYSTEM_MAIL_GET_LIST_HEAD_RES` | T009 §14 | 42/42 fit |
+| 37.7.1 | `C2S_MAIL_SYSTEM_MAIL_GET_LIST_DATA_REQ` | T009 §14 | 42/42 fit |
+| 37.7.2 | `S2C_MAIL_SYSTEM_MAIL_GET_LIST_DATA_RES` | T009 §14 | 42/42 fit (up to 18 mails) |
+| 37.8.1 | `C2S_MAIL_SYSTEM_MAIL_GET_LIST_FOOT_REQ` | T009 §14 | 42/42 fit (no body) |
+| 37.8.2 | `S2C_MAIL_SYSTEM_MAIL_GET_LIST_FOOT_RES` | T009 §14 | 42/42 fit, slack 15 |
+| 37.9.1 | `C2S_MAIL_SYSTEM_MAIL_GET_TEXT_REQ` | T009 §15 | 7/7 fit |
+| 37.9.2 | `S2C_MAIL_SYSTEM_MAIL_GET_TEXT_RES` | T009 §15 | 7/7 fit (only item attachments in the captures) |
+| 37.11.1 | `C2S_MAIL_SYSTEM_MAIL_GET_ALL_ITEM_REQ` | T009 §16 | 5/5 fit (Season 3 u8: code-only, the PS4 body fits too) |
+| 37.11.2 | `S2C_MAIL_SYSTEM_MAIL_GET_ALL_ITEM_RES` | T009 §16 | 5/5 fit |
+| 37.13.16 | `S2C_MAIL_SYSTEM_MAIL_SEND_NTC` | T009 §17 | 5/5 fit (code name V by behaviour; the PS4 framing fits too) |
 | 44.0.1 | `C2S_CERT_CLIENT_CHALLENGE_REQ` | T003 §15 | 83/83 fit, slack 12 (no header, body at offset 0) |
 | 44.0.2 | `S2C_CERT_CLIENT_CHALLENGE_RES` | T003 §16 | 83/83 fit |
 | 44.1.16 | `S2C_CERT_GAME_SERVER_CERT_NTC` | T003 §1, §15 | 83/83 fit, slack 12 (no header, body at offset 0) |
+| 45.0.1 | `C2S_STAMP_BONUS_GET_LIST_REQ` | T009 §18 | 81/81 fit (no body) |
+| 45.0.2 | `S2C_STAMP_BONUS_GET_LIST_RES` | T009 §1.2, §18 | 81/81 fit (Season 3 restructured; the PS4 body fails 81/81) |
+| 45.1.1 | `C2S_STAMP_BONUS_CHECK_REQ` | T009 §19 | 84/84 fit (no body) |
+| 45.1.2 | `S2C_STAMP_BONUS_CHECK_RES` | T009 §1.2, §19 | 84/84 fit (Season 3 list: code-only, the PS4 body fits too) |
 | 50.0.1 | `C2S_ITEM_SORT_GET_ITEM_SORTDATA_BIN_REQ` | T008 §4.1 | 46/46 fit |
 | 50.0.2 | `S2C_ITEM_SORT_GET_ITEM_SORTDATA_BIN_RES` | T008 §4.1 | 46/46 fit (list never non-empty) |
 | 50.1.1 | `C2S_ITEM_SORT_SET_ITEM_SORTDATA_BIN_REQ` | T008 §4.3 | 59/59 fit (Season 3 trailing bool: code-only, the PS4 body fits too) |
@@ -635,6 +683,40 @@ ITEM_SORT; counts after their first export, 2026-11-02, T008b).
   / `0x76abe0` appear in any earlier pattern), so none was wrong for Season 3. `include/Item.hexpat`
   now includes Character and Context; the 4 JSON files of 10.9.2 (its only earlier user) came out
   byte-identical after re-export (4/4, `cmp`). No include cycle (Item -> Packet, Character, Context; Warp -> Packet).
+- **Season 3-exclusive and unmatched, not patterned (T009):** 45.3.1/45.3.2
+  `C2S_STAMP_BONUS_RECIEVE_DAILY_REQ`/`_RES` and 45.4.1/45.4.2 `C2S_STAMP_BONUS_RECIEVE_TOTAL_REQ`/`_RES`
+  (T009 §20: no PS4 class of those names, and PS4's only receive request carries a u8 BonusType neither
+  PC request has, V by code; 40 + 40 + 1 + 1 captures), and 2.5.16 `S2C_CHARACTER_2_5_16_NTC` (§3: the PC
+  handler zeroes the client's wallet value of the type it carries; no PS4 notice does, X(I); 2
+  captures; the server lead REWARD_BOX_LIST_NUM is contradicted). Their PC readers and wire layouts are
+  in those sections; they go to a later spec with the other exclusive ids.
+- **Groups 2, 37, 45 names without code backing (T009 §24):** the 2.0.2 trailing `unk_u8` (server:
+  Unk1) and `CDataCharacterInfo.unk_List` ({u8, u16}, the reader of `CDataPawnInfo.unk_List`; server:
+  EmblemStatList); the 2.18.1 second u32 (`unk_u32`; `HpMax` on the first is I, position); the 37.11.1
+  `unk_u8` (server: StorageType); the `CDataStampBonus` new u32 (`unk_u32`, placed first, I) with
+  BonusType/BonusValue after it (I); the `CDataStampBonusDailyGroup` and `CDataStampBonusCheckRes_unk_0`
+  u32 pairs (`unk_u32_0/1`; (1, 77) in every capture, the 45.3.1 request pair too); the
+  `CDataStampBonusDailyGroup` type name and the 45.0.2 `DailyGroupList` (I: it wraps PS4's daily list;
+  report and server called it the daily group / CDataStampBonusDaily), `TotalStampNum` before the total
+  list (I: position and PS4 member); the 45.1.2 `IsRecieveBonusDaily/Total` u8 (I, position). The asset
+  element keeps the PS4 name `CDataStampBonusDaily` with `CDataStampBonusTotal` as an alias (same PS4
+  members, one PC reader `0x77a6b0`); the report's `CDataStampBonusAsset` and `CDataStampCheck` are
+  server names and stay leads. `CDataCharacterMsgSet.CharacterMessageList`, `ShortCutList` and
+  `CommunicationShortCutList` are I (element type; T009 gives no PS4 member name).
+- **2.29.16/2.30.16 identity (T009 §11):** the layout (u32 CharacterID) is V for all four PS4
+  `*_OTHER_NOTICE`; which of them each id is (START/FINISH_LANTERN_OTHER) rests on ordering (I).
+- **Groups 2, 37, 45 code-only (T009 §24):** fit either way, so the layout rests on the PC code: the
+  1- or 4-byte notice bodies 2.27-2.32.16 and their no-header framing, the 37.11.1 u8, the 37.13.16
+  framing, the 45.1.2 list. The 37.9.2/37.11.2 GP, option course and legend pawn lists are never
+  non-empty (their elements are code-only); no captured RES of these groups has Error != 0. PC code
+  read linearly only: handlers `0x7e4050` (37.9.2), `0x7fe140` (45.0.2), `0x7fe070` (45.1.2).
+- **CDataCharacterListElement users already Season 3 (T009b):** every pattern that uses it (31.4.2,
+  31.29.2 through `CDataClanMemberInfo`, 18.0.2, 8.37.16 through `CDataPartyMember`, the login
+  character list 5.0.2 through `CDataCharacterListInfo`) reads the one `Character.hexpat` type, which
+  already has the Season 3 trailing u8 (T009 §5 confirms it); no earlier pattern used a
+  `CDataCharacterInfo`. So no existing pattern changed its layout; `Character.hexpat` only gained
+  types, and the 174 JSON files of those five patterns (5.0.2 42, 31.29.2 41, 31.4.2 41, 18.0.2 41,
+  8.37.16 9) came out byte-identical on re-export (174/174, `cmp`).
 - **u64 OM Key in JSON:** `CDataOmData.Key` carries the high bit (0x80000000_001415b3), so the JSON
   integer exceeds 2^53; a reader that parses numbers as doubles rounds it (Python `json` keeps it
   exact).
