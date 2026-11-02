@@ -31,6 +31,25 @@ not patterned; a later spec handles them with context from the new Season 3 clie
 - Verification by prediction + stratified sample, never per-file diffs over the JSON trees.
 - Every package lists its JSON changes for Sam's inspection.
 
+## Naming unknown fields by inference (Sam, 2026-11-02)
+
+Deductive naming of `unk_*` fields in the PS4-matched packets is permitted when it states its basis.
+Bases, strongest first:
+
+1. **Consumer and property names (PC code).** Trace the field from the reader to where the client
+   stores or uses it. A PC `createProperty` registration, debug/assert/printf string or UI message
+   at that storage member names it; a store into a member a PS4 DWARF type names, by the same code
+   path, names it too. Mark `V` when the data flow is read in full, else `I (consumer)`.
+2. **Value correlation (captures).** The field's values match, within the same session or stream,
+   the values of a field whose meaning is code-backed (e.g. a `PawnId`, `CharacterId`, `ItemId`,
+   `StageId`, `QuestId`, UID, timestamp in a known PS4 structure). Mark `I (value: n/m match <field>
+   in <packet>)`; state the counts and rule out coincidence (constants, 0/1, small enums need more).
+3. **Other binary hints:** strings or constants near the reader or consumer, the same reader used by
+   a known structure, enum ranges from DWARF.
+4. **Server leads (Arrowgene):** corroboration only. A server name may become the field name only
+   when a basis from 1-3 agrees with it; mark `I (<basis>; lead agrees)`. A lead alone keeps the
+   field `unk_*` with the lead in a comment.
+
 ## Deliverables
 
 Patterns and includes in `research/03040008/packets/`, JSON in `packets/decrypted_json/`, per-batch

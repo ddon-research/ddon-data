@@ -37,6 +37,11 @@ Coordinator: main session. One subagent at a time. Method and rules: `spec.md`.
 - [x] T003-T013 batches: one evidence + one implementer package per group, by captured count (13 instance,
   0 connection, 11 quest, 33 job, 62 season dungeon, 23 area, 14, 8 pawn, 10 item, ...), PS4-matched
   ids only; a reviewer after every few groups.
+- [ ] T014 Inferred names for unknown fields (Sam, 2026-11-02; spec § "Naming unknown fields by
+  inference"): T014a value correlation over the JSON (`implementer`, tool + report,
+  `briefs/T014a-value-correlation.md`); T014b PC consumers, createProperty and binary hints, confirming
+  T014a (`evidence-researcher-ida`, `briefs/T014b-consumer-property-names.md`); T014c apply names and
+  re-export (`implementer`, `briefs/T014c-apply-inferred-names.md`). Order: TC1, TC2, T014a-c, close.
 - [ ] Tn List of Season 3-exclusive ids for the later spec; README table; close.
 
 ## Running
