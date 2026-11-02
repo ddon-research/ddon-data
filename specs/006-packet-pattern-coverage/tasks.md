@@ -32,7 +32,8 @@ Coordinator: main session. One subagent at a time. Method and rules: `spec.md`.
 - [x] T009 Groups 37/45/2 (done: evidence d941b4e255; patterns + JSON 9d69024f34: 43 patterns, 1,258/1,258 fit; 5 list-element users 174/174 byte-identical; StatusInfo Hp > MaxHp queued in T010).
 - [x] T010 Groups 28/31 (done: evidence 9e24b3b0f3; patterns + JSON ff9f166af7: 32 patterns, 552/552 fit; `CDataFurnitureLayout` moved to Furniture.hexpat, 52.1.2 key `unOmID`->`OmID` 20/20; 207 other files byte-identical).
 - [x] T011 Groups 6/26/16/17/5 (done: evidence 0d7de639b8; patterns + JSON 399b6f645c: 25 patterns, 1,001/1,001 fit; 4 older users 202/202 byte-identical; 24.6.16 PC-only).
-- [ ] T012+ One evidence + one implementer package per group, by captured count (13 instance,
+- [x] T012 Groups 27/29/19/39/25/43/20 (done: evidence 207d7edecb; patterns + JSON 43705ebed3: 37 patterns, 664/664 fit; shop purchase GoodsIndex/Price inferred from 17/17 list matches).
+- [ ] T013+ One evidence + one implementer package per group, by captured count (13 instance,
   0 connection, 11 quest, 33 job, 62 season dungeon, 23 area, 14, 8 pawn, 10 item, ...), PS4-matched
   ids only; a reviewer after every few groups.
 - [ ] Tn List of Season 3-exclusive ids for the later spec; README table; close.
