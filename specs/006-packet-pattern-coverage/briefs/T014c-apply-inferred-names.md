@@ -15,7 +15,7 @@ that no other JSON file holds `nan`/`inf`.
 Re-export every pattern whose JSON keys change (`packets/imhex-export.sh --force @ <name>`, with
 `</dev/null` in loops); 2-file-per-pattern sample: only the renamed keys differ, values identical,
 every file still fits.
-Owns: the patterns and includes, the packets README, the re-exported JSON. Never touch raws, client/,
+Owns: the patterns and includes, the packets README, the re-exported JSON, `packets/imhex-export.sh`\n(nonfinite default only) and its tests. Never touch raws, client/,
 other specs; `tasks.md` is the coordinator's. Commit with `git commit -m <msg> -- <paths>`; long lists
 via `git update-index --add --remove -z --stdin`.
 Libraries: plbatch; jq / stdlib Python for the sample.
