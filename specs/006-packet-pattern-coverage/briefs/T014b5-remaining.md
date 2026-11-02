@@ -6,13 +6,19 @@ confirm or reject the value-correlation candidates of `specs/006-packet-pattern-
 
 Continuation: T014b part 1 (3ea5fa4399, `research/T014b-consumer-property-names.{md,tsv}`) settled 24
 of 244 distinct fields and found no property tables naming packet data (read its method and that
-finding; do not redo it). This part covers the open rows of: every open row not in T014b4's scope (Shop, Pawn, Craft, Mandragora, Character, Instance, EntryBoard, Dispel, Stage, Item, Gacha and the remaining single patterns). Run after T014b4; start with `include/Shop.hexpat`.
+finding; do not redo it). This part covers the open rows of: every open row not in T014b4's scope (Shop, Pawn, Craft, Mandragora, Character, Instance, EntryBoard, Dispel, Stage, Item, Gacha and the remaining single patterns). Run after T014b4; start with `include/Shop.hexpat`. Then also every row any part marked "not traced
+within the budget" (36 rows, 19 fields from T014b4: GP lineup and buy request, STAMP, nNetMsg,
+ContentsPlay*, JoinLobby lists; start with `CDataQuestJoinLobbyUnkOrderList.unk_u32`, element +384,
+from the consumer of the cQuestSvNotJoinLobbyQuestInfo notice). "Not traced within the budget" is
+not a valid open reason in this part; where a handler or getter is not a function in the database,
+read it instruction by instruction or find its caller by xref to the data, as earlier parts did.
 T014b3 (201ad9a587) saved the PC property table `research/pc-property-names.tsv` (7,347 rows: every
 `MtPropertyList::insert` call; function VA, owner vtable, name, type, offset) and then hit its
 200-turn limit without writing any row. Reuse that table; do not re-extract it. Work economically:
 one `execute_python` script per struct or include that looks up all its fields' readers, stores and
 property matches at once (not one call per lookup), and write the TSV rows and a short md note after
-each include, so progress survives a stop. Stay under 150 tool calls.
+each include, so progress survives a stop. Stay under 170 tool calls; if the scope does not fit, end `cut short:` with the next field
+after writing the rows done.
 
 Order of work inside the scope: first the T014a strong candidates (confirm the meaning by code, or reject), then the
 remaining unknowns by how often they occur in captures. Per field:
