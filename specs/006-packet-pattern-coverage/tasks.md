@@ -31,7 +31,8 @@ Coordinator: main session. One subagent at a time. Method and rules: `spec.md`.
 - [x] T008 Groups 14/10/50 (done: evidence dcf19a90eb; patterns + JSON 4abc0b4b80: 32 patterns, 1,848/1,848 fit; no older pattern used the PS4 item list; 10.9.2 byte-identical).
 - [x] T009 Groups 37/45/2 (done: evidence d941b4e255; patterns + JSON 9d69024f34: 43 patterns, 1,258/1,258 fit; 5 list-element users 174/174 byte-identical; StatusInfo Hp > MaxHp queued in T010).
 - [x] T010 Groups 28/31 (done: evidence 9e24b3b0f3; patterns + JSON ff9f166af7: 32 patterns, 552/552 fit; `CDataFurnitureLayout` moved to Furniture.hexpat, 52.1.2 key `unOmID`->`OmID` 20/20; 207 other files byte-identical).
-- [ ] T011+ One evidence + one implementer package per group, by captured count (13 instance,
+- [x] T011 Groups 6/26/16/17/5 (done: evidence 0d7de639b8; patterns + JSON 399b6f645c: 25 patterns, 1,001/1,001 fit; 4 older users 202/202 byte-identical; 24.6.16 PC-only).
+- [ ] T012+ One evidence + one implementer package per group, by captured count (13 instance,
   0 connection, 11 quest, 33 job, 62 season dungeon, 23 area, 14, 8 pawn, 10 item, ...), PS4-matched
   ids only; a reviewer after every few groups.
 - [ ] Tn List of Season 3-exclusive ids for the later spec; README table; close.
@@ -60,6 +61,8 @@ Coordinator: main session. One subagent at a time. Method and rules: `spec.md`.
   (62 SEASON is all Season 3-exclusive: out of scope). Was: then groups 33, 3, 8, 14, 10, 37 by the triage order.
 - Tn: `tests/imhex-export-select.sh` is not run by check.sh; the u64 OM `Key` (13.20.x/13.22.2) exceeds
   2^53 in JSON (README note).
+- Tn: `packets/imhex-export.sh` reads stdin, so a `while read` loop around it loses its input
+  (T011b, 2026-11-02); make it read nothing from stdin (`</dev/null` on its child commands) with a test.
 - Tn naming sweep (README rule after R2b: an `unk_` name carries no server name): `unk_SpSkillList` / type
   `SpSkill` (Context, Pawn), 13.6.2 `unk_RestrictionList`, `CDataDeliveredItem.ItemNum/NeedNum`
   (Quest.hexpat:456); grep all includes for server-derived names before close; F2 bool order open.
