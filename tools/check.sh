@@ -8,7 +8,7 @@
 #   tools/check.sh --all           run every project's gate, changed or not
 #   tools/check.sh --quick         hooks and shell syntax only (no project test suites)
 #
-# Sections: hooks, shell, flags, kg, idacopy (research/ida/tests/private-copy.sh), export (research/03040008/packets/tests/imhex-export-select.sh,
+# Sections: hooks, shell, flags, kg, xfer (research/03040008/ida-transfer), idacopy (research/ida/tests/private-copy.sh), export (research/03040008/packets/tests/imhex-export-select.sh,
 # when packets/imhex-export.sh or research/03040008/packets/ changed), mcp, imhex.
 #
 # Changed files: `git diff --name-only <base>` plus untracked files, limited to the small trees
@@ -175,6 +175,23 @@ else
         record idacopy passed "$(rg -c '^pass: ' "$LOGS/idacopy.log") checks of $IDACOPY_TEST ($(seconds idacopy) s)"
     else
         record idacopy failed "see $LOGS/idacopy.log"
+    fi
+fi
+
+# 4d. Spec 007 IDA transfer extractors (research/03040008/ida-transfer): pytest, ruff.
+XFER_DIR=research/03040008/ida-transfer
+if [ "$quick" -eq 1 ]; then
+    record xfer "not run (--quick)"
+elif ! touches "^$XFER_DIR/([^/]+\.(py|toml)|tests/)"; then
+    record xfer "not run (no change under $XFER_DIR)"
+elif ! command -v uv >/dev/null; then
+    record xfer "not run (uv missing)"
+else
+    xfer_gates() { (cd "$XFER_DIR" && uv run pytest -q && uv run ruff check --no-fix .); }
+    if run_logged xfer xfer_gates; then
+        record xfer passed "$(rg -o '[0-9]+ passed' "$LOGS/xfer.log" | tail -n 1); ruff ($(seconds xfer) s)"
+    else
+        record xfer failed "see $LOGS/xfer.log"
     fi
 fi
 

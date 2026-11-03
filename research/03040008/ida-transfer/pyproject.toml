@@ -1,0 +1,29 @@
+[project]
+name = "ddon-ida-transfer"
+version = "0.1.0"
+description = "Spec 007: PC 03040008 / PS4 02020005 fact extractors for the packet handler transfer"
+requires-python = ">=3.14"
+dependencies = [
+    "capstone>=5.0.9",
+    "pyelftools>=0.33",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.2.0",
+    "ruff>=0.17.3",
+]
+
+[tool.uv]
+package = false
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py314"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP"]
