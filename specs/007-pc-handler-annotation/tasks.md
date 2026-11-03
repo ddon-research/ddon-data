@@ -11,7 +11,7 @@ Coordinator: main session. One subagent at a time. Method and rules: `spec.md`.
   the readiness of the PS4 database (DWARF prototypes, locals, types present).
 - [x] T003 (done 5801c721a1: `private-copy.sh pc-accepted <name>`, sha-checked against the record; test `research/ida/tests/private-copy.sh`, 14 checks, check.sh section idacopy) Private copy of the accepted PC database (`implementer`): `research/ida/private-copy.sh` target
   for the accepted database, read from `CURRENT-RECOVERY.json`; the IDA guard still allows only copies.
-- [ ] T004 Extract scripts for both databases (`implementer`), then the dumps (`evidence-researcher-ida`).
+- [x] T004 Extract scripts for both databases (`implementer`), then the dumps (`evidence-researcher-ida`).
   Scripts done (15322cb3d0: `research/03040008/ida-transfer/` uv project, `extract_ida.py` + `extract_dwarf.py`
   (pyelftools + capstone; reconstructor output covers only resource code), 59 tests; PS4 DWARF dump 3,540
   functions / 7,609 params / 6,632 locals / 8,652 types in 341 s, 34 scope functions in no CU). T004b runs them.
@@ -31,6 +31,10 @@ Coordinator: main session. One subagent at a time. Method and rules: `spec.md`.
   `qexit(0)` (checked: saves and packs); ida-mcp only reads. T004e fixes the script, T004f reruns.
   T004e done (4cd15c65e3: del_func + add_func instead of moving the start; the three refusals accepted under
   checked conditions; batch entries, extract discards its session; 124 tests).
+  T004f done (`research/T004f-repair-batch.md`: fresh work copy, batch apply 130 repaired / 1 refused
+  (0x7D1BE0, switch in undefined code) / 0 failed; work copy sha `7189b4c6...`; re-extract `table_ok`,
+  1 missing root; 9 spot checks decompile). Open for T007: 3 `OnPacket_*` labels left at old starts
+  (0x7C5C8D, 0x7D714C, 0x7D858F). Note: a batch dry run also re-saves the copy (+242 B), nothing changed.
 - [ ] T005 Matcher with gates and tests, the precision check on withheld seeds, the manifest (`implementer`).
 - [ ] T006 Types and locals rules over the accepted pairs (`implementer`, evidence from T004 dumps).
 - [ ] T007 Apply script and the applied copy (`implementer` writes it, `evidence-researcher-ida` runs it).
@@ -41,7 +45,7 @@ Order: T003 first (T002 needs a copy of the accepted database), then T002.
 
 ## Running
 
-- T004f (evidence-researcher-ida, brief `briefs/T004f-repair-batch.md`), started 2026-11-03.
+- T005 (implementer, brief `briefs/T005-matcher.md`), started 2026-11-03.
 - Decision (coordinator, 2026-11-03): from T004d on, all writes go to one persistent work copy
   `PC_DDON_03040008/ddon-data-007work/` of the accepted database (repairs first, then T007's apply);
   it is published as `spec007-packet-handlers-<date>/` at the close.
