@@ -192,13 +192,18 @@ Goal: the rest of Sam's request: packet-class types and local names, by operatio
   0 new pairs; holdout/control clean; 443 tests). T013b done (`research/W2-T013b-run.md`: v6 dumps, work copy
   unchanged; 500/502 PC and 340/340 PS4 destination sites reproduce T012; manifest unchanged; `element` base does
   not fire (MSVC join block, PS4 `operator_new` spelling): array-element links deferred; 5,453 PC call sites with
-  `arg_bytes` 0 carry no stack values).
+  `arg_bytes` 0 carry no stack values). T013c done (4b7238a0ec, c2bbfd18a7: 163 member links (132 codec, 31
+  element-reader) -> 48 partial types (lower-bound sizes), 0 refused; locals R1 1, R2 0 (no PC stack argument
+  values), R3 23 `packet` retyped; holdout 0 contradicted; reader-shuffle control: added gate (a `CPacket_*` link
+  needs the handler string naming that packet), then 0 links/types/locals on shuffled classes; smoke test on a
+  scratch copy clean after an undo fix; output in `manifest/transfer/wave2/`). Known: wave-1 `transfer.py` cannot
+  regenerate from post-apply dumps (decision rows no longer conflict); its committed output stays the record.
 - [ ] T014 Wider pairs from anchored gaps (getters), then locals rules R1/R2 (implementer), then apply.
 - [ ] T015 Review, close wave 2, merge and push.
 
 ## Running
 
-- T013c (implementer, brief `briefs/W2-T013c-partial-layouts-locals.md`), started 2026-11-03.
+- T013d (evidence-researcher-ida, brief `briefs/W2-T013d-apply.md`), started 2026-11-03.
 - Decision (coordinator, 2026-11-03): from T004d on, all writes go to one persistent work copy
   `PC_DDON_03040008/ddon-data-007work/` of the accepted database (repairs first, then T007's apply);
   it is published as `spec007-packet-handlers-<date>/` at the close.
