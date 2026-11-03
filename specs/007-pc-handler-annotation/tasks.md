@@ -127,13 +127,15 @@ Coordinator: main session. One subagent at a time. Method and rules: `spec.md`.
   `T009-decisions.tsv`: 61/61 `ours`; 5 earlier names copy the group prefix into a PS4-style name, 2 earlier
   `__fastcall` contradicted by ecx use and `retn 8`; step 0 dry run all `already`, verify refused: manifest hash
   changed after T006d, fixed by the next apply log). T009b: correction rows + apply support; then T009c apply.
+  T009b done (9e495f2362, 91bf570b8d: 7 names `correct`, 54 prototypes `replace` with the current-value guard;
+  55 comment rows added (1,174; 13 `append` below existing comments, apply keeps only our part); 417 tests).
 - [ ] T009 Close: `check.sh --all`, docs, retrospective, publish the database folder.
 
 Order: T003 first (T002 needs a copy of the accepted database), then T002.
 
 ## Running
 
-- T009b (implementer, brief `briefs/T009b-corrections.md`), started 2026-11-03.
+- T009c (evidence-researcher-ida, brief `briefs/T009c-apply-corrections.md`), started 2026-11-03.
 - Decision (coordinator, 2026-11-03): from T004d on, all writes go to one persistent work copy
   `PC_DDON_03040008/ddon-data-007work/` of the accepted database (repairs first, then T007's apply);
   it is published as `spec007-packet-handlers-<date>/` at the close.
