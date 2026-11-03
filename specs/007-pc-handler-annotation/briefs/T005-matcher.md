@@ -6,7 +6,8 @@ pairs PC functions with PS4 functions and admits no false positives. Read
 codec pairs, the wrong and unsourced earlier names) and `research/T004b-extract-run.md` (dump facts).
 
 Inputs: `research/03040008/ida-transfer/dumps/{pc-ida,ps4-ida,ps4-dwarf}.jsonl` (check each header's
-sha256 against `dumps/MANIFEST.tsv`), `specs/006-packet-pattern-coverage/research/T001-triage.tsv`,
+sha256 against `dumps/MANIFEST.tsv`; `pc-ida.jsonl` is the re-extract of the repaired work copy, T004f:
+1,039 of 1,040 callbacks are functions, `missing_root` 0x7D1BE0), `specs/006-packet-pattern-coverage/research/T001-triage.tsv`,
 `specs/007-pc-handler-annotation/research/T002-prior-annotations.tsv`.
 
 Rules (each a function with its own tests):
