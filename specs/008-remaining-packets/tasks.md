@@ -20,13 +20,14 @@ Coordinator: main session. One subagent at a time. Method, sources and marks: `s
   (e.g. season dungeon buff ids = AbilityIds of `contents_buff_info.abl`, 85/85); 62.39.16 and 63.2.16 renamed (G);
   proposal: rename `Instance.hexpat` `GatheringItemListRes_unk_1` fields (u32 = ItemId 38/38).
   All 115 ids decoded: 4,887 captures.
-- [ ] T007 Naming follow-ups (existing includes, review findings). evidence where the dump lacks a reader (`evidence-researcher-ida`), patterns + JSON
+- [x] T006 Adversarial review (`research/T006-adversarial.md`): no layout defect (independent width walk 4,885/4,887;
+  IDA re-read of 19 ids matches); F1 item/stage-id value bases with few distinct values are chance-level; F2 small
+  enums named only by the server; F3 counts repeat identical captures. Canaries reproduced by the coordinator.
+- [ ] T007 Mark fixes + `Instance.hexpat` renaming (`briefs/T007-mark-fixes.md`). evidence where the dump lacks a reader (`evidence-researcher-ida`), patterns + JSON
   (`implementer`), naming by code / data / extractor / leads; each with its fit counts and JSON changes.
 - [ ] Review (adversarial: a sample of V/I/G marks and fits), close, merge and push.
 
 ## Running
 
-- T006 (adversarial-reviewer, agent a60ac66e9ecc89462, brief `briefs/T006-adversarial.md`), started 2026-11-03.
-  Next: file its report as `research/T006-adversarial.md` (reproduce canaries first), then T007 (implementer): fix the
-  findings, rename `Instance.hexpat` `GatheringItemListRes_unk_1` fields (u32 = ItemId 38/38; re-export the users),
-  then close (check.sh --all, retro, tasks Close, merge and push without asking).
+- T007 (implementer, brief `briefs/T007-mark-fixes.md`), started 2026-11-03. Next: land, then close (check.sh --all,
+  retro, Close section, merge and push without asking).
