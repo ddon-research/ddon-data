@@ -213,6 +213,13 @@ export, 2026-11-02, T012b). T013 is
 (event notices), 18 (group chat request), 30 CRAFT, 34 ENTRY_BOARD, 41 CHARACTER_EDIT, 51 DISPEL, 52
 (furniture request), 54 CRAFT_RECIPE and 57 (box gacha request); counts after their first export,
 2026-11-02, T013b).
+008 T003 is `specs/008-remaining-packets/research/T003-batches-B5-B2.md` (spec 008 batches B5 and B2:
+33 ids of groups 11, 14, 24, 28, 31, 45, 60, 61, 64 and 70; counts after their first export,
+2026-11-03). Spec 008 extends the marks with `G` (guess: a server lead alone, the capture shape
+alone, or a name from context), which may name a field: its comments read `// T003 <mark>: <basis>`
+with `<mark>` one of `V`, `I (<basis>)`, `G (<basis>)` or `open` (kept `unk_*`, leads in the
+comment). A pattern file may carry a better name than its raw files (the export selects by
+`// packet-id:`); the T003 rows say so.
 
 | Id | Pattern | Report | Status |
 | --- | --- | --- | --- |
@@ -367,6 +374,9 @@ export, 2026-11-02, T012b). T013 is
 | 11.3.2 | `S2C_QUEST_GET_TUTORIAL_QUEST_LIST_RES` | T005 §5 | 146/146 fit |
 | 11.4.1 | `C2S_QUEST_GET_LOT_QUEST_LIST_REQ` | T005 §6 | 20/20 fit |
 | 11.4.2 | `S2C_QUEST_GET_LOT_QUEST_LIST_RES` | T005 §6 | 20/20 fit |
+| 11.5.1 | `C2S_QUEST_GET_PACKAGE_QUEST_LIST_REQ` | 008 T003 | 146/146 fit (T003 marks: open 1) |
+| 11.5.2 | `S2C_QUEST_GET_PACKAGE_QUEST_LIST_RES` | 008 T003 | 146/146 fit (list never non-empty; T003 marks: I 2, G 2, open 6) |
+| 11.7.16 | `S2C_QUEST_MOB_HUNT_QUEST_LIST_NUM_NTC` | 008 T003 | 43/43 fit (renamed from the raw name `S2C_QUEST_11_7_16_NTC`: notice class cQuestSvNotQuestMobHuntQuestListNum, I (consumer); T003 marks: I 1, G 1, open 1) |
 | 11.9.1 | `C2S_QUEST_GET_WORLD_MANAGE_QUEST_LIST_REQ` | T005 §9 | 42/42 fit (no body) |
 | 11.9.2 | `S2C_QUEST_GET_WORLD_MANAGE_QUEST_LIST_RES` | T005 §9 | 42/42 fit (list never non-empty) |
 | 11.10.1 | `C2S_QUEST_GET_END_CONTENTS_GROUP_REQ` | T005 §10 | 3/3 fit |
@@ -414,6 +424,7 @@ export, 2026-11-02, T012b). T013 is
 | 11.62.2 | `S2C_QUEST_GET_REWARD_BOX_LIST_RES` | T005 §26 | 8/8 fit |
 | 11.64.1 | `C2S_QUEST_GET_REWARD_BOX_ITEM_REQ` | T005 §27 | 6/6 fit |
 | 11.64.2 | `S2C_QUEST_GET_REWARD_BOX_ITEM_RES` | T005 §27 | 6/6 fit, slack 15 |
+| 11.68.16 | `S2C_QUEST_QUEST_BOARD_RELOAD_NTC` | 008 T003 | 1/1 fit (T003 marks: V 3) |
 | 11.69.1 | `C2S_QUEST_DELIVER_ITEM_REQ` | T005 §29 | 1/1 fit, slack 15 |
 | 11.69.2 | `S2C_QUEST_DELIVER_ITEM_RES` | T005 §29 | 1/1 fit |
 | 11.69.16 | `S2C_QUEST_DELIVER_ITEM_NTC` | T005 §29 | 1/1 fit |
@@ -423,6 +434,7 @@ export, 2026-11-02, T012b). T013 is
 | 11.71.1 | `C2S_QUEST_GET_PARTY_QUEST_PROGRESS_INFO_REQ` | T005 §12 | 43/43 fit (no body) |
 | 11.71.2 | `S2C_QUEST_GET_PARTY_QUEST_PROGRESS_INFO_RES` | P11a §4 | 43/43 fit |
 | 11.83.16 | `S2C_QUEST_SET_QUEST_UNRELEASED_AREA_NTC` (was `S2C_QUEST_11_83_16_NTC`) | T005 §31 | 20/20 fit, slack 15 (code name SET_QUEST_UNRELEASED_AREA_NOTICE, V by notice class) |
+| 11.88.16 | `S2C_QUEST_11_88_16_NTC` | 008 T003 | 20/20 fit (no body; PC handler reads nothing, meaning open; T003 marks: none (no fields)) |
 | 11.89.16 | `S2C_QUEST_JOIN_LOBBY_QUEST_INFO_NTC` | P11a §1 | 41/41 fit |
 | 11.90.16 | `S2C_QUEST_PROGRESS_WORK_SAVE_NTC` | T005 §33 | 11/11 fit |
 | 11.91.16 | `S2C_QUEST_QUEST_COMPLETE_NTC` | T005 §34 | 4/4 fit, slack 12 |
@@ -430,7 +442,14 @@ export, 2026-11-02, T012b). T013 is
 | 11.101.16 | `S2C_QUEST_TIME_GAIN_QUEST_PLAY_START_NTC` | T005 §36 | 1/1 fit |
 | 11.103.16 | `S2C_QUEST_PLAY_STOP_TIMER_NTC` (was `S2C_QUEST_11_103_16_NTC`) | T005 §37 | 1/1 fit (code name PLAY_STOP_TIMER_NOTICE, V by notice class; no body) |
 | 11.117.16 | `S2C_QUEST_REWARD_BOX_LIST_NUM_NTC` (was `S2C_QUEST_11_117_16_NTC`) | T005 §38 | 47/47 fit (code name REWARD_BOX_LIST_NUM_NOTICE, V by behaviour; the PS4 u8-only body fits too) |
+| 11.118.16 | `S2C_QUEST_11_118_16_NTC` | 008 T003 | 41/41 fit (u8 read and discarded by the PC handler, meaning open; T003 marks: V 1) |
 | 11.120.16 | `S2C_QUEST_PARTY_QUEST_PROGRESS_NTC` | P11a §3 | no capture |
+| 11.121.1 | `C2S_QUEST_GET_LEVEL_BONUS_LIST_REQ` | 008 T003 | 182/182 fit (no body; T003 marks: none (no fields)) |
+| 11.121.2 | `S2C_QUEST_GET_LEVEL_BONUS_LIST_RES` | 008 T003 | 182/182 fit (T003 marks: G 8, open 1) |
+| 11.122.1 | `C2S_QUEST_GET_ADVENTURE_GUIDE_QUEST_LIST_REQ` | 008 T003 | 45/45 fit (no body; T003 marks: none (no fields)) |
+| 11.122.2 | `S2C_QUEST_GET_ADVENTURE_GUIDE_QUEST_LIST_RES` | 008 T003 | 45/45 fit, slack 15 (T003 marks: I 1, G 4, open 1) |
+| 11.123.1 | `C2S_QUEST_GET_ADVENTURE_GUIDE_QUEST_NTC_REQ` | 008 T003 | 155/155 fit (no body; T003 marks: none (no fields)) |
+| 11.123.2 | `S2C_QUEST_GET_ADVENTURE_GUIDE_QUEST_NTC_RES` | 008 T003 | 155/155 fit (T003 marks: G 1) |
 | 12.0.1 | `C2S_STAGE_GET_STAGE_LIST_REQ` | T006 §3.1 | 42/42 fit (no body) |
 | 12.0.2 | `S2C_STAGE_GET_STAGE_LIST_RES` | P11a §7 | 42/42 fit |
 | 12.1.1 | `C2S_STAGE_AREA_CHANGE_REQ` | T006 §3.2 | 150/150 fit, slack 15 |
@@ -480,8 +499,11 @@ export, 2026-11-02, T012b). T013 is
 | 14.9.1 | `C2S_WARP_AREA_WARP_REQ` | T008 §2.6 | 18/18 fit |
 | 14.9.2 | `S2C_WARP_AREA_WARP_RES` | T008 §2.6 | 18/18 fit |
 | 14.10.16 | `C2S_WARP_WARP_END_NTC` (was `C2S_WARP_WARP_START_NTC`) | T008 §2.7 | 62/62 fit (no body; code name C2S_WARP_END_NTC, V by call site: the old name WARP_START is contradicted) |
+| 14.11.16 | `C2S_WARP_14_11_16_NTC` | 008 T003 | 57/57 fit (T003 marks: G 1) |
 | 14.12.1 | `C2S_WARP_GET_RETURN_LOCATION_REQ` | T008 §2.9 | 9/9 fit (no body) |
 | 14.12.2 | `S2C_WARP_GET_RETURN_LOCATION_RES` | T008 §2.9 | 9/9 fit |
+| 14.14.1 | `C2S_WARP_GET_START_POINT_LIST_REQ` | 008 T003 | 42/42 fit (no body; T003 marks: none (no fields)) |
+| 14.14.2 | `S2C_WARP_GET_START_POINT_LIST_RES` | 008 T003 | 42/42 fit (T003 marks: G 1) |
 | 15.0.16 | `C2S_EVENT_START_NTC` | T013 §12 | 8/8 fit (no body; V by call graph) |
 | 15.1.16 | `C2S_EVENT_END_NTC` | T013 §12 | 8/8 fit (no body; V by call graph) |
 | 16.0.1 | `C2S_FRIEND_GET_FRIEND_LIST_REQ` | T011 §10 | 41/41 fit (no body) |
@@ -517,6 +539,7 @@ export, 2026-11-02, T012b). T013 is
 | 23.12.1 | `C2S_AREA_GET_AREA_BASE_INFO_LIST_REQ` | T006 §4 | 72/72 fit (no body) |
 | 23.12.2 | `S2C_AREA_GET_AREA_BASE_INFO_LIST_RES` | P11a §16 | 72/72 fit |
 | 23.13.16 | `S2C_AREA_POINT_UP_NTC` | P11b §7 | 29/29 fit |
+| 24.6.16 | `S2C_JOB_MASTER_MARK_TARGETS_NTC` | 008 T003 | 150/150 fit, slack 15 (T003 marks: I 6, G 1) |
 | 25.5.1 | `C2S_ORB_DEVOTE_GET_ORB_GAIN_EXTEND_PARAM_REQ` | T012 §8 | 43/43 fit (no body) |
 | 25.5.2 | `S2C_ORB_DEVOTE_GET_ORB_GAIN_EXTEND_PARAM_RES` | T012 §8 | 43/43 fit |
 | 26.1.1 | `C2S_PROFILE_GET_MY_CHARACTER_PROFILE_REQ` | T011 §14 | 4/4 fit (no body) |
@@ -555,8 +578,13 @@ export, 2026-11-02, T012b). T013 is
 | 28.17.2 | `S2C_GP_GP_COURSE_GET_AVAILABLE_LIST_RES` | T010 §1.1, §9 | 10/10 fit (list never non-empty: Season 3 element code-only) |
 | 28.22.1 | `C2S_GP_GP_EDIT_GET_VOICE_LIST_REQ` | T010 §10 | 2/2 fit (no body) |
 | 28.22.2 | `S2C_GP_GP_EDIT_GET_VOICE_LIST_RES` | T010 §10 | 2/2 fit |
+| 28.23.1 | `C2S_GP_GP_SHOP_CAN_BUY_REQ` | 008 T003 | 9/9 fit (T003 marks: I 1, open 2) |
+| 28.23.2 | `S2C_GP_GP_SHOP_CAN_BUY_RES` | 008 T003 | 9/9 fit (T003 marks: I 2, open 3) |
+| 28.24.16 | `S2C_GP_28_24_16_NTC` | 008 T003 | 84/84 fit (T003 marks: open 1) |
 | 28.25.16 | `S2C_GP_COURSE_START_NTC` | T010 §13 | 22/22 fit (code name V by behaviour; the PS4 framing fits too) |
 | 28.26.16 | `S2C_GP_COURSE_EXTEND_NTC` | T010 §14 | 21/21 fit (code name V by behaviour; the PS4 framing fits too) |
+| 28.34.1 | `C2S_GP_GET_UPDATE_APP_COURSE_BONUS_FLAG_REQ` | 008 T003 | 42/42 fit (no body; T003 marks: none (no fields)) |
+| 28.34.2 | `S2C_GP_GET_UPDATE_APP_COURSE_BONUS_FLAG_RES` | 008 T003 | 42/42 fit (T003 marks: V 1) |
 | 29.0.1 | `C2S_EQUIP_GET_CHARACTER_EQUIP_LIST_REQ` | T012 §13 | 41/41 fit (no body) |
 | 29.0.2 | `S2C_EQUIP_GET_CHARACTER_EQUIP_LIST_RES` | T012 §13 | 41/41 fit |
 | 29.1.1 | `C2S_EQUIP_CHANGE_CHARACTER_EQUIP_REQ` | T012 §13 | 5/5 fit |
@@ -592,6 +620,8 @@ export, 2026-11-02, T012b). T013 is
 | 31.34.2 | `S2C_CLAN_CLAN_SHOP_GET_BUFF_ITEM_LIST_RES` | T010 §20 | 25/25 fit |
 | 31.40.1 | `C2S_CLAN_CLAN_PARTNER_PAWN_DATA_GET_REQ` | T010 §21 | 28/28 fit (PS4 DWARF type; the triage's exclusive mark is contradicted) |
 | 31.40.2 | `S2C_CLAN_CLAN_PARTNER_PAWN_DATA_GET_RES` | T010 §1.2, §21 | 28/28 fit (Season 3 second equip list; the PS4 body fails 22/28) |
+| 31.53.1 | `C2S_CLAN_GET_FURNITURE_REQ` | 008 T003 | 27/27 fit (no body; T003 marks: none (no fields)) |
+| 31.53.2 | `S2C_CLAN_GET_FURNITURE_RES` | 008 T003 | 27/27 fit (T003 marks: I 1) |
 | 33.0.1 | `C2S_JOB_GET_JOB_CHANGE_LIST_REQ` | T006 §1.1 | 42/42 fit (no body) |
 | 33.0.2 | `S2C_JOB_GET_JOB_CHANGE_LIST_RES` | T006 §1.1 | 42/42 fit |
 | 33.11.16 | `S2C_JOB_CHARACTER_JOB_EXP_UP_NTC` | T006 §1.2 | 417/417 fit |
@@ -656,6 +686,10 @@ export, 2026-11-02, T012b). T013 is
 | 45.0.2 | `S2C_STAMP_BONUS_GET_LIST_RES` | T009 §1.2, §18 | 81/81 fit (Season 3 restructured; the PS4 body fails 81/81) |
 | 45.1.1 | `C2S_STAMP_BONUS_CHECK_REQ` | T009 §19 | 84/84 fit (no body) |
 | 45.1.2 | `S2C_STAMP_BONUS_CHECK_RES` | T009 §1.2, §19 | 84/84 fit (Season 3 list: code-only, the PS4 body fits too) |
+| 45.3.1 | `C2S_STAMP_BONUS_RECIEVE_DAILY_REQ` | 008 T003 | 40/40 fit, slack 15 (T003 marks: V 2) |
+| 45.3.2 | `S2C_STAMP_BONUS_RECIEVE_DAILY_RES` | 008 T003 | 40/40 fit, slack 15 (T003 marks: none (no fields)) |
+| 45.4.1 | `C2S_STAMP_BONUS_RECIEVE_TOTAL_REQ` | 008 T003 | 1/1 fit (no body; T003 marks: none (no fields)) |
+| 45.4.2 | `S2C_STAMP_BONUS_RECIEVE_TOTAL_RES` | 008 T003 | 1/1 fit, slack 15 (T003 marks: none (no fields)) |
 | 50.0.1 | `C2S_ITEM_SORT_GET_ITEM_SORTDATA_BIN_REQ` | T008 §4.1 | 46/46 fit |
 | 50.0.2 | `S2C_ITEM_SORT_GET_ITEM_SORTDATA_BIN_RES` | T008 §4.1 | 46/46 fit (list never non-empty) |
 | 50.1.1 | `C2S_ITEM_SORT_SET_ITEM_SORTDATA_BIN_REQ` | T008 §4.3 | 59/59 fit (Season 3 trailing bool: code-only, the PS4 body fits too) |
@@ -694,8 +728,14 @@ export, 2026-11-02, T012b). T013 is
 | 58.9.1 | `C2S_PAWN_EXPEDITION_PAWN_EXPEDITION_GET_REWARD_DROP_ITEM_REQ` | T007 §4.7 | 25/25 fit |
 | 58.9.2 | `S2C_PAWN_EXPEDITION_PAWN_EXPEDITION_GET_REWARD_DROP_ITEM_RES` | T007 §4.7 | 25/25 fit (list never non-empty) |
 | 60.0.1 | `C2S_NPC_GET_NPC_EXTENDED_FACILITY_REQ` | P11b §12 | 219/219 fit |
+| 60.0.2 | `S2C_NPC_GET_NPC_EXTENDED_FACILITY_RES` | 008 T003 | 219/219 fit (list non-empty in 4 files; T003 marks: I 1, G 5, open 5) |
+| 61.2.1 | `C2S_PAWN_TRAINING_GET_PREPARETION_INFO_TO_ADVICE_REQ` | 008 T003 | 20/20 fit (no body; T003 marks: none (no fields)) |
+| 61.2.2 | `S2C_PAWN_TRAINING_GET_PREPARETION_INFO_TO_ADVICE_RES` | 008 T003 | 20/20 fit (T003 marks: I 2, G 1, open 2) |
 | 63.11.16 | `S2C_63_11_16_NTC` | P5 §7 | 1/1 fit |
+| 64.0.1 | `C2S_MANDRAGORA_GET_MY_MANDRAGORA_REQ` | 008 T003 | 20/20 fit (no body; T003 marks: none (no fields)) |
 | 64.0.2 | `S2C_MANDRAGORA_GET_MY_MANDRAGORA_RES` | P11a §2 | 20/20 fit |
+| 70.0.1 | `C2S_ACTION_SET_PLAYER_ACTION_HISTORY_REQ` | 008 T003 | 312/312 fit, slack 15 (list writer V (008 T002); T003 marks: G 3) |
+| 70.0.2 | `S2C_ACTION_SET_PLAYER_ACTION_HISTORY_RES` | 008 T003 | 312/312 fit, slack 15 (T003 marks: none (no fields)) |
 
 ## Open items
 
