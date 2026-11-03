@@ -346,3 +346,54 @@ the DWARF names, templates included (`MtTypedArray<CDataX>`); anonymous types ar
 IDA's built-in C parser may not take `<...>` in names; the tinfo API does.
 
 T006 run (dumps as in `dumps/MANIFEST.tsv`, 972 accepted pairs): see `manifest/transfer/summary.tsv`.
+
+## Apply script (`apply_transfer.py`, T007, script version 1)
+
+Writes T006's rows (`manifest/transfer/{names,prototypes,comments,types}.tsv`, `types.h`) to the PC 03040008
+work copy and checks them back. Headless batch only, on the copy under `ddon-data-007work` (T007b runs it):
+
+    idat -A -L<log> -S"apply_transfer.py <manifest/transfer> <OUT.jsonl>" <work copy .i64>            # dry run
+    idat -A -L<log> -S"apply_transfer.py <manifest/transfer> <OUT.jsonl> --apply" <work copy .i64>
+    idat -A -L<log> -S"apply_transfer.py <manifest/transfer> <OUT.jsonl> --verify --apply-log <apply.jsonl>" <copy>
+    idat -A -L<log> -S"apply_transfer.py <manifest/transfer> <OUT.jsonl> --undo <apply.jsonl>" <work copy .i64>
+
+The modes exclude each other. Dry run and `--verify` end with `DBFL_KILL` (the copy is not re-saved, unlike
+`repair_functions.py`'s dry run); `--apply` and `--undo` end with `idc.qexit(0)` (saved); an exception prints
+the traceback, sets `DBFL_KILL` and exits 1. Last log line: `apply_transfer summary: {...}`. `OUT.tmp` keeps the
+records written before a crash, undo records included.
+
+- **Precheck**: input sha256 `f1c974d0...fa20`, idb path under `ddon-data-007work`, every manifest file's header
+  names that PC dump source and the same T006 run; the files' sha256 and the counts (user names, functions with
+  a user type, local type ordinals) go into the header.
+- **Types**: `types.h` is read with its own grammar (one member per line with `// +0x<off> <size>`, gaps
+  `gapN[k]`; a non-contiguous layout or an unknown line fails closed) and declared through the `ida_typeinf`
+  tinfo/udt API, not the C parser, so `MtTypedArray<CDataX>` stays verbatim: forward declarations first for
+  every absent name, then each struct as a fixed-layout udt with explicit member offsets, named-type members as
+  references (`create_typedef(..., BTF_STRUCT)`), `set_named_type(NTF_REPLACE)`. Existing type: opaque row ->
+  `already`; forward declaration -> defined; equal layout (size and non-gap members' name/offset/size) ->
+  `already`; different -> `refused` with both layouts unless its `types.tsv` status is `replace`. A struct
+  embedding a refused type and a prototype naming one are refused.
+- **Names**: `remove-label` rows first (a removed label's name is free for its callback), then `set`/`correct`:
+  refused when the address is not a function start, the current name is not the row's `current`, or the name is
+  held at another address.
+- **Prototypes**: refused when the current prototype is user-set or differs from the row's `current`. Type names
+  the parser may refuse (`<...>`, `::`) are parsed as `void *` and patched to pointers to the local type through
+  `func_type_data_t`; a parse failure is a refusal before any write. `apply_tinfo(TINFO_DEFINITE)`; read-back
+  `idc.get_type` compared whitespace-normalised.
+- **Comments**: function comment; ours appended below a `----` line, `already` when present.
+- `conflict` rows of `skipped.tsv` are reported (`conflict-names`, `conflict-prototypes`), never written.
+- Every write: `undo` record (before-state: name and user flag, printed type + serialized tinfo, comment, local
+  type layout + serialized tinfo, or `null` for an absent type) flushed first, then the write, then the
+  read-back; a mismatch is `failed` with both values, no retry. A second `--apply` finds every row `already`.
+- **Verify**: every row against the database (`ok`/`mismatch`), the counts against the apply log's header plus
+  what its applied rows account for (+1 name per `set` on a default name, -1 per removed label, +1 typed function
+  per prototype set, +1 local type per type created), and a decompilation of each function whose prototype is
+  the row's.
+- **Undo**: the undo records of an apply log in reverse order (absent type -> deleted, default name -> cleared,
+  non-user type -> `del_tinfo`), each read back.
+
+Libraries: IDAPython (`ida_typeinf`, `ida_name`, `ida_bytes`, `ida_funcs`, `ida_nalt`, `ida_hexrays`,
+`ida_loader`, `idc`, `idautils`), stdlib (`csv`, `json`, `hashlib`, `argparse`, `re`); pytest, ruff. Own code:
+the `types.h` reader (T006's own generated format; no parser covers it) and the prototype argument split
+(templates the IDA parser does not take). Tests: `tests/test_apply_transfer.py` (fake IDA; the `_Ida` adapter
+itself runs first in T007b).
