@@ -66,6 +66,40 @@ undefining a function's entry instruction deletes the function, which made the T
 `set_func_start` repairs fail with `MOVE_FUNC_NOFUNC`. Names are not moved: a name left at a
 deleted enclosing start is in the undo record.
 
+## Version 3 (T005c): constant arguments, codecs, externs, call-target roots
+
+`extract_ida.py` script version 3 adds, for the role anchors of
+`specs/007-pc-handler-annotation/research/T005b-role-anchors.md` § 6:
+
+- **Per call site** (not tail jumps), only what is provably that call's argument:
+  - PC: `arg_bytes` (the callee's single `ret N`, else `add esp, N` right after the call, else 0 for a
+    known callee with plain `retn`, else null); `const_stack` `[[slot, value], ...]` (slot 0 = `[esp]`
+    at the call) from `push imm` and `mov [esp+N], imm` after the previous call in the same block,
+    within `arg_bytes`, not overwritten or popped (an unmodelled `esp` change drops all);
+    `const_ecx` `{"kind": "imm"|"addr"|"load", ...}` when the last ecx write is `mov ecx, imm`,
+    `xor ecx, ecx`, `lea ecx, [abs]` or `mov ecx, [abs]`.
+  - PS4: `const_regs` `{rdi|rsi|rdx|rcx|r8|r9: value}` when the register's last write in the block
+    is `mov r32/r64, imm` or `xor r, r`; any later write (implicit ones included) leaves nothing.
+- **Per function** `codec`: `{"dir": "read"|"write", "width": 1|2|4|8, "evidence": {...}}` or null.
+  One cursor advance (`add [base+d], N` / `inc`), a bounds check with the same N (`lea r, [x+N]` =
+  read, `cmp r, N` = write); PC also needs the cursor field (`+0x0C` read, `+0x10` write) and every
+  `mov eax, <width>` = N. Load width and byte swap (`bswap`, `movbe`, shift, rotate, `call`) are
+  evidence only. Variable-length codecs (`Read_MtString`, `Read_bytes`) are not classified.
+- **`extern` records**: one per call target without a function record (`reason`: `import`,
+  `extern_segment`, `not_function`, `inside_function`, `out_of_scope`), with `name`, `import`
+  (`ida_nalt` import, or the import a PLT `jmp [slot]` reaches), `segment`, `segment_class`,
+  `function_start` and `sites`; `via: "mem"` records the import slots of `call [slot]`.
+- Implicit register writes (string instructions, `loop`, one-operand `mul`/`div`, `cdq`, `cpuid`, ...)
+  now count in `arg_regs` and `ecx_loaded` as well.
+
+`repair_functions.py` script version 3: after the table callbacks, the `call rel32` targets of the
+functions in scope (roots of `extract_ida.pc_roots`, depth 3, recomputed after the table phase) that
+are not function starts are roots too (`root: "call_target"`, `level`, `call_sites`), then the call
+targets inside each repaired (dry run: would-repair) body, up to level 3; the rest is written as
+`pending`. Same checks, undo records and refusals; a target inside a function passes only by the
+T004e inside-function rules. The summary gains `call_targets` (`roots`, `by_status`, `by_check`,
+`by_level`, `scope_functions`, `pending_beyond_depth`).
+
 ## Matcher (`match.py`, `matcher/`, T005)
 
     uv run python match.py        # rewrites manifest/*.tsv; identical on rerun; exit 1 on a wrong holdout recovery

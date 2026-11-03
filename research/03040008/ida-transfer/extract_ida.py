@@ -16,8 +16,12 @@ The database is only read: no renames, types, comments, decompilation or saves.
 Output: one JSONL file. Line 1 is the header (database identity, script version, parameters);
 then ``table`` records (PC handler table), ``missing_root`` records (a root VA that is not a function
 start: never replaced by the enclosing function), ``function`` records (one per function in scope),
-and a final ``summary`` record with counts. The pure helpers below (no IDA import) are unit-tested in
-``tests/test_extract_ida.py``; the IDA-facing code is the ``_ida_*`` functions and ``main``.
+``extern`` records (v3: one per call target the dump does not describe, :func:`extern_reason`) and a
+final ``summary`` record with counts. v3 adds per call site ``arg_bytes``, ``const_stack``
+``[[slot, value]]`` and ``const_ecx`` (PC, :func:`pc_const_args`) or ``const_regs`` (PS4,
+:func:`ps4_const_args`), and per function ``codec`` (:func:`classify_codec`).
+The pure helpers below (no IDA import) are unit-tested in ``tests/test_extract_ida.py`` and
+``tests/test_extract_ida_v3.py``; the IDA-facing code is the ``_ida_*`` functions and ``main``.
 
 The handler-table reading (record layout, initializer literal-store proof) is adapted from
 ddon-hook ``scripts/ida_packet_dispatch.py`` (C:/Users/morph/CLionProjects/ddon-hook, read-only).
@@ -29,7 +33,7 @@ import json
 import os
 import re
 
-SCRIPT_VERSION = "2"
+SCRIPT_VERSION = "3"
 
 # --- PC handler table (T002 audit: 74 groups, 1,041 records, 1,040 distinct callbacks) ---------
 PC_GROUP_TABLE = 0x1BC0110
@@ -205,6 +209,274 @@ def ps4_call_arguments(window: list[dict]) -> list[str]:
     return [r for r in PS4_ARG_REGS if r in written]
 
 
+# --- v3: constant call arguments, codec shapes, extern call targets (T005c) -----------------------
+
+_STRING_OPS = {"movs": ("rsi", "rdi"), "stos": ("rdi",), "lods": ("rsi", "rax"), "scas": ("rdi",),
+               "cmps": ("rsi", "rdi"), "ins": ("rdi",), "outs": ("rsi",)}
+_IMPLICIT = {
+    "loop": ("rcx",), "loope": ("rcx",), "loopne": ("rcx",), "loopw": ("rcx",),
+    "mul": ("rax", "rdx"), "div": ("rax", "rdx"), "idiv": ("rax", "rdx"),
+    "cdq": ("rdx",), "cqo": ("rdx",), "cwd": ("rdx",), "cwde": ("rax",), "cdqe": ("rax",), "cbw": ("rax",),
+    "cpuid": ("rax", "rbx", "rcx", "rdx"), "rdtsc": ("rax", "rdx"), "rdtscp": ("rax", "rcx", "rdx"),
+    "syscall": ("rcx", "r11"), "cmpxchg": ("rax",), "lahf": ("rax",), "xlat": ("rax",),
+    "enter": ("rsp", "rbp"), "leave": ("rsp", "rbp"),
+}
+# Instructions that move esp in a way pc_const_args does not model (the stack picture is dropped).
+_ESP_OPAQUE = {"pusha", "pushad", "popa", "popad", "pushf", "pushfd", "popf", "popfd", "enter", "leave"}
+_NON_WRITING = {"cmp", "test", "push", "bt"}
+
+
+def implicit_writes(mnem: str, n_ops: int = 0, rep: bool = False) -> tuple[str, ...]:
+    """Registers an x86 instruction writes without naming them as operands (canonical names).
+
+    IDA's ``CF_CHG`` features cover explicit operands only; string instructions, ``loop``, one-operand
+    ``mul``/``imul``/``div``, sign extensions and ``cpuid`` change registers implicitly. ``rep`` adds
+    ``rcx`` (the count) to a string instruction.
+    """
+    mnem = mnem.lower()
+    if mnem in _STRING_OPS:
+        return _STRING_OPS[mnem] + (("rcx",) if rep else ())
+    if mnem == "imul":
+        return ("rax", "rdx") if n_ops == 1 else ()
+    return _IMPLICIT.get(mnem, ())
+
+
+def call_arg_bytes(callee_rets, after: dict | None) -> int | None:
+    """Stack argument bytes of a PC call, or None when not provable.
+
+    ``callee_rets``: the immediates of the callee's ``ret`` instructions (a plain ``retn`` counts 0),
+    or None when the callee is unknown (indirect, not a function). ``after``: the instruction after
+    the call. A callee that pops its arguments (``ret N``, one N) gives N; otherwise an ``add esp, N``
+    right after the call (caller cleanup) gives N; a known callee with plain ``retn`` and no cleanup
+    gives 0. Mixed ``ret`` immediates prove nothing.
+    """
+    rets = None if callee_rets is None else set(callee_rets)
+    if rets is not None and len(rets) > 1:
+        return None
+    if rets and next(iter(rets)) > 0:
+        return next(iter(rets))
+    if after is not None and after.get("mnem") == "add":
+        ops = after.get("ops", [])
+        if len(ops) == 2 and ops[0].get("type") == "reg" and ops[0].get("reg") == "rsp" \
+                and ops[1].get("type") == "imm":
+            return ops[1]["value"] & 0xFFFFFFFF
+    if rets is not None:
+        return 0
+    return None
+
+
+def _esp_mem(op: dict) -> bool:
+    return op.get("type") in ("phrase", "displ") and op.get("reg") == "rsp"
+
+
+def pc_const_args(window: list[dict], arg_bytes: int | None) -> dict:
+    """Constant arguments of a PC (32-bit) call from the instructions before it.
+
+    ``window``: the instructions after the previous call (or the block start) up to the call, as in
+    :func:`pc_call_arguments`, with ``writes_ecx`` covering implicit writes and operand ``size``.
+    Stack cells are tracked relative to the window start: ``push`` and ``sub esp`` move the depth,
+    ``pop`` and ``add esp`` move it back and drop popped cells, ``mov [esp+N], imm`` sets a cell, any
+    other write to an ``[esp+N]`` operand makes it unknown, and an unmodelled ``esp`` change drops the
+    whole picture. A cell is an argument only when it lies in the call's first ``arg_bytes`` bytes
+    (:func:`call_arg_bytes`); ``arg_bytes`` None records no stack argument.
+
+    ``ecx``: the last write to ecx in the window when it is ``mov ecx, imm`` / ``xor ecx, ecx``
+    (``imm``), ``lea ecx, [abs]`` (``addr``) or ``mov ecx, [abs]`` (``load``); any later write to ecx,
+    implicit ones included, leaves nothing. Returns ``{"stack": [[slot, value], ...], "ecx": dict|None}``.
+    """
+    cells: dict[int, int | None] = {}
+    depth = 0
+    opaque = False
+    for ins in window:
+        mnem, ops = ins["mnem"], ins.get("ops", [])
+        if mnem in _ESP_OPAQUE:
+            opaque = True
+            break
+        if mnem == "push":
+            depth += 4
+            op = ops[0] if ops else {}
+            cells[depth] = op["value"] & 0xFFFFFFFF if op.get("type") == "imm" else None
+            continue
+        if mnem == "pop":
+            depth -= 4
+            cells = {k: v for k, v in cells.items() if k <= depth}
+            continue
+        if len(ops) == 2 and ops[0].get("type") == "reg" and ops[0].get("reg") == "rsp":
+            if mnem in ("sub", "add") and ops[1].get("type") == "imm":
+                depth += ops[1]["value"] if mnem == "sub" else -ops[1]["value"]
+                cells = {k: v for k, v in cells.items() if k <= depth}
+                continue
+            if mnem not in _NON_WRITING:
+                opaque = True
+                break
+        if ops and _esp_mem(ops[0]) and mnem not in _NON_WRITING:
+            key = depth - ops[0].get("addr", 0)
+            size = ops[0].get("size") or 4
+            const = mnem == "mov" and len(ops) == 2 and ops[1].get("type") == "imm" and size == 4
+            for k in range(key - size + 4, key + 1, 4) if size >= 4 else [key]:
+                cells[k] = None
+            if const and key % 4 == 0:
+                cells[key] = ops[1]["value"] & 0xFFFFFFFF
+    stack = []
+    if not opaque and arg_bytes:
+        for key, value in cells.items():
+            off = depth - key
+            if value is not None and 0 <= off < arg_bytes and off % 4 == 0:
+                stack.append([off // 4, value])
+    return {"stack": sorted(stack), "ecx": _ecx_const(window)}
+
+
+def _ecx_const(window: list[dict]) -> dict | None:
+    last = None
+    for ins in window:
+        if ins.get("writes_ecx"):
+            last = ins
+    if last is None:
+        return None
+    mnem, ops = last["mnem"], last.get("ops", [])
+    if len(ops) != 2 or ops[0].get("type") != "reg" or ops[0].get("reg") != "rcx" or ops[0].get("size", 4) != 4:
+        return None
+    src = ops[1]
+    if mnem == "mov" and src.get("type") == "imm":
+        return {"kind": "imm", "value": src["value"] & 0xFFFFFFFF}
+    if mnem in ("xor", "sub") and src.get("type") == "reg" and src.get("reg") == "rcx":
+        return {"kind": "imm", "value": 0}
+    if mnem == "lea" and src.get("type") == "mem":
+        return {"kind": "addr", "value": src["addr"]}
+    if mnem == "mov" and src.get("type") == "mem":
+        return {"kind": "load", "addr": src["addr"]}
+    return None
+
+
+PS4_INT_ARG_REGS = ("rdi", "rsi", "rdx", "rcx", "r8", "r9")
+
+
+def ps4_const_args(window: list[dict]) -> dict[str, int]:
+    """Immediates in the SysV integer argument registers at a PS4 call.
+
+    ``window``: the same-block instructions since the previous call, each with ``writes`` (explicit
+    and implicit, any width) and ``ops`` with ``size``. A register counts only when its last write is
+    ``mov r32/r64, imm`` (a 32-bit write zero-extends) or ``xor r32/r64, same`` (0); a later write of
+    any width, or an 8/16-bit write, leaves nothing.
+    """
+    last: dict[str, dict] = {}
+    for ins in window:
+        for reg in ins.get("writes", ()):
+            reg = canon_reg(reg)
+            if reg in PS4_INT_ARG_REGS:
+                last[reg] = ins
+    out = {}
+    for reg, ins in last.items():
+        ops = ins.get("ops", [])
+        if len(ops) != 2 or ops[0].get("type") != "reg" or ops[0].get("reg") != reg:
+            continue
+        size = ops[0].get("size")
+        if size not in (4, 8):
+            continue
+        mask = (1 << (8 * size)) - 1
+        if ins["mnem"] == "mov" and ops[1].get("type") == "imm":
+            out[reg] = ops[1]["value"] & mask
+        elif ins["mnem"] == "xor" and ops[1].get("type") == "reg" and ops[1].get("reg") == reg:
+            out[reg] = 0
+    return {r: out[r] for r in PS4_INT_ARG_REGS if r in out}
+
+
+CODEC_WIDTHS = (1, 2, 4, 8)
+CODEC_MAX_INSNS = 64
+PC_CURSOR_DISP = {"read": 0x0C, "write": 0x10}  # CPacket m_pReader / m_pWriter (T005b § 2.1)
+_STACK_REGS = ("rsp", "rbp")
+
+
+def _mem_nonstack(op: dict) -> bool:
+    return op.get("type") in ("phrase", "displ") and op.get("reg") not in _STACK_REGS
+
+
+def classify_codec(insns: list[dict], cursor_disp: dict | None = None, ret_width: bool = False) -> dict | None:
+    """The fixed-width packet codec shape of a function body (T005b § 2.1/2.2), or None.
+
+    ``insns``: the body in address order, ``{"mnem", "ops": [{"type", "reg", "addr", "value", "size"}]}``.
+    Width comes from the instructions only: exactly one cursor advance (``add [base+d], N`` or
+    ``inc [base+d]`` = 1, N in 1/2/4/8, base not esp/ebp), and a bounds check with the same N, which
+    also gives the direction: ``lea r, [x+N]`` (read: cursor + N against the limit) or ``cmp r, N``
+    (write: room left against N), never both. ``cursor_disp`` (PC: :data:`PC_CURSOR_DISP`) requires
+    the advanced field to be the direction's cursor. With ``ret_width`` (PC) every ``mov eax, imm`` of
+    a codec width must equal N. The load width and the byte swap are recorded as evidence.
+    """
+    if not insns or len(insns) > CODEC_MAX_INSNS:
+        return None
+    advances, lea_n, cmp_n, rets, loads = [], set(), set(), set(), set()
+    swap = None
+    calls = 0
+    for ins in insns:
+        mnem, ops = ins["mnem"], ins.get("ops", [])
+        if mnem == "call":
+            calls += 1
+        if mnem == "add" and len(ops) == 2 and _mem_nonstack(ops[0]) and ops[1].get("type") == "imm":
+            advances.append((ops[0].get("addr", 0), ops[1]["value"]))
+        elif mnem == "inc" and len(ops) == 1 and _mem_nonstack(ops[0]):
+            advances.append((ops[0].get("addr", 0), 1))
+        elif mnem == "lea" and len(ops) == 2 and ops[1].get("type") == "displ" \
+                and ops[1].get("reg") not in _STACK_REGS and ops[1].get("addr") in CODEC_WIDTHS:
+            lea_n.add(ops[1]["addr"])
+        elif mnem == "cmp" and len(ops) == 2 and ops[0].get("type") == "reg" and ops[1].get("type") == "imm" \
+                and ops[1]["value"] in CODEC_WIDTHS:
+            cmp_n.add(ops[1]["value"])
+        elif mnem == "mov" and len(ops) == 2 and ops[0].get("type") == "reg" and ops[0].get("reg") == "rax" \
+                and ops[1].get("type") == "imm":
+            rets.add(ops[1]["value"])
+        if mnem in ("movzx", "movsx", "movbe") and len(ops) == 2 and _mem_nonstack(ops[1]):
+            loads.add(ops[1].get("size"))
+        if mnem == "bswap":
+            swap = "bswap"
+        elif mnem == "movbe":
+            swap = swap or "movbe"
+        elif mnem in ("rol", "ror") and len(ops) == 2 and ops[1].get("value") == 8:
+            swap = swap or "rotate"
+        elif mnem in ("shl", "shr") and len(ops) == 2 and ops[1].get("value") in (8, 0x18):
+            swap = swap or "shift"
+    if len(advances) != 1:
+        return None
+    disp, n = advances[0]
+    if n not in CODEC_WIDTHS:
+        return None
+    if n in lea_n and n in cmp_n:
+        return None
+    if n in lea_n:
+        direction = "read"
+    elif n in cmp_n:
+        direction = "write"
+    else:
+        return None
+    if cursor_disp is not None and cursor_disp.get(direction) != disp:
+        return None
+    width_rets = rets & set(CODEC_WIDTHS)
+    if ret_width and (not width_rets or width_rets != {n}):
+        return None
+    evidence = {"advance": n, "bounds": n, "cursor_disp": disp, "ret": n if n in rets else None,
+                "load": max((s for s in loads if s), default=None), "swap": swap or ("call" if calls else None)}
+    return {"dir": direction, "width": n, "evidence": evidence}
+
+
+def extern_reason(target: int, func_start, dumped, import_name, segment_class: str | None) -> str | None:
+    """Why a call target needs an ``extern`` record, or None when the dump already describes it.
+
+    ``func_start``: start of the function containing ``target`` (None outside any); ``dumped``: VAs
+    with a function record; ``import_name``: the import/PLT name or None; ``segment_class``: IDA's
+    segment class (``XTRN`` for the extern segment).
+    """
+    if import_name is not None:
+        return "import"
+    if segment_class == "XTRN":
+        return "extern_segment"
+    if target in dumped:
+        return None
+    if func_start is None:
+        return "not_function"
+    if func_start != target:
+        return "inside_function"
+    return "out_of_scope"
+
+
 def reads_before_write(entry, succs, effects) -> bool:
     """True when some path from ``entry`` reads the register before writing it.
 
@@ -339,6 +611,8 @@ class _Db:
         self.optype = {ua.o_reg: "reg", ua.o_mem: "mem", ua.o_phrase: "phrase", ua.o_displ: "displ",
                        ua.o_imm: "imm", ua.o_near: "near", ua.o_far: "far"}
         self._strings: dict[int, str | None] = {}
+        self._rets: dict[int, list[int] | None] = {}
+        self._imports: dict[int, dict] | None = None
 
     # identity
     def header(self, params: dict) -> dict:
@@ -371,7 +645,7 @@ class _Db:
             if op.type == self.m["ida_ua"].o_void:
                 break
             kind = self.optype.get(op.type, f"t{op.type}")
-            d = {"type": kind}
+            d = {"type": kind, "size": self.m["ida_ua"].get_dtype_size(op.dtype)}
             if kind == "reg":
                 d["reg"] = self.reg_name(op.reg, op.dtype)
             elif kind in ("phrase", "displ"):
@@ -398,6 +672,62 @@ class _Db:
             if op["type"] == "reg" and feat & chg[i]:
                 regs.append(op["reg"])
         return regs
+
+    def all_writes(self, ins, ops) -> list[str]:
+        """:meth:`writes` plus the implicit writes of :func:`implicit_writes` (canonical names)."""
+        mnem = self.mnem(ins)
+        rep = mnem in _STRING_OPS and "rep" in (self.m["idc"].GetDisasm(ins.ea) or "").lower()
+        return self.writes(ins, ops) + list(implicit_writes(mnem, len(ops), rep))
+
+    def ret_values(self, va) -> list[int] | None:
+        """Immediates of the ``ret`` instructions of the function starting at ``va`` (plain = 0)."""
+        if va in self._rets:
+            return self._rets[va]
+        f = self.func(va)
+        out = None
+        if f is not None and f.start_ea == va:
+            out = []
+            for ea in self.items(f):
+                ins = self.insn(ea)
+                if ins is not None and self.mnem(ins) in ("retn", "ret"):
+                    ops = self.ops(ins)
+                    out.append(ops[0]["value"] if ops and ops[0]["type"] == "imm" else 0)
+        self._rets[va] = out
+        return out
+
+    def imports(self) -> dict[int, dict]:
+        """Import address (IAT slot / extern entry) -> ``{"module", "name"}`` (``ida_nalt``)."""
+        if self._imports is None:
+            nalt = self.m["ida_nalt"]
+            out: dict[int, dict] = {}
+            for i in range(nalt.get_import_module_qty()):
+                module = nalt.get_import_module_name(i)
+
+                def cb(ea, name, ordinal, module=module):
+                    out[ea] = {"module": module, "name": name or (f"#{ordinal}" if ordinal else None)}
+                    return True
+
+                nalt.enum_import_names(i, cb)
+            self._imports = out
+        return self._imports
+
+    def import_of(self, ea) -> dict | None:
+        """The import a call target resolves to: the address itself, or a PLT stub ``jmp [slot]``."""
+        imp = self.imports()
+        if ea in imp:
+            return imp[ea]
+        ins = self.insn(ea)
+        if ins is not None and self.mnem(ins) == "jmp":
+            ops = self.ops(ins)
+            if ops and ops[0]["type"] == "mem" and ops[0]["addr"] in imp:
+                return imp[ops[0]["addr"]]
+        return None
+
+    def segment(self, ea) -> tuple[str | None, str | None]:
+        seg = self.m["ida_segment"].getseg(ea)
+        if seg is None:
+            return None, None
+        return self.m["ida_segment"].get_segm_name(seg), self.m["ida_segment"].get_segm_class(seg)
 
     def reads_reg(self, ins, ops, reg: str) -> bool:
         idp = self.m["ida_idp"]
@@ -483,6 +813,7 @@ def _ida_function(db: _Db, va: int, depth: int, roots_reason: dict) -> dict | No
     }
     calls, strings, data, consts, rets = [], [], [], [], []
     window: list[dict] = []
+    body: list[dict] = []
     seen_data = set()
     for ea in items:
         ins = db.insn(ea)
@@ -492,6 +823,7 @@ def _ida_function(db: _Db, va: int, depth: int, roots_reason: dict) -> dict | No
             window = []
         mnem = db.mnem(ins)
         ops = db.ops(ins)
+        body.append({"mnem": "call" if db.m["ida_idp"].is_call_insn(ins) else mnem, "ops": ops})
         is_call = m["ida_idp"].is_call_insn(ins)
         is_jmp = mnem == "jmp"
         if is_call or (is_jmp and ops and ops[0]["type"] == "near"):
@@ -507,10 +839,17 @@ def _ida_function(db: _Db, va: int, depth: int, roots_reason: dict) -> dict | No
                     site["tail"] = True
                 if target is None and ops and ops[0]["type"] == "mem":
                     site["via_mem"] = ops[0]["addr"]
+                win = window[-ARG_WINDOW:]
                 if db.side == "pc":
-                    site.update(pc_call_arguments(window[-ARG_WINDOW:]))
+                    site.update(pc_call_arguments(win))
+                    if not is_tail:
+                        _pc_site_constants(db, site, win, ea + ins.size, target)
                 else:
-                    site["arg_regs"] = ps4_call_arguments(window[-ARG_WINDOW:])
+                    site["arg_regs"] = ps4_call_arguments(win)
+                    if not is_tail:
+                        consts_regs = ps4_const_args(win)
+                        if consts_regs:
+                            site["const_regs"] = consts_regs
                 calls.append(site)
                 window = []
                 continue
@@ -533,12 +872,13 @@ def _ida_function(db: _Db, va: int, depth: int, roots_reason: dict) -> dict | No
                 data.append(t)
         entry = {"mnem": mnem, "ops": ops}
         if db.side == "pc":
-            entry["writes_ecx"] = "rcx" in db.writes(ins, ops)
+            entry["writes_ecx"] = "rcx" in db.all_writes(ins, ops)
         else:
-            entry["writes"] = db.writes(ins, ops)
+            entry["writes"] = db.all_writes(ins, ops)
         window.append(entry)
     rec.update({"calls": calls, "strings": strings, "data_refs": sorted(data),
                 "constants": sorted(set(consts)), "ret_imm": sorted(set(rets))})
+    rec["codec"] = classify_codec(body, PC_CURSOR_DISP if db.side == "pc" else None, db.side == "pc")
     callers = sorted({x.frm for x in m["idautils"].XrefsTo(va) if x.iscode})
     caller_funcs = sorted({s for s in (db.func_start(c) for c in callers) if s is not None})
     rec["caller_sites"] = len(callers)
@@ -548,6 +888,49 @@ def _ida_function(db: _Db, va: int, depth: int, roots_reason: dict) -> dict | No
         rec["ecx_read_before_write"] = _ida_ecx_rbw(db, f)
         rec["annotations"] = _ida_annotations(db, f, items)
     return rec
+
+
+def _pc_site_constants(db: _Db, site: dict, window: list[dict], after_ea: int, target) -> None:
+    """``arg_bytes``, ``const_stack`` and ``const_ecx`` of one PC call site (:func:`pc_const_args`)."""
+    after = None
+    nxt = db.insn(after_ea) if db.func_start(after_ea) == db.func_start(site["site"]) else None
+    if nxt is not None:
+        after = {"mnem": db.mnem(nxt), "ops": db.ops(nxt)}
+    rets = db.ret_values(target) if target is not None else None
+    arg_bytes = call_arg_bytes(rets, after)
+    site["arg_bytes"] = arg_bytes
+    consts = pc_const_args(window, arg_bytes)
+    if consts["stack"]:
+        site["const_stack"] = consts["stack"]
+    if consts["ecx"] is not None:
+        site["const_ecx"] = consts["ecx"]
+
+
+def _ida_externs(db: _Db, targets: dict[int, int], via_mem: dict[int, int], dumped: set[int]) -> list[dict]:
+    """One ``extern`` record per call target the dump does not describe (:func:`extern_reason`).
+
+    ``targets``: direct call target -> call sites; ``via_mem``: ``call [slot]`` slot -> call sites
+    (only import slots are recorded).
+    """
+    out = []
+    for va in sorted(targets):
+        imp = db.import_of(va)
+        seg, cls = db.segment(va)
+        reason = extern_reason(va, db.func_start(va), dumped, imp, cls)
+        if reason is None:
+            continue
+        out.append({"kind": "extern", "va": va, "via": "call", "reason": reason, "name": db.name(va) or None,
+                    "import": imp, "segment": seg, "segment_class": cls, "function_start": db.func_start(va),
+                    "sites": targets[va]})
+    for va in sorted(via_mem):
+        imp = db.imports().get(va)
+        if imp is None:
+            continue
+        seg, cls = db.segment(va)
+        out.append({"kind": "extern", "va": va, "via": "mem", "reason": "import", "name": db.name(va) or None,
+                    "import": imp, "segment": seg, "segment_class": cls, "function_start": None,
+                    "sites": via_mem[va]})
+    return out
 
 
 def _ida_ecx_rbw(db: _Db, f) -> bool:
@@ -711,6 +1094,26 @@ def _ida_callees(db: _Db, va: int) -> list[int]:
     return sorted(out)
 
 
+def pc_roots(db: _Db, write_entry: int = PC_WRITE_ENTRY):
+    """PC roots: table callbacks, ``OnPacket_`` string users, callers of the packet write entry.
+
+    Returns ``(table, initializers, reason, onpacket_functions, orphan_refs, senders)``; ``reason``
+    maps each root VA to the first reason found. ``repair_functions.py`` uses the same roots.
+    """
+    reason: dict[int, str] = {}
+    table, inits = _ida_pc_table(db)
+    for va in sorted({r["callback"] for r in table if r["callback"]}):
+        reason.setdefault(va, "table")
+    onp, orphans = _ida_onpacket_functions(db)
+    for va in sorted(onp):
+        reason.setdefault(va, "onpacket_string")
+    senders = {db.func_start(x.frm) for x in db.m["idautils"].XrefsTo(write_entry) if x.iscode}
+    senders.discard(None)
+    for va in sorted(senders):
+        reason.setdefault(va, "write_entry_caller")
+    return table, inits, reason, onp, orphans, senders
+
+
 def main(out_path: str, side: str, depth: int = DEFAULT_DEPTH, extra_roots=(), patterns=None,
          write_entry: int = PC_WRITE_ENTRY) -> dict:
     if side not in ("pc", "ps4"):
@@ -721,17 +1124,8 @@ def main(out_path: str, side: str, depth: int = DEFAULT_DEPTH, extra_roots=(), p
     reason: dict[int, str] = {}
     summary = {"kind": "summary"}
     if side == "pc":
-        table, inits = _ida_pc_table(db)
+        table, inits, reason, onp, orphans, senders = pc_roots(db, write_entry)
         cbs = {r["callback"] for r in table if r["callback"]}
-        for va in cbs:
-            reason.setdefault(va, "table")
-        onp, orphans = _ida_onpacket_functions(db)
-        for va in onp:
-            reason.setdefault(va, "onpacket_string")
-        senders = {db.func_start(x.frm) for x in db.m["idautils"].XrefsTo(write_entry) if x.iscode}
-        senders.discard(None)
-        for va in senders:
-            reason.setdefault(va, "write_entry_caller")
         params.update({"group_table": PC_GROUP_TABLE, "groups": PC_GROUP_COUNT,
                        "write_entry": write_entry, "initializer_range": list(PC_INITIALIZER_RANGE)})
         counts = {"table_records": len(table), "table_callbacks": len(cbs), "initializers": len(inits)}
@@ -762,15 +1156,31 @@ def main(out_path: str, side: str, depth: int = DEFAULT_DEPTH, extra_roots=(), p
     def records():
         yield from table
         yield from missing
-        n = n0 = 0
+        n = n0 = ncodec = 0
+        targets: dict[int, int] = {}
+        via_mem: dict[int, int] = {}
+        dumped: set[int] = set()
         for va in sorted(dist):
             rec = _ida_function(db, va, dist[va], reason)
             if rec is not None:
                 n += 1
                 n0 += dist[va] == 0
+                dumped.add(va)
+                ncodec += rec["codec"] is not None
+                for c in rec["calls"]:
+                    if isinstance(c["target"], int):
+                        targets[c["target"]] = targets.get(c["target"], 0) + 1
+                    elif "via_mem" in c:
+                        via_mem[c["via_mem"]] = via_mem.get(c["via_mem"], 0) + 1
                 yield rec
+        externs = _ida_externs(db, targets, via_mem, dumped)
+        yield from externs
         summary["functions"] = n
         summary["depth0_functions"] = n0
+        summary["externs"] = len(externs)
+        summary["externs_by_reason"] = {r: sum(1 for e in externs if e["reason"] == r)
+                                        for r in sorted({e["reason"] for e in externs})}
+        summary["codec_functions"] = ncodec
         yield summary
 
     write_jsonl(out_path, db.header(params), records())

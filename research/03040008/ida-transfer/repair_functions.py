@@ -15,6 +15,12 @@ A dry run (no ``--apply``) changes nothing. Inside IDA for a dry run only, one c
 Optional global ``EXTRACT_IDA`` / ``--extract-ida``: path of ``extract_ida.py`` (the handler table is
 read with its ``_ida_pc_table``; default: beside this file, else the repository path below).
 
+v3 (T005c): after the table callbacks, the roots are the direct call targets (``call rel32``) of the
+functions in ``extract_ida``'s scope (recomputed after the table phase) that are not function starts,
+then the call targets of each root repaired (or, in a dry run, that would be repaired), up to
+:data:`CALL_DEPTH` levels (:func:`repair_call_targets`); roots left beyond it are ``pending`` lines.
+They go through the same checks, undo records and refusals as a callback.
+
 For each proved table callback (computed from the table) that is not a function start:
 
 1. decode linearly from the callback to the ``ret``/``jmp`` that ends the body (no pending
@@ -52,7 +58,8 @@ from __future__ import annotations
 import json
 import os
 
-SCRIPT_VERSION = "2"
+SCRIPT_VERSION = "3"
+CALL_DEPTH = 3  # levels of call-target roots: 1 = called from the scope, 2-3 = from repaired callees
 DEFAULT_EXTRACT_IDA = "D:/ddon-data/research/03040008/ida-transfer/extract_ida.py"
 MAX_INSNS = 4000
 MAX_SPAN = 0x4000  # a branch target farther than this from the callback leaves the body
@@ -257,6 +264,68 @@ def summarize(results) -> dict:
             "by_check": by_check}
 
 
+def is_call_rel32(ins: dict) -> bool:
+    """A direct ``call rel32`` (opcode ``E8``, no prefix) as decoded by ``_Ida.decode``."""
+    return (ins.get("kind") == "call" and ins.get("target") is not None
+            and (ins.get("bytes") or "").lower().startswith("e8"))
+
+
+def call_target_roots(insns, is_func_start, done=()) -> dict[int, list[int]]:
+    """Call-target roots: target -> sorted call sites of the ``call rel32`` in ``insns`` whose target
+    is not a function start and not already handled (``done``)."""
+    out: dict[int, list[int]] = {}
+    for ins in insns:
+        if is_call_rel32(ins) and ins["target"] not in done and not is_func_start(ins["target"]):
+            out.setdefault(ins["target"], []).append(ins["ea"])
+    return {t: sorted(s) for t, s in out.items()}
+
+
+def repair_call_targets(ida, first: dict[int, list[int]], callbacks, apply: bool, out,
+                        max_level: int = CALL_DEPTH) -> tuple[list[dict], dict[int, list[int]]]:
+    """Assess (and with ``apply`` repair) call-target roots level by level.
+
+    Level 1 is ``first`` (targets called from the functions in scope); the ``call rel32`` targets in
+    the decoded body of every root that is repaired (or would be, in a dry run) and that are not
+    function starts form the next level, up to ``max_level``, until no new root appears. Each root is
+    handled once, with the same checks, undo records and refusals as a table callback
+    (:func:`_assess`, :func:`_apply`). Returns the ``result`` records and the roots left beyond
+    ``max_level`` (target -> call sites).
+    """
+    def is_start(ea):
+        b = ida.func_bounds(ea)
+        return b is not None and b[0] == ea
+
+    done = set(callbacks)
+    results: list[dict] = []
+    roots = {t: s for t, s in first.items() if t not in done}
+    level = 1
+    while roots and level <= max_level:
+        nxt: dict[int, list[int]] = {}
+        for target in sorted(roots):
+            done.add(target)
+            plan, ctx = _assess(ida, target, callbacks)
+            if ctx is not None and apply:
+                plan = _apply(ida, plan, ctx, out)
+            res = {"kind": "result", "root": "call_target", "level": level, "call_sites": roots[target], **plan}
+            results.append(res)
+            out.write(_dumps(res) + "\n")
+            out.flush()
+            if ctx is not None and res["status"] in ("would-repair", "repaired"):
+                for t, sites in call_target_roots(ctx["walk"]["insns"], is_start, done).items():
+                    nxt.setdefault(t, []).extend(sites)
+        roots = {t: sorted(s) for t, s in nxt.items() if t not in done}
+        level += 1
+    return results, roots
+
+
+def call_target_summary(calls, scope_functions: int, pending: int) -> dict:
+    """Counts of the call-target phase: by status, failed check and level."""
+    s = summarize(calls)
+    return {"roots": s["callbacks"], "by_status": s["by_status"], "by_check": s["by_check"],
+            "by_level": {str(lv): sum(1 for r in calls if r["level"] == lv) for lv in range(1, CALL_DEPTH + 1)},
+            "scope_functions": scope_functions, "pending_beyond_depth": pending}
+
+
 def parse_batch_args(argv) -> dict:
     """``idc.ARGV`` of a batch run (``argv[0]`` is the script) to ``main`` keyword arguments."""
     import argparse
@@ -352,6 +421,10 @@ class _Ida:
         targets = sorted({int(t) for t in cases.targets})
         return {"targets": targets, "table": int(si.jumps),
                 "table_size": int(si.get_jtable_size()) * int(si.get_jtable_element_size())}
+
+    def func_insns(self, start) -> list[dict]:
+        """Decoded instructions of the function starting at ``start`` (all chunks)."""
+        return [d for d in (self.decode(ea) for ea in self.utils.FuncItems(start)) if d is not None]
 
     def items(self, lo, hi) -> list[dict]:
         out = []
@@ -467,13 +540,14 @@ def _apply(ida, plan: dict, ctx: dict, out) -> dict:
 def main(out_path: str, apply: bool = False, extract_path: str | None = None) -> dict:
     ex = _load_extractor(extract_path or DEFAULT_EXTRACT_IDA)
     db = ex._Db("pc")
-    table, inits = ex._ida_pc_table(db)
+    table, inits, _reason, *_ = ex.pc_roots(db)
     callbacks = sorted({r["callback"] for r in table if r["callback"]})
     counts = {"table_records": len(table), "table_callbacks": len(callbacks), "initializers": len(inits)}
     if counts != ex.PC_EXPECTED or any(not r["proved"] for r in table):
         raise ValueError(f"handler table not as audited: {counts}, refusing to repair")
     header = db.header({"apply": bool(apply), "max_insns": MAX_INSNS, "max_span": MAX_SPAN,
-                        "neighbourhood": NEIGHBOURHOOD, **counts})
+                        "neighbourhood": NEIGHBOURHOOD, "call_depth": CALL_DEPTH,
+                        "scope_depth": ex.DEFAULT_DEPTH, **counts})
     header.update({"script": "repair_functions", "script_version": SCRIPT_VERSION,
                    "extract_ida_version": ex.SCRIPT_VERSION})
     ida = _Ida()
@@ -486,12 +560,29 @@ def main(out_path: str, apply: bool = False, extract_path: str | None = None) ->
             plan, ctx = _assess(ida, cb, cbset)
             if ctx is not None and apply:
                 plan = _apply(ida, plan, ctx, out)
-            res = {"kind": "result", **plan}
+            res = {"kind": "result", "root": "table", **plan}
             results.append(res)
             out.write(_dumps(res) + "\n")
             out.flush()
+        # call-target roots; the scope is recomputed after the table repairs (as extract_ida sees it)
+        _t, _i, reason, *_ = ex.pc_roots(db)
+        dist, _missing = ex.plan_scope(reason, db.func_start, lambda va: ex._ida_callees(db, va),
+                                       ex.DEFAULT_DEPTH)
+
+        def is_start(ea):
+            b = ida.func_bounds(ea)
+            return b is not None and b[0] == ea
+
+        first: dict[int, list[int]] = {}
+        for va in sorted(dist):
+            for t, sites in call_target_roots(ida.func_insns(va), is_start, cbset).items():
+                first.setdefault(t, []).extend(sites)
+        calls, pending = repair_call_targets(ida, {t: sorted(s) for t, s in first.items()}, cbset, apply, out)
+        for t in sorted(pending):
+            out.write(_dumps({"kind": "pending", "va": t, "level": CALL_DEPTH + 1, "call_sites": pending[t]}) + "\n")
         summary = summarize(results)
         summary["apply"] = bool(apply)
+        summary["call_targets"] = call_target_summary(calls, len(dist), len(pending))
         out.write(_dumps(summary) + "\n")
     os.replace(tmp, out_path)
     return summary
