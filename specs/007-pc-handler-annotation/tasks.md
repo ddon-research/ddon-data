@@ -15,6 +15,10 @@ Coordinator: main session. One subagent at a time. Method and rules: `spec.md`.
   Scripts done (15322cb3d0: `research/03040008/ida-transfer/` uv project, `extract_ida.py` + `extract_dwarf.py`
   (pyelftools + capstone; reconstructor output covers only resource code), 59 tests; PS4 DWARF dump 3,540
   functions / 7,609 params / 6,632 locals / 8,652 types in 341 s, 34 scope functions in no CU). T004b runs them.
+  T004b done (`research/T004b-extract-run.md`: PC 5,631 functions, `table_ok`; PS4 3,568; DWARF 3,568 / 34
+  without CU; 131 of 1,040 PC callbacks not function starts in the database: 119 no function, 12 inside
+  one, silently dropped). T004c: the extractor lists missing roots; `repair_functions.py` (dry run by
+  default, checked, undo log). T004d: persistent work copy `ddon-data-007work`, repair, re-extract PC.
 - [ ] T005 Matcher with gates and tests, the precision check on withheld seeds, the manifest (`implementer`).
 - [ ] T006 Types and locals rules over the accepted pairs (`implementer`, evidence from T004 dumps).
 - [ ] T007 Apply script and the applied copy (`implementer` writes it, `evidence-researcher-ida` runs it).
@@ -25,4 +29,7 @@ Order: T003 first (T002 needs a copy of the accepted database), then T002.
 
 ## Running
 
-- T004b (evidence-researcher-ida, brief `briefs/T004b-run-extractors.md`), started 2026-11-03.
+- T004c (implementer, brief `briefs/T004c-function-repair.md`), started 2026-11-03.
+- Decision (coordinator, 2026-11-03): from T004d on, all writes go to one persistent work copy
+  `PC_DDON_03040008/ddon-data-007work/` of the accepted database (repairs first, then T007's apply);
+  it is published as `spec007-packet-handlers-<date>/` at the close.
