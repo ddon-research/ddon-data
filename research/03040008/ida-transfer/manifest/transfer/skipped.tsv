@@ -1,0 +1,515 @@
+# 007 T006 transfer, PC 03040008 <- PS4 02020005; 972 accepted pairs; inputs: pc-ida.jsonl source f1c974d0e529d4bb7dc5f0953d37eea6bbb023f2667f9a1d3a3b878f4919fa20; ps4-dwarf.jsonl source 4236f598acc8f15893181455ed195e39dfa4dbfda4eeda8b56fcbd82312c63c0; ps4-ida.jsonl source 4236f598acc8f15893181455ed195e39dfa4dbfda4eeda8b56fcbd82312c63c0
+rule	item	candidate	action	reason
+names	0x775310	nPacket::Read_CDataQuestProcessState_	equal	already named so (current nPacket::Read_CDataQuestProcessState_)
+names	0x7c4930	cSeedGameSvConnection::OnPacket_BATTLE_CONTENT_CHARACTER_INFO_RES	equal	already named so (current cSeedGameSvConnection::OnPacket_BATTLE_CONTENT_CHARACTER_INFO_RES)
+names	0x7c4c50	cSeedGameSvConnection::OnPacket_BATTLE_CONTENT_CONTENT_ENTRY_RES	equal	already named so (current cSeedGameSvConnection::OnPacket_BATTLE_CONTENT_CONTENT_ENTRY_RES)
+names	0x7c4d30	cSeedGameSvConnection::OnPacket_BATTLE_CONTENT_CONTENT_FIRST_FHASE_CHANGE_RES	equal	already named so (current cSeedGameSvConnection::OnPacket_BATTLE_CONTENT_CONTENT_FIRST_FHASE_CHANGE_RES)
+names	0x7c4e80	cSeedGameSvConnection::OnPacket_BATTLE_CONTENT_CONTENT_RESET_RES	equal	already named so (current cSeedGameSvConnection::OnPacket_BATTLE_CONTENT_CONTENT_RESET_RES)
+names	0x7c4f30	cSeedGameSvConnection::OnPacket_BATTLE_CONTENT_GET_CONTENT_STATUS_FROM_OM_RES	equal	already named so (current cSeedGameSvConnection::OnPacket_BATTLE_CONTENT_GET_CONTENT_STATUS_FROM_OM_RES)
+names	0x7c4fe0	cSeedGameSvConnection::OnPacket_BATTLE_CONTENT_GET_PHASE_TO_CHANGE_FROM_OM_RES	equal	already named so (current cSeedGameSvConnection::OnPacket_BATTLE_CONTENT_GET_PHASE_TO_CHANGE_FROM_OM_RES)
+names	0x7c5190	cSeedGameSvConnection::OnPacket_BATTLE_CONTENT_GET_REWARD_RES	equal	already named so (current cSeedGameSvConnection::OnPacket_BATTLE_CONTENT_GET_REWARD_RES)
+names	0x7c5220	cSeedGameSvConnection::OnPacket_BATTLE_CONTENT_INFO_LIST_RES	equal	already named so (current cSeedGameSvConnection::OnPacket_BATTLE_CONTENT_INFO_LIST_RES)
+names	0x7c52e0	cSeedGameSvConnection::OnPacket_BATTLE_CONTENT_INSTANT_CLEAR_INFO_RES	equal	already named so (current cSeedGameSvConnection::OnPacket_BATTLE_CONTENT_INSTANT_CLEAR_INFO_RES)
+names	0x7c53d0	cSeedGameSvConnection::OnPacket_BATTLE_CONTENT_INSTANT_COMPLETE_RES	equal	already named so (current cSeedGameSvConnection::OnPacket_BATTLE_CONTENT_INSTANT_COMPLETE_RES)
+names	0x7c5460	cSeedGameSvConnection::OnPacket_BATTLE_CONTENT_PARTY_MEMBER_INFO_RES	equal	already named so (current cSeedGameSvConnection::OnPacket_BATTLE_CONTENT_PARTY_MEMBER_INFO_RES)
+names	0x7c5620	cSeedGameSvConnection::OnPacket_BATTLE_CONTENT_PARTY_MEMBER_INFO_UPDATE_RES	equal	already named so (current cSeedGameSvConnection::OnPacket_BATTLE_CONTENT_PARTY_MEMBER_INFO_UPDATE_RES)
+names	0x7c5880	cSeedGameSvConnection::OnPacket_BATTLE_CONTENT_PHASE_ENTRY_BEGIN_RECRUITMENT_RES	equal	already named so (current cSeedGameSvConnection::OnPacket_BATTLE_CONTENT_PHASE_ENTRY_BEGIN_RECRUITMENT_RES)
+names	0x7c5a30	cSeedGameSvConnection::OnPacket_BATTLE_CONTENT_PHASE_ENTRY_GET_RECRUITMENT_STATE_RES	equal	already named so (current cSeedGameSvConnection::OnPacket_BATTLE_CONTENT_PHASE_ENTRY_GET_RECRUITMENT_STATE_RES)
+names	0x7c5ae0	cSeedGameSvConnection::OnPacket_BATTLE_CONTENT_PHASE_ENTRY_READY_CANCEL_RES	equal	already named so (current cSeedGameSvConnection::OnPacket_BATTLE_CONTENT_PHASE_ENTRY_READY_CANCEL_RES)
+names	0x7c5df0	cSeedGameSvConnection::OnPacket_BATTLE_CONTENT_RESET_INFO_RES	equal	already named so (current cSeedGameSvConnection::OnPacket_BATTLE_CONTENT_RESET_INFO_RES)
+names	0x7c5ee0	cSeedGameSvConnection::OnPacket_BATTLE_CONTENT_REWARD_LIST_RES	equal	already named so (current cSeedGameSvConnection::OnPacket_BATTLE_CONTENT_REWARD_LIST_RES)
+names	0x7c7500	cSeedGameSvConnection::OnPacket_CHARACTER_CHARACTER_GOLDEN_REVIVE_RES	equal	already named so (current cSeedGameSvConnection::OnPacket_CHARACTER_CHARACTER_GOLDEN_REVIVE_RES)
+names	0x7c75e0	cSeedGameSvConnection::OnPacket_CHARACTER_CHARACTER_PENALTY_REVIVE_RES	equal	already named so (current cSeedGameSvConnection::OnPacket_CHARACTER_CHARACTER_PENALTY_REVIVE_RES)
+names	0x7c76a0	cSeedGameSvConnection::OnPacket_CHARACTER_CHARACTER_POINT_REVIVE_RES	equal	already named so (current cSeedGameSvConnection::OnPacket_CHARACTER_CHARACTER_POINT_REVIVE_RES)
+names	0x7c7a40	cSeedGameSvConnection::OnPacket_CHARACTER_CHARGE_REVIVE_POINT_RES	equal	already named so (current cSeedGameSvConnection::OnPacket_CHARACTER_CHARGE_REVIVE_POINT_RES)
+names	0x7c7af0	cSeedGameSvConnection::OnPacket_CHARACTER_COMMUNITY_CHARACTER_STATUS_GET_RES	equal	already named so (current cSeedGameSvConnection::OnPacket_CHARACTER_COMMUNITY_CHARACTER_STATUS_GET_RES)
+names	0x7c9910	cSeedGameSvConnection::OnPacket_CHARACTER_GET_REVIVE_CHARGEABLE_TIME_RES	equal	already named so (current cSeedGameSvConnection::OnPacket_CHARACTER_GET_REVIVE_CHARGEABLE_TIME_RES)
+names	0x7c99d0	cSeedGameSvConnection::OnPacket_CHARACTER_GET_REVIVE_POINT_RES	equal	already named so (current cSeedGameSvConnection::OnPacket_CHARACTER_GET_REVIVE_POINT_RES)
+names	0x7c9a80	cSeedGameSvConnection::OnPacket_CHARACTER_PAWN_GOLDEN_REVIVE_RES	equal	already named so (current cSeedGameSvConnection::OnPacket_CHARACTER_PAWN_GOLDEN_REVIVE_RES)
+names	0x7c9b70	cSeedGameSvConnection::OnPacket_CHARACTER_PAWN_POINT_REVIVE_RES	equal	already named so (current cSeedGameSvConnection::OnPacket_CHARACTER_PAWN_POINT_REVIVE_RES)
+names	0x7c9cb0	cSeedGameSvConnection::OnPacket_CHARACTER_SET_ONLINE_STATUS_RES	equal	already named so (current cSeedGameSvConnection::OnPacket_CHARACTER_SET_ONLINE_STATUS_RES)
+names	0x7cf480	cSeedGameSvConnection::OnPacket_CONTEXT_GET_PARTY_MYPAWN_CONTEXT_RES	equal	already named so (current cSeedGameSvConnection::OnPacket_CONTEXT_GET_PARTY_MYPAWN_CONTEXT_RES)
+names	0x7cfe50	cSeedGameSvConnection::OnPacket_CONTEXT_MASTER_THROW_RES	equal	already named so (current cSeedGameSvConnection::OnPacket_CONTEXT_MASTER_THROW_RES)
+names	0x7d3880	cSeedGameSvConnection::OnPacket_ENTRY_BOARD_ENTRY_BOARD_ITEM_LIST_RES	equal	already named so (current cSeedGameSvConnection::OnPacket_ENTRY_BOARD_ENTRY_BOARD_ITEM_LIST_RES)
+names	0x7d6dd0	cSeedGameSvConnection::OnPacket_GP_CHANGE_CAP_TO_GP_RES	equal	already named so (current cSeedGameSvConnection::OnPacket_GP_CHANGE_CAP_TO_GP_RES)
+names	0x7d6ef0	cSeedGameSvConnection::OnPacket_GP_COG_GET_ID_RES	equal	already named so (current cSeedGameSvConnection::OnPacket_GP_COG_GET_ID_RES)
+names	0x7d7080	cSeedGameSvConnection::OnPacket_GP_GET_CAP_RES	equal	already named so (current cSeedGameSvConnection::OnPacket_GP_GET_CAP_RES)
+names	0x7d7570	cSeedGameSvConnection::OnPacket_GP_GET_VALID_CHAT_COM_GROUP_RES	equal	already named so (current cSeedGameSvConnection::OnPacket_GP_GET_VALID_CHAT_COM_GROUP_RES)
+names	0x7d8410	cSeedGameSvConnection::OnPacket_GP_GP_EDIT_VOICE_GET_BUY_HISTORY_RES	equal	already named so (current cSeedGameSvConnection::OnPacket_GP_GP_EDIT_VOICE_GET_BUY_HISTORY_RES)
+names	0x7d84e0	cSeedGameSvConnection::OnPacket_GP_GP_SHOP_CAN_BUY_RES	equal	already named so (current cSeedGameSvConnection::OnPacket_GP_GP_SHOP_CAN_BUY_RES)
+names	0x7d8860	cSeedGameSvConnection::OnPacket_GP_GP_SHOP_GET_CAP_CHARGE_URL_RES	equal	already named so (current cSeedGameSvConnection::OnPacket_GP_GP_SHOP_GET_CAP_CHARGE_URL_RES)
+names	0x7d8af0	cSeedGameSvConnection::OnPacket_GP_GP_SHOP_GET_PAWN_LINEUP_RES	equal	already named so (current cSeedGameSvConnection::OnPacket_GP_GP_SHOP_GET_PAWN_LINEUP_RES)
+names	0x7d8be0	cSeedGameSvConnection::OnPacket_GP_UPDATE_APP_COURSE_BONUS_RES	equal	already named so (current cSeedGameSvConnection::OnPacket_GP_UPDATE_APP_COURSE_BONUS_RES)
+names	0x7da410	cSeedGameSvConnection::OnPacket_INN_STAY_INN_RES	conflict	current non-default name "cSeedGameSvConnection::OnPacket_S2C_STAY_INN_RES" (current cSeedGameSvConnection::OnPacket_S2C_STAY_INN_RES)
+names	0x7e1400	cSeedGameSvConnection::OnPacket_JOB_ORB_TREE_RELEASE_JOB_ORB_ELEMENT_RES	equal	already named so (current cSeedGameSvConnection::OnPacket_JOB_ORB_TREE_RELEASE_JOB_ORB_ELEMENT_RES)
+names	0x7e2ce0	cSeedGameSvConnection::OnPacket_LOBBY_LOBBY_JOIN_RES	equal	already named so (current cSeedGameSvConnection::OnPacket_LOBBY_LOBBY_JOIN_RES)
+names	0x7e4dc0	cSeedGameSvConnection::OnPacket_MANDRAGORA_GET_MY_MANDRAGORA_RES	equal	already named so (current cSeedGameSvConnection::OnPacket_MANDRAGORA_GET_MY_MANDRAGORA_RES)
+names	0x7e5630	cSeedGameSvConnection::OnPacket_MANDRAGORA_GET_SPECIES_CATEGORY_LIST_RES	equal	already named so (current cSeedGameSvConnection::OnPacket_MANDRAGORA_GET_SPECIES_CATEGORY_LIST_RES)
+names	0x7e7220	cSeedGameSvConnection::OnPacket_PARTY_PARTY_BREAKUP_RES	equal	already named so (current cSeedGameSvConnection::OnPacket_PARTY_PARTY_BREAKUP_RES)
+names	0x7e7630	cSeedGameSvConnection::OnPacket_PARTY_PARTY_CHANGE_LEADER_RES	equal	already named so (current cSeedGameSvConnection::OnPacket_PARTY_PARTY_CHANGE_LEADER_RES)
+names	0x7e7830	cSeedGameSvConnection::OnPacket_PARTY_PARTY_GET_CONTENT_NUMBER_RES	equal	already named so (current cSeedGameSvConnection::OnPacket_PARTY_PARTY_GET_CONTENT_NUMBER_RES)
+names	0x7e7d50	cSeedGameSvConnection::OnPacket_PARTY_PARTY_INVITE_ENTRY_CANCEL_RES	equal	already named so (current cSeedGameSvConnection::OnPacket_PARTY_PARTY_INVITE_ENTRY_CANCEL_RES)
+names	0x7e7e70	cSeedGameSvConnection::OnPacket_PARTY_PARTY_INVITE_ENTRY_RES	equal	already named so (current cSeedGameSvConnection::OnPacket_PARTY_PARTY_INVITE_ENTRY_RES)
+names	0x7e8b20	cSeedGameSvConnection::OnPacket_PARTY_PARTY_JOIN_RES	equal	already named so (current cSeedGameSvConnection::OnPacket_PARTY_PARTY_JOIN_RES)
+names	0x7e8f30	cSeedGameSvConnection::OnPacket_PARTY_PARTY_LEAVE_RES	equal	already named so (current cSeedGameSvConnection::OnPacket_PARTY_PARTY_LEAVE_RES)
+names	0x7e91e0	cSeedGameSvConnection::OnPacket_PARTY_PARTY_MEMBER_KICK_RES	equal	already named so (current cSeedGameSvConnection::OnPacket_PARTY_PARTY_MEMBER_KICK_RES)
+names	0x7e96c0	cSeedGameSvConnection::OnPacket_PARTY_PARTY_SEARCH_RES	equal	already named so (current cSeedGameSvConnection::OnPacket_PARTY_PARTY_SEARCH_RES)
+names	0x7e99e0	cSeedGameSvConnection::OnPacket_PAWN_DELETE_FAVORITE_PAWN_RES	equal	already named so (current cSeedGameSvConnection::OnPacket_PAWN_DELETE_FAVORITE_PAWN_RES)
+names	0x7e9a70	cSeedGameSvConnection::OnPacket_PAWN_DELETE_MYPAWN_RES	equal	already named so (current cSeedGameSvConnection::OnPacket_PAWN_DELETE_MYPAWN_RES)
+names	0x7ea620	cSeedGameSvConnection::OnPacket_PAWN_GET_FAVORITE_PAWN_LIST_RES	equal	already named so (current cSeedGameSvConnection::OnPacket_PAWN_GET_FAVORITE_PAWN_LIST_RES)
+names	0x7ea770	cSeedGameSvConnection::OnPacket_PAWN_GET_LEGEND_PAWN_LIST_RES	equal	already named so (current cSeedGameSvConnection::OnPacket_PAWN_GET_LEGEND_PAWN_LIST_RES)
+names	0x7ea870	cSeedGameSvConnection::OnPacket_PAWN_GET_LOST_PAWN_LIST_RES	equal	already named so (current cSeedGameSvConnection::OnPacket_PAWN_GET_LOST_PAWN_LIST_RES)
+names	0x7ea9d0	cSeedGameSvConnection::OnPacket_PAWN_GET_MYPAWN_DATA_RES	equal	already named so (current cSeedGameSvConnection::OnPacket_PAWN_GET_MYPAWN_DATA_RES)
+names	0x7eab80	cSeedGameSvConnection::OnPacket_PAWN_GET_MYPAWN_LIST_RES	equal	already named so (current cSeedGameSvConnection::OnPacket_PAWN_GET_MYPAWN_LIST_RES)
+names	0x7eadd0	cSeedGameSvConnection::OnPacket_PAWN_GET_OFFICIAL_PAWN_LIST_RES	equal	already named so (current cSeedGameSvConnection::OnPacket_PAWN_GET_OFFICIAL_PAWN_LIST_RES)
+names	0x7eaed0	cSeedGameSvConnection::OnPacket_PAWN_GET_PARTY_PAWN_DATA_RES	equal	already named so (current cSeedGameSvConnection::OnPacket_PAWN_GET_PARTY_PAWN_DATA_RES)
+names	0x7eb6e0	cSeedGameSvConnection::OnPacket_PAWN_GET_REGISTERED_PAWN_DATA_RES	equal	already named so (current cSeedGameSvConnection::OnPacket_PAWN_GET_REGISTERED_PAWN_DATA_RES)
+names	0x7eb7f0	cSeedGameSvConnection::OnPacket_PAWN_GET_REGISTERED_PAWN_LIST_BY_CHARACTER_RES	equal	already named so (current cSeedGameSvConnection::OnPacket_PAWN_GET_REGISTERED_PAWN_LIST_BY_CHARACTER_RES)
+names	0x7eb8f0	cSeedGameSvConnection::OnPacket_PAWN_GET_REGISTERED_PAWN_LIST_RES	equal	already named so (current cSeedGameSvConnection::OnPacket_PAWN_GET_REGISTERED_PAWN_LIST_RES)
+names	0x7eb9f0	cSeedGameSvConnection::OnPacket_PAWN_GET_RENTED_PAWN_DATA_RES	equal	already named so (current cSeedGameSvConnection::OnPacket_PAWN_GET_RENTED_PAWN_DATA_RES)
+names	0x7ebb00	cSeedGameSvConnection::OnPacket_PAWN_GET_RENTED_PAWN_LIST_RES	equal	already named so (current cSeedGameSvConnection::OnPacket_PAWN_GET_RENTED_PAWN_LIST_RES)
+names	0x7ebd40	cSeedGameSvConnection::OnPacket_PAWN_JOIN_PARTY_MYPAWN_RES	equal	already named so (current cSeedGameSvConnection::OnPacket_PAWN_JOIN_PARTY_MYPAWN_RES)
+names	0x7ebfa0	cSeedGameSvConnection::OnPacket_PAWN_JOIN_PARTY_RENTED_PAWN_RES	equal	already named so (current cSeedGameSvConnection::OnPacket_PAWN_JOIN_PARTY_RENTED_PAWN_RES)
+names	0x7ec030	cSeedGameSvConnection::OnPacket_PAWN_LOST_PAWN_GOLDEN_REVIVE_RES	equal	already named so (current cSeedGameSvConnection::OnPacket_PAWN_LOST_PAWN_GOLDEN_REVIVE_RES)
+names	0x7ec0f0	cSeedGameSvConnection::OnPacket_PAWN_LOST_PAWN_POINT_REVIVE_RES	equal	already named so (current cSeedGameSvConnection::OnPacket_PAWN_LOST_PAWN_POINT_REVIVE_RES)
+names	0x7ec1a0	cSeedGameSvConnection::OnPacket_PAWN_LOST_PAWN_REVIVE_RES	equal	already named so (current cSeedGameSvConnection::OnPacket_PAWN_LOST_PAWN_REVIVE_RES)
+names	0x7ec240	cSeedGameSvConnection::OnPacket_PAWN_LOST_PAWN_WALLET_REVIVE_RES	equal	already named so (current cSeedGameSvConnection::OnPacket_PAWN_LOST_PAWN_WALLET_REVIVE_RES)
+names	0x7ec490	cSeedGameSvConnection::OnPacket_PAWN_PAWN_LOST_RES	equal	already named so (current cSeedGameSvConnection::OnPacket_PAWN_PAWN_LOST_RES)
+names	0x7ec6a0	cSeedGameSvConnection::OnPacket_PAWN_RENT_REGISTERED_PAWN_RES	equal	already named so (current cSeedGameSvConnection::OnPacket_PAWN_RENT_REGISTERED_PAWN_RES)
+names	0x7ec750	cSeedGameSvConnection::OnPacket_PAWN_RETURN_RENTED_PAWN_RES	equal	already named so (current cSeedGameSvConnection::OnPacket_PAWN_RETURN_RENTED_PAWN_RES)
+names	0x7ec7e0	cSeedGameSvConnection::OnPacket_PAWN_SET_FAVORITE_PAWN_RES	equal	already named so (current cSeedGameSvConnection::OnPacket_PAWN_SET_FAVORITE_PAWN_RES)
+names	0x7f8f30	cSeedGameSvConnection::OnPacket_SERVER_GAME_TIME_GET_BASEINFO_RES	equal	already named so (current cSeedGameSvConnection::OnPacket_SERVER_GAME_TIME_GET_BASEINFO_RES)
+names	0x7f95c0	cSeedGameSvConnection::OnPacket_SERVER_GET_REAL_TIME_RES	equal	already named so (current cSeedGameSvConnection::OnPacket_SERVER_GET_REAL_TIME_RES)
+names	0x7f9690	cSeedGameSvConnection::OnPacket_SERVER_GET_SCREEN_SHOT_CATEGORY_RES	equal	already named so (current cSeedGameSvConnection::OnPacket_SERVER_GET_SCREEN_SHOT_CATEGORY_RES)
+names	0x7f9740	cSeedGameSvConnection::OnPacket_SERVER_GET_SERVER_LIST_RES	equal	already named so (current cSeedGameSvConnection::OnPacket_SERVER_GET_SERVER_LIST_RES)
+names	0x7f99c0	cSeedGameSvConnection::OnPacket_SERVER_REPORT_SITE_GET_ADDRESS_RES	equal	already named so (current cSeedGameSvConnection::OnPacket_SERVER_REPORT_SITE_GET_ADDRESS_RES)
+names	0x7fd9e0	cSeedGameSvConnection::OnPacket_STAGE_GET_STAGE_LIST_RES	equal	already named so (current cSeedGameSvConnection::OnPacket_STAGE_GET_STAGE_LIST_RES)
+names	0x8098d0	nUserSession::CPacket_S2C_GP_SHOP_DISPLAY_BUY_RES::ReadPacket	conflict	current non-default name "nUserSession::CPacket_S2C_GP_GP_SHOP_DISPLAY_BUY_RES::ReadPacket" (current nUserSession::CPacket_S2C_GP_GP_SHOP_DISPLAY_BUY_RES::ReadPacket)
+names	0x80e0a0	nUserSession::CPacket_S2C_RELEASE_JOB_ORB_ELEMENT_RES::ReadPacket	equal	already named so (current nUserSession::CPacket_S2C_RELEASE_JOB_ORB_ELEMENT_RES::ReadPacket)
+names	0x8131c0	nUserSession::CPacket_S2C_RENTAL_PAWN_LOST_RES::ReadPacket	equal	already named so (current nUserSession::CPacket_S2C_RENTAL_PAWN_LOST_RES::ReadPacket)
+names	0x81dd70	cSeedGameSvConnection::Send_C2S_ACHIEVEMENT_GET_FURNITURE_REWARD_LIST_REQ	conflict	current non-default name "cSeedGameSvConnection::Send_C2S_ACHIEVEMENT_ACHIEVEMENT_GET_FURNITURE_REWARD_LIST_REQ" (current cSeedGameSvConnection::Send_C2S_ACHIEVEMENT_ACHIEVEMENT_GET_FURNITURE_REWARD_LIST_REQ)
+names	0x81de30	cSeedGameSvConnection::Send_C2S_ACHIEVEMENT_GET_PROGRESS_LIST_REQ	conflict	current non-default name "cSeedGameSvConnection::Send_C2S_ACHIEVEMENT_ACHIEVEMENT_GET_PROGRESS_LIST_REQ" (current cSeedGameSvConnection::Send_C2S_ACHIEVEMENT_ACHIEVEMENT_GET_PROGRESS_LIST_REQ)
+names	0x81def0	cSeedGameSvConnection::Send_C2S_ACHIEVEMENT_GET_RECEIVABLE_REWARD_LIST_REQ	equal	already named so (current cSeedGameSvConnection::Send_C2S_ACHIEVEMENT_GET_RECEIVABLE_REWARD_LIST_REQ)
+names	0x829310	cSeedGameSvConnection::Send_C2S_GET_CAP_REQ	conflict	current non-default name "cSeedGameSvConnection::Send_C2S_GP_GET_CAP_REQ" (current cSeedGameSvConnection::Send_C2S_GP_GET_CAP_REQ)
+names	0x8308b0	cSeedGameSvConnection::Send_C2S_MY_ROOM_RELEASE_REQ	conflict	current non-default name "cSeedGameSvConnection::Send_C2S_MY_ROOM_MY_ROOM_RELEASE_REQ" (current cSeedGameSvConnection::Send_C2S_MY_ROOM_MY_ROOM_RELEASE_REQ)
+names	0x8320b0	cSeedGameSvConnection::Send_C2S_PARTY_MEMBER_SET_VALUE_REQ	equal	already named so (current cSeedGameSvConnection::Send_C2S_PARTY_MEMBER_SET_VALUE_REQ)
+names	0x833670	cSeedGameSvConnection::Send_C2S_GET_PAWN_HISTORY_LIST_REQ	conflict	current non-default name "Send_PAWN_GET_PAWN_HISTORY_LIST_REQ" (current Send_PAWN_GET_PAWN_HISTORY_LIST_REQ)
+names	0x87b140	cNetGameServer::reqPartyMemberSetValue	equal	already named so (current cNetGameServer::reqPartyMemberSetValue)
+prototypes	0x4ec980	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(int@<ecx>, int@<edi>, int))
+prototypes	0x4ec9b0	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(int@<ecx>, int@<edi>, int))
+prototypes	0x4eca10	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(int@<ecx>, int@<edi>, int))
+prototypes	0x4eca40	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(int@<ecx>, int@<edi>, int))
+prototypes	0x4eca70	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(int@<ecx>, int@<edi>, int))
+prototypes	0x4ecb70	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(int@<ecx>, int@<edi>, int))
+prototypes	0x7c7500	int __thiscall(cSeedGameSvConnection *this, CPacket *pPacket)	conflict	ecx this; current prototype is user-set (current int __thiscall(cSeedGameSvConnection *self, CPacket *packet))
+prototypes	0x7c75e0	int __thiscall(cSeedGameSvConnection *this, CPacket *pPacket)	conflict	ecx this; current prototype is user-set (current int __thiscall(cSeedGameSvConnection *self, CPacket *packet))
+prototypes	0x7c76a0	int __thiscall(cSeedGameSvConnection *this, CPacket *pPacket)	conflict	ecx this; current prototype is user-set (current int __thiscall(cSeedGameSvConnection *self, CPacket *packet))
+prototypes	0x7c7a40	int __thiscall(cSeedGameSvConnection *this, CPacket *pPacket)	conflict	ecx this; current prototype is user-set (current int __thiscall(cSeedGameSvConnection *self, CPacket *packet))
+prototypes	0x7c7af0	int __thiscall(cSeedGameSvConnection *this, CPacket *pPacket)	conflict	ecx this; current prototype is user-set (current int __thiscall(cSeedGameSvConnection *self, CPacket *packet))
+prototypes	0x7c7f20	-	skip	IDA sees register argument(s) ebp (current int __userpurge@<eax>(_DWORD **this@<ecx>, int@<ebp>, CPacket *CPacket))
+prototypes	0x7c9910	int __thiscall(cSeedGameSvConnection *this, CPacket *pPacket)	conflict	ecx this; current prototype is user-set (current int __thiscall(cSeedGameSvConnection *self, CPacket *packet))
+prototypes	0x7c99d0	int __thiscall(cSeedGameSvConnection *this, CPacket *pPacket)	conflict	ecx this; current prototype is user-set (current int __thiscall(cSeedGameSvConnection *self, CPacket *packet))
+prototypes	0x7c9a80	int __thiscall(cSeedGameSvConnection *this, CPacket *pPacket)	conflict	ecx this; current prototype is user-set (current int __thiscall(cSeedGameSvConnection *self, CPacket *packet))
+prototypes	0x7c9b70	int __thiscall(cSeedGameSvConnection *this, CPacket *pPacket)	conflict	ecx this; current prototype is user-set (current int __thiscall(cSeedGameSvConnection *self, CPacket *packet))
+prototypes	0x7c9cb0	int __thiscall(cSeedGameSvConnection *this, CPacket *pPacket)	conflict	ecx this; current prototype is user-set (current int __thiscall(cSeedGameSvConnection *self, CPacket *packet))
+prototypes	0x7cdcd0	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current int __userpurge@<eax>(_DWORD **this@<ecx>, int@<edi>, CPacket *packet))
+prototypes	0x7cde80	-	skip	IDA sees register argument(s) st0 (current int __userpurge@<eax>(_DWORD **this@<ecx>, double@<st0>, CPacket *packet))
+prototypes	0x7d3880	int __thiscall(cSeedGameSvConnection *this, CPacket *pPacket)	conflict	ecx this; current prototype is user-set (current BOOL __thiscall(MtObject *this, CPacket *packet))
+prototypes	0x7d90b0	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current int __userpurge@<eax>(_DWORD **this@<ecx>, int@<edi>, CPacket *packet))
+prototypes	0x7da410	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current int __userpurge@<eax>(_DWORD **this@<ecx>, int@<edi>, CPacket *packet))
+prototypes	0x7da670	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current int __userpurge@<eax>(_DWORD **this@<ecx>, int@<edi>, CPacket *packet))
+prototypes	0x7e2ce0	int __thiscall(cSeedGameSvConnection *this, CPacket *pPacket)	conflict	ecx this; current prototype is user-set (current int __thiscall(cSeedGameSvConnection *self, CPacket *packet))
+prototypes	0x7e59c0	-	skip	IDA sees register argument(s) st0; convention not provable from the dump (current int __userpurge@<eax>(_DWORD **this@<ecx>, double@<st0>, CPacket *packet))
+prototypes	0x7e5a90	-	skip	IDA sees register argument(s) st0; convention not provable from the dump (current int __userpurge@<eax>(_DWORD **this@<ecx>, double@<st0>, CPacket *))
+prototypes	0x7e5f30	-	skip	IDA sees register argument(s) st0; convention not provable from the dump (current int __userpurge@<eax>(_DWORD **this@<ecx>, double@<st0>, CPacket *))
+prototypes	0x7e7220	int __thiscall(cSeedGameSvConnection *this, CPacket *pPacket)	conflict	ecx this; current prototype is user-set (current int __thiscall(cSeedGameSvConnection *self, CPacket *packet))
+prototypes	0x7e7630	int __thiscall(cSeedGameSvConnection *this, CPacket *pPacket)	conflict	ecx this; current prototype is user-set (current int __thiscall(cSeedGameSvConnection *self, CPacket *packet))
+prototypes	0x7e7830	int __thiscall(cSeedGameSvConnection *this, CPacket *pPacket)	conflict	ecx this; current prototype is user-set (current int __thiscall(cSeedGameSvConnection *self, CPacket *packet))
+prototypes	0x7e7d50	int __thiscall(cSeedGameSvConnection *this, CPacket *pPacket)	conflict	ecx this; current prototype is user-set (current int __thiscall(cSeedGameSvConnection *self, CPacket *packet))
+prototypes	0x7e7e70	int __thiscall(cSeedGameSvConnection *this, CPacket *pPacket)	conflict	ecx this; current prototype is user-set (current int __thiscall(cSeedGameSvConnection *self, CPacket *packet))
+prototypes	0x7e8b20	int __thiscall(cSeedGameSvConnection *this, CPacket *pPacket)	conflict	ecx this; current prototype is user-set (current int __thiscall(cSeedGameSvConnection *self, CPacket *packet))
+prototypes	0x7e8f30	int __thiscall(cSeedGameSvConnection *this, CPacket *pPacket)	conflict	ecx this; current prototype is user-set (current int __thiscall(cSeedGameSvConnection *self, CPacket *packet))
+prototypes	0x7e91e0	int __thiscall(cSeedGameSvConnection *this, CPacket *pPacket)	conflict	ecx this; current prototype is user-set (current int __thiscall(cSeedGameSvConnection *self, CPacket *packet))
+prototypes	0x7e96c0	int __thiscall(cSeedGameSvConnection *this, CPacket *pPacket)	conflict	ecx this; current prototype is user-set (current int __thiscall(cSeedGameSvConnection *self, CPacket *packet))
+prototypes	0x7e99e0	int __thiscall(cSeedGameSvConnection *this, CPacket *pPacket)	conflict	ecx this; current prototype is user-set (current int __thiscall(cSeedGameSvConnection *self, CPacket *packet))
+prototypes	0x7e9a70	int __thiscall(cSeedGameSvConnection *this, CPacket *pPacket)	conflict	ecx this; current prototype is user-set (current int __thiscall(cSeedGameSvConnection *self, CPacket *packet))
+prototypes	0x7ea620	int __thiscall(cSeedGameSvConnection *this, CPacket *pPacket)	conflict	ecx this; current prototype is user-set (current int __thiscall(cSeedGameSvConnection *self, CPacket *packet))
+prototypes	0x7ea770	int __thiscall(cSeedGameSvConnection *this, CPacket *pPacket)	conflict	ecx this; current prototype is user-set (current int __thiscall(cSeedGameSvConnection *self, CPacket *packet))
+prototypes	0x7ea870	int __thiscall(cSeedGameSvConnection *this, CPacket *pPacket)	conflict	ecx this; current prototype is user-set (current int __thiscall(cSeedGameSvConnection *self, CPacket *packet))
+prototypes	0x7ea9d0	int __thiscall(cSeedGameSvConnection *this, CPacket *pPacket)	conflict	ecx this; current prototype is user-set (current int __thiscall(cSeedGameSvConnection *self, CPacket *packet))
+prototypes	0x7eab80	int __thiscall(cSeedGameSvConnection *this, CPacket *pPacket)	conflict	ecx this; current prototype is user-set (current int __thiscall(cSeedGameSvConnection *self, CPacket *packet))
+prototypes	0x7eadd0	int __thiscall(cSeedGameSvConnection *this, CPacket *pPacket)	conflict	ecx this; current prototype is user-set (current int __thiscall(cSeedGameSvConnection *self, CPacket *packet))
+prototypes	0x7eaed0	int __thiscall(cSeedGameSvConnection *this, CPacket *pPacket)	conflict	ecx this; current prototype is user-set (current int __thiscall(cSeedGameSvConnection *self, CPacket *packet))
+prototypes	0x7eb6e0	int __thiscall(cSeedGameSvConnection *this, CPacket *pPacket)	conflict	ecx this; current prototype is user-set (current int __thiscall(cSeedGameSvConnection *self, CPacket *packet))
+prototypes	0x7eb7f0	int __thiscall(cSeedGameSvConnection *this, CPacket *pPacket)	conflict	ecx this; current prototype is user-set (current int __thiscall(cSeedGameSvConnection *self, CPacket *packet))
+prototypes	0x7eb8f0	int __thiscall(cSeedGameSvConnection *this, CPacket *pPacket)	conflict	ecx this; current prototype is user-set (current int __thiscall(cSeedGameSvConnection *self, CPacket *packet))
+prototypes	0x7eb9f0	int __thiscall(cSeedGameSvConnection *this, CPacket *pPacket)	conflict	ecx this; current prototype is user-set (current int __thiscall(cSeedGameSvConnection *self, CPacket *packet))
+prototypes	0x7ebb00	int __thiscall(cSeedGameSvConnection *this, CPacket *pPacket)	conflict	ecx this; current prototype is user-set (current int __thiscall(cSeedGameSvConnection *self, CPacket *packet))
+prototypes	0x7ebd40	int __thiscall(cSeedGameSvConnection *this, CPacket *pPacket)	conflict	ecx this; current prototype is user-set (current int __thiscall(cSeedGameSvConnection *self, CPacket *packet))
+prototypes	0x7ebfa0	int __thiscall(cSeedGameSvConnection *this, CPacket *pPacket)	conflict	ecx this; current prototype is user-set (current int __thiscall(cSeedGameSvConnection *self, CPacket *packet))
+prototypes	0x7ec030	int __thiscall(cSeedGameSvConnection *this, CPacket *pPacket)	conflict	ecx this; current prototype is user-set (current int __thiscall(cSeedGameSvConnection *self, CPacket *packet))
+prototypes	0x7ec0f0	int __thiscall(cSeedGameSvConnection *this, CPacket *pPacket)	conflict	ecx this; current prototype is user-set (current int __thiscall(cSeedGameSvConnection *self, CPacket *packet))
+prototypes	0x7ec1a0	int __thiscall(cSeedGameSvConnection *this, CPacket *pPacket)	conflict	ecx this; current prototype is user-set (current int __thiscall(cSeedGameSvConnection *self, CPacket *packet))
+prototypes	0x7ec240	int __thiscall(cSeedGameSvConnection *this, CPacket *pPacket)	conflict	ecx this; current prototype is user-set (current int __thiscall(cSeedGameSvConnection *self, CPacket *packet))
+prototypes	0x7ec490	int __thiscall(cSeedGameSvConnection *this, CPacket *pPacket)	conflict	ecx this; current prototype is user-set (current int __thiscall(cSeedGameSvConnection *self, CPacket *packet))
+prototypes	0x7ec6a0	int __thiscall(cSeedGameSvConnection *this, CPacket *pPacket)	conflict	ecx this; current prototype is user-set (current int __thiscall(cSeedGameSvConnection *self, CPacket *packet))
+prototypes	0x7ec750	int __thiscall(cSeedGameSvConnection *this, CPacket *pPacket)	conflict	ecx this; current prototype is user-set (current int __thiscall(cSeedGameSvConnection *self, CPacket *packet))
+prototypes	0x7ec7e0	int __thiscall(cSeedGameSvConnection *this, CPacket *pPacket)	conflict	ecx this; current prototype is user-set (current int __thiscall(cSeedGameSvConnection *self, CPacket *packet))
+prototypes	0x7f8f30	int __thiscall(cSeedGameSvConnection *this, CPacket *pPacket)	conflict	ecx this; current prototype is user-set (current int __thiscall(cSeedGameSvConnection *self, CPacket *packet))
+prototypes	0x7f95c0	int __thiscall(cSeedGameSvConnection *this, CPacket *pPacket)	conflict	ecx this; current prototype is user-set (current int __thiscall(cSeedGameSvConnection *self, CPacket *packet))
+prototypes	0x7f9690	int __thiscall(cSeedGameSvConnection *this, CPacket *pPacket)	conflict	ecx this; current prototype is user-set (current int __thiscall(cSeedGameSvConnection *self, CPacket *packet))
+prototypes	0x7f9740	int __thiscall(cSeedGameSvConnection *this, CPacket *pPacket)	conflict	ecx this; current prototype is user-set (current int __thiscall(cSeedGameSvConnection *self, CPacket *packet))
+prototypes	0x7f99c0	int __thiscall(cSeedGameSvConnection *this, CPacket *pPacket)	conflict	ecx this; current prototype is user-set (current int __thiscall(cSeedGameSvConnection *self, CPacket *packet))
+prototypes	0x7fd9e0	int __thiscall(cSeedGameSvConnection *this, CPacket *pPacket)	conflict	ecx this; current prototype is user-set (current int __thiscall(cSeedGameSvConnection *self, CPacket *packet))
+prototypes	0x8320b0	int __thiscall(cSeedGameSvConnection *this, unsigned __int8 in_Index, unsigned __int8 in_Value)	conflict	ecx this; current prototype is user-set (current int __fastcall(MtObject *MtObject, char in_Index, char in_Value))
+prototypes	0x833670	int __thiscall(cSeedGameSvConnection *this, unsigned int in_PawnID)	conflict	ecx this; current prototype is user-set (current int __thiscall(void *self, unsigned int unknown_u32))
+prototypes	0x842b70	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int@<edi>, int))
+prototypes	0x8440e0	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int@<edi>, int))
+prototypes	0x844430	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int@<edi>, int))
+prototypes	0x844720	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int@<edi>, int))
+prototypes	0x8447b0	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int@<edi>, int))
+prototypes	0x844d30	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int@<edi>, int))
+prototypes	0x844dc0	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int@<edi>, int))
+prototypes	0x844e50	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int@<edi>, int))
+prototypes	0x8450a0	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int@<edi>, int))
+prototypes	0x8451c0	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int@<edi>, int))
+prototypes	0x845250	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int@<edi>, int))
+prototypes	0x8452e0	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int@<edi>, int))
+prototypes	0x845370	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int@<edi>, int))
+prototypes	0x845950	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int@<edi>, int, int))
+prototypes	0x846620	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int@<edi>, int))
+prototypes	0x8520f0	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int@<edi>, int))
+prototypes	0x852210	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int@<edi>, int))
+prototypes	0x8522a0	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int@<edi>, char))
+prototypes	0x8523f0	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int@<edi>, int, __int16))
+prototypes	0x85c1d0	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int@<edi>, int))
+prototypes	0x85c260	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int@<edi>, int, int))
+prototypes	0x85c410	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int@<edi>, int, int))
+prototypes	0x85c740	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int@<edi>, int))
+prototypes	0x85c7d0	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int n4@<edi>, int, int))
+prototypes	0x85d9d0	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int@<edi>, int))
+prototypes	0x8687d0	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int@<edi>, int))
+prototypes	0x8688f0	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int@<edi>, int))
+prototypes	0x8689a0	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int@<edi>, int))
+prototypes	0x869110	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int@<edi>, int))
+prototypes	0x869390	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int@<edi>, int, int, int))
+prototypes	0x86a010	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int@<edi>, int, char))
+prototypes	0x86ab00	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int@<edi>, char))
+prototypes	0x86b5e0	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int@<edi>, unsigned int src))
+prototypes	0x86b700	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int sQuestManagerExtPointer@<edi>, int))
+prototypes	0x86bd90	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int@<edi>, int))
+prototypes	0x86bec0	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int@<edi>, int))
+prototypes	0x86dac0	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int@<edi>, unsigned __int8))
+prototypes	0x86db60	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int this@<edi>, int, int))
+prototypes	0x86dd00	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int@<edi>, int, int n100))
+prototypes	0x86f3f0	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int@<edi>, int, int n77, unsigned int))
+prototypes	0x86f660	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int lpAddend@<edi>, int))
+prototypes	0x86f770	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int@<edi>, int, int, int))
+prototypes	0x86f910	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int this@<edi>, int, char))
+prototypes	0x86fd40	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int n3@<edi>, char n3))
+prototypes	0x86fdd0	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int@<edi>, int))
+prototypes	0x86fe60	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int@<edi>, int))
+prototypes	0x86fef0	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int@<edi>, int))
+prototypes	0x870f70	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int@<edi>, char))
+prototypes	0x871900	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int@<edi>, int))
+prototypes	0x871d50	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int@<edi>, int))
+prototypes	0x871fc0	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int this@<edi>, int, int))
+prototypes	0x8720e0	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int@<edi>, int, int n100))
+prototypes	0x8726d0	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int@<edi>, int))
+prototypes	0x875500	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int@<edi>, int))
+prototypes	0x875590	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int@<edi>, int))
+prototypes	0x8756b0	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int@<edi>, int))
+prototypes	0x876610	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int@<edi>, int))
+prototypes	0x876880	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int@<edi>, char, int, int))
+prototypes	0x876f80	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int this@<edi>, int))
+prototypes	0x877010	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int this@<edi>, int))
+prototypes	0x8770a0	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int@<edi>, int))
+prototypes	0x877b60	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int@<edi>, int))
+prototypes	0x878960	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int@<edi>, int, int))
+prototypes	0x878c70	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int@<edi>, int))
+prototypes	0x878ea0	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int@<edi>, int))
+prototypes	0x8790d0	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int@<edi>, int))
+prototypes	0x879c30	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int@<edi>, int))
+prototypes	0x87adb0	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int@<edi>, int))
+prototypes	0x87b140	bool __thiscall(cNetGameServer *this, int index, bool flag)	conflict	ecx this; current prototype is user-set (current bool __fastcall(MtObject *this, s32 index, bool flag))
+prototypes	0x87b370	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int@<edi>, int, int))
+prototypes	0x87b400	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int this@<edi>, int, int))
+prototypes	0x87b4f0	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int this@<edi>, int, int))
+prototypes	0x87bef0	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int this@<edi>, int))
+prototypes	0x87c2c0	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __usercall@<al>(_DWORD *@<ecx>, int@<edi>))
+prototypes	0x87c730	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int@<edi>, int))
+prototypes	0x87c7c0	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int@<edi>, int))
+prototypes	0x87d960	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int@<edi>, int))
+prototypes	0x87ed40	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int this@<edi>, int))
+prototypes	0x8804b0	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int@<edi>, int, char))
+prototypes	0x880540	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int@<edi>, int))
+prototypes	0x881920	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int@<edi>, int))
+prototypes	0x881fa0	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int dst@<edi>, int))
+prototypes	0x882290	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int@<edi>, char))
+prototypes	0x882320	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int@<edi>, int, char))
+prototypes	0x882730	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int@<edi>, char, char))
+prototypes	0x8827c0	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int@<edi>, int))
+prototypes	0x883e90	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int@<edi>, int, int))
+prototypes	0x884f20	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int@<edi>, char, char))
+prototypes	0x885480	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int@<edi>, int, int))
+prototypes	0x885510	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int@<edi>, char))
+prototypes	0x8857c0	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int@<edi>, int, unsigned int src))
+prototypes	0x885850	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int@<edi>, char))
+prototypes	0x8858e0	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int@<edi>, char))
+prototypes	0x885a00	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int@<edi>, char))
+prototypes	0x8861a0	-	skip	IDA sees register argument(s) edi; convention not provable from the dump (current char __userpurge@<al>(_DWORD *@<ecx>, int this@<edi>, int, char))
+types	CDataAchievementIdentifier	struct	unchecked	no checked access
+types	CDataAllContextPlayer	struct	unchecked	no checked access
+types	CDataAreaSpotSet	struct	unchecked	no checked access
+types	CDataArisenProfile	struct	refused	contradiction: m_Title.m_unUid: width 1 on a 4-byte member @0x4ecb76
+types	CDataBattleResultInfo	struct	unchecked	no checked access
+types	CDataCharacterInfo	struct	refused	embeds refused CDataArisenProfile
+types	CDataCharacterListElement	struct	unchecked	no checked access
+types	CDataCharacterSearchParam	struct	unchecked	no checked access
+types	CDataCharacterSearchParameter	struct	unchecked	no checked access
+types	CDataClanConciergeInfo	struct	unchecked	no checked access
+types	CDataClanDungeonInfo	struct	unchecked	no checked access
+types	CDataClanFunctionInfo	struct	unchecked	no checked access
+types	CDataClanMemberInfo	struct	unchecked	no checked access
+types	CDataClanParam	struct	unchecked	no checked access
+types	CDataClanPartnerPawnInfo	struct	unchecked	no checked access
+types	CDataClanScoutEntryParam	struct	unchecked	no checked access
+types	CDataClanSearchParam	struct	unchecked	no checked access
+types	CDataClanServerParam	struct	unchecked	no checked access
+types	CDataClanShopInfo	struct	unchecked	no checked access
+types	CDataClanUserParam	struct	unchecked	no checked access
+types	CDataClientPartyListInfo	struct	unchecked	no checked access
+types	CDataContextBase	struct	unchecked	no checked access
+types	CDataContextPlayerInfo	struct	unchecked	no checked access
+types	CDataContextResist	struct	unchecked	no checked access
+types	CDataCraftProduct	struct	unchecked	no checked access
+types	CDataCurrentEquipInfo	struct	unchecked	no checked access
+types	CDataEditInfo	struct	unchecked	no checked access
+types	CDataEndContentsGroup	struct	unchecked	no checked access
+types	CDataEntryBoardItemSearchParameter	struct	unchecked	no checked access
+types	CDataEquipSlot	struct	unchecked	no checked access
+types	CDataJobBaseInfo	struct	unchecked	no checked access
+types	CDataJobOrbTreeStatus	struct	unchecked	no checked access
+types	CDataLobbyContextPlayer	struct	unchecked	no checked access
+types	CDataLobbyInfo	struct	unchecked	no checked access
+types	CDataMailAttachmentList	struct	unchecked	no checked access
+types	CDataMatchingProfile	struct	unchecked	no checked access
+types	CDataMyRoomOption	struct	unchecked	no checked access
+types	CDataNetPos	struct	unchecked	no checked access
+types	CDataOmData	struct	unchecked	no checked access
+types	CDataOrbElement	struct	unchecked	no checked access
+types	CDataPartnerPawnData	struct	unchecked	no checked access
+types	CDataPartyContextPlayer	struct	unchecked	no checked access
+types	CDataPartyListInfo	struct	unchecked	no checked access
+types	CDataPartySearchParameter	struct	unchecked	no checked access
+types	CDataPawnCraftData	struct	unchecked	no checked access
+types	CDataPawnExpeditionInformation	struct	unchecked	no checked access
+types	CDataPawnInfo	struct	unchecked	no checked access
+types	CDataPawnName	struct	unchecked	no checked access
+types	CDataPawnSearchParameter	struct	unchecked	no checked access
+types	CDataPawnTotalScore	struct	unchecked	no checked access
+types	CDataPlayPointData	struct	unchecked	no checked access
+types	CDataQuickMatchSearchParameter	struct	unchecked	no checked access
+types	CDataQuickPartyMatching	struct	unchecked	no checked access
+types	CDataStageLayoutID	struct	unchecked	no checked access
+types	CDataStatusInfo	struct	unchecked	no checked access
+types	CDataVector3	struct	unchecked	no checked access
+types	CPacket	struct	unchecked	no checked access
+types	CPacketBase	struct	unchecked	no checked access
+types	MtBigInt	struct	unchecked	no checked access
+types	MtCipher	struct	unchecked	no checked access
+types	MtCriticalSection	struct	unchecked	no checked access
+types	MtNetError	struct	unchecked	no checked access
+types	MtStringEx<24>	struct	unchecked	no checked access
+types	MtTypedArray<CDataAchieveCategoryStatus>	struct	unchecked	no checked access
+types	MtTypedArray<CDataAreaSpotSet>	struct	unchecked	no checked access
+types	MtTypedArray<CDataC2SChangeCharacterEquipInfo>	struct	unchecked	no checked access
+types	MtTypedArray<CDataChangeEquipJobItem>	struct	unchecked	no checked access
+types	MtTypedArray<CDataCharacterEquipData>	struct	unchecked	no checked access
+types	MtTypedArray<CDataCharacterItemSlotInfo>	struct	unchecked	no checked access
+types	MtTypedArray<CDataCharacterJobData>	struct	unchecked	no checked access
+types	MtTypedArray<CDataCharacterListElement>	struct	unchecked	no checked access
+types	MtTypedArray<CDataCharacterListInfo>	struct	unchecked	no checked access
+types	MtTypedArray<CDataClanConciergeNpc>	struct	unchecked	no checked access
+types	MtTypedArray<CDataClanMemberInfo>	struct	unchecked	no checked access
+types	MtTypedArray<CDataClanShopBuffItem>	struct	unchecked	no checked access
+types	MtTypedArray<CDataClanShopFunctionItem>	struct	unchecked	no checked access
+types	MtTypedArray<CDataClanShopLineupName>	struct	unchecked	no checked access
+types	MtTypedArray<CDataClanValueInfo>	struct	unchecked	no checked access
+types	MtTypedArray<CDataClientPartyListInfo>	struct	unchecked	no checked access
+types	MtTypedArray<CDataContextAcquirementData>	struct	unchecked	no checked access
+types	MtTypedArray<CDataContextEquipData>	struct	unchecked	no checked access
+types	MtTypedArray<CDataContextEquipJobItemData>	struct	unchecked	no checked access
+types	MtTypedArray<CDataContextJobData>	struct	unchecked	no checked access
+types	MtTypedArray<CDataContextNormalSkillData>	struct	unchecked	no checked access
+types	MtTypedArray<CDataCraftPawnList>	struct	unchecked	no checked access
+types	MtTypedArray<CDataCraftProgress>	struct	unchecked	no checked access
+types	MtTypedArray<CDataCraftTimeSaveCost>	struct	unchecked	no checked access
+types	MtTypedArray<CDataDropItemSetInfo>	struct	unchecked	no checked access
+types	MtTypedArray<CDataFriendInfo>	struct	unchecked	no checked access
+types	MtTypedArray<CDataFurnitureLayout>	struct	unchecked	no checked access
+types	MtTypedArray<CDataGatheringItemElement>	struct	unchecked	no checked access
+types	MtTypedArray<CDataHistoryElement>	struct	unchecked	no checked access
+types	MtTypedArray<CDataItemUIDList>	struct	unchecked	no checked access
+types	MtTypedArray<CDataItemUpdateResult>	struct	unchecked	no checked access
+types	MtTypedArray<CDataJobBaseInfo>	struct	unchecked	no checked access
+types	MtTypedArray<CDataJobChangeInfo>	struct	unchecked	no checked access
+types	MtTypedArray<CDataJobExpMode>	struct	unchecked	no checked access
+types	MtTypedArray<CDataJobOrbTreeStatus>	struct	unchecked	no checked access
+types	MtTypedArray<CDataJobPlayPoint>	struct	unchecked	no checked access
+types	MtTypedArray<CDataLayoutEnemyData>	struct	unchecked	no checked access
+types	MtTypedArray<CDataLightQuestList>	struct	unchecked	no checked access
+types	MtTypedArray<CDataLobbyMemberInfo>	struct	unchecked	no checked access
+types	MtTypedArray<CDataMDataCraftGradeupRecipe>	struct	unchecked	no checked access
+types	MtTypedArray<CDataMDataCraftRecipe>	struct	unchecked	no checked access
+types	MtTypedArray<CDataMailInfo>	struct	unchecked	no checked access
+types	MtTypedArray<CDataMoveItemUIDFromTo>	struct	unchecked	no checked access
+types	MtTypedArray<CDataNamedEnemyParamClient>	struct	unchecked	no checked access
+types	MtTypedArray<CDataOcdActive>	struct	unchecked	no checked access
+types	MtTypedArray<CDataOrbPageStatus>	struct	unchecked	no checked access
+types	MtTypedArray<CDataPartnerPawnReward>	struct	unchecked	no checked access
+types	MtTypedArray<CDataPartyMember>	struct	unchecked	no checked access
+types	MtTypedArray<CDataPawnJobChangeInfo>	struct	unchecked	no checked access
+types	MtTypedArray<CDataPawnList>	struct	unchecked	no checked access
+types	MtTypedArray<CDataQuestContentsSituationInfo>	struct	unchecked	no checked access
+types	MtTypedArray<CDataSetQuestInfoList>	struct	unchecked	no checked access
+types	MtTypedArray<CDataShortCut>	struct	unchecked	no checked access
+types	MtTypedArray<CDataStageInfo>	struct	unchecked	no checked access
+types	MtTypedArray<CDataStorageItemUIDList>	struct	unchecked	no checked access
+types	MtTypedArray<CDataTimeGainQuestList>	struct	unchecked	no checked access
+types	MtTypedArray<CDataWalletPoint>	struct	unchecked	no checked access
+types	MtTypedArray<CDataWeatherForecast>	struct	unchecked	no checked access
+types	MtTypedArray<cCompleteQuest>	struct	unchecked	no checked access
+types	MtTypedArray<cCorePointMsg>	struct	unchecked	no checked access
+types	MtTypedArray<cNetGameServer::cChatLog>	struct	unchecked	no checked access
+types	MtTypedArray<cPartyMemberInfo>	struct	unchecked	no checked access
+types	MtTypedArray<cPawnListParam>	struct	unchecked	no checked access
+types	MtTypedArray<cPawnVoiceData>	struct	unchecked	no checked access
+types	MtVector3	struct	unchecked	no checked access
+types	cArcLoaderBase	struct	unchecked	no checked access
+types	cCharacterData	struct	unchecked	no checked access
+types	cCharacterData::SCM::stSCMPlt::<anon@0x143258a>	struct	unchecked	no checked access
+types	cCharacterData::SCM::stSCMPlt::<anon@0x143258a>::<anon@0x1432599>	struct	unchecked	no checked access
+types	cCharacterData::stAreaMasterInfo	struct	unchecked	no checked access
+types	cCharacterData::stCardAchievement	struct	unchecked	no checked access
+types	cCharacterData::stCardArisenInfo	struct	unchecked	no checked access
+types	cCharacterData::stCardClan	struct	unchecked	no checked access
+types	cCharacterData::stCardDogmaOrb	struct	unchecked	no checked access
+types	cCharacterData::stCardHistory	struct	unchecked	no checked access
+types	cCharacterData::stCardJobOrbTree	struct	unchecked	no checked access
+types	cCharacterData::stCardPawnOwner	struct	unchecked	no checked access
+types	cCharacterData::stCardPawnTotalValue	struct	unchecked	no checked access
+types	cCharacterData::stCardPawnValue	struct	unchecked	no checked access
+types	cCharacterData::stCharacterData	struct	unchecked	no checked access
+types	cCharacterData::stCharacterEdit	struct	unchecked	no checked access
+types	cCharacterData::stEnteredLandInfo	struct	unchecked	no checked access
+types	cCharacterData::stItemSlotData	struct	unchecked	no checked access
+types	cCharacterData::stJobMasterInfo	struct	unchecked	no checked access
+types	cCharacterData::stMatchProfile	struct	unchecked	no checked access
+types	cCharacterData::stOptionData	struct	unchecked	no checked access
+types	cCharacterData::stOptionData::stNameDisp	struct	unchecked	no checked access
+types	cCharacterData::stPawnData	struct	unchecked	no checked access
+types	cCharacterData::stTutorialGuide	struct	unchecked	no checked access
+types	cChargeEffectUID	struct	unchecked	no checked access
+types	cContext	struct	unchecked	no checked access
+types	cContextInstChar	struct	unchecked	no checked access
+types	cContextInstHm	struct	unchecked	no checked access
+types	cContextInstance	struct	unchecked	no checked access
+types	cContextPlayerInfo	struct	unchecked	no checked access
+types	cCraftParam	struct	unchecked	no checked access
+types	cEditParam	struct	unchecked	no checked access
+types	cEditSalonInfo	struct	unchecked	no checked access
+types	cEditValue	struct	unchecked	no checked access
+types	cEquipData	struct	unchecked	no checked access
+types	cNetGameServer	struct	refused	contradiction: mIsNgErrorDialog[68]: width 4 on a 1-byte member @0x846692; mIsNgErrorDialog[204]: width 4 on a 1-byte member @0x883f06; mIsNgErrorDialog[252]: width 4 on a 1-byte member @0x86fed2; mIsNgErrorDialog[276]: width 4 on a 1-byte member @0x84511e; mIsNgErrorDialog[312]: width 4 on a 1-byte member @0x86bf32; mIsNgErrorDialog[332]: width 4 on a 1-byte member @0x86be02 (+371 more)
+types	cNetGameServer::LoginData	struct	unchecked	no checked access
+types	cPlayerLoadManager	struct	unchecked	no checked access
+types	cSeedGameSvConnection	struct	refused	cSeedGameSvConnection: base cSeedServerConnection: cSeedServerConnection: member mPendingStream: cSeedServerStream: base MtMemoryStream: MtMemoryStream: bitfield mBufferOverflow
+types	nCharacterData::stCharacterName	struct	unchecked	no checked access
+types	nCharacterData::stEquipData	struct	unchecked	no checked access
+types	nCharacterData::stItemParam	struct	unchecked	no checked access
+types	nDDOUtility::cArray<cCharacterData::stCardPawnRental, 20>	struct	unchecked	no checked access
+types	nDDOUtility::cArray<cCharacterData::stCardPawnValue, 3>	struct	unchecked	no checked access
+types	nDDOUtility::cArray<cCharacterData::stPawnData::Ability, 10>	struct	unchecked	no checked access
+types	nDDOUtility::cArray<cContextPlayerInfo::cAbility, 10>	struct	unchecked	no checked access
+types	nDDOUtility::cArray<cSkillLvCustom, 10>	struct	unchecked	no checked access
+types	nDDOUtility::cArray<cSkillLvNormal, 10>	struct	unchecked	no checked access
+types	nDDOUtility::cArray<nHuman::CUSTOM_SKILL_ENUM, 2>	struct	unchecked	no checked access
+types	nDDOUtility::cArray<nJobParam::cJobInfo, 10>	struct	unchecked	no checked access
+types	nDDOUtility::cArray<stSccPltArray, 3>	struct	unchecked	no checked access
+types	nDDOUtility::cArray<stScmPltArray, 3>	struct	unchecked	no checked access
+types	nDDOUtility::cArray<u16, 10>	struct	unchecked	no checked access
+types	nDDOUtility::cArray<u32, 8>	struct	unchecked	no checked access
+types	nDDOUtility::cBitSet<46>	struct	unchecked	no checked access
+types	nJobParam::cHumanBaseInfo	struct	unchecked	no checked access
+types	nNet::stClanEmblem	struct	unchecked	no checked access
+types	nNet::stPawnFeedback	struct	unchecked	no checked access
+types	nNetMsgData::stNetPos	struct	unchecked	no checked access
+types	nUserSession::CPacket_S2C_AREA_CHANGE_RES	struct	refused	contradiction: +0x34 wNone beyond size 0x2c @0x81ca7d; +0x48 wNone beyond size 0x2c @0x81ca8e; +0x5c w1 beyond size 0x2c @0x81ca31; +0x5c w1 beyond size 0x2c @0x81cab3
+types	nUserSession::CPacket_S2C_AREA_RANK_UP_RES	struct	refused	contradiction: +0x50 w1 beyond size 0x48 @0x7ffb21; +0x50 w1 beyond size 0x48 @0x7ffbb8
+types	nUserSession::CPacket_S2C_CHANGE_CAP_TO_GP_RES	struct	refused	contradiction: +0x1c wNone beyond size 0x1c @0x808cab; +0x20 wNone beyond size 0x1c @0x808cbc; +0x24 w1 beyond size 0x1c @0x808c81; +0x24 w1 beyond size 0x1c @0x808cdd
+types	nUserSession::CPacket_S2C_CHANGE_PAWN_JOB_RES	struct	refused	contradiction: m_CharacterJobData.m_ucJob: width 4 on a 1-byte member @0x80d198; +0x128 wNone beyond size 0x110 @0x80d279; +0x13c w1 beyond size 0x110 @0x80d1a1; +0x13c w1 beyond size 0x110 @0x80d2a1
+types	nUserSession::CPacket_S2C_CLAN_BASE_GET_INFO_RES	struct	refused	contradiction: +0xc0 wNone beyond size 0xb8 @0x802eb6; +0xd4 w1 beyond size 0xb8 @0x802e11; +0xd4 w1 beyond size 0xb8 @0x802ede
+types	nUserSession::CPacket_S2C_CLAN_CREATE_RES	struct	refused	contradiction: +0xc in padding of nUserSession::CPacket_S2C_CLAN_CREATE_RES @0x8031a9; m_ClanParam+0x4 in padding of CDataClanParam @0x803158; m_ClanParam+0x4 in padding of CDataClanParam @0x80316c; +0xec w1 beyond size 0xe0 @0x803161; +0xec w1 beyond size 0xe0 @0x8031b2
+types	nUserSession::CPacket_S2C_CLAN_GET_MY_INFO_RES	struct	refused	contradiction: +0xc in padding of nUserSession::CPacket_S2C_CLAN_GET_MY_INFO_RES @0x803549; m_CreateParam+0x4 in padding of CDataClanParam @0x8034f8; m_CreateParam+0x4 in padding of CDataClanParam @0x80350c; +0xd8 wNone beyond size 0xd8 @0x80352e; +0xe0 w1 beyond size 0xd8 @0x803501; +0xe0 w1 beyond size 0xd8 @0x803552
+types	nUserSession::CPacket_S2C_CLAN_SHOP_GET_BUFF_ITEM_LIST_RES	struct	refused	contradiction: +0x60 w1 beyond size 0x58 @0x804721; +0x60 w1 beyond size 0x58 @0x80477d
+types	nUserSession::CPacket_S2C_CLAN_SHOP_GET_FUNCTION_ITEM_LIST_RES	struct	refused	contradiction: +0x60 w1 beyond size 0x58 @0x8047c1; +0x60 w1 beyond size 0x58 @0x80481d
+types	nUserSession::CPacket_S2C_EXCHANGE_OM_INSTANT_KEY_VALUE_RES	struct	refused	contradiction: +0x38 wNone beyond size 0x24 @0x80b06c; +0x3c w1 beyond size 0x24 @0x80b031; +0x3c w1 beyond size 0x24 @0x80b08d
+types	nUserSession::CPacket_S2C_FURNITURE_LIST_GET_RES	struct	refused	contradiction: +0x4c w1 beyond size 0x40 @0x80fa31; +0x4c w1 beyond size 0x40 @0x80fa7c
+types	nUserSession::CPacket_S2C_GAME_TIME_GET_BASEINFO_RES	struct	refused	contradiction: +0xc in padding of nUserSession::CPacket_S2C_GAME_TIME_GET_BASEINFO_RES @0x81a6cd; +0x90 w1 beyond size 0x90 @0x81a651; +0x90 w1 beyond size 0x90 @0x81a6d6
+types	nUserSession::CPacket_S2C_GET_ALL_ORB_ELEMENT_LIST_RES	struct	refused	contradiction: +0x5c w1 beyond size 0x54 @0x810041; +0x5c w1 beyond size 0x54 @0x81009d
+types	nUserSession::CPacket_S2C_GET_ALL_PLAYER_CONTEXT_RES	struct	refused	contradiction: m_Context+0x4 in padding of CDataAllContextPlayer @0x804ea8; m_Context+0x4 in padding of CDataAllContextPlayer @0x804ebc; +0x310 w1 beyond size 0x2e0 @0x804eb1; +0x310 w1 beyond size 0x2e0 @0x804eff
+types	nUserSession::CPacket_S2C_GET_AREA_MASTER_INFO_RES	struct	refused	contradiction: m_SupplyItemInfoList.MtArray.mBufsiz: +1 into a 4-byte member @0x7ffda2; +0x70 w1 beyond size 0x68 @0x7ffcf1; +0x70 w1 beyond size 0x68 @0x7ffdf1
+types	nUserSession::CPacket_S2C_GET_CHARACTER_EQUIP_LIST_RES	struct	refused	contradiction: +0x54 w1 beyond size 0x4c @0x808051; +0x54 w1 beyond size 0x4c @0x8080ad
+types	nUserSession::CPacket_S2C_GET_CHARACTER_PROFILE_RES	struct	refused	contradiction: vptr: +1 wNone @0x8143a0; +0x14c wNone beyond size 0x140 @0x814426; +0x150 wNone beyond size 0x140 @0x81443e; +0x154 w1 beyond size 0x140 @0x814351; +0x154 w1 beyond size 0x140 @0x814466
+types	nUserSession::CPacket_S2C_GET_CRAFT_GRADEUP_RECIPE_RES	struct	refused	contradiction: m_ucCategory: width 4 on a 1-byte member @0x805cf5; +0x44 wNone beyond size 0x3c @0x805cdd; +0x45 w1 beyond size 0x3c @0x805c91; +0x45 w1 beyond size 0x3c @0x805cfe
+types	nUserSession::CPacket_S2C_GET_CRAFT_PRODUCT_RES	struct	refused	contradiction: +0x3c w1 beyond size 0x34 @0x805ae1; +0x3c w1 beyond size 0x34 @0x805b2c
+types	nUserSession::CPacket_S2C_GET_CRAFT_PROGRESS_LIST_RES	struct	refused	contradiction: +0x54 w1 beyond size 0x4c @0x805b71; +0x54 w1 beyond size 0x4c @0x805bcd
+types	nUserSession::CPacket_S2C_GET_CRAFT_RECIPE_DESIGNATE_RES	struct	refused	contradiction: m_ucCategory: width 4 on a 1-byte member @0x805d94; +0x44 w1 beyond size 0x3c @0x805d41; +0x44 w1 beyond size 0x3c @0x805d9d
+types	nUserSession::CPacket_S2C_GET_CRAFT_RECIPE_RES	struct	refused	contradiction: m_ucCategory: width 4 on a 1-byte member @0x805e34; +0x30 wNone beyond size 0x28 @0x805e1c; +0x31 w1 beyond size 0x28 @0x805de1; +0x31 w1 beyond size 0x28 @0x805e3d
+types	nUserSession::CPacket_S2C_GET_CRAFT_SETTING_RES	struct	refused	contradiction: +0x80 w1 beyond size 0x40 @0x805c11; +0x80 w1 beyond size 0x40 @0x805c4e
+types	nUserSession::CPacket_S2C_GET_CURRENT_SET_SKILL_LIST_RES	struct	refused	contradiction: +0x54 w1 beyond size 0x4c @0x81b3e1; +0x54 w1 beyond size 0x4c @0x81b43d
+types	nUserSession::CPacket_S2C_GET_CYCLE_CONTENTS_REWARD_RES	struct	refused	contradiction: +0x30 wNone beyond size 0x28 @0x815f4c; +0x31 w1 beyond size 0x28 @0x815f11; +0x31 w1 beyond size 0x28 @0x815f6d
+types	nUserSession::CPacket_S2C_GET_DROP_ITEM_LIST_RES	struct	refused	contradiction: m_LayoutId.m_ucLayerNo: width 4 on a 1-byte member @0x80b158; +0x40 w1 beyond size 0x38 @0x80b161; +0x40 w1 beyond size 0x38 @0x80b1bd
+types	nUserSession::CPacket_S2C_GET_END_CONTENTS_GROUP_RES	struct	refused	contradiction: +0x38 w1 beyond size 0x30 @0x8160c1; +0x38 w1 beyond size 0x30 @0x81611d
+types	nUserSession::CPacket_S2C_GET_ENEMY_SET_LIST_RES	struct	refused	contradiction: m_LayoutId.m_ucLayerNo: width 4 on a 1-byte member @0x80b328; +0x70 w1 beyond size 0x68 @0x80b331; +0x70 w1 beyond size 0x68 @0x80b3dd
+types	nUserSession::CPacket_S2C_GET_FRIEND_LIST_RES	struct	refused	contradiction: +0x54 w1 beyond size 0x4c @0x808931; +0x54 w1 beyond size 0x4c @0x80898d
+types	nUserSession::CPacket_S2C_GET_GATHERING_ITEM_LIST_RES	struct	refused	contradiction: m_LayoutId.m_ucLayerNo: width 4 on a 1-byte member @0x80b4a8; m_ItemList.MtArray.mBufsiz: +1 into a 4-byte member @0x80b50e; +0x48 wNone beyond size 0x40 @0x80b538; +0x5c w1 beyond size 0x40 @0x80b4b1; +0x5c w1 beyond size 0x40 @0x80b55d
+types	nUserSession::CPacket_S2C_GET_GP_RES	struct	refused	contradiction: m_llUseLimit: +4 into a 8-byte member @0x808f98; m_llUseLimit: +4 into a 8-byte member @0x808fa9; +0x28 wNone beyond size 0x28 @0x808fdc; +0x30 wNone beyond size 0x28 @0x808fed; +0x32 w1 beyond size 0x28 @0x808fa1; +0x32 w1 beyond size 0x28 @0x80900e
+types	nUserSession::CPacket_S2C_GET_JOB_CHANGE_LIST_RES	struct	refused	contradiction: +0x68 w1 beyond size 0x60 @0x80d9e1; +0x68 w1 beyond size 0x60 @0x80da4e
+types	nUserSession::CPacket_S2C_GET_LIGHT_QUEST_LIST_RES	struct	refused	contradiction: +0x30 wNone beyond size 0x28 @0x8162ac; +0x31 wNone beyond size 0x28 @0x8162bd; +0x32 wNone beyond size 0x28 @0x8162ce; +0x33 w1 beyond size 0x28 @0x816271; +0x33 w1 beyond size 0x28 @0x8162f3
+types	nUserSession::CPacket_S2C_GET_LOBBY_PLAYER_CONTEXT_RES	struct	refused	contradiction: m_Context+0x4 in padding of CDataLobbyContextPlayer @0x804fd8; m_Context+0x4 in padding of CDataLobbyContextPlayer @0x804fec; +0x2e8 w1 beyond size 0x2b8 @0x804fe1; +0x2e8 w1 beyond size 0x2b8 @0x80502f
+types	nUserSession::CPacket_S2C_GET_MATCHING_PROFILE_RES	struct	refused	contradiction: +0x40 wNone beyond size 0x40 @0x81455b; +0x44 wNone beyond size 0x40 @0x81456c; +0x48 w1 beyond size 0x40 @0x814531; +0x48 w1 beyond size 0x40 @0x81458d
+types	nUserSession::CPacket_S2C_GET_MYPAWN_LIST_RES	struct	refused	contradiction: +0x3c w1 beyond size 0x34 @0x812411; +0x3c w1 beyond size 0x34 @0x81245c
+types	nUserSession::CPacket_S2C_GET_MY_CHARACTER_PROFILE_RES	struct	refused	contradiction: +0x70 wNone beyond size 0x68 @0x8146db; +0x84 w1 beyond size 0x68 @0x814651; +0x84 w1 beyond size 0x68 @0x814700
+types	nUserSession::CPacket_S2C_GET_PARTY_PAWN_DATA_RES	struct	refused	contradiction: +0x240 w1 beyond size 0x1b4 @0x812631; +0x240 w1 beyond size 0x1b4 @0x812690
+types	nUserSession::CPacket_S2C_GET_PARTY_PLAYER_CONTEXT_RES	struct	refused	contradiction: m_Context+0x4 in padding of CDataPartyContextPlayer @0x8051d8; m_Context+0x4 in padding of CDataPartyContextPlayer @0x8051ec; +0x310 w1 beyond size 0x2e0 @0x8051e1; +0x310 w1 beyond size 0x2e0 @0x80522f
+types	nUserSession::CPacket_S2C_GET_PAWN_EQUIP_LIST_RES	struct	refused	contradiction: +0x44 w1 beyond size 0x3c @0x8081f1; +0x44 w1 beyond size 0x3c @0x80824d
+types	nUserSession::CPacket_S2C_GET_PAWN_TOTAL_SCORE_RES	struct	refused	contradiction: +0x40 w1 beyond size 0x38 @0x812951; +0x40 w1 beyond size 0x38 @0x81299c
+types	nUserSession::CPacket_S2C_GET_SET_QUEST_INFO_LIST_RES	struct	refused	contradiction: +0x30 wNone beyond size 0x2c @0x816edc; +0x32 wNone beyond size 0x2c @0x816eed; +0x34 w1 beyond size 0x2c @0x816ea1; +0x34 w1 beyond size 0x2c @0x816f0e
+types	nUserSession::CPacket_S2C_GP_SHOP_DISPLAY_BUY_RES	struct	refused	contradiction: +0x30 wNone beyond size 0x30 @0x80993c; +0x34 wNone beyond size 0x30 @0x80994d; +0x38 w1 beyond size 0x30 @0x809901; +0x38 w1 beyond size 0x30 @0x80996e
+types	nUserSession::CPacket_S2C_JOB_VALUE_SHOP_BUY_ITEM_RES	struct	refused	contradiction: +0x19 in padding of nUserSession::CPacket_S2C_JOB_VALUE_SHOP_BUY_ITEM_RES @0x80db3b; +0x1c wNone beyond size 0x1c @0x80db4c; +0x20 w1 beyond size 0x1c @0x80db11; +0x20 w1 beyond size 0x1c @0x80db6d
+types	nUserSession::CPacket_S2C_JOB_VALUE_SHOP_GET_LINEUP_RES	struct	refused	contradiction: m_ucJobId: width 4 on a 1-byte member @0x80dc04; m_JobValueShopItemList.MtArray.mBufsiz: +1 into a 4-byte member @0x80dbdb; +0x30 w1 beyond size 0x28 @0x80dbb1; +0x30 w1 beyond size 0x28 @0x80dc0d
+types	nUserSession::CPacket_S2C_LEADER_QUEST_PROGRESS_REQUEST_RES	struct	refused	contradiction: m_ucQuestProgressResult: width 4 on a 1-byte member @0x8175b4; m_usProcessNo: width 4 on a 2-byte member @0x817558; +0x18 wNone beyond size 0x18 @0x81757a; +0x1c wNone beyond size 0x18 @0x81758b; +0x20 wNone beyond size 0x18 @0x81759c; +0x22 w1 beyond size 0x18 @0x817561 (+1 more)
+types	nUserSession::CPacket_S2C_LEARN_NORMAL_SKILL_RES	struct	refused	contradiction: m_ucJob: width 4 on a 1-byte member @0x81bce4; +0x1c wNone beyond size 0x1c @0x81bcbb; +0x20 wNone beyond size 0x1c @0x81bccc; +0x24 w1 beyond size 0x1c @0x81bc91; +0x24 w1 beyond size 0x1c @0x81bced
+types	nUserSession::CPacket_S2C_LEARN_PAWN_NORMAL_SKILL_RES	struct	refused	contradiction: +0x20 wNone beyond size 0x20 @0x81be2c; +0x24 wNone beyond size 0x20 @0x81be3d; +0x28 w1 beyond size 0x20 @0x81bdf1; +0x28 w1 beyond size 0x20 @0x81be5e
+types	nUserSession::CPacket_S2C_NG_WORD_GET_LIST_RES	struct	refused	contradiction: +0xc in padding of nUserSession::CPacket_S2C_NG_WORD_GET_LIST_RES @0x80ff74; m_ullVersionNo: +4 into a 8-byte member @0x80ff18; m_ullVersionNo: +4 into a 8-byte member @0x80ff29; +0x48 w1 beyond size 0x48 @0x80ff21; +0x48 w1 beyond size 0x48 @0x80ff7d
+types	nUserSession::CPacket_S2C_PARTY_INVITE_RES	struct	refused	contradiction: m_usTimeoutSec: width 4 on a 2-byte member @0x811104; m_bIsReceived: width 4 on a 1-byte member @0x8110a8; +0x18 wNone beyond size 0x18 @0x8110ca; +0x1a wNone beyond size 0x18 @0x8110db; +0x1c wNone beyond size 0x18 @0x8110ec; +0x20 w1 beyond size 0x18 @0x8110b1 (+1 more)
+types	nUserSession::CPacket_S2C_PARTY_JOIN_RES	struct	refused	contradiction: m_ucMemberIndex: width 4 on a 1-byte member @0x811224; m_ullContentNumber: +4 into a 8-byte member @0x8111c8; m_ullContentNumber: +4 into a 8-byte member @0x8111d9; +0x20 wNone beyond size 0x20 @0x8111fb; +0x28 wNone beyond size 0x20 @0x81120c; +0x2c w1 beyond size 0x20 @0x8111d1 (+1 more)
+types	nUserSession::CPacket_S2C_PAWN_EXPEDITION_GET_MY_SALLY_INFO_RES	struct	refused	contradiction: +0x24 wNone beyond size 0x1c @0x811a5b; +0x25 wNone beyond size 0x1c @0x811a6c; +0x26 wNone beyond size 0x1c @0x811a7d; +0x27 w1 beyond size 0x1c @0x811a31; +0x27 w1 beyond size 0x1c @0x811a9e
+types	nUserSession::CPacket_S2C_PAWN_EXPEDITION_GET_REWARD_DROP_ITEM_RES	struct	refused	contradiction: +0x30 wNone beyond size 0x28 @0x811bac; +0x31 w1 beyond size 0x28 @0x811b71; +0x31 w1 beyond size 0x28 @0x811bcd
+types	nUserSession::CPacket_S2C_PAWN_EXPEDITION_GET_REWARD_DROP_RES	struct	refused	contradiction: +0x44 w1 beyond size 0x3c @0x811c11; +0x44 w1 beyond size 0x3c @0x811c6d
+types	nUserSession::CPacket_S2C_PAWN_EXPEDITION_GET_SALLY_INFO_RES	struct	refused	contradiction: m_ucSallyCount: width 4 on a 1-byte member @0x811d2a; +0x6c w1 beyond size 0x64 @0x811cb1; +0x6c w1 beyond size 0x64 @0x811d33
+types	nUserSession::CPacket_S2C_PAWN_EXPEDITION_GET_SALLY_REWARD_RES	struct	refused	contradiction: +0x3c wNone beyond size 0x30 @0x811dbd; +0x3d wNone beyond size 0x30 @0x811dce; +0x3e w1 beyond size 0x30 @0x811d71; +0x3e w1 beyond size 0x30 @0x811df3
+types	nUserSession::CPacket_S2C_PAWN_LOST_RES	struct	refused	contradiction: m_bIsLost: width 4 on a 1-byte member @0x8130c8; +0x18 wNone beyond size 0x18 @0x8130ea; +0x1c wNone beyond size 0x18 @0x8130fb; +0x20 wNone beyond size 0x18 @0x81310c; +0x21 w1 beyond size 0x18 @0x8130d1; +0x21 w1 beyond size 0x18 @0x81312d
+types	nUserSession::CPacket_S2C_QUEST_PROGRESS_RES	struct	refused	contradiction: m_ucQuestProgressResult: width 4 on a 1-byte member @0x818514; +0x34 w1 beyond size 0x2c @0x8184c1; +0x34 w1 beyond size 0x2c @0x81851d
+types	nUserSession::CPacket_S2C_RELEASE_JOB_ORB_ELEMENT_RES	struct	refused	contradiction: m_ucJobID: width 4 on a 1-byte member @0x80e135; +0x24 wNone beyond size 0x24 @0x80e11d; +0x30 w1 beyond size 0x24 @0x80e0d1; +0x30 w1 beyond size 0x24 @0x80e13e
+types	nUserSession::CPacket_S2C_RELEASE_PAWN_ORB_ELEMENT_RES	struct	refused	contradiction: m_ucGainParamType: width 4 on a 1-byte member @0x810378; +0x20 wNone beyond size 0x20 @0x8103bc; +0x24 wNone beyond size 0x20 @0x8103cd; +0x28 w1 beyond size 0x20 @0x810381; +0x28 w1 beyond size 0x20 @0x8103ee
+types	nUserSession::CPacket_S2C_RENTAL_PAWN_LOST_RES	struct	refused	contradiction: m_ucAdventureCount: width 4 on a 1-byte member @0x8131e8; +0x18 wNone beyond size 0x18 @0x81320a; +0x1c wNone beyond size 0x18 @0x81321b; +0x20 wNone beyond size 0x18 @0x81322c; +0x21 w1 beyond size 0x18 @0x8131f1; +0x21 w1 beyond size 0x18 @0x81324d
+types	nUserSession::CPacket_S2C_REPORT_JOB_ORDER_PROGRESS_RES	struct	refused	contradiction: m_ucJobID: width 4 on a 1-byte member @0x80de54; +0x44 w1 beyond size 0x3c @0x80de01; +0x44 w1 beyond size 0x3c @0x80de5d
+types	nUserSession::CPacket_S2C_RESET_CRAFTPOINT_RES	struct	refused	contradiction: +0x30 wNone beyond size 0x2c @0x805f3c; +0x34 w1 beyond size 0x2c @0x805f01; +0x34 w1 beyond size 0x2c @0x805f5d
+types	nUserSession::CPacket_S2C_SET_PAWN_ABILITY_RES	struct	refused	contradiction: +0x1c wNone beyond size 0x1c @0x81c5ab; +0x20 wNone beyond size 0x1c @0x81c5bc; +0x24 wNone beyond size 0x1c @0x81c5cd; +0x25 w1 beyond size 0x1c @0x81c581; +0x25 w1 beyond size 0x1c @0x81c5ee
+types	nUserSession::CPacket_S2C_SET_PAWN_SKILL_RES	struct	refused	contradiction: +0x1c wNone beyond size 0x1c @0x81c6eb; +0x1d wNone beyond size 0x1c @0x81c6fc; +0x20 wNone beyond size 0x1c @0x81c70d; +0x24 wNone beyond size 0x1c @0x81c71e; +0x25 w1 beyond size 0x1c @0x81c6c1; +0x25 w1 beyond size 0x1c @0x81c743
+types	nUserSession::CPacket_S2C_START_EQUIP_GRADE_UP_RES	struct	refused	contradiction: +0x60 wNone beyond size 0x5c @0x8062ca; +0x64 wNone beyond size 0x5c @0x8062df; +0x68 wNone beyond size 0x5c @0x8062f4; +0x84 w1 beyond size 0x5c @0x806201; +0x84 w1 beyond size 0x5c @0x806319
+types	nUserSession::CPacket_S2C_SYSTEM_MAIL_GET_ALL_ITEM_RES	struct	refused	contradiction: +0xc in padding of nUserSession::CPacket_S2C_SYSTEM_MAIL_GET_ALL_ITEM_RES @0x80ef53; m_ullId: +4 into a 8-byte member @0x80ef08; m_ullId: +4 into a 8-byte member @0x80ef19; +0x74 w1 beyond size 0x70 @0x80ef11; +0x74 w1 beyond size 0x70 @0x80ef5c
+types	nUserSession::CPacket_S2C_WEATHER_FORECAST_GET_RES	struct	refused	contradiction: +0x34 w1 beyond size 0x2c @0x81ac61; +0x34 w1 beyond size 0x2c @0x81acbd

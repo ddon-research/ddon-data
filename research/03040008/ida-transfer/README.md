@@ -258,3 +258,91 @@ element pairs it was read from) and the seeds it depends on.
   `role-<rule>` and `role-b`), `conflicts.tsv` (`stage`), `precision.tsv`, `control.tsv`, `crosscheck.tsv`
   (006 T001 `matched`, T002 `holds`/`wrong`, T005b examples), `summary.tsv` (counts per rule, contexts,
   refusal reasons, codec cross-check, precision and control totals).
+
+## Transfer rules (`transfer.py`, `transfer/`, T006 wave 1)
+
+    uv run python transfer.py     # rewrites manifest/transfer/*; identical on rerun (about 5 s)
+
+Inputs: the three dumps (sha256 against `dumps/MANIFEST.tsv`), the accepted rows of `manifest/pairs.tsv` and the
+T002 audit (`specs/007-pc-handler-annotation/research/T002-prior-annotations.tsv`). Fail closed (exit 2) when
+`pairs.tsv` names other dump sources or its accepted pairs differ from the matcher's pipeline on these dumps.
+Libraries: stdlib (`csv`, `json`, `re`, `dataclasses`), the matcher's own gates; pytest, ruff. Own code: the MSVC
+x86 layout from DWARF records and the access landing (no stdlib or project library computes an MSVC layout
+from Itanium DWARF), the TSV/C-header writers.
+
+Outputs (`manifest/transfer/`): `names.tsv` (rows T007 writes: `set`, `correct`, `remove-label`),
+`prototypes.tsv` (`set`), `types.tsv` + `type_members.tsv` + `types.h`, `comments.tsv`, `skipped.tsv` (every
+candidate not written, with rule and reason), `precision.tsv` (rule 6), `summary.tsv`.
+
+- **Rule 1, names** (`transfer/names.py`): a tier-0 callback takes its PC `OnPacket_` string, paired or not; any
+  other accepted pair takes the PS4 function's IDA name (`ps4_symbol`, the form IDA gives the demangled qualified
+  name, e.g. `nPacket::Read_CDataAbilityLevelParam_` for `nPacket::Read<CDataAbilityLevelParam>`; the DWARF
+  qualified name and the mangled symbol go into the comment). Against the current name: default -> `set`; equal
+  -> nothing; another non-default name -> `conflict`, except a T002 `wrong` / name-source-not-code verdict or the
+  exact PS4-form spelling of the PC string (`OnPacket_S2C_<N>` for `OnPacket_<N>`), which become `correct` with
+  the reason quoted. A name proposed for two PC functions (MSVC folding) -> `folded`, neither set; a name another
+  PC function already holds -> `conflict`. The three T004f labels at old starts -> `remove-label` (T007 removes
+  them before naming the callback at its new start).
+- **Rule 2, prototypes** (`transfer/prototypes.py`): `__thiscall` when the matcher's `pc_has_this` holds, else
+  `ret N` -> `__stdcall`, plain `ret` -> `__cdecl`; the pair passed gate (c), so count and widths agree with
+  DWARF. Written in IDA's printed form without a name (`int __thiscall(A *this, CPacket *pPacket)`), compared
+  with the dump's `prototype`. Types: base types and fixed-width typedefs by size and encoding (typedef names are
+  not used: no typedef is transferred); pointer/reference to a class -> pointer to that class (opaque
+  `struct X;` unless rule 3 transfers it; template names verbatim); 4-byte enums by value -> the DWARF enum;
+  anything else -> the width-sized integer, DWARF type in `notes`. Refused (`skipped.tsv`): IDA's current
+  prototype takes a register argument other than ecx (`__usercall`/`__userpurge` `@<edi>` ...: the convention is
+  not provable from the dump), a class returned by value, a user-set current prototype that differs
+  (`conflict`). Tier-0 handlers without a PS4 pair: `int __thiscall(<class> *this, void *packet)` only with ecx
+  `this`, every `ret` = `ret 4` and the string's class `cSeedGameSvConnection` / `cSeedLoginSvConnection`
+  (T002 § 3.1 checked the same three facts on the 50 earlier handlers).
+- **Rule 3, types** (`transfer/layout.py`, `transfer/typecheck.py`, `transfer/render.py`), below.
+- **Rule 4, comments** (`transfer/comments.py`): one per function with a written name or prototype:
+  `PC name from string at <ea>.` and/or `PS4 02020005: <qualified> (<mangled>); paired by <rule>.` plus
+  `Season 3: <flags>.`; an existing comment is kept, ours appended below a `----` line, nothing when it is there.
+- **Rule 5**: `skipped.tsv`.
+- **Rule 6, precision** (`precision.tsv`): T005e's holdout (5 RNG seeds, 20% of the seeds withheld), the whole
+  pipeline rerun and then the type check on its pairs. A type accepted in the full run and not in a holdout run
+  is listed in `types.tsv` `holdout_lost_in_rng` (it depends on the withheld seeds); `new` lists types accepted
+  only in a holdout run (none).
+
+### Layout rules (rule 3; one test each in `tests/test_transfer.py`)
+
+The PC 32-bit layout is computed from the DWARF members (offsets of the PS4 64-bit layout are not used):
+
+- L1 scalars by PC size: fixed-width typedefs (`u64`, `s64`, `uint64_t`, ...) by name before the typedef chain;
+  `long`, `wchar_t`, `long double` differ between the PS4 ABI and MSVC and are refused otherwise.
+- L2 pointers, references, function pointers and pointer-sized typedefs (`size_t`, `uintptr_t`, ...): 4 bytes;
+  pointers to members refused (MSVC's size depends on the class).
+- L3 natural alignment capped at 8 (`/Zp8`: `double` and 64-bit integers align to 8); size rounded up.
+- L4 a class that declares the vptr (DWARF artificial `_vptr$`) and has no dynamic base: 4-byte vptr at 0; a
+  dynamic base's vptr is shared.
+- L5 the base comes first; an empty base (no data, no vptr) takes no space; several bases are refused (MSVC
+  reorders dynamic bases first, not modelled).
+- L6 members in declaration order at their aligned offsets; unions at 0; an empty class has size 1; MSVC never
+  reuses a base's tail padding (Itanium may), which this gives by construction.
+- L7 refused: bitfields, virtual bases, declaration-only types, unresolvable member types, anywhere inside.
+
+**Access check.** Candidates: the class of `this` and of each pointer-to-class argument of the accepted pairs
+(PC stack slot from gate (c)'s widths), the pointee class of a pointer member a v4 `via` access goes through,
+and the embedded member and base types. Every v4 `object_accesses` record of the paired PC function through
+such an argument must land on a member start (recursing into embedded structs, bases and array elements) with
+the member's size, or on a whole embedded aggregate of that size, or the vptr; `lea` only needs a member start;
+nothing beyond the size. No exceptions for narrow `test byte ptr` or 8/16-byte block copies: they count as
+contradictions. A contradiction counts against the argument's class (the root), which is refused; an access
+counts for an embedded type or a `via` pointee only while its root is not refused; a type that embeds a
+refused type is refused (fixed point). Accepted: zero contradictions, at least one checked access, and the
+size equal to a known PC size where one exists. The dumps link no allocation or constructor to a type, so the
+only size evidence is T002's (`cSeedGameSvConnection` 0x540, `CPacket_S2C_GET_STAGE_LIST_RES` 0x30); other types
+say so in `size_evidence`. `types.tsv` lists checked and unchecked members and up to 10 evidence VAs per type,
+`type_members.tsv` the VAs per member.
+
+**types.h.** Accepted types and the checked types embedded in them (`embedded`), each after its dependencies,
+inside `#pragma pack(push, 1)` with explicit `gap` members, so IDA places every member at the computed offset
+whatever its own rules. The vptr is `void *__vftable`, a base `Base baseclass_<off>`; a member of a type not
+transferred is written as bytes with the DWARF type in the comment; a pointer to a class not transferred points
+to an opaque `struct X;` (no layout claim). Enums used by transferred members or prototypes are written as in
+DWARF (4-byte ones); an enum whose enumerator names another written enum already uses is skipped. Names are
+the DWARF names, templates included (`MtTypedArray<CDataX>`); anonymous types are not written. T007 note:
+IDA's built-in C parser may not take `<...>` in names; the tinfo API does.
+
+T006 run (dumps as in `dumps/MANIFEST.tsv`, 972 accepted pairs): see `manifest/transfer/summary.tsv`.
