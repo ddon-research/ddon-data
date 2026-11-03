@@ -449,7 +449,11 @@ wave 1's `manifest/transfer/types.tsv`/`types.h` (the types already in the work 
   elsewhere; size = a known size (`typecheck.KNOWN_SIZES`) or the end of the last member (`size: lower bound`).
   Then every width access of the paired PC functions through that class: one overlapping a linked member must land
   on a leaf start of it with the leaf's width (`layout.land`), else the class is refused; gap accesses are allowed
-  and counted, indexed ones counted as not placed. Shifts, PS4 offsets alone and `lea`s never make members. Wave-1
+  and counted, indexed ones counted as not placed. An access through the object (not through a loaded pointer)
+  ending past a lower-bound size (`disp + width`; a `lea` at `disp` as `disp + 1`) extends the size to that end,
+  the farthest one recorded as `size_evidence` (`types.tsv`, with `last_member_end`); past a proved size it
+  refuses the class (T013e: before it, 42 of 48 sizes stopped short of the readers' trailing read-ok byte and
+  Hex-Rays split the rest of the `packet` locals off). Shifts, PS4 offsets alone and `lea`s never make members. Wave-1
   types are unchanged (`status wave-1`). `types.h` carries one comment line per type
   (`// <type>: Partial: N members linked by codec position ...`) and repeats the wave-1 types they embed verbatim.
 - **Locals** (`locals.tsv`; gates of T010 § 5): R1 a paired callee called once on each side, the slot a PC stack
@@ -490,6 +494,11 @@ declarations defined with their type comments, 5 wave-1 types `already`, 5 `pack
 `sendFeedbackList` refused: `in_PawnFeedbackList` has a user name), verify all `ok` with counts `ok`, undo all
 `restored`. Undo of a defined forward declaration deletes the type and declares it again, so the local type
 ordinal count grows by one per type (965 -> 970); the first undo round failed there before that fix.
+
+T013e re-apply (`specs/007-pc-handler-annotation/research/W2-T013e-reapply.md`): the work copy restored from
+`...exe.before-W2.i64` (`f7f3a219...3c25`), then dry run, apply, second apply, verify (`dumps/apply-*-w2e.jsonl`):
+48 types defined, 23 `packet` locals set with lvar width = type size, verify all `ok`; republished as
+`spec007-packet-handlers-20261103-wave2/` (sha256 `ee07f0b6...8c1d`).
 
 Writes T006's rows (`manifest/transfer/{names,prototypes,comments,types}.tsv`, `types.h`) to the PC 03040008
 work copy and checks them back. Headless batch only, on the copy under `ddon-data-007work` (T007b runs it):
@@ -553,7 +562,8 @@ records written before a crash, undo records included.
 - Every write: `undo` record (before-state: name and user flag, printed type + serialized tinfo, comment, local
   type layout + serialized tinfo, or `null` for an absent type) flushed first, then the write, then the
   read-back; a mismatch is `failed` with both values, no retry. A second `--apply` finds every row `already`.
-- **Verify**: every row against the database (`ok`/`mismatch`), the counts against the apply log's header plus
+- **Verify**: every row against the database (`ok`/`mismatch`; a retyped local also needs its lvar width equal to
+  its type's size, else `mismatch` `check: width`, T013e), the counts against the apply log's header plus
   what its applied rows account for (+1 name per `set` on a default name, -1 per removed label, +1 typed function
   per prototype set, +1 local type per type created), and a decompilation of each function whose prototype is
   the row's.
