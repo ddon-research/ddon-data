@@ -88,7 +88,9 @@ Coordinator: main session. One subagent at a time. Method and rules: `spec.md`.
   type names checked; `transfer/` already emitted IDA's forms; 360 tests). T007b rerun next.
   T007b rerun: dry run 0 refusals; apply wrote every row, 171 prototype read-backs `failed` on text
   compare (`struct ` prefix on `::`/template types); writes checked right on 4; rollback restored
-  (`65120b34...`). T007d: compare prototypes as `tinfo_t`. (`implementer` writes it, `evidence-researcher-ida` runs it).
+  (`65120b34...`). T007d: compare prototypes as `tinfo_t`.
+  T007d done (5362d5c45c, 9ab79f9303: `same_prototype` via `tinfo_t.compare_with(TCMP_EQUAL)` per part plus
+  argument names, in already/read-back/verify; 366 tests). T007b run 3 next. (`implementer` writes it, `evidence-researcher-ida` runs it).
 - [ ] T008 Verify: re-extract, compare, decompile sample; adversarial review of pairs and types.
 - [ ] T009 Close: `check.sh --all`, docs, retrospective, publish the database folder.
 
@@ -96,7 +98,7 @@ Order: T003 first (T002 needs a copy of the accepted database), then T002.
 
 ## Running
 
-- T007d (implementer, brief `briefs/T007d-prototype-compare.md`), started 2026-11-03; then T007b from step 2.
+- T007b run 3 (evidence-researcher-ida), started 2026-11-03.
 - Decision (coordinator, 2026-11-03): from T004d on, all writes go to one persistent work copy
   `PC_DDON_03040008/ddon-data-007work/` of the accepted database (repairs first, then T007's apply);
   it is published as `spec007-packet-handlers-<date>/` at the close.
