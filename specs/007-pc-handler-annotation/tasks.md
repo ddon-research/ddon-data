@@ -123,19 +123,24 @@ Coordinator: main session. One subagent at a time. Method and rules: `spec.md`.
   T006d done (733a4c77e6: one pointer level stripped at a time; `member_equal` compares member types (`norm_type`
   maps scalar spellings); canaries are tests; manifest change `MtArray.mpArray` only; 405 tests). Verify of the
   work copy runs as T009 step 0.
-- [ ] T009 Conflicts with the earlier annotations. Evidence done (`research/T009-conflicts.md`,
+- [x] T009 Conflicts with the earlier annotations. Evidence done (`research/T009-conflicts.md`,
   `T009-decisions.tsv`: 61/61 `ours`; 5 earlier names copy the group prefix into a PS4-style name, 2 earlier
   `__fastcall` contradicted by ecx use and `retn 8`; step 0 dry run all `already`, verify refused: manifest hash
   changed after T006d, fixed by the next apply log). T009b: correction rows + apply support; then T009c apply.
   T009b done (9e495f2362, 91bf570b8d: 7 names `correct`, 54 prototypes `replace` with the current-value guard;
   55 comment rows added (1,174; 13 `append` below existing comments, apply keeps only our part); 417 tests).
+  T009c done (`research/T009c-apply.md`: 7 names, 54 prototypes, 55 comments written, 0 refused/failed; second
+  apply all `already`; verify (new base `apply-t009c.jsonl`) all ok, 1,065 typed functions decompile; 13 earlier
+  comments kept above the separator; `0x7DA410` keeps its `__userpurge` prototype (refused in skipped.tsv)). Work
+  copy `f7f3a219...3c25`; rollback `.before-T009c.i64`. Snapshot published (coordinator):
+  `PC_DDON_03040008/spec007-packet-handlers-20261103-wave1/2022_01_29_DDO_DUMP_FIX.exe.i64` (same sha256).
 - [ ] T009 Close: `check.sh --all`, docs, retrospective, publish the database folder.
 
 Order: T003 first (T002 needs a copy of the accepted database), then T002.
 
 ## Running
 
-- T009c (evidence-researcher-ida, brief `briefs/T009c-apply-corrections.md`), started 2026-11-03.
+- T010 (evidence-researcher-ida, brief `briefs/T010-locals-feasibility.md`), started 2026-11-03.
 - Decision (coordinator, 2026-11-03): from T004d on, all writes go to one persistent work copy
   `PC_DDON_03040008/ddon-data-007work/` of the accepted database (repairs first, then T007's apply);
   it is published as `spec007-packet-handlers-<date>/` at the close.
