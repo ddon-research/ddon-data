@@ -155,3 +155,89 @@ Total 1,631/1,631.
   `include/DailyMission.hexpat`, `include/InfinityDelivery.hexpat`; `README.md`: three include rows, 37 table rows and
   the T004 paragraph.
 - `specs/008-remaining-packets/research/t004/walk.py` (`stats`, `check`, `fits`, `dump`), `correlate.py`.
+
+## Errata (T006, 2026-11-03)
+
+Applied by 008 T007 (`specs/008-remaining-packets/briefs/T007-mark-fixes.md`) from the adversarial review `T006-adversarial.md` F1-F3; the text above is unchanged. Counts above are values in captures; this table gives the distinct values behind every `I (value)` mark of this task and the mark after T007 (rule: README "How value bases are counted"). `chance`: probability that every distinct value is an id of the item or stage table by luck (id claims only). Source: `t007/marks-before.tsv`, `t007/mark-changes.tsv`.
+
+- 71.22.2: the 42 captures carry one identical BattleContentInfoList and one identical BattleContentStatusList: "294/294" is 7 comparisons x 42 copies of one list (7 distinct ids).
+- 72.0.2: the 3,393 missions are 29 MissionIds (30 with the 72.3.2 event mission's 0) and 187 distinct mission tuples; none breaks the State rule.
+- The README table rows count the marks after T007; the tables above keep the marks before it.
+
+| id | field | values | distinct | chance | mark after T007 |
+| --- | --- | ---: | ---: | ---: | --- |
+| 59.0.2,59.9.2 | `CDataInfinityDeliveryEvent.EventId` | 2 | 1 |  | G (context) (was I) |
+| 59.0.2,59.9.2 | `CDataInfinityDeliveryEvent.EventName` | 2 | 1 |  | G (context) (was I) |
+| 59.4.1 | `C2S_INFINITY_DELIVERY_GET_CATEGORY_STATUS_REQ.CategoryId` | 1 | 1 |  | G (context) (was I) |
+| 59.4.2,59.9.2 | `CDataInfinityDeliveryCategoryStatus.CategoryName` | 2 | 1 |  | G (context) (was I) |
+| 59.4.2,59.9.2 | `CDataInfinityDeliveryRanking.CharacterName` | 26 | 13 |  | I |
+| 59.4.2,59.9.2 | `CDataInfinityDeliveryRanking.ClanId` | 26 | 13 |  | I |
+| 59.4.2,59.9.2 | `CDataInfinityDeliveryRanking.ClanName` | 26 | 13 |  | I |
+| 59.4.2,59.9.2 | `CDataInfinityDeliveryRanking.Point` | 26 | 13 |  | I |
+| 59.4.2,59.9.2 | `CDataInfinityDeliveryRanking.Rank` | 26 | 13 |  | I |
+| 59.8.2 | `CDataInfinityDeliveryCategory.CategoryId` | 1 | 1 |  | G (context) (was I) |
+| 59.8.2 | `CDataInfinityDeliveryCategory.CategoryName` | 1 | 1 |  | G (context) (was I) |
+| 59.8.2 | `CDataInfinityDeliveryCategoryList.Description` | 1 | 1 |  | G (context) (was I) |
+| 59.8.2 | `CDataInfinityDeliveryCategoryList.EventId` | 1 | 1 |  | G (context) (was I) |
+| 59.8.2 | `CDataInfinityDeliveryCategoryList.EventName` | 1 | 1 |  | G (context) (was I) |
+| 59.8.2 | `CDataInfinityDeliveryCategoryList.IconUrl` | 1 | 1 |  | G (context) (was I) |
+| 59.8.2 | `CDataInfinityDeliveryCategoryList.ImageUrl` | 1 | 1 |  | G (context) (was I) |
+| 59.9.1 | `C2S_INFINITY_DELIVERY_GET_CATEGORY_INFO_REQ.CategoryId` | 1 | 1 |  | G (context) (was I) |
+| 59.9.2 | `CDataInfinityDeliveryCategoryInfo.Event` | 1 | 1 |  | I |
+| 59.9.2 | `CDataInfinityDeliveryItem.ItemId` | 27 | 27 | 0.071 | G (context) (was I) |
+| 59.9.2 | `CDataInfinityDeliveryRankingReward.Rank` | 4 | 4 |  | I |
+| 59.9.2 | `CDataInfinityDeliveryRewardItem.ItemId` | 107 | 30 | 0.094 | G (context) (was I) |
+| 62.12.16 | `C2S_SEASON_DUNGEON_62_12_16_NTC.LayoutId` | 259 | 21 | 1 | I |
+| 62.14.16 | `S2C_SEASON_DUNGEON_EXECUTE_SOUL_ORDEAL_NTC.TrialId` | 28 | 13 |  | I |
+| 62.14.16 | `S2C_SEASON_DUNGEON_EXECUTE_SOUL_ORDEAL_NTC.TrialName` | 28 | 1 |  | G (lead) (was I) |
+| 62.14.16,62.16.16 | `CDataSoulOrdealObjective.ObjectiveLabel` | 243 | 31 |  | I |
+| 62.14.16,62.16.16 | `CDataSoulOrdealObjective.Priority` | 243 | 2 |  | G (lead) (was I) |
+| 62.14.16,62.16.16 | `CDataSoulOrdealObjective.Type` | 243 | 6 |  | I |
+| 62.15.16 | `S2C_SEASON_DUNGEON_END_SOUL_ORDEAL_NTC.TrialId` | 28 | 13 |  | I |
+| 62.15.16,62.26.16 | `CDataSeasonDungeonOmState.LayoutId` | 456 | 32 | 0.29 | I |
+| 62.18.1 | `C2S_SEASON_DUNGEON_GET_SOUL_ORDEAL_LIST_FROM_OM_REQ.LayoutId` | 61 | 13 | 1 | I |
+| 62.18.2 | `CDataSoulOrdealElementParam.TrialId` | 54 | 25 |  | I |
+| 62.18.2 | `CDataSoulOrdealElementParam.TrialName` | 54 | 2 |  | G (lead) (was I) |
+| 62.18.2 | `CDataSoulOrdealItem.ItemId` | 26 | 1 | 1 | G (lead) (was I) |
+| 62.18.2 | `CDataSoulOrdealRewardEntry.ItemId` | 1033 | 146 | 3.7e-06 | I |
+| 62.20.1 | `C2S_SEASON_DUNGEON_SOUL_ORDEAL_READY_REQ.LayoutId` | 28 | 13 | 1 | I |
+| 62.20.1 | `C2S_SEASON_DUNGEON_SOUL_ORDEAL_READY_REQ.TrialId` | 28 | 13 |  | I |
+| 62.24.1 | `C2S_SEASON_DUNGEON_EXECUTE_SOUL_ORDEAL_REQ.LayoutId` | 28 | 13 | 1 | I |
+| 62.24.1 | `C2S_SEASON_DUNGEON_EXECUTE_SOUL_ORDEAL_REQ.TrialId` | 28 | 13 |  | I |
+| 62.33.1 | `C2S_SEASON_DUNGEON_GET_SOUL_ORDEAL_REWARD_LIST_REQ.LayoutId` | 21 | 12 | 1 | I |
+| 62.33.2 | `CDataSeasonDungeonBuffEffectReward.BuffId` | 105 | 48 |  | I |
+| 62.33.2 | `CDataSeasonDungeonBuffEffectReward.BuffName` | 105 | 48 |  | I |
+| 62.33.2 | `CDataSeasonDungeonBuffEffectReward.Level` | 105 | 2 |  | G (lead) (was I) |
+| 62.33.2 | `S2C_SEASON_DUNGEON_GET_SOUL_ORDEAL_REWARD_LIST_RES.ItemRewards` | 52 | 6 | 0.82 | I |
+| 62.34.1 | `C2S_SEASON_DUNGEON_RECEIVE_SOUL_ORDEAL_REWARD_REQ.LayoutId` | 21 | 12 | 1 | I |
+| 62.34.1,62.34.2 | `CDataSoulOrdealRewardItem.Amount` | 104 | 6 |  | I |
+| 62.34.1,62.34.2 | `CDataSoulOrdealRewardItem.RewardIndex` | 104 | 3 | 0 | G (lead) (was I) |
+| 62.35.1 | `C2S_SEASON_DUNGEON_RECEIVE_SOUL_ORDEAL_REWARD_BUFF_REQ.BuffId` | 21 | 5 |  | I |
+| 62.35.1 | `C2S_SEASON_DUNGEON_RECEIVE_SOUL_ORDEAL_REWARD_BUFF_REQ.LayoutId` | 21 | 12 | 1 | I |
+| 62.40.16 | `C2S_SEASON_62_40_16_NTC.LayoutId` | 3 | 1 | 1 | I |
+| 71.22.2 | `CDataBattleContentAvailableRewards.Id` | 294 | 7 | 0.28 | I |
+| 71.22.2 | `CDataBattleContentInfo.ContentName` | 42 | 1 |  | G (lead) (was I) |
+| 71.22.2 | `CDataBattleContentInfo.GameMode` | 42 | 1 |  | G (lead; value consistent: 1 distinct) (T006 F2) |
+| 71.22.2 | `CDataBattleContentInfo.ItemTakeawayList` | 1176 | 28 | 0.11 | G (lead) (was I) |
+| 71.22.2 | `CDataBattleContentInfo.RareItemAppraisalList` | 126 | 3 | 0.78 | G (lead) (was I) |
+| 71.22.2 | `CDataBattleContentSituationData.GameMode` | 42 | 1 |  | G (lead; value consistent: 1 distinct) (T006 F2) |
+| 71.22.2 | `CDataBattleContentStage.Id` | 294 | 7 |  | I |
+| 71.22.2 | `CDataBattleContentStage.StageName` | 294 | 7 |  | I |
+| 71.22.2 | `CDataBattleContentStageProgression.ConnectionList` | 210 | 5 | 0.37 | I |
+| 71.22.2 | `CDataBattleContentStageProgression.Id` | 294 | 7 | 0.28 | I |
+| 72.0.2,72.3.2 | `CDataDailyMission.EndDate` | 3395 | 57 |  | I |
+| 72.0.2,72.3.2 | `CDataDailyMission.IconUrl` | 3395 | 10 |  | I |
+| 72.0.2,72.3.2 | `CDataDailyMission.ImageUrl` | 3395 | 10 |  | I |
+| 72.0.2,72.3.2 | `CDataDailyMission.MissionId` | 3395 | 30 |  | I |
+| 72.0.2,72.3.2 | `CDataDailyMission.Progress` | 3395 | 34 |  | I |
+| 72.0.2,72.3.2 | `CDataDailyMission.Purpose` | 3395 | 10 |  | I |
+| 72.0.2,72.3.2 | `CDataDailyMission.StartDate` | 3395 | 51 |  | I |
+| 72.0.2,72.3.2 | `CDataDailyMission.State` | 3395 | 4 |  | I |
+| 72.0.2,72.3.2 | `CDataDailyMission.TargetNum` | 3395 | 16 |  | I |
+| 72.0.2,72.3.2 | `CDataDailyMission.Text` | 3395 | 10 |  | I |
+| 72.0.2,72.3.2 | `CDataDailyMissionReward.MissionId` | 3395 | 30 |  | I |
+| 72.0.2,72.3.2 | `CDataDailyMissionRewardItem.ItemId` | 1880 | 7 | 0.57 | G (context) (was I) |
+| 72.0.2,72.3.2 | `CDataDailyMissionRewardWallet.Type` | 1404 | 2 |  | G (context; value consistent: 2 distinct); typed `E_WALLET_POINT_TYPE_U32` (PS4 DWARF E_WALLET_POINT_TYPE at u32 width: 4 WALLET_POINT_TYPE_TICKET, 12 UNK_12) (T006 F2) |
+| 72.1.16 | `S2C_DAILY_MISSION_ACHIEVE_NTC.MissionIdList` | 113 | 10 |  | I |
+| 72.2.1 | `C2S_DAILY_MISSION_REWARD_RECEIVE_REQ.MissionIdList` | 8 | 5 |  | I |
+| 72.2.1 | `C2S_DAILY_MISSION_REWARD_RECEIVE_REQ.StorageType` | 8 | 3 |  | G (lead; value consistent: 3 distinct) (T006 F2) |

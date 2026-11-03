@@ -22,10 +22,10 @@ import std.mem;
 // CDataSeasonDungeonBuffEffectReward (lead).
 struct CDataSeasonDungeonBuffEffectReward {
     u32 BuffEffect;     // T004 G (lead): server BuffEffect; captured 13-177
-    // T004 I (value: the 62.35.1 request names one of these BuffIds in 21/21); server: BuffId (lead agrees)
+    // T004 I (value, 48 distinct: the 62.35.1 request names one of these BuffIds in 21/21); server: BuffId (lead agrees)
     u32 BuffId;
-    MtString BuffName;  // T004 I (value: buff texts ending "+Lv.1" or "Lv.Max"); server: BuffName (lead agrees)
-    // T004 I (value: 1 with names ending "+Lv.1" (68/68), 4 with "Lv.Max" (35/37)); server: Level (lead;
+    MtString BuffName;  // T004 I (value, 48 distinct: buff texts ending "+Lv.1" or "Lv.Max"); server: BuffName (lead agrees)
+    // T004 G (lead; value consistent: 2 distinct; 1 with names ending "+Lv.1" (68/68), 4 with "Lv.Max" (35/37)); server: Level (lead;
     // the server serializer writes BuffId here)
     u32 Level;
 };
@@ -35,7 +35,7 @@ struct S2C_SEASON_DUNGEON_GET_SOUL_ORDEAL_REWARD_LIST_RES : CPacket {
     s32 Error;
     if (Error == 0) {
         s32 Result;
-        // T004 I (same structure: PC 0x769100 is the gathering item element reader; value: 52/52 item ids
+        // T004 I (same structure: PC 0x769100 is the gathering item element reader; value, 6 distinct, chance 0.82: 52/52 item ids
         // in base/etc/itemlist.ipa.json); server: ItemRewards (lead)
         MtTypedArray<CDataGatheringItemElement> ItemRewards;      // PC 0x769100
         MtTypedArray<CDataSeasonDungeonBuffEffectReward> BuffRewards;   // PC 0x779420; server name (lead)

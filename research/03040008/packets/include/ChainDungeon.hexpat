@@ -17,7 +17,7 @@
 // Users: 63.7.16 (handler 0x7d2000), 63.6.16 (handler 0x7d2150). Struct name G (lead: upstream
 // Arrowgene CDataStageLayoutInfo; fork: CDataS2C_63_7_16).
 struct CDataChainDungeonLayoutInfo {
-    // T005 I (same structure: the element's first {u32, u8, u32} is the CDataStageLayoutId triplet; value:
+    // T005 I (same structure: the element's first {u32, u8, u32} is the CDataStageLayoutId triplet; value, 2 distinct, chance 1:
     // StageId 655 in 9/9 = stage_list.slt "Darkness Cloaked Shadolean Great Temple"); server: LayoutId
     // (lead agrees)
     CDataStageLayoutId LayoutId;
@@ -29,7 +29,7 @@ struct CDataChainDungeonLayoutInfo {
 struct CDataSituationObjective {
     u8 unk_u8;          // T005 open: 63-69, 0; server: Unk0 (lead)
     u32 unk_u32;        // T005 open: 0x000d0003-0x000d0008, 0x00030001/2, 0x00060009; server: Unk1 (lead)
-    // T005 I (value: objective texts, e.g. "敵を全滅せよ" / "敵を全滅せよ：成功" (annihilate the enemies /
+    // T005 I (value, 6 distinct: objective texts, e.g. "敵を全滅せよ" / "敵を全滅せよ：成功" (annihilate the enemies /
     // success), "暗黒の竜晶を破壊せよ"); server: Message (lead agrees)
     MtString Message;
 };

@@ -26,10 +26,10 @@ struct CDataStageDungeonEntryCost {
 // PC reader 0x779a90 {u32 +4, MtString +8, u32 +12, u32 +16, bool +20, list 0x779b10 +24} (V). Struct
 // name G (context); the server writes the fields flat.
 struct CDataStageDungeonStart {
-    // T005 I (value: 3/3 = the ContentId of the preceding 12.5.1; 19); server: Unk0 (lead)
+    // T005 G (lead; value consistent: 1 distinct; 3/3 = the ContentId of the preceding 12.5.1; 19); server: Unk0 (lead)
     u32 ContentId;
     MtString unk_str;   // T005 open: empty in 3/3; server: Unk1 (lead)
-    // T005 I (value: 559 in 3/3 = stage_list.slt StageId "Memory of Megadosys", the 62.1.2 dungeon
+    // T005 I (value, 1 distinct, chance 1: 559 in 3/3 = stage_list.slt StageId "Memory of Megadosys", the 62.1.2 dungeon
     // name); server: StageId (lead agrees)
     u32 StageId;
     u32 StartPos;       // T005 G (lead): server StartPos; 5 in 3/3

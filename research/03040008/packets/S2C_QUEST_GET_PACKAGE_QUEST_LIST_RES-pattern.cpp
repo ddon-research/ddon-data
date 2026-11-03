@@ -42,7 +42,7 @@ struct S2C_QUEST_GET_PACKAGE_QUEST_LIST_RES : CPacket {
     s32 Error;
     if (Error == 0) {
         s32 Result;
-        // T003 I (value: 146/146 equal the preceding 11.5.1 request's u32: an echo); name open, kept unk;
+        // T003 I (value, 27 distinct: 146/146 equal the preceding 11.5.1 request's u32: an echo); name open, kept unk;
         // server: Unk0 (lead)
         u32 unk_u32;
         // T003 G (lead): server PackageQuestList; empty in 146/146

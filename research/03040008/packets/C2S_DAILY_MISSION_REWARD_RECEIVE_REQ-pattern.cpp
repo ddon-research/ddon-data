@@ -19,11 +19,11 @@ import std.mem;
 
 struct C2S_DAILY_MISSION_REWARD_RECEIVE_REQ : CPacket {
     bool sourceOk = source == 0x00 [[export]];  // header source byte: 0x00 client (Packet.hexpat)
-    // T004 I (value: 8/8 are MissionIds of 72.0.2 whose State is 2 before and 3 after)
+    // T004 I (value, 5 distinct: 8/8 are MissionIds of 72.0.2 whose State is 2 before and 3 after)
     MtTypedArray<CDataCommonU32> MissionIdList;     // PC 0x77df90
-    // T004 I (value: 19 (6), 20 (1), 13 (1): the server StorageType values ReceiveInItemBagCraft,
-    // ReceiveInStorageCraft and ItemPost, the three destinations of the gmd prompt
-    // daily_mission_get_reward_bag/storage/post)
+    // T004 G (lead; value consistent: 3 distinct, 19 (6), 20 (1), 13 (1): only the server's
+    // Storages.cs maps them to ReceiveInItemBagCraft, ReceiveInStorageCraft and ItemPost; context: the
+    // three destinations of the gmd prompt daily_mission_get_reward_bag/storage/post; T007 from T006 F2)
     u8 StorageType;
     // Fit: the decode ends within the last 15 bytes (cipher block padding; Packet.hexpat).
     u128 paddingSize = std::mem::size() - $ [[export]];

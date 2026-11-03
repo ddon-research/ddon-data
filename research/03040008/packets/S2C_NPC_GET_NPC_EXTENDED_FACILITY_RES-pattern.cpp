@@ -38,7 +38,7 @@ struct S2C_NPC_GET_NPC_EXTENDED_FACILITY_RES : CPacket {
     s32 Error;
     if (Error == 0) {
         s32 Result;
-        // T003 I (value: 7/7 nonzero values equal the NpcID of the preceding 60.0.1 request in the same
+        // T003 G (lead; value consistent: 3 distinct; 7/7 nonzero values equal the NpcID of the preceding 60.0.1 request in the same
         // stream; 212/219 are 0); server: NpcId (lead agrees)
         u32 NpcId;
         // T003 G (lead): server: ExtendedMenuItemList

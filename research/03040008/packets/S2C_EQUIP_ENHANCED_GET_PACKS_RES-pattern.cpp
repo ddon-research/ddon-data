@@ -39,15 +39,15 @@ struct CDataEquipEnhanceLotteryOption_unk_0 {
 struct CDataEquipEnhanceLotteryOption {
     u16 Index;          // T005 G (lead): server Index; 19 distinct values 3-47
     u8 Category;        // T005 G (lead): server Category; 1-110
-    // T005 I (value: option titles, e.g. "【追加ステータス】亜人　の特質錬石"); server: RowTitle (lead agrees)
+    // T005 I (value, 19 distinct: option titles, e.g. "【追加ステータス】亜人　の特質錬石"); server: RowTitle (lead agrees)
     MtString RowTitle;
     u16 unk_u16_0;      // T005 open: 0 in 38/38; server: RetryLimited (lead)
     u16 unk_u16_1;      // T005 open: 1 in 38/38; server: AttemptModifier (lead)
     // T005 V (same reader 0x77c5a0: CDataWalletPoint); name G (lead); empty in 38/38
     MtTypedArray<CDataWalletPoint> WalletPointCost;
-    // T005 V (same reader 0x7731b0: Instance.hexpat GatheringItemListRes_unk_1 {u32, u16}, whose fields
-    // stay unk there); name G (lead: server ItemCost); captured: unk_u32 is an itemlist ItemId (38/38,
-    // materials 17897-17905), unk_u16 1
+    // T005 V (same reader 0x7731b0: Instance.hexpat GatheringItemListRes_unk_1 {u32, u16}, named
+    // ItemId, Num there since T007, both G (value consistent)); name G (lead: server ItemCost); captured:
+    // ItemId an itemlist ItemId in 38/38 (19 distinct, chance 0.21; materials 17875-21291), Num 1
     MtTypedArray<GatheringItemListRes_unk_1> ItemCost;
     MtTypedArray<CDataWalletPoint> unk_WalletPointList;     // T005 open: empty; server: Unk7 (lead)
     MtTypedArray<GatheringItemListRes_unk_1> unk_ItemList;  // T005 open: empty; server: Unk8 (lead)

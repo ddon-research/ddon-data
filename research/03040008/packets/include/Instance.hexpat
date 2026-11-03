@@ -140,11 +140,13 @@ struct CDataGatheringItemGetRequest {
 // {u32, u16} (V widths); no PS4 type. Type name I (T004 20); same shape as Quest CDataRewardItem but
 // read by another reader (0x7771b0 there).
 struct GatheringItemListRes_unk_1 {
-    // T014b open (list not read), kept unk: element of the GatheringItemListRes_unk_0 list (reader
-    // 0x7731b0); the outer list is not read (see GatheringItemListRes_unk_0.unk_u32)
-    u32 unk_u32;                // server: ItemId (lead)
-    // T014b open (list not read), kept unk: as GatheringItemListRes_unk_1.unk_u32
-    u16 unk_u16;                // server: Num (lead)
+    // 008 T007 G (lead: server ItemId; value consistent: 19 distinct, chance 0.21): in 65.3.2 ItemCost
+    // (same reader 0x7731b0) 38/38 values are itemlist ItemIds, materials 17875-21291 (008 T005, T006 F1).
+    // Was unk_u32 (T014b open: in 13.6.2 the outer list is not read, see GatheringItemListRes_unk_0)
+    u32 ItemId;
+    // 008 T007 G (lead: server Num; value consistent: 1 distinct, 1 in 38/38 of 65.3.2 beside ItemId).
+    // Was unk_u16 (T014b open, as ItemId)
+    u16 Num;
 };
 
 // Season 3 GatheringItemListRes_unk_0 (struct name neutral; server: CDataGatheringItemRestriction,

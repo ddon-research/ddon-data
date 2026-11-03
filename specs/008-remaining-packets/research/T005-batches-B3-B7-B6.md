@@ -161,3 +161,54 @@ Total 579/579.
   `include/SeasonDungeon.hexpat` and `include/Packet.hexpat` (additions); `README.md`: include rows, 45 table rows
   and the T005 paragraph.
 - `specs/008-remaining-packets/research/t005/walk.py` (`stats`, `check`, `fits`, `dump`), `correlate.py`.
+
+## Errata (T006, 2026-11-03)
+
+Applied by 008 T007 (`specs/008-remaining-packets/briefs/T007-mark-fixes.md`) from the adversarial review `T006-adversarial.md` F1-F3; the text above is unchanged. Counts above are values in captures; this table gives the distinct values behind every `I (value)` mark of this task and the mark after T007 (rule: README "How value bases are counted"). `chance`: probability that every distinct value is an id of the item or stage table by luck (id claims only). Source: `t007/marks-before.tsv`, `t007/mark-changes.tsv`.
+
+- 62.39.16: "148/148" includes 121 empty lists; 27 are non-empty, 21 distinct lists, 3 CharacterIds.
+- 10.14.16 ItemId is now V (consumer); the "I 1" of the § 3 row reads "V".
+- `Instance.hexpat` `GatheringItemListRes_unk_1` (§ 5 proposal): `unk_u32` -> `ItemId`, `unk_u16` -> `Num`, both G (lead; value consistent: 19 distinct, chance 0.21 / 1 distinct).
+- The README table rows count the marks after T007; the tables above keep the marks before it.
+
+| id | field | values | distinct | chance | mark after T007 |
+| --- | --- | ---: | ---: | ---: | --- |
+| 10.14.16 | `CDataItemAchievementReward.ItemId` | 1 | 1 | 1 | V (consumer): handler `0x7de260` passes element +8 to the sItemManager lookup `0xb98c80` and posts chat message 0x85 (T006 F1) |
+| 12.5.1 | `C2S_STAGE_UNISON_AREA_CHANGE_BEGIN_RECRUITMENT_REQ.ContentId` | 3 | 1 |  | G (lead) (was I) |
+| 12.5.1 | `C2S_STAGE_UNISON_AREA_CHANGE_BEGIN_RECRUITMENT_REQ.SectionName` | 3 | 1 |  | G (lead) (was I) |
+| 12.9.16 | `CDataStageDungeonStart.ContentId` | 3 | 1 |  | G (lead) (was I) |
+| 12.9.16 | `CDataStageDungeonStart.StageId` | 3 | 1 | 1 | I |
+| 13.16.2 | `CDataTreasurePointCategory.CategoryId` | 4 | 4 |  | I |
+| 13.16.2 | `CDataTreasurePointCategory.CategoryName` | 4 | 4 |  | I |
+| 13.16.2 | `CDataTreasurePointCategory.EntryCount` | 4 | 2 |  | G (lead) (was I) |
+| 13.17.1 | `C2S_INSTANCE_TREASURE_POINT_GET_LIST_REQ.CategoryId` | 1 | 1 |  | G (lead) (was I) |
+| 13.17.2 | `CDataTreasurePoint.Index` | 5 | 5 |  | I |
+| 13.17.2 | `CDataTreasurePoint.Name` | 5 | 5 |  | I |
+| 13.17.2 | `S2C_INSTANCE_TREASURE_POINT_GET_LIST_RES.CategoryId` | 1 | 1 |  | G (lead) (was I) |
+| 13.23.16 | `S2C_INSTANCE_EXCHANGE_OM_INSTANT_KEY_VALUE_NTC.StageId` | 46 | 5 | 0.28 | I |
+| 13.23.16 | `S2C_INSTANCE_EXCHANGE_OM_INSTANT_KEY_VALUE_NTC.ValueOld` | 46 | 25 | 2.1e-77 | I |
+| 34.0.2 | `CDataEntryBoardListParam.BoardId` | 1 | 1 |  | G (lead) (was I) |
+| 41.5.1 | `C2S_CHARACTER_EDIT_UPDATE_CHARACTER_EDIT_PARAM_EX_REQ.EditPrice` | 1 | 1 |  | I |
+| 62.0.2 | `S2C_SEASON_DUNGEON_GET_ID_FROM_NPC_ID_RES.DungeonId` | 4 | 1 |  | G (lead) (was I) |
+| 62.1.1 | `C2S_SEASON_DUNGEON_GET_INFO_REQ.DungeonId` | 4 | 1 |  | G (lead) (was I) |
+| 62.1.2 | `CDataSeasonDungeonInfo.DungeonId` | 4 | 1 |  | G (lead) (was I) |
+| 62.1.2 | `CDataSeasonDungeonInfo.Name` | 4 | 1 |  | I |
+| 62.1.2 | `CDataSeasonDungeonSection.SectionName` | 16 | 4 |  | I |
+| 62.1.2 | `CDataSeasonDungeonSection.StageId` | 16 | 1 | 1 | G (lead) (was I) |
+| 62.10.1 | `C2S_SEASON_DUNGEON_DELIVER_ITEM_FOR_EX_REQ.EpitaphId` | 6 | 6 |  | I |
+| 62.10.1 | `C2S_SEASON_DUNGEON_DELIVER_ITEM_FOR_EX_REQ.ItemList` | 19 | 19 |  | I |
+| 62.38.16 | `CDataSeasonDungeonBuffEffect.BuffId` | 85 | 5 |  | I |
+| 62.38.16 | `CDataSeasonDungeonBuffEffect.BuffName` | 85 | 11 |  | I |
+| 62.38.16 | `CDataSeasonDungeonBuffEffect.ParamType` | 85 | 5 |  | I |
+| 62.38.16 | `CDataSeasonDungeonBuffEffectParam.Level` | 85 | 3 |  | G (lead) (was I) |
+| 62.39.16 | `CDataSeasonDungeonBuffLevel.BuffId` | 85 | 5 |  | I |
+| 62.39.16 | `CDataSeasonDungeonBuffLevel.Level` | 85 | 3 |  | G (lead) (was I) |
+| 62.39.16 | `S2C_SEASON_DUNGEON_CHARACTER_AREA_BUFFS_NTC.CharacterId` | 148 | 3 |  | G (lead) (was I) |
+| 62.8.1 | `C2S_SEASON_DUNGEON_GET_BLOCKADE_ID_FROM_OM_REQ.LayoutId` | 7 | 6 | 1 | I |
+| 62.8.2 | `S2C_SEASON_DUNGEON_GET_BLOCKADE_ID_FROM_OM_RES.EpitaphId` | 7 | 6 |  | I |
+| 62.9.1 | `C2S_SEASON_DUNGEON_GET_EX_REQUIRED_ITEM_REQ.EpitaphId` | 7 | 6 |  | I |
+| 62.9.2 | `CDataSoulOrdealItem.ItemId` | 7 | 1 | 1 | G (lead) (was I) |
+| 62.9.2 | `CDataSoulOrdealItem.Num` | 7 | 1 |  | G (lead) (was I) |
+| 63.2.16 | `CDataSituationObjective.Message` | 84 | 6 |  | I |
+| 63.6.16,63.7.16 | `CDataChainDungeonLayoutInfo.LayoutId` | 9 | 2 | 1 | I |
+| 65.3.2 | `CDataEquipEnhanceLotteryOption.RowTitle` | 38 | 19 |  | I |

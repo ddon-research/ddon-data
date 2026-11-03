@@ -19,10 +19,10 @@ import std.mem;
 
 // Element of PC list 0x772d70 {u32, u32, u32} (V widths). No PS4 type. Struct name: server (lead).
 struct CDataPawnTrainingPreparationInfoToAdvice {
-    // T003 I (value: 60/60 equal a PawnId of the 8.2.2 pawn list (CDataPawnList.PawnId, Pawn.hexpat)
+    // T003 G (lead; value consistent: 3 distinct; 60/60 equal a PawnId of the 8.2.2 pawn list (CDataPawnList.PawnId, Pawn.hexpat)
     // in the same stream; lead agrees)
     u32 PawnId;
-    // T003 I (value: 60/60 equal CDataPawnList.unk_u32_2 of the same pawn in 8.2.2; values 3, 0);
+    // T003 G (lead; value consistent: 2 distinct; 60/60 equal CDataPawnList.unk_u32_2 of the same pawn in 8.2.2; values 3, 0);
     // name open, kept unk; server: Unk0 "CDataPawnList.Unk2" (lead agrees)
     u32 unk_u32_1;
     u32 unk_u32_2;   // T003 open, kept unk: values 0, 1, 6; server: Unk1 (lead)

@@ -19,8 +19,8 @@ import std.mem;
 
 struct C2S_SEASON_DUNGEON_DELIVER_ITEM_FOR_EX_REQ : CPacket {
     bool sourceOk = source == 0x00 [[export]];  // header source byte: 0x00 client (Packet.hexpat)
-    u32 EpitaphId;      // T005 I (value: 6/6 = the preceding 62.8.2 EpitaphId); server: EpitaphId (lead agrees)
-    // T005 I (same structure: writer 0x77fd30 = Quest.hexpat CDataItemUIDList {UID, Num}, PS4 names; value:
+    u32 EpitaphId;      // T005 I (value, 6 distinct: 6/6 = the preceding 62.8.2 EpitaphId); server: EpitaphId (lead agrees)
+    // T005 I (same structure: writer 0x77fd30 = Quest.hexpat CDataItemUIDList {UID, Num}, PS4 names; value, 19 distinct:
     // the Num of each list sums to the 240 the preceding 62.9.2 requires, 6/6); list name G (lead:
     // server ItemList)
     MtTypedArray<CDataItemUIDList> ItemList;

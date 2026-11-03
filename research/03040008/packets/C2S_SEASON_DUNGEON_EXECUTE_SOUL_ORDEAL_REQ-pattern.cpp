@@ -27,11 +27,11 @@ struct CDataSoulOrdealItemInfo {
 
 struct C2S_SEASON_DUNGEON_EXECUTE_SOUL_ORDEAL_REQ : CPacket {
     bool sourceOk = source == 0x00 [[export]];  // header source byte: 0x00 client (Packet.hexpat)
-    // T004 I (value: 28/28 name a TrialId of the preceding 62.18.2); server: TrialId (lead agrees)
+    // T004 I (value, 13 distinct: 28/28 name a TrialId of the preceding 62.18.2); server: TrialId (lead agrees)
     u32 TrialId;
     MtTypedArray<CDataSoulOrdealItemInfo> TrialCost;      // PC 0x77fd30; T004 G (lead)
     // T004 I (same structure: the writer's inline {Write_u32 +4, Write_u8 +8, Write_u32 +12} is the
-    // CDataStageLayoutId triplet; value: a LayoutId that 62.26.16 sets in the same stream); server: LayoutId (lead agrees)
+    // CDataStageLayoutId triplet; value, 13 distinct: a LayoutId that 62.26.16 sets in the same stream); server: LayoutId (lead agrees)
     CDataStageLayoutId LayoutId;
     u32 PosId;          // T004 G (lead): server PosId; captured 0 everywhere
     // Fit: the decode ends within the last 15 bytes (cipher block padding; Packet.hexpat).

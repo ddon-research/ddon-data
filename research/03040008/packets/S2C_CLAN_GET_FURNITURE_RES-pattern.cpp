@@ -22,7 +22,7 @@ struct S2C_CLAN_GET_FURNITURE_RES : CPacket {
     s32 Error;
     if (Error == 0) {
         s32 Result;
-        // T003 I (same structure: PC list 0x766f90 = CDataFurnitureLayout, Furniture.hexpat; value: 8/8
+        // T003 I (same structure: PC list 0x766f90 = CDataFurnitureLayout, Furniture.hexpat; value, 8 distinct, chance 0.62: 8/8
         // distinct ItemID values (216 elements) are ITEM_CATEGORY_CLAN_FURNITURE items in
         // client/03040008/base/etc/itemlist.ipa.json, e.g. 21129 "Christmas Tree"); server: FurnitureLayouts (lead agrees)
         MtTypedArray<CDataFurnitureLayout> FurnitureLayouts;

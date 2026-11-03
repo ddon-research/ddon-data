@@ -24,7 +24,7 @@ struct S2C_SEASON_DUNGEON_END_SOUL_ORDEAL_NTC : CPacket {
     u8 EndState;
     // T004 I (same structure as 62.26.16, PC 0x766790); server: LayoutId, PosId, EpitaphState flat (lead)
     CDataSeasonDungeonOmState OmState;
-    // T004 I (value: equals the TrialId of the preceding 62.14.16/62.24.1 in 28/28); server: Unk3 (lead; replaced)
+    // T004 I (value, 13 distinct: equals the TrialId of the preceding 62.14.16/62.24.1 in 28/28); server: Unk3 (lead; replaced)
     u32 TrialId;
     // Fit: the decode ends within the last 15 bytes (cipher block padding; Packet.hexpat).
     u128 paddingSize = std::mem::size() - $ [[export]];

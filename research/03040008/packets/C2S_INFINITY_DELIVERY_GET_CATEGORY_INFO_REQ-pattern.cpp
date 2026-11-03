@@ -17,7 +17,7 @@ import std.mem;
 
 struct C2S_INFINITY_DELIVERY_GET_CATEGORY_INFO_REQ : CPacket {
     bool sourceOk = source == 0x00 [[export]];  // header source byte: 0x00 client (Packet.hexpat)
-    u32 CategoryId;     // T004 I (value: 61 = the CategoryId of the preceding 59.8.2, 1/1)
+    u32 CategoryId;     // T004 G (context; value consistent: 1 distinct; 61 = the CategoryId of the preceding 59.8.2, 1/1)
     // Fit: the decode ends within the last 15 bytes (cipher block padding; Packet.hexpat).
     u128 paddingSize = std::mem::size() - $ [[export]];
     bool fits = paddingSize <= 15 [[export]];

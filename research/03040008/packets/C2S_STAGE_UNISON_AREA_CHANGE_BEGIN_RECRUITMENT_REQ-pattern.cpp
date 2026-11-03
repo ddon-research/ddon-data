@@ -20,13 +20,13 @@ import std.mem;
 
 struct C2S_STAGE_UNISON_AREA_CHANGE_BEGIN_RECRUITMENT_REQ : CPacket {
     bool sourceOk = source == 0x00 [[export]];  // header source byte: 0x00 client (Packet.hexpat)
-    // T005 I (value: the following 12.9.16 carries it back as ContentId, 3/3; 19); server: ContentId (lead agrees)
+    // T005 G (lead; value consistent: 1 distinct; the following 12.9.16 carries it back as ContentId, 3/3; 19); server: ContentId (lead agrees)
     u32 ContentId;
     // T005 I (same structure: writer 0x77fd30 = Quest.hexpat CDataItemUIDList); list name G (lead: server
     // EntryFeeList); empty in 3/3
     MtTypedArray<CDataItemUIDList> EntryFeeList;
     u32 EntranceId;     // T005 G (lead): server EntranceId; 1111 in 3/3
-    // T005 I (value: "第4区画 メガドシスの記憶 山道" 3/3 = a 62.1.2 SectionName); server: Unk2String (lead)
+    // T005 G (lead; value consistent: 1 distinct; "第4区画 メガドシスの記憶 山道" 3/3 = a 62.1.2 SectionName); server: Unk2String (lead)
     MtString SectionName;
     // Fit: the decode ends within the last 15 bytes (cipher block padding; Packet.hexpat).
     u128 paddingSize = std::mem::size() - $ [[export]];

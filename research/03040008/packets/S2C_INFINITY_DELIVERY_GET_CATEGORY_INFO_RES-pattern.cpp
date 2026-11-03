@@ -20,14 +20,14 @@ import std.mem;
 
 // Element of PC list 0x76a8d0 {u32 +4, u16 +8, u32 +12} (V). Struct name G (context).
 struct CDataInfinityDeliveryItem {
-    u32 ItemId;     // T004 I (value: 27/27 item ids of base/etc/itemlist.ipa.json, all ITEM_CATEGORY_MATERIAL)
+    u32 ItemId;     // T004 G (context; value consistent: 27 distinct, chance 0.071; 27/27 item ids of base/etc/itemlist.ipa.json, all ITEM_CATEGORY_MATERIAL)
     u16 MaxNum;     // T004 G (context: 999 in 27/27, the stack limit)
     u32 Point;      // T004 G (context: 40-800 points per item, unit "pt")
 };
 
 // Element of PC list 0x7699f0 {u32 +4, +8, +12, +16} (V). Struct name G (context).
 struct CDataInfinityDeliveryRewardItem {
-    u32 ItemId;     // T004 I (value: 107/107 item ids of base/etc/itemlist.ipa.json)
+    u32 ItemId;     // T004 G (context; value consistent: 30 distinct, chance 0.094; 107/107 item ids of base/etc/itemlist.ipa.json)
     u32 Num;        // T004 G (context: 1-15 beside an item id)
     u32 unk_u32_0;  // T004 open, kept unk: captured 0
     u32 unk_u32_1;  // T004 open, kept unk: captured 0
@@ -47,14 +47,14 @@ struct CDataInfinityDeliveryPointReward {
 struct CDataInfinityDeliveryRankingReward {
     u8 unk_u8;              // T004 open, kept unk: captured 1
     u32 RewardId;           // T004 G (context: consecutive ids 69-72)
-    u32 Rank;               // T004 I (value: 10, 100, 1000, 3000, the bracket ranks of the RankingList, 4/4)
+    u32 Rank;               // T004 I (value, 4 distinct: 10, 100, 1000, 3000, the bracket ranks of the RankingList, 4/4)
     MtTypedArray<CDataInfinityDeliveryRewardItem> ItemList;     // PC 0x7699f0
 };
 
 // PC reader 0x769b10 {0x769fe0 +8, u8 +56, list 0x76a8d0 +60, 0x769de0 +80, MtString +192, list
 // 0x76a390 +196, list 0x76a620 +216, bool +236} (V). Struct name G (context).
 struct CDataInfinityDeliveryCategoryInfo {
-    CDataInfinityDeliveryEvent Event;   // PC 0x769fe0; T004 I (same structure as 59.0.2; value: same event)
+    CDataInfinityDeliveryEvent Event;   // PC 0x769fe0; T004 I (same structure as 59.0.2; value, 1 distinct: same event)
     u8 unk_u8;              // T004 open, kept unk: captured 3
     MtTypedArray<CDataInfinityDeliveryItem> DeliveryItemList;   // PC 0x76a8d0; T004 G (context)
     CDataInfinityDeliveryCategoryStatus Status;     // PC 0x769de0; T004 I (same structure as 59.4.2)

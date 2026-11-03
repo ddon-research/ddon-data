@@ -23,7 +23,7 @@ struct S2C_GP_GP_SHOP_CAN_BUY_RES : CPacket {
         s32 Result;
         // T003 I (PS4 GP_SHOP_CAN_BUY_PAWN RES leads with b8 m_bCanBuy; packet name; 1 in 9/9)
         bool CanBuy;
-        // T003 I (value: 9/9 equal the first u32 of the preceding 28.23.1 request; PS4 analogue's
+        // T003 I (value, 9 distinct: 9/9 equal the first u32 of the preceding 28.23.1 request; PS4 analogue's
         // m_unLineupId follows m_bCanBuy)
         u32 LineupId;
         // T003 open, kept unk: 9/9 equal the third u32 of the preceding 28.23.1 request (an echo)

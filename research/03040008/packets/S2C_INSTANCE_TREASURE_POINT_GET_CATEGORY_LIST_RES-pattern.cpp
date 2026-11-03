@@ -18,11 +18,11 @@ import std.mem;
 
 // Element of PC list reader 0x77b470 {u32 +4, MtString +8, u8 +12} (V). Struct name: server (lead).
 struct CDataTreasurePointCategory {
-    // T005 I (value: the following 13.17.1 asks for one of them, 1/1); server: CategoryId (lead agrees)
+    // T005 I (value, 4 distinct: the following 13.17.1 asks for one of them, 1/1); server: CategoryId (lead agrees)
     u32 CategoryId;
-    // T005 I (value: category texts, e.g. "古墓解きし手がかり"); server: CategoryName (lead agrees)
+    // T005 I (value, 4 distinct: category texts, e.g. "古墓解きし手がかり"); server: CategoryName (lead agrees)
     MtString CategoryName;
-    // T005 I (value: 5 = the entry count 13.17.2 returns for that category, 1/1); server: EntryCount (lead agrees)
+    // T005 G (lead; value consistent: 2 distinct; 5 = the entry count 13.17.2 returns for that category, 1/1); server: EntryCount (lead agrees)
     u8 EntryCount;
 };
 

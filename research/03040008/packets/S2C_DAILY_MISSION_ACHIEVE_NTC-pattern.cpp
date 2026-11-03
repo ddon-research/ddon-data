@@ -19,7 +19,7 @@ import std.mem;
 
 struct S2C_DAILY_MISSION_ACHIEVE_NTC : CPacket {
     bool sourceOk = source == 0x34 [[export]];  // header source byte: 0x34 server (Packet.hexpat)
-    // T004 I (value: 113/113 are MissionIds of 72.0.2 whose State is 1 in the list before and 2 in the
+    // T004 I (value, 10 distinct: 113/113 are MissionIds of 72.0.2 whose State is 1 in the list before and 2 in the
     // list after (or no later list))
     MtTypedArray<CDataCommonU32> MissionIdList;     // PC 0x75e8e0
     // Fit: the decode ends within the last 15 bytes (cipher block padding; Packet.hexpat).

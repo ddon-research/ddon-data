@@ -22,7 +22,7 @@ struct C2S_CHARACTER_EDIT_UPDATE_CHARACTER_EDIT_PARAM_EX_REQ : CPacket {
     bool sourceOk = source == 0x00 [[export]];  // header source byte: 0x00 client (Packet.hexpat)
     u8 UpdateType;      // T005 G (lead): server UpdateType; 3 in 1/1
     // T005 I (same structure: inline {Write_u8 +4, Write_u32 +8} = CDataWalletPoint, as 41.3.1's 0x7812a0;
-    // value: (5, 20) = the UpdateType 2 price of the preceding 41.8.2, 1/1); server: EditPrice (lead agrees)
+    // value, 1 distinct: (5, 20) = the UpdateType 2 price of the preceding 41.8.2, 1/1); server: EditPrice (lead agrees)
     CDataWalletPoint EditPrice;
     CDataEditInfo EditInfo;     // T005 V (same writer 0x77eb40 as 41.3.1: Context.hexpat CDataEditInfo)
     MtString FirstName;         // T005 G (lead): server FirstName; empty in 1/1

@@ -17,7 +17,7 @@ import std.mem;
 
 struct C2S_SEASON_DUNGEON_GET_INFO_REQ : CPacket {
     bool sourceOk = source == 0x00 [[export]];  // header source byte: 0x00 client (Packet.hexpat)
-    u32 DungeonId;      // T005 I (value: 4/4 = the preceding 62.0.2 DungeonId); server: DungeonId (lead agrees)
+    u32 DungeonId;      // T005 G (lead; value consistent: 1 distinct; 4/4 = the preceding 62.0.2 DungeonId); server: DungeonId (lead agrees)
     // Fit: the decode ends within the last 15 bytes (cipher block padding; Packet.hexpat).
     u128 paddingSize = std::mem::size() - $ [[export]];
     bool fits = paddingSize <= 15 [[export]];

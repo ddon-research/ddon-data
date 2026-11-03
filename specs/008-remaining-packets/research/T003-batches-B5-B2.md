@@ -117,3 +117,21 @@ Total 2,677/2,677. Per-id JSON counts equal the raw counts (`walk.py fits`).
   `run.sh`. Commands, from `D:/ddon-data`: `python -X utf8 -I specs/008-remaining-packets/research/t003/walk.py fits`
   (0 bad ids), `… walk.py check` (63/63 match), `… correlate.py`; export per pattern
   `packets/imhex-export.sh --force @ <name> </dev/null` (33 runs, 0 failed, 0 badjson).
+
+## Errata (T006, 2026-11-03)
+
+Applied by 008 T007 (`specs/008-remaining-packets/briefs/T007-mark-fixes.md`) from the adversarial review `T006-adversarial.md` F1-F3; the text above is unchanged. Counts above are values in captures; this table gives the distinct values behind every `I (value)` mark of this task and the mark after T007 (rule: README "How value bases are counted"). `chance`: probability that every distinct value is an id of the item or stage table by luck (id claims only). Source: `t007/marks-before.tsv`, `t007/mark-changes.tsv`.
+
+- The README table rows count the marks after T007; the tables above keep the marks before it.
+
+| id | field | values | distinct | chance | mark after T007 |
+| --- | --- | ---: | ---: | ---: | --- |
+| 11.5.2 | `S2C_QUEST_GET_PACKAGE_QUEST_LIST_RES.unk_u32` | 146 | 27 |  | I |
+| 24.6.16 | `CDataJobMasterTargetData.ReleaseLv` | 3288 | 6 |  | I unchanged (width-parallel basis, no value basis) |
+| 24.6.16 | `CDataJobMasterTargetData.ReleaseType` | 3288 | 2 |  | I unchanged (width-parallel basis, no value basis) |
+| 28.23.1 | `C2S_GP_GP_SHOP_CAN_BUY_REQ.LineupId` | 9 | 9 |  | I |
+| 28.23.2 | `S2C_GP_GP_SHOP_CAN_BUY_RES.LineupId` | 9 | 9 |  | I |
+| 31.53.2 | `S2C_CLAN_GET_FURNITURE_RES.FurnitureLayouts` | 216 | 8 | 0.62 | I |
+| 60.0.2 | `S2C_NPC_GET_NPC_EXTENDED_FACILITY_RES.NpcId` | 219 | 3 |  | G (lead) (was I) |
+| 61.2.2 | `CDataPawnTrainingPreparationInfoToAdvice.PawnId` | 60 | 3 |  | G (lead) (was I) |
+| 61.2.2 | `CDataPawnTrainingPreparationInfoToAdvice.unk_u32_1` | 60 | 2 |  | G (lead) (was I) |

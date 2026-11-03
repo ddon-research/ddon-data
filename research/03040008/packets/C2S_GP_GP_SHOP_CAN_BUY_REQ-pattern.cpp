@@ -18,7 +18,7 @@ import std.mem;
 
 struct C2S_GP_GP_SHOP_CAN_BUY_REQ : CPacket {
     bool sourceOk = source == 0x00 [[export]];  // header source byte: 0x00 client (Packet.hexpat)
-    // T003 I (value: 9/9 echoed as the second u32 of the 28.23.2 response; values 23-463; PS4
+    // T003 I (value, 9 distinct: 9/9 echoed as the second u32 of the 28.23.2 response; values 23-463; PS4
     // GP_SHOP_CAN_BUY_PAWN carries u32 m_unLineupId); no lead
     u32 LineupId;
     // T003 open, kept unk: values 2 x4, 3, 7, 9, 19, 21; no lead

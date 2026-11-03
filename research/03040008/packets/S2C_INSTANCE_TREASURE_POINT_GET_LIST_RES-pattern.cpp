@@ -18,9 +18,9 @@ import std.mem;
 
 // Element of PC list reader 0x77b580 {u32 +4, MtString +8, bool +12} (V). Struct name: server (lead).
 struct CDataTreasurePoint {
-    // T005 I (value: 0-4, and Name ends in 《Index + 1》 5/5); server: Index (lead agrees)
+    // T005 I (value, 5 distinct: 0-4, and Name ends in 《Index + 1》 5/5); server: Index (lead agrees)
     u32 Index;
-    MtString Name;      // T005 I (value: "古墓解きし手がかり《1》" .. 《5》); server: Name (lead agrees)
+    MtString Name;      // T005 I (value, 5 distinct: "古墓解きし手がかり《1》" .. 《5》); server: Name (lead agrees)
     bool unk_bool;      // T005 open: true in 5/5; server: Unk2 (lead)
 };
 
@@ -29,7 +29,7 @@ struct S2C_INSTANCE_TREASURE_POINT_GET_LIST_RES : CPacket {
     s32 Error;
     if (Error == 0) {
         s32 Result;
-        u32 CategoryId;     // T005 I (value: 1/1 = the 13.17.1 CategoryId); server: CategoryId (lead agrees)
+        u32 CategoryId;     // T005 G (lead; value consistent: 1 distinct; 1/1 = the 13.17.1 CategoryId); server: CategoryId (lead agrees)
         MtTypedArray<CDataTreasurePoint> TreasurePointList;   // PC 0x77b580; T005 G (lead)
     }
     // Fit: the decode ends within the last 15 bytes (cipher block padding; Packet.hexpat).

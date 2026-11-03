@@ -21,7 +21,7 @@ import std.mem;
 struct C2S_SEASON_DUNGEON_GET_BLOCKADE_ID_FROM_OM_REQ : CPacket {
     bool sourceOk = source == 0x00 [[export]];  // header source byte: 0x00 client (Packet.hexpat)
     // T005 I (same structure: the writer's inline {Write_u32 +4, Write_u8 +8, Write_u32 +12} is the
-    // CDataStageLayoutId triplet; value: StageId 560 in 7/7 = stage_list.slt "Memory of Megadosys Old
+    // CDataStageLayoutId triplet; value, 6 distinct, chance 1: StageId 560 in 7/7 = stage_list.slt "Memory of Megadosys Old
     // Road", GroupId 131-136); server: LayoutId (lead agrees)
     CDataStageLayoutId LayoutId;
     u32 PosId;          // T005 G (lead): server PosId; 0 in 7/7

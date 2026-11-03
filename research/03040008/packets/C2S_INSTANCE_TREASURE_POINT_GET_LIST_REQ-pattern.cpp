@@ -17,7 +17,7 @@ import std.mem;
 
 struct C2S_INSTANCE_TREASURE_POINT_GET_LIST_REQ : CPacket {
     bool sourceOk = source == 0x00 [[export]];  // header source byte: 0x00 client (Packet.hexpat)
-    u32 CategoryId;     // T005 I (value: 1/1 a CategoryId of the preceding 13.16.2); server: CategoryId (lead agrees)
+    u32 CategoryId;     // T005 G (lead; value consistent: 1 distinct; 1/1 a CategoryId of the preceding 13.16.2); server: CategoryId (lead agrees)
     // Fit: the decode ends within the last 15 bytes (cipher block padding; Packet.hexpat).
     u128 paddingSize = std::mem::size() - $ [[export]];
     bool fits = paddingSize <= 15 [[export]];

@@ -19,7 +19,7 @@ import std.mem;
 // Element of PC list reader 0x7651d0, reader 0x7652c0 {u64 +8, u16 +16 .. +24, bool +26, u32 +28} (V).
 // Struct name: server (lead).
 struct CDataEntryBoardListParam {
-    u64 BoardId;        // T005 I (value: 1/1 = the 34.0.1 BoardIdList id); server: BoardId (lead agrees)
+    u64 BoardId;        // T005 G (lead; value consistent: 1 distinct; 1/1 = the 34.0.1 BoardIdList id); server: BoardId (lead agrees)
     u16 SortieMin;      // T005 G (lead): server SortieMin; 1 in 1/1
     u16 NoPartyMembers; // T005 G (lead): server NoPartyMembers; 4 in 1/1
     u16 unk_u16_0;      // T005 open: 0 in 1/1; server: Unk3 (lead)

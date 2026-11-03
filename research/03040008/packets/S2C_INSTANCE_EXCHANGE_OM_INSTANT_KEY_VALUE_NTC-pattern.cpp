@@ -19,11 +19,11 @@ import std.mem;
 
 struct S2C_INSTANCE_EXCHANGE_OM_INSTANT_KEY_VALUE_NTC : CPacket {
     bool sourceOk = source == 0x34 [[export]];  // header source byte: 0x34 server (Packet.hexpat)
-    // T005 I (same structure: 13.23.2's StageId; value: 46/46 a stage_list.slt StageId, e.g. 655, 347
+    // T005 I (same structure: 13.23.2's StageId; value, 5 distinct, chance 0.28: 46/46 a stage_list.slt StageId, e.g. 655, 347
     // "Clan Hall"); server: StageId (lead agrees)
     u32 StageId;
     CDataOmData Value;  // T005 I (same structure: 13.23.2's CDataOmData {u64 Key, u32 Value}); server: Key, Value (lead agrees)
-    // T005 I (same structure: 13.23.2's ValueOld; value: 25/35 equal the Value the previous 13.23.16 of the
+    // T005 I (same structure: 13.23.2's ValueOld; value, 25 distinct: 25/35 equal the Value the previous 13.23.16 of the
     // stream set for the same (StageId, Key)); server: OldValue (lead agrees)
     u32 ValueOld;
     // Fit: the decode ends within the last 15 bytes (cipher block padding; Packet.hexpat).

@@ -21,37 +21,37 @@ import std.mem;
 
 // Element of PC list 0x759ac0 {u32 +4, MtString +8, u32 +12} (V). Struct name: server (lead).
 struct CDataBattleContentStage {
-    u32 Id;             // T004 I (value: the ids that the progression and reward lists repeat, 294/294); server: Id (lead agrees)
-    MtString StageName; // T004 I (value: Bitterblack Maze stage names); server: StageName (lead agrees)
+    u32 Id;             // T004 I (value, 7 distinct; the 42 captures carry one identical list: the ids that the progression and reward lists repeat, 294/294); server: Id (lead agrees)
+    MtString StageName; // T004 I (value, 7 distinct; the 42 captures carry one identical list: Bitterblack Maze stage names); server: StageName (lead agrees)
     u32 Mode;           // T004 G (lead): server Mode (BattleContentMode); captured 6 and 7
 };
 
 // Element of PC list 0x759990 {u32 +4, u32 +8, list 0x75e8e0} (V). Struct name: server (lead).
 struct CDataBattleContentStageProgression {
-    u32 Id;             // T004 I (value: equals the StageList Id at the same index, 294/294); server: Id (lead agrees)
+    u32 Id;             // T004 I (value, 7 distinct; the 42 captures carry one identical list: equals the StageList Id at the same index, 294/294); server: Id (lead agrees)
     u32 Tier;           // T004 G (lead): server Tier; captured 1-4
-    // T004 I (value: every value is a StageList Id, 294/294 lists); server: ConnectionList (lead agrees)
+    // T004 I (value, 5 distinct; the 42 captures carry one identical list: every value is a StageList Id, 294/294 lists); server: ConnectionList (lead agrees)
     MtTypedArray<CDataCommonU32> ConnectionList;    // PC 0x75e8e0
 };
 
 // CDataBattleContentInfo: PC element reader 0x759910 of list 0x759850 (V). Struct name: server (lead).
 struct CDataBattleContentInfo {
-    // T004 I (value: 2 for the Bitterblack Maze (ContentName), the server's GameMode.BitterblackMaze;
-    // lead agrees)
+    // T004 G (lead; value consistent: 1 distinct, 2 in 42/42 beside the Bitterblack Maze ContentName;
+    // the meaning comes from the server's GameMode.BitterblackMaze only; T007 from T006 F2)
     u32 GameMode;
-    MtString ContentName;   // T004 I (value: "Bitterblack Maze" in Japanese); server: ContentName (lead agrees)
+    MtString ContentName;   // T004 G (lead; value consistent: 1 distinct; the 42 captures carry one identical list; "Bitterblack Maze" in Japanese); server: ContentName (lead agrees)
     MtTypedArray<CDataBattleContentStage> BattleContentStageList;                   // PC 0x759ac0
     MtTypedArray<CDataBattleContentStageProgression> BattleContentStageProgressionList;    // PC 0x759990
-    // T004 I (value: 126/126 item ids, ITEM_CATEGORY_MATERIAL); server: RareItemAppraisalList (lead)
+    // T004 G (lead; value consistent: 3 distinct, chance 0.78; the 42 captures carry one identical list; 126/126 item ids, ITEM_CATEGORY_MATERIAL); server: RareItemAppraisalList (lead)
     MtTypedArray<CDataCommonU32> RareItemAppraisalList;     // PC 0x75e8e0
-    // T004 I (value: 1,176/1,176 item ids, 798 equipment); server: ItemTakeawayList (lead)
+    // T004 G (lead; value consistent: 28 distinct, chance 0.11; the 42 captures carry one identical list; 1,176/1,176 item ids, 798 equipment); server: ItemTakeawayList (lead)
     MtTypedArray<CDataCommonU32> ItemTakeawayList;          // PC 0x75e8e0
 };
 
 // PC reader 0x75bdc0 {u32 +4, s64 +8, bool +16, bool +17, u8 +18, u32 +20, +24, +28, u8 +32, s64 +40,
 // u32 +48, u32 +52} (V). Struct name: server CDataBattleContentSituationData (lead).
 struct CDataBattleContentSituationData {
-    u32 GameMode;           // T004 I (value: 2, as CDataBattleContentInfo.GameMode); server: GameMode (lead agrees)
+    u32 GameMode;           // T004 G (lead; value consistent: 1 distinct, 2 in 42/42 as CDataBattleContentInfo.GameMode); server: GameMode
     s64 StartTime;          // T004 G (lead): server StartTime; captured 0
     bool RewardReceived;    // T004 G (lead): server RewardReceived; captured 0
     bool unk_bool;          // T004 open, kept unk: captured 0; server: Unk3 (lead)
@@ -69,7 +69,7 @@ struct CDataBattleContentSituationData {
 
 // Element of PC list 0x75bf90 {u32 +4, u8 +8} (V). Struct name: server (lead).
 struct CDataBattleContentAvailableRewards {
-    u32 Id;                 // T004 I (value: a StageList Id, 294/294); server: Id (lead agrees)
+    u32 Id;                 // T004 I (value, 7 distinct; the 42 captures carry one identical list: a StageList Id, 294/294); server: Id (lead agrees)
     u8 Amount;              // T004 G (lead): server Amount; captured 1
 };
 

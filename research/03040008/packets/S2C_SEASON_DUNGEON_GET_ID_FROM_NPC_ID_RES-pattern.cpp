@@ -21,7 +21,7 @@ struct S2C_SEASON_DUNGEON_GET_ID_FROM_NPC_ID_RES : CPacket {
     s32 Error;
     if (Error == 0) {
         s32 Result;
-        // T005 I (value: 4/4 sent back by the following 62.1.1 and returned by 62.1.2 as
+        // T005 G (lead; value consistent: 1 distinct; 4/4 sent back by the following 62.1.1 and returned by 62.1.2 as
         // DungeonInfo.DungeonId; 3); server: DungeonId (lead agrees)
         u32 DungeonId;
     }

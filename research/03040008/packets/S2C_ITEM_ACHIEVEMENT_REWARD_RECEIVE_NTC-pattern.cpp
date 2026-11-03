@@ -19,7 +19,10 @@ import std.mem;
 // Element of PC list reader 0x76cc70 {u8 +4, u32 +8} (V). Struct name G (context).
 struct CDataItemAchievementReward {
     u8 unk_u8;          // T005 open: 7 in 1/1; server: Unk2 (lead)
-    // T005 I (value: 16227 in 1/1 is an itemlist ItemId (craft recipe)); server: ItemId (lead agrees)
+    // T005 V (consumer): handler 0x7de260 passes element +8 to the sItemManager lookup 0xb98c80 and,
+    // when found, posts chat message 0x85 with the item (specs/008-remaining-packets/research/
+    // T006-adversarial.md F1; T007); value, 1 distinct: 16227, an itemlist ItemId (craft recipe);
+    // server: ItemId (lead agrees)
     u32 ItemId;
 };
 

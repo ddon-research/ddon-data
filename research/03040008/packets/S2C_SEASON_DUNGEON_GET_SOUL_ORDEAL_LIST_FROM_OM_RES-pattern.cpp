@@ -20,9 +20,11 @@ import std.mem;
 #include "Instance.hexpat"
 #include "SeasonDungeon.hexpat"
 
-// Element of PC list 0x779330 {u32 +4, u16 +8} (V). Struct name: server CDataSoulOrdealItem (lead).
-struct CDataSoulOrdealItem {
-    // T004 I (value: 26/26 are item 18659 of base/etc/itemlist.ipa.json, ITEM_CATEGORY_MATERIAL);
+// Element of PC list 0x779330 {u32 +4, u16 +8} (V). Struct name: server CDataSoulOrdealItem (lead),
+// renamed CDataSoulOrdealTrialCostItem by T007: SeasonDungeon.hexpat declares CDataSoulOrdealItem (reader
+// 0x777c80, 62.9.2) since T005, and the duplicate type broke this pattern's compile.
+struct CDataSoulOrdealTrialCostItem {
+    // T004 G (lead; value consistent: 1 distinct, chance 1; 26/26 are item 18659 of base/etc/itemlist.ipa.json, ITEM_CATEGORY_MATERIAL);
     // server: ItemId (lead agrees)
     u32 ItemId;
     u16 Num;            // T004 G (lead): server Num; captured 20, 30, 40
@@ -31,7 +33,7 @@ struct CDataSoulOrdealItem {
 // Element of PC list 0x7796e0, reader 0x7797d0 {u32 +4, u32 +8, u32 +12, u8 +16, u8 +17, bool +18,
 // bool +19, bool +20} (V). Struct name: server CDataSoulOrdealUnk1 (lead) renamed for its role.
 struct CDataSoulOrdealRewardEntry {
-    // T004 I (value: 1,033/1,033 are item ids of base/etc/itemlist.ipa.json, 793 material, 186
+    // T004 I (value, 146 distinct, chance 3.7e-06: 1,033/1,033 are item ids of base/etc/itemlist.ipa.json, 793 material, 186
     // equipment, 54 use); server: ItemId (lead agrees)
     u32 ItemId;
     u32 Num;            // T004 G (context: 1-80, mostly 1-8, beside an item id); server: Unk1 (lead)
@@ -53,11 +55,11 @@ struct CDataSoulOrdealRewardSet {
 // Element of PC list 0x7791d0 {u32 +4, MtString +8, list 0x779330 +12, list 0x779870 +32} (V).
 // Struct name: server CDataSoulOrdealElementParam (lead).
 struct CDataSoulOrdealElementParam {
-    // T004 I (value: 28/28 62.24.1 and 28/28 62.20.1 requests name a TrialId of the preceding list);
+    // T004 I (value, 25 distinct: 28/28 62.24.1 and 28/28 62.20.1 requests name a TrialId of the preceding list);
     // server: TrialId (lead agrees)
     u32 TrialId;
-    MtString TrialName;     // T004 I (value: trial names); server: TrialName (lead agrees)
-    MtTypedArray<CDataSoulOrdealItem> TrialCost;            // PC 0x779330; T004 G (lead)
+    MtString TrialName;     // T004 G (lead; value consistent: 2 distinct; trial names); server: TrialName (lead agrees)
+    MtTypedArray<CDataSoulOrdealTrialCostItem> TrialCost;            // PC 0x779330; T004 G (lead)
     MtTypedArray<CDataSoulOrdealRewardSet> TrialRewards;    // PC 0x779870; T004 G (lead)
 };
 

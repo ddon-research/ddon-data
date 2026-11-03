@@ -21,7 +21,7 @@ struct S2C_SEASON_DUNGEON_GET_BLOCKADE_ID_FROM_OM_RES : CPacket {
     s32 Error;
     if (Error == 0) {
         s32 Result;
-        // T005 I (value: the following 62.9.1 7/7 and 62.10.1 6/6 send it back; 119-124, one per
+        // T005 I (value, 6 distinct: the following 62.9.1 7/7 and 62.10.1 6/6 send it back; 119-124, one per
         // 62.8.1 GroupId); server: EpitaphId (lead agrees)
         u32 EpitaphId;
     }

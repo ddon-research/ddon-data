@@ -21,7 +21,7 @@ import std.mem;
 struct C2S_SEASON_DUNGEON_RECEIVE_SOUL_ORDEAL_REWARD_REQ : CPacket {
     bool sourceOk = source == 0x00 [[export]];  // header source byte: 0x00 client (Packet.hexpat)
     // T004 I (same structure: the writer's inline {Write_u32 +4, Write_u8 +8, Write_u32 +12} is the
-    // CDataStageLayoutId triplet; value: a LayoutId that 62.26.16 sets in the same stream); server: LayoutId (lead agrees)
+    // CDataStageLayoutId triplet; value, 12 distinct: a LayoutId that 62.26.16 sets in the same stream); server: LayoutId (lead agrees)
     CDataStageLayoutId LayoutId;
     u32 PosId;          // T004 G (lead): server PosId; captured 0 everywhere
     MtTypedArray<CDataSoulOrdealRewardItem> RewardList;     // PC 0x77f9d0; server name (lead)
