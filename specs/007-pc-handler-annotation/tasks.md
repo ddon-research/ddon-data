@@ -29,6 +29,8 @@ Coordinator: main session. One subagent at a time. Method and rules: `spec.md`.
   killed, and the next headless open restored the packed base (coordinator check: 0/116). Decision
   (coordinator, 2026-11-03): database writes run only as headless `idat -A -S<script>` batch jobs ending in
   `qexit(0)` (checked: saves and packs); ida-mcp only reads. T004e fixes the script, T004f reruns.
+  T004e done (4cd15c65e3: del_func + add_func instead of moving the start; the three refusals accepted under
+  checked conditions; batch entries, extract discards its session; 124 tests).
 - [ ] T005 Matcher with gates and tests, the precision check on withheld seeds, the manifest (`implementer`).
 - [ ] T006 Types and locals rules over the accepted pairs (`implementer`, evidence from T004 dumps).
 - [ ] T007 Apply script and the applied copy (`implementer` writes it, `evidence-researcher-ida` runs it).
@@ -39,7 +41,7 @@ Order: T003 first (T002 needs a copy of the accepted database), then T002.
 
 ## Running
 
-- T004e (implementer, brief `briefs/T004e-repair-fixes.md`), started 2026-11-03.
+- T004f (evidence-researcher-ida, brief `briefs/T004f-repair-batch.md`), started 2026-11-03.
 - Decision (coordinator, 2026-11-03): from T004d on, all writes go to one persistent work copy
   `PC_DDON_03040008/ddon-data-007work/` of the accepted database (repairs first, then T007's apply);
   it is published as `spec007-packet-handlers-<date>/` at the close.
