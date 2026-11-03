@@ -63,7 +63,10 @@ Coordinator: main session. One subagent at a time. Method and rules: `spec.md`.
   T005f done (778d9264db: object-relative accesses with block-consistent register tracking, PS4 slot stores via
   `mpManager`, requester roots (PC `sNetworkExt::reserveNetworkErrorDialog` `0xBB39D0`, 581 sites; PS4
   `0x7EDF80`, 478), `codec_distance` depth 8; PC `callOnPacketFunc` slot already in v3 `const_stack`; 284 tests).
-  T005h (matcher): rule 4 on v4, PC codec walk skips callees with null `codec_distance`.
+  T005g done (`research/T005g-extract-v4.md`: PC v4 7,262 functions, 48,235 access records, 581 requester
+  sites, work copy unchanged; PS4 v4 4,146 functions but only 722 access records, 0 slot stores: the
+  operand parser reads text and PS4 names argument registers; DWARF re-run 4,106 of 4,146).
+  T005h (implementer): operand decoding fix, PS4 re-extract, rule 4, codec walk skips null `codec_distance`.
 - [ ] T006 Types and locals rules over the accepted pairs (`implementer`, evidence from T004 dumps).
 - [ ] T007 Apply script and the applied copy (`implementer` writes it, `evidence-researcher-ida` runs it).
 - [ ] T008 Verify: re-extract, compare, decompile sample; adversarial review of pairs and types.
@@ -73,7 +76,7 @@ Order: T003 first (T002 needs a copy of the accepted database), then T002.
 
 ## Running
 
-- T005g (evidence-researcher-ida, brief `briefs/T005g-extract-v4-run.md`), started 2026-11-03.
+- T005h (implementer, brief `briefs/T005h-ps4-access-fix-and-rule4.md`), started 2026-11-03.
 - Decision (coordinator, 2026-11-03): from T004d on, all writes go to one persistent work copy
   `PC_DDON_03040008/ddon-data-007work/` of the accepted database (repairs first, then T007's apply);
   it is published as `spec007-packet-handlers-<date>/` at the close.
