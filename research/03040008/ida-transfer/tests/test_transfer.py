@@ -333,6 +333,26 @@ def test_via_access_checks_the_pointee_and_known_size():
     assert v["cSeedGameSvConnection"].status == "refused" and "known" in v["cSeedGameSvConnection"].reason
 
 
+def test_lea_only_type_stays_unchecked_and_one_width_access_accepts():
+    # T006c: a lea may contradict a type but never accept one
+    lay = layouts(cls("A", [m("x", "u32"), m("y", "u32")]))
+    v = verdicts(lay, [pcf(0x10, [acc(0, access="lea"), acc(4, access="lea")])], {0x900: [THIS_P]})
+    assert v["A"].status == "unchecked" and v["A"].reason == "lea-only" and v["A"].checked == 2
+    v = verdicts(lay, [pcf(0x10, [acc(0, access="lea"), acc(4, access="lea"), acc(4)])], {0x900: [THIS_P]})
+    assert v["A"].status == "accepted" and v["A"].width_checked == 1
+    # a lea that contradicts still refuses, width access or not
+    v = verdicts(lay, [pcf(0x10, [acc(2, access="lea"), acc(4)])], {0x900: [THIS_P]})
+    assert v["A"].status == "refused" and "lea +2" in typecheck.contradiction_text(v["A"])
+
+
+def test_embedded_type_checked_by_leas_alone_is_not_written():
+    lay = layouts(cls("In", [m("p", "u32"), m("q", "u32")]), cls("A", [m("i", "In"), m("z", "u32")]))
+    v = verdicts(lay, [pcf(0x10, [acc(0, access="lea"), acc(8)])], {0x900: [THIS_P]})
+    assert v["A"].status == "accepted" and v["In"].status == "unchecked"
+    v = verdicts(lay, [pcf(0x10, [acc(4), acc(8)])], {0x900: [THIS_P]})
+    assert v["In"].status == "embedded"
+
+
 # --- rule 1: names ----------------------------------------------------------------------------------------
 
 

@@ -346,13 +346,24 @@ A pointer to a pointer (`MtObject **mpArray`) is not a pointer to a class: `via`
 nothing on `MtObject` (T006 counted `mpArray[i] = p` stores as `MtObject` vptr writes). No exceptions for narrow `test byte ptr` or 8/16-byte block copies: they count as
 contradictions. A contradiction counts against the argument's class (the root), which is refused; an access
 counts for an embedded type or a `via` pointee only while its root is not refused; a type that embeds a
-refused type is refused (fixed point). Accepted: zero contradictions, at least one checked access, and the
-size equal to a known PC size where one exists. The dumps link no allocation or constructor to a type, so the
+refused type is refused (fixed point). Accepted: zero contradictions, at least one checked **width** access (a
+load or store on a leaf start), and the size equal to a known PC size where one exists. A `lea` may contradict
+a type but never accept one (T006c): a type checked by `lea` records alone stays `unchecked` with reason
+`lea-only`, and so does an embedded type, which is then written as bytes inside its outer type; a prototype
+that names it keeps an opaque pointer, as for any unwritten type. `lea` coincidences are what let
+`CHANGE_JOB_RES` through; T006c thus dropped the six `CData*` element types accepted on `lea`s alone at 0%
+coverage (`CDataClanSearchResult`, `CDataGPShopLineupElementBase`, `CDataGameTimeBaseInfo`, `CDataMailInfo`,
+`CDataOrbGainExtendParam`, `CDataWorldInfo`). The dumps link no allocation or constructor to a type, so the
 only size evidence is T002's (`cSeedGameSvConnection` 0x540, `CPacket_S2C_GET_STAGE_LIST_RES` 0x30); other types
 say so in `size_evidence`. `types.tsv` lists checked and unchecked members and up to 10 evidence VAs per type,
 and `coverage`: the bytes of leaves hit by fixed-offset loads and stores over the PC size (a `lea` or an
 indexed access checks no bytes, so a type accepted from a reader's `lea`s alone shows 0%);
 `type_members.tsv` the VAs per member.
+
+*Later rule (wave 2), not implemented: a typed `lea`.* A `lea` whose address is passed as the argument of a
+paired callee whose PS4 parameter type is the member's type (`lea ecx, [esi+0x18]; call <paired
+CDataX::read>` with `this` of type `CDataX*`, and the member at +0x18 of type `CDataX`) ties the sub-object's
+type, not just its offset, and could accept a `lea`-only type.
 
 **types.h.** Accepted types and the checked types embedded in them (`embedded`), each after its dependencies,
 inside `#pragma pack(push, 1)` with explicit `gap` members, so IDA places every member at the computed offset

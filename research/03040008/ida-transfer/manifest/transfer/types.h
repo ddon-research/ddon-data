@@ -4,7 +4,13 @@
 struct CDataArisenProfile;
 struct CDataClanScoutEntryParam;
 struct CDataClanSearchParam;
+struct CDataClanSearchResult;
+struct CDataGPShopLineupElementBase;
+struct CDataGameTimeBaseInfo;
+struct CDataMailInfo;
 struct CDataMatchingProfile;
+struct CDataOrbGainExtendParam;
+struct CDataWorldInfo;
 struct CPacket;
 struct MtObject;
 struct MtTypedArray<CDataC2SChangeCharacterEquipInfo>;
@@ -87,110 +93,6 @@ struct nUserSession::CPacket_S2C_SYSTEM_MAIL_GET_ALL_ITEM_RES;
 struct nUserSession::CPacket_S2C_WEATHER_FORECAST_GET_RES;
 
 #pragma pack(push, 1)
-struct CDataClanSearchResult // PC size 0x30
-{
-  unsigned __int8 baseclass_0[4]; // +0x0 4 base CPacketDataBase (not transferred)
-  unsigned int m_unClanID; // +0x4 4
-  unsigned __int8 m_wstrName[4]; // +0x8 4 MtString (not transferred)
-  unsigned __int16 m_usLv; // +0xc 2
-  unsigned __int16 m_usMemberNum; // +0xe 2
-  unsigned int m_unMotto; // +0x10 4
-  unsigned __int8 m_ucEmblemMarkType; // +0x14 1
-  unsigned __int8 m_ucEmblemBaseType; // +0x15 1
-  unsigned __int8 m_ucEmblemBaseMainColor; // +0x16 1
-  unsigned __int8 m_ucEmblemBaseSubColor; // +0x17 1
-  unsigned int m_unMasterCharacterID; // +0x18 4
-  unsigned __int8 m_MasterCharacterName[12]; // +0x1c 12 CCharacterName (not transferred)
-  __int64 m_llCreated; // +0x28 8
-};
-
-struct CDataGPShopLineupElementBase // PC size 0x24
-{
-  unsigned __int8 baseclass_0[4]; // +0x0 4 base CPacketDataBase (not transferred)
-  unsigned int m_unID; // +0x4 4
-  unsigned int m_unGP; // +0x8 4
-  unsigned int m_unInitialGP; // +0xc 4
-  unsigned int m_unDiscountGP; // +0x10 4
-  unsigned __int8 m_ucIconId; // +0x14 1
-  unsigned __int8 gap15[3];
-  unsigned __int8 m_wstrName[4]; // +0x18 4 MtString (not transferred)
-  unsigned __int8 m_wstrComment[4]; // +0x1c 4 MtString (not transferred)
-  bool m_bIsInitialPrice; // +0x20 1
-  unsigned __int8 gap21[3];
-};
-
-struct CDataGameTimeBaseInfo // PC size 0x38
-{
-  unsigned __int8 baseclass_0[4]; // +0x0 4 base CPacketDataBase (not transferred)
-  unsigned int m_unGameTimeOneDayMin; // +0x4 4
-  unsigned int m_unGameTimeYearMonth; // +0x8 4
-  unsigned int m_unGameTimeMonthDay; // +0xc 4
-  unsigned int m_unGameTimeDayHour; // +0x10 4
-  unsigned int m_unGameTimeWeekDay; // +0x14 4
-  unsigned int m_unGameTimeMoonAge; // +0x18 4
-  unsigned __int8 gap1C[4];
-  __int64 m_llOriginalRealTimeSec; // +0x20 8
-  __int64 m_llOriginalGameTimeSec; // +0x28 8
-  unsigned int m_unOriginalWeek; // +0x30 4
-  unsigned int m_unOriginalMoonAge; // +0x34 4
-};
-
-struct CDataMailInfo // PC size 0x40
-{
-  unsigned __int8 baseclass_0[4]; // +0x0 4 base CPacketDataBase (not transferred)
-  unsigned __int8 gap4[4];
-  unsigned __int64 m_ullId; // +0x8 8
-  unsigned __int8 m_ucState; // +0x10 1
-  unsigned __int8 m_ucItemState; // +0x11 1
-  unsigned __int8 gap12[2];
-  unsigned __int8 m_BaseInfo[24]; // +0x14 24 CCommunityCharacterBaseInfo (not transferred)
-  unsigned __int8 m_wstrSenderName[4]; // +0x2c 4 MtString (not transferred)
-  unsigned __int8 m_wstrMailText[4]; // +0x30 4 MtString (not transferred)
-  unsigned __int8 gap34[4];
-  __int64 m_llSenderDate; // +0x38 8
-};
-
-struct CDataOrbGainExtendParam // PC size 0x20
-{
-  unsigned __int8 baseclass_0[4]; // +0x0 4 base CPacketDataBase (not transferred)
-  unsigned __int16 m_usHpMax; // +0x4 2
-  unsigned __int16 m_usStaminaMax; // +0x6 2
-  unsigned __int16 m_usAttack; // +0x8 2
-  unsigned __int16 m_usDefence; // +0xa 2
-  unsigned __int16 m_usMagicAttack; // +0xc 2
-  unsigned __int16 m_usMagicDefence; // +0xe 2
-  unsigned __int16 m_usAbilityCost; // +0x10 2
-  unsigned __int16 m_usJewerlySlot; // +0x12 2
-  unsigned __int16 m_usUseItemSlot; // +0x14 2
-  unsigned __int16 m_usMaterialItemSlot; // +0x16 2
-  unsigned __int16 m_usEquipItemSlot; // +0x18 2
-  unsigned __int16 m_usMainPawnSlot; // +0x1a 2
-  unsigned __int16 m_usSupportPawnSlot; // +0x1c 2
-  unsigned __int8 gap1E[2];
-};
-
-struct CDataWorldInfo // PC size 0x38
-{
-  unsigned __int8 baseclass_0[4]; // +0x0 4 base CPacketDataBase (not transferred)
-  unsigned __int16 m_usId; // +0x4 2
-  unsigned __int8 gap6[2];
-  unsigned __int8 m_wstrName[4]; // +0x8 4 MtString (not transferred)
-  unsigned __int8 m_wstrBrief[4]; // +0xc 4 MtString (not transferred)
-  unsigned __int8 m_ucDragonType; // +0x10 1
-  unsigned __int8 m_ucSetType; // +0x11 1
-  unsigned __int8 gap12[2];
-  unsigned int m_unTemp0; // +0x14 4
-  unsigned int m_unTemp1; // +0x18 4
-  unsigned int m_unTemp2; // +0x1c 4
-  unsigned int m_unTemp3; // +0x20 4
-  unsigned __int8 m_wstrTempStr0[4]; // +0x24 4 MtString (not transferred)
-  unsigned __int8 m_wstrTempStr1[4]; // +0x28 4 MtString (not transferred)
-  unsigned __int8 m_wstrTempStr2[4]; // +0x2c 4 MtString (not transferred)
-  unsigned __int8 m_wstrTempStr3[4]; // +0x30 4 MtString (not transferred)
-  unsigned __int8 m_ucCycleContentsState; // +0x34 1
-  unsigned __int8 gap35[3];
-};
-
 struct MtArray // PC size 0x14
 {
   unsigned __int8 baseclass_0[4]; // +0x0 4 base MtObject (not transferred)

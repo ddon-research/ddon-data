@@ -8,8 +8,9 @@ leaf member with the leaf's width or on the vptr; a ``lea`` on the start of one 
 or array elements, never inside an embedded struct; an indexed access with the element size as its scale on
 an element start; nothing beyond the size. Contradictions count against the argument's class (the root); an
 access counts for an embedded type, or a ``via`` pointee, only while the root is not refused. A type that
-embeds a refused type is refused. Accepted: no contradiction, at least one checked access, a size equal to any
-known size.
+embeds a refused type is refused. Accepted: no contradiction, at least one checked width access (a load or
+store on a leaf start: a ``lea`` may contradict a type but never accept one, T006c), a size equal to any known
+size; a type checked by ``lea`` records alone stays ``unchecked`` with reason ``lea-only``.
 """
 
 from __future__ import annotations
@@ -49,6 +50,7 @@ class TypeVerdict:
     size: int | None
     reason: str
     checked: int = 0
+    width_checked: int = 0  # T006c: checked accesses that carry a width (loads and stores on a leaf start)
     contradictions: list[Evidence] = field(default_factory=list)
     checked_members: dict[str, set[int]] = field(default_factory=dict)  # member -> insn VAs
     evidence_vas: set[int] = field(default_factory=set)
@@ -217,6 +219,8 @@ def decide(layouts: Layouts, ev: list[Evidence], bad_layout: dict[str, str], roo
             if v is None:
                 continue
             v.checked += 1
+            if e.width is not None and e.access != "lea":
+                v.width_checked += 1
             v.evidence_vas.add(e.va)
             v.functions.add(e.pc_func)
             if e.width and not e.indexed and k < len(e.landing.offs):
@@ -229,8 +233,10 @@ def decide(layouts: Layouts, ev: list[Evidence], bad_layout: dict[str, str], roo
     for name, v in out.items():
         if v.status == "refused":
             continue
-        if name in roots and v.checked:
+        if name in roots and v.width_checked:
             v.status, v.reason = "accepted", "no contradiction"
+        elif v.checked and not v.width_checked:
+            v.reason = "lea-only"  # T006c: a lea may contradict a type but never accept one
         elif not v.checked:
             v.reason = "no checked access"
     # embedded types of accepted types: emitted as part of their outer type when themselves checked
@@ -238,7 +244,7 @@ def decide(layouts: Layouts, ev: list[Evidence], bad_layout: dict[str, str], roo
     for name in sorted(accepted):
         for x in embedded(layouts.layout(name)):
             v = out[x]
-            if v.status == "unchecked" and v.checked:
+            if v.status == "unchecked" and v.width_checked:
                 v.status, v.reason = "embedded", f"laid out inside {name}; checked through it"
     return out
 
