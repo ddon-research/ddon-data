@@ -1,11 +1,20 @@
-# 007 T007b: apply run (PC 03040008) - first run stopped after the dry run; rerun stopped after the apply (restored)
+# 007 T007b: apply run (PC 03040008) - run 3 complete; run 1 stopped after the dry run, run 2 restored after the apply
 
 Build PC 03040008, work copy
 `D:/research/DDON-binaries/IDA9.5/PC_DDON_03040008/ddon-data-007work/2022_01_29_DDO_DUMP_FIX.exe.i64`
 (input sha256 `f1c974d0...fa20`, header `idb_path` confirmed under `ddon-data-007work`). First run base
-`59bf8e3e9b3`, 2026-11-03 12:28-12:40 (WET); rerun base `4f9926d22e`, 2026-11-03 12:34-12:38 (WEST). IDA work by
-`C:/Program Files/IDA Professional 9.5/idat.exe` batch only; ida-mcp was not used. Addresses are VAs (image base
-`0x400000`).
+`59bf8e3e9b3`, 2026-11-03 12:28-12:40 (WET); rerun base `4f9926d22e`, 2026-11-03 12:34-12:38 (WEST); run 3 base
+`d8c3df4301`, 2026-11-03 12:48-12:55 (WEST). IDA work by `C:/Program Files/IDA Professional 9.5/idat.exe` batch
+only; ida-mcp was not used. Addresses are VAs (image base `0x400000`, 32-bit).
+
+**Run 3 outcome (after T007d `5362d5c45c`): steps 1-7 done, every check passes; the spot checks found one
+contradicted layout.** The dry run is byte-identical to run 2's (0 refusals). Apply: 0 `failed` (types 182
+written + 7 already, names 1,079, labels removed 3, prototypes 1,011, comments 1,119). Second apply: everything
+`already`, no undo record. Verify: every row `ok`, counts `ok`, 1,011 of 1,011 decompilations `ok`. Re-extract:
+the changed names and prototypes are exactly the written rows, both ways (1,079 / 1,011). The spot checks read
+sensibly, except that the PC reader `0x80cf80` **contradicts** the transferred layout of
+`nUserSession::CPacket_S2C_CHANGE_JOB_RES`: on PC its members after the header sit 0xc bytes later. The work copy
+is now sha256 `f17d0745...7829`; the rollback copy is unchanged. Section "Run 3".
 
 **Rerun outcome (after T007c `c91df1e373`): stopped at step 3, work copy restored.** The dry run is clean
 (0 refusals in every kind). The apply writes every row, but 171 prototype read-backs come back `failed`. In
@@ -256,3 +265,248 @@ prototypes 840.
 2. Or have T006 write `struct ` into `decl` for `::`/`<...>` names. That changes the manifest and its hashes.
 3. Then rerun T007b from step 3; the dry run does not depend on this comparison. The rollback copy is in place
    and equals the work copy.
+
+## Run 3 (base d8c3df4301, after T007d 5362d5c45c)
+
+Same work copy, same `idat.exe`, batch only; ida-mcp not used. `apply_transfer.py` as of `d8c3df4301` (last
+change `9ab79f9303d`, sha256 `a8a84254...9c88`; the header `script_version` is still `1`), with T007d's tinfo
+comparison. Manifest inputs unchanged: the header `manifest_sha256` values equal those of runs 1 and 2 (names
+`7f4e8c21...`, prototypes `b2909484...`, comments `596891df...`, types.tsv `fdcf08f7...`, types.h `ddad9dfb...`,
+skipped `c17db87b...`).
+
+    T=D:/ddon-data/research/03040008/ida-transfer
+    DB=D:/research/DDON-binaries/IDA9.5/PC_DDON_03040008/ddon-data-007work/2022_01_29_DDO_DUMP_FIX.exe.i64
+    IDAT="C:/Program Files/IDA Professional 9.5/idat.exe"
+
+Run 2's dumps were kept by renaming them: `dumps/apply-dryrun.run2.jsonl`, `dumps/apply.run2.jsonl`,
+`dumps/logs/apply-dryrun.run2.log`, `dumps/logs/apply.run2.log`.
+
+### 3.1 Rollback point (not copied again)
+
+    sha256sum ddon-data-007work/*.i64      # 12:48
+
+Work copy and `...exe.before-T007b.i64`: both `65120b3498dc5ec40872f7e8748611e7d75e52a3b0bf9387afa6cb408c8b9111`,
+111,886,983 bytes, mtime 10:03. Verified.
+
+### 3.2 Dry run
+
+    "$IDAT" -A -L$T/dumps/logs/apply-dryrun.log "-S$T/apply_transfer.py $T/manifest/transfer $T/dumps/apply-dryrun.jsonl" $DB
+    # rc 0, 17 s
+
+`dumps/apply-dryrun.jsonl`: sha256 `5d25d04d...2523`, 3,464 lines, **byte-identical to run 2's**
+(`apply-dryrun.run2.jsonl`). The counts are the same: types 80 declare + 102 define + 7 already, remove-label 3,
+names 1,079, prototypes 1,011, comments 1,119, and 7 / 54 conflicts reported; 0 refusals. The work copy is
+unchanged (`65120b34...8b9111`, mtime 10:03). The log has no error, traceback or "unpacked"/"restore" text.
+
+### 3.3 Apply
+
+    "$IDAT" -A -L$T/dumps/logs/apply.log "-S$T/apply_transfer.py $T/manifest/transfer $T/dumps/apply.jsonl --apply" $DB
+    # 12:49, rc 0, 28 s
+
+- `dumps/apply.jsonl`: sha256 `75274827594578b2392454727b24f0938e339f02b77d778036f54e8dde9d0d2d`, 6,858 lines
+  (header, 3,462 results, 3,394 undo records, summary). No `.tmp` file is left. The log ends with the summary
+  line and "Flushing buffers, please wait...ok"; `rg -c -i 'unpacked|restore packed'` finds 0 matches.
+- Work copy after: sha256 `0fe5e0a67bef23d4d473396edcaa91e6dbc39e0553abae30994c6b16903ab8da`, 112,332,011 bytes,
+  mtime 12:49. Only the two `.i64` files are in the folder.
+- Counts before -> after: local types 788 -> 970 (+182), names 51,074 -> 52,148 (+1,074, that is 1,077 `set` on
+  default names minus 3 removed labels), typed functions 453 -> 1,464 (+1,011).
+
+| Kind | written | already | refused | failed |
+| --- | ---: | ---: | ---: | ---: |
+| types | 182 (80 declared, 102 defined) | 7 | 0 | 0 |
+| remove-label | 3 | | 0 | 0 |
+| names | 1,079 | | 0 | 0 |
+| prototypes | 1,011 | | 0 | **0** |
+| comments | 1,119 | | 0 | 0 |
+| conflict-names / conflict-prototypes | | | | 7 / 54 reported, not written |
+
+The 171 rows that failed in run 2 now pass the read-back (for example `0x758100`, `status: set`). Their printed
+type still carries `struct ` (171 applied prototypes contain it, see 3.6), and T007d's tinfo comparison accepts
+it. No restore was needed.
+
+### 3.4 Second apply (idempotence)
+
+    "$IDAT" -A -L$T/dumps/logs/apply-2.log "-S$T/apply_transfer.py $T/manifest/transfer $T/dumps/apply-2.jsonl --apply" $DB
+    # 12:50, rc 0, 10 s
+
+`dumps/apply-2.jsonl`: sha256 `12d1f10f...3f9c`, 3,464 lines, **no undo record**. Every row is `already`: types
+189, remove-label 3, names 1,079, prototypes 1,011, comments 1,119 (and 7 / 54 conflicts reported). Counts after:
+970 / 52,148 / 1,464, unchanged. Idempotence verified.
+
+`idc.qexit(0)` still re-saved the file: sha256 `f17d0745ac939e99f6389d85bb17ddc9eb97b7bc6a806eae2374aefbaf907829`,
+112,375,929 bytes (+43,918), mtime 12:50. Inferred: IDA repacks the database on every save (session and
+autoanalysis state); the dump and the counts show that no row changed. The log has no "unpacked"/"restore" text,
+and no unpacked files are left.
+
+### 3.5 Verify
+
+    "$IDAT" -A -L$T/dumps/logs/apply-verify.log "-S$T/apply_transfer.py $T/manifest/transfer $T/dumps/apply-verify.jsonl --verify --apply-log $T/dumps/apply.jsonl" $DB
+    # 12:50, rc 0, 26 s
+
+`dumps/apply-verify.jsonl`: sha256 `c8dbcdba...2884`, 4,415 lines. The summary has `counts_ok: true` and these
+results: types 189 ok, remove-label 3 ok, names 1,079 ok, prototypes 1,011 ok, comments 1,119 ok, **decompile
+1,011 ok, 0 failures**. No row is `mismatch`. The counts record: before 788 / 51,074 / 453, applied delta +182 /
++1,074 / +1,011, expected = after = 970 / 52,148 / 1,464. The work copy is unchanged afterwards
+(`f17d0745...7829`; the run ends with `DBFL_KILL`).
+
+### 3.6 Re-extract PC and compare
+
+    "$IDAT" -A -L$T/dumps/logs/pc-ida-applied.log "-S$T/extract_ida.py $T/dumps/pc-ida-applied.jsonl pc" $DB
+    # 12:51, rc 0, 41 s
+
+`dumps/pc-ida-applied.jsonl`: sha256 `551d6f41...fc37`, 8,914 lines, `extract_ida` script version **5**. The
+baseline `dumps/pc-ida.jsonl` (sha256 `4b307aee...61f0`) is version 4. Record counts equal the baseline's: 7,262
+functions at the same VAs, 1,041 table, 575 extern, 33 requester sites, 1 missing root. The work copy is unchanged
+afterwards (`f17d0745...7829`).
+
+The comparison script is `cmp_applied.py` in the scratchpad (Python stdlib). Its key is the function `va`; the
+written rows are the `status: set` records of `dumps/apply.jsonl`; the expected values come from
+`manifest/transfer/{names,prototypes}.tsv`.
+
+| | changed in dump | written rows | changed, not written | written, not changed | written outside dump scope |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| names | 1,079 | 1,079 | 0 | 0 | 0 |
+| prototypes (`prototype`, `prototype_user`) | 1,011 | 1,011 | 0 | 0 | 0 |
+
+- Every changed name equals its `names.tsv` row. Every changed prototype equals its `prototypes.tsv` `decl` once
+  the `struct`/`union`/`enum ` keywords are deleted and whitespace is collapsed (0 differences; 171 contain
+  `struct `). All 1,011 have `prototype_user: true`. Verified both ways.
+- Other fields also differ. They are not written rows; they are listed so that they are not mistaken for writes:
+  - `annotations.function_comment` in 1,119 functions, exactly the comment rows. `annotations.lvars` in 23, all
+    with a new prototype. `default_name` in 1,077, the `set` names on default names.
+  - `annotations.insn_comments` in 536 functions, all callers of a reprototyped function. These are IDA's
+    automatic argument comments at call sites (`0x86f045` `in_PawnID`, `0x86f049` `this`), a consequence of the
+    prototypes.
+  - `data_refs`/`object_accesses` in 5 functions: new `0xFF000000...` ids (inferred: IDA struct-member type ids
+    from the applied types) and more accesses counted in memcpy/memset.
+  - `ecx_read_before_write` goes from true to false in 356 functions (6,214 -> 5,858 true); only 20 of them are
+    reprototyped. Inferred cause: extractor v5 decodes memory operands from `op_t` (`a5131eff533`), and the
+    baseline is v4. This run does not separate the two effects; a v5 extract of the pre-apply copy was not run.
+
+### 3.7 Spot checks
+
+The spot checks are read-only batch scripts in the scratchpad
+(`C:/Users/morph/AppData/Local/Temp/claude/D--ddon-data/584d9d84-927d-466f-adf6-d1c15549c007/scratchpad/`):
+`spot3.py` and `spot3b.py`. They call `auto_wait`, `get_name`, `get_type`, `get_func_cmt`,
+`ida_hexrays.decompile` and the disassembly printer, then end with `DBFL_KILL` and `qexit`. Logs:
+`dumps/logs/apply-spot-check.log` and `apply-spot-check-b.log`. Database confirmed: `idb_path` under
+`ddon-data-007work`, `inf_is_32bit_exactly` true, image base `0x400000`. The work copy is unchanged afterwards
+(`f17d0745...7829`, mtime 12:50). All 10 functions decompiled without error, and their arguments carry the row
+names.
+
+| Role | VA | Name | Prototype (IDA print) |
+| --- | --- | --- | --- |
+| handler (seed) | `0x7c3450` | `cSeedGameSvConnection::OnPacket_ACHIEVEMENT_ACHIEVEMENT_GET_RECEIVABLE_REWARD_LIST_RES` | `int __thiscall(cSeedGameSvConnection *this, CPacket *pPacket)` |
+| handler (seed) | `0x7cb030` | `cSeedGameSvConnection::OnPacket_CLAN_CLAN_GET_JOIN_REQUESTED_LIST_RES` | same |
+| handler (tier0, no pair) | `0x7c4930` | `cSeedGameSvConnection::OnPacket_BATTLE_CONTENT_CHARACTER_INFO_RES` | `int __thiscall(cSeedGameSvConnection *this, void *packet)` |
+| reader (struct) | `0x80cf80` | `nUserSession::CPacket_S2C_CHANGE_JOB_RES::ReadPacket` | `int __thiscall(struct nUserSession::CPacket_S2C_CHANGE_JOB_RES *this, CPacket *pPacket)` |
+| reader (opaque) | `0x802de0` | `nUserSession::CPacket_S2C_CLAN_BASE_GET_INFO_RES::ReadPacket` | `int __thiscall(struct nUserSession::CPacket_S2C_CLAN_BASE_GET_INFO_RES *this, CPacket *pPacket)` |
+| element reader (template) | `0x758810` | `nPacket::Read_CDataAchievementProgress_` | `int __cdecl(CPacket *packet, struct MtTypedArray<CDataAchievementProgress> *ar)` |
+| element reader (struct) | `0x76e5a0` | `nPacket::Read_CDataMailInfo_` | `int __cdecl(CPacket *packet, CDataMailInfo *d)` |
+| sender | `0x823720` | `cSeedGameSvConnection::Send_C2S_CLAN_SCOUT_ENTRY_INVITE_REQ` | `int __thiscall(cSeedGameSvConnection *this, unsigned int in_ScoutEntryID)` |
+| sender | `0x81def0` | `cSeedGameSvConnection::Send_C2S_ACHIEVEMENT_GET_RECEIVABLE_REWARD_LIST_REQ` | `int __thiscall(cSeedGameSvConnection *this)` |
+| requester | `0x879860` | `cNetGameServer::reqCharacterGoldenRevive` | `bool __thiscall(cNetGameServer *this, unsigned int maxHp)` |
+
+Comments: every paired function starts with `// PS4 02020005: <name> (<mangled>); paired by <rule>.`. The seed
+handlers start with `// PC name from string at 0x... . PS4 02020005: ...`, the tier0 handler with only
+`// PC name from string at 0x1bd5c10.`
+
+Pseudocode excerpts (sliced):
+
+    // 0x76e5a0 element reader, transferred struct: reads sensibly, members at the right places
+    int __cdecl nPacket::Read_CDataMailInfo_(CPacket *packet, CDataMailInfo *d)
+    {
+      return nPacket::Read_u64(packet, &d->m_ullId) != 0
+          && nPacket::Read_u8(packet, &d->m_ucState) != 0
+          && nPacket::Read_u8(packet, &d->m_ucItemState) != 0
+          && sub_75ECF0(packet, (int)&d->m_BaseInfo)
+          && nPacket::Read_MtString(packet, &d->m_wstrSenderName) != 0
+          && nPacket::Read_MtString(packet, &d->m_wstrMailText) != 0
+          && nPacket::Read_s64(packet, (unsigned __int64 *)&d->m_llSenderDate) != 0;
+    }
+
+    // 0x758810 element reader, MtTypedArray<...>: MtArray members used consistently (mAutoDelete +0xc, mBufsiz +8)
+    int __cdecl nPacket::Read_CDataAchievementProgress_(CPacket *packet, struct MtTypedArray<CDataAchievementProgress> *ar)
+      v2 = (unsigned int *)ar;
+      ar->mAutoDelete = true;
+      ...
+      u32 = nPacket::Read_u32(packet, (unsigned int *)&ar);
+      if ( v2[2] < (unsigned int)ar ) sub_85DD70(v2, (unsigned int)ar);
+
+    // 0x823720 sender: CPacket local typed, argument named
+    if ( nUserSession::CPacket::WritePacket(&packet, 0x1Fu, 24, 1u, -1)
+      && nPacket::Write_u32(&packet, in_ScoutEntryID) != 0 )
+      cSeedServerConnection::Send((cSeedServerConnection *)this, (char *)packet.m_pReader, packet.m_pWriter - packet.m_pReader);
+
+    // 0x879860 requester: calls the transferred sender with the named argument
+    || cSeedGameSvConnection::Send_C2S_CHARACTER_GOLDEN_REVIVE_REQ(*((cSeedGameSvConnection **)this + 2675), maxHp) == 0 )
+
+    // 0x7c4930 tier0 handler: named, this typed; its reader is still sub_800200
+    sub_785F30(v5);
+    if ( sub_800200((int)v5, (CPacket *)packet) != 0 )
+      cSeedGameSvConnection::callOnPacketFunc((MtObject *)this->mpManager, 734,
+        (int)aCseedgamesvcon_4 /* "cSeedGameSvConnection::OnPacket_BATTLE_CONTENT_CHARACTER_INFO_RES" */, ...);
+
+    // 0x7c3450 seed handler: this typed; the packet object pointer sits in the opaque part of cSeedGameSvConnection
+    v3 = *(void (__thiscall ****)(_DWORD, int))&this->opaque140[788];
+
+#### 3.7.1 Contradicted: the `nUserSession::CPacket_S2C_CHANGE_JOB_RES` layout (types.tsv `accepted`, "no contradiction")
+
+The reader `0x80cf80` decompiles with the struct on `this`, but the members do not fit:
+
+    p_m_ucJob = &this->m_CharacterJobData.m_ucJob;
+    if ( nPacket::Read_s32(pPacket, (int *)&this->m_CharacterJobData.m_ucJob) == 0 ) return 0;
+    if ( *(_DWORD *)p_m_ucJob != 0 ) { this->m_CharacterJobData.m_unExp = ...; this->m_LearnNormalSkillParamList.mAutoDelete = true; return 1; }
+    ... nPacket::Read_CDataS2CCharacterEquipInfo_(pPacket, (struct MtTypedArray<CDataS2CCharacterEquipInfo> *)&this->m_CharacterEquipList.mAutoDelete)
+    ... nPacket::Read_CDataSetAcquirementParam_(pPacket, (struct MtTypedArray<CDataSetAcquirementParam> *)&this->m_AddItemList.mAutoDelete)
+
+Raw offsets from the disassembly (verified), against `types.h` lines 744-763:
+
+| PC code (`esi` = `this`) | offset | transferred member at that offset |
+| --- | --- | --- |
+| `0x80cf89` `Read_s32(this+0x10)`; if non-zero, `[esi+14h]` = it, `[esi+0ECh]` = 1, return 1 | +0x10, +0x14, +0xEC | `m_CharacterJobData.m_ucJob` (+0xc+4), `.m_unExp`, `m_LearnNormalSkillParamList.mAutoDelete` |
+| `0x80cfbc` `Read_s32(this+0x14)` | +0x14 | `m_CharacterJobData.m_unExp` |
+| `0x80cfcd` `sub_75C770(this+0x18)` | +0x18 | inside `m_CharacterJobData` (member at +0xc) |
+| `0x80cfde` `Read_CDataS2CCharacterEquipInfo_(this+0x60)` | +0x60 | `m_CharacterEquipList` +0xc (member at +0x54) |
+| `0x80cfef` / `0x80d000` `Read_CDataSetAcquirementParam_(this+0x74 / +0x88)` | +0x74, +0x88 | `m_AddItemList` / `m_BagItemList` +0xc (`MtTypedArray<CDataItemList>`) |
+| `0x80d014` `sub_76CD60(this+0x9C)`, `0x80d02c` `Read_CDataEquipJobItem_(this+0xB0)`, `0x80d044` +0xC4, `0x80d05c` +0xD0 | | further arrays |
+| `0x80d07b` `[esi+0Ch]` = `HIBYTE_w(packet)`; `0x80d084` `[esi+0ECh]` = 1 | +0xC, +0xEC | the `m_CharacterJobData` base; `m_LearnNormalSkillParamList.mAutoDelete` (the transferred `m_bIsReceived` is at +0x114) |
+
+The opaque reader `0x802de0` (`CPacket_S2C_CLAN_BASE_GET_INFO_RES`) has the same shape: `Read_s32(this+0x10)`;
+if non-zero, store it at +0x14 and set the flag byte at +0xD4; otherwise `Read_s32(this+0x14)` and members from
++0x1C. So on PC 03040008 these S2C packet objects keep a result/error pair at +0x10/+0x14. CHANGE_JOB_RES's first
+payload member is at +0x18, 0xc bytes after the transferred `m_CharacterJobData` (+0xc). Every array starts 0xc
+after its transferred offset, and the received flag is at +0xEC, not +0x114. At +0x74/+0x88 the element type also
+differs from PS4: the PC code calls `CDataSetAcquirementParam` readers where PS4 declares
+`MtTypedArray<CDataItemList>`.
+
+Status: the offsets are **verified** (disassembly above), so the transferred layout is **contradicted** for PC
+03040008. The field identities on PC are **inferred** and not established here (which of +0x10/+0x14 is
+`m_nResult` or `m_usError`, and what +0xC holds). T006 accepted the type ("14 checked accesses, no contradiction").
+Inferred from `types.tsv` `evidence_vas` (`0x80cf89` to `0x80d02c`) against these offsets: each access falls
+inside some member, and the check did not catch accesses at member start + 0xc. Beyond the two element readers
+above, the other written struct readers were not checked. The types embedded only through this packet
+(`CDataCharacterJobData`, `MtTypedArray<CDataItemList>`, `MtTypedArray<CDataLearnNormalSkillParam>`; types.tsv
+"checked through it") rest on the same evidence.
+
+The brief's stop conditions (a write `failed`, a read-back disagreement) did not fire, so the database was not
+restored. Options for the coordinator (not decided here): undo this type alone (drop or correct the row in
+T006, then `--undo` or the rollback copy and a re-apply), or keep it and fix the layout in a later T006 pass
+whose PC-offset check requires pointer-argument accesses to land on member starts.
+
+### 3.8 Hashes and files
+
+| Step | Work copy sha256 | bytes | mtime |
+| --- | --- | ---: | --- |
+| start / after the dry run | `65120b34...8b9111` | 111,886,983 | 10:03 |
+| after the apply | `0fe5e0a6...ab8da` | 112,332,011 | 12:49 |
+| after the second apply, verify, extract, spot checks | `f17d0745...07829` | 112,375,929 | 12:50 |
+| rollback copy `...before-T007b.i64` (unchanged) | `65120b34...8b9111` | 111,886,983 | 10:03 |
+
+`dumps/MANIFEST.tsv` was regenerated (`uv run python manifest.py`). New rows: `apply.jsonl` (run 3),
+`apply-2.jsonl`, `apply-verify.jsonl`, `pc-ida-applied.jsonl` (extract_ida 5), `apply-dryrun.run2.jsonl`,
+`apply.run2.jsonl`. `apply-dryrun.jsonl` (the same hash as run 2) and the other rows are unchanged. Logs:
+`dumps/logs/apply-dryrun.log`, `apply.log`, `apply-2.log`, `apply-verify.log`, `pc-ida-applied.log`,
+`apply-spot-check.log`, `apply-spot-check-b.log`. No write-run log contains "unpacked" or "restore", and no
+unpacked files are left beside the `.i64`. Not run: a v5 extract of the pre-apply database, which would separate
+the extractor-version drift in `ecx_read_before_write` from the apply's effects.

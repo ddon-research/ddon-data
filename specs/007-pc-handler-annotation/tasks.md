@@ -90,7 +90,14 @@ Coordinator: main session. One subagent at a time. Method and rules: `spec.md`.
   compare (`struct ` prefix on `::`/template types); writes checked right on 4; rollback restored
   (`65120b34...`). T007d: compare prototypes as `tinfo_t`.
   T007d done (5362d5c45c, 9ab79f9303: `same_prototype` via `tinfo_t.compare_with(TCMP_EQUAL)` per part plus
-  argument names, in already/read-back/verify; 366 tests). T007b run 3 next. (`implementer` writes it, `evidence-researcher-ida` runs it).
+  argument names, in already/read-back/verify; 366 tests). T007b run 3 next.
+  T007b run 3 done (`research/T007b-apply-run.md` § Run 3: 182 types + 7 already, 1,079 names, 3 labels,
+  1,011 prototypes, 1,119 comments, 0 failed; second apply all `already`; verify ok, 1,011/1,011 decompile;
+  re-extract changes = written rows both ways; work copy `f17d0745...7829`). **False positive found** in the
+  spot checks: `nUserSession::CPacket_S2C_CHANGE_JOB_RES` layout contradicted by the PC reader `0x80cf80`
+  (access check accepted accesses inside members). Decision (coordinator): fix the check (T006b), regenerate,
+  roll the work copy back to `.before-T007b.i64` and re-apply (T007e); then a reviewer re-derives a sample of
+  accepted types from disassembly. (`implementer` writes it, `evidence-researcher-ida` runs it).
 - [ ] T008 Verify: re-extract, compare, decompile sample; adversarial review of pairs and types.
 - [ ] T009 Close: `check.sh --all`, docs, retrospective, publish the database folder.
 
@@ -98,7 +105,7 @@ Order: T003 first (T002 needs a copy of the accepted database), then T002.
 
 ## Running
 
-- T007b run 3 (evidence-researcher-ida), started 2026-11-03.
+- T006b (implementer, brief `briefs/T006b-access-check-fix.md`), started 2026-11-03.
 - Decision (coordinator, 2026-11-03): from T004d on, all writes go to one persistent work copy
   `PC_DDON_03040008/ddon-data-007work/` of the accepted database (repairs first, then T007's apply);
   it is published as `spec007-packet-handlers-<date>/` at the close.
