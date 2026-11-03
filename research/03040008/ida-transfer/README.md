@@ -406,8 +406,13 @@ records written before a crash, undo records included.
   member at +0 with the vftable flag or named `__vftable` / `_vptr$*` / `vfptr`, and a row base
   (`baseclass_<off>`, udm base-class flag) equals an existing base-class member, `baseclass_*`, unnamed or named
   after its class, whose type name is the row's base class. The adapter reads members as
-  `(name, offset, size, kind, type)` (kind `vptr`/`base`/empty from the udm flags). Anything else differing,
-  a base of another type included, still refuses.
+  `(name, offset, size, kind, type)` (kind `vptr`/`base`/empty from the udm flags). A row base whose class is
+  not transferred (rendered as `unsigned __int8 baseclass_<off>[<size>]; // ... base X (not transferred)`;
+  any other declarator with that comment fails closed) compares by its class `X` (T007f): an existing base of
+  class `X` at the same offset and size is equal, the type stays `already` and the database's richer base is
+  kept. Anything else differing, a base of another type, offset or size included, still refuses.
+  Opaque rows (`struct X;`), the lea-only types among them, are written as forward declarations without
+  members: after an apply they exist in the local types, with no layout.
 - **Names**: `remove-label` rows first (a removed label's name is free for its callback), then `set`/`correct`:
   refused when the address is not a function start, the current name is not the row's `current`, or the name is
   held at another address.

@@ -772,3 +772,67 @@ def test_verify_reports_a_prototype_with_another_argument_name(man):
     ida.types[0x2000] = ("bool __thiscall(CDataB *this, unsigned __int8 jobId)", True)
     _s2, vrecs = _verify(ida, man, recs)
     assert results(vrecs, "prototypes")["0x2000"]["status"] == "mismatch"
+
+
+# --- an untransferred base compares by its class (T007f) ---------------------------------------------
+
+TYPES_H_OPAQUE_BASE = TYPES_H_IDA.replace("""struct MtArray // PC size 0x14
+{
+  MtObject baseclass_0; // +0x0 4 base MtObject
+""", """struct MtArray // PC size 0x14
+{
+  unsigned __int8 baseclass_0[4]; // +0x0 4 base MtObject (not transferred)
+""")
+
+
+@pytest.fixture
+def man_opaque(tmp_path):
+    assert TYPES_H_OPAQUE_BASE != TYPES_H_IDA
+    return at.load_manifest(str(make_manifest(tmp_path / "m", types_h=TYPES_H_OPAQUE_BASE)))
+
+
+def test_untransferred_base_is_parsed_with_its_class():
+    d = {x.name: x for x in at.parse_types_h(TYPES_H_OPAQUE_BASE) if x.kind == "struct"}
+    b = d["MtArray"].members[0]
+    assert (b.base, b.base_of, b.type, b.count) == (True, "MtObject", "unsigned __int8", 4)
+    assert d["CPacketDataBase"].members[0].base_of is None
+
+
+def test_untransferred_base_not_rendered_as_bytes_fails_closed():
+    bad = TYPES_H_OPAQUE_BASE.replace("unsigned __int8 baseclass_0[4]; // +0x0 4 base MtObject (not",
+                                      "unsigned __int8 other[4]; // +0x0 4 base MtObject (not")
+    with pytest.raises(ValueError, match="untransferred base"):
+        at.parse_types_h(bad)
+
+
+def test_t007e_untransferred_base_is_already_and_dependents_planned(man_opaque):
+    ida = fake_for(man_opaque)
+    ida.ltypes.update(copy.deepcopy(T007B))
+    _s, recs = run(ida, man_opaque, apply=False)
+    t = results(recs, "types")
+    assert t["MtArray"]["status"] == "already"
+    assert t["MtTypedArray<CDataA>"]["status"] == "would-define" and t["CDataB"]["status"] == "would-define"
+    assert "refused" not in {r["status"] for r in results(recs, "prototypes").values()}
+    _s, recs = run(ida, man_opaque)
+    assert ida.ltypes["MtArray"] == T007B["MtArray"]  # the database's richer base is kept
+
+
+def test_untransferred_base_of_another_class_is_refused(man_opaque):
+    ida = fake_for(man_opaque)
+    ida.ltypes.update(copy.deepcopy(T007B))
+    ida.ltypes["MtArray"]["members"][0] = ("", 0, 4, "base", "MtString")
+    _s, recs = run(ida, man_opaque, apply=False)
+    t = results(recs, "types")
+    assert t["MtArray"]["status"] == "refused" and t["MtArray"]["check"] == "different-local-type"
+    assert t["MtTypedArray<CDataA>"]["check"] == "embeds-refused-type"
+
+
+def test_untransferred_base_with_another_size_or_offset_is_refused():
+    d = {x.name: x for x in at.parse_types_h(TYPES_H_OPAQUE_BASE) if x.kind == "struct"}
+    mt = [list(m) for m in T007B["MtArray"]["members"]]
+    assert at.same_layout(20, mt, d["MtArray"])
+    row = d["MtArray"].members[0]
+    assert not at.member_equal(at.existing_member(("", 0, 8, "base", "MtObject")), row)
+    assert not at.member_equal(at.existing_member(("", 4, 4, "base", "MtObject")), row)
+    assert not at.member_equal(at.existing_member(("x", 0, 4, "", "MtObject")), row)
+    assert not at.member_equal(at.existing_member(("", 0, 4, "base", "unsigned __int8")), row)

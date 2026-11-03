@@ -124,6 +124,7 @@ class Member:
     size: int
     base: bool = False
     vptr: bool = False
+    base_of: str | None = None  # class of an untransferred base rendered as bytes (``base X (not transferred)``)
 
 
 @dataclass
@@ -168,8 +169,9 @@ def member_equal(ex: dict, row: Member) -> bool:
 
     Offsets and sizes must match. A row vptr equals an existing vptr at 0 (vftable flag, ``__vftable``,
     ``_vptr$*`` or ``vfptr``); a row base equals an existing base (base-class flag, ``baseclass_*``, unnamed,
-    or named after its class) whose type name is the row's base class. Otherwise names must be equal and
-    neither side may be a vptr or a base.
+    or named after its class) whose type name is the row's base class. A row base rendered as bytes because
+    its class is not transferred (``base X (not transferred)``, :attr:`Member.base_of`) compares by that class
+    ``X``, not by ``unsigned __int8``. Otherwise names must be equal and neither side may be a vptr or a base.
     """
     if (ex["offset"], ex["size"]) != (row.offset, row.size):
         return False
@@ -177,9 +179,10 @@ def member_equal(ex: dict, row: Member) -> bool:
         return row.offset == 0 and ex["kind"] != "base" and (ex["kind"] == "vptr" or bool(
             _VPTR_NAME.fullmatch(ex["name"])))
     if row.base:
-        if ex["kind"] == "vptr" or ex["type"] != row.type:
+        cls = row.base_of or row.type
+        if ex["kind"] == "vptr" or ex["type"] != cls:
             return False
-        return ex["kind"] == "base" or ex["name"] in ("", row.type) or bool(_BASE_NAME.fullmatch(ex["name"]))
+        return ex["kind"] == "base" or ex["name"] in ("", cls) or bool(_BASE_NAME.fullmatch(ex["name"]))
     return ex["kind"] == "" and ex["name"] == row.name
 
 
@@ -195,6 +198,7 @@ def same_layout(size, members, d: TypeDecl) -> bool:
 _MEMBER = re.compile(r"(?P<type>[^*;]+?)\s*(?P<stars>\*+)?\s*(?P<name>[A-Za-z_]\w*)(?:\[(?P<n>\d+)\])?;"
                      r"(?:\s*//\s*\+0x(?P<off>[0-9a-fA-F]+)\s+(?P<size>\d+)(?P<rest>.*))?")
 _GAP = re.compile(r"gap([0-9A-Fa-f]+)")
+_OPAQUE_BASE = re.compile(r"base (?P<cls>.+) \(not transferred\)")
 
 
 def parse_types_h(text: str) -> list[TypeDecl]:
@@ -243,8 +247,15 @@ def parse_types_h(text: str) -> list[TypeDecl]:
             off, size, rest = int(g[1], 16), count, ""
         else:
             raise ValueError(f"types.h:{n}: member without offset {line!r}")
-        cur.members.append(Member(m["name"], m["type"].strip(), len(m["stars"] or ""), count, off, size,
-                                  base=rest.strip().startswith("base "), vptr=rest.strip() == "vptr"))
+        member = Member(m["name"], m["type"].strip(), len(m["stars"] or ""), count, off, size,
+                        base=rest.strip().startswith("base "), vptr=rest.strip() == "vptr")
+        ob = _OPAQUE_BASE.fullmatch(rest.strip())
+        if ob:  # render.py: ``unsigned __int8 baseclass_<off>[<size>]; // ... base X (not transferred)``
+            if (member.type, member.ptr, member.count, member.name) != ("unsigned __int8", 0, size,
+                                                                        f"baseclass_{off:X}"):
+                raise ValueError(f"types.h:{n}: untransferred base not rendered as bytes {line!r}")
+            member.base_of = ob["cls"]
+        cur.members.append(member)
     if cur is not None:
         raise ValueError("types.h: unterminated struct")
     seen: set[str] = set()
