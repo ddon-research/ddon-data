@@ -104,7 +104,10 @@ Coordinator: main session. One subagent at a time. Method and rules: `spec.md`.
   CHANGE_JOB_RES refused, MtObject and 7 sub-types unchecked). Remaining 96 = 90 `MtTypedArray<X>` (13/20 bytes
   width-checked) + 6 `CData*` on lea records only (0%). Decision: lea never accepts a type (T006c).
   T006c done (6dc8a6e496, 4254210930: the 6 lea-only types `unchecked`, opaque in `types.h`; accepted 90, all
-  `MtTypedArray<X>`; prototypes/comments unchanged; typed-lea rule noted for wave 2; 376 tests). (`implementer` writes it, `evidence-researcher-ida` runs it).
+  `MtTypedArray<X>`; prototypes/comments unchanged; typed-lea rule noted for wave 2; 376 tests).
+  T007e stopped at its dry-run gate (`research/T007e-reapply.md`): rollback done (work copy `65120b34...`,
+  run-3 kept as `.run3-T007b.i64`); 91/181 types refused, all from `MtArray`: its base is now an untransferred
+  4-byte blob vs the database's `MtObject` base. T007f: equal when the class name and size match. (`implementer` writes it, `evidence-researcher-ida` runs it).
 - [ ] T008 Verify: re-extract, compare, decompile sample; adversarial review of pairs and types.
 - [ ] T009 Close: `check.sh --all`, docs, retrospective, publish the database folder.
 
@@ -112,7 +115,7 @@ Order: T003 first (T002 needs a copy of the accepted database), then T002.
 
 ## Running
 
-- T007e (evidence-researcher-ida, brief `briefs/T007e-reapply.md`), started 2026-11-03.
+- T007f (implementer, brief `briefs/T007f-opaque-base-equality.md`), started 2026-11-03; then T007e from step 2.
 - Decision (coordinator, 2026-11-03): from T004d on, all writes go to one persistent work copy
   `PC_DDON_03040008/ddon-data-007work/` of the accepted database (repairs first, then T007's apply);
   it is published as `spec007-packet-handlers-<date>/` at the close.
