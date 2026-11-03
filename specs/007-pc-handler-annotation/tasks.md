@@ -211,7 +211,11 @@ Goal: the rest of Sam's request: packet-class types and local names, by operatio
 
 ## Running
 
-- T013e (implementer, brief `briefs/W2-T013e-size-fix.md`), started 2026-11-03.
+- T013e (implementer, agent a775f0bcf12d21ddb, brief `briefs/W2-T013e-size-fix.md`), started 2026-11-03.
+  Next: land T013e (check the republished wave-2 sha256, the canary passes), then close wave 2 (T015 box:
+  check.sh --all, retro, tasks Close section, merge and push without asking). Remaining wave-2 levers not taken
+  (record in the close): array-element links (element base not traced through MSVC's null-check join), R2 locals
+  (PC call sites without `arg_bytes`), getter pairing (needs a new anchor kind).
 - Decision (coordinator, 2026-11-03): from T004d on, all writes go to one persistent work copy
   `PC_DDON_03040008/ddon-data-007work/` of the accepted database (repairs first, then T007's apply);
   it is published as `spec007-packet-handlers-<date>/` at the close.
