@@ -203,12 +203,15 @@ Goal: the rest of Sam's request: packet-class types and local names, by operatio
   the same on the rollback copy; published `PC_DDON_03040008/spec007-packet-handlers-20261103-wave2/` sha256
   `80b09086...2bc7`; rollback `.before-W2.i64`). Flaw: lower-bound sizes are too small (readers write past them;
   the decompiler splits the stack object). Size fix after T015, from the access extent and the stack slot.
+  T015 adversarial (`research/W2-T015-adversarial.md`): block finding reproduced by the coordinator: 42 of 48
+  partial types too small (`_access_check` counted accesses past the size as gaps); members and locals checked
+  right; all codec links from `agree` rows. T013e: size fix, verify check, re-apply from `.before-W2.i64`, republish.
 - [ ] T014 Wider pairs from anchored gaps (getters), then locals rules R1/R2 (implementer), then apply.
 - [ ] T015 Review, close wave 2, merge and push.
 
 ## Running
 
-- T015 (adversarial-reviewer, brief `briefs/W2-T015-adversarial.md`), started 2026-11-03.
+- T013e (implementer, brief `briefs/W2-T013e-size-fix.md`), started 2026-11-03.
 - Decision (coordinator, 2026-11-03): from T004d on, all writes go to one persistent work copy
   `PC_DDON_03040008/ddon-data-007work/` of the accepted database (repairs first, then T007's apply);
   it is published as `spec007-packet-handlers-<date>/` at the close.
