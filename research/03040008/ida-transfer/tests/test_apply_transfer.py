@@ -283,7 +283,7 @@ def results(recs, step=None):
 @pytest.mark.skipif(not (REAL / "types.h").exists(), reason="T006 manifest not present")
 def test_real_manifest_loads_and_every_row_plans():
     m = at.load_manifest(str(REAL))
-    assert (len(m["names"]), len(m["labels"]), len(m["prototypes"]), len(m["comments"])) == (1086, 3, 1065, 1119)
+    assert (len(m["names"]), len(m["labels"]), len(m["prototypes"]), len(m["comments"])) == (1086, 3, 1065, 1174)
     assert len(m["conflicts"]) == 0  # T009b: all 61 settled ours
     acts = [r["action"] for r in m["names"]] + [r["action"] for r in m["prototypes"]]
     assert (acts.count("correct"), acts.count("replace")) == (9, 54)
@@ -953,3 +953,29 @@ def test_t009b_set_prototype_on_a_user_prototype_is_still_refused(man_t009):
     ida.types[0x1000] = ("int __cdecl(int, int)", True)
     _s, recs = run(ida, man_t009)
     assert results(recs, "prototypes")["0x1000"]["check"] == "user-prototype"
+
+
+def _append_comment_row(d: Path, comment_cell: str, existing: str) -> None:
+    with (d / "comments.tsv").open("a", encoding="utf-8", newline="\n") as fh:
+        fh.write("\t".join(["0x3000", "append", comment_cell, existing]) + "\n")
+
+
+def test_t009b_append_comment_row_appends_only_ours_below_the_separator(tmp_path):
+    d = make_manifest(tmp_path / "ma")
+    _append_comment_row(d, "old note\\n----\\nPC name from string at 0x9.", "old note")
+    m = at.load_manifest(str(d))
+    row = next(r for r in m["comments"] if r["pc_va"] == "0x3000")
+    assert row["comment"] == "PC name from string at 0x9."
+    ida = fake_for(m)
+    ida.cmts[0x3000] = "old note"
+    _s, recs = run(ida, m)
+    assert ida.cmts[0x3000] == "old note\n----\nPC name from string at 0x9."
+    _s, recs2 = run(ida, m)
+    assert results(recs2, "comments")["0x3000"]["status"] == "already"
+
+
+def test_t009b_append_comment_row_of_another_shape_fails_closed(tmp_path):
+    d = make_manifest(tmp_path / "mb")
+    _append_comment_row(d, "something else", "old note")
+    with pytest.raises(ValueError, match="append row"):
+        at.load_manifest(str(d))

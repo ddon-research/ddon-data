@@ -25,9 +25,9 @@ Apply order: types (``types.h``; through the ``ida_typeinf`` tinfo/udt API, so t
 ``MtTypedArray<CDataX>`` stay verbatim), ``remove-label`` rows, names (``set``/``correct``),
 prototypes (``set``/``replace``; ``apply_tinfo`` with ``TINFO_DEFINITE``; compared as ``tinfo_t``,
 :func:`same_prototype`),
-function comments (appended below a ``----`` line, never replaced). ``correct`` names and ``replace``
-prototypes (T009b: settled conflicts) overwrite a user value only when the database's current value equals the
-row's ``current`` (else ``refused current-changed``). ``conflict`` rows
+function comments (``set``/``append``; appended below a ``----`` line, never replaced). ``correct`` names and
+``replace`` prototypes (T009b: settled conflicts) overwrite a user value only when the database's current value
+equals the row's ``current`` (else ``refused current-changed``). ``conflict`` rows
 of ``skipped.tsv`` are reported, never written. Every write: the ``undo`` record (before-state) is
 written and flushed first, then the write, then a read-back compared with the row (mismatch: ``failed``
 with both values, no retry). A second ``--apply`` finds every row ``already``.
@@ -86,6 +86,17 @@ def _sha256(path: str) -> str:
     return h.hexdigest()
 
 
+def _our_comment(r: dict) -> dict:
+    """An ``append`` row carries ``existing + SEPARATOR + ours``; T007 appends ``ours`` to whatever the database
+    holds (never replaces), so the row keeps only ``ours``. A row not of that shape fails closed."""
+    if r["action"] == "set":
+        return r
+    prefix = r["existing"] + SEPARATOR
+    if not r["existing"] or not r["comment"].startswith(prefix) or len(r["comment"]) == len(prefix):
+        raise ValueError(f"comments.tsv {r['pc_va']}: append row is not existing + separator + ours")
+    return {**r, "comment": r["comment"][len(prefix):]}
+
+
 def load_manifest(directory: str) -> dict:
     """The T006 rows T007 writes, the conflicts it reports, ``types.h`` and the files' sha256."""
     sha = {f: _sha256(os.path.join(directory, f)) for f in MANIFEST_FILES}
@@ -106,7 +117,7 @@ def load_manifest(directory: str) -> dict:
     labels = [r for r in tables["names.tsv"] if r["action"] == "remove-label"]
     other = [r for r in tables["names.tsv"] if r["action"] not in ("set", "correct", "remove-label")]
     protos = [r for r in tables["prototypes.tsv"] if r["action"] in ("set", "replace")]
-    comments = [r for r in tables["comments.tsv"] if r["action"] == "set"]
+    comments = [_our_comment(r) for r in tables["comments.tsv"] if r["action"] in ("set", "append")]
     if other or len(protos) != len(tables["prototypes.tsv"]) or len(comments) != len(tables["comments.tsv"]):
         raise ValueError("manifest rows with an action this script does not know")
     conflicts = [r for r in tables["skipped.tsv"] if r["action"] == "conflict"]

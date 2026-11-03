@@ -51,9 +51,6 @@ def build(facts: Facts, pairs: list[PairRow], pc: dict[int, PcExtra], ps4fn: dic
     # rule 1
     nrows = names.name_rows(tier0, pairs, pc, t002)
     protos = _prototype_rows(facts, layouts, pairs, by_pc, pc, ps4fn, tier0, skipped)
-    # rule 4 comments the rows written before the T009 decisions (a settled conflict adds no comment)
-    commented = ({r.pc_va for r in nrows if r.action in names.WRITTEN}
-                 | {r.pc_va for r in protos if r.action == "set"})
     if settled:  # T009b: settled conflicts -> correct / replace / keep
         nrows, protos = decisions.apply(nrows, protos, settled)
     for r in nrows:
@@ -102,7 +99,9 @@ def build(facts: Facts, pairs: list[PairRow], pc: dict[int, PcExtra], ps4fn: dic
 
     # rule 4
     crows: list[comments.CommentRow] = []
-    for va in sorted(commented):
+    written = ({r.pc_va for r in nrows if r.action in names.WRITTEN}
+               | {r.pc_va for r in protos if r.action in PROTO_WRITTEN})  # T009b corrections included
+    for va in sorted(written):
         p = by_pc.get(va)
         x = pc.get(va)
         s_ea = x.string_eas.get(tier0[va]) if (va in tier0 and x) else None

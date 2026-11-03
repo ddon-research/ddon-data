@@ -301,9 +301,9 @@ candidate not written, with rule and reason), `precision.tsv` (rule 6), `summary
   reason (`T009: ...`) and evidence VAs (in `basis`); `theirs` -> `keep` (not written, in `skipped.tsv`); `merge`
   -> the decision's final value as `correct` / `replace`; `undecided` -> stays `conflict`. A decision for a row
   that is not a conflict, whose recorded current or ours value differs from the row's, a duplicate, an unknown
-  decision or one without a row: exit 2. Rule 4 comments only the rows written before the decisions (a settled
-  conflict adds no comment). T009 run: 7 names `correct`, 54 prototypes `replace`, 0 conflicts left; 61 rows
-  changed against the T006d manifest.
+  decision or one without a row: exit 2. Rule 4 comments every written function, the corrected ones included
+  (appended below `----` when a comment exists). T009 run: 7 names `correct`, 54 prototypes `replace`, 0
+  conflicts left.
 - **Rule 3, types** (`transfer/layout.py`, `transfer/typecheck.py`, `transfer/render.py`), below.
 - **Rule 4, comments** (`transfer/comments.py`): one per function with a written name or prototype:
   `PC name from string at <ea>.` and/or `PS4 02020005: <qualified> (<mangled>); paired by <rule>.` plus
@@ -442,7 +442,9 @@ records written before a crash, undo records included.
   writing against the function's `get_tinfo`, equal when the calling convention, the return type, the argument
   count and each argument's name and type (`tinfo_t.compare_with(.., TCMP_EQUAL)`, IDA 9.5
   `python/ida_typeinf.py`) agree. The printed text stays in the logs (`db`, `row`, `before`).
-- **Comments**: function comment; ours appended below a `----` line, `already` when present.
+- **Comments**: function comment; ours appended below a `----` line, `already` when present. An `append` row
+  (T006 found a comment) carries `existing + ---- + ours`; the loader keeps only `ours` (any other shape fails
+  closed), so the database's comment, whatever it is now, is kept and ours appended once.
 - `conflict` rows of `skipped.tsv` are reported (`conflict-names`, `conflict-prototypes`), never written.
 - Every write: `undo` record (before-state: name and user flag, printed type + serialized tinfo, comment, local
   type layout + serialized tinfo, or `null` for an absent type) flushed first, then the write, then the
