@@ -120,13 +120,16 @@ Coordinator: main session. One subagent at a time. Method and rules: `spec.md`.
   PC; 2 tooling defects reproduced by the coordinator: F1 pointer depth dropped (`MtObject**` -> `MtObject *` in
   `types.h`), F2 member type not compared in `member_equal`; work copy right because its `MtArray` was kept).
   T006d fixes both; then a verify run on the work copy.
+  T006d done (733a4c77e6: one pointer level stripped at a time; `member_equal` compares member types (`norm_type`
+  maps scalar spellings); canaries are tests; manifest change `MtArray.mpArray` only; 405 tests). Verify of the
+  work copy runs as T009 step 0.
 - [ ] T009 Close: `check.sh --all`, docs, retrospective, publish the database folder.
 
 Order: T003 first (T002 needs a copy of the accepted database), then T002.
 
 ## Running
 
-- T006d (implementer, brief `briefs/T006d-pointer-depth-and-member-type.md`), started 2026-11-03.
+- T009 (evidence-researcher-ida, brief `briefs/T009-conflicts-evidence.md`), started 2026-11-03.
 - Decision (coordinator, 2026-11-03): from T004d on, all writes go to one persistent work copy
   `PC_DDON_03040008/ddon-data-007work/` of the accepted database (repairs first, then T007's apply);
   it is published as `spec007-packet-handlers-<date>/` at the close.
