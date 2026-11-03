@@ -5,7 +5,7 @@ from __future__ import annotations
 from collections import Counter
 from pathlib import Path
 
-from . import checks, engine, gates, tier0
+from . import checks, codecs, engine, gates, roles, tier0
 from .model import Facts
 
 # T002 audit 3.4: byte-identical (or near) PC codec bodies; listed whatever the run does with them.
@@ -26,32 +26,52 @@ def _write(path: Path, header: list[str], rows: list[list[str]], comment: str) -
     path.write_text("\n".join(lines) + "\n", encoding="utf-8", newline="\n")
 
 
-def pc_names(facts: Facts, res: engine.Result, t0: dict[int, str]) -> dict[int, tuple[str, str]]:
+def pc_names(facts: Facts, res: engine.Result, t0: dict[int, str],
+             role: roles.RoleResult | None = None) -> dict[int, tuple[str, str]]:
     out = {}
     for p, a in res.accepted.items():
         out[p[0]] = (t0[p[0]], "pc-string") if a.source == "seed" else (facts.ps4[p[1]].name, "ps4-symbol")
+    for p in (role.pairs if role else {}):
+        out[p[0]] = (facts.ps4[p[1]].name, "ps4-symbol")
     return out
 
 
+T005B_EXPECTED = {"reader": 88, "element-reader": 117}
+
+
 def write_all(out: Path, facts: Facts, headers: dict, t0: dict[int, str], t0_listed: list[tier0.Listed],
-              seeds: dict[int, int], seed_listed: list[tier0.Listed], res: engine.Result,
-              precision: list[checks.PrecisionRow], cross: list[checks.CrossRow]) -> dict[str, int]:
+              seeds: dict[int, int], seed_listed: list[tier0.Listed], full: checks.Run,
+              precision: list[checks.PrecisionRow], role_precision: list[checks.RolePrecisionRow],
+              control: list[checks.ControlRow], cross: list[checks.CrossRow]) -> dict[str, int]:
+    res, role = full.engine, full.roles
     out.mkdir(parents=True, exist_ok=True)
     ident = "; ".join(f"{n} source {h.get('input_sha256') or h.get('elf_sha256')}" for n, h in sorted(headers.items()))
-    comment = f"007 T005 matcher, PC 03040008 <-> PS4 02020005; inputs: {ident}"
-    names = pc_names(facts, res, t0)
+    comment = f"007 T005e matcher (pairs v2), PC 03040008 <-> PS4 02020005; inputs: {ident}"
+    names = pc_names(facts, res, t0, role)
 
     rows = []
     for p in sorted(res.accepted):
         a = res.accepted[p]
         nm, src = names[p[0]]
-        rows.append([_h(p[0]), _h(p[1]), facts.ps4[p[1]].name, nm, src,
+        rows.append([_h(p[0]), _h(p[1]), facts.ps4[p[1]].name, nm, src, a.source,
                      "0" if a.source == "seed" else "propagation", a.iteration,
-                     " ".join(f"{w[0]:#x}:{w[1]:#x}" for w in a.witnesses) or "-", a.gate_results, "accepted"])
-    _write(out / "pairs.tsv", ["pc_va", "ps4_va", "ps4_symbol", "pc_name", "pc_name_source", "tier", "iteration",
-                               "witnesses", "gate_results", "status"], rows, comment)
+                     " ".join(f"{w[0]:#x}:{w[1]:#x}" for w in a.witnesses) or "-", a.gate_results, "-", "accepted"])
+    for p in sorted(role.pairs):
+        r = role.pairs[p]
+        nm, src = names[p[0]]
+        rows.append([_h(p[0]), _h(p[1]), facts.ps4[p[1]].name, nm, src, r.rule, "role", r.iteration,
+                     " ".join(r.witnesses), r.gate_results, r.flags, "accepted"])
+    rows.sort(key=lambda r: (int(r[0], 16), int(r[1], 16)))
+    _write(out / "pairs.tsv", ["pc_va", "ps4_va", "ps4_symbol", "pc_name", "pc_name_source", "rule", "tier",
+                               "iteration", "witnesses", "gate_results", "flags", "status"], rows, comment)
+
+    _write(out / "callsites.tsv", ["pc_site", "pc_function", "pc_codec_va", "width", "ps4_overload", "contexts",
+                                   "status"], role.callsites,
+           comment + "; rule 3: PS4 overload at the same codec position of equal-width reader pairs (PC call "
+           "sites only; never names the shared PC codec functions)")
 
     rej = [[x.candidate, x.gate, x.detail] for x in t0_listed + seed_listed]
+    rej += [[x.candidate, f"role-{x.rule}", x.detail] for x in role.listed]
     for p, why in sorted(res.seed_failed.items()):
         rej.append([f"pc:{p[0]:#x} ps4:{p[1]:#x}", "c", f"seed {facts.ps4[p[1]].name}: {why}"])
     for p, fails in sorted(res.failed.items()):
@@ -70,13 +90,29 @@ def write_all(out: Path, facts: Facts, headers: dict, t0: dict[int, str], t0_lis
 
     conf = []
     for (side, va), ps in sorted(res.conflicts.items()):
-        conf.append([side, _h(va), " ".join(f"{p[0]:#x}:{p[1]:#x}" for p in sorted(ps))])
-    _write(out / "conflicts.tsv", ["side", "va", "conflicting_pairs"], conf, comment)
+        conf.append(["propagation", side, _h(va), " ".join(f"{p[0]:#x}:{p[1]:#x}" for p in sorted(ps))])
+    for (side, va), ps in sorted(role.conflicts.items()):
+        conf.append(["role", side, _h(va), " ".join(f"{p[0]:#x}:{p[1]:#x}" for p in sorted(ps))])
+    _write(out / "conflicts.tsv", ["stage", "side", "va", "conflicting_pairs"], conf, comment)
 
-    prec = [[r.rng_seed, r.seeds, r.withheld, r.recovered, r.recovered_correctly, r.recovered_wrongly,
-             r.accepted_pairs, " ".join(r.wrong) or "-"] for r in precision]
-    _write(out / "precision.tsv", ["rng_seed", "seeds", "withheld", "recovered", "recovered_correctly",
-                                   "recovered_wrongly", "accepted_pairs", "wrong"], prec, comment)
+    prec = []
+    for r, q in zip(precision, role_precision, strict=True):
+        prec.append([r.rng_seed, r.seeds, r.withheld, r.recovered, r.recovered_correctly, r.recovered_wrongly,
+                     q.derived_full, q.dependent, q.dependent_absent, q.dependent_same, q.wrong, q.new,
+                     q.derived_holdout, " ".join(r.wrong) or "-", " | ".join(q.detail) or "-"])
+    _write(out / "precision.tsv", ["rng_seed", "seeds", "withheld", "seeds_recovered", "seeds_recovered_correctly",
+                                   "seeds_recovered_wrongly", "role_pairs_full", "role_dependent",
+                                   "role_dependent_absent", "role_dependent_same_partner", "role_wrong",
+                                   "role_new", "role_pairs_holdout", "seed_wrong", "role_detail"], prec, comment)
+
+    def _kv(d: dict) -> str:
+        return " ".join(f"{k}={v}" for k, v in sorted(d.items())) or "-"
+    ctl = [[c.rng_seed, c.seeds, c.seeds_passing_c, c.contexts_equal, c.contexts_embedded, _kv(c.proposals),
+            _kv(c.accepted), c.accepted_agree_real, c.accepted_wrong, " | ".join(c.detail) or "-"] for c in control]
+    _write(out / "control.tsv", ["rng_seed", "seeds", "shuffled_seeds_passing_c", "contexts_equal",
+                                 "contexts_embedded", "proposals", "accepted", "accepted_equal_to_real_run",
+                                 "accepted_not_in_real_run", "detail"], ctl,
+           comment + "; negative control: the PS4 side of the seeds deranged by the RNG seed")
 
     cx = [[r.source, r.key, _h(r.pc_va), r.expected, r.paired, r.result] for r in cross]
     cx.sort(key=lambda r: (r[0], r[2], r[1]))
@@ -111,6 +147,30 @@ def write_all(out: Path, facts: Facts, headers: dict, t0: dict[int, str], t0_lis
         counts[f"proposals_failing_gate_{g}"] = n
     for (a, b), n in sorted(st.uneven.items(), key=lambda kv: (-kv[1], kv[0]))[:20]:
         counts[f"gaps_uneven_pc{a}_ps4{b}"] = n
+    by_rule = Counter(r.rule for r in role.pairs.values())
+    for rule in ("reader", "element-reader", "listener-requester", "listener-sender"):
+        counts[f"role_accepted_{rule}"] = by_rule.get(rule, 0)
+    for rule, n in sorted(T005B_EXPECTED.items()):
+        counts[f"role_t005b_expected_{rule}"] = n
+    counts["role_element_reader_season3_extended"] = sum(1 for r in role.pairs.values() if r.flags != "-")
+    for it, n in sorted(Counter(r.iteration for r in role.pairs.values() if r.rule == "element-reader").items()):
+        counts[f"role_element_reader_iteration_{it}"] = n
+    for k, n in sorted(role.proposals.items()):
+        counts[f"role_proposals_{k}"] = n
+    counts["role_handlers_inlined_on_ps4"] = len(role.inlined_on_ps4)
+    for k, n in sorted(role.contexts.items()):
+        counts[f"role_contexts_{k}"] = n
+    counts["role_callsites"] = len(role.callsites)
+    counts["role_callsites_ambiguous"] = sum(1 for r in role.callsites if r[-1] != "agree")
+    for (rule, why), n in sorted(Counter((x.rule, x.detail.split(":")[0].split(" (")[0][:70])
+                                         for x in role.listed).items()):
+        counts[f"role_listed {rule}: {why}"] = n
+    xc = codecs.ps4_codec_crosscheck(facts)
+    counts["ps4_codec_dump_classified"] = len(xc)
+    counts["ps4_codec_dump_disagrees_with_symbol"] = sum(1 for r in xc if r[2] != r[3])
+    counts["precision_role_wrong_total"] = sum(q.wrong for q in role_precision)
+    counts["control_accepted_total"] = sum(c.accepted_agree_real + c.accepted_wrong for c in control)
+    counts["control_accepted_not_in_real_run"] = sum(c.accepted_wrong for c in control)
     agg = Counter(f"crosscheck {r.source}: {r.result.split(':')[0]}" for r in cross)
     counts.update(sorted(agg.items()))
     _write(out / "summary.tsv", ["count", "value"], [[k, v] for k, v in counts.items()], comment)

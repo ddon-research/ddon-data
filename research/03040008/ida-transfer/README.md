@@ -117,10 +117,70 @@ equal alignments when anchors repeat, here an alignment is used only when forced
   of the string's own class, be claimed by no other string, and pass gate (c).
 - Propagation: anchors are calls whose targets are an accepted pair; a gap with one unpaired call per side
   proposes the callees; a gap holding an anchor-capable call that did not align is blocked; indirect calls
-  count as calls. Import/extern anchors are not possible: neither dump names call targets outside it.
+  count as calls. Import/extern anchors: since v3 both dumps carry `extern` records with names; the matcher
+  uses them only to name PS4 codec and element-reader call targets (T005e), not as propagation anchors.
 - Gates in `matcher/gates.py` (a, c, d) and `matcher/engine.py` (b, fixed point, restart on a conflict with
   an accepted pair). Folding (d) is a code-identity proxy (size, instructions, ordered call targets,
   constants, strings, data refs, ret immediates, ecx use): the dump has no body bytes.
-- Outputs (`manifest/`): `pairs.tsv`, `rejected.tsv`, `conflicts.tsv`, `precision.tsv` (5 fixed RNG seeds,
-  20% of seeds withheld), `crosscheck.tsv` (006 T001 `matched`, T002 `holds`/`wrong`), `summary.tsv` (counts,
-  gap shapes, PS4-inline-only uneven gaps).
+- Gate (c) inputs since T005e: a PC function that no caller site loads `ecx` for (every caller site in the
+  dump, v3 `ecx_loaded` false) takes no object even when the extractor saw an `ecx` read (MSVC `push ecx`
+  stack reservation); without `ret N` the stack bytes come from the callers' v3 `arg_bytes` before their
+  pushed bytes.
+
+### Role anchors (T005e, `matcher/codecs.py`, `matcher/roles.py`)
+
+Evidence: `specs/007-pc-handler-annotation/research/T005b-role-anchors.md` § 6. They run over the accepted
+seed handler pairs, after propagation. Every role pair carries its rule, its witnesses (the handler or
+element pairs it was read from) and the seeds it depends on.
+
+- **Codec widths**: PC from the dump's `codec` field (20 functions), plus the four variable-length codecs by
+  their T005b § 2.1 VA (`S` MtString, `B` bytes, `C` C string). PS4 from the DWARF-named
+  `nPacket::Read_*`/`Write_*` symbols, because the v3 classifier knows only 4 of 22 PS4 codecs. The PS4
+  `codec` field is a cross-check only (`summary.tsv`: classified, disagreements).
+- **Codec tree** (`codecs.flatten`): codec leaves in call-site order. A callee that holds codecs is a
+  bracket. The PC walk enters every callee in the dump except `callOnPacketFunc`, the allocator, the
+  64-bit swap helper, `WritePacket`, `getAllocator` and the CRT `mem*`/`str*` routines. The PS4 walk enters
+  only `nPacket::Read_*` and `CPacket_*::ReadPacket` (`nPacket::Write_*` for senders). A callee the walk
+  needs but the dump lacks makes the tree a coverage gap (83 reader pairs, mostly PC sub-element readers
+  beyond the dump's depth 3).
+- **Rule 1, reader**: the PC handler's unique callee that reaches a codec within depth 2 pairs with the one
+  `CPacket_<NAME>::ReadPacket` the PS4 handler calls. `<NAME>` must be the PS4 handler's packet and one of the
+  names the PC `OnPacket_` string allows. An inlined PS4 reader gives no pair ("inlined on PS4").
+- **Rule 2, element reader**: header rule PC `44` <-> PS4 `24` (`2` when the second PS4 token is not 4).
+  In an equal body, or a body whose PS4 sequence embeds into the PC one in exactly one way
+  (`season3-extended`), each PS4 `nPacket::Read_CData*` bracket pairs with the outermost PC bracket that
+  covers the same codec positions. The rule is applied recursively inside accepted element pairs. A pair
+  is accepted only when:
+  - it is the same pair at every occurrence (a PS4 element reader without a PC partner at one occurrence
+    counts as different);
+  - it conflicts with no accepted pair;
+  - gates (c) and (d) hold;
+  - at least one occurrence is **identified by widths**: no other packet reader of either side whose
+    widths fit the same partner pairs either function differently. For an equal body that is a reader with
+    the same body; for an embedded one also any embedding reader.
+
+  Without the identification gate the negative control accepted wrong pairs from short equal bodies.
+- **Rule 3, codec positions**: `callsites.tsv` gives, for each PC codec call site in an equal-width pair,
+  the PS4 overload at the same body position. It names call sites only, never the shared PC codec bodies
+  (T002 s32/u32/f32 caveat).
+- **Rule 4, listener slot**: the PC requester (calls `reserveNetworkErrorDialog(slot)` with the slot the
+  handler passes to `callOnPacketFunc`) and its single sender with `WritePacket` key `(g,id,1)` pair with the
+  PS4 requester of the PS4 handler's slot and its single `Send_C2S_*`. Conditions: slots not shared, one
+  requester and one sender per side, no second PC sender for the key, outside the login-manager range,
+  equal payload write widths, and no PS4 -> PC slot-order inversion. **Not effective on the v3 dumps.** The
+  PS4 handler's slot (`mErrorCode[idx]`, a memory displacement) is not recorded, and the requesters (callers
+  of the senders) are outside both dumps' scope: 11 of 581 PC and 9 of 478 PS4 reserve call sites are in
+  the dumps. All 467 handler pairs are listed as a coverage gap. The rule is tested on synthetic facts.
+- **Rule 5, packet object** (ctor/vtable/`operator_new`, T005b § 6.5): not implemented; a later rule.
+- **Precision** (`precision.tsv`): 5 fixed RNG seeds each withhold 20% of the seeds. Every role pair of
+  the full run that depends on a withheld seed must be absent or come back with the same partner, and no
+  pair of the holdout run may contradict the full run (`role_wrong`). Pairs that are new in the holdout
+  run are listed (`role_new`).
+- **Negative control** (`control.tsv`): the PS4 side of the seeds is deranged with the same 5 RNG seeds.
+  Any role pair accepted there is a failure.
+- `match.py` exits 1 on a wrong holdout pair or on any control acceptance.
+- Outputs (`manifest/`): `pairs.tsv` v2 (`rule`: seed / propagation / reader / element-reader /
+  listener-requester / listener-sender; `flags`), `callsites.tsv`, `rejected.tsv` (role refusals as
+  `role-<rule>` and `role-b`), `conflicts.tsv` (`stage`), `precision.tsv`, `control.tsv`, `crosscheck.tsv`
+  (006 T001 `matched`, T002 `holds`/`wrong`, T005b examples), `summary.tsv` (counts per rule, contexts,
+  refusal reasons, codec cross-check, precision and control totals).

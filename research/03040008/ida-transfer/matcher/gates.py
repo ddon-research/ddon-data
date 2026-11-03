@@ -79,15 +79,35 @@ def dwarf_shape(facts: Facts, ps4_va: int) -> tuple[bool, int] | None:
     return has_this, total
 
 
-def pc_stack_bytes(facts: Facts, f: Func) -> int | None:
-    """`ret N` when every ret agrees; else the callers' pushed bytes when every caller site is in the dump
-    and all agree; else None."""
-    if f.ret_imm:
-        vals = set(f.ret_imm)
-        return vals.pop() if len(vals) == 1 else None
+def _all_caller_sites(facts: Facts, f: Func) -> list | None:
     sites = facts.pc_callsites.get(f.va, [])
     if f.caller_sites == 0 or len(sites) != f.caller_sites:
         return None
+    return sites
+
+
+def pc_has_this(facts: Facts, f: Func) -> bool | None:
+    """The extractor's ecx read-before-write, except that a function no caller site loads ecx for (every
+    caller site in the dump, v3 ``ecx_loaded`` false at each) takes no object (T005e: MSVC's ``push ecx``
+    stack reservation reads ecx in cdecl element readers)."""
+    sites = _all_caller_sites(facts, f)
+    if f.ecx_read_before_write and sites and all(c.ecx_loaded is False for c in sites):
+        return False
+    return f.ecx_read_before_write
+
+
+def pc_stack_bytes(facts: Facts, f: Func) -> int | None:
+    """`ret N` when every ret agrees; else the callers' v3 ``arg_bytes`` (``add esp, N`` after the call)
+    when every caller site is in the dump and all agree; else their pushed bytes likewise; else None."""
+    if f.ret_imm:
+        vals = set(f.ret_imm)
+        return vals.pop() if len(vals) == 1 else None
+    sites = _all_caller_sites(facts, f)
+    if sites is None:
+        return None
+    argb = {c.arg_bytes for c in sites}
+    if len(argb) == 1 and None not in argb:
+        return argb.pop()
     pushed = {c.pushed_bytes for c in sites}
     if len(pushed) != 1 or None in pushed:
         return None
@@ -101,13 +121,14 @@ def gate_c(facts: Facts, pc_va: int, ps4_va: int) -> tuple[bool, str]:
     d = dwarf_shape(facts, ps4_va)
     if d is None:
         return False, "DWARF parameter bytes unknown"
-    if f.ecx_read_before_write is None:
+    this = pc_has_this(facts, f)
+    if this is None:
         return False, "PC this unknown"
     pc_bytes = pc_stack_bytes(facts, f)
     if pc_bytes is None:
         return False, "PC stack bytes unknown"
-    if f.ecx_read_before_write != d[0]:
-        return False, f"this: PC ecx {f.ecx_read_before_write} DWARF {d[0]}"
+    if this != d[0]:
+        return False, f"this: PC ecx {this} DWARF {d[0]}"
     if pc_bytes != d[1]:
         return False, f"stack bytes: PC {pc_bytes} DWARF {d[1]}"
     return True, f"this={d[0]} bytes={d[1]}"

@@ -1,4 +1,4 @@
-# 007 T005 matcher, PC 03040008 <-> PS4 02020005; inputs: pc-ida.jsonl source f1c974d0e529d4bb7dc5f0953d37eea6bbb023f2667f9a1d3a3b878f4919fa20; ps4-dwarf.jsonl source 4236f598acc8f15893181455ed195e39dfa4dbfda4eeda8b56fcbd82312c63c0; ps4-ida.jsonl source 4236f598acc8f15893181455ed195e39dfa4dbfda4eeda8b56fcbd82312c63c0
+# 007 T005e matcher (pairs v2), PC 03040008 <-> PS4 02020005; inputs: pc-ida.jsonl source f1c974d0e529d4bb7dc5f0953d37eea6bbb023f2667f9a1d3a3b878f4919fa20; ps4-dwarf.jsonl source 4236f598acc8f15893181455ed195e39dfa4dbfda4eeda8b56fcbd82312c63c0; ps4-ida.jsonl source 4236f598acc8f15893181455ed195e39dfa4dbfda4eeda8b56fcbd82312c63c0
 count	value
 table_callbacks	1040
 tier0_named	669
@@ -41,7 +41,40 @@ gaps_uneven_pc2_ps43	6
 gaps_uneven_pc3_ps44	5
 gaps_uneven_pc6_ps410	5
 gaps_uneven_pc7_ps49	5
+role_accepted_reader	69
+role_accepted_element-reader	56
+role_accepted_listener-requester	0
+role_accepted_listener-sender	0
+role_t005b_expected_element-reader	117
+role_t005b_expected_reader	88
+role_element_reader_season3_extended	0
+role_element_reader_iteration_1	56
+role_proposals_element-reader	104
+role_proposals_listener	0
+role_proposals_reader	88
+role_handlers_inlined_on_ps4	379
+role_contexts_ambiguous-embedding	24
+role_contexts_embedded	9
+role_contexts_equal	376
+role_contexts_gap	83
+role_contexts_other	26
+role_callsites	694
+role_callsites_ambiguous	0
+role_listed b: element reader pairs differently across 3 occurrence(s)	2
+role_listed b: widths do not identify the pair	29
+role_listed element-reader: c=PC stack bytes unknown	13
+role_listed element-reader: c=stack bytes	4
+role_listed listener: PS4 handler slot not in the dump	467
+role_listed reader: d=pc folded	19
+role_listed reader: inlined on PS4	379
+ps4_codec_dump_classified	4
+ps4_codec_dump_disagrees_with_symbol	0
+precision_role_wrong_total	0
+control_accepted_total	0
+control_accepted_not_in_real_run	0
 crosscheck 006-T001 matched: agree	146
 crosscheck 006-T001 matched: not paired	209
 crosscheck T002 holds: agree	41
 crosscheck T002 wrong: not reproduced	3
+crosscheck T005b example: agree	1
+crosscheck T005b example: not paired	2

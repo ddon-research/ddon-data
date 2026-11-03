@@ -8,7 +8,7 @@ import re
 from dataclasses import dataclass
 from pathlib import Path
 
-from . import engine
+from . import engine, roles
 from .model import Facts
 
 HOLDOUT_FRACTION = 0.2
@@ -120,4 +120,144 @@ def crosscheck(facts: Facts, names: dict[int, str], pairs: set[tuple[int, int]],
             ours = names.get(pc_va, "-")
             rows.append(CrossRow("T002 wrong", r["role"], pc_va, r["value"], ours,
                                  "reproduced" if ours == r["value"] else "not reproduced"))
+    return rows
+
+
+# --- T005e: the pipeline (seeds, propagation, role anchors), its precision check and negative control ---
+
+Pair = tuple[int, int]
+
+
+@dataclass
+class Run:
+    engine: engine.Result
+    roles: roles.RoleResult
+
+    def pairs(self) -> dict[Pair, str]:
+        """Every accepted pair -> rule (seed, propagation, or the role rule)."""
+        out = {p: a.source for p, a in self.engine.accepted.items()}
+        out.update({p: r.rule for p, r in self.roles.pairs.items()})
+        return out
+
+
+def pipeline(facts: Facts, seeds: dict[int, int], t0: dict[int, str], prefixes: dict[int, list[str]]) -> Run:
+    res = engine.run(facts, seeds)
+    handlers = {p: frozenset([p]) for p, a in res.accepted.items() if a.source == "seed"}
+    return Run(res, roles.run(facts, handlers, set(res.accepted), t0, prefixes))
+
+
+@dataclass(frozen=True)
+class RolePrecisionRow:
+    rng_seed: int
+    seeds: int
+    withheld: int
+    derived_full: int  # role pairs of the full run
+    dependent: int  # of those, depending on a withheld seed
+    dependent_absent: int
+    dependent_same: int  # reappeared with the same partner via other witnesses
+    wrong: int  # pairs of the holdout run whose PC or PS4 side has another partner in the full run
+    new: int  # pairs of the holdout run that the full run does not have (and that contradict nothing)
+    derived_holdout: int
+    detail: tuple[str, ...] = ()
+
+
+def role_precision(facts: Facts, seeds: dict[int, int], t0: dict[int, str], prefixes: dict[int, list[str]],
+                   full: Run, rng_seed: int, withheld: set[int] | None = None) -> RolePrecisionRow:
+    """Withhold 20% of the seeds (fixed RNG seed): every derived pair that depends on a withheld seed must
+    be absent or come back with the same partner; no pair of the holdout run may contradict the full run."""
+    if withheld is None:
+        withheld = holdout(seeds, rng_seed)
+    gone = {(k, seeds[k]) for k in withheld}
+    part = pipeline(facts, {k: v for k, v in seeds.items() if k not in withheld}, t0, prefixes)
+    fp, pp = full.pairs(), part.pairs()
+    f_pc = {p[0]: p[1] for p in fp}
+    f_ps4 = {p[1]: p[0] for p in fp}
+    p_pc = {p[0]: p[1] for p in pp}
+    p_ps4 = {p[1]: p[0] for p in pp}
+    dep = [p for p, r in full.roles.pairs.items() if r.roots & gone]
+    absent = sum(1 for p in dep if p[0] not in p_pc and p[1] not in p_ps4)
+    same = sum(1 for p in dep if p_pc.get(p[0]) == p[1])
+    detail: list[str] = []
+    wrong = new = 0
+    for p, rule in sorted(pp.items()):
+        a, b = f_pc.get(p[0]), f_ps4.get(p[1])
+        if (a is not None and a != p[1]) or (b is not None and b != p[0]):
+            wrong += 1
+            detail.append(f"wrong {rule} {p[0]:#x}:{p[1]:#x} (full: {a and hex(a)} / {b and hex(b)})")
+        elif p not in fp:
+            new += 1
+            detail.append(f"new {rule} {p[0]:#x}:{p[1]:#x}")
+    return RolePrecisionRow(rng_seed, len(seeds), len(withheld), len(full.roles.pairs), len(dep), absent, same,
+                            wrong, new, len(part.roles.pairs), tuple(detail))
+
+
+def derangement(seeds: dict[int, int], rng_seed: int) -> dict[int, int]:
+    """The seeds with their PS4 side shuffled so that no PC handler keeps its partner (fixed RNG seed)."""
+    keys = sorted(seeds)
+    vals = [seeds[k] for k in keys]
+    if len(vals) < 2:
+        return {}
+    r = random.Random(rng_seed)
+    while True:
+        sh = vals[:]
+        r.shuffle(sh)
+        if all(a != b for a, b in zip(vals, sh, strict=True)):
+            return dict(zip(keys, sh, strict=True))
+
+
+@dataclass(frozen=True)
+class ControlRow:
+    rng_seed: int
+    seeds: int
+    seeds_passing_c: int
+    contexts_equal: int
+    contexts_embedded: int
+    proposals: dict
+    accepted: dict
+    accepted_agree_real: int
+    accepted_wrong: int
+    detail: tuple[str, ...] = ()
+
+
+def negative_control(facts: Facts, seeds: dict[int, int], t0: dict[int, str], prefixes: dict[int, list[str]],
+                     full: Run, rng_seed: int) -> ControlRow:
+    """Pair each PC handler with a random other PS4 handler and run the role anchors on that."""
+    run = pipeline(facts, derangement(seeds, rng_seed), t0, prefixes)
+    fp = full.pairs()
+    acc: dict[str, int] = {}
+    agree = wrong = 0
+    detail = []
+    for p, r in sorted(run.roles.pairs.items()):
+        acc[r.rule] = acc.get(r.rule, 0) + 1
+        ok = fp.get(p) is not None
+        agree += ok
+        wrong += not ok
+        detail.append(f"{r.rule} {p[0]:#x}:{p[1]:#x} {'= real run' if ok else 'not in the real run'}")
+    ctx = run.roles.contexts
+    return ControlRow(rng_seed, len(seeds), sum(1 for a in run.engine.accepted.values() if a.source == "seed"),
+                      ctx.get("equal", 0), ctx.get("embedded", 0), dict(run.roles.proposals), acc, agree, wrong,
+                      tuple(detail))
+
+
+# T005b examples (§ 1.1 pairs 1-2, § 3; V there): (key, PC va, PS4 va or PS4 symbol)
+T005B_EXAMPLES = (
+    ("pair 1 array reader", 0x772020, 0x1A2A2B0),
+    ("pair 1 element reader", 0x7720E0, 0x1A2A530),
+    ("pair 2 element reader", 0x7584B0, "nPacket::Read_CDataAchieveRewardCommon_"),
+)
+
+
+def crosscheck_t005b(facts: Facts, full: Run) -> list[CrossRow]:
+    """T005b's element-reader examples against the run (T005b gives counts, not the 117-pair list)."""
+    by_pc = {p[0]: p[1] for p in full.pairs()}
+    rows = []
+    for key, pc_va, ps4 in T005B_EXAMPLES:
+        if isinstance(ps4, str):
+            vas = [f.va for f in facts.ps4.values() if f.name == ps4]
+            ps4 = vas[0] if len(vas) == 1 else None
+        got = by_pc.get(pc_va)
+        exp = f"{ps4:#x} {facts.ps4[ps4].name}" if ps4 in facts.ps4 else f"{ps4}"
+        paired = f"{got:#x} {facts.ps4[got].name}" if got is not None else "-"
+        result = "not paired" if got is None else ("agree" if got == ps4 else "disagree")
+        rows.append(CrossRow("T005b example", key, pc_va, exp, paired, result))
     return rows

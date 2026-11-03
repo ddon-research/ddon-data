@@ -19,6 +19,16 @@ class Call:
     site: int
     target: int | None  # None: indirect
     pushed_bytes: int | None = None  # PC only
+    arg_bytes: int | None = None  # PC only (v3): the callee's ret N / add esp,N after the call
+    const_stack: tuple[tuple[int, int], ...] = ()  # PC only (v3): (stack slot, immediate) of this call
+    const_regs: tuple[tuple[str, int], ...] = ()  # PS4 only (v3): (argument register, immediate)
+    ecx_loaded: bool | None = None  # PC only: the caller wrote ecx in the call's argument window
+
+    def stack_const(self, slot: int) -> int | None:
+        return dict(self.const_stack).get(slot)
+
+    def reg_const(self, reg: str) -> int | None:
+        return dict(self.const_regs).get(reg)
 
 
 @dataclass
@@ -37,6 +47,7 @@ class Func:
     ecx_read_before_write: bool | None = None  # PC only
     ret_imm: tuple[int, ...] = ()
     default_name: bool = True
+    codec: tuple[str, int] | None = None  # (dir, width) from the v3 dump's codec field
 
 
 @dataclass(frozen=True)
@@ -72,6 +83,11 @@ class Facts:
     dwarf_inlines: dict[int, list[int]] = field(default_factory=dict)  # PS4 va -> start VA of each top-level inline
     types: dict[int, DwarfType] = field(default_factory=dict)
     pc_callsites: dict[int, list[Call]] = field(default_factory=dict)  # PC target -> call sites in the dump
+    table_key: dict[int, tuple[int, int, int]] = field(default_factory=dict)  # PC callback -> (group, id, sub)
+    # PS4 handler va -> listener slot (mErrorCode index). The v3 dump does not record it (a memory
+    # displacement, not an argument), so it is empty from the dumps; rule 4 refuses without it.
+    ps4_handler_slot: dict[int, int] = field(default_factory=dict)
+    externs: dict[tuple[str, int], tuple[str, str]] = field(default_factory=dict)  # (side, va) -> (name, reason)
 
     def __post_init__(self) -> None:
         if not self.pc_callsites:
@@ -123,7 +139,9 @@ def _iter(path: Path):
 
 def _func(r: dict, side: str) -> Func:
     calls = sorted(
-        (Call(c["site"], None if c["target"] == "indirect" else int(c["target"]), c.get("pushed_bytes"))
+        (Call(c["site"], None if c["target"] == "indirect" else int(c["target"]), c.get("pushed_bytes"),
+              c.get("arg_bytes"), tuple((int(a), int(b)) for a, b in c.get("const_stack", ())),
+              tuple(sorted((k, int(v)) for k, v in c.get("const_regs", {}).items())), c.get("ecx_loaded"))
          for c in r["calls"]),
         key=lambda c: c.site,
     )
@@ -133,6 +151,7 @@ def _func(r: dict, side: str) -> Func:
         data_refs=frozenset(r["data_refs"]), callers_count=r["callers_count"], caller_sites=r["caller_sites"],
         ecx_read_before_write=r.get("ecx_read_before_write"), ret_imm=tuple(r["ret_imm"]),
         default_name=r["default_name"],
+        codec=(r["codec"]["dir"], int(r["codec"]["width"])) if r.get("codec") else None,
     )
 
 
@@ -148,6 +167,8 @@ def load_facts(dumps: Path) -> tuple[Facts, dict[str, dict]]:
     group: dict[int, int] = {}
     orphan: set[str] = set()
     missing: set[int] = set()
+    key: dict[int, tuple[int, int, int]] = {}
+    ext: dict[tuple[str, int], tuple[str, str]] = {}
     for r in _iter(dumps / "pc-ida.jsonl"):
         k = r["kind"]
         if k == "function":
@@ -155,11 +176,19 @@ def load_facts(dumps: Path) -> tuple[Facts, dict[str, dict]]:
         elif k == "table" and r["callback"]:
             cbs.add(r["callback"])
             group.setdefault(r["callback"], r["group"])
+            key.setdefault(r["callback"], (r["group"], r["id"], r["sub"]))
         elif k == "missing_root":
             missing.add(r["va"])
+        elif k == "extern":
+            ext[("pc", r["va"])] = (r["name"], r["reason"])
         elif k == "summary":
             orphan = {o["text"] for o in r["onpacket_orphan_refs"]}
-    ps4 = {r["va"]: _func(r, "ps4") for r in _iter(dumps / "ps4-ida.jsonl") if r["kind"] == "function"}
+    ps4: dict[int, Func] = {}
+    for r in _iter(dumps / "ps4-ida.jsonl"):
+        if r["kind"] == "function":
+            ps4[r["va"]] = _func(r, "ps4")
+        elif r["kind"] == "extern":
+            ext[("ps4", r["va"])] = (r["name"], r["reason"])
     params: dict[int, list[Param]] = {}
     inlines: dict[int, list[int]] = {}
     types: dict[int, DwarfType] = {}
@@ -173,5 +202,6 @@ def load_facts(dumps: Path) -> tuple[Facts, dict[str, dict]]:
             types[r["die"]] = DwarfType(r["die"], r["tag"], r["name"], r.get("size"), r.get("target_die"),
                                          r.get("target"))
     facts = Facts(pc=pc, ps4=ps4, table_callbacks=cbs, table_group=group, onpacket_orphan_strings=orphan,
-                  missing_roots=missing, dwarf_params=params, dwarf_inlines=inlines, types=types)
+                  missing_roots=missing, dwarf_params=params, dwarf_inlines=inlines, types=types,
+                  table_key=key, externs=ext)
     return facts, headers

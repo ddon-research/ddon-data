@@ -1,4 +1,4 @@
-# 007 T005 matcher, PC 03040008 <-> PS4 02020005; inputs: pc-ida.jsonl source f1c974d0e529d4bb7dc5f0953d37eea6bbb023f2667f9a1d3a3b878f4919fa20; ps4-dwarf.jsonl source 4236f598acc8f15893181455ed195e39dfa4dbfda4eeda8b56fcbd82312c63c0; ps4-ida.jsonl source 4236f598acc8f15893181455ed195e39dfa4dbfda4eeda8b56fcbd82312c63c0
+# 007 T005e matcher (pairs v2), PC 03040008 <-> PS4 02020005; inputs: pc-ida.jsonl source f1c974d0e529d4bb7dc5f0953d37eea6bbb023f2667f9a1d3a3b878f4919fa20; ps4-dwarf.jsonl source 4236f598acc8f15893181455ed195e39dfa4dbfda4eeda8b56fcbd82312c63c0; ps4-ida.jsonl source 4236f598acc8f15893181455ed195e39dfa4dbfda4eeda8b56fcbd82312c63c0
 source	key	pc_va	expected	paired	result
 006-T001 matched	27.2.2	0x7c3280	cSeedGameSvConnection::OnPacket_S2C_ACHIEVEMENT_GET_FURNITURE_REWARD_LIST_RES @0x309710	0x309710 cSeedGameSvConnection::OnPacket_S2C_ACHIEVEMENT_GET_FURNITURE_REWARD_LIST_RES	agree
 006-T001 matched	27.0.2	0x7c3370	cSeedGameSvConnection::OnPacket_S2C_ACHIEVEMENT_GET_PROGRESS_LIST_RES @0x309020	0x309020 cSeedGameSvConnection::OnPacket_S2C_ACHIEVEMENT_GET_PROGRESS_LIST_RES	agree
@@ -399,3 +399,6 @@ T002 holds	handler 1.5.2	0x7f99c0	cSeedGameSvConnection::OnPacket_S2C_REPORT_SIT
 T002 wrong	handler 36.11.2	0x7c61f0	cSeedGameSvConnection::OnPacket_S2C_BAZAAR_GET_EXHIBIT_POSSIBLE_NUM_RES	-	not reproduced
 T002 wrong	handler 36.9.2	0x7c6510	cSeedGameSvConnection::OnPacket_S2C_BAZAAR_GET_ITEM_PRICE_LIMIT_RES	-	not reproduced
 T002 wrong	handler 34.5.16	0x7d36b0	cNetGameServer::OnPacket_S2C_ENTRY_BOARD_ENTRY_BOARD_ITEM_LEAVE_NTC	-	not reproduced
+T005b example	pair 2 element reader	0x7584b0	0x19e6810 nPacket::Read_CDataAchieveRewardCommon_	0x19e6810 nPacket::Read_CDataAchieveRewardCommon_	agree
+T005b example	pair 1 array reader	0x772020	0x1a2a2b0 nPacket::Read_CDataPawnHistory_	-	not paired
+T005b example	pair 1 element reader	0x7720e0	0x1a2a530 nPacket::Read_CDataPawnHistory__0	-	not paired

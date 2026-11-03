@@ -1,16 +1,929 @@
-# 007 T005 matcher, PC 03040008 <-> PS4 02020005; inputs: pc-ida.jsonl source f1c974d0e529d4bb7dc5f0953d37eea6bbb023f2667f9a1d3a3b878f4919fa20; ps4-dwarf.jsonl source 4236f598acc8f15893181455ed195e39dfa4dbfda4eeda8b56fcbd82312c63c0; ps4-ida.jsonl source 4236f598acc8f15893181455ed195e39dfa4dbfda4eeda8b56fcbd82312c63c0
+# 007 T005e matcher (pairs v2), PC 03040008 <-> PS4 02020005; inputs: pc-ida.jsonl source f1c974d0e529d4bb7dc5f0953d37eea6bbb023f2667f9a1d3a3b878f4919fa20; ps4-dwarf.jsonl source 4236f598acc8f15893181455ed195e39dfa4dbfda4eeda8b56fcbd82312c63c0; ps4-ida.jsonl source 4236f598acc8f15893181455ed195e39dfa4dbfda4eeda8b56fcbd82312c63c0
 candidate	gate	detail
-pc:0x8bc410	d	T002 codec Read_u8: pc widely shared: 399 callers; pc folded: code-identical to 0x8bc6e0; proposed 0 time(s)
-pc:0x8bc480	d	T002 codec Read_s32: pc widely shared: 730 callers; pc folded: code-identical to 0x8bc4d0 0x8bc520; proposed 0 time(s)
-pc:0x8bc4d0	d	T002 codec Read_u32: pc widely shared: 959 callers; pc folded: code-identical to 0x8bc480 0x8bc520; proposed 0 time(s)
+pc:0x8bc410	d	T002 codec Read_u8: pc widely shared: 406 callers; pc folded: code-identical to 0x8bc6e0; proposed 0 time(s)
+pc:0x8bc480	d	T002 codec Read_s32: pc widely shared: 735 callers; pc folded: code-identical to 0x8bc4d0 0x8bc520; proposed 0 time(s)
+pc:0x8bc4d0	d	T002 codec Read_u32: pc widely shared: 991 callers; pc folded: code-identical to 0x8bc480 0x8bc520; proposed 0 time(s)
 pc:0x8bc520	d	T002 codec Read_f32: pc folded: code-identical to 0x8bc480 0x8bc4d0; proposed 0 time(s)
 pc:0x8bc660	d	T002 codec Read_s64: pc folded: code-identical to 0x8bc6a0; proposed 0 time(s)
 pc:0x8bc6a0	d	T002 codec Read_u64: pc widely shared: 82 callers; pc folded: code-identical to 0x8bc660; proposed 0 time(s)
-pc:0x8bc6e0	d	T002 codec Read_bool: pc widely shared: 169 callers; pc folded: code-identical to 0x8bc410; proposed 0 time(s)
-pc:0x8bc860	d	T002 codec Write_u8: pc widely shared: 209 callers; pc folded: code-identical to 0x8bcb80; proposed 0 time(s)
+pc:0x8bc6e0	d	T002 codec Read_bool: pc widely shared: 173 callers; pc folded: code-identical to 0x8bc410; proposed 0 time(s)
+pc:0x8bc860	d	T002 codec Write_u8: pc widely shared: 210 callers; pc folded: code-identical to 0x8bcb80; proposed 0 time(s)
 pc:0x8bc8d0	d	T002 codec Write_s32: pc folded: code-identical to 0x8bc920; proposed 0 time(s)
 pc:0x8bc920	d	T002 codec Write_u32: pc widely shared: 412 callers; pc folded: code-identical to 0x8bc8d0; proposed 0 time(s)
 pc:0x8bcb80	d	T002 codec Write_bool: pc folded: code-identical to 0x8bc860; proposed 0 time(s)
+pc:0x7585a0 ps4:0x19e6bd0	role-b	widths do not identify the pair: another reader's widths fit and pair it differently (1 occurrence(s))
+pc:0x7591c0 ps4:0x1a071b0	role-b	widths do not identify the pair: another reader's widths fit and pair it differently (1 occurrence(s))
+pc:0x7595e0 ps4:0x1a0b870	role-b	widths do not identify the pair: another reader's widths fit and pair it differently (1 occurrence(s))
+pc:0x75cbd0 ps4:0x19f3f40	role-b	widths do not identify the pair: another reader's widths fit and pair it differently (3 occurrence(s))
+pc:0x75d580 ps4:0x1a025e0	role-b	widths do not identify the pair: another reader's widths fit and pair it differently (2 occurrence(s))
+pc:0x765a90 ps4:0x19e3980	role-b	widths do not identify the pair: another reader's widths fit and pair it differently (1 occurrence(s))
+pc:0x766a00 ps4:0x1a1f480	role-b	widths do not identify the pair: another reader's widths fit and pair it differently (1 occurrence(s))
+pc:0x767d00 ps4:0x1a0fc00	role-b	widths do not identify the pair: another reader's widths fit and pair it differently (1 occurrence(s))
+pc:0x767eb0 ps4:0x1a12130	role-b	widths do not identify the pair: another reader's widths fit and pair it differently (1 occurrence(s))
+pc:0x767fc0 ps4:0x1a11d10	role-b	widths do not identify the pair: another reader's widths fit and pair it differently (1 occurrence(s))
+pc:0x7680d0 ps4:0x1a11660	role-b	widths do not identify the pair: another reader's widths fit and pair it differently (1 occurrence(s))
+pc:0x76aad0 ps4:0x19e4070	role-b	widths do not identify the pair: another reader's widths fit and pair it differently (1 occurrence(s))
+pc:0x76c270 ps4:0x19f10a0	role-b	widths do not identify the pair: another reader's widths fit and pair it differently (1 occurrence(s))
+pc:0x76c670 ps4:0x19e4880	role-b	widths do not identify the pair: another reader's widths fit and pair it differently (2 occurrence(s))
+pc:0x76d0d0 ps4:0x1a01d10	role-b	widths do not identify the pair: another reader's widths fit and pair it differently (1 occurrence(s))
+pc:0x7710f0 ps4:0x19e7af0	role-b	widths do not identify the pair: another reader's widths fit and pair it differently (3 occurrence(s))
+pc:0x773ab0 ps4:0x1a19940	role-b	widths do not identify the pair: another reader's widths fit and pair it differently (1 occurrence(s))
+pc:0x774050 ps4:0x1a1b3e0	role-b	widths do not identify the pair: another reader's widths fit and pair it differently (1 occurrence(s))
+pc:0x775da0 ps4:0x19fed40	role-b	widths do not identify the pair: another reader's widths fit and pair it differently (1 occurrence(s))
+pc:0x776750 ps4:0x1a09550	role-b	widths do not identify the pair: another reader's widths fit and pair it differently (2 occurrence(s))
+pc:0x776890 ps4:0x1a074d0	role-b	widths do not identify the pair: another reader's widths fit and pair it differently (1 occurrence(s))
+pc:0x777a10 ps4:0x19eb740	role-b	widths do not identify the pair: another reader's widths fit and pair it differently (1 occurrence(s))
+pc:0x778990 ps4:0x1a04100	role-b	widths do not identify the pair: another reader's widths fit and pair it differently (1 occurrence(s))
+pc:0x77aae0 ps4:0x19ec210	role-b	widths do not identify the pair: another reader's widths fit and pair it differently (1 occurrence(s))
+pc:0x77bcc0 ps4:0x19e8440	role-b	widths do not identify the pair: another reader's widths fit and pair it differently (1 occurrence(s))
+pc:0x77bdd0 ps4:0x19e8170	role-b	widths do not identify the pair: another reader's widths fit and pair it differently (1 occurrence(s))
+pc:0x77bec0 ps4:0x19e7ea0	role-b	widths do not identify the pair: another reader's widths fit and pair it differently (1 occurrence(s))
+pc:0x77c870 ps4:0x1a0bf90	role-b	widths do not identify the pair: another reader's widths fit and pair it differently (1 occurrence(s))
+pc:0x77c960 ps4:0x19e15c0	role-b	widths do not identify the pair: another reader's widths fit and pair it differently (1 occurrence(s))
+ps4:0x1a013b0	role-b	element reader pairs differently across 3 occurrence(s): -
+ps4:0x1a024a0	role-b	element reader pairs differently across 3 occurrence(s): -
+pc:0x758e80 ps4:0x1a06750	role-element-reader	c=stack bytes: PC 0 DWARF 8
+pc:0x7594b0 ps4:0x19e23e0	role-element-reader	c=PC stack bytes unknown
+pc:0x75ac40 ps4:0x19e4dd0	role-element-reader	c=stack bytes: PC 0 DWARF 8
+pc:0x75ccf0 ps4:0x19f3320	role-element-reader	c=PC stack bytes unknown
+pc:0x75d390 ps4:0x19ff1f0	role-element-reader	c=stack bytes: PC 0 DWARF 8
+pc:0x75e8e0 ps4:0x19e1e70	role-element-reader	c=PC stack bytes unknown
+pc:0x75e9b0 ps4:0x19e2090	role-element-reader	c=PC stack bytes unknown
+pc:0x760fd0 ps4:0x19e29a0	role-element-reader	c=PC stack bytes unknown
+pc:0x7679f0 ps4:0x1a108f0	role-element-reader	c=PC stack bytes unknown
+pc:0x7685e0 ps4:0x19ef190	role-element-reader	c=PC stack bytes unknown
+pc:0x7689f0 ps4:0x1a30a70	role-element-reader	c=PC stack bytes unknown
+pc:0x768ae0 ps4:0x1a30ca0	role-element-reader	c=PC stack bytes unknown
+pc:0x76e480 ps4:0x19f65f0	role-element-reader	c=PC stack bytes unknown
+pc:0x76ed10 ps4:0x19f2ff0	role-element-reader	c=PC stack bytes unknown
+pc:0x771c80 ps4:0x19e9250	role-element-reader	c=PC stack bytes unknown
+pc:0x774de0 ps4:0x1a2d3e0	role-element-reader	c=stack bytes: PC 0 DWARF 8
+pc:0x77c2f0 ps4:0x19ebe40	role-element-reader	c=PC stack bytes unknown
+pc:0x7c3280 ps4:0x309710	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7c3370 ps4:0x309020	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7c3450 ps4:0x309890	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7c3500 ps4:0x309590	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7c3690 ps4:0x309b80	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7c3c30 ps4:0x302750	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7c3e90 ps4:0x3033a0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7c3f70 ps4:0x3036c0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7c4180 ps4:0x3024e0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7c42a0 ps4:0x302da0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7c4330 ps4:0x303220	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7c43e0 ps4:0x302eb0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7c44c0 ps4:0x302af0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7c4570 ps4:0x302c90	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7c4600 ps4:0x3030a0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7c46b0 ps4:0x303540	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7c68e0 ps4:0x2e8e40	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7c6a00 ps4:0x2e9060	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7c6a90 ps4:0x2fac50	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7c6ba0 ps4:0x2faa40	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7c6d20 ps4:0x2faed0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7c6e90 ps4:0x3380e0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7c7020 ps4:0x337f80	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7c7500 ps4:0x32e5e0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7c75e0 ps4:0x32e750	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7c76a0 ps4:0x32e470	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7c7880 ps4:0x334910	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7c7a40 ps4:0x32ee40	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7c7af0 ps4:0x332270	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7c82d0 ps4:0x32f4f0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7c83a0 ps4:0x32f7c0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7c8550 ps4:0x32fa90	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7c8c40 ps4:0x32fc30	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7c9910 ps4:0x32ece0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7c99d0 ps4:0x32ef90	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7c9a80 ps4:0x32eab0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7c9b70 ps4:0x32e920	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7c9cb0 ps4:0x2f8130	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7ca430 ps4:0x2deda0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7ca510 ps4:0x318270	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7ca610 ps4:0x31d2f0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7ca750 ps4:0x31d6b0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7caa80 ps4:0x317ca0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7cab40 ps4:0x338590	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7cac00 ps4:0x338400	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7cace0 ps4:0x3167f0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7cade0 ps4:0x3185b0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7cae70 ps4:0x31d170	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7caf20 ps4:0x3175c0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7cb030 ps4:0x317f20	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7cb0f0 ps4:0x317090	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7cb1a0 ps4:0x3189c0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7cb2b0 ps4:0x31c8c0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7cb3a0 ps4:0x3180c0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7cb470 ps4:0x317210	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7cb560 ps4:0x31b3f0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7cb800 ps4:0x31ac20	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7cbd50 ps4:0x318460	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7cc170 ps4:0x318750	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7cc210 ps4:0x338a30	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7cc2f0 ps4:0x338760	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7cc6d0 ps4:0x317b70	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7cc780 ps4:0x31c6e0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7cc930 ps4:0x31c150	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7cc9d0 ps4:0x31bb60	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7ccae0 ps4:0x31c540	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7ccba0 ps4:0x31bfd0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7ccc50 ps4:0x31c330	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7cce20 ps4:0x31be10	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7ccec0 ps4:0x31ba30	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7ccf70 ps4:0x31bc90	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7cd020 ps4:0x317430	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7cd0e0 ps4:0x31ab10	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7cd240 ps4:0x318880	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7cd2e0 ps4:0x31df60	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7cd450 ps4:0x31db70	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7cd8f0 ps4:0x31d9b0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7cd9b0 ps4:0x31d7f0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7cdcd0 ps4:0x316f00	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7ce240 ps4:0x2dd200	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7ce660 ps4:0x2dd3a0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7ce720 ps4:0x2dd530	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7cead0 ps4:0x2df750	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7cefd0 ps4:0x327620	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7cf250 ps4:0x3256c0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7cf480 ps4:0x327f00	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7cf830 ps4:0x326950	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7cfa20 ps4:0x328a10	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7cfb10 ps4:0x329520	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7cfe50 ps4:0x32a110	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7d00f0 ps4:0x314610	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7d0320 ps4:0x338df0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7d03d0 ps4:0x315330	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7d0490 ps4:0x3341f0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7d0850 ps4:0x3346f0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7d0950 ps4:0x314210	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7d0a80 ps4:0x314440	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7d0b40 ps4:0x313ec0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7d0bf0 ps4:0x334070	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7d0d30 ps4:0x336950	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7d0df0 ps4:0x336680	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7d0eb0 ps4:0x336480	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7d0fb0 ps4:0x335120	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7d1080 ps4:0x333e30	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7d1100 ps4:0x314a30	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7d11e0 ps4:0x314050	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7d1270 ps4:0x314cd0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7d1350 ps4:0x314f70	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7d1560 ps4:0x314720	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7d2320 ps4:0x3339a0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7d23d0 ps4:0x333820	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7d24b0 ps4:0x337ac0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7d2750 ps4:0x331750	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7d2830 ps4:0x331b80	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7d2920 ps4:0x331960	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7d2bd0 ps4:0x3220d0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7d2d30 ps4:0x322e90	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7d2f20 ps4:0x3246a0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7d2fe0 ps4:0x323e10	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7d3160 ps4:0x324a60	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7d3240 ps4:0x324950	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7d32d0 ps4:0x3241e0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7d3400 ps4:0x323f20	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7d3580 ps4:0x3252e0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7d37a0 ps4:0x323490	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7d3880 ps4:0x321f30	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7d3a10 ps4:0x3239a0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7d3bc0 ps4:0x3225a0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7d42f0 ps4:0x30ff60	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7d47e0 ps4:0x30f1a0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7d4870 ps4:0x30f450	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7d4a50 ps4:0x310200	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7d4d10 ps4:0x30f9c0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7d4dc0 ps4:0x30fc90	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7d5340 ps4:0x30edf0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7d5480 ps4:0x338280	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7d5530 ps4:0x311930	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7d5620 ps4:0x30f700	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7d57c0 ps4:0x311fa0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7d5850 ps4:0x311b80	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7d58e0 ps4:0x311350	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7d59a0 ps4:0x311600	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7d5a60 ps4:0x3114b0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7d5b10 ps4:0x311760	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7d5bc0 ps4:0x331250	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7d5f90 ps4:0x2f8600	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7d62c0 ps4:0x2f9250	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7d6590 ps4:0x2fa4f0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7d6750 ps4:0x2f8260	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7d6840 ps4:0x2fa830	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7d6950 ps4:0x2fa3e0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7d6b20 ps4:0x2fa090	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7d6c30 ps4:0x32f330	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7d6cf0 ps4:0x32f1b0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7d6dd0 ps4:0x30ab30	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7d6ef0 ps4:0x30ac80	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7d7080 ps4:0x30a850	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7d7150 ps4:0x30a9b0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7d7200 ps4:0x30a530	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7d72b0 ps4:0x30a6b0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7d73b0 ps4:0x30a3e0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7d7980 ps4:0x30bc70	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7d7a30 ps4:0x30bdf0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7d7ae0 ps4:0x30c390	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7d8190 ps4:0x30bf70	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7d8230 ps4:0x30c900	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7d8410 ps4:0x30c710	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7d8590 ps4:0x30b180	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7d8650 ps4:0x30b000	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7d8700 ps4:0x30ae80	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7d87b0 ps4:0x30b870	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7d8860 ps4:0x30b9f0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7d8950 ps4:0x30b2f0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7d8a20 ps4:0x30b470	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7d8af0 ps4:0x30b660	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7d8d40 ps4:0x2fb0d0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7d90b0 ps4:0x2fb2e0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7d9520 ps4:0x2fba40	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7d9780 ps4:0x2fb7f0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7da130 ps4:0x302200	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7da210 ps4:0x301f20	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7da410 ps4:0x3020a0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7da670 ps4:0x302380	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7dac80 ps4:0x2f3f10	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7db090 ps4:0x2f69d0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7db2a0 ps4:0x2f5740	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7db3c0 ps4:0x2f59a0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7db440 ps4:0x2f5560	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7db4c0 ps4:0x2f3a30	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7db750 ps4:0x2f4c60	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7db8c0 ps4:0x2f5080	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7db9c0 ps4:0x30a100	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7dbab0 ps4:0x309e90	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7dbb60 ps4:0x2f49c0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7dbd40 ps4:0x2f66a0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7dc040 ps4:0x309ff0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7dc0d0 ps4:0x309d80	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7dc1f0 ps4:0x2f64b0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7dc310 ps4:0x2f6200	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7dc3c0 ps4:0x2f63a0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7dc6d0 ps4:0x2e9380	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7dd070 ps4:0x3336a0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7dd270 ps4:0x2e9850	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7dd540 ps4:0x2e95a0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7dd780 ps4:0x2e9b40	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7dd8a0 ps4:0x301db0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7ddb80 ps4:0x333210	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7ddc30 ps4:0x333410	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7de430 ps4:0x2e9170	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7de4b0 ps4:0x2e9490	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7de910 ps4:0x31f2c0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7df130 ps4:0x320960	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7e0540 ps4:0x339f50	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7e05e0 ps4:0x31f110	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7e0690 ps4:0x33a480	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7e07c0 ps4:0x33a800	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7e08a0 ps4:0x33a6c0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7e0950 ps4:0x3046c0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7e0a50 ps4:0x3040a0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7e0f10 ps4:0x304310	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7e11d0 ps4:0x336e40	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7e1330 ps4:0x336c30	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7e1400 ps4:0x336fc0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7e1a10 ps4:0x333d20	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7e1c80 ps4:0x33a080	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7e28d0 ps4:0x330180	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7e2a40 ps4:0x2dec90	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7e2ce0 ps4:0x2de4d0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7e2e00 ps4:0x2de900	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7e2ed0 ps4:0x32c470	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7e2f90 ps4:0x32bfb0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7e30a0 ps4:0x32c1c0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7e3130 ps4:0x32be80	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7e31c0 ps4:0x32c2d0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7e3400 ps4:0x32c5c0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7e34d0 ps4:0x32d790	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7e3c10 ps4:0x32d2c0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7e3ce0 ps4:0x32d090	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7e3e40 ps4:0x32caa0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7e3f20 ps4:0x32ccb0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7e3fb0 ps4:0x32c970	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7e4050 ps4:0x32cdc0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7e59c0 ps4:0x334eb0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7e5a90 ps4:0x334ba0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7e5c80 ps4:0x335010	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7e5d10 ps4:0x334a90	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7e5f30 ps4:0x335310	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7e61e0 ps4:0x330b30	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7e63b0 ps4:0x304ac0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7e64d0 ps4:0x305320	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7e65b0 ps4:0x305070	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7e6660 ps4:0x304d80	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7e6710 ps4:0x304f00	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7e6810 ps4:0x305210	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7e68e0 ps4:0x336090	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7e69c0 ps4:0x335320	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7e6a80 ps4:0x335e80	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7e6b70 ps4:0x335c90	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7e6c60 ps4:0x335a80	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7e6e40 ps4:0x336220	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7e6f10 ps4:0x3354b0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7e6fe0 ps4:0x3356a0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7e70b0 ps4:0x335890	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7e7220 ps4:0x2e1cd0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7e7630 ps4:0x2e1f20	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7e7790 ps4:0x2df970	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7e7830 ps4:0x2e15f0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7e7ad0 ps4:0x2e00d0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7e7b60 ps4:0x2dfbe0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7e7d50 ps4:0x2e08f0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7e7e70 ps4:0x2e06a0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7e86a0 ps4:0x2e04e0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7e8730 ps4:0x2e03d0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7e87c0 ps4:0x2dfad0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7e8b20 ps4:0x2e1270	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7e8f30 ps4:0x2e1740	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7e91e0 ps4:0x2e1a20	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7e95c0 ps4:0x2e23e0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7e96c0 ps4:0x2e21e0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7e9960 ps4:0x2e2f40	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7e99e0 ps4:0x2e6b90	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7e9a70 ps4:0x2e3050	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7e9b20 ps4:0x339710	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7e9bd0 ps4:0x3394a0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7e9c60 ps4:0x339260	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7e9cf0 ps4:0x339130	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7e9de0 ps4:0x339b40	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7e9ef0 ps4:0x339d70	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7e9fe0 ps4:0x339840	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7ea0a0 ps4:0x338f70	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7ea150 ps4:0x3395b0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7ea200 ps4:0x339370	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7ea620 ps4:0x2e66e0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7ea6c0 ps4:0x2e8cc0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7ea770 ps4:0x2e6f40	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7ea870 ps4:0x2e7470	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7ea9d0 ps4:0x2e3350	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7eab80 ps4:0x2e3160	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7eac10 ps4:0x334330	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7eacd0 ps4:0x2e8a20	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7eadd0 ps4:0x2e6ca0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7eaed0 ps4:0x2e4ef0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7eb1c0 ps4:0x2e8620	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7eb630 ps4:0x2e88c0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7eb6e0 ps4:0x2e3ef0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7eb7f0 ps4:0x2e3c50	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7eb8f0 ps4:0x2e39b0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7eb9f0 ps4:0x2e4860	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7ebb00 ps4:0x2e45c0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7ebd40 ps4:0x2e5ff0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7ebfa0 ps4:0x2e61d0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7ec030 ps4:0x2e79a0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7ec0f0 ps4:0x2e7840	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7ec1a0 ps4:0x2e7710	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7ec240 ps4:0x2e7b00	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7ec490 ps4:0x2e71e0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7ec5e0 ps4:0x2e7bf0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7ec6a0 ps4:0x2e4470	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7ec750 ps4:0x2e4de0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7ec7e0 ps4:0x2e6a80	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7eda50 ps4:0x2e80c0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7edb40 ps4:0x2e84e0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7edd70 ps4:0x331050	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7ee560 ps4:0x306e60	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7ee650 ps4:0x305d70	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7eea30 ps4:0x3162f0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7eeb00 ps4:0x3158a0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7eebb0 ps4:0x3165f0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7eec80 ps4:0x306690	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7eede0 ps4:0x315ff0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7eeeb0 ps4:0x308a00	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7eef40 ps4:0x3161e0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7eefd0 ps4:0x315790	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7ef060 ps4:0x3164e0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7ef0f0 ps4:0x315680	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7ef180 ps4:0x308c30	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7ef210 ps4:0x308b20	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7ef2a0 ps4:0x315ee0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7ef330 ps4:0x308d40	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7ef6c0 ps4:0x2ed880	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7ef7a0 ps4:0x2ecbf0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7efad0 ps4:0x2f1880	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7efb70 ps4:0x2f08d0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7efc60 ps4:0x313a60	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7efcf0 ps4:0x313db0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7efeb0 ps4:0x3136e0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7efff0 ps4:0x313930	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7f0090 ps4:0x313820	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7f01c0 ps4:0x313000	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7f0330 ps4:0x312ca0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7f03d0 ps4:0x2ed020	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7f0960 ps4:0x2ec110	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7f0a10 ps4:0x2f27d0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7f0ac0 ps4:0x2f2160	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7f0b70 ps4:0x2ebf90	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7f0c20 ps4:0x2f1dd0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7f0d10 ps4:0x2f1c10	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7f0e00 ps4:0x2f2300	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7f0eb0 ps4:0x2f24a0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7f0f60 ps4:0x2ee590	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7f1080 ps4:0x2ee2f0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7f1180 ps4:0x2eb4c0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7f13d0 ps4:0x2ea690	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7f14b0 ps4:0x2eaf30	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7f1560 ps4:0x2ebaa0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7f1690 ps4:0x2eaa90	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7f1840 ps4:0x312b20	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7f18f0 ps4:0x312960	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7f1990 ps4:0x312790	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7f1c60 ps4:0x313220	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7f1d40 ps4:0x2edba0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7f1df0 ps4:0x2ed580	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7f1ea0 ps4:0x2ed240	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7f1f50 ps4:0x2f2720	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7f1ff0 ps4:0x2f2b90	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7f20a0 ps4:0x2eb610	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7f2180 ps4:0x2ebcc0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7f2230 ps4:0x312650	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7f22c0 ps4:0x312240	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7f2370 ps4:0x3120b0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7f2430 ps4:0x2ebe40	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7f2560 ps4:0x2ea7d0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7f2610 ps4:0x2edd20	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7f26c0 ps4:0x2eb0d0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7f2770 ps4:0x2ead90	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7f28c0 ps4:0x2eb250	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7f2b30 ps4:0x2ec8b0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7f2d00 ps4:0x2eca50	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7f3300 ps4:0x2f0580	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7f3610 ps4:0x2ee960	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7f3760 ps4:0x2effe0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7f3a10 ps4:0x2efad0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7f3db0 ps4:0x2eeea0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7f3f10 ps4:0x2ef5e0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7f41c0 ps4:0x2eccc0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7f4270 ps4:0x2ecef0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7f4430 ps4:0x2f3130	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7f4650 ps4:0x2ec290	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7f4850 ps4:0x2ec520	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7f5130 ps4:0x2f2d30	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7f5260 ps4:0x2f2f30	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7f5630 ps4:0x2ed720	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7f6090 ps4:0x31efe0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7f6130 ps4:0x31edd0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7f8f30 ps4:0x332380	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7f9070 ps4:0x2ddbc0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7f95c0 ps4:0x2de130	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7f9690 ps4:0x333520	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7f9740 ps4:0x2dda40	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7f9820 ps4:0x2ddf00	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7f99c0 ps4:0x330dd0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7f9c10 ps4:0x3379b0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7f9d50 ps4:0x32e310	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7f9f70 ps4:0x301c40	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7fa010 ps4:0x301ac0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7fa990 ps4:0x2fc020	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7faa80 ps4:0x2fbd20	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7fab30 ps4:0x2fbea0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7fad40 ps4:0x2ff770	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7fae10 ps4:0x2ff300	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7faf50 ps4:0x2fdb60	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7fb000 ps4:0x2fd860	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7fb0b0 ps4:0x2fd9e0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7fb160 ps4:0x300680	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7fb260 ps4:0x2fe020	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7fb310 ps4:0x2fdce0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7fb3c0 ps4:0x2fde80	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7fb470 ps4:0x2ff160	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7fb520 ps4:0x2fefc0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7fb5d0 ps4:0x2fff00	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7fb680 ps4:0x2ffb30	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7fb770 ps4:0x2ff980	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7fb860 ps4:0x2fee40	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7fb910 ps4:0x2fecc0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7fb9c0 ps4:0x2fcaa0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7fbb70 ps4:0x2fc1a0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7fbd10 ps4:0x2fd560	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7fbe60 ps4:0x2fcf20	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7fbfd0 ps4:0x2fd260	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7fc120 ps4:0x2fc620	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7fc6a0 ps4:0x2ffce0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7fc810 ps4:0x2fe5f0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7fc8e0 ps4:0x2feb40	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7fcab0 ps4:0x2fe470	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7fcb90 ps4:0x2fe8b0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7fcc80 ps4:0x300310	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7fcd60 ps4:0x2fe750	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7fce70 ps4:0x300080	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7fcfe0 ps4:0x2ffdf0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7fd380 ps4:0x2fe1c0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7fd690 ps4:0x2f3620	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7fd9e0 ps4:0x2f33c0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7fe3a0 ps4:0x332f10	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7fe480 ps4:0x333090	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7fe530 ps4:0x2df420	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7fe880 ps4:0x2df610	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7fe940 ps4:0x2f7d90	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7fe9e0 ps4:0x2f74a0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7fea80 ps4:0x2f7c10	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7feb30 ps4:0x2f72d0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7fec00 ps4:0x2f6f40	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7fecf0 ps4:0x308e50	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7feef0 ps4:0x2f6dc0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7ff200 ps4:0x2f7b00	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7ff290 ps4:0x2f75e0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7ff430 ps4:0x2f6af0	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7ff580 ps4:0x2f7190	role-listener	PS4 handler slot not in the dump (coverage gap)
+pc:0x7c3280 ps4:0x309710	role-reader	inlined on PS4: no reader pair
+pc:0x7c3370 ps4:0x309020	role-reader	inlined on PS4: no reader pair
+pc:0x7c3450 ps4:0x309890	role-reader	inlined on PS4: no reader pair
+pc:0x7c3500 ps4:0x309590	role-reader	inlined on PS4: no reader pair
+pc:0x7c3690 ps4:0x309b80	role-reader	inlined on PS4: no reader pair
+pc:0x7c3e90 ps4:0x3033a0	role-reader	inlined on PS4: no reader pair
+pc:0x7c3f70 ps4:0x3036c0	role-reader	inlined on PS4: no reader pair
+pc:0x7c42a0 ps4:0x302da0	role-reader	inlined on PS4: no reader pair
+pc:0x7c4330 ps4:0x303220	role-reader	inlined on PS4: no reader pair
+pc:0x7c43e0 ps4:0x302eb0	role-reader	inlined on PS4: no reader pair
+pc:0x7c44c0 ps4:0x302af0	role-reader	inlined on PS4: no reader pair
+pc:0x7c4570 ps4:0x302c90	role-reader	inlined on PS4: no reader pair
+pc:0x7c4600 ps4:0x3030a0	role-reader	inlined on PS4: no reader pair
+pc:0x7c46b0 ps4:0x303540	role-reader	inlined on PS4: no reader pair
+pc:0x7c68e0 ps4:0x2e8e40	role-reader	inlined on PS4: no reader pair
+pc:0x7c6a00 ps4:0x2e9060	role-reader	inlined on PS4: no reader pair
+pc:0x7c6a90 ps4:0x2fac50	role-reader	inlined on PS4: no reader pair
+pc:0x7c6ba0 ps4:0x2faa40	role-reader	inlined on PS4: no reader pair
+pc:0x7c6d20 ps4:0x2faed0	role-reader	inlined on PS4: no reader pair
+pc:0x7c6e90 ps4:0x3380e0	role-reader	inlined on PS4: no reader pair
+pc:0x7c7020 ps4:0x337f80	role-reader	inlined on PS4: no reader pair
+pc:0x7c7500 ps4:0x32e5e0	role-reader	inlined on PS4: no reader pair
+pc:0x7c75e0 ps4:0x32e750	role-reader	inlined on PS4: no reader pair
+pc:0x7c76a0 ps4:0x32e470	role-reader	inlined on PS4: no reader pair
+pc:0x7c7880 ps4:0x334910	role-reader	inlined on PS4: no reader pair
+pc:0x7c7a40 ps4:0x32ee40	role-reader	inlined on PS4: no reader pair
+pc:0x7c7af0 ps4:0x332270	role-reader	inlined on PS4: no reader pair
+pc:0x7c82d0 ps4:0x32f4f0	role-reader	inlined on PS4: no reader pair
+pc:0x7c83a0 ps4:0x32f7c0	role-reader	inlined on PS4: no reader pair
+pc:0x7c8550 ps4:0x32fa90	role-reader	inlined on PS4: no reader pair
+pc:0x7c8c40 ps4:0x32fc30	role-reader	inlined on PS4: no reader pair
+pc:0x7c9910 ps4:0x32ece0	role-reader	inlined on PS4: no reader pair
+pc:0x7c99d0 ps4:0x32ef90	role-reader	inlined on PS4: no reader pair
+pc:0x7c9a80 ps4:0x32eab0	role-reader	inlined on PS4: no reader pair
+pc:0x7c9b70 ps4:0x32e920	role-reader	inlined on PS4: no reader pair
+pc:0x7c9cb0 ps4:0x2f8130	role-reader	inlined on PS4: no reader pair
+pc:0x7ca430 ps4:0x2deda0	role-reader	inlined on PS4: no reader pair
+pc:0x7ca510 ps4:0x318270	role-reader	inlined on PS4: no reader pair
+pc:0x7ca750 ps4:0x31d6b0	role-reader	inlined on PS4: no reader pair
+pc:0x7caa80 ps4:0x317ca0	role-reader	inlined on PS4: no reader pair
+pc:0x7cab40 ps4:0x338590	role-reader	inlined on PS4: no reader pair
+pc:0x7cac00 ps4:0x338400	role-reader	inlined on PS4: no reader pair
+pc:0x7cade0 ps4:0x3185b0	role-reader	inlined on PS4: no reader pair
+pc:0x7cae70 ps4:0x31d170	role-reader	inlined on PS4: no reader pair
+pc:0x7caf20 ps4:0x3175c0	role-reader	inlined on PS4: no reader pair
+pc:0x7cb030 ps4:0x317f20	role-reader	inlined on PS4: no reader pair
+pc:0x7cb0f0 ps4:0x317090	role-reader	inlined on PS4: no reader pair
+pc:0x7cb1a0 ps4:0x3189c0	role-reader	inlined on PS4: no reader pair
+pc:0x7cb3a0 ps4:0x3180c0	role-reader	inlined on PS4: no reader pair
+pc:0x7cb470 ps4:0x317210	role-reader	inlined on PS4: no reader pair
+pc:0x7cb560 ps4:0x31b3f0	role-reader	inlined on PS4: no reader pair
+pc:0x7cb800 ps4:0x31ac20	role-reader	inlined on PS4: no reader pair
+pc:0x7cbd50 ps4:0x318460	role-reader	inlined on PS4: no reader pair
+pc:0x7cc170 ps4:0x318750	role-reader	inlined on PS4: no reader pair
+pc:0x7cc210 ps4:0x338a30	role-reader	inlined on PS4: no reader pair
+pc:0x7cc2f0 ps4:0x338760	role-reader	inlined on PS4: no reader pair
+pc:0x7cc6d0 ps4:0x317b70	role-reader	inlined on PS4: no reader pair
+pc:0x7cc780 ps4:0x31c6e0	role-reader	inlined on PS4: no reader pair
+pc:0x7cc930 ps4:0x31c150	role-reader	inlined on PS4: no reader pair
+pc:0x7cc9d0 ps4:0x31bb60	role-reader	inlined on PS4: no reader pair
+pc:0x7ccae0 ps4:0x31c540	role-reader	inlined on PS4: no reader pair
+pc:0x7ccba0 ps4:0x31bfd0	role-reader	inlined on PS4: no reader pair
+pc:0x7ccc50 ps4:0x31c330	role-reader	inlined on PS4: no reader pair
+pc:0x7cce20 ps4:0x31be10	role-reader	inlined on PS4: no reader pair
+pc:0x7ccec0 ps4:0x31ba30	role-reader	inlined on PS4: no reader pair
+pc:0x7ccf70 ps4:0x31bc90	role-reader	inlined on PS4: no reader pair
+pc:0x7cd020 ps4:0x317430	role-reader	inlined on PS4: no reader pair
+pc:0x7cd0e0 ps4:0x31ab10	role-reader	inlined on PS4: no reader pair
+pc:0x7cd240 ps4:0x318880	role-reader	inlined on PS4: no reader pair
+pc:0x7cd2e0 ps4:0x31df60	role-reader	inlined on PS4: no reader pair
+pc:0x7cd450 ps4:0x31db70	role-reader	inlined on PS4: no reader pair
+pc:0x7cdcd0 ps4:0x316f00	role-reader	inlined on PS4: no reader pair
+pc:0x7ce240 ps4:0x2dd200	role-reader	inlined on PS4: no reader pair
+pc:0x7ce660 ps4:0x2dd3a0	role-reader	inlined on PS4: no reader pair
+pc:0x7ce720 ps4:0x2dd530	role-reader	inlined on PS4: no reader pair
+pc:0x7cead0 ps4:0x2df750	role-reader	inlined on PS4: no reader pair
+pc:0x7cf480 ps4:0x327f00	role-reader	inlined on PS4: no reader pair
+pc:0x7cfa20 ps4:0x328a10	role-reader	inlined on PS4: no reader pair
+pc:0x7cfb10 ps4:0x329520	role-reader	inlined on PS4: no reader pair
+pc:0x7cfe50 ps4:0x32a110	role-reader	inlined on PS4: no reader pair
+pc:0x7d00f0 ps4:0x314610	role-reader	inlined on PS4: no reader pair
+pc:0x7d0320 ps4:0x338df0	role-reader	inlined on PS4: no reader pair
+pc:0x7d0490 ps4:0x3341f0	role-reader	inlined on PS4: no reader pair
+pc:0x7d0850 ps4:0x3346f0	role-reader	inlined on PS4: no reader pair
+pc:0x7d0950 ps4:0x314210	role-reader	inlined on PS4: no reader pair
+pc:0x7d0fb0 ps4:0x335120	role-reader	inlined on PS4: no reader pair
+pc:0x7d11e0 ps4:0x314050	role-reader	inlined on PS4: no reader pair
+pc:0x7d1350 ps4:0x314f70	role-reader	inlined on PS4: no reader pair
+pc:0x7d2320 ps4:0x3339a0	role-reader	inlined on PS4: no reader pair
+pc:0x7d23d0 ps4:0x333820	role-reader	inlined on PS4: no reader pair
+pc:0x7d24b0 ps4:0x337ac0	role-reader	inlined on PS4: no reader pair
+pc:0x7d2750 ps4:0x331750	role-reader	inlined on PS4: no reader pair
+pc:0x7d2830 ps4:0x331b80	role-reader	inlined on PS4: no reader pair
+pc:0x7d2920 ps4:0x331960	role-reader	inlined on PS4: no reader pair
+pc:0x7d2bd0 ps4:0x3220d0	role-reader	inlined on PS4: no reader pair
+pc:0x7d2d30 ps4:0x322e90	role-reader	inlined on PS4: no reader pair
+pc:0x7d2f20 ps4:0x3246a0	role-reader	inlined on PS4: no reader pair
+pc:0x7d2fe0 ps4:0x323e10	role-reader	inlined on PS4: no reader pair
+pc:0x7d3160 ps4:0x324a60	role-reader	inlined on PS4: no reader pair
+pc:0x7d3240 ps4:0x324950	role-reader	inlined on PS4: no reader pair
+pc:0x7d32d0 ps4:0x3241e0	role-reader	inlined on PS4: no reader pair
+pc:0x7d3400 ps4:0x323f20	role-reader	inlined on PS4: no reader pair
+pc:0x7d3580 ps4:0x3252e0	role-reader	inlined on PS4: no reader pair
+pc:0x7d37a0 ps4:0x323490	role-reader	inlined on PS4: no reader pair
+pc:0x7d3880 ps4:0x321f30	role-reader	inlined on PS4: no reader pair
+pc:0x7d3a10 ps4:0x3239a0	role-reader	inlined on PS4: no reader pair
+pc:0x7d3bc0 ps4:0x3225a0	role-reader	inlined on PS4: no reader pair
+pc:0x7d42f0 ps4:0x30ff60	role-reader	inlined on PS4: no reader pair
+pc:0x7d47e0 ps4:0x30f1a0	role-reader	inlined on PS4: no reader pair
+pc:0x7d4870 ps4:0x30f450	role-reader	inlined on PS4: no reader pair
+pc:0x7d4a50 ps4:0x310200	role-reader	inlined on PS4: no reader pair
+pc:0x7d4d10 ps4:0x30f9c0	role-reader	inlined on PS4: no reader pair
+pc:0x7d4dc0 ps4:0x30fc90	role-reader	inlined on PS4: no reader pair
+pc:0x7d5480 ps4:0x338280	role-reader	inlined on PS4: no reader pair
+pc:0x7d5530 ps4:0x311930	role-reader	inlined on PS4: no reader pair
+pc:0x7d57c0 ps4:0x311fa0	role-reader	inlined on PS4: no reader pair
+pc:0x7d5850 ps4:0x311b80	role-reader	inlined on PS4: no reader pair
+pc:0x7d58e0 ps4:0x311350	role-reader	inlined on PS4: no reader pair
+pc:0x7d59a0 ps4:0x311600	role-reader	inlined on PS4: no reader pair
+pc:0x7d5a60 ps4:0x3114b0	role-reader	inlined on PS4: no reader pair
+pc:0x7d5b10 ps4:0x311760	role-reader	inlined on PS4: no reader pair
+pc:0x7d5bc0 ps4:0x331250	role-reader	inlined on PS4: no reader pair
+pc:0x7d5f90 ps4:0x2f8600	role-reader	inlined on PS4: no reader pair
+pc:0x7d62c0 ps4:0x2f9250	role-reader	inlined on PS4: no reader pair
+pc:0x7d6590 ps4:0x2fa4f0	role-reader	inlined on PS4: no reader pair
+pc:0x7d6840 ps4:0x2fa830	role-reader	inlined on PS4: no reader pair
+pc:0x7d6950 ps4:0x2fa3e0	role-reader	inlined on PS4: no reader pair
+pc:0x7d6b20 ps4:0x2fa090	role-reader	inlined on PS4: no reader pair
+pc:0x7d6c30 ps4:0x32f330	role-reader	inlined on PS4: no reader pair
+pc:0x7d6cf0 ps4:0x32f1b0	role-reader	inlined on PS4: no reader pair
+pc:0x7d6ef0 ps4:0x30ac80	role-reader	inlined on PS4: no reader pair
+pc:0x7d7080 ps4:0x30a850	role-reader	inlined on PS4: no reader pair
+pc:0x7d7150 ps4:0x30a9b0	role-reader	inlined on PS4: no reader pair
+pc:0x7d7200 ps4:0x30a530	role-reader	inlined on PS4: no reader pair
+pc:0x7d72b0 ps4:0x30a6b0	role-reader	inlined on PS4: no reader pair
+pc:0x7d7980 ps4:0x30bc70	role-reader	inlined on PS4: no reader pair
+pc:0x7d7a30 ps4:0x30bdf0	role-reader	inlined on PS4: no reader pair
+pc:0x7d7ae0 ps4:0x30c390	role-reader	inlined on PS4: no reader pair
+pc:0x7d8190 ps4:0x30bf70	role-reader	inlined on PS4: no reader pair
+pc:0x7d8230 ps4:0x30c900	role-reader	inlined on PS4: no reader pair
+pc:0x7d8410 ps4:0x30c710	role-reader	inlined on PS4: no reader pair
+pc:0x7d8650 ps4:0x30b000	role-reader	inlined on PS4: no reader pair
+pc:0x7d8700 ps4:0x30ae80	role-reader	inlined on PS4: no reader pair
+pc:0x7d87b0 ps4:0x30b870	role-reader	inlined on PS4: no reader pair
+pc:0x7d8860 ps4:0x30b9f0	role-reader	inlined on PS4: no reader pair
+pc:0x7d8950 ps4:0x30b2f0	role-reader	inlined on PS4: no reader pair
+pc:0x7d8a20 ps4:0x30b470	role-reader	inlined on PS4: no reader pair
+pc:0x7d8af0 ps4:0x30b660	role-reader	inlined on PS4: no reader pair
+pc:0x7d8d40 ps4:0x2fb0d0	role-reader	inlined on PS4: no reader pair
+pc:0x7d90b0 ps4:0x2fb2e0	role-reader	inlined on PS4: no reader pair
+pc:0x7d9520 ps4:0x2fba40	role-reader	inlined on PS4: no reader pair
+pc:0x7d9780 ps4:0x2fb7f0	role-reader	inlined on PS4: no reader pair
+pc:0x7da130 ps4:0x302200	role-reader	inlined on PS4: no reader pair
+pc:0x7da210 ps4:0x301f20	role-reader	inlined on PS4: no reader pair
+pc:0x7da410 ps4:0x3020a0	role-reader	inlined on PS4: no reader pair
+pc:0x7da670 ps4:0x302380	role-reader	inlined on PS4: no reader pair
+pc:0x7dac80 ps4:0x2f3f10	role-reader	inlined on PS4: no reader pair
+pc:0x7db9c0 ps4:0x30a100	role-reader	inlined on PS4: no reader pair
+pc:0x7dbab0 ps4:0x309e90	role-reader	inlined on PS4: no reader pair
+pc:0x7dc040 ps4:0x309ff0	role-reader	inlined on PS4: no reader pair
+pc:0x7dc0d0 ps4:0x309d80	role-reader	inlined on PS4: no reader pair
+pc:0x7dc310 ps4:0x2f6200	role-reader	inlined on PS4: no reader pair
+pc:0x7dc3c0 ps4:0x2f63a0	role-reader	inlined on PS4: no reader pair
+pc:0x7dc6d0 ps4:0x2e9380	role-reader	inlined on PS4: no reader pair
+pc:0x7dd070 ps4:0x3336a0	role-reader	inlined on PS4: no reader pair
+pc:0x7dd270 ps4:0x2e9850	role-reader	inlined on PS4: no reader pair
+pc:0x7dd540 ps4:0x2e95a0	role-reader	inlined on PS4: no reader pair
+pc:0x7dd780 ps4:0x2e9b40	role-reader	inlined on PS4: no reader pair
+pc:0x7dd8a0 ps4:0x301db0	role-reader	inlined on PS4: no reader pair
+pc:0x7ddb80 ps4:0x333210	role-reader	inlined on PS4: no reader pair
+pc:0x7ddc30 ps4:0x333410	role-reader	inlined on PS4: no reader pair
+pc:0x7de430 ps4:0x2e9170	role-reader	inlined on PS4: no reader pair
+pc:0x7de4b0 ps4:0x2e9490	role-reader	inlined on PS4: no reader pair
+pc:0x7e0540 ps4:0x339f50	role-reader	inlined on PS4: no reader pair
+pc:0x7e0690 ps4:0x33a480	role-reader	inlined on PS4: no reader pair
+pc:0x7e0a50 ps4:0x3040a0	role-reader	inlined on PS4: no reader pair
+pc:0x7e11d0 ps4:0x336e40	role-reader	inlined on PS4: no reader pair
+pc:0x7e1330 ps4:0x336c30	role-reader	inlined on PS4: no reader pair
+pc:0x7e1a10 ps4:0x333d20	role-reader	inlined on PS4: no reader pair
+pc:0x7e1c80 ps4:0x33a080	role-reader	inlined on PS4: no reader pair
+pc:0x7e28d0 ps4:0x330180	role-reader	inlined on PS4: no reader pair
+pc:0x7e2a40 ps4:0x2dec90	role-reader	inlined on PS4: no reader pair
+pc:0x7e2ce0 ps4:0x2de4d0	role-reader	inlined on PS4: no reader pair
+pc:0x7e2e00 ps4:0x2de900	role-reader	inlined on PS4: no reader pair
+pc:0x7e2ed0 ps4:0x32c470	role-reader	inlined on PS4: no reader pair
+pc:0x7e2f90 ps4:0x32bfb0	role-reader	inlined on PS4: no reader pair
+pc:0x7e30a0 ps4:0x32c1c0	role-reader	inlined on PS4: no reader pair
+pc:0x7e3130 ps4:0x32be80	role-reader	inlined on PS4: no reader pair
+pc:0x7e31c0 ps4:0x32c2d0	role-reader	inlined on PS4: no reader pair
+pc:0x7e3400 ps4:0x32c5c0	role-reader	inlined on PS4: no reader pair
+pc:0x7e34d0 ps4:0x32d790	role-reader	inlined on PS4: no reader pair
+pc:0x7e3ce0 ps4:0x32d090	role-reader	inlined on PS4: no reader pair
+pc:0x7e3e40 ps4:0x32caa0	role-reader	inlined on PS4: no reader pair
+pc:0x7e3f20 ps4:0x32ccb0	role-reader	inlined on PS4: no reader pair
+pc:0x7e3fb0 ps4:0x32c970	role-reader	inlined on PS4: no reader pair
+pc:0x7e4050 ps4:0x32cdc0	role-reader	inlined on PS4: no reader pair
+pc:0x7e59c0 ps4:0x334eb0	role-reader	inlined on PS4: no reader pair
+pc:0x7e5c80 ps4:0x335010	role-reader	inlined on PS4: no reader pair
+pc:0x7e5d10 ps4:0x334a90	role-reader	inlined on PS4: no reader pair
+pc:0x7e5f30 ps4:0x335310	role-reader	inlined on PS4: no reader pair
+pc:0x7e64d0 ps4:0x305320	role-reader	inlined on PS4: no reader pair
+pc:0x7e65b0 ps4:0x305070	role-reader	inlined on PS4: no reader pair
+pc:0x7e6660 ps4:0x304d80	role-reader	inlined on PS4: no reader pair
+pc:0x7e68e0 ps4:0x336090	role-reader	inlined on PS4: no reader pair
+pc:0x7e69c0 ps4:0x335320	role-reader	inlined on PS4: no reader pair
+pc:0x7e6a80 ps4:0x335e80	role-reader	inlined on PS4: no reader pair
+pc:0x7e6b70 ps4:0x335c90	role-reader	inlined on PS4: no reader pair
+pc:0x7e6c60 ps4:0x335a80	role-reader	inlined on PS4: no reader pair
+pc:0x7e6e40 ps4:0x336220	role-reader	inlined on PS4: no reader pair
+pc:0x7e6f10 ps4:0x3354b0	role-reader	inlined on PS4: no reader pair
+pc:0x7e6fe0 ps4:0x3356a0	role-reader	inlined on PS4: no reader pair
+pc:0x7e70b0 ps4:0x335890	role-reader	inlined on PS4: no reader pair
+pc:0x7e7220 ps4:0x2e1cd0	role-reader	inlined on PS4: no reader pair
+pc:0x7e7630 ps4:0x2e1f20	role-reader	inlined on PS4: no reader pair
+pc:0x7e7790 ps4:0x2df970	role-reader	inlined on PS4: no reader pair
+pc:0x7e7830 ps4:0x2e15f0	role-reader	inlined on PS4: no reader pair
+pc:0x7e7ad0 ps4:0x2e00d0	role-reader	inlined on PS4: no reader pair
+pc:0x7e7b60 ps4:0x2dfbe0	role-reader	inlined on PS4: no reader pair
+pc:0x7e7d50 ps4:0x2e08f0	role-reader	inlined on PS4: no reader pair
+pc:0x7e7e70 ps4:0x2e06a0	role-reader	inlined on PS4: no reader pair
+pc:0x7e86a0 ps4:0x2e04e0	role-reader	inlined on PS4: no reader pair
+pc:0x7e8730 ps4:0x2e03d0	role-reader	inlined on PS4: no reader pair
+pc:0x7e8f30 ps4:0x2e1740	role-reader	inlined on PS4: no reader pair
+pc:0x7e91e0 ps4:0x2e1a20	role-reader	inlined on PS4: no reader pair
+pc:0x7e95c0 ps4:0x2e23e0	role-reader	inlined on PS4: no reader pair
+pc:0x7e96c0 ps4:0x2e21e0	role-reader	inlined on PS4: no reader pair
+pc:0x7e9960 ps4:0x2e2f40	role-reader	inlined on PS4: no reader pair
+pc:0x7e99e0 ps4:0x2e6b90	role-reader	inlined on PS4: no reader pair
+pc:0x7e9a70 ps4:0x2e3050	role-reader	inlined on PS4: no reader pair
+pc:0x7e9b20 ps4:0x339710	role-reader	inlined on PS4: no reader pair
+pc:0x7e9bd0 ps4:0x3394a0	role-reader	inlined on PS4: no reader pair
+pc:0x7e9c60 ps4:0x339260	role-reader	inlined on PS4: no reader pair
+pc:0x7e9de0 ps4:0x339b40	role-reader	inlined on PS4: no reader pair
+pc:0x7ea200 ps4:0x339370	role-reader	inlined on PS4: no reader pair
+pc:0x7ea620 ps4:0x2e66e0	role-reader	inlined on PS4: no reader pair
+pc:0x7ea6c0 ps4:0x2e8cc0	role-reader	inlined on PS4: no reader pair
+pc:0x7ea770 ps4:0x2e6f40	role-reader	inlined on PS4: no reader pair
+pc:0x7ea870 ps4:0x2e7470	role-reader	inlined on PS4: no reader pair
+pc:0x7ea9d0 ps4:0x2e3350	role-reader	inlined on PS4: no reader pair
+pc:0x7eac10 ps4:0x334330	role-reader	inlined on PS4: no reader pair
+pc:0x7eacd0 ps4:0x2e8a20	role-reader	inlined on PS4: no reader pair
+pc:0x7eadd0 ps4:0x2e6ca0	role-reader	inlined on PS4: no reader pair
+pc:0x7eb1c0 ps4:0x2e8620	role-reader	inlined on PS4: no reader pair
+pc:0x7eb6e0 ps4:0x2e3ef0	role-reader	inlined on PS4: no reader pair
+pc:0x7eb7f0 ps4:0x2e3c50	role-reader	inlined on PS4: no reader pair
+pc:0x7eb8f0 ps4:0x2e39b0	role-reader	inlined on PS4: no reader pair
+pc:0x7eb9f0 ps4:0x2e4860	role-reader	inlined on PS4: no reader pair
+pc:0x7ebb00 ps4:0x2e45c0	role-reader	inlined on PS4: no reader pair
+pc:0x7ebd40 ps4:0x2e5ff0	role-reader	inlined on PS4: no reader pair
+pc:0x7ebfa0 ps4:0x2e61d0	role-reader	inlined on PS4: no reader pair
+pc:0x7ec030 ps4:0x2e79a0	role-reader	inlined on PS4: no reader pair
+pc:0x7ec0f0 ps4:0x2e7840	role-reader	inlined on PS4: no reader pair
+pc:0x7ec1a0 ps4:0x2e7710	role-reader	inlined on PS4: no reader pair
+pc:0x7ec6a0 ps4:0x2e4470	role-reader	inlined on PS4: no reader pair
+pc:0x7ec750 ps4:0x2e4de0	role-reader	inlined on PS4: no reader pair
+pc:0x7ec7e0 ps4:0x2e6a80	role-reader	inlined on PS4: no reader pair
+pc:0x7eda50 ps4:0x2e80c0	role-reader	inlined on PS4: no reader pair
+pc:0x7edb40 ps4:0x2e84e0	role-reader	inlined on PS4: no reader pair
+pc:0x7edd70 ps4:0x331050	role-reader	inlined on PS4: no reader pair
+pc:0x7ee560 ps4:0x306e60	role-reader	inlined on PS4: no reader pair
+pc:0x7eea30 ps4:0x3162f0	role-reader	inlined on PS4: no reader pair
+pc:0x7eebb0 ps4:0x3165f0	role-reader	inlined on PS4: no reader pair
+pc:0x7eede0 ps4:0x315ff0	role-reader	inlined on PS4: no reader pair
+pc:0x7eeeb0 ps4:0x308a00	role-reader	inlined on PS4: no reader pair
+pc:0x7eef40 ps4:0x3161e0	role-reader	inlined on PS4: no reader pair
+pc:0x7eefd0 ps4:0x315790	role-reader	inlined on PS4: no reader pair
+pc:0x7ef060 ps4:0x3164e0	role-reader	inlined on PS4: no reader pair
+pc:0x7ef0f0 ps4:0x315680	role-reader	inlined on PS4: no reader pair
+pc:0x7ef180 ps4:0x308c30	role-reader	inlined on PS4: no reader pair
+pc:0x7ef210 ps4:0x308b20	role-reader	inlined on PS4: no reader pair
+pc:0x7ef2a0 ps4:0x315ee0	role-reader	inlined on PS4: no reader pair
+pc:0x7ef330 ps4:0x308d40	role-reader	inlined on PS4: no reader pair
+pc:0x7ef6c0 ps4:0x2ed880	role-reader	inlined on PS4: no reader pair
+pc:0x7ef7a0 ps4:0x2ecbf0	role-reader	inlined on PS4: no reader pair
+pc:0x7efad0 ps4:0x2f1880	role-reader	inlined on PS4: no reader pair
+pc:0x7efb70 ps4:0x2f08d0	role-reader	inlined on PS4: no reader pair
+pc:0x7efc60 ps4:0x313a60	role-reader	inlined on PS4: no reader pair
+pc:0x7efcf0 ps4:0x313db0	role-reader	inlined on PS4: no reader pair
+pc:0x7efeb0 ps4:0x3136e0	role-reader	inlined on PS4: no reader pair
+pc:0x7efff0 ps4:0x313930	role-reader	inlined on PS4: no reader pair
+pc:0x7f0090 ps4:0x313820	role-reader	inlined on PS4: no reader pair
+pc:0x7f01c0 ps4:0x313000	role-reader	inlined on PS4: no reader pair
+pc:0x7f0330 ps4:0x312ca0	role-reader	inlined on PS4: no reader pair
+pc:0x7f03d0 ps4:0x2ed020	role-reader	inlined on PS4: no reader pair
+pc:0x7f0960 ps4:0x2ec110	role-reader	inlined on PS4: no reader pair
+pc:0x7f0a10 ps4:0x2f27d0	role-reader	inlined on PS4: no reader pair
+pc:0x7f0ac0 ps4:0x2f2160	role-reader	inlined on PS4: no reader pair
+pc:0x7f0b70 ps4:0x2ebf90	role-reader	inlined on PS4: no reader pair
+pc:0x7f0e00 ps4:0x2f2300	role-reader	inlined on PS4: no reader pair
+pc:0x7f0f60 ps4:0x2ee590	role-reader	inlined on PS4: no reader pair
+pc:0x7f1080 ps4:0x2ee2f0	role-reader	inlined on PS4: no reader pair
+pc:0x7f14b0 ps4:0x2eaf30	role-reader	inlined on PS4: no reader pair
+pc:0x7f1560 ps4:0x2ebaa0	role-reader	inlined on PS4: no reader pair
+pc:0x7f1690 ps4:0x2eaa90	role-reader	inlined on PS4: no reader pair
+pc:0x7f1840 ps4:0x312b20	role-reader	inlined on PS4: no reader pair
+pc:0x7f18f0 ps4:0x312960	role-reader	inlined on PS4: no reader pair
+pc:0x7f1990 ps4:0x312790	role-reader	inlined on PS4: no reader pair
+pc:0x7f1c60 ps4:0x313220	role-reader	inlined on PS4: no reader pair
+pc:0x7f1d40 ps4:0x2edba0	role-reader	inlined on PS4: no reader pair
+pc:0x7f1df0 ps4:0x2ed580	role-reader	inlined on PS4: no reader pair
+pc:0x7f1ea0 ps4:0x2ed240	role-reader	inlined on PS4: no reader pair
+pc:0x7f1f50 ps4:0x2f2720	role-reader	inlined on PS4: no reader pair
+pc:0x7f1ff0 ps4:0x2f2b90	role-reader	inlined on PS4: no reader pair
+pc:0x7f20a0 ps4:0x2eb610	role-reader	inlined on PS4: no reader pair
+pc:0x7f2180 ps4:0x2ebcc0	role-reader	inlined on PS4: no reader pair
+pc:0x7f2230 ps4:0x312650	role-reader	inlined on PS4: no reader pair
+pc:0x7f22c0 ps4:0x312240	role-reader	inlined on PS4: no reader pair
+pc:0x7f2370 ps4:0x3120b0	role-reader	inlined on PS4: no reader pair
+pc:0x7f2560 ps4:0x2ea7d0	role-reader	inlined on PS4: no reader pair
+pc:0x7f2610 ps4:0x2edd20	role-reader	inlined on PS4: no reader pair
+pc:0x7f26c0 ps4:0x2eb0d0	role-reader	inlined on PS4: no reader pair
+pc:0x7f2770 ps4:0x2ead90	role-reader	inlined on PS4: no reader pair
+pc:0x7f28c0 ps4:0x2eb250	role-reader	inlined on PS4: no reader pair
+pc:0x7f2d00 ps4:0x2eca50	role-reader	inlined on PS4: no reader pair
+pc:0x7f3300 ps4:0x2f0580	role-reader	inlined on PS4: no reader pair
+pc:0x7f3610 ps4:0x2ee960	role-reader	inlined on PS4: no reader pair
+pc:0x7f3760 ps4:0x2effe0	role-reader	inlined on PS4: no reader pair
+pc:0x7f3a10 ps4:0x2efad0	role-reader	inlined on PS4: no reader pair
+pc:0x7f3db0 ps4:0x2eeea0	role-reader	inlined on PS4: no reader pair
+pc:0x7f3f10 ps4:0x2ef5e0	role-reader	inlined on PS4: no reader pair
+pc:0x7f41c0 ps4:0x2eccc0	role-reader	inlined on PS4: no reader pair
+pc:0x7f4270 ps4:0x2ecef0	role-reader	inlined on PS4: no reader pair
+pc:0x7f4430 ps4:0x2f3130	role-reader	inlined on PS4: no reader pair
+pc:0x7f4650 ps4:0x2ec290	role-reader	inlined on PS4: no reader pair
+pc:0x7f5130 ps4:0x2f2d30	role-reader	inlined on PS4: no reader pair
+pc:0x7f5260 ps4:0x2f2f30	role-reader	inlined on PS4: no reader pair
+pc:0x7f5630 ps4:0x2ed720	role-reader	inlined on PS4: no reader pair
+pc:0x7f6090 ps4:0x31efe0	role-reader	inlined on PS4: no reader pair
+pc:0x7f6130 ps4:0x31edd0	role-reader	inlined on PS4: no reader pair
+pc:0x7f9070 ps4:0x2ddbc0	role-reader	inlined on PS4: no reader pair
+pc:0x7f95c0 ps4:0x2de130	role-reader	inlined on PS4: no reader pair
+pc:0x7f9690 ps4:0x333520	role-reader	inlined on PS4: no reader pair
+pc:0x7f9740 ps4:0x2dda40	role-reader	inlined on PS4: no reader pair
+pc:0x7f9820 ps4:0x2ddf00	role-reader	inlined on PS4: no reader pair
+pc:0x7f99c0 ps4:0x330dd0	role-reader	inlined on PS4: no reader pair
+pc:0x7f9c10 ps4:0x3379b0	role-reader	inlined on PS4: no reader pair
+pc:0x7f9f70 ps4:0x301c40	role-reader	inlined on PS4: no reader pair
+pc:0x7fa010 ps4:0x301ac0	role-reader	inlined on PS4: no reader pair
+pc:0x7fa990 ps4:0x2fc020	role-reader	inlined on PS4: no reader pair
+pc:0x7faa80 ps4:0x2fbd20	role-reader	inlined on PS4: no reader pair
+pc:0x7fab30 ps4:0x2fbea0	role-reader	inlined on PS4: no reader pair
+pc:0x7fad40 ps4:0x2ff770	role-reader	inlined on PS4: no reader pair
+pc:0x7faf50 ps4:0x2fdb60	role-reader	inlined on PS4: no reader pair
+pc:0x7fb000 ps4:0x2fd860	role-reader	inlined on PS4: no reader pair
+pc:0x7fb0b0 ps4:0x2fd9e0	role-reader	inlined on PS4: no reader pair
+pc:0x7fb160 ps4:0x300680	role-reader	inlined on PS4: no reader pair
+pc:0x7fb260 ps4:0x2fe020	role-reader	inlined on PS4: no reader pair
+pc:0x7fb310 ps4:0x2fdce0	role-reader	inlined on PS4: no reader pair
+pc:0x7fb3c0 ps4:0x2fde80	role-reader	inlined on PS4: no reader pair
+pc:0x7fb470 ps4:0x2ff160	role-reader	inlined on PS4: no reader pair
+pc:0x7fb520 ps4:0x2fefc0	role-reader	inlined on PS4: no reader pair
+pc:0x7fb5d0 ps4:0x2fff00	role-reader	inlined on PS4: no reader pair
+pc:0x7fb680 ps4:0x2ffb30	role-reader	inlined on PS4: no reader pair
+pc:0x7fb770 ps4:0x2ff980	role-reader	inlined on PS4: no reader pair
+pc:0x7fb860 ps4:0x2fee40	role-reader	inlined on PS4: no reader pair
+pc:0x7fb910 ps4:0x2fecc0	role-reader	inlined on PS4: no reader pair
+pc:0x7fc6a0 ps4:0x2ffce0	role-reader	inlined on PS4: no reader pair
+pc:0x7fc810 ps4:0x2fe5f0	role-reader	inlined on PS4: no reader pair
+pc:0x7fc8e0 ps4:0x2feb40	role-reader	inlined on PS4: no reader pair
+pc:0x7fcab0 ps4:0x2fe470	role-reader	inlined on PS4: no reader pair
+pc:0x7fcc80 ps4:0x300310	role-reader	inlined on PS4: no reader pair
+pc:0x7fce70 ps4:0x300080	role-reader	inlined on PS4: no reader pair
+pc:0x7fcfe0 ps4:0x2ffdf0	role-reader	inlined on PS4: no reader pair
+pc:0x7fd9e0 ps4:0x2f33c0	role-reader	inlined on PS4: no reader pair
+pc:0x7fe3a0 ps4:0x332f10	role-reader	inlined on PS4: no reader pair
+pc:0x7fe480 ps4:0x333090	role-reader	inlined on PS4: no reader pair
+pc:0x7fe530 ps4:0x2df420	role-reader	inlined on PS4: no reader pair
+pc:0x7fe880 ps4:0x2df610	role-reader	inlined on PS4: no reader pair
+pc:0x7fe940 ps4:0x2f7d90	role-reader	inlined on PS4: no reader pair
+pc:0x7fe9e0 ps4:0x2f74a0	role-reader	inlined on PS4: no reader pair
+pc:0x7fea80 ps4:0x2f7c10	role-reader	inlined on PS4: no reader pair
+pc:0x7feb30 ps4:0x2f72d0	role-reader	inlined on PS4: no reader pair
+pc:0x7fec00 ps4:0x2f6f40	role-reader	inlined on PS4: no reader pair
+pc:0x7fecf0 ps4:0x308e50	role-reader	inlined on PS4: no reader pair
+pc:0x7feef0 ps4:0x2f6dc0	role-reader	inlined on PS4: no reader pair
+pc:0x7ff200 ps4:0x2f7b00	role-reader	inlined on PS4: no reader pair
+pc:0x7ff290 ps4:0x2f75e0	role-reader	inlined on PS4: no reader pair
+pc:0x7ff430 ps4:0x2f6af0	role-reader	inlined on PS4: no reader pair
+pc:0x7ff580 ps4:0x2f7190	role-reader	inlined on PS4: no reader pair
+pc:0x805740 ps4:0x19d96e0	role-reader	d=pc folded: code-identical to 0x800520
+pc:0x805f70 ps4:0x19d9220	role-reader	d=pc folded: code-identical to 0x8060a0
+pc:0x8060a0 ps4:0x19d9390	role-reader	d=pc folded: code-identical to 0x805f70
+pc:0x80b1d0 ps4:0x19d77a0	role-reader	d=pc folded: code-identical to 0x80b570
+pc:0x80b270 ps4:0x19d7630	role-reader	d=pc folded: code-identical to 0x80b710
+pc:0x80b570 ps4:0x19d7490	role-reader	d=pc folded: code-identical to 0x80b1d0
+pc:0x80b710 ps4:0x19d7270	role-reader	d=pc folded: code-identical to 0x80b270
+pc:0x80b830 ps4:0x19d9850	role-reader	d=pc folded: code-identical to 0x80bb90
+pc:0x80bb90 ps4:0x19d97a0	role-reader	d=pc folded: code-identical to 0x80b830
+pc:0x80dc20 ps4:0x19dab80	role-reader	d=pc folded: code-identical to 0x81c950
+pc:0x8102b0 ps4:0x19dae00	role-reader	d=pc folded: code-identical to 0x812f80
+pc:0x812f80 ps4:0x19d5c30	role-reader	d=pc folded: code-identical to 0x8102b0
+pc:0x815d30 ps4:0x19d6d80	role-reader	d=pc folded: code-identical to 0x815dc0
+pc:0x815dc0 ps4:0x19d6cd0	role-reader	d=pc folded: code-identical to 0x815d30
+pc:0x81bbb0 ps4:0x19d9ec0	role-reader	d=pc folded: code-identical to 0x81bf30
+pc:0x81bd00 ps4:0x19da0e0	role-reader	d=pc folded: code-identical to 0x81be70
+pc:0x81be70 ps4:0x19da020	role-reader	d=pc folded: code-identical to 0x81bd00
+pc:0x81bf30 ps4:0x19d9e10	role-reader	d=pc folded: code-identical to 0x81bbb0
+pc:0x81c950 ps4:0x19da1a0	role-reader	d=pc folded: code-identical to 0x80dc20
 pc:0x7c31d0	seed	cSeedGameSvConnection::OnPacket_ACHIEVEMENT_ACHIEVEMENT_GET_CATEGORY_PROGRESS_LIST_RES: no PS4 OnPacket_ symbol for ACHIEVEMENT_GET_CATEGORY_PROGRESS_LIST_RES / GET_CATEGORY_PROGRESS_LIST_RES
 pc:0x7c3840	seed	cSeedGameSvConnection::OnPacket_ACTION_SET_PLAYER_ACTION_HISTORY_RES: no PS4 OnPacket_ symbol for SET_PLAYER_ACTION_HISTORY_RES / PLAYER_ACTION_HISTORY_RES / ACTION_HISTORY_RES / HISTORY_RES / RES
 pc:0x7c4930	seed	cSeedGameSvConnection::OnPacket_BATTLE_CONTENT_CHARACTER_INFO_RES: no PS4 OnPacket_ symbol for CONTENT_CHARACTER_INFO_RES / CHARACTER_INFO_RES
