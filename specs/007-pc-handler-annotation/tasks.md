@@ -186,7 +186,7 @@ Goal: the rest of Sam's request: packet-class types and local names, by operatio
   DWARF `packet` local that is the base of the reader's (inlined) codec destinations.
   Plan: T013a extractor v6 + matcher exports, T013b batch extract, T013c partial layouts + locals rules +
   apply support, T013d apply run.
-- [ ] T013 Partial packet layouts and locals. T013a done (4ae12ea2be, ffd0c3ba60: extractor v6 call argument values
+- [x] T013 Partial packet layouts and locals. T013a done (4ae12ea2be, ffd0c3ba60: extractor v6 call argument values
   (const / arg+X / stack / element), padding nops skipped, pure helpers split into `extract/`; `callsites.tsv`
   `ps4_site`/`ps4_owner` (975 pairs); anchored gap rule: same 5 proposals, all refused by gates (a)/(c)/(d) ->
   0 new pairs; holdout/control clean; 443 tests). T013b done (`research/W2-T013b-run.md`: v6 dumps, work copy
@@ -206,16 +206,33 @@ Goal: the rest of Sam's request: packet-class types and local names, by operatio
   T015 adversarial (`research/W2-T015-adversarial.md`): block finding reproduced by the coordinator: 42 of 48
   partial types too small (`_access_check` counted accesses past the size as gaps); members and locals checked
   right; all codec links from `agree` rows. T013e: size fix, verify check, re-apply from `.before-W2.i64`, republish.
-- [ ] T014 Wider pairs from anchored gaps (getters), then locals rules R1/R2 (implementer), then apply.
-- [ ] T015 Review, close wave 2, merge and push.
+  T013e done (af9a3f29a3, 7abf881dfb, `research/W2-T013e-reapply.md`: lower-bound sizes extend to the farthest
+  access (42 grew, e.g. CHANGE_JOB_RES 0xc4 -> 0xed); verify checks retyped local width = type size; re-applied
+  from `.before-W2.i64`: 48 types, 23 locals, 1 known refusal, second apply all `already`, verify ok; 23/23
+  handlers without split or overlapped `packet`; canary 0 of 48 (coordinator rerun rc 0); republished wave 2
+  sha256 `ee07f0b6...` = work copy; 473 tests).
+- [x] T014 Wider pairs from anchored gaps (getters), then locals rules R1/R2: done inside T013a/T013c (anchored
+  gaps: 5 proposals, all refused by the gates -> 0 pairs; R1 1 (refused at apply: lvar user-named), R2 0).
+- [x] T015 Review, close wave 2, merge and push (close below).
+
+## Close (2026-11-03): wave 2
+
+- Gate `bash tools/check.sh --all` at 7abf881dfb: hooks, shell, flags, export, idacopy, xfer (473 tests), mcp passed;
+  imhex not run (not on PATH); kg failed on `test_production_size_budgets` in the untracked, other-owned
+  `research/knowledge-graph/` (as at the wave-1 close; no 007 commit touches it).
+- Result: published `PC_DDON_03040008/spec007-packet-handlers-20261103-wave2/2022_01_29_DDO_DUMP_FIX.exe.i64`
+  (sha256 `ee07f0b6...`, = work copy) = wave 1 + 48 partial packet/element types (163 member links by codec
+  position, sizes covering every PC access, members only where linked, gaps unknown Season 3 fields) + 23 handler
+  `packet` locals named and retyped. Wave-1 snapshot kept beside it.
+- False positives caught: wrong single-member types in the reader-shuffle control (gate: the handler string names
+  the packet class); 42 undersized types (T015; sizes now cover every access, canary as a test).
+- Not done, with reasons (each needs a new kind of evidence, not a relaxed gate): array-element member links
+  (174; the element pointer reaches the codec call only through MSVC's null-check join block); R2 codec-anchor
+  locals (PC call sites without argument sizes); context getters (no anchor reaches them: only 5 gap proposals, all
+  refused); typed-lea types; packet-object vtables (rule 5); the login handler table (`0x888000`-`0x88E000`).
+- Retro: the smoke test on a scratch copy (wave-1 lesson) caught the undo bug before the real apply; the review
+  still found a gate hole (gap counted past the bound): access checks need an explicit "inside the object" test.
 
 ## Running
 
-- T013e (implementer, agent a775f0bcf12d21ddb, brief `briefs/W2-T013e-size-fix.md`), started 2026-11-03.
-  Next: land T013e (check the republished wave-2 sha256, the canary passes), then close wave 2 (T015 box:
-  check.sh --all, retro, tasks Close section, merge and push without asking). Remaining wave-2 levers not taken
-  (record in the close): array-element links (element base not traced through MSVC's null-check join), R2 locals
-  (PC call sites without `arg_bytes`), getter pairing (needs a new anchor kind).
-- Decision (coordinator, 2026-11-03): from T004d on, all writes go to one persistent work copy
-  `PC_DDON_03040008/ddon-data-007work/` of the accepted database (repairs first, then T007's apply);
-  it is published as `spec007-packet-handlers-<date>/` at the close.
+- (none)
