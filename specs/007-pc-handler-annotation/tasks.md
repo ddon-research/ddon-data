@@ -97,7 +97,12 @@ Coordinator: main session. One subagent at a time. Method and rules: `spec.md`.
   spot checks: `nUserSession::CPacket_S2C_CHANGE_JOB_RES` layout contradicted by the PC reader `0x80cf80`
   (access check accepted accesses inside members). Decision (coordinator): fix the check (T006b), regenerate,
   roll the work copy back to `.before-T007b.i64` and re-apply (T007e); then a reviewer re-derives a sample of
-  accepted types from disassembly. (`implementer` writes it, `evidence-researcher-ida` runs it).
+  accepted types from disassembly.
+  T006b done (e49ae1b341: cause: a `lea` (no width) was accepted on any leaf start at any depth, 10 lea records of
+  `0x80cf80` fell on inner fields; second hole: `MtObject**` stores counted as vptr writes; fixed: lea only on the
+  object, its own members or array element starts; indexed scale = element size; 374 tests; accepted 98 -> 96:
+  CHANGE_JOB_RES refused, MtObject and 7 sub-types unchecked). Remaining 96 = 90 `MtTypedArray<X>` (13/20 bytes
+  width-checked) + 6 `CData*` on lea records only (0%). Decision: lea never accepts a type (T006c). (`implementer` writes it, `evidence-researcher-ida` runs it).
 - [ ] T008 Verify: re-extract, compare, decompile sample; adversarial review of pairs and types.
 - [ ] T009 Close: `check.sh --all`, docs, retrospective, publish the database folder.
 
@@ -105,7 +110,7 @@ Order: T003 first (T002 needs a copy of the accepted database), then T002.
 
 ## Running
 
-- T006b (implementer, brief `briefs/T006b-access-check-fix.md`), started 2026-11-03.
+- T006c (implementer, brief `briefs/T006c-no-lea-only-types.md`), started 2026-11-03; then T007e rollback + re-apply.
 - Decision (coordinator, 2026-11-03): from T004d on, all writes go to one persistent work copy
   `PC_DDON_03040008/ddon-data-007work/` of the accepted database (repairs first, then T007's apply);
   it is published as `spec007-packet-handlers-<date>/` at the close.
