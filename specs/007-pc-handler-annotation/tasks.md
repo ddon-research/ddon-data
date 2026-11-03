@@ -50,6 +50,10 @@ Coordinator: main session. One subagent at a time. Method and rules: `spec.md`.
   T005c done (581571a37e: v3 call-site constant args (only with a known argument size), codec width by
   shape (1/2/4/8), extern records; repair roots include direct call targets, depth 3; 221 tests; not run
   on a database).
+  T005d done (`research/T005d-batch-v3.md`: 125 call-target roots, 118 repaired / 7 refused / 0 failed, 55 in
+  `0x758000`-`0x77C000`, none in the login range (no roots reach it); work copy sha `65120b34...8b9111`; PC
+  v3 6,261 functions, 4,837 call sites with constants, 20 codecs all as T005b; PS4 3,568, codec shape
+  classifier finds 4 of 22, so PS4 widths come from the codec symbols in T005e).
 - [ ] T006 Types and locals rules over the accepted pairs (`implementer`, evidence from T004 dumps).
 - [ ] T007 Apply script and the applied copy (`implementer` writes it, `evidence-researcher-ida` runs it).
 - [ ] T008 Verify: re-extract, compare, decompile sample; adversarial review of pairs and types.
@@ -59,7 +63,7 @@ Order: T003 first (T002 needs a copy of the accepted database), then T002.
 
 ## Running
 
-- T005d (evidence-researcher-ida, brief `briefs/T005d-batch-run-v3.md`), started 2026-11-03.
+- T005e (implementer, brief `briefs/T005e-matcher-anchors.md`), started 2026-11-03.
 - Decision (coordinator, 2026-11-03): from T004d on, all writes go to one persistent work copy
   `PC_DDON_03040008/ddon-data-007work/` of the accepted database (repairs first, then T007's apply);
   it is published as `spec007-packet-handlers-<date>/` at the close.
