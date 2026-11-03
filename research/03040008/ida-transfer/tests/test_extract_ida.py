@@ -171,3 +171,41 @@ def test_write_jsonl_header_first_and_atomic(tmp_path):
     assert json.loads(lines[1]) == {"kind": "function", "s": "é", "va": 2}
     assert not (tmp_path / "d.jsonl.tmp").exists()
     assert ex.write_jsonl(str(out), {"kind": "header"}, []) == 1
+
+
+# --- missing roots (T004c) -----------------------------------------------------------------------
+
+_FUNCS = {0x100: (0x100, 0x140), 0x200: (0x1FD, 0x240)}  # start -> (start, end); 0x200 sits inside 0x1FD
+
+
+def _func_start(va):
+    for start, end in _FUNCS.values():
+        if start <= va < end:
+            return start
+    return None
+
+
+def test_partition_roots_reports_missing_kinds():
+    reason = {0x100: "table", 0x200: "table", 0x300: "extra"}
+    present, missing = ex.partition_roots(reason, _func_start)
+    assert present == [0x100]
+    assert missing == [
+        {"kind": "missing_root", "va": 0x200, "missing": "inside-function", "enclosing": 0x1FD, "root": "table"},
+        {"kind": "missing_root", "va": 0x300, "missing": "no-function", "enclosing": None, "root": "extra"},
+    ]
+
+
+def test_plan_scope_never_expands_the_enclosing_function():
+    graph = {0x100: [0x500], 0x1FD: [0x600], 0x200: [0x700], 0x500: [], 0x600: [], 0x700: []}
+    asked = []
+
+    def callees(va):
+        asked.append(va)
+        return graph[va]
+
+    dist, missing = ex.plan_scope({0x100: "table", 0x200: "table"}, _func_start, callees, 2)
+    assert dist == {0x100: 0, 0x500: 1}
+    assert 0x1FD not in dist and 0x600 not in dist and 0x200 not in dist
+    assert 0x200 not in asked and 0x1FD not in asked
+    assert [r["va"] for r in missing] == [0x200]
+    assert len(dist) - sum(d > 0 for d in dist.values()) == 2 - len(missing)  # depth-0 = roots - missing

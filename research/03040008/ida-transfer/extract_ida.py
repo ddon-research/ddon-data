@@ -12,8 +12,9 @@ Headless: ``idat -A -S"extract_ida.py <OUT> <SIDE>" <db>`` (arguments via ``idc.
 The database is only read: no renames, types, comments, decompilation or saves.
 
 Output: one JSONL file. Line 1 is the header (database identity, script version, parameters);
-then ``table`` records (PC handler table), ``function`` records (one per function in scope), and
-a final ``summary`` record with counts. The pure helpers below (no IDA import) are unit-tested in
+then ``table`` records (PC handler table), ``missing_root`` records (a root VA that is not a function
+start: never replaced by the enclosing function), ``function`` records (one per function in scope),
+and a final ``summary`` record with counts. The pure helpers below (no IDA import) are unit-tested in
 ``tests/test_extract_ida.py``; the IDA-facing code is the ``_ida_*`` functions and ``main``.
 
 The handler-table reading (record layout, initializer literal-store proof) is adapted from
@@ -26,7 +27,7 @@ import json
 import os
 import re
 
-SCRIPT_VERSION = "1"
+SCRIPT_VERSION = "2"
 
 # --- PC handler table (T002 audit: 74 groups, 1,041 records, 1,040 distinct callbacks) ---------
 PC_GROUP_TABLE = 0x1BC0110
@@ -137,6 +138,30 @@ def scope_closure(roots, callees_of, depth: int) -> dict[int, int]:
         if not frontier:
             break
     return dist
+
+
+def partition_roots(reason: dict[int, str], func_start) -> tuple[list[int], list[dict]]:
+    """Split roots into function starts and ``missing_root`` records.
+
+    ``func_start(va)`` is the start of the function containing ``va`` (None outside any). A root
+    that is not itself a function start is reported, never replaced by its enclosing function.
+    """
+    present, missing = [], []
+    for va in sorted(reason):
+        start = func_start(va)
+        if start == va:
+            present.append(va)
+            continue
+        missing.append({"kind": "missing_root", "va": va,
+                        "missing": "no-function" if start is None else "inside-function",
+                        "enclosing": start, "root": reason[va]})
+    return present, missing
+
+
+def plan_scope(reason: dict[int, str], func_start, callees_of, depth: int) -> tuple[dict[int, int], list[dict]]:
+    """Scope closure over the roots that are function starts; missing roots are not expanded."""
+    present, missing = partition_roots(reason, func_start)
+    return scope_closure(present, callees_of, depth), missing
 
 
 def pc_call_arguments(window: list[dict]) -> dict:
@@ -665,8 +690,8 @@ def _ida_onpacket_functions(db: _Db) -> tuple[set[int], list[dict]]:
 
 def _ida_callees(db: _Db, va: int) -> list[int]:
     f = db.func(va)
-    if f is None:
-        return []
+    if f is None or f.start_ea != va:
+        return []  # never the enclosing function's callees
     out = set()
     for ea in db.items(f):
         ins = db.insn(ea)
@@ -723,18 +748,27 @@ def main(out_path: str, side: str, depth: int = DEFAULT_DEPTH, extra_roots=(), p
             reason.setdefault(va, "symbol")
     for va in extra_roots:
         reason.setdefault(va, "extra")
-    dist = scope_closure(sorted(reason), lambda va: _ida_callees(db, va), depth)
+    dist, missing = plan_scope(reason, db.func_start, lambda va: _ida_callees(db, va), depth)
+    summary["roots"] = len(reason)
+    summary["missing_roots"] = len(missing)
+    summary["missing_roots_by_kind"] = {k: sum(1 for r in missing if r["missing"] == k)
+                                        for k in ("no-function", "inside-function")}
+    summary["depth0_expected"] = len(reason) - len(missing)
+    if side == "pc":
+        summary["onpacket_orphan_ref_count"] = len(summary["onpacket_orphan_refs"])
 
     def records():
         yield from table
-        n = 0
+        yield from missing
+        n = n0 = 0
         for va in sorted(dist):
             rec = _ida_function(db, va, dist[va], reason)
             if rec is not None:
                 n += 1
+                n0 += dist[va] == 0
                 yield rec
         summary["functions"] = n
-        summary["roots"] = len(reason)
+        summary["depth0_functions"] = n0
         yield summary
 
     write_jsonl(out_path, db.header(params), records())
