@@ -79,7 +79,7 @@ Coordinator: main session. One subagent at a time. Method and rules: `spec.md`.
   accesses contradict the PS4 layout; `cSeedGameSvConnection`: bitfield in base `MtMemoryStream`), 183
   unchecked; comments 1,119; holdout: 48 types depend on a single seed, none new; 323 tests). Locals:
   wave 2. Conflicts settle in T007c. Types and locals rules over the accepted pairs (`implementer`, evidence from T004 dumps).
-- [ ] T007 Apply script and the applied copy (script done f913a776ad: tinfo/udt types, fail-closed on stale
+- [x] T007 Apply script and the applied copy (script done f913a776ad: tinfo/udt types, fail-closed on stale
   before-state, undo log, verify mode; 354 tests; IDA adapter not yet run). T007b dry run stopped by its
   10% gate (`research/T007b-apply-run.md`): 105/189 types refused because `MtObject`, `CPacketDataBase`,
   `MtArray` exist with equal layout but IDA's member names (`__vftable`, `baseclass_0`); work copy
@@ -109,7 +109,12 @@ Coordinator: main session. One subagent at a time. Method and rules: `spec.md`.
   run-3 kept as `.run3-T007b.i64`); 91/181 types refused, all from `MtArray`: its base is now an untransferred
   4-byte blob vs the database's `MtObject` base. T007f: equal when the class name and size match.
   T007f done (a56731c675: untransferred base compared by its class from the `base X (not transferred)` comment,
-  database base kept; 381 tests). T007e resumes at step 2. (`implementer` writes it, `evidence-researcher-ida` runs it).
+  database base kept; 381 tests). T007e resumes at step 2.
+  T007e run 2 done (`research/T007e-reapply.md` § 6): 0 refusals, 0 failed; 177 types, 3 labels, 1,079 names,
+  1,011 prototypes, 1,119 comments written; 7 name / 54 prototype conflicts reported only; second apply all
+  `already`; verify ok, counts 788->965 local types, 51,074->52,148 names, 453->1,464 typed functions; 1,011/1,011
+  decompile; re-extract changes = rows both ways; CHANGE_JOB_RES + 6 lea-only types forward-only. Work copy
+  `be0cc624...162f`; rollback `.before-T007b.i64` kept. (`implementer` writes it, `evidence-researcher-ida` runs it).
 - [ ] T008 Verify: re-extract, compare, decompile sample; adversarial review of pairs and types.
 - [ ] T009 Close: `check.sh --all`, docs, retrospective, publish the database folder.
 
@@ -117,7 +122,7 @@ Order: T003 first (T002 needs a copy of the accepted database), then T002.
 
 ## Running
 
-- T007e run 2 (evidence-researcher-ida), started 2026-11-03.
+- T008 (adversarial-reviewer, brief `briefs/T008-adversarial-pairs.md`), started 2026-11-03.
 - Decision (coordinator, 2026-11-03): from T004d on, all writes go to one persistent work copy
   `PC_DDON_03040008/ddon-data-007work/` of the accepted database (repairs first, then T007's apply);
   it is published as `spec007-packet-handlers-<date>/` at the close.
