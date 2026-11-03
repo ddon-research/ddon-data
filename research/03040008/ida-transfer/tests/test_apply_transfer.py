@@ -285,7 +285,7 @@ def test_real_manifest_loads_and_every_row_plans():
     assert len(m["conflicts"]) == 61
     decls = at.parse_types_h(m["types_h"])
     kinds = [d.kind for d in decls]
-    assert (kinds.count("struct"), kinds.count("opaque")) == (97, 84)  # T006b: CHANGE_JOB_RES, MtObject out
+    assert (kinds.count("struct"), kinds.count("opaque")) == (91, 90)  # T006b, T006c: 6 lea-only out
     special = at.special_names(decls, m)
     assert sum("<" in n for n in special) >= 84
     plans = [at.prototype_plan(r["decl"], special) for r in m["prototypes"]]
