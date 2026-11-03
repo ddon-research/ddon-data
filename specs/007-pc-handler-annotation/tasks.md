@@ -107,7 +107,9 @@ Coordinator: main session. One subagent at a time. Method and rules: `spec.md`.
   `MtTypedArray<X>`; prototypes/comments unchanged; typed-lea rule noted for wave 2; 376 tests).
   T007e stopped at its dry-run gate (`research/T007e-reapply.md`): rollback done (work copy `65120b34...`,
   run-3 kept as `.run3-T007b.i64`); 91/181 types refused, all from `MtArray`: its base is now an untransferred
-  4-byte blob vs the database's `MtObject` base. T007f: equal when the class name and size match. (`implementer` writes it, `evidence-researcher-ida` runs it).
+  4-byte blob vs the database's `MtObject` base. T007f: equal when the class name and size match.
+  T007f done (a56731c675: untransferred base compared by its class from the `base X (not transferred)` comment,
+  database base kept; 381 tests). T007e resumes at step 2. (`implementer` writes it, `evidence-researcher-ida` runs it).
 - [ ] T008 Verify: re-extract, compare, decompile sample; adversarial review of pairs and types.
 - [ ] T009 Close: `check.sh --all`, docs, retrospective, publish the database folder.
 
@@ -115,7 +117,7 @@ Order: T003 first (T002 needs a copy of the accepted database), then T002.
 
 ## Running
 
-- T007f (implementer, brief `briefs/T007f-opaque-base-equality.md`), started 2026-11-03; then T007e from step 2.
+- T007e run 2 (evidence-researcher-ida), started 2026-11-03.
 - Decision (coordinator, 2026-11-03): from T004d on, all writes go to one persistent work copy
   `PC_DDON_03040008/ddon-data-007work/` of the accepted database (repairs first, then T007's apply);
   it is published as `spec007-packet-handlers-<date>/` at the close.
