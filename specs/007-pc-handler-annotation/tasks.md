@@ -36,6 +36,11 @@ Coordinator: main session. One subagent at a time. Method and rules: `spec.md`.
   1 missing root; 9 spot checks decompile). Open for T007: 3 `OnPacket_*` labels left at old starts
   (0x7C5C8D, 0x7D714C, 0x7D858F). Note: a batch dry run also re-saves the copy (+242 B), nothing changed.
 - [ ] T005 Matcher with gates and tests, the precision check on withheld seeds, the manifest (`implementer`).
+  Matcher done (499f7c701d: 150 tests; tier 0 669 of 1,040 callbacks named from PC strings, 364 without
+  string, 6 shared, 1 no function; 467 seeds, all gate (c); propagation 0 proposals (uneven gaps, typically
+  2 PC vs 4 PS4 calls); precision 5 x 93 withheld, 0 recovered, 0 wrong; 006 matched 146 agree / 209 not
+  paired / 0 disagree; one wrong seed found and fixed: seeds must match the connection class). Next:
+  role anchors (reader, codec width, sender by packet id): T005b evidence, then T005c.
 - [ ] T006 Types and locals rules over the accepted pairs (`implementer`, evidence from T004 dumps).
 - [ ] T007 Apply script and the applied copy (`implementer` writes it, `evidence-researcher-ida` runs it).
 - [ ] T008 Verify: re-extract, compare, decompile sample; adversarial review of pairs and types.
@@ -45,7 +50,7 @@ Order: T003 first (T002 needs a copy of the accepted database), then T002.
 
 ## Running
 
-- T005 (implementer, brief `briefs/T005-matcher.md`), started 2026-11-03.
+- T005b (evidence-researcher-ida, brief `briefs/T005b-role-anchors-evidence.md`), started 2026-11-03.
 - Decision (coordinator, 2026-11-03): from T004d on, all writes go to one persistent work copy
   `PC_DDON_03040008/ddon-data-007work/` of the accepted database (repairs first, then T007's apply);
   it is published as `spec007-packet-handlers-<date>/` at the close.
