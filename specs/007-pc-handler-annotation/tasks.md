@@ -186,13 +186,16 @@ Goal: the rest of Sam's request: packet-class types and local names, by operatio
   DWARF `packet` local that is the base of the reader's (inlined) codec destinations.
   Plan: T013a extractor v6 + matcher exports, T013b batch extract, T013c partial layouts + locals rules +
   apply support, T013d apply run.
-- [ ] T013 Partial packet layouts from member links (implementer), then apply.
+- [ ] T013 Partial packet layouts and locals. T013a done (4ae12ea2be, ffd0c3ba60: extractor v6 call argument values
+  (const / arg+X / stack / element), padding nops skipped, pure helpers split into `extract/`; `callsites.tsv`
+  `ps4_site`/`ps4_owner` (975 pairs); anchored gap rule: same 5 proposals, all refused by gates (a)/(c)/(d) ->
+  0 new pairs; holdout/control clean; 443 tests).
 - [ ] T014 Wider pairs from anchored gaps (getters), then locals rules R1/R2 (implementer), then apply.
 - [ ] T015 Review, close wave 2, merge and push.
 
 ## Running
 
-- T013a (implementer, brief `briefs/W2-T013a-extract-v6.md`), started 2026-11-03.
+- T013b (evidence-researcher-ida, brief `briefs/W2-T013b-extract-v6-run.md`), started 2026-11-03.
 - Decision (coordinator, 2026-11-03): from T004d on, all writes go to one persistent work copy
   `PC_DDON_03040008/ddon-data-007work/` of the accepted database (repairs first, then T007's apply);
   it is published as `spec007-packet-handlers-<date>/` at the close.
