@@ -4,7 +4,8 @@ Run inside IDA (ida-mcp ``execute_python`` or headless ``idat -S``) with one cal
 
     exec(open(path).read(), {"OUT": "D:/.../pc.jsonl", "SIDE": "pc"})
 
-Optional globals: ``DEPTH`` (callee depth, default 3), ``ROOTS`` (extra root VAs),
+Optional globals: ``DEPTH`` (callee depth, default 3), ``CODEC_DEPTH`` (codec path depth, default 8),
+``ROOTS`` (extra root VAs),
 ``ROOT_PATTERNS`` (PS4 root regexes over the demangled qualified name),
 ``PC_WRITE_ENTRY_OVERRIDE`` (the packet write entry whose callers are PC roots).
 Headless batch (read-only): ``idat -A -L<log> -S"extract_ida.py <OUT> <SIDE>" <db>`` (arguments via
@@ -19,9 +20,14 @@ start: never replaced by the enclosing function), ``function`` records (one per 
 ``extern`` records (v3: one per call target the dump does not describe, :func:`extern_reason`) and a
 final ``summary`` record with counts. v3 adds per call site ``arg_bytes``, ``const_stack``
 ``[[slot, value]]`` and ``const_ecx`` (PC, :func:`pc_const_args`) or ``const_regs`` (PS4,
-:func:`ps4_const_args`), and per function ``codec`` (:func:`classify_codec`).
+:func:`ps4_const_args`), and per function ``codec`` (:func:`classify_codec`). v4 adds per function
+``object_accesses`` (:func:`object_accesses`), ``codec_distance`` (:func:`codec_distance`) and, for
+functions added only to complete reader paths, ``scope: "codec_path"`` (:func:`codec_scope`, depth
+``CODEC_DEPTH``); the callers of ``reserveNetworkErrorDialog`` are roots (``root: "requester"``, a
+call site outside any function is a ``requester_site`` record).
 The pure helpers below (no IDA import) are unit-tested in ``tests/test_extract_ida.py`` and
-``tests/test_extract_ida_v3.py``; the IDA-facing code is the ``_ida_*`` functions and ``main``.
+``tests/test_extract_ida_v3.py`` / ``tests/test_extract_ida_v4.py``; the IDA-facing code is the
+``_ida_*`` functions and ``main``.
 
 The handler-table reading (record layout, initializer literal-store proof) is adapted from
 ddon-hook ``scripts/ida_packet_dispatch.py`` (C:/Users/morph/CLionProjects/ddon-hook, read-only).
@@ -33,7 +39,7 @@ import json
 import os
 import re
 
-SCRIPT_VERSION = "3"
+SCRIPT_VERSION = "4"
 
 # --- PC handler table (T002 audit: 74 groups, 1,041 records, 1,040 distinct callbacks) ---------
 PC_GROUP_TABLE = 0x1BC0110
@@ -477,6 +483,311 @@ def extern_reason(target: int, func_start, dumped, import_name, segment_class: s
     return "out_of_scope"
 
 
+# --- v4: object-relative accesses, requester roots, codec-path depth (T005f) ----------------------
+
+# sNetworkExt::reserveNetworkErrorDialog (PC 03040008): the function the slot requesters call with the
+# slot (T005b § 1.3, § 5). Named so in the work copy; the v3 dump has it at this VA with 581 caller sites
+# (the T005b § 5 count) and `ret 4` (thiscall, one stack argument: the slot).
+PC_RESERVE_DIALOG = 0xBB39D0
+RESERVE_DIALOG_NAME = "sNetworkExt::reserveNetworkErrorDialog"
+PC_CALL_ON_PACKET = 0x878860  # cSeedGameSvConnection::callOnPacketFunc (slot = const_stack slot 0)
+# Variable-length PC codecs the v3 shape classifier does not know (T005b § 2.1).
+PC_VARIABLE_CODECS = (0x8BC5B0, 0x8BC710, 0x8BC790, 0x8BCA30)
+PS4_CODEC_NAME = re.compile(r"^nPacket::(?:Read|Write)_\w+$")
+CODEC_DEPTH = 8
+
+_GPRS = frozenset(_CANON) | frozenset(_REG_ALIASES) | frozenset(
+    f"r{n}{s}" for n in range(8, 16) for s in ("", "d", "w", "b"))
+_MEM_TOKEN = re.compile(r"(?<![\w.$@?])([a-z][a-z0-9]*)(?:\*(\d))?(?![\w.$@?])")
+# Registers a call may change (MSVC x86 / SysV x86-64): everything else survives it by the ABI.
+_CALL_CLOBBER = {"pc": ("rax", "rcx", "rdx"),
+                 "ps4": ("rax", "rcx", "rdx", "rsi", "rdi", "r8", "r9", "r10", "r11")}
+_ENTRY_ARGS = {"pc": ("rcx",), "ps4": PS4_INT_ARG_REGS}
+
+
+def parse_mem_text(text: str | None, optype: str) -> dict:
+    """Base, index and scale of a memory operand from IDA's operand text (``print_operand``).
+
+    The registers come from the bracketed part only: ``[rdi+rax*4+2ACh]`` -> base ``rdi``, index ``rax``,
+    scale 4; ``[eax+ecx]`` -> index ``ecx`` scale 1; stack-variable and member names are not registers.
+    An ``o_mem`` operand (``ds:off_X[ecx*4]``) has no base. Unknown shapes give no base.
+    """
+    out = {"base": None, "index": None, "scale": None}
+    if not text or "[" not in text:
+        return out
+    inside = text[text.find("["):text.rfind("]") + 1].lower()
+    regs = [(m.group(1), m.group(2)) for m in _MEM_TOKEN.finditer(inside) if m.group(1) in _GPRS]
+    if not regs or len(regs) > 2:
+        return out
+    plain = [r for r, s in regs if s is None]
+    scaled = [(r, int(s)) for r, s in regs if s is not None]
+    if len(scaled) > 1:
+        return out
+    if optype != "mem" and plain:
+        out["base"] = canon_reg(plain[0])
+        plain = plain[1:]
+    if scaled:
+        out["index"], out["scale"] = canon_reg(scaled[0][0]), scaled[0][1]
+    elif plain and (optype == "mem" or out["base"] is not None):
+        out["index"], out["scale"] = canon_reg(plain[0]), 1
+    return out
+
+
+def signed(value: int, bits: int) -> int:
+    value &= (1 << bits) - 1
+    return value - (1 << bits) if value >> (bits - 1) else value
+
+
+def _arg_value(side: str, reg: str):
+    if side == "pc":
+        return ("arg", "ecx", 0)
+    return ("arg", reg, PS4_INT_ARG_REGS.index(reg))
+
+
+def _meet(states: list[dict]) -> dict:
+    """Registers on which every incoming state agrees; dirty stack slots are the union."""
+    first, rest = states[0], states[1:]
+    out = {k: v for k, v in first.items() if k != "_dirty" and all(s.get(k) == v for s in rest)}
+    dirty = frozenset().union(*(s.get("_dirty", frozenset()) for s in states))
+    if dirty:
+        out["_dirty"] = dirty
+    return out
+
+
+def _slots(loc: int, size: int) -> set:
+    first = (loc - 4) // 4
+    last = (loc + max(size, 1) - 1 - 4) // 4
+    return {k for k in range(first, last + 1) if k >= 0}
+
+
+def _step(state: dict, ins: dict, side: str, ptr: int, emit) -> dict:
+    """Transfer one instruction (:func:`object_accesses`); ``emit(ins, op_index, op, value)`` per access."""
+    st = dict(state)
+    mnem, ops = ins["mnem"], ins.get("ops", [])
+    frame = side == "pc"
+    for i, op in enumerate(ops):
+        if op.get("type") not in ("phrase", "displ") or mnem in ("nop",):
+            continue
+        val = st.get(op.get("base"))
+        if val is None:
+            if frame and op.get("base") in ("rsp", "rbp") and op.get("chg") and mnem != "push":
+                st["_dirty"] = st.get("_dirty", frozenset()) | {"*"}
+            continue
+        if val[0] in ("arg", "field"):
+            emit(ins, i, op, val)
+        elif val[0] == "frame" and (op.get("chg") or mnem == "lea") and op.get("index") is None:
+            loc = val[1] + op.get("addr", 0)
+            if mnem == "lea":
+                if loc >= 4:
+                    st["_dirty"] = st.get("_dirty", frozenset()) | {"*"}
+            else:
+                hit = _slots(loc, op.get("size") or 4)
+                if hit:
+                    st["_dirty"] = st.get("_dirty", frozenset()) | hit
+        elif val[0] == "frame" and op.get("chg"):
+            st["_dirty"] = st.get("_dirty", frozenset()) | {"*"}
+    # new register values
+    new: dict = {}
+    if mnem == "mov" and len(ops) == 2 and ops[0].get("type") == "reg" and ops[0].get("size") == ptr:
+        dst, src = ops[0]["reg"], ops[1]
+        if src.get("type") == "reg" and src.get("size") == ptr and src.get("reg") in st:
+            new[dst] = st[src["reg"]]
+        elif src.get("type") in ("phrase", "displ") and src.get("index") is None and src.get("size") == ptr:
+            base = st.get(src.get("base"))
+            if base is not None and base[0] == "arg":
+                new[dst] = ("field", base[1], base[2], src.get("addr", 0))
+            elif base is not None and base[0] == "frame":
+                loc = base[1] + src.get("addr", 0)
+                dirty = st.get("_dirty", frozenset())
+                if loc >= 4 and (loc - 4) % 4 == 0 and (loc - 4) // 4 not in dirty and "*" not in dirty:
+                    new[dst] = ("arg", "stack", (loc - 4) // 4)
+    esp = st.get("rsp") if frame else None
+    if frame:
+        if mnem == "push" and esp is not None:
+            new["rsp"] = ("frame", esp[1] - 4)
+        elif mnem == "pop" and esp is not None:
+            new["rsp"] = ("frame", esp[1] + 4)
+        elif mnem in ("sub", "add") and len(ops) == 2 and ops[0].get("type") == "reg" \
+                and ops[0].get("reg") == "rsp" and ops[1].get("type") == "imm" and esp is not None:
+            d = signed(ops[1]["value"], 32)
+            new["rsp"] = ("frame", esp[1] + (d if mnem == "add" else -d))
+        elif ins.get("call") and esp is not None and ins.get("pops") is not None:
+            new["rsp"] = ("frame", esp[1] + ins["pops"])
+    killed = {canon_reg(r) for r in ins.get("writes", ())}
+    if ins.get("call"):
+        killed |= set(_CALL_CLOBBER[side])
+    if frame and (mnem in ("push", "pop") or ins.get("call") or mnem in _ESP_OPAQUE):
+        killed.add("rsp")
+    for r in killed:
+        st.pop(r, None)
+    st.update(new)
+    return st
+
+
+def object_accesses(blocks: list[tuple[int, list[dict]]], preds: dict[int, list[int]], entry: int,
+                    side: str) -> list[dict]:
+    """Memory accesses ``[base + disp]`` whose base provably holds a function argument (v4).
+
+    ``blocks``: ``(start, instructions)`` in address order; ``preds``: block -> predecessor blocks.
+    Each instruction is ``{"ea", "mnem", "ops", "writes", "call", "pops"}``: ``writes`` every register
+    written (explicit and implicit, any width), ``call`` for call instructions, ``pops`` (PC) the stack
+    bytes the callee's single ``ret N`` releases (0 for ``retn``, None when unknown). Memory operands
+    carry ``base``/``index``/``scale`` (:func:`parse_mem_text`), ``addr`` (signed displacement), ``size``,
+    ``chg``/``use`` (IDA's CF_CHGn/CF_USEn for that operand).
+
+    Tracked values (a must-analysis over the blocks, iterated to a fixed point: a register holds a value
+    in a block only if every predecessor agrees):
+    - PC ``ecx`` at entry (``arg_loc "ecx"``, the thiscall ``this`` when the function is thiscall), PS4
+      ``rdi``..``r9`` at entry (``arg`` = ABI index); copies by a pointer-width ``mov r, r``.
+    - PC stack arguments: ``esp`` is tracked from entry (push/pop/``sub``/``add esp, imm``, calls with known
+      ``pops``; ``ebp`` by copy), and ``mov r32, [esp/ebp+N]`` that reads entry ``esp+4+4k`` gives stack
+      argument ``k``, unless a store, or a ``lea`` that leaks the argument area, may have changed it.
+    - One dereference: ``mov r, [arg+disp]`` (pointer width, not indexed) gives a field pointer; accesses
+      through it carry ``via`` = that disp (PS4 ``this->mpManager->mErrorCode[idx]``).
+    A call clobbers the caller-saved registers (ABI), any write kills the register.
+
+    Returns one record per memory operand: ``va``, ``op``, ``arg``, ``arg_loc``, ``disp``, ``width``,
+    ``access`` (``load``/``store``/``lea``), ``rmw`` (store that also reads), ``value`` (store of an
+    immediate, masked to the width), ``via``, ``indexed`` + ``index`` + ``scale``.
+    """
+    ptr = 4 if side == "pc" else 8
+    init: dict = {r: _arg_value(side, r) for r in _ENTRY_ARGS[side]}
+    if side == "pc":
+        init["rsp"] = ("frame", 0)
+    order = [b for b, _ in blocks]
+    body = dict(blocks)
+    outs: dict[int, dict | None] = {b: None for b in order}
+
+    def in_state(b):
+        incoming = [outs[p] for p in preds.get(b, ()) if p in outs and outs[p] is not None]
+        if b == entry:
+            incoming.append(init)
+        if not incoming:
+            return {}
+        return _meet(incoming)
+
+    def run(b, emit):
+        st = in_state(b)
+        for ins in body[b]:
+            st = _step(st, ins, side, ptr, emit)
+        return st
+
+    def noemit(*_):
+        return None
+
+    changed = True
+    rounds = 0
+    while changed:
+        changed = False
+        rounds += 1
+        if rounds > 4 * len(order) + 8:
+            raise RuntimeError("object_accesses: no fixed point")
+        for b in order:
+            if b != entry and outs[b] is None and not any(outs.get(p) is not None for p in preds.get(b, ())):
+                continue  # not reached yet
+            new = run(b, noemit)
+            if new != outs[b]:
+                outs[b] = new
+                changed = True
+    out: list[dict] = []
+
+    def emit(ins, i, op, val):
+        mnem = ins["mnem"]
+        access = "lea" if mnem == "lea" else ("store" if op.get("chg") else "load")
+        rec = {"va": ins["ea"], "op": i, "arg_loc": val[1], "arg": val[2], "disp": op.get("addr", 0),
+               "width": None if access == "lea" else op.get("size"), "access": access}
+        if access == "store" and op.get("use"):
+            rec["rmw"] = True
+        if access == "store" and mnem == "mov" and len(ins["ops"]) == 2 and ins["ops"][1].get("type") == "imm" \
+                and op.get("size"):
+            rec["value"] = ins["ops"][1]["value"] & ((1 << (8 * op["size"])) - 1)
+        if val[0] == "field":
+            rec["via"] = val[3]
+        if op.get("index") is not None:
+            rec.update({"indexed": True, "index": op["index"], "scale": op.get("scale")})
+        out.append(rec)
+
+    for b in order:
+        if b == entry or any(outs.get(p) is not None for p in preds.get(b, ())):
+            run(b, emit)
+    return sorted(out, key=lambda r: (r["va"], r["op"]))
+
+
+def requester_roots(sites, func_start, target: int) -> tuple[dict[int, str], list[dict]]:
+    """Roots for the callers of ``reserveNetworkErrorDialog``: each call site's function (``requester``);
+    a site outside any function gives a ``requester_site`` record (never its neighbour function)."""
+    roots: dict[int, str] = {}
+    orphans: list[dict] = []
+    for s in sorted(set(sites)):
+        fs = func_start(s)
+        if fs is None:
+            orphans.append({"kind": "requester_site", "va": s, "target": target, "missing": "no-function"})
+        elif fs != target:
+            roots.setdefault(fs, "requester")
+    return roots, orphans
+
+
+def codec_distance(callees_of, is_codec, max_depth: int = CODEC_DEPTH):
+    """``dist(va, budget)``: least call distance from ``va`` to a codec (0 = ``va`` is one), or None
+    when none lies within ``budget`` levels. Memoised; cycles end at the budget."""
+    memo: dict[tuple[int, int], int | None] = {}
+
+    def dist(va: int, budget: int) -> int | None:
+        key = (va, budget)
+        if key in memo:
+            return memo[key]
+        if is_codec(va):
+            memo[key] = 0
+            return 0
+        best = None
+        if budget > 0:
+            for c in callees_of(va):
+                d = dist(c, budget - 1)
+                if d is not None and (best is None or d + 1 < best):
+                    best = d + 1
+        memo[key] = best
+        return best
+
+    return dist
+
+
+def check_reserve(side: str, va: int | None, start: int | None, name: str) -> None:
+    """Fail closed unless ``va`` is the start of the reserveNetworkErrorDialog function: PC by its VA
+    (named so, or still default-named), PS4 by its one symbol."""
+    if va is None:
+        raise ValueError(f"{side}: no unique {RESERVE_DIALOG_NAME} function")
+    if start != va:
+        raise ValueError(f"{side}: {RESERVE_DIALOG_NAME} {va:#x} is not a function start ({start})")
+    if name != RESERVE_DIALOG_NAME and not (side == "pc" and is_default_name(name)):
+        raise ValueError(f"{side}: {va:#x} is named {name!r}, not {RESERVE_DIALOG_NAME}")
+
+
+def codec_scope(scope: dict[int, int], callees_of, is_codec, max_depth: int = CODEC_DEPTH,
+                dist=None) -> dict[int, int]:
+    """Functions to add beyond ``scope`` (VA -> distance from a root) so that every call path of at most
+    ``max_depth`` levels from a scope function to a codec is in the dump, plus the direct callees of each
+    function on such a path (so a reader's non-codec callees are described, not gaps). Expansion stops
+    where no codec is reachable within the remaining depth. ``dist``: a shared :func:`codec_distance`."""
+    dist = dist or codec_distance(callees_of, is_codec, max_depth)
+    added: dict[int, int] = {}
+    frontier = sorted((va for va, d in scope.items() if d < max_depth and dist(va, max_depth - d) not in (None, 0)),
+                      key=lambda va: (scope[va], va))
+    level_of = dict(scope)
+    while frontier:
+        nxt = []
+        for va in frontier:
+            d = level_of[va]
+            for c in callees_of(va):
+                if c in level_of:
+                    continue
+                level_of[c] = added[c] = d + 1
+                left = max_depth - d - 1
+                if left > 0 and dist(c, left) not in (None, 0):
+                    nxt.append(c)
+        frontier = sorted(set(nxt), key=lambda va: (level_of[va], va))
+    return added
+
+
 def reads_before_write(entry, succs, effects) -> bool:
     """True when some path from ``entry`` reads the register before writing it.
 
@@ -791,6 +1102,68 @@ class _Db:
     def block_starts(self, f) -> set[int]:
         return {b.start_ea for b in self.m["ida_gdl"].FlowChart(f)}
 
+    # v4
+    def v4_insn(self, ins) -> dict:
+        """Instruction dict for :func:`object_accesses` (memory operands with base/index/scale, signed
+        displacement and CF_CHGn/CF_USEn; ``pops`` for PC calls)."""
+        idp = self.m["ida_idp"]
+        feat = ins.get_canon_feature()
+        chg = [getattr(idp, f"CF_CHG{i}", 0) for i in range(1, 7)]
+        use = [getattr(idp, f"CF_USE{i}", 0) for i in range(1, 7)]
+        ops = []
+        for i, op in enumerate(self.ops(ins)):
+            op = dict(op)
+            if op["type"] in ("phrase", "displ", "mem"):
+                op.update(parse_mem_text(self.m["idc"].print_operand(ins.ea, i), op["type"]))
+                op["addr"] = signed(op.get("addr", 0), self.bits) if op["type"] == "displ" else \
+                    (0 if op["type"] == "phrase" else op.get("addr"))
+                op["chg"] = bool(i < 6 and feat & chg[i])
+                op["use"] = bool(i < 6 and feat & use[i])
+            ops.append(op)
+        is_call = bool(idp.is_call_insn(ins))
+        out = {"ea": ins.ea, "mnem": self.mnem(ins), "ops": ops, "writes": self.all_writes(ins, ops),
+               "call": is_call, "pops": None}
+        if is_call and self.side == "pc" and ops and ops[0]["type"] in ("near", "far"):
+            rets = self.ret_values(ops[0]["addr"])
+            if rets is not None and len(set(rets)) <= 1:
+                out["pops"] = rets[0] if rets else None
+        return out
+
+    def callees(self, va: int) -> list[int]:
+        if not hasattr(self, "_callees"):
+            self._callees: dict[int, list[int]] = {}
+        if va not in self._callees:
+            self._callees[va] = _ida_callees(self, va)
+        return self._callees[va]
+
+    def is_codec(self, va: int) -> bool:
+        """A packet codec: the v3 shape classifier, the PC variable-length codecs, PS4 ``nPacket::Read_*``
+        / ``Write_*`` by symbol."""
+        if not hasattr(self, "_codec"):
+            self._codec: dict[int, bool] = {}
+        if va in self._codec:
+            return self._codec[va]
+        res = False
+        if self.side == "pc" and va in PC_VARIABLE_CODECS:
+            res = True
+        elif self.side == "ps4" and PS4_CODEC_NAME.match(self.demangled(va) or ""):
+            res = True
+        else:
+            f = self.func(va)
+            if f is not None and f.start_ea == va:
+                items = self.items(f)
+                if len(items) <= CODEC_MAX_INSNS:
+                    body = []
+                    for ea in items:
+                        ins = self.insn(ea)
+                        if ins is not None:
+                            body.append({"mnem": "call" if self.m["ida_idp"].is_call_insn(ins) else self.mnem(ins),
+                                         "ops": self.ops(ins)})
+                    res = classify_codec(body, PC_CURSOR_DISP if self.side == "pc" else None,
+                                         self.side == "pc") is not None
+        self._codec[va] = res
+        return res
+
 
 def _ida_function(db: _Db, va: int, depth: int, roots_reason: dict) -> dict | None:
     m = db.m
@@ -884,6 +1257,7 @@ def _ida_function(db: _Db, va: int, depth: int, roots_reason: dict) -> dict | No
     rec["caller_sites"] = len(callers)
     rec["callers_count"] = len(caller_funcs)
     rec["callers"] = caller_funcs[:MAX_CALLERS]
+    rec["object_accesses"] = _ida_object_accesses(db, f)
     if db.side == "pc":
         rec["ecx_read_before_write"] = _ida_ecx_rbw(db, f)
         rec["annotations"] = _ida_annotations(db, f, items)
@@ -931,6 +1305,24 @@ def _ida_externs(db: _Db, targets: dict[int, int], via_mem: dict[int, int], dump
                     "import": imp, "segment": seg, "segment_class": cls, "function_start": None,
                     "sites": via_mem[va]})
     return out
+
+
+def _ida_object_accesses(db: _Db, f) -> list[dict]:
+    gdl = db.m["ida_gdl"]
+    fc = gdl.FlowChart(f, flags=getattr(gdl, "FC_NOEXT", 0) | getattr(gdl, "FC_PREDS", 0))
+    blocks, preds = [], {}
+    for b in sorted(fc, key=lambda b: b.start_ea):
+        insns = []
+        ea = b.start_ea
+        while ea < b.end_ea:
+            ins = db.insn(ea)
+            if ins is None:
+                break
+            insns.append(db.v4_insn(ins))
+            ea += ins.size
+        blocks.append((b.start_ea, insns))
+        preds[b.start_ea] = [p.start_ea for p in b.preds()]
+    return object_accesses(blocks, preds, f.start_ea, db.side)
 
 
 def _ida_ecx_rbw(db: _Db, f) -> bool:
@@ -1115,7 +1507,7 @@ def pc_roots(db: _Db, write_entry: int = PC_WRITE_ENTRY):
 
 
 def main(out_path: str, side: str, depth: int = DEFAULT_DEPTH, extra_roots=(), patterns=None,
-         write_entry: int = PC_WRITE_ENTRY) -> dict:
+         write_entry: int = PC_WRITE_ENTRY, codec_depth: int = CODEC_DEPTH) -> dict:
     if side not in ("pc", "ps4"):
         raise ValueError(f"SIDE must be 'pc' or 'ps4', not {side!r}")
     db = _Db(side)
@@ -1142,9 +1534,30 @@ def main(out_path: str, side: str, depth: int = DEFAULT_DEPTH, extra_roots=(), p
         names = {va: db.demangled(va) for va in db.m["idautils"].Functions()}
         for va in match_roots(names, pats):
             reason.setdefault(va, "symbol")
+    # v4: requester roots (callers of reserveNetworkErrorDialog)
+    if side == "pc":
+        reserve = PC_RESERVE_DIALOG
+        reserve_name = db.name(reserve)
+    else:
+        found = [va for va, n in names.items() if n == RESERVE_DIALOG_NAME]
+        reserve = found[0] if len(found) == 1 else None
+        reserve_name = RESERVE_DIALOG_NAME
+    check_reserve(side, reserve, db.func_start(reserve) if reserve is not None else None, reserve_name)
+    sites = [x.frm for x in db.m["idautils"].XrefsTo(reserve) if x.iscode]
+    req_roots, req_orphans = requester_roots(sites, db.func_start, reserve)
+    for va, why in req_roots.items():
+        reason.setdefault(va, why)
+    params.update({"reserve_dialog": reserve, "codec_depth": codec_depth})
+    summary.update({"reserve_dialog": reserve, "reserve_dialog_name": reserve_name,
+                    "requester_sites": len(sites), "requesters": len(req_roots),
+                    "requester_sites_outside_functions": len(req_orphans)})
     for va in extra_roots:
         reason.setdefault(va, "extra")
-    dist, missing = plan_scope(reason, db.func_start, lambda va: _ida_callees(db, va), depth)
+    dist, missing = plan_scope(reason, db.func_start, db.callees, depth)
+    cdist = codec_distance(db.callees, db.is_codec, codec_depth)
+    added = codec_scope(dist, db.callees, db.is_codec, codec_depth, cdist) if codec_depth > depth else {}
+    dist.update(added)
+    summary["codec_path_functions"] = len(added)
     summary["roots"] = len(reason)
     summary["missing_roots"] = len(missing)
     summary["missing_roots_by_kind"] = {k: sum(1 for r in missing if r["missing"] == k)
@@ -1156,7 +1569,8 @@ def main(out_path: str, side: str, depth: int = DEFAULT_DEPTH, extra_roots=(), p
     def records():
         yield from table
         yield from missing
-        n = n0 = ncodec = 0
+        yield from req_orphans
+        n = n0 = ncodec = nacc = 0
         targets: dict[int, int] = {}
         via_mem: dict[int, int] = {}
         dumped: set[int] = set()
@@ -1167,6 +1581,10 @@ def main(out_path: str, side: str, depth: int = DEFAULT_DEPTH, extra_roots=(), p
                 n0 += dist[va] == 0
                 dumped.add(va)
                 ncodec += rec["codec"] is not None
+                nacc += len(rec["object_accesses"])
+                rec["codec_distance"] = cdist(va, codec_depth)
+                if va in added:
+                    rec["scope"] = "codec_path"
                 for c in rec["calls"]:
                     if isinstance(c["target"], int):
                         targets[c["target"]] = targets.get(c["target"], 0) + 1
@@ -1181,6 +1599,7 @@ def main(out_path: str, side: str, depth: int = DEFAULT_DEPTH, extra_roots=(), p
         summary["externs_by_reason"] = {r: sum(1 for e in externs if e["reason"] == r)
                                         for r in sorted({e["reason"] for e in externs})}
         summary["codec_functions"] = ncodec
+        summary["object_accesses"] = nacc
         yield summary
 
     write_jsonl(out_path, db.header(params), records())
@@ -1235,7 +1654,8 @@ def _ida_batch_hooks():
 if "OUT" in globals() and "SIDE" in globals():
     _SUMMARY = main(OUT, SIDE, globals().get("DEPTH", DEFAULT_DEPTH),  # noqa: F821
                     globals().get("ROOTS", ()), globals().get("ROOT_PATTERNS"),
-                    globals().get("PC_WRITE_ENTRY_OVERRIDE", PC_WRITE_ENTRY))
+                    globals().get("PC_WRITE_ENTRY_OVERRIDE", PC_WRITE_ENTRY),
+                    globals().get("CODEC_DEPTH", CODEC_DEPTH))
     print(SUMMARY_PREFIX + json.dumps(_short(_SUMMARY), sort_keys=True))
 elif __name__ == "__main__":
     try:

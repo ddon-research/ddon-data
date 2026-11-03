@@ -36,7 +36,7 @@ def _push(v):
 
 
 def test_script_version_bumped():
-    assert ex.SCRIPT_VERSION == "3"
+    assert ex.SCRIPT_VERSION >= "3"
 
 
 # --- implicit writes and argument bytes --------------------------------------------------------------

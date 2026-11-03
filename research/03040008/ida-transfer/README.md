@@ -100,6 +100,49 @@ targets inside each repaired (dry run: would-repair) body, up to level 3; the re
 T004e inside-function rules. The summary gains `call_targets` (`roots`, `by_status`, `by_check`,
 `by_level`, `scope_functions`, `pending_beyond_depth`).
 
+## Version 4 (T005f): object-relative accesses, requester roots, codec-path depth
+
+`extract_ida.py` script version 4, additive (new fields and one new record kind; v3 readers keep working):
+
+- **Per function `object_accesses`**: one record per memory operand `[base + idx*scale + disp]` whose base
+  provably holds an argument: `va`, `op` (operand index), `arg_loc` (`ecx`, `stack`, or the PS4 register
+  `rdi`..`r9`), `arg` (0 for `ecx`; stack slot k = entry `[esp+4+4k]`; PS4 ABI index), `disp` (signed),
+  `width` (operand size), `access` (`load` / `store` / `lea`), `rmw` (a store that also reads), `value`
+  (store of an immediate, masked to the width), `via` (the disp of the field the base pointer was loaded
+  from: one dereference, e.g. PS4 `this->mpManager->mErrorCode[171]`), `indexed` + `index` + `scale`.
+  - The tracking is a must-analysis over IDA's flow chart (`ida_gdl.FlowChart`, `FC_NOEXT`) iterated to a
+    fixed point: a register keeps a value into a block only if every predecessor agrees. Copies are
+    pointer-width `mov r, r` (a 32-bit PS4 copy truncates and kills); any other write kills (implicit
+    writes included); a call kills the caller-saved registers (MSVC x86 `eax/ecx/edx`, SysV the argument
+    registers and `rax/r10/r11`), callee-saved ones survive by the ABI.
+  - PC stack arguments: `esp` is tracked from entry through `push`/`pop`/`sub`/`add esp, imm` and calls whose
+    callee has one `ret N` (else the stack picture ends); `ebp` by copy. A load of an argument slot after a
+    store to it, a `lea` of the argument area, or a store at an unknown `esp`/`ebp` offset is not an
+    argument. PC `ecx` accesses mean the function reads `ecx` at entry; whether it is thiscall is the
+    consumer's decision (`ecx_read_before_write`, the callers' `ecx_loaded`).
+  - Base, index and scale come from `print_operand` text (IDAPython 9.5 has no `ida_intel` SIB helpers),
+    the displacement from the operand's `addr`, load/store from `CF_CHGn`/`CF_USEn`.
+- **Slot facts**: the PC `callOnPacketFunc` `0x878860` slot is v3's `const_stack` slot 0 (675 sites in the
+  v3 PC dump); PS4 `mErrorCode`/`mStatus` stores are `object_accesses` stores with `via` = `mpManager`'s
+  offset (a constant index is a plain `disp`, a variable one `indexed`).
+- **Requester roots** (`root: "requester"`): every function that calls `sNetworkExt::reserveNetworkErrorDialog`,
+  PC `0xBB39D0` (named so in the work copy, 581 caller sites = T005b § 5, `ret 4`), PS4 by its one symbol.
+  The run fails closed when the VA is not that function's start, carries another name, or the PS4 symbol is
+  not unique. A call site outside any function is a `requester_site` record. Callees follow the normal
+  depth (3).
+- **Codec-path depth** (`CODEC_DEPTH` = 8): beyond the depth-3 scope, every function on a call path of at
+  most 8 levels from a root to a codec (v3 shape classifier, the four PC variable-length codecs, PS4
+  `nPacket::Read_*`/`Write_*`) is dumped with `scope: "codec_path"`, plus the direct callees of each such
+  function. Every function record carries `codec_distance` (least calls to a codec within 8 levels, 0 = a
+  codec, null = none), so a walk can skip callees that reach no codec instead of counting them as gaps.
+- Header `params` gain `reserve_dialog` and `codec_depth`; the summary gains `reserve_dialog`,
+  `reserve_dialog_name`, `requester_sites`, `requesters`, `requester_sites_outside_functions`,
+  `codec_path_functions` and `object_accesses`.
+
+Libraries: IDAPython (`ida_ua`, `ida_idp`, `ida_gdl`, `ida_funcs`, `idautils`, `idc`). Own code: the
+register dataflow (no IDAPython or stdlib module tracks argument registers across blocks; `ida_regfinder`
+answers constant values only), the operand-text SIB parse (see above), and the memoised codec reachability.
+
 ## Matcher (`match.py`, `matcher/`, T005)
 
     uv run python match.py        # rewrites manifest/*.tsv; identical on rerun; exit 1 on a wrong holdout recovery
