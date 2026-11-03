@@ -116,13 +116,17 @@ Coordinator: main session. One subagent at a time. Method and rules: `spec.md`.
   decompile; re-extract changes = rows both ways; CHANGE_JOB_RES + 6 lea-only types forward-only. Work copy
   `be0cc624...162f`; rollback `.before-T007b.i64` kept. (`implementer` writes it, `evidence-researcher-ida` runs it).
 - [ ] T008 Verify: re-extract, compare, decompile sample; adversarial review of pairs and types.
+  Adversarial review done (`research/T008-adversarial.md`, seed 8008: 70 sampled items over 9 strata, 0 wrong on
+  PC; 2 tooling defects reproduced by the coordinator: F1 pointer depth dropped (`MtObject**` -> `MtObject *` in
+  `types.h`), F2 member type not compared in `member_equal`; work copy right because its `MtArray` was kept).
+  T006d fixes both; then a verify run on the work copy.
 - [ ] T009 Close: `check.sh --all`, docs, retrospective, publish the database folder.
 
 Order: T003 first (T002 needs a copy of the accepted database), then T002.
 
 ## Running
 
-- T008 (adversarial-reviewer, brief `briefs/T008-adversarial-pairs.md`), started 2026-11-03.
+- T006d (implementer, brief `briefs/T006d-pointer-depth-and-member-type.md`), started 2026-11-03.
 - Decision (coordinator, 2026-11-03): from T004d on, all writes go to one persistent work copy
   `PC_DDON_03040008/ddon-data-007work/` of the accepted database (repairs first, then T007's apply);
   it is published as `spec007-packet-handlers-<date>/` at the close.
