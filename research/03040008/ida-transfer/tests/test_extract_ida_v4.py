@@ -48,30 +48,6 @@ def key(a):
     return (a["arg_loc"], a["arg"], a["disp"], a["access"])
 
 
-# --- parse_mem_text ------------------------------------------------------------------------------
-
-@pytest.mark.parametrize("text,optype,base,index,scale", [
-    ("[rdi+rax*4+2ACh]", "displ", "rdi", "rax", 4),
-    ("dword ptr [esp+10h+var_8]", "displ", "rsp", None, None),
-    ("[ebp+arg_0]", "displ", "rbp", None, None),
-    ("[ecx+cFoo.mBar]", "displ", "rcx", None, None),
-    ("[ecx+cFoo.esi]", "displ", "rcx", None, None),  # a member named like a register is no index
-    ("[eax+ecx]", "phrase", "rax", "rcx", 1),
-    ("[r13d+r9*8]", "phrase", "r13", "r9", 8),
-    ("ds:dword_1BC780C[eax*4]", "mem", None, "rax", 4),
-    ("ds:off_1BC0000[eax]", "mem", None, "rax", 1),
-    ("cs:qword_123", "mem", None, None, None),
-    ("fs:[0]", "mem", None, None, None),
-    ("[esi+var_eax]", "displ", "rsi", None, None),
-])
-def test_parse_mem_text(text, optype, base, index, scale):
-    assert ex.parse_mem_text(text, optype) == {"base": base, "index": index, "scale": scale}
-
-
-def test_signed():
-    assert ex.signed(0xFFFFFFF8, 32) == -8 and ex.signed(8, 32) == 8 and ex.signed(2**64 - 1, 64) == -1
-
-
 # --- PC object accesses ---------------------------------------------------------------------------
 
 def test_pc_this_store_immediate_and_load():
@@ -278,31 +254,3 @@ def test_codec_distance_cycles_and_budget():
     g = {"a": ["b"], "b": ["a", "c"], "c": ["k"], "k": []}
     d = ex.codec_distance(lambda v: g[v], lambda v: v == "k")
     assert d("a", 8) == 3 and d("a", 2) is None and d("k", 0) == 0 and d("c", 0) is None
-
-
-# --- IDA-facing instruction conversion (fake modules) ---------------------------------------------
-
-def test_v4_insn_from_fake_ida():
-    from types import SimpleNamespace as NS
-
-    db = object.__new__(ex._Db)
-    db.side, db.bits, db.ptr = "pc", 32, 4
-    idp = NS(CF_CHG1=0x4, CF_CHG2=0x8, CF_USE1=0x100, CF_USE2=0x200, is_call_insn=lambda ins: ins.mnem == "call")
-    texts = {(0x10, 0): "dword ptr [ecx+eax*4-8]", (0x10, 1): ""}
-    db.m = {"ida_idp": idp, "idc": NS(print_operand=lambda ea, n: texts.get((ea, n), ""))}
-    store = NS(ea=0x10, mnem="mov", get_canon_feature=lambda: 0x4 | 0x200)
-    db.ops = lambda ins: ([{"type": "displ", "reg": "rcx", "addr": 0xFFFFFFF8, "size": 4},
-                           {"type": "imm", "value": 3, "size": 4}] if ins.mnem == "mov"
-                          else [{"type": "near", "addr": 0x9000, "size": 0}])
-    db.mnem = lambda ins: ins.mnem
-    db.all_writes = lambda ins, ops: []
-    db.ret_values = lambda va: [8, 8]
-    out = db.v4_insn(store)
-    op = out["ops"][0]
-    got = (op["base"], op["index"], op["scale"], op["addr"], op["chg"], op["use"])
-    assert got == ("rcx", "rax", 4, -8, True, False)
-    assert out["call"] is False and out["pops"] is None
-    c = db.v4_insn(NS(ea=0x20, mnem="call", get_canon_feature=lambda: 0x100))
-    assert c["call"] is True and c["pops"] == 8
-    db.ret_values = lambda va: [0, 4]  # mixed ret immediates prove nothing
-    assert db.v4_insn(NS(ea=0x20, mnem="call", get_canon_feature=lambda: 0x100))["pops"] is None

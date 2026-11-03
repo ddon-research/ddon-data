@@ -39,7 +39,7 @@ import json
 import os
 import re
 
-SCRIPT_VERSION = "4"
+SCRIPT_VERSION = "5"
 
 # --- PC handler table (T002 audit: 74 groups, 1,041 records, 1,040 distinct callbacks) ---------
 PC_GROUP_TABLE = 0x1BC0110
@@ -496,40 +496,46 @@ PC_VARIABLE_CODECS = (0x8BC5B0, 0x8BC710, 0x8BC790, 0x8BCA30)
 PS4_CODEC_NAME = re.compile(r"^nPacket::(?:Read|Write)_\w+$")
 CODEC_DEPTH = 8
 
-_GPRS = frozenset(_CANON) | frozenset(_REG_ALIASES) | frozenset(
-    f"r{n}{s}" for n in range(8, 16) for s in ("", "d", "w", "b"))
-_MEM_TOKEN = re.compile(r"(?<![\w.$@?])([a-z][a-z0-9]*)(?:\*(\d))?(?![\w.$@?])")
 # Registers a call may change (MSVC x86 / SysV x86-64): everything else survives it by the ABI.
 _CALL_CLOBBER = {"pc": ("rax", "rcx", "rdx"),
                  "ps4": ("rax", "rcx", "rdx", "rsi", "rdi", "r8", "r9", "r10", "r11")}
 _ENTRY_ARGS = {"pc": ("rcx",), "ps4": PS4_INT_ARG_REGS}
 
 
-def parse_mem_text(text: str | None, optype: str) -> dict:
-    """Base, index and scale of a memory operand from IDA's operand text (``print_operand``).
+# x86 operand encoding (IDA SDK ``intel.hpp``: ``hasSIB`` = ``op_t.specflag1``, ``sib`` = ``specflag2``,
+# ``rex`` = ``insn_t.insnpref``; ``auxpref`` bits ``aux_use32`` 0x8, ``aux_use64`` 0x10, ``aux_natad`` 0x1000).
+_AUX_USE32, _AUX_USE64, _AUX_NATAD = 0x8, 0x10, 0x1000
+_REX_X, _REX_B = 2, 1
+_INDEX_NONE = 4  # SIB index field 100b: no index register
+_VSIB = re.compile(r"^v?p?(?:gather|scatter)")  # VSIB: the SIB index is a vector register
 
-    The registers come from the bracketed part only: ``[rdi+rax*4+2ACh]`` -> base ``rdi``, index ``rax``,
-    scale 4; ``[eax+ecx]`` -> index ``ecx`` scale 1; stack-variable and member names are not registers.
-    An ``o_mem`` operand (``ds:off_X[ecx*4]``) has no base. Unknown shapes give no base.
+
+def decode_mem(optype: str, phrase: int, has_sib: int, sib: int, rex: int, auxpref: int,
+               mnem: str = "") -> dict:
+    """Base, index and scale register numbers of a memory operand from the decoded ``op_t`` (v5).
+
+    Mirrors ``x86_base_reg`` / ``x86_index_reg`` / ``x86_scale`` of the IDA SDK ``intel.hpp`` (inline C++
+    helpers that IDAPython does not export): with a SIB byte the base is ``sib & 7`` (+8 with REX.B in
+    64-bit mode; none for ``o_mem``), the index ``(sib >> 3) & 7`` (+8 with REX.X; ``100b`` without REX.X =
+    no index), the scale ``1 << (sib >> 6)``; without SIB the base is ``op_t.phrase`` and there is no index.
+    Register names (and so IDA's register-variable renames) play no part. 16-bit addressing and VSIB
+    (gather/scatter) give no registers (fail closed). Numbers are IDA's x86 register numbers (0 = rax ..
+    15 = r15).
     """
     out = {"base": None, "index": None, "scale": None}
-    if not text or "[" not in text:
+    mode = auxpref & (_AUX_USE32 | _AUX_USE64 | _AUX_NATAD)
+    if mode in (_AUX_NATAD, _AUX_USE32) or _VSIB.match(mnem or ""):
         return out
-    inside = text[text.find("["):text.rfind("]") + 1].lower()
-    regs = [(m.group(1), m.group(2)) for m in _MEM_TOKEN.finditer(inside) if m.group(1) in _GPRS]
-    if not regs or len(regs) > 2:
-        return out
-    plain = [r for r, s in regs if s is None]
-    scaled = [(r, int(s)) for r, s in regs if s is not None]
-    if len(scaled) > 1:
-        return out
-    if optype != "mem" and plain:
-        out["base"] = canon_reg(plain[0])
-        plain = plain[1:]
-    if scaled:
-        out["index"], out["scale"] = canon_reg(scaled[0][0]), scaled[0][1]
-    elif plain and (optype == "mem" or out["base"] is not None):
-        out["index"], out["scale"] = canon_reg(plain[0]), 1
+    m64 = bool(auxpref & _AUX_USE64)
+    if has_sib:
+        sib &= 0xFF
+        if optype != "mem":
+            out["base"] = (sib & 7) | (8 if m64 and rex & _REX_B else 0)
+        idx = ((sib >> 3) & 7) | (8 if m64 and rex & _REX_X else 0)
+        if idx != _INDEX_NONE:
+            out["index"], out["scale"] = idx, 1 << ((sib >> 6) & 3)
+    elif optype != "mem":
+        out["base"] = phrase
     return out
 
 
@@ -632,7 +638,7 @@ def object_accesses(blocks: list[tuple[int, list[dict]]], preds: dict[int, list[
     Each instruction is ``{"ea", "mnem", "ops", "writes", "call", "pops"}``: ``writes`` every register
     written (explicit and implicit, any width), ``call`` for call instructions, ``pops`` (PC) the stack
     bytes the callee's single ``ret N`` releases (0 for ``retn``, None when unknown). Memory operands
-    carry ``base``/``index``/``scale`` (:func:`parse_mem_text`), ``addr`` (signed displacement), ``size``,
+    carry ``base``/``index``/``scale`` (:func:`decode_mem`), ``addr`` (signed displacement), ``size``,
     ``chg``/``use`` (IDA's CF_CHGn/CF_USEn for that operand).
 
     Tracked values (a must-analysis over the blocks, iterated to a fixed point: a register holds a value
@@ -1052,7 +1058,7 @@ class _Db:
                 if i == 0 and mnem in ("xor", "sub") and len(ops) > 1 and ops[1].get("reg") == reg:
                     return False
                 return True
-            if op["type"] in ("phrase", "displ") and reg in self._mem_regs(ins.ea, i):
+            if op["type"] in ("phrase", "displ") and reg in self._mem_regs(ins, i):
                 return True
         if mnem.startswith("rep") or mnem in ("loop", "loope", "loopne", "jecxz", "jrcxz"):
             return reg == "rcx"
@@ -1061,9 +1067,17 @@ class _Db:
             return True  # rep/repne prefix reads the count
         return False
 
-    def _mem_regs(self, ea, n) -> set[str]:
-        text = (self.m["idc"].print_operand(ea, n) or "").lower()
-        return {canon_reg(t) for t in re.findall(r"[a-z][a-z0-9]+", text)}
+    def mem_regs(self, ins, n: int, optype: str) -> dict:
+        """Canonical base/index register names and the scale of memory operand ``n`` (:func:`decode_mem`)."""
+        op = ins.ops[n]
+        d = decode_mem(optype, op.phrase, op.specflag1, op.specflag2, ins.insnpref, ins.auxpref, self.mnem(ins))
+        dt = self.m["ida_ua"].dt_qword if self.bits == 64 else self.m["ida_ua"].dt_dword
+        return {"base": None if d["base"] is None else self.reg_name(d["base"], dt),
+                "index": None if d["index"] is None else self.reg_name(d["index"], dt), "scale": d["scale"]}
+
+    def _mem_regs(self, ins, n) -> set[str]:
+        d = self.mem_regs(ins, n, self.optype.get(ins.ops[n].type, ""))
+        return {r for r in (d["base"], d["index"]) if r is not None}
 
     # strings and data
     def string_at(self, ea) -> str | None:
@@ -1114,7 +1128,7 @@ class _Db:
         for i, op in enumerate(self.ops(ins)):
             op = dict(op)
             if op["type"] in ("phrase", "displ", "mem"):
-                op.update(parse_mem_text(self.m["idc"].print_operand(ins.ea, i), op["type"]))
+                op.update(self.mem_regs(ins, i, op["type"]))
                 op["addr"] = signed(op.get("addr", 0), self.bits) if op["type"] == "displ" else \
                     (0 if op["type"] == "phrase" else op.get("addr"))
                 op["chg"] = bool(i < 6 and feat & chg[i])

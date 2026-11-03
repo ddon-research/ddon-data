@@ -120,8 +120,8 @@ T004e inside-function rules. The summary gains `call_targets` (`roots`, `by_stat
     store to it, a `lea` of the argument area, or a store at an unknown `esp`/`ebp` offset is not an
     argument. PC `ecx` accesses mean the function reads `ecx` at entry; whether it is thiscall is the
     consumer's decision (`ecx_read_before_write`, the callers' `ecx_loaded`).
-  - Base, index and scale come from `print_operand` text (IDAPython 9.5 has no `ida_intel` SIB helpers),
-    the displacement from the operand's `addr`, load/store from `CF_CHGn`/`CF_USEn`.
+  - Base, index and scale come from the decoded operand since v5 (below), the displacement from the
+    operand's `addr`, load/store from `CF_CHGn`/`CF_USEn`.
 - **Slot facts**: the PC `callOnPacketFunc` `0x878860` slot is v3's `const_stack` slot 0 (675 sites in the
   v3 PC dump); PS4 `mErrorCode`/`mStatus` stores are `object_accesses` stores with `via` = `mpManager`'s
   offset (a constant index is a plain `disp`, a variable one `indexed`).
@@ -141,7 +141,24 @@ T004e inside-function rules. The summary gains `call_targets` (`roots`, `by_stat
 
 Libraries: IDAPython (`ida_ua`, `ida_idp`, `ida_gdl`, `ida_funcs`, `idautils`, `idc`). Own code: the
 register dataflow (no IDAPython or stdlib module tracks argument registers across blocks; `ida_regfinder`
-answers constant values only), the operand-text SIB parse (see above), and the memoised codec reachability.
+answers constant values only), the SIB/REX decoding (v5, below), and the memoised codec reachability.
+
+## Version 5 (T005h): memory operands from `op_t`, not from operand text
+
+v4 parsed base/index/scale from `print_operand` text. The PS4 database names argument registers (register
+variables: `[this+cArcLoaderBase.mNum]`), so that text holds no register and v4 dropped almost every PS4
+access (722 records instead of 30,587; T005g § 4). v5 (`decode_mem`, `_Db.mem_regs`) reads the decoded
+operand instead, following the IDA SDK `intel.hpp` helpers `x86_base_reg` / `x86_index_reg` / `x86_scale`
+(inline C++, not exported to IDAPython 9.5; read from `D:/GitHub/HexRaysSA/ida-sdk`, commit 04c0a982c8):
+`hasSIB` = `op_t.specflag1`, `sib` = `op_t.specflag2`, REX = `insn_t.insnpref` (REX.B/REX.X only in
+64-bit mode, `auxpref & aux_use64`); without SIB the base is `op_t.phrase`; an `o_mem` with SIB has an
+index and no base; SIB index `100b` without REX.X is no index. 16-bit addressing and VSIB (gather/scatter)
+give no registers (fail closed). `reads_reg` (`ecx_read_before_write`) uses the same decoding. Register
+names play no part, so IDA renames cannot hide a register.
+
+PS4 v5 run (T005h): 30,587 records in 2,839 functions, 1,772 indexed, 7,345 via a pointer load, 2,685
+stores via `mpManager` (`+280`): equal to T005g's register-variable what-if. The PC dump stays v4 (PC has no
+register-variable operands, T005g § 4; the v5 decoding gives the v4 records on the `sub_4169B0` fixture).
 
 ## Matcher (`match.py`, `matcher/`, T005)
 
