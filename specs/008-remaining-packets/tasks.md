@@ -11,10 +11,14 @@ Coordinator: main session. One subagent at a time. Method, sources and marks: `s
 - [x] T003 B5+B2 (2b5782052c, `research/T003-batches-B5-B2.md`): 33 patterns, 2,677/2,677 fit, 63/63 sample walks;
   I names e.g. 60.0.2 NpcId (7/7 echo), 61.2.2 PawnId (60/60 vs 8.2.2), 31.53.2 item ids (8/8); rest G or unk with
   leads; 11.7.16 named MOB_HUNT_QUEST_LIST_NUM_NTC (I: handler's notice class); 11.88.16/11.118.16 meaning-open.
-- [ ] T004.. Batches: evidence where the dump lacks a reader (`evidence-researcher-ida`), patterns + JSON
+- [x] T004 B1+B4 (5edf6adf7e, e4f4e5b741, `research/T004-batches-B1-B4.md`): 37 patterns, 1,631/1,631 fit, 68/68
+  sample walks; new includes SeasonDungeon/DailyMission/InfinityDelivery; T001 corrected for 72.2.1 (u32 list + u8);
+  72.1.16 named DAILY_MISSION_ACHIEVE_NTC (I: listed missions go 1 -> 2 in 113/113); 62.15.16 TrialId (28/28);
+  OmState structure from the shared reader `0x766790`; groups 72/59 names I/G (59: one session).
+- [ ] T005.. Batches: evidence where the dump lacks a reader (`evidence-researcher-ida`), patterns + JSON
   (`implementer`), naming by code / data / extractor / leads; each with its fit counts and JSON changes.
 - [ ] Review (adversarial: a sample of V/I/G marks and fits), close, merge and push.
 
 ## Running
 
-- T004 (implementer, brief `briefs/T004-batches-B1-B4.md`), started 2026-11-03.
+- T005 (implementer, brief `briefs/T005-batches-B3-B7-B6.md`), started 2026-11-03.
