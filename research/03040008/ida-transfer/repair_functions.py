@@ -1,34 +1,50 @@
-"""Repair the PC 03040008 handler-table callbacks that are not IDA function starts (spec 007 T004c).
+"""Repair the PC 03040008 handler-table callbacks that are not IDA function starts (spec 007 T004c/T004e).
 
-Run inside IDA (ida-mcp ``execute_python``) with one call, dry run by default::
+Database writes run only as a headless batch job on the work copy, never through an ida-mcp worker
+(a killed worker's writes are lost; ``README.md``)::
+
+    idat -A -L<log> -S"repair_functions.py <OUT> [--apply] [--extract-ida <path>]" <work copy .i64>
+
+The batch entry waits for auto-analysis, runs :func:`main`, prints ``repair_functions summary: {...}``
+to the log and ends with ``idc.qexit(0)`` (IDA saves and packs the database). On an exception it
+prints the traceback, marks the database not to be saved (``DBFL_KILL``) and exits with code 1.
+A dry run (no ``--apply``) changes nothing. Inside IDA for a dry run only, one call also works::
 
     exec(open(path).read(), {"OUT": "D:/.../repair-dryrun.jsonl", "APPLY": False})
 
-Optional global ``EXTRACT_IDA``: path of ``extract_ida.py`` (the handler table is read with its
-``_ida_pc_table``; default: beside this file, else the repository path below).
+Optional global ``EXTRACT_IDA`` / ``--extract-ida``: path of ``extract_ida.py`` (the handler table is
+read with its ``_ida_pc_table``; default: beside this file, else the repository path below).
 
 For each proved table callback (computed from the table) that is not a function start:
 
 1. decode linearly from the callback to the ``ret``/``jmp`` that ends the body (no pending
-   in-body branch target), refusing undecodable bytes, traps, indirect jumps, branches out of the
-   body and running into another function's start (:func:`decode_walk`);
+   in-body branch target), refusing undecodable bytes, traps, branches out of the body and running
+   into another function's start (:func:`decode_walk`). Two exceptions: an indirect jump with IDA
+   switch info whose case targets all lie in the body (its jump table outside the body), and a
+   stray function of at most one instruction, without xrefs, lying wholly inside the body (it is
+   deleted before the repair);
 2. inside a function: the bytes between the enclosing start and the callback must be unreferenced
-   and padding or the tail of an instruction that crosses the callback (:func:`gap_check`), and the
-   enclosing function must end where the decoded body ends;
-3. no decoded instruction may lie in another function.
+   and padding, the tail of an instruction that crosses the callback, or unreferenced junk when the
+   enclosing start is not itself a table callback (:func:`gap_check`; junk items become
+   unexplored); the enclosing function must have no tail chunks and end where the decoded body ends;
+3. no decoded instruction may lie in another function (strays excepted).
 
 Only when every check passes and ``APPLY`` is true: write the undo record (before-state of items,
-function chunks, names and comments over the affected range) to ``OUT`` and flush it, undefine
-exactly the conflicting items, create the decoded instructions, move the enclosing start
-(``ida_funcs.set_func_start``) or create the function (``ida_funcs.add_func`` with IDA choosing the
-end), wait for auto-analysis of the range, and read back: the function starts at the callback,
-ends at the decoded body end, and no other function nearby changed bounds.
+the functions to be deleted with their chunks, names and comments over the affected range) to
+``OUT`` and flush it, delete the enclosing function and any stray (``ida_funcs.del_func``) before
+undefining anything (undefining a function's entry instruction deletes the function, which made the
+T004d ``set_func_start`` repairs fail with ``MOVE_FUNC_NOFUNC``), undefine exactly the conflicting
+items (and junk gap items), create the decoded instructions, create the function at the callback
+(``ida_funcs.add_func`` with IDA choosing the end), wait for auto-analysis of the range, and read
+back: the function starts at the callback, ends at the decoded body end, and no other function
+nearby changed bounds.
 
 ``OUT`` gets a header, one ``result`` line per callback (``already-ok``, ``would-repair``,
 ``repaired``, ``refused`` with the failed check, or ``failed`` with the read-back check), one
 ``undo`` line before each applied repair, and a ``summary``. Nothing is ever forced: a refusal stays
-for the coordinator. Names stay where they are (a name at a moved enclosing start is recorded, not
-moved). The pure helpers are unit-tested in ``tests/test_repair_functions.py`` with fakes.
+for the coordinator. Names stay where they are (a name at a deleted enclosing start is recorded, not
+moved). The pure helpers and :func:`_apply` are unit-tested in ``tests/test_repair_functions.py``
+with fakes.
 """
 
 from __future__ import annotations
@@ -36,11 +52,12 @@ from __future__ import annotations
 import json
 import os
 
-SCRIPT_VERSION = "1"
+SCRIPT_VERSION = "2"
 DEFAULT_EXTRACT_IDA = "D:/ddon-data/research/03040008/ida-transfer/extract_ida.py"
 MAX_INSNS = 4000
 MAX_SPAN = 0x4000  # a branch target farther than this from the callback leaves the body
 NEIGHBOURHOOD = 0x1000  # functions this close to the repaired range must keep their bounds
+SUMMARY_PREFIX = "repair_functions summary: "
 
 # Padding forms the compiler emits between functions (int3, nop and multi-byte nops).
 PADDING_SEQUENCES = tuple(bytes.fromhex(h) for h in (
@@ -54,47 +71,82 @@ PADDING_SEQUENCES = tuple(bytes.fromhex(h) for h in (
 # --- pure helpers -------------------------------------------------------------------------------
 
 def decode_walk(start: int, decode, is_foreign_start, max_insns: int = MAX_INSNS,
-                max_span: int = MAX_SPAN) -> dict:
+                max_span: int = MAX_SPAN, stray_func=None, switch=None) -> dict:
     """Decode the body that begins at ``start``.
 
     ``decode(ea)`` returns None (undecodable) or ``{"ea", "size", "kind", "target"}`` with kind
     ``ret``, ``jmp`` (direct), ``jmp_indirect``, ``jcc``, ``call``, ``trap`` or ``other``;
     ``is_foreign_start(ea)`` is true where another function starts. The body ends at a ``ret`` or
     an unconditional ``jmp`` once no in-body branch target lies at or after the next address.
-    Returns ``{"ok": True, "end", "insns"}`` or ``{"ok": False, "check", "at", "insns"}``.
+
+    ``stray_func(ea)`` (optional) returns ``(start, end)`` when the function starting at ``ea`` is
+    a stray (:func:`is_stray`), else None; the walk then continues through it, and refuses at the
+    end unless the stray lies wholly inside the body. ``switch(ea)`` (optional) returns IDA's switch
+    info for an indirect jump, ``{"targets": [...], "table": ea, "table_size": n}``, or None.
+
+    Returns ``{"ok": True, "end", "insns", "strays", "switches"}`` or
+    ``{"ok": False, "check", "at", "insns"}``.
     """
     insns: list[dict] = []
+    strays: list[tuple[int, int]] = []
+    switches: list[dict] = []
     ea = start
     reach = start  # furthest in-body branch target seen
 
     def refuse(check, at):
         return {"ok": False, "check": check, "at": at, "insns": insns}
 
+    def in_body(target):
+        return target is not None and start <= target < start + max_span and not is_foreign_start(target)
+
     while True:
         if len(insns) >= max_insns:
             return refuse("too_long", ea)
         if ea != start and is_foreign_start(ea):
-            return refuse("runs_into_function", ea)
+            bounds = stray_func(ea) if stray_func is not None else None
+            if bounds is None:
+                return refuse("runs_into_function", ea)
+            strays.append(tuple(bounds))
         ins = decode(ea)
         if ins is None or ins.get("size", 0) <= 0:
             return refuse("undecodable", ea)
         if ins["kind"] == "trap":
             return refuse("trap_in_body", ea)
-        if ins["kind"] == "jmp_indirect":
-            return refuse("indirect_jump", ea)
+        kind, target = ins["kind"], ins.get("target")
+        if kind == "jmp_indirect":
+            sw = switch(ea) if switch is not None else None
+            if sw is None or not sw.get("targets"):
+                return refuse("indirect_jump", ea)
+            if not all(in_body(t) for t in sw["targets"]):
+                return refuse("switch_target_out_of_body", ea)
+            reach = max(reach, max(sw["targets"]))
+            switches.append({"ea": ea, **sw})
         insns.append(ins)
         nxt = ea + ins["size"]
-        kind, target = ins["kind"], ins.get("target")
-        in_body = target is not None and start <= target < start + max_span and not is_foreign_start(target)
         if kind == "jcc":
-            if not in_body:
+            if not in_body(target):
                 return refuse("branch_out_of_body", ea)
             reach = max(reach, target)
-        elif kind == "jmp" and in_body:
+        elif kind == "jmp" and in_body(target):
             reach = max(reach, target)
-        if kind in ("ret", "jmp") and reach < nxt:
-            return {"ok": True, "end": nxt, "insns": insns}
+        if kind in ("ret", "jmp", "jmp_indirect") and reach < nxt:
+            break
         ea = nxt
+    end = nxt
+    for s, e in strays:
+        if e > end:
+            return refuse("runs_into_function", s)
+    for sw in switches:
+        if not all(start <= t < end for t in sw["targets"]):
+            return refuse("switch_target_out_of_body", sw["ea"])
+        if sw.get("table") is not None and sw["table"] < end and sw["table"] + sw.get("table_size", 0) > start:
+            return refuse("switch_table_in_body", sw["ea"])
+    return {"ok": True, "end": end, "insns": insns, "strays": strays, "switches": switches}
+
+
+def is_stray(insn_count: int, chunk_count: int, xrefs) -> bool:
+    """A function IDA made on a single instruction (e.g. a body's own ``retn``) that nothing references."""
+    return insn_count <= 1 and chunk_count <= 1 and not xrefs
 
 
 def is_padding(raw: bytes) -> bool:
@@ -109,12 +161,15 @@ def is_padding(raw: bytes) -> bool:
     return ok[len(raw)]
 
 
-def gap_check(enc_start: int, cb: int, gap: bytes, heads, referenced) -> dict:
+def gap_check(enc_start: int, cb: int, gap: bytes, heads, referenced, enc_is_callback: bool) -> dict:
     """Check the bytes ``[enc_start, cb)`` an enclosing function would give up.
 
     ``heads`` are the defined items ``(ea, size)`` that start in the gap; ``referenced`` the gap
-    addresses with a non-flow xref. Bytes before the first item crossing ``cb`` must be padding;
-    from that item on they are the tail of a misdecoded instruction.
+    addresses with a non-flow (code or data) xref; ``enc_is_callback`` whether ``enc_start`` is
+    itself a handler-table callback. Bytes before the first item crossing ``cb`` must be padding;
+    from that item on they are the tail of a misdecoded instruction. Otherwise the gap is accepted
+    as junk (``"junk": True``, its items to become unexplored) only when nothing references it and
+    the enclosing start is not a table callback.
     """
     if len(gap) != cb - enc_start:
         return {"ok": False, "check": "gap_unreadable"}
@@ -122,9 +177,12 @@ def gap_check(enc_start: int, cb: int, gap: bytes, heads, referenced) -> dict:
         return {"ok": False, "check": "gap_referenced", "at": sorted(referenced)}
     crossing = [h for h, size in heads if enc_start <= h < cb and h + size > cb]
     plain_end = min(crossing) if crossing else cb
-    if not is_padding(gap[: plain_end - enc_start]):
-        return {"ok": False, "check": "gap_not_padding", "bytes": gap.hex()}
-    return {"ok": True, "misdecoded": min(crossing) if crossing else None}
+    misdecoded = min(crossing) if crossing else None
+    if is_padding(gap[: plain_end - enc_start]):
+        return {"ok": True, "misdecoded": misdecoded, "junk": False}
+    if enc_is_callback:
+        return {"ok": False, "check": "gap_not_padding", "bytes": gap.hex(), "enclosing_is_callback": True}
+    return {"ok": True, "misdecoded": misdecoded, "junk": True, "bytes": gap.hex()}
 
 
 def conflicting_items(items, decoded, cb: int, end: int) -> list[dict]:
@@ -139,28 +197,34 @@ def conflicting_items(items, decoded, cb: int, end: int) -> list[dict]:
 
 
 def plan_repair(cb: int, enclosing: tuple[int, int] | None, walk: dict, gap: dict | None,
-                body_funcs) -> dict:
+                body_funcs, enc_chunks: int = 1) -> dict:
     """Decision for one callback that is not a function start.
 
     ``enclosing``: ``(start, end)`` of the function containing ``cb`` or None; ``body_funcs``: the
-    starts of functions that contain any decoded instruction.
+    starts of functions that contain any decoded instruction; ``enc_chunks``: the enclosing
+    function's chunk count (tails would be lost by deleting it).
     """
     out = {"va": cb, "missing": "inside-function" if enclosing else "no-function",
            "enclosing": enclosing[0] if enclosing else None}
     if not walk["ok"]:
         return {**out, "status": "refused", "check": walk["check"], "at": walk["at"]}
     out["end"] = walk["end"]
-    others = set(body_funcs) - ({enclosing[0]} if enclosing else set())
+    strays = sorted(s for s, _ in walk.get("strays", ()))
+    others = set(body_funcs) - ({enclosing[0]} if enclosing else set()) - set(strays)
     if others:
         return {**out, "status": "refused", "check": "overlaps_function", "at": sorted(others)}
+    delete = ([enclosing[0]] if enclosing else []) + strays
     if enclosing:
         if gap is None or not gap["ok"]:
             return {**out, "status": "refused", "check": (gap or {}).get("check", "gap_missing"),
                     "detail": {k: v for k, v in (gap or {}).items() if k not in ("ok", "check")}}
         if enclosing[1] != walk["end"]:
             return {**out, "status": "refused", "check": "end_mismatch", "at": enclosing[1]}
-        return {**out, "status": "would-repair", "action": "set_func_start"}
-    return {**out, "status": "would-repair", "action": "add_func"}
+        if enc_chunks != 1:
+            return {**out, "status": "refused", "check": "enclosing_has_tails", "at": enclosing[0]}
+        return {**out, "status": "would-repair", "action": "replace_func", "delete_funcs": delete,
+                "gap_junk": bool(gap.get("junk"))}
+    return {**out, "status": "would-repair", "action": "add_func", "delete_funcs": delete}
 
 
 def undo_record(cb: int, action: str, lo: int, hi: int, items, functions, names, comments) -> dict:
@@ -193,6 +257,18 @@ def summarize(results) -> dict:
             "by_check": by_check}
 
 
+def parse_batch_args(argv) -> dict:
+    """``idc.ARGV`` of a batch run (``argv[0]`` is the script) to ``main`` keyword arguments."""
+    import argparse
+
+    ap = argparse.ArgumentParser(prog="repair_functions.py", exit_on_error=False)
+    ap.add_argument("out")
+    ap.add_argument("--apply", action="store_true")
+    ap.add_argument("--extract-ida")
+    ns = ap.parse_args(list(argv[1:]))
+    return {"out_path": ns.out, "apply": ns.apply, "extract_path": ns.extract_ida}
+
+
 def _dumps(rec) -> str:
     return json.dumps(rec, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
 
@@ -214,6 +290,7 @@ class _Ida:
         import ida_bytes
         import ida_funcs
         import ida_idp
+        import ida_nalt
         import ida_name
         import ida_ua
         import ida_xref
@@ -222,6 +299,7 @@ class _Ida:
 
         self.auto, self.bytes, self.funcs, self.idp = ida_auto, ida_bytes, ida_funcs, ida_idp
         self.name, self.ua, self.xref, self.utils, self.idc = ida_name, ida_ua, ida_xref, idautils, idc
+        self.nalt = ida_nalt
         self.noflow = getattr(ida_xref, "XREF_NOFLOW", getattr(ida_xref, "XREF_FAR", 1))
 
     def decode(self, ea):
@@ -251,6 +329,30 @@ class _Ida:
         f = self.funcs.get_func(ea)
         return None if f is None else (f.start_ea, f.end_ea)
 
+    def chunk_count(self, start) -> int:
+        return sum(1 for _ in self.utils.Chunks(start))
+
+    def stray(self, ea):
+        """``(start, end)`` of the function at ``ea`` when it is a stray (:func:`is_stray`)."""
+        b = self.func_bounds(ea)
+        if b is None or b[0] != ea:
+            return None
+        n = sum(1 for _ in self.utils.Heads(b[0], b[1]))
+        if is_stray(n, self.chunk_count(ea), self.referenced(b[0], b[1])):
+            return b
+        return None
+
+    def switch(self, ea):
+        si = self.nalt.get_switch_info(ea)
+        if si is None:
+            return None
+        cases = self.xref.calc_switch_cases(ea, si)
+        if cases is None:
+            return None
+        targets = sorted({int(t) for t in cases.targets})
+        return {"targets": targets, "table": int(si.jumps),
+                "table_size": int(si.get_jtable_size()) * int(si.get_jtable_element_size())}
+
     def items(self, lo, hi) -> list[dict]:
         out = []
         ea = self.bytes.get_item_head(lo)
@@ -270,10 +372,12 @@ class _Ida:
                 out[f.start_ea] = f.end_ea
         return out
 
-    def before_state(self, cb, action, lo, hi, items, enclosing):
+    def before_state(self, cb, action, lo, hi, items, func_starts):
         funcs = []
-        if enclosing is not None:
-            f = self.funcs.get_func(enclosing)
+        for start in func_starts:
+            f = self.funcs.get_func(start)
+            if f is None:
+                continue
             funcs.append({"start": f.start_ea, "end": f.end_ea,
                           "chunks": [list(c) for c in self.utils.Chunks(f.start_ea)],
                           "comment": self.idc.get_func_cmt(f.start_ea, 0) or None,
@@ -295,7 +399,7 @@ class _Ida:
                 if any(True for _ in self.utils.XrefsTo(ea, self.noflow))]
 
 
-def _assess(ida: _Ida, cb: int) -> tuple[dict, dict | None]:
+def _assess(ida: _Ida, cb: int, callbacks=frozenset()) -> tuple[dict, dict | None]:
     bounds = ida.func_bounds(cb)
     if bounds is not None and bounds[0] == cb:
         return {"va": cb, "status": "already-ok"}, None
@@ -305,41 +409,48 @@ def _assess(ida: _Ida, cb: int) -> tuple[dict, dict | None]:
         b = ida.func_bounds(ea)
         return b is not None and b[0] == ea and b[0] != enc
 
-    walk = decode_walk(cb, ida.decode, foreign)
+    walk = decode_walk(cb, ida.decode, foreign, stray_func=ida.stray, switch=ida.switch)
     gap = None
     if bounds is not None:
         lo = bounds[0]
         heads = [(i["ea"], i["size"]) for i in ida.items(lo, cb)]
-        gap = gap_check(lo, cb, ida.bytes.get_bytes(lo, cb - lo) or b"", heads, ida.referenced(lo, cb))
+        gap = gap_check(lo, cb, ida.bytes.get_bytes(lo, cb - lo) or b"", heads, ida.referenced(lo, cb),
+                        lo in callbacks)
     body_funcs = {b[0] for b in (ida.func_bounds(i["ea"]) for i in walk["insns"]) if b is not None}
-    plan = plan_repair(cb, bounds, walk, gap, body_funcs)
+    plan = plan_repair(cb, bounds, walk, gap, body_funcs, ida.chunk_count(enc) if enc is not None else 1)
     plan["insns"] = [{k: i[k] for k in ("ea", "size", "mnem", "bytes")} for i in walk["insns"]]
+    if walk["ok"] and walk["switches"]:
+        plan["switches"] = walk["switches"]
     if plan["status"] != "would-repair":
         return plan, None
     end = walk["end"]
     lo = bounds[0] if bounds else cb
     items = ida.items(min(lo, ida.bytes.get_item_head(cb)), end)
     plan["conflicting"] = conflicting_items(items, walk["insns"], cb, end)
+    if plan.get("gap_junk"):
+        plan["gap_items"] = [it for it in items if lo <= it["ea"] < cb and it not in plan["conflicting"]]
     return plan, {"walk": walk, "items": items, "lo": min([lo, cb] + [i["ea"] for i in items])}
 
 
-def _apply(ida: _Ida, plan: dict, ctx: dict, out) -> dict:
-    cb, end, enc = plan["va"], plan["end"], plan["enclosing"]
+def _apply(ida, plan: dict, ctx: dict, out) -> dict:
+    """Apply one ``would-repair`` plan. Order matters: functions are deleted before any item is
+    undefined, because undefining a function's entry instruction makes IDA delete the function."""
+    cb, end = plan["va"], plan["end"]
     lo = ctx["lo"]
+    delete = list(plan.get("delete_funcs", ()))
     near_before = ida.functions_near(lo, end)
-    undo = ida.before_state(cb, plan["action"], lo, end, ctx["items"], enc)
+    undo = ida.before_state(cb, plan["action"], lo, end, ctx["items"], delete)
     out.write(_dumps(undo) + "\n")
     out.flush()
-    for it in plan["conflicting"]:
+    for start in delete:
+        if not ida.funcs.del_func(start):
+            return {**plan, "status": "failed", "check": "del_func", "at": start}
+    for it in plan["conflicting"] + plan.get("gap_items", []):
         ida.bytes.del_items(it["ea"], ida.bytes.DELIT_SIMPLE, it["size"])
     for ins in ctx["walk"]["insns"]:
         if not ida.bytes.is_code(ida.bytes.get_flags(ins["ea"])) and ida.ua.create_insn(ins["ea"]) <= 0:
             return {**plan, "status": "failed", "check": "create_insn", "at": ins["ea"]}
-    if plan["action"] == "set_func_start":
-        rc = ida.funcs.set_func_start(enc, cb)
-        if rc != ida.funcs.MOVE_FUNC_OK:
-            return {**plan, "status": "failed", "check": "set_func_start", "rc": rc}
-    elif not ida.funcs.add_func(cb):
+    if not ida.funcs.add_func(cb):
         return {**plan, "status": "failed", "check": "add_func"}
     ida.auto.plan_and_wait(lo, end)
     got = ida.func_bounds(cb)
@@ -347,7 +458,7 @@ def _apply(ida: _Ida, plan: dict, ctx: dict, out) -> dict:
         return {**plan, "status": "failed", "check": "readback_start", "got": got}
     if got[1] != end:
         return {**plan, "status": "failed", "check": "readback_end", "got": got}
-    changes = bound_changes(near_before, ida.functions_near(lo, end), {cb} | ({enc} if enc is not None else set()))
+    changes = bound_changes(near_before, ida.functions_near(lo, end), {cb} | set(delete))
     if changes:
         return {**plan, "status": "failed", "check": "readback_neighbours", "changes": changes}
     return {**plan, "status": "repaired"}
@@ -366,12 +477,13 @@ def main(out_path: str, apply: bool = False, extract_path: str | None = None) ->
     header.update({"script": "repair_functions", "script_version": SCRIPT_VERSION,
                    "extract_ida_version": ex.SCRIPT_VERSION})
     ida = _Ida()
+    cbset = frozenset(callbacks)
     results = []
     tmp = f"{out_path}.tmp"
     with open(tmp, "w", encoding="utf-8", newline="\n") as out:
         out.write(_dumps(header) + "\n")
         for cb in callbacks:
-            plan, ctx = _assess(ida, cb)
+            plan, ctx = _assess(ida, cb, cbset)
             if ctx is not None and apply:
                 plan = _apply(ida, plan, ctx, out)
             res = {"kind": "result", **plan}
@@ -394,7 +506,50 @@ def _default_extract_path() -> str:
     return DEFAULT_EXTRACT_IDA
 
 
+def batch(argv, run=None, kill=None, qexit=None, wait=None) -> int:
+    """Headless entry: parse ``argv``, run, print the summary line, exit IDA.
+
+    The hooks default to IDA (``ida_auto.auto_wait``, ``DBFL_KILL``, ``idc.qexit``); tests pass fakes.
+    Returns the exit code passed to ``qexit``.
+    """
+    import traceback
+
+    code = 1
+    try:
+        kw = parse_batch_args(argv)
+        kw["extract_path"] = kw["extract_path"] or _default_extract_path()
+        if wait is not None:
+            wait()
+        summary = (run or main)(**kw)
+        print(SUMMARY_PREFIX + json.dumps(summary, sort_keys=True), flush=True)
+        code = 0
+    except BaseException:  # noqa: BLE001 - any failure must still end the batch process
+        traceback.print_exc()
+        print(SUMMARY_PREFIX + json.dumps({"error": True, "saved": False}), flush=True)
+        if kill is not None:
+            kill()
+    if qexit is not None:
+        qexit(code)
+    return code
+
+
+def _ida_batch_hooks():
+    import ida_auto
+    import ida_loader
+    import idc
+
+    return {"wait": ida_auto.auto_wait, "qexit": idc.qexit,
+            "kill": lambda: ida_loader.set_database_flag(ida_loader.DBFL_KILL)}
+
+
 if "OUT" in globals():
     _SUMMARY = main(OUT, bool(globals().get("APPLY", False)),  # noqa: F821
                     globals().get("EXTRACT_IDA") or _default_extract_path())
-    print(json.dumps(_SUMMARY))
+    print(SUMMARY_PREFIX + json.dumps(_SUMMARY, sort_keys=True))
+elif __name__ == "__main__":
+    try:
+        import idc as _idc
+    except ImportError:
+        _idc = None
+    if _idc is not None and len(_idc.ARGV) >= 2:
+        batch(list(_idc.ARGV), **_ida_batch_hooks())

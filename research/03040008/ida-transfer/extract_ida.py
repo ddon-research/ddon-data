@@ -7,7 +7,9 @@ Run inside IDA (ida-mcp ``execute_python`` or headless ``idat -S``) with one cal
 Optional globals: ``DEPTH`` (callee depth, default 3), ``ROOTS`` (extra root VAs),
 ``ROOT_PATTERNS`` (PS4 root regexes over the demangled qualified name),
 ``PC_WRITE_ENTRY_OVERRIDE`` (the packet write entry whose callers are PC roots).
-Headless: ``idat -A -S"extract_ida.py <OUT> <SIDE>" <db>`` (arguments via ``idc.ARGV``).
+Headless batch (read-only): ``idat -A -L<log> -S"extract_ida.py <OUT> <SIDE>" <db>`` (arguments via
+``idc.ARGV``); it prints ``extract_ida summary: {...}`` to the log, discards the session
+(``DBFL_KILL``, the packed database is not rewritten) and exits with ``idc.qexit``.
 
 The database is only read: no renames, types, comments, decompilation or saves.
 
@@ -775,17 +777,60 @@ def main(out_path: str, side: str, depth: int = DEFAULT_DEPTH, extra_roots=(), p
     return summary
 
 
+SUMMARY_PREFIX = "extract_ida summary: "
+
+
+def _short(summary: dict) -> dict:
+    return {k: v for k, v in summary.items() if k != "onpacket_orphan_refs"}
+
+
+def batch(argv, run=None, kill=None, qexit=None, wait=None) -> int:
+    """Headless read-only entry: ``argv`` = ``[script, OUT, SIDE, ...]`` (a trailing ``--exit`` is
+    accepted and ignored: the batch always exits). Waits for auto-analysis, runs :func:`main`, prints
+    the summary line to the log, marks the database not to be saved (``DBFL_KILL``: the packed
+    ``.i64`` stays as it was) and calls ``qexit`` (0, or 1 after an exception). The hooks default to
+    IDA; tests pass fakes. Returns the exit code.
+    """
+    import traceback
+
+    code = 1
+    try:
+        args = [a for a in argv[1:] if a != "--exit"]
+        if len(args) != 2:
+            raise ValueError(f"usage: extract_ida.py <OUT> <pc|ps4>, got {args!r}")
+        if wait is not None:
+            wait()
+        summary = (run or main)(args[0], args[1])
+        print(SUMMARY_PREFIX + json.dumps(_short(summary), sort_keys=True), flush=True)
+        code = 0
+    except BaseException:  # any failure must still end the batch process
+        traceback.print_exc()
+        print(SUMMARY_PREFIX + json.dumps({"error": True}), flush=True)
+    if kill is not None:
+        kill()
+    if qexit is not None:
+        qexit(code)
+    return code
+
+
+def _ida_batch_hooks():
+    import ida_auto
+    import ida_loader
+    import idc
+
+    return {"wait": ida_auto.auto_wait, "qexit": idc.qexit,
+            "kill": lambda: ida_loader.set_database_flag(ida_loader.DBFL_KILL)}
+
+
 if "OUT" in globals() and "SIDE" in globals():
     _SUMMARY = main(OUT, SIDE, globals().get("DEPTH", DEFAULT_DEPTH),  # noqa: F821
                     globals().get("ROOTS", ()), globals().get("ROOT_PATTERNS"),
                     globals().get("PC_WRITE_ENTRY_OVERRIDE", PC_WRITE_ENTRY))
-    print(json.dumps({k: v for k, v in _SUMMARY.items() if k != "onpacket_orphan_refs"}))
+    print(SUMMARY_PREFIX + json.dumps(_short(_SUMMARY), sort_keys=True))
 elif __name__ == "__main__":
     try:
         import idc as _idc
     except ImportError:
         _idc = None
     if _idc is not None and len(_idc.ARGV) >= 3:
-        print(json.dumps(main(_idc.ARGV[1], _idc.ARGV[2])))
-        if _idc.ARGV[-1] == "--exit":
-            _idc.qexit(0)
+        batch(list(_idc.ARGV), **_ida_batch_hooks())

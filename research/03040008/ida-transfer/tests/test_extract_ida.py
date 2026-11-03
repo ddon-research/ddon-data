@@ -209,3 +209,23 @@ def test_plan_scope_never_expands_the_enclosing_function():
     assert 0x200 not in asked and 0x1FD not in asked
     assert [r["va"] for r in missing] == [0x200]
     assert len(dist) - sum(d > 0 for d in dist.values()) == 2 - len(missing)  # depth-0 = roots - missing
+
+
+def test_batch_read_only_always_discards_and_exits(capsys):
+    calls, exits, killed = [], [], []
+
+    def run(out, side):
+        calls.append((out, side))
+        return {"kind": "summary", "functions": 3, "onpacket_orphan_refs": [1, 2]}
+
+    code = ex.batch(["extract_ida.py", "o.jsonl", "pc", "--exit"], run=run, qexit=exits.append,
+                    kill=lambda: killed.append(1))
+    assert code == 0 and calls == [("o.jsonl", "pc")] and exits == [0] and killed == [1]
+    line = capsys.readouterr().out.strip().splitlines()[-1]
+    assert line.startswith(ex.SUMMARY_PREFIX) and "onpacket_orphan_refs" not in line
+
+
+def test_batch_bad_args_exit_nonzero():
+    exits = []
+    assert ex.batch(["extract_ida.py", "o.jsonl"], run=lambda o, s: {}, qexit=exits.append) == 1
+    assert exits == [1]
