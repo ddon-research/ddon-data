@@ -41,6 +41,12 @@ Coordinator: main session. One subagent at a time. Method and rules: `spec.md`.
   2 PC vs 4 PS4 calls); precision 5 x 93 withheld, 0 recovered, 0 wrong; 006 matched 146 agree / 209 not
   paired / 0 disagree; one wrong seed found and fixed: seeds must match the connection class). Next:
   role anchors (reader, codec width, sender by packet id): T005b evidence, then T005c.
+  T005b done (`research/T005b-role-anchors.md`: 463/467 PC handlers call one reader; PS4 88 out-of-line
+  `ReadPacket`, 378 inlined; 220/222 element-reader calls align in equal-width pairs = 117 1:1 pairs; 658
+  PC `WritePacket` calls with constant g/id/sub, 408 RES seeds with one sender; REQ/RES by shared listener
+  slot (327 PC / 321 PS4), names by convention only = I; five anchor rules proposed). Plan: T005c tools
+  (call-site constant args, codec shape, externs; repair of undefined call targets), T005d batch run
+  (repair + both re-extracts), T005e matcher anchors 1, 2, 4 (+3 as call-site naming, 5 later).
 - [ ] T006 Types and locals rules over the accepted pairs (`implementer`, evidence from T004 dumps).
 - [ ] T007 Apply script and the applied copy (`implementer` writes it, `evidence-researcher-ida` runs it).
 - [ ] T008 Verify: re-extract, compare, decompile sample; adversarial review of pairs and types.
@@ -50,7 +56,7 @@ Order: T003 first (T002 needs a copy of the accepted database), then T002.
 
 ## Running
 
-- T005b (evidence-researcher-ida, brief `briefs/T005b-role-anchors-evidence.md`), started 2026-11-03.
+- T005c (implementer, brief `briefs/T005c-extract-repair-v3.md`), started 2026-11-03.
 - Decision (coordinator, 2026-11-03): from T004d on, all writes go to one persistent work copy
   `PC_DDON_03040008/ddon-data-007work/` of the accepted database (repairs first, then T007's apply);
   it is published as `spec007-packet-handlers-<date>/` at the close.
