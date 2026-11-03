@@ -1,0 +1,54 @@
+# 007 W2 T012: member links per PS4 class (PC offset = PS4 member, same width), conflicts per class
+ps4_class	links	pc_offset_conflicts	member_conflicts	pc_minus_ps4	links_detail
+CDataClanSearchResult	9	0	0	-0xc,-0x4	0x4=m_unClanID@ps4:0x8 0xc=m_usLv@ps4:0x18 0xe=m_usMemberNum@ps4:0x1a 0x10=m_unMotto@ps4:0x1c 0x14=m_ucEmblemMarkType@ps4:0x20 0x15=m_ucEmblemBaseType@ps4:0x21 0x16=m_ucEmblemBaseMainColor@ps4:0x22 0x17=m_ucEmblemBaseSubColor@ps4:0x23 0x18=m_unMasterCharacterID@ps4:0x24
+CDataGPShopLineupElementBase	5	0	0	-0x4	0x4=m_unID@ps4:0x8 0x8=m_unGP@ps4:0xc 0xc=m_unInitialGP@ps4:0x10 0x10=m_unDiscountGP@ps4:0x14 0x14=m_ucIconId@ps4:0x18
+CDataGameTimeBaseInfo	9	0	0	-0x4,+0x0	0x4=m_unGameTimeOneDayMin@ps4:0x8 0x8=m_unGameTimeYearMonth@ps4:0xc 0xc=m_unGameTimeMonthDay@ps4:0x10 0x10=m_unGameTimeDayHour@ps4:0x14 0x14=m_unGameTimeWeekDay@ps4:0x18 0x18=m_unGameTimeMoonAge@ps4:0x1c 0x20=m_llOriginalRealTimeSec@ps4:0x20 0x28=m_llOriginalGameTimeSec@ps4:0x28 0x30=m_unOriginalWeek@ps4:0x30
+CDataMailInfo	3	0	0	+0x0	0x8=m_ullId@ps4:0x8 0x10=m_ucState@ps4:0x10 0x11=m_ucItemState@ps4:0x11
+CDataOrbGainExtendParam	12	0	0	-0x4	0x4=m_usHpMax@ps4:0x8 0x6=m_usStaminaMax@ps4:0xa 0x8=m_usAttack@ps4:0xc 0xa=m_usDefence@ps4:0xe 0xc=m_usMagicAttack@ps4:0x10 0xe=m_usMagicDefence@ps4:0x12 0x10=m_usAbilityCost@ps4:0x14 0x12=m_usJewerlySlot@ps4:0x16 0x14=m_usUseItemSlot@ps4:0x18 0x16=m_usMaterialItemSlot@ps4:0x1a 0x18=m_usEquipItemSlot@ps4:0x1c 0x1a=m_usMainPawnSlot@ps4:0x1e
+CDataWorldInfo	7	0	0	-0x10,-0x4	0x4=m_usId@ps4:0x8 0x10=m_ucDragonType@ps4:0x20 0x11=m_ucSetType@ps4:0x21 0x14=m_unTemp0@ps4:0x24 0x18=m_unTemp1@ps4:0x28 0x1c=m_unTemp2@ps4:0x2c 0x20=m_unTemp3@ps4:0x30
+nUserSession::CPacket_S2C_ACTIVATE_JOB_ORDER_RES	4	0	0	+0x8	0x18=m_ucJobID@ps4:0x10 0x19=m_ucRewardType@ps4:0x11 0x1c=m_unRewardNo@ps4:0x14 0x20=m_ucRewardLv@ps4:0x18
+nUserSession::CPacket_S2C_AREA_RANK_UP_RES	4	0	0	+0x8	0x18=m_unAreaId@ps4:0x10 0x1c=m_unAreaRank@ps4:0x14 0x20=m_unAreaPoint@ps4:0x18 0x24=m_unNextAreaPoint@ps4:0x1c
+nUserSession::CPacket_S2C_CHANGE_CAP_TO_GP_RES	3	0	0	+0x8	0x18=m_unChangeListID@ps4:0x10 0x1c=m_unGP@ps4:0x14 0x20=m_unCAP@ps4:0x18
+nUserSession::CPacket_S2C_CLAN_SHOP_GET_BUFF_ITEM_LIST_RES	1	0	0	-0x4	0x2c=m_unClanPoint@ps4:0x30
+nUserSession::CPacket_S2C_CLAN_SHOP_GET_FUNCTION_ITEM_LIST_RES	1	0	0	-0x4	0x2c=m_unClanPoint@ps4:0x30
+nUserSession::CPacket_S2C_CRAFT_SKILL_UP_RES	5	0	0	+0x8	0x18=m_unPawnID@ps4:0x10 0x1c=m_unSkillType@ps4:0x14 0x20=m_unSkillLevel@ps4:0x18 0x24=m_unUseCraftPoint@ps4:0x1c 0x28=m_unRemainCraftPoint@ps4:0x20
+nUserSession::CPacket_S2C_GAME_TIME_GET_BASEINFO_RES	1	0	0	-0x10	0x78=m_unMoonAgeLoopSec@ps4:0x88
+nUserSession::CPacket_S2C_GET_AREA_MASTER_INFO_RES	8	0	0	-0x4,+0x8	0x18=m_unAreaId@ps4:0x10 0x1c=m_unRank@ps4:0x14 0x20=m_unPoint@ps4:0x18 0x24=m_unWeekPoint@ps4:0x1c 0x28=m_unLastWeekPoint@ps4:0x20 0x2c=m_unToNextPoint@ps4:0x24 0x44=m_bCanReciveSupply@ps4:0x48 0x45=m_bCanRankUp@ps4:0x49
+nUserSession::CPacket_S2C_GET_CYCLE_CONTENTS_NOW_POINT_LIST_RES	1	0	0	+0x8	0x18=m_unCycleContentsScheduleId@ps4:0x10
+nUserSession::CPacket_S2C_GET_CYCLE_CONTENTS_POINT_LIST_RES	1	0	0	+0x8	0x18=m_unCycleContentsScheduleId@ps4:0x10
+nUserSession::CPacket_S2C_GET_CYCLE_CONTENTS_REWARD_RES	2	0	0	-0x8,+0x8	0x18=m_unCycleContentsScheduleId@ps4:0x10 0x30=m_bIsAddRewardBox@ps4:0x38
+nUserSession::CPacket_S2C_GET_DROP_ITEM_RES	1	0	0	+0x0	0x28=m_unId@ps4:0x28
+nUserSession::CPacket_S2C_GET_GATHERING_ITEM_RES	1	0	0	+0x0	0x28=m_unPosId@ps4:0x28
+nUserSession::CPacket_S2C_GET_GP_RES	4	0	0	+0x8	0x18=m_unGP@ps4:0x10 0x20=m_llUseLimit@ps4:0x18 0x28=m_ullRealTime@ps4:0x20 0x30=m_usMilliseconds@ps4:0x28
+nUserSession::CPacket_S2C_GET_MATCHING_PROFILE_RES	2	0	0	-0x8	0x40=m_ucJob@ps4:0x48 0x44=m_unLevel@ps4:0x4c
+nUserSession::CPacket_S2C_GET_PAWN_EQUIP_LIST_RES	1	0	0	+0x8	0x18=m_unPawnID@ps4:0x10
+nUserSession::CPacket_S2C_GET_PAWN_TOTAL_SCORE_RES	1	0	0	+0x8	0x18=m_unPawnID@ps4:0x10
+nUserSession::CPacket_S2C_GP_SHOP_DISPLAY_BUY_RES	2	0	0	-0x8,+0x8	0x18=m_unLineupId@ps4:0x10 0x30=m_unBalance@ps4:0x38
+nUserSession::CPacket_S2C_JOB_VALUE_SHOP_GET_LINEUP_RES	2	0	0	+0x8	0x18=m_ucJobId@ps4:0x10 0x19=m_ucJobValueType@ps4:0x11
+nUserSession::CPacket_S2C_LEADER_QUEST_PROGRESS_REQUEST_RES	3	0	0	+0x8	0x18=m_ucQuestProgressResult@ps4:0x10 0x1c=m_unQuestScheduleId@ps4:0x14 0x20=m_usProcessNo@ps4:0x18
+nUserSession::CPacket_S2C_LEARN_ABILITY_RES	4	0	0	+0x8	0x18=m_ucJob@ps4:0x10 0x1c=m_unNewJobPoint@ps4:0x14 0x20=m_unAbilityID@ps4:0x18 0x24=m_ucAbilityLv@ps4:0x1c
+nUserSession::CPacket_S2C_LEARN_NORMAL_SKILL_RES	3	0	0	+0x8	0x18=m_ucJob@ps4:0x10 0x1c=m_unSkillID@ps4:0x14 0x20=m_unNewJobPoint@ps4:0x18
+nUserSession::CPacket_S2C_LEARN_PAWN_ABILITY_RES	5	0	0	+0x8	0x18=m_unPawnID@ps4:0x10 0x1c=m_ucJob@ps4:0x14 0x20=m_unNewJobPoint@ps4:0x18 0x24=m_unAbilityID@ps4:0x1c 0x28=m_ucAbilityLv@ps4:0x20
+nUserSession::CPacket_S2C_LEARN_PAWN_NORMAL_SKILL_RES	4	0	0	+0x8	0x18=m_unPawnID@ps4:0x10 0x1c=m_ucJob@ps4:0x14 0x20=m_unSkillID@ps4:0x18 0x24=m_unNewJobPoint@ps4:0x1c
+nUserSession::CPacket_S2C_LEARN_PAWN_SKILL_RES	5	0	0	+0x8	0x18=m_unPawnID@ps4:0x10 0x1c=m_ucJob@ps4:0x14 0x20=m_unNewJobPoint@ps4:0x18 0x24=m_unSkillID@ps4:0x1c 0x28=m_ucSkillLv@ps4:0x20
+nUserSession::CPacket_S2C_LEARN_SKILL_RES	4	0	0	+0x8	0x18=m_ucJob@ps4:0x10 0x1c=m_unNewJobPoint@ps4:0x14 0x20=m_unSkillID@ps4:0x18 0x24=m_ucSkillLv@ps4:0x1c
+nUserSession::CPacket_S2C_LOST_PAWN_WALLET_REVIVE_RES	3	0	0	+0x8	0x18=m_unPawnId@ps4:0x10 0x1c=m_ucType@ps4:0x14 0x20=m_unValue@ps4:0x18
+nUserSession::CPacket_S2C_NG_WORD_GET_LIST_RES	1	0	0	+0x8	0x18=m_ullVersionNo@ps4:0x10
+nUserSession::CPacket_S2C_PARTY_INVITE_RES	3	0	0	+0x8	0x18=m_usTimeoutSec@ps4:0x10 0x1a=m_usServerId@ps4:0x12 0x1c=m_unPartyId@ps4:0x14
+nUserSession::CPacket_S2C_PARTY_JOIN_RES	3	0	0	+0x8	0x18=m_ucMemberIndex@ps4:0x10 0x20=m_ullContentNumber@ps4:0x18 0x28=m_unPartyId@ps4:0x20
+nUserSession::CPacket_S2C_PAWN_EXPEDITION_GET_MY_SALLY_INFO_RES	3	0	0	+0x4	0x24=m_bIsHotSpot@ps4:0x20 0x25=m_ucSallyType@ps4:0x21 0x26=m_ucSallyCount@ps4:0x22
+nUserSession::CPacket_S2C_PAWN_EXPEDITION_GET_REWARD_DROP_ITEM_RES	2	0	0	-0x8,+0x8	0x18=m_unPawnRewardBoxId@ps4:0x10 0x30=m_ucPawnExpeditionStatus@ps4:0x38
+nUserSession::CPacket_S2C_PAWN_EXPEDITION_GET_REWARD_DROP_RES	1	0	0	+0x8	0x18=m_unRewardDropNum@ps4:0x10
+nUserSession::CPacket_S2C_PAWN_EXPEDITION_GET_SALLY_INFO_RES	1	0	0	+0x8	0x18=m_ucSallyCount@ps4:0x10
+nUserSession::CPacket_S2C_PAWN_LOST_RES	2	0	0	+0x0,+0x8	0x18=m_unPawnID@ps4:0x10 0x20=m_bIsLost@ps4:0x20
+nUserSession::CPacket_S2C_QUEST_PROGRESS_RES	2	0	0	+0x8	0x18=m_ucQuestProgressResult@ps4:0x10 0x1c=m_unQuestScheduleId@ps4:0x14
+nUserSession::CPacket_S2C_RELEASE_ORB_ELEMENT_RES	3	0	0	+0x8	0x18=m_unRestOrb@ps4:0x10 0x1c=m_ucGainParamType@ps4:0x14 0x20=m_unGainParamValue@ps4:0x18
+nUserSession::CPacket_S2C_RELEASE_PAWN_ORB_ELEMENT_RES	4	0	0	+0x8	0x18=m_unPawnID@ps4:0x10 0x1c=m_unRestOrb@ps4:0x14 0x20=m_ucGainParamType@ps4:0x18 0x24=m_unGainParamValue@ps4:0x1c
+nUserSession::CPacket_S2C_RENTAL_PAWN_LOST_RES	2	0	0	+0x0,+0x8	0x18=m_unPawnID@ps4:0x10 0x20=m_ucAdventureCount@ps4:0x20
+nUserSession::CPacket_S2C_REPORT_JOB_ORDER_PROGRESS_RES	1	0	0	+0x8	0x18=m_ucJobID@ps4:0x10
+nUserSession::CPacket_S2C_RESET_CRAFTPOINT_RES	2	0	0	-0x8,+0x8	0x18=m_unPawnID@ps4:0x10 0x30=m_unCraftPoint@ps4:0x38
+nUserSession::CPacket_S2C_SET_PAWN_ABILITY_RES	4	0	0	+0x8	0x18=m_unPawnID@ps4:0x10 0x1c=m_ucSlotNo@ps4:0x14 0x20=m_unAbilityID@ps4:0x18 0x24=m_ucAbilityLv@ps4:0x1c
+nUserSession::CPacket_S2C_SET_PAWN_SKILL_RES	5	0	0	+0x8	0x18=m_unPawnID@ps4:0x10 0x1c=m_ucJob@ps4:0x14 0x1d=m_ucSlotNo@ps4:0x15 0x20=m_unSkillID@ps4:0x18 0x24=m_ucSkillLv@ps4:0x1c
+nUserSession::CPacket_S2C_SET_SKILL_RES	4	0	0	+0x8	0x18=m_ucJob@ps4:0x10 0x19=m_ucSlotNo@ps4:0x11 0x1c=m_unSkillID@ps4:0x14 0x20=m_ucSkillLv@ps4:0x18
+nUserSession::CPacket_S2C_SYSTEM_MAIL_GET_ALL_ITEM_RES	1	0	0	+0x8	0x18=m_ullId@ps4:0x10
+nUserSession::CPacket_S2C_WEATHER_FORECAST_GET_RES	2	0	0	+0x8	0x18=m_unIntervalGameHour@ps4:0x10 0x1c=m_unGameDayToEarthMin@ps4:0x14

@@ -177,14 +177,22 @@ Order: T003 first (T002 needs a copy of the accepted database), then T002.
 
 Goal: the rest of Sam's request: packet-class types and local names, by operation, no false positives.
 
-- [ ] T012 Evidence: codec destinations -> packet member links; anchored gap pairs (`briefs/W2-T012-evidence.md`).
+- [x] T012 Evidence (`research/W2-T012-evidence.md` + TSVs): codec destinations are pointer arguments (`lea`+push /
+  `lea rsi`) off the owner's object argument; 975 aligned sites give 167 member links in 52 classes, 0 conflicts
+  (+174 array-element, +47 element-reader links); packet classes shift by a per-class constant mostly, but
+  CHANGE_JOB_RES has a list 0x44 off the shift (Season 3 removals): partial layouts from links only, never a
+  shift rule. Anchored gaps: 5 new pairs only (`cancelReserveNetworkErrorDialog` from 104 requesters);
+  getters stay unreachable. Packet locals linkable: PC handler object passed to the paired reader <-> PS4
+  DWARF `packet` local that is the base of the reader's (inlined) codec destinations.
+  Plan: T013a extractor v6 + matcher exports, T013b batch extract, T013c partial layouts + locals rules +
+  apply support, T013d apply run.
 - [ ] T013 Partial packet layouts from member links (implementer), then apply.
 - [ ] T014 Wider pairs from anchored gaps (getters), then locals rules R1/R2 (implementer), then apply.
 - [ ] T015 Review, close wave 2, merge and push.
 
 ## Running
 
-- T012 (evidence-researcher-ida), started 2026-11-03.
+- T013a (implementer, brief `briefs/W2-T013a-extract-v6.md`), started 2026-11-03.
 - Decision (coordinator, 2026-11-03): from T004d on, all writes go to one persistent work copy
   `PC_DDON_03040008/ddon-data-007work/` of the accepted database (repairs first, then T007's apply);
   it is published as `spec007-packet-handlers-<date>/` at the close.
