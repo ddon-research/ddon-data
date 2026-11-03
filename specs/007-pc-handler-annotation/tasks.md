@@ -80,7 +80,10 @@ Coordinator: main session. One subagent at a time. Method and rules: `spec.md`.
   unchecked; comments 1,119; holdout: 48 types depend on a single seed, none new; 323 tests). Locals:
   wave 2. Conflicts settle in T007c. Types and locals rules over the accepted pairs (`implementer`, evidence from T004 dumps).
 - [ ] T007 Apply script and the applied copy (script done f913a776ad: tinfo/udt types, fail-closed on stale
-  before-state, undo log, verify mode; 354 tests; IDA adapter not yet run) (`implementer` writes it, `evidence-researcher-ida` runs it).
+  before-state, undo log, verify mode; 354 tests; IDA adapter not yet run). T007b dry run stopped by its
+  10% gate (`research/T007b-apply-run.md`): 105/189 types refused because `MtObject`, `CPacketDataBase`,
+  `MtArray` exist with equal layout but IDA's member names (`__vftable`, `baseclass_0`); work copy
+  unchanged, rollback copy `.before-T007b.i64` made. T007c: equality and emission in IDA's conventions. (`implementer` writes it, `evidence-researcher-ida` runs it).
 - [ ] T008 Verify: re-extract, compare, decompile sample; adversarial review of pairs and types.
 - [ ] T009 Close: `check.sh --all`, docs, retrospective, publish the database folder.
 
@@ -88,7 +91,7 @@ Order: T003 first (T002 needs a copy of the accepted database), then T002.
 
 ## Running
 
-- T007b (evidence-researcher-ida, brief `briefs/T007b-apply-run.md`), started 2026-11-03.
+- T007c (implementer, brief `briefs/T007c-type-equality-fix.md`), started 2026-11-03; then T007b reruns.
 - Decision (coordinator, 2026-11-03): from T004d on, all writes go to one persistent work copy
   `PC_DDON_03040008/ddon-data-007work/` of the accepted database (repairs first, then T007's apply);
   it is published as `spec007-packet-handlers-<date>/` at the close.
