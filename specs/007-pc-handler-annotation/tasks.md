@@ -23,6 +23,12 @@ Coordinator: main session. One subagent at a time. Method and rules: `spec.md`.
   function; `repair_functions.py`, 95 tests). Decision: names left at a moved function's old start
   (e.g. `0x7C5C8D`) are not moved now; T007 names the function at its new start from its PC string and
   removes the stale label there, recorded in the undo log.
+  T004d run (`research/T004d-repair.md`): dry run 909 ok / 119 to repair / 12 refused; apply 116 repaired,
+  3 failed (script defect: undefining the old start deletes the function), re-extract 15 missing roots,
+  orphan refs 38 -> 9. The writes were lost: the worker could not be closed (save/close denied), was
+  killed, and the next headless open restored the packed base (coordinator check: 0/116). Decision
+  (coordinator, 2026-11-03): database writes run only as headless `idat -A -S<script>` batch jobs ending in
+  `qexit(0)` (checked: saves and packs); ida-mcp only reads. T004e fixes the script, T004f reruns.
 - [ ] T005 Matcher with gates and tests, the precision check on withheld seeds, the manifest (`implementer`).
 - [ ] T006 Types and locals rules over the accepted pairs (`implementer`, evidence from T004 dumps).
 - [ ] T007 Apply script and the applied copy (`implementer` writes it, `evidence-researcher-ida` runs it).
@@ -33,7 +39,7 @@ Order: T003 first (T002 needs a copy of the accepted database), then T002.
 
 ## Running
 
-- T004d (evidence-researcher-ida, brief `briefs/T004d-repair-and-reextract.md`), started 2026-11-03.
+- T004e (implementer, brief `briefs/T004e-repair-fixes.md`), started 2026-11-03.
 - Decision (coordinator, 2026-11-03): from T004d on, all writes go to one persistent work copy
   `PC_DDON_03040008/ddon-data-007work/` of the accepted database (repairs first, then T007's apply);
   it is published as `spec007-packet-handlers-<date>/` at the close.
