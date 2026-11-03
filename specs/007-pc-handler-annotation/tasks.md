@@ -60,6 +60,10 @@ Coordinator: main session. One subagent at a time. Method and rules: `spec.md`.
   function differently), then 0 accepted in 5 runs; cross-checks no disagreement). Pairs now 467 + 125 = 592.
   Plan: T005f extractor v4 (object-relative accesses for the layout check, slot facts, requester roots,
   reader depth 8), T005g batch extract, then the matcher rerun with rule 4 and T006 types.
+  T005f done (778d9264db: object-relative accesses with block-consistent register tracking, PS4 slot stores via
+  `mpManager`, requester roots (PC `sNetworkExt::reserveNetworkErrorDialog` `0xBB39D0`, 581 sites; PS4
+  `0x7EDF80`, 478), `codec_distance` depth 8; PC `callOnPacketFunc` slot already in v3 `const_stack`; 284 tests).
+  T005h (matcher): rule 4 on v4, PC codec walk skips callees with null `codec_distance`.
 - [ ] T006 Types and locals rules over the accepted pairs (`implementer`, evidence from T004 dumps).
 - [ ] T007 Apply script and the applied copy (`implementer` writes it, `evidence-researcher-ida` runs it).
 - [ ] T008 Verify: re-extract, compare, decompile sample; adversarial review of pairs and types.
@@ -69,7 +73,7 @@ Order: T003 first (T002 needs a copy of the accepted database), then T002.
 
 ## Running
 
-- T005f (implementer, brief `briefs/T005f-extract-v4.md`), started 2026-11-03.
+- T005g (evidence-researcher-ida, brief `briefs/T005g-extract-v4-run.md`), started 2026-11-03.
 - Decision (coordinator, 2026-11-03): from T004d on, all writes go to one persistent work copy
   `PC_DDON_03040008/ddon-data-007work/` of the accepted database (repairs first, then T007's apply);
   it is published as `spec007-packet-handlers-<date>/` at the close.
