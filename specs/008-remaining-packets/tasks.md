@@ -6,10 +6,12 @@ Coordinator: main session. One subagent at a time. Method, sources and marks: `s
   PC handler or sender; PC layouts fit 4,885/4,887 (29.23.16's handler ignores its body); 5 writer loops inferred;
   Arrowgene names all 115, structures 87 (81 equal to the PC layout); 7 batches. Plan: T002 writer loops (IDA),
   T003 B5+B2, T004 B1+B4, T005 B3+B7+B6 (patterns, JSON, names), then review.
-- [ ] T002.. Batches: evidence where the dump lacks a reader (`evidence-researcher-ida`), patterns + JSON
+- [x] T002 Writer loops (`research/T002-writer-loops.md`): the 5 lists and `Write_cstr` (u16 BE length, no NUL) read
+  in PC code (V); TSV layouts confirmed; fit 370/370.
+- [ ] T003.. Batches: evidence where the dump lacks a reader (`evidence-researcher-ida`), patterns + JSON
   (`implementer`), naming by code / data / extractor / leads; each with its fit counts and JSON changes.
 - [ ] Review (adversarial: a sample of V/I/G marks and fits), close, merge and push.
 
 ## Running
 
-- T002 (evidence-researcher-ida, brief `briefs/T002-writer-loops.md`), started 2026-11-03.
+- T003 (implementer, brief `briefs/T003-batches-B5-B2.md`), started 2026-11-03.
