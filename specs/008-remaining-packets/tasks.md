@@ -15,10 +15,15 @@ Coordinator: main session. One subagent at a time. Method, sources and marks: `s
   sample walks; new includes SeasonDungeon/DailyMission/InfinityDelivery; T001 corrected for 72.2.1 (u32 list + u8);
   72.1.16 named DAILY_MISSION_ACHIEVE_NTC (I: listed missions go 1 -> 2 in 113/113); 62.15.16 TrialId (28/28);
   OmState structure from the shared reader `0x766790`; groups 72/59 names I/G (59: one session).
-- [ ] T005.. Batches: evidence where the dump lacks a reader (`evidence-researcher-ida`), patterns + JSON
+- [x] T005 B3+B7+B6 (6a78dfac56, 391743c734, 3dbfb39755, `research/T005-batches-B3-B7-B6.md`): 45 patterns, 579/579
+  fit, 75/75 sample walks; T001 corrected for 34.0.1 (list of u64); new `ChainDungeon.hexpat`; 42 fields I by value
+  (e.g. season dungeon buff ids = AbilityIds of `contents_buff_info.abl`, 85/85); 62.39.16 and 63.2.16 renamed (G);
+  proposal: rename `Instance.hexpat` `GatheringItemListRes_unk_1` fields (u32 = ItemId 38/38).
+  All 115 ids decoded: 4,887 captures.
+- [ ] T007 Naming follow-ups (existing includes, review findings). evidence where the dump lacks a reader (`evidence-researcher-ida`), patterns + JSON
   (`implementer`), naming by code / data / extractor / leads; each with its fit counts and JSON changes.
 - [ ] Review (adversarial: a sample of V/I/G marks and fits), close, merge and push.
 
 ## Running
 
-- T005 (implementer, brief `briefs/T005-batches-B3-B7-B6.md`), started 2026-11-03.
+- T006 (adversarial-reviewer, brief `briefs/T006-adversarial.md`), started 2026-11-03.
