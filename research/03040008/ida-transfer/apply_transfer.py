@@ -26,8 +26,8 @@ Apply order: types (``types.h``; through the ``ida_typeinf`` tinfo/udt API, so t
 prototypes (``apply_tinfo`` with ``TINFO_DEFINITE``; compared as ``tinfo_t``, :func:`same_prototype`),
 function comments (appended below a ``----`` line, never replaced). ``conflict`` rows
 of ``skipped.tsv`` are reported, never written. Every write: the ``undo`` record (before-state) is
-written and flushed first, then the write, then a read-back compared with the row (mismatch: ``failed`` with both values, no retry). A second ``--apply`` finds
-every row ``already``.
+written and flushed first, then the write, then a read-back compared with the row (mismatch: ``failed``
+with both values, no retry). A second ``--apply`` finds every row ``already``.
 
 The decisions are pure functions over an adapter (:class:`_Ida` in IDA, fakes in
 ``tests/test_apply_transfer.py``).
