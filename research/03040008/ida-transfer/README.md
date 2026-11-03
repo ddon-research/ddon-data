@@ -384,8 +384,12 @@ records written before a crash, undo records included.
   held at another address.
 - **Prototypes**: refused when the current prototype is user-set or differs from the row's `current`. Type names
   the parser may refuse (`<...>`, `::`) are parsed as `void *` and patched to pointers to the local type through
-  `func_type_data_t`; a parse failure is a refusal before any write. `apply_tinfo(TINFO_DEFINITE)`; read-back
-  `idc.get_type` compared whitespace-normalised.
+  `func_type_data_t`; a parse failure is a refusal before any write. `apply_tinfo(TINFO_DEFINITE)`. The
+  `already` check, the read-back and `--verify` compare types, not printed text (T007d; IDA prints a `::` or
+  template type as `struct X`, which made 171 T007b read-backs `failed`): the row parsed into a `tinfo_t` as for
+  writing against the function's `get_tinfo`, equal when the calling convention, the return type, the argument
+  count and each argument's name and type (`tinfo_t.compare_with(.., TCMP_EQUAL)`, IDA 9.5
+  `python/ida_typeinf.py`) agree. The printed text stays in the logs (`db`, `row`, `before`).
 - **Comments**: function comment; ours appended below a `----` line, `already` when present.
 - `conflict` rows of `skipped.tsv` are reported (`conflict-names`, `conflict-prototypes`), never written.
 - Every write: `undo` record (before-state: name and user flag, printed type + serialized tinfo, comment, local

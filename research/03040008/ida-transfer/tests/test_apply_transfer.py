@@ -5,6 +5,7 @@ from __future__ import annotations
 import copy
 import io
 import json
+import re
 from pathlib import Path
 
 import pytest
@@ -37,6 +38,7 @@ class FakeIda:
         self.mangle_name = None
         self.parse_fails: set[str] = set()
         self.decompile_fails: dict[int, str] = {}
+        self.printed_by_parse: dict[str, str] = {}  # what IDA prints after applying a parse (default: the row)
 
     def _write(self, what, key):
         self.calls.append((what, key))
@@ -91,12 +93,27 @@ class FakeIda:
     def parse_prototype(self, plan):
         if plan["parse"] in self.parse_fails:
             return None, "parse_decl refused"
-        return plan, None
+        return {"parse": plan["parse"], "text": self.protos_by_parse[plan["parse"]]}, None
 
     def apply_prototype(self, ea, tif):
         self._write("apply_tinfo", ea)
-        self.types[ea] = (self.protos_by_parse[tif["parse"]], True)
+        self.types[ea] = (self.printed_by_parse.get(tif["parse"], tif["text"]), True)
         return True
+
+    # a fake tinfo_t is the printed text (stored types) or a parse_prototype dict
+    def func_tinfo(self, ea):
+        return self.types[ea][0] if ea in self.types else None
+
+    def func_parts(self, tif):
+        text = tif["text"] if isinstance(tif, dict) else tif
+        m = re.fullmatch(r"(?P<ret>.*?)\s*(?P<cc>__\w+)\((?P<args>.*)\)", text.strip())
+        if not m:
+            return None
+        return {"cc": m["cc"], "ret": _fake_type(m["ret"]),
+                "args": [_fake_arg(a) for a in at.split_args(m["args"])]}
+
+    def type_equal(self, a, b):
+        return a == b
 
     def restore_type(self, ea, blob):
         self._write("restore_type", ea)
@@ -143,6 +160,23 @@ class FakeIda:
 
     def decompile(self, ea):
         return self.decompile_fails.get(ea)
+
+
+_KEYWORDS = {"int", "char", "bool", "void", "__int8", "__int16", "__int32", "__int64", "_DWORD", "unsigned",
+             "signed", "short", "long", "float", "double"}
+
+
+def _fake_type(t: str) -> str:
+    """Type identity as IDA has it: ``struct `` is a printing detail, spacing too."""
+    t = re.sub(r"\bstruct\s+", "", t)
+    return re.sub(r"\s*\*\s*", "*", " ".join(t.split())).strip()
+
+
+def _fake_arg(a: str) -> tuple[str, str]:
+    m = re.fullmatch(r"(?P<t>.*?[\s*])(?P<n>[A-Za-z_]\w*)", a.strip())
+    if m and m["t"].strip() and m["n"] not in _KEYWORDS:
+        return _fake_type(m["t"]), m["n"]
+    return _fake_type(a), ""
 
 
 # --- a small manifest ------------------------------------------------------------------------------
@@ -673,3 +707,68 @@ def test_ida_convention_second_apply_is_a_no_op(man_ida):
     _s, recs = run(ida, man_ida)
     _s2, recs2 = run(ida, man_ida)
     assert {r["status"] for r in results(recs2).values() if r["step"] != "conflict-names"} == {"already"}
+
+
+# --- prototypes compared as types (T007d) ------------------------------------------------------------
+
+STRUCT_A = "int __cdecl(struct CPacket *packet, struct MtTypedArray<CDataA> *ar)"
+
+
+def test_struct_prefixed_print_is_set_already_and_verified(man):
+    ida = fake_for(man)
+    special = at.special_names(at.parse_types_h(man["types_h"]), man)
+    ida.printed_by_parse[at.prototype_plan(PROTO_A, special)["parse"]] = STRUCT_A
+    _s, recs = run(ida, man)
+    assert results(recs, "prototypes")["0x1000"]["status"] == "set"
+    assert ida.types[0x1000] == (STRUCT_A, True)
+    _s2, recs2 = run(ida, man)
+    assert results(recs2, "prototypes")["0x1000"]["status"] == "already"
+    assert not [u for u in recs2 if u["kind"] == "undo"]
+    s, vrecs = _verify(ida, man, recs)
+    assert results(vrecs, "prototypes")["0x1000"]["status"] == "ok" and s["steps"]["prototypes"] == {"ok": 2}
+
+
+def _db_has(man, ea, text):
+    ida = fake_for(man)
+    ida.types[ea] = (text, True)
+    _s, recs = run(ida, man)
+    return results(recs, "prototypes")[f"{ea:#x}"]
+
+
+def test_template_and_namespace_argument_equal():
+    ida = FakeIda()
+    row = {"text": PROTO_A}
+    assert at.same_prototype(ida, STRUCT_A, row)
+    assert at.same_prototype(ida, "int __cdecl(struct nA::B *p)", {"text": "int __cdecl(nA::B *p)"})
+    assert not at.same_prototype(ida, "int __stdcall(struct nA::B *p)", {"text": "int __cdecl(nA::B *p)"})
+    assert not at.same_prototype(ida, "char __cdecl(struct nA::B *p)", {"text": "int __cdecl(nA::B *p)"})
+    assert not at.same_prototype(ida, "int __cdecl(struct nA::B *p, int)", {"text": "int __cdecl(nA::B *p)"})
+
+
+def test_different_argument_type_is_not_already(man):
+    r = _db_has(man, 0x1000, "int __cdecl(struct CPacket *packet, struct MtTypedArray<CDataB> *ar)")
+    assert r["status"] == "refused" and r["check"] == "user-prototype"
+    r = _db_has(man, 0x1000, "int __cdecl(struct CPacket **packet, struct MtTypedArray<CDataA> *ar)")
+    assert r["check"] == "user-prototype"
+
+
+def test_different_argument_name_is_not_already(man):
+    r = _db_has(man, 0x1000, "int __cdecl(struct CPacket *pkt, struct MtTypedArray<CDataA> *ar)")
+    assert r["status"] == "refused" and r["check"] == "user-prototype"
+
+
+def test_read_back_with_another_type_fails(man):
+    ida = fake_for(man)
+    special = at.special_names(at.parse_types_h(man["types_h"]), man)
+    ida.printed_by_parse[at.prototype_plan(PROTO_A, special)["parse"]] = STRUCT_A.replace("CDataA", "CDataB")
+    _s, recs = run(ida, man)
+    r = results(recs, "prototypes")["0x1000"]
+    assert r["status"] == "failed" and r["db"] == STRUCT_A.replace("CDataA", "CDataB") and r["row"] == PROTO_A
+
+
+def test_verify_reports_a_prototype_with_another_argument_name(man):
+    ida = fake_for(man)
+    _s, recs = run(ida, man)
+    ida.types[0x2000] = ("bool __thiscall(CDataB *this, unsigned __int8 jobId)", True)
+    _s2, vrecs = _verify(ida, man, recs)
+    assert results(vrecs, "prototypes")["0x2000"]["status"] == "mismatch"

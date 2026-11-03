@@ -23,10 +23,10 @@ files' sha256 go into the header.
 
 Apply order: types (``types.h``; through the ``ida_typeinf`` tinfo/udt API, so template names such as
 ``MtTypedArray<CDataX>`` stay verbatim), ``remove-label`` rows, names (``set``/``correct``),
-prototypes (``apply_tinfo`` with ``TINFO_DEFINITE``), function comments (appended below a ``----``
-line, never replaced). ``conflict`` rows of ``skipped.tsv`` are reported, never written. Every write:
-the ``undo`` record (before-state) is written and flushed first, then the write, then a read-back
-compared with the row (mismatch: ``failed`` with both values, no retry). A second ``--apply`` finds
+prototypes (``apply_tinfo`` with ``TINFO_DEFINITE``; compared as ``tinfo_t``, :func:`same_prototype`),
+function comments (appended below a ``----`` line, never replaced). ``conflict`` rows
+of ``skipped.tsv`` are reported, never written. Every write: the ``undo`` record (before-state) is
+written and flushed first, then the write, then a read-back compared with the row (mismatch: ``failed`` with both values, no retry). A second ``--apply`` finds
 every row ``already``.
 
 The decisions are pure functions over an adapter (:class:`_Ida` in IDA, fakes in
@@ -325,6 +325,39 @@ def prototype_plan(decl: str, special: list[str]) -> dict:
     return {"parse": parse, "patch": patch}
 
 
+def same_prototype(ida, a, b) -> bool:
+    """Whether two function ``tinfo_t`` are the same prototype, compared as types, not printed text.
+
+    Calling convention, return type, argument count, and each argument's type (``ida.type_equal``:
+    ``tinfo_t.compare_with(.., TCMP_EQUAL)``) and name. The function's own name is not part of its type.
+    IDA prints a ``::`` or template type as ``struct X``; the row text has no ``struct `` (T007b rerun).
+    """
+    pa, pb = ida.func_parts(a), ida.func_parts(b)
+    if pa is None or pb is None or pa["cc"] != pb["cc"] or len(pa["args"]) != len(pb["args"]):
+        return False
+    if not ida.type_equal(pa["ret"], pb["ret"]):
+        return False
+    return all(na == nb and ida.type_equal(ta, tb)
+               for (ta, na), (tb, nb) in zip(pa["args"], pb["args"], strict=True))
+
+
+def row_prototype(ida, decl: str, special: list[str]):
+    """The row's declaration as a ``tinfo_t`` (the parse used for writing), or None when it does not parse."""
+    try:
+        plan = prototype_plan(decl, special)
+    except ValueError:
+        return None
+    tif, err = ida.parse_prototype(plan)
+    return None if err else tif
+
+
+def has_prototype(ida, ea: int, decl: str, special: list[str]) -> bool:
+    """Whether the function at ``ea`` has the row's prototype (types compared, see :func:`same_prototype`)."""
+    row = row_prototype(ida, decl, special)
+    cur = ida.func_tinfo(ea)
+    return row is not None and cur is not None and same_prototype(ida, cur, row)
+
+
 def unique_decls(decls: list[TypeDecl]) -> list[TypeDecl]:
     """One declaration per name, the struct body where a name is also declared opaque."""
     best: dict[str, TypeDecl] = {}
@@ -515,7 +548,7 @@ def do_prototypes(ida, rows: list[dict], special: list[str], refused_types: set[
     for r in rows:
         ea, key = int(r["pc_va"], 16), r["pc_va"]
         cur, user = ida.get_type(ea), ida.is_userti(ea)
-        if user and norm(cur) == norm(r["decl"]):
+        if user and has_prototype(ida, ea, r["decl"], special):
             _result(log, "prototypes", key, "already")
             continue
         if ida.func_start(ea) != ea:
@@ -547,7 +580,8 @@ def do_prototypes(ida, rows: list[dict], special: list[str], refused_types: set[
                    "before": {"type": cur, "user": user, "blob": ida.type_blob(ea)}})
         ok = ida.apply_prototype(ea, tif)
         got = ida.get_type(ea)
-        if ok and norm(got) == norm(r["decl"]):
+        cur_tif = ida.func_tinfo(ea)
+        if ok and cur_tif is not None and same_prototype(ida, cur_tif, tif):
             _result(log, "prototypes", key, "set", before=cur, before_user=user)
         else:
             _result(log, "prototypes", key, "failed", check="read-back", db=got, row=r["decl"], applied=bool(ok))
@@ -672,10 +706,11 @@ def run_verify(ida, manifest: dict, apply_records: list[dict], log: Log) -> dict
         _result(log, "names", r["pc_va"], "ok" if got == r["name"] else "mismatch",
                 **({} if got == r["name"] else {"db": got, "row": r["name"]}))
     typed = []
+    special = special_names(decls, manifest)
     for r in manifest["prototypes"]:
         ea = int(r["pc_va"], 16)
         got = ida.get_type(ea)
-        ok = norm(got) == norm(r["decl"]) and ida.is_userti(ea)
+        ok = ida.is_userti(ea) and has_prototype(ida, ea, r["decl"], special)
         if ok:
             typed.append(r["pc_va"])
         _result(log, "prototypes", r["pc_va"], "ok" if ok else "mismatch", **({} if ok else {"db": got,
@@ -877,6 +912,21 @@ class _Ida:
 
     def is_userti(self, ea):
         return bool(self.m["ida_nalt"].is_userti(ea))
+
+    def func_tinfo(self, ea):
+        tif = self.ti.tinfo_t()
+        return tif if self.m["ida_nalt"].get_tinfo(tif, ea) and tif.is_func() else None
+
+    def func_parts(self, tif):
+        """Calling convention, return type and ``(type, name)`` per argument of a function ``tinfo_t``."""
+        ftd = self.ti.func_type_data_t()
+        if tif is None or not tif.is_func() or not tif.get_func_details(ftd):
+            return None
+        return {"cc": ftd.get_cc(), "ret": ftd.rettype, "args": [(a.type, a.name) for a in ftd]}
+
+    def type_equal(self, a, b):
+        # tinfo_t.compare_with(r, tcflags) and TCMP_EQUAL "are types equal?" (IDA 9.5 python/ida_typeinf.py)
+        return bool(a.compare_with(b, self.ti.TCMP_EQUAL))
 
     def type_blob(self, ea):
         tif = self.ti.tinfo_t()
