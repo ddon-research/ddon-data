@@ -72,6 +72,9 @@ class RoleResult:
     listed: list[Listing] = field(default_factory=list)
     conflicts: dict[tuple[str, int], set[Pair]] = field(default_factory=dict)
     callsites: list[list[str]] = field(default_factory=list)
+    # rule 3, "agree" sites only: PC codec call site -> the aligned PS4 codec call sites (T013a anchors)
+    codec_sites: dict[int, frozenset[int]] = field(default_factory=dict)
+    anchored: object | None = None  # matcher.anchored.AnchoredResult of the T013a stage (checks.add_anchored)
     contexts: dict[str, int] = field(default_factory=dict)  # context relation -> count
     proposals: dict[str, int] = field(default_factory=dict)  # rule -> proposals made
     inlined_on_ps4: list[Pair] = field(default_factory=list)  # handler pairs whose PS4 reader is inlined
@@ -318,14 +321,15 @@ def unidentified(facts: Facts, trees: Trees, uni: Universe, ctx: Context, occs: 
     return {p for p in pairs if by_pc.get(p[0], {p[1]}) != {p[1]} or by_ps4.get(p[1], {p[0]}) != {p[0]}}
 
 
-def callsite_rows(facts: Facts, cmp: Compared, ctx: Context) -> list[tuple[int, int, int, str, str, int]]:
-    """Rule 3: (pc site, pc owner, pc codec, token, PS4 overload, PS4 site) per body position of an equal
-    pair. Header positions are left out (their widths differ by design)."""
+def callsite_rows(facts: Facts, cmp: Compared, ctx: Context) -> list[tuple[int, int, int, str, str, int, int]]:
+    """Rule 3: (pc site, pc owner, pc codec, token, PS4 overload, PS4 site, PS4 owner) per body position of an
+    equal pair. Header positions are left out (their widths differ by design)."""
     if cmp.relation != "equal":
         return []
     out = []
     for la, lb in zip(cmp.pc.leaves[cmp.pc_off:], cmp.ps4.leaves[cmp.ps4_off:], strict=True):
-        out.append((la.site, la.owner, la.codec, la.token, codecs.ps4_name(facts, lb.codec) or "?", lb.site))
+        out.append((la.site, la.owner, la.codec, la.token, codecs.ps4_name(facts, lb.codec) or "?", lb.site,
+                    lb.owner))
     return out
 
 
@@ -650,6 +654,7 @@ def run(facts: Facts, handler_pairs: dict[Pair, frozenset[Pair]], accepted: set[
         if not new:
             res.listed.extend(listed_now)
             res.callsites = _callsite_table(calls)
+            res.codec_sites = codec_site_map(calls)
             break
     else:
         raise RuntimeError("element-reader anchors did not reach a fixed point")
@@ -696,17 +701,37 @@ def _note_conflicts(res: RoleResult, conf, p: Pair) -> None:
             res.conflicts.setdefault(k, set()).update(ps)
 
 
+def codec_site_map(calls: list[tuple[tuple, Context]]) -> dict[int, frozenset[int]]:
+    """PC codec call site -> its aligned PS4 call sites, for the sites whose PS4 overload agrees across every
+    context (the T012 § 3 anchors). A PS4 site aligned with two PC sites is left out on both (fail closed)."""
+    names: dict[int, set[str]] = {}
+    sites: dict[int, set[int]] = {}
+    for (site, _owner, _codec, _token, ps4_overload, ps4_site, _ps4_owner), _ctx in calls:
+        names.setdefault(site, set()).add(ps4_overload)
+        sites.setdefault(site, set()).add(ps4_site)
+    by_ps4: dict[int, set[int]] = {}
+    for site, s4 in sites.items():
+        for x in s4:
+            by_ps4.setdefault(x, set()).add(site)
+    shared = {x for x, pcs in by_ps4.items() if len(pcs) > 1}
+    return {site: frozenset(s4) for site, s4 in sorted(sites.items())
+            if len(names[site]) == 1 and "?" not in names[site] and not (s4 & shared)}
+
+
 def _callsite_table(calls: list[tuple[tuple, Context]]) -> list[list[str]]:
     by_site: dict[int, dict] = {}
-    for (site, owner, codec, token, ps4_overload, _ps4_site), ctx in calls:
+    for (site, owner, codec, token, ps4_overload, ps4_site, ps4_owner), ctx in calls:
         d = by_site.setdefault(site, {"owner": owner, "codec": codec, "token": token, "names": set(),
-                                      "ctx": set()})
+                                      "ctx": set(), "ps4": set()})
         d["names"].add(ps4_overload)
         d["ctx"].add(ctx.label)
+        d["ps4"].add((ps4_site, ps4_owner))
     rows = []
     for site in sorted(by_site):
         d = by_site[site]
         names = sorted(d["names"])
         rows.append([f"{site:#x}", f"{d['owner']:#x}", f"{d['codec']:#x}", d["token"], " ".join(names),
-                     str(len(d["ctx"])), "agree" if len(names) == 1 else "ambiguous"])
+                     str(len(d["ctx"])), "agree" if len(names) == 1 else "ambiguous",
+                     " ".join(f"{x:#x}" for x, _ in sorted(d["ps4"])),
+                     " ".join(f"{o:#x}" for _, o in sorted(d["ps4"]))])  # one owner per PS4 site, same order
     return rows

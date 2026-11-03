@@ -160,6 +160,37 @@ PS4 v5 run (T005h): 30,587 records in 2,839 functions, 1,772 indexed, 7,345 via 
 stores via `mpManager` (`+280`): equal to T005g's register-variable what-if. The PC dump stays v4 (PC has no
 register-variable operands, T005g § 4; the v5 decoding gives the v4 records on the `sub_4169B0` fixture).
 
+## Version 6 (T013a): argument values per call site; the `extract/` package
+
+Additive: each call site may carry `args`, one record per argument slot whose value the code provably holds
+at the call (`extract/callargs.py`, evidence `specs/007-pc-handler-annotation/research/W2-T012-evidence.md`
+§ 1.1, § 2). Slots: PC `"ecx"` and stack slots `0 .. arg_bytes/4 - 1` (the pushes and `mov [esp+N]` since
+the previous call in the block; no stack slot when `arg_bytes` is null); PS4 `rdi rsi rdx rcx r8 r9`.
+Kinds:
+
+- `const` `{value}`: `mov r, imm`, `xor r, r`, `push imm`;
+- `obj` `{arg, arg_loc, disp, def}`: function argument `arg` (PC `ecx` or `stack`, PS4 the register) + `disp`,
+  from `lea r,[base+X]`, `mov r, base` + `add`/`sub r, imm` (`sub r, -0x80` = +0x80), or the base itself;
+  `def` = the forming instruction (null for the argument or a plain copy);
+- `stack` `{frame, def}`: a stack slot address, `frame` relative to the entry stack pointer (return address
+  at 0; PC stack argument k at `4 + 4k`; PS4 `rsp`/`rbp` are tracked from entry for this);
+- `element` `{from, ..., disp, def}`: an array element + `disp`. `from: "result"` = the return of an
+  allocator call (`site`, `callee`; PC `sub_8BC2E0`, PS4 `operator new`, or an indirect call on the result of
+  `MtMemoryAllocator::getAllocator`, then `callee: "indirect"`, `getter`); `from: "index"` =
+  `lea r,[data + i*scale]` / `add data, i` with `data = [arg+via]` (`arg`, `arg_loc`, `via`, `index`,
+  `scale`, `index_def`). The allocator identities are inferred from the listing (T012 § 1.4).
+
+Arguments and their copies cross blocks through the v4 must-analysis; everything derived from them is
+proved within the block only. Anything else (a register loaded from memory, a `lea` of a non-argument base,
+a register overwritten after its `lea`) records nothing. MSVC padding nops `lea r,[r+0]` (pointer width,
+`x86.is_padding_nop`) are skipped as operations, also in `object_accesses` (T012 § 1.1: `0x757ded`).
+`summary` gains `call_args_by_kind`.
+
+`extract_ida.py` stays the batch entry; its pure helpers moved to `extract/` (`x86.py`: register names,
+`signed`, the padding nop; `dataflow.py`: the v4 `object_accesses` and `block_in_states`; `callargs.py`).
+`extract_ida.py` puts its own folder on `sys.path` from `__file__` (set by `idat -S`); the `exec` route
+passes `SCRIPT_DIR` when the working directory is elsewhere. Tests: `tests/test_extract_ida_v6.py`.
+
 ## Matcher (`match.py`, `matcher/`, T005)
 
     uv run python match.py        # rewrites manifest/*.tsv; identical on rerun; exit 1 on a wrong holdout recovery
@@ -245,6 +276,16 @@ element pairs it was read from) and the seeds it depends on.
   - T005h run (v5 PS4 dump): 497 PS4 functions with a slot, 245 candidates, 107 requester and 234 sender
     pairs accepted (138 requesters fail gate (c) on unknown PC stack bytes); the 33 PC reserve call sites
     outside functions (`requester_site`) are counted in `summary.tsv`, not paired.
+  Since T013a `callsites.tsv` also gives `ps4_site` and `ps4_owner` (space-separated, one owner per PS4
+  site in the same order; one PC element-reader site can align with several inlined PS4 copies).
+- **Anchored gap rule** (T013a, `matcher/anchored.py`, T012 § 3 variant A): after the role anchors, the gap
+  rule runs again over every accepted pair with more anchors: a rule-3 PC codec site ("agree", its PS4 site
+  aligned with no other PC site) and its aligned PS4 site carry the same token; every other codec call is a
+  blocker. Proposals pass gates (a)-(d) and uniqueness (b); accepted pairs (rule `anchored-gap`) join the
+  role pairs, so the precision check and the negative control cover them (roots: the witnesses' seeds).
+  Run on the T012 dumps: 108 1:1 gaps, 5 proposals (as T012), **0 accepted**: four fail (a) (one witness,
+  no fingerprint; three also (c), PC stack bytes unknown), and `0xbb21a0` <->
+  `sNetworkExt::cancelReserveNetworkErrorDialog` fails (d) (5 instructions, 544 PC callers).
 - **Rule 5, packet object** (ctor/vtable/`operator_new`, T005b § 6.5): not implemented; a later rule.
 - **Precision** (`precision.tsv`): 5 fixed RNG seeds each withhold 20% of the seeds. Every role pair of
   the full run that depends on a withheld seed must be absent or come back with the same partner, and no
@@ -254,7 +295,7 @@ element pairs it was read from) and the seeds it depends on.
   Any role pair accepted there is a failure.
 - `match.py` exits 1 on a wrong holdout pair or on any control acceptance.
 - Outputs (`manifest/`): `pairs.tsv` v2 (`rule`: seed / propagation / reader / element-reader /
-  listener-requester / listener-sender; `flags`), `callsites.tsv`, `rejected.tsv` (role refusals as
+  listener-requester / listener-sender / anchored-gap; `flags`), `callsites.tsv`, `rejected.tsv` (role refusals as
   `role-<rule>` and `role-b`), `conflicts.tsv` (`stage`), `precision.tsv`, `control.tsv`, `crosscheck.tsv`
   (006 T001 `matched`, T002 `holds`/`wrong`, T005b examples), `summary.tsv` (counts per rule, contexts,
   refusal reasons, codec cross-check, precision and control totals).

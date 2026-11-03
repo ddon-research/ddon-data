@@ -37,8 +37,11 @@ class GapStats:
         self.even_other.update(o.even_other)
 
 
-def _token(c: Call, side: dict[int, int]) -> int | None:
-    """Pair id of the call's target if it is already paired (keyed by the PC va of the pair)."""
+def _token(c: Call, side: dict[int, int], sites: dict[int, int] | None = None) -> int | None:
+    """Pair id of the call's target if it is already paired (keyed by the PC va of the pair); with ``sites``
+    (T013a) a codec call site's own token first (negative: an aligned codec position, or a blocker)."""
+    if sites is not None and c.site in sites:
+        return sites[c.site]
     if c.target is None:
         return None
     return side.get(c.target)
@@ -72,12 +75,14 @@ def align(a: list[int | None], b: list[int | None]) -> list[tuple[int, int]]:
 
 
 def gap_proposals(pc: Func, ps4: Func, pc_side: dict[int, int], ps4_side: dict[int, int],
-                  ps4_inlines: list[int] | None = None) -> tuple[list[Pair], GapStats]:
+                  ps4_inlines: list[int] | None = None, pc_sites: dict[int, int] | None = None,
+                  ps4_sites: dict[int, int] | None = None) -> tuple[list[Pair], GapStats]:
     """Callee pairs proposed by (pc, ps4): the lone unpaired call of each side in each anchored gap.
 
-    pc_side / ps4_side map an already paired function va to its pair id (the same id on both sides)."""
-    a = [_token(c, pc_side) for c in pc.calls]
-    b = [_token(c, ps4_side) for c in ps4.calls]
+    pc_side / ps4_side map an already paired function va to its pair id (the same id on both sides).
+    pc_sites / ps4_sites (T013a, :mod:`matcher.anchored`): call site -> codec token."""
+    a = [_token(c, pc_side, pc_sites) for c in pc.calls]
+    b = [_token(c, ps4_side, ps4_sites) for c in ps4.calls]
     anchors = align(a, b)
     stats = GapStats()
     out: list[Pair] = []

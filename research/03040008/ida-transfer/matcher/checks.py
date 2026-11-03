@@ -8,7 +8,7 @@ import re
 from dataclasses import dataclass
 from pathlib import Path
 
-from . import engine, roles
+from . import anchored, engine, roles
 from .model import Facts
 
 HOLDOUT_FRACTION = 0.2
@@ -143,7 +143,27 @@ class Run:
 def pipeline(facts: Facts, seeds: dict[int, int], t0: dict[int, str], prefixes: dict[int, list[str]]) -> Run:
     res = engine.run(facts, seeds)
     handlers = {p: frozenset([p]) for p, a in res.accepted.items() if a.source == "seed"}
-    return Run(res, roles.run(facts, handlers, set(res.accepted), t0, prefixes))
+    rr = roles.run(facts, handlers, set(res.accepted), t0, prefixes)
+    add_anchored(facts, res, rr)
+    return Run(res, rr)
+
+
+def add_anchored(facts: Facts, res: engine.Result, rr: roles.RoleResult) -> anchored.AnchoredResult:
+    """T013a: the anchored gap rule over every accepted pair; its pairs join the role pairs (rule
+    ``anchored-gap``), so the precision check and the negative control cover them."""
+    an = anchored.run(facts, set(res.accepted) | set(rr.pairs), rr.codec_sites)
+    known = {p: r.roots for p, r in rr.pairs.items()}
+    for p, (ws, why, it) in sorted(an.accepted.items(), key=lambda kv: (kv[1][2], kv[0])):
+        roots = anchored.roots_of(res, known)  # earlier anchored pairs are witnesses of later ones
+        known[p] = frozenset().union(*(roots(w) for w in ws))
+        rr.pairs[p] = roles.RolePair(*p, anchored.RULE, tuple(f"{w[0]:#x}:{w[1]:#x}" for w in ws),
+                                     known[p], why, "-", it)
+    for p, fails in sorted(an.failed.items()):
+        for g, why in fails:
+            rr.listed.append(roles.Listing(f"pc:{p[0]:#x} ps4:{p[1]:#x}", anchored.RULE, f"{g}: {why}"))
+    rr.proposals[anchored.RULE] = len(an.accepted) + len(an.failed)
+    rr.anchored = an
+    return an
 
 
 @dataclass(frozen=True)

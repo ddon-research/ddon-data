@@ -290,7 +290,10 @@ def test_callsites_name_positions_of_equal_pairs_only():
     # header positions (0x201, 0x202) are left out; the element's two codec sites get the PS4 overloads
     assert set(rows) == {"0x301", "0x302"}
     assert rows["0x301"][4] == "nPacket::Read_u32" and rows["0x302"][4] == "nPacket::Read_u8"
-    assert all(r[-1] == "agree" for r in res.callsites)
+    assert all(r[6] == "agree" for r in res.callsites)
+    # T013a: the aligned PS4 call site and its owner (the element reader), and the anchor map
+    assert rows["0x301"][7:] == ["0x1201", "0x1200"] and rows["0x302"][7:] == ["0x1202", "0x1200"]
+    assert res.codec_sites == {0x301: frozenset([0x1201]), 0x302: frozenset([0x1202])}
     w2, h2 = _element_world(pc_extra_u8=True)
     f, res = run(w2, [h2])
     assert res.callsites == []

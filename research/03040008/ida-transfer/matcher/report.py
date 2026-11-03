@@ -66,7 +66,7 @@ def write_all(out: Path, facts: Facts, headers: dict, t0: dict[int, str], t0_lis
                                "iteration", "witnesses", "gate_results", "flags", "status"], rows, comment)
 
     _write(out / "callsites.tsv", ["pc_site", "pc_function", "pc_codec_va", "width", "ps4_overload", "contexts",
-                                   "status"], role.callsites,
+                                   "status", "ps4_site", "ps4_owner"], role.callsites,
            comment + "; rule 3: PS4 overload at the same codec position of equal-width reader pairs (PC call "
            "sites only; never names the shared PC codec functions)")
 
@@ -148,7 +148,7 @@ def write_all(out: Path, facts: Facts, headers: dict, t0: dict[int, str], t0_lis
     for (a, b), n in sorted(st.uneven.items(), key=lambda kv: (-kv[1], kv[0]))[:20]:
         counts[f"gaps_uneven_pc{a}_ps4{b}"] = n
     by_rule = Counter(r.rule for r in role.pairs.values())
-    for rule in ("reader", "element-reader", "listener-requester", "listener-sender"):
+    for rule in ("reader", "element-reader", "listener-requester", "listener-sender", "anchored-gap"):
         counts[f"role_accepted_{rule}"] = by_rule.get(rule, 0)
     for rule, n in sorted(T005B_EXPECTED.items()):
         counts[f"role_t005b_expected_{rule}"] = n
@@ -161,7 +161,17 @@ def write_all(out: Path, facts: Facts, headers: dict, t0: dict[int, str], t0_lis
     for k, n in sorted(role.contexts.items()):
         counts[f"role_contexts_{k}"] = n
     counts["role_callsites"] = len(role.callsites)
-    counts["role_callsites_ambiguous"] = sum(1 for r in role.callsites if r[-1] != "agree")
+    counts["role_callsites_ambiguous"] = sum(1 for r in role.callsites if r[6] != "agree")
+    counts["role_callsite_pairs"] = sum(len(r[7].split()) for r in role.callsites)
+    counts["role_codec_anchor_sites"] = len(role.codec_sites)
+    an = role.anchored
+    if an is not None:
+        counts["anchored_gaps_one_to_one"] = an.stats.even_one
+        counts["anchored_gaps_blocked"] = an.stats.blocked
+        counts["anchored_gaps_uneven"] = sum(an.stats.uneven.values())
+        counts["anchored_proposals_failed"] = len(an.failed)
+        counts["anchored_rejected_by_b"] = len(an.rejected_b)
+        counts["anchored_restarts"] = an.restarts
     for (rule, why), n in sorted(Counter((x.rule, x.detail.split(":")[0].split(" (")[0][:70])
                                          for x in role.listed).items()):
         counts[f"role_listed {rule}: {why}"] = n
