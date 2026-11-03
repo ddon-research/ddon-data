@@ -271,7 +271,7 @@ x86 layout from DWARF records and the access landing (no stdlib or project libra
 from Itanium DWARF), the TSV/C-header writers.
 
 Outputs (`manifest/transfer/`): `names.tsv` (rows T007 writes: `set`, `correct`, `remove-label`),
-`prototypes.tsv` (`set`), `types.tsv` + `type_members.tsv` + `types.h`, `comments.tsv`, `skipped.tsv` (every
+`prototypes.tsv` (`set`, `replace`), `types.tsv` + `type_members.tsv` + `types.h`, `comments.tsv`, `skipped.tsv` (every
 candidate not written, with rule and reason), `precision.tsv` (rule 6), `summary.tsv`.
 
 - **Rule 1, names** (`transfer/names.py`): a tier-0 callback takes its PC `OnPacket_` string, paired or not; any
@@ -295,6 +295,15 @@ candidate not written, with rule and reason), `precision.tsv` (rule 6), `summary
   (`conflict`). Tier-0 handlers without a PS4 pair: `int __thiscall(<class> *this, void *packet)` only with ecx
   `this`, every `ret` = `ret 4` and the string's class `cSeedGameSvConnection` / `cSeedLoginSvConnection`
   (T002 § 3.1 checked the same three facts on the 50 earlier handlers).
+- **Settled conflicts** (`transfer/decisions.py`, T009b): `--decisions` (default
+  `specs/007-pc-handler-annotation/research/T009-decisions.tsv`; its path and sha256 go into every output header)
+  decides conflict rows by (kind, pc_va): `ours` -> name `correct` / prototype `replace`, with the decision's
+  reason (`T009: ...`) and evidence VAs (in `basis`); `theirs` -> `keep` (not written, in `skipped.tsv`); `merge`
+  -> the decision's final value as `correct` / `replace`; `undecided` -> stays `conflict`. A decision for a row
+  that is not a conflict, whose recorded current or ours value differs from the row's, a duplicate, an unknown
+  decision or one without a row: exit 2. Rule 4 comments only the rows written before the decisions (a settled
+  conflict adds no comment). T009 run: 7 names `correct`, 54 prototypes `replace`, 0 conflicts left; 61 rows
+  changed against the T006d manifest.
 - **Rule 3, types** (`transfer/layout.py`, `transfer/typecheck.py`, `transfer/render.py`), below.
 - **Rule 4, comments** (`transfer/comments.py`): one per function with a written name or prototype:
   `PC name from string at <ea>.` and/or `PS4 02020005: <qualified> (<mangled>); paired by <rule>.` plus
@@ -422,7 +431,10 @@ records written before a crash, undo records included.
 - **Names**: `remove-label` rows first (a removed label's name is free for its callback), then `set`/`correct`:
   refused when the address is not a function start, the current name is not the row's `current`, or the name is
   held at another address.
-- **Prototypes**: refused when the current prototype is user-set or differs from the row's `current`. Type names
+- **Prototypes**: refused when the current prototype is user-set (`set` rows; a `replace` row is a settled
+  conflict and overwrites a user prototype) or differs from the row's `current` (`refused current-changed`, both
+  kinds; the same guard holds for `correct` names). The undo record keeps the before-state as for every write;
+  `--verify` checks `replace` rows like `set` rows. Type names
   the parser may refuse (`<...>`, `::`) are parsed as `void *` and patched to pointers to the local type through
   `func_type_data_t`; a parse failure is a refusal before any write. `apply_tinfo(TINFO_DEFINITE)`. The
   `already` check, the read-back and `--verify` compare types, not printed text (T007d; IDA prints a `::` or

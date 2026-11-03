@@ -23,8 +23,11 @@ files' sha256 go into the header.
 
 Apply order: types (``types.h``; through the ``ida_typeinf`` tinfo/udt API, so template names such as
 ``MtTypedArray<CDataX>`` stay verbatim), ``remove-label`` rows, names (``set``/``correct``),
-prototypes (``apply_tinfo`` with ``TINFO_DEFINITE``; compared as ``tinfo_t``, :func:`same_prototype`),
-function comments (appended below a ``----`` line, never replaced). ``conflict`` rows
+prototypes (``set``/``replace``; ``apply_tinfo`` with ``TINFO_DEFINITE``; compared as ``tinfo_t``,
+:func:`same_prototype`),
+function comments (appended below a ``----`` line, never replaced). ``correct`` names and ``replace``
+prototypes (T009b: settled conflicts) overwrite a user value only when the database's current value equals the
+row's ``current`` (else ``refused current-changed``). ``conflict`` rows
 of ``skipped.tsv`` are reported, never written. Every write: the ``undo`` record (before-state) is
 written and flushed first, then the write, then a read-back compared with the row (mismatch: ``failed``
 with both values, no retry). A second ``--apply`` finds every row ``already``.
@@ -102,7 +105,7 @@ def load_manifest(directory: str) -> dict:
     names = [r for r in tables["names.tsv"] if r["action"] in ("set", "correct")]
     labels = [r for r in tables["names.tsv"] if r["action"] == "remove-label"]
     other = [r for r in tables["names.tsv"] if r["action"] not in ("set", "correct", "remove-label")]
-    protos = [r for r in tables["prototypes.tsv"] if r["action"] == "set"]
+    protos = [r for r in tables["prototypes.tsv"] if r["action"] in ("set", "replace")]
     comments = [r for r in tables["comments.tsv"] if r["action"] == "set"]
     if other or len(protos) != len(tables["prototypes.tsv"]) or len(comments) != len(tables["comments.tsv"]):
         raise ValueError("manifest rows with an action this script does not know")
@@ -613,7 +616,7 @@ def do_prototypes(ida, rows: list[dict], special: list[str], refused_types: set[
         if bad:
             _result(log, "prototypes", key, "refused", check="uses-refused-type", types=bad)
             continue
-        if user:
+        if user and r["action"] != "replace":  # replace: a settled conflict, guarded by the current check
             _result(log, "prototypes", key, "refused", check="user-prototype", db=cur, row=r["decl"])
             continue
         if norm(cur) != norm(r["current"]):
@@ -625,7 +628,7 @@ def do_prototypes(ida, rows: list[dict], special: list[str], refused_types: set[
             _result(log, "prototypes", key, "refused", check="parse", error=str(e))
             continue
         if not apply:
-            _result(log, "prototypes", key, "would-set", db=cur)
+            _result(log, "prototypes", key, "would-set", action=r["action"], db=cur)
             continue
         tif, err = ida.parse_prototype(plan)
         if err:
@@ -637,7 +640,7 @@ def do_prototypes(ida, rows: list[dict], special: list[str], refused_types: set[
         got = ida.get_type(ea)
         cur_tif = ida.func_tinfo(ea)
         if ok and cur_tif is not None and same_prototype(ida, cur_tif, tif):
-            _result(log, "prototypes", key, "set", before=cur, before_user=user)
+            _result(log, "prototypes", key, "set", action=r["action"], before=cur, before_user=user)
         else:
             _result(log, "prototypes", key, "failed", check="read-back", db=got, row=r["decl"], applied=bool(ok))
 

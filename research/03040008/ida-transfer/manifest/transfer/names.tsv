@@ -1,4 +1,4 @@
-# 007 T006 transfer, PC 03040008 <- PS4 02020005; 972 accepted pairs; inputs: pc-ida.jsonl source f1c974d0e529d4bb7dc5f0953d37eea6bbb023f2667f9a1d3a3b878f4919fa20; ps4-dwarf.jsonl source 4236f598acc8f15893181455ed195e39dfa4dbfda4eeda8b56fcbd82312c63c0; ps4-ida.jsonl source 4236f598acc8f15893181455ed195e39dfa4dbfda4eeda8b56fcbd82312c63c0
+# 007 T006 transfer, PC 03040008 <- PS4 02020005; 972 accepted pairs; inputs: pc-ida.jsonl source f1c974d0e529d4bb7dc5f0953d37eea6bbb023f2667f9a1d3a3b878f4919fa20; ps4-dwarf.jsonl source 4236f598acc8f15893181455ed195e39dfa4dbfda4eeda8b56fcbd82312c63c0; ps4-ida.jsonl source 4236f598acc8f15893181455ed195e39dfa4dbfda4eeda8b56fcbd82312c63c0; decisions specs/007-pc-handler-annotation/research/T009-decisions.tsv 1f47a283f6a22cc1c0e8a497f8c05c6b017d560140afcc49ab5a3c8065e8bc09
 pc_va	action	name	current	source	basis	reason
 0x4ec980	set	cNetGameServer::getPawnAbilitySetCost	sub_4EC980	ps4-symbol	paired by listener-requester	default name
 0x4ec9b0	set	cNetGameServer::getPawnLearnedAbilityList	sub_4EC9B0	ps4-symbol	paired by listener-requester	default name
@@ -322,6 +322,7 @@ pc_va	action	name	current	source	basis	reason
 0x7da0a0	set	cSeedGameSvConnection::OnPacket_INFINITY_DELIVERY_RECEIVE_BORDER_REWARD_RES	sub_7DA0A0	pc-string	tier0; no PS4 pair	default name
 0x7da130	set	cSeedGameSvConnection::OnPacket_INN_GET_PENALTY_HEAL_STAY_PRICE_RES	sub_7DA130	pc-string	tier0; paired by seed	default name
 0x7da210	set	cSeedGameSvConnection::OnPacket_INN_GET_STAY_PRICE_RES	sub_7DA210	pc-string	tier0; paired by seed	default name
+0x7da410	correct	cSeedGameSvConnection::OnPacket_INN_STAY_INN_RES	cSeedGameSvConnection::OnPacket_S2C_STAY_INN_RES	pc-string	tier0; paired by seed; T009 ours; evidence 0x7da410 0x7da492 0x1bcd3cc; PS4 0x3020a0 0x370a20	T009: The PC handler references the string cSeedGameSvConnection::OnPacket_INN_STAY_INN_RES (0x1bcd3cc, xref 0x7da492) and ours repeats it byte for byte; the current name is the PS4 symbol (0x3020a0), which no PC string spells. Our row follows the PC-string rule the other handlers use (T002: 50/50 repeat their string). Current is not wrong as a PS4 identity, only the other naming scheme.
 0x7da670	set	cSeedGameSvConnection::OnPacket_INN_STAY_PENALTY_HEAL_INN_RES	sub_7DA670	pc-string	tier0; paired by seed	default name
 0x7dac80	set	cSeedGameSvConnection::OnPacket_INSTANCE_ENEMY_KILL_RES	sub_7DAC80	pc-string	tier0; paired by seed	default name
 0x7db090	set	cSeedGameSvConnection::OnPacket_INSTANCE_EXCHANGE_OM_INSTANT_KEY_VALUE_RES	sub_7DB090	pc-string	tier0; paired by seed	default name
@@ -710,6 +711,7 @@ pc_va	action	name	current	source	basis	reason
 0x808900	set	nUserSession::CPacket_S2C_GET_FRIEND_LIST_RES::ReadPacket	sub_808900	ps4-symbol	paired by reader	default name
 0x808c50	set	nUserSession::CPacket_S2C_CHANGE_CAP_TO_GP_RES::ReadPacket	sub_808C50	ps4-symbol	paired by reader	default name
 0x808f70	set	nUserSession::CPacket_S2C_GET_GP_RES::ReadPacket	sub_808F70	ps4-symbol	paired by reader	default name
+0x8098d0	correct	nUserSession::CPacket_S2C_GP_SHOP_DISPLAY_BUY_RES::ReadPacket	nUserSession::CPacket_S2C_GP_GP_SHOP_DISPLAY_BUY_RES::ReadPacket	ps4-symbol	paired by reader; T009 ours; evidence 0x8098d0 0x7d85db; PS4 0x19d7ed0	T009: PC has no class-name string for this packet (string search: only the handler string OnPacket_GP_GP_SHOP_DISPLAY_BUY_RES). Its only caller is handler 0x7d8590 (call 0x7d85db). PS4 declares nUserSession::CPacket_S2C_GP_SHOP_DISPLAY_BUY_RES::ReadPacket (0x19d7ed0, called only by OnPacket_S2C_GP_SHOP_DISPLAY_BUY_RES); no CPacket_S2C_GP_GP_* symbol exists. The current GP_GP copies the PC handler string's group prefix (GP) into a PS4-style class name: contradicted.
 0x80b000	set	nUserSession::CPacket_S2C_EXCHANGE_OM_INSTANT_KEY_VALUE_RES::ReadPacket	sub_80B000	ps4-symbol	paired by reader	default name
 0x80b130	set	nUserSession::CPacket_S2C_GET_DROP_ITEM_LIST_RES::ReadPacket	sub_80B130	ps4-symbol	paired by reader	default name
 0x80b300	set	nUserSession::CPacket_S2C_GET_ENEMY_SET_LIST_RES::ReadPacket	sub_80B300	ps4-symbol	paired by reader	default name
@@ -753,6 +755,8 @@ pc_va	action	name	current	source	basis	reason
 0x81c550	set	nUserSession::CPacket_S2C_SET_PAWN_ABILITY_RES::ReadPacket	sub_81C550	ps4-symbol	paired by reader	default name
 0x81c690	set	nUserSession::CPacket_S2C_SET_PAWN_SKILL_RES::ReadPacket	sub_81C690	ps4-symbol	paired by reader	default name
 0x81ca00	set	nUserSession::CPacket_S2C_AREA_CHANGE_RES::ReadPacket	sub_81CA00	ps4-symbol	paired by reader	default name
+0x81dd70	correct	cSeedGameSvConnection::Send_C2S_ACHIEVEMENT_GET_FURNITURE_REWARD_LIST_REQ	cSeedGameSvConnection::Send_C2S_ACHIEVEMENT_ACHIEVEMENT_GET_FURNITURE_REWARD_LIST_REQ	ps4-symbol	paired by listener-sender; T009 ours; evidence 0x81dd70 0x81ddd4 0x81dde3 0x1bd2b08; PS4 0x19cb350	T009: WritePacket pushes group 0x1B, id 2, sub 1 (27.2.1); the 27.2.2 response string is OnPacket_ACHIEVEMENT_ACHIEVEMENT_GET_FURNITURE_REWARD_LIST_RES = group ACHIEVEMENT + packet name. Requests have no PC string, so the only declared name is the PS4 symbol Send_C2S_ACHIEVEMENT_GET_FURNITURE_REWARD_LIST_REQ (0x19cb350, unique, caller cNetGameServer::getFurnitureReward). The current name splices the PC group prefix into the PS4 form; no PS4 symbol has ACHIEVEMENT_ACHIEVEMENT.
+0x81de30	correct	cSeedGameSvConnection::Send_C2S_ACHIEVEMENT_GET_PROGRESS_LIST_REQ	cSeedGameSvConnection::Send_C2S_ACHIEVEMENT_ACHIEVEMENT_GET_PROGRESS_LIST_REQ	ps4-symbol	paired by listener-sender; T009 ours; evidence 0x81de30 0x1bd0f08; PS4 0x19cb0f0	T009: WritePacket key 27.0.1 (pushes 0x1B, 0, 1). Same reason as 0x81dd70: PS4 Send_C2S_ACHIEVEMENT_GET_PROGRESS_LIST_REQ (0x19cb0f0, caller getAchievementProgress); current doubles the group prefix from the PC response string OnPacket_ACHIEVEMENT_ACHIEVEMENT_GET_PROGRESS_LIST_RES.
 0x81dfb0	set	cSeedGameSvConnection::Send_C2S_ACHIEVEMENT_GET_REWARD_LIST_REQ	sub_81DFB0	ps4-symbol	paired by listener-sender	default name
 0x81e070	set	cSeedGameSvConnection::Send_C2S_ACHIEVEMENT_REWARD_RECEIVE_REQ	sub_81E070	ps4-symbol	paired by listener-sender	default name
 0x81e230	set	cSeedGameSvConnection::Send_C2S_AREA_RANK_UP_REQ	sub_81E230	ps4-symbol	paired by listener-sender	default name
@@ -828,6 +832,7 @@ pc_va	action	name	current	source	basis	reason
 0x828f00	set	cSeedGameSvConnection::Send_C2S_REMOVE_FRIEND_REQ	sub_828F00	ps4-symbol	paired by listener-sender	default name
 0x829170	set	cSeedGameSvConnection::Send_C2S_CHANGE_CAP_TO_GP_REQ	sub_829170	ps4-symbol	paired by listener-sender	default name
 0x829250	set	cSeedGameSvConnection::Send_C2S_COG_GET_ID_REQ	sub_829250	ps4-symbol	paired by listener-sender	default name
+0x829310	correct	cSeedGameSvConnection::Send_C2S_GET_CAP_REQ	cSeedGameSvConnection::Send_C2S_GP_GET_CAP_REQ	ps4-symbol	paired by listener-sender; T009 ours; evidence 0x829310 0x8691eb 0x1bca36c; PS4 0x19bc2e0 0x353090	T009: WritePacket key 28.3.1 (pushes 0x1C, 3, 1); the 28.3.2 string is OnPacket_GP_GET_CAP_RES = group GP + GET_CAP_RES. PS4 Send_C2S_GET_CAP_REQ (0x19bc2e0) is called only by cNetGameServer::getCAP, and the PC caller 0x8691eb sits in cNetGameServer::getCAP. Current inserts the group (GP_) into the PS4 form.
 0x8293d0	set	cSeedGameSvConnection::Send_C2S_GET_CAP_TO_GP_CHANGE_LIST_REQ	sub_8293D0	ps4-symbol	paired by listener-sender	default name
 0x829570	set	cSeedGameSvConnection::Send_C2S_GET_GP_PERIOD_REQ	sub_829570	ps4-symbol	paired by listener-sender	default name
 0x829630	set	cSeedGameSvConnection::Send_C2S_GET_GP_REQ	sub_829630	ps4-symbol	paired by listener-sender	default name
@@ -867,6 +872,7 @@ pc_va	action	name	current	source	basis	reason
 0x830550	set	cSeedGameSvConnection::Send_C2S_FURNITURE_LAYOUT_REQ	sub_830550	ps4-symbol	paired by listener-sender	default name
 0x830630	set	cSeedGameSvConnection::Send_C2S_FURNITURE_LIST_GET_REQ	sub_830630	ps4-symbol	paired by listener-sender	default name
 0x8307d0	set	cSeedGameSvConnection::Send_C2S_MY_ROOM_BGM_UPDATE_REQ	sub_8307D0	ps4-symbol	paired by listener-sender	default name
+0x8308b0	correct	cSeedGameSvConnection::Send_C2S_MY_ROOM_RELEASE_REQ	cSeedGameSvConnection::Send_C2S_MY_ROOM_MY_ROOM_RELEASE_REQ	ps4-symbol	paired by listener-sender; T009 ours; evidence 0x8308b0 0x87b10b 0x1bd2424; PS4 0x19ce030 0x36a980	T009: WritePacket key 52.0.1 (pushes 0x34, 0, 1); the 52.0.2 string is OnPacket_MY_ROOM_MY_ROOM_RELEASE_RES = group MY_ROOM + MY_ROOM_RELEASE_RES. PS4 Send_C2S_MY_ROOM_RELEASE_REQ (0x19ce030) is called only by cNetGameServer::reqMyRoomRelease; the PC caller 0x87b10b is cNetGameServer::reqMyRoomRelease. Current doubles the group prefix.
 0x830dd0	set	cSeedGameSvConnection::Send_C2S_GET_ORB_GAIN_EXTEND_PARAM_REQ	sub_830DD0	ps4-symbol	paired by listener-sender	default name
 0x830e90	set	cSeedGameSvConnection::Send_C2S_GET_PAWN_RELEASE_ORB_ELEMENT_LIST_REQ	sub_830E90	ps4-symbol	paired by listener-sender	default name
 0x830f70	set	cSeedGameSvConnection::Send_C2S_GET_RELEASE_ORB_ELEMENT_LIST_REQ	sub_830F70	ps4-symbol	paired by listener-sender	default name
@@ -902,6 +908,7 @@ pc_va	action	name	current	source	basis	reason
 0x833170	set	cSeedGameSvConnection::Send_C2S_GET_LOST_PAWN_LIST_REQ	sub_833170	ps4-symbol	paired by listener-sender	default name
 0x8333e0	set	cSeedGameSvConnection::Send_C2S_GET_NORA_PAWN_LIST_REQ	sub_8333E0	ps4-symbol	paired by listener-sender	default name
 0x8334a0	set	cSeedGameSvConnection::Send_C2S_GET_OFFICIAL_PAWN_LIST_REQ	sub_8334A0	ps4-symbol	paired by listener-sender	default name
+0x833670	correct	cSeedGameSvConnection::Send_C2S_GET_PAWN_HISTORY_LIST_REQ	Send_PAWN_GET_PAWN_HISTORY_LIST_REQ	ps4-symbol	paired by listener-sender; T009 ours; evidence 0x833670 0x86f4fc 0x1bc7830; PS4 0x19b6090	T009: WritePacket key 8.28.1 (pushes 8, 0x1C, 1); 8.28.2 string OnPacket_PAWN_GET_PAWN_HISTORY_LIST_RES. PS4 cSeedGameSvConnection::Send_C2S_GET_PAWN_HISTORY_LIST_REQ (0x19b6090, unique, caller cNetGameServer::getPawnHistoryList, one u32 payload as on PC). The current name was formed from the response string (T002: unproved) and lacks the class; ours is the declared symbol.
 0x833e40	set	cSeedGameSvConnection::Send_C2S_LOST_PAWN_GOLDEN_REVIVE_REQ	sub_833E40	ps4-symbol	paired by listener-sender	default name
 0x833f20	set	cSeedGameSvConnection::Send_C2S_LOST_PAWN_POINT_REVIVE_REQ	sub_833F20	ps4-symbol	paired by listener-sender	default name
 0x834000	set	cSeedGameSvConnection::Send_C2S_LOST_PAWN_REVIVE_REQ	sub_834000	ps4-symbol	paired by listener-sender	default name

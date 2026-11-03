@@ -10,9 +10,11 @@ from matcher import checks
 from matcher import tier0 as t0mod
 from matcher.model import Facts
 
-from . import comments, names, prototypes, render, typecheck
+from . import comments, decisions, names, prototypes, render, typecheck
 from .inputs import PairRow, PcExtra, Ps4Fn
 from .layout import Layouts, declarable
+
+PROTO_WRITTEN = ("set", "replace")
 
 
 @dataclass
@@ -40,13 +42,20 @@ def type_verdicts(facts: Facts, layouts: Layouts, pairs: list[PairRow], ps4fn: d
 
 
 def build(facts: Facts, pairs: list[PairRow], pc: dict[int, PcExtra], ps4fn: dict[int, Ps4Fn],
-          types: dict[str, dict], t002: dict[int, list[str]], tier0: dict[int, str], title: str) -> Result:
+          types: dict[str, dict], t002: dict[int, list[str]], tier0: dict[int, str], title: str,
+          settled: list[decisions.Decision] | None = None) -> Result:
     layouts = Layouts(types)
     skipped: list[tuple[str, str, str, str, str]] = []
     by_pc = {p.pc_va: p for p in pairs}
 
     # rule 1
     nrows = names.name_rows(tier0, pairs, pc, t002)
+    protos = _prototype_rows(facts, layouts, pairs, by_pc, pc, ps4fn, tier0, skipped)
+    # rule 4 comments the rows written before the T009 decisions (a settled conflict adds no comment)
+    commented = ({r.pc_va for r in nrows if r.action in names.WRITTEN}
+                 | {r.pc_va for r in protos if r.action == "set"})
+    if settled:  # T009b: settled conflicts -> correct / replace / keep
+        nrows, protos = decisions.apply(nrows, protos, settled)
     for r in nrows:
         if r.action not in names.WRITTEN and r.action != "remove-label":
             skipped.append(("names", f"{r.pc_va:#x}", r.name, r.action, f"{r.reason} (current {r.current})"))
@@ -55,24 +64,15 @@ def build(facts: Facts, pairs: list[PairRow], pc: dict[int, PcExtra], ps4fn: dic
     verdicts = type_verdicts(facts, layouts, pairs, ps4fn)
     emitted = {n for n, v in verdicts.items() if v.status in ("accepted", "embedded") and declarable(n)}
 
-    # rule 2
-    protos: list[prototypes.ProtoRow] = []
-    for p in sorted(pairs, key=lambda p: p.pc_va):
-        fn = ps4fn.get(p.ps4_va)
-        if fn is None:
-            skipped.append(("prototypes", f"{p.pc_va:#x}", p.ps4_symbol, "skip", "no DWARF record"))
-            continue
-        protos.append(prototypes.pair_prototype(facts, layouts, p.pc_va, fn, pc.get(p.pc_va), f"paired by {p.rule}"))
-    for va in sorted(set(tier0) - set(by_pc)):
-        protos.append(prototypes.tier0_prototype(facts, va, tier0[va], pc.get(va)))
+    # rule 2 (rows built above, before the decisions)
     for r in protos:
-        if r.action != "set":
+        if r.action not in PROTO_WRITTEN:
             skipped.append(("prototypes", f"{r.pc_va:#x}", r.decl or "-", r.action,
                             r.notes + (f" (current {r.current})" if r.current else "")))
 
     # enums used by emitted members and written prototypes
-    proto_classes = {c for r in protos if r.action == "set" for c in r.classes}
-    want = render.member_enums(emitted, layouts) | {e for r in protos if r.action == "set" for e in r.enums}
+    proto_classes = {c for r in protos if r.action in PROTO_WRITTEN for c in r.classes}
+    want = render.member_enums(emitted, layouts) | {e for r in protos if r.action in PROTO_WRITTEN for e in r.enums}
     enum_recs = {e: types[e] for e in want if e in types and types[e]["tag"] == "enumeration"}
     coll = render.enum_collisions(enum_recs)
     for e, why in sorted(coll.items()):
@@ -82,7 +82,7 @@ def build(facts: Facts, pairs: list[PairRow], pc: dict[int, PcExtra], ps4fn: dic
     if dropped:  # prototypes naming a dropped enum fall back to its width (rare): list them, do not write
         keep = []
         for r in protos:
-            if r.action == "set" and set(r.enums) & dropped:
+            if r.action in PROTO_WRITTEN and set(r.enums) & dropped:
                 skipped.append(("prototypes", f"{r.pc_va:#x}", r.decl, "skip", "uses an enum that is not transferred"))
                 keep.append(prototypes.ProtoRow(r.pc_va, r.decl, r.current, "skip", r.basis, r.notes, r.classes,
                                                 r.enums))
@@ -101,9 +101,8 @@ def build(facts: Facts, pairs: list[PairRow], pc: dict[int, PcExtra], ps4fn: dic
         skipped.append(("types", n, "struct", v.status, why))
 
     # rule 4
-    written = {r.pc_va for r in nrows if r.action in names.WRITTEN} | {r.pc_va for r in protos if r.action == "set"}
     crows: list[comments.CommentRow] = []
-    for va in sorted(written):
+    for va in sorted(commented):
         p = by_pc.get(va)
         x = pc.get(va)
         s_ea = x.string_eas.get(tier0[va]) if (va in tier0 and x) else None
@@ -114,6 +113,22 @@ def build(facts: Facts, pairs: list[PairRow], pc: dict[int, PcExtra], ps4fn: dic
         crows.append(comments.comment_row(va, comments.text(s_ea, ps4, p.flags if p else "-"),
                                           x.comment if x else None))
     return Result(nrows, protos, verdicts, emitted, enum_recs, rendered, crows, skipped)
+
+
+def _prototype_rows(facts: Facts, layouts: Layouts, pairs: list[PairRow], by_pc: dict[int, PairRow],
+                    pc: dict[int, PcExtra], ps4fn: dict[int, Ps4Fn], tier0: dict[int, str],
+                    skipped: list[tuple[str, str, str, str, str]]) -> list[prototypes.ProtoRow]:
+    """Rule 2: one row per accepted pair with a DWARF record, then the unpaired tier-0 handlers."""
+    protos: list[prototypes.ProtoRow] = []
+    for p in sorted(pairs, key=lambda p: p.pc_va):
+        fn = ps4fn.get(p.ps4_va)
+        if fn is None:
+            skipped.append(("prototypes", f"{p.pc_va:#x}", p.ps4_symbol, "skip", "no DWARF record"))
+            continue
+        protos.append(prototypes.pair_prototype(facts, layouts, p.pc_va, fn, pc.get(p.pc_va), f"paired by {p.rule}"))
+    for va in sorted(set(tier0) - set(by_pc)):
+        protos.append(prototypes.tier0_prototype(facts, va, tier0[va], pc.get(va)))
+    return protos
 
 
 def holdout(facts: Facts, tier0: dict[int, str], types: dict[str, dict], ps4fn: dict[int, Ps4Fn],
@@ -172,7 +187,7 @@ def write_all(out: Path, res: Result, layouts: Layouts, head: str) -> dict[str, 
                                                            "reason"],
                                  [[f"{r.pc_va:#x}", r.action, r.name, r.current, r.source, r.basis, r.reason]
                                   for r in nr])
-    pr = [r for r in res.protos if r.action == "set"]
+    pr = [r for r in res.protos if r.action in PROTO_WRITTEN]
     counts["prototypes.tsv"] = _write(out / "prototypes.tsv", head, ["pc_va", "action", "decl", "current", "basis",
                                                                      "notes", "types", "enums"],
                                       [[f"{r.pc_va:#x}", r.action, r.decl, r.current, r.basis, r.notes,

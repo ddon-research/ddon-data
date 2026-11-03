@@ -5,7 +5,7 @@ from __future__ import annotations
 import pytest
 
 from matcher.model import Access, Call, DwarfType, Facts, Func, Param
-from transfer import comments, names, prototypes, render, run, typecheck
+from transfer import comments, decisions, names, prototypes, render, run, typecheck
 from transfer.inputs import PairRow, PcExtra, Ps4Fn, pairs_sources_match, t002_rating
 from transfer.layout import LayoutError, Layouts, land
 
@@ -510,3 +510,59 @@ def test_pointer_member_pointee_drops_one_level():
     lay = Layouts({"MtObject": {"tag": "class", "size": 8, "members": []}})
     assert lay.resolve("MtObject**").pointee == "MtObject*"
     assert lay.resolve("MtObject*").pointee == "MtObject"
+
+
+# --- T009b: settled conflict decisions ----------------------------------------------------------------------
+
+def _dec(kind, va, current, ours, decision, final=None, ev="0x1 0x2", reason="why"):
+    return decisions.Decision(kind, va, current, ours, decision, ours if final is None else final, ev, reason)
+
+
+def _rows():
+    nr = [names.NameRow(1, "A::good", "A::bad", "conflict", "ps4-symbol", "paired by x", "current non-default"),
+          names.NameRow(2, "B::x", "sub_2", "set", "ps4-symbol", "paired by x", "default name")]
+    pr = [prototypes.ProtoRow(1, "int __thiscall(A *this)", "int __thiscall(A *self)", "conflict", "paired by x",
+                              "ecx this; current prototype is user-set", ("A",), ()),
+          prototypes.ProtoRow(3, "int __cdecl(int a)", "int __cdecl(int)", "set", "b", "", (), ())]
+    return nr, pr
+
+
+def test_decisions_ours_corrects_the_name_and_replaces_the_prototype():
+    nr, pr = _rows()
+    n, p = decisions.apply(nr, pr, [_dec("name", 1, "A::bad", "A::good", "ours", reason="prefix copied"),
+                                    _dec("prototype", 1, "int __thiscall(A *self)", "int __thiscall(A *this)", "ours")])
+    assert (n[0].action, n[0].name) == ("correct", "A::good") and "prefix copied" in n[0].reason
+    assert "evidence 0x1 0x2" in n[0].basis and n[1] == nr[1]
+    assert (p[0].action, p[0].decl, p[0].current) == ("replace", "int __thiscall(A *this)", "int __thiscall(A *self)")
+    assert "evidence 0x1 0x2" in p[0].basis and p[1] == pr[1]
+
+
+def test_decisions_theirs_keeps_merge_takes_final_undecided_stays():
+    nr, pr = _rows()
+    n, p = decisions.apply(nr, pr, [_dec("name", 1, "A::bad", "A::good", "theirs", final=""),
+                                    _dec("prototype", 1, "int __thiscall(A *self)", "int __thiscall(A *this)",
+                                         "merge", final="int __thiscall(A *this, int b)")])
+    assert n[0].action == "keep" and n[0].action not in names.WRITTEN
+    assert (p[0].action, p[0].decl) == ("replace", "int __thiscall(A *this, int b)")
+    n, _p = decisions.apply(nr, pr, [_dec("name", 1, "A::bad", "A::good", "undecided", final="")])
+    assert n[0].action == "conflict"
+
+
+@pytest.mark.parametrize("bad, match", [
+    (("name", 2, "sub_2", "B::x", "ours"), "not a conflict"),
+    (("name", 1, "A::other", "A::good", "ours"), "recorded current"),
+    (("name", 1, "A::bad", "A::better", "ours"), "recorded ours"),
+    (("prototype", 9, "x", "y", "ours"), "does not have"),
+])
+def test_decisions_for_a_non_conflict_or_stale_row_are_errors(bad, match):
+    nr, pr = _rows()
+    with pytest.raises(ValueError, match=match):
+        decisions.apply(nr, pr, [_dec(*bad)])
+
+
+def test_decisions_tsv_rejects_an_unknown_decision(tmp_path):
+    f = tmp_path / "d.tsv"
+    f.write_text("# h\nkind\tpc_va\tcurrent\tours\tdecision\tfinal_value\tevidence_vas\treason\n"
+                 "name\t0x1\ta\tb\tmaybe\tb\t0x1\tr\n", encoding="utf-8")
+    with pytest.raises(ValueError, match="unknown"):
+        decisions.read_decisions(f)

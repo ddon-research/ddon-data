@@ -217,17 +217,19 @@ def _tsv(path: Path, cols, rows):
     path.write_text("\n".join(lines) + "\n", encoding="utf-8", newline="\n")
 
 
-def make_manifest(d: Path, types_h: str = TYPES_H, type_status=None) -> Path:
+def make_manifest(d: Path, types_h: str = TYPES_H, type_status=None, names=(), protos=()) -> Path:
     d.mkdir(parents=True, exist_ok=True)
     _tsv(d / "names.tsv", ["pc_va", "action", "name", "current", "source", "basis", "reason"], [
         ["0x1000", "set", "nPacket::Read_CDataA_", "sub_1000", "ps4-symbol", "b", "default name"],
         ["0x2000", "set", "CDataB::job", "sub_2000", "ps4-symbol", "b", "default name"],
         ["0x3000", "set", "cSeed::OnPacket_X", "sub_3000", "pc-string", "tier0", "default name"],
         ["0x2ffd", "remove-label", "", "cSeed::OnPacket_X", "T004f", "stale", "T004f"],
+        *names,
     ])
     _tsv(d / "prototypes.tsv", ["pc_va", "action", "decl", "current", "basis", "notes", "types", "enums"], [
         ["0x1000", "set", PROTO_A, "int __cdecl(int, int)", "b", "-", "CPacket MtTypedArray<CDataA>", "-"],
         ["0x2000", "set", PROTO_B, "char __thiscall(_DWORD *this, int)", "b", "ecx this", "CDataB", "-"],
+        *protos,
     ])
     _tsv(d / "comments.tsv", ["pc_va", "action", "comment", "existing"], [
         ["0x1000", "set", "PS4 02020005: nPacket::Read<CDataA>; paired by element-reader.", ""],
@@ -281,8 +283,10 @@ def results(recs, step=None):
 @pytest.mark.skipif(not (REAL / "types.h").exists(), reason="T006 manifest not present")
 def test_real_manifest_loads_and_every_row_plans():
     m = at.load_manifest(str(REAL))
-    assert (len(m["names"]), len(m["labels"]), len(m["prototypes"]), len(m["comments"])) == (1079, 3, 1011, 1119)
-    assert len(m["conflicts"]) == 61
+    assert (len(m["names"]), len(m["labels"]), len(m["prototypes"]), len(m["comments"])) == (1086, 3, 1065, 1119)
+    assert len(m["conflicts"]) == 0  # T009b: all 61 settled ours
+    acts = [r["action"] for r in m["names"]] + [r["action"] for r in m["prototypes"]]
+    assert (acts.count("correct"), acts.count("replace")) == (9, 54)
     decls = at.parse_types_h(m["types_h"])
     kinds = [d.kind for d in decls]
     assert (kinds.count("struct"), kinds.count("opaque")) == (91, 90)  # T006b, T006c: 6 lea-only out
@@ -887,3 +891,65 @@ def test_manifest_mtarray_equals_the_databases():
     assert at.same_layout(20, db, d)
     db[4] = ("mpArray", 16, 4, "", "MtObject *")
     assert not at.same_layout(20, db, d)
+
+
+# --- T009b: settled conflicts (correct names, replace prototypes) ----------------------------------
+
+PROTO_C = "int __thiscall(CPacket *this, CPacket *pPacket)"
+PROTO_C_CUR = "int __thiscall(CPacket *self, CPacket *packet)"
+
+
+@pytest.fixture
+def man_t009(tmp_path):
+    d = make_manifest(tmp_path / "m9",
+                      names=[["0x5000", "correct", "cSeed::Send_C2S_X_REQ", "cSeed::Send_C2S_G_G_X_REQ", "ps4-symbol",
+                              "paired; T009 ours; evidence 0x5000", "T009: group prefix copied"]],
+                      protos=[["0x5000", "replace", PROTO_C, PROTO_C_CUR, "paired; T009 ours; evidence 0x5000",
+                               "T009: argument names", "CPacket", "-"]])
+    return at.load_manifest(str(d))
+
+
+def fake_t009(m):
+    ida = fake_for(m)
+    ida.funcs.add(0x5000)
+    ida.names[0x5000] = ("cSeed::Send_C2S_G_G_X_REQ", True)
+    ida.types[0x5000] = (PROTO_C_CUR, True)
+    return ida
+
+
+def test_t009b_correct_name_and_replace_prototype_overwrite_user_values(man_t009):
+    ida = fake_t009(man_t009)
+    _s, recs = run(ida, man_t009)
+    n, p = results(recs, "names")["0x5000"], results(recs, "prototypes")["0x5000"]
+    assert n["status"] == "set" and n["action"] == "correct" and n["before"] == "cSeed::Send_C2S_G_G_X_REQ"
+    assert p["status"] == "set" and p["action"] == "replace" and p["before"] == PROTO_C_CUR
+    assert ida.names[0x5000] == ("cSeed::Send_C2S_X_REQ", True) and ida.types[0x5000] == (PROTO_C, True)
+    undo = {(r["step"], r["key"]): r["before"] for r in recs if r.get("kind") == "undo"}
+    assert undo[("names", "0x5000")] == {"name": "cSeed::Send_C2S_G_G_X_REQ", "user": True}
+    assert undo[("prototypes", "0x5000")]["blob"] == ["blob", PROTO_C_CUR]
+    assert all(ida.undo_seen_before_write)
+    s, _v = _verify(ida, man_t009, recs)
+    assert s["counts_ok"] is True and set(s["steps"]["prototypes"]) == {"ok"} and set(s["steps"]["names"]) == {"ok"}
+    before = fake_t009(man_t009).state()
+    at.run_undo(ida, man_t009, recs, at.Log(io.StringIO()))
+    assert ida.state() == before
+    assert ida.names[0x5000] == ("cSeed::Send_C2S_G_G_X_REQ", True) and ida.types[0x5000] == (PROTO_C_CUR, True)
+
+
+def test_t009b_stale_current_value_is_refused(man_t009):
+    ida = fake_t009(man_t009)
+    ida.names[0x5000] = ("someone_else", True)
+    ida.types[0x5000] = ("int __thiscall(void *self, CPacket *packet)", True)
+    before = ida.state()
+    _s, recs = run(ida, man_t009)
+    n, p = results(recs, "names")["0x5000"], results(recs, "prototypes")["0x5000"]
+    assert (n["status"], n["check"]) == ("refused", "current-changed")
+    assert (p["status"], p["check"]) == ("refused", "current-changed")
+    assert ida.state()[0][0x5000] == before[0][0x5000] and ida.state()[1][0x5000] == before[1][0x5000]
+
+
+def test_t009b_set_prototype_on_a_user_prototype_is_still_refused(man_t009):
+    ida = fake_t009(man_t009)
+    ida.types[0x1000] = ("int __cdecl(int, int)", True)
+    _s, recs = run(ida, man_t009)
+    assert results(recs, "prototypes")["0x1000"]["check"] == "user-prototype"
