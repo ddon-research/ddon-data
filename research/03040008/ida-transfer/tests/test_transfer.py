@@ -132,9 +132,116 @@ def test_land_member_start_width_and_near_misses():
     assert not land(info, 4, 1).ok  # width 1 on a 4-byte member
     assert land(info, 14, 2).ok and land(info, 14, 2).where == "arr[1].q"
     assert ("In", "q") in land(info, 14, 2).hits
-    assert land(info, 8, 4).ok  # a whole 4-byte element
+    assert not land(info, 8, 4).ok  # a whole 4-byte element is no leaf (T006b)
     assert not land(info, 17, 1).ok  # padding
     assert not land(info, info.size, None).ok  # beyond the size
+
+
+# --- T006b access check: leaf starts with the leaf's width, lea on own members, indexed scale ----------------
+
+
+def _t006b_layout():
+    return layouts(cls("In", [m("p", "u16"), m("q", "u16")]),
+                   cls("A", [VPTR, m("x", "u32"), m("arr", "In[2]"), m("b", "u8"), m("w", "u32[3]")]))
+
+
+def test_access_two_bytes_into_a_four_byte_member_contradicts():
+    info = _t006b_layout().layout("A")
+    r = land(info, 6, 2)
+    assert not r.ok and "x: +2 into a 4-byte member" in r.where
+    assert not land(info, 6, None).ok  # lea inside a scalar
+
+
+def test_access_into_padding_contradicts():
+    info = _t006b_layout().layout("A")  # b at 0x10 (1 byte), padding 0x11..0x13, w at 0x14
+    for rel, width in ((0x11, 1), (0x12, 2), (0x13, None)):
+        r = land(info, rel, width)
+        assert not r.ok and "padding of A" in r.where
+
+
+def test_indexed_access_scale_must_equal_element_size():
+    info = _t006b_layout().layout("A")
+    assert land(info, 0x14, 4, indexed=True, scale=4).ok  # w[i]
+    assert land(info, 0x14, None, indexed=True, scale=4).ok  # &w[i]
+    r = land(info, 0x14, 4, indexed=True, scale=8)
+    assert not r.ok and "scale 8 on 4-byte elements" in r.where
+    assert not land(info, 0x14, 4, indexed=True, scale=None).ok
+    assert not land(info, 0x4, 4, indexed=True, scale=4).ok  # x is no array
+    assert land(info, 0x8, 2, indexed=True, scale=4).ok  # arr[i].p
+    assert not land(info, 0xA, 2, indexed=True, scale=4).ok  # arr[i].q: not an element start (brief: strict)
+
+
+def test_access_at_array_element_start_accepted():
+    info = _t006b_layout().layout("A")
+    r = land(info, 0x18, 4)
+    assert r.ok and r.where == "w[1]"
+    assert land(info, 0x18, None).ok  # &w[1]
+    assert land(info, 0xC, None).ok and land(info, 0xC, None).where == "arr[1]"  # &arr[1]
+    assert land(info, 0xE, 2).ok  # arr[1].q, a leaf start with its width
+    assert not land(info, 0xE, None).ok  # &arr[1].q: inside an embedded struct
+    assert not land(info, 0x19, 1).ok  # a byte inside w[1]
+
+
+def test_lea_on_inner_member_of_embedded_struct_contradicts_but_base_members_pass():
+    lay = layouts(cls("Base", [VPTR, m("n", "u32")]), cls("In", [m("p", "u32"), m("q", "u32")]),
+                  cls("D", [m("in", "In"), m("y", "u32")], bases=["Base"]))
+    info = lay.layout("D")  # Base 0..8 (vptr, n), in 8..0x10, y 0x10
+    assert land(info, 4, None).ok  # &this->n: a base member is the class's own member
+    assert land(info, 8, None).ok  # &this->in
+    r = land(info, 0xC, None)
+    assert not r.ok and "in: lea +4 inside a 8-byte struct member" in r.where
+    assert land(info, 0xC, 4).ok  # this->in.q with its width
+
+
+def _fixture(name):
+    import json
+    from pathlib import Path
+    return json.loads((Path(__file__).parent / "fixtures" / name).read_text(encoding="utf-8"))
+
+
+def test_change_job_res_refused_by_the_pc_reader_accesses():
+    """T007b run 3: PC 0x80cf80 contradicts the PS4 layout of CHANGE_JOB_RES (job data at PC +0x18, not +0xc)."""
+    from matcher.model import _access
+    fx = _fixture("change_job_res.json")
+    lay = Layouts(fx["types"])
+    name = "nUserSession::CPacket_S2C_CHANGE_JOB_RES"
+    info = lay.layout(name)
+    assert info.size == 0x118
+    bad = {a["va"]: land(info, a["disp"], a.get("width")) for a in fx["accesses"]}
+    bad = {va: r for va, r in bad.items() if not r.ok}
+    # every lea into an MtTypedArray or into the job data is the address of a PC sub-object at another offset
+    assert sorted(bad) == [0x80CF89, 0x80CFBC, 0x80CFCD, 0x80CFDE, 0x80CFEF, 0x80D000, 0x80D014, 0x80D02C,
+                           0x80D044, 0x80D05C]
+    assert "m_CharacterJobData: lea +4 inside a 72-byte struct member" in bad[0x80CF89].where
+    accesses = [_access(a) for a in fx["accesses"]]
+    f = pcf(fx["pc_va"], accesses)
+    facts = facts_for([f], {fx["ps4_va"]: fx["ps4_params"]})
+    v = run.type_verdicts(facts, lay, [PairRow(f.va, fx["ps4_va"], "", "", "", "reader", "-")],
+                          {fx["ps4_va"]: Ps4Fn(fx["ps4_va"], name + "::ReadPacket", "", fx["ps4_params"], "void")})
+    assert v[name].status == "refused" and v[name].reason == "contradiction"
+    assert typecheck.contradiction_text(v[name]).startswith("m_CharacterJobData: lea +4 inside")
+    assert all(x.status != "embedded" for x in v.values())
+
+
+def test_pointer_to_pointer_is_no_class_pointer():
+    lay = layouts(cls("A", [VPTR, m("x", "u32")]), cls("Arr", [m("p", "A**")]))
+    assert typecheck.class_of("A*", lay) == "A" and typecheck.class_of("A&", lay) == "A"
+    assert typecheck.class_of("A**", lay) is None and typecheck.class_of("A*&", lay) is None
+    # mpArray[i] = p through a T** member: nothing is laid on A
+    v = verdicts(lay, [pcf(0x10, [acc(0, va=0x1100), acc(0, 4, "store", via=0)])], {0x900: [
+        {"name": "this", "type": "Arr*", "artificial": True}]})
+    assert "A" not in v or v["A"].checked == 0
+
+
+def test_coverage_counts_leaf_bytes_of_fixed_width_accesses():
+    lay = layouts(cls("A", [VPTR, m("x", "u32"), m("y", "u8"), m("z", "u32[2]")]))
+    v = verdicts(lay, [pcf(0x10, [acc(4), acc(8, 1, "store"), acc(4, access="lea"), acc(4, 4, va=0x2000),
+                                  acc(12, va=0x3000)])], {0x900: [THIS_P]})
+    assert v["A"].status == "accepted" and sorted(v["A"].covered) == [4, 5, 6, 7, 8, 12, 13, 14, 15]
+    assert typecheck.coverage_text(v["A"]) == "9/20 45.0%"
+    # fail closed: a load without a width checks nothing and contradicts
+    v = verdicts(lay, [pcf(0x10, [acc(4), Access(0x1100, "ecx", 0, 4, None, "load")])], {0x900: [THIS_P]})
+    assert v["A"].status == "refused" and "load without a width" in typecheck.contradiction_text(v["A"])
 
 
 # --- rule 3: type acceptance -------------------------------------------------------------------------------

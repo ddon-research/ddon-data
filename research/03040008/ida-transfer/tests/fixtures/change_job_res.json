@@ -1,0 +1,1097 @@
+{
+ "source": "T006b: cut from dumps/ps4-dwarf.jsonl sha256 352d86c700f8d7dc0f6262e78816d818f77feab749b9d070b8f2a1d8834d8f69 (the type records the PC layout of the class reads) and dumps/pc-ida.jsonl sha256 4b307aee49d00d5018861e4c4395555f6997a3fa914f6d62a4ab0243114361f0 (object_accesses of PC 0x80cf80, paired with PS4 nUserSession::CPacket_S2C_CHANGE_JOB_RES::ReadPacket 0x19dc3a0)",
+ "pc_va": 8441728,
+ "ps4_va": 27116448,
+ "ps4_params": [
+  {
+   "artificial": true,
+   "die": 167194304,
+   "location": {
+    "list": [
+     [
+      27116448,
+      27116464,
+      "DW_OP_reg5"
+     ],
+     [
+      27116464,
+      27116772,
+      "DW_OP_reg15"
+     ]
+    ]
+   },
+   "name": "this",
+   "type": "nUserSession::CPacket_S2C_CHANGE_JOB_RES*",
+   "type_die": 164917063
+  },
+  {
+   "die": 167194318,
+   "location": {
+    "list": [
+     [
+      27116448,
+      27116461,
+      "DW_OP_reg4"
+     ],
+     [
+      27116461,
+      27116757,
+      "DW_OP_reg3"
+     ]
+    ]
+   },
+   "name": "pPacket",
+   "type": "CPacket*",
+   "type_die": 163729502
+  }
+ ],
+ "accesses": [
+  {
+   "access": "lea",
+   "arg": 0,
+   "arg_loc": "ecx",
+   "disp": 16,
+   "op": 1,
+   "va": 8441737,
+   "width": null
+  },
+  {
+   "access": "store",
+   "arg": 0,
+   "arg_loc": "ecx",
+   "disp": 20,
+   "op": 0,
+   "va": 8441768,
+   "width": 4
+  },
+  {
+   "access": "store",
+   "arg": 0,
+   "arg_loc": "ecx",
+   "disp": 236,
+   "op": 0,
+   "va": 8441777,
+   "width": 1
+  },
+  {
+   "access": "lea",
+   "arg": 0,
+   "arg_loc": "ecx",
+   "disp": 20,
+   "op": 1,
+   "va": 8441788,
+   "width": null
+  },
+  {
+   "access": "lea",
+   "arg": 0,
+   "arg_loc": "ecx",
+   "disp": 24,
+   "op": 1,
+   "va": 8441805,
+   "width": null
+  },
+  {
+   "access": "lea",
+   "arg": 0,
+   "arg_loc": "ecx",
+   "disp": 96,
+   "op": 1,
+   "va": 8441822,
+   "width": null
+  },
+  {
+   "access": "lea",
+   "arg": 0,
+   "arg_loc": "ecx",
+   "disp": 116,
+   "op": 1,
+   "va": 8441839,
+   "width": null
+  },
+  {
+   "access": "lea",
+   "arg": 0,
+   "arg_loc": "ecx",
+   "disp": 136,
+   "op": 1,
+   "va": 8441856,
+   "width": null
+  },
+  {
+   "access": "lea",
+   "arg": 0,
+   "arg_loc": "ecx",
+   "disp": 156,
+   "op": 1,
+   "va": 8441876,
+   "width": null
+  },
+  {
+   "access": "lea",
+   "arg": 0,
+   "arg_loc": "ecx",
+   "disp": 176,
+   "op": 1,
+   "va": 8441900,
+   "width": null
+  },
+  {
+   "access": "lea",
+   "arg": 0,
+   "arg_loc": "ecx",
+   "disp": 196,
+   "op": 1,
+   "va": 8441924,
+   "width": null
+  },
+  {
+   "access": "lea",
+   "arg": 0,
+   "arg_loc": "ecx",
+   "disp": 208,
+   "op": 1,
+   "va": 8441948,
+   "width": null
+  },
+  {
+   "access": "store",
+   "arg": 0,
+   "arg_loc": "ecx",
+   "disp": 12,
+   "op": 0,
+   "va": 8441979,
+   "width": 4
+  },
+  {
+   "access": "store",
+   "arg": 0,
+   "arg_loc": "ecx",
+   "disp": 236,
+   "op": 0,
+   "va": 8441988,
+   "width": 1
+  }
+ ],
+ "types": {
+  "CCharacterJobData": {
+   "cu": 163598324,
+   "die": 164359556,
+   "kind": "type",
+   "name": "CCharacterJobData",
+   "size": null,
+   "tag": "typedef",
+   "target": "CDataCharacterJobData",
+   "target_die": 163842099
+  },
+  "CDataCharacterJobData": {
+   "bases": [
+    {
+     "die": 163816309,
+     "name": "CPacketDataBase",
+     "offset": 0,
+     "virtual": false
+    }
+   ],
+   "cu": 163598324,
+   "die": 163842099,
+   "kind": "type",
+   "members": [
+    {
+     "name": "DTI",
+     "offset": null,
+     "size": 56,
+     "static": true,
+     "type": "CDataCharacterJobData::MyDTI",
+     "type_die": 163842130
+    },
+    {
+     "name": "m_ucJob",
+     "offset": 8,
+     "size": 1,
+     "type": "u8",
+     "type_die": 163688963
+    },
+    {
+     "name": "m_unExp",
+     "offset": 12,
+     "size": 4,
+     "type": "u32",
+     "type_die": 163612993
+    },
+    {
+     "name": "m_unJobPoint",
+     "offset": 16,
+     "size": 4,
+     "type": "u32",
+     "type_die": 163612993
+    },
+    {
+     "name": "m_unLv",
+     "offset": 20,
+     "size": 4,
+     "type": "u32",
+     "type_die": 163612993
+    },
+    {
+     "name": "m_usAtk",
+     "offset": 24,
+     "size": 2,
+     "type": "u16",
+     "type_die": 163688986
+    },
+    {
+     "name": "m_usDef",
+     "offset": 26,
+     "size": 2,
+     "type": "u16",
+     "type_die": 163688986
+    },
+    {
+     "name": "m_usMAtk",
+     "offset": 28,
+     "size": 2,
+     "type": "u16",
+     "type_die": 163688986
+    },
+    {
+     "name": "m_usMDef",
+     "offset": 30,
+     "size": 2,
+     "type": "u16",
+     "type_die": 163688986
+    },
+    {
+     "name": "m_usStrength",
+     "offset": 32,
+     "size": 2,
+     "type": "u16",
+     "type_die": 163688986
+    },
+    {
+     "name": "m_usDownPower",
+     "offset": 34,
+     "size": 2,
+     "type": "u16",
+     "type_die": 163688986
+    },
+    {
+     "name": "m_usShakePower",
+     "offset": 36,
+     "size": 2,
+     "type": "u16",
+     "type_die": 163688986
+    },
+    {
+     "name": "m_usStunPower",
+     "offset": 38,
+     "size": 2,
+     "type": "u16",
+     "type_die": 163688986
+    },
+    {
+     "name": "m_usConstitution",
+     "offset": 40,
+     "size": 2,
+     "type": "u16",
+     "type_die": 163688986
+    },
+    {
+     "name": "m_usGuts",
+     "offset": 42,
+     "size": 2,
+     "type": "u16",
+     "type_die": 163688986
+    },
+    {
+     "name": "m_ucFireResist",
+     "offset": 44,
+     "size": 1,
+     "type": "u8",
+     "type_die": 163688963
+    },
+    {
+     "name": "m_ucIceResist",
+     "offset": 45,
+     "size": 1,
+     "type": "u8",
+     "type_die": 163688963
+    },
+    {
+     "name": "m_ucThunderResist",
+     "offset": 46,
+     "size": 1,
+     "type": "u8",
+     "type_die": 163688963
+    },
+    {
+     "name": "m_ucHolyResist",
+     "offset": 47,
+     "size": 1,
+     "type": "u8",
+     "type_die": 163688963
+    },
+    {
+     "name": "m_ucDarkResist",
+     "offset": 48,
+     "size": 1,
+     "type": "u8",
+     "type_die": 163688963
+    },
+    {
+     "name": "m_ucSpreadResist",
+     "offset": 49,
+     "size": 1,
+     "type": "u8",
+     "type_die": 163688963
+    },
+    {
+     "name": "m_ucFreezeResist",
+     "offset": 50,
+     "size": 1,
+     "type": "u8",
+     "type_die": 163688963
+    },
+    {
+     "name": "m_ucShockResist",
+     "offset": 51,
+     "size": 1,
+     "type": "u8",
+     "type_die": 163688963
+    },
+    {
+     "name": "m_ucAbsorbResist",
+     "offset": 52,
+     "size": 1,
+     "type": "u8",
+     "type_die": 163688963
+    },
+    {
+     "name": "m_ucDarkElmResist",
+     "offset": 53,
+     "size": 1,
+     "type": "u8",
+     "type_die": 163688963
+    },
+    {
+     "name": "m_ucPoisonResist",
+     "offset": 54,
+     "size": 1,
+     "type": "u8",
+     "type_die": 163688963
+    },
+    {
+     "name": "m_ucSlowResist",
+     "offset": 55,
+     "size": 1,
+     "type": "u8",
+     "type_die": 163688963
+    },
+    {
+     "name": "m_ucSleepResist",
+     "offset": 56,
+     "size": 1,
+     "type": "u8",
+     "type_die": 163688963
+    },
+    {
+     "name": "m_ucStunResist",
+     "offset": 57,
+     "size": 1,
+     "type": "u8",
+     "type_die": 163688963
+    },
+    {
+     "name": "m_ucWetResist",
+     "offset": 58,
+     "size": 1,
+     "type": "u8",
+     "type_die": 163688963
+    },
+    {
+     "name": "m_ucOilResist",
+     "offset": 59,
+     "size": 1,
+     "type": "u8",
+     "type_die": 163688963
+    },
+    {
+     "name": "m_ucSealResist",
+     "offset": 60,
+     "size": 1,
+     "type": "u8",
+     "type_die": 163688963
+    },
+    {
+     "name": "m_ucCurseResist",
+     "offset": 61,
+     "size": 1,
+     "type": "u8",
+     "type_die": 163688963
+    },
+    {
+     "name": "m_ucSoftResist",
+     "offset": 62,
+     "size": 1,
+     "type": "u8",
+     "type_die": 163688963
+    },
+    {
+     "name": "m_ucStoneResist",
+     "offset": 63,
+     "size": 1,
+     "type": "u8",
+     "type_die": 163688963
+    },
+    {
+     "name": "m_ucGoldResist",
+     "offset": 64,
+     "size": 1,
+     "type": "u8",
+     "type_die": 163688963
+    },
+    {
+     "name": "m_ucFireReduceResist",
+     "offset": 65,
+     "size": 1,
+     "type": "u8",
+     "type_die": 163688963
+    },
+    {
+     "name": "m_ucIceReduceResist",
+     "offset": 66,
+     "size": 1,
+     "type": "u8",
+     "type_die": 163688963
+    },
+    {
+     "name": "m_ucThunderReduceResist",
+     "offset": 67,
+     "size": 1,
+     "type": "u8",
+     "type_die": 163688963
+    },
+    {
+     "name": "m_ucHolyReduceResist",
+     "offset": 68,
+     "size": 1,
+     "type": "u8",
+     "type_die": 163688963
+    },
+    {
+     "name": "m_ucDarkReduceResist",
+     "offset": 69,
+     "size": 1,
+     "type": "u8",
+     "type_die": 163688963
+    },
+    {
+     "name": "m_ucAtkDownResist",
+     "offset": 70,
+     "size": 1,
+     "type": "u8",
+     "type_die": 163688963
+    },
+    {
+     "name": "m_ucDefDownResist",
+     "offset": 71,
+     "size": 1,
+     "type": "u8",
+     "type_die": 163688963
+    },
+    {
+     "name": "m_ucMAtkDownResist",
+     "offset": 72,
+     "size": 1,
+     "type": "u8",
+     "type_die": 163688963
+    },
+    {
+     "name": "m_ucMDefDownResist",
+     "offset": 73,
+     "size": 1,
+     "type": "u8",
+     "type_die": 163688963
+    }
+   ],
+   "name": "CDataCharacterJobData",
+   "size": 80,
+   "tag": "class",
+   "vtable": {
+    "virtual_methods": [
+     {
+      "linkage": null,
+      "name": "getDTI",
+      "slot": 5
+     }
+    ],
+    "vptr_members": []
+   },
+   "vtable_holder": "MtObject"
+  },
+  "CDataPlayPointData": {
+   "bases": [
+    {
+     "die": 163816309,
+     "name": "CPacketDataBase",
+     "offset": 0,
+     "virtual": false
+    }
+   ],
+   "cu": 163598324,
+   "die": 163843656,
+   "kind": "type",
+   "members": [
+    {
+     "name": "DTI",
+     "offset": null,
+     "size": 56,
+     "static": true,
+     "type": "CDataPlayPointData::MyDTI",
+     "type_die": 163843687
+    },
+    {
+     "name": "m_ucExpMode",
+     "offset": 8,
+     "size": 1,
+     "type": "u8",
+     "type_die": 163688963
+    },
+    {
+     "name": "m_unPlayPoint",
+     "offset": 12,
+     "size": 4,
+     "type": "u32",
+     "type_die": 163612993
+    }
+   ],
+   "name": "CDataPlayPointData",
+   "size": 16,
+   "tag": "class",
+   "vtable": {
+    "virtual_methods": [
+     {
+      "linkage": null,
+      "name": "getDTI",
+      "slot": 5
+     }
+    ],
+    "vptr_members": []
+   },
+   "vtable_holder": "MtObject"
+  },
+  "CPacketDataBase": {
+   "bases": [
+    {
+     "die": 7429013,
+     "name": "MtObject",
+     "offset": 0,
+     "virtual": false
+    }
+   ],
+   "cu": 7386070,
+   "die": 7666269,
+   "kind": "type",
+   "members": [
+    {
+     "name": "DTI",
+     "offset": null,
+     "size": 56,
+     "static": true,
+     "type": "CPacketDataBase::MyDTI",
+     "type_die": 7666302
+    }
+   ],
+   "name": "CPacketDataBase",
+   "size": 8,
+   "tag": "class",
+   "vtable": {
+    "virtual_methods": [
+     {
+      "linkage": null,
+      "name": "getDTI",
+      "slot": 5
+     },
+     {
+      "linkage": null,
+      "name": "~CPacketDataBase",
+      "slot": 0
+     }
+    ],
+    "vptr_members": []
+   },
+   "vtable_holder": "MtObject"
+  },
+  "CPlayPointData": {
+   "cu": 163598324,
+   "die": 163843645,
+   "kind": "type",
+   "name": "CPlayPointData",
+   "size": null,
+   "tag": "typedef",
+   "target": "CDataPlayPointData",
+   "target_die": 163843656
+  },
+  "MtArray": {
+   "bases": [
+    {
+     "die": 7429013,
+     "name": "MtObject",
+     "offset": 0,
+     "virtual": false
+    }
+   ],
+   "cu": 7386070,
+   "die": 7618255,
+   "kind": "type",
+   "members": [
+    {
+     "name": "DTI",
+     "offset": null,
+     "size": 56,
+     "static": true,
+     "type": "MtArray::MyDTI",
+     "type_die": 7618286
+    },
+    {
+     "name": "mLength",
+     "offset": 8,
+     "size": 4,
+     "type": "u32",
+     "type_die": 7400744
+    },
+    {
+     "name": "mBufsiz",
+     "offset": 12,
+     "size": 4,
+     "type": "u32",
+     "type_die": 7400744
+    },
+    {
+     "name": "mAutoDelete",
+     "offset": 16,
+     "size": 1,
+     "type": "bool",
+     "type_die": 7392148
+    },
+    {
+     "name": "mpArray",
+     "offset": 24,
+     "size": 8,
+     "type": "MtObject**",
+     "type_die": 7437670
+    }
+   ],
+   "name": "MtArray",
+   "size": 32,
+   "tag": "class",
+   "vtable": {
+    "virtual_methods": [
+     {
+      "linkage": null,
+      "name": "getDTI",
+      "slot": 5
+     },
+     {
+      "linkage": null,
+      "name": "createProperty",
+      "slot": 4
+     },
+     {
+      "linkage": null,
+      "name": "~MtArray",
+      "slot": 0
+     }
+    ],
+    "vptr_members": []
+   },
+   "vtable_holder": "MtObject"
+  },
+  "MtObject": {
+   "bases": [],
+   "cu": 7386070,
+   "die": 7429013,
+   "kind": "type",
+   "members": [
+    {
+     "artificial": true,
+     "name": "_vptr$MtObject",
+     "offset": 0,
+     "size": 8,
+     "type": "int()**",
+     "type_die": 7429391
+    },
+    {
+     "name": "INITIAL_ALLOCATOR",
+     "offset": null,
+     "size": 4,
+     "static": true,
+     "type": "const u32",
+     "type_die": 7400856
+    },
+    {
+     "name": "DTI",
+     "offset": null,
+     "size": 56,
+     "static": true,
+     "type": "MtObject::MyDTI",
+     "type_die": 7429061
+    }
+   ],
+   "name": "MtObject",
+   "size": 8,
+   "tag": "class",
+   "vtable": {
+    "virtual_methods": [
+     {
+      "linkage": null,
+      "name": "~MtObject",
+      "slot": 0
+     },
+     {
+      "linkage": null,
+      "name": "createUI",
+      "slot": 2
+     },
+     {
+      "linkage": null,
+      "name": "isEnableInstance",
+      "slot": 3
+     },
+     {
+      "linkage": null,
+      "name": "createProperty",
+      "slot": 4
+     },
+     {
+      "linkage": null,
+      "name": "getDTI",
+      "slot": 5
+     }
+    ],
+    "vptr_members": [
+     {
+      "name": "_vptr$MtObject",
+      "offset": 0
+     }
+    ]
+   },
+   "vtable_holder": "MtObject"
+  },
+  "MtTypedArray<CDataEquipJobItem>": {
+   "bases": [
+    {
+     "die": 21254861,
+     "name": "MtArray",
+     "offset": 0,
+     "virtual": false
+    }
+   ],
+   "cu": 21154149,
+   "die": 21946156,
+   "kind": "type",
+   "members": [],
+   "name": "MtTypedArray<CDataEquipJobItem>",
+   "size": 32,
+   "tag": "class",
+   "vtable": {
+    "virtual_methods": [
+     {
+      "linkage": null,
+      "name": "~MtTypedArray",
+      "slot": 0
+     }
+    ],
+    "vptr_members": []
+   },
+   "vtable_holder": "MtObject"
+  },
+  "MtTypedArray<CDataItemList>": {
+   "bases": [
+    {
+     "die": 163817802,
+     "name": "MtArray",
+     "offset": 0,
+     "virtual": false
+    }
+   ],
+   "cu": 163598324,
+   "die": 164332845,
+   "kind": "type",
+   "members": [],
+   "name": "MtTypedArray<CDataItemList>",
+   "size": 32,
+   "tag": "class",
+   "vtable": {
+    "virtual_methods": [
+     {
+      "linkage": null,
+      "name": "~MtTypedArray",
+      "slot": 0
+     }
+    ],
+    "vptr_members": []
+   },
+   "vtable_holder": "MtObject"
+  },
+  "MtTypedArray<CDataLearnNormalSkillParam>": {
+   "bases": [
+    {
+     "die": 163817802,
+     "name": "MtArray",
+     "offset": 0,
+     "virtual": false
+    }
+   ],
+   "cu": 163598324,
+   "die": 164917073,
+   "kind": "type",
+   "members": [],
+   "name": "MtTypedArray<CDataLearnNormalSkillParam>",
+   "size": 32,
+   "tag": "class",
+   "vtable": {
+    "virtual_methods": [
+     {
+      "linkage": null,
+      "name": "~MtTypedArray",
+      "slot": 0
+     }
+    ],
+    "vptr_members": []
+   },
+   "vtable_holder": "MtObject"
+  },
+  "MtTypedArray<CDataS2CCharacterEquipInfo>": {
+   "bases": [
+    {
+     "die": 163817802,
+     "name": "MtArray",
+     "offset": 0,
+     "virtual": false
+    }
+   ],
+   "cu": 163598324,
+   "die": 164335004,
+   "kind": "type",
+   "members": [],
+   "name": "MtTypedArray<CDataS2CCharacterEquipInfo>",
+   "size": 32,
+   "tag": "class",
+   "vtable": {
+    "virtual_methods": [
+     {
+      "linkage": null,
+      "name": "~MtTypedArray",
+      "slot": 0
+     }
+    ],
+    "vptr_members": []
+   },
+   "vtable_holder": "MtObject"
+  },
+  "MtTypedArray<CDataSetAcquirementParam>": {
+   "bases": [
+    {
+     "die": 49065851,
+     "name": "MtArray",
+     "offset": 0,
+     "virtual": false
+    }
+   ],
+   "cu": 48999848,
+   "die": 49067983,
+   "kind": "type",
+   "members": [],
+   "name": "MtTypedArray<CDataSetAcquirementParam>",
+   "size": 32,
+   "tag": "class",
+   "vtable": {
+    "virtual_methods": [
+     {
+      "linkage": null,
+      "name": "~MtTypedArray",
+      "slot": 0
+     }
+    ],
+    "vptr_members": []
+   },
+   "vtable_holder": "MtObject"
+  },
+  "nUserSession::CPacket_S2C_CHANGE_JOB_RES": {
+   "bases": [
+    {
+     "die": 163816309,
+     "name": "CPacketDataBase",
+     "offset": 0,
+     "virtual": false
+    }
+   ],
+   "cu": 163598324,
+   "die": 164016087,
+   "kind": "type",
+   "members": [
+    {
+     "name": "DTI",
+     "offset": null,
+     "size": 56,
+     "static": true,
+     "type": "nUserSession::CPacket_S2C_CHANGE_JOB_RES::MyDTI",
+     "type_die": 164016121
+    },
+    {
+     "name": "m_usError",
+     "offset": 8,
+     "size": 2,
+     "type": "u16",
+     "type_die": 163688986
+    },
+    {
+     "name": "m_nResult",
+     "offset": 12,
+     "size": 4,
+     "type": "s32",
+     "type_die": 163682008
+    },
+    {
+     "name": "m_CharacterJobData",
+     "offset": 16,
+     "size": 80,
+     "type": "CCharacterJobData",
+     "type_die": 164359556
+    },
+    {
+     "name": "m_CharacterEquipList",
+     "offset": 96,
+     "size": 32,
+     "type": "MtTypedArray<CDataS2CCharacterEquipInfo>",
+     "type_die": 164335004
+    },
+    {
+     "name": "m_AddItemList",
+     "offset": 128,
+     "size": 32,
+     "type": "MtTypedArray<CDataItemList>",
+     "type_die": 164332845
+    },
+    {
+     "name": "m_BagItemList",
+     "offset": 160,
+     "size": 32,
+     "type": "MtTypedArray<CDataItemList>",
+     "type_die": 164332845
+    },
+    {
+     "name": "m_StorageItemList",
+     "offset": 192,
+     "size": 32,
+     "type": "MtTypedArray<CDataItemList>",
+     "type_die": 164332845
+    },
+    {
+     "name": "m_DifferentEquipList",
+     "offset": 224,
+     "size": 32,
+     "type": "MtTypedArray<CDataS2CCharacterEquipInfo>",
+     "type_die": 164335004
+    },
+    {
+     "name": "m_SetAcquirementParamList",
+     "offset": 256,
+     "size": 32,
+     "type": "MtTypedArray<CDataSetAcquirementParam>",
+     "type_die": 164859874
+    },
+    {
+     "name": "m_SetAbilityParamList",
+     "offset": 288,
+     "size": 32,
+     "type": "MtTypedArray<CDataSetAcquirementParam>",
+     "type_die": 164859874
+    },
+    {
+     "name": "m_LearnNormalSkillParamList",
+     "offset": 320,
+     "size": 32,
+     "type": "MtTypedArray<CDataLearnNormalSkillParam>",
+     "type_die": 164917073
+    },
+    {
+     "name": "m_EquipJobItemList",
+     "offset": 352,
+     "size": 32,
+     "type": "MtTypedArray<CDataEquipJobItem>",
+     "type_die": 163844374
+    },
+    {
+     "name": "m_PlayPointData",
+     "offset": 384,
+     "size": 16,
+     "type": "CPlayPointData",
+     "type_die": 163843645
+    },
+    {
+     "name": "m_bIsReceived",
+     "offset": 400,
+     "size": 1,
+     "type": "bool",
+     "type_die": 163604397
+    }
+   ],
+   "name": "nUserSession::CPacket_S2C_CHANGE_JOB_RES",
+   "size": 408,
+   "tag": "class",
+   "vtable": {
+    "virtual_methods": [
+     {
+      "linkage": null,
+      "name": "getDTI",
+      "slot": 5
+     }
+    ],
+    "vptr_members": []
+   },
+   "vtable_holder": "MtObject"
+  },
+  "s32": {
+   "cu": 7386070,
+   "die": 7430740,
+   "kind": "type",
+   "name": "s32",
+   "size": null,
+   "tag": "typedef",
+   "target": "int",
+   "target_die": 7429410
+  },
+  "u16": {
+   "cu": 7386070,
+   "die": 7437708,
+   "kind": "type",
+   "name": "u16",
+   "size": null,
+   "tag": "typedef",
+   "target": "unsigned short",
+   "target_die": 7437719
+  },
+  "u32": {
+   "cu": 7386070,
+   "die": 7400744,
+   "kind": "type",
+   "name": "u32",
+   "size": null,
+   "tag": "typedef",
+   "target": "unsigned int",
+   "target_die": 7400755
+  },
+  "u8": {
+   "cu": 7386070,
+   "die": 7437685,
+   "kind": "type",
+   "name": "u8",
+   "size": null,
+   "tag": "typedef",
+   "target": "unsigned char",
+   "target_die": 7437696
+  }
+ }
+}

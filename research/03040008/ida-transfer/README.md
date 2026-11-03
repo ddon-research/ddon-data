@@ -325,15 +325,33 @@ The PC 32-bit layout is computed from the DWARF members (offsets of the PS4 64-b
 **Access check.** Candidates: the class of `this` and of each pointer-to-class argument of the accepted pairs
 (PC stack slot from gate (c)'s widths), the pointee class of a pointer member a v4 `via` access goes through,
 and the embedded member and base types. Every v4 `object_accesses` record of the paired PC function through
-such an argument must land on a member start (recursing into embedded structs, bases and array elements) with
-the member's size, or on a whole embedded aggregate of that size, or the vptr; `lea` only needs a member start;
-nothing beyond the size. No exceptions for narrow `test byte ptr` or 8/16-byte block copies: they count as
+such an argument must fit the layout (T006b rule, `transfer/layout.py` `land`):
+
+- a load or store lands on the start of a **leaf** member (scalar, pointer, enum, vptr) with exactly the leaf's
+  width, recursing through bases, embedded structs and array elements; a whole aggregate read at once (an
+  8-byte copy of a 2 x u16 element) is no leaf and contradicts; a load or store without a width contradicts;
+- a `lea` lands on the object start, on the start of one of the object's **own** members (bases included,
+  since a derived class names them directly), or on an element start of such an array member; a `lea` inside
+  an embedded struct contradicts. A `lea` takes the address of a sub-object (the `this` or out-argument of an
+  inner reader), so landing on an inner member start proves nothing: T006 accepted
+  `nUserSession::CPacket_S2C_CHANGE_JOB_RES` because PC 0x80cf80's `lea`s of its sub-objects at +0x18, +0x60,
+  +0x74, ... landed on inner leaves of the PS4 layout (`m_unJobPoint`, `mAutoDelete`, ...) with sub-objects at
+  +0xc, +0x54, +0x68 (T007b run 3);
+- an indexed access needs a SIB scale equal to the element size of an array member whose element start its
+  displacement is, then the leaf rule at that element start (a field of `arr[i]` other than the first
+  contradicts: strict reading of the T006b brief);
+- padding, a byte inside a member, another width, anything beyond the size contradict.
+
+A pointer to a pointer (`MtObject **mpArray`) is not a pointer to a class: `via` accesses through it lay
+nothing on `MtObject` (T006 counted `mpArray[i] = p` stores as `MtObject` vptr writes). No exceptions for narrow `test byte ptr` or 8/16-byte block copies: they count as
 contradictions. A contradiction counts against the argument's class (the root), which is refused; an access
 counts for an embedded type or a `via` pointee only while its root is not refused; a type that embeds a
 refused type is refused (fixed point). Accepted: zero contradictions, at least one checked access, and the
 size equal to a known PC size where one exists. The dumps link no allocation or constructor to a type, so the
 only size evidence is T002's (`cSeedGameSvConnection` 0x540, `CPacket_S2C_GET_STAGE_LIST_RES` 0x30); other types
 say so in `size_evidence`. `types.tsv` lists checked and unchecked members and up to 10 evidence VAs per type,
+and `coverage`: the bytes of leaves hit by fixed-offset loads and stores over the PC size (a `lea` or an
+indexed access checks no bytes, so a type accepted from a reader's `lea`s alone shows 0%);
 `type_members.tsv` the VAs per member.
 
 **types.h.** Accepted types and the checked types embedded in them (`embedded`), each after its dependencies,

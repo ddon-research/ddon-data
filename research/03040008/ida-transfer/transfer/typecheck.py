@@ -2,11 +2,14 @@
 
 Candidates: the class of ``this`` and of each pointer-to-class argument of the accepted pairs, the pointee
 classes of pointer members they load through (v4 ``via``), and recursively the embedded member and base types.
-Every object-relative access a paired PC function makes through such an argument must land on a member start
-of the computed PC layout with the member's size (``lea``: on a member start), or on the vptr, and nothing
-beyond the size. Contradictions count against the argument's class (the root); an access counts for an
-embedded type, or a ``via`` pointee, only while the root is not refused. A type that embeds a refused type is
-refused. Accepted: no contradiction, at least one checked access, a size equal to any known size.
+Every object-relative access a paired PC function makes through such an argument must fit the computed PC
+layout by the access rules of ``layout`` (T006b, README "Access check"): a width access on the start of a
+leaf member with the leaf's width or on the vptr; a ``lea`` on the start of one of the object's own members
+or array elements, never inside an embedded struct; an indexed access with the element size as its scale on
+an element start; nothing beyond the size. Contradictions count against the argument's class (the root); an
+access counts for an embedded type, or a ``via`` pointee, only while the root is not refused. A type that
+embeds a refused type is refused. Accepted: no contradiction, at least one checked access, a size equal to any
+known size.
 """
 
 from __future__ import annotations
@@ -36,6 +39,7 @@ class Evidence:
     access: str
     landing: Landing
     parent: str | None = None  # via: the argument's class whose pointer member was dereferenced
+    indexed: bool = False
 
 
 @dataclass
@@ -48,6 +52,7 @@ class TypeVerdict:
     contradictions: list[Evidence] = field(default_factory=list)
     checked_members: dict[str, set[int]] = field(default_factory=dict)  # member -> insn VAs
     evidence_vas: set[int] = field(default_factory=set)
+    covered: set[int] = field(default_factory=set)  # byte offsets of leaves checked by fixed-offset width accesses
     functions: set[int] = field(default_factory=set)
     size_evidence: str = ""
 
@@ -57,7 +62,9 @@ def class_of(t: str, layouts: Layouts) -> str | None:
     s = strip(t)
     if not s.endswith(("*", "&")) or "(" in s:
         return None
-    inner = strip(s.rstrip("&").rstrip("*").rstrip("&"))
+    inner = strip(s[:-1])
+    if inner.endswith(("*", "&")):  # T006b: ``T**`` points to a pointer (``MtArray::mpArray``), not to a T
+        return None
     seen: set[str] = set()
     while inner not in seen:
         seen.add(inner)
@@ -116,7 +123,8 @@ def collect(facts: Facts, layouts: Layouts, pairs: list[PairRow], ps4fn: dict[in
                 continue
             width = None if a.access == "lea" else a.width
             if a.via is None:
-                ev.append(Evidence(cls, p.pc_va, a.va, a.disp, width, a.access, land(info, a.disp, width)))
+                ev.append(Evidence(cls, p.pc_va, a.va, a.disp, width, a.access,
+                                   _landing(info, a.disp, width, a.access, a.indexed, a.scale), indexed=a.indexed))
                 continue
             m = member_at(info, a.via)
             if m is None or m.kind != "pointer":
@@ -133,8 +141,16 @@ def collect(facts: Facts, layouts: Layouts, pairs: list[PairRow], ps4fn: dict[in
             except LayoutError as e:
                 bad_layout[pointee] = str(e)
                 continue
-            ev.append(Evidence(pointee, p.pc_va, a.va, a.disp, width, a.access, land(pinfo, a.disp, width), cls))
+            ev.append(Evidence(pointee, p.pc_va, a.va, a.disp, width, a.access,
+                               _landing(pinfo, a.disp, width, a.access, a.indexed, a.scale), cls, a.indexed))
     return ev, bad_layout, roots
+
+
+def _landing(info: TypeInfo, disp: int, width: int | None, access: str, indexed: bool, scale: int | None
+             ) -> Landing:
+    if access != "lea" and width is None:  # fail closed: a load or store without a width checks nothing
+        return Landing(False, (info.name,), f"+{disp:#x}: {access} without a width")
+    return land(info, disp, width, indexed, scale)
 
 
 def embedded(info: TypeInfo) -> set[str]:
@@ -196,13 +212,15 @@ def decide(layouts: Layouts, ev: list[Evidence], bad_layout: dict[str, str], roo
             continue
         if e.root in refused:
             continue
-        for t in e.landing.path:
+        for k, t in enumerate(e.landing.path):
             v = out.get(t)
             if v is None:
                 continue
             v.checked += 1
             v.evidence_vas.add(e.va)
             v.functions.add(e.pc_func)
+            if e.width and not e.indexed and k < len(e.landing.offs):
+                v.covered.update(range(e.landing.offs[k], e.landing.offs[k] + e.width))
         for t, m in e.landing.hits:
             if t in out:
                 out[t].checked_members.setdefault(m, set()).add(e.va)
@@ -223,6 +241,13 @@ def decide(layouts: Layouts, ev: list[Evidence], bad_layout: dict[str, str], roo
             if v.status == "unchecked" and v.checked:
                 v.status, v.reason = "embedded", f"laid out inside {name}; checked through it"
     return out
+
+
+def coverage_text(v: TypeVerdict) -> str:
+    """Checked member bytes / size: the bytes of leaves hit by fixed-offset loads and stores."""
+    if not v.size:
+        return "-"
+    return f"{len(v.covered)}/{v.size} {100 * len(v.covered) / v.size:.1f}%"
 
 
 def contradiction_text(v: TypeVerdict, limit: int = 6) -> str:

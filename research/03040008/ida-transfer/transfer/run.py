@@ -189,17 +189,19 @@ def write_all(out: Path, res: Result, layouts: Layouts, head: str) -> dict[str, 
                       " ".join(m for m in all_m if m in v.checked_members) or "-", " ".join(unchecked) or "-",
                       " ".join(f"{x:#x}" for x in sorted(v.evidence_vas)[:10]), v.size_evidence or
                       "no allocation or constructor size in the dumps",
-                      " ".join(str(s) for s in res.depends.get(n, [])) or "-", v.reason])
+                      " ".join(str(s) for s in res.depends.get(n, [])) or "-", v.reason,
+                      typecheck.coverage_text(v)])
     for e in sorted(res.enums):
         trows.append([e, "enum", "referenced", f"{res.enums[e]['size']:#x}", f"{res.enums[e]['size']:#x}", 0, 0,
-                      "-", "-", "", "DWARF enum as is", "-", "used by a transferred member or prototype"])
+                      "-", "-", "", "DWARF enum as is", "-", "used by a transferred member or prototype",
+                      "-"])
     for o in sorted(res.rendered.opaque):
         trows.append([o, "opaque", "declared", "-", "-", 0, 0, "-", "-", "", "-", "-",
-                      "pointee of a transferred member or prototype; no layout claim"])
+                      "pointee of a transferred member or prototype; no layout claim", "-"])
     counts["types.tsv"] = _write(out / "types.tsv", head, ["type", "kind", "status", "pc_size", "ps4_size",
                                                            "checked_accesses", "functions", "members_checked",
                                                            "members_unchecked", "evidence_vas", "size_evidence",
-                                                           "holdout_lost_in_rng", "basis"], trows)
+                                                           "holdout_lost_in_rng", "basis", "coverage"], trows)
     counts["type_members.tsv"] = _write(out / "type_members.tsv", head, ["type", "offset", "size", "member", "decl",
                                                                          "dwarf_type", "checked_by"],
                                         [[m.type, f"{m.offset:#x}", m.size, m.member, m.decl, m.dwarf_type, m.checked]

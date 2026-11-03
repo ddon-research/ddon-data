@@ -204,6 +204,15 @@ class Layouts:
 
 
 # --- landing an access on a layout -------------------------------------------------------------------------
+#
+# T006b (README "Access check"): an access with a width must land on the start of a leaf member (scalar,
+# pointer, enum, vptr) with exactly the leaf's width, recursing through bases, embedded structs and array
+# elements; a whole aggregate read at once does not count. A ``lea`` (no width) must land on the object start,
+# on the start of one of the object's own members (bases included), or on an element start of such an array
+# member: never inside an embedded struct, because a ``lea`` names the address of a whole sub-object (an inner
+# reader's ``this``), so an inner member start proves nothing. An indexed access must have a scale equal to
+# the element size of an array member its displacement starts an element of. Anything else contradicts:
+# padding, a byte inside a member, another width.
 
 
 @dataclass(frozen=True)
@@ -212,52 +221,129 @@ class Landing:
     path: tuple[str, ...]  # struct/union type names traversed, outermost first
     where: str  # member path or the reason
     hits: tuple[tuple[str, str], ...] = ()  # (type, member) at each level the access entered a member
+    offs: tuple[int, ...] = ()  # the access's offset inside each type of ``path``
 
 
-def land(info: TypeInfo, rel: int, width: int | None) -> Landing:
-    """Does an access at ``rel`` of ``width`` bytes (None: ``lea``) land on a member start of that size?"""
+def land(info: TypeInfo, rel: int, width: int | None, indexed: bool = False, scale: int | None = None) -> Landing:
+    """Does an access at ``rel`` of ``width`` bytes (None: ``lea``) fit the layout (rules above)?"""
     if rel < 0 or rel + (width or 0) > info.size or (width is None and rel >= info.size):
-        return Landing(False, (info.name,), f"+{rel:#x} w{width} beyond size {info.size:#x}")
-    return _land(info, rel, width, (), "")
+        return Landing(False, (info.name,), f"+{rel:#x} w{width} beyond size {info.size:#x}", (), (rel,))
+    if indexed:
+        return _indexed(info, rel, width, scale, (), (), "")
+    if width is None:
+        return _lea(info, rel, (), (), "")
+    return _leaf(info, rel, width, (), (), "")
 
 
-def _land(info: TypeInfo, rel: int, width: int | None, path: tuple[str, ...], where: str) -> Landing:
+def _join(where: str, name: str) -> str:
+    return f"{where}.{name}" if where else name
+
+
+def _with_hit(t: str, m: str, r: Landing) -> Landing:
+    return Landing(r.ok, r.path, r.where, ((t, m),) + r.hits, r.offs)
+
+
+def _first(results: list[Landing]) -> Landing:
+    for r in results:
+        if r.ok:
+            return r
+    return results[0]
+
+
+def _containing(info: TypeInfo, rel: int) -> list[Member]:
+    return [m for m in info.members if m.offset <= rel < m.offset + m.size]
+
+
+def _leaf(info: TypeInfo, rel: int, width: int, path: tuple[str, ...], offs: tuple[int, ...],
+          where: str) -> Landing:
     if info.kind == "struct":
-        path = path + (info.name,)
-        if rel == 0 and (width is None or width == info.size):
-            return Landing(True, path, where or "+0")
-        cands = [m for m in info.members if m.offset <= rel < m.offset + m.size]
+        path, offs = path + (info.name,), offs + (rel,)
+        cands = _containing(info, rel)
         if not cands:
-            return Landing(False, path, f"{where}+{rel:#x} in padding of {info.name}")
-        best = None
+            return Landing(False, path, f"{where}+{rel:#x} in padding of {info.name}", (), offs)
+        out = []
         for m in cands:
-            r = _member(m, rel - m.offset, width, path, f"{where}.{m.name}" if where else m.name)
-            r = Landing(r.ok, r.path, r.where, ((info.name, m.name),) + r.hits)
-            if r.ok:
-                return r
-            best = best or r
-        return best
+            r = rel - m.offset
+            if m.kind == "vptr":
+                ok = r == 0 and width == 4
+                out.append(Landing(ok, path, "vptr" if ok else f"vptr: +{r} w{width}", (), offs))
+            else:
+                assert m.info is not None
+                out.append(_leaf(m.info, r, width, path, offs, _join(where, m.name)))
+            out[-1] = _with_hit(info.name, m.name, out[-1])
+        return _first(out)
     if info.kind == "array":
         assert info.elem is not None
-        if rel == 0 and (width is None or width == info.size):
-            return Landing(True, path, where)
         i, r = divmod(rel, info.elem.size)
-        return _land(info.elem, r, width, path, f"{where}[{i}]")
-    # scalar / pointer / enum
+        return _leaf(info.elem, r, width, path, offs, f"{where}[{i}]")
     if rel != 0:
-        return Landing(False, path, f"{where}: +{rel} into a {info.size}-byte member")
-    if width is not None and width != info.size:
-        return Landing(False, path, f"{where}: width {width} on a {info.size}-byte member")
-    return Landing(True, path, where)
+        return Landing(False, path, f"{where}: +{rel} into a {info.size}-byte member", (), offs)
+    if width != info.size:
+        return Landing(False, path, f"{where}: width {width} on a {info.size}-byte member", (), offs)
+    return Landing(True, path, where, (), offs)
 
 
-def _member(m: Member, rel: int, width: int | None, path: tuple[str, ...], where: str) -> Landing:
-    if m.kind == "vptr":
-        if rel == 0 and width in (None, 4):
-            return Landing(True, path, "vptr")
-        return Landing(False, path, f"vptr: +{rel} w{width}")
-    assert m.info is not None
-    return _land(m.info, rel, width, path, where)
+def _lea(info: TypeInfo, rel: int, path: tuple[str, ...], offs: tuple[int, ...], where: str) -> Landing:
+    if info.kind == "array":
+        assert info.elem is not None
+        i, r = divmod(rel, info.elem.size)
+        if r == 0:
+            return Landing(True, path, f"{where}[{i}]", (), offs)
+        if info.elem.kind == "array":
+            return _lea(info.elem, r, path, offs, f"{where}[{i}]")
+        return Landing(False, path, f"{where}[{i}]: lea +{r} inside a {info.elem.size}-byte element", (), offs)
+    path, offs = path + (info.name,), offs + (rel,)
+    if rel == 0:
+        return Landing(True, path, where or "+0", (), offs)
+    cands = _containing(info, rel)
+    if not cands:
+        return Landing(False, path, f"{where}+{rel:#x} in padding of {info.name}", (), offs)
+    out = []
+    for m in cands:
+        r = rel - m.offset
+        name = _join(where, m.name)
+        if r == 0:
+            res = Landing(True, path, name, (), offs)
+        elif m.kind == "base":
+            assert m.info is not None
+            res = _lea(m.info, r, path, offs, name)
+        elif m.kind == "array":
+            assert m.info is not None
+            res = _lea(m.info, r, path, offs, name)
+        else:
+            res = Landing(False, path, f"{name}: lea +{r} inside a {m.size}-byte {m.kind} member", (), offs)
+        out.append(_with_hit(info.name, m.name, res))
+    return _first(out)
+
+
+def _indexed(info: TypeInfo, rel: int, width: int | None, scale: int | None, path: tuple[str, ...],
+             offs: tuple[int, ...], where: str) -> Landing:
+    if info.kind == "array":
+        assert info.elem is not None
+        i, r = divmod(rel, info.elem.size)
+        if r == 0 and scale == info.elem.size:
+            if width is None:
+                return Landing(True, path, f"{where}[{i}]", (), offs)
+            return _leaf(info.elem, 0, width, path, offs, f"{where}[{i}]")
+        if info.elem.kind in ("array", "struct"):
+            return _indexed(info.elem, r, width, scale, path, offs, f"{where}[{i}]")
+        return Landing(False, path, f"{where}[{i}]+{r}: indexed, scale {scale} on {info.elem.size}-byte elements",
+                       (), offs)
+    if info.kind != "struct":
+        return Landing(False, path, f"{where}: indexed access on a {info.size}-byte {info.kind}", (), offs)
+    path, offs = path + (info.name,), offs + (rel,)
+    cands = _containing(info, rel)
+    if not cands:
+        return Landing(False, path, f"{where}+{rel:#x} in padding of {info.name}", (), offs)
+    out = []
+    for m in cands:
+        name = _join(where, m.name)
+        if m.info is None or m.kind not in ("array", "struct", "base"):
+            res = Landing(False, path, f"{name}: indexed access on a {m.size}-byte {m.kind} member", (), offs)
+        else:
+            res = _indexed(m.info, rel - m.offset, width, scale, path, offs, name)
+        out.append(_with_hit(info.name, m.name, res))
+    return _first(out)
 
 
 def member_at(info: TypeInfo, rel: int) -> Member | None:

@@ -45,6 +45,7 @@ class Access:
     via: int | None = None  # disp of the field the base pointer was loaded from
     indexed: bool = False
     value: int | None = None
+    scale: int | None = None  # indexed: the SIB scale (T006b)
 
 
 @dataclass
@@ -173,7 +174,7 @@ def _iter(path: Path):
 
 def _access(a: dict) -> Access:
     return Access(int(a["va"]), a["arg_loc"], int(a["arg"]), int(a["disp"]), a.get("width"), a["access"],
-                  a.get("via"), bool(a.get("indexed")), a.get("value"))
+                  a.get("via"), bool(a.get("indexed")), a.get("value"), a.get("scale"))
 
 
 def _func(r: dict, side: str) -> Func:

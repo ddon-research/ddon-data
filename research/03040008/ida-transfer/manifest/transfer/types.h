@@ -6,7 +6,7 @@ struct CDataClanScoutEntryParam;
 struct CDataClanSearchParam;
 struct CDataMatchingProfile;
 struct CPacket;
-struct MtString::STRING;
+struct MtObject;
 struct MtTypedArray<CDataC2SChangeCharacterEquipInfo>;
 struct MtTypedArray<CDataChangeEquipJobItem>;
 struct MtTypedArray<CDataItemUIDList>;
@@ -19,6 +19,7 @@ struct nNet::stPawnFeedback;
 struct nUserSession::CPacket_S2C_AREA_CHANGE_RES;
 struct nUserSession::CPacket_S2C_AREA_RANK_UP_RES;
 struct nUserSession::CPacket_S2C_CHANGE_CAP_TO_GP_RES;
+struct nUserSession::CPacket_S2C_CHANGE_JOB_RES;
 struct nUserSession::CPacket_S2C_CHANGE_PAWN_JOB_RES;
 struct nUserSession::CPacket_S2C_CLAN_BASE_GET_INFO_RES;
 struct nUserSession::CPacket_S2C_CLAN_CREATE_RES;
@@ -86,84 +87,11 @@ struct nUserSession::CPacket_S2C_SYSTEM_MAIL_GET_ALL_ITEM_RES;
 struct nUserSession::CPacket_S2C_WEATHER_FORECAST_GET_RES;
 
 #pragma pack(push, 1)
-struct MtObject // PC size 0x4
-{
-  void *__vftable; // +0x0 4 vptr
-};
-
-struct CPacketDataBase // PC size 0x4
-{
-  MtObject baseclass_0; // +0x0 4 base MtObject
-};
-
-struct CDataCharacterJobData // PC size 0x48
-{
-  CPacketDataBase baseclass_0; // +0x0 4 base CPacketDataBase
-  unsigned __int8 m_ucJob; // +0x4 1
-  unsigned __int8 gap5[3];
-  unsigned int m_unExp; // +0x8 4
-  unsigned int m_unJobPoint; // +0xc 4
-  unsigned int m_unLv; // +0x10 4
-  unsigned __int16 m_usAtk; // +0x14 2
-  unsigned __int16 m_usDef; // +0x16 2
-  unsigned __int16 m_usMAtk; // +0x18 2
-  unsigned __int16 m_usMDef; // +0x1a 2
-  unsigned __int16 m_usStrength; // +0x1c 2
-  unsigned __int16 m_usDownPower; // +0x1e 2
-  unsigned __int16 m_usShakePower; // +0x20 2
-  unsigned __int16 m_usStunPower; // +0x22 2
-  unsigned __int16 m_usConstitution; // +0x24 2
-  unsigned __int16 m_usGuts; // +0x26 2
-  unsigned __int8 m_ucFireResist; // +0x28 1
-  unsigned __int8 m_ucIceResist; // +0x29 1
-  unsigned __int8 m_ucThunderResist; // +0x2a 1
-  unsigned __int8 m_ucHolyResist; // +0x2b 1
-  unsigned __int8 m_ucDarkResist; // +0x2c 1
-  unsigned __int8 m_ucSpreadResist; // +0x2d 1
-  unsigned __int8 m_ucFreezeResist; // +0x2e 1
-  unsigned __int8 m_ucShockResist; // +0x2f 1
-  unsigned __int8 m_ucAbsorbResist; // +0x30 1
-  unsigned __int8 m_ucDarkElmResist; // +0x31 1
-  unsigned __int8 m_ucPoisonResist; // +0x32 1
-  unsigned __int8 m_ucSlowResist; // +0x33 1
-  unsigned __int8 m_ucSleepResist; // +0x34 1
-  unsigned __int8 m_ucStunResist; // +0x35 1
-  unsigned __int8 m_ucWetResist; // +0x36 1
-  unsigned __int8 m_ucOilResist; // +0x37 1
-  unsigned __int8 m_ucSealResist; // +0x38 1
-  unsigned __int8 m_ucCurseResist; // +0x39 1
-  unsigned __int8 m_ucSoftResist; // +0x3a 1
-  unsigned __int8 m_ucStoneResist; // +0x3b 1
-  unsigned __int8 m_ucGoldResist; // +0x3c 1
-  unsigned __int8 m_ucFireReduceResist; // +0x3d 1
-  unsigned __int8 m_ucIceReduceResist; // +0x3e 1
-  unsigned __int8 m_ucThunderReduceResist; // +0x3f 1
-  unsigned __int8 m_ucHolyReduceResist; // +0x40 1
-  unsigned __int8 m_ucDarkReduceResist; // +0x41 1
-  unsigned __int8 m_ucAtkDownResist; // +0x42 1
-  unsigned __int8 m_ucDefDownResist; // +0x43 1
-  unsigned __int8 m_ucMAtkDownResist; // +0x44 1
-  unsigned __int8 m_ucMDefDownResist; // +0x45 1
-  unsigned __int8 gap46[2];
-};
-
-struct MtString // PC size 0x4
-{
-  MtString::STRING *value; // +0x0 4
-};
-
-struct CDataCharacterName // PC size 0xc
-{
-  CPacketDataBase baseclass_0; // +0x0 4 base CPacketDataBase
-  MtString m_wstrFirstName; // +0x4 4
-  MtString m_wstrLastName; // +0x8 4
-};
-
 struct CDataClanSearchResult // PC size 0x30
 {
-  CPacketDataBase baseclass_0; // +0x0 4 base CPacketDataBase
+  unsigned __int8 baseclass_0[4]; // +0x0 4 base CPacketDataBase (not transferred)
   unsigned int m_unClanID; // +0x4 4
-  MtString m_wstrName; // +0x8 4
+  unsigned __int8 m_wstrName[4]; // +0x8 4 MtString (not transferred)
   unsigned __int16 m_usLv; // +0xc 2
   unsigned __int16 m_usMemberNum; // +0xe 2
   unsigned int m_unMotto; // +0x10 4
@@ -172,36 +100,28 @@ struct CDataClanSearchResult // PC size 0x30
   unsigned __int8 m_ucEmblemBaseMainColor; // +0x16 1
   unsigned __int8 m_ucEmblemBaseSubColor; // +0x17 1
   unsigned int m_unMasterCharacterID; // +0x18 4
-  CDataCharacterName m_MasterCharacterName; // +0x1c 12
+  unsigned __int8 m_MasterCharacterName[12]; // +0x1c 12 CCharacterName (not transferred)
   __int64 m_llCreated; // +0x28 8
-};
-
-struct CDataCommunityCharacterBaseInfo // PC size 0x18
-{
-  CPacketDataBase baseclass_0; // +0x0 4 base CPacketDataBase
-  unsigned int m_unCharacterID; // +0x4 4
-  CDataCharacterName m_CharacterName; // +0x8 12
-  MtString m_wstrClanName; // +0x14 4
 };
 
 struct CDataGPShopLineupElementBase // PC size 0x24
 {
-  CPacketDataBase baseclass_0; // +0x0 4 base CPacketDataBase
+  unsigned __int8 baseclass_0[4]; // +0x0 4 base CPacketDataBase (not transferred)
   unsigned int m_unID; // +0x4 4
   unsigned int m_unGP; // +0x8 4
   unsigned int m_unInitialGP; // +0xc 4
   unsigned int m_unDiscountGP; // +0x10 4
   unsigned __int8 m_ucIconId; // +0x14 1
   unsigned __int8 gap15[3];
-  MtString m_wstrName; // +0x18 4
-  MtString m_wstrComment; // +0x1c 4
+  unsigned __int8 m_wstrName[4]; // +0x18 4 MtString (not transferred)
+  unsigned __int8 m_wstrComment[4]; // +0x1c 4 MtString (not transferred)
   bool m_bIsInitialPrice; // +0x20 1
   unsigned __int8 gap21[3];
 };
 
 struct CDataGameTimeBaseInfo // PC size 0x38
 {
-  CPacketDataBase baseclass_0; // +0x0 4 base CPacketDataBase
+  unsigned __int8 baseclass_0[4]; // +0x0 4 base CPacketDataBase (not transferred)
   unsigned int m_unGameTimeOneDayMin; // +0x4 4
   unsigned int m_unGameTimeYearMonth; // +0x8 4
   unsigned int m_unGameTimeMonthDay; // +0xc 4
@@ -217,22 +137,22 @@ struct CDataGameTimeBaseInfo // PC size 0x38
 
 struct CDataMailInfo // PC size 0x40
 {
-  CPacketDataBase baseclass_0; // +0x0 4 base CPacketDataBase
+  unsigned __int8 baseclass_0[4]; // +0x0 4 base CPacketDataBase (not transferred)
   unsigned __int8 gap4[4];
   unsigned __int64 m_ullId; // +0x8 8
   unsigned __int8 m_ucState; // +0x10 1
   unsigned __int8 m_ucItemState; // +0x11 1
   unsigned __int8 gap12[2];
-  CDataCommunityCharacterBaseInfo m_BaseInfo; // +0x14 24
-  MtString m_wstrSenderName; // +0x2c 4
-  MtString m_wstrMailText; // +0x30 4
+  unsigned __int8 m_BaseInfo[24]; // +0x14 24 CCommunityCharacterBaseInfo (not transferred)
+  unsigned __int8 m_wstrSenderName[4]; // +0x2c 4 MtString (not transferred)
+  unsigned __int8 m_wstrMailText[4]; // +0x30 4 MtString (not transferred)
   unsigned __int8 gap34[4];
   __int64 m_llSenderDate; // +0x38 8
 };
 
 struct CDataOrbGainExtendParam // PC size 0x20
 {
-  CPacketDataBase baseclass_0; // +0x0 4 base CPacketDataBase
+  unsigned __int8 baseclass_0[4]; // +0x0 4 base CPacketDataBase (not transferred)
   unsigned __int16 m_usHpMax; // +0x4 2
   unsigned __int16 m_usStaminaMax; // +0x6 2
   unsigned __int16 m_usAttack; // +0x8 2
@@ -251,11 +171,11 @@ struct CDataOrbGainExtendParam // PC size 0x20
 
 struct CDataWorldInfo // PC size 0x38
 {
-  CPacketDataBase baseclass_0; // +0x0 4 base CPacketDataBase
+  unsigned __int8 baseclass_0[4]; // +0x0 4 base CPacketDataBase (not transferred)
   unsigned __int16 m_usId; // +0x4 2
   unsigned __int8 gap6[2];
-  MtString m_wstrName; // +0x8 4
-  MtString m_wstrBrief; // +0xc 4
+  unsigned __int8 m_wstrName[4]; // +0x8 4 MtString (not transferred)
+  unsigned __int8 m_wstrBrief[4]; // +0xc 4 MtString (not transferred)
   unsigned __int8 m_ucDragonType; // +0x10 1
   unsigned __int8 m_ucSetType; // +0x11 1
   unsigned __int8 gap12[2];
@@ -263,17 +183,17 @@ struct CDataWorldInfo // PC size 0x38
   unsigned int m_unTemp1; // +0x18 4
   unsigned int m_unTemp2; // +0x1c 4
   unsigned int m_unTemp3; // +0x20 4
-  MtString m_wstrTempStr0; // +0x24 4
-  MtString m_wstrTempStr1; // +0x28 4
-  MtString m_wstrTempStr2; // +0x2c 4
-  MtString m_wstrTempStr3; // +0x30 4
+  unsigned __int8 m_wstrTempStr0[4]; // +0x24 4 MtString (not transferred)
+  unsigned __int8 m_wstrTempStr1[4]; // +0x28 4 MtString (not transferred)
+  unsigned __int8 m_wstrTempStr2[4]; // +0x2c 4 MtString (not transferred)
+  unsigned __int8 m_wstrTempStr3[4]; // +0x30 4 MtString (not transferred)
   unsigned __int8 m_ucCycleContentsState; // +0x34 1
   unsigned __int8 gap35[3];
 };
 
 struct MtArray // PC size 0x14
 {
-  MtObject baseclass_0; // +0x0 4 base MtObject
+  unsigned __int8 baseclass_0[4]; // +0x0 4 base MtObject (not transferred)
   unsigned int mLength; // +0x4 4
   unsigned int mBufsiz; // +0x8 4
   bool mAutoDelete; // +0xc 1
@@ -476,11 +396,6 @@ struct MtTypedArray<CDataGatheringItemGetRequest> // PC size 0x14
   MtArray baseclass_0; // +0x0 20 base MtArray
 };
 
-struct MtTypedArray<CDataItemList> // PC size 0x14
-{
-  MtArray baseclass_0; // +0x0 20 base MtArray
-};
-
 struct MtTypedArray<CDataItemSort> // PC size 0x14
 {
   MtArray baseclass_0; // +0x0 20 base MtArray
@@ -497,11 +412,6 @@ struct MtTypedArray<CDataJobValueShopItem> // PC size 0x14
 };
 
 struct MtTypedArray<CDataLayoutItemData> // PC size 0x14
-{
-  MtArray baseclass_0; // +0x0 20 base MtArray
-};
-
-struct MtTypedArray<CDataLearnNormalSkillParam> // PC size 0x14
 {
   MtArray baseclass_0; // +0x0 20 base MtArray
 };
@@ -739,27 +649,6 @@ struct MtTypedArray<CDataWeatherLoop> // PC size 0x14
 struct MtTypedArray<CDataWeatherSchedule> // PC size 0x14
 {
   MtArray baseclass_0; // +0x0 20 base MtArray
-};
-
-struct nUserSession::CPacket_S2C_CHANGE_JOB_RES // PC size 0x118
-{
-  CPacketDataBase baseclass_0; // +0x0 4 base CPacketDataBase
-  unsigned __int16 m_usError; // +0x4 2
-  unsigned __int8 gap6[2];
-  int m_nResult; // +0x8 4
-  CDataCharacterJobData m_CharacterJobData; // +0xc 72
-  MtTypedArray<CDataS2CCharacterEquipInfo> m_CharacterEquipList; // +0x54 20
-  MtTypedArray<CDataItemList> m_AddItemList; // +0x68 20
-  MtTypedArray<CDataItemList> m_BagItemList; // +0x7c 20
-  MtTypedArray<CDataItemList> m_StorageItemList; // +0x90 20
-  MtTypedArray<CDataS2CCharacterEquipInfo> m_DifferentEquipList; // +0xa4 20
-  MtTypedArray<CDataSetAcquirementParam> m_SetAcquirementParamList; // +0xb8 20
-  MtTypedArray<CDataSetAcquirementParam> m_SetAbilityParamList; // +0xcc 20
-  MtTypedArray<CDataLearnNormalSkillParam> m_LearnNormalSkillParamList; // +0xe0 20
-  MtTypedArray<CDataEquipJobItem> m_EquipJobItemList; // +0xf4 20
-  unsigned __int8 m_PlayPointData[12]; // +0x108 12 CPlayPointData (not transferred)
-  bool m_bIsReceived; // +0x114 1
-  unsigned __int8 gap115[3];
 };
 
 #pragma pack(pop)

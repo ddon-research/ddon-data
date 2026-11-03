@@ -1,191 +1,183 @@
 # 007 T006 transfer, PC 03040008 <- PS4 02020005; 972 accepted pairs; inputs: pc-ida.jsonl source f1c974d0e529d4bb7dc5f0953d37eea6bbb023f2667f9a1d3a3b878f4919fa20; ps4-dwarf.jsonl source 4236f598acc8f15893181455ed195e39dfa4dbfda4eeda8b56fcbd82312c63c0; ps4-ida.jsonl source 4236f598acc8f15893181455ed195e39dfa4dbfda4eeda8b56fcbd82312c63c0
-type	kind	status	pc_size	ps4_size	checked_accesses	functions	members_checked	members_unchecked	evidence_vas	size_evidence	holdout_lost_in_rng	basis
-CDataCharacterJobData	struct	embedded	0x48	0x50	5	1	CPacketDataBase m_ucJob m_unExp m_unJobPoint	m_unLv m_usAtk m_usDef m_usMAtk m_usMDef m_usStrength m_usDownPower m_usShakePower m_usStunPower m_usConstitution m_usGuts m_ucFireResist m_ucIceResist m_ucThunderResist m_ucHolyResist m_ucDarkResist m_ucSpreadResist m_ucFreezeResist m_ucShockResist m_ucAbsorbResist m_ucDarkElmResist m_ucPoisonResist m_ucSlowResist m_ucSleepResist m_ucStunResist m_ucWetResist m_ucOilResist m_ucSealResist m_ucCurseResist m_ucSoftResist m_ucStoneResist m_ucGoldResist m_ucFireReduceResist m_ucIceReduceResist m_ucThunderReduceResist m_ucHolyReduceResist m_ucDarkReduceResist m_ucAtkDownResist m_ucDefDownResist m_ucMAtkDownResist m_ucMDefDownResist	0x80cf89 0x80cfa8 0x80cfbc 0x80cfcd 0x80d07b	no allocation or constructor size in the dumps	-	laid out inside nUserSession::CPacket_S2C_CHANGE_JOB_RES; checked through it
-CDataCharacterName	struct	embedded	0xc	0x18	1	1	-	CPacketDataBase m_wstrFirstName m_wstrLastName	0x75dc31	no allocation or constructor size in the dumps	-	laid out inside CDataClanSearchResult; checked through it
-CDataClanSearchResult	struct	accepted	0x30	0x48	12	1	m_unClanID m_wstrName m_usLv m_usMemberNum m_unMotto m_ucEmblemMarkType m_ucEmblemBaseType m_ucEmblemBaseMainColor m_ucEmblemBaseSubColor m_unMasterCharacterID m_MasterCharacterName m_llCreated	CPacketDataBase	0x75db7a 0x75db90 0x75dba1 0x75dbb2 0x75dbc3 0x75dbd4 0x75dbe5 0x75dbf6 0x75dc07 0x75dc1c	no allocation or constructor size in the dumps	5	no contradiction
-CDataCommunityCharacterBaseInfo	struct	embedded	0x18	0x30	1	1	-	CPacketDataBase m_unCharacterID m_CharacterName m_wstrClanName	0x76e5e2	no allocation or constructor size in the dumps	-	laid out inside CDataMailInfo; checked through it
-CDataGPShopLineupElementBase	struct	accepted	0x24	0x38	8	1	m_unID m_unGP m_unInitialGP m_unDiscountGP m_ucIconId m_wstrName m_wstrComment m_bIsInitialPrice	CPacketDataBase	0x767e1a 0x767e30 0x767e41 0x767e52 0x767e63 0x767e74 0x767e85 0x767e96	no allocation or constructor size in the dumps	-	no contradiction
-CDataGameTimeBaseInfo	struct	accepted	0x38	0x38	10	1	m_unGameTimeOneDayMin m_unGameTimeYearMonth m_unGameTimeMonthDay m_unGameTimeDayHour m_unGameTimeWeekDay m_unGameTimeMoonAge m_llOriginalRealTimeSec m_llOriginalGameTimeSec m_unOriginalWeek m_unOriginalMoonAge	CPacketDataBase	0x76903a 0x769050 0x769061 0x769072 0x769083 0x769094 0x7690a5 0x7690b6 0x7690c7 0x7690dc	no allocation or constructor size in the dumps	-	no contradiction
-CDataMailInfo	struct	accepted	0x40	0x60	7	1	m_ullId m_ucState m_ucItemState m_BaseInfo m_wstrSenderName m_wstrMailText m_llSenderDate	CPacketDataBase	0x76e5aa 0x76e5c0 0x76e5d1 0x76e5e2 0x76e5f3 0x76e604 0x76e615	no allocation or constructor size in the dumps	-	no contradiction
-CDataOrbGainExtendParam	struct	accepted	0x20	0x28	13	1	m_usHpMax m_usStaminaMax m_usAttack m_usDefence m_usMagicAttack m_usMagicDefence m_usAbilityCost m_usJewerlySlot m_usUseItemSlot m_usMaterialItemSlot m_usEquipItemSlot m_usMainPawnSlot m_usSupportPawnSlot	CPacketDataBase	0x7701ca 0x7701e0 0x7701f1 0x770202 0x770213 0x770224 0x770235 0x770246 0x770257 0x77026c	no allocation or constructor size in the dumps	1	no contradiction
-CDataWorldInfo	struct	accepted	0x38	0x60	14	1	m_usId m_wstrName m_wstrBrief m_ucDragonType m_ucSetType m_unTemp0 m_unTemp1 m_unTemp2 m_unTemp3 m_wstrTempStr0 m_wstrTempStr1 m_wstrTempStr2 m_wstrTempStr3 m_ucCycleContentsState	CPacketDataBase	0x77cc4a 0x77cc60 0x77cc71 0x77cc82 0x77cc93 0x77cca4 0x77ccb5 0x77ccc6 0x77ccd7 0x77ccec	no allocation or constructor size in the dumps	4 5	no contradiction
-CPacketDataBase	struct	embedded	0x4	0x8	1	1	-	MtObject	0x80d07b	no allocation or constructor size in the dumps	-	laid out inside CDataClanSearchResult; checked through it
-MtArray	struct	embedded	0x14	0x20	633	91	mLength mBufsiz mAutoDelete mpArray	MtObject	0x758113 0x758135 0x7581c6 0x7581c9 0x7581e3 0x7581e6 0x7581ed 0x7584c3 0x7584e5 0x758549	no allocation or constructor size in the dumps	-	laid out inside MtTypedArray<CDataAbilityLevelParam>; checked through it
-MtObject	struct	accepted	0x4	0x8	89	89	-	vptr	0x7581ea 0x75856d 0x75892a 0x758a4d 0x758b83 0x758e54 0x759187 0x759480 0x75a939 0x75ac0c	no allocation or constructor size in the dumps	-	no contradiction
-MtString	struct	embedded	0x4	0x8	11	4	-	value	0x75db90 0x767e74 0x767e85 0x76e5f3 0x76e604 0x77cc60 0x77cc71 0x77ccec 0x77cd01 0x77cd16	no allocation or constructor size in the dumps	-	laid out inside CDataClanSearchResult; checked through it
-MtTypedArray<CDataAbilityLevelParam>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x758113 0x758135 0x7581c6 0x7581c9 0x7581e3 0x7581e6 0x7581ed	no allocation or constructor size in the dumps	2 4 5	no contradiction
-MtTypedArray<CDataAchieveRewardCommon>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x7584c3 0x7584e5 0x758549 0x75854c 0x758566 0x758569 0x758570	no allocation or constructor size in the dumps	1	no contradiction
-MtTypedArray<CDataAchievementProgress>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x758823 0x758845 0x758906 0x758909 0x758923 0x758926 0x75892d	no allocation or constructor size in the dumps	1 5	no contradiction
-MtTypedArray<CDataAchievementRewardProgress>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x758973 0x758995 0x758a29 0x758a2c 0x758a46 0x758a49 0x758a50	no allocation or constructor size in the dumps	4	no contradiction
-MtTypedArray<CDataActiveJobOrder>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x758a93 0x758ab5 0x758b5f 0x758b62 0x758b7c 0x758b7f 0x758b86	no allocation or constructor size in the dumps	3	no contradiction
-MtTypedArray<CDataAreaBaseInfo>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x758d91 0x758db3 0x758e38 0x758e3b 0x758e4d 0x758e50 0x758e57	no allocation or constructor size in the dumps	3	no contradiction
-MtTypedArray<CDataAreaInfoList>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x7590a3 0x7590c5 0x759163 0x759166 0x759180 0x759183 0x75918a	no allocation or constructor size in the dumps	-	no contradiction
-MtTypedArray<CDataAreaRankUpQuestInfo>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x7593d3 0x7593f5 0x75945c 0x75945f 0x759479 0x75947c 0x759483	no allocation or constructor size in the dumps	-	no contradiction
-MtTypedArray<CDataBorderSupplyItem>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x75a873 0x75a895 0x75a915 0x75a918 0x75a932 0x75a935 0x75a93c	no allocation or constructor size in the dumps	-	no contradiction
-MtTypedArray<CDataBoxGachaItemInfo>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x75ab51 0x75ab73 0x75abf0 0x75abf3 0x75ac05 0x75ac08 0x75ac0f	no allocation or constructor size in the dumps	3	no contradiction
-MtTypedArray<CDataCAPtoGPChangeElement>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x75b001 0x75b023 0x75b099 0x75b09c 0x75b0ae 0x75b0b1 0x75b0b8	no allocation or constructor size in the dumps	2	no contradiction
-MtTypedArray<CDataCharacterMessage>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x75cdd3 0x75cdf5 0x75ce89 0x75ce8c 0x75cea6 0x75cea9 0x75ceb0	no allocation or constructor size in the dumps	3	no contradiction
-MtTypedArray<CDataCharacterMsgSet>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x75cef3 0x75cf15 0x75cfad 0x75cfb0 0x75cfca 0x75cfcd 0x75cfd4	no allocation or constructor size in the dumps	3	no contradiction
-MtTypedArray<CDataClanHistoryElement>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x75d291 0x75d2b3 0x75d342 0x75d345 0x75d357 0x75d35a 0x75d361	no allocation or constructor size in the dumps	-	no contradiction
-MtTypedArray<CDataClanJoinRequest>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x75d443 0x75d465 0x75d526 0x75d529 0x75d543 0x75d546 0x75d54d	no allocation or constructor size in the dumps	-	no contradiction
-MtTypedArray<CDataClanScoutEntryInviteInfo>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x75d7c3 0x75d7e5 0x75d8c2 0x75d8c5 0x75d8df 0x75d8e2 0x75d8e9	no allocation or constructor size in the dumps	-	no contradiction
-MtTypedArray<CDataClanScoutEntrySearchResult>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x75d933 0x75d955 0x75da16 0x75da19 0x75da33 0x75da36 0x75da3d	no allocation or constructor size in the dumps	-	no contradiction
-MtTypedArray<CDataClanSearchResult>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x75da81 0x75daa3 0x75db1e 0x75db21 0x75db33 0x75db36 0x75db3d	no allocation or constructor size in the dumps	5	no contradiction
-MtTypedArray<CDataClanShopConciergeItem>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x75df83 0x75dfa5 0x75e00c 0x75e00f 0x75e029 0x75e02c 0x75e033	no allocation or constructor size in the dumps	2	no contradiction
-MtTypedArray<CDataCommonU32>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x75e8f1 0x75e90f 0x75e95d 0x75e960 0x75e977 0x75e97a 0x75e981	no allocation or constructor size in the dumps	-	no contradiction
-MtTypedArray<CDataCommonU8>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x75e9c1 0x75e9df 0x75ea2a 0x75ea2d 0x75ea44 0x75ea47 0x75ea4e	no allocation or constructor size in the dumps	-	no contradiction
-MtTypedArray<CDataCommunicationShortCut>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x75ea93 0x75eab5 0x75eb60 0x75eb63 0x75eb7d 0x75eb80 0x75eb87	no allocation or constructor size in the dumps	3 4	no contradiction
-MtTypedArray<CDataCommunityCharacterBaseInfo>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x75ebd3 0x75ebf5 0x75ec93 0x75ec96 0x75ecb0 0x75ecb3 0x75ecba	no allocation or constructor size in the dumps	-	no contradiction
-MtTypedArray<CDataCraftSkillRate>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x761103 0x761125 0x761199 0x76119c 0x7611b6 0x7611b9 0x7611c0	no allocation or constructor size in the dumps	5	no contradiction
-MtTypedArray<CDataCycleContentsReward>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x761f13 0x761f35 0x761fb1 0x761fb4 0x761fce 0x761fd1 0x761fd8	no allocation or constructor size in the dumps	4	no contradiction
-MtTypedArray<CDataCycleContentsRewardRecord>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x762023 0x762045 0x7620b0 0x7620b3 0x7620cd 0x7620d0 0x7620d7	no allocation or constructor size in the dumps	3	no contradiction
-MtTypedArray<CDataCycleContentsStateList>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x762113 0x762135 0x7621c6 0x7621c9 0x7621e3 0x7621e6 0x7621ed	no allocation or constructor size in the dumps	4 5	no contradiction
-MtTypedArray<CDataDLCLineupBought>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x762233 0x762255 0x7622d4 0x7622d7 0x7622f1 0x7622f4 0x7622fb	no allocation or constructor size in the dumps	-	no contradiction
-MtTypedArray<CDataDLCLineupHistory>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x762343 0x762365 0x762403 0x762406 0x762420 0x762423 0x76242a	no allocation or constructor size in the dumps	1 4	no contradiction
-MtTypedArray<CDataEditParam>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x764b33 0x764b55 0x764c04 0x764c07 0x764c21 0x764c24 0x764c2b	no allocation or constructor size in the dumps	-	no contradiction
-MtTypedArray<CDataEditParts>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x764c73 0x764c95 0x764d15 0x764d18 0x764d32 0x764d35 0x764d3c	no allocation or constructor size in the dumps	-	no contradiction
-MtTypedArray<CDataEquipJobItem>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x766133 0x766155 0x7661b9 0x7661bc 0x7661d6 0x7661d9 0x7661e0	no allocation or constructor size in the dumps	-	no contradiction
-MtTypedArray<CDataFavoriteWarpPoint>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x766b03 0x766b25 0x766ba4 0x766ba7 0x766bc1 0x766bc4 0x766bcb	no allocation or constructor size in the dumps	3	no contradiction
-MtTypedArray<CDataFurnitureLayoutData>	struct	accepted	0x14	0x20	1	1	MtArray	-	0x881fe9	no allocation or constructor size in the dumps	3 4	no contradiction
-MtTypedArray<CDataGPDetail>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x767661 0x767683 0x767704 0x767707 0x767719 0x76771c 0x767723	no allocation or constructor size in the dumps	4 5	no contradiction
-MtTypedArray<CDataGPEditVoiceBuyHistory>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x7677e3 0x767805 0x76788b 0x76788e 0x7678a8 0x7678ab 0x7678b2	no allocation or constructor size in the dumps	2	no contradiction
-MtTypedArray<CDataGPPeriod>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x7678f3 0x767915 0x767998 0x76799b 0x7679b5 0x7679b8 0x7679bf	no allocation or constructor size in the dumps	4	no contradiction
-MtTypedArray<CDataGachaItemInfo>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x7685f3 0x768615 0x7686c9 0x7686cc 0x7686e6 0x7686e9 0x7686f0	no allocation or constructor size in the dumps	5	no contradiction
-MtTypedArray<CDataGatheringItemGetRequest>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x769253 0x769275 0x7692dc 0x7692df 0x7692f9 0x7692fc 0x769303	no allocation or constructor size in the dumps	-	no contradiction
-MtTypedArray<CDataItemList>	struct	embedded	0x14	0x20	3	1	MtArray	-	0x80cfef 0x80d000 0x80d014	no allocation or constructor size in the dumps	-	laid out inside nUserSession::CPacket_S2C_CHANGE_JOB_RES; checked through it
-MtTypedArray<CDataItemSort>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x75e6f5 0x75e717 0x75e7ac 0x75e7af 0x75e7c9 0x75e7cc 0x75e7d6	no allocation or constructor size in the dumps	1	no contradiction
-MtTypedArray<CDataJobOrderProgress>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x76c3d3 0x76c3f5 0x76c4a5 0x76c4a8 0x76c4c2 0x76c4c5 0x76c4cc	no allocation or constructor size in the dumps	3	no contradiction
-MtTypedArray<CDataJobValueShopItem>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x76c891 0x76c8b3 0x76c91e 0x76c921 0x76c933 0x76c936 0x76c93d	no allocation or constructor size in the dumps	1 2 4	no contradiction
-MtTypedArray<CDataLayoutItemData>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x76cb53 0x76cb75 0x76cc10 0x76cc13 0x76cc2d 0x76cc30 0x76cc37	no allocation or constructor size in the dumps	-	no contradiction
-MtTypedArray<CDataLearnNormalSkillParam>	struct	embedded	0x14	0x20	2	1	MtArray	-	0x80cfb1 0x80d084	no allocation or constructor size in the dumps	-	laid out inside nUserSession::CPacket_S2C_CHANGE_JOB_RES; checked through it
-MtTypedArray<CDataLearnedAcquirementParam>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x76ce43 0x76ce65 0x76cf0d 0x76cf10 0x76cf2a 0x76cf2d 0x76cf34	no allocation or constructor size in the dumps	-	no contradiction
-MtTypedArray<CDataLoadingInfoSchedule>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x76d563 0x76d585 0x76d646 0x76d649 0x76d663 0x76d666 0x76d66d	no allocation or constructor size in the dumps	-	no contradiction
-MtTypedArray<CDataMDataCraftMaterial>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x76def3 0x76df15 0x76dfa9 0x76dfac 0x76dfc6 0x76dfc9 0x76dfd0	no allocation or constructor size in the dumps	4 5	no contradiction
-MtTypedArray<CDataMailAttachmentInfo>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x76e213 0x76e235 0x76e2a0 0x76e2a3 0x76e2bd 0x76e2c0 0x76e2c7	no allocation or constructor size in the dumps	-	no contradiction
-MtTypedArray<CDataMailGPInfo>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x76e363 0x76e385 0x76e427 0x76e42a 0x76e444 0x76e447 0x76e44e	no allocation or constructor size in the dumps	4	no contradiction
-MtTypedArray<CDataMailItemInfo>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x76e643 0x76e665 0x76e706 0x76e709 0x76e723 0x76e726 0x76e72d	no allocation or constructor size in the dumps	4	no contradiction
-MtTypedArray<CDataMailLegendPawnInfo>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x76e773 0x76e795 0x76e837 0x76e83a 0x76e854 0x76e857 0x76e85e	no allocation or constructor size in the dumps	4	no contradiction
-MtTypedArray<CDataMailOptionCourseInfo>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x76e8a3 0x76e8c5 0x76e983 0x76e986 0x76e9a0 0x76e9a3 0x76e9aa	no allocation or constructor size in the dumps	4	no contradiction
-MtTypedArray<CDataMoonSchedule>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x76f103 0x76f125 0x76f1af 0x76f1b2 0x76f1cc 0x76f1cf 0x76f1d6	no allocation or constructor size in the dumps	-	no contradiction
-MtTypedArray<CDataNGWordInfo>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x76f363 0x76f385 0x76f3fc 0x76f3ff 0x76f419 0x76f41c 0x76f423	no allocation or constructor size in the dumps	-	no contradiction
-MtTypedArray<CDataNormalSkillParam>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x76f833 0x76f855 0x76f8e9 0x76f8ec 0x76f906 0x76f909 0x76f910	no allocation or constructor size in the dumps	-	no contradiction
-MtTypedArray<CDataOrbElement>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x76ff51 0x76ff73 0x76ffe9 0x76ffec 0x76fffe 0x770001 0x770008	no allocation or constructor size in the dumps	-	no contradiction
-MtTypedArray<CDataOrbElementGroup>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x7700c3 0x7700e5 0x770165 0x770168 0x770182 0x770185 0x77018c	no allocation or constructor size in the dumps	-	no contradiction
-MtTypedArray<CDataPawnCraftSkill>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x771c93 0x771cb5 0x771d19 0x771d1c 0x771d36 0x771d39 0x771d40	no allocation or constructor size in the dumps	-	no contradiction
-MtTypedArray<CDataPawnExpeditionClanSallySpotInfo>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x771d83 0x771da5 0x771e24 0x771e27 0x771e41 0x771e44 0x771e4b	no allocation or constructor size in the dumps	-	no contradiction
-MtTypedArray<CDataPawnFeedback>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x771ee3 0x771f05 0x771f79 0x771f7c 0x771f96 0x771f99 0x771fa0	no allocation or constructor size in the dumps	2 3	no contradiction
-MtTypedArray<CDataPawnHistory>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x772031 0x77204f 0x772096 0x772099 0x7720ab 0x7720ae 0x7720b5	no allocation or constructor size in the dumps	1 3	no contradiction
-MtTypedArray<CDataPawnReaction>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x772873 0x772895 0x7728f9 0x7728fc 0x772916 0x772919 0x772920	no allocation or constructor size in the dumps	3 4 5	no contradiction
-MtTypedArray<CDataPresetAbilityParam>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x7732f3 0x773315 0x7733aa 0x7733ad 0x7733c7 0x7733ca 0x7733d1	no allocation or constructor size in the dumps	-	no contradiction
-MtTypedArray<CDataPriorityQuest>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x7735c3 0x7735e5 0x7736ae 0x7736b1 0x7736cb 0x7736ce 0x7736d5	no allocation or constructor size in the dumps	1 2	no contradiction
-MtTypedArray<CDataPriorityQuestSetting>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x773723 0x773745 0x7737c5 0x7737c8 0x7737e2 0x7737e5 0x7737ec	no allocation or constructor size in the dumps	1 2	no contradiction
-MtTypedArray<CDataQuestCommand>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x773903 0x773925 0x7739c7 0x7739ca 0x7739e4 0x7739e7 0x7739ee	no allocation or constructor size in the dumps	-	no contradiction
-MtTypedArray<CDataQuestId>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x773f91 0x773faf 0x773ffd 0x774000 0x774017 0x77401a 0x774021	no allocation or constructor size in the dumps	1	no contradiction
-MtTypedArray<CDataQuestPartyBonusInfo>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x774d01 0x774d23 0x774d96 0x774d99 0x774dab 0x774dae 0x774db5	no allocation or constructor size in the dumps	4 5	no contradiction
-MtTypedArray<CDataQuestPointDetailRecord>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x775233 0x775255 0x7752bc 0x7752bf 0x7752d9 0x7752dc 0x7752e3	no allocation or constructor size in the dumps	-	no contradiction
-MtTypedArray<CDataQuestProcessState>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x775321 0x775343 0x7753d1 0x7753d4 0x7753e6 0x7753e9 0x7753f0	no allocation or constructor size in the dumps	-	no contradiction
-MtTypedArray<CDataQuestProgressWork>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x7754b3 0x7754d5 0x775588 0x77558b 0x7755a5 0x7755a8 0x7755af	no allocation or constructor size in the dumps	-	no contradiction
-MtTypedArray<CDataRegisterdPawnList>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x776621 0x77663f 0x776686 0x776689 0x77669b 0x77669e 0x7766a5	no allocation or constructor size in the dumps	-	no contradiction
-MtTypedArray<CDataReleaseElement>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x776ac3 0x776ae5 0x776b5e 0x776b61 0x776b7b 0x776b7e 0x776b85	no allocation or constructor size in the dumps	-	no contradiction
-MtTypedArray<CDataReleaseOrbElement>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x776bd3 0x776bf5 0x776c81 0x776c84 0x776c9e 0x776ca1 0x776ca8	no allocation or constructor size in the dumps	-	no contradiction
-MtTypedArray<CDataRentedPawnList>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x776cf1 0x776d0f 0x776d56 0x776d59 0x776d6b 0x776d6e 0x776d75	no allocation or constructor size in the dumps	-	no contradiction
-MtTypedArray<CDataRewardAbility>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x776e61 0x776e7f 0x776ecd 0x776ed0 0x776ee7 0x776eea 0x776ef1	no allocation or constructor size in the dumps	-	no contradiction
-MtTypedArray<CDataRewardBoxItem>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x776f31 0x776f53 0x776fb6 0x776fb9 0x776fcb 0x776fce 0x776fd5	no allocation or constructor size in the dumps	3	no contradiction
-MtTypedArray<CDataRewardBoxRecord>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x777093 0x7770b5 0x77714d 0x777150 0x77716a 0x77716d 0x777174	no allocation or constructor size in the dumps	3	no contradiction
-MtTypedArray<CDataRewardItem>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x7771c3 0x7771e5 0x77724b 0x77724e 0x777268 0x77726b 0x777272	no allocation or constructor size in the dumps	-	no contradiction
-MtTypedArray<CDataRewardJobValue>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x7774d3 0x7774f5 0x777571 0x777574 0x77758e 0x777591 0x777598	no allocation or constructor size in the dumps	4	no contradiction
-MtTypedArray<CDataRewardWalletPoint>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x7775e3 0x777605 0x777681 0x777684 0x77769e 0x7776a1 0x7776a8	no allocation or constructor size in the dumps	4	no contradiction
-MtTypedArray<CDataS2CCharacterEquipInfo>	struct	accepted	0x14	0x20	9	2	MtArray	-	0x7776f3 0x777715 0x77778c 0x77778f 0x7777a9 0x7777ac 0x7777b3 0x80cfde 0x80d02c	no allocation or constructor size in the dumps	-	no contradiction
-MtTypedArray<CDataS2CPawnEquipInfo>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x7777f3 0x777815 0x7778c6 0x7778c9 0x7778e3 0x7778e6 0x7778ed	no allocation or constructor size in the dumps	4	no contradiction
-MtTypedArray<CDataSameLetterInfo>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x777931 0x777953 0x7779c0 0x7779c3 0x7779da 0x7779dd 0x7779e4	no allocation or constructor size in the dumps	-	no contradiction
-MtTypedArray<CDataSetAcquirementParam>	struct	accepted	0x14	0x20	9	2	MtArray	-	0x777f23 0x777f45 0x777fea 0x777fed 0x778007 0x77800a 0x778011 0x80d044 0x80d05c	no allocation or constructor size in the dumps	-	no contradiction
-MtTypedArray<CDataSkillLevelParam>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x778c23 0x778c45 0x778cd6 0x778cd9 0x778cf3 0x778cf6 0x778cfd	no allocation or constructor size in the dumps	-	no contradiction
-MtTypedArray<CDataSkillParam>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x778d43 0x778d65 0x778e0d 0x778e10 0x778e2a 0x778e2d 0x778e34	no allocation or constructor size in the dumps	-	no contradiction
-MtTypedArray<CDataSupplyItem>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x77aa03 0x77aa25 0x77aa8b 0x77aa8e 0x77aaa8 0x77aaab 0x77aab2	no allocation or constructor size in the dumps	-	no contradiction
-MtTypedArray<CDataTraningRoomEnemyHeader>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x77b393 0x77b3b5 0x77b41c 0x77b41f 0x77b439 0x77b43c 0x77b443	no allocation or constructor size in the dumps	3 4	no contradiction
-MtTypedArray<CDataWeatherLoop>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x77ca43 0x77ca65 0x77cac9 0x77cacc 0x77cae6 0x77cae9 0x77caf0	no allocation or constructor size in the dumps	-	no contradiction
-MtTypedArray<CDataWeatherSchedule>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x77cb33 0x77cb55 0x77cbdf 0x77cbe2 0x77cbfc 0x77cbff 0x77cc06	no allocation or constructor size in the dumps	-	no contradiction
-nUserSession::CPacket_S2C_CHANGE_JOB_RES	struct	accepted	0x118	0x198	14	1	m_CharacterJobData m_CharacterEquipList m_AddItemList m_BagItemList m_StorageItemList m_DifferentEquipList m_SetAcquirementParamList m_SetAbilityParamList m_LearnNormalSkillParamList	CPacketDataBase m_usError m_nResult m_EquipJobItemList m_PlayPointData m_bIsReceived	0x80cf89 0x80cfa8 0x80cfb1 0x80cfbc 0x80cfcd 0x80cfde 0x80cfef 0x80d000 0x80d014 0x80d02c	no allocation or constructor size in the dumps	-	no contradiction
-CDataArisenProfile	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim
-CDataClanScoutEntryParam	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim
-CDataClanSearchParam	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim
-CDataMatchingProfile	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim
-CPacket	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim
-MtString::STRING	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim
-MtTypedArray<CDataC2SChangeCharacterEquipInfo>	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim
-MtTypedArray<CDataChangeEquipJobItem>	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim
-MtTypedArray<CDataItemUIDList>	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim
-MtTypedArray<CDataJobExpMode>	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim
-MtTypedArray<CDataPartnerPawnReward>	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim
-MtTypedArray<CDataStorageItemUIDList>	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim
-cNetGameServer	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim
-cSeedGameSvConnection	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim
-nNet::stPawnFeedback	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim
-nUserSession::CPacket_S2C_AREA_CHANGE_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim
-nUserSession::CPacket_S2C_AREA_RANK_UP_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim
-nUserSession::CPacket_S2C_CHANGE_CAP_TO_GP_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim
-nUserSession::CPacket_S2C_CHANGE_PAWN_JOB_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim
-nUserSession::CPacket_S2C_CLAN_BASE_GET_INFO_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim
-nUserSession::CPacket_S2C_CLAN_CREATE_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim
-nUserSession::CPacket_S2C_CLAN_GET_MY_INFO_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim
-nUserSession::CPacket_S2C_CLAN_SHOP_GET_BUFF_ITEM_LIST_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim
-nUserSession::CPacket_S2C_CLAN_SHOP_GET_FUNCTION_ITEM_LIST_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim
-nUserSession::CPacket_S2C_EXCHANGE_OM_INSTANT_KEY_VALUE_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim
-nUserSession::CPacket_S2C_FURNITURE_LIST_GET_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim
-nUserSession::CPacket_S2C_GAME_TIME_GET_BASEINFO_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim
-nUserSession::CPacket_S2C_GET_ALL_ORB_ELEMENT_LIST_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim
-nUserSession::CPacket_S2C_GET_ALL_PLAYER_CONTEXT_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim
-nUserSession::CPacket_S2C_GET_AREA_MASTER_INFO_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim
-nUserSession::CPacket_S2C_GET_CHARACTER_EQUIP_LIST_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim
-nUserSession::CPacket_S2C_GET_CHARACTER_PROFILE_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim
-nUserSession::CPacket_S2C_GET_CRAFT_GRADEUP_RECIPE_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim
-nUserSession::CPacket_S2C_GET_CRAFT_PRODUCT_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim
-nUserSession::CPacket_S2C_GET_CRAFT_PROGRESS_LIST_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim
-nUserSession::CPacket_S2C_GET_CRAFT_RECIPE_DESIGNATE_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim
-nUserSession::CPacket_S2C_GET_CRAFT_RECIPE_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim
-nUserSession::CPacket_S2C_GET_CRAFT_SETTING_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim
-nUserSession::CPacket_S2C_GET_CURRENT_SET_SKILL_LIST_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim
-nUserSession::CPacket_S2C_GET_CYCLE_CONTENTS_REWARD_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim
-nUserSession::CPacket_S2C_GET_DROP_ITEM_LIST_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim
-nUserSession::CPacket_S2C_GET_END_CONTENTS_GROUP_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim
-nUserSession::CPacket_S2C_GET_ENEMY_SET_LIST_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim
-nUserSession::CPacket_S2C_GET_FRIEND_LIST_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim
-nUserSession::CPacket_S2C_GET_GATHERING_ITEM_LIST_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim
-nUserSession::CPacket_S2C_GET_GP_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim
-nUserSession::CPacket_S2C_GET_JOB_CHANGE_LIST_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim
-nUserSession::CPacket_S2C_GET_LIGHT_QUEST_LIST_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim
-nUserSession::CPacket_S2C_GET_LOBBY_PLAYER_CONTEXT_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim
-nUserSession::CPacket_S2C_GET_MATCHING_PROFILE_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim
-nUserSession::CPacket_S2C_GET_MYPAWN_LIST_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim
-nUserSession::CPacket_S2C_GET_MY_CHARACTER_PROFILE_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim
-nUserSession::CPacket_S2C_GET_PARTY_PAWN_DATA_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim
-nUserSession::CPacket_S2C_GET_PARTY_PLAYER_CONTEXT_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim
-nUserSession::CPacket_S2C_GET_PAWN_EQUIP_LIST_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim
-nUserSession::CPacket_S2C_GET_PAWN_TOTAL_SCORE_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim
-nUserSession::CPacket_S2C_GET_SET_QUEST_INFO_LIST_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim
-nUserSession::CPacket_S2C_GP_SHOP_DISPLAY_BUY_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim
-nUserSession::CPacket_S2C_JOB_VALUE_SHOP_BUY_ITEM_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim
-nUserSession::CPacket_S2C_JOB_VALUE_SHOP_GET_LINEUP_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim
-nUserSession::CPacket_S2C_LEADER_QUEST_PROGRESS_REQUEST_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim
-nUserSession::CPacket_S2C_LEARN_NORMAL_SKILL_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim
-nUserSession::CPacket_S2C_LEARN_PAWN_NORMAL_SKILL_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim
-nUserSession::CPacket_S2C_NG_WORD_GET_LIST_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim
-nUserSession::CPacket_S2C_PARTY_INVITE_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim
-nUserSession::CPacket_S2C_PARTY_JOIN_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim
-nUserSession::CPacket_S2C_PAWN_EXPEDITION_GET_MY_SALLY_INFO_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim
-nUserSession::CPacket_S2C_PAWN_EXPEDITION_GET_REWARD_DROP_ITEM_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim
-nUserSession::CPacket_S2C_PAWN_EXPEDITION_GET_REWARD_DROP_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim
-nUserSession::CPacket_S2C_PAWN_EXPEDITION_GET_SALLY_INFO_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim
-nUserSession::CPacket_S2C_PAWN_EXPEDITION_GET_SALLY_REWARD_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim
-nUserSession::CPacket_S2C_PAWN_LOST_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim
-nUserSession::CPacket_S2C_QUEST_PROGRESS_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim
-nUserSession::CPacket_S2C_RELEASE_JOB_ORB_ELEMENT_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim
-nUserSession::CPacket_S2C_RELEASE_PAWN_ORB_ELEMENT_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim
-nUserSession::CPacket_S2C_RENTAL_PAWN_LOST_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim
-nUserSession::CPacket_S2C_REPORT_JOB_ORDER_PROGRESS_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim
-nUserSession::CPacket_S2C_RESET_CRAFTPOINT_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim
-nUserSession::CPacket_S2C_SET_PAWN_ABILITY_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim
-nUserSession::CPacket_S2C_SET_PAWN_SKILL_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim
-nUserSession::CPacket_S2C_START_EQUIP_GRADE_UP_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim
-nUserSession::CPacket_S2C_SYSTEM_MAIL_GET_ALL_ITEM_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim
-nUserSession::CPacket_S2C_WEATHER_FORECAST_GET_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim
+type	kind	status	pc_size	ps4_size	checked_accesses	functions	members_checked	members_unchecked	evidence_vas	size_evidence	holdout_lost_in_rng	basis	coverage
+CDataClanSearchResult	struct	accepted	0x30	0x48	12	1	m_unClanID m_wstrName m_usLv m_usMemberNum m_unMotto m_ucEmblemMarkType m_ucEmblemBaseType m_ucEmblemBaseMainColor m_ucEmblemBaseSubColor m_unMasterCharacterID m_MasterCharacterName m_llCreated	CPacketDataBase	0x75db7a 0x75db90 0x75dba1 0x75dbb2 0x75dbc3 0x75dbd4 0x75dbe5 0x75dbf6 0x75dc07 0x75dc1c	no allocation or constructor size in the dumps	5	no contradiction	0/48 0.0%
+CDataGPShopLineupElementBase	struct	accepted	0x24	0x38	8	1	m_unID m_unGP m_unInitialGP m_unDiscountGP m_ucIconId m_wstrName m_wstrComment m_bIsInitialPrice	CPacketDataBase	0x767e1a 0x767e30 0x767e41 0x767e52 0x767e63 0x767e74 0x767e85 0x767e96	no allocation or constructor size in the dumps	-	no contradiction	0/36 0.0%
+CDataGameTimeBaseInfo	struct	accepted	0x38	0x38	10	1	m_unGameTimeOneDayMin m_unGameTimeYearMonth m_unGameTimeMonthDay m_unGameTimeDayHour m_unGameTimeWeekDay m_unGameTimeMoonAge m_llOriginalRealTimeSec m_llOriginalGameTimeSec m_unOriginalWeek m_unOriginalMoonAge	CPacketDataBase	0x76903a 0x769050 0x769061 0x769072 0x769083 0x769094 0x7690a5 0x7690b6 0x7690c7 0x7690dc	no allocation or constructor size in the dumps	-	no contradiction	0/56 0.0%
+CDataMailInfo	struct	accepted	0x40	0x60	7	1	m_ullId m_ucState m_ucItemState m_BaseInfo m_wstrSenderName m_wstrMailText m_llSenderDate	CPacketDataBase	0x76e5aa 0x76e5c0 0x76e5d1 0x76e5e2 0x76e5f3 0x76e604 0x76e615	no allocation or constructor size in the dumps	-	no contradiction	0/64 0.0%
+CDataOrbGainExtendParam	struct	accepted	0x20	0x28	13	1	m_usHpMax m_usStaminaMax m_usAttack m_usDefence m_usMagicAttack m_usMagicDefence m_usAbilityCost m_usJewerlySlot m_usUseItemSlot m_usMaterialItemSlot m_usEquipItemSlot m_usMainPawnSlot m_usSupportPawnSlot	CPacketDataBase	0x7701ca 0x7701e0 0x7701f1 0x770202 0x770213 0x770224 0x770235 0x770246 0x770257 0x77026c	no allocation or constructor size in the dumps	1	no contradiction	0/32 0.0%
+CDataWorldInfo	struct	accepted	0x38	0x60	14	1	m_usId m_wstrName m_wstrBrief m_ucDragonType m_ucSetType m_unTemp0 m_unTemp1 m_unTemp2 m_unTemp3 m_wstrTempStr0 m_wstrTempStr1 m_wstrTempStr2 m_wstrTempStr3 m_ucCycleContentsState	CPacketDataBase	0x77cc4a 0x77cc60 0x77cc71 0x77cc82 0x77cc93 0x77cca4 0x77ccb5 0x77ccc6 0x77ccd7 0x77ccec	no allocation or constructor size in the dumps	4 5	no contradiction	0/56 0.0%
+MtArray	struct	embedded	0x14	0x20	624	90	mLength mBufsiz mAutoDelete mpArray	MtObject	0x758113 0x758135 0x7581c6 0x7581c9 0x7581e3 0x7581e6 0x7581ed 0x7584c3 0x7584e5 0x758549	no allocation or constructor size in the dumps	-	laid out inside MtTypedArray<CDataAbilityLevelParam>; checked through it	13/20 65.0%
+MtTypedArray<CDataAbilityLevelParam>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x758113 0x758135 0x7581c6 0x7581c9 0x7581e3 0x7581e6 0x7581ed	no allocation or constructor size in the dumps	2 4 5	no contradiction	13/20 65.0%
+MtTypedArray<CDataAchieveRewardCommon>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x7584c3 0x7584e5 0x758549 0x75854c 0x758566 0x758569 0x758570	no allocation or constructor size in the dumps	1	no contradiction	13/20 65.0%
+MtTypedArray<CDataAchievementProgress>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x758823 0x758845 0x758906 0x758909 0x758923 0x758926 0x75892d	no allocation or constructor size in the dumps	1 5	no contradiction	13/20 65.0%
+MtTypedArray<CDataAchievementRewardProgress>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x758973 0x758995 0x758a29 0x758a2c 0x758a46 0x758a49 0x758a50	no allocation or constructor size in the dumps	4	no contradiction	13/20 65.0%
+MtTypedArray<CDataActiveJobOrder>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x758a93 0x758ab5 0x758b5f 0x758b62 0x758b7c 0x758b7f 0x758b86	no allocation or constructor size in the dumps	3	no contradiction	13/20 65.0%
+MtTypedArray<CDataAreaBaseInfo>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x758d91 0x758db3 0x758e38 0x758e3b 0x758e4d 0x758e50 0x758e57	no allocation or constructor size in the dumps	3	no contradiction	13/20 65.0%
+MtTypedArray<CDataAreaInfoList>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x7590a3 0x7590c5 0x759163 0x759166 0x759180 0x759183 0x75918a	no allocation or constructor size in the dumps	-	no contradiction	13/20 65.0%
+MtTypedArray<CDataAreaRankUpQuestInfo>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x7593d3 0x7593f5 0x75945c 0x75945f 0x759479 0x75947c 0x759483	no allocation or constructor size in the dumps	-	no contradiction	13/20 65.0%
+MtTypedArray<CDataBorderSupplyItem>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x75a873 0x75a895 0x75a915 0x75a918 0x75a932 0x75a935 0x75a93c	no allocation or constructor size in the dumps	-	no contradiction	13/20 65.0%
+MtTypedArray<CDataBoxGachaItemInfo>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x75ab51 0x75ab73 0x75abf0 0x75abf3 0x75ac05 0x75ac08 0x75ac0f	no allocation or constructor size in the dumps	3	no contradiction	13/20 65.0%
+MtTypedArray<CDataCAPtoGPChangeElement>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x75b001 0x75b023 0x75b099 0x75b09c 0x75b0ae 0x75b0b1 0x75b0b8	no allocation or constructor size in the dumps	2	no contradiction	13/20 65.0%
+MtTypedArray<CDataCharacterMessage>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x75cdd3 0x75cdf5 0x75ce89 0x75ce8c 0x75cea6 0x75cea9 0x75ceb0	no allocation or constructor size in the dumps	3	no contradiction	13/20 65.0%
+MtTypedArray<CDataCharacterMsgSet>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x75cef3 0x75cf15 0x75cfad 0x75cfb0 0x75cfca 0x75cfcd 0x75cfd4	no allocation or constructor size in the dumps	3	no contradiction	13/20 65.0%
+MtTypedArray<CDataClanHistoryElement>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x75d291 0x75d2b3 0x75d342 0x75d345 0x75d357 0x75d35a 0x75d361	no allocation or constructor size in the dumps	-	no contradiction	13/20 65.0%
+MtTypedArray<CDataClanJoinRequest>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x75d443 0x75d465 0x75d526 0x75d529 0x75d543 0x75d546 0x75d54d	no allocation or constructor size in the dumps	-	no contradiction	13/20 65.0%
+MtTypedArray<CDataClanScoutEntryInviteInfo>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x75d7c3 0x75d7e5 0x75d8c2 0x75d8c5 0x75d8df 0x75d8e2 0x75d8e9	no allocation or constructor size in the dumps	-	no contradiction	13/20 65.0%
+MtTypedArray<CDataClanScoutEntrySearchResult>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x75d933 0x75d955 0x75da16 0x75da19 0x75da33 0x75da36 0x75da3d	no allocation or constructor size in the dumps	-	no contradiction	13/20 65.0%
+MtTypedArray<CDataClanSearchResult>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x75da81 0x75daa3 0x75db1e 0x75db21 0x75db33 0x75db36 0x75db3d	no allocation or constructor size in the dumps	5	no contradiction	13/20 65.0%
+MtTypedArray<CDataClanShopConciergeItem>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x75df83 0x75dfa5 0x75e00c 0x75e00f 0x75e029 0x75e02c 0x75e033	no allocation or constructor size in the dumps	2	no contradiction	13/20 65.0%
+MtTypedArray<CDataCommonU32>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x75e8f1 0x75e90f 0x75e95d 0x75e960 0x75e977 0x75e97a 0x75e981	no allocation or constructor size in the dumps	-	no contradiction	13/20 65.0%
+MtTypedArray<CDataCommonU8>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x75e9c1 0x75e9df 0x75ea2a 0x75ea2d 0x75ea44 0x75ea47 0x75ea4e	no allocation or constructor size in the dumps	-	no contradiction	13/20 65.0%
+MtTypedArray<CDataCommunicationShortCut>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x75ea93 0x75eab5 0x75eb60 0x75eb63 0x75eb7d 0x75eb80 0x75eb87	no allocation or constructor size in the dumps	3 4	no contradiction	13/20 65.0%
+MtTypedArray<CDataCommunityCharacterBaseInfo>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x75ebd3 0x75ebf5 0x75ec93 0x75ec96 0x75ecb0 0x75ecb3 0x75ecba	no allocation or constructor size in the dumps	-	no contradiction	13/20 65.0%
+MtTypedArray<CDataCraftSkillRate>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x761103 0x761125 0x761199 0x76119c 0x7611b6 0x7611b9 0x7611c0	no allocation or constructor size in the dumps	5	no contradiction	13/20 65.0%
+MtTypedArray<CDataCycleContentsReward>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x761f13 0x761f35 0x761fb1 0x761fb4 0x761fce 0x761fd1 0x761fd8	no allocation or constructor size in the dumps	4	no contradiction	13/20 65.0%
+MtTypedArray<CDataCycleContentsRewardRecord>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x762023 0x762045 0x7620b0 0x7620b3 0x7620cd 0x7620d0 0x7620d7	no allocation or constructor size in the dumps	3	no contradiction	13/20 65.0%
+MtTypedArray<CDataCycleContentsStateList>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x762113 0x762135 0x7621c6 0x7621c9 0x7621e3 0x7621e6 0x7621ed	no allocation or constructor size in the dumps	4 5	no contradiction	13/20 65.0%
+MtTypedArray<CDataDLCLineupBought>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x762233 0x762255 0x7622d4 0x7622d7 0x7622f1 0x7622f4 0x7622fb	no allocation or constructor size in the dumps	-	no contradiction	13/20 65.0%
+MtTypedArray<CDataDLCLineupHistory>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x762343 0x762365 0x762403 0x762406 0x762420 0x762423 0x76242a	no allocation or constructor size in the dumps	1 4	no contradiction	13/20 65.0%
+MtTypedArray<CDataEditParam>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x764b33 0x764b55 0x764c04 0x764c07 0x764c21 0x764c24 0x764c2b	no allocation or constructor size in the dumps	-	no contradiction	13/20 65.0%
+MtTypedArray<CDataEditParts>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x764c73 0x764c95 0x764d15 0x764d18 0x764d32 0x764d35 0x764d3c	no allocation or constructor size in the dumps	-	no contradiction	13/20 65.0%
+MtTypedArray<CDataEquipJobItem>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x766133 0x766155 0x7661b9 0x7661bc 0x7661d6 0x7661d9 0x7661e0	no allocation or constructor size in the dumps	-	no contradiction	13/20 65.0%
+MtTypedArray<CDataFavoriteWarpPoint>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x766b03 0x766b25 0x766ba4 0x766ba7 0x766bc1 0x766bc4 0x766bcb	no allocation or constructor size in the dumps	3	no contradiction	13/20 65.0%
+MtTypedArray<CDataFurnitureLayoutData>	struct	accepted	0x14	0x20	1	1	MtArray	-	0x881fe9	no allocation or constructor size in the dumps	3 4	no contradiction	4/20 20.0%
+MtTypedArray<CDataGPDetail>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x767661 0x767683 0x767704 0x767707 0x767719 0x76771c 0x767723	no allocation or constructor size in the dumps	4 5	no contradiction	13/20 65.0%
+MtTypedArray<CDataGPEditVoiceBuyHistory>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x7677e3 0x767805 0x76788b 0x76788e 0x7678a8 0x7678ab 0x7678b2	no allocation or constructor size in the dumps	2	no contradiction	13/20 65.0%
+MtTypedArray<CDataGPPeriod>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x7678f3 0x767915 0x767998 0x76799b 0x7679b5 0x7679b8 0x7679bf	no allocation or constructor size in the dumps	4	no contradiction	13/20 65.0%
+MtTypedArray<CDataGachaItemInfo>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x7685f3 0x768615 0x7686c9 0x7686cc 0x7686e6 0x7686e9 0x7686f0	no allocation or constructor size in the dumps	5	no contradiction	13/20 65.0%
+MtTypedArray<CDataGatheringItemGetRequest>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x769253 0x769275 0x7692dc 0x7692df 0x7692f9 0x7692fc 0x769303	no allocation or constructor size in the dumps	-	no contradiction	13/20 65.0%
+MtTypedArray<CDataItemSort>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x75e6f5 0x75e717 0x75e7ac 0x75e7af 0x75e7c9 0x75e7cc 0x75e7d6	no allocation or constructor size in the dumps	1	no contradiction	13/20 65.0%
+MtTypedArray<CDataJobOrderProgress>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x76c3d3 0x76c3f5 0x76c4a5 0x76c4a8 0x76c4c2 0x76c4c5 0x76c4cc	no allocation or constructor size in the dumps	3	no contradiction	13/20 65.0%
+MtTypedArray<CDataJobValueShopItem>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x76c891 0x76c8b3 0x76c91e 0x76c921 0x76c933 0x76c936 0x76c93d	no allocation or constructor size in the dumps	1 2 4	no contradiction	13/20 65.0%
+MtTypedArray<CDataLayoutItemData>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x76cb53 0x76cb75 0x76cc10 0x76cc13 0x76cc2d 0x76cc30 0x76cc37	no allocation or constructor size in the dumps	-	no contradiction	13/20 65.0%
+MtTypedArray<CDataLearnedAcquirementParam>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x76ce43 0x76ce65 0x76cf0d 0x76cf10 0x76cf2a 0x76cf2d 0x76cf34	no allocation or constructor size in the dumps	-	no contradiction	13/20 65.0%
+MtTypedArray<CDataLoadingInfoSchedule>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x76d563 0x76d585 0x76d646 0x76d649 0x76d663 0x76d666 0x76d66d	no allocation or constructor size in the dumps	-	no contradiction	13/20 65.0%
+MtTypedArray<CDataMDataCraftMaterial>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x76def3 0x76df15 0x76dfa9 0x76dfac 0x76dfc6 0x76dfc9 0x76dfd0	no allocation or constructor size in the dumps	4 5	no contradiction	13/20 65.0%
+MtTypedArray<CDataMailAttachmentInfo>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x76e213 0x76e235 0x76e2a0 0x76e2a3 0x76e2bd 0x76e2c0 0x76e2c7	no allocation or constructor size in the dumps	-	no contradiction	13/20 65.0%
+MtTypedArray<CDataMailGPInfo>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x76e363 0x76e385 0x76e427 0x76e42a 0x76e444 0x76e447 0x76e44e	no allocation or constructor size in the dumps	4	no contradiction	13/20 65.0%
+MtTypedArray<CDataMailItemInfo>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x76e643 0x76e665 0x76e706 0x76e709 0x76e723 0x76e726 0x76e72d	no allocation or constructor size in the dumps	4	no contradiction	13/20 65.0%
+MtTypedArray<CDataMailLegendPawnInfo>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x76e773 0x76e795 0x76e837 0x76e83a 0x76e854 0x76e857 0x76e85e	no allocation or constructor size in the dumps	4	no contradiction	13/20 65.0%
+MtTypedArray<CDataMailOptionCourseInfo>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x76e8a3 0x76e8c5 0x76e983 0x76e986 0x76e9a0 0x76e9a3 0x76e9aa	no allocation or constructor size in the dumps	4	no contradiction	13/20 65.0%
+MtTypedArray<CDataMoonSchedule>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x76f103 0x76f125 0x76f1af 0x76f1b2 0x76f1cc 0x76f1cf 0x76f1d6	no allocation or constructor size in the dumps	-	no contradiction	13/20 65.0%
+MtTypedArray<CDataNGWordInfo>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x76f363 0x76f385 0x76f3fc 0x76f3ff 0x76f419 0x76f41c 0x76f423	no allocation or constructor size in the dumps	-	no contradiction	13/20 65.0%
+MtTypedArray<CDataNormalSkillParam>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x76f833 0x76f855 0x76f8e9 0x76f8ec 0x76f906 0x76f909 0x76f910	no allocation or constructor size in the dumps	-	no contradiction	13/20 65.0%
+MtTypedArray<CDataOrbElement>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x76ff51 0x76ff73 0x76ffe9 0x76ffec 0x76fffe 0x770001 0x770008	no allocation or constructor size in the dumps	-	no contradiction	13/20 65.0%
+MtTypedArray<CDataOrbElementGroup>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x7700c3 0x7700e5 0x770165 0x770168 0x770182 0x770185 0x77018c	no allocation or constructor size in the dumps	-	no contradiction	13/20 65.0%
+MtTypedArray<CDataPawnCraftSkill>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x771c93 0x771cb5 0x771d19 0x771d1c 0x771d36 0x771d39 0x771d40	no allocation or constructor size in the dumps	-	no contradiction	13/20 65.0%
+MtTypedArray<CDataPawnExpeditionClanSallySpotInfo>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x771d83 0x771da5 0x771e24 0x771e27 0x771e41 0x771e44 0x771e4b	no allocation or constructor size in the dumps	-	no contradiction	13/20 65.0%
+MtTypedArray<CDataPawnFeedback>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x771ee3 0x771f05 0x771f79 0x771f7c 0x771f96 0x771f99 0x771fa0	no allocation or constructor size in the dumps	2 3	no contradiction	13/20 65.0%
+MtTypedArray<CDataPawnHistory>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x772031 0x77204f 0x772096 0x772099 0x7720ab 0x7720ae 0x7720b5	no allocation or constructor size in the dumps	1 3	no contradiction	13/20 65.0%
+MtTypedArray<CDataPawnReaction>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x772873 0x772895 0x7728f9 0x7728fc 0x772916 0x772919 0x772920	no allocation or constructor size in the dumps	3 4 5	no contradiction	13/20 65.0%
+MtTypedArray<CDataPresetAbilityParam>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x7732f3 0x773315 0x7733aa 0x7733ad 0x7733c7 0x7733ca 0x7733d1	no allocation or constructor size in the dumps	-	no contradiction	13/20 65.0%
+MtTypedArray<CDataPriorityQuest>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x7735c3 0x7735e5 0x7736ae 0x7736b1 0x7736cb 0x7736ce 0x7736d5	no allocation or constructor size in the dumps	1 2	no contradiction	13/20 65.0%
+MtTypedArray<CDataPriorityQuestSetting>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x773723 0x773745 0x7737c5 0x7737c8 0x7737e2 0x7737e5 0x7737ec	no allocation or constructor size in the dumps	1 2	no contradiction	13/20 65.0%
+MtTypedArray<CDataQuestCommand>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x773903 0x773925 0x7739c7 0x7739ca 0x7739e4 0x7739e7 0x7739ee	no allocation or constructor size in the dumps	-	no contradiction	13/20 65.0%
+MtTypedArray<CDataQuestId>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x773f91 0x773faf 0x773ffd 0x774000 0x774017 0x77401a 0x774021	no allocation or constructor size in the dumps	1	no contradiction	13/20 65.0%
+MtTypedArray<CDataQuestPartyBonusInfo>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x774d01 0x774d23 0x774d96 0x774d99 0x774dab 0x774dae 0x774db5	no allocation or constructor size in the dumps	4 5	no contradiction	13/20 65.0%
+MtTypedArray<CDataQuestPointDetailRecord>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x775233 0x775255 0x7752bc 0x7752bf 0x7752d9 0x7752dc 0x7752e3	no allocation or constructor size in the dumps	-	no contradiction	13/20 65.0%
+MtTypedArray<CDataQuestProcessState>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x775321 0x775343 0x7753d1 0x7753d4 0x7753e6 0x7753e9 0x7753f0	no allocation or constructor size in the dumps	-	no contradiction	13/20 65.0%
+MtTypedArray<CDataQuestProgressWork>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x7754b3 0x7754d5 0x775588 0x77558b 0x7755a5 0x7755a8 0x7755af	no allocation or constructor size in the dumps	-	no contradiction	13/20 65.0%
+MtTypedArray<CDataRegisterdPawnList>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x776621 0x77663f 0x776686 0x776689 0x77669b 0x77669e 0x7766a5	no allocation or constructor size in the dumps	-	no contradiction	13/20 65.0%
+MtTypedArray<CDataReleaseElement>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x776ac3 0x776ae5 0x776b5e 0x776b61 0x776b7b 0x776b7e 0x776b85	no allocation or constructor size in the dumps	-	no contradiction	13/20 65.0%
+MtTypedArray<CDataReleaseOrbElement>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x776bd3 0x776bf5 0x776c81 0x776c84 0x776c9e 0x776ca1 0x776ca8	no allocation or constructor size in the dumps	-	no contradiction	13/20 65.0%
+MtTypedArray<CDataRentedPawnList>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x776cf1 0x776d0f 0x776d56 0x776d59 0x776d6b 0x776d6e 0x776d75	no allocation or constructor size in the dumps	-	no contradiction	13/20 65.0%
+MtTypedArray<CDataRewardAbility>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x776e61 0x776e7f 0x776ecd 0x776ed0 0x776ee7 0x776eea 0x776ef1	no allocation or constructor size in the dumps	-	no contradiction	13/20 65.0%
+MtTypedArray<CDataRewardBoxItem>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x776f31 0x776f53 0x776fb6 0x776fb9 0x776fcb 0x776fce 0x776fd5	no allocation or constructor size in the dumps	3	no contradiction	13/20 65.0%
+MtTypedArray<CDataRewardBoxRecord>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x777093 0x7770b5 0x77714d 0x777150 0x77716a 0x77716d 0x777174	no allocation or constructor size in the dumps	3	no contradiction	13/20 65.0%
+MtTypedArray<CDataRewardItem>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x7771c3 0x7771e5 0x77724b 0x77724e 0x777268 0x77726b 0x777272	no allocation or constructor size in the dumps	-	no contradiction	13/20 65.0%
+MtTypedArray<CDataRewardJobValue>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x7774d3 0x7774f5 0x777571 0x777574 0x77758e 0x777591 0x777598	no allocation or constructor size in the dumps	4	no contradiction	13/20 65.0%
+MtTypedArray<CDataRewardWalletPoint>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x7775e3 0x777605 0x777681 0x777684 0x77769e 0x7776a1 0x7776a8	no allocation or constructor size in the dumps	4	no contradiction	13/20 65.0%
+MtTypedArray<CDataS2CCharacterEquipInfo>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x7776f3 0x777715 0x77778c 0x77778f 0x7777a9 0x7777ac 0x7777b3	no allocation or constructor size in the dumps	-	no contradiction	13/20 65.0%
+MtTypedArray<CDataS2CPawnEquipInfo>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x7777f3 0x777815 0x7778c6 0x7778c9 0x7778e3 0x7778e6 0x7778ed	no allocation or constructor size in the dumps	4	no contradiction	13/20 65.0%
+MtTypedArray<CDataSameLetterInfo>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x777931 0x777953 0x7779c0 0x7779c3 0x7779da 0x7779dd 0x7779e4	no allocation or constructor size in the dumps	-	no contradiction	13/20 65.0%
+MtTypedArray<CDataSetAcquirementParam>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x777f23 0x777f45 0x777fea 0x777fed 0x778007 0x77800a 0x778011	no allocation or constructor size in the dumps	-	no contradiction	13/20 65.0%
+MtTypedArray<CDataSkillLevelParam>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x778c23 0x778c45 0x778cd6 0x778cd9 0x778cf3 0x778cf6 0x778cfd	no allocation or constructor size in the dumps	-	no contradiction	13/20 65.0%
+MtTypedArray<CDataSkillParam>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x778d43 0x778d65 0x778e0d 0x778e10 0x778e2a 0x778e2d 0x778e34	no allocation or constructor size in the dumps	-	no contradiction	13/20 65.0%
+MtTypedArray<CDataSupplyItem>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x77aa03 0x77aa25 0x77aa8b 0x77aa8e 0x77aaa8 0x77aaab 0x77aab2	no allocation or constructor size in the dumps	-	no contradiction	13/20 65.0%
+MtTypedArray<CDataTraningRoomEnemyHeader>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x77b393 0x77b3b5 0x77b41c 0x77b41f 0x77b439 0x77b43c 0x77b443	no allocation or constructor size in the dumps	3 4	no contradiction	13/20 65.0%
+MtTypedArray<CDataWeatherLoop>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x77ca43 0x77ca65 0x77cac9 0x77cacc 0x77cae6 0x77cae9 0x77caf0	no allocation or constructor size in the dumps	-	no contradiction	13/20 65.0%
+MtTypedArray<CDataWeatherSchedule>	struct	accepted	0x14	0x20	7	1	MtArray	-	0x77cb33 0x77cb55 0x77cbdf 0x77cbe2 0x77cbfc 0x77cbff 0x77cc06	no allocation or constructor size in the dumps	-	no contradiction	13/20 65.0%
+CDataArisenProfile	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim	-
+CDataClanScoutEntryParam	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim	-
+CDataClanSearchParam	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim	-
+CDataMatchingProfile	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim	-
+CPacket	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim	-
+MtObject	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim	-
+MtTypedArray<CDataC2SChangeCharacterEquipInfo>	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim	-
+MtTypedArray<CDataChangeEquipJobItem>	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim	-
+MtTypedArray<CDataItemUIDList>	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim	-
+MtTypedArray<CDataJobExpMode>	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim	-
+MtTypedArray<CDataPartnerPawnReward>	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim	-
+MtTypedArray<CDataStorageItemUIDList>	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim	-
+cNetGameServer	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim	-
+cSeedGameSvConnection	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim	-
+nNet::stPawnFeedback	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim	-
+nUserSession::CPacket_S2C_AREA_CHANGE_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim	-
+nUserSession::CPacket_S2C_AREA_RANK_UP_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim	-
+nUserSession::CPacket_S2C_CHANGE_CAP_TO_GP_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim	-
+nUserSession::CPacket_S2C_CHANGE_JOB_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim	-
+nUserSession::CPacket_S2C_CHANGE_PAWN_JOB_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim	-
+nUserSession::CPacket_S2C_CLAN_BASE_GET_INFO_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim	-
+nUserSession::CPacket_S2C_CLAN_CREATE_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim	-
+nUserSession::CPacket_S2C_CLAN_GET_MY_INFO_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim	-
+nUserSession::CPacket_S2C_CLAN_SHOP_GET_BUFF_ITEM_LIST_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim	-
+nUserSession::CPacket_S2C_CLAN_SHOP_GET_FUNCTION_ITEM_LIST_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim	-
+nUserSession::CPacket_S2C_EXCHANGE_OM_INSTANT_KEY_VALUE_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim	-
+nUserSession::CPacket_S2C_FURNITURE_LIST_GET_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim	-
+nUserSession::CPacket_S2C_GAME_TIME_GET_BASEINFO_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim	-
+nUserSession::CPacket_S2C_GET_ALL_ORB_ELEMENT_LIST_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim	-
+nUserSession::CPacket_S2C_GET_ALL_PLAYER_CONTEXT_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim	-
+nUserSession::CPacket_S2C_GET_AREA_MASTER_INFO_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim	-
+nUserSession::CPacket_S2C_GET_CHARACTER_EQUIP_LIST_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim	-
+nUserSession::CPacket_S2C_GET_CHARACTER_PROFILE_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim	-
+nUserSession::CPacket_S2C_GET_CRAFT_GRADEUP_RECIPE_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim	-
+nUserSession::CPacket_S2C_GET_CRAFT_PRODUCT_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim	-
+nUserSession::CPacket_S2C_GET_CRAFT_PROGRESS_LIST_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim	-
+nUserSession::CPacket_S2C_GET_CRAFT_RECIPE_DESIGNATE_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim	-
+nUserSession::CPacket_S2C_GET_CRAFT_RECIPE_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim	-
+nUserSession::CPacket_S2C_GET_CRAFT_SETTING_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim	-
+nUserSession::CPacket_S2C_GET_CURRENT_SET_SKILL_LIST_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim	-
+nUserSession::CPacket_S2C_GET_CYCLE_CONTENTS_REWARD_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim	-
+nUserSession::CPacket_S2C_GET_DROP_ITEM_LIST_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim	-
+nUserSession::CPacket_S2C_GET_END_CONTENTS_GROUP_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim	-
+nUserSession::CPacket_S2C_GET_ENEMY_SET_LIST_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim	-
+nUserSession::CPacket_S2C_GET_FRIEND_LIST_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim	-
+nUserSession::CPacket_S2C_GET_GATHERING_ITEM_LIST_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim	-
+nUserSession::CPacket_S2C_GET_GP_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim	-
+nUserSession::CPacket_S2C_GET_JOB_CHANGE_LIST_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim	-
+nUserSession::CPacket_S2C_GET_LIGHT_QUEST_LIST_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim	-
+nUserSession::CPacket_S2C_GET_LOBBY_PLAYER_CONTEXT_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim	-
+nUserSession::CPacket_S2C_GET_MATCHING_PROFILE_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim	-
+nUserSession::CPacket_S2C_GET_MYPAWN_LIST_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim	-
+nUserSession::CPacket_S2C_GET_MY_CHARACTER_PROFILE_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim	-
+nUserSession::CPacket_S2C_GET_PARTY_PAWN_DATA_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim	-
+nUserSession::CPacket_S2C_GET_PARTY_PLAYER_CONTEXT_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim	-
+nUserSession::CPacket_S2C_GET_PAWN_EQUIP_LIST_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim	-
+nUserSession::CPacket_S2C_GET_PAWN_TOTAL_SCORE_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim	-
+nUserSession::CPacket_S2C_GET_SET_QUEST_INFO_LIST_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim	-
+nUserSession::CPacket_S2C_GP_SHOP_DISPLAY_BUY_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim	-
+nUserSession::CPacket_S2C_JOB_VALUE_SHOP_BUY_ITEM_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim	-
+nUserSession::CPacket_S2C_JOB_VALUE_SHOP_GET_LINEUP_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim	-
+nUserSession::CPacket_S2C_LEADER_QUEST_PROGRESS_REQUEST_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim	-
+nUserSession::CPacket_S2C_LEARN_NORMAL_SKILL_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim	-
+nUserSession::CPacket_S2C_LEARN_PAWN_NORMAL_SKILL_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim	-
+nUserSession::CPacket_S2C_NG_WORD_GET_LIST_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim	-
+nUserSession::CPacket_S2C_PARTY_INVITE_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim	-
+nUserSession::CPacket_S2C_PARTY_JOIN_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim	-
+nUserSession::CPacket_S2C_PAWN_EXPEDITION_GET_MY_SALLY_INFO_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim	-
+nUserSession::CPacket_S2C_PAWN_EXPEDITION_GET_REWARD_DROP_ITEM_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim	-
+nUserSession::CPacket_S2C_PAWN_EXPEDITION_GET_REWARD_DROP_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim	-
+nUserSession::CPacket_S2C_PAWN_EXPEDITION_GET_SALLY_INFO_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim	-
+nUserSession::CPacket_S2C_PAWN_EXPEDITION_GET_SALLY_REWARD_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim	-
+nUserSession::CPacket_S2C_PAWN_LOST_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim	-
+nUserSession::CPacket_S2C_QUEST_PROGRESS_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim	-
+nUserSession::CPacket_S2C_RELEASE_JOB_ORB_ELEMENT_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim	-
+nUserSession::CPacket_S2C_RELEASE_PAWN_ORB_ELEMENT_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim	-
+nUserSession::CPacket_S2C_RENTAL_PAWN_LOST_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim	-
+nUserSession::CPacket_S2C_REPORT_JOB_ORDER_PROGRESS_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim	-
+nUserSession::CPacket_S2C_RESET_CRAFTPOINT_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim	-
+nUserSession::CPacket_S2C_SET_PAWN_ABILITY_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim	-
+nUserSession::CPacket_S2C_SET_PAWN_SKILL_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim	-
+nUserSession::CPacket_S2C_START_EQUIP_GRADE_UP_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim	-
+nUserSession::CPacket_S2C_SYSTEM_MAIL_GET_ALL_ITEM_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim	-
+nUserSession::CPacket_S2C_WEATHER_FORECAST_GET_RES	opaque	declared	-	-	0	0	-	-		-	-	pointee of a transferred member or prototype; no layout claim	-
