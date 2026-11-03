@@ -72,7 +72,13 @@ Coordinator: main session. One subagent at a time. Method and rules: `spec.md`.
   immediates; control accepted 1 listener pair in 2 runs, slot-order check tightened, then 0; precision 0
   wrong in 5 runs; 297 tests). Accepted pairs: 467 + 69 + 95 + 107 + 234 = 972. IDA SDK clone line appended
   (uncommitted) to `research/external-references.jsonl`, which holds others' edits.
-- [ ] T006 Types and locals rules over the accepted pairs (`implementer`, evidence from T004 dumps).
+- [x] T006 (done 95bd50d7b4, wave 1: names 1,082 rows (1,077 set, 2 corrected, 3 stale labels; 88 already, 7
+  conflicts); prototypes 1,011 (54 conflicts with earlier hand prototypes, 109 skipped: register argument
+  other than ecx); types 106 structs accepted by the access check (84 `MtTypedArray<CDataX>` copies of one
+  20-byte layout, 14 distinct non-template), 72 refused (most packet classes and `cNetGameServer`: PC
+  accesses contradict the PS4 layout; `cSeedGameSvConnection`: bitfield in base `MtMemoryStream`), 183
+  unchecked; comments 1,119; holdout: 48 types depend on a single seed, none new; 323 tests). Locals:
+  wave 2. Conflicts settle in T007c. Types and locals rules over the accepted pairs (`implementer`, evidence from T004 dumps).
 - [ ] T007 Apply script and the applied copy (`implementer` writes it, `evidence-researcher-ida` runs it).
 - [ ] T008 Verify: re-extract, compare, decompile sample; adversarial review of pairs and types.
 - [ ] T009 Close: `check.sh --all`, docs, retrospective, publish the database folder.
@@ -81,7 +87,7 @@ Order: T003 first (T002 needs a copy of the accepted database), then T002.
 
 ## Running
 
-- T006 (implementer, brief `briefs/T006-transfer-rules.md`), started 2026-11-03.
+- T007 (implementer, brief `briefs/T007-apply-script.md`), started 2026-11-03.
 - Decision (coordinator, 2026-11-03): from T004d on, all writes go to one persistent work copy
   `PC_DDON_03040008/ddon-data-007work/` of the accepted database (repairs first, then T007's apply);
   it is published as `spec007-packet-handlers-<date>/` at the close.
