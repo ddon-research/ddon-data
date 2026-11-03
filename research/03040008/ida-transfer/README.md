@@ -484,6 +484,13 @@ back by re-decompiling (`mark_cfunc_dirty`). Undo drops the lvar's saved user se
 test; recorded in the header, `--verify` needs the same). The precheck also accepts the smoke test's scratch copy
 `ddon-data-007smoke`.
 
+T013c smoke test (`cp` of the work copy `f7f3a219...3c25` to `ddon-data-007smoke/`, `--limit-types 5
+--limit-locals 10`, which selects 6 locals; the folder was deleted afterwards): dry run, apply (5 forward
+declarations defined with their type comments, 5 wave-1 types `already`, 5 `packet` locals named and retyped,
+`sendFeedbackList` refused: `in_PawnFeedbackList` has a user name), verify all `ok` with counts `ok`, undo all
+`restored`. Undo of a defined forward declaration deletes the type and declares it again, so the local type
+ordinal count grows by one per type (965 -> 970); the first undo round failed there before that fix.
+
 Writes T006's rows (`manifest/transfer/{names,prototypes,comments,types}.tsv`, `types.h`) to the PC 03040008
 work copy and checks them back. Headless batch only, on the copy under `ddon-data-007work` (T007b runs it):
 

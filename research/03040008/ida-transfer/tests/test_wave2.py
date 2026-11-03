@@ -341,6 +341,12 @@ def test_forward_declaration_is_filled_in_and_local_retyped(tmp_path):
     assert by_step(again, "locals")["0x7d0d30@-72"]["status"] == "already"
 
 
+def test_dry_run_plans_a_retype_to_a_type_it_would_define(tmp_path):
+    ida = LvarIda({(0x7d0d30, -72): lvar()})
+    recs = apply_run(ida, wave2_dir(tmp_path / "m", [local()]), "dry-run")
+    assert by_step(recs, "locals")["0x7d0d30@-72"]["status"] == "would-set" and ida.writes == []
+
+
 def test_local_with_a_user_name_or_wrong_width_is_refused(tmp_path):
     ida = LvarIda({(0x7d0d30, -72): lvar(user_name=True, name="mine")})
     recs = apply_run(ida, wave2_dir(tmp_path / "m", [local()]))

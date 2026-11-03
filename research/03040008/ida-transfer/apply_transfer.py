@@ -815,7 +815,9 @@ def _pc_def(r: dict):
     return int(r["pc_def"], 16) if r["pc_def"] not in ("", "-") else None
 
 
-def do_locals(ida, rows: list[dict], refused_types: set[str], apply: bool, log: Log) -> None:
+def do_locals(ida, rows: list[dict], refused_types: set[str], apply: bool, log: Log,
+              planned: dict[str, int] | None = None) -> None:
+    """``planned``: the ``types.h`` struct sizes; a dry run takes a type it would define as present."""
     for r in rows:
         ea, key = int(r["pc_va"], 16), local_key(r)
         retype = r["retype"] if r["retype"] != "-" else None
@@ -823,7 +825,10 @@ def do_locals(ida, rows: list[dict], refused_types: set[str], apply: bool, log: 
             _result(log, "locals", key, "refused", check="uses-refused-type", type=retype)
             continue
         found = ida.find_lvar(ea, int(r["pc_frame"]), _pc_def(r))
-        status, info = plan_local(r, found, _type_size(ida, retype) if retype else None)
+        size = _type_size(ida, retype) if retype else None
+        if size is None and retype and not apply:
+            size = (planned or {}).get(retype)
+        status, info = plan_local(r, found, size)
         if status != "set":
             _result(log, "locals", key, status, name=r["name"], rule=r["rule"], **info)
             continue
@@ -871,7 +876,7 @@ def run_apply(ida, manifest: dict, apply: bool, log: Log) -> dict:
     do_names(ida, manifest["names"], gone, apply, log)
     do_prototypes(ida, manifest["prototypes"], special, refused, apply, log)
     do_comments(ida, manifest["comments"], apply, log)
-    do_locals(ida, manifest["locals"], refused, apply, log)
+    do_locals(ida, manifest["locals"], refused, apply, log, {d.name: d.size for d in decls if d.kind == "struct"})
     report_conflicts(manifest["conflicts"], log)
     summary = {"kind": "summary", "mode": "apply" if apply else "dry-run", "steps": summarize(log.results),
                "counts_after": ida.counts()}
@@ -1297,6 +1302,9 @@ class _Ida:
         return bool(self.ti.del_named_type(self.til, name, self.ti.NTF_TYPE))
 
     def restore_local_type(self, name, before):
+        if before.get("forward"):  # T013c smoke: a defined forward declaration goes back to a forward declaration
+            self.ti.del_named_type(self.til, name, self.ti.NTF_TYPE)
+            return self.declare_forward(name) is None
         tif = self.ti.tinfo_t()
         if not tif.deserialize(self.til, *(bytes.fromhex(x) for x in before["blob"])):
             return False
@@ -1401,7 +1409,7 @@ class _Ida:
         hr = self.m["ida_hexrays"]
         lvs = hr.lvar_uservec_t()
         if not hr.restore_user_lvar_settings(lvs, ea):
-            return False
+            lvs = hr.lvar_uservec_t()
         keep = hr.lvar_uservec_t()
         hit = False
         for x in lvs.lvvec:
@@ -1410,12 +1418,11 @@ class _Ida:
                 hit = True
                 continue
             keep.lvvec.push_back(x)
-        if not hit:
-            return False
-        keep.lmaps = lvs.lmaps
-        keep.stkoff_delta = lvs.stkoff_delta
-        keep.ulv_flags = lvs.ulv_flags
-        hr.save_user_lvar_settings(ea, keep)
+        if hit:
+            keep.lmaps = lvs.lmaps
+            keep.stkoff_delta = lvs.stkoff_delta
+            keep.ulv_flags = lvs.ulv_flags
+            hr.save_user_lvar_settings(ea, keep)
         cf = self._cfunc(ea, fresh=True)
         return cf is not None and any(lv.is_stk_var() and lv.location.stkoff() == before["stkoff"]
                                       and lv.name == before["name"] for lv in cf.get_lvars())
