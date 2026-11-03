@@ -24,7 +24,9 @@ final ``summary`` record with counts. v3 adds per call site ``arg_bytes``, ``con
 ``object_accesses`` (:func:`object_accesses`), ``codec_distance`` (:func:`codec_distance`) and, for
 functions added only to complete reader paths, ``scope: "codec_path"`` (:func:`codec_scope`, depth
 ``CODEC_DEPTH``); the callers of ``reserveNetworkErrorDialog`` are roots (``root: "requester"``, a
-call site outside any function is a ``requester_site`` record).
+call site outside any function is a ``requester_site`` record). v6 adds per call site ``args``
+(:func:`extract.callargs.call_argument_values`: the provable value of each argument slot) and skips MSVC
+padding nops; the pure helpers live in the package ``extract/`` (README "Version 6").
 The pure helpers below (no IDA import) are unit-tested in ``tests/test_extract_ida.py`` and
 ``tests/test_extract_ida_v3.py`` / ``tests/test_extract_ida_v4.py``; the IDA-facing code is the
 ``_ida_*`` functions and ``main``.
@@ -38,8 +40,37 @@ from __future__ import annotations
 import json
 import os
 import re
+import sys
 
-SCRIPT_VERSION = "5"
+# v6: the pure helpers live in the sibling package ``extract/``. IDA runs this file with ``__file__`` set
+# (``idat -S``); the ``exec`` route passes ``SCRIPT_DIR`` (the folder of this file) when cwd is elsewhere.
+_HERE = os.path.dirname(os.path.abspath(globals().get("__file__") or os.path.join(
+    globals().get("SCRIPT_DIR") or os.getcwd(), "extract_ida.py")))
+if _HERE not in sys.path:
+    sys.path.insert(0, _HERE)
+
+from extract.callargs import call_argument_values, describe  # noqa: E402,F401
+from extract.dataflow import (  # noqa: E402,F401  (re-exported for the tests and older callers)
+    _CALL_CLOBBER,
+    _ENTRY_ARGS,
+    _arg_value,
+    _meet,
+    _slots,
+    _step,
+    block_in_states,
+    object_accesses,
+)
+from extract.x86 import (  # noqa: E402,F401
+    _CANON,
+    _ESP_OPAQUE,
+    _REG_ALIASES,
+    PS4_INT_ARG_REGS,
+    canon_reg,
+    is_padding_nop,
+    signed,
+)
+
+SCRIPT_VERSION = "6"
 
 # --- PC handler table (T002 audit: 74 groups, 1,041 records, 1,040 distinct callbacks) ---------
 PC_GROUP_TABLE = 0x1BC0110
@@ -60,33 +91,10 @@ MAX_CALLERS = 20
 ARG_WINDOW = 32  # instructions scanned back from a call for its arguments
 
 PS4_ARG_REGS = ("rdi", "rsi", "rdx", "rcx", "r8", "r9") + tuple(f"xmm{i}" for i in range(8))
-_REG_ALIASES = {
-    "rax": ("eax", "ax", "al", "ah"), "rcx": ("ecx", "cx", "cl", "ch"),
-    "rdx": ("edx", "dx", "dl", "dh"), "rbx": ("ebx", "bx", "bl", "bh"),
-    "rsp": ("esp", "sp", "spl"), "rbp": ("ebp", "bp", "bpl"),
-    "rsi": ("esi", "si", "sil"), "rdi": ("edi", "di", "dil"),
-}
-_CANON = {alias: full for full, aliases in _REG_ALIASES.items() for alias in aliases}
 _DEFAULT_NAME = re.compile(r"^sub_[0-9A-Fa-f]+$")
 
 
 # --- pure helpers -------------------------------------------------------------------------------
-
-def canon_reg(name: str | None) -> str | None:
-    """Full 64-bit register name for any width alias (``edi``/``dil`` -> ``rdi``, ``r8d`` -> ``r8``)."""
-    if not name:
-        return None
-    name = name.lower()
-    if name in _CANON:
-        return _CANON[name]
-    m = re.fullmatch(r"(r(?:8|9|1[0-5]))[dwb]?", name)
-    if m:
-        return m.group(1)
-    m = re.fullmatch(r"[xyz]mm(\d+)", name)
-    if m:
-        return f"xmm{m.group(1)}"
-    return name
-
 
 def is_default_name(name: str) -> bool:
     return bool(_DEFAULT_NAME.match(name or ""))
@@ -227,8 +235,6 @@ _IMPLICIT = {
     "syscall": ("rcx", "r11"), "cmpxchg": ("rax",), "lahf": ("rax",), "xlat": ("rax",),
     "enter": ("rsp", "rbp"), "leave": ("rsp", "rbp"),
 }
-# Instructions that move esp in a way pc_const_args does not model (the stack picture is dropped).
-_ESP_OPAQUE = {"pusha", "pushad", "popa", "popad", "pushf", "pushfd", "popf", "popfd", "enter", "leave"}
 _NON_WRITING = {"cmp", "test", "push", "bt"}
 
 
@@ -354,7 +360,6 @@ def _ecx_const(window: list[dict]) -> dict | None:
     return None
 
 
-PS4_INT_ARG_REGS = ("rdi", "rsi", "rdx", "rcx", "r8", "r9")
 
 
 def ps4_const_args(window: list[dict]) -> dict[str, int]:
@@ -488,6 +493,13 @@ def extern_reason(target: int, func_start, dumped, import_name, segment_class: s
 # sNetworkExt::reserveNetworkErrorDialog (PC 03040008): the function the slot requesters call with the
 # slot (T005b § 1.3, § 5). Named so in the work copy; the v3 dump has it at this VA with 581 caller sites
 # (the T005b § 5 count) and `ret 4` (thiscall, one stack argument: the slot).
+# v6 array elements (T012 § 1.4, inferred from the listing): PC sub_8BC2E0(size, align) allocates through
+# the global allocator and returns the element; PS4 calls the allocator object's method on the result of
+# MtMemoryAllocator::getAllocator (out of line), or operator new.
+PC_ELEMENT_ALLOCATORS = (0x8BC2E0,)
+PS4_ALLOCATOR_NAME = re.compile(r"^operator new(?:\[\])?$")
+PS4_ALLOCATOR_GETTER_NAME = re.compile(r"^MtMemoryAllocator::getAllocator$")
+
 PC_RESERVE_DIALOG = 0xBB39D0
 RESERVE_DIALOG_NAME = "sNetworkExt::reserveNetworkErrorDialog"
 PC_CALL_ON_PACKET = 0x878860  # cSeedGameSvConnection::callOnPacketFunc (slot = const_stack slot 0)
@@ -496,10 +508,6 @@ PC_VARIABLE_CODECS = (0x8BC5B0, 0x8BC710, 0x8BC790, 0x8BCA30)
 PS4_CODEC_NAME = re.compile(r"^nPacket::(?:Read|Write)_\w+$")
 CODEC_DEPTH = 8
 
-# Registers a call may change (MSVC x86 / SysV x86-64): everything else survives it by the ABI.
-_CALL_CLOBBER = {"pc": ("rax", "rcx", "rdx"),
-                 "ps4": ("rax", "rcx", "rdx", "rsi", "rdi", "r8", "r9", "r10", "r11")}
-_ENTRY_ARGS = {"pc": ("rcx",), "ps4": PS4_INT_ARG_REGS}
 
 
 # x86 operand encoding (IDA SDK ``intel.hpp``: ``hasSIB`` = ``op_t.specflag1``, ``sib`` = ``specflag2``,
@@ -537,186 +545,6 @@ def decode_mem(optype: str, phrase: int, has_sib: int, sib: int, rex: int, auxpr
     elif optype != "mem":
         out["base"] = phrase
     return out
-
-
-def signed(value: int, bits: int) -> int:
-    value &= (1 << bits) - 1
-    return value - (1 << bits) if value >> (bits - 1) else value
-
-
-def _arg_value(side: str, reg: str):
-    if side == "pc":
-        return ("arg", "ecx", 0)
-    return ("arg", reg, PS4_INT_ARG_REGS.index(reg))
-
-
-def _meet(states: list[dict]) -> dict:
-    """Registers on which every incoming state agrees; dirty stack slots are the union."""
-    first, rest = states[0], states[1:]
-    out = {k: v for k, v in first.items() if k != "_dirty" and all(s.get(k) == v for s in rest)}
-    dirty = frozenset().union(*(s.get("_dirty", frozenset()) for s in states))
-    if dirty:
-        out["_dirty"] = dirty
-    return out
-
-
-def _slots(loc: int, size: int) -> set:
-    first = (loc - 4) // 4
-    last = (loc + max(size, 1) - 1 - 4) // 4
-    return {k for k in range(first, last + 1) if k >= 0}
-
-
-def _step(state: dict, ins: dict, side: str, ptr: int, emit) -> dict:
-    """Transfer one instruction (:func:`object_accesses`); ``emit(ins, op_index, op, value)`` per access."""
-    st = dict(state)
-    mnem, ops = ins["mnem"], ins.get("ops", [])
-    frame = side == "pc"
-    for i, op in enumerate(ops):
-        if op.get("type") not in ("phrase", "displ") or mnem in ("nop",):
-            continue
-        val = st.get(op.get("base"))
-        if val is None:
-            if frame and op.get("base") in ("rsp", "rbp") and op.get("chg") and mnem != "push":
-                st["_dirty"] = st.get("_dirty", frozenset()) | {"*"}
-            continue
-        if val[0] in ("arg", "field"):
-            emit(ins, i, op, val)
-        elif val[0] == "frame" and (op.get("chg") or mnem == "lea") and op.get("index") is None:
-            loc = val[1] + op.get("addr", 0)
-            if mnem == "lea":
-                if loc >= 4:
-                    st["_dirty"] = st.get("_dirty", frozenset()) | {"*"}
-            else:
-                hit = _slots(loc, op.get("size") or 4)
-                if hit:
-                    st["_dirty"] = st.get("_dirty", frozenset()) | hit
-        elif val[0] == "frame" and op.get("chg"):
-            st["_dirty"] = st.get("_dirty", frozenset()) | {"*"}
-    # new register values
-    new: dict = {}
-    if mnem == "mov" and len(ops) == 2 and ops[0].get("type") == "reg" and ops[0].get("size") == ptr:
-        dst, src = ops[0]["reg"], ops[1]
-        if src.get("type") == "reg" and src.get("size") == ptr and src.get("reg") in st:
-            new[dst] = st[src["reg"]]
-        elif src.get("type") in ("phrase", "displ") and src.get("index") is None and src.get("size") == ptr:
-            base = st.get(src.get("base"))
-            if base is not None and base[0] == "arg":
-                new[dst] = ("field", base[1], base[2], src.get("addr", 0))
-            elif base is not None and base[0] == "frame":
-                loc = base[1] + src.get("addr", 0)
-                dirty = st.get("_dirty", frozenset())
-                if loc >= 4 and (loc - 4) % 4 == 0 and (loc - 4) // 4 not in dirty and "*" not in dirty:
-                    new[dst] = ("arg", "stack", (loc - 4) // 4)
-    esp = st.get("rsp") if frame else None
-    if frame:
-        if mnem == "push" and esp is not None:
-            new["rsp"] = ("frame", esp[1] - 4)
-        elif mnem == "pop" and esp is not None:
-            new["rsp"] = ("frame", esp[1] + 4)
-        elif mnem in ("sub", "add") and len(ops) == 2 and ops[0].get("type") == "reg" \
-                and ops[0].get("reg") == "rsp" and ops[1].get("type") == "imm" and esp is not None:
-            d = signed(ops[1]["value"], 32)
-            new["rsp"] = ("frame", esp[1] + (d if mnem == "add" else -d))
-        elif ins.get("call") and esp is not None and ins.get("pops") is not None:
-            new["rsp"] = ("frame", esp[1] + ins["pops"])
-    killed = {canon_reg(r) for r in ins.get("writes", ())}
-    if ins.get("call"):
-        killed |= set(_CALL_CLOBBER[side])
-    if frame and (mnem in ("push", "pop") or ins.get("call") or mnem in _ESP_OPAQUE):
-        killed.add("rsp")
-    for r in killed:
-        st.pop(r, None)
-    st.update(new)
-    return st
-
-
-def object_accesses(blocks: list[tuple[int, list[dict]]], preds: dict[int, list[int]], entry: int,
-                    side: str) -> list[dict]:
-    """Memory accesses ``[base + disp]`` whose base provably holds a function argument (v4).
-
-    ``blocks``: ``(start, instructions)`` in address order; ``preds``: block -> predecessor blocks.
-    Each instruction is ``{"ea", "mnem", "ops", "writes", "call", "pops"}``: ``writes`` every register
-    written (explicit and implicit, any width), ``call`` for call instructions, ``pops`` (PC) the stack
-    bytes the callee's single ``ret N`` releases (0 for ``retn``, None when unknown). Memory operands
-    carry ``base``/``index``/``scale`` (:func:`decode_mem`), ``addr`` (signed displacement), ``size``,
-    ``chg``/``use`` (IDA's CF_CHGn/CF_USEn for that operand).
-
-    Tracked values (a must-analysis over the blocks, iterated to a fixed point: a register holds a value
-    in a block only if every predecessor agrees):
-    - PC ``ecx`` at entry (``arg_loc "ecx"``, the thiscall ``this`` when the function is thiscall), PS4
-      ``rdi``..``r9`` at entry (``arg`` = ABI index); copies by a pointer-width ``mov r, r``.
-    - PC stack arguments: ``esp`` is tracked from entry (push/pop/``sub``/``add esp, imm``, calls with known
-      ``pops``; ``ebp`` by copy), and ``mov r32, [esp/ebp+N]`` that reads entry ``esp+4+4k`` gives stack
-      argument ``k``, unless a store, or a ``lea`` that leaks the argument area, may have changed it.
-    - One dereference: ``mov r, [arg+disp]`` (pointer width, not indexed) gives a field pointer; accesses
-      through it carry ``via`` = that disp (PS4 ``this->mpManager->mErrorCode[idx]``).
-    A call clobbers the caller-saved registers (ABI), any write kills the register.
-
-    Returns one record per memory operand: ``va``, ``op``, ``arg``, ``arg_loc``, ``disp``, ``width``,
-    ``access`` (``load``/``store``/``lea``), ``rmw`` (store that also reads), ``value`` (store of an
-    immediate, masked to the width), ``via``, ``indexed`` + ``index`` + ``scale``.
-    """
-    ptr = 4 if side == "pc" else 8
-    init: dict = {r: _arg_value(side, r) for r in _ENTRY_ARGS[side]}
-    if side == "pc":
-        init["rsp"] = ("frame", 0)
-    order = [b for b, _ in blocks]
-    body = dict(blocks)
-    outs: dict[int, dict | None] = {b: None for b in order}
-
-    def in_state(b):
-        incoming = [outs[p] for p in preds.get(b, ()) if p in outs and outs[p] is not None]
-        if b == entry:
-            incoming.append(init)
-        if not incoming:
-            return {}
-        return _meet(incoming)
-
-    def run(b, emit):
-        st = in_state(b)
-        for ins in body[b]:
-            st = _step(st, ins, side, ptr, emit)
-        return st
-
-    def noemit(*_):
-        return None
-
-    changed = True
-    rounds = 0
-    while changed:
-        changed = False
-        rounds += 1
-        if rounds > 4 * len(order) + 8:
-            raise RuntimeError("object_accesses: no fixed point")
-        for b in order:
-            if b != entry and outs[b] is None and not any(outs.get(p) is not None for p in preds.get(b, ())):
-                continue  # not reached yet
-            new = run(b, noemit)
-            if new != outs[b]:
-                outs[b] = new
-                changed = True
-    out: list[dict] = []
-
-    def emit(ins, i, op, val):
-        mnem = ins["mnem"]
-        access = "lea" if mnem == "lea" else ("store" if op.get("chg") else "load")
-        rec = {"va": ins["ea"], "op": i, "arg_loc": val[1], "arg": val[2], "disp": op.get("addr", 0),
-               "width": None if access == "lea" else op.get("size"), "access": access}
-        if access == "store" and op.get("use"):
-            rec["rmw"] = True
-        if access == "store" and mnem == "mov" and len(ins["ops"]) == 2 and ins["ops"][1].get("type") == "imm" \
-                and op.get("size"):
-            rec["value"] = ins["ops"][1]["value"] & ((1 << (8 * op["size"])) - 1)
-        if val[0] == "field":
-            rec["via"] = val[3]
-        if op.get("index") is not None:
-            rec.update({"indexed": True, "index": op["index"], "scale": op.get("scale")})
-        out.append(rec)
-
-    for b in order:
-        if b == entry or any(outs.get(p) is not None for p in preds.get(b, ())):
-            run(b, emit)
-    return sorted(out, key=lambda r: (r["va"], r["op"]))
 
 
 def requester_roots(sites, func_start, target: int) -> tuple[dict[int, str], list[dict]]:
@@ -1271,7 +1099,9 @@ def _ida_function(db: _Db, va: int, depth: int, roots_reason: dict) -> dict | No
     rec["caller_sites"] = len(callers)
     rec["callers_count"] = len(caller_funcs)
     rec["callers"] = caller_funcs[:MAX_CALLERS]
-    rec["object_accesses"] = _ida_object_accesses(db, f)
+    blocks, preds = _ida_blocks(db, f)
+    rec["object_accesses"] = object_accesses(blocks, preds, f.start_ea, db.side)
+    _ida_call_args(db, f, blocks, preds, calls)
     if db.side == "pc":
         rec["ecx_read_before_write"] = _ida_ecx_rbw(db, f)
         rec["annotations"] = _ida_annotations(db, f, items)
@@ -1321,7 +1151,8 @@ def _ida_externs(db: _Db, targets: dict[int, int], via_mem: dict[int, int], dump
     return out
 
 
-def _ida_object_accesses(db: _Db, f) -> list[dict]:
+def _ida_blocks(db: _Db, f) -> tuple[list[tuple[int, list[dict]]], dict[int, list[int]]]:
+    """The function's blocks as :meth:`_Db.v4_insn` dicts and their predecessors (no external blocks)."""
     gdl = db.m["ida_gdl"]
     fc = gdl.FlowChart(f, flags=getattr(gdl, "FC_NOEXT", 0) | getattr(gdl, "FC_PREDS", 0))
     blocks, preds = [], {}
@@ -1336,7 +1167,28 @@ def _ida_object_accesses(db: _Db, f) -> list[dict]:
             ea += ins.size
         blocks.append((b.start_ea, insns))
         preds[b.start_ea] = [p.start_ea for p in b.preds()]
+    return blocks, preds
+
+
+def _ida_object_accesses(db: _Db, f) -> list[dict]:
+    blocks, preds = _ida_blocks(db, f)
     return object_accesses(blocks, preds, f.start_ea, db.side)
+
+
+def _ida_call_args(db: _Db, f, blocks, preds, calls: list[dict]) -> None:
+    """v6: ``args`` per call site (:func:`extract.callargs.call_argument_values`)."""
+    targets = {c["target"] for c in calls if isinstance(c["target"], int)}
+    if db.side == "pc":
+        allocators, getters = set(PC_ELEMENT_ALLOCATORS), set()
+    else:
+        names = {t: db.demangled(t) or "" for t in targets}
+        allocators = {t for t, n in names.items() if PS4_ALLOCATOR_NAME.match(n)}
+        getters = {t for t, n in names.items() if PS4_ALLOCATOR_GETTER_NAME.match(n)}
+    arg_bytes = {c["site"]: c.get("arg_bytes") for c in calls}
+    values = call_argument_values(blocks, preds, f.start_ea, db.side, arg_bytes, allocators, getters)
+    for c in calls:
+        if c["site"] in values:
+            c["args"] = values[c["site"]]
 
 
 def _ida_ecx_rbw(db: _Db, f) -> bool:
@@ -1585,6 +1437,7 @@ def main(out_path: str, side: str, depth: int = DEFAULT_DEPTH, extra_roots=(), p
         yield from missing
         yield from req_orphans
         n = n0 = ncodec = nacc = 0
+        nargs: dict[str, int] = {}
         targets: dict[int, int] = {}
         via_mem: dict[int, int] = {}
         dumped: set[int] = set()
@@ -1600,6 +1453,8 @@ def main(out_path: str, side: str, depth: int = DEFAULT_DEPTH, extra_roots=(), p
                 if va in added:
                     rec["scope"] = "codec_path"
                 for c in rec["calls"]:
+                    for a in c.get("args", ()):
+                        nargs[a["kind"]] = nargs.get(a["kind"], 0) + 1
                     if isinstance(c["target"], int):
                         targets[c["target"]] = targets.get(c["target"], 0) + 1
                     elif "via_mem" in c:
@@ -1614,6 +1469,7 @@ def main(out_path: str, side: str, depth: int = DEFAULT_DEPTH, extra_roots=(), p
                                         for r in sorted({e["reason"] for e in externs})}
         summary["codec_functions"] = ncodec
         summary["object_accesses"] = nacc
+        summary["call_args_by_kind"] = dict(sorted(nargs.items()))
         yield summary
 
     write_jsonl(out_path, db.header(params), records())
