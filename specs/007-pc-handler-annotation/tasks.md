@@ -9,7 +9,7 @@ Coordinator: main session. One subagent at a time. Method and rules: `spec.md`.
 - [ ] T002 Audit the earlier packet annotations in the accepted PC database (`evidence-researcher-ida`):
   inventory (names/types/comments in the packet area), a sampled independent check against PS4, and
   the readiness of the PS4 database (DWARF prototypes, locals, types present).
-- [ ] T003 Private copy of the accepted PC database (`implementer`): `research/ida/private-copy.sh` target
+- [x] T003 (done 5801c721a1: `private-copy.sh pc-accepted <name>`, sha-checked against the record; test `research/ida/tests/private-copy.sh`, 14 checks, check.sh section idacopy) Private copy of the accepted PC database (`implementer`): `research/ida/private-copy.sh` target
   for the accepted database, read from `CURRENT-RECOVERY.json`; the IDA guard still allows only copies.
 - [ ] T004 Extract scripts for both databases (`implementer`), then the dumps (`evidence-researcher-ida`).
 - [ ] T005 Matcher with gates and tests, the precision check on withheld seeds, the manifest (`implementer`).
@@ -22,4 +22,4 @@ Order: T003 first (T002 needs a copy of the accepted database), then T002.
 
 ## Running
 
-- T003 (implementer), started 2026-11-03.
+- T002 (evidence-researcher-ida, brief `briefs/T002-audit-prior-annotations.md`), started 2026-11-03.
