@@ -26,4 +26,7 @@ Coordinator: main session. One subagent at a time. Method, sources and marks: `s
 
 ## Running
 
-- T006 (adversarial-reviewer, brief `briefs/T006-adversarial.md`), started 2026-11-03.
+- T006 (adversarial-reviewer, agent a60ac66e9ecc89462, brief `briefs/T006-adversarial.md`), started 2026-11-03.
+  Next: file its report as `research/T006-adversarial.md` (reproduce canaries first), then T007 (implementer): fix the
+  findings, rename `Instance.hexpat` `GatheringItemListRes_unk_1` fields (u32 = ItemId 38/38; re-export the users),
+  then close (check.sh --all, retro, tasks Close, merge and push without asking).
