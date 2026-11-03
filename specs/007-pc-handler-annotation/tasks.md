@@ -19,6 +19,10 @@ Coordinator: main session. One subagent at a time. Method and rules: `spec.md`.
   without CU; 131 of 1,040 PC callbacks not function starts in the database: 119 no function, 12 inside
   one, silently dropped). T004c: the extractor lists missing roots; `repair_functions.py` (dry run by
   default, checked, undo log). T004d: persistent work copy `ddon-data-007work`, repair, re-extract PC.
+  T004c done (9587b311da: extractor v2 writes `missing_root` records, never expands the enclosing
+  function; `repair_functions.py`, 95 tests). Decision: names left at a moved function's old start
+  (e.g. `0x7C5C8D`) are not moved now; T007 names the function at its new start from its PC string and
+  removes the stale label there, recorded in the undo log.
 - [ ] T005 Matcher with gates and tests, the precision check on withheld seeds, the manifest (`implementer`).
 - [ ] T006 Types and locals rules over the accepted pairs (`implementer`, evidence from T004 dumps).
 - [ ] T007 Apply script and the applied copy (`implementer` writes it, `evidence-researcher-ida` runs it).
@@ -29,7 +33,7 @@ Order: T003 first (T002 needs a copy of the accepted database), then T002.
 
 ## Running
 
-- T004c (implementer, brief `briefs/T004c-function-repair.md`), started 2026-11-03.
+- T004d (evidence-researcher-ida, brief `briefs/T004d-repair-and-reextract.md`), started 2026-11-03.
 - Decision (coordinator, 2026-11-03): from T004d on, all writes go to one persistent work copy
   `PC_DDON_03040008/ddon-data-007work/` of the accepted database (repairs first, then T007's apply);
   it is published as `spec007-packet-handlers-<date>/` at the close.
