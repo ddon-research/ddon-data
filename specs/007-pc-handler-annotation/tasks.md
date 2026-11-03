@@ -198,12 +198,17 @@ Goal: the rest of Sam's request: packet-class types and local names, by operatio
   needs the handler string naming that packet), then 0 links/types/locals on shuffled classes; smoke test on a
   scratch copy clean after an undo fix; output in `manifest/transfer/wave2/`). Known: wave-1 `transfer.py` cannot
   regenerate from post-apply dumps (decision rows no longer conflict); its committed output stays the record.
+  T013d done (`research/W2-T013d-apply.md`: 48 partial types defined, 23 `packet` locals named and retyped, 1 R1
+  refused (lvar already user-named), 0 failed; second apply all `already`; verify ok; 19 decompile failures are
+  the same on the rollback copy; published `PC_DDON_03040008/spec007-packet-handlers-20261103-wave2/` sha256
+  `80b09086...2bc7`; rollback `.before-W2.i64`). Flaw: lower-bound sizes are too small (readers write past them;
+  the decompiler splits the stack object). Size fix after T015, from the access extent and the stack slot.
 - [ ] T014 Wider pairs from anchored gaps (getters), then locals rules R1/R2 (implementer), then apply.
 - [ ] T015 Review, close wave 2, merge and push.
 
 ## Running
 
-- T013d (evidence-researcher-ida, brief `briefs/W2-T013d-apply.md`), started 2026-11-03.
+- T015 (adversarial-reviewer, brief `briefs/W2-T015-adversarial.md`), started 2026-11-03.
 - Decision (coordinator, 2026-11-03): from T004d on, all writes go to one persistent work copy
   `PC_DDON_03040008/ddon-data-007work/` of the accepted database (repairs first, then T007's apply);
   it is published as `spec007-packet-handlers-<date>/` at the close.
