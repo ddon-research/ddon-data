@@ -1,0 +1,586 @@
+# 007 T005 matcher, PC 03040008 <-> PS4 02020005; inputs: pc-ida.jsonl source f1c974d0e529d4bb7dc5f0953d37eea6bbb023f2667f9a1d3a3b878f4919fa20; ps4-dwarf.jsonl source 4236f598acc8f15893181455ed195e39dfa4dbfda4eeda8b56fcbd82312c63c0; ps4-ida.jsonl source 4236f598acc8f15893181455ed195e39dfa4dbfda4eeda8b56fcbd82312c63c0
+candidate	gate	detail
+pc:0x8bc410	d	T002 codec Read_u8: pc widely shared: 399 callers; pc folded: code-identical to 0x8bc6e0; proposed 0 time(s)
+pc:0x8bc480	d	T002 codec Read_s32: pc widely shared: 730 callers; pc folded: code-identical to 0x8bc4d0 0x8bc520; proposed 0 time(s)
+pc:0x8bc4d0	d	T002 codec Read_u32: pc widely shared: 959 callers; pc folded: code-identical to 0x8bc480 0x8bc520; proposed 0 time(s)
+pc:0x8bc520	d	T002 codec Read_f32: pc folded: code-identical to 0x8bc480 0x8bc4d0; proposed 0 time(s)
+pc:0x8bc660	d	T002 codec Read_s64: pc folded: code-identical to 0x8bc6a0; proposed 0 time(s)
+pc:0x8bc6a0	d	T002 codec Read_u64: pc widely shared: 82 callers; pc folded: code-identical to 0x8bc660; proposed 0 time(s)
+pc:0x8bc6e0	d	T002 codec Read_bool: pc widely shared: 169 callers; pc folded: code-identical to 0x8bc410; proposed 0 time(s)
+pc:0x8bc860	d	T002 codec Write_u8: pc widely shared: 209 callers; pc folded: code-identical to 0x8bcb80; proposed 0 time(s)
+pc:0x8bc8d0	d	T002 codec Write_s32: pc folded: code-identical to 0x8bc920; proposed 0 time(s)
+pc:0x8bc920	d	T002 codec Write_u32: pc widely shared: 412 callers; pc folded: code-identical to 0x8bc8d0; proposed 0 time(s)
+pc:0x8bcb80	d	T002 codec Write_bool: pc folded: code-identical to 0x8bc860; proposed 0 time(s)
+pc:0x7c31d0	seed	cSeedGameSvConnection::OnPacket_ACHIEVEMENT_ACHIEVEMENT_GET_CATEGORY_PROGRESS_LIST_RES: no PS4 OnPacket_ symbol for ACHIEVEMENT_GET_CATEGORY_PROGRESS_LIST_RES / GET_CATEGORY_PROGRESS_LIST_RES
+pc:0x7c3840	seed	cSeedGameSvConnection::OnPacket_ACTION_SET_PLAYER_ACTION_HISTORY_RES: no PS4 OnPacket_ symbol for SET_PLAYER_ACTION_HISTORY_RES / PLAYER_ACTION_HISTORY_RES / ACTION_HISTORY_RES / HISTORY_RES / RES
+pc:0x7c4930	seed	cSeedGameSvConnection::OnPacket_BATTLE_CONTENT_CHARACTER_INFO_RES: no PS4 OnPacket_ symbol for CONTENT_CHARACTER_INFO_RES / CHARACTER_INFO_RES
+pc:0x7c4c50	seed	cSeedGameSvConnection::OnPacket_BATTLE_CONTENT_CONTENT_ENTRY_RES: no PS4 OnPacket_ symbol for CONTENT_CONTENT_ENTRY_RES / CONTENT_ENTRY_RES
+pc:0x7c4d30	seed	cSeedGameSvConnection::OnPacket_BATTLE_CONTENT_CONTENT_FIRST_FHASE_CHANGE_RES: no PS4 OnPacket_ symbol for CONTENT_CONTENT_FIRST_FHASE_CHANGE_RES / CONTENT_FIRST_FHASE_CHANGE_RES
+pc:0x7c4e80	seed	cSeedGameSvConnection::OnPacket_BATTLE_CONTENT_CONTENT_RESET_RES: no PS4 OnPacket_ symbol for CONTENT_CONTENT_RESET_RES / CONTENT_RESET_RES
+pc:0x7c4f30	seed	cSeedGameSvConnection::OnPacket_BATTLE_CONTENT_GET_CONTENT_STATUS_FROM_OM_RES: no PS4 OnPacket_ symbol for CONTENT_GET_CONTENT_STATUS_FROM_OM_RES / GET_CONTENT_STATUS_FROM_OM_RES
+pc:0x7c4fe0	seed	cSeedGameSvConnection::OnPacket_BATTLE_CONTENT_GET_PHASE_TO_CHANGE_FROM_OM_RES: no PS4 OnPacket_ symbol for CONTENT_GET_PHASE_TO_CHANGE_FROM_OM_RES / GET_PHASE_TO_CHANGE_FROM_OM_RES
+pc:0x7c5190	seed	cSeedGameSvConnection::OnPacket_BATTLE_CONTENT_GET_REWARD_RES: no PS4 OnPacket_ symbol for CONTENT_GET_REWARD_RES / GET_REWARD_RES
+pc:0x7c5220	seed	cSeedGameSvConnection::OnPacket_BATTLE_CONTENT_INFO_LIST_RES: no PS4 OnPacket_ symbol for CONTENT_INFO_LIST_RES / INFO_LIST_RES
+pc:0x7c52e0	seed	cSeedGameSvConnection::OnPacket_BATTLE_CONTENT_INSTANT_CLEAR_INFO_RES: no PS4 OnPacket_ symbol for CONTENT_INSTANT_CLEAR_INFO_RES / INSTANT_CLEAR_INFO_RES
+pc:0x7c53d0	seed	cSeedGameSvConnection::OnPacket_BATTLE_CONTENT_INSTANT_COMPLETE_RES: no PS4 OnPacket_ symbol for CONTENT_INSTANT_COMPLETE_RES / INSTANT_COMPLETE_RES
+pc:0x7c5460	seed	cSeedGameSvConnection::OnPacket_BATTLE_CONTENT_PARTY_MEMBER_INFO_RES: no PS4 OnPacket_ symbol for CONTENT_PARTY_MEMBER_INFO_RES / PARTY_MEMBER_INFO_RES
+pc:0x7c5620	seed	cSeedGameSvConnection::OnPacket_BATTLE_CONTENT_PARTY_MEMBER_INFO_UPDATE_RES: no PS4 OnPacket_ symbol for CONTENT_PARTY_MEMBER_INFO_UPDATE_RES / PARTY_MEMBER_INFO_UPDATE_RES
+pc:0x7c5880	seed	cSeedGameSvConnection::OnPacket_BATTLE_CONTENT_PHASE_ENTRY_BEGIN_RECRUITMENT_RES: no PS4 OnPacket_ symbol for CONTENT_PHASE_ENTRY_BEGIN_RECRUITMENT_RES / PHASE_ENTRY_BEGIN_RECRUITMENT_RES
+pc:0x7c5a30	seed	cSeedGameSvConnection::OnPacket_BATTLE_CONTENT_PHASE_ENTRY_GET_RECRUITMENT_STATE_RES: no PS4 OnPacket_ symbol for CONTENT_PHASE_ENTRY_GET_RECRUITMENT_STATE_RES / PHASE_ENTRY_GET_RECRUITMENT_STATE_RES
+pc:0x7c5ae0	seed	cSeedGameSvConnection::OnPacket_BATTLE_CONTENT_PHASE_ENTRY_READY_CANCEL_RES: no PS4 OnPacket_ symbol for CONTENT_PHASE_ENTRY_READY_CANCEL_RES / PHASE_ENTRY_READY_CANCEL_RES
+pc:0x7c5c90	seed	cSeedGameSvConnection::OnPacket_BATTLE_CONTENT_PHASE_ENTRY_READY_RES: no PS4 OnPacket_ symbol for CONTENT_PHASE_ENTRY_READY_RES / PHASE_ENTRY_READY_RES
+pc:0x7c5df0	seed	cSeedGameSvConnection::OnPacket_BATTLE_CONTENT_RESET_INFO_RES: no PS4 OnPacket_ symbol for CONTENT_RESET_INFO_RES / RESET_INFO_RES
+pc:0x7c5ee0	seed	cSeedGameSvConnection::OnPacket_BATTLE_CONTENT_REWARD_LIST_RES: no PS4 OnPacket_ symbol for CONTENT_REWARD_LIST_RES / REWARD_LIST_RES
+pc:0x7c5fd0	seed	cSeedGameSvConnection::OnPacket_BAZAAR_CANCEL_RES: no PS4 OnPacket_ symbol for CANCEL_RES
+pc:0x7c6080	seed	cSeedGameSvConnection::OnPacket_BAZAAR_EXHIBIT_RES: no PS4 OnPacket_ symbol for EXHIBIT_RES
+pc:0x7c6130	seed	cSeedGameSvConnection::OnPacket_BAZAAR_GET_CHARACTER_LIST_RES: the only PS4 candidate cSeedLoginSvConnection::OnPacket_L2C_GET_CHARACTER_LIST_RES@0x37d560 is of another connection class
+pc:0x7c61f0	seed	cSeedGameSvConnection::OnPacket_BAZAAR_GET_EXHIBIT_POSSIBLE_NUM_RES: no PS4 OnPacket_ symbol for GET_EXHIBIT_POSSIBLE_NUM_RES
+pc:0x7c62a0	seed	cSeedGameSvConnection::OnPacket_BAZAAR_GET_ITEM_HISTORY_INFO_RES: no PS4 OnPacket_ symbol for GET_ITEM_HISTORY_INFO_RES
+pc:0x7c6390	seed	cSeedGameSvConnection::OnPacket_BAZAAR_GET_ITEM_INFO_RES: no PS4 OnPacket_ symbol for GET_ITEM_INFO_RES
+pc:0x7c6480	seed	cSeedGameSvConnection::OnPacket_BAZAAR_GET_ITEM_LIST_RES: no PS4 OnPacket_ symbol for GET_ITEM_LIST_RES
+pc:0x7c6510	seed	cSeedGameSvConnection::OnPacket_BAZAAR_GET_ITEM_PRICE_LIMIT_RES: no PS4 OnPacket_ symbol for GET_ITEM_PRICE_LIMIT_RES
+pc:0x7c66d0	seed	cSeedGameSvConnection::OnPacket_BAZAAR_PROCEEDS_RES: no PS4 OnPacket_ symbol for PROCEEDS_RES
+pc:0x7c6780	seed	cSeedGameSvConnection::OnPacket_BAZAAR_RECEIVE_PROCEEDS_RES: no PS4 OnPacket_ symbol for RECEIVE_PROCEEDS_RES
+pc:0x7c6830	seed	cSeedGameSvConnection::OnPacket_BAZAAR_RE_EXHIBIT_RES: no PS4 OnPacket_ symbol for RE_EXHIBIT_RES
+pc:0x7c6dd0	seed	cSeedGameSvConnection::OnPacket_BOX_GACHA_BOX_GACHA_BUY_RES: several PS4 candidates cSeedGameSvConnection::OnPacket_S2C_GACHA_BUY_RES@0x32f330 cSeedGameSvConnection::OnPacket_S2C_BOX_GACHA_BUY_RES@0x337dc0
+pc:0x7c6f40	seed	cSeedGameSvConnection::OnPacket_BOX_GACHA_BOX_GACHA_LIST_RES: several PS4 candidates cSeedGameSvConnection::OnPacket_S2C_GACHA_LIST_RES@0x32f1b0 cSeedGameSvConnection::OnPacket_S2C_BOX_GACHA_LIST_RES@0x337c40
+pc:0x7c70c0	seed	cSeedGameSvConnection::OnPacket_CERT_CLIENT_CHALLENGE_RES: several PS4 candidates cSeedGameSvConnection::OnPacket_S2C_CLIENT_CHALLENGE_RES@0x330470 cSeedLoginSvConnection::OnPacket_L2C_CLIENT_CHALLENGE_RES@0x37d010
+pc:0x7c7e00	seed	cSeedGameSvConnection::OnPacket_CHARACTER_CREATE_MODE_CHARACTER_EDIT_PARAM_RES: no PS4 OnPacket_ symbol for CREATE_MODE_CHARACTER_EDIT_PARAM_RES
+pc:0x7c7f20	seed	cSeedGameSvConnection::OnPacket_CHARACTER_DECIDE_CHARACTER_ID_RES: several PS4 candidates cSeedGameSvConnection::OnPacket_S2C_DECIDE_CHARACTER_ID_RES@0x2de210 cSeedLoginSvConnection::OnPacket_L2C_DECIDE_CHARACTER_ID_RES@0x37d6f0
+pc:0x7c81e0	seed	cSeedGameSvConnection::OnPacket_CHARACTER_EDIT_GET_SHOP_PRICE_RES: no PS4 OnPacket_ symbol for EDIT_GET_SHOP_PRICE_RES / GET_SHOP_PRICE_RES
+pc:0x7c8420	seed	cSeedGameSvConnection::OnPacket_CHARACTER_EDIT_UPDATE_CHARACTER_EDIT_PARAM_EX_RES: no PS4 OnPacket_ symbol for EDIT_UPDATE_CHARACTER_EDIT_PARAM_EX_RES / UPDATE_CHARACTER_EDIT_PARAM_EX_RES
+pc:0x7c8a50	seed	cSeedGameSvConnection::OnPacket_CHARACTER_EDIT_UPDATE_PAWN_EDIT_PARAM_EX_RES: no PS4 OnPacket_ symbol for EDIT_UPDATE_PAWN_EDIT_PARAM_EX_RES / UPDATE_PAWN_EDIT_PARAM_EX_RES
+pc:0x7ca1f0	seed	cSeedGameSvConnection::OnPacket_CHARACTER_SWITCH_GAME_MODE_RES: no PS4 OnPacket_ symbol for SWITCH_GAME_MODE_RES
+pc:0x7cdd80	seed	cSeedGameSvConnection::OnPacket_CLAN_GET_FURNITURE_RES: no PS4 OnPacket_ symbol for GET_FURNITURE_RES
+pc:0x7cde80	seed	cSeedGameSvConnection::OnPacket_CLAN_SET_FURNITURE_RES: no PS4 OnPacket_ symbol for SET_FURNITURE_RES
+pc:0x7ce490	seed	cSeedGameSvConnection::OnPacket_CONNECTION_LOGIN_RES: several PS4 candidates cSeedGameSvConnection::OnPacket_S2C_LOGIN_RES@0x2dcde0 cSeedLoginSvConnection::OnPacket_L2C_LOGIN_RES@0x37c800
+pc:0x7ce5c0	seed	cSeedGameSvConnection::OnPacket_CONNECTION_LOGOUT_RES: several PS4 candidates cSeedGameSvConnection::OnPacket_S2C_LOGOUT_RES@0x2dd050 cSeedLoginSvConnection::OnPacket_L2C_LOGOUT_RES@0x37c9f0
+pc:0x7cea40	seed	cSeedGameSvConnection::OnPacket_CONNECTION_PING_RES: several PS4 candidates cSeedGameSvConnection::OnPacket_S2C_PING_RES@0x2dcc70 cSeedLoginSvConnection::OnPacket_L2C_PING_RES@0x37c6c0
+pc:0x7d0530	seed	cSeedGameSvConnection::OnPacket_CRAFT_DRAGON_SKILL_ANALYZE_RES: no PS4 OnPacket_ symbol for DRAGON_SKILL_ANALYZE_RES
+pc:0x7d0650	seed	cSeedGameSvConnection::OnPacket_CRAFT_DRAGON_SKILL_COMPOSE_RES: no PS4 OnPacket_ symbol for DRAGON_SKILL_COMPOSE_RES
+pc:0x7d1600	seed	cSeedGameSvConnection::OnPacket_CRAFT_START_QUALITY_UP_RES: no PS4 OnPacket_ symbol for START_QUALITY_UP_RES
+pc:0x7d18b0	seed	cSeedGameSvConnection::OnPacket_DAILY_MISSION_EVENT_LIST_GET_RES: no PS4 OnPacket_ symbol for MISSION_EVENT_LIST_GET_RES / EVENT_LIST_GET_RES
+pc:0x7d1950	seed	cSeedGameSvConnection::OnPacket_DAILY_MISSION_LIST_GET_RES: no PS4 OnPacket_ symbol for MISSION_LIST_GET_RES / LIST_GET_RES
+pc:0x7d1a50	seed	cSeedGameSvConnection::OnPacket_DAILY_MISSION_REWARD_RECEIVE_RES: no PS4 OnPacket_ symbol for MISSION_REWARD_RECEIVE_RES / REWARD_RECEIVE_RES
+pc:0x7d25a0	seed	cSeedGameSvConnection::OnPacket_DISPEL_GET_LOCK_SETTING_RES: no PS4 OnPacket_ symbol for GET_LOCK_SETTING_RES
+pc:0x7d2640	seed	cSeedGameSvConnection::OnPacket_DISPEL_LOCK_SETTING_RES: no PS4 OnPacket_ symbol for LOCK_SETTING_RES
+pc:0x7d3f10	seed	cSeedGameSvConnection::OnPacket_ENTRY_BOARD_ENTRY_BOARD_LIST_RES: no PS4 OnPacket_ symbol for BOARD_ENTRY_BOARD_LIST_RES / ENTRY_BOARD_LIST_RES
+pc:0x7d3ff0	seed	cSeedGameSvConnection::OnPacket_ENTRY_BOARD_ITEM_KICK_RES: no PS4 OnPacket_ symbol for BOARD_ITEM_KICK_RES / ITEM_KICK_RES
+pc:0x7d4080	seed	cSeedGameSvConnection::OnPacket_ENTRY_BOARD_PARTY_RECRUIT_CATEGORY_LIST_RES: no PS4 OnPacket_ symbol for BOARD_PARTY_RECRUIT_CATEGORY_LIST_RES / PARTY_RECRUIT_CATEGORY_LIST_RES
+pc:0x7d4e70	seed	cSeedGameSvConnection::OnPacket_EQUIP_ENHANCED_AWAKEN_RES: no PS4 OnPacket_ symbol for ENHANCED_AWAKEN_RES / AWAKEN_RES
+pc:0x7d4f00	seed	cSeedGameSvConnection::OnPacket_EQUIP_ENHANCED_ENHANCE_ITEM_RES: no PS4 OnPacket_ symbol for ENHANCED_ENHANCE_ITEM_RES / ENHANCE_ITEM_RES
+pc:0x7d5030	seed	cSeedGameSvConnection::OnPacket_EQUIP_ENHANCED_GET_PACKS_RES: no PS4 OnPacket_ symbol for ENHANCED_GET_PACKS_RES / GET_PACKS_RES
+pc:0x7d5190	seed	cSeedGameSvConnection::OnPacket_EQUIP_ENHANCED_SUB_RES: no PS4 OnPacket_ symbol for ENHANCED_SUB_RES / SUB_RES
+pc:0x7d74c0	seed	cSeedGameSvConnection::OnPacket_GP_GET_UPDATE_APP_COURSE_BONUS_FLAG_RES: no PS4 OnPacket_ symbol for GET_UPDATE_APP_COURSE_BONUS_FLAG_RES
+pc:0x7d7570	seed	cSeedGameSvConnection::OnPacket_GP_GET_VALID_CHAT_COM_GROUP_RES: no PS4 OnPacket_ symbol for GET_VALID_CHAT_COM_GROUP_RES
+pc:0x7d7630	seed	cSeedGameSvConnection::OnPacket_GP_GP_COURSE_EFFECT_MISMATCH_RES: no PS4 OnPacket_ symbol for GP_COURSE_EFFECT_MISMATCH_RES
+pc:0x7d76e0	seed	cSeedGameSvConnection::OnPacket_GP_GP_COURSE_EFFECT_RELOAD_RES: no PS4 OnPacket_ symbol for GP_COURSE_EFFECT_RELOAD_RES
+pc:0x7d7b90	seed	cSeedGameSvConnection::OnPacket_GP_GP_COURSE_INFO_RELOAD_RES: no PS4 OnPacket_ symbol for GP_COURSE_INFO_RELOAD_RES
+pc:0x7d84e0	seed	cSeedGameSvConnection::OnPacket_GP_GP_SHOP_CAN_BUY_RES: no PS4 OnPacket_ symbol for GP_SHOP_CAN_BUY_RES
+pc:0x7d8be0	seed	cSeedGameSvConnection::OnPacket_GP_UPDATE_APP_COURSE_BONUS_RES: no PS4 OnPacket_ symbol for UPDATE_APP_COURSE_BONUS_RES
+pc:0x7d9820	seed	cSeedGameSvConnection::OnPacket_INFINITY_DELIVERY_DELIVER_CLIENT_RES: no PS4 OnPacket_ symbol for DELIVERY_DELIVER_CLIENT_RES / DELIVER_CLIENT_RES
+pc:0x7d9900	seed	cSeedGameSvConnection::OnPacket_INFINITY_DELIVERY_GET_CATEGORY_FROM_NPC_RES: no PS4 OnPacket_ symbol for DELIVERY_GET_CATEGORY_FROM_NPC_RES / GET_CATEGORY_FROM_NPC_RES
+pc:0x7d99e0	seed	cSeedGameSvConnection::OnPacket_INFINITY_DELIVERY_GET_CATEGORY_INFO_RES: no PS4 OnPacket_ symbol for DELIVERY_GET_CATEGORY_INFO_RES / GET_CATEGORY_INFO_RES
+pc:0x7d9ac0	seed	cSeedGameSvConnection::OnPacket_INFINITY_DELIVERY_GET_CATEGORY_LIST_RES: no PS4 OnPacket_ symbol for DELIVERY_GET_CATEGORY_LIST_RES / GET_CATEGORY_LIST_RES
+pc:0x7d9b70	seed	cSeedGameSvConnection::OnPacket_INFINITY_DELIVERY_GET_CATEGORY_RANKING_RES: no PS4 OnPacket_ symbol for DELIVERY_GET_CATEGORY_RANKING_RES / GET_CATEGORY_RANKING_RES
+pc:0x7d9c20	seed	cSeedGameSvConnection::OnPacket_INFINITY_DELIVERY_GET_CATEGORY_STATUS_RES: no PS4 OnPacket_ symbol for DELIVERY_GET_CATEGORY_STATUS_RES / GET_CATEGORY_STATUS_RES
+pc:0x7d9d00	seed	cSeedGameSvConnection::OnPacket_INFINITY_DELIVERY_GET_CURRENT_EVENT_RES: no PS4 OnPacket_ symbol for DELIVERY_GET_CURRENT_EVENT_RES / GET_CURRENT_EVENT_RES
+pc:0x7d9de0	seed	cSeedGameSvConnection::OnPacket_INFINITY_DELIVERY_GET_EVENT_STATUS_RES: no PS4 OnPacket_ symbol for DELIVERY_GET_EVENT_STATUS_RES / GET_EVENT_STATUS_RES
+pc:0x7d9e90	seed	cSeedGameSvConnection::OnPacket_INFINITY_DELIVERY_GET_NUM_BORDER_INFO_RES: no PS4 OnPacket_ symbol for DELIVERY_GET_NUM_BORDER_INFO_RES / GET_NUM_BORDER_INFO_RES
+pc:0x7d9f40	seed	cSeedGameSvConnection::OnPacket_INFINITY_DELIVERY_GET_RANKING_BORDER_INFO_RES: no PS4 OnPacket_ symbol for DELIVERY_GET_RANKING_BORDER_INFO_RES / GET_RANKING_BORDER_INFO_RES
+pc:0x7d9ff0	seed	cSeedGameSvConnection::OnPacket_INFINITY_DELIVERY_GET_REQUIRED_RES: no PS4 OnPacket_ symbol for DELIVERY_GET_REQUIRED_RES / GET_REQUIRED_RES
+pc:0x7da0a0	seed	cSeedGameSvConnection::OnPacket_INFINITY_DELIVERY_RECEIVE_BORDER_REWARD_RES: no PS4 OnPacket_ symbol for DELIVERY_RECEIVE_BORDER_REWARD_RES / RECEIVE_BORDER_REWARD_RES
+pc:0x7db600	seed	cSeedGameSvConnection::OnPacket_INSTANCE_GET_EX_OM_INFO_RES: no PS4 OnPacket_ symbol for GET_EX_OM_INFO_RES
+pc:0x7dbc50	seed	cSeedGameSvConnection::OnPacket_INSTANCE_GET_OM_INSTANT_KEY_VALUE_ALL_RES: no PS4 OnPacket_ symbol for GET_OM_INSTANT_KEY_VALUE_ALL_RES
+pc:0x7dc450	seed	cSeedGameSvConnection::OnPacket_INSTANCE_TREASURE_POINT_GET_CATEGORY_LIST_RES: no PS4 OnPacket_ symbol for TREASURE_POINT_GET_CATEGORY_LIST_RES
+pc:0x7dc500	seed	cSeedGameSvConnection::OnPacket_INSTANCE_TREASURE_POINT_GET_INFO_RES: no PS4 OnPacket_ symbol for TREASURE_POINT_GET_INFO_RES
+pc:0x7dc590	seed	cSeedGameSvConnection::OnPacket_INSTANCE_TREASURE_POINT_GET_LIST_RES: no PS4 OnPacket_ symbol for TREASURE_POINT_GET_LIST_RES
+pc:0x7dc640	seed	cSeedGameSvConnection::OnPacket_ITEM_CHANGE_ATTR_DISCARD_RES: no PS4 OnPacket_ symbol for CHANGE_ATTR_DISCARD_RES
+pc:0x7dc760	seed	cSeedGameSvConnection::OnPacket_ITEM_EMBODY_ITEMS_RES: no PS4 OnPacket_ symbol for EMBODY_ITEMS_RES
+pc:0x7dccd0	seed	cSeedGameSvConnection::OnPacket_ITEM_GET_DEFAULT_STORAGE_EMPTY_SLOT_NUM_RES: no PS4 OnPacket_ symbol for GET_DEFAULT_STORAGE_EMPTY_SLOT_NUM_RES
+pc:0x7dcdc0	seed	cSeedGameSvConnection::OnPacket_ITEM_GET_EMBODY_PAY_COST_RES: no PS4 OnPacket_ symbol for GET_EMBODY_PAY_COST_RES
+pc:0x7dceb0	seed	cSeedGameSvConnection::OnPacket_ITEM_GET_EQUIP_RARE_TYPE_ITEMS_RES: no PS4 OnPacket_ symbol for GET_EQUIP_RARE_TYPE_ITEMS_RES
+pc:0x7dcf60	seed	cSeedGameSvConnection::OnPacket_ITEM_GET_ITEM_STORAGE_CUSTOM_RES: no PS4 OnPacket_ symbol for GET_ITEM_STORAGE_CUSTOM_RES
+pc:0x7dd120	seed	cSeedGameSvConnection::OnPacket_ITEM_GET_ITEM_STORE_LIST_RES: no PS4 OnPacket_ symbol for GET_ITEM_STORE_LIST_RES
+pc:0x7dd1f0	seed	cSeedGameSvConnection::OnPacket_ITEM_GET_PAY_COST_RES: no PS4 OnPacket_ symbol for GET_PAY_COST_RES
+pc:0x7dd450	seed	cSeedGameSvConnection::OnPacket_ITEM_GET_SPECIFIED_HAVING_ITEM_LIST_RES: no PS4 OnPacket_ symbol for GET_SPECIFIED_HAVING_ITEM_LIST_RES
+pc:0x7dd640	seed	cSeedGameSvConnection::OnPacket_ITEM_GET_VALUABLE_ITEM_LIST_RES: no PS4 OnPacket_ symbol for GET_VALUABLE_ITEM_LIST_RES
+pc:0x7dd6f0	seed	cSeedGameSvConnection::OnPacket_ITEM_LOAD_STORAGE_ITEM_RES: no PS4 OnPacket_ symbol for LOAD_STORAGE_ITEM_RES
+pc:0x7dd810	seed	cSeedGameSvConnection::OnPacket_ITEM_RECOVERY_VALUABLE_ITEM_RES: no PS4 OnPacket_ symbol for RECOVERY_VALUABLE_ITEM_RES
+pc:0x7de1d0	seed	cSeedGameSvConnection::OnPacket_ITEM_UPDATE_ITEM_STORAGE_CUSTOM_RES: no PS4 OnPacket_ symbol for UPDATE_ITEM_STORAGE_CUSTOM_RES
+pc:0x7dfdd0	seed	cSeedGameSvConnection::OnPacket_JOB_EMBLEM_ATTACH_ELEMENT_RES: no PS4 OnPacket_ symbol for EMBLEM_ATTACH_ELEMENT_RES / ATTACH_ELEMENT_RES
+pc:0x7dfec0	seed	cSeedGameSvConnection::OnPacket_JOB_EMBLEM_DETTACH_ELEMENT_RES: no PS4 OnPacket_ symbol for EMBLEM_DETTACH_ELEMENT_RES / DETTACH_ELEMENT_RES
+pc:0x7dffc0	seed	cSeedGameSvConnection::OnPacket_JOB_EMBLEM_GET_EMBLEM_LIST_RES: no PS4 OnPacket_ symbol for EMBLEM_GET_EMBLEM_LIST_RES / GET_EMBLEM_LIST_RES
+pc:0x7e0070	seed	cSeedGameSvConnection::OnPacket_JOB_EMBLEM_GET_EMBLEM_RES: no PS4 OnPacket_ symbol for EMBLEM_GET_EMBLEM_RES / GET_EMBLEM_RES
+pc:0x7e00e0	seed	cSeedGameSvConnection::OnPacket_JOB_EMBLEM_RESET_PARAM_LEVEL_RES: no PS4 OnPacket_ symbol for EMBLEM_RESET_PARAM_LEVEL_RES / RESET_PARAM_LEVEL_RES
+pc:0x7e0240	seed	cSeedGameSvConnection::OnPacket_JOB_EMBLEM_UPDATE_LEVEL_RES: no PS4 OnPacket_ symbol for EMBLEM_UPDATE_LEVEL_RES / UPDATE_LEVEL_RES
+pc:0x7e0330	seed	cSeedGameSvConnection::OnPacket_JOB_EMBLEM_UPDATE_PARAM_LEVEL_RES: no PS4 OnPacket_ symbol for EMBLEM_UPDATE_PARAM_LEVEL_RES / UPDATE_PARAM_LEVEL_RES
+pc:0x7e10e0	seed	cSeedGameSvConnection::OnPacket_JOB_ORB_TREE_EXCHANGE_CURRENCY_RES: no PS4 OnPacket_ symbol for ORB_TREE_EXCHANGE_CURRENCY_RES / TREE_EXCHANGE_CURRENCY_RES / EXCHANGE_CURRENCY_RES
+pc:0x7e1280	seed	cSeedGameSvConnection::OnPacket_JOB_ORB_TREE_GET_CURRENCY_EXCHANGE_LIST_RES: no PS4 OnPacket_ symbol for ORB_TREE_GET_CURRENCY_EXCHANGE_LIST_RES / TREE_GET_CURRENCY_EXCHANGE_LIST_RES / GET_CURRENCY_EXCHANGE_LIST_RES
+pc:0x7e4250	seed	cSeedGameSvConnection::OnPacket_MANDRAGORA_BEGIN_CRAFT_RES: no PS4 OnPacket_ symbol for BEGIN_CRAFT_RES
+pc:0x7e4350	seed	cSeedGameSvConnection::OnPacket_MANDRAGORA_CHANGE_GOLDEN_CRAFT_RES: no PS4 OnPacket_ symbol for CHANGE_GOLDEN_CRAFT_RES
+pc:0x7e43e0	seed	cSeedGameSvConnection::OnPacket_MANDRAGORA_CHANGE_NAME_RES: no PS4 OnPacket_ symbol for CHANGE_NAME_RES
+pc:0x7e44e0	seed	cSeedGameSvConnection::OnPacket_MANDRAGORA_CHANGE_SOIL_RES: no PS4 OnPacket_ symbol for CHANGE_SOIL_RES
+pc:0x7e45d0	seed	cSeedGameSvConnection::OnPacket_MANDRAGORA_CHANGE_SPECIES_RES: no PS4 OnPacket_ symbol for CHANGE_SPECIES_RES
+pc:0x7e46d0	seed	cSeedGameSvConnection::OnPacket_MANDRAGORA_CREATE_MY_MANDRAGORA_RES: no PS4 OnPacket_ symbol for CREATE_MY_MANDRAGORA_RES
+pc:0x7e4900	seed	cSeedGameSvConnection::OnPacket_MANDRAGORA_FINISH_CRAFT_CHECK_RES: no PS4 OnPacket_ symbol for FINISH_CRAFT_CHECK_RES
+pc:0x7e4a50	seed	cSeedGameSvConnection::OnPacket_MANDRAGORA_FINISH_ITEM_GET_RES: no PS4 OnPacket_ symbol for FINISH_ITEM_GET_RES
+pc:0x7e4b50	seed	cSeedGameSvConnection::OnPacket_MANDRAGORA_GET_CRAFT_RECIPE_LIST_RES: no PS4 OnPacket_ symbol for GET_CRAFT_RECIPE_LIST_RES
+pc:0x7e4c50	seed	cSeedGameSvConnection::OnPacket_MANDRAGORA_GET_MANURE_ITEM_LIST_RES: no PS4 OnPacket_ symbol for GET_MANURE_ITEM_LIST_RES
+pc:0x7e4dc0	seed	cSeedGameSvConnection::OnPacket_MANDRAGORA_GET_MY_MANDRAGORA_RES: no PS4 OnPacket_ symbol for GET_MY_MANDRAGORA_RES
+pc:0x7e5630	seed	cSeedGameSvConnection::OnPacket_MANDRAGORA_GET_SPECIES_CATEGORY_LIST_RES: no PS4 OnPacket_ symbol for GET_SPECIES_CATEGORY_LIST_RES
+pc:0x7e57e0	seed	cSeedGameSvConnection::OnPacket_MANDRAGORA_GET_SPECIES_LIST_RES: no PS4 OnPacket_ symbol for GET_SPECIES_LIST_RES
+pc:0x7e5b60	seed	cSeedGameSvConnection::OnPacket_MY_ROOM_GET_OTHER_ROOM_PERMISSION_RES: no PS4 OnPacket_ symbol for ROOM_GET_OTHER_ROOM_PERMISSION_RES / GET_OTHER_ROOM_PERMISSION_RES
+pc:0x7e60c0	seed	cSeedGameSvConnection::OnPacket_MY_ROOM_SET_OTHER_ROOM_PERMISSION_RES: no PS4 OnPacket_ symbol for ROOM_SET_OTHER_ROOM_PERMISSION_RES / SET_OTHER_ROOM_PERMISSION_RES
+pc:0x7e6150	seed	cSeedGameSvConnection::OnPacket_MY_ROOM_UPDATE_PLANETARIUM_RES: no PS4 OnPacket_ symbol for ROOM_UPDATE_PLANETARIUM_RES / UPDATE_PLANETARIUM_RES
+pc:0x7e62d0	seed	cSeedGameSvConnection::OnPacket_NPC_GET_NPC_EXTENDED_FACILITY_RES: no PS4 OnPacket_ symbol for GET_NPC_EXTENDED_FACILITY_RES / NPC_EXTENDED_FACILITY_RES / EXTENDED_FACILITY_RES / FACILITY_RES / RES
+pc:0x7ea390	seed	cSeedGameSvConnection::OnPacket_PAWN_EXTRA_JOIN_PARTY_RES: no PS4 OnPacket_ symbol for EXTRA_JOIN_PARTY_RES
+pc:0x7ea420	seed	cSeedGameSvConnection::OnPacket_PAWN_EXTRA_LEAVE_PARTY_RES: no PS4 OnPacket_ symbol for EXTRA_LEAVE_PARTY_RES
+pc:0x7ec9c0	seed	cSeedGameSvConnection::OnPacket_PAWN_SP_SKILL_DELETE_STOCK_SKILL_RES: no PS4 OnPacket_ symbol for SP_SKILL_DELETE_STOCK_SKILL_RES / SKILL_DELETE_STOCK_SKILL_RES / DELETE_STOCK_SKILL_RES
+pc:0x7eca50	seed	cSeedGameSvConnection::OnPacket_PAWN_SP_SKILL_GET_ACTIVE_SKILL_RES: no PS4 OnPacket_ symbol for SP_SKILL_GET_ACTIVE_SKILL_RES / SKILL_GET_ACTIVE_SKILL_RES / GET_ACTIVE_SKILL_RES
+pc:0x7ecb70	seed	cSeedGameSvConnection::OnPacket_PAWN_SP_SKILL_GET_MAX_SKILL_NUM_RES: no PS4 OnPacket_ symbol for SP_SKILL_GET_MAX_SKILL_NUM_RES / SKILL_GET_MAX_SKILL_NUM_RES / GET_MAX_SKILL_NUM_RES
+pc:0x7ecc10	seed	cSeedGameSvConnection::OnPacket_PAWN_SP_SKILL_GET_STOCK_SKILL_RES: no PS4 OnPacket_ symbol for SP_SKILL_GET_STOCK_SKILL_RES / SKILL_GET_STOCK_SKILL_RES / GET_STOCK_SKILL_RES
+pc:0x7ecf00	seed	cSeedGameSvConnection::OnPacket_PAWN_SP_SKILL_SET_ACTIVE_SKILL_RES: no PS4 OnPacket_ symbol for SP_SKILL_SET_ACTIVE_SKILL_RES / SKILL_SET_ACTIVE_SKILL_RES / SET_ACTIVE_SKILL_RES
+pc:0x7ecf90	seed	cSeedGameSvConnection::OnPacket_PAWN_SP_SKILL_USE_ITEM_RES: no PS4 OnPacket_ symbol for SP_SKILL_USE_ITEM_RES / SKILL_USE_ITEM_RES / USE_ITEM_RES
+pc:0x7ed380	seed	cSeedGameSvConnection::OnPacket_PAWN_TRAINING_GET_PREPARETION_INFO_TO_ADVICE_RES: no PS4 OnPacket_ symbol for TRAINING_GET_PREPARETION_INFO_TO_ADVICE_RES / GET_PREPARETION_INFO_TO_ADVICE_RES
+pc:0x7ed6d0	seed	cSeedGameSvConnection::OnPacket_PAWN_TRAINING_GET_TRAINING_STATUS_RES: no PS4 OnPacket_ symbol for TRAINING_GET_TRAINING_STATUS_RES / GET_TRAINING_STATUS_RES
+pc:0x7ed8b0	seed	cSeedGameSvConnection::OnPacket_PAWN_TRAINING_SET_TRAINING_STATUS_RES: no PS4 OnPacket_ symbol for TRAINING_SET_TRAINING_STATUS_RES / SET_TRAINING_STATUS_RES
+pc:0x7edea0	seed	cSeedGameSvConnection::OnPacket_POTION_ADVENTURE_UTILITY_CHECK_RES: no PS4 OnPacket_ symbol for ADVENTURE_UTILITY_CHECK_RES
+pc:0x7edf80	seed	cSeedGameSvConnection::OnPacket_POTION_ADVENTURE_UTILITY_RELEASE_RES: no PS4 OnPacket_ symbol for ADVENTURE_UTILITY_RELEASE_RES
+pc:0x7ee060	seed	cSeedGameSvConnection::OnPacket_POTION_ELEMENT_GROUP_CHECK_RES: no PS4 OnPacket_ symbol for ELEMENT_GROUP_CHECK_RES
+pc:0x7ee110	seed	cSeedGameSvConnection::OnPacket_POTION_ELEMENT_GROUP_RELEASE_RES: no PS4 OnPacket_ symbol for ELEMENT_GROUP_RELEASE_RES
+pc:0x7ee240	seed	cSeedGameSvConnection::OnPacket_POTION_JOB_ELEMENT_CHECK_RES: no PS4 OnPacket_ symbol for JOB_ELEMENT_CHECK_RES
+pc:0x7ee480	seed	cSeedGameSvConnection::OnPacket_POTION_ORB_ELEMENT_RELEASE_RES: no PS4 OnPacket_ symbol for ORB_ELEMENT_RELEASE_RES
+pc:0x7ef4c0	seed	cSeedGameSvConnection::OnPacket_QUEST_ADD_PACKAGE_QUEST_POINT_RES: no PS4 OnPacket_ symbol for ADD_PACKAGE_QUEST_POINT_RES
+pc:0x7ef5e0	seed	cSeedGameSvConnection::OnPacket_QUEST_CANCEL_NAVIGATION_QUEST_RES: no PS4 OnPacket_ symbol for CANCEL_NAVIGATION_QUEST_RES
+pc:0x7f07d0	seed	cSeedGameSvConnection::OnPacket_QUEST_GET_ADVENTURE_GUIDE_QUEST_LIST_RES: no PS4 OnPacket_ symbol for GET_ADVENTURE_GUIDE_QUEST_LIST_RES
+pc:0x7f0880	seed	cSeedGameSvConnection::OnPacket_QUEST_GET_ADVENTURE_GUIDE_QUEST_NOTICE_RES: no PS4 OnPacket_ symbol for GET_ADVENTURE_GUIDE_QUEST_NOTICE_RES
+pc:0x7f1230	seed	cSeedGameSvConnection::OnPacket_QUEST_GET_END_CONTENTS_RECRUIT_LIST_RES: no PS4 OnPacket_ symbol for GET_END_CONTENTS_RECRUIT_LIST_RES
+pc:0x7f1320	seed	cSeedGameSvConnection::OnPacket_QUEST_GET_LEVEL_BONUS_LIST_RES: no PS4 OnPacket_ symbol for GET_LEVEL_BONUS_LIST_RES
+pc:0x7f1790	seed	cSeedGameSvConnection::OnPacket_QUEST_GET_MOB_HUNT_QUEST_LIST_RES: no PS4 OnPacket_ symbol for GET_MOB_HUNT_QUEST_LIST_RES
+pc:0x7f1a50	seed	cSeedGameSvConnection::OnPacket_QUEST_GET_PACKAGE_QUEST_INFO_DETAIL_RES: no PS4 OnPacket_ symbol for GET_PACKAGE_QUEST_INFO_DETAIL_RES
+pc:0x7f1b00	seed	cSeedGameSvConnection::OnPacket_QUEST_GET_PACKAGE_QUEST_INFO_RES: no PS4 OnPacket_ symbol for GET_PACKAGE_QUEST_INFO_RES
+pc:0x7f2970	seed	cSeedGameSvConnection::OnPacket_QUEST_GP_CYCLE_CONTENTS_ROULETTE_RES: no PS4 OnPacket_ symbol for GP_CYCLE_CONTENTS_ROULETTE_RES
+pc:0x7f5490	seed	cSeedGameSvConnection::OnPacket_QUEST_SET_NAVIGATION_QUEST_RES: no PS4 OnPacket_ symbol for SET_NAVIGATION_QUEST_RES
+pc:0x7f5c30	seed	cSeedGameSvConnection::OnPacket_QUICK_PARTY_ENTRY_RES: no PS4 OnPacket_ symbol for PARTY_ENTRY_RES / ENTRY_RES
+pc:0x7f5f00	seed	cSeedGameSvConnection::OnPacket_QUICK_PARTY_REGISTER_QUEST_RES: no PS4 OnPacket_ symbol for PARTY_REGISTER_QUEST_RES / REGISTER_QUEST_RES
+pc:0x7f5fa0	seed	cSeedGameSvConnection::OnPacket_QUICK_PARTY_REGISTER_RES: no PS4 OnPacket_ symbol for PARTY_REGISTER_RES / REGISTER_RES
+pc:0x7f61f0	seed	cSeedGameSvConnection::OnPacket_RANKING_BOARD_LIST_RES: no PS4 OnPacket_ symbol for BOARD_LIST_RES
+pc:0x7f62e0	seed	cSeedGameSvConnection::OnPacket_RANKING_RANK_LIST_BY_CHARACTER_ID_RES: no PS4 OnPacket_ symbol for RANK_LIST_BY_CHARACTER_ID_RES
+pc:0x7f6390	seed	cSeedGameSvConnection::OnPacket_RANKING_RANK_LIST_BY_QUEST_SCHEDULE_ID_RES: no PS4 OnPacket_ symbol for RANK_LIST_BY_QUEST_SCHEDULE_ID_RES
+pc:0x7f6440	seed	cSeedGameSvConnection::OnPacket_RANKING_RANK_LIST_RES: no PS4 OnPacket_ symbol for RANK_LIST_RES
+pc:0x7f64f0	seed	cSeedGameSvConnection::OnPacket_RECYCLE_GET_INFO_RES: no PS4 OnPacket_ symbol for GET_INFO_RES
+pc:0x7f65a0	seed	cSeedGameSvConnection::OnPacket_RECYCLE_GET_LOT_FORECAST_RES: no PS4 OnPacket_ symbol for GET_LOT_FORECAST_RES
+pc:0x7f6650	seed	cSeedGameSvConnection::OnPacket_RECYCLE_RESET_COUNT_RES: no PS4 OnPacket_ symbol for RESET_COUNT_RES
+pc:0x7f66e0	seed	cSeedGameSvConnection::OnPacket_RECYCLE_START_EXCHANGE_RES: no PS4 OnPacket_ symbol for START_EXCHANGE_RES
+pc:0x7f6ff0	seed	cSeedGameSvConnection::OnPacket_SEASON_DUNGEON_COMPLETE_RES: no PS4 OnPacket_ symbol for DUNGEON_COMPLETE_RES / COMPLETE_RES
+pc:0x7f7080	seed	cSeedGameSvConnection::OnPacket_SEASON_DUNGEON_DELIVER_ITEM_FOR_EX_RES: no PS4 OnPacket_ symbol for DUNGEON_DELIVER_ITEM_FOR_EX_RES / DELIVER_ITEM_FOR_EX_RES
+pc:0x7f7330	seed	cSeedGameSvConnection::OnPacket_SEASON_DUNGEON_EXECUTE_SOUL_ORDEAL_RES: no PS4 OnPacket_ symbol for DUNGEON_EXECUTE_SOUL_ORDEAL_RES / EXECUTE_SOUL_ORDEAL_RES
+pc:0x7f7410	seed	cSeedGameSvConnection::OnPacket_SEASON_DUNGEON_EXEC_EX_RESERVATION_RES: no PS4 OnPacket_ symbol for DUNGEON_EXEC_EX_RESERVATION_RES / EXEC_EX_RESERVATION_RES
+pc:0x7f74f0	seed	cSeedGameSvConnection::OnPacket_SEASON_DUNGEON_GET_BLOCKADE_ID_FROM_NPC_ID_RES: no PS4 OnPacket_ symbol for DUNGEON_GET_BLOCKADE_ID_FROM_NPC_ID_RES / GET_BLOCKADE_ID_FROM_NPC_ID_RES
+pc:0x7f75d0	seed	cSeedGameSvConnection::OnPacket_SEASON_DUNGEON_GET_BLOCKADE_ID_FROM_OM_RES: no PS4 OnPacket_ symbol for DUNGEON_GET_BLOCKADE_ID_FROM_OM_RES / GET_BLOCKADE_ID_FROM_OM_RES
+pc:0x7f76b0	seed	cSeedGameSvConnection::OnPacket_SEASON_DUNGEON_GET_EXTENDABLE_BLOCKADE_LIST_FROM_NPC_ID_RES: no PS4 OnPacket_ symbol for DUNGEON_GET_EXTENDABLE_BLOCKADE_LIST_FROM_NPC_ID_RES / GET_EXTENDABLE_BLOCKADE_LIST_FROM_NPC_ID_RES
+pc:0x7f7760	seed	cSeedGameSvConnection::OnPacket_SEASON_DUNGEON_GET_EXTEND_INFO_RES: no PS4 OnPacket_ symbol for DUNGEON_GET_EXTEND_INFO_RES / GET_EXTEND_INFO_RES
+pc:0x7f7810	seed	cSeedGameSvConnection::OnPacket_SEASON_DUNGEON_GET_EX_REQUIRED_ITEM_RES: no PS4 OnPacket_ symbol for DUNGEON_GET_EX_REQUIRED_ITEM_RES / GET_EX_REQUIRED_ITEM_RES
+pc:0x7f78c0	seed	cSeedGameSvConnection::OnPacket_SEASON_DUNGEON_GET_ID_FROM_NPC_ID_RES: no PS4 OnPacket_ symbol for DUNGEON_GET_ID_FROM_NPC_ID_RES / GET_ID_FROM_NPC_ID_RES
+pc:0x7f7990	seed	cSeedGameSvConnection::OnPacket_SEASON_DUNGEON_GET_INFO_RES: no PS4 OnPacket_ symbol for DUNGEON_GET_INFO_RES / GET_INFO_RES
+pc:0x7f7a50	seed	cSeedGameSvConnection::OnPacket_SEASON_DUNGEON_GET_SOUL_ORDEAL_LIST_FROM_OM_RES: no PS4 OnPacket_ symbol for DUNGEON_GET_SOUL_ORDEAL_LIST_FROM_OM_RES / GET_SOUL_ORDEAL_LIST_FROM_OM_RES
+pc:0x7f7b00	seed	cSeedGameSvConnection::OnPacket_SEASON_DUNGEON_GET_SOUL_ORDEAL_REWARD_LIST_FOR_VIEW_RES: no PS4 OnPacket_ symbol for DUNGEON_GET_SOUL_ORDEAL_REWARD_LIST_FOR_VIEW_RES / GET_SOUL_ORDEAL_REWARD_LIST_FOR_VIEW_RES
+pc:0x7f7bb0	seed	cSeedGameSvConnection::OnPacket_SEASON_DUNGEON_GET_SOUL_ORDEAL_REWARD_LIST_RES: no PS4 OnPacket_ symbol for DUNGEON_GET_SOUL_ORDEAL_REWARD_LIST_RES / GET_SOUL_ORDEAL_REWARD_LIST_RES
+pc:0x7f7c60	seed	cSeedGameSvConnection::OnPacket_SEASON_DUNGEON_INTERRUPT_SOUL_ORDEAL_RES: no PS4 OnPacket_ symbol for DUNGEON_INTERRUPT_SOUL_ORDEAL_RES / INTERRUPT_SOUL_ORDEAL_RES
+pc:0x7f7d40	seed	cSeedGameSvConnection::OnPacket_SEASON_DUNGEON_IS_UNLOCKED_KEY_POINT_DOOR_RES: no PS4 OnPacket_ symbol for DUNGEON_IS_UNLOCKED_KEY_POINT_DOOR_RES / IS_UNLOCKED_KEY_POINT_DOOR_RES
+pc:0x7f7e20	seed	cSeedGameSvConnection::OnPacket_SEASON_DUNGEON_IS_UNLOCKED_SOUL_ORDEAL_DOOR_RES: no PS4 OnPacket_ symbol for DUNGEON_IS_UNLOCKED_SOUL_ORDEAL_DOOR_RES / IS_UNLOCKED_SOUL_ORDEAL_DOOR_RES
+pc:0x7f8120	seed	cSeedGameSvConnection::OnPacket_SEASON_DUNGEON_OPEN_COMPLETE_DOOR_RES: no PS4 OnPacket_ symbol for DUNGEON_OPEN_COMPLETE_DOOR_RES / OPEN_COMPLETE_DOOR_RES
+pc:0x7f81c0	seed	cSeedGameSvConnection::OnPacket_SEASON_DUNGEON_RECEIVE_SOUL_ORDEAL_REWARD_BUFF_RES: no PS4 OnPacket_ symbol for DUNGEON_RECEIVE_SOUL_ORDEAL_REWARD_BUFF_RES / RECEIVE_SOUL_ORDEAL_REWARD_BUFF_RES
+pc:0x7f82a0	seed	cSeedGameSvConnection::OnPacket_SEASON_DUNGEON_RECEIVE_SOUL_ORDEAL_REWARD_RES: no PS4 OnPacket_ symbol for DUNGEON_RECEIVE_SOUL_ORDEAL_REWARD_RES / RECEIVE_SOUL_ORDEAL_REWARD_RES
+pc:0x7f8550	seed	cSeedGameSvConnection::OnPacket_SEASON_DUNGEON_SOUL_ORDEAL_CANCEL_READY_RES: no PS4 OnPacket_ symbol for DUNGEON_SOUL_ORDEAL_CANCEL_READY_RES / SOUL_ORDEAL_CANCEL_READY_RES
+pc:0x7f87f0	seed	cSeedGameSvConnection::OnPacket_SEASON_DUNGEON_SOUL_ORDEAL_READY_RES: no PS4 OnPacket_ symbol for DUNGEON_SOUL_ORDEAL_READY_RES / SOUL_ORDEAL_READY_RES
+pc:0x7f8dc0	seed	cSeedGameSvConnection::OnPacket_SEASON_DUNGEON_UPDATE_KEY_POINT_DOOR_STATUS_RES: no PS4 OnPacket_ symbol for DUNGEON_UPDATE_KEY_POINT_DOOR_STATUS_RES / UPDATE_KEY_POINT_DOOR_STATUS_RES
+pc:0x7fa570	seed	cSeedGameSvConnection::OnPacket_SKILL_CHANGE_EX_SKILL_RES: no PS4 OnPacket_ symbol for CHANGE_EX_SKILL_RES
+pc:0x7fd720	seed	cSeedGameSvConnection::OnPacket_STAGE_GET_SP_AREA_CHANGE_ID_FROM_NPC_ID_RES: no PS4 OnPacket_ symbol for GET_SP_AREA_CHANGE_ID_FROM_NPC_ID_RES
+pc:0x7fd800	seed	cSeedGameSvConnection::OnPacket_STAGE_GET_SP_AREA_CHANGE_INFO_RES: no PS4 OnPacket_ symbol for GET_SP_AREA_CHANGE_INFO_RES
+pc:0x7fd8b0	seed	cSeedGameSvConnection::OnPacket_STAGE_GET_SP_AREA_CHANGE_LIST_FROM_OM_RES: no PS4 OnPacket_ symbol for GET_SP_AREA_CHANGE_LIST_FROM_OM_RES
+pc:0x7fdaa0	seed	cSeedGameSvConnection::OnPacket_STAGE_GET_TICKET_DUNGEON_CATEGORY_LIST_RES: no PS4 OnPacket_ symbol for GET_TICKET_DUNGEON_CATEGORY_LIST_RES
+pc:0x7fdb50	seed	cSeedGameSvConnection::OnPacket_STAGE_GET_TICKET_DUNGEON_INFO_LIST_RES: no PS4 OnPacket_ symbol for GET_TICKET_DUNGEON_INFO_LIST_RES
+pc:0x7fdc00	seed	cSeedGameSvConnection::OnPacket_STAGE_IS_EXIST_APP_CHARACTER_RES: no PS4 OnPacket_ symbol for IS_EXIST_APP_CHARACTER_RES
+pc:0x7fdce0	seed	cSeedGameSvConnection::OnPacket_STAGE_UNISON_AREA_CHANGE_BEGIN_RECRUITMENT_RES: no PS4 OnPacket_ symbol for UNISON_AREA_CHANGE_BEGIN_RECRUITMENT_RES
+pc:0x7fde20	seed	cSeedGameSvConnection::OnPacket_STAGE_UNISON_AREA_CHANGE_GET_RECRUITMENT_STATE_RES: no PS4 OnPacket_ symbol for UNISON_AREA_CHANGE_GET_RECRUITMENT_STATE_RES
+pc:0x7fded0	seed	cSeedGameSvConnection::OnPacket_STAGE_UNISON_AREA_CHANGE_READY_CANCEL_RES: no PS4 OnPacket_ symbol for UNISON_AREA_CHANGE_READY_CANCEL_RES
+pc:0x7fdf60	seed	cSeedGameSvConnection::OnPacket_STAGE_UNISON_AREA_CHANGE_READY_RES: no PS4 OnPacket_ symbol for UNISON_AREA_CHANGE_READY_RES
+pc:0x7fe070	seed	cSeedGameSvConnection::OnPacket_STAMP_BONUS_CHECK_RES: no PS4 OnPacket_ symbol for BONUS_CHECK_RES / CHECK_RES
+pc:0x7fe140	seed	cSeedGameSvConnection::OnPacket_STAMP_BONUS_GET_LIST_RES: no PS4 OnPacket_ symbol for BONUS_GET_LIST_RES / GET_LIST_RES
+pc:0x7fe1f0	seed	cSeedGameSvConnection::OnPacket_STAMP_BONUS_RECIEVE_DAILY_RES: no PS4 OnPacket_ symbol for BONUS_RECIEVE_DAILY_RES / RECIEVE_DAILY_RES
+pc:0x7fe280	seed	cSeedGameSvConnection::OnPacket_STAMP_BONUS_RECIEVE_TOTAL_RES: no PS4 OnPacket_ symbol for BONUS_RECIEVE_TOTAL_RES / RECIEVE_TOTAL_RES
+pc:0x7fe310	seed	cSeedGameSvConnection::OnPacket_STAMP_BONUS_UPDATE_RES: no PS4 OnPacket_ symbol for BONUS_UPDATE_RES / UPDATE_RES
+pc:0x7fede0	seed	cSeedGameSvConnection::OnPacket_WARP_GET_START_POINT_LIST_RES: no PS4 OnPacket_ symbol for GET_START_POINT_LIST_RES
+pc:0x7c2f80	tier0	references no OnPacket_ string
+pc:0x7c35b0	tier0	references no OnPacket_ string
+pc:0x7c3750	tier0	references no OnPacket_ string
+pc:0x7c3760	tier0	references no OnPacket_ string
+pc:0x7c3770	tier0	references no OnPacket_ string
+pc:0x7c38c0	tier0	references no OnPacket_ string
+pc:0x7c3a90	tier0	references no OnPacket_ string
+pc:0x7c44b0	tier0	references no OnPacket_ string
+pc:0x7c4760	tier0	references no OnPacket_ string
+pc:0x7c4770	tier0	references no OnPacket_ string
+pc:0x7c49d0	tier0	references no OnPacket_ string
+pc:0x7c4ab0	tier0	references no OnPacket_ string
+pc:0x7c4b70	tier0	references no OnPacket_ string
+pc:0x7c4dc0	tier0	references no OnPacket_ string
+pc:0x7c50d0	tier0	references no OnPacket_ string
+pc:0x7c52d0	tier0	references no OnPacket_ string
+pc:0x7c5550	tier0	references no OnPacket_ string
+pc:0x7c56b0	tier0	references no OnPacket_ string
+pc:0x7c5960	tier0	references no OnPacket_ string
+pc:0x7c5bc0	tier0	references no OnPacket_ string
+pc:0x7c5d70	tier0	references no OnPacket_ string
+pc:0x7c65d0	tier0	references no OnPacket_ string
+pc:0x7c65e0	tier0	references no OnPacket_ string
+pc:0x7c7250	tier0	references no OnPacket_ string
+pc:0x7c7360	tier0	references no OnPacket_ string
+pc:0x7c7400	tier0	references no OnPacket_ string
+pc:0x7c7770	tier0	references no OnPacket_ string
+pc:0x7c7820	tier0	references no OnPacket_ string
+pc:0x7c7970	tier0	references no OnPacket_ string
+pc:0x7c7da0	tier0	references no OnPacket_ string
+pc:0x7c8640	tier0	references no OnPacket_ string
+pc:0x7c88e0	tier0	references no OnPacket_ string
+pc:0x7c8d90	tier0	references no OnPacket_ string
+pc:0x7c8e40	tier0	references no OnPacket_ string
+pc:0x7c8ea0	tier0	references no OnPacket_ string
+pc:0x7c8f40	tier0	references no OnPacket_ string
+pc:0x7c8fa0	tier0	references no OnPacket_ string
+pc:0x7c9190	tier0	references no OnPacket_ string
+pc:0x7c9210	tier0	references no OnPacket_ string
+pc:0x7c92f0	tier0	references no OnPacket_ string
+pc:0x7c98f0	tier0	references no OnPacket_ string
+pc:0x7c9c50	tier0	references no OnPacket_ string
+pc:0x7c9d50	tier0	references no OnPacket_ string
+pc:0x7c9f00	tier0	references no OnPacket_ string
+pc:0x7c9f60	tier0	references no OnPacket_ string
+pc:0x7ca090	tier0	references no OnPacket_ string
+pc:0x7ca0f0	tier0	references no OnPacket_ string
+pc:0x7ca2a0	tier0	references no OnPacket_ string
+pc:0x7ca320	tier0	references no OnPacket_ string
+pc:0x7ca800	tier0	references no OnPacket_ string
+pc:0x7ca9d0	tier0	references no OnPacket_ string
+pc:0x7cab30	tier0	references no OnPacket_ string
+pc:0x7cb5f0	tier0	references no OnPacket_ string
+pc:0x7cb890	tier0	references no OnPacket_ string
+pc:0x7cb900	tier0	references no OnPacket_ string
+pc:0x7cba90	tier0	references no OnPacket_ string
+pc:0x7cbaf0	tier0	references no OnPacket_ string
+pc:0x7cbc90	tier0	references no OnPacket_ string
+pc:0x7cbe20	tier0	references no OnPacket_ string
+pc:0x7cbf30	tier0	references no OnPacket_ string
+pc:0x7cc370	tier0	references no OnPacket_ string
+pc:0x7cc450	tier0	references no OnPacket_ string
+pc:0x7cc550	tier0	references no OnPacket_ string
+pc:0x7cc880	tier0	references no OnPacket_ string
+pc:0x7cca80	tier0	references no OnPacket_ string
+pc:0x7ccd30	tier0	references no OnPacket_ string
+pc:0x7cd170	tier0	references no OnPacket_ string
+pc:0x7cd5e0	tier0	references no OnPacket_ string
+pc:0x7cda70	tier0	references no OnPacket_ string
+pc:0x7cdc50	tier0	references no OnPacket_ string
+pc:0x7cdf50	tier0	references no OnPacket_ string
+pc:0x7ce0e0	tier0	references no OnPacket_ string
+pc:0x7ce330	tier0	references no OnPacket_ string
+pc:0x7ce850	tier0	references no OnPacket_ string
+pc:0x7cec00	tier0	references no OnPacket_ string
+pc:0x7cec70	tier0	references no OnPacket_ string
+pc:0x7cee00	tier0	references no OnPacket_ string
+pc:0x7cee70	tier0	references no OnPacket_ string
+pc:0x7cf0b0	tier0	references no OnPacket_ string
+pc:0x7cf330	tier0	references no OnPacket_ string
+pc:0x7cf570	tier0	references no OnPacket_ string
+pc:0x7cf910	tier0	references no OnPacket_ string
+pc:0x7cfba0	tier0	references no OnPacket_ string
+pc:0x7cfc80	tier0	references no OnPacket_ string
+pc:0x7cfd60	tier0	references no OnPacket_ string
+pc:0x7cfee0	tier0	references no OnPacket_ string
+pc:0x7cffe0	tier0	references no OnPacket_ string
+pc:0x7d0060	tier0	references no OnPacket_ string
+pc:0x7d01e0	tier0	references no OnPacket_ string
+pc:0x7d0270	tier0	references no OnPacket_ string
+pc:0x7d07a0	tier0	references no OnPacket_ string
+pc:0x7d0d20	tier0	references no OnPacket_ string
+pc:0x7d16d0	tier0	references no OnPacket_ string
+pc:0x7d16e0	tier0	references no OnPacket_ string
+pc:0x7d16f0	tier0	references no OnPacket_ string
+pc:0x7d1750	tier0	references no OnPacket_ string
+pc:0x7d1760	tier0	references no OnPacket_ string
+pc:0x7d1ae0	tier0	references no OnPacket_ string
+pc:0x7d1b80	tier0	references no OnPacket_ string
+pc:0x7d1be0	tier0	table callback has no function record
+pc:0x7d1e60	tier0	references no OnPacket_ string
+pc:0x7d1f50	tier0	references no OnPacket_ string
+pc:0x7d2000	tier0	references no OnPacket_ string
+pc:0x7d2150	tier0	references no OnPacket_ string
+pc:0x7d2290	tier0	references no OnPacket_ string
+pc:0x7d2740	tier0	references no OnPacket_ string
+pc:0x7d2a20	tier0	references no OnPacket_ string
+pc:0x7d2a30	tier0	references no OnPacket_ string
+pc:0x7d2b70	tier0	references no OnPacket_ string
+pc:0x7d3070	tier0	references no OnPacket_ string
+pc:0x7d34e0	tier0	references no OnPacket_ string
+pc:0x7d36b0	tier0	references no OnPacket_ string
+pc:0x7d3930	tier0	references no OnPacket_ string
+pc:0x7d3960	tier0	references no OnPacket_ string
+pc:0x7d3aa0	tier0	references no OnPacket_ string
+pc:0x7d3cf0	tier0	references no OnPacket_ string
+pc:0x7d3de0	tier0	references no OnPacket_ string
+pc:0x7d3ef0	tier0	references no OnPacket_ string
+pc:0x7d4160	tier0	references no OnPacket_ string
+pc:0x7d4470	tier0	references no OnPacket_ string
+pc:0x7d4610	tier0	references no OnPacket_ string
+pc:0x7d4920	tier0	references no OnPacket_ string
+pc:0x7d4bc0	tier0	references no OnPacket_ string
+pc:0x7d5220	tier0	references no OnPacket_ string
+pc:0x7d52c0	tier0	references no OnPacket_ string
+pc:0x7d5470	tier0	references no OnPacket_ string
+pc:0x7d56e0	tier0	references no OnPacket_ string
+pc:0x7d56f0	tier0	references no OnPacket_ string
+pc:0x7d5700	tier0	references no OnPacket_ string
+pc:0x7d5710	tier0	references no OnPacket_ string
+pc:0x7d5720	tier0	references no OnPacket_ string
+pc:0x7d5730	tier0	references no OnPacket_ string
+pc:0x7d5740	tier0	references no OnPacket_ string
+pc:0x7d5db0	tier0	references no OnPacket_ string
+pc:0x7d60a0	tier0	references no OnPacket_ string
+pc:0x7d6460	tier0	references no OnPacket_ string
+pc:0x7d69e0	tier0	references no OnPacket_ string
+pc:0x7d6fd0	tier0	references no OnPacket_ string
+pc:0x7d7770	tier0	references no OnPacket_ string
+pc:0x7d7810	tier0	references no OnPacket_ string
+pc:0x7d78f0	tier0	references no OnPacket_ string
+pc:0x7d8010	tier0	references no OnPacket_ string
+pc:0x7d80c0	tier0	references no OnPacket_ string
+pc:0x7d8bc0	tier0	references no OnPacket_ string
+pc:0x7d8bd0	tier0	references no OnPacket_ string
+pc:0x7d8c90	tier0	references no OnPacket_ string
+pc:0x7d9030	tier0	references no OnPacket_ string
+pc:0x7d94a0	tier0	references no OnPacket_ string
+pc:0x7d9700	tier0	references no OnPacket_ string
+pc:0x7da720	tier0	references no OnPacket_ string
+pc:0x7da7b0	tier0	references no OnPacket_ string
+pc:0x7da8c0	tier0	references no OnPacket_ string
+pc:0x7da9c0	tier0	references no OnPacket_ string
+pc:0x7dab00	tier0	references no OnPacket_ string
+pc:0x7dad20	tier0	references no OnPacket_ string
+pc:0x7dae20	tier0	references no OnPacket_ string
+pc:0x7daef0	tier0	references no OnPacket_ string
+pc:0x7db000	tier0	references no OnPacket_ string
+pc:0x7db160	tier0	references no OnPacket_ string
+pc:0x7dbe00	tier0	references no OnPacket_ string
+pc:0x7dbe30	tier0	references no OnPacket_ string
+pc:0x7dbf90	tier0	references no OnPacket_ string
+pc:0x7dbfa0	tier0	references no OnPacket_ string
+pc:0x7dbfb0	tier0	references no OnPacket_ string
+pc:0x7dc160	tier0	references no OnPacket_ string
+pc:0x7dc2b0	tier0	references no OnPacket_ string
+pc:0x7dca30	tier0	references no OnPacket_ string
+pc:0x7dcad0	tier0	references no OnPacket_ string
+pc:0x7ddab0	tier0	references no OnPacket_ string
+pc:0x7ddcc0	tier0	references no OnPacket_ string
+pc:0x7ddd80	tier0	references no OnPacket_ string
+pc:0x7de260	tier0	references no OnPacket_ string
+pc:0x7de3b0	tier0	references no OnPacket_ string
+pc:0x7de540	tier0	references no OnPacket_ string
+pc:0x7ded70	tier0	references no OnPacket_ string
+pc:0x7df610	tier0	references no OnPacket_ string
+pc:0x7df800	tier0	references no OnPacket_ string
+pc:0x7dfa50	tier0	references no OnPacket_ string
+pc:0x7dfd70	tier0	references no OnPacket_ string
+pc:0x7e0480	tier0	references no OnPacket_ string
+pc:0x7e0a40	tier0	references no OnPacket_ string
+pc:0x7e0b70	tier0	references no OnPacket_ string
+pc:0x7e0c70	tier0	references no OnPacket_ string
+pc:0x7e0d60	tier0	references no OnPacket_ string
+pc:0x7e1530	tier0	references no OnPacket_ string
+pc:0x7e15b0	tier0	references no OnPacket_ string
+pc:0x7e17b0	tier0	references no OnPacket_ string
+pc:0x7e1890	tier0	references no OnPacket_ string
+pc:0x7e1aa0	tier0	references no OnPacket_ string
+pc:0x7e1e70	tier0	references no OnPacket_ string
+pc:0x7e21e0	tier0	references no OnPacket_ string
+pc:0x7e2540	tier0	references no OnPacket_ string
+pc:0x7e2770	tier0	references no OnPacket_ string
+pc:0x7e29b0	tier0	references no OnPacket_ string
+pc:0x7e2ad0	tier0	references no OnPacket_ string
+pc:0x7e3330	tier0	references no OnPacket_ string
+pc:0x7e4180	tier0	references no OnPacket_ string
+pc:0x7e47e0	tier0	references no OnPacket_ string
+pc:0x7e5d90	tier0	references no OnPacket_ string
+pc:0x7e5ec0	tier0	references no OnPacket_ string
+pc:0x7e62c0	tier0	references no OnPacket_ string
+pc:0x7e6430	tier0	references no OnPacket_ string
+pc:0x7e6d50	tier0	references no OnPacket_ string
+pc:0x7e71d0	tier0	references no OnPacket_ string
+pc:0x7e72b0	tier0	references no OnPacket_ string
+pc:0x7e7570	tier0	references no OnPacket_ string
+pc:0x7e78d0	tier0	references no OnPacket_ string
+pc:0x7e7a20	tier0	references no OnPacket_ string
+pc:0x7e7c60	tier0	references no OnPacket_ string
+pc:0x7e7de0	tier0	references no OnPacket_ string
+pc:0x7e7f00	tier0	references no OnPacket_ string
+pc:0x7e7fb0	tier0	references no OnPacket_ string
+pc:0x7e85f0	tier0	references no OnPacket_ string
+pc:0x7e8660	tier0	references no OnPacket_ string
+pc:0x7e8880	tier0	references no OnPacket_ string
+pc:0x7e8a30	tier0	references no OnPacket_ string
+pc:0x7e8e50	tier0	references no OnPacket_ string
+pc:0x7e9110	tier0	references no OnPacket_ string
+pc:0x7e9300	tier0	references no OnPacket_ string
+pc:0x7e9470	tier0	references no OnPacket_ string
+pc:0x7e9500	tier0	references no OnPacket_ string
+pc:0x7e97a0	tier0	references no OnPacket_ string
+pc:0x7e9880	tier0	references no OnPacket_ string
+pc:0x7ea2b0	tier0	references no OnPacket_ string
+pc:0x7ea320	tier0	references no OnPacket_ string
+pc:0x7ea4b0	tier0	references no OnPacket_ string
+pc:0x7eafc0	tier0	references no OnPacket_ string
+pc:0x7eb2c0	tier0	references no OnPacket_ string
+pc:0x7eb470	tier0	references no OnPacket_ string
+pc:0x7eb510	tier0	references no OnPacket_ string
+pc:0x7ebc00	tier0	references no OnPacket_ string
+pc:0x7ebeb0	tier0	references no OnPacket_ string
+pc:0x7ec2f0	tier0	references no OnPacket_ string
+pc:0x7ec560	tier0	references no OnPacket_ string
+pc:0x7ec870	tier0	references no OnPacket_ string
+pc:0x7ecd50	tier0	references no OnPacket_ string
+pc:0x7ed0a0	tier0	references no OnPacket_ string
+pc:0x7ed180	tier0	references no OnPacket_ string
+pc:0x7ed530	tier0	references no OnPacket_ string
+pc:0x7ed940	tier0	references no OnPacket_ string
+pc:0x7edbe0	tier0	references no OnPacket_ string
+pc:0x7ee010	tier0	references no OnPacket_ string
+pc:0x7ee1a0	tier0	references no OnPacket_ string
+pc:0x7ee320	tier0	shared string cSeedGameSvConnection::OnPacket_POTION_JOB_ELEMENT_RELEASE_RES (also referenced from outside any function)
+pc:0x7ee3b0	tier0	shared string cSeedGameSvConnection::OnPacket_POTION_ORB_ELEMENT_CHECK_RES (also referenced from outside any function)
+pc:0x7ee550	tier0	references no OnPacket_ string
+pc:0x7ef3c0	tier0	references no OnPacket_ string
+pc:0x7ef550	tier0	references no OnPacket_ string
+pc:0x7ef840	tier0	references no OnPacket_ string
+pc:0x7ef8d0	tier0	references no OnPacket_ string
+pc:0x7efa10	tier0	references no OnPacket_ string
+pc:0x7efd80	tier0	references no OnPacket_ string
+pc:0x7efe10	tier0	references no OnPacket_ string
+pc:0x7efea0	tier0	references no OnPacket_ string
+pc:0x7eff60	tier0	references no OnPacket_ string
+pc:0x7effe0	tier0	references no OnPacket_ string
+pc:0x7f0120	tier0	references no OnPacket_ string
+pc:0x7f0130	tier0	references no OnPacket_ string
+pc:0x7f0260	tier0	references no OnPacket_ string
+pc:0x7f0480	tier0	references no OnPacket_ string
+pc:0x7f04f0	tier0	references no OnPacket_ string
+pc:0x7f0690	tier0	references no OnPacket_ string
+pc:0x7f0740	tier0	references no OnPacket_ string
+pc:0x7f15e0	tier0	references no OnPacket_ string
+pc:0x7f15f0	tier0	references no OnPacket_ string
+pc:0x7f1bb0	tier0	shared string cSeedGameSvConnection::OnPacket_QUEST_GET_PACKAGE_QUEST_LIST_RES (also referenced from outside any function)
+pc:0x7f24e0	tier0	references no OnPacket_ string
+pc:0x7f2820	tier0	references no OnPacket_ string
+pc:0x7f2a20	tier0	references no OnPacket_ string
+pc:0x7f2a90	tier0	references no OnPacket_ string
+pc:0x7f2be0	tier0	references no OnPacket_ string
+pc:0x7f2db0	tier0	references no OnPacket_ string
+pc:0x7f2e50	tier0	references no OnPacket_ string
+pc:0x7f2ea0	tier0	references no OnPacket_ string
+pc:0x7f2f30	tier0	references no OnPacket_ string
+pc:0x7f2fc0	tier0	references no OnPacket_ string
+pc:0x7f3060	tier0	references no OnPacket_ string
+pc:0x7f30f0	tier0	references no OnPacket_ string
+pc:0x7f3180	tier0	references no OnPacket_ string
+pc:0x7f3190	tier0	references no OnPacket_ string
+pc:0x7f31a0	tier0	references no OnPacket_ string
+pc:0x7f31b0	tier0	references no OnPacket_ string
+pc:0x7f31c0	tier0	references no OnPacket_ string
+pc:0x7f31d0	tier0	references no OnPacket_ string
+pc:0x7f31e0	tier0	references no OnPacket_ string
+pc:0x7f3270	tier0	references no OnPacket_ string
+pc:0x7f3390	tier0	references no OnPacket_ string
+pc:0x7f3470	tier0	references no OnPacket_ string
+pc:0x7f3530	tier0	references no OnPacket_ string
+pc:0x7f36d0	tier0	references no OnPacket_ string
+pc:0x7f3850	tier0	references no OnPacket_ string
+pc:0x7f3b50	tier0	references no OnPacket_ string
+pc:0x7f3d20	tier0	references no OnPacket_ string
+pc:0x7f3e80	tier0	references no OnPacket_ string
+pc:0x7f3fa0	tier0	references no OnPacket_ string
+pc:0x7f4040	tier0	references no OnPacket_ string
+pc:0x7f4130	tier0	references no OnPacket_ string
+pc:0x7f4310	tier0	references no OnPacket_ string
+pc:0x7f43a0	tier0	references no OnPacket_ string
+pc:0x7f45a0	tier0	references no OnPacket_ string
+pc:0x7f45c0	tier0	references no OnPacket_ string
+pc:0x7f4720	tier0	references no OnPacket_ string
+pc:0x7f4790	tier0	references no OnPacket_ string
+pc:0x7f4910	tier0	references no OnPacket_ string
+pc:0x7f49b0	tier0	references no OnPacket_ string
+pc:0x7f4a40	tier0	references no OnPacket_ string
+pc:0x7f4ab0	tier0	references no OnPacket_ string
+pc:0x7f4cb0	tier0	references no OnPacket_ string
+pc:0x7f4d70	tier0	references no OnPacket_ string
+pc:0x7f4e10	tier0	references no OnPacket_ string
+pc:0x7f5090	tier0	references no OnPacket_ string
+pc:0x7f51c0	tier0	references no OnPacket_ string
+pc:0x7f52f0	tier0	references no OnPacket_ string
+pc:0x7f5380	tier0	references no OnPacket_ string
+pc:0x7f5410	tier0	references no OnPacket_ string
+pc:0x7f5570	tier0	references no OnPacket_ string
+pc:0x7f56d0	tier0	references no OnPacket_ string
+pc:0x7f5830	tier0	references no OnPacket_ string
+pc:0x7f5a20	tier0	references no OnPacket_ string
+pc:0x7f5ac0	tier0	references no OnPacket_ string
+pc:0x7f5bd0	tier0	references no OnPacket_ string
+pc:0x7f5cc0	tier0	references no OnPacket_ string
+pc:0x7f5d70	tier0	references no OnPacket_ string
+pc:0x7f5ea0	tier0	references no OnPacket_ string
+pc:0x7f6030	tier0	references no OnPacket_ string
+pc:0x7f62d0	tier0	references no OnPacket_ string
+pc:0x7f6790	tier0	references no OnPacket_ string
+pc:0x7f6920	tier0	references no OnPacket_ string
+pc:0x7f6ad0	tier0	references no OnPacket_ string
+pc:0x7f6e40	tier0	references no OnPacket_ string
+pc:0x7f7160	tier0	references no OnPacket_ string
+pc:0x7f7240	tier0	references no OnPacket_ string
+pc:0x7f7f00	tier0	references no OnPacket_ string
+pc:0x7f8040	tier0	references no OnPacket_ string
+pc:0x7f81b0	tier0	references no OnPacket_ string
+pc:0x7f8350	tier0	references no OnPacket_ string
+pc:0x7f8630	tier0	references no OnPacket_ string
+pc:0x7f8740	tier0	references no OnPacket_ string
+pc:0x7f88d0	tier0	references no OnPacket_ string
+pc:0x7f8970	tier0	references no OnPacket_ string
+pc:0x7f8a70	tier0	references no OnPacket_ string
+pc:0x7f8b80	tier0	references no OnPacket_ string
+pc:0x7f8c60	tier0	references no OnPacket_ string
+pc:0x7f8ea0	tier0	references no OnPacket_ string
+pc:0x7f98e0	tier0	references no OnPacket_ string
+pc:0x7f9ab0	tier0	references no OnPacket_ string
+pc:0x7f9bb0	tier0	references no OnPacket_ string
+pc:0x7f9c90	tier0	references no OnPacket_ string
+pc:0x7f9e00	tier0	references no OnPacket_ string
+pc:0x7f9ec0	tier0	references no OnPacket_ string
+pc:0x7fa100	tier0	references no OnPacket_ string
+pc:0x7fa270	tier0	references no OnPacket_ string
+pc:0x7fa730	tier0	references no OnPacket_ string
+pc:0x7fa8b0	tier0	shared string cSeedGameSvConnection::OnPacket_SKILL_GET_ABILITY_COST_RES (also referenced from outside any function)
+pc:0x7fabe0	tier0	references no OnPacket_ string
+pc:0x7fb240	tier0	references no OnPacket_ string
+pc:0x7fb250	tier0	references no OnPacket_ string
+pc:0x7fc2d0	tier0	references no OnPacket_ string
+pc:0x7fc3f0	tier0	references no OnPacket_ string
+pc:0x7fc4f0	tier0	references no OnPacket_ string
+pc:0x7fc600	tier0	references no OnPacket_ string
+pc:0x7fc730	tier0	shared string cSeedGameSvConnection::OnPacket_SKILL_SET_ABILITY_RES (also referenced from outside any function)
+pc:0x7fc9c0	tier0	shared string cSeedGameSvConnection::OnPacket_SKILL_SET_OFF_PAWN_SKILL_RES (also referenced from outside any function)
+pc:0x7fd070	tier0	references no OnPacket_ string
+pc:0x7fd260	tier0	references no OnPacket_ string
+pc:0x7fdd70	tier0	references no OnPacket_ string
+pc:0x7fdff0	tier0	references no OnPacket_ string
+pc:0x7fe5e0	tier0	references no OnPacket_ string
+pc:0x7fe7a0	tier0	references no OnPacket_ string
+pc:0x7fefe0	tier0	references no OnPacket_ string
+pc:0x7ff350	tier0	references no OnPacket_ string

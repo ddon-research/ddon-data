@@ -65,3 +65,28 @@ conflicting items (and junk gap items), create the decoded instructions, `add_fu
 undefining a function's entry instruction deletes the function, which made the T004d
 `set_func_start` repairs fail with `MOVE_FUNC_NOFUNC`. Names are not moved: a name left at a
 deleted enclosing start is in the undo record.
+
+## Matcher (`match.py`, `matcher/`, T005)
+
+    uv run python match.py        # rewrites manifest/*.tsv; identical on rerun; exit 1 on a wrong holdout recovery
+
+Offline over the three dumps; each file's sha256 and header source sha256 must equal `dumps/MANIFEST.tsv`
+(fail closed). Libraries: stdlib only (`csv`, `json`, `hashlib`, `random`, `re`, `dataclasses`); pytest, ruff.
+Own code: the anchored alignment (`matcher/propagate.py`; `difflib.SequenceMatcher` picks one of several
+equal alignments when anchors repeat, here an alignment is used only when forced), the gate logic and the
+32-bit parameter widths (no library models MSVC x86 stack bytes from DWARF).
+
+- Tier 0 (`matcher/tier0.py`): a table callback with exactly one `cSeed*Connection::OnPacket_*` string that no
+  other function and no orphan (non-function) reference uses takes that string as its name.
+- Seeds: the PS4 `cSeed*Connection::OnPacket_{S2C,L2C}_<NAME>` where `<NAME>` is the string after 1..n of the
+  group's common leading tokens; candidates are searched in every `cSeed*` class, the one candidate must be
+  of the string's own class, be claimed by no other string, and pass gate (c).
+- Propagation: anchors are calls whose targets are an accepted pair; a gap with one unpaired call per side
+  proposes the callees; a gap holding an anchor-capable call that did not align is blocked; indirect calls
+  count as calls. Import/extern anchors are not possible: neither dump names call targets outside it.
+- Gates in `matcher/gates.py` (a, c, d) and `matcher/engine.py` (b, fixed point, restart on a conflict with
+  an accepted pair). Folding (d) is a code-identity proxy (size, instructions, ordered call targets,
+  constants, strings, data refs, ret immediates, ecx use): the dump has no body bytes.
+- Outputs (`manifest/`): `pairs.tsv`, `rejected.tsv`, `conflicts.tsv`, `precision.tsv` (5 fixed RNG seeds,
+  20% of seeds withheld), `crosscheck.tsv` (006 T001 `matched`, T002 `holds`/`wrong`), `summary.tsv` (counts,
+  gap shapes, PS4-inline-only uneven gaps).
