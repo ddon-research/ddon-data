@@ -8,7 +8,7 @@
 #   tools/check.sh --all           run every project's gate, changed or not
 #   tools/check.sh --quick         hooks and shell syntax only (no project test suites)
 #
-# Sections: hooks, shell, flags, kg, export (research/03040008/packets/tests/imhex-export-select.sh,
+# Sections: hooks, shell, flags, kg, idacopy (research/ida/tests/private-copy.sh), export (research/03040008/packets/tests/imhex-export-select.sh,
 # when packets/imhex-export.sh or research/03040008/packets/ changed), mcp, imhex.
 #
 # Changed files: `git diff --name-only <base>` plus untracked files, limited to the small trees
@@ -159,6 +159,22 @@ else
         record export passed "$(rg -c '^pass: ' "$LOGS/export.log") checks of $EXPORT_TEST ($(seconds export) s)"
     else
         record export failed "see $LOGS/export.log"
+    fi
+fi
+
+# 4c. IDA private-copy tests (fake recovery record and database in a temp dir; spec 007 T003).
+IDACOPY_TEST=research/ida/tests/private-copy.sh
+if [ "$quick" -eq 1 ]; then
+    record idacopy "not run (--quick)"
+elif ! touches "^research/ida/(private-copy\.sh|tests/)"; then
+    record idacopy "not run (no change to research/ida/private-copy.sh or its tests)"
+elif ! command -v jq >/dev/null 2>&1 || ! command -v cygpath >/dev/null 2>&1; then
+    record idacopy "not run (jq or cygpath missing)"
+else
+    if run_logged idacopy bash "$IDACOPY_TEST"; then
+        record idacopy passed "$(rg -c '^pass: ' "$LOGS/idacopy.log") checks of $IDACOPY_TEST ($(seconds idacopy) s)"
+    else
+        record idacopy failed "see $LOGS/idacopy.log"
     fi
 fi
 
