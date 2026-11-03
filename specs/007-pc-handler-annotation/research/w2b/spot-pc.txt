@@ -1,0 +1,41 @@
+idb D:\research\DDON-binaries\IDA9.5\PC_DDON_03040008\ddon-data-007work\2022_01_29_DDO_DUMP_FIX.exe.i64
+input_sha256 f1c974d0e529d4bb7dc5f0953d37eea6bbb023f2667f9a1d3a3b878f4919fa20
+64bit False imagebase 0x400000
+
+== site 0x75832f in sub_758320 (0x758320)
+0x758320  56  push    esi
+0x758321  8b74240c  mov     esi, [esp+4+CPacketDataBase]
+0x758325  57  push    edi
+0x758326  8b7c240c  mov     edi, [esp+8+packet]
+0x75832a  8d4604  lea     eax, [esi+4]; Load Effective Address
+0x75832d  50  push    eax; value
+0x75832e  57  push    edi; packet
+0x75832f  e89c411600  call    nPacket__Read_u32; Call Procedure    ; -> nPacket::Read_u32
+
+== site 0x758187 in nPacket::Read_CDataAbilityLevelParam_ (0x758100)
+0x758182  8d4604  lea     eax, [esi+4]; Load Effective Address
+0x758185  50  push    eax; value
+0x758186  53  push    ebx; packet
+0x758187  e884421600  call    nPacket__Read_u8; Call Procedure    ; -> nPacket::Read_u8
+
+== site 0x757df5 in sub_757DE0 (0x757de0)
+0x757df0  8d043e  lea     eax, [esi+edi]; Load Effective Address
+0x757df3  50  push    eax; value
+0x757df4  53  push    ebx; packet
+0x757df5  e816461600  call    nPacket__Read_u8; Call Procedure    ; -> nPacket::Read_u8
+
+== site 0x768b6b in sub_768AE0 (0x768ae0)
+0x768b69  50  push    eax; value
+0x768b6a  57  push    edi; packet
+0x768b6b  e8403a1500  call    nPacket__Read_MtString; Call Procedure    ; -> nPacket::Read_MtString
+
+== site 0x403df2 in sub_403DC0 (0x403dc0)
+0x403dee  6a10  push    10h; alignment
+0x403df0  6a08  push    8; size
+0x403df2  e8e9844b00  call    sub_8BC2E0; Call Procedure    ; -> sub_8BC2E0
+
+== site 0x403e3c in sub_403DC0 (0x403dc0)
+0x403e30  8d7810  lea     edi, [eax+10h]; Load Effective Address
+0x403e33  68f8741e02  push    offset dti_MtArray
+0x403e38  897c2418  mov     [esp+1Ch+var_4], edi
+0x403e3c  e82f18fb00  call    MtMemoryAllocator__getAllocator; Call Procedure    ; -> MtMemoryAllocator::getAllocator

@@ -1,0 +1,47 @@
+idb D:\research\DDON-binaries\IDA9.5\PC_DDON_03040008\ddon-data-007work\2022_01_29_DDO_DUMP_FIX.exe.i64
+input_sha256 f1c974d0e529d4bb7dc5f0953d37eea6bbb023f2667f9a1d3a3b878f4919fa20
+64bit False imagebase 0x400000
+
+== range 0x758154..0x758187 (block starts marked *)
+ 0x758154  e887411600  call    sub_8BC2E0; Call Procedure
+ 0x758159  8bf0  mov     esi, eax
+ 0x75815b  83c408  add     esp, 8; Add
+ 0x75815e  85f6  test    esi, esi; Logical Compare
+ 0x758160  741e  jz      short loc_758180; Jump if Zero (ZF=1)
+*0x758162  c7066c33bc01  mov     dword ptr [esi], offset off_1BC336C
+ 0x758168  c6460400  mov     byte ptr [esi+4], 0
+ 0x75816c  c7460800000000  mov     dword ptr [esi+8], 0
+ 0x758173  c7460c00000000  mov     dword ptr [esi+0Ch], 0
+ 0x75817a  c6461000  mov     byte ptr [esi+10h], 0
+ 0x75817e  eb02  jmp     short loc_758182; Jump
+*0x758180  33f6  xor     esi, esi; Logical Exclusive OR
+*0x758182  8d4604  lea     eax, [esi+4]; Load Effective Address
+ 0x758185  50  push    eax; value
+ 0x758186  53  push    ebx; packet
+ 0x758187  e884421600  call    nPacket__Read_u8; Call Procedure
+
+== range 0x403df2..0x403e3c (block starts marked *)
+ 0x403df2  e8e9844b00  call    sub_8BC2E0; Call Procedure
+ 0x403df7  8bd8  mov     ebx, eax
+ 0x403df9  83c408  add     esp, 8; Add
+ 0x403dfc  85db  test    ebx, ebx; Logical Compare
+ 0x403dfe  740e  jz      short loc_403E0E; Jump if Zero (ZF=1)
+*0x403e00  c703d42fae01  mov     dword ptr [ebx], offset off_1AE2FD4
+ 0x403e06  66c743040000  mov     word ptr [ebx+4], 0
+ 0x403e0c  eb02  jmp     short loc_403E10; Jump
+*0x403e0e  33db  xor     ebx, ebx; Logical Exclusive OR
+*0x403e10  0fb64704  movzx   eax, byte ptr [edi+4]; Move with Zero-Extend
+ 0x403e14  884304  mov     [ebx+4], al
+ 0x403e17  0fb64705  movzx   eax, byte ptr [edi+5]; Move with Zero-Extend
+ 0x403e1b  884305  mov     [ebx+5], al
+*0x403e1e  8b4e04  mov     ecx, [esi+4]
+ 0x403e21  8b4608  mov     eax, [esi+8]
+ 0x403e24  3bc8  cmp     ecx, eax; Compare Two Operands
+ 0x403e26  7308  jnb     short loc_403E30; Jump if Not Below (CF=0)
+*0x403e28  8b4610  mov     eax, [esi+10h]
+ 0x403e2b  891c88  mov     [eax+ecx*4], ebx
+ 0x403e2e  eb6f  jmp     short loc_403E9F; Jump
+*0x403e30  8d7810  lea     edi, [eax+10h]; Load Effective Address
+ 0x403e33  68f8741e02  push    offset dti_MtArray
+ 0x403e38  897c2418  mov     [esp+1Ch+var_4], edi
+ 0x403e3c  e82f18fb00  call    MtMemoryAllocator__getAllocator; Call Procedure

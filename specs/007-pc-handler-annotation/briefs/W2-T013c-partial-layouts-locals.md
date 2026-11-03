@@ -4,6 +4,13 @@ Objective (PC 03040008 <- PS4 02020005): wave 2's transfer rows (spec 007 § 3, 
 the v6 dumps and manifest (T013b). Read `research/W2-T012-evidence.md`, `research/T010-locals.md` § 2-5, the
 README (wave-1 rules, lea rule, apply), `tasks.md` § Close.
 
+T013b (`research/W2-T013b-run.md`) caveats: the `element` base does not fire (PC: MSVC's null-checked
+allocation reaches the call only through a join block; PS4: `operator_new` spelling missed, `getAllocator`
+records are mostly the storage buffer), so use only `obj+X` links and element-reader call anchors now and list
+array-element links as not derived; `args` records every held slot, so intersect with the callee's argument
+count (prototype / `arg_bytes` / `arg_regs`); 5,453 PC call sites have `arg_bytes` 0 and no stack argument
+values (R1 cannot link through them: count them).
+
 1. **Member links** (`transfer/`): for every aligned codec call site pair (`callsites.tsv` with `ps4_site`) whose
    destination arguments are `obj+X` (PC) and `obj+Y` (PS4) off the owners' object arguments (or `element`
    bases in array readers, element-reader call anchors as T012), link PC offset X of the PC class to the PS4

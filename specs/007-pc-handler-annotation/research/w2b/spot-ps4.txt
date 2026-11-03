@@ -1,0 +1,62 @@
+idb D:\research\DDON-binaries\IDA9.5\PS4_DDON_02020005_2016_12_21\ddon-data-w2b\DDOORBIS.elf.i64
+input_sha256 4236f598acc8f15893181455ed195e39dfa4dbfda4eeda8b56fcbd82312c63c0
+64bit True imagebase 0x0
+
+== site 0x1a0a434 in nPacket::Read_CDataAbilityParam__0 (0x1a0a420)
+0x1a0a420  55  push    rbp
+0x1a0a421  4889e5  mov     rbp, rsp
+0x1a0a424  4157  push    r15
+0x1a0a426  4156  push    r14
+0x1a0a428  53  push    rbx
+0x1a0a429  50  push    rax
+0x1a0a42a  4889f3  mov     rbx, d
+0x1a0a42d  4989ff  mov     r15, packet
+0x1a0a430  488d7308  lea     rsi, [d+CDataAbilityParam.m_unAbilityNo]; v
+0x1a0a434  e857bd9afe  call    nPacket__Read_u32; Call Procedure    ; -> nPacket::Read_u32
+
+== site 0x1a0a5f6 in nPacket::Read_CDataAbilityLevelParam_ (0x1a0a4c0)
+0x1a0a5c0  bf18000000  mov     edi, 18h; sz
+0x1a0a5c5  be10000000  mov     esi, 10h; align
+0x1a0a5ca  e8f11f9bfe  call    CDataAbilityLevelParam__operator_new; Call Procedure    ; -> CDataAbilityLevelParam::operator_new
+0x1a0a5cf  4889c3  mov     rbx, rax
+0x1a0a5d2  488b45b8  mov     rax, [rbp+var_48]
+0x1a0a5d6  488903  mov     [rbx], rax
+0x1a0a5d9  488d7308  lea     rsi, [rbx+8]; v
+0x1a0a5dd  c6430800  mov     byte ptr [rbx+8], 0
+0x1a0a5e1  c7430c00000000  mov     dword ptr [rbx+0Ch], 0
+0x1a0a5e8  c7431000000000  mov     dword ptr [rbx+10h], 0
+0x1a0a5ef  c6431400  mov     byte ptr [rbx+14h], 0
+0x1a0a5f3  4c89e7  mov     rdi, packet_0; packet
+0x1a0a5f6  e845bb9afe  call    nPacket__Read_u8; Call Procedure    ; -> nPacket::Read_u8
+
+== site 0x4a759 in cCharacterData::setMesseageSetPacket (0x4a450)
+0x4a720  83c320  add     ebx, 20h ; ' '; Add
+0x4a723  488d057e3e5b02  lea     rax, dti_MtArray; Load Effective Address
+0x4a72a  4889c7  mov     rdi, rax; dti
+0x4a72d  e84e20d100  call    MtMemoryAllocator__getAllocator; Call Procedure    ; -> MtMemoryAllocator::getAllocator
+0x4a732  488b08  mov     rcx, [rax+MtAllocator._vptr$MtObject]
+0x4a735  488d34dd00000000  lea     rsi, ds:0[rbx*8]; Load Effective Address
+0x4a73d  488975a8  mov     [rbp+var_58], rsi
+0x4a741  ba10000000  mov     edx, 10h
+0x4a746  4889c7  mov     rdi, rax
+0x4a749  ff5140  call    qword ptr [rcx+40h]; Indirect Call Near Procedure    ; -> 0x40
+0x4a74c  488945b8  mov     [rbp+var_48], rax
+0x4a750  31f6  xor     esi, esi; Logical Exclusive OR
+0x4a752  4889c7  mov     rdi, rax
+0x4a755  488b55a8  mov     rdx, [rbp+var_58]
+0x4a759  e8b2dbb901  call    memset; Call Procedure    ; -> memset
+
+== site 0x830831 in sRemoteProcedureExt::receiveNetwork (0x8306e0)
+0x8307fc  bf10000000  mov     edi, 10h; sz
+0x830801  be10000000  mov     esi, 10h; align
+0x830806  e8a521b5ff  call    nNetMsg__cDecoder__operator_new; Call Procedure    ; -> nNetMsg::cDecoder::operator_new
+0x83080b  4989c4  mov     r12, rax
+0x83080e  488d059ba9c901  lea     rax, unk_24CB1B0; Load Effective Address
+0x830815  4883c010  add     rax, 10h; Add
+0x830819  49890424  mov     [r12+nNetMsg::cDecoder._vptr$MtObject], rax
+0x83081d  bf38000000  mov     edi, 38h ; '8'; s
+0x830822  e809175300  call    operator_new; Call Procedure    ; -> operator_new
+0x830827  4989c7  mov     r15, rax
+0x83082a  488d75a8  lea     rsi, [rbp+var_58]; stream
+0x83082e  4c89ff  mov     rdi, r15; this
+0x830831  e8aa579600  call    nNetwork__Decoder__Decoder; Call Procedure    ; -> nNetwork::Decoder::Decoder
