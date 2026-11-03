@@ -35,7 +35,7 @@ Coordinator: main session. One subagent at a time. Method and rules: `spec.md`.
   (0x7D1BE0, switch in undefined code) / 0 failed; work copy sha `7189b4c6...`; re-extract `table_ok`,
   1 missing root; 9 spot checks decompile). Open for T007: 3 `OnPacket_*` labels left at old starts
   (0x7C5C8D, 0x7D714C, 0x7D858F). Note: a batch dry run also re-saves the copy (+242 B), nothing changed.
-- [ ] T005 Matcher with gates and tests, the precision check on withheld seeds, the manifest (`implementer`).
+- [x] T005 Matcher with gates and tests, the precision check on withheld seeds, the manifest (`implementer`).
   Matcher done (499f7c701d: 150 tests; tier 0 669 of 1,040 callbacks named from PC strings, 364 without
   string, 6 shared, 1 no function; 467 seeds, all gate (c); propagation 0 proposals (uneven gaps, typically
   2 PC vs 4 PS4 calls); precision 5 x 93 withheld, 0 recovered, 0 wrong; 006 matched 146 agree / 209 not
@@ -66,7 +66,12 @@ Coordinator: main session. One subagent at a time. Method and rules: `spec.md`.
   T005g done (`research/T005g-extract-v4.md`: PC v4 7,262 functions, 48,235 access records, 581 requester
   sites, work copy unchanged; PS4 v4 4,146 functions but only 722 access records, 0 slot stores: the
   operand parser reads text and PS4 names argument registers; DWARF re-run 4,106 of 4,146).
-  T005h (implementer): operand decoding fix, PS4 re-extract, rule 4, codec walk skips null `codec_distance`.
+  T005h done (a5131eff53, 7f31b5e868: extractor v5 decodes operands from `op_t` (SIB helpers from the IDA SDK
+  `intel.hpp`); PS4 30,587 access records, 2,685 `mpManager` slot stores; rule 4: 107 requester + 234 sender
+  pairs; element readers 56 -> 95 (deeper dumps), readers 69, call sites 926; fold key includes call-site
+  immediates; control accepted 1 listener pair in 2 runs, slot-order check tightened, then 0; precision 0
+  wrong in 5 runs; 297 tests). Accepted pairs: 467 + 69 + 95 + 107 + 234 = 972. IDA SDK clone line appended
+  (uncommitted) to `research/external-references.jsonl`, which holds others' edits.
 - [ ] T006 Types and locals rules over the accepted pairs (`implementer`, evidence from T004 dumps).
 - [ ] T007 Apply script and the applied copy (`implementer` writes it, `evidence-researcher-ida` runs it).
 - [ ] T008 Verify: re-extract, compare, decompile sample; adversarial review of pairs and types.
@@ -76,7 +81,7 @@ Order: T003 first (T002 needs a copy of the accepted database), then T002.
 
 ## Running
 
-- T005h (implementer, brief `briefs/T005h-ps4-access-fix-and-rule4.md`), started 2026-11-03.
+- T006 (implementer, brief `briefs/T006-transfer-rules.md`), started 2026-11-03.
 - Decision (coordinator, 2026-11-03): from T004d on, all writes go to one persistent work copy
   `PC_DDON_03040008/ddon-data-007work/` of the accepted database (repairs first, then T007's apply);
   it is published as `spec007-packet-handlers-<date>/` at the close.
