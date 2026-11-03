@@ -23,11 +23,34 @@ Coordinator: main session. One subagent at a time. Method, sources and marks: `s
 - [x] T006 Adversarial review (`research/T006-adversarial.md`): no layout defect (independent width walk 4,885/4,887;
   IDA re-read of 19 ids matches); F1 item/stage-id value bases with few distinct values are chance-level; F2 small
   enums named only by the server; F3 counts repeat identical captures. Canaries reproduced by the coordinator.
-- [ ] T007 Mark fixes + `Instance.hexpat` renaming (`briefs/T007-mark-fixes.md`). evidence where the dump lacks a reader (`evidence-researcher-ida`), patterns + JSON
-  (`implementer`), naming by code / data / extractor / leads; each with its fit counts and JSON changes.
-- [ ] Review (adversarial: a sample of V/I/G marks and fits), close, merge and push.
+- [x] T007 Mark fixes + `Instance.hexpat` renaming (94c4d7ca80, 117ce2822e; `briefs/T007-mark-fixes.md`): 123 value
+  marks state distinct counts (43 I -> G, 10.14.16 ItemId V (consumer)); F2 applied; Instance ItemId/Num (G); 62.18.2
+  duplicate-type compile break fixed (`CDataSoulOrdealTrialCostItem`); 7,477/7,477 re-exported fit, 119 JSON changed
+  (renames only). Gate `check.sh --since 81ade7b4c4`: hooks, shell, export, mcp passed.
+- [x] Review (adversarial: a sample of V/I/G marks and fits): T006 above; its fixes are T007.
+- [x] Close: `check.sh --all`, retro, Close section, merge and push.
+
+## Close (2026-11-03)
+
+- Result: all 115 remaining ids (70 S2C, 45 C2S; 4,887 captures) have patterns and JSON. PC layouts fit 4,885/4,887
+  (the other 2 are 29.23.16, whose handler `return 1`s without reading its body: captures only, marks G); the T006
+  independent width walk matches the same 4,885 leaf by leaf; after T007 every re-exported file fits (7,477/7,477).
+- Marks: V where PC code was read, I with a stated basis (value bases give distinct counts; 3 or fewer distinct or
+  chance above 0.05 -> G), G for guesses and server-only names (`G (lead)`). Renamed packets: 11.7.16, 72.1.16 (I);
+  62.39.16, 63.2.16, 63.5.16 (G).
+- Remaining unknowns: 29.23.16 (no reader); 11.88.16 and 11.118.16 decode but their meaning is open; G names whose
+  consumers were not traced (role-only V of 28.34.2 / 11.68.16 consumers, the 13.23.16 ValueOld check: not run).
+- Not run: ImHex GUI validation (plbatch export is the parser; ImHex CLI is not on PATH).
+- Gate: `bash tools/check.sh --all` at 117ce2822e: hooks, shell, flags, export, idacopy, xfer (473), mcp passed;
+  kg failed (`test_production_size_budgets`: `bundle_io.py` 853 lines) in the untracked `research/knowledge-graph/`
+  tree of other work, which no 008 commit touches; imhex not run (not on PATH).
+- Retro (`retro.py --since 2026-11-03T20:52 --label 008`): 7 agents, about $40 of agent spend, 2.1 h wall. Findings:
+  (1) edits of `research/03040008/packets/README.md` echo about 29k tokens each: the id table should move to its own
+  file (or a TSV the README links) before the next packet spec; (2) T004/T005 implementers peaked at 294k/298k, at
+  the 300k resume limit: briefs over ~35 ids get split; (3) T005 added a structure to a shared include that clashed
+  with a pattern's local one and T006 missed it: after any include change, re-export every pattern that includes it
+  (T007 did; carried as a brief rule).
 
 ## Running
 
-- T007 (implementer, brief `briefs/T007-mark-fixes.md`), started 2026-11-03. Next: land, then close (check.sh --all,
-  retro, Close section, merge and push without asking).
+- (none). Spec closed 2026-11-03.

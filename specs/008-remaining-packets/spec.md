@@ -1,6 +1,6 @@
 # 008 Remaining packets: decode every captured packet id (Season 3 and unresolved)
 
-**Status: open** (opened 2026-11-03; follows specs 006 and 007)
+**Status: done** (opened and closed 2026-11-03; follows specs 006 and 007; results: `tasks.md` § Close)
 
 ## Goal
 
