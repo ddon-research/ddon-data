@@ -102,7 +102,9 @@ Coordinator: main session. One subagent at a time. Method and rules: `spec.md`.
   `0x80cf80` fell on inner fields; second hole: `MtObject**` stores counted as vptr writes; fixed: lea only on the
   object, its own members or array element starts; indexed scale = element size; 374 tests; accepted 98 -> 96:
   CHANGE_JOB_RES refused, MtObject and 7 sub-types unchecked). Remaining 96 = 90 `MtTypedArray<X>` (13/20 bytes
-  width-checked) + 6 `CData*` on lea records only (0%). Decision: lea never accepts a type (T006c). (`implementer` writes it, `evidence-researcher-ida` runs it).
+  width-checked) + 6 `CData*` on lea records only (0%). Decision: lea never accepts a type (T006c).
+  T006c done (6dc8a6e496, 4254210930: the 6 lea-only types `unchecked`, opaque in `types.h`; accepted 90, all
+  `MtTypedArray<X>`; prototypes/comments unchanged; typed-lea rule noted for wave 2; 376 tests). (`implementer` writes it, `evidence-researcher-ida` runs it).
 - [ ] T008 Verify: re-extract, compare, decompile sample; adversarial review of pairs and types.
 - [ ] T009 Close: `check.sh --all`, docs, retrospective, publish the database folder.
 
@@ -110,7 +112,7 @@ Order: T003 first (T002 needs a copy of the accepted database), then T002.
 
 ## Running
 
-- T006c (implementer, brief `briefs/T006c-no-lea-only-types.md`), started 2026-11-03; then T007e rollback + re-apply.
+- T007e (evidence-researcher-ida, brief `briefs/T007e-reapply.md`), started 2026-11-03.
 - Decision (coordinator, 2026-11-03): from T004d on, all writes go to one persistent work copy
   `PC_DDON_03040008/ddon-data-007work/` of the accepted database (repairs first, then T007's apply);
   it is published as `spec007-packet-handlers-<date>/` at the close.
