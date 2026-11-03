@@ -45,13 +45,17 @@ import os
 import re
 from dataclasses import dataclass, field
 
-SCRIPT_VERSION = "1"
+SCRIPT_VERSION = "2"
 PC_SHA256 = "f1c974d0e529d4bb7dc5f0953d37eea6bbb023f2667f9a1d3a3b878f4919fa20"
 WORK_COPY_MARK = "ddon-data-007work"
+# T013c: the smoke test's scratch copy of the work copy (``cp``, deleted afterwards)
+WORK_COPY_MARKS = (WORK_COPY_MARK, "ddon-data-007smoke")
 SUMMARY_PREFIX = "apply_transfer summary: "
 SEPARATOR = "\n----\n"
 MANIFEST_FILES = ("names.tsv", "prototypes.tsv", "comments.tsv", "types.tsv", "skipped.tsv", "types.h")
-STEPS = ("types", "remove-label", "names", "prototypes", "comments")
+# wave 2 (T013c, ``transfer.py --wave2``): partial types and locals only
+MANIFEST_FILES_W2 = ("types.tsv", "locals.tsv", "types.h")
+STEPS = ("types", "remove-label", "names", "prototypes", "comments", "locals")
 WRITTEN = {"set", "declared", "defined", "replaced", "removed", "restored"}
 
 
@@ -98,11 +102,14 @@ def _our_comment(r: dict) -> dict:
 
 
 def load_manifest(directory: str) -> dict:
-    """The T006 rows T007 writes, the conflicts it reports, ``types.h`` and the files' sha256."""
-    sha = {f: _sha256(os.path.join(directory, f)) for f in MANIFEST_FILES}
+    """The T006 rows T007 writes, the conflicts it reports, ``types.h`` and the files' sha256. A wave-2 directory
+    (``locals.tsv`` present, T013c) has types and locals only."""
+    wave2 = os.path.exists(os.path.join(directory, "locals.tsv"))
+    files = MANIFEST_FILES_W2 if wave2 else MANIFEST_FILES
+    sha = {f: _sha256(os.path.join(directory, f)) for f in files}
     heads = {}
     tables = {}
-    for f in MANIFEST_FILES[:-1]:
+    for f in files[:-1]:
         heads[f], tables[f] = read_tsv(os.path.join(directory, f))
     with open(os.path.join(directory, "types.h"), encoding="utf-8") as fh:
         header_text = fh.read()
@@ -113,6 +120,14 @@ def load_manifest(directory: str) -> dict:
             raise ValueError(f"{f}: header does not name {pc_source!r}")
     if len(set(h.lstrip("#/ ") for h in heads.values())) != 1:
         raise ValueError("manifest files come from different T006 runs")
+    if wave2:
+        bad = [r for r in tables["locals.tsv"] if r["status"] not in ("accepted", "refused", "duplicate")]
+        if bad:
+            raise ValueError("locals.tsv rows with a status this script does not know")
+        return {"sha256": sha, "head": heads["types.tsv"], "names": [], "labels": [], "prototypes": [],
+                "comments": [], "types": {r["type"]: r for r in tables["types.tsv"]}, "types_h": header_text,
+                "conflicts": [], "locals": [r for r in tables["locals.tsv"] if r["status"] == "accepted"],
+                "wave": 2}
     names = [r for r in tables["names.tsv"] if r["action"] in ("set", "correct")]
     labels = [r for r in tables["names.tsv"] if r["action"] == "remove-label"]
     other = [r for r in tables["names.tsv"] if r["action"] not in ("set", "correct", "remove-label")]
@@ -123,7 +138,33 @@ def load_manifest(directory: str) -> dict:
     conflicts = [r for r in tables["skipped.tsv"] if r["action"] == "conflict"]
     return {"sha256": sha, "head": heads["names.tsv"], "names": names, "labels": labels, "prototypes": protos,
             "comments": comments, "types": {r["type"]: r for r in tables["types.tsv"]},
-            "types_h": header_text, "conflicts": conflicts}
+            "types_h": header_text, "conflicts": conflicts, "locals": [], "wave": 1}
+
+
+def select(manifest: dict, decls: list[TypeDecl], limit_types: int | None, limit_locals: int | None
+           ) -> tuple[list[TypeDecl], list[dict]]:
+    """The smoke-test filter (T013c): the first ``limit_types`` partial types (those a local is retyped to
+    first, then in ``types.h`` order) with every declaration they embed, and the first ``limit_locals`` locals
+    whose retype is none or a selected type. Without limits: everything."""
+    rows = manifest["locals"]
+    if limit_types is None and limit_locals is None:
+        return decls, rows
+    partial = [d.name for d in decls if d.kind == "struct" and manifest["types"].get(d.name, {}).get("status")
+               == "partial"]
+    first = [r["retype"] for r in rows if r["retype"] in partial]
+    order = list(dict.fromkeys(first + partial))
+    chosen = set(order[:limit_types] if limit_types is not None else order)
+    by_name = {d.name: d for d in decls if d.kind == "struct"}
+    keep = set(chosen)
+    todo = list(chosen)
+    while todo:
+        for ref in by_name[todo.pop()].refs():
+            if ref in by_name and ref not in keep:
+                keep.add(ref)
+                todo.append(ref)
+    out = [d for d in decls if d.name in keep and (d.kind == "struct" or d.name not in by_name)]
+    loc = [r for r in rows if r["retype"] == "-" or r["retype"] in chosen]
+    return out, loc[:limit_locals] if limit_locals is not None else loc
 
 
 # --- types.h --------------------------------------------------------------------------------------
@@ -147,6 +188,7 @@ class TypeDecl:
     kind: str  # "opaque" or "struct"
     size: int | None = None
     members: list[Member] = field(default_factory=list)
+    comment: str | None = None  # T013c: ``// <name>: Partial: ...`` line before the struct (the type comment)
 
     def refs(self) -> set[str]:
         """Types this struct embeds by value (they must be defined first)."""
@@ -257,6 +299,7 @@ _MEMBER = re.compile(r"(?P<type>[^*;]+?)\s*(?P<stars>\*+)?\s*(?P<name>[A-Za-z_]\
                      r"(?:\s*//\s*\+0x(?P<off>[0-9a-fA-F]+)\s+(?P<size>\d+)(?P<rest>.*))?")
 _GAP = re.compile(r"gap([0-9A-Fa-f]+)")
 _OPAQUE_BASE = re.compile(r"base (?P<cls>.+) \(not transferred\)")
+_PARTIAL_NOTE = re.compile(r"//\s*(?P<name>[^;{}]+?): (?P<cmt>Partial: .+)")
 
 
 def parse_types_h(text: str) -> list[TypeDecl]:
@@ -269,8 +312,13 @@ def parse_types_h(text: str) -> list[TypeDecl]:
     decls: list[TypeDecl] = []
     cur: TypeDecl | None = None
     opened = False
+    notes: dict[str, str] = {}
     for n, raw in enumerate(text.splitlines(), start=1):
         line = raw.strip()
+        c = _PARTIAL_NOTE.fullmatch(line)
+        if c and cur is None:
+            notes[c["name"]] = c["cmt"]
+            continue
         if not line or line.startswith("//") or line.startswith("#pragma"):
             continue
         if cur is None:
@@ -281,7 +329,7 @@ def parse_types_h(text: str) -> list[TypeDecl]:
             m = re.fullmatch(r"struct (?P<name>[^;{}/]+?)\s*//\s*PC size 0x(?P<size>[0-9a-fA-F]+)", line)
             if not m:
                 raise ValueError(f"types.h:{n}: unexpected {line!r}")
-            cur = TypeDecl(m["name"], "struct", int(m["size"], 16))
+            cur = TypeDecl(m["name"], "struct", int(m["size"], 16), comment=notes.pop(m["name"], None))
             opened = False
             continue
         if not opened:
@@ -323,6 +371,32 @@ def parse_types_h(text: str) -> list[TypeDecl]:
             raise ValueError(f"types.h: {d.name} defined twice")
         seen.add(d.name)
     return decls
+
+
+def render_decls(decls: list[TypeDecl]) -> str:
+    """``types.h`` text of parsed declarations (the filter's subset; :func:`parse_types_h` reads it back)."""
+    out = []
+    for d in decls:
+        if d.kind == "opaque":
+            out.append(f"struct {d.name};")
+            continue
+        if d.comment:
+            out.append(f"// {d.name}: {d.comment}")
+        out += [f"struct {d.name} // PC size {d.size:#x}", "{"]
+        for m in d.members:
+            stars = " " + "*" * m.ptr if m.ptr else ""
+            cnt = f"[{m.count}]" if m.count is not None else ""
+            if m.vptr:
+                rest = " vptr"
+            elif m.base_of:
+                rest = f" base {m.base_of} (not transferred)"
+            elif m.base:
+                rest = f" base {m.type}"
+            else:
+                rest = ""
+            out.append(f"  {m.type}{stars} {m.name}{cnt}; // +{m.offset:#x} {m.size}{rest}")
+        out.append("};")
+    return "\n".join(out) + "\n"
 
 
 def _check_layout(d: TypeDecl, n: int) -> None:
@@ -463,8 +537,8 @@ def precheck(ida) -> dict:
     path = ida.idb_path() or ""
     if sha != PC_SHA256:
         raise ValueError(f"input sha256 {sha} is not the PC 03040008 exe {PC_SHA256}")
-    if WORK_COPY_MARK.lower() not in path.replace("\\", "/").lower():
-        raise ValueError(f"database {path!r} is not under {WORK_COPY_MARK}")
+    if not any(m.lower() in path.replace("\\", "/").lower() for m in WORK_COPY_MARKS):
+        raise ValueError(f"database {path!r} is not under {' or '.join(WORK_COPY_MARKS)}")
     return {"input_sha256": sha, "idb_path": path}
 
 
@@ -548,6 +622,8 @@ def do_types(ida, decls: list[TypeDecl], rows: dict, apply: bool, log: Log) -> s
                     got=None if got is None or got.get("forward") else _layout_json(got["size"], got["members"]),
                     row=_layout_json(d.size, d.row_members()))
         else:
+            if d.comment:
+                info = {**info, "comment": d.comment, "comment_error": ida.set_type_comment(name, d.comment)}
             _result(log, "types", name, "defined" if action == "define" else "replaced", **info)
     return refused
 
@@ -687,6 +763,86 @@ def do_comments(ida, rows: list[dict], apply: bool, log: Log) -> None:
             _result(log, "comments", key, "failed", check="read-back", db=got, row=new)
 
 
+# --- locals (T013c) -------------------------------------------------------------------------------
+
+def local_key(r: dict) -> str:
+    return f"{r['pc_va']}@{r['pc_frame']}"
+
+
+def plan_local(r: dict, found: dict, type_size) -> tuple[str, dict]:
+    """(status, details) for one ``locals.tsv`` row against the adapter's :meth:`_Ida.find_lvar` result.
+
+    ``found``: ``{"error"}`` or ``{"ida_off", "lea_off", "matches": [lvar dicts]}``; ``type_size``: the defined
+    local type's size of the row's retype (None: absent or a forward declaration).
+    The PC lvar is the one stack lvar whose IDA frame offset is the row's entry-relative frame plus the return
+    address offset; the defining ``lea`` must address the same offset. Refused: no unique lvar, an argument, a
+    user name (or a user type when retyping), a width other than the row's size (R1/R2), a retype whose local
+    type is missing or of another size."""
+    if found.get("error"):
+        return "refused", {"check": "decompile", "error": found["error"]}
+    if found.get("lea_off") is not None and found["lea_off"] != found["ida_off"]:
+        return "refused", {"check": "frame-mismatch", "ida_off": found["ida_off"], "lea_off": found["lea_off"]}
+    ms = found["matches"]
+    if len(ms) != 1:
+        return "refused", {"check": "lvar-not-unique", "matches": len(ms)}
+    m = ms[0]
+    retype = r["retype"] if r["retype"] != "-" else None
+    size = int(r["size"]) if r["size"] not in ("", "-") else None
+    if m["is_arg"]:
+        return "refused", {"check": "argument", "lvar": m}
+    if m["name"] == r["name"] and (retype is None or norm_type(m["type"] or "") == norm_type(retype)):
+        return "already", {"lvar": m}
+    if m["user_name"]:
+        return "refused", {"check": "user-name", "lvar": m}
+    if retype is not None:
+        if m["user_type"]:
+            return "refused", {"check": "user-type", "lvar": m}
+        if type_size is None:
+            return "refused", {"check": "type-missing", "type": retype}
+        if type_size != size:
+            return "refused", {"check": "type-size", "type": retype, "type_size": type_size, "row": size}
+    elif m["width"] != size:
+        return "refused", {"check": "width", "lvar": m, "row": size}
+    return "set", {"lvar": m}
+
+
+def _type_size(ida, name: str):
+    got = ida.local_type(name)
+    return None if got is None or got.get("forward") else got["size"]
+
+
+def _pc_def(r: dict):
+    return int(r["pc_def"], 16) if r["pc_def"] not in ("", "-") else None
+
+
+def do_locals(ida, rows: list[dict], refused_types: set[str], apply: bool, log: Log) -> None:
+    for r in rows:
+        ea, key = int(r["pc_va"], 16), local_key(r)
+        retype = r["retype"] if r["retype"] != "-" else None
+        if retype in refused_types:
+            _result(log, "locals", key, "refused", check="uses-refused-type", type=retype)
+            continue
+        found = ida.find_lvar(ea, int(r["pc_frame"]), _pc_def(r))
+        status, info = plan_local(r, found, _type_size(ida, retype) if retype else None)
+        if status != "set":
+            _result(log, "locals", key, status, name=r["name"], rule=r["rule"], **info)
+            continue
+        m = info["lvar"]
+        if not apply:
+            _result(log, "locals", key, "would-set", name=r["name"], rule=r["rule"], retype=retype, lvar=m)
+            continue
+        log.write({"kind": "undo", "step": "locals", "key": key, "before": m})
+        err = ida.set_lvar(ea, m, r["name"], retype)
+        g = ida.find_lvar(ea, int(r["pc_frame"]), _pc_def(r)).get("matches") or []
+        ok = (err is None and len(g) == 1 and g[0]["name"] == r["name"]
+              and (retype is None or norm_type(g[0]["type"] or "") == norm_type(retype)))
+        if ok:
+            _result(log, "locals", key, "set", name=r["name"], rule=r["rule"], retype=retype, before=m, after=g[0])
+        else:
+            _result(log, "locals", key, "failed", check="read-back", error=err, got=g, name=r["name"],
+                    retype=retype)
+
+
 def report_conflicts(rows: list[dict], log: Log) -> None:
     for r in rows:
         _result(log, f"conflict-{r['rule']}", r["item"], "conflict", candidate=r["candidate"], reason=r["reason"])
@@ -707,7 +863,7 @@ def header(ida, manifest: dict, mode: str, extra=None) -> dict:
 
 
 def run_apply(ida, manifest: dict, apply: bool, log: Log) -> dict:
-    log.write(header(ida, manifest, "apply" if apply else "dry-run"))
+    log.write(header(ida, manifest, "apply" if apply else "dry-run", {"filter": manifest.get("filter")}))
     decls = parse_types_h(manifest["types_h"])
     special = special_names(decls, manifest)
     refused = do_types(ida, decls, manifest["types"], apply, log)
@@ -715,6 +871,7 @@ def run_apply(ida, manifest: dict, apply: bool, log: Log) -> dict:
     do_names(ida, manifest["names"], gone, apply, log)
     do_prototypes(ida, manifest["prototypes"], special, refused, apply, log)
     do_comments(ida, manifest["comments"], apply, log)
+    do_locals(ida, manifest["locals"], refused, apply, log)
     report_conflicts(manifest["conflicts"], log)
     summary = {"kind": "summary", "mode": "apply" if apply else "dry-run", "steps": summarize(log.results),
                "counts_after": ida.counts()}
@@ -758,6 +915,8 @@ def run_verify(ida, manifest: dict, apply_records: list[dict], log: Log) -> dict
     if head["manifest_sha256"] != manifest["sha256"]:
         raise ValueError("apply log was written from other manifest files")
     log.write(header(ida, manifest, "verify", {"apply_log_counts_before": head["counts_before"]}))
+    if head.get("filter") != manifest.get("filter"):
+        raise ValueError("apply log was written with another --limit filter")
     decls = parse_types_h(manifest["types_h"])
     for d in unique_decls(decls):
         got = ida.local_type(d.name)
@@ -788,6 +947,15 @@ def run_verify(ida, manifest: dict, apply_records: list[dict], log: Log) -> dict
         got = ida.get_func_cmt(int(r["pc_va"], 16)) or ""
         ok = merged_comment(got, r["comment"]) is None
         _result(log, "comments", r["pc_va"], "ok" if ok else "mismatch", **({} if ok else {"db": got}))
+    applied_locals = {r["key"] for r in apply_records if r.get("kind") == "result" and r["step"] == "locals"
+                      and r["status"] in ("set", "already")}
+    for r in manifest["locals"]:
+        if local_key(r) not in applied_locals:
+            continue
+        g = ida.find_lvar(int(r["pc_va"], 16), int(r["pc_frame"]), _pc_def(r)).get("matches") or []
+        ok = len(g) == 1 and g[0]["name"] == r["name"] and (
+            r["retype"] == "-" or norm_type(g[0]["type"] or "") == norm_type(r["retype"]))
+        _result(log, "locals", local_key(r), "ok" if ok else "mismatch", **({} if ok else {"db": g}))
     after = ida.counts()
     delta = expected_deltas(apply_records)
     before = head["counts_before"]
@@ -834,6 +1002,8 @@ def run_undo(ida, manifest: dict, apply_records: list[dict], log: Log) -> dict:
         elif step == "comments":
             ea = int(key, 16)
             ok = ida.set_func_cmt(ea, before["comment"]) and (ida.get_func_cmt(ea) or "") == before["comment"]
+        elif step == "locals":
+            ok = ida.unset_lvar(int(key.split("@")[0], 16), before)
         else:
             raise ValueError(f"unknown undo step {step!r}")
         _result(log, step, key, "restored" if ok else "failed")
@@ -862,6 +1032,8 @@ def parse_batch_args(argv) -> dict:
     g.add_argument("--verify", action="store_true")
     g.add_argument("--undo", metavar="APPLY_LOG")
     ap.add_argument("--apply-log")
+    ap.add_argument("--limit-types", type=int, help="wave 2 smoke test: the first N partial types")
+    ap.add_argument("--limit-locals", type=int, help="wave 2 smoke test: the first N locals")
     ns = ap.parse_args(list(argv[1:]))
     if ns.verify and not ns.apply_log:
         raise ValueError("--verify needs --apply-log <apply jsonl>")
@@ -869,11 +1041,16 @@ def parse_batch_args(argv) -> dict:
         raise ValueError("--apply-log goes with --verify")
     mode = "apply" if ns.apply else "verify" if ns.verify else "undo" if ns.undo else "dry-run"
     return {"manifest_dir": ns.manifest_dir, "out_path": ns.out, "mode": mode,
-            "apply_log": ns.apply_log or ns.undo}
+            "apply_log": ns.apply_log or ns.undo, "limit_types": ns.limit_types, "limit_locals": ns.limit_locals}
 
 
-def main(manifest_dir: str, out_path: str, mode: str = "dry-run", apply_log: str | None = None, ida=None) -> dict:
+def main(manifest_dir: str, out_path: str, mode: str = "dry-run", apply_log: str | None = None, ida=None,
+         limit_types: int | None = None, limit_locals: int | None = None) -> dict:
     manifest = load_manifest(manifest_dir)
+    if limit_types is not None or limit_locals is not None:
+        decls, loc = select(manifest, parse_types_h(manifest["types_h"]), limit_types, limit_locals)
+        manifest = {**manifest, "types_h": render_decls(decls), "locals": loc,
+                    "filter": {"types": limit_types, "locals": limit_locals}}
     ida = ida if ida is not None else _Ida()
     precheck(ida)
     records = read_log(apply_log) if apply_log else None
@@ -1124,6 +1301,124 @@ class _Ida:
         if not tif.deserialize(self.til, *(bytes.fromhex(x) for x in before["blob"])):
             return False
         return tif.set_named_type(self.til, name, self.ti.NTF_REPLACE) == self.ti.TERR_OK
+
+    def set_type_comment(self, name, cmt):
+        """The type comment of a local type (T013c partial types); an error text or None."""
+        try:
+            tif = self.ti.tinfo_t()
+            if not tif.get_named_type(self.til, name, self.ti.BTF_STRUCT, True, False):
+                return "type not found"
+            code = tif.set_type_cmt(cmt)
+            return None if code in (None, True, self.ti.TERR_OK) else f"set_type_cmt: {code}"
+        except Exception as e:  # noqa: BLE001 - reported, the type itself is defined
+            return f"{type(e).__name__}: {e}"
+
+    # locals (T013c)
+    def _cfunc(self, ea, fresh=False):
+        hr = self.m["ida_hexrays"]
+        if not hr.init_hexrays_plugin():
+            raise RuntimeError("hexrays not available")
+        if fresh:
+            hr.mark_cfunc_dirty(ea, False)
+        return hr.decompile(ea)
+
+    def _lea_off(self, ea, pfn):
+        """IDA frame offset addressed by the stack operand of the instruction at ``ea`` (the defining lea)."""
+        import ida_frame
+        import ida_ua
+
+        insn = ida_ua.insn_t()
+        if not ida_ua.decode_insn(insn, ea):
+            return None
+        for n in range(len(insn.ops)):
+            op = insn.ops[n]
+            if op.type == ida_ua.o_void:
+                break
+            if op.type in (ida_ua.o_displ, ida_ua.o_phrase):
+                off = ida_frame.calc_stkvar_struc_offset(pfn, insn, n)
+                if off != self.BADADDR:
+                    return off
+        return None
+
+    def find_lvar(self, ea, frame, def_ea):
+        """Stack lvars of ``ea``'s decompilation at the entry-relative ``frame`` (return address at 0), as
+        dicts; ``ida_off`` the IDA frame offset (``frame_off_retaddr + frame``), ``lea_off`` the defining lea's."""
+        import ida_frame
+
+        try:
+            pfn = self.m["ida_funcs"].get_func(ea)
+            if pfn is None or pfn.start_ea != ea:
+                return {"error": "not a function start"}
+            cf = self._cfunc(ea, fresh=True)
+            if cf is None:
+                return {"error": "decompile returned None"}
+            ida_off = ida_frame.frame_off_retaddr(pfn) + frame
+            lea_off = self._lea_off(def_ea, pfn) if def_ea is not None else None
+            mba = cf.mba
+            out = []
+            for lv in cf.get_lvars():
+                if not lv.is_stk_var():
+                    continue
+                off = mba.stkoff_vd2ida(lv.location.stkoff())
+                if off != ida_off:
+                    continue
+                out.append({"name": lv.name, "type": str(lv.type()), "width": lv.width, "is_arg": bool(lv.is_arg_var),
+                            "user_name": bool(lv.has_user_name), "user_type": bool(lv.has_user_type),
+                            "stkoff": lv.location.stkoff(), "defea": lv.defea, "ida_off": off})
+            return {"ida_off": ida_off, "lea_off": lea_off, "matches": out}
+        except Exception as e:  # noqa: BLE001 - a decompilation failure refuses the row
+            return {"error": f"{type(e).__name__}: {e}"}
+
+    def _locator(self, m):
+        hr = self.m["ida_hexrays"]
+        loc = hr.vdloc_t()
+        loc.set_stkoff(m["stkoff"])
+        return hr.lvar_locator_t(loc, m["defea"])
+
+    def set_lvar(self, ea, m, name, type_name):
+        """``modify_user_lvar_info`` by locator (stack offset + defea): MLI_NAME, plus MLI_TYPE for a retype."""
+        hr = self.m["ida_hexrays"]
+        try:
+            info = hr.lvar_saved_info_t()
+            info.ll = self._locator(m)
+            info.name = name
+            flags = hr.MLI_NAME
+            if type_name is not None:
+                tif = self.ti.tinfo_t()
+                if not tif.get_named_type(self.til, type_name, self.ti.BTF_STRUCT, True, False):
+                    return f"no local type {type_name!r}"
+                info.type = tif
+                flags |= hr.MLI_TYPE
+            if not hr.modify_user_lvar_info(ea, flags, info):
+                return "modify_user_lvar_info failed"
+            return None
+        except Exception as e:  # noqa: BLE001 - reported as the row's failure
+            return f"{type(e).__name__}: {e}"
+
+    def unset_lvar(self, ea, before):
+        """Undo: drop the saved user settings of the lvar at ``before``'s locator (the gate allowed no user name
+        before), then check it is back to its old name."""
+        hr = self.m["ida_hexrays"]
+        lvs = hr.lvar_uservec_t()
+        if not hr.restore_user_lvar_settings(lvs, ea):
+            return False
+        keep = hr.lvar_uservec_t()
+        hit = False
+        for x in lvs.lvvec:
+            if x.ll.location.is_stkoff() and x.ll.location.stkoff() == before["stkoff"] \
+                    and x.ll.defea == before["defea"]:
+                hit = True
+                continue
+            keep.lvvec.push_back(x)
+        if not hit:
+            return False
+        keep.lmaps = lvs.lmaps
+        keep.stkoff_delta = lvs.stkoff_delta
+        keep.ulv_flags = lvs.ulv_flags
+        hr.save_user_lvar_settings(ea, keep)
+        cf = self._cfunc(ea, fresh=True)
+        return cf is not None and any(lv.is_stk_var() and lv.location.stkoff() == before["stkoff"]
+                                      and lv.name == before["name"] for lv in cf.get_lvars())
 
     # verify
     def decompile(self, ea):

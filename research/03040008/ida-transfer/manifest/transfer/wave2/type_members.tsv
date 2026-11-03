@@ -1,0 +1,165 @@
+# 007 T013c transfer wave 2, PC 03040008 <- PS4 02020005; 972 accepted pairs; inputs: pc-ida.jsonl source f1c974d0e529d4bb7dc5f0953d37eea6bbb023f2667f9a1d3a3b878f4919fa20; ps4-dwarf.jsonl source 4236f598acc8f15893181455ed195e39dfa4dbfda4eeda8b56fcbd82312c63c0; ps4-ida.jsonl source 4236f598acc8f15893181455ed195e39dfa4dbfda4eeda8b56fcbd82312c63c0; wave 1 types.tsv 878c53c66ae6ab551784be682cb0b5e4c79c35e16b769eac82f31246208dc280
+type	offset	size	ps4_member	decl	dwarf_type	links
+CDataClanSearchResult	0x4	4	m_unClanID	unsigned int m_unClanID	u32	1
+CDataClanSearchResult	0xc	2	m_usLv	unsigned __int16 m_usLv	u16	1
+CDataClanSearchResult	0xe	2	m_usMemberNum	unsigned __int16 m_usMemberNum	u16	1
+CDataClanSearchResult	0x10	4	m_unMotto	unsigned int m_unMotto	u32	1
+CDataClanSearchResult	0x14	1	m_ucEmblemMarkType	unsigned __int8 m_ucEmblemMarkType	u8	1
+CDataClanSearchResult	0x15	1	m_ucEmblemBaseType	unsigned __int8 m_ucEmblemBaseType	u8	1
+CDataClanSearchResult	0x16	1	m_ucEmblemBaseMainColor	unsigned __int8 m_ucEmblemBaseMainColor	u8	1
+CDataClanSearchResult	0x17	1	m_ucEmblemBaseSubColor	unsigned __int8 m_ucEmblemBaseSubColor	u8	1
+CDataClanSearchResult	0x18	4	m_unMasterCharacterID	unsigned int m_unMasterCharacterID	u32	1
+CDataClanSearchResult	0x28	8	m_llCreated	__int64 m_llCreated	s64	1
+CDataGPShopLineupElementBase	0x4	4	m_unID	unsigned int m_unID	u32	1
+CDataGPShopLineupElementBase	0x8	4	m_unGP	unsigned int m_unGP	u32	1
+CDataGPShopLineupElementBase	0xc	4	m_unInitialGP	unsigned int m_unInitialGP	u32	1
+CDataGPShopLineupElementBase	0x10	4	m_unDiscountGP	unsigned int m_unDiscountGP	u32	1
+CDataGPShopLineupElementBase	0x14	1	m_ucIconId	unsigned __int8 m_ucIconId	u8	1
+CDataGPShopLineupElementBase	0x20	1	m_bIsInitialPrice	bool m_bIsInitialPrice	b8	1
+CDataGameTimeBaseInfo	0x4	4	m_unGameTimeOneDayMin	unsigned int m_unGameTimeOneDayMin	u32	1
+CDataGameTimeBaseInfo	0x8	4	m_unGameTimeYearMonth	unsigned int m_unGameTimeYearMonth	u32	1
+CDataGameTimeBaseInfo	0xc	4	m_unGameTimeMonthDay	unsigned int m_unGameTimeMonthDay	u32	1
+CDataGameTimeBaseInfo	0x10	4	m_unGameTimeDayHour	unsigned int m_unGameTimeDayHour	u32	1
+CDataGameTimeBaseInfo	0x14	4	m_unGameTimeWeekDay	unsigned int m_unGameTimeWeekDay	u32	1
+CDataGameTimeBaseInfo	0x18	4	m_unGameTimeMoonAge	unsigned int m_unGameTimeMoonAge	u32	1
+CDataGameTimeBaseInfo	0x20	8	m_llOriginalRealTimeSec	__int64 m_llOriginalRealTimeSec	s64	1
+CDataGameTimeBaseInfo	0x28	8	m_llOriginalGameTimeSec	__int64 m_llOriginalGameTimeSec	s64	1
+CDataGameTimeBaseInfo	0x30	4	m_unOriginalWeek	unsigned int m_unOriginalWeek	u32	1
+CDataGameTimeBaseInfo	0x34	4	m_unOriginalMoonAge	unsigned int m_unOriginalMoonAge	u32	1
+CDataMailInfo	0x8	8	m_ullId	unsigned __int64 m_ullId	u64	1
+CDataMailInfo	0x10	1	m_ucState	unsigned __int8 m_ucState	u8	1
+CDataMailInfo	0x11	1	m_ucItemState	unsigned __int8 m_ucItemState	u8	1
+CDataMailInfo	0x38	8	m_llSenderDate	__int64 m_llSenderDate	s64	1
+CDataOrbGainExtendParam	0x4	2	m_usHpMax	unsigned __int16 m_usHpMax	u16	1
+CDataOrbGainExtendParam	0x6	2	m_usStaminaMax	unsigned __int16 m_usStaminaMax	u16	1
+CDataOrbGainExtendParam	0x8	2	m_usAttack	unsigned __int16 m_usAttack	u16	1
+CDataOrbGainExtendParam	0xa	2	m_usDefence	unsigned __int16 m_usDefence	u16	1
+CDataOrbGainExtendParam	0xc	2	m_usMagicAttack	unsigned __int16 m_usMagicAttack	u16	1
+CDataOrbGainExtendParam	0xe	2	m_usMagicDefence	unsigned __int16 m_usMagicDefence	u16	1
+CDataOrbGainExtendParam	0x10	2	m_usAbilityCost	unsigned __int16 m_usAbilityCost	u16	1
+CDataOrbGainExtendParam	0x12	2	m_usJewerlySlot	unsigned __int16 m_usJewerlySlot	u16	1
+CDataOrbGainExtendParam	0x14	2	m_usUseItemSlot	unsigned __int16 m_usUseItemSlot	u16	1
+CDataOrbGainExtendParam	0x16	2	m_usMaterialItemSlot	unsigned __int16 m_usMaterialItemSlot	u16	1
+CDataOrbGainExtendParam	0x18	2	m_usEquipItemSlot	unsigned __int16 m_usEquipItemSlot	u16	1
+CDataOrbGainExtendParam	0x1a	2	m_usMainPawnSlot	unsigned __int16 m_usMainPawnSlot	u16	1
+CDataOrbGainExtendParam	0x1c	2	m_usSupportPawnSlot	unsigned __int16 m_usSupportPawnSlot	u16	1
+CDataWorldInfo	0x4	2	m_usId	unsigned __int16 m_usId	u16	1
+CDataWorldInfo	0x10	1	m_ucDragonType	unsigned __int8 m_ucDragonType	u8	1
+CDataWorldInfo	0x11	1	m_ucSetType	unsigned __int8 m_ucSetType	u8	1
+CDataWorldInfo	0x14	4	m_unTemp0	unsigned int m_unTemp0	u32	1
+CDataWorldInfo	0x18	4	m_unTemp1	unsigned int m_unTemp1	u32	1
+CDataWorldInfo	0x1c	4	m_unTemp2	unsigned int m_unTemp2	u32	1
+CDataWorldInfo	0x20	4	m_unTemp3	unsigned int m_unTemp3	u32	1
+CDataWorldInfo	0x34	1	m_ucCycleContentsState	unsigned __int8 m_ucCycleContentsState	u8	1
+nUserSession::CPacket_S2C_AREA_CHANGE_RES	0x20	20	m_StageFeatureList	MtTypedArray<CDataCommonU32> m_StageFeatureList	MtTypedArray<CDataCommonU32>	1
+nUserSession::CPacket_S2C_AREA_RANK_UP_RES	0x18	4	m_unAreaId	unsigned int m_unAreaId	u32	1
+nUserSession::CPacket_S2C_AREA_RANK_UP_RES	0x1c	4	m_unAreaRank	unsigned int m_unAreaRank	u32	1
+nUserSession::CPacket_S2C_AREA_RANK_UP_RES	0x20	4	m_unAreaPoint	unsigned int m_unAreaPoint	u32	1
+nUserSession::CPacket_S2C_AREA_RANK_UP_RES	0x24	4	m_unNextAreaPoint	unsigned int m_unNextAreaPoint	u32	1
+nUserSession::CPacket_S2C_CHANGE_CAP_TO_GP_RES	0x18	4	m_unChangeListID	unsigned int m_unChangeListID	u32	1
+nUserSession::CPacket_S2C_CHANGE_CAP_TO_GP_RES	0x1c	4	m_unGP	unsigned int m_unGP	u32	1
+nUserSession::CPacket_S2C_CHANGE_CAP_TO_GP_RES	0x20	4	m_unCAP	unsigned int m_unCAP	u32	1
+nUserSession::CPacket_S2C_CHANGE_JOB_RES	0xb0	20	m_EquipJobItemList	MtTypedArray<CDataEquipJobItem> m_EquipJobItemList	MtTypedArray<CDataEquipJobItem>	1
+nUserSession::CPacket_S2C_CHANGE_PAWN_JOB_RES	0xb4	20	m_EquipJobItemList	MtTypedArray<CDataEquipJobItem> m_EquipJobItemList	MtTypedArray<CDataEquipJobItem>	1
+nUserSession::CPacket_S2C_CLAN_SHOP_GET_BUFF_ITEM_LIST_RES	0x2c	4	m_unClanPoint	unsigned int m_unClanPoint	u32	1
+nUserSession::CPacket_S2C_CLAN_SHOP_GET_FUNCTION_ITEM_LIST_RES	0x2c	4	m_unClanPoint	unsigned int m_unClanPoint	u32	1
+nUserSession::CPacket_S2C_GAME_TIME_GET_BASEINFO_RES	0x50	20	m_WeatherLoop	MtTypedArray<CDataWeatherLoop> m_WeatherLoop	MtTypedArray<CDataWeatherLoop>	1
+nUserSession::CPacket_S2C_GAME_TIME_GET_BASEINFO_RES	0x64	20	m_WeatherSchedule	MtTypedArray<CDataWeatherSchedule> m_WeatherSchedule	MtTypedArray<CDataWeatherSchedule>	1
+nUserSession::CPacket_S2C_GAME_TIME_GET_BASEINFO_RES	0x78	4	m_unMoonAgeLoopSec	unsigned int m_unMoonAgeLoopSec	u32	1
+nUserSession::CPacket_S2C_GAME_TIME_GET_BASEINFO_RES	0x7c	20	m_MoonSchedule	MtTypedArray<CDataMoonSchedule> m_MoonSchedule	MtTypedArray<CDataMoonSchedule>	1
+nUserSession::CPacket_S2C_GET_AREA_MASTER_INFO_RES	0x18	4	m_unAreaId	unsigned int m_unAreaId	u32	1
+nUserSession::CPacket_S2C_GET_AREA_MASTER_INFO_RES	0x1c	4	m_unRank	unsigned int m_unRank	u32	1
+nUserSession::CPacket_S2C_GET_AREA_MASTER_INFO_RES	0x20	4	m_unPoint	unsigned int m_unPoint	u32	1
+nUserSession::CPacket_S2C_GET_AREA_MASTER_INFO_RES	0x24	4	m_unWeekPoint	unsigned int m_unWeekPoint	u32	1
+nUserSession::CPacket_S2C_GET_AREA_MASTER_INFO_RES	0x28	4	m_unLastWeekPoint	unsigned int m_unLastWeekPoint	u32	1
+nUserSession::CPacket_S2C_GET_AREA_MASTER_INFO_RES	0x2c	4	m_unToNextPoint	unsigned int m_unToNextPoint	u32	1
+nUserSession::CPacket_S2C_GET_AREA_MASTER_INFO_RES	0x30	20	m_ReleaseList	MtTypedArray<CDataCommonU32> m_ReleaseList	MtTypedArray<CDataCommonU32>	1
+nUserSession::CPacket_S2C_GET_AREA_MASTER_INFO_RES	0x44	1	m_bCanReciveSupply	bool m_bCanReciveSupply	b8	1
+nUserSession::CPacket_S2C_GET_AREA_MASTER_INFO_RES	0x45	1	m_bCanRankUp	bool m_bCanRankUp	b8	1
+nUserSession::CPacket_S2C_GET_AREA_MASTER_INFO_RES	0x48	20	m_SupplyItemInfoList	MtTypedArray<CDataBorderSupplyItem> m_SupplyItemInfoList	MtTypedArray<CDataBorderSupplyItem>	1
+nUserSession::CPacket_S2C_GET_AREA_MASTER_INFO_RES	0x5c	20	m_AreaRankUpQuestInfoList	MtTypedArray<CDataAreaRankUpQuestInfo> m_AreaRankUpQuestInfoList	MtTypedArray<CDataAreaRankUpQuestInfo>	1
+nUserSession::CPacket_S2C_GET_CHARACTER_EQUIP_LIST_RES	0x18	20	m_CharacterEquipList	MtTypedArray<CDataS2CCharacterEquipInfo> m_CharacterEquipList	MtTypedArray<CDataS2CCharacterEquipInfo>	1
+nUserSession::CPacket_S2C_GET_CHARACTER_EQUIP_LIST_RES	0x40	20	m_PawnEquipItemList	MtTypedArray<CDataS2CPawnEquipInfo> m_PawnEquipItemList	MtTypedArray<CDataS2CPawnEquipInfo>	1
+nUserSession::CPacket_S2C_GET_CRAFT_GRADEUP_RECIPE_RES	0x30	20	m_UnknownItemList	MtTypedArray<CDataCommonU32> m_UnknownItemList	MtTypedArray<CDataCommonU32>	1
+nUserSession::CPacket_S2C_GET_CRAFT_PROGRESS_LIST_RES	0x40	20	m_CreatedReicpeList	MtTypedArray<CDataCommonU32> m_CreatedReicpeList	MtTypedArray<CDataCommonU32>	1
+nUserSession::CPacket_S2C_GET_CRAFT_RECIPE_DESIGNATE_RES	0x30	20	m_ItemList	MtTypedArray<CDataCommonU32> m_ItemList	MtTypedArray<CDataCommonU32>	1
+nUserSession::CPacket_S2C_GET_CURRENT_SET_SKILL_LIST_RES	0x18	20	m_NormalSkillList	MtTypedArray<CDataNormalSkillParam> m_NormalSkillList	MtTypedArray<CDataNormalSkillParam>	1
+nUserSession::CPacket_S2C_GET_CYCLE_CONTENTS_REWARD_RES	0x18	4	m_unCycleContentsScheduleId	unsigned int m_unCycleContentsScheduleId	u32	1
+nUserSession::CPacket_S2C_GET_CYCLE_CONTENTS_REWARD_RES	0x1c	20	m_CycleContentsRewardList	MtTypedArray<CDataCycleContentsReward> m_CycleContentsRewardList	MtTypedArray<CDataCycleContentsReward>	1
+nUserSession::CPacket_S2C_GET_CYCLE_CONTENTS_REWARD_RES	0x30	1	m_bIsAddRewardBox	bool m_bIsAddRewardBox	b8	1
+nUserSession::CPacket_S2C_GET_GP_RES	0x18	4	m_unGP	unsigned int m_unGP	u32	1
+nUserSession::CPacket_S2C_GET_GP_RES	0x20	8	m_llUseLimit	__int64 m_llUseLimit	s64	1
+nUserSession::CPacket_S2C_GET_GP_RES	0x28	8	m_ullRealTime	unsigned __int64 m_ullRealTime	u64	1
+nUserSession::CPacket_S2C_GET_GP_RES	0x30	2	m_usMilliseconds	unsigned __int16 m_usMilliseconds	u16	1
+nUserSession::CPacket_S2C_GET_MATCHING_PROFILE_RES	0x40	1	m_ucJob	unsigned __int8 m_ucJob	u8	1
+nUserSession::CPacket_S2C_GET_MATCHING_PROFILE_RES	0x44	4	m_unLevel	unsigned int m_unLevel	u32	1
+nUserSession::CPacket_S2C_GET_PAWN_EQUIP_LIST_RES	0x18	4	m_unPawnID	unsigned int m_unPawnID	u32	1
+nUserSession::CPacket_S2C_GET_PAWN_EQUIP_LIST_RES	0x1c	20	m_CharacterEquipList	MtTypedArray<CDataS2CCharacterEquipInfo> m_CharacterEquipList	MtTypedArray<CDataS2CCharacterEquipInfo>	1
+nUserSession::CPacket_S2C_GET_PAWN_EQUIP_LIST_RES	0x30	20	m_EquipJobItemList	MtTypedArray<CDataEquipJobItem> m_EquipJobItemList	MtTypedArray<CDataEquipJobItem>	1
+nUserSession::CPacket_S2C_GET_PAWN_TOTAL_SCORE_RES	0x18	4	m_unPawnID	unsigned int m_unPawnID	u32	1
+nUserSession::CPacket_S2C_GP_SHOP_DISPLAY_BUY_RES	0x18	4	m_unLineupId	unsigned int m_unLineupId	u32	1
+nUserSession::CPacket_S2C_GP_SHOP_DISPLAY_BUY_RES	0x1c	20	m_CommonIdList	MtTypedArray<CDataCommonU32> m_CommonIdList	MtTypedArray<CDataCommonU32>	1
+nUserSession::CPacket_S2C_GP_SHOP_DISPLAY_BUY_RES	0x30	4	m_unBalance	unsigned int m_unBalance	u32	1
+nUserSession::CPacket_S2C_JOB_VALUE_SHOP_GET_LINEUP_RES	0x18	1	m_ucJobId	unsigned __int8 m_ucJobId	u8	1
+nUserSession::CPacket_S2C_JOB_VALUE_SHOP_GET_LINEUP_RES	0x19	1	m_ucJobValueType	unsigned __int8 m_ucJobValueType	u8	1
+nUserSession::CPacket_S2C_JOB_VALUE_SHOP_GET_LINEUP_RES	0x1c	20	m_JobValueShopItemList	MtTypedArray<CDataJobValueShopItem> m_JobValueShopItemList	MtTypedArray<CDataJobValueShopItem>	1
+nUserSession::CPacket_S2C_LEADER_QUEST_PROGRESS_REQUEST_RES	0x18	1	m_ucQuestProgressResult	unsigned __int8 m_ucQuestProgressResult	u8	1
+nUserSession::CPacket_S2C_LEADER_QUEST_PROGRESS_REQUEST_RES	0x1c	4	m_unQuestScheduleId	unsigned int m_unQuestScheduleId	u32	1
+nUserSession::CPacket_S2C_LEADER_QUEST_PROGRESS_REQUEST_RES	0x20	2	m_usProcessNo	unsigned __int16 m_usProcessNo	u16	1
+nUserSession::CPacket_S2C_LEARN_NORMAL_SKILL_RES	0x18	1	m_ucJob	unsigned __int8 m_ucJob	u8	1
+nUserSession::CPacket_S2C_LEARN_NORMAL_SKILL_RES	0x1c	4	m_unSkillID	unsigned int m_unSkillID	u32	1
+nUserSession::CPacket_S2C_LEARN_NORMAL_SKILL_RES	0x20	4	m_unNewJobPoint	unsigned int m_unNewJobPoint	u32	1
+nUserSession::CPacket_S2C_LEARN_PAWN_NORMAL_SKILL_RES	0x18	4	m_unPawnID	unsigned int m_unPawnID	u32	1
+nUserSession::CPacket_S2C_LEARN_PAWN_NORMAL_SKILL_RES	0x1c	1	m_ucJob	unsigned __int8 m_ucJob	u8	1
+nUserSession::CPacket_S2C_LEARN_PAWN_NORMAL_SKILL_RES	0x20	4	m_unSkillID	unsigned int m_unSkillID	u32	1
+nUserSession::CPacket_S2C_LEARN_PAWN_NORMAL_SKILL_RES	0x24	4	m_unNewJobPoint	unsigned int m_unNewJobPoint	u32	1
+nUserSession::CPacket_S2C_NG_WORD_GET_LIST_RES	0x18	8	m_ullVersionNo	unsigned __int64 m_ullVersionNo	u64	1
+nUserSession::CPacket_S2C_NG_WORD_GET_LIST_RES	0x20	20	m_NGWordInfoList	MtTypedArray<CDataNGWordInfo> m_NGWordInfoList	MtTypedArray<CDataNGWordInfo>	1
+nUserSession::CPacket_S2C_NG_WORD_GET_LIST_RES	0x34	20	m_SameLetterInfoList	MtTypedArray<CDataSameLetterInfo> m_SameLetterInfoList	MtTypedArray<CDataSameLetterInfo>	1
+nUserSession::CPacket_S2C_PARTY_INVITE_RES	0x18	2	m_usTimeoutSec	unsigned __int16 m_usTimeoutSec	u16	1
+nUserSession::CPacket_S2C_PARTY_INVITE_RES	0x1a	2	m_usServerId	unsigned __int16 m_usServerId	u16	1
+nUserSession::CPacket_S2C_PARTY_INVITE_RES	0x1c	4	m_unPartyId	unsigned int m_unPartyId	u32	1
+nUserSession::CPacket_S2C_PARTY_JOIN_RES	0x18	1	m_ucMemberIndex	unsigned __int8 m_ucMemberIndex	u8	1
+nUserSession::CPacket_S2C_PARTY_JOIN_RES	0x20	8	m_ullContentNumber	unsigned __int64 m_ullContentNumber	u64	1
+nUserSession::CPacket_S2C_PARTY_JOIN_RES	0x28	4	m_unPartyId	unsigned int m_unPartyId	u32	1
+nUserSession::CPacket_S2C_PAWN_EXPEDITION_GET_MY_SALLY_INFO_RES	0x24	1	m_bIsHotSpot	bool m_bIsHotSpot	b8	1
+nUserSession::CPacket_S2C_PAWN_EXPEDITION_GET_MY_SALLY_INFO_RES	0x25	1	m_ucSallyType	unsigned __int8 m_ucSallyType	u8	1
+nUserSession::CPacket_S2C_PAWN_EXPEDITION_GET_MY_SALLY_INFO_RES	0x26	1	m_ucSallyCount	unsigned __int8 m_ucSallyCount	u8	1
+nUserSession::CPacket_S2C_PAWN_EXPEDITION_GET_REWARD_DROP_ITEM_RES	0x18	4	m_unPawnRewardBoxId	unsigned int m_unPawnRewardBoxId	u32	1
+nUserSession::CPacket_S2C_PAWN_EXPEDITION_GET_REWARD_DROP_ITEM_RES	0x1c	20	m_GatheringItemListAfterRequest	MtTypedArray<CDataGatheringItemGetRequest> m_GatheringItemListAfterRequest	MtTypedArray<CDataGatheringItemGetRequest>	1
+nUserSession::CPacket_S2C_PAWN_EXPEDITION_GET_REWARD_DROP_ITEM_RES	0x30	1	m_ucPawnExpeditionStatus	unsigned __int8 m_ucPawnExpeditionStatus	u8	1
+nUserSession::CPacket_S2C_PAWN_EXPEDITION_GET_REWARD_DROP_RES	0x18	4	m_unRewardDropNum	unsigned int m_unRewardDropNum	u32	1
+nUserSession::CPacket_S2C_PAWN_EXPEDITION_GET_REWARD_DROP_RES	0x1c	20	m_BoxIdVec	MtTypedArray<CDataCommonU32> m_BoxIdVec	MtTypedArray<CDataCommonU32>	1
+nUserSession::CPacket_S2C_PAWN_EXPEDITION_GET_REWARD_DROP_RES	0x30	20	m_MdlTypeVec	MtTypedArray<CDataCommonU8> m_MdlTypeVec	MtTypedArray<CDataCommonU8>	1
+nUserSession::CPacket_S2C_PAWN_EXPEDITION_GET_SALLY_INFO_RES	0x18	1	m_ucSallyCount	unsigned __int8 m_ucSallyCount	u8	1
+nUserSession::CPacket_S2C_PAWN_EXPEDITION_GET_SALLY_INFO_RES	0x58	20	m_ClanSallySpotInfoList	MtTypedArray<CDataPawnExpeditionClanSallySpotInfo> m_ClanSallySpotInfoList	MtTypedArray<CDataPawnExpeditionClanSallySpotInfo>	1
+nUserSession::CPacket_S2C_PAWN_LOST_RES	0x18	4	m_unPawnID	unsigned int m_unPawnID	u32	1
+nUserSession::CPacket_S2C_PAWN_LOST_RES	0x20	1	m_bIsLost	bool m_bIsLost	b8	1
+nUserSession::CPacket_S2C_QUEST_PROGRESS_RES	0x18	1	m_ucQuestProgressResult	unsigned __int8 m_ucQuestProgressResult	u8	1
+nUserSession::CPacket_S2C_QUEST_PROGRESS_RES	0x1c	4	m_unQuestScheduleId	unsigned int m_unQuestScheduleId	u32	1
+nUserSession::CPacket_S2C_QUEST_PROGRESS_RES	0x20	20	m_QuestProcessStateList	MtTypedArray<CDataQuestProcessState> m_QuestProcessStateList	MtTypedArray<CDataQuestProcessState>	1
+nUserSession::CPacket_S2C_RELEASE_PAWN_ORB_ELEMENT_RES	0x18	4	m_unPawnID	unsigned int m_unPawnID	u32	1
+nUserSession::CPacket_S2C_RELEASE_PAWN_ORB_ELEMENT_RES	0x1c	4	m_unRestOrb	unsigned int m_unRestOrb	u32	1
+nUserSession::CPacket_S2C_RELEASE_PAWN_ORB_ELEMENT_RES	0x20	1	m_ucGainParamType	unsigned __int8 m_ucGainParamType	u8	1
+nUserSession::CPacket_S2C_RELEASE_PAWN_ORB_ELEMENT_RES	0x24	4	m_unGainParamValue	unsigned int m_unGainParamValue	u32	1
+nUserSession::CPacket_S2C_RENTAL_PAWN_LOST_RES	0x18	4	m_unPawnID	unsigned int m_unPawnID	u32	1
+nUserSession::CPacket_S2C_RENTAL_PAWN_LOST_RES	0x20	1	m_ucAdventureCount	unsigned __int8 m_ucAdventureCount	u8	1
+nUserSession::CPacket_S2C_REPORT_JOB_ORDER_PROGRESS_RES	0x18	1	m_ucJobID	unsigned __int8 m_ucJobID	u8	1
+nUserSession::CPacket_S2C_REPORT_JOB_ORDER_PROGRESS_RES	0x1c	20	m_ReleaseElementList	MtTypedArray<CDataReleaseElement> m_ReleaseElementList	MtTypedArray<CDataReleaseElement>	1
+nUserSession::CPacket_S2C_REPORT_JOB_ORDER_PROGRESS_RES	0x30	20	m_NewOrderIdList	MtTypedArray<CDataCommonU32> m_NewOrderIdList	MtTypedArray<CDataCommonU32>	1
+nUserSession::CPacket_S2C_RESET_CRAFTPOINT_RES	0x18	4	m_unPawnID	unsigned int m_unPawnID	u32	1
+nUserSession::CPacket_S2C_RESET_CRAFTPOINT_RES	0x1c	20	m_CraftSkillList	MtTypedArray<CDataPawnCraftSkill> m_CraftSkillList	MtTypedArray<CDataPawnCraftSkill>	1
+nUserSession::CPacket_S2C_RESET_CRAFTPOINT_RES	0x30	4	m_unCraftPoint	unsigned int m_unCraftPoint	u32	1
+nUserSession::CPacket_S2C_SET_PAWN_ABILITY_RES	0x18	4	m_unPawnID	unsigned int m_unPawnID	u32	1
+nUserSession::CPacket_S2C_SET_PAWN_ABILITY_RES	0x1c	1	m_ucSlotNo	unsigned __int8 m_ucSlotNo	u8	1
+nUserSession::CPacket_S2C_SET_PAWN_ABILITY_RES	0x20	4	m_unAbilityID	unsigned int m_unAbilityID	u32	1
+nUserSession::CPacket_S2C_SET_PAWN_ABILITY_RES	0x24	1	m_ucAbilityLv	unsigned __int8 m_ucAbilityLv	u8	1
+nUserSession::CPacket_S2C_SET_PAWN_SKILL_RES	0x18	4	m_unPawnID	unsigned int m_unPawnID	u32	1
+nUserSession::CPacket_S2C_SET_PAWN_SKILL_RES	0x1c	1	m_ucJob	unsigned __int8 m_ucJob	u8	1
+nUserSession::CPacket_S2C_SET_PAWN_SKILL_RES	0x1d	1	m_ucSlotNo	unsigned __int8 m_ucSlotNo	u8	1
+nUserSession::CPacket_S2C_SET_PAWN_SKILL_RES	0x20	4	m_unSkillID	unsigned int m_unSkillID	u32	1
+nUserSession::CPacket_S2C_SET_PAWN_SKILL_RES	0x24	1	m_ucSkillLv	unsigned __int8 m_ucSkillLv	u8	1
+nUserSession::CPacket_S2C_START_EQUIP_GRADE_UP_RES	0x20	20	m_GradeUpItemIDList	MtTypedArray<CDataCommonU32> m_GradeUpItemIDList	MtTypedArray<CDataCommonU32>	1
+nUserSession::CPacket_S2C_SYSTEM_MAIL_GET_ALL_ITEM_RES	0x18	8	m_ullId	unsigned __int64 m_ullId	u64	1
+nUserSession::CPacket_S2C_WEATHER_FORECAST_GET_RES	0x18	4	m_unIntervalGameHour	unsigned int m_unIntervalGameHour	u32	1
+nUserSession::CPacket_S2C_WEATHER_FORECAST_GET_RES	0x1c	4	m_unGameDayToEarthMin	unsigned int m_unGameDayToEarthMin	u32	1

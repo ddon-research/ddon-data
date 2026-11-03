@@ -426,7 +426,63 @@ IDA's built-in C parser may not take `<...>` in names; the tinfo API does.
 
 T006 run (dumps as in `dumps/MANIFEST.tsv`, 972 accepted pairs): see `manifest/transfer/summary.tsv`.
 
-## Apply script (`apply_transfer.py`, T007, script version 1)
+## Wave 2: member links, partial types, locals (`transfer.py --wave2`, T013c)
+
+    uv run python transfer.py --wave2     # rewrites manifest/transfer/wave2/*; identical on rerun (about 8 s)
+
+Inputs: the dumps (v6 `args`), `pairs.tsv`, `callsites.tsv` (must equal the matcher's run: exit 2 otherwise) and
+wave 1's `manifest/transfer/types.tsv`/`types.h` (the types already in the work copy). Code: `transfer/wave2.py`
+(links, partial layouts), `transfer/locals.py` (R1-R3), `transfer/wave2_run.py` (holdout, control, writer). Evidence:
+`specs/007-pc-handler-annotation/research/W2-T012-evidence.md`, `W2-T013b-run.md`, `T010-locals.md`.
+
+- **Member links**: a rule-3 codec site pair of an accepted owner pair whose destinations are `obj+X` (PC slot 1) and
+  `obj+Y` (PS4 `rsi`) off the same object parameter links PC offset X of that parameter's class (PS4 DWARF) to the
+  innermost leaf member at PS4 offset Y (bases and embedded structs entered), with the codec width. Element-reader
+  call anchors: a paired callee called once in each owner, its argument `obj+X`/`obj+Y` off the owners' object
+  parameter, links X to the member starting at Y whose type is the callee parameter's pointee and has a wave-1 PC
+  layout (its size is the width). `args` slots are intersected with the callee's DWARF parameters. A packet class
+  (`CPacket_*`) needs a PC witness: a PC handler calling the owner has a tier-0 string naming it
+  (`tier0.candidate_names`, as rule 1). Not derived: array-element links (T013b: `element` does not fire), owners
+  that are no accepted pair, variable-width codecs (`links.tsv` lists every site with its reason).
+- **Partial types**: links and no conflict (offset -> two members, member -> two offsets, width != leaf width,
+  overlapping links); members at the linked offsets with the PS4 names (`a.b` -> `a__b`) and leaf types, gaps
+  elsewhere; size = a known size (`typecheck.KNOWN_SIZES`) or the end of the last member (`size: lower bound`).
+  Then every width access of the paired PC functions through that class: one overlapping a linked member must land
+  on a leaf start of it with the leaf's width (`layout.land`), else the class is refused; gap accesses are allowed
+  and counted, indexed ones counted as not placed. Shifts, PS4 offsets alone and `lea`s never make members. Wave-1
+  types are unchanged (`status wave-1`). `types.h` carries one comment line per type
+  (`// <type>: Partial: N members linked by codec position ...`) and repeats the wave-1 types they embed verbatim.
+- **Locals** (`locals.tsv`; gates of T010 § 5): R1 a paired callee called once on each side, the slot a PC stack
+  address and, on PS4, the register DWARF says holds a local's address at the call (`DW_OP_breg<N> 0` covering the
+  site); R2 the same at rule-3 codec site pairs (PC slot 1 / `rsi`); R3 the PC handler's stack object passed as
+  `this` to the PC reader of a rule-1 pair <-> the PS4 handler's single DWARF local of the reader's class, when the
+  PS4 handler passes a stack address as `rdi` to that reader or inlines it (DWARF inline record); two stack objects
+  passed refuse. R3 retypes to the partial (or wave-1) type; without one: refused (size unverifiable); an object
+  reaching the return address: refused. PC location: entry-relative frame < 0 (never an incoming argument slot),
+  `pc_def` the defining `lea`. Per function, a location with two names, a name at two locations, or a named local
+  inside a retyped object refuse every row involved. The width, "no user name" and "not an argument" on the
+  Hex-Rays side are checked by the apply.
+- **Precision**: T005e's holdout reruns the matcher pipeline and wave 2 (links, types, locals: lost / contradict /
+  new per RNG seed, `precision.tsv`). **Control** (`control.tsv`): the PS4 side of the reader pairs deranged (5 RNG
+  seeds), their rule-3 rows re-aligned by position to the new partner's `nPacket::Read_*` calls; with the witness
+  everything on the shuffled classes vanishes; without it (variant row) nearly every class conflicts.
+- The wave-1 run (`transfer.py` without `--wave2`) refuses the v6 dump: it was taken from the work copy after the
+  wave-1 apply, so the T009 decisions no longer find conflicts (exit 2). Wave 1's committed output stays as written.
+
+## Apply script (`apply_transfer.py`, T007, script version 2)
+
+Wave 2 (T013c): a directory with `locals.tsv` (`manifest/transfer/wave2`) is a wave-2 manifest (`types.tsv`,
+`locals.tsv`, `types.h`; no names, prototypes or comments). Its partial types go through the types step (a
+forward declaration from wave 1 is defined; the comment line becomes the type comment, `set_type_cmt`); then a
+`locals` step after the prototypes: decompile, find the stack lvar whose IDA frame offset is
+`frame_off_retaddr + pc_frame` (and equals the defining `lea`'s `calc_stkvar_struc_offset`, else
+`frame-mismatch`), exactly one; refused when it is an argument, has a user name (or a user type when retyping), its
+width differs from the row's size (R1/R2), or the retype's local type is missing or of another size;
+`modify_user_lvar_info` by `lvar_locator_t` (stack offset + `defea`) with `MLI_NAME` (+ `MLI_TYPE` for R3); read
+back by re-decompiling (`mark_cfunc_dirty`). Undo drops the lvar's saved user settings. `--limit-types N
+--limit-locals M` select the first N partial types (retyped ones first, with what they embed) and M locals (smoke
+test; recorded in the header, `--verify` needs the same). The precheck also accepts the smoke test's scratch copy
+`ddon-data-007smoke`.
 
 Writes T006's rows (`manifest/transfer/{names,prototypes,comments,types}.tsv`, `types.h`) to the PC 03040008
 work copy and checks them back. Headless batch only, on the copy under `ddon-data-007work` (T007b runs it):
