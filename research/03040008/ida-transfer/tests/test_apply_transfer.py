@@ -129,7 +129,7 @@ class FakeIda:
     def define_struct(self, d):
         self._write("define_struct", d.name)
         self.ltypes[d.name] = {"forward": False, "size": d.size,
-                               "members": [(m.name, m.offset, m.size) for m in d.members]}
+                               "members": d.row_members()}
         return None
 
     def delete_local_type(self, name):
@@ -352,7 +352,7 @@ def test_apply_writes_everything_and_undo_precedes_each_write(man):
     assert ida.get_name(0x3000) == "cSeed::OnPacket_X" and not ida.has_user_name(0x2ffd)
     assert ida.cmts[0x2000] == "old\n----\nPS4 02020005: CDataB::job; paired by x."
     assert ida.types[0x1000] == (PROTO_A, True)
-    assert ida.ltypes["CDataB"]["members"][2] == ("m_list", 4, 8)
+    assert ida.ltypes["CDataB"]["members"][2] == ("m_list", 4, 8, "", "MtTypedArray<CDataA>")
     assert len(ida.undo_seen_before_write) == len(ida.calls) > 0 and all(ida.undo_seen_before_write)
     assert 0x4000 not in ida.names  # the conflict row is reported, never written
 
@@ -555,3 +555,121 @@ def test_main_writes_out_atomically(tmp_path):
     recs = [json.loads(x) for x in out.read_text(encoding="utf-8", newline="\n").splitlines()]
     assert recs[0]["kind"] == "header" and recs[0]["manifest_sha256"]["types.h"] == m["sha256"]["types.h"]
     assert recs[-1] == s and not (tmp_path / "dry.jsonl.tmp").exists()
+
+
+# --- IDA's vptr / base-class member conventions (T007c) ---------------------------------------------
+
+TYPES_H_IDA = """// header
+
+struct CPacket;
+
+#pragma pack(push, 1)
+struct MtObject // PC size 0x4
+{
+  void *__vftable; // +0x0 4 vptr
+};
+
+struct CPacketDataBase // PC size 0x4
+{
+  MtObject baseclass_0; // +0x0 4 base MtObject
+};
+
+struct MtArray // PC size 0x14
+{
+  MtObject baseclass_0; // +0x0 4 base MtObject
+  unsigned int mLength; // +0x4 4
+  unsigned int mBufsiz; // +0x8 4
+  bool mAutoDelete; // +0xc 1
+  unsigned __int8 gapD[3];
+  MtObject *mpArray; // +0x10 4
+};
+
+struct MtTypedArray<CDataA> // PC size 0x14
+{
+  MtArray baseclass_0; // +0x0 20 base MtArray
+};
+
+struct CDataB // PC size 0x18
+{
+  CPacketDataBase baseclass_0; // +0x0 4 base CPacketDataBase
+  MtTypedArray<CDataA> m_list; // +0x4 20
+};
+#pragma pack(pop)
+"""
+
+# the three T007b work-copy types (dumps/apply-dryrun.jsonl ``existing``), as the adapter reads them
+T007B = {
+    "MtObject": {"forward": False, "size": 4, "members": [("_vptr$MtObject", 0, 4, "vptr", "")]},
+    "CPacketDataBase": {"forward": False, "size": 4, "members": [("", 0, 4, "base", "MtObject")]},
+    "MtArray": {"forward": False, "size": 20, "members": [
+        ("", 0, 4, "base", "MtObject"), ("mLength", 4, 4, "", "unsigned int"), ("mBufsiz", 8, 4, "", "unsigned int"),
+        ("mAutoDelete", 12, 1, "", "bool"), ("mpArray", 16, 4, "", "")]},
+}
+
+
+@pytest.fixture
+def man_ida(tmp_path):
+    return at.load_manifest(str(make_manifest(tmp_path / "m", types_h=TYPES_H_IDA)))
+
+
+def test_t007b_types_are_already_and_their_dependents_written(man_ida):
+    ida = fake_for(man_ida)
+    ida.ltypes.update(copy.deepcopy(T007B))
+    _s, recs = run(ida, man_ida)
+    t = results(recs, "types")
+    assert {k: t[k]["status"] for k in T007B} == dict.fromkeys(T007B, "already")
+    assert t["MtTypedArray<CDataA>"]["status"] == "defined" and t["CDataB"]["status"] == "defined"
+    assert {r["status"] for r in results(recs, "prototypes").values()} == {"set"}
+    assert ida.ltypes["MtArray"] == T007B["MtArray"]  # left as IDA had it
+
+
+def test_ida_conventions_without_flags_are_equal():
+    d = {x.name: x for x in at.parse_types_h(TYPES_H_IDA) if x.kind == "struct"}
+    assert at.same_layout(4, [("vfptr", 0, 4)], d["MtObject"])
+    assert at.same_layout(4, [("__vftable", 0, 4, "", "")], d["MtObject"])
+    for name in ("baseclass_0", "", "MtObject"):
+        assert at.same_layout(4, [(name, 0, 4, "", "MtObject")], d["CPacketDataBase"])
+    assert not at.same_layout(4, [("", 0, 4)], d["CPacketDataBase"])  # base type unknown
+
+
+def test_vptr_name_with_a_size_difference_is_refused(man_ida):
+    ida = fake_for(man_ida)
+    ida.ltypes["MtObject"] = {"forward": False, "size": 8, "members": [("_vptr$MtObject", 0, 8, "vptr", "")]}
+    _s, recs = run(ida, man_ida)
+    t = results(recs, "types")
+    assert t["MtObject"]["status"] == "refused" and t["MtObject"]["check"] == "different-local-type"
+    assert t["CPacketDataBase"]["check"] == "embeds-refused-type"
+
+
+def test_base_of_another_type_at_the_same_offset_is_refused(man_ida):
+    ida = fake_for(man_ida)
+    ida.ltypes["CPacketDataBase"] = {"forward": False, "size": 4, "members": [("", 0, 4, "base", "MtString")]}
+    _s, recs = run(ida, man_ida)
+    t = results(recs, "types")
+    assert t["CPacketDataBase"]["status"] == "refused" and t["CPacketDataBase"]["check"] == "different-local-type"
+    assert t["CPacketDataBase"]["existing"]["members"] == [["", 0, 4, "base", "MtString"]]
+    assert t["CDataB"]["check"] == "embeds-refused-type"
+
+
+def test_other_differences_still_refuse():
+    d = {x.name: x for x in at.parse_types_h(TYPES_H_IDA) if x.kind == "struct"}
+    mt = [list(m) for m in T007B["MtArray"]["members"]]
+    assert at.same_layout(20, mt, d["MtArray"])
+    renamed = copy.deepcopy(mt)
+    renamed[1][0] = "mLen"
+    assert not at.same_layout(20, renamed, d["MtArray"])
+    vptr_not_at_0 = copy.deepcopy(mt)
+    vptr_not_at_0[1][:4] = ["_vptr$X", 4, 4, "vptr"]
+    assert not at.same_layout(20, vptr_not_at_0, d["MtArray"])
+    base_as_vptr = [("__vftable", 0, 4, "vptr", "")]
+    assert not at.same_layout(4, base_as_vptr, d["CPacketDataBase"])
+    assert not at.same_layout(4, [("_vptr$MtObject", 0, 4, "base", "MtObject")], d["MtObject"])
+    assert not at.same_layout(20, mt[:-1], d["MtArray"])
+
+
+def test_ida_convention_second_apply_is_a_no_op(man_ida):
+    ida = fake_for(man_ida)
+    ida.ltypes.update(copy.deepcopy(T007B))
+    _s, recs = run(ida, man_ida)
+    _s2, recs2 = run(ida, man_ida)
+    assert {r["status"] for r in results(recs2).values() if r["step"] != "conflict-names"} == {"already"}

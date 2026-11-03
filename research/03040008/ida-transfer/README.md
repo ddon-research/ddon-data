@@ -370,9 +370,15 @@ records written before a crash, undo records included.
   tinfo/udt API, not the C parser, so `MtTypedArray<CDataX>` stays verbatim: forward declarations first for
   every absent name, then each struct as a fixed-layout udt with explicit member offsets, named-type members as
   references (`create_typedef(..., BTF_STRUCT)`), `set_named_type(NTF_REPLACE)`. Existing type: opaque row ->
-  `already`; forward declaration -> defined; equal layout (size and non-gap members' name/offset/size) ->
-  `already`; different -> `refused` with both layouts unless its `types.tsv` status is `replace`. A struct
-  embedding a refused type and a prototype naming one are refused.
+  `already`; forward declaration -> defined; equal layout -> `already`; different -> `refused` with both
+  layouts unless its `types.tsv` status is `replace`. A struct embedding a refused type and a prototype naming
+  one are refused. Equal layout (T007c, `same_layout`): same size and the same non-gap members by (offset, size);
+  names equal, except IDA's conventions: the row's vptr (`__vftable`, udm vftable flag) equals an existing
+  member at +0 with the vftable flag or named `__vftable` / `_vptr$*` / `vfptr`, and a row base
+  (`baseclass_<off>`, udm base-class flag) equals an existing base-class member, `baseclass_*`, unnamed or named
+  after its class, whose type name is the row's base class. The adapter reads members as
+  `(name, offset, size, kind, type)` (kind `vptr`/`base`/empty from the udm flags). Anything else differing,
+  a base of another type included, still refuses.
 - **Names**: `remove-label` rows first (a removed label's name is free for its callback), then `set`/`correct`:
   refused when the address is not a function start, the current name is not the row's `current`, or the name is
   held at another address.

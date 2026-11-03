@@ -137,13 +137,59 @@ class TypeDecl:
         """Types this struct embeds by value (they must be defined first)."""
         return {m.type for m in self.members if m.ptr == 0}
 
-    def layout(self) -> tuple:
-        return layout_key(self.size, [(m.name, m.offset, m.size) for m in self.members])
+    def row_members(self) -> list[tuple]:
+        """The members in the adapter's form ``(name, offset, size, kind, type)``."""
+        return [(m.name, m.offset, m.size, "vptr" if m.vptr else "base" if m.base else "", m.type)
+                for m in self.members]
 
 
 def layout_key(size, members) -> tuple:
-    """What equality of two struct layouts means here: size and the non-gap members (name, offset, size)."""
-    return size, tuple((n, o, s) for n, o, s in members if not re.fullmatch(r"gap[0-9A-Fa-f]+", n))
+    """Size and the non-gap members as given (exact; used for before/after states of one database)."""
+    return size, tuple(tuple(m) for m in members if not re.fullmatch(r"gap[0-9A-Fa-f]+", m[0]))
+
+
+_VPTR_NAME = re.compile(r"__vftable|_vptr\$.*|vfptr")
+_BASE_NAME = re.compile(r"baseclass_[0-9A-Fa-f]+")
+
+
+def existing_member(m) -> dict:
+    """A local-type member as the IDA adapter reads it: ``(name, offset, size[, kind, type])``.
+
+    ``kind`` is ``"vptr"`` (udm vftable flag), ``"base"`` (udm base-class flag) or ``""``; ``type`` the
+    member's type name (empty when it has none). Old three-field records read as kind ``""``, type unknown.
+    """
+    name, off, size = m[0], m[1], m[2]
+    return {"name": name, "offset": off, "size": size, "kind": m[3] if len(m) > 3 else "",
+            "type": m[4] if len(m) > 4 else None}
+
+
+def member_equal(ex: dict, row: Member) -> bool:
+    """One existing member against one ``types.h`` member at the same position.
+
+    Offsets and sizes must match. A row vptr equals an existing vptr at 0 (vftable flag, ``__vftable``,
+    ``_vptr$*`` or ``vfptr``); a row base equals an existing base (base-class flag, ``baseclass_*``, unnamed,
+    or named after its class) whose type name is the row's base class. Otherwise names must be equal and
+    neither side may be a vptr or a base.
+    """
+    if (ex["offset"], ex["size"]) != (row.offset, row.size):
+        return False
+    if row.vptr:
+        return row.offset == 0 and ex["kind"] != "base" and (ex["kind"] == "vptr" or bool(
+            _VPTR_NAME.fullmatch(ex["name"])))
+    if row.base:
+        if ex["kind"] == "vptr" or ex["type"] != row.type:
+            return False
+        return ex["kind"] == "base" or ex["name"] in ("", row.type) or bool(_BASE_NAME.fullmatch(ex["name"]))
+    return ex["kind"] == "" and ex["name"] == row.name
+
+
+def same_layout(size, members, d: TypeDecl) -> bool:
+    """Whether an existing local type (``size``, adapter ``members``) is the ``types.h`` struct ``d``."""
+    if size != d.size:
+        return False
+    ex = [existing_member(m) for m in members if not _GAP.fullmatch(m[0])]
+    rw = [m for m in d.members if not _GAP.fullmatch(m.name)]
+    return len(ex) == len(rw) and all(member_equal(e, r) for e, r in zip(ex, rw, strict=True))
 
 
 _MEMBER = re.compile(r"(?P<type>[^*;]+?)\s*(?P<stars>\*+)?\s*(?P<name>[A-Za-z_]\w*)(?:\[(?P<n>\d+)\])?;"
@@ -341,14 +387,14 @@ def do_types(ida, decls: list[TypeDecl], rows: dict, apply: bool, log: Log) -> s
             plan[d.name] = ("already", {}) if ex is not None else ("declare", {})
         elif ex is None or ex.get("forward"):
             plan[d.name] = ("define", {})
-        elif layout_key(ex["size"], ex["members"]) == d.layout():
+        elif same_layout(ex["size"], ex["members"], d):
             plan[d.name] = ("already", {})
         elif row.get("status") == "replace":
             plan[d.name] = ("replace", {"reason": row.get("basis", "")})
         else:
             plan[d.name] = ("refused", {"check": "different-local-type",
                                         "existing": _layout_json(ex["size"], ex["members"]),
-                                        "row": _layout_json(d.size, [(m.name, m.offset, m.size) for m in d.members])})
+                                        "row": _layout_json(d.size, d.row_members())})
     structs = {d.name: d for d in decls if d.kind == "struct"}
     changed = True
     while changed:  # a struct embedding a refused struct is refused
@@ -395,17 +441,17 @@ def do_types(ida, decls: list[TypeDecl], rows: dict, apply: bool, log: Log) -> s
         got = ida.local_type(name)
         if err:
             _result(log, "types", name, "failed", check="define", error=err)
-        elif got is None or got.get("forward") or layout_key(got["size"], got["members"]) != d.layout():
+        elif got is None or got.get("forward") or not same_layout(got["size"], got["members"], d):
             _result(log, "types", name, "failed", check="read-back",
                     got=None if got is None or got.get("forward") else _layout_json(got["size"], got["members"]),
-                    row=_layout_json(d.size, [(m.name, m.offset, m.size) for m in d.members]))
+                    row=_layout_json(d.size, d.row_members()))
         else:
             _result(log, "types", name, "defined" if action == "define" else "replaced", **info)
     return refused
 
 
 def _layout_json(size, members) -> dict:
-    return {"size": size, "members": [[n, o, s] for n, o, s in members]}
+    return {"size": size, "members": [list(m) for m in members]}
 
 
 def do_labels(ida, rows: list[dict], apply: bool, log: Log) -> set[int]:
@@ -615,7 +661,7 @@ def run_verify(ida, manifest: dict, apply_records: list[dict], log: Log) -> dict
         if d.kind == "opaque":
             ok = got is not None
         else:
-            ok = got is not None and not got.get("forward") and layout_key(got["size"], got["members"]) == d.layout()
+            ok = got is not None and not got.get("forward") and same_layout(got["size"], got["members"], d)
         _result(log, "types", d.name, "ok" if ok else "mismatch")
     for r in manifest["labels"]:
         ok = not ida.has_user_name(int(r["pc_va"], 16))
@@ -900,7 +946,9 @@ class _Ida:
             return {"forward": True, "blob": blob}
         udt = self.ti.udt_type_data_t()
         tif.get_udt_details(udt)
-        members = [(u.name, u.offset // 8, u.size // 8) for u in udt]
+        members = [(u.name, u.offset // 8, u.size // 8,
+                    "vptr" if u.is_vftable() else "base" if u.is_baseclass() else "", u.type.get_type_name() or "")
+                   for u in udt]
         return {"forward": False, "size": tif.get_size(), "members": members, "blob": blob}
 
     def declare_forward(self, name):
