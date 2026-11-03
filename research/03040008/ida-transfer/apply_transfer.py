@@ -139,8 +139,10 @@ class TypeDecl:
         return {m.type for m in self.members if m.ptr == 0}
 
     def row_members(self) -> list[tuple]:
-        """The members in the adapter's form ``(name, offset, size, kind, type)``."""
-        return [(m.name, m.offset, m.size, "vptr" if m.vptr else "base" if m.base else "", m.type)
+        """The members in the adapter's form ``(name, offset, size, kind, type)``; a plain member's type with its
+        pointer depth and array count (:func:`row_type`), as the adapter prints an unnamed type."""
+        return [(m.name, m.offset, m.size, "vptr" if m.vptr else "base" if m.base else "",
+                 m.type if m.vptr or m.base else row_type(m))
                 for m in self.members]
 
 
@@ -157,7 +159,8 @@ def existing_member(m) -> dict:
     """A local-type member as the IDA adapter reads it: ``(name, offset, size[, kind, type])``.
 
     ``kind`` is ``"vptr"`` (udm vftable flag), ``"base"`` (udm base-class flag) or ``""``; ``type`` the
-    member's type name (empty when it has none). Old three-field records read as kind ``""``, type unknown.
+    member's type name, or its printed type when it has no name (``MtObject **``, ``unsigned int[4]``).
+    Old three-field records read as kind ``""``, type unknown (``None``).
     """
     name, off, size = m[0], m[1], m[2]
     return {"name": name, "offset": off, "size": size, "kind": m[3] if len(m) > 3 else "",
@@ -171,7 +174,9 @@ def member_equal(ex: dict, row: Member) -> bool:
     ``_vptr$*`` or ``vfptr``); a row base equals an existing base (base-class flag, ``baseclass_*``, unnamed,
     or named after its class) whose type name is the row's base class. A row base rendered as bytes because
     its class is not transferred (``base X (not transferred)``, :attr:`Member.base_of`) compares by that class
-    ``X``, not by ``unsigned __int8``. Otherwise names must be equal and neither side may be a vptr or a base.
+    ``X``, not by ``unsigned __int8``. Otherwise names must be equal, neither side may be a vptr or a base,
+    and a known existing type must equal the row's type with its pointer depth and array count
+    (:func:`norm_type`; T008 F2: offset, size and name alone let ``MtObject *`` pass for ``MtObject **``).
     """
     if (ex["offset"], ex["size"]) != (row.offset, row.size):
         return False
@@ -183,7 +188,46 @@ def member_equal(ex: dict, row: Member) -> bool:
         if ex["kind"] == "vptr" or ex["type"] != cls:
             return False
         return ex["kind"] == "base" or ex["name"] in ("", cls) or bool(_BASE_NAME.fullmatch(ex["name"]))
-    return ex["kind"] == "" and ex["name"] == row.name
+    if ex["kind"] != "" or ex["name"] != row.name:
+        return False
+    return ex["type"] is None or norm_type(ex["type"]) == norm_type(row_type(row))
+
+
+_TYPE_NOISE = re.compile(r"\b(?:struct|const)\b|\s+")
+
+
+# one spelling per scalar: the database's typedefs (T007e: ``uint32_t mLength``) and IDA's sized names
+_SCALAR_ALIAS = {
+    alias: canon
+    for canon, aliases in {
+        "unsigned __int8": ("uint8_t", "_BYTE", "unsigned char", "unsigned __int8"),
+        "__int8": ("int8_t", "signed char", "signed __int8", "__int8"),
+        "unsigned __int16": ("uint16_t", "_WORD", "unsigned short", "unsigned __int16"),
+        "__int16": ("int16_t", "short", "signed __int16", "__int16"),
+        "unsigned int": ("uint32_t", "_DWORD", "unsigned int", "unsigned __int32"),
+        "int": ("int32_t", "int", "signed int", "__int32", "signed __int32"),
+        "unsigned __int64": ("uint64_t", "_QWORD", "unsigned __int64", "unsigned long long"),
+        "__int64": ("int64_t", "__int64", "signed __int64", "long long"),
+    }.items()
+    for alias in aliases
+}
+_SCALAR_KEY = {_TYPE_NOISE.sub("", a): _TYPE_NOISE.sub("", c) for a, c in _SCALAR_ALIAS.items()}
+_TYPE_SUFFIX = re.compile(r"[*&]*(?:\[\d+\])*$")
+
+
+def norm_type(t: str) -> str:
+    """A type text without spaces, ``struct`` (IDA's print prefix, T007d) and ``const``; a scalar base type in
+    one spelling (``uint32_t`` = ``unsigned int``), pointer stars and array counts kept."""
+    s = _TYPE_NOISE.sub("", t)
+    suffix = _TYPE_SUFFIX.search(s)
+    assert suffix is not None
+    base = s[:suffix.start()]
+    return _SCALAR_KEY.get(base, base) + suffix.group(0)
+
+
+def row_type(m: Member) -> str:
+    """A ``types.h`` member's full type: base type, pointer stars, array count (``MtObject **``)."""
+    return m.type + (" " + "*" * m.ptr if m.ptr else "") + (f"[{m.count}]" if m.count is not None else "")
 
 
 def same_layout(size, members, d: TypeDecl) -> bool:
@@ -1007,8 +1051,10 @@ class _Ida:
             return {"forward": True, "blob": blob}
         udt = self.ti.udt_type_data_t()
         tif.get_udt_details(udt)
+        # type: the name of a named type (bases compare by it), else the printed type (pointers, arrays: T008 F2)
         members = [(u.name, u.offset // 8, u.size // 8,
-                    "vptr" if u.is_vftable() else "base" if u.is_baseclass() else "", u.type.get_type_name() or "")
+                    "vptr" if u.is_vftable() else "base" if u.is_baseclass() else "",
+                    u.type.get_type_name() or u.type.dstr())
                    for u in udt]
         return {"forward": False, "size": tif.get_size(), "members": members, "blob": blob}
 

@@ -48,6 +48,12 @@ class LayoutError(Exception):
     pass
 
 
+def deref(t: str) -> str:
+    """``t`` with one pointer or reference level removed (``T**`` -> ``T*``, ``T*&`` -> ``T*``), qualifiers stripped."""
+    t = strip(t)
+    return strip(t[:-1]) if t.endswith(("*", "&")) else t
+
+
 def strip(t: str) -> str:
     prev = None
     t = t.strip()
@@ -107,7 +113,7 @@ class Layouts:
                 info = TypeInfo("array", info.size * n, info.align, elem=info, count=n)
             return info
         if t.endswith(("*", "&")):
-            return TypeInfo("pointer", 4, 4, name=t, pointee=strip(t.rstrip("&").rstrip("*").rstrip("&")))
+            return TypeInfo("pointer", 4, 4, name=t, pointee=deref(t))
         if t in FIXED:
             s, c = FIXED[t]
             return TypeInfo("scalar", s, s, name=c)

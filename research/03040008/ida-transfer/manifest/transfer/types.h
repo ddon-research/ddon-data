@@ -100,7 +100,7 @@ struct MtArray // PC size 0x14
   unsigned int mBufsiz; // +0x8 4
   bool mAutoDelete; // +0xc 1
   unsigned __int8 gapD[3];
-  MtObject *mpArray; // +0x10 4
+  MtObject **mpArray; // +0x10 4
 };
 
 struct MtTypedArray<CDataAbilityLevelParam> // PC size 0x14

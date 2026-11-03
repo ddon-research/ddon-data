@@ -615,7 +615,7 @@ struct MtArray // PC size 0x14
   unsigned int mBufsiz; // +0x8 4
   bool mAutoDelete; // +0xc 1
   unsigned __int8 gapD[3];
-  MtObject *mpArray; // +0x10 4
+  MtObject **mpArray; // +0x10 4
 };
 
 struct MtTypedArray<CDataA> // PC size 0x14
@@ -637,7 +637,7 @@ T007B = {
     "CPacketDataBase": {"forward": False, "size": 4, "members": [("", 0, 4, "base", "MtObject")]},
     "MtArray": {"forward": False, "size": 20, "members": [
         ("", 0, 4, "base", "MtObject"), ("mLength", 4, 4, "", "unsigned int"), ("mBufsiz", 8, 4, "", "unsigned int"),
-        ("mAutoDelete", 12, 1, "", "bool"), ("mpArray", 16, 4, "", "")]},
+        ("mAutoDelete", 12, 1, "", "bool"), ("mpArray", 16, 4, "", "MtObject **")]},
 }
 
 
@@ -836,3 +836,54 @@ def test_untransferred_base_with_another_size_or_offset_is_refused():
     assert not at.member_equal(at.existing_member(("", 4, 4, "base", "MtObject")), row)
     assert not at.member_equal(at.existing_member(("x", 0, 4, "", "MtObject")), row)
     assert not at.member_equal(at.existing_member(("", 0, 4, "base", "unsigned __int8")), row)
+
+
+# T008 F2 (canary .agent-ledger/canaries/007-T008/test_member_type_ignored.py): a plain member's type counts.
+@pytest.mark.parametrize("ex_type", ["MtObject **", "unsigned int", "float", "struct MtString *"])
+def test_member_with_another_type_is_not_equal(ex_type):
+    row = at.Member(name="mpArray", type="MtObject", ptr=1, count=None, offset=0x10, size=4)
+    assert not at.member_equal(at.existing_member(("mpArray", 0x10, 4, "", ex_type)), row)
+
+
+@pytest.mark.parametrize("ex_type", ["MtObject *", "MtObject*", "struct MtObject *", "const MtObject *"])
+def test_member_type_compares_without_spaces_struct_or_const(ex_type):
+    row = at.Member(name="mpArray", type="MtObject", ptr=1, count=None, offset=0x10, size=4)
+    assert at.member_equal(at.existing_member(("mpArray", 0x10, 4, "", ex_type)), row)
+
+
+def test_member_type_unknown_and_array_count():
+    row = at.Member(name="mpArray", type="MtObject", ptr=1, count=None, offset=0x10, size=4)
+    assert at.member_equal(at.existing_member(("mpArray", 0x10, 4)), row)  # three-field record: type unknown
+    arr = at.Member(name="mName", type="char", ptr=0, count=16, offset=0, size=16)
+    assert at.member_equal(at.existing_member(("mName", 0, 16, "", "char[16]")), arr)
+    assert not at.member_equal(at.existing_member(("mName", 0, 16, "", "char[8]")), arr)
+    assert not at.member_equal(at.existing_member(("mName", 0, 16, "", "char")), arr)
+
+
+def test_mtarray_with_a_single_pointer_is_a_different_local_type(man_ida):
+    ida = fake_for(man_ida)
+    ida.ltypes.update(copy.deepcopy(T007B))
+    ida.ltypes["MtArray"]["members"][4] = ("mpArray", 16, 4, "", "MtObject *")
+    _s, recs = run(ida, man_ida, apply=False)
+    t = results(recs, "types")
+    assert t["MtArray"]["status"] == "refused" and t["MtArray"]["check"] == "different-local-type"
+
+
+@pytest.mark.parametrize(("a", "b"), [("uint32_t", "unsigned int"), ("_DWORD *", "unsigned int*"),
+                                      ("unsigned char[4]", "unsigned __int8[4]"), ("struct X *", "X*")])
+def test_norm_type_scalar_spellings(a, b):
+    assert at.norm_type(a) == at.norm_type(b)
+    assert at.norm_type("uint32_t") != at.norm_type("int") and at.norm_type("X*") != at.norm_type("X**")
+
+
+def test_manifest_mtarray_equals_the_databases():
+    """The work copy's MtArray as T007e's spot check printed it: ``MtArray : MtObject { uint32_t mLength;
+    uint32_t mBufsiz; bool mAutoDelete; MtObject **mpArray; }`` (T008 F2: equal now by type, not by name)."""
+    import pathlib
+    text = (pathlib.Path(at.__file__).parent / "manifest" / "transfer" / "types.h").read_text(encoding="utf-8")
+    d = {x.name: x for x in at.parse_types_h(text) if x.kind == "struct"}["MtArray"]
+    db = [("", 0, 4, "base", "MtObject"), ("mLength", 4, 4, "", "uint32_t"), ("mBufsiz", 8, 4, "", "uint32_t"),
+          ("mAutoDelete", 12, 1, "", "bool"), ("mpArray", 16, 4, "", "MtObject **")]
+    assert at.same_layout(20, db, d)
+    db[4] = ("mpArray", 16, 4, "", "MtObject *")
+    assert not at.same_layout(20, db, d)

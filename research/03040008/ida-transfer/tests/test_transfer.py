@@ -494,3 +494,19 @@ def test_pairs_tsv_that_differs_from_the_matcher_run_is_refused():
     assert run.full_pairs_check(facts, {}, []) is None
     why = run.full_pairs_check(facts, {}, [PairRow(0x10, 0x900, "", "", "", "seed", "-")])
     assert why is not None and "1 pairs" in why
+
+
+# T008 F1 (canary .agent-ledger/canaries/007-T008/test_pointer_depth.py): one pointer level is stripped at a time.
+@pytest.mark.parametrize(("dwarf", "want"), [("MtObject**", "MtObject **"), ("char**", "char **"),
+                                             ("unsigned int**", "unsigned int **"), ("MtObject*", "MtObject *"),
+                                             ("MtObject***", "MtObject ***"), ("MtObject*&", "MtObject **"),
+                                             ("MtObject&", "MtObject *"), ("MtObject* const*", "MtObject **")])
+def test_ctype_keeps_pointer_depth(dwarf, want):
+    lay = Layouts({"MtObject": {"tag": "class", "size": 8, "members": []}})
+    assert prototypes.ctype(dwarf, lay).text.replace(" ", "") == want.replace(" ", "")
+
+
+def test_pointer_member_pointee_drops_one_level():
+    lay = Layouts({"MtObject": {"tag": "class", "size": 8, "members": []}})
+    assert lay.resolve("MtObject**").pointee == "MtObject*"
+    assert lay.resolve("MtObject*").pointee == "MtObject"

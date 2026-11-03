@@ -16,7 +16,7 @@ from matcher import gates
 from matcher.model import Facts, Param
 
 from .inputs import PcExtra, Ps4Fn
-from .layout import BASE, FIXED, POINTER_SIZED, Layouts, declarable, strip
+from .layout import BASE, FIXED, POINTER_SIZED, Layouts, declarable, deref, strip
 
 WIDTH_INT = {1: "unsigned __int8", 2: "unsigned __int16", 4: "int", 8: "__int64"}
 TIER0_CLASSES = ("cSeedGameSvConnection", "cSeedLoginSvConnection")
@@ -70,7 +70,7 @@ def ctype(t: str, layouts: Layouts, width: int | None = None) -> CType:
     if s == "void":
         return CType("void")
     if s.endswith(("*", "&")) and "(" not in s and "::*" not in s:
-        inner = strip(s.rstrip("&").rstrip("*").rstrip("&"))
+        inner = deref(s)
         if inner == "void":
             return CType("void *")
         sc = _scalar(inner, layouts)

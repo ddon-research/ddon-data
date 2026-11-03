@@ -410,7 +410,13 @@ records written before a crash, undo records included.
   not transferred (rendered as `unsigned __int8 baseclass_<off>[<size>]; // ... base X (not transferred)`;
   any other declarator with that comment fails closed) compares by its class `X` (T007f): an existing base of
   class `X` at the same offset and size is equal, the type stays `already` and the database's richer base is
-  kept. Anything else differing, a base of another type, offset or size included, still refuses.
+  kept. A plain member's type must match too (T006d, T008 F2): the adapter's type is the member's type name,
+  or its printed type when it has none (`MtObject **`, `char[16]`), and it must equal the row's base type with
+  its pointer stars and array count after `norm_type` (no spaces, `struct`, `const`; one spelling per scalar,
+  `uint32_t` = `_DWORD` = `unsigned int`); an old record without a type compares by name only. Anything else
+  differing, a base of another type, offset or size included, still refuses. Rendered types keep their
+  pointer depth: `ctype` and `Layouts.resolve` strip one `*`/`&` level at a time (T006d, T008 F1:
+  `MtArray::mpArray` is `MtObject **`).
   Opaque rows (`struct X;`), the lea-only types among them, are written as forward declarations without
   members: after an apply they exist in the local types, with no layout.
 - **Names**: `remove-label` rows first (a removed label's name is free for its callback), then `set`/`correct`:
