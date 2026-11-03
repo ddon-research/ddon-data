@@ -173,9 +173,18 @@ Coordinator: main session. One subagent at a time. Method and rules: `spec.md`.
 
 Order: T003 first (T002 needs a copy of the accepted database), then T002.
 
+## Wave 2 (started 2026-11-03, Sam: "Why did you not just start it?")
+
+Goal: the rest of Sam's request: packet-class types and local names, by operation, no false positives.
+
+- [ ] T012 Evidence: codec destinations -> packet member links; anchored gap pairs (`briefs/W2-T012-evidence.md`).
+- [ ] T013 Partial packet layouts from member links (implementer), then apply.
+- [ ] T014 Wider pairs from anchored gaps (getters), then locals rules R1/R2 (implementer), then apply.
+- [ ] T015 Review, close wave 2, merge and push.
+
 ## Running
 
-- (none)
+- T012 (evidence-researcher-ida), started 2026-11-03.
 - Decision (coordinator, 2026-11-03): from T004d on, all writes go to one persistent work copy
   `PC_DDON_03040008/ddon-data-007work/` of the accepted database (repairs first, then T007's apply);
   it is published as `spec007-packet-handlers-<date>/` at the close.

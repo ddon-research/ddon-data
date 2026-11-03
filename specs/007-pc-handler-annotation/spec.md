@@ -1,6 +1,6 @@
 # 007 PC packet handler annotation (exact transfer from PS4)
 
-**Status: done, wave 1** (opened and closed 2026-11-03; follows spec 006; wave-2 options in `tasks.md` § Close)
+**Status: open, wave 2** (opened 2026-11-03; wave 1 closed 2026-11-03, `tasks.md` § Close)
 
 ## Goal
 
