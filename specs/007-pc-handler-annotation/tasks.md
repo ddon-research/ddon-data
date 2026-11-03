@@ -6,7 +6,7 @@ Coordinator: main session. One subagent at a time. Method and rules: `spec.md`.
   annotated from PC `OnPacket_` strings, PS4 links by name only; 24 overlaps with 006 T001 all agree;
   only the table reader and catalog reusable). Coordinator count: 675 PC `OnPacket_` strings, 460
   unique PS4 suffix matches.
-- [ ] T002 Audit the earlier packet annotations in the accepted PC database (`evidence-researcher-ida`):
+- [x] T002 (done: `research/T002-audit.md`, `T002-prior-annotations.tsv` 2,981 rows; accepted copy sha matches, 107 views present; 50 earlier handler names hold (40 PS4 links proved by read widths, 10 unproved Season 3 diffs), sender `0x833670` name unproved, 1 wrong name `0x7D36B0`, 10 names without source; codec pairs settled by 298 aligned handler pairs; table 1,041/1,040 with 74 initializers to `0x1A36540`; tier 0: 580 callbacks with one `OnPacket_` string, 412 with a unique PS4 partner; PS4 IDA lacks DWARF locals) Audit the earlier packet annotations in the accepted PC database (`evidence-researcher-ida`):
   inventory (names/types/comments in the packet area), a sampled independent check against PS4, and
   the readiness of the PS4 database (DWARF prototypes, locals, types present).
 - [x] T003 (done 5801c721a1: `private-copy.sh pc-accepted <name>`, sha-checked against the record; test `research/ida/tests/private-copy.sh`, 14 checks, check.sh section idacopy) Private copy of the accepted PC database (`implementer`): `research/ida/private-copy.sh` target
@@ -22,4 +22,4 @@ Order: T003 first (T002 needs a copy of the accepted database), then T002.
 
 ## Running
 
-- T002 (evidence-researcher-ida, brief `briefs/T002-audit-prior-annotations.md`), started 2026-11-03.
+- T004 (implementer, brief `briefs/T004-extractors.md`), started 2026-11-03.
