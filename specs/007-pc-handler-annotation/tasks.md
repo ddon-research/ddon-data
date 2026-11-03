@@ -115,7 +115,7 @@ Coordinator: main session. One subagent at a time. Method and rules: `spec.md`.
   `already`; verify ok, counts 788->965 local types, 51,074->52,148 names, 453->1,464 typed functions; 1,011/1,011
   decompile; re-extract changes = rows both ways; CHANGE_JOB_RES + 6 lea-only types forward-only. Work copy
   `be0cc624...162f`; rollback `.before-T007b.i64` kept. (`implementer` writes it, `evidence-researcher-ida` runs it).
-- [ ] T008 Verify: re-extract, compare, decompile sample; adversarial review of pairs and types.
+- [x] T008 Verify: re-extract, compare, decompile sample; adversarial review of pairs and types.
   Adversarial review done (`research/T008-adversarial.md`, seed 8008: 70 sampled items over 9 strata, 0 wrong on
   PC; 2 tooling defects reproduced by the coordinator: F1 pointer depth dropped (`MtObject**` -> `MtObject *` in
   `types.h`), F2 member type not compared in `member_equal`; work copy right because its `MtArray` was kept).
@@ -134,13 +134,48 @@ Coordinator: main session. One subagent at a time. Method and rules: `spec.md`.
   comments kept above the separator; `0x7DA410` keeps its `__userpurge` prototype (refused in skipped.tsv)). Work
   copy `f7f3a219...3c25`; rollback `.before-T009c.i64`. Snapshot published (coordinator):
   `PC_DDON_03040008/spec007-packet-handlers-20261103-wave1/2022_01_29_DDO_DUMP_FIX.exe.i64` (same sha256).
-- [ ] T009 Close: `check.sh --all`, docs, retrospective, publish the database folder.
+- [x] T010 Local variable names (evidence `research/T010-locals.md`, `T010-locals-walk.tsv`): PS4 DWARF locals bind
+  to PS4 Hex-Rays variables (1,257 of 2,256 uniquely), but the spec's operation rule names 0 PC locals over 898
+  pairs and the codec-anchor extension 3 (`nRet`), 0 conflicts: 3,235 of 3,321 PS4 defining calls go to
+  unpaired callees; relaxing the size/array gates would name split packet pieces `packet` (wrong). Decision
+  (coordinator): not implemented in wave 1 (single-digit yield); the levers are a wave-2 scope choice for Sam
+  (PC layouts for packet classes; pairing context getters such as `sContextManager::getContextMyPlayer`).
+- [x] T011 Close (2026-11-03), below.
+
+## Close (2026-11-03): wave 1
+
+- Gate `bash tools/check.sh --all` at eb1cdda52a (+ uncommitted CLAUDE.md learning): hooks, shell, flags, export,
+  idacopy, xfer (417 tests), mcp passed; imhex not run (not on PATH); kg failed on `test_production_size_budgets`
+  in the untracked, other-owned `research/knowledge-graph/` (as at the 006 close; no 007 commit touches it).
+- Result on the work copy (`ddon-data-007work`, sha256 `f7f3a219...3c25`, published unchanged as
+  `PC_DDON_03040008/spec007-packet-handlers-20261103-wave1/2022_01_29_DDO_DUMP_FIX.exe.i64`): 248 function starts
+  repaired (130 handler callbacks, 118 call targets); 972 accepted pairs (467 handler seeds, 69 readers, 95 element
+  readers, 107 requesters, 234 senders); 1,086 names (1,077 new + 9 corrections incl. 7 settled conflicts), 1,065
+  prototypes with DWARF argument names, 177 types (90 access-checked `MtTypedArray<X>`, the rest forward
+  declarations), 1,174 provenance comments; every row verified, every typed function decompiles. Precision: 0
+  wrong pairs in 5 holdout runs, 0 accepted in 5 shuffled controls; T008 adversarial sample 70 items, 0 wrong.
+  `ddon-hook`'s `CURRENT-RECOVERY.json` still points to its feature008 database (not changed: that pointer is
+  ddon-hook's).
+- False positives caught by the method and fixed: a game handler paired with the login handler of the same name
+  (T005: class gate); 2 wrong element pairs in the first negative control (T005e gate); 1 listener pair in the
+  control (T005h slot-order gate); `CHANGE_JOB_RES` layout accepted through `lea` coincidences (T006b/c: lea never
+  accepts); `MtObject**` rendered as `MtObject *` and member types not compared (T008 F1/F2, T006d).
+- Retro: the write path cost five apply rounds (T007b x3, T007e x2) on issues a real-IDA smoke test of the adapter
+  would have caught at once (member naming conventions, printed-type comparison, opaque bases); next time run a
+  tiny apply on a scratch copy right after the script lands. The extractor is one 1,680-line file whose edits
+  returned ~19k tokens each to the implementer (retro top results); split it into modules before more work.
+  ida-mcp workers cannot be closed in this repo, so all writes moved to headless batch (learning added to
+  `CLAUDE.md`). Stale `.agent-ledger/running/` records after `waiting:` stops blocked every spawn (002 T022 open).
+- Open for a wave 2 (Sam's choice): partial PC layouts for packet classes (refused today because Season 3 changed
+  them), which would also unlock the `packet` locals; pairing context getters; typed-`lea` type acceptance; rule 5
+  (packet object vtables); the login handler table (`0x888000`-`0x88E000`, not reached); 109 prototypes skipped for
+  non-ecx register arguments; 0x7D1BE0 (switch in undefined code) unrepaired.
 
 Order: T003 first (T002 needs a copy of the accepted database), then T002.
 
 ## Running
 
-- T010 (evidence-researcher-ida, brief `briefs/T010-locals-feasibility.md`), started 2026-11-03.
+- (none)
 - Decision (coordinator, 2026-11-03): from T004d on, all writes go to one persistent work copy
   `PC_DDON_03040008/ddon-data-007work/` of the accepted database (repairs first, then T007's apply);
   it is published as `spec007-packet-handlers-<date>/` at the close.

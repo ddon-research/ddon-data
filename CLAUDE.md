@@ -46,3 +46,7 @@ Keep at most 15 entries. Replace stale entries; do not append history.
 
 - `specify init --here --force` preserves an existing `.specify/memory/constitution.md`,
   `feature.json`, and `AGENTS.md`; it adds scripts, templates, and skills only.
+- IDA database writes run only as headless batch jobs (`idat -A -L<log> -S"<script>" <copy>.i64`, the
+  script ending in `qexit(0)`; read-only scripts set `DBFL_KILL` first). ida-mcp workers cannot be closed
+  here (`save_database`/`close_database` denied); a killed worker's writes are lost, because the next
+  open restores the packed base (007 T004d). Recipes: `research/03040008/ida-transfer/README.md`.
