@@ -54,6 +54,12 @@ Coordinator: main session. One subagent at a time. Method and rules: `spec.md`.
   `0x758000`-`0x77C000`, none in the login range (no roots reach it); work copy sha `65120b34...8b9111`; PC
   v3 6,261 functions, 4,837 call sites with constants, 20 codecs all as T005b; PS4 3,568, codec shape
   classifier finds 4 of 22, so PS4 widths come from the codec symbols in T005e).
+  T005e done (fd44c3fc37: 245 tests; rule 1 reader 69 accepted of 88, rule 2 element reader 56 of 104, rule 3
+  694 codec call sites, rule 4 listener slot 0 (dumps lack slots and requesters); precision 5 runs, 0 wrong;
+  negative control first accepted 2 wrong element pairs, gate added (no other fitting reader pairs either
+  function differently), then 0 accepted in 5 runs; cross-checks no disagreement). Pairs now 467 + 125 = 592.
+  Plan: T005f extractor v4 (object-relative accesses for the layout check, slot facts, requester roots,
+  reader depth 8), T005g batch extract, then the matcher rerun with rule 4 and T006 types.
 - [ ] T006 Types and locals rules over the accepted pairs (`implementer`, evidence from T004 dumps).
 - [ ] T007 Apply script and the applied copy (`implementer` writes it, `evidence-researcher-ida` runs it).
 - [ ] T008 Verify: re-extract, compare, decompile sample; adversarial review of pairs and types.
@@ -63,7 +69,7 @@ Order: T003 first (T002 needs a copy of the accepted database), then T002.
 
 ## Running
 
-- T005e (implementer, brief `briefs/T005e-matcher-anchors.md`), started 2026-11-03.
+- T005f (implementer, brief `briefs/T005f-extract-v4.md`), started 2026-11-03.
 - Decision (coordinator, 2026-11-03): from T004d on, all writes go to one persistent work copy
   `PC_DDON_03040008/ddon-data-007work/` of the accepted database (repairs first, then T007's apply);
   it is published as `spec007-packet-handlers-<date>/` at the close.
