@@ -1,4 +1,4 @@
-"""007 T005e: pair PC 03040008 functions with PS4 02020005 functions from the v3 dumps.
+"""007 T005e/T005h: pair PC 03040008 functions with PS4 02020005 functions from the v3+ dumps.
 
     uv run python match.py [--dumps dumps] [--out manifest]
 

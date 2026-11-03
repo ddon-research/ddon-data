@@ -465,7 +465,9 @@ def listener_anchor(facts: Facts, handler_pairs: list[Pair]) -> tuple[list[tuple
             refuse(h, "PC handler slot not read (no single constant callOnPacketFunc slot)")
             continue
         if s4 is None:
-            refuse(h, "PS4 handler slot not in the dump (coverage gap)")
+            note = facts.ps4_slot_notes.get(h[1])
+            refuse(h, f"PS4 handler slot: {note}" if note
+                   else "PS4 handler slot not in the dump (no store via mpManager)")
             continue
         if use_pc[sp] > 1 or use_ps4[s4] > 1:
             refuse(h, f"shared slot (PC {sp} x{use_pc[sp]}, PS4 {s4} x{use_ps4[s4]})")
@@ -498,7 +500,11 @@ def listener_anchor(facts: Facts, handler_pairs: list[Pair]) -> tuple[list[tuple
                       f"PS4 {''.join(wb) if wb is not None else '?'}")
             continue
         out.append((h, (rpc, rps4), (sender_pc, sender_ps4), s4, sp))
-    bad = inversions([(x[0], x[3], x[4]) for x in out])
+    # The monotone PS4 -> PC slot order is checked against every handler pair with both slots, not only the
+    # candidates (T005h: with the candidates alone a single deranged pair of the negative control passed).
+    known = [(h, slot_ps4[h], slot_pc[h]) for h in sorted(handler_pairs)
+             if slot_ps4[h] is not None and slot_pc[h] is not None]
+    bad = inversions(known)  # type: ignore[arg-type]
     for x in out:
         if x[0] in bad:
             refuse(x[0], f"slot order inversion (PS4 {x[3]} -> PC {x[4]})")

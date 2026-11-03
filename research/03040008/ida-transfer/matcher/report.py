@@ -46,7 +46,7 @@ def write_all(out: Path, facts: Facts, headers: dict, t0: dict[int, str], t0_lis
     res, role = full.engine, full.roles
     out.mkdir(parents=True, exist_ok=True)
     ident = "; ".join(f"{n} source {h.get('input_sha256') or h.get('elf_sha256')}" for n, h in sorted(headers.items()))
-    comment = f"007 T005e matcher (pairs v2), PC 03040008 <-> PS4 02020005; inputs: {ident}"
+    comment = f"007 T005h matcher (pairs v2), PC 03040008 <-> PS4 02020005; inputs: {ident}"
     names = pc_names(facts, res, t0, role)
 
     rows = []
@@ -165,6 +165,11 @@ def write_all(out: Path, facts: Facts, headers: dict, t0: dict[int, str], t0_lis
     for (rule, why), n in sorted(Counter((x.rule, x.detail.split(":")[0].split(" (")[0][:70])
                                          for x in role.listed).items()):
         counts[f"role_listed {rule}: {why}"] = n
+    counts["listener_ps4_functions_with_slot"] = len(facts.ps4_handler_slot)
+    for why, n in sorted(Counter(v.split(" ")[0] for v in facts.ps4_slot_notes.values()).items()):
+        counts[f"listener_ps4_slot_refused_{why}"] = n
+    for side in ("pc", "ps4"):
+        counts[f"listener_{side}_requester_sites_outside_functions"] = len(facts.requester_sites_outside.get(side, ()))
     xc = codecs.ps4_codec_crosscheck(facts)
     counts["ps4_codec_dump_classified"] = len(xc)
     counts["ps4_codec_dump_disagrees_with_symbol"] = sum(1 for r in xc if r[2] != r[3])

@@ -181,7 +181,9 @@ equal alignments when anchors repeat, here an alignment is used only when forced
   uses them only to name PS4 codec and element-reader call targets (T005e), not as propagation anchors.
 - Gates in `matcher/gates.py` (a, c, d) and `matcher/engine.py` (b, fixed point, restart on a conflict with
   an accepted pair). Folding (d) is a code-identity proxy (size, instructions, ordered call targets,
-  constants, strings, data refs, ret immediates, ecx use): the dump has no body bytes.
+  constants, strings, data refs, ret immediates, ecx use; since T005h also each call site's v3 immediate
+  arguments, which are body bytes): the dump has no body bytes. Without the call-site immediates about 200
+  PC senders, which differ only in their `WritePacket` key, counted as one folded group.
 - Gate (c) inputs since T005e: a PC function that no caller site loads `ecx` for (every caller site in the
   dump, v3 `ecx_loaded` false) takes no object even when the extractor saw an `ecx` read (MSVC `push ecx`
   stack reservation); without `ret N` the stack bytes come from the callers' v3 `arg_bytes` before their
@@ -201,8 +203,10 @@ element pairs it was read from) and the seeds it depends on.
   bracket. The PC walk enters every callee in the dump except `callOnPacketFunc`, the allocator, the
   64-bit swap helper, `WritePacket`, `getAllocator` and the CRT `mem*`/`str*` routines. The PS4 walk enters
   only `nPacket::Read_*` and `CPacket_*::ReadPacket` (`nPacket::Write_*` for senders). A callee the walk
-  needs but the dump lacks makes the tree a coverage gap (83 reader pairs, mostly PC sub-element readers
-  beyond the dump's depth 3).
+  needs but the dump lacks makes the tree a coverage gap (T005e on v3: 83 reader contexts, mostly PC
+  sub-element readers beyond depth 3; T005h on v4: 3). Since T005h the PC walk also skips a callee whose v4
+  `codec_distance` is null (it reaches no codec within 8 levels) instead of entering it, so that callee's
+  own missing callees are no gap.
 - **Rule 1, reader**: the PC handler's unique callee that reaches a codec within depth 2 pairs with the one
   `CPacket_<NAME>::ReadPacket` the PS4 handler calls. `<NAME>` must be the PS4 handler's packet and one of the
   names the PC `OnPacket_` string allows. An inlined PS4 reader gives no pair ("inlined on PS4").
@@ -227,10 +231,20 @@ element pairs it was read from) and the seeds it depends on.
   handler passes to `callOnPacketFunc`) and its single sender with `WritePacket` key `(g,id,1)` pair with the
   PS4 requester of the PS4 handler's slot and its single `Send_C2S_*`. Conditions: slots not shared, one
   requester and one sender per side, no second PC sender for the key, outside the login-manager range,
-  equal payload write widths, and no PS4 -> PC slot-order inversion. **Not effective on the v3 dumps.** The
-  PS4 handler's slot (`mErrorCode[idx]`, a memory displacement) is not recorded, and the requesters (callers
-  of the senders) are outside both dumps' scope: 11 of 581 PC and 9 of 478 PS4 reserve call sites are in
-  the dumps. All 467 handler pairs are listed as a coverage gap. The rule is tested on synthetic facts.
+  equal payload write widths, and no PS4 -> PC slot-order inversion against **every** handler pair with a
+  slot on both sides (T005h: checking the candidates alone let one deranged pair of the negative control
+  through). Then gates (b)-(d) per pair.
+  - PC slot: `const_stack` slot 0 of the handler's `callOnPacketFunc` `0x878860` call (one constant) and of
+    the requester's `reserveNetworkErrorDialog` `0xBB39D0` call.
+  - PS4 slot (`model.ps4_slot`, T005h): the index of the handler's stores `this->mpManager->mErrorCode[idx]`
+    / `mStatus[idx]` (v5 `object_accesses`: `rdi` arg 0, `via` = `mpManager`, not indexed, element width),
+    with the offsets from DWARF (`cSeedGameSvConnection::mpManager` +280 -> `cNetGameServer`, `mStatus` +8,
+    `mErrorCode` +2260, 563 x 4 bytes; fail closed unless each class has one record). Several indices or a
+    register index give no slot. The requester's slot is the `esi` immediate of its
+    `reserveNetworkErrorDialog` `0x7EDF80` call. Sender: the single `Send_C2S_*` within two calls.
+  - T005h run (v5 PS4 dump): 497 PS4 functions with a slot, 245 candidates, 107 requester and 234 sender
+    pairs accepted (138 requesters fail gate (c) on unknown PC stack bytes); the 33 PC reserve call sites
+    outside functions (`requester_site`) are counted in `summary.tsv`, not paired.
 - **Rule 5, packet object** (ctor/vtable/`operator_new`, T005b § 6.5): not implemented; a later rule.
 - **Precision** (`precision.tsv`): 5 fixed RNG seeds each withhold 20% of the seeds. Every role pair of
   the full run that depends on a withheld seed must be absent or come back with the same partner, and no

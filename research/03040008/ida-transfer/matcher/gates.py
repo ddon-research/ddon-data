@@ -164,8 +164,12 @@ def fold_key(f: Func) -> tuple:
     """Code identity proxy. The dumps carry no body bytes, so two PC functions count as folded copies when
     size, instruction count, ordered call targets, constants, strings, data refs, ret immediates and ecx use
     all agree. This over-approximates byte identity (which also never holds with rel32 calls), so gate (d)
-    rejects at least every byte-identical function."""
-    return (f.size, f.instructions, tuple(c.target for c in f.calls), tuple(sorted(f.constants)),
+    rejects at least every byte-identical function. Since T005h the immediates each call site passes
+    (v3 ``const_stack`` / ``const_regs``) are part of the key: they are body bytes (``push imm`` / ``mov r,
+    imm``), so functions that differ there are not byte-identical (the PC senders differ only in their
+    ``WritePacket`` key)."""
+    return (f.size, f.instructions, tuple((c.target, c.const_stack, c.const_regs) for c in f.calls),
+            tuple(sorted(f.constants)),
             tuple(sorted(f.strings)), tuple(sorted(f.data_refs)), tuple(sorted(f.ret_imm)), f.ecx_read_before_write)
 
 

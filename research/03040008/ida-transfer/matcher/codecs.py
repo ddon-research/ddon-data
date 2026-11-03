@@ -129,6 +129,8 @@ def _descend(facts: Facts, side: str, f: Func | None, va: int, mode: str) -> str
             return "gap"
         if f.name in (PC_CALL_ON_PACKET, PC_WRITE_PACKET) or PC_SKIP_NAME.search(f.name):
             return "skip"
+        if f.has_codec_distance and f.codec_distance is None:
+            return "skip"  # v4: reaches no codec within 8 levels (T005h), not a coverage gap
         return "enter"
     nm = ps4_name(facts, va) or ""
     pat = PS4_READ_DESCEND if mode == "read" else PS4_WRITE_DESCEND
@@ -139,8 +141,9 @@ def _descend(facts: Facts, side: str, f: Func | None, va: int, mode: str) -> str
 
 def flatten(facts: Facts, side: str, root: int, mode: str = "read") -> Flat:
     """Codec leaves of ``root`` in call-site order, recursing into callees (PC: every callee in the dump
-    except the skip list; PS4: only ``nPacket::Read_*``/``CPacket_*::ReadPacket``, or ``nPacket::Write_*``
-    for mode 'write'). A callee holding no codec is no bracket. Indirect calls are skipped."""
+    except the skip list and, on a v4 dump, those with a null ``codec_distance``; PS4: only
+    ``nPacket::Read_*``/``CPacket_*::ReadPacket``, or ``nPacket::Write_*`` for mode 'write'). A callee
+    holding no codec is no bracket. Indirect calls are skipped."""
     funcs = facts.pc if side == "pc" else facts.ps4
     out = Flat(root)
 
