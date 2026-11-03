@@ -15,7 +15,8 @@ and the wave-1 types (``manifest/transfer/types.tsv``: the types already in the 
 2. **Partial layouts**: a class with links and no conflict (one offset -> two members, one member -> two
    offsets, a width other than the member's leaf width, overlapping links) gets the linked members, gaps
    elsewhere; then every width access of the paired PC functions through that class must not overlap a linked
-   member other than on a leaf start of it with the leaf's width (``layout.land``), else the class is refused.
+   member other than on a leaf start of it with the leaf's width (``layout.land``), else the class is refused;
+   an access (or ``lea``) ending past a lower-bound size extends it, past a proved size it refuses (T013e).
 3. **Locals**: R1 paired callee ``&var``, R2 codec anchor ``&var``, R3 handler packet object (see
    :func:`locals_rows`).
 
@@ -492,6 +493,7 @@ class Partial:
     size: int = 0
     size_proved: bool = False
     size_evidence: str = ""
+    size_extended_from: int | None = None  # the end of the last linked member, when an access extended it
     conflicts: list[str] = field(default_factory=list)
     contradictions: list[str] = field(default_factory=list)
     width_checked: int = 0
@@ -614,17 +616,38 @@ def class_params(inp: Wave2Inputs, layouts: Layouts, pairs: set[tuple[int, int]]
 
 def _access_check(inp: Wave2Inputs, params: list[tuple[int, str, int]], p: Partial, infos: dict[int, TypeInfo]
                   ) -> None:
-    """Every width access of the paired PC functions through a parameter of this class: one overlapping a linked
-    member must land on a leaf start of it with the leaf's width (``layout.land``); gaps are allowed."""
+    """Every access of the paired PC functions through a parameter of this class (not through a loaded pointer):
+
+    - one that ends past the size (a width access at ``disp + width``, a ``lea`` at ``disp`` as at least
+      ``disp + 1``) extends a lower-bound size to that end, the farthest one being ``size_evidence`` (T013e: the
+      readers' trailing read-ok byte and codec members past the last linked one), and contradicts a proved size;
+    - a width access overlapping a linked member must land on a leaf start of it with the leaf's width
+      (``layout.land``); gaps are allowed and counted; indexed ones are counted as not placed.
+    """
+    size = p.size
+    far: tuple[int, int, int, str, int, int | None] | None = None  # (end, va, pc function, access, disp, width)
     for pc_va, loc, arg in params:
         f = inp.facts.pc[pc_va]
         for a in f.accesses:
-            if a.arg_loc != loc or a.arg != arg or a.via is not None or a.width is None:
+            if a.arg_loc != loc or a.arg != arg or a.via is not None:
+                continue
+            lea = a.access == "lea"
+            if a.width is None and not lea:
                 continue
             p.functions.add(pc_va)
             if a.indexed:
-                p.indexed_unplaced += 1
+                if not lea:
+                    p.indexed_unplaced += 1
                 continue
+            end = a.disp + (a.width or 1)
+            if end > size:
+                if p.size_proved:
+                    p.contradictions.append(f"{a.va:#x} {a.access} +{a.disp:#x} w{a.width or 1} ends at {end:#x}, "
+                                            f"past the proved size {size:#x}")
+                elif far is None or (end, -a.va) > (far[0], -far[1]):
+                    far = (end, a.va, pc_va, a.access, a.disp, a.width)
+            if lea:
+                continue  # a lea only bounds the size
             hit = [m for m in p.members if a.disp < m.offset + m.size and m.offset < a.disp + a.width]
             if not hit:
                 p.gap_accesses += 1
@@ -637,3 +660,10 @@ def _access_check(inp: Wave2Inputs, params: list[tuple[int, str, int]], p: Parti
             else:
                 p.contradictions.append(f"{a.va:#x} {a.access} +{a.disp:#x} w{a.width} on {m.path} "
                                         f"+{m.offset:#x} ({m.size})")
+    if far is not None:
+        end, va, fn, access, disp, width = far
+        p.size_extended_from = size
+        p.size = end
+        p.size_evidence = (f"lower bound: {fn:#x} {access} at {va:#x} +{disp:#x} "
+                           f"{'w' + str(width) if width else '(lea, 1 byte)'} ends at {end:#x} "
+                           f"(last linked member ends at {size:#x})")

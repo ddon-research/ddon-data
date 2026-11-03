@@ -112,6 +112,81 @@ def test_access_straddling_a_linked_member_refuses_and_gap_accesses_are_counted(
     assert bad.status == "refused" and "0x122" in bad.reason
 
 
+def test_access_past_a_lower_bound_size_extends_it():
+    """T013e (T015 canary): the reader's trailing read-ok byte and codec members past the last linked member
+    extend the lower-bound size; the farthest access is the size evidence and the R3 local takes the new size."""
+    acc = [Access(0x130, "ecx", 0, 0x30, 1, "store", value=1), Access(0x131, "ecx", 0, 0x24, None, "lea"),
+           Access(0x132, "ecx", 0, 0x1c, 4, "load")]
+    res = build(*world(accesses=acc))
+    p = res.partial[CLS]
+    assert p.status == "accepted" and not p.size_proved
+    assert (p.size, p.size_extended_from) == (0x31, 0x1c) and "0x130" in p.size_evidence
+    assert p.gap_accesses == 2 and "size: lower bound" in p.comment
+    (r,) = [x for x in res.locals if x.rule == "R3"]
+    assert (r.status, r.size) == ("accepted", 0x31)
+
+
+def test_lea_past_a_lower_bound_size_counts_as_one_byte():
+    p = build(*world(accesses=[Access(0x131, "ecx", 0, 0x24, None, "lea")])).partial[CLS]
+    assert (p.size, p.size_extended_from) == (0x25, 0x1c) and "lea" in p.size_evidence
+    assert p.gap_accesses == 0  # a lea only bounds the size
+    within = build(*world(accesses=[Access(0x133, "ecx", 0, 0x10, 4, "load")])).partial[CLS]
+    assert (within.size, within.size_extended_from) == (0x1c, None)
+    other = build(*world(accesses=[Access(0x134, "ecx", 0, 0x40, 4, "load", via=8),
+                                   Access(0x135, "stack", 0, 0x40, 4, "load")])).partial[CLS]
+    assert other.size == 0x1c  # through a loaded pointer or another argument: not this object
+
+
+def test_access_past_a_proved_size_refuses_the_class():
+    inp, pairs, rows = world(accesses=[Access(0x136, "ecx", 0, 0x1c, 1, "store")])
+    layouts = Layouts(inp.types)
+    ps = set(pairs)
+    links, _ = wave2.codec_links(inp, layouts, ps, rows)
+    cp = wave2.class_params(inp, layouts, ps)
+    p = wave2.partial_layouts(inp, layouts, links, {CLS: (0x1c, "test")}, cp)[CLS]
+    assert p.status == "refused" and "past the proved size 0x1c" in p.reason and p.size == 0x1c
+    ok = wave2.partial_layouts(inp, layouts, links, {CLS: (0x20, "test")}, cp)[CLS]
+    assert ok.status == "accepted" and ok.size == 0x20 and ok.size_extended_from is None
+
+
+@pytest.mark.skipif(not (HERE / "manifest/transfer/wave2/types.tsv").exists()
+                    or not (HERE / "dumps/pc-ida.jsonl").exists(), reason="wave 2 not run or dump absent")
+def test_real_partial_types_cover_every_access_of_their_link_owners():
+    """The T015 canary (``.agent-ledger/canaries/007-W2/test_lower_bound.py``) on the committed manifest: no access
+    through the object argument of a link owner ends past its partial type's size (42 of 48 did before T013e)."""
+    w = HERE / "manifest/transfer/wave2"
+
+    def tsv(name):
+        lines = [x for x in (w / name).read_text(encoding="utf-8").splitlines() if not x.startswith("#")]
+        head = lines[0].split("	")
+        return [dict(zip(head, x.split("	"), strict=True)) for x in lines[1:]]
+
+    types = {r["type"]: r for r in tsv("types.tsv") if r["status"] == "partial"}
+    owners: dict[str, dict[int, set[int]]] = {}
+    for r in tsv("links.tsv"):
+        if r["class"] in types:
+            owners.setdefault(r["class"], {}).setdefault(int(r["pc_owner"], 16), set()).add(int(r["pc_offset"], 16))
+    want = {va for d in owners.values() for va in d}
+    facts = {}
+    with (HERE / "dumps/pc-ida.jsonl").open(encoding="utf-8") as fh:
+        for line in fh:
+            d = json.loads(line)
+            if d.get("va") in want:
+                facts[d["va"]] = d
+    fails = []
+    for cls, by_fn in sorted(owners.items()):
+        size = int(types[cls]["pc_size"], 16)
+        for fn, offs in by_fn.items():
+            groups: dict[tuple, list] = {}
+            for a in facts[fn]["object_accesses"]:
+                if a.get("via") is None:
+                    groups.setdefault((a["arg_loc"], a["arg"]), []).append(a)
+            key = max(groups, key=lambda k, g=groups, o=offs: len({a["disp"] for a in g[k]} & o))
+            fails += [(cls, fn, a["va"]) for a in groups[key]
+                      if not a.get("indexed") and a["disp"] + (a["width"] or 1) > size]
+    assert types and fails == []
+
+
 def test_shift_only_class_gets_no_type():
     """Accesses alone (no codec or anchor link) never make members: no row at all."""
     res = build(*world(codec_rows=(), accesses=[Access(0x121, "ecx", 0, 0x18, 4, "load")]))
@@ -368,6 +443,19 @@ def test_local_lvar_lookup_fails_closed(tmp_path):
                                                              "lea_off": 32})
     assert at.plan_local(local(), {"ida_off": 28, "lea_off": None, "matches": [lvar()]}, 24)[1]["check"] == \
         "type-size"
+
+
+def test_verify_checks_the_retyped_local_spans_its_type(tmp_path):
+    """T013e: a retyped lvar narrower than its type (Hex-Rays split the rest off) is a verify mismatch."""
+    ida = LvarIda({(0x7d0d30, -72): lvar()})
+    d = wave2_dir(tmp_path / "m", [local()])
+    apply_run(ida, d)
+    recs = apply_run(ida, d, "verify", apply_log=str(d / "apply.jsonl"))
+    r = by_step(recs, "locals")["0x7d0d30@-72"]
+    assert (r["status"], r["check"], r["lvar_width"], r["type_size"]) == ("mismatch", "width", 16, 0x1c)
+    ida.lvars[(0x7d0d30, -72)]["width"] = 0x1c
+    recs = apply_run(ida, d, "verify", apply_log=str(d / "apply.jsonl"))
+    assert by_step(recs, "locals")["0x7d0d30@-72"]["status"] == "ok"
 
 
 def test_undo_restores_the_local(tmp_path):

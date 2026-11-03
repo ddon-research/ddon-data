@@ -229,71 +229,79 @@ struct CDataWorldInfo // PC size 0x35
 };
 
 // nUserSession::CPacket_S2C_AREA_CHANGE_RES: Partial: 1 members linked by codec position (PS4 02020005 names); gaps are unknown Season 3 fields. size: lower bound
-struct nUserSession::CPacket_S2C_AREA_CHANGE_RES // PC size 0x34
+struct nUserSession::CPacket_S2C_AREA_CHANGE_RES // PC size 0x5d
 {
   unsigned __int8 gap0[32];
   MtTypedArray<CDataCommonU32> m_StageFeatureList; // +0x20 20 PS4 m_StageFeatureList
+  unsigned __int8 gap34[41];
 };
 
 // nUserSession::CPacket_S2C_AREA_RANK_UP_RES: Partial: 4 members linked by codec position (PS4 02020005 names); gaps are unknown Season 3 fields. size: lower bound
-struct nUserSession::CPacket_S2C_AREA_RANK_UP_RES // PC size 0x28
+struct nUserSession::CPacket_S2C_AREA_RANK_UP_RES // PC size 0x51
 {
   unsigned __int8 gap0[24];
   unsigned int m_unAreaId; // +0x18 4 PS4 m_unAreaId
   unsigned int m_unAreaRank; // +0x1c 4 PS4 m_unAreaRank
   unsigned int m_unAreaPoint; // +0x20 4 PS4 m_unAreaPoint
   unsigned int m_unNextAreaPoint; // +0x24 4 PS4 m_unNextAreaPoint
+  unsigned __int8 gap28[41];
 };
 
 // nUserSession::CPacket_S2C_CHANGE_CAP_TO_GP_RES: Partial: 3 members linked by codec position (PS4 02020005 names); gaps are unknown Season 3 fields. size: lower bound
-struct nUserSession::CPacket_S2C_CHANGE_CAP_TO_GP_RES // PC size 0x24
+struct nUserSession::CPacket_S2C_CHANGE_CAP_TO_GP_RES // PC size 0x25
 {
   unsigned __int8 gap0[24];
   unsigned int m_unChangeListID; // +0x18 4 PS4 m_unChangeListID
   unsigned int m_unGP; // +0x1c 4 PS4 m_unGP
   unsigned int m_unCAP; // +0x20 4 PS4 m_unCAP
+  unsigned __int8 gap24[1];
 };
 
 // nUserSession::CPacket_S2C_CHANGE_JOB_RES: Partial: 1 members linked by codec position (PS4 02020005 names); gaps are unknown Season 3 fields. size: lower bound
-struct nUserSession::CPacket_S2C_CHANGE_JOB_RES // PC size 0xc4
+struct nUserSession::CPacket_S2C_CHANGE_JOB_RES // PC size 0xed
 {
   unsigned __int8 gap0[176];
   MtTypedArray<CDataEquipJobItem> m_EquipJobItemList; // +0xb0 20 PS4 m_EquipJobItemList
+  unsigned __int8 gapC4[41];
 };
 
 // nUserSession::CPacket_S2C_CHANGE_PAWN_JOB_RES: Partial: 1 members linked by codec position (PS4 02020005 names); gaps are unknown Season 3 fields. size: lower bound
-struct nUserSession::CPacket_S2C_CHANGE_PAWN_JOB_RES // PC size 0xc8
+struct nUserSession::CPacket_S2C_CHANGE_PAWN_JOB_RES // PC size 0x13d
 {
   unsigned __int8 gap0[180];
   MtTypedArray<CDataEquipJobItem> m_EquipJobItemList; // +0xb4 20 PS4 m_EquipJobItemList
+  unsigned __int8 gapC8[117];
 };
 
 // nUserSession::CPacket_S2C_CLAN_SHOP_GET_BUFF_ITEM_LIST_RES: Partial: 1 members linked by codec position (PS4 02020005 names); gaps are unknown Season 3 fields. size: lower bound
-struct nUserSession::CPacket_S2C_CLAN_SHOP_GET_BUFF_ITEM_LIST_RES // PC size 0x30
+struct nUserSession::CPacket_S2C_CLAN_SHOP_GET_BUFF_ITEM_LIST_RES // PC size 0x61
 {
   unsigned __int8 gap0[44];
   unsigned int m_unClanPoint; // +0x2c 4 PS4 m_unClanPoint
+  unsigned __int8 gap30[49];
 };
 
 // nUserSession::CPacket_S2C_CLAN_SHOP_GET_FUNCTION_ITEM_LIST_RES: Partial: 1 members linked by codec position (PS4 02020005 names); gaps are unknown Season 3 fields. size: lower bound
-struct nUserSession::CPacket_S2C_CLAN_SHOP_GET_FUNCTION_ITEM_LIST_RES // PC size 0x30
+struct nUserSession::CPacket_S2C_CLAN_SHOP_GET_FUNCTION_ITEM_LIST_RES // PC size 0x61
 {
   unsigned __int8 gap0[44];
   unsigned int m_unClanPoint; // +0x2c 4 PS4 m_unClanPoint
+  unsigned __int8 gap30[49];
 };
 
 // nUserSession::CPacket_S2C_GAME_TIME_GET_BASEINFO_RES: Partial: 4 members linked by codec position (PS4 02020005 names); gaps are unknown Season 3 fields. size: lower bound
-struct nUserSession::CPacket_S2C_GAME_TIME_GET_BASEINFO_RES // PC size 0x90
+struct nUserSession::CPacket_S2C_GAME_TIME_GET_BASEINFO_RES // PC size 0x91
 {
   unsigned __int8 gap0[80];
   MtTypedArray<CDataWeatherLoop> m_WeatherLoop; // +0x50 20 PS4 m_WeatherLoop
   MtTypedArray<CDataWeatherSchedule> m_WeatherSchedule; // +0x64 20 PS4 m_WeatherSchedule
   unsigned int m_unMoonAgeLoopSec; // +0x78 4 PS4 m_unMoonAgeLoopSec
   MtTypedArray<CDataMoonSchedule> m_MoonSchedule; // +0x7c 20 PS4 m_MoonSchedule
+  unsigned __int8 gap90[1];
 };
 
 // nUserSession::CPacket_S2C_GET_AREA_MASTER_INFO_RES: Partial: 11 members linked by codec position (PS4 02020005 names); gaps are unknown Season 3 fields. size: lower bound
-struct nUserSession::CPacket_S2C_GET_AREA_MASTER_INFO_RES // PC size 0x70
+struct nUserSession::CPacket_S2C_GET_AREA_MASTER_INFO_RES // PC size 0x71
 {
   unsigned __int8 gap0[24];
   unsigned int m_unAreaId; // +0x18 4 PS4 m_unAreaId
@@ -308,56 +316,63 @@ struct nUserSession::CPacket_S2C_GET_AREA_MASTER_INFO_RES // PC size 0x70
   unsigned __int8 gap46[2];
   MtTypedArray<CDataBorderSupplyItem> m_SupplyItemInfoList; // +0x48 20 PS4 m_SupplyItemInfoList
   MtTypedArray<CDataAreaRankUpQuestInfo> m_AreaRankUpQuestInfoList; // +0x5c 20 PS4 m_AreaRankUpQuestInfoList
+  unsigned __int8 gap70[1];
 };
 
 // nUserSession::CPacket_S2C_GET_CHARACTER_EQUIP_LIST_RES: Partial: 2 members linked by codec position (PS4 02020005 names); gaps are unknown Season 3 fields. size: lower bound
-struct nUserSession::CPacket_S2C_GET_CHARACTER_EQUIP_LIST_RES // PC size 0x54
+struct nUserSession::CPacket_S2C_GET_CHARACTER_EQUIP_LIST_RES // PC size 0x55
 {
   unsigned __int8 gap0[24];
   MtTypedArray<CDataS2CCharacterEquipInfo> m_CharacterEquipList; // +0x18 20 PS4 m_CharacterEquipList
   unsigned __int8 gap2C[20];
   MtTypedArray<CDataS2CPawnEquipInfo> m_PawnEquipItemList; // +0x40 20 PS4 m_PawnEquipItemList
+  unsigned __int8 gap54[1];
 };
 
 // nUserSession::CPacket_S2C_GET_CRAFT_GRADEUP_RECIPE_RES: Partial: 1 members linked by codec position (PS4 02020005 names); gaps are unknown Season 3 fields. size: lower bound
-struct nUserSession::CPacket_S2C_GET_CRAFT_GRADEUP_RECIPE_RES // PC size 0x44
+struct nUserSession::CPacket_S2C_GET_CRAFT_GRADEUP_RECIPE_RES // PC size 0x46
 {
   unsigned __int8 gap0[48];
   MtTypedArray<CDataCommonU32> m_UnknownItemList; // +0x30 20 PS4 m_UnknownItemList
+  unsigned __int8 gap44[2];
 };
 
 // nUserSession::CPacket_S2C_GET_CRAFT_PROGRESS_LIST_RES: Partial: 1 members linked by codec position (PS4 02020005 names); gaps are unknown Season 3 fields. size: lower bound
-struct nUserSession::CPacket_S2C_GET_CRAFT_PROGRESS_LIST_RES // PC size 0x54
+struct nUserSession::CPacket_S2C_GET_CRAFT_PROGRESS_LIST_RES // PC size 0x55
 {
   unsigned __int8 gap0[64];
   MtTypedArray<CDataCommonU32> m_CreatedReicpeList; // +0x40 20 PS4 m_CreatedReicpeList
+  unsigned __int8 gap54[1];
 };
 
 // nUserSession::CPacket_S2C_GET_CRAFT_RECIPE_DESIGNATE_RES: Partial: 1 members linked by codec position (PS4 02020005 names); gaps are unknown Season 3 fields. size: lower bound
-struct nUserSession::CPacket_S2C_GET_CRAFT_RECIPE_DESIGNATE_RES // PC size 0x44
+struct nUserSession::CPacket_S2C_GET_CRAFT_RECIPE_DESIGNATE_RES // PC size 0x45
 {
   unsigned __int8 gap0[48];
   MtTypedArray<CDataCommonU32> m_ItemList; // +0x30 20 PS4 m_ItemList
+  unsigned __int8 gap44[1];
 };
 
 // nUserSession::CPacket_S2C_GET_CURRENT_SET_SKILL_LIST_RES: Partial: 1 members linked by codec position (PS4 02020005 names); gaps are unknown Season 3 fields. size: lower bound
-struct nUserSession::CPacket_S2C_GET_CURRENT_SET_SKILL_LIST_RES // PC size 0x2c
+struct nUserSession::CPacket_S2C_GET_CURRENT_SET_SKILL_LIST_RES // PC size 0x55
 {
   unsigned __int8 gap0[24];
   MtTypedArray<CDataNormalSkillParam> m_NormalSkillList; // +0x18 20 PS4 m_NormalSkillList
+  unsigned __int8 gap2C[41];
 };
 
 // nUserSession::CPacket_S2C_GET_CYCLE_CONTENTS_REWARD_RES: Partial: 3 members linked by codec position (PS4 02020005 names); gaps are unknown Season 3 fields. size: lower bound
-struct nUserSession::CPacket_S2C_GET_CYCLE_CONTENTS_REWARD_RES // PC size 0x31
+struct nUserSession::CPacket_S2C_GET_CYCLE_CONTENTS_REWARD_RES // PC size 0x32
 {
   unsigned __int8 gap0[24];
   unsigned int m_unCycleContentsScheduleId; // +0x18 4 PS4 m_unCycleContentsScheduleId
   MtTypedArray<CDataCycleContentsReward> m_CycleContentsRewardList; // +0x1c 20 PS4 m_CycleContentsRewardList
   bool m_bIsAddRewardBox; // +0x30 1 PS4 m_bIsAddRewardBox
+  unsigned __int8 gap31[1];
 };
 
 // nUserSession::CPacket_S2C_GET_GP_RES: Partial: 4 members linked by codec position (PS4 02020005 names); gaps are unknown Season 3 fields. size: lower bound
-struct nUserSession::CPacket_S2C_GET_GP_RES // PC size 0x32
+struct nUserSession::CPacket_S2C_GET_GP_RES // PC size 0x33
 {
   unsigned __int8 gap0[24];
   unsigned int m_unGP; // +0x18 4 PS4 m_unGP
@@ -365,74 +380,82 @@ struct nUserSession::CPacket_S2C_GET_GP_RES // PC size 0x32
   __int64 m_llUseLimit; // +0x20 8 PS4 m_llUseLimit
   unsigned __int64 m_ullRealTime; // +0x28 8 PS4 m_ullRealTime
   unsigned __int16 m_usMilliseconds; // +0x30 2 PS4 m_usMilliseconds
+  unsigned __int8 gap32[1];
 };
 
 // nUserSession::CPacket_S2C_GET_MATCHING_PROFILE_RES: Partial: 2 members linked by codec position (PS4 02020005 names); gaps are unknown Season 3 fields. size: lower bound
-struct nUserSession::CPacket_S2C_GET_MATCHING_PROFILE_RES // PC size 0x48
+struct nUserSession::CPacket_S2C_GET_MATCHING_PROFILE_RES // PC size 0x49
 {
   unsigned __int8 gap0[64];
   unsigned __int8 m_ucJob; // +0x40 1 PS4 m_ucJob
   unsigned __int8 gap41[3];
   unsigned int m_unLevel; // +0x44 4 PS4 m_unLevel
+  unsigned __int8 gap48[1];
 };
 
 // nUserSession::CPacket_S2C_GET_PAWN_EQUIP_LIST_RES: Partial: 3 members linked by codec position (PS4 02020005 names); gaps are unknown Season 3 fields. size: lower bound
-struct nUserSession::CPacket_S2C_GET_PAWN_EQUIP_LIST_RES // PC size 0x44
+struct nUserSession::CPacket_S2C_GET_PAWN_EQUIP_LIST_RES // PC size 0x45
 {
   unsigned __int8 gap0[24];
   unsigned int m_unPawnID; // +0x18 4 PS4 m_unPawnID
   MtTypedArray<CDataS2CCharacterEquipInfo> m_CharacterEquipList; // +0x1c 20 PS4 m_CharacterEquipList
   MtTypedArray<CDataEquipJobItem> m_EquipJobItemList; // +0x30 20 PS4 m_EquipJobItemList
+  unsigned __int8 gap44[1];
 };
 
 // nUserSession::CPacket_S2C_GET_PAWN_TOTAL_SCORE_RES: Partial: 1 members linked by codec position (PS4 02020005 names); gaps are unknown Season 3 fields. size: lower bound
-struct nUserSession::CPacket_S2C_GET_PAWN_TOTAL_SCORE_RES // PC size 0x1c
+struct nUserSession::CPacket_S2C_GET_PAWN_TOTAL_SCORE_RES // PC size 0x41
 {
   unsigned __int8 gap0[24];
   unsigned int m_unPawnID; // +0x18 4 PS4 m_unPawnID
+  unsigned __int8 gap1C[37];
 };
 
 // nUserSession::CPacket_S2C_GP_SHOP_DISPLAY_BUY_RES: Partial: 3 members linked by codec position (PS4 02020005 names); gaps are unknown Season 3 fields. size: lower bound
-struct nUserSession::CPacket_S2C_GP_SHOP_DISPLAY_BUY_RES // PC size 0x34
+struct nUserSession::CPacket_S2C_GP_SHOP_DISPLAY_BUY_RES // PC size 0x39
 {
   unsigned __int8 gap0[24];
   unsigned int m_unLineupId; // +0x18 4 PS4 m_unLineupId
   MtTypedArray<CDataCommonU32> m_CommonIdList; // +0x1c 20 PS4 m_CommonIdList
   unsigned int m_unBalance; // +0x30 4 PS4 m_unBalance
+  unsigned __int8 gap34[5];
 };
 
 // nUserSession::CPacket_S2C_JOB_VALUE_SHOP_GET_LINEUP_RES: Partial: 3 members linked by codec position (PS4 02020005 names); gaps are unknown Season 3 fields. size: lower bound
-struct nUserSession::CPacket_S2C_JOB_VALUE_SHOP_GET_LINEUP_RES // PC size 0x30
+struct nUserSession::CPacket_S2C_JOB_VALUE_SHOP_GET_LINEUP_RES // PC size 0x31
 {
   unsigned __int8 gap0[24];
   unsigned __int8 m_ucJobId; // +0x18 1 PS4 m_ucJobId
   unsigned __int8 m_ucJobValueType; // +0x19 1 PS4 m_ucJobValueType
   unsigned __int8 gap1A[2];
   MtTypedArray<CDataJobValueShopItem> m_JobValueShopItemList; // +0x1c 20 PS4 m_JobValueShopItemList
+  unsigned __int8 gap30[1];
 };
 
 // nUserSession::CPacket_S2C_LEADER_QUEST_PROGRESS_REQUEST_RES: Partial: 3 members linked by codec position (PS4 02020005 names); gaps are unknown Season 3 fields. size: lower bound
-struct nUserSession::CPacket_S2C_LEADER_QUEST_PROGRESS_REQUEST_RES // PC size 0x22
+struct nUserSession::CPacket_S2C_LEADER_QUEST_PROGRESS_REQUEST_RES // PC size 0x23
 {
   unsigned __int8 gap0[24];
   unsigned __int8 m_ucQuestProgressResult; // +0x18 1 PS4 m_ucQuestProgressResult
   unsigned __int8 gap19[3];
   unsigned int m_unQuestScheduleId; // +0x1c 4 PS4 m_unQuestScheduleId
   unsigned __int16 m_usProcessNo; // +0x20 2 PS4 m_usProcessNo
+  unsigned __int8 gap22[1];
 };
 
 // nUserSession::CPacket_S2C_LEARN_NORMAL_SKILL_RES: Partial: 3 members linked by codec position (PS4 02020005 names); gaps are unknown Season 3 fields. size: lower bound
-struct nUserSession::CPacket_S2C_LEARN_NORMAL_SKILL_RES // PC size 0x24
+struct nUserSession::CPacket_S2C_LEARN_NORMAL_SKILL_RES // PC size 0x25
 {
   unsigned __int8 gap0[24];
   unsigned __int8 m_ucJob; // +0x18 1 PS4 m_ucJob
   unsigned __int8 gap19[3];
   unsigned int m_unSkillID; // +0x1c 4 PS4 m_unSkillID
   unsigned int m_unNewJobPoint; // +0x20 4 PS4 m_unNewJobPoint
+  unsigned __int8 gap24[1];
 };
 
 // nUserSession::CPacket_S2C_LEARN_PAWN_NORMAL_SKILL_RES: Partial: 4 members linked by codec position (PS4 02020005 names); gaps are unknown Season 3 fields. size: lower bound
-struct nUserSession::CPacket_S2C_LEARN_PAWN_NORMAL_SKILL_RES // PC size 0x28
+struct nUserSession::CPacket_S2C_LEARN_PAWN_NORMAL_SKILL_RES // PC size 0x29
 {
   unsigned __int8 gap0[24];
   unsigned int m_unPawnID; // +0x18 4 PS4 m_unPawnID
@@ -440,93 +463,103 @@ struct nUserSession::CPacket_S2C_LEARN_PAWN_NORMAL_SKILL_RES // PC size 0x28
   unsigned __int8 gap1D[3];
   unsigned int m_unSkillID; // +0x20 4 PS4 m_unSkillID
   unsigned int m_unNewJobPoint; // +0x24 4 PS4 m_unNewJobPoint
+  unsigned __int8 gap28[1];
 };
 
 // nUserSession::CPacket_S2C_NG_WORD_GET_LIST_RES: Partial: 3 members linked by codec position (PS4 02020005 names); gaps are unknown Season 3 fields. size: lower bound
-struct nUserSession::CPacket_S2C_NG_WORD_GET_LIST_RES // PC size 0x48
+struct nUserSession::CPacket_S2C_NG_WORD_GET_LIST_RES // PC size 0x49
 {
   unsigned __int8 gap0[24];
   unsigned __int64 m_ullVersionNo; // +0x18 8 PS4 m_ullVersionNo
   MtTypedArray<CDataNGWordInfo> m_NGWordInfoList; // +0x20 20 PS4 m_NGWordInfoList
   MtTypedArray<CDataSameLetterInfo> m_SameLetterInfoList; // +0x34 20 PS4 m_SameLetterInfoList
+  unsigned __int8 gap48[1];
 };
 
 // nUserSession::CPacket_S2C_PARTY_INVITE_RES: Partial: 3 members linked by codec position (PS4 02020005 names); gaps are unknown Season 3 fields. size: lower bound
-struct nUserSession::CPacket_S2C_PARTY_INVITE_RES // PC size 0x20
+struct nUserSession::CPacket_S2C_PARTY_INVITE_RES // PC size 0x21
 {
   unsigned __int8 gap0[24];
   unsigned __int16 m_usTimeoutSec; // +0x18 2 PS4 m_usTimeoutSec
   unsigned __int16 m_usServerId; // +0x1a 2 PS4 m_usServerId
   unsigned int m_unPartyId; // +0x1c 4 PS4 m_unPartyId
+  unsigned __int8 gap20[1];
 };
 
 // nUserSession::CPacket_S2C_PARTY_JOIN_RES: Partial: 3 members linked by codec position (PS4 02020005 names); gaps are unknown Season 3 fields. size: lower bound
-struct nUserSession::CPacket_S2C_PARTY_JOIN_RES // PC size 0x2c
+struct nUserSession::CPacket_S2C_PARTY_JOIN_RES // PC size 0x2d
 {
   unsigned __int8 gap0[24];
   unsigned __int8 m_ucMemberIndex; // +0x18 1 PS4 m_ucMemberIndex
   unsigned __int8 gap19[7];
   unsigned __int64 m_ullContentNumber; // +0x20 8 PS4 m_ullContentNumber
   unsigned int m_unPartyId; // +0x28 4 PS4 m_unPartyId
+  unsigned __int8 gap2C[1];
 };
 
 // nUserSession::CPacket_S2C_PAWN_EXPEDITION_GET_MY_SALLY_INFO_RES: Partial: 3 members linked by codec position (PS4 02020005 names); gaps are unknown Season 3 fields. size: lower bound
-struct nUserSession::CPacket_S2C_PAWN_EXPEDITION_GET_MY_SALLY_INFO_RES // PC size 0x27
+struct nUserSession::CPacket_S2C_PAWN_EXPEDITION_GET_MY_SALLY_INFO_RES // PC size 0x28
 {
   unsigned __int8 gap0[36];
   bool m_bIsHotSpot; // +0x24 1 PS4 m_bIsHotSpot
   unsigned __int8 m_ucSallyType; // +0x25 1 PS4 m_ucSallyType
   unsigned __int8 m_ucSallyCount; // +0x26 1 PS4 m_ucSallyCount
+  unsigned __int8 gap27[1];
 };
 
 // nUserSession::CPacket_S2C_PAWN_EXPEDITION_GET_REWARD_DROP_ITEM_RES: Partial: 3 members linked by codec position (PS4 02020005 names); gaps are unknown Season 3 fields. size: lower bound
-struct nUserSession::CPacket_S2C_PAWN_EXPEDITION_GET_REWARD_DROP_ITEM_RES // PC size 0x31
+struct nUserSession::CPacket_S2C_PAWN_EXPEDITION_GET_REWARD_DROP_ITEM_RES // PC size 0x32
 {
   unsigned __int8 gap0[24];
   unsigned int m_unPawnRewardBoxId; // +0x18 4 PS4 m_unPawnRewardBoxId
   MtTypedArray<CDataGatheringItemGetRequest> m_GatheringItemListAfterRequest; // +0x1c 20 PS4 m_GatheringItemListAfterRequest
   unsigned __int8 m_ucPawnExpeditionStatus; // +0x30 1 PS4 m_ucPawnExpeditionStatus
+  unsigned __int8 gap31[1];
 };
 
 // nUserSession::CPacket_S2C_PAWN_EXPEDITION_GET_REWARD_DROP_RES: Partial: 3 members linked by codec position (PS4 02020005 names); gaps are unknown Season 3 fields. size: lower bound
-struct nUserSession::CPacket_S2C_PAWN_EXPEDITION_GET_REWARD_DROP_RES // PC size 0x44
+struct nUserSession::CPacket_S2C_PAWN_EXPEDITION_GET_REWARD_DROP_RES // PC size 0x45
 {
   unsigned __int8 gap0[24];
   unsigned int m_unRewardDropNum; // +0x18 4 PS4 m_unRewardDropNum
   MtTypedArray<CDataCommonU32> m_BoxIdVec; // +0x1c 20 PS4 m_BoxIdVec
   MtTypedArray<CDataCommonU8> m_MdlTypeVec; // +0x30 20 PS4 m_MdlTypeVec
+  unsigned __int8 gap44[1];
 };
 
 // nUserSession::CPacket_S2C_PAWN_EXPEDITION_GET_SALLY_INFO_RES: Partial: 2 members linked by codec position (PS4 02020005 names); gaps are unknown Season 3 fields. size: lower bound
-struct nUserSession::CPacket_S2C_PAWN_EXPEDITION_GET_SALLY_INFO_RES // PC size 0x6c
+struct nUserSession::CPacket_S2C_PAWN_EXPEDITION_GET_SALLY_INFO_RES // PC size 0x6d
 {
   unsigned __int8 gap0[24];
   unsigned __int8 m_ucSallyCount; // +0x18 1 PS4 m_ucSallyCount
   unsigned __int8 gap19[63];
   MtTypedArray<CDataPawnExpeditionClanSallySpotInfo> m_ClanSallySpotInfoList; // +0x58 20 PS4 m_ClanSallySpotInfoList
+  unsigned __int8 gap6C[1];
 };
 
 // nUserSession::CPacket_S2C_PAWN_LOST_RES: Partial: 2 members linked by codec position (PS4 02020005 names); gaps are unknown Season 3 fields. size: lower bound
-struct nUserSession::CPacket_S2C_PAWN_LOST_RES // PC size 0x21
+struct nUserSession::CPacket_S2C_PAWN_LOST_RES // PC size 0x22
 {
   unsigned __int8 gap0[24];
   unsigned int m_unPawnID; // +0x18 4 PS4 m_unPawnID
   unsigned __int8 gap1C[4];
   bool m_bIsLost; // +0x20 1 PS4 m_bIsLost
+  unsigned __int8 gap21[1];
 };
 
 // nUserSession::CPacket_S2C_QUEST_PROGRESS_RES: Partial: 3 members linked by codec position (PS4 02020005 names); gaps are unknown Season 3 fields. size: lower bound
-struct nUserSession::CPacket_S2C_QUEST_PROGRESS_RES // PC size 0x34
+struct nUserSession::CPacket_S2C_QUEST_PROGRESS_RES // PC size 0x35
 {
   unsigned __int8 gap0[24];
   unsigned __int8 m_ucQuestProgressResult; // +0x18 1 PS4 m_ucQuestProgressResult
   unsigned __int8 gap19[3];
   unsigned int m_unQuestScheduleId; // +0x1c 4 PS4 m_unQuestScheduleId
   MtTypedArray<CDataQuestProcessState> m_QuestProcessStateList; // +0x20 20 PS4 m_QuestProcessStateList
+  unsigned __int8 gap34[1];
 };
 
 // nUserSession::CPacket_S2C_RELEASE_PAWN_ORB_ELEMENT_RES: Partial: 4 members linked by codec position (PS4 02020005 names); gaps are unknown Season 3 fields. size: lower bound
-struct nUserSession::CPacket_S2C_RELEASE_PAWN_ORB_ELEMENT_RES // PC size 0x28
+struct nUserSession::CPacket_S2C_RELEASE_PAWN_ORB_ELEMENT_RES // PC size 0x29
 {
   unsigned __int8 gap0[24];
   unsigned int m_unPawnID; // +0x18 4 PS4 m_unPawnID
@@ -534,38 +567,42 @@ struct nUserSession::CPacket_S2C_RELEASE_PAWN_ORB_ELEMENT_RES // PC size 0x28
   unsigned __int8 m_ucGainParamType; // +0x20 1 PS4 m_ucGainParamType
   unsigned __int8 gap21[3];
   unsigned int m_unGainParamValue; // +0x24 4 PS4 m_unGainParamValue
+  unsigned __int8 gap28[1];
 };
 
 // nUserSession::CPacket_S2C_RENTAL_PAWN_LOST_RES: Partial: 2 members linked by codec position (PS4 02020005 names); gaps are unknown Season 3 fields. size: lower bound
-struct nUserSession::CPacket_S2C_RENTAL_PAWN_LOST_RES // PC size 0x21
+struct nUserSession::CPacket_S2C_RENTAL_PAWN_LOST_RES // PC size 0x22
 {
   unsigned __int8 gap0[24];
   unsigned int m_unPawnID; // +0x18 4 PS4 m_unPawnID
   unsigned __int8 gap1C[4];
   unsigned __int8 m_ucAdventureCount; // +0x20 1 PS4 m_ucAdventureCount
+  unsigned __int8 gap21[1];
 };
 
 // nUserSession::CPacket_S2C_REPORT_JOB_ORDER_PROGRESS_RES: Partial: 3 members linked by codec position (PS4 02020005 names); gaps are unknown Season 3 fields. size: lower bound
-struct nUserSession::CPacket_S2C_REPORT_JOB_ORDER_PROGRESS_RES // PC size 0x44
+struct nUserSession::CPacket_S2C_REPORT_JOB_ORDER_PROGRESS_RES // PC size 0x45
 {
   unsigned __int8 gap0[24];
   unsigned __int8 m_ucJobID; // +0x18 1 PS4 m_ucJobID
   unsigned __int8 gap19[3];
   MtTypedArray<CDataReleaseElement> m_ReleaseElementList; // +0x1c 20 PS4 m_ReleaseElementList
   MtTypedArray<CDataCommonU32> m_NewOrderIdList; // +0x30 20 PS4 m_NewOrderIdList
+  unsigned __int8 gap44[1];
 };
 
 // nUserSession::CPacket_S2C_RESET_CRAFTPOINT_RES: Partial: 3 members linked by codec position (PS4 02020005 names); gaps are unknown Season 3 fields. size: lower bound
-struct nUserSession::CPacket_S2C_RESET_CRAFTPOINT_RES // PC size 0x34
+struct nUserSession::CPacket_S2C_RESET_CRAFTPOINT_RES // PC size 0x35
 {
   unsigned __int8 gap0[24];
   unsigned int m_unPawnID; // +0x18 4 PS4 m_unPawnID
   MtTypedArray<CDataPawnCraftSkill> m_CraftSkillList; // +0x1c 20 PS4 m_CraftSkillList
   unsigned int m_unCraftPoint; // +0x30 4 PS4 m_unCraftPoint
+  unsigned __int8 gap34[1];
 };
 
 // nUserSession::CPacket_S2C_SET_PAWN_ABILITY_RES: Partial: 4 members linked by codec position (PS4 02020005 names); gaps are unknown Season 3 fields. size: lower bound
-struct nUserSession::CPacket_S2C_SET_PAWN_ABILITY_RES // PC size 0x25
+struct nUserSession::CPacket_S2C_SET_PAWN_ABILITY_RES // PC size 0x26
 {
   unsigned __int8 gap0[24];
   unsigned int m_unPawnID; // +0x18 4 PS4 m_unPawnID
@@ -573,10 +610,11 @@ struct nUserSession::CPacket_S2C_SET_PAWN_ABILITY_RES // PC size 0x25
   unsigned __int8 gap1D[3];
   unsigned int m_unAbilityID; // +0x20 4 PS4 m_unAbilityID
   unsigned __int8 m_ucAbilityLv; // +0x24 1 PS4 m_ucAbilityLv
+  unsigned __int8 gap25[1];
 };
 
 // nUserSession::CPacket_S2C_SET_PAWN_SKILL_RES: Partial: 5 members linked by codec position (PS4 02020005 names); gaps are unknown Season 3 fields. size: lower bound
-struct nUserSession::CPacket_S2C_SET_PAWN_SKILL_RES // PC size 0x25
+struct nUserSession::CPacket_S2C_SET_PAWN_SKILL_RES // PC size 0x26
 {
   unsigned __int8 gap0[24];
   unsigned int m_unPawnID; // +0x18 4 PS4 m_unPawnID
@@ -585,28 +623,32 @@ struct nUserSession::CPacket_S2C_SET_PAWN_SKILL_RES // PC size 0x25
   unsigned __int8 gap1E[2];
   unsigned int m_unSkillID; // +0x20 4 PS4 m_unSkillID
   unsigned __int8 m_ucSkillLv; // +0x24 1 PS4 m_ucSkillLv
+  unsigned __int8 gap25[1];
 };
 
 // nUserSession::CPacket_S2C_START_EQUIP_GRADE_UP_RES: Partial: 1 members linked by codec position (PS4 02020005 names); gaps are unknown Season 3 fields. size: lower bound
-struct nUserSession::CPacket_S2C_START_EQUIP_GRADE_UP_RES // PC size 0x34
+struct nUserSession::CPacket_S2C_START_EQUIP_GRADE_UP_RES // PC size 0x85
 {
   unsigned __int8 gap0[32];
   MtTypedArray<CDataCommonU32> m_GradeUpItemIDList; // +0x20 20 PS4 m_GradeUpItemIDList
+  unsigned __int8 gap34[81];
 };
 
 // nUserSession::CPacket_S2C_SYSTEM_MAIL_GET_ALL_ITEM_RES: Partial: 1 members linked by codec position (PS4 02020005 names); gaps are unknown Season 3 fields. size: lower bound
-struct nUserSession::CPacket_S2C_SYSTEM_MAIL_GET_ALL_ITEM_RES // PC size 0x20
+struct nUserSession::CPacket_S2C_SYSTEM_MAIL_GET_ALL_ITEM_RES // PC size 0x75
 {
   unsigned __int8 gap0[24];
   unsigned __int64 m_ullId; // +0x18 8 PS4 m_ullId
+  unsigned __int8 gap20[85];
 };
 
 // nUserSession::CPacket_S2C_WEATHER_FORECAST_GET_RES: Partial: 2 members linked by codec position (PS4 02020005 names); gaps are unknown Season 3 fields. size: lower bound
-struct nUserSession::CPacket_S2C_WEATHER_FORECAST_GET_RES // PC size 0x20
+struct nUserSession::CPacket_S2C_WEATHER_FORECAST_GET_RES // PC size 0x35
 {
   unsigned __int8 gap0[24];
   unsigned int m_unIntervalGameHour; // +0x18 4 PS4 m_unIntervalGameHour
   unsigned int m_unGameDayToEarthMin; // +0x1c 4 PS4 m_unGameDayToEarthMin
+  unsigned __int8 gap20[21];
 };
 
 #pragma pack(pop)

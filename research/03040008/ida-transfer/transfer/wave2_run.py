@@ -223,15 +223,18 @@ def write_all(out: Path, res: W2Result, inp: wave2.Wave2Inputs, wave1_h: str, he
     for cls, p in sorted(res.partial.items()):
         status = {"accepted": "partial", "refused": "refused", "wave-1": "wave-1"}[p.status]
         trows.append([cls, "struct", status, f"{p.size:#x}" if p.status != "wave-1" else "-",
-                      "proved" if p.size_proved else "lower bound", len(p.members),
+                      "proved" if p.size_proved else "lower bound",
+                      f"{p.size_extended_from:#x}" if p.size_extended_from is not None else "-",
+                      p.size_evidence or "-", len(p.members),
                       sum(1 for lk in res.links if lk.cls == cls), p.width_checked, p.gap_accesses,
                       p.indexed_unplaced, len(p.functions),
                       " ".join(f"{x:#x}" for x in sorted(p.evidence)[:10]) or "-",
                       " ".join(str(s) for s in res.lost.get(f"type {cls}", [])) or "-",
                       p.reason, p.comment if p.status == "accepted" else "-"])
     counts["types.tsv"] = _write(out / "types.tsv", head, ["type", "kind", "status", "pc_size", "size_kind",
-                                                           "members", "links", "width_checked", "gap_accesses",
-                                                           "indexed_unplaced", "functions", "evidence_vas",
+                                                           "last_member_end", "size_evidence", "members", "links",
+                                                           "width_checked", "gap_accesses", "indexed_unplaced",
+                                                           "functions", "evidence_vas",
                                                            "holdout_lost_in_rng", "basis", "comment"], trows)
     counts["type_members.tsv"] = _write(out / "type_members.tsv", head, ["type", "offset", "size", "ps4_member",
                                                                          "decl", "dwarf_type", "links"], mrows)
@@ -269,6 +272,9 @@ def summary(res: W2Result) -> dict[str, int]:
         out[f"types {k}"] = v
     out["types partial with proved size"] = sum(1 for p in res.partial.values()
                                                 if p.status == "accepted" and p.size_proved)
+    out["types partial with size extended by an access"] = sum(1 for p in res.partial.values()
+                                                               if p.status == "accepted"
+                                                               and p.size_extended_from is not None)
     for k, v in sorted(Counter((r.rule, r.status) for r in res.locals).items()):
         out[f"locals {k[0]} {k[1]}"] = v
     for k, v in sorted(Counter((r.rule, r.why.split(" (")[0].split(":")[0]) for r in res.locals

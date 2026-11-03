@@ -960,7 +960,12 @@ def run_verify(ida, manifest: dict, apply_records: list[dict], log: Log) -> dict
         g = ida.find_lvar(int(r["pc_va"], 16), int(r["pc_frame"]), _pc_def(r)).get("matches") or []
         ok = len(g) == 1 and g[0]["name"] == r["name"] and (
             r["retype"] == "-" or norm_type(g[0]["type"] or "") == norm_type(r["retype"]))
-        _result(log, "locals", local_key(r), "ok" if ok else "mismatch", **({} if ok else {"db": g}))
+        extra: dict = {}
+        if ok and r["retype"] != "-":  # T013e: the retyped lvar spans its whole type (Hex-Rays did not split it)
+            tsize = _type_size(ida, r["retype"])
+            if g[0].get("width") != tsize:
+                ok, extra = False, {"check": "width", "lvar_width": g[0].get("width"), "type_size": tsize}
+        _result(log, "locals", local_key(r), "ok" if ok else "mismatch", **({} if ok else {"db": g, **extra}))
     after = ida.counts()
     delta = expected_deltas(apply_records)
     before = head["counts_before"]
