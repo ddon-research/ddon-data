@@ -45,6 +45,12 @@ struct CDataCommonU32 {
     u32 m_unValue;
 };
 
+// CDataCommonU64: PS4 DWARF CDataCommonU64 {u64 m_ullvalue}; PC list writer 0x77dff0 (Write_u32 count,
+// Write_u64 per element, V; 008 T005, 34.0.1). The field follows the m_unValue spelling of CDataCommonU32.
+struct CDataCommonU64 {
+    u64 m_ullValue;
+};
+
 // CDataCommonU8: PC list reader 0x75e9b0 (P11a 2, V); PS4 DWARF CDataCommonU8 {u8 m_ucvalue}.
 struct CDataCommonU8 {
     u8 m_ucValue;

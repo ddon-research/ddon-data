@@ -12,7 +12,7 @@ carry now. Every pattern starts with `#pragma endian big` and includes what it n
 
 | Include | Holds | Patterns |
 | --- | --- | --- |
-| `Packet.hexpat` | the raw framing `CPacket` (u8 group, u16 id, u8 sub, u8 source, u32 counter; body at 0x09), `MtTypedArray<T>` (u32 count + entries), `MtString` (u16 length + bytes), `CDataCommonU32`/`CDataCommonU8`, the fit-flag rules and the RES convention | every pattern without nNetMsg, except the four header-less ones (1.0.1, 1.1.16, 44.0.1, 44.1.16), which read the body at offset 0 without `CPacket` |
+| `Packet.hexpat` | the raw framing `CPacket` (u8 group, u16 id, u8 sub, u8 source, u32 counter; body at 0x09), `MtTypedArray<T>` (u32 count + entries), `MtString` (u16 length + bytes), `CDataCommonU32`/`CDataCommonU8` (and since 008 T005 `CDataCommonU64`, PS4 DWARF name), the fit-flag rules and the RES convention | every pattern without nNetMsg, except the four header-less ones (1.0.1, 1.1.16, 44.0.1, 44.1.16), which read the body at offset 0 without `CPacket` |
 | `nNetMsg.hexpat` | the nNetMsg (cNetMsg RPC) payload of the lobby and party binary packets: ids, DTI enum, message structures (P1, P2, P3) | 3.3.16, 3.4.16, 6.23-6.26.16 |
 | `Context.hexpat` | group 35 CONTEXT structures (P4) | 11 group-35 patterns |
 | `Quest.hexpat` | group 11 QUEST CData and the enums ORDER_CONDITION_TYPE, CYCLE_CONTENTS_CATEGORY, CYCLE_CONTENTS_SUB_CATEGORY, COMMAND_CHECK_LIST (P11a); since T005b also the Season 3 `CDataQuestList` (PC `0x774530`, beside `CDataQuestOrderList`) and the list, detail, play start/end, priority, reward box and fort defense types of T005 §44 | 72 |
@@ -43,9 +43,10 @@ carry now. Every pattern starts with `#pragma endian big` and includes what it n
 | `Craft.hexpat` | group 30 CRAFT and 54 CRAFT_RECIPE CData (T013 §1, §16): `CDataCraftPawnInfo`, the Season 3 `CDataCraftProgress` (+ u32 list, + u16), `CDataCraftPawnList`, `CDataCraftTimeSaveCost`, `CDataCraftSkillRate`, the Season 3 craft-setting tail types `CDataCraftSettingUnkPawn` and `CDataCraftSettingUnkElement` (struct names I), the Season 3 `CDataMDataCraftMaterial` (+ bool) and `CDataMDataCraftRecipe`; includes Packet and Pawn (`CDataPawnCraftSkill`) | 30.0.2, 30.13.2, 30.15.2, 54.0.2 |
 | `EntryBoard.hexpat` | group 34 ENTRY_BOARD CData (T013 §1, §16), Season 3 shapes: `CDataEntryRecruitData` (+ u32), `CDataEntryItemParam`, `CDataEntryMemberData` (+ u32), `CDataEntryItem` (+ trailing bool), `CDataEntryBoardItemSearchParameter` (+ u32 x2); includes Packet and Character | 34.1.1, 34.1.2, 34.2.1, 34.2.2, 34.14.16 |
 | `Dispel.hexpat` | the Season 3 `CDataDispelCategoryInfo` {u32, MtString} (T013 §1, §10, §16); includes Packet only. 51.0.2 keeps its own dispel item types | 51.2.2 |
-| `SeasonDungeon.hexpat` | group 62 SEASON_DUNGEON (soul ordeal) CData (008 T004 §1, §3): `CDataSeasonDungeonOmState` (PC `0x766790`), `CDataSoulOrdealObjective` (`0x779090`), `CDataSoulOrdealRewardItem` (`0x769240`/`0x77f9d0`); includes Packet and Instance | 62.26.16, 62.15.16, 62.14.16, 62.16.16, 62.34.1, 62.34.2 |
+| `SeasonDungeon.hexpat` | group 62 SEASON_DUNGEON (soul ordeal) CData (008 T004 §1, §3): `CDataSeasonDungeonOmState` (PC `0x766790`), `CDataSoulOrdealObjective` (`0x779090`), `CDataSoulOrdealRewardItem` (`0x769240`/`0x77f9d0`); since 008 T005 the buff effect (`0x779540`) and its param (`0x778e70`), the buff level (`0x778fa0`), dungeon info (`0x777b00`), section (`0x777e80`, with `0x777c40`), blockade element (`0x777b50`) and `CDataSoulOrdealItem` (`0x777c80`); includes Packet and Instance | 62.26.16, 62.15.16, 62.14.16, 62.16.16, 62.34.1, 62.34.2; 62.38.16, 62.39.16, 62.1.2, 62.7.2, 62.9.2 (T005) |
 | `DailyMission.hexpat` | group 72 DAILY_MISSION CData (008 T004 §1, §3; no server structure, names I/G): `CDataDailyMission` (PC `0x762530`), `CDataDailyMissionReward` (`0x762640`) with its item and wallet elements, `CDataDailyMissionCourseReward`/`CDataDailyMissionUnkCourseList` (`0x7627f0`/`0x7626e0`); includes Packet and Mail | 72.0.2, 72.3.2 |
 | `InfinityDelivery.hexpat` | group 59 INFINITY_DELIVERY CData (008 T004 §1, §3; no server structure, names I/G): `CDataInfinityDeliveryEvent` (PC `0x769fe0`), `CDataInfinityDeliveryRanking` (`0x76a850`), `CDataInfinityDeliveryCategoryStatus` (`0x769de0`); includes Packet only | 59.0.2, 59.4.2, 59.9.2 |
+| `ChainDungeon.hexpat` | group 63 CData (008 T005 §1, §3): `CDataChainDungeonLayoutInfo` (PC `0x762c50`, a `CDataStageLayoutId` plus a u32), `CDataSituationObjective` (`0x762b40`); includes Packet and Instance | 63.6.16, 63.7.16, 63.2.16 |
 
 Each structure comment names the PC reader or writer VA (PC 03040008 database, image base 0x400000)
 and the PS4 02020005 DWARF type, and carries a mark: V means read in IDA, I means inferred. A field
@@ -227,6 +228,10 @@ comment). A pattern file may carry a better name than its raw files (the export 
 37 ids of groups 59 INFINITY_DELIVERY, 62 SEASON_DUNGEON, 71 BATTLE_CONTENT and 72 DAILY_MISSION; counts
 after their first export, 2026-11-03). Its comments read `// T004 <mark>: <basis>` with the T003 marks;
 the rows count the marks in each pattern file (the include structures carry their own).
+008 T005 is `specs/008-remaining-packets/research/T005-batches-B3-B7-B6.md` (spec 008 batches B3, B7 and B6: 45 ids
+of groups 2, 10, 12, 13, 27, 29, 34, 41, 50, 62, 63 and 65; counts after their first export, 2026-11-03). Its comments
+read `// T005 <mark>: <basis>` with the T003 marks; the rows count the marks in each pattern file. Two pattern files
+carry a better name than their raws (62.39.16, 63.2.16; the rows say so).
 
 | Id | Pattern | Report | Status |
 | --- | --- | --- | --- |
@@ -271,6 +276,7 @@ the rows count the marks in each pattern file (the include structures carry thei
 | 2.2.1 | `C2L_GET_LOGIN_SETTING_REQ` | T002 §6 | 41/41 fit |
 | 2.2.2 | `L2C_GET_LOGIN_SETTING_RES` | T002 §6 | 41/41 fit |
 | 2.3.16 | `L2C_NEXT_CONNECT_SERVER_NTC` | T002 §7 | 42/42 fit |
+| 2.5.16 | `S2C_CHARACTER_2_5_16_NTC` | 008 T005 | 2/2 fit (T005 marks: open 1) |
 | 2.6.16 | `S2C_CHARACTER_CONTENTS_RELEASE_ELEMENT_NTC` | T009 §4 | 41/41 fit (code name V by behaviour; the PS4 framing fails 41/41) |
 | 2.7.16 | `S2C_CHARACTER_COMMUNITY_CHARACTER_STATUS_UPDATE_NTC` | T009 §5 | 111/111 fit (Season 3 list element u8; the PS4 element fails 107/111) |
 | 2.12.1 | `C2S_CHARACTER_COMMUNITY_CHARACTER_STATUS_GET_REQ` | T009 §6 | 45/45 fit |
@@ -371,6 +377,7 @@ the rows count the marks in each pattern file (the include structures carry thei
 | 10.10.16 | `S2C_ITEM_EXTEND_ITEM_SLOT_NTC` | T008 §3.7 | 43/43 fit (code name EXTEND_ITEM_SLOT_NTC, V by behaviour and unique shape; the PS4 framing fits too) |
 | 10.12.16 | `S2C_ITEM_UPDATE_CHARACTER_ITEM_NTC` | T008 §3.8 | 390/390 fit (Season 3 `CDataItemList`; the PS4 element fails 245/390) |
 | 10.13.16 | `S2C_SWITCH_STORAGE_NTC` | T008 §3.9 | 2/2 fit (Season 3 u16 element field: code-only, the PS4 u8 fits too) |
+| 10.14.16 | `S2C_ITEM_ACHIEVEMENT_REWARD_RECEIVE_NTC` | 008 T005 | 1/1 fit (T005 marks: I 1, open 3) |
 | 11.0.1 | `C2S_QUEST_GET_LIGHT_QUEST_LIST_REQ` | T005 §2 | 1/1 fit |
 | 11.0.2 | `S2C_QUEST_GET_LIGHT_QUEST_LIST_RES` | T005 §2 | 1/1 fit |
 | 11.1.1 | `C2S_QUEST_GET_SET_QUEST_LIST_REQ` | T005 §3 | 179/179 fit |
@@ -461,6 +468,9 @@ the rows count the marks in each pattern file (the include structures carry thei
 | 12.0.2 | `S2C_STAGE_GET_STAGE_LIST_RES` | P11a §7 | 42/42 fit |
 | 12.1.1 | `C2S_STAGE_AREA_CHANGE_REQ` | T006 §3.2 | 150/150 fit, slack 15 |
 | 12.1.2 | `S2C_STAGE_AREA_CHANGE_RES` | T006 §3.2 | 150/150 fit |
+| 12.5.1 | `C2S_STAGE_UNISON_AREA_CHANGE_BEGIN_RECRUITMENT_REQ` | 008 T005 | 3/3 fit (list writer V (008 T002), EntryFeeList empty; cstr as MtString wire; T005 marks: I 3, G 1) |
+| 12.5.2 | `S2C_STAGE_UNISON_AREA_CHANGE_BEGIN_RECRUITMENT_RES` | 008 T005 | 3/3 fit (T005 marks: none (no fields)) |
+| 12.9.16 | `S2C_STAGE_DUNGEON_START_NTC` | 008 T005 | 3/3 fit (EntryCostList empty; T005 marks: I 2, G 3, open 4) |
 | 13.0.1 | `C2S_INSTANCE_GET_ENEMY_SET_LIST_REQ` | T004 §2 | 563/563 fit |
 | 13.0.2 | `S2C_INSTANCE_GET_ENEMY_SET_LIST_RES` | T004 §2 | 667/667 fit (NamedParamList never non-empty) |
 | 13.1.16 | `C2S_INSTANCE_ENEMY_GROUP_ENTRY_NTC` | T004 §3 | 202/202 fit, slack 14 (PS4 ENEMY_GROUP_ENTRY_NOTICE, V by behaviour) |
@@ -477,6 +487,10 @@ the rows count the marks in each pattern file (the include structures carry thei
 | 13.10.2 | `S2C_INSTANCE_GET_DROP_ITEM_LIST_RES` | T004 §8 | 88/88 fit |
 | 13.11.1 | `C2S_INSTANCE_GET_DROP_ITEM_REQ` | T004 §9 | 44/44 fit |
 | 13.11.2 | `S2C_INSTANCE_GET_DROP_ITEM_RES` | T004 §9 | 44/44 fit |
+| 13.16.1 | `C2S_INSTANCE_TREASURE_POINT_GET_CATEGORY_LIST_REQ` | 008 T005 | 1/1 fit (T005 marks: open 1) |
+| 13.16.2 | `S2C_INSTANCE_TREASURE_POINT_GET_CATEGORY_LIST_RES` | 008 T005 | 1/1 fit (T005 marks: I 3, G 1) |
+| 13.17.1 | `C2S_INSTANCE_TREASURE_POINT_GET_LIST_REQ` | 008 T005 | 1/1 fit (T005 marks: I 1) |
+| 13.17.2 | `S2C_INSTANCE_TREASURE_POINT_GET_LIST_RES` | 008 T005 | 1/1 fit (T005 marks: I 3, G 1, open 1) |
 | 13.20.1 | `C2S_INSTANCE_SET_OM_INSTANT_KEY_VALUE_REQ` | T004 §11 | 542/542 fit |
 | 13.20.2 | `S2C_INSTANCE_SET_OM_INSTANT_KEY_VALUE_RES` | T004 §11 | 559/559 fit |
 | 13.20.16 | `S2C_INSTANCE_SET_OM_INSTANT_KEY_VALUE_NTC` | T004 §11 | 571/571 fit (PS4 SET_OM_INSTANT_KEY_VALUE_NOTICE, V by behaviour) |
@@ -484,6 +498,7 @@ the rows count the marks in each pattern file (the include structures carry thei
 | 13.22.2 | `S2C_INSTANCE_GET_OM_INSTANT_KEY_VALUE_ALL_RES` | T004 §12 | 150/150 fit |
 | 13.23.1 | `C2S_INSTANCE_EXCHANGE_OM_INSTANT_KEY_VALUE_REQ` | T004 §13 | 44/44 fit |
 | 13.23.2 | `S2C_INSTANCE_EXCHANGE_OM_INSTANT_KEY_VALUE_RES` | T004 §13 | 46/46 fit |
+| 13.23.16 | `S2C_INSTANCE_EXCHANGE_OM_INSTANT_KEY_VALUE_NTC` | 008 T005 | 46/46 fit (T005 marks: I 3) |
 | 13.31.16 | `S2C_INSTANCE_ENEMY_GROUP_DESTROY_NTC` | T004 §14 | 81/81 fit, slack 13 (V by behaviour) |
 | 13.32.16 | `S2C_INSTANCE_ENEMY_GROUP_RESET_NTC` | T004 §15 | 130/130 fit, slack 14 (PS4 ENEMY_GROUP_RESET_NOTICE, V by behaviour) |
 | 13.39.16 | `S2C_INSTANCE_POP_DROP_ITEM_NTC` | T004 §16 | 74/74 fit |
@@ -567,6 +582,8 @@ the rows count the marks in each pattern file (the include structures carry thei
 | 27.4.2 | `S2C_ACHIEVEMENT_ACHIEVEMENT_REWARD_RECEIVE_RES` | T012 §9 | 1/1 fit (both lists empty: code-only) |
 | 27.8.16 | `S2C_ACHIEVEMENT_ACHIEVEMENT_COMPLETE_NTC` | T012 §10 | 8/8 fit, slack 14 (code name V by behaviour; Season 3 element {u32, u8}; the PS4 framing fails 8/8, the PS4 element fits: the PC reader decides) |
 | 27.9.16 | `S2C_ACHIEVEMENT_ACHIEVEMENT_RECEIVABLE_REWARD_NTC` | T012 §11 | 3/3 fit, slack 14 (code name V by list type and behaviour; the PS4 framing fails 3/3) |
+| 27.10.1 | `C2S_ACHIEVEMENT_ACHIEVEMENT_GET_CATEGORY_PROGRESS_LIST_REQ` | 008 T005 | 19/19 fit (T005 marks: G 1) |
+| 27.10.2 | `S2C_ACHIEVEMENT_ACHIEVEMENT_GET_CATEGORY_PROGRESS_LIST_RES` | 008 T005 | 19/19 fit (T005 marks: V 1) |
 | 28.0.1 | `C2S_GP_GET_GP_REQ` | T010 §2 | 4/4 fit (no body) |
 | 28.0.2 | `S2C_GP_GET_GP_RES` | T010 §2 | 4/4 fit |
 | 28.2.1 | `C2S_GP_GET_GP_PERIOD_REQ` | T010 §3 | 42/42 fit (no body) |
@@ -601,6 +618,7 @@ the rows count the marks in each pattern file (the include structures carry thei
 | 29.15.1 | `C2S_EQUIP_GET_CRAFT_LOCKED_ELEMENT_LIST_REQ` | T012 §13 | 2/2 fit (no body) |
 | 29.15.2 | `S2C_EQUIP_GET_CRAFT_LOCKED_ELEMENT_LIST_RES` | T012 §13 | 2/2 fit (list never non-empty: Season 3 element code-only) |
 | 29.17.16 | `S2C_EQUIP_CHANGE_CHARACTER_EQUIP_LOBBY_NTC` | T012 §14 | 23/23 fit (code name V by shape and lobby check; Season 3 `CDataEquipItemInfo`: the PS4 element fails 23/23, the PS4 framing 23/23) |
+| 29.23.16 | `S2C_EQUIP_29_23_16_NTC` | 008 T005 | 2/2 fit (handler ignores the body: capture shape only, marks G; T005 marks: G 8) |
 | 30.0.1 | `C2S_CRAFT_GET_CRAFT_PROGRESS_LIST_REQ` | T013 §2 | 10/10 fit (no body) |
 | 30.0.2 | `S2C_CRAFT_GET_CRAFT_PROGRESS_LIST_RES` | T013 §1, §2 | 10/10 fit (progress list never non-empty: Season 3 `CDataCraftProgress` code-only) |
 | 30.10.1 | `C2S_CRAFT_CRAFT_SKILL_UP_REQ` | T013 §3 | 1/1 fit |
@@ -638,6 +656,8 @@ the rows count the marks in each pattern file (the include structures carry thei
 | 33.16.16 | `S2C_JOB_PAWN_JOB_LEVEL_UP_NTC` | T006 §1.6 | 3/3 fit, slack 2 |
 | 33.17.16 | `S2C_JOB_PAWN_JOB_LEVEL_UP_MEMBER_NTC` | T006 §1.7 | 3/3 fit |
 | 33.20.16 | `S2C_JOB_PLAY_POINT_NTC` | T006 §1.8 | 14/14 fit (code name UPDATE_PLAY_POINT_NOTICE, V by behaviour) |
+| 34.0.1 | `C2S_ENTRY_BOARD_ENTRY_BOARD_LIST_REQ` | 008 T005 | 1/1 fit (T001 `{4 8}` corrected to a u64 list; T005 marks: V 1) |
+| 34.0.2 | `S2C_ENTRY_BOARD_ENTRY_BOARD_LIST_RES` | 008 T005 | 1/1 fit (T005 marks: I 1, G 4, open 4) |
 | 34.1.1 | `C2S_ENTRY_BOARD_ENTRY_BOARD_ITEM_LIST_REQ` | T013 §6 | 3/3 fit, slack 1 (Season 3 search u32 x2; the PS4 body fits too: the PC writer decides) |
 | 34.1.2 | `S2C_ENTRY_BOARD_ENTRY_BOARD_ITEM_LIST_RES` | T013 §1, §6 | 3/3 fit (one item with 8 members; the PS4 element fails 1/3) |
 | 34.2.1 | `C2S_ENTRY_BOARD_ENTRY_BOARD_ITEM_CREATE_REQ` | T013 §6 | 1/1 fit (Season 3 recruit; the PS4 body fails 1/1) |
@@ -684,6 +704,10 @@ the rows count the marks in each pattern file (the include structures carry thei
 | 39.1.2 | `S2C_GACHA_GACHA_BUY_RES` | T012 §16 | 21/21 fit, slack 15 |
 | 41.3.1 | `C2S_CHARACTER_EDIT_UPDATE_PAWN_EDIT_PARAM_REQ` | T013 §9 | 1/1 fit, slack 6 (Season 3 price {u8, u32}; the PS4 body fits too: the PC writer decides) |
 | 41.3.2 | `S2C_CHARACTER_EDIT_UPDATE_PAWN_EDIT_PARAM_RES` | T013 §9 | 1/1 fit, slack 15 (header only: Season 3 drops the PS4 u32 GP; the PS4 body fits too) |
+| 41.5.1 | `C2S_CHARACTER_EDIT_UPDATE_CHARACTER_EDIT_PARAM_EX_REQ` | 008 T005 | 1/1 fit (T005 marks: V 1, I 1, G 2) |
+| 41.5.2 | `S2C_CHARACTER_EDIT_UPDATE_CHARACTER_EDIT_PARAM_EX_RES` | 008 T005 | 1/1 fit (T005 marks: none (no fields)) |
+| 41.8.1 | `C2S_CHARACTER_EDIT_GET_SHOP_PRICE_REQ` | 008 T005 | 4/4 fit (no body; T005 marks: none (no fields)) |
+| 41.8.2 | `S2C_CHARACTER_EDIT_GET_SHOP_PRICE_RES` | 008 T005 | 4/4 fit (T005 marks: V 1, G 2) |
 | 43.0.1 | `C2S_LOADING_INFO_LOADING_GET_INFO_REQ` | T012 §17 | 42/42 fit (no body) |
 | 43.0.2 | `S2C_LOADING_INFO_LOADING_GET_INFO_RES` | T012 §17 | 42/42 fit |
 | 44.0.1 | `C2S_CERT_CLIENT_CHALLENGE_REQ` | T003 §15 | 83/83 fit, slack 12 (no header, body at offset 0) |
@@ -699,6 +723,7 @@ the rows count the marks in each pattern file (the include structures carry thei
 | 45.4.2 | `S2C_STAMP_BONUS_RECIEVE_TOTAL_RES` | 008 T003 | 1/1 fit, slack 15 (T003 marks: none (no fields)) |
 | 50.0.1 | `C2S_ITEM_SORT_GET_ITEM_SORTDATA_BIN_REQ` | T008 §4.1 | 46/46 fit |
 | 50.0.2 | `S2C_ITEM_SORT_GET_ITEM_SORTDATA_BIN_RES` | T008 §4.1 | 46/46 fit (list never non-empty) |
+| 50.0.16 | `S2C_ITEM_SORT_GET_ITEM_SORTDATA_BIN_NTC` | 008 T005 | 48/48 fit (every bin all zero; T005 marks: I 1) |
 | 50.1.1 | `C2S_ITEM_SORT_SET_ITEM_SORTDATA_BIN_REQ` | T008 §4.3 | 59/59 fit (Season 3 trailing bool: code-only, the PS4 body fits too) |
 | 50.1.2 | `S2C_ITEM_SORT_SET_ITEM_SORTDATA_BIN_RES` | T008 §4.3 | 59/59 fit, slack 15 |
 | 51.0.1 | `C2S_DISPEL_GET_DISPEL_ITEM_LIST_REQ` | T013 §10 | 1/1 fit |
@@ -746,6 +771,18 @@ the rows count the marks in each pattern file (the include structures carry thei
 | 60.0.2 | `S2C_NPC_GET_NPC_EXTENDED_FACILITY_RES` | 008 T003 | 219/219 fit (list non-empty in 4 files; T003 marks: I 1, G 5, open 5) |
 | 61.2.1 | `C2S_PAWN_TRAINING_GET_PREPARETION_INFO_TO_ADVICE_REQ` | 008 T003 | 20/20 fit (no body; T003 marks: none (no fields)) |
 | 61.2.2 | `S2C_PAWN_TRAINING_GET_PREPARETION_INFO_TO_ADVICE_RES` | 008 T003 | 20/20 fit (T003 marks: I 2, G 1, open 2) |
+| 62.0.1 | `C2S_SEASON_DUNGEON_GET_ID_FROM_NPC_ID_REQ` | 008 T005 | 4/4 fit (T005 marks: G 1) |
+| 62.0.2 | `S2C_SEASON_DUNGEON_GET_ID_FROM_NPC_ID_RES` | 008 T005 | 4/4 fit (T005 marks: I 1) |
+| 62.1.1 | `C2S_SEASON_DUNGEON_GET_INFO_REQ` | 008 T005 | 4/4 fit (T005 marks: I 1) |
+| 62.1.2 | `S2C_SEASON_DUNGEON_GET_INFO_RES` | 008 T005 | 4/4 fit (T005 marks: G 2, open 1) |
+| 62.7.1 | `C2S_SEASON_DUNGEON_GET_EXTENDABLE_BLOCKADE_LIST_FROM_NPC_ID_REQ` | 008 T005 | 4/4 fit (T005 marks: G 1) |
+| 62.7.2 | `S2C_SEASON_DUNGEON_GET_EXTENDABLE_BLOCKADE_LIST_FROM_NPC_ID_RES` | 008 T005 | 4/4 fit (list empty in 4/4; T005 marks: G 1) |
+| 62.8.1 | `C2S_SEASON_DUNGEON_GET_BLOCKADE_ID_FROM_OM_REQ` | 008 T005 | 7/7 fit (T005 marks: I 1, G 1) |
+| 62.8.2 | `S2C_SEASON_DUNGEON_GET_BLOCKADE_ID_FROM_OM_RES` | 008 T005 | 7/7 fit (T005 marks: I 1) |
+| 62.9.1 | `C2S_SEASON_DUNGEON_GET_EX_REQUIRED_ITEM_REQ` | 008 T005 | 7/7 fit (T005 marks: I 1) |
+| 62.9.2 | `S2C_SEASON_DUNGEON_GET_EX_REQUIRED_ITEM_RES` | 008 T005 | 7/7 fit (T005 marks: G 1, open 2) |
+| 62.10.1 | `C2S_SEASON_DUNGEON_DELIVER_ITEM_FOR_EX_REQ` | 008 T005 | 6/6 fit (T005 marks: I 2, open 1) |
+| 62.10.2 | `S2C_SEASON_DUNGEON_DELIVER_ITEM_FOR_EX_RES` | 008 T005 | 12/12 fit (T005 marks: none (no fields)) |
 | 62.12.16 | `C2S_SEASON_DUNGEON_62_12_16_NTC` | 008 T004 | 259/259 fit (T004 marks: I 1, G 1) |
 | 62.14.16 | `S2C_SEASON_DUNGEON_EXECUTE_SOUL_ORDEAL_NTC` | 008 T004 | 28/28 fit (T004 marks: I 2) |
 | 62.15.16 | `S2C_SEASON_DUNGEON_END_SOUL_ORDEAL_NTC` | 008 T004 | 28/28 fit (T004 marks: I 2, G 1) |
@@ -759,16 +796,29 @@ the rows count the marks in each pattern file (the include structures carry thei
 | 62.24.1 | `C2S_SEASON_DUNGEON_EXECUTE_SOUL_ORDEAL_REQ` | 008 T004 | 28/28 fit (list writer V (008 T002), TrialCost empty in 28/28; T004 marks: I 2, G 4) |
 | 62.24.2 | `S2C_SEASON_DUNGEON_EXECUTE_SOUL_ORDEAL_RES` | 008 T004 | 28/28 fit, slack 15 (header only; T004 marks: none (no fields)) |
 | 62.26.16 | `S2C_SEASON_DUNGEON_SET_OM_STATE_NTC` | 008 T004 | 428/428 fit (T004 marks: I 1) |
+| 62.27.16 | `S2C_SEASON_62_27_16_NTC` | 008 T005 | 1/1 fit (T005 marks: open 1) |
 | 62.33.1 | `C2S_SEASON_DUNGEON_GET_SOUL_ORDEAL_REWARD_LIST_REQ` | 008 T004 | 21/21 fit (T004 marks: I 1, G 1) |
 | 62.33.2 | `S2C_SEASON_DUNGEON_GET_SOUL_ORDEAL_REWARD_LIST_RES` | 008 T004 | 21/21 fit (T004 marks: I 4, G 1) |
 | 62.34.1 | `C2S_SEASON_DUNGEON_RECEIVE_SOUL_ORDEAL_REWARD_REQ` | 008 T004 | 21/21 fit (list writer V (008 T002); T004 marks: I 1, G 1) |
 | 62.34.2 | `S2C_SEASON_DUNGEON_RECEIVE_SOUL_ORDEAL_REWARD_RES` | 008 T004 | 21/21 fit (T004 marks: none (no fields)) |
 | 62.35.1 | `C2S_SEASON_DUNGEON_RECEIVE_SOUL_ORDEAL_REWARD_BUFF_REQ` | 008 T004 | 21/21 fit (T004 marks: I 2, G 1, open 1) |
 | 62.35.2 | `S2C_SEASON_DUNGEON_RECEIVE_SOUL_ORDEAL_REWARD_BUFF_RES` | 008 T004 | 21/21 fit, slack 15 (header only; T004 marks: none (no fields)) |
+| 62.38.16 | `S2C_SEASON_DUNGEON_AREA_BUFFS_NTC` | 008 T005 | 148/148 fit (T005 marks: G 1) |
+| 62.39.16 | `S2C_SEASON_DUNGEON_CHARACTER_AREA_BUFFS_NTC` | 008 T005 | 148/148 fit (raw name `S2C_SEASON_62_39_16_NTC`; T005 marks: I 1, G 1) |
 | 62.40.16 | `C2S_SEASON_62_40_16_NTC` | 008 T004 | 3/3 fit (T004 marks: I 1, G 1) |
+| 63.0.16 | `S2C_63_0_16_NTC` | 008 T005 | 1/1 fit (T005 marks: open 1) |
+| 63.1.16 | `S2C_63_1_16_NTC` | 008 T005 | 1/1 fit (T005 marks: open 1) |
+| 63.2.16 | `S2C_SITUATION_DATA_UPDATE_OBJECTIVES_NTC` | 008 T005 | 21/21 fit (raw name `S2C_63_2_16_NTC`; T005 marks: G 1, open 6) |
+| 63.3.16 | `S2C_63_3_16_NTC` | 008 T005 | 1/1 fit (no body; handler reads no body; T005 marks: none (no fields)) |
+| 63.5.16 | `C2S_CHAIN_DUNGEON_END_CHAIN_NTC` | 008 T005 | 1/1 fit (no body; T005 marks: none (no fields)) |
+| 63.6.16 | `S2C_CHAIN_DUNGEON_REWARD_CHEST_APPEAR_NTC` | 008 T005 | 1/1 fit (T005 marks: G 1) |
+| 63.7.16 | `S2C_63_7_16_NTC` | 008 T005 | 8/8 fit (T005 marks: G 1) |
+| 63.10.16 | `S2C_63_10_16_NTC` | 008 T005 | 12/12 fit (T005 marks: open 3) |
 | 63.11.16 | `S2C_63_11_16_NTC` | P5 §7 | 1/1 fit |
 | 64.0.1 | `C2S_MANDRAGORA_GET_MY_MANDRAGORA_REQ` | 008 T003 | 20/20 fit (no body; T003 marks: none (no fields)) |
 | 64.0.2 | `S2C_MANDRAGORA_GET_MY_MANDRAGORA_RES` | P11a §2 | 20/20 fit |
+| 65.3.1 | `C2S_EQUIP_ENHANCED_GET_PACKS_REQ` | 008 T005 | 2/2 fit (T005 marks: G 1) |
+| 65.3.2 | `S2C_EQUIP_ENHANCED_GET_PACKS_RES` | 008 T005 | 2/2 fit (T005 marks: V 3, I 1, G 3, open 9) |
 | 70.0.1 | `C2S_ACTION_SET_PLAYER_ACTION_HISTORY_REQ` | 008 T003 | 312/312 fit, slack 15 (list writer V (008 T002); T003 marks: G 3) |
 | 70.0.2 | `S2C_ACTION_SET_PLAYER_ACTION_HISTORY_RES` | 008 T003 | 312/312 fit, slack 15 (T003 marks: none (no fields)) |
 | 71.22.1 | `C2S_BATTLE_CONTENT_INFO_LIST_REQ` | 008 T004 | 42/42 fit (no body; T004 marks: none (no fields)) |
