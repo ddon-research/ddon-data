@@ -12,6 +12,7 @@ Exit 2 refuses and tells the agent to put the proposed text in its report instea
 """
 
 import fnmatch
+import posixpath
 import sys
 from pathlib import Path
 
@@ -50,7 +51,7 @@ EVIDENCE = (
 
 def relative(path, cwd):
     """`path` relative to its checkout's root, or None when it lies outside every candidate root."""
-    path = path.replace("\\", "/")
+    path = posixpath.normpath(path.replace("\\", "/"))  # `..` must not walk a data path past the patterns
     lowered = path.lower()
     marker = "/.claude/worktrees/"
     at = lowered.find(marker)

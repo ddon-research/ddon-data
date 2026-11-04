@@ -44,6 +44,13 @@ class GuardPathsTest(unittest.TestCase):
         self.assertIsNotNone(guard_paths.verdict(edit(f"{REPO}/src/a.cpp", REPO), "--allow", allow))
         self.assertIsNotNone(guard_paths.verdict(edit("C:/Temp/a.md", REPO), "--allow", allow))
 
+    def test_dot_dot_cannot_hide_a_refused_path(self):
+        for path in (f"{REPO}/packets/patterns/../decrypted_json/x.json", f"{REPO}/docs/../AGENTS.md",
+                     f"{REPO}\\packets\\patterns\\..\\decrypted_json\\x.json"):
+            with self.subTest(path=path):
+                self.assertIsNotNone(guard_paths.verdict(edit(path, REPO), "--deny-owned", []))
+        self.assertIsNone(guard_paths.verdict(edit(f"{REPO}/packets/decrypted_json/../patterns/x.md", REPO), "--deny-owned", []))
+
     def test_entry_point(self):
         with tempfile.TemporaryDirectory() as tmp:
             env = dict(os.environ, DDON_HOOK_LEDGER_DIR=tmp)
