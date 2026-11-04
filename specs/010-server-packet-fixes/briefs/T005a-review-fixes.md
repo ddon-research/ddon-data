@@ -1,0 +1,19 @@
+010 T005a: fix the review's findings
+
+Objective: `specs/010-server-packet-fixes/research/T005-adversarial.md` F1 and F2 closed, and its "Not checked" risks that need no live client settled. Clone `D:/GitHub/Sehkah/Arrowgene.DragonsDogmaOnline.Clean`, branch `fix/packet-handling`, head `924094e0`. Commits stay local.
+
+1. **F1, in the commit that introduced it or a new one**: `Challenge.cs:71,94`: `response.CamelliaKey.Length < CamelliaKeySize`. Real client: 48 bytes under RSA, session key the first 32. Tests: **both overloads** with a 48-byte key, and the good path's test and `ClientCreateChallengeRequest` changed to the PC's real size (48), so the tests model the real client. Keep a too-short key failing. Run `.agent-ledger/canaries/010-T005/canary/` at your head (copy it first, canaries are read-only): 48 passes. Name the size constant for what it now means.
+   **Then answer why a whole class of test missed it**: where else does a new test or the seam assume a client value rather than a captured one? List each and fix what is wrong, checking against captures: `Arrowgene.Ddon.Test` tests added on this branch only. Any other new condition in the close, reject or guard paths that compares a client-supplied value with an assumption: R03's source bytes, R04's length checks, R06's guard, W10, W11: state the captured or PC value that backs each. The replay in `.agent-ledger/canaries/010-T005/replay/` covers post-challenge traffic only.
+2. **F2**: fixtures in `Arrowgene.Ddon.Test/TestFiles/Captures/`: overwrite session keys, one-time tokens, RSA-wrapped keys where a test does not need the real value, and padding tails with a fixed filler of the same length, keeping the layout. Check every `.bin` and inline hex in tests added on this branch, decoding names as the client does (UTF-8), for character names, account ids, IPs, tokens. A test that asserts an exact captured byte follows its fixture. Fixture file names stop naming streams (`stream10.10164`) if that is simple. **History**: `fix/packet-handling` is unpushed, so rewrite: a token must not stay in an older commit of a public branch: squash into the commits that added them, or rebase. Prove it: `git log -p develop..fix/packet-handling` searched for each original token, 0 hits. Signing must still hold on every commit.
+3. **Not checked, settle without a client**:
+   - A canned dump read through direct `Read(IBuffer)` with `Error != 0` letting `ResponseEndsAtError` escape, or using a changed structure: find all canned dumps; run each through the reader on `develop` and head.
+   - RES before close on a real socket: a loopback test or read of the send path; if a RES can be lost behind an in-flight send, fix it simply or say why not.
+   - `0x4cf380` range: T003's read; `QuestPlayEndHandler`'s clamp: choose a clamp the client formats correctly if T003 says, otherwise state unread for the live run.
+   - F10: an independent walk of what throws now.
+   - Hot path: F05's exception must not run on a running server: confirm.
+   - New tests' pins: list those that pass on `develop` and why that still has value, or delete them.
+
+Gates as before: Debug and Release build and test, warnings not above 520; differential harness on a throwaway branch: no regression from `agrees` 511 + 2, re-encode 159,008/159,008. Fixture filler changes tests, not captures.
+
+Report `specs/010-server-packet-fixes/research/T005a-fixes.md`. Owns: the clone, that report. Never touch: packet data, `docs/`, other clones, other work here.
+Done: signed report commit with `git commit -m <msg> -- <paths>`; receipt with "For Sam's inspection" (new head, rewritten commits, what the fixtures hold now, what the live run must still cover). Stop: budget 60 min of work time. Base: the head when you start. Commit trailer: `Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>`.

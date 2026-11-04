@@ -20,7 +20,9 @@ Coordinator: main session. One subagent at a time. Goal, error classes, method a
 - [x] T004b Patch part 2 (`research/T004b-patch.md`; clone head `924094e0`, 26 signed commits in all, unpushed): 170/170 in Debug and Release, 520 warnings; differential agrees
   494 -> 511 plus 2 headerless, re-encode 159,008/159,008, 63/63 `Error != 0` read. W21 left unfixed: all 1,443 goods in `Shop.json` have an empty requirement list, the data is
   missing. F09 cap 0x7FF. F05 by a private exception, one catch over 492 call sites. `TestBase` could kill the Debug test host: fixed.
-- [ ] T005 Adversarial review: which fix would break a working client? (`adversarial-reviewer`, `briefs/T005-review.md`), then fixes.
+- [x] T005 Adversarial review (`research/T005-adversarial.md`): F1 **blocks**: R05's `!= 32` check refuses every real client (the PC encrypts 48 bytes; reproduced by the coordinator). F2:
+  fixtures hold session tokens and padding that looks like an IP tail. Held: 125 streams replayed, 116,523 C2S packets, 0 closes or throws; split reads 130,521 packets, 0 mismatches.
+- [ ] T005a Review fixes (`implementer`, `briefs/T005a-review-fixes.md`); history rewritten so no token stays in a commit; assumed client values audited.
 - [ ] T005b Live smoke on `C:\ddon-automation`: patched server, real client, a game login (W01 touches every one), one error path, one quest end (W16).
 - [ ] T006 Impact outline and PR body (`research/impact.md`); push the branch, open the draft PR on the fork.
 - [ ] T007 Close; ask Sam about upstream and disclosure of the pre-login rows; docs follow-ups.
@@ -33,6 +35,6 @@ Coordinator: main session. One subagent at a time. Goal, error classes, method a
 
 ## Running
 
-- T005 (adversarial-reviewer, brief `briefs/T005-review.md`), started 2026-11-04. Next: file its report, fixes, T005b live smoke, T006 impact and draft PR. To carry: `docs/reference/status.md` says `ag_vs_pc` 3 differ, T001 says 2 (34.0.1 was
+- T005a (implementer, brief `briefs/T005a-review-fixes.md`), started 2026-11-04. Next: T005b live smoke (cover list in T005-adversarial.md; read ddon-hook `docs/development/10-local-arrowgene-server.md`, `12-set-up-local-server.md`, `09-client-automation.md`, `11-run-unattended-cycle.md`), T006 impact and draft PR. To carry: `docs/reference/status.md` says `ag_vs_pc` 3 differ, T001 says 2 (34.0.1 was
   corrected, TSV not regenerated); `docs/explanation/two-packet-decodings.md`'s 19.28.2 example hangs on T003's read of PC consumers of
   `+8`, `+0xc`: fix both pages when settled. R01/R02 are pre-login: ask Sam how to disclose before anything goes upstream.
