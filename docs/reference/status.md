@@ -146,8 +146,8 @@ The `.r2` and `.json` files of `patches/`, against the hash tables of [Client pa
 
 | Check | State | Date |
 | --- | --- | --- |
-| The steps of the how-tos that rewrite tracked data: [Decrypt a capture](../how-to/decrypt-a-capture.md), [Re-annotate streams](../how-to/reannotate-streams.md) (annotate, raw export), [Refresh packet statistics](../how-to/refresh-packet-statistics.md), [Patch the Arrowgene CLI](../how-to/patch-the-arrowgene-cli.md) (build) | not run: their commands are read against the scripts | 2026-11-04 |
-| Applying `packets/tools/arrowgene-cli.patch` and building from it; `git apply --check` on a clean `e2411fe8` passed | not run | 2026-11-04 |
+| The steps of the how-tos that rewrite tracked data: [Decrypt a capture](../how-to/decrypt-a-capture.md), [Re-annotate streams](../how-to/reannotate-streams.md) (annotate, raw export), [Refresh packet statistics](../how-to/refresh-packet-statistics.md) | not run: their commands are read against the scripts | 2026-11-04 |
+| [Patch the Arrowgene CLI](../how-to/patch-the-arrowgene-cli.md): `packets/tools/arrowgene-cli.patch` applied to `fix/packet-handling` in a scratch clone, built (Debug, CLI project, 0 errors) and run on 3 streams, compared with the committed dumps; `git apply --check` on a clean `e2411fe8` passed | run on 3 streams; all streams and the patch on `develop` not run | 2026-11-04 |
 | ImHex validation of the packet patterns | not run: ImHex is not on `PATH`, and plbatch is the parser of the export | 2026-11-03 |
 | Consumers of the role-only `V` marks of 28.34.2 and 11.68.16 | not run | 2026-11-03 |
 | The `ValueOld` check of 13.23.16 | not run | 2026-11-03 |

@@ -56,7 +56,7 @@ packets/decrypted_json/stream3-party-experiments-marked.pcapng_tcp-stream-47/128
 
 Same fields, same values. The agreement is corroboration, and the layout still rests on PC reader `0x81dc00`.
 
-## They differ in layout, and the code decides
+## They disagree on a field, and the code decides
 
 19.28.2 `S2C_SKILL_GET_CURRENT_SET_SKILL_LIST_RES`, pcap packet 10274 of stream31 tcp-stream-13. The first list element's bytes are `0a | 00 00 00 01 | 00 00 00 02 | 00 00 00 00`.
 

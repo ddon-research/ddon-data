@@ -140,7 +140,7 @@ So an S2C key the client has no record for, or a read past the frame end in an o
 
 | Also ending a session | VA | Condition |
 | --- | --- | --- |
-| A string | `0x8bc5b0` | an `MtString` length above `0x800` fails the read, and step 3 follows. At exactly `0x800` the stack buffer has no terminator before its copy (`I`) |
+| A string | `0x8bc5b0` | an `MtString` length above `0x800` fails the read, and step 3 follows. |
 | A certificate | `0x886b5b`-`0x886b6a`, `0x886bf7` | the hash of the login certificate does not match. The game handler 44.1.16 was not read: `I` that it is the same |
 | A request with no response | `0x8855a0`, `0x85c860` | after the timer passes `fps * 45.0` the client pings; on the next tick with the slot still over, every pending slot goes to status 4 with code 3008, then dialog 33001. No retry. That the unit is seconds is `I` |
 

@@ -4,15 +4,15 @@ Fixes to how the server frames, reads, writes and answers packets, each checked 
 
 ## What and why
 
-**Requests and responses.** A handled error sent its response twice: the client has no pending check (`0x844be0`, `0x878860`), so its handler ran twice. Some paths sent no response at all, and the client answers that with a timer, dialog 33001 and a disconnect, with no retry (`0x8855a0`). Every request now gets one response.
+**Requests and responses.** A handled error sent its response twice: the client has no pending check (`0x844be0`, `0x878860`), so its handler ran twice. Some paths sent no response at all, and the client answers that with a timer, dialog 33001 and a disconnect, with no retry (`0x8855a0`). The request base now answers once, on a handled error and when a response can not be written. Of the 7 handlers with no request base, 2 moved to it and 5 are pinned as they were. A handler that sends its own response and then throws still sends a second one: not surveyed.
 
-**Connections.** Frames split across TCP reads now reassemble. The server now closes a connection in four cases: a frame length under 16 or not a multiple of 16; a decrypted source byte other than 0x00 or 0x34; any other exception out of `PacketFactory.Read`; a failed challenge, after one error response under the fixed key. In the first two, packets decoded earlier in the same read are still handled. Lengths a client supplies are checked against the bytes left.
+**Connections.** Frames split across TCP reads now reassemble. The server now closes a connection in four cases: a frame length under 16 or not a multiple of 16; a decrypted source byte other than 0x00 or 0x34; any other exception out of `PacketFactory.Read`; a failed challenge, after one error response under the fixed key. In the first two, packets decoded earlier in the same read are still handled. Lengths a client supplies are checked against the bytes left. Sends that overlap on one client, from its lane and a timer, no longer share the cipher's scratch and the count unguarded, which could corrupt a frame.
 
-**Layouts the client acts on.** The category in 27.8.16, so a category 6 achievement now shows its banner, and the quest play time in 11.45.16. An `MtString` is never written longer than the client's reader takes (`0x8bc5b0`).
+**Layouts the client acts on.** The category in 27.8.16, which the client reads to choose its banner (`0x7c2f80`), and the quest play time in 11.45.16, where the client keeps it; where the client shows that time is not known. An `MtString` is never written longer than the client's reader takes (`0x8bc5b0`).
 
 **Layouts the client does not act on.** These change bytes and no behaviour, and each has its own commit, so that the wire matches the client and a later change can trust it.
 
-**Readers.** The server now reads the whole of what the client sends, and response readers stop at a non-zero `Error` as the client does. This matters to the CLI's annotated exports and to tests. The server does not read responses at run time.
+**Readers.** The server now reads the whole of what the client sends, and response readers stop at a non-zero `Error` as the client does. This matters to the CLI's annotated exports and to tests. The server does not read a client's responses at run time.
 
 ## Changes
 
@@ -20,14 +20,15 @@ Fixes to how the server frames, reads, writes and answers packets, each checked 
 | --- | --- | --- | --- |
 | Send one response when a request handler reports an error. | Any RES whose handler throws `ResponseErrorException` | 1 RES, where `develop` sends 2; 1 dialog on both, seen live on 0.7.2 and 8.8.2. Where the client set its suppress-once flag, the dialog stays hidden: read at `0x878860`, not seen live | Low. Nothing read needs a second RES; not every handler body was read |
 | Answer a request when its response can not be written. | Any RES on a not-implemented path, a failed serializer or an over-long frame | An error dialog in place of 33001 and a disconnect. Read in the client; tested; not run live | Low |
-| Answer every request on a handler that had no request base. | 11.x quest leader progress, login `CreateCharacter` | The same, and a failed creation answers once and writes no further rows. **The failed-creation branch has no test** | Medium for saved data on that path only; read only |
+| Answer every request on a handler that had no request base. | 11.x quest leader progress, login `CreateCharacter` | The same (33001 was read on the game connection; on login `CreateCharacter` it is inferred), and a failed creation answers once and writes no further rows. **The failed-creation branch has no test** | Medium for saved data on that path only; read only |
 | Register the serializers for CDataOcdImmuneLv and CDataSwitchStorage. | Lists of those types; 10.13.16 `S2C_SWITCH_STORAGE_NTC` | Lists of both types read and write their elements. An entity with no serializer throws. 2 of 2 captures of 10.13.16 now agree | Low: no entity in the code is named and unregistered |
-| Close a connection whose stream can not be followed, and keep split frames. | All | Nothing in normal play: split frames keep their place | A close is new behaviour. The source byte rule rests on captures: 0 on every client frame with a header. Seen live: only the bad connection closes |
-| Bound the lengths a client supplies and the frames a server sends. | 3.3.16, 6.23.16, 6.25.16; 1.0.2, 44.0.2; any frame at the limit | Nothing in normal play. A length that does not fit reads as a short packet; a frame over the limit is not sent and uses no counter | Rests on captures: 66,275, 8 and 34,607 reads with no throw. Client writers not read |
-| Key packet ids by group, id and sub, and stop sharing a SHA1 instance. | The id tables; the certificate hash | Nothing at the default single lane. The client does check that hash (`0x886b5b`) | Very low. No wrong hash was ever observed: the change rests on `SHA1`'s contract |
+| Close a connection whose stream can not be followed, and keep split frames. | All | Nothing in normal play: split frames keep their place (tested and replayed, not on a live socket) | A close is new behaviour. The source byte rule rests on captures: 0 on every client frame with a header. Seen live for a bad length and a bad source byte: only the bad connection closes. Any other exception out of the read: tested, not provoked live |
+| Bound the lengths a client supplies and the frames a server sends. | 3.3.16, 6.23.16, 6.25.16; 1.0.2, 44.0.2; any frame at the limit | Nothing in normal play. A length that does not fit reads as a short packet; a frame over the limit is not sent and uses no counter | Rests on captures: 66,275, 8 and 34,607 reads with no throw. Client writers not read. Not run live |
+| Key packet ids by group, id and sub, and stop sharing a SHA1 instance. | The id tables; the certificate hash | Tables: a collision was possible on any process start, at about 3.7e-4 (inferred), and now is not. SHA1: nothing at the default single lane; the client does check that hash (`0x886b5b`) | Very low. No wrong hash was ever observed: the change rests on `SHA1`'s contract |
 | Close the session after a failed challenge. | 1.0.1, 1.0.2, 44.0.1, 44.0.2 | Nothing for a real client: it puts 48 bytes under RSA (`0x88aecd`, 125 of 125 captures), and under 32 now fails. Seen live: one response, then an orderly close | Every connection passes here. Good path tested on a real socket and live |
-| Send the category with each completed achievement. | 27.8.16 `S2C_ACHIEVEMENT_ACHIEVEMENT_COMPLETE_NTC` | The banner of a category 6 achievement (`0x7c2f80`). Seen live with a pushed notice; earning one in play not run. Enum values match: 19 of 19 captured replies | Low |
-| Send the quest play time where the client reads it, in whole milliseconds. | 11.45.16 `S2C_QUEST_PLAY_END_NTC` | The time goes in the 7th u32, which the client keeps and formats (`0xbd4b56`, `0x4cf380`). **The screen was not seen live**: only that the frame reads safely | Low. The value is clamped to u32 |
+| Keep overlapping sends to one client from corrupting its frames. | All, on one connection | Nothing when sends do not overlap: frames written from one thread keep their bytes, pinned by a test. Overlapping sends were read in the server's code, and the new test with the lock removed failed 10 of 10 runs. What the client does with a corrupted frame is inferred, not run live | Low. Each send holds the lock for its count and its encryption; the socket stays outside. Cost not measured. Not run live |
+| Send the category with each completed achievement. | 27.8.16 `S2C_ACHIEVEMENT_ACHIEVEMENT_COMPLETE_NTC` | The byte the client reads to choose its banner, read at `0x7c2f80`. A banner was seen once, on a two-element pushed notice; the one-element form this server sends showed a chat line with a menu open, and no banner was checked. Earning one in play not run. Enum values match: 19 of 19 captured replies | Low |
+| Send the quest play time where the client reads it, in whole milliseconds. | 11.45.16 `S2C_QUEST_PLAY_END_NTC` | The time goes in the 7th u32, which the client keeps and formats (`0xbd4b56`, `0x4cf380`). **Where it shows is not known**: the formatter was not traced to a screen, and its one direct call site looks like a countdown notice (inferred). Live, only that the frame reads safely | Low. The value is clamped to u32 |
 | Cap an MtString at what the client can read, and write null as empty. | Every S2C string | Nothing for text that fits: re-encode is equal on every capture. Longer text is cut on a character boundary at 0x7FF bytes | Low |
 | Write the login response flag as the bool the client reads. | 0.1.2 `S2C_CONNECTION_LOGIN_RES` | Same behaviour; 1 byte fewer. `0x804a50` reads a bool, then the token; `0x7ce490` uses neither | Every game login passes here. Seen live. Captures have the flag as 1 and the server still sends 0, as nothing says what it means |
 | Send the count of error messages still to come. | 3.0.16 `L2C_GET_ERROR_MESSAGE_LIST_NTC` | Same behaviour; 4 bytes more per frame. The client only reserves capacity (`0x887070`) | Every login passes here. Seen live |
@@ -51,7 +52,7 @@ Test only:
 - Drop two tests that only exercised the test seam.
 - Keep one 3.0.16 fixture: both captures carry 50 still to come.
 
-Size: 97 files, 2,688 insertions, 174 deletions: 45 files of production code (452 insertions, 173 deletions), the rest tests and fixtures. Fixtures are real frames, one per packet id, with tokens, keys, RSA blocks, player ids and padding replaced by filler.
+Size: 98 files, 2,881 insertions, 185 deletions: 45 files of production code (474 insertions, 184 deletions), the rest tests and fixtures. Fixtures are real frames, one per packet id, with tokens, keys, RSA blocks, player ids and padding replaced by filler.
 
 ## What a client depends on
 
@@ -59,7 +60,7 @@ Read at `0x844be0`, `0x8bc480` and `0x9d6d20` on the game connection: an S2C key
 
 ## How to verify
 
-- `dotnet test Arrowgene.DragonsDogmaOnline.sln`: 177 of 177 in Debug and Release, against 52 of 52 on `develop`. `dotnet build`: 0 errors, 520 warnings, against 521. New tests that pass on `develop` are pins of behaviour that must not change; the others fail there.
+- `dotnet test Arrowgene.DragonsDogmaOnline.sln`: 180 of 180 in Debug and Release, against 52 of 52 on `develop`. `dotnet build`: 0 errors, 520 warnings, against 521. New tests that pass on `develop` are pins of behaviour that must not change; the others fail there.
 - A differential ran the server's serializers over all 160,615 decrypted frames of the official captures, on a local harness that is not part of this branch. 1,544 frames are of ids with no server structure and 63 are error responses; the other 159,008 read with no exception on both:
 
   | Measure | `develop` | This branch |
@@ -71,8 +72,9 @@ Read at `0x844be0`, `0x8bc480` and `0x9d6d20` on the game connection: an S2C key
 
   The one left is 63.11.16, whose sender is under `#if false`. Nothing that agreed before differs.
 - 125 captured sessions replayed through `Client.Receive`, 116,523 client packets: 0 closes and 0 exceptions. The client streams at random splits and one byte at a time: 130,521 packets, 0 mismatches.
-- A live smoke with a real 03040008 client on a local server: login and game-select with the same 40 packet ids in the same order as `develop`, play, a move between worlds (one process posing as two), an error path with 1 response against 2, the category 6 banner. A test client sent malformed frames and a failed challenge: each closed only its own connection, and the real client's session stayed up. No 3001 or 33001. It ran on the installed executable, not on the dump the addresses were read in.
-- **Not run live:** the quest end screen; the suppress-once dialog; earning a category 6 achievement in play; a served string at the cap; the paths that formerly sent no response.
+- The differential, the replay and the live smoke below ran before the last commit. That commit leaves frames written from one thread as they were, by a pinned test.
+- A live smoke with a real 03040008 client on a local server: login and game-select with the same 40 packet ids in the same order as `develop`, play, a move between worlds (one process posing as two), an error path with 1 response against 2 (0.7.2, and 8.8.2 forced), pushed category 6 notices. The results for 0.7.2, 8.8.2, the move and the banner came from a build of this branch with test-only additions. A test client sent malformed frames and a failed challenge: each closed only its own connection, and the real client's session stayed up. No 3001 or 33001 on any frame looked at. One client exit, after a multiple-login error the test set-up caused, stays unexplained. It ran on the installed executable, not on the dump the addresses were read in.
+- **Not run live:** where the client shows the quest play time; the suppress-once dialog; earning a category 6 achievement in play, and many such notices at once; a served string at the cap; the paths that formerly sent no response; a close on any other exception out of the read; split frames on a socket; the bounded lengths; overlapping sends and a corrupted frame.
 
 Known limit, as on `develop`: a response can be lost to a TCP reset when the client is still sending at the moment the server closes. The networking library has no flush, and captures show no client frame between a challenge and its response.
 
@@ -83,7 +85,7 @@ Known limit, as on `develop`: a response can be lost to a TCP reset when the cli
 - **Padding of 1 to 16 bytes**, where the official server sends 0 to 15. With 0 on a block boundary, a short layout has no spare byte, and a read past the end disconnects. There is no client benefit.
 - 62.1.2 first and third u32, crossed against captures. Harmless while the server has no 62.5.1 structure, and the right value is known for one dungeon only.
 - 20.x `HideRequirementDetails`, which nothing sets: no requirement reaches a client at all (below).
-- 11.10.2 bool order (`0xed89f0` fits the server's) and 5.3.16's `ServerResponse` base (the client reads s32, u32 with no guard at `0x889600`, and stores the "Result" as the character id). Neither is an error.
+- 11.10.2 bool order (`0xed89f0` fits the server's) and 5.3.16's `ServerResponse` base (the client reads s32, u32 with no guard at `0x889600`, and stores the "Result" as the character id). Neither is an error in what was read: for 11.10.2, the consumers of `+356` and `+360` were not traced.
 - The name of the 11.13.2 structure: its shape agrees over the fields compared, and it is a rename at most.
 
 ## Suggested follow-ups
@@ -98,9 +100,9 @@ Known limit, as on `develop`: a response can be lost to a TCP reset when the cli
 
 ## Dropping a commit
 
-`git revert <sha>`, then `dotnet build` and `dotnet test`. Tried from the head, with the commit's own tests and fixtures going with it:
+`git revert <sha>`, then `dotnet build` and `dotnet test`. Tried from the commit before the last, with the commit's own tests and fixtures going with it; from the head, each reverses as it did then:
 
-- **Whole suite passes without it:** Answer every request on a handler that had no request base; Register the serializers; Send the category; Cap an MtString; the login response flag; the game session key u16; the craft progress element; the soul ordeal level; Read the fields the client writes; Keep what two response readers read; Stop reading a response at its Error.
+- **Whole suite passes without it:** Answer every request on a handler that had no request base; Register the serializers; Send the category; Cap an MtString; the login response flag; the game session key u16; the craft progress element; the soul ordeal level; Read the fields the client writes; Keep what two response readers read; Stop reading a response at its Error; Keep overlapping sends, the last commit, whose revert is the tree those runs started from.
 - **Builds, and tests of a later commit fail:** Answer a request when its response can not be written (4 frame limit cases); Key packet ids and SHA1 (1 challenge case; not looked into); the 62-byte password block (3 challenge cases); the clan notice flag (1 case of the error response test).
 - **Later commits touch the same lines, so a plain revert conflicts:** the test seam, which every recording-client test needs; Send one response (it shares lines with Answer a request); Close a connection; Bound the lengths; Close the session; the quest play time and the error message count (their tests were corrected in later commits); the log line fix.
 

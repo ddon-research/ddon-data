@@ -63,7 +63,7 @@ This map is for peers who know x86, ELF and DWARF but not this project: it lists
 ### Packets
 
 - [Packet wire format](reference/packet-wire-format.md): framing, cipher, header, RES header, lists, strings and padding.
-- [Packet handler tables](reference/packet-handler-tables.md): where the PC client keeps handlers, senders and names.
+- [Packet handler tables](reference/packet-handler-tables.md): where the PC client keeps handlers, senders and names, and what ends a served connection.
 - [Packet ids](reference/packet-ids.md): every packet pattern of client 03040008, its report and its fit.
 - [Packet pattern includes](reference/packet-includes.md): the shared pattern files and their users.
 - [Packet evidence marks](reference/packet-marks.md): the marks, their comment forms and the value-basis rules.
