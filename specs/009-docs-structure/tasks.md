@@ -43,9 +43,12 @@ Coordinator: main session. One subagent at a time. Target structure and rules: `
 - [x] T009 Review (`research/T009-adversarial.md`): 19 findings (6 block, 13 route), coordinator reproduced 1, 3, 5, 8, 17.
   Held: packet table (595/595, 564 identical, 31 counts only), 30/30 facts located, no stale live reader, 298/298 and 32/34
   outside references. IDA batch not run (role conflict): addresses in the databases unchecked.
-- [ ] T009b Review fixes (`implementer`, `briefs/T009b-review-fixes.md`).
-- [ ] T009c IDA claims the review could not check: `0x9d6a20`/`0x9d6d20`, `ida-transfer-method.md:71`, a sample of page
-  addresses in the annotated database (`evidence-researcher-ida`).
+- [x] T009b Review fixes (2177ea81dd, 1a5041ed65, e39c75d468, 5c45e9a149, c892552a7d, 18ecd25f21): 19 of 19 closed; each
+  new guard and gate condition removed in turn, 0 survivors. Newly refused: pushes after any non-literal `cd` chain, data
+  trees through `cd`, `git -C`, `--search-path`, `git show`, `git grep`; `guard_paths` every spelling. Known gap, stated: a
+  fence's later words; `git show <rev>:<path>`, `cat`/`wc` over a data glob stay allowed. Gate: hooks (65 + 14), shell, mcp,
+  docs (75 pages, 582 links, 456 spans, 91 tests, 0 findings), packet-counts (595, 0 differences).
+- [ ] T009c IDA claims the review could not check (`evidence-researcher-ida`, `briefs/T009c-ida-claims.md`).
 - [ ] T010 Editor pass, `AGENTS.md` / `CLAUDE.md` shortened, close: `check.sh --all`, retro, merge and push.
 
 ## Decisions (coordinator, 2026-11-04, from T001 § 12)
@@ -81,5 +84,5 @@ Coordinator: main session. One subagent at a time. Target structure and rules: `
 
 ## Running
 
-- T009b (implementer, brief `briefs/T009b-review-fixes.md`), started 2026-11-04. Next: T009c, editor, `AGENTS.md`
-  shortened, close. Then spec 010.
+- T009c (evidence-researcher-ida, brief `briefs/T009c-ida-claims.md`), started 2026-11-04. Next: fixes if any, editor,
+  `AGENTS.md` shortened, close. Then spec 010.
