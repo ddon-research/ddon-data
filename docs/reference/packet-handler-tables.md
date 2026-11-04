@@ -129,7 +129,7 @@ The login server shares ids with the game server: a raw file's name prefix (`C2L
 | Item | Value |
 | --- | --- |
 | Direct `E8` calls | 658, from `0x81dd03` to `0x88a98e` |
-| Login writers | the sites in `0x889f40`..`0x88a980` |
+| Login writers | 13 sites from `0x889fb3` to `0x88a98e`, in the writers from `0x889f40` to `0x88a980` |
 | Distinct keys | 651, from `specs/006-packet-pattern-coverage/research/T001-triage.md`; not recounted |
 
 ## Names

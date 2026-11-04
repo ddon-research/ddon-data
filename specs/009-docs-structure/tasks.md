@@ -48,8 +48,11 @@ Coordinator: main session. One subagent at a time. Target structure and rules: `
   trees through `cd`, `git -C`, `--search-path`, `git show`, `git grep`; `guard_paths` every spelling. Known gap, stated: a
   fence's later words; `git show <rev>:<path>`, `cat`/`wc` over a data glob stay allowed. Gate: hooks (65 + 14), shell, mcp,
   docs (75 pages, 582 links, 456 spans, 91 tests, 0 findings), packet-counts (595, 0 differences).
-- [ ] T009c IDA claims the review could not check (`evidence-researcher-ida`, `briefs/T009c-ida-claims.md`).
-- [ ] T010 Editor pass, `AGENTS.md` / `CLAUDE.md` shortened, close: `check.sh --all`, retro, merge and push.
+- [x] T009c IDA claims (`research/T009c-ida-claims.md`): 42 claims, 40 hold, 1 wrong (login writers' range; fixed by the
+  coordinator), 1 not settled (`query-ida-read-only.md:14`: facts in all three PC databases, only `pc-handlers` opened).
+  Copies: `.i64` deleted; `.id0`/`.id1` under both `ddon-data-t009c/` are held by this session's IDA workers: delete at the close.
+- [ ] T010 Editor pass (`editor`, `briefs/T010-editor.md`).
+- [ ] T011 `AGENTS.md` / `CLAUDE.md` shortened, close: `check.sh --all`, retro, merge and push.
 
 ## Decisions (coordinator, 2026-11-04, from T001 § 12)
 
@@ -84,5 +87,4 @@ Coordinator: main session. One subagent at a time. Target structure and rules: `
 
 ## Running
 
-- T009c (evidence-researcher-ida, brief `briefs/T009c-ida-claims.md`), started 2026-11-04. Next: fixes if any, editor,
-  `AGENTS.md` shortened, close. Then spec 010.
+- T010 (editor, brief `briefs/T010-editor.md`), started 2026-11-04. Next: `AGENTS.md` shortened, close. Then spec 010.
