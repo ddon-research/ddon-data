@@ -40,8 +40,12 @@ Coordinator: main session. One subagent at a time. Target structure and rules: `
   `research/README.adoc`, `rLandInfo-example`, `wikis-and-resources` and the quest-flag note deleted after their facts
   landed. Corrected: extractor's third argument, rLandInfo magic `0x49414C`. Gate: hooks, shell, mcp, docs (75 pages, 579
   links, 0 findings); ImHex not run (not on PATH).
-- [ ] T009 Review (`adversarial-reviewer`, `briefs/T009-review.md`): accuracy sample, lost facts, live readers, the gate,
-  a reader's walk.
+- [x] T009 Review (`research/T009-adversarial.md`): 19 findings (6 block, 13 route), coordinator reproduced 1, 3, 5, 8, 17.
+  Held: packet table (595/595, 564 identical, 31 counts only), 30/30 facts located, no stale live reader, 298/298 and 32/34
+  outside references. IDA batch not run (role conflict): addresses in the databases unchecked.
+- [ ] T009b Review fixes (`implementer`, `briefs/T009b-review-fixes.md`).
+- [ ] T009c IDA claims the review could not check: `0x9d6a20`/`0x9d6d20`, `ida-transfer-method.md:71`, a sample of page
+  addresses in the annotated database (`evidence-researcher-ida`).
 - [ ] T010 Editor pass, `AGENTS.md` / `CLAUDE.md` shortened, close: `check.sh --all`, retro, merge and push.
 
 ## Decisions (coordinator, 2026-11-04, from T001 § 12)
@@ -77,5 +81,5 @@ Coordinator: main session. One subagent at a time. Target structure and rules: `
 
 ## Running
 
-- T009 (adversarial-reviewer, brief `briefs/T009-review.md`), started 2026-11-04. Next: file its report, fixes, editor,
-  `AGENTS.md` shortened, close. Then spec 010.
+- T009b (implementer, brief `briefs/T009b-review-fixes.md`), started 2026-11-04. Next: T009c, editor, `AGENTS.md`
+  shortened, close. Then spec 010.
