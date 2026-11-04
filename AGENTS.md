@@ -39,7 +39,7 @@ Treat it as versioned evidence, not as source code.
 - **Related tools**: `C:\ddon-dwarf-reconstructor-rust` rebuilds C++ for resource classes from the
   PS4 DWARF; `D:\ddon-dwarf-reconstructor` is its archived predecessor, still used by knowledge-graph
   enrichment. Server emulator: `D:\GitHub\Sehkah\Arrowgene.DragonsDogmaOnline` (fork; unresolved merge in
-  progress), `.Clean` (working copy for spec 010) and `.Upstream` (reference); the patched CLI build is in
+  progress), `.Clean` (working copy; its `fix/packet-handling` is draft PR 8 on the fork) and `.Upstream` (reference); the patched CLI build is in
   `C:\Users\morph\Documents\GitHub\Sehkah\Arrowgene.DragonsDogmaOnline.Upstream`, its patches saved as
   `packets/tools/arrowgene-cli.patch`. Ghidra scripts are archived in `D:\ddon-ghidra-scripts`: prefer IDA MCP
   and the reconstructors.
