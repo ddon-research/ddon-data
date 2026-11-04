@@ -44,7 +44,7 @@ The summaries beside it (`client/03040008.csv`, `client/03040008-resources.csv`,
 
 ## 4. Review the change
 
-The tree holds about 173k files, so never list or diff it unbounded. Review it per resource type:
+The tree holds on the order of 170,000 files ([count](../reference/status.md#client-resources)), so never list or diff it unbounded. Review it per resource type:
 
 ```bash
 git diff --stat -- client/03040008/quest

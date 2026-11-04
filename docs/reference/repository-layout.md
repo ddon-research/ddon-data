@@ -25,7 +25,7 @@ Where everything is: each top path and each directory that matters under it, wha
 
 | Path | Holds |
 | --- | --- |
-| `client/03040008/` | about 173k JSON files mirroring `nativePC/rom` of client 03040008 |
+| `client/03040008/` | on the order of 170,000 JSON files ([count](status.md#client-resources)) mirroring `nativePC/rom` of client 03040008 |
 | `client/03040008.csv` | every file: `Path,ArcPath,Ext,JamCrcStr,Class,JamCrc,Size,SizeCompress,Offset` |
 | `client/03040008-resources.csv` | extension and class, with a `#extension,resource` header |
 | `client/03040008-resources-exclusive.csv` | the extensions and classes of this client alone |
@@ -84,7 +84,7 @@ Season 1 and Season 2 patterns are not here. They are in the sibling repositorie
 
 | Repository | Holds |
 | --- | --- |
-| [ddon-data-s1](https://github.com/ddon-research/ddon-data-s1), `D:\ddon-data-s1` | Season 1: client 01010004, its patterns in `ddon-data-s1/research/01020003/` |
+| [ddon-data-s1](https://github.com/ddon-research/ddon-data-s1), `D:\ddon-data-s1` | Season 1: client 01010004, its patterns in `ddon-data-s1/research/01020003/`: `01020003` is the build of its PS4 export `ddon-data-s1/binaries/PS4_01020003/`, and the patterns name no build, so that they follow it is inferred |
 | [ddon-data-s2](https://github.com/ddon-research/ddon-data-s2), `D:\ddon-data-s2` | Season 2: client 02030004, its patterns in `ddon-data-s2/research/02030004/`, `ddon-data-s2/recompilation/` (DWARF-based C++) |
 
 ## Data flow

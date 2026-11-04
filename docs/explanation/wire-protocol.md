@@ -29,7 +29,7 @@ The first packet has no header, and neither side needs one, since the two ends k
 
 ## Why the session keys can be found at all
 
-RSA would close the captures if the common key were random. It is not: each character is drawn from the client's global pseudo-random generator, an xorshift128 seeded once from a millisecond timer. So a key is a seed and a depth, both small for a client that has just started, and a candidate can be tested because the plaintext of the challenge response is known. That is the search [Decrypt a capture](../how-to/decrypt-a-capture.md) runs.
+RSA would close the captures if the common key were random. It is not: each character is drawn from the client's global pseudo-random generator, an xorshift128 that start-up seeds from a millisecond count ([the calls](rng-race.md#how-a-key-is-drawn-verified)). So a key is a seed and a depth, both small for a client that has just started, and a candidate can be tested because the plaintext of the challenge response is known. That is the search [Decrypt a capture](../how-to/decrypt-a-capture.md) runs.
 
 The same generator serves gameplay code on several threads without a lock. So the search works on the first login of a client process and fails on later ones: [RNG race](rng-race.md) explains why. Nothing else on this page depends on the race; it means only that some captured streams stay undecrypted.
 

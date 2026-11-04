@@ -18,7 +18,7 @@ This page is for anyone taking a packet id of client 03040008 to a pattern, its 
 | Direction | Where | Example |
 | --- | --- | --- |
 | S2C on the game server | a record of the [directory](../reference/packet-handler-tables.md#game-server-the-directory), and its handler | the row below |
-| L2C on the login server | a [login list](../reference/packet-handler-tables.md#login-server-the-lists) | 1.1.16 is handler `0x886b00` |
+| L2C on the login server | a [login list](../reference/packet-handler-tables.md#login-server-the-lists) | 1.1.16 is handler `0x886b00`, which IDA shows as `dd` data until you disassemble it ([which handlers](../reference/packet-handler-tables.md#login-server-the-lists)) |
 | C2S or C2L | the [`WritePacket` site](../reference/packet-handler-tables.md#senders) with this key | 14.11.16 is writer `0x840080` |
 
 With the local dump, the handler of an S2C packet is one line of `jq` (decimal VAs):

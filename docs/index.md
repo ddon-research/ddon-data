@@ -79,6 +79,7 @@ This map is for peers who know x86, ELF and DWARF but not this project: it lists
 - [Client patches](reference/client-patches.md): the hash chain, lineage, file offsets and `.r2` encoding of the PC executables.
 - [Protection inventory](reference/protection-inventory.md): the mechanisms in the PC dumps, their sites and their state per executable.
 - [ELF dumps](reference/elf-dumps.md): provenance, storage, verification and two file formats of the PS4 dump set.
+- [Structure of the PS4 ELF](reference/ps4-elf-structure.md): what is unusual about `DDOORBIS.elf`, section by section.
 
 ### Game knowledge
 
@@ -95,7 +96,7 @@ This map is for peers who know x86, ELF and DWARF but not this project: it lists
 - [IDA transfer method](explanation/ida-transfer-method.md): why pairs are proved by code shape, what each gate prevents, what the results mean.
 - [Client lineage and protections](explanation/client-lineage-and-protections.md): what the PC executables are, what the layers do, why a code patch crashes the client.
 - [RNG race](explanation/rng-race.md): why captures from long-running clients do not decrypt, and what is open.
-- [Structure of the PS4 ELF](explanation/ps4-elf.md): what is unusual about `DDOORBIS.elf` and what its dumps show.
+- [PS4 ELF dump choices](explanation/ps4-elf.md): why inlined chains take one process per address, and why IDA only corroborates.
 
 ## Other work
 

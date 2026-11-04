@@ -46,7 +46,7 @@ A directory that holds data or code keeps a short `README`: what the directory h
 - **Every client fact names its build** (`03040008`, `02030004`, `PS4_02020005`). A layout from one build is no fact about another until it is checked there.
 - **Evidence marks keep their meaning on pages:** `V`, `I` and `G`, as the [glossary](glossary.md#evidence-marks) defines them. A page that states a decoded fact keeps the mark its source gives, and never upgrades one. A check that did not run is "not run", never "passed".
 - **Counts live in [Status](status.md) and in dated reference examples only.** A number names the date of the run it was measured on. Other pages give orders of magnitude or link to Status, so a re-export changes one page.
-- Facts about fixed inputs (a client file, the ELF, a capture's hash) are not counts of a run: they may stand on the subject page with their source.
+- Facts about fixed inputs (a client file, the ELF, a capture's hash) and the dated measurements of a closed investigation ([RNG race](../explanation/rng-race.md)) are not counts of a run: they may stand on the subject page with their source.
 - Never invent an example value. Show output copied from a real file or run.
 
 ## Status words
@@ -69,8 +69,9 @@ Status carries a dated blockquote as its second paragraph, with the date of the 
 
 - Process vocabulary (coordinator, wave, package, receipt, brief) belongs to the development setup. A page names a script that serves it by what the script does.
 - The [glossary](glossary.md) defines the rest. Add a term there before using it on two pages.
-- No task ids, package labels or wave names in prose (`T002`, `TC1`, `R2`, `P11`, `wave 2`, `batch B5`). An evidence report that readers need is cited by its path in a code span. x86 registers go in code spans too: `R8` is otherwise read as a label.
+- No task ids, package labels or wave names in prose (`T002`, `TC1`, `R2`, `P11`, `wave 2`, `batch B5`). An evidence report that readers need is cited by its path in a code span; the packet pages may cite one by its label in a code span, through the key of [Packet ids](packet-ids.md#report-labels). x86 registers go in code spans too: `R8` is otherwise read as a label.
 - No word that dates a page without a date. The gate refuses these in prose: `currently`, `now`, `nowadays`, `today`, `recently`, `new`, `newly`, `old`, `existing`, `yet`, `no longer`, `so far`, `at present`. A time that matters gets its date; quoted text goes in a code span.
+- `hand-written` is the word for files people write, never `hand-authored`.
 - Spelling is British with -ize (behaviour, summarize); no serial comma; dates as ISO 8601.
 
 ## Links and paths

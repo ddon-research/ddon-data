@@ -88,7 +88,7 @@ Each of these needs another kind of evidence, not a relaxed gate:
 - **Locals at codec sites.** PC call sites without argument sizes carry no stack argument values.
 - **Context getters** such as `sContextManager::getContextMyPlayer`. No anchor reaches them, so most locals defined by their results stay unnamed.
 - **Typed `lea` types and packet object vtables.** Both are planned rules.
-- **The login handler table** at `0x888000`-`0x88E000`, which the handler table walk does not reach. Login handlers of PC 03040008 have no diagnostic strings to seed from.
+- **The [login handler lists](../reference/packet-handler-tables.md#login-server-the-lists),** which the handler table walk does not reach: it reads the game server's directory only. Login handlers of PC 03040008 have no diagnostic strings to seed from.
 - **Register-argument prototypes.** IDA's `__usercall` conventions are not provable from the dump.
 - **Everything outside the packet subsystem**, except where it is a helper of it.
 

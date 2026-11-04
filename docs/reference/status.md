@@ -51,6 +51,14 @@ Client 03040008 packets on a contended 32-CPU machine, with hyperfine 2.0.0, `-N
 | One process, per-file parsing as built | about 40 files/s |
 | Parsing once and evaluating many, not built, estimated | roughly 1,000 files/s per process |
 
+## Client resources
+
+> Counted on 2026-11-04.
+
+| What | Count | How to recount |
+| --- | --- | --- |
+| Files of `client/03040008/` in the git index | 173,454 | `git ls-files -- client/03040008 \| wc -l` |
+
 ## Resource extensions
 
 > Measured on 2026-11-04, against ddon-extractor `e6c358ea`.
@@ -149,6 +157,7 @@ The `.r2` and `.json` files of `patches/`, against the hash tables of [Client pa
 | [Convert textures](../how-to/convert-textures.md) | not run: both scripts' `--help` only; ARCtool not checked, `magick`, `texconv.exe` and `texdiag.exe` are on `PATH` | 2026-11-04 |
 | [Extract client resources](../how-to/extract-client-resources.md) | not run: no re-extraction; read against `ExtractResourceCommand.java` | 2026-11-04 |
 | [Decode a resource format](../how-to/decode-a-resource-format.md): ImHex validation of any resource pattern, its IDA reads | not run: ImHex is not on `PATH`; the example's bytes and JSON were read | 2026-11-04 |
+| The addresses of [Packet handler tables](packet-handler-tables.md) in the databases `pc` and `pc-accepted`; they were checked in `pc-handlers` | not run | 2026-11-04 |
 | The URLs of [Community resources](community-resources.md) | not run | 2026-11-04 |
 | The C# lines of [Quest flag sources](quest-flag-sources.md) against a server source | not run; each file example was searched for its value | 2026-11-04 |
 | The whole-type `transfer.py` on the committed dumps: it refuses them with exit status 2, as designed, so `manifest/transfer/` could not be compared | not run | 2026-11-04 |

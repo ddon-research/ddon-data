@@ -78,6 +78,8 @@ These carry no header on the wire, and their raw files hold only the body from o
 - The client writer builds a normal header, and `cSeedServerConnection::Send` (PC `0x9d6a20`) drops those 9 bytes when group and id match the connection's handshake command and sub is 1.
 - The receive path (PC `0x9d6d20`) synthesizes a header for the server's first packet: group and id from the connection, sub 0x10, counter 0.
 
+Read both in the disassembly. In `pc-handlers`, Hex-Rays leaves out the logic of `0x9d6a20` and `0x9d6d20`: the pseudocode shows neither the sub check, the `-9` nor the synthesized header, so a check by decompiling alone would wrongly call these two sentences false.
+
 | Connection, vtable | Send group, id | Receive group, id |
 | --- | --- | --- |
 | game, `0x1bc5c38` | 0x2c, 0 | 0x2c, 1 |

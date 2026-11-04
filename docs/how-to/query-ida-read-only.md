@@ -11,7 +11,7 @@ This page is for anyone who wants to read a function, a type or a cross-referenc
 | `pc-handlers` | PC 03040008 | `PC_DDON_03040008/spec007-packet-handlers-20261103-wave2/2022_01_29_DDO_DUMP_FIX.exe.i64` | the annotated database: packet handler names, prototypes and types transferred from PS4 02020005 ([what they mean](../explanation/ida-transfer-method.md#what-the-results-mean-for-a-reader)) |
 | `ps4` | PS4 02020005 | `PS4_DDON_02020005_2016_12_21/DDOORBIS.elf.i64` | the PS4 symbols and DWARF names |
 
-Facts about the executable hold in all three PC databases; the [packet handler tables](../reference/packet-handler-tables.md) are one example.
+The addresses of the [packet handler tables](../reference/packet-handler-tables.md) were checked in `pc-handlers`, whose stored input is `f1c9`; in `pc` and `pc-accepted` they are not run. The other two record the same input, so facts about the executable should hold there too (inferred; [the records](../reference/packet-handler-tables.md#which-database-to-read-them-in)).
 
 ## 2. Make a private copy
 

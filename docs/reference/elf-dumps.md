@@ -1,6 +1,6 @@
 # ELF dumps
 
-Provenance, storage and verification of the static dump set of `DDOORBIS.elf` (PS4_02020005), and the format of its two files that are not produced by its script. It is for anyone who reads the set and must know where a file came from and how far to trust it. You need nothing first. [The set's README](../../binaries/PS4_02020005/elf-dumps/README.adoc) holds the input (§ 1), the file per category (§ 3), the preferred tool per question (§ 5) and the commands to search it (§ 7); [Regenerate the ELF dumps](../how-to/regenerate-elf-dumps.md) rebuilds it; [Structure of the PS4 ELF](../explanation/ps4-elf.md) explains the binary.
+Provenance, storage and verification of the static dump set of `DDOORBIS.elf` (PS4_02020005), and the format of its two files that are not produced by its script. It is for anyone who reads the set and must know where a file came from and how far to trust it. You need nothing first. [The set's README](../../binaries/PS4_02020005/elf-dumps/README.adoc) holds the input (§ 1), the file per category (§ 3), the preferred tool per question (§ 5) and the commands to search it (§ 7); [Regenerate the ELF dumps](../how-to/regenerate-elf-dumps.md) rebuilds it; [Structure of the PS4 ELF](ps4-elf-structure.md) describes the binary.
 
 ## Provenance
 

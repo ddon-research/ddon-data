@@ -4,7 +4,7 @@ Where the PC client 03040008 keeps its packet handlers, senders and packet names
 
 ## Which database to read them in
 
-Every address below holds in each database of that executable.
+The addresses below were checked in `pc-handlers`, whose stored input is `f1c9`. In `pc` and `pc-accepted`: not run. Records give those two the same stored input and image base, so the addresses should hold there too (inferred): for `pc`, `ddon-hook/specs/013-prng-state-recovery/research.md` on 2026-10-18, at the `.i64` hash `717e862d` it still has on 2026-11-04; for `pc-accepted`, `specs/007-pc-handler-annotation/research/T002-audit.md` on 2026-11-03, at the `.i64` hash `382e346e` that `CURRENT-RECOVERY.json` names. That file records no input hash itself. `pc-handlers` descends from a private copy of `pc-accepted` (`specs/007-pc-handler-annotation/spec.md`, Inputs).
 
 | `research/ida/private-copy.sh` target | Database, under `D:\research\DDON-binaries\IDA9.5\PC_DDON_03040008\` | Use |
 | --- | --- | --- |
@@ -121,6 +121,8 @@ The counts sum to 1,041 records. For example 14.3.2 is the record at `0x212fe98`
 | 2.3.16 | `0x886ec0` | 5.5.16 | `0x887670` |
 
 The login server shares ids with the game server: a raw file's name prefix (`C2L_`, `L2C_`) tells them apart. The rows were read from the executable.
+
+In `pc-handlers`, 9 of the 20 addresses have no IDA function: `0x886650`, `0x886750`, `0x886b00`, `0x886d00`, `0x886e00`, `0x886ec0`, `0x887130`, `0x8874b0`, `0x8875b0`. `0x886b00` shows `dd` data, and decoded without creating anything it is code: `sub esp,56Ch; push esi; push edi; mov edi,ecx`. `0x886820` and `0x886fd0` lie inside functions that start at `0x88681f` and `0x886fcd`. So disassemble at the address, or create the function in your private copy. This is a coverage gap of the database, not evidence against the table.
 
 ## Senders
 

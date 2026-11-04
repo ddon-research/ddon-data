@@ -57,7 +57,7 @@ All binary diffs are `.r2` scripts with a `.json` beside them. Each row gives th
 
 | Name | Date | Starting Hash | Target Hash | Notes |
 |------|------|---------------|-------------|-------|
-| 2026_10_17_DDO_DUMP_FIX_4.exe | 2026-10-17 | `f1c974d0e529d4bb7dc5f0953d37eea6bbb023f2667f9a1d3a3b878f4919fa20` | `d38412ca6443540f1b22e766749f11b59e4239a6a43d4dbec55e85f2fa1cde84` | 33 bytes: the three checksum compares `0x24CD5DE`, `0x3A87F64`, `0x430DF3B` with the bytes of `1c8c`, and four `call [IsDebuggerPresent]` sites `0xBEEA24`, `0x19A7F4E`, `0x19AE2F1`, `0x19C1429` as `xor eax,eax` plus nops. Its `.json` adds `sites` and `validation`: in its three smoke runs on 2026-10-17 the hooked client still crashed |
+| 2026_10_17_DDO_DUMP_FIX_4.exe | 2026-10-17 | `f1c974d0e529d4bb7dc5f0953d37eea6bbb023f2667f9a1d3a3b878f4919fa20` | `d38412ca6443540f1b22e766749f11b59e4239a6a43d4dbec55e85f2fa1cde84` | 33 bytes: the three checksum compares `0x24CD5DE`, `0x3A87F64`, `0x430DF3B` with the bytes of `1c8c`, and four `call [IsDebuggerPresent]` sites `0xBEEA24`, `0x19A7F4E`, `0x19AE2F1`, `0x19C1429` as `xor eax,eax` plus nops. Its `.json` adds `sites` and `validation`: three runs on 2026-10-17, of the compares alone, this layer, and this layer plus an `rdtsc` jump at `0x180DB03` that is not part of it. The hooked client crashed in all three, with `0xC0000005` at 46.9 s, 30.0 s and 26.2 s |
 
 ## Lineage
 
