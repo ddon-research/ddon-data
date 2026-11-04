@@ -10,15 +10,19 @@ Coordinator: main session. One subagent at a time. Target structure and rules: `
   wording, tutorial pins; 39 tests, 13/13 condition removals caught); `research/scripts/`, `research/prompts/`,
   `research/03040008/notes/`; `research/README.adoc` case fixed; `editor` role installed by the coordinator. Gate
   `check.sh --since 7d50e1feb86`: hooks, shell, mcp, docs passed.
-- [ ] T003 Move the packet work to `packets/` (`implementer`, `briefs/T003-packet-tree.md`): patterns to
-  `packets/patterns/03040008/`, `tools/`, `tests/`, `plbatch/`, `wireshark/`; guard narrowed to the data trees.
-- [ ] T004 Packet and evidence pages: packets README split, Arrowgene/annotate adoc, wire format, handler tables, marks,
-  decoding method, write-a-pattern, evidence model; `packet-ids.md` check; 31 counts corrected.
-- [ ] T005 IDA and transfer pages: `ida-transfer/README.md` split, query and write how-tos, transfer method.
-- [ ] T006 The rest: protections, patches, ELF dumps, plbatch, Pharos, textures, rng-race, `research/README.adoc`,
+- [x] T003 Move the packet work to `packets/` (5e6d4d220a, 015b1b69d4): patterns to `packets/patterns/03040008/`,
+  `tools/`, `tests/`, `plbatch/` (with its build tree), `wireshark/`; guard narrowed to the data trees. 595 = 595
+  patterns; 6 ids / 676 JSON re-exported byte-identical; plbatch test passes from its home; `git log --follow` crosses the
+  move. Gate `check.sh --since cfa36beb405`: hooks, shell, export, mcp, docs passed.
+- [ ] T004 Packet docs restructured (`implementer`, `briefs/T004-packet-restructure.md`): patterns README and annotate
+  adoc split into pages, plbatch and Wireshark pages, `packet-ids.md` with its gate check, 31 counts corrected.
+- [ ] T005 New knowledge pages: wire format, handler tables, decoding method, write-a-pattern, verify-a-regeneration,
+  evidence model, `two-packet-decodings` (decision 7).
+- [ ] T006 IDA and transfer pages: `ida-transfer/README.md` split, query and write how-tos, transfer method.
+- [ ] T007 The rest: protections, patches, ELF dumps, Pharos, textures, rng-race, `research/README.adoc`,
   `rLandInfo-example`, wikis; repository layout, inputs, tools, conventions, gate and hooks; root `readme.adoc`.
-- [ ] T007 Review: accuracy sample, a reader's walk, adversarial check of the new gate.
-- [ ] T008 Editor pass, `AGENTS.md` / `CLAUDE.md` shortened, close: `check.sh --all`, retro, merge and push.
+- [ ] T008 Review: accuracy sample, a reader's walk, adversarial check of the new gate.
+- [ ] T009 Editor pass, `AGENTS.md` / `CLAUDE.md` shortened, close: `check.sh --all`, retro, merge and push.
 
 ## Decisions (coordinator, 2026-11-04, from T001 § 12)
 
@@ -44,5 +48,5 @@ Coordinator: main session. One subagent at a time. Target structure and rules: `
 
 ## Running
 
-- T003 (implementer, brief `briefs/T003-packet-tree.md`), started 2026-11-04. Also updates the tutorial's `TUTORIAL`
-  constant and `status.md`'s `ls` counts. Next: land, apply its `AGENTS.md` lines, brief T004.
+- T004 (implementer, brief `briefs/T004-packet-restructure.md`), started 2026-11-04. Next: land, apply its `AGENTS.md`
+  lines, brief T005.

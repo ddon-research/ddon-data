@@ -23,9 +23,9 @@ Treat it as versioned evidence, not as source code.
 | `binaries/PS4_02020005/` | IDA export `DDOORBIS.elf.h` + `DDOORBIS_{1,2,3}.elf.c` (split for size) | IDA 9.3 dump of `D:\research\DDON-binaries\IDA9.3\PS4_DDON_02020005_2016_12_21\DDOORBIS.elf` |
 | `binaries/PS4_02020005/elf-dumps/` | Reference static dumps of the same `DDOORBIS.elf`, one preferred source per category (headers, SCE dynamic table, NIDs, relocations, symbols, strings, stack sizes, unwind, every DWARF section, all line tables), `manifest.jsonl` provenance, `README.adoc` status report; `local/` (gitignored) holds the multi-GB dumps; `archive/` (gitignored, local only) holds the tool comparison and the closed reconstructor handover | `elf-dumps/generate-elf-dumps.sh` (orbis-bin SDK 12, LLVM 23); spec `specs/001-ps4-static-dumps/` |
 | `binaries/ANDROID_1500/` | Decompiled Unity C# and `path_id_map.json` | `D:\research\DDON-binaries\Android` tools |
-| `packets/` | `encrypted_streams/`, `decrypted_{raw,json,annotated}/`, `keys/`, packet statistics | `D:\research\DDON-pcaps` toolchain: `ddon_pcap_split`, `ddon_common_key_bruteforce`, `Arrowgene.Ddon.Cli` |
+| `packets/` | Data: `encrypted_streams/`, `decrypted_{raw,json,annotated}/`, `keys/`, packet statistics. Hand-authored: `patterns/03040008/` (ImHex patterns, `include/`), `plbatch/` (export engine), `tools/`, `tests/`, `wireshark/` (dissector, filters) | `D:\research\DDON-pcaps` toolchain: `ddon_pcap_split`, `ddon_common_key_bruteforce`, `Arrowgene.Ddon.Cli`; JSON: `packets/imhex-export.sh` |
 | `patches/` | radare2 `.r2` patch scripts + `.json` metadata for Windows `DDO.exe` builds | Hand-authored; see `patches/README.md` |
-| `research/<build>/` | ImHex patterns `r<Type>-pattern.cpp`, packet patterns, notes, DTI dumps | Hand-authored |
+| `research/<build>/` | ImHex patterns `r<Type>-pattern.cpp`, notes, DTI dumps | Hand-authored |
 | `research/03040008/flags/` | `ddon-flags` Python project (quest/layout flag investigation) and `generated/` reports | This repo |
 | `research/knowledge-graph/` | `ddon-knowledge-graph` Python project (Neo4j evidence graph + MCP), own Spec Kit project | This repo |
 | `research/ida/`, `research/pharos/` | IDA helpers, Pharos OOAnalyzer (Docker) | This repo |
@@ -70,7 +70,7 @@ Treat it as versioned evidence, not as source code.
 - This is an intentionally active research worktree with large staged and unstaged changes
   (e.g. full `client/03040008` re-extractions). Preserve unrelated changes; never bulk `revert`,
   `checkout --`, `clean`, or `reset` without listing exact paths and asking first.
-- `client/` and `packets/` hold hundreds of thousands of files: never list or `git diff` them
+- `client/` and `packets/` data hold hundreds of thousands of files (`packets/{patterns,tools,tests,plbatch,wireshark}` are small and exempt): never list or `git diff` them
   unbounded. Use `git diff --stat -- <subdir>`, `rg -c`, `fd -d 2`, and `dust`.
 - Never commit credentials, `.env` files, Neo4j volumes, game assets (`.arc`, `.pkg`, executables,
   disassembler databases), or runtime caches. Do keep deterministic, reproducible caches, SQLite
