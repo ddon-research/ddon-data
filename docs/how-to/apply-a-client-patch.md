@@ -20,7 +20,7 @@ The commands were run with radare2 6.1.0 on a scratch file, never on an executab
 
    Stop on a difference. A `.r2` is a sequence of "write these bytes at this offset" commands with no check of its own, so on the wrong base it **silently corrupts the binary**.
 
-3. Apply the layer. Ten of the tracked `.r2` files are UTF-16, and radare2 6.1.0 does not run those: it prints `Invalid command`, writes nothing and goes on. Convert them first; `rootofallthings_chat_edit.r2` and `bunie_5_in_1.r2` are UTF-8 and need no conversion:
+3. Apply the layer. Every tracked `.r2` file except `rootofallthings_chat_edit.r2` and `bunie_5_in_1.r2` is UTF-16 ([count](../reference/status.md#client-patches)), and radare2 6.1.0 does not run UTF-16: it prints `Invalid command`, writes nothing and goes on. Convert those files first:
 
    ```bash
    iconv -f UTF-16 -t UTF-8 patches/<layer>.r2 > <layer>.utf8.r2

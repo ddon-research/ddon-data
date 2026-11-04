@@ -1,6 +1,6 @@
 # Convert textures
 
-This page is for anyone who wants the images of a DDON client as PNG files. You extract `.tex` and `.dds` from the `.arc` archives with ARCtool, then convert them with one of two scripts in `research/textures/`. You need an unpacked client with its `native*/*rom` tree: `nativePC/rom` (PC), `nativePS3/ps3_rom` (PS3) or `nativePS4/ps4_rom` (PS4). You need [ARCtool](http://www.fluffyquack.com/tools/) by Fluffy Quack for ARC to TEX, and for the conversion [ImageMagick](https://imagemagick.org/script/download.php) or DirectXTex's `texconv.exe` and `texdiag.exe`.
+This page is for anyone who wants the images of a DDON client as PNG files. You extract `.tex` and `.dds` from the `.arc` archives with ARCtool, then convert them with one of two scripts in `research/textures/`. You need an unpacked client with its `native*/*rom` tree (`nativePC/rom` on PC, `nativePS3/ps3_rom` on PS3, `nativePS4/ps4_rom` on PS4), [ARCtool](http://www.fluffyquack.com/tools/) by Fluffy Quack for ARC to TEX, and for the conversion [ImageMagick](https://imagemagick.org/script/download.php) or DirectXTex's `texconv.exe` and `texdiag.exe`.
 
 ## Steps
 

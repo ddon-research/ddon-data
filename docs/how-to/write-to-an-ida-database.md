@@ -1,10 +1,10 @@
 # Write to an IDA database
 
-This page is for anyone who must change names, types or comments in a DDON IDA database (PC 03040008, PS4 02020005) and keep the change. The write runs as a headless batch job on a private copy, keeps its before-state and is checked afterwards. You need a [private copy](query-ida-read-only.md#2-make-a-private-copy) and a script that takes its arguments from `idc.ARGV`. Writes to the user's own `.i64` are never made this way or any other: a result is published as a folder of its own.
+This page is for anyone who must change names, types or comments in a DDON IDA database (PC 03040008, PS4 02020005) and keep the change. The write runs as a headless batch job on a private copy, keeps its before-state and is checked afterwards. You need a [private copy](query-ida-read-only.md#2-make-a-private-copy) and a script that takes its arguments from `idc.ARGV`. Never write to an original `.i64`, by this route or any other: publish the result as a folder of its own.
 
 ## Rules
 
-- **Never the user's database.** Work on a copy under `ddon-data-<name>/`. The originals may be open in the IDA GUI.
+- **Never an original database.** Work on a copy under `ddon-data-<name>/`. The originals may be open in the IDA GUI.
 - **Never through an ida-mcp worker.** `save_database` and `close_database` are denied, so a worker cannot save. Its writes live only in the unpacked `.id0`, `.id1`, `.nam` and `.til` beside the copy, and the packed `.i64` keeps its hash. When the worker is killed, the next open offers "Restore packed base (DISCARD unpacked)". In the run of 2026-11-03 that recorded this, none of 116 repairs survived (`specs/007-pc-handler-annotation/research/T004d-repair.md`).
 - **Names, types and comments only**, unless the task authorizes more. Research never implies a byte patch.
 

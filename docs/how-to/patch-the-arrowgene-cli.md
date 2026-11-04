@@ -26,7 +26,7 @@ On this machine the patched tree and its build also sit in `C:\Users\morph\Docum
    dotnet build Arrowgene.Ddon.Cli/Arrowgene.Ddon.Cli.csproj -c Debug
    ```
 
-2. Compare the output in `Arrowgene.Ddon.Cli/bin/Debug/net10.0/` with the [recorded hashes](../reference/arrowgene-cli-patches.md#build-identity), using `sha256sum`. A different hash is a different build, which a build from another path may well give: a re-export with it needs a comparison against the committed raw files ([Verify a regeneration](verify-a-regeneration.md)).
+2. Compare the output in `Arrowgene.Ddon.Cli/bin/Debug/net10.0/` with the [recorded hashes](../reference/arrowgene-cli-patches.md#build-identity), using `sha256sum`. A different hash is a different build, and a build from another path can give one: a re-export with it needs a comparison against the committed raw files ([Verify a regeneration](verify-a-regeneration.md)).
 
 3. The scripts `packets/decrypt-annotate-streams.sh` and `packets/decrypt-export-streams.sh` take that path by default. Set `CLI_PATH` for another build.
 

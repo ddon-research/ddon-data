@@ -24,7 +24,7 @@ This page is for anyone who changed a packet pattern of client 03040008 and need
    fd -d 2 -g '*_S2C_CONTEXT_GET_SET_CONTEXT_RES_*.json' packets/decrypted_json -X jq -r .packet.fits | sort | uniq -c
    ```
 
-   Every line should say `true`. A fit is weak evidence ([what a fit proves](../reference/packet-pattern-format.md#exported-checks)).
+   Success is a single line that says `true`. A [fit](../reference/glossary.md#packets) is weak evidence ([what a fit proves](../reference/packet-pattern-format.md#exported-checks)).
 
 4. Correct the row of the packet in [Packet ids](../reference/packet-ids.md):
 

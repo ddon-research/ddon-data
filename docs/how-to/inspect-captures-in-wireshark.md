@@ -64,9 +64,9 @@ Its first lines on that capture, output of 2026-11-04:
 | Stream | Filter |
 | --- | --- |
 | login | `data.len eq 98 && tcp.port eq 52100 && tcp.window_size eq 130560` |
-| server select | `data.len eq 98 && tcp.port eq 52000 && tcp.window_size eq 130560` |
+| game-select | `data.len eq 98 && tcp.port eq 52000 && tcp.window_size eq 130560` |
 | game | `data.len eq 98 && tcp.port eq 52000 && tcp.window_size eq 65792` |
 
-An alternative: filter `frame.len eq 360`, then look for the frame length sequence 360, 54, 392, 152. The first such sequence is login, the second server select and the third game.
+An alternative: filter `frame.len eq 360`, then look for the frame length sequence 360, 54, 392, 152. The first such sequence is login, the second game-select and the third game.
 
 The filters are empirical, and the key search in [Decrypt a capture](decrypt-a-capture.md) uses the same ones.

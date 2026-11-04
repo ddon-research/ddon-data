@@ -93,7 +93,7 @@ cp -p ${DB%.i64}.before-W2.i64 "$SMOKE"   # the state before the partial types, 
 "$IDAT" -A -L$T/dumps/logs/smoke.log "-S$T/apply_transfer.py $T/manifest/transfer/wave2 $T/dumps/smoke.jsonl --apply --limit-types 5 --limit-locals 10" "$SMOKE"
 ```
 
-Then a dry run first if you like, `--verify` with the same limits, and `--undo`; each must end clean. Delete the folder afterwards. Each limit counts rows of `types.h` and `locals.tsv`; `--limit-types` and `--limit-locals` work on a manifest of the partial-type pass only.
+Then run `--verify` with the same limits and `--undo`; each must end clean. A dry run before the apply is optional. Delete the folder afterwards. Each limit counts rows of `types.h` and `locals.tsv`; `--limit-types` and `--limit-locals` work on a manifest of the partial-type pass only.
 
 ## 6. Dry run
 

@@ -2,8 +2,6 @@
 
 This page is for anyone who wants to replace an `unk_*` field of a packet pattern of client 03040008 with a name that states its basis. You collect value candidates, pick the strongest basis, write the mark and re-export. You need to know the [marks](../reference/packet-marks.md), and `packets/decrypted_json/` on disk.
 
-An `unk_*` field may get a name when the name states its basis.
-
 ## Choose the basis
 
 Take the strongest that holds, in this order:

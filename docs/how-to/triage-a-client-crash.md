@@ -20,10 +20,10 @@ Addresses are virtual addresses in the `f1c9` database.
 3. **Find the writer** of a corrupted pointer: a TTD recording (`ttd.exe -launch` or `-attach`),
    then a memory breakpoint on the pointer and a reverse run to the writing instruction and thread.
    If it lands in the engine, it is a trap.
-4. **Name the trap** in the f1c9 database (read-only: record addresses in the ledger, never save the
-   database) and compare the site against the patch layers (`R3-patches.md` §2) to see whether any build already
+4. **Name the trap** in the `f1c9` database (read-only: record addresses in the ledger, never save the
+   database) and compare the site against the patch layers (`research/03040008/protections/R3-patches.md` §2) to see whether any build already
    neutralizes it.
-5. **Patch it out** as an `.r2` layer on f1c9 with its SHA-256 chain. Rerun the reproducer the same
+5. **Patch it out** as an `.r2` layer on `f1c9` with its SHA-256 chain. Rerun the reproducer the same
    number of times as before, and count a fix only when the crash rate drops.
 6. **Record every crash** in a crash ledger, one JSON object per crash:
    `{time, exe_sha256, hooks, uptime_s, code, ip, section, dump, class, root_cause, patch, verified}`.
@@ -44,10 +44,10 @@ Any inline patch of `.text` draws the protector's integrity reaction ([why](../e
    - Build the same hook with MinHook. If only SafetyHook crashes, it is the library.
    - A no-op hook that only calls the original. If that still crashes, the cause is the patch itself, not timing or added work.
 3. **Try the layer FIX_4 on `f1c9`** if the checksum compares are in question. **Status:** implemented, not tracked at 2026-11-04: `2026_10_17_ddo_dump_fix_4.r2`, recorded in [Client patches](../reference/client-patches.md#a-layer-outside-the-index). It stubs `0x24CD5DE`, `0x3A87F64` and `0x430DF3B` with the bytes of `1c8c`, and in its smoke runs of 2026-10-17 the hooked client still crashed, so it does not stop this crash on its own.
-4. **Answer the anti-debug probes in the proxy,** as Bunie and ScyllaHide do (`R1-online.md` §4, `R3-patches.md` §4): fake `NtQueryInformationProcess` for the own process. Needed only when a debugger or TTD is attached. Do not copy Bunie's `NtSetContextThread` mask bug ([what it is](../explanation/client-lineage-and-protections.md#what-bunies-dlls-add)).
+4. **Answer the anti-debug probes in the proxy,** as Bunie and ScyllaHide do (`research/03040008/protections/R1-online.md` §4, `research/03040008/protections/R3-patches.md` §4): fake `NtQueryInformationProcess` for the own process. Needed only when a debugger or TTD is attached. Do not copy Bunie's `NtSetContextThread` mask bug ([what it is](../explanation/client-lineage-and-protections.md#what-bunies-dlls-add)).
 5. **Use a hook that does not write `.text`,** when the patch itself is what trips the check:
    - hardware breakpoints in `DR0`–`DR3` with a VEH (PolyHook2 has both kinds), which needs the `NtSetContextThread` fix above. ddon-hook's data watch is this kind, and the protector holds the debug registers of the main thread;
    - a read-only sampler of the data, with no hook at all, which ddon-hook's RNG work ended on;
    - a PAGE_GUARD VEH hook;
    - hooking the callers' data (vtables, function pointers) where one exists. `nrand` is called directly from hundreds of sites, so that does not apply to it.
-6. **Only if 2–5 fail: find and disable the scheduler of the integrity jobs.** The TERA precedent did this: scan for the VM trampolines (`pushfq` sequences) and remove the job that writes the corrupting pointer (`R1-online.md` §6). It needs TTD to find the write.
+6. **Only if 2–5 fail: find and disable the scheduler of the integrity jobs.** The method comes from TERA's Themida build: scan for the VM trampolines (`pushfq` sequences) and remove the job that writes the corrupting pointer (`research/03040008/protections/R1-online.md` §6). It needs TTD to find the write.

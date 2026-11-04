@@ -44,7 +44,7 @@ The first two print the class of a supported extension: `.lai,rLandInfo`. The cl
 | Does the format matter to what you are researching? | the example path says what it is for; examples from client 03040008, by family, are below |
 | Are there many files? | `rg -c ',<ext>,' client/03040008.csv`; more files make a decoder worth more |
 | Does the PS4 build declare the class fully? | `rg -n 'rFoo::load' binaries/PS4_02020005/DDOORBIS_*.elf.c`, or the query in [Decode a resource format](decode-a-resource-format.md#2-read-the-class-and-its-loader) |
-| Does it exist in both seasons? | run the script for both builds; a format in Season 2 and Season 3 has a PS4 PS4_02020005 layout to start from |
+| Does it exist in both seasons? | run the script for both builds; a format in Season 2 and Season 3 has a PS4_02020005 layout to start from |
 
 | Family | Unsupported extensions, client 03040008 | Example path |
 | --- | --- | --- |
