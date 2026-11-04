@@ -3,7 +3,7 @@
 //
 // Framing (P4 1, = P2): u8 group, u16 id, u8 sub, u8 source (0x00 client, 0x34 server), u32
 // counter, then the body from file offset 0x09. The raw files store no body length and are padded
-// to a multiple of 16 bytes with non-zero bytes (cipher block padding).
+// to a multiple of 16 bytes with 0-15 bytes, not zeroed and not constant (cipher block padding).
 //
 // Fit flag: a decode "fits" when it ends within the last 15 bytes of the file
 // (std::mem::size() - $ <= 15); reading past the end fails the decode. This is weaker than the

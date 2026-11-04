@@ -1,7 +1,7 @@
 """Repair the PC 03040008 handler-table callbacks that are not IDA function starts (spec 007 T004c/T004e).
 
 Database writes run only as a headless batch job on the work copy, never through an ida-mcp worker
-(a killed worker's writes are lost; ``README.md``)::
+(a killed worker's writes are lost; ``docs/how-to/write-to-an-ida-database.md``)::
 
     idat -A -L<log> -S"repair_functions.py <OUT> [--apply] [--extract-ida <path>]" <work copy .i64>
 

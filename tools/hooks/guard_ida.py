@@ -17,7 +17,7 @@ import hooklib  # noqa: E402
 COPY = re.compile(
     r"d:/research/ddon-binaries/ida9\.5/(pc_ddon_03040008|ps4_ddon_02020005_2016_12_21)"
     r"/ddon-data-[a-z0-9][a-z0-9_-]{0,63}/[^/]+\.i64")
-ADVICE = ("open only a private copy: `bash research/ida/private-copy.sh <pc|ps4> <name>` prints its "
+ADVICE = ("open only a private copy: `bash research/ida/private-copy.sh <pc|pc-accepted|pc-handlers|ps4> <name>` prints its "
           "path; the user's .i64 may be open in the IDA GUI and the ida-mcp worker saves what it opens.")
 
 

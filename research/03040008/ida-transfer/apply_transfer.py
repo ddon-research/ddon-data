@@ -1,6 +1,6 @@
 """Write the T006 transfer rows to the PC 03040008 work copy and check them back (spec 007 T007).
 
-Headless batch only, on the work copy ``ddon-data-007work`` (README "Read path and write path")::
+Headless batch only, on the work copy ``ddon-data-007work`` (``docs/how-to/write-to-an-ida-database.md``)::
 
     idat -A -L<log> -S"apply_transfer.py <manifest/transfer dir> <OUT jsonl> [--apply]" <work copy .i64>
     idat -A -L<log> -S"apply_transfer.py <dir> <OUT jsonl> --verify --apply-log <apply jsonl>" <work copy .i64>

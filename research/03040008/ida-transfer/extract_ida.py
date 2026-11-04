@@ -26,7 +26,7 @@ functions added only to complete reader paths, ``scope: "codec_path"`` (:func:`c
 ``CODEC_DEPTH``); the callers of ``reserveNetworkErrorDialog`` are roots (``root: "requester"``, a
 call site outside any function is a ``requester_site`` record). v6 adds per call site ``args``
 (:func:`extract.callargs.call_argument_values`: the provable value of each argument slot) and skips MSVC
-padding nops; the pure helpers live in the package ``extract/`` (README "Version 6").
+padding nops; the pure helpers live in the package ``extract/`` (``docs/reference/ida-transfer-tools.md``).
 The pure helpers below (no IDA import) are unit-tested in ``tests/test_extract_ida.py`` and
 ``tests/test_extract_ida_v3.py`` / ``tests/test_extract_ida_v4.py``; the IDA-facing code is the
 ``_ida_*`` functions and ``main``.
