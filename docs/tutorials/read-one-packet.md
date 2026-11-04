@@ -38,7 +38,7 @@ Every multi-byte value is big-endian. The header is the first 9 bytes, and `pack
 | 0x04 | `34` | source | server (0x00 is the client) |
 | 0x05 | `00 00 00 00` | counter | 0 |
 
-Group, id and sub are the packet's [id](../reference/glossary.md#packets), 14.3.2. Look at the file name: it ends in `14_3_2`.
+Group, id and sub form the [packet id](../reference/glossary.md#packets), 14.3.2. Look at the file name: it ends in `14_3_2`.
 
 ## Step 3: Read the pattern
 
