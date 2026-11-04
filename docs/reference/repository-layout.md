@@ -113,7 +113,7 @@ These paths stay put unless their reader changes with them. Searched on 2026-11-
 | Path | Reader | Where |
 | --- | --- | --- |
 | `client/03040008/` | ddon-explorer-server | `src/main/resources/application-dev.yaml:7` |
-| `client/03040008/quest` | DDON-translation | `Tools/Speaker_and_Quest_Text_Type_Filler.py:313`, `Tools/last_archive_folder.txt:1` |
+| `client/03040008/quest` | DDON-translation | `DDON-translation/Tools/Speaker_and_Quest_Text_Type_Filler.py:313`, `DDON-translation/Tools/last_archive_folder.txt:1` |
 | `client/03040008-layout-npc-location.csv` | ddon-hook | `scripts/automation/stream49_constants.json:63`, a source note |
 | `research/03040008/protections/README.md`, its §1 and §5 | ddon-hook | `AGENTS.md:57`; under `ddon-hook/docs/development`: `08:70`, `09:206`, `14:12`, `14:41`, `15:142`; `scripts/automation/run_cycles.py:614` |
 | `research/external-references.md`, `research/external-references.jsonl` | ddon-hook | `AGENTS.md:84-85` |

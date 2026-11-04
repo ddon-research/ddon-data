@@ -34,7 +34,7 @@ Also on `PATH`: `jq` 1.8.2, `zstd` 1.5.7, `xxd`, `uv` 0.13.7, `gh` 2.103.3, `git
 | Rule | Why |
 | --- | --- |
 | Never list or diff `client/` or the packet data unbounded: use `git diff --stat -- <subdir>`, `rg -c`, `fd -d 2`, `dust` | they hold hundreds of thousands of files |
-| Git Bash paths are `/d/ddon-data/...`, native programs take `D:/...`, WSL sees `/mnt/d/...` | set `MSYS_NO_PATHCONV=1` when passing a `/`-prefixed argument to a native program |
+| Git Bash paths are `/d/<repository>/...`, native programs take `D:/...`, WSL sees `/mnt/d/...` | set `MSYS_NO_PATHCONV=1` when passing a `/`-prefixed argument to a native program |
 | Keep output trees short | native Windows programs (ImHex, the Arrowgene CLI) fail on paths of 260 characters or more |
 | Each Python project uses its own `uv` environment and CPython 3.14: `uv run` in the project; ad-hoc scripts as `python -X utf8 -I <script>` | the root `.venv` is a legacy stub; `research/03040008/flags/` has `.venv-cpython314` |
 | Commits are SSH-signed; never bypass it | [`AGENTS.md`](../../AGENTS.md) holds the rest of the commit rules |

@@ -44,7 +44,7 @@ The Report column of the table, and the labels in code spans on the other packet
 - **Status `n/m fit`:** n of the m JSON files of that packet in `packets/decrypted_json/` have `fits` true. No packet has a `.json.err`.
 - **Status `no capture`:** no raw file exists, so the pattern was checked on synthetic input at most.
 - **Pattern name:** the file `<name>-pattern.cpp`. A pattern file may carry a better name than its raw files, because the export selects by `// packet-id:`: the rows say so (62.39.16, 63.2.16 among them). `(was ...)` gives the name the raw files had before the code-backed rename.
-- **`marks:`** the row counts the marks in the pattern file; the structures of an include carry their own.
+- **`marks:`** the row counts the marks in the pattern file, one phrase per report tag (`T003`, `T004`, `T005`, `T014b`), and the gate compares them; the structures of an include carry their own.
 
 ## The table
 
@@ -87,7 +87,7 @@ Fit counts recounted on 2026-11-04 with `tools/docs_check.py --packet-counts`.
 | 1.8.1 | `C2S_SERVER_GAME_TIME_GET_BASEINFO_REQ` | T003 §14 | 41/41 fit |
 | 1.8.2 | `S2C_SERVER_GAME_TIME_GET_BASEINFO_RES` | T003 §14 | 41/41 fit |
 | 2.0.1 | `C2S_CHARACTER_DECIDE_CHARACTER_ID_REQ` | T009 §2 | 42/42 fit |
-| 2.0.2 | `S2C_CHARACTER_DECIDE_CHARACTER_ID_RES` | T009 §1.3, §2 | 42/42 fit (Season 3 `CDataCharacterInfo` list and trailing u8; the PS4 body fails 22/42) |
+| 2.0.2 | `S2C_CHARACTER_DECIDE_CHARACTER_ID_RES` | T009 §1.3, §2 | 42/42 fit (Season 3 `CDataCharacterInfo` list and trailing u8; the PS4 body fails 22/42; T014b marks: V 1) |
 | 2.1.1 | `C2L_GET_GAME_SESSION_KEY_REQ` | T002 §5 | 42/42 fit |
 | 2.1.2 | `L2C_GET_GAME_SESSION_KEY_RES` | T002 §5 | 42/42 fit |
 | 2.2.1 | `C2L_GET_LOGIN_SETTING_REQ` | T002 §6 | 41/41 fit |
@@ -103,7 +103,7 @@ Fit counts recounted on 2026-11-04 with `tools/docs_check.py --packet-counts`.
 | 2.15.16 | `C2S_CHARACTER_CHARACTER_DEAD_NTC` | P4 §4 | 7/7 fit |
 | 2.16.1 | `C2S_CHARACTER_CHARACTER_POINT_REVIVE_REQ` | T009 §7 | 5/5 fit |
 | 2.16.2 | `S2C_CHARACTER_CHARACTER_POINT_REVIVE_RES` | T009 §7 | 5/5 fit |
-| 2.18.1 | `C2S_CHARACTER_CHARACTER_PENALTY_REVIVE_REQ` | T009 §8 | 2/2 fit (Season 3 +u32; the PS4 body fails 2/2) |
+| 2.18.1 | `C2S_CHARACTER_CHARACTER_PENALTY_REVIVE_REQ` | T009 §8 | 2/2 fit (Season 3 +u32; the PS4 body fails 2/2; T014b marks: V 1) |
 | 2.18.2 | `S2C_CHARACTER_CHARACTER_PENALTY_REVIVE_RES` | T009 §8 | 2/2 fit, slack 15 |
 | 2.19.16 | `C2S_CHARACTER_PAWN_DOWN_NTC` | P4 §4 | 20/20 fit |
 | 2.20.16 | `C2S_CHARACTER_PAWN_DOWN_CANCEL_NTC` | P4 §4 | 10/10 fit |
@@ -127,9 +127,9 @@ Fit counts recounted on 2026-11-04 with `tools/docs_check.py --packet-counts`.
 | 3.0.16 | `L2C_GET_ERROR_MESSAGE_LIST_NTC` | T002 §9 | 410/410 fit |
 | 3.1.1 | `C2S_LOBBY_LOBBY_LEAVE_REQ` | T006 §2.2 | 41/41 fit (no body) |
 | 3.1.2 | `S2C_LOBBY_LOBBY_LEAVE_RES` | T006 §2.2 | 41/41 fit, slack 15 |
-| 3.2.1 | `C2S_LOBBY_LOBBY_CHAT_MSG_REQ` | T006 §2.3 | 395/395 fit |
+| 3.2.1 | `C2S_LOBBY_LOBBY_CHAT_MSG_REQ` | T006 §2.3 | 395/395 fit (T014b marks: V 3) |
 | 3.2.2 | `S2C_LOBBY_LOBBY_CHAT_MSG_RES` | T006 §2.3 | 395/395 fit, slack 15 |
-| 3.2.16 | `S2C_LOBBY_LOBBY_CHAT_MSG_NTC` | T006 §2.4 | 489/489 fit |
+| 3.2.16 | `S2C_LOBBY_LOBBY_CHAT_MSG_NTC` | T006 §2.4 | 489/489 fit (T014b marks: I 3) |
 | 3.3.16 | `C2S_LOBBY_LOBBY_DATA_MSG_REQ` | P1 §1.1 | 66275/66275 fit |
 | 3.4.16 | `S2C_LOBBY_LOBBY_DATA_MSG_NTC` | P1 §1.1 | 21143/21143 fit |
 | 4.0.1 | `C2L_GP_COURSE_GET_INFO_REQ` | T002 §10 | 41/41 fit |
@@ -154,7 +154,7 @@ Fit counts recounted on 2026-11-04 with `tools/docs_check.py --packet-counts`.
 | 6.18.16 | `S2C_PARTY_PARTY_INVITE_ACCEPT_NTC` | T011 §9 | 1/1 fit (code name V by code shape and capture flow; the PS4 framing fits too) |
 | 6.23.16 | `C2S_PARTY_SEND_BINARY_MSG_ALL_NTC` | P1 §1.1 | 8/8 fit |
 | 6.24.16 | `S2C_PARTY_RECV_BINARY_MSG_ALL_NTC` | P1 §1.1 | no capture |
-| 6.25.16 | `C2S_PARTY_SEND_BINARY_MSG_NTC` | P1 §1.1 | 34607/34607 fit |
+| 6.25.16 | `C2S_PARTY_SEND_BINARY_MSG_NTC` | P1 §1.1 | 34607/34607 fit (T014b marks: V 1) |
 | 6.26.16 | `S2C_PARTY_RECV_BINARY_MSG_NTC` | P1 §1.1 | no capture |
 | 8.2.1 | `C2S_PAWN_GET_MYPAWN_LIST_REQ` | T007 §2.1 | 119/119 fit (no body) |
 | 8.2.2 | `S2C_PAWN_GET_MYPAWN_LIST_RES` | T007 §2.1 | 119/119 fit (Season 3: three u32 per pawn, V; the PS4 element fails 119/119) |
@@ -215,9 +215,9 @@ Fit counts recounted on 2026-11-04 with `tools/docs_check.py --packet-counts`.
 | 11.14.1 | `C2S_QUEST_GET_SET_QUEST_INFO_LIST_REQ` | T005 §11 | 2/2 fit |
 | 11.14.2 | `S2C_QUEST_GET_SET_QUEST_INFO_LIST_RES` | T005 §11 | 2/2 fit |
 | 11.15.1 | `C2S_QUEST_GET_CYCLE_CONTENTS_NEWS_LIST_REQ` | T005 §12 | 6/6 fit (no body) |
-| 11.15.2 | `S2C_QUEST_GET_CYCLE_CONTENTS_NEWS_LIST_RES` | P11a §5 | 6/6 fit |
+| 11.15.2 | `S2C_QUEST_GET_CYCLE_CONTENTS_NEWS_LIST_RES` | P11a §5 | 6/6 fit (T014b marks: V 2, open 2) |
 | 11.19.1 | `C2S_QUEST_GET_AREA_BONUS_LIST_REQ` | T005 §12 | 182/182 fit (no body) |
-| 11.19.2 | `S2C_QUEST_GET_AREA_BONUS_LIST_RES` | P11a §9 | 182/182 fit |
+| 11.19.2 | `S2C_QUEST_GET_AREA_BONUS_LIST_RES` | P11a §9 | 182/182 fit (T014b marks: V 1) |
 | 11.20.1 | `C2S_QUEST_QUEST_ORDER_REQ` | T005 §12 | 1/1 fit |
 | 11.20.2 | `S2C_QUEST_QUEST_ORDER_RES` | T005 §13 | 1/1 fit |
 | 11.21.1 | `C2S_QUEST_QUEST_PROGRESS_REQ` | T005 §14 | 705/705 fit |
@@ -245,7 +245,7 @@ Fit counts recounted on 2026-11-04 with `tools/docs_check.py --packet-counts`.
 | 11.42.2 | `S2C_QUEST_PLAY_START_TIMER_RES` | T005 §21 | 1/1 fit, slack 15 |
 | 11.45.1 | `C2S_QUEST_PLAY_END_REQ` | T005 §12 | 1/1 fit (no body) |
 | 11.45.2 | `S2C_QUEST_PLAY_END_RES` | T005 §21 | 1/1 fit, slack 15 |
-| 11.45.16 | `S2C_QUEST_PLAY_END_NTC` | T005 §23 | 1/1 fit, slack 12 |
+| 11.45.16 | `S2C_QUEST_PLAY_END_NTC` | T005 §23 | 1/1 fit, slack 12 (T014b marks: V 1) |
 | 11.56.1 | `C2S_QUEST_GET_AREA_INFO_LIST_REQ` | T005 §12 | 1/1 fit (no body) |
 | 11.56.2 | `S2C_QUEST_GET_AREA_INFO_LIST_RES` | P11a §11 | 1/1 fit |
 | 11.57.1 | `C2S_QUEST_GET_QUEST_PARTY_BONUS_LIST_REQ` | T005 §12 | 84/84 fit (no body) |
@@ -266,13 +266,13 @@ Fit counts recounted on 2026-11-04 with `tools/docs_check.py --packet-counts`.
 | 11.71.2 | `S2C_QUEST_GET_PARTY_QUEST_PROGRESS_INFO_RES` | P11a §4 | 43/43 fit |
 | 11.83.16 | `S2C_QUEST_SET_QUEST_UNRELEASED_AREA_NTC` (was `S2C_QUEST_11_83_16_NTC`) | T005 §31 | 20/20 fit, slack 15 (code name SET_QUEST_UNRELEASED_AREA_NOTICE, V by notice class) |
 | 11.88.16 | `S2C_QUEST_11_88_16_NTC` | 008 T003 | 20/20 fit (no body; PC handler reads nothing, meaning open; T003 marks: none (no fields)) |
-| 11.89.16 | `S2C_QUEST_JOIN_LOBBY_QUEST_INFO_NTC` | P11a §1 | 41/41 fit |
+| 11.89.16 | `S2C_QUEST_JOIN_LOBBY_QUEST_INFO_NTC` | P11a §1 | 41/41 fit (T014b marks: V 5, open 3) |
 | 11.90.16 | `S2C_QUEST_PROGRESS_WORK_SAVE_NTC` | T005 §33 | 11/11 fit |
 | 11.91.16 | `S2C_QUEST_QUEST_COMPLETE_NTC` | T005 §34 | 4/4 fit, slack 12 |
 | 11.95.16 | `S2C_QUEST_FORT_DEFENSE_NTC` (was `S2C_QUEST_11_95_16_NTC`) | T005 §35 | 96/96 fit (code name FORT_DEFENSE_NOTICE, V by notice class) |
 | 11.101.16 | `S2C_QUEST_TIME_GAIN_QUEST_PLAY_START_NTC` | T005 §36 | 1/1 fit |
 | 11.103.16 | `S2C_QUEST_PLAY_STOP_TIMER_NTC` (was `S2C_QUEST_11_103_16_NTC`) | T005 §37 | 1/1 fit (code name PLAY_STOP_TIMER_NOTICE, V by notice class; no body) |
-| 11.117.16 | `S2C_QUEST_REWARD_BOX_LIST_NUM_NTC` (was `S2C_QUEST_11_117_16_NTC`) | T005 §38 | 47/47 fit (code name REWARD_BOX_LIST_NUM_NOTICE, V by behaviour; the PS4 u8-only body fits too) |
+| 11.117.16 | `S2C_QUEST_REWARD_BOX_LIST_NUM_NTC` (was `S2C_QUEST_11_117_16_NTC`) | T005 §38 | 47/47 fit (code name REWARD_BOX_LIST_NUM_NOTICE, V by behaviour; the PS4 u8-only body fits too; T014b marks: V 2) |
 | 11.118.16 | `S2C_QUEST_11_118_16_NTC` | 008 T003 | 41/41 fit (u8 read and discarded by the PC handler, meaning open; T003 marks: V 1) |
 | 11.120.16 | `S2C_QUEST_PARTY_QUEST_PROGRESS_NTC` | P11a §3 | no capture |
 | 11.121.1 | `C2S_QUEST_GET_LEVEL_BONUS_LIST_REQ` | 008 T003 | 182/182 fit (no body; T003 marks: none (no fields)) |
@@ -282,7 +282,7 @@ Fit counts recounted on 2026-11-04 with `tools/docs_check.py --packet-counts`.
 | 11.123.1 | `C2S_QUEST_GET_ADVENTURE_GUIDE_QUEST_NTC_REQ` | 008 T003 | 155/155 fit (no body; T003 marks: none (no fields)) |
 | 11.123.2 | `S2C_QUEST_GET_ADVENTURE_GUIDE_QUEST_NTC_RES` | 008 T003 | 155/155 fit (T003 marks: G 1) |
 | 12.0.1 | `C2S_STAGE_GET_STAGE_LIST_REQ` | T006 §3.1 | 42/42 fit (no body) |
-| 12.0.2 | `S2C_STAGE_GET_STAGE_LIST_RES` | P11a §7 | 42/42 fit |
+| 12.0.2 | `S2C_STAGE_GET_STAGE_LIST_RES` | P11a §7 | 42/42 fit (T014b marks: open 2) |
 | 12.1.1 | `C2S_STAGE_AREA_CHANGE_REQ` | T006 §3.2 | 150/150 fit, slack 15 |
 | 12.1.2 | `S2C_STAGE_AREA_CHANGE_RES` | T006 §3.2 | 150/150 fit |
 | 12.5.1 | `C2S_STAGE_UNISON_AREA_CHANGE_BEGIN_RECRUITMENT_REQ` | 008 T005 | 3/3 fit (list writer V (008 T002), EntryFeeList empty; cstr as MtString wire; T005 marks: I 1, G 3) |
@@ -292,17 +292,17 @@ Fit counts recounted on 2026-11-04 with `tools/docs_check.py --packet-counts`.
 | 13.0.2 | `S2C_INSTANCE_GET_ENEMY_SET_LIST_RES` | T004 §2 | 685/685 fit (NamedParamList never non-empty) |
 | 13.1.16 | `C2S_INSTANCE_ENEMY_GROUP_ENTRY_NTC` | T004 §3 | 222/222 fit, slack 14 (PS4 ENEMY_GROUP_ENTRY_NOTICE, V by behaviour) |
 | 13.2.16 | `C2S_INSTANCE_ENEMY_GROUP_LEAVE_NTC` | T004 §3 | 191/191 fit, slack 14 (PS4 ENEMY_GROUP_LEAVE_NOTICE, V by behaviour) |
-| 13.3.1 | `C2S_INSTANCE_ENEMY_KILL_REQ` | T004 §4 | 414/414 fit, slack 12 |
+| 13.3.1 | `C2S_INSTANCE_ENEMY_KILL_REQ` | T004 §4 | 414/414 fit, slack 12 (T014b marks: V 1) |
 | 13.3.2 | `S2C_INSTANCE_ENEMY_KILL_RES` | P11b §15 | 414/414 fit |
 | 13.5.1 | `C2S_INSTANCE_GET_ITEM_SET_LIST_REQ` | T004 §5 | 299/299 fit, slack 14 |
 | 13.5.2 | `S2C_INSTANCE_GET_ITEM_SET_LIST_RES` | T004 §5 | 299/299 fit |
 | 13.6.1 | `C2S_INSTANCE_GET_GATHERING_ITEM_LIST_REQ` | T004 §6 | 155/155 fit |
-| 13.6.2 | `S2C_INSTANCE_GET_GATHERING_ITEM_LIST_RES` | T004 §6 | 155/155 fit (restriction list never non-empty) |
-| 13.8.1 | `C2S_INSTANCE_GET_GATHERING_ITEM_REQ` | T004 §7 | 51/51 fit |
+| 13.6.2 | `S2C_INSTANCE_GET_GATHERING_ITEM_LIST_RES` | T004 §6 | 155/155 fit (restriction list never non-empty; T014b marks: open 1) |
+| 13.8.1 | `C2S_INSTANCE_GET_GATHERING_ITEM_REQ` | T004 §7 | 51/51 fit (T014b marks: V 1, open 1) |
 | 13.8.2 | `S2C_INSTANCE_GET_GATHERING_ITEM_RES` | T004 §7 | 51/51 fit |
 | 13.10.1 | `C2S_INSTANCE_GET_DROP_ITEM_LIST_REQ` | T004 §8 | 88/88 fit |
 | 13.10.2 | `S2C_INSTANCE_GET_DROP_ITEM_LIST_RES` | T004 §8 | 88/88 fit |
-| 13.11.1 | `C2S_INSTANCE_GET_DROP_ITEM_REQ` | T004 §9 | 44/44 fit |
+| 13.11.1 | `C2S_INSTANCE_GET_DROP_ITEM_REQ` | T004 §9 | 44/44 fit (T014b marks: open 1) |
 | 13.11.2 | `S2C_INSTANCE_GET_DROP_ITEM_RES` | T004 §9 | 44/44 fit |
 | 13.16.1 | `C2S_INSTANCE_TREASURE_POINT_GET_CATEGORY_LIST_REQ` | 008 T005 | 1/1 fit (T005 marks: open 1) |
 | 13.16.2 | `S2C_INSTANCE_TREASURE_POINT_GET_CATEGORY_LIST_RES` | 008 T005 | 1/1 fit (T005 marks: I 2, G 2) |
@@ -323,8 +323,8 @@ Fit counts recounted on 2026-11-04 with `tools/docs_check.py --packet-counts`.
 | 13.42.16 | `S2C_INSTANCE_AREA_RESET_NTC` | T004 §18 | 120/120 fit (no body; V by behaviour) |
 | 13.44.16 | `C2S_INSTANCE_CHARACTER_START_BAD_STATUS_NTC` | P4 §4, T001c §3 | 23/23 fit |
 | 13.45.16 | `C2S_INSTANCE_CHARACTER_END_BAD_STATUS_NTC` | P4 §4, T001c §3 | 23/23 fit |
-| 13.46.16 | `C2S_INSTANCE_ENEMY_BAD_STATUS_START_NTC` | P4 §4, T001c §3 | 31/31 fit |
-| 13.47.16 | `C2S_INSTANCE_ENEMY_BAD_STATUS_END_NTC` | P4 §4, T001c §3 | 31/31 fit |
+| 13.46.16 | `C2S_INSTANCE_ENEMY_BAD_STATUS_START_NTC` | P4 §4, T001c §3 | 31/31 fit (T014b marks: V 1, open 1) |
+| 13.47.16 | `C2S_INSTANCE_ENEMY_BAD_STATUS_END_NTC` | P4 §4, T001c §3 | 31/31 fit (T014b marks: V 1, open 1) |
 | 14.1.1 | `C2S_WARP_GET_RELEASE_WARP_POINT_LIST_REQ` | T008 §2.1 | 41/41 fit (no body) |
 | 14.1.2 | `S2C_WARP_GET_RELEASE_WARP_POINT_LIST_RES` | T008 §2.1 | 41/41 fit |
 | 14.2.1 | `C2S_WARP_GET_WARP_POINT_LIST_REQ` | T008 §2.2 | 178/178 fit |
@@ -352,15 +352,15 @@ Fit counts recounted on 2026-11-04 with `tools/docs_check.py --packet-counts`.
 | 17.0.1 | `C2S_BLACK_LIST_GET_BLACK_LIST_REQ` | T011 §12 | 41/41 fit (no body) |
 | 17.0.2 | `S2C_BLACK_LIST_GET_BLACK_LIST_RES` | T011 §12 | 41/41 fit (list never non-empty) |
 | 18.0.1 | `C2S_GROUP_CHAT_GROUP_CHAT_GET_MEMBER_LIST_REQ` | T013 §11 | 41/41 fit (GroupID 0 in all) |
-| 18.0.2 | `S2C_GROUP_CHAT_GROUP_CHAT_GET_MEMBER_LIST_RES` | P11b §18 | 41/41 fit |
-| 19.1.1 | `C2S_SKILL_GET_ACQUIRABLE_SKILL_LIST_REQ` | T012 §2 | 4/4 fit, slack 2 (Season 3 + u32; the PS4 body fits too: the PC writer decides) |
+| 18.0.2 | `S2C_GROUP_CHAT_GROUP_CHAT_GET_MEMBER_LIST_RES` | P11b §18 | 41/41 fit (T014b marks: open 2) |
+| 19.1.1 | `C2S_SKILL_GET_ACQUIRABLE_SKILL_LIST_REQ` | T012 §2 | 4/4 fit, slack 2 (Season 3 + u32; the PS4 body fits too: the PC writer decides; T014b marks: V 1) |
 | 19.1.2 | `S2C_SKILL_GET_ACQUIRABLE_SKILL_LIST_RES` | P11b §16 | 4/4 fit |
-| 19.2.1 | `C2S_SKILL_GET_ACQUIRABLE_ABILITY_LIST_REQ` | T012 §2 | 16/16 fit, slack 2 (Season 3 + u32; the PS4 body fits too: the PC writer decides) |
+| 19.2.1 | `C2S_SKILL_GET_ACQUIRABLE_ABILITY_LIST_REQ` | T012 §2 | 16/16 fit, slack 2 (Season 3 + u32; the PS4 body fits too: the PC writer decides; T014b marks: V 1) |
 | 19.2.2 | `S2C_SKILL_GET_ACQUIRABLE_ABILITY_LIST_RES` | P11b §17 | 16/16 fit |
 | 19.28.1 | `C2S_SKILL_GET_CURRENT_SET_SKILL_LIST_REQ` | T012 §3 | 41/41 fit (no body) |
 | 19.28.2 | `S2C_SKILL_GET_CURRENT_SET_SKILL_LIST_RES` | T012 §3 | 41/41 fit |
 | 20.0.1 | `C2S_SHOP_GET_SHOP_GOODS_LIST_REQ` | T012 §4 | 18/18 fit |
-| 20.0.2 | `S2C_SHOP_GET_SHOP_GOODS_LIST_RES` | T012 §6 | 18/18 fit (Season 3 body; the PS4 body fails 18/18) |
+| 20.0.2 | `S2C_SHOP_GET_SHOP_GOODS_LIST_RES` | T012 §6 | 18/18 fit (Season 3 body; the PS4 body fails 18/18; T014b marks: V 1, open 1) |
 | 20.1.1 | `C2S_SHOP_BUY_SHOP_GOODS_REQ` | T012 §5 | 17/17 fit, slack 10 |
 | 20.1.2 | `S2C_SHOP_BUY_SHOP_GOODS_RES` | T012 §7 | 17/17 fit, slack 14 (Season 3 drops the PS4 u32, V by the PC reader) |
 | 23.0.1 | `C2S_AREA_GET_AREA_MASTER_INFO_REQ` | P11a §18 | 42/42 fit |
@@ -374,7 +374,7 @@ Fit counts recounted on 2026-11-04 with `tools/docs_check.py --packet-counts`.
 | 23.9.1 | `C2S_AREA_GET_AREA_QUEST_HINT_LIST_REQ` | P11a §14 | 183/183 fit |
 | 23.9.2 | `S2C_AREA_GET_AREA_QUEST_HINT_LIST_RES` | P11a §13 | 183/183 fit |
 | 23.11.1 | `C2S_AREA_GET_SPOT_INFO_LIST_REQ` | P11b §8 | 29/29 fit |
-| 23.11.2 | `S2C_AREA_GET_SPOT_INFO_LIST_RES` | P11b §11 | 29/29 fit |
+| 23.11.2 | `S2C_AREA_GET_SPOT_INFO_LIST_RES` | P11b §11 | 29/29 fit (T014b marks: V 1) |
 | 23.12.1 | `C2S_AREA_GET_AREA_BASE_INFO_LIST_REQ` | T006 §4 | 72/72 fit (no body) |
 | 23.12.2 | `S2C_AREA_GET_AREA_BASE_INFO_LIST_RES` | P11a §16 | 72/72 fit |
 | 23.13.16 | `S2C_AREA_POINT_UP_NTC` | P11b §7 | 29/29 fit |
@@ -413,7 +413,7 @@ Fit counts recounted on 2026-11-04 with `tools/docs_check.py --packet-counts`.
 | 28.7.2 | `S2C_GP_GP_SHOP_DISPLAY_GET_TYPE_RES` | T010 §6 | 2/2 fit |
 | 28.8.1 | `C2S_GP_GP_SHOP_DISPLAY_GET_LINEUP_REQ` | T010 §7 | 38/38 fit |
 | 28.8.2 | `S2C_GP_GP_SHOP_DISPLAY_GET_LINEUP_RES` | T010 §1.1, §7 | 38/38 fit (Season 3 element +MtString +u32; the PS4 element fails 38/38) |
-| 28.9.1 | `C2S_GP_GP_SHOP_DISPLAY_BUY_REQ` | T010 §8 | 9/9 fit, slack 15 (Season 3 +u32; the PS4 body fails 9/9) |
+| 28.9.1 | `C2S_GP_GP_SHOP_DISPLAY_BUY_REQ` | T010 §8 | 9/9 fit, slack 15 (Season 3 +u32; the PS4 body fails 9/9; T014b marks: open 1) |
 | 28.9.2 | `S2C_GP_GP_SHOP_DISPLAY_BUY_RES` | T010 §8 | 9/9 fit (CommonIdList never non-empty) |
 | 28.17.1 | `C2S_GP_GP_COURSE_GET_AVAILABLE_LIST_REQ` | T010 §9 | 10/10 fit (no body) |
 | 28.17.2 | `S2C_GP_GP_COURSE_GET_AVAILABLE_LIST_RES` | T010 §1.1, §9 | 10/10 fit (list never non-empty: Season 3 element code-only) |
@@ -443,7 +443,7 @@ Fit counts recounted on 2026-11-04 with `tools/docs_check.py --packet-counts`.
 | 30.12.1 | `C2S_CRAFT_RESET_CRAFTPOINT_REQ` | T013 §3 | 1/1 fit |
 | 30.12.2 | `S2C_CRAFT_RESET_CRAFTPOINT_RES` | T013 §3 | 1/1 fit (5 skills) |
 | 30.13.1 | `C2S_CRAFT_GET_CRAFT_SETTING_REQ` | T013 §4 | 2/2 fit (no body) |
-| 30.13.2 | `S2C_CRAFT_GET_CRAFT_SETTING_RES` | T013 §1, §4 | 2/2 fit, slack 1 (Season 3 tail; the PS4 body fails 2/2) |
+| 30.13.2 | `S2C_CRAFT_GET_CRAFT_SETTING_RES` | T013 §1, §4 | 2/2 fit, slack 1 (Season 3 tail; the PS4 body fails 2/2; T014b marks: open 2) |
 | 30.15.1 | `C2S_CRAFT_GET_CRAFT_IR_COLLECTION_VALUE_LIST_REQ` | T013 §3 | 2/2 fit (no body) |
 | 30.15.2 | `S2C_CRAFT_GET_CRAFT_IR_COLLECTION_VALUE_LIST_RES` | T013 §3 | 2/2 fit (10 rates) |
 | 31.4.1 | `C2S_CLAN_CLAN_GET_MY_MEMBER_LIST_REQ` | T010 §16 | 41/41 fit (no body) |
@@ -512,7 +512,7 @@ Fit counts recounted on 2026-11-04 with `tools/docs_check.py --packet-counts`.
 | 37.8.2 | `S2C_MAIL_SYSTEM_MAIL_GET_LIST_FOOT_RES` | T009 §14 | 42/42 fit, slack 15 |
 | 37.9.1 | `C2S_MAIL_SYSTEM_MAIL_GET_TEXT_REQ` | T009 §15 | 7/7 fit |
 | 37.9.2 | `S2C_MAIL_SYSTEM_MAIL_GET_TEXT_RES` | T009 §15 | 7/7 fit (only item attachments in the captures) |
-| 37.11.1 | `C2S_MAIL_SYSTEM_MAIL_GET_ALL_ITEM_REQ` | T009 §16 | 5/5 fit (Season 3 u8: code-only, the PS4 body fits too) |
+| 37.11.1 | `C2S_MAIL_SYSTEM_MAIL_GET_ALL_ITEM_REQ` | T009 §16 | 5/5 fit (Season 3 u8: code-only, the PS4 body fits too; T014b marks: V 1) |
 | 37.11.2 | `S2C_MAIL_SYSTEM_MAIL_GET_ALL_ITEM_RES` | T009 §16 | 5/5 fit |
 | 37.13.16 | `S2C_MAIL_SYSTEM_MAIL_SEND_NTC` | T009 §17 | 5/5 fit (code name V by behaviour; the PS4 framing fits too) |
 | 39.0.1 | `C2S_GACHA_GACHA_LIST_REQ` | T012 §16 | 26/26 fit (no body) |
@@ -531,7 +531,7 @@ Fit counts recounted on 2026-11-04 with `tools/docs_check.py --packet-counts`.
 | 44.0.2 | `S2C_CERT_CLIENT_CHALLENGE_RES` | T003 §16 | 83/83 fit |
 | 44.1.16 | `S2C_CERT_GAME_SERVER_CERT_NTC` | T003 §1, §15 | 83/83 fit, slack 12 (no header, body at offset 0) |
 | 45.0.1 | `C2S_STAMP_BONUS_GET_LIST_REQ` | T009 §18 | 81/81 fit (no body) |
-| 45.0.2 | `S2C_STAMP_BONUS_GET_LIST_RES` | T009 §1.2, §18 | 81/81 fit (Season 3 restructured; the PS4 body fails 81/81) |
+| 45.0.2 | `S2C_STAMP_BONUS_GET_LIST_RES` | T009 §1.2, §18 | 81/81 fit (Season 3 restructured; the PS4 body fails 81/81; T014b marks: V 1) |
 | 45.1.1 | `C2S_STAMP_BONUS_CHECK_REQ` | T009 §19 | 84/84 fit (no body) |
 | 45.1.2 | `S2C_STAMP_BONUS_CHECK_RES` | T009 §1.2, §19 | 84/84 fit (Season 3 list: code-only, the PS4 body fits too) |
 | 45.3.1 | `C2S_STAMP_BONUS_RECIEVE_DAILY_REQ` | 008 T003 | 40/40 fit, slack 15 (T003 marks: V 2) |
@@ -541,14 +541,14 @@ Fit counts recounted on 2026-11-04 with `tools/docs_check.py --packet-counts`.
 | 50.0.1 | `C2S_ITEM_SORT_GET_ITEM_SORTDATA_BIN_REQ` | T008 §4.1 | 46/46 fit |
 | 50.0.2 | `S2C_ITEM_SORT_GET_ITEM_SORTDATA_BIN_RES` | T008 §4.1 | 46/46 fit (list never non-empty) |
 | 50.0.16 | `S2C_ITEM_SORT_GET_ITEM_SORTDATA_BIN_NTC` | 008 T005 | 48/48 fit (every bin all zero; T005 marks: I 1) |
-| 50.1.1 | `C2S_ITEM_SORT_SET_ITEM_SORTDATA_BIN_REQ` | T008 §4.3 | 59/59 fit (Season 3 trailing bool: code-only, the PS4 body fits too) |
+| 50.1.1 | `C2S_ITEM_SORT_SET_ITEM_SORTDATA_BIN_REQ` | T008 §4.3 | 59/59 fit (Season 3 trailing bool: code-only, the PS4 body fits too; T014b marks: V 1) |
 | 50.1.2 | `S2C_ITEM_SORT_SET_ITEM_SORTDATA_BIN_RES` | T008 §4.3 | 59/59 fit, slack 15 |
 | 51.0.1 | `C2S_DISPEL_GET_DISPEL_ITEM_LIST_REQ` | T013 §10 | 1/1 fit |
-| 51.0.2 | `S2C_DISPEL_GET_DISPEL_ITEM_LIST_RES` | P11a §6 | 1/1 fit |
-| 51.2.1 | `C2S_DISPEL_GET_DISPEL_ITEM_SETTING_REQ` | T013 §10 | 1/1 fit (Season 3 u32; the empty PS4 body fits too) |
-| 51.2.2 | `S2C_DISPEL_GET_DISPEL_ITEM_SETTING_RES` | T013 §1, §10 | 1/1 fit (Season 3 u32 Category + bool; the PS4 body fails 1/1) |
+| 51.0.2 | `S2C_DISPEL_GET_DISPEL_ITEM_LIST_RES` | P11a §6 | 1/1 fit (T014b marks: V 5, open 4) |
+| 51.2.1 | `C2S_DISPEL_GET_DISPEL_ITEM_SETTING_REQ` | T013 §10 | 1/1 fit (Season 3 u32; the empty PS4 body fits too; T014b marks: V 1) |
+| 51.2.2 | `S2C_DISPEL_GET_DISPEL_ITEM_SETTING_RES` | T013 §1, §10 | 1/1 fit (Season 3 u32 Category + bool; the PS4 body fails 1/1; T014b marks: open 1) |
 | 52.1.1 | `C2S_MY_ROOM_FURNITURE_LIST_GET_REQ` | T013 §11 | 20/20 fit (no body) |
-| 52.1.2 | `S2C_MY_ROOM_FURNITURE_LIST_GET_RES` | P11a §10 | 20/20 fit (T010b: `CDataFurnitureLayout` from `include/Furniture.hexpat`, `unOmID` renamed `OmID`) |
+| 52.1.2 | `S2C_MY_ROOM_FURNITURE_LIST_GET_RES` | P11a §10 | 20/20 fit (T010b: `CDataFurnitureLayout` from `include/Furniture.hexpat`, `unOmID` renamed `OmID`; T014b marks: open 1) |
 | 53.4.1 | `C2S_PARTNER_PAWN_PAWN_LIKABILITY_REWARD_LIST_GET_REQ` | T007 §3.1 | 40/40 fit (no body) |
 | 53.4.2 | `S2C_PARTNER_PAWN_PAWN_LIKABILITY_REWARD_LIST_GET_RES` | T007 §3.1 | 40/40 fit (list never non-empty) |
 | 53.6.1 | `C2S_PARTNER_PAWN_PAWN_LIKABILITY_RELEASED_REWARD_LIST_GET_REQ` | T007 §3.1 | 41/41 fit (no body) |
@@ -561,7 +561,7 @@ Fit counts recounted on 2026-11-04 with `tools/docs_check.py --packet-counts`.
 | 54.0.1 | `C2S_CRAFT_RECIPE_GET_CRAFT_RECIPE_REQ` | T013 §14 | 3/3 fit |
 | 54.0.2 | `S2C_CRAFT_RECIPE_GET_CRAFT_RECIPE_RES` | T013 §1, §14 | 3/3 fit (Season 3 material bool; the PS4 material fails 3/3) |
 | 57.0.1 | `C2S_BOX_GACHA_BOX_GACHA_LIST_REQ` | T013 §11 | 3/3 fit (no body) |
-| 57.0.2 | `S2C_BOX_GACHA_BOX_GACHA_LIST_RES` | P11a §8 | 3/3 fit |
+| 57.0.2 | `S2C_BOX_GACHA_BOX_GACHA_LIST_RES` | P11a §8 | 3/3 fit (T014b marks: V 1, open 1) |
 | 58.0.1 | `C2S_PAWN_EXPEDITION_PAWN_EXPEDITION_GET_SALLY_INFO_REQ` | T007 §4.1 | 30/30 fit (no body) |
 | 58.0.2 | `S2C_PAWN_EXPEDITION_PAWN_EXPEDITION_GET_SALLY_INFO_RES` | T007 §4.1 | 30/30 fit (ActiveBuffLineup and ClanSallySpot lists never non-empty) |
 | 58.3.1 | `C2S_PAWN_EXPEDITION_PAWN_EXPEDITION_SALLY_REQ` | T007 §4.2 | 25/25 fit, slack 15 |
@@ -569,7 +569,7 @@ Fit counts recounted on 2026-11-04 with `tools/docs_check.py --packet-counts`.
 | 58.4.1 | `C2S_PAWN_EXPEDITION_PAWN_EXPEDITION_CHANGE_GOLDEN_SALLY_REQ` | T007 §4.3 | 4/4 fit |
 | 58.4.2 | `S2C_PAWN_EXPEDITION_PAWN_EXPEDITION_CHANGE_GOLDEN_SALLY_RES` | T007 §4.3 | 4/4 fit, slack 15 |
 | 58.5.1 | `C2S_PAWN_EXPEDITION_PAWN_EXPEDITION_GET_SALLY_REWARD_REQ` | T007 §4.4 | 25/25 fit (no body) |
-| 58.5.2 | `S2C_PAWN_EXPEDITION_PAWN_EXPEDITION_GET_SALLY_REWARD_RES` | T007 §4.4 | 25/25 fit (Season 3 list + bool, V by code; every list holds 1 element, so the PS4 body fits too) |
+| 58.5.2 | `S2C_PAWN_EXPEDITION_PAWN_EXPEDITION_GET_SALLY_REWARD_RES` | T007 §4.4 | 25/25 fit (Season 3 list + bool, V by code; every list holds 1 element, so the PS4 body fits too; T014b marks: V 1) |
 | 58.7.1 | `C2S_PAWN_EXPEDITION_PAWN_EXPEDITION_GET_REWARD_DROP_REQ` | T007 §4.5 | 25/25 fit (no body) |
 | 58.7.2 | `S2C_PAWN_EXPEDITION_PAWN_EXPEDITION_GET_REWARD_DROP_RES` | T007 §4.5 | 25/25 fit |
 | 58.8.1 | `C2S_PAWN_EXPEDITION_PAWN_EXPEDITION_GET_REWARD_DROP_ITEM_LIST_REQ` | T007 §4.6 | 50/50 fit |
@@ -633,7 +633,7 @@ Fit counts recounted on 2026-11-04 with `tools/docs_check.py --packet-counts`.
 | 63.10.16 | `S2C_63_10_16_NTC` | 008 T005 | 12/12 fit (T005 marks: open 3) |
 | 63.11.16 | `S2C_63_11_16_NTC` | P5 §7 | 1/1 fit |
 | 64.0.1 | `C2S_MANDRAGORA_GET_MY_MANDRAGORA_REQ` | 008 T003 | 20/20 fit (no body; T003 marks: none (no fields)) |
-| 64.0.2 | `S2C_MANDRAGORA_GET_MY_MANDRAGORA_RES` | P11a §2 | 20/20 fit |
+| 64.0.2 | `S2C_MANDRAGORA_GET_MY_MANDRAGORA_RES` | P11a §2 | 20/20 fit (T014b marks: V 6, open 7) |
 | 65.3.1 | `C2S_EQUIP_ENHANCED_GET_PACKS_REQ` | 008 T005 | 2/2 fit (T005 marks: G 1) |
 | 65.3.2 | `S2C_EQUIP_ENHANCED_GET_PACKS_RES` | 008 T005 | 2/2 fit (T005 marks: V 3, I 1, G 3, open 9) |
 | 70.0.1 | `C2S_ACTION_SET_PLAYER_ACTION_HISTORY_REQ` | 008 T003 | 312/312 fit, slack 15 (list writer V (008 T002); T003 marks: G 3) |

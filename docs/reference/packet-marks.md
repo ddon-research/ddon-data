@@ -27,7 +27,7 @@ A field name is code-backed (`V`), inferred and marked (`I`) with its basis, gue
 | An open field | `// T014b open (<reason>), kept unk: ...`, for example `open (never read by the client)`, `open (no reader found)`, `open (value only)` |
 | A server lead | `server: <name> (lead)` |
 
-The `T014b` marks are the verdicts of `specs/006-packet-pattern-coverage/research/T014b-consumer-property-names.tsv`, for example `V (consumer)`, `V (consumer); I (name; lead agrees)`, `I (consumer, member order)` and `V (role)`.
+Each row of [Packet ids](packet-ids.md) counts the marks of its pattern per tag, and the gate compares them. The `T014b` marks are the verdicts of `specs/006-packet-pattern-coverage/research/T014b-consumer-property-names.tsv`, for example `V (consumer)`, `V (consumer); I (name; lead agrees)`, `I (consumer, member order)` and `V (role)`.
 
 - `V (role); I (name)` splits the data flow from the name: the code role is read in IDA and the name is inferred from it.
 - `(...)` ends a basis shortened in the comment. The row of that TSV (struct, field, packet) holds it in full.

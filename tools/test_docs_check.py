@@ -57,6 +57,14 @@ PACKET_IDS = """# Packet ids
 
 Every pattern.
 
+## Report labels
+
+| Label | Report | Covers |
+| --- | --- | --- |
+| `T003`, `T004` | `specs/006-x/research/T003-a.md`, `specs/006-x/research/T004-b.md` | the first |
+| `P11b` | `specs/005-x/research/P11b-c.md` | the second |
+| `008 T004` | `specs/008-x/research/T004-d.md` | the third |
+
 ## The table
 
 Fit counts not recounted.
@@ -129,13 +137,17 @@ class DocsCheckTest(unittest.TestCase):
         probe.write("packets/patterns/03040008/C2S_B_REQ-pattern.cpp", PATTERN_B)
         probe.write("packets/patterns/03040008/C2L_C_REQ-pattern.cpp", PATTERN_C)
         probe.write("research/notes/README.md", "# Notes\n\nWhat this directory holds.\n")
+        for report in ("specs/006-x/research/T003-a.md", "specs/006-x/research/T004-b.md", "specs/005-x/research/P11b-c.md",
+                       "specs/008-x/research/T004-d.md"):
+            probe.write(report, "x\n")
         probe.write("research/Readme.adoc", "= Title\n\n== A section\n")
         probe.write("tools/run.sh", "#!/bin/sh\n")
-        probe.write("readme.adoc", "See link:research/Readme.adoc[it] and `tools/run.sh`.\n\n----\n`tools/inafence.sh`\n----\n")
+        probe.write("readme.adoc", "See link:research/Readme.adoc[it], link:docs/index.md[the map] and `tools/run.sh`.\n\n"
+                                   "----\n`tools/inafence.sh`\n----\n")
         probe.write_bytes("packets/raw/p", RAW)
         probe.write_bytes("packets/json/p.json", JQ_LINE.encode())
         # docs/ stays untracked: pages must count without a commit.
-        git(probe.root, "add", "--", "research", "tools", "readme.adoc", "packets")
+        git(probe.root, "add", "--", "research", "tools", "readme.adoc", "packets", "specs")
         found = probe.findings()
         if found:
             raise AssertionError(f"the fixture must pass before a test breaks it: {found}")
@@ -154,7 +166,7 @@ class DocsCheckTest(unittest.TestCase):
         target.write_bytes(data)
 
     def findings(self, short_readmes=("research/notes/README.md",)):
-        found, _counts = docs_check.run(self.root, short_readmes=short_readmes, tutorial=self.tutorial)
+        found, _counts = docs_check.run(self.root, short_readmes=short_readmes, tutorial=self.tutorial, adoc=("readme.adoc",))
         return [str(f) for f in found]
 
     def assert_finding(self, check, text):
@@ -208,6 +220,72 @@ class DocsCheckTest(unittest.TestCase):
         self.assertTrue(any("readme.adoc:1: [link]" in f and "case differs" in f for f in found), found)
         self.assertTrue(any("readme.adoc:3: [path]" in f for f in found), found)
 
+    def test_missing_readme_fails(self):
+        (self.root / "readme.adoc").unlink()
+        self.assert_finding("link", "readme.adoc:1")
+
+    def test_readme_without_the_index_link_fails(self):
+        self.write("readme.adoc", "= R\n\nSee link:research/Readme.adoc[it].\n")
+        self.assert_finding("link", "does not link docs/index.md")
+
+    def test_only_http_and_mailto_are_external(self):
+        for href in ("D:/x.md", "D:\\x.md", "file:///D:/x.md", "//x/y.md", "ftp://x/y.md", "data:text/plain,x", "http:x.md"):
+            with self.subTest(href=href):
+                self.assert_page_finding(f"[x]({href})", "link", "only http, https and mailto")
+        self.write("docs/how-to/two.md", "# A how-to\n\nFor peers. [x](mailto:a@b.c), [y](http://x/y), [z](https://x/y).\n")
+        self.assertEqual(self.findings(), [])
+
+    def test_html_links_are_links(self):
+        self.assert_page_finding('Text <a href="missing.md">x</a>.', "link", "missing.md")
+        self.assert_page_finding('<div><a href="gone.md">x</a></div>', "link", "gone.md")
+        self.assert_page_finding('<img src="missing.png">', "link", "missing.png")
+        self.write("docs/how-to/two.md", '# A how-to\n\nFor peers.\n\n<a href="../tutorials/one.md">x</a>\n\n<!-- <a href="no.md">x</a> -->\n')
+        self.assertEqual(self.findings(), [])
+
+    def test_undefined_reference_fails(self):
+        self.assert_page_finding("[x][nope]", "link", "no such reference")
+        self.write("docs/how-to/two.md", "# A how-to\n\nFor peers. [x][r], a[1][2], `[y][z]`.\n\n[r]: ../tutorials/one.md\n")
+        self.assertEqual(self.findings(), [])
+
+    def test_adoc_xref_image_and_include_are_links(self):
+        for line in ("<<docs/missing.md#,x>>", "image::docs/missing.png[x]", "include::docs/missing.adoc[]", "<<nosuchid>>"):
+            with self.subTest(line=line):
+                self.write("readme.adoc", f"= R\n\nlink:docs/index.md[map]\n\n{line}\n")
+                found = self.findings()
+                self.assertTrue(any("readme.adoc:5" in f for f in found), found)
+        self.write("readme.adoc", "= R\n\n[[here]]\nlink:docs/index.md[map] <<here>> <<_a_section>>\n\n== A section\n")
+        self.assertEqual(self.findings(), [])
+
+    def test_page_deleted_from_disk_but_in_the_index_fails(self):
+        git(self.root, "add", "--", "docs/how-to/two.md")
+        (self.root / "docs/how-to/two.md").unlink()
+        self.assert_finding("link", "in the git index but deleted from disk")
+
+    def test_unlinked_tracked_page_deleted_from_disk_fails(self):
+        git(self.root, "add", "--", "docs/how-to/two.md")
+        (self.root / "docs/how-to/two.md").unlink()
+        self.write("docs/index.md", INDEX.replace("- [A how-to](how-to/two.md)\n", ""))
+        self.assert_finding("link", "two.md:1: [link] in the git index but deleted from disk")
+
+    def test_link_to_a_tracked_file_deleted_from_disk_fails(self):
+        self.write("docs/how-to/two.md", "# A how-to\n\nFor peers. [x](../../tools/run.sh).\n")
+        (self.root / "tools/run.sh").unlink()
+        self.assert_finding("link", "deleted from disk")
+
+    def test_span_of_a_tracked_file_deleted_from_disk_fails(self):
+        self.write("docs/how-to/two.md", "# A how-to\n\nFor peers. `tools/run.sh`.\n")
+        (self.root / "tools/run.sh").unlink()
+        self.assert_finding("path", "tools/run.sh")
+
+    def test_other_page_extensions_under_docs_fail(self):
+        for name in ("docs/b.MD", "docs/b.markdown", "docs/b.adoc", "docs/b.Md", "docs/b.asciidoc"):
+            with self.subTest(name=name):
+                self.write(name, "x\n")
+                self.assert_finding("index", name)
+                (self.root / name).unlink()
+        self.write("docs/picture.txt", "x\n")
+        self.assertEqual(self.findings(), [])
+
     # (b) anchors
 
     def test_missing_anchor_fails(self):
@@ -251,6 +329,40 @@ class DocsCheckTest(unittest.TestCase):
 
     def test_case_mismatch_in_code_span_fails(self):
         self.assert_page_finding("See `research/README.adoc`.", "path", "research/README.adoc")
+
+    def test_case_of_the_top_directory_counts(self):
+        self.assert_page_finding("See `Tools/run.sh`.", "path", "Tools/run.sh")
+
+    def test_relative_spellings_are_checked(self):
+        self.assert_page_finding("See `./tools/missing.sh`.", "path", "tools/missing.sh")
+        self.assert_page_finding("See `../tools/missing.sh`.", "path", "tools/missing.sh")
+        self.assert_page_finding("See `tools/../missing.sh`.", "path", "missing.sh")
+        self.write("docs/how-to/two.md", "# A how-to\n\nFor peers. `./tools/run.sh` and `../reference/packet-ids.md` and `../../tools/run.sh` and `tools/../tools/run.sh`.\n")
+        self.assertEqual(self.findings(), [])
+
+    def test_every_word_of_a_span_is_checked(self):
+        self.assert_page_finding("Run `bash tools/missing.sh --x`.", "path", "tools/missing.sh")
+        self.assert_page_finding("Run `rg x tools/missing.sh`.", "path", "tools/missing.sh")
+        self.write("docs/how-to/two.md", "# A how-to\n\nFor peers. Run `bash tools/run.sh --x=tools/none.sh`.\n")
+        self.assertEqual(self.findings(), [])
+
+    def test_trailing_slash_means_a_directory(self):
+        self.assert_page_finding("See `tools/run.sh/`.", "path", "not a directory")
+        self.assert_page_finding("See `tools/missing/`.", "path", "not a directory")
+        self.write("docs/how-to/two.md", "# A how-to\n\nFor peers. See `tools/`.\n")
+        self.assertEqual(self.findings(), [])
+
+    def test_absolute_repository_spellings_are_refused(self):
+        for span in ("D:/ddon-data/tools/run.sh", "/d/ddon-data/tools/run.sh", "/mnt/d/ddon-data/tools/run.sh", "D:\\ddon-data\\tools"):
+            with self.subTest(span=span):
+                self.assert_page_finding(f"See `{span}`.", "path", "absolute path")
+        self.write("docs/how-to/two.md", "# A how-to\n\nFor peers. See `D:/ddon-data-s1/x`.\n")
+        self.assertEqual(self.findings(), [])
+
+    def test_first_word_of_a_fence_line_is_checked(self):
+        self.assert_page_finding("```sh\ntools/missing.sh --all\n```", "path", "tools/missing.sh")
+        self.write("docs/how-to/two.md", "# A how-to\n\nFor peers.\n\n```sh\ntools/run.sh --all\nbash tools/later-word.sh\n```\n")
+        self.assertEqual(self.findings(), [])
 
     def test_season_pattern_path_as_if_local_fails(self):
         for span in ("research/02030004/rLandInfo-pattern.cpp", "research/01020003/"):
@@ -300,6 +412,37 @@ class DocsCheckTest(unittest.TestCase):
         self.write("docs/how-to/two.md", "# The new tool\n\nFor peers.\n")
         self.assert_finding("wording", "new")
         self.assert_page_finding("[the old page](../tutorials/one.md)", "wording", "old")
+
+    def test_wording_across_a_line_break_fails_on_its_line(self):
+        self.write("docs/how-to/two.md", "# A how-to\n\nFor peers. It is no\nlonger here, and so\nfar gone in wave\n2.\n")
+        found = self.findings()
+        self.assertTrue(any("two.md:3: [wording]" in f and "no longer" in f for f in found), found)
+        self.assertTrue(any("two.md:4: [wording]" in f and "so far" in f for f in found), found)
+        self.assertTrue(any("two.md:5: [wording]" in f and "wave" in f for f in found), found)
+
+    def test_lower_case_task_id_fails(self):
+        self.assert_page_finding("See t009.", "wording", "t009")
+        self.write("docs/how-to/two.md", "# A how-to\n\nFor peers: r2 and p1 are words here.\n")
+        self.assertEqual(self.findings(), [])
+
+    def test_image_alt_and_html_text_are_prose(self):
+        self.write("tools/p.png", "x\n")
+        git(self.root, "add", "--", "tools/p.png")
+        self.assert_page_finding("![the new one](../../tools/p.png)", "wording", "new")
+        self.assert_page_finding("<p>now</p>", "wording", "now")
+
+    def test_code_span_breaks_a_phrase(self):
+        self.write("docs/how-to/two.md", "# A how-to\n\nFor peers. Say no `x` longer.\n")
+        self.assertEqual(self.findings(), [])
+
+    def test_readme_wording_fails(self):
+        self.write("readme.adoc", "= R\n\nlink:docs/index.md[The new\nmap] and T009 and no\nlonger.\n")
+        found = self.findings()
+        self.assertTrue(any("readme.adoc:3: [wording]" in f and "new" in f for f in found), found)
+        self.assertTrue(any("readme.adoc:4: [wording]" in f and "T009" in f for f in found), found)
+        self.assertTrue(any("readme.adoc:4: [wording]" in f and "no longer" in f for f in found), found)
+        self.write("readme.adoc", "= R\n\nlink:docs/index.md[map], `now` and https://example.org/T009/new.\n\n----\nnew\n----\n")
+        self.assertEqual(self.findings(), [])
 
     def test_code_fences_urls_and_longer_words_pass(self):
         self.write("docs/how-to/two.md", "# A how-to\n\nFor peers. Know `T002` and `now`; renew the oldest knowledge, "
@@ -377,11 +520,62 @@ class DocsCheckTest(unittest.TestCase):
 
     def test_marks_that_differ_from_the_pattern_fail(self):
         self.edit_table("G 2, open 1", "G 1, open 1")
-        self.assert_finding("packet-ids", "the row states marks")
+        self.assert_finding("packet-ids", "the row states T004 marks")
 
     def test_marks_the_row_does_not_state_fail(self):
         self.write("packets/patterns/03040008/C2S_B_REQ-pattern.cpp", "// packet-id: 14.4.1\n// T003 V: read\n")
-        self.assert_finding("packet-ids", "the row states no marks")
+        self.assert_finding("packet-ids", "the row states no T003 marks")
+
+    def test_every_mark_tag_is_counted(self):
+        self.write("packets/patterns/03040008/C2S_B_REQ-pattern.cpp", "// packet-id: 14.4.1\n// T014b V (role): x\n")
+        self.assert_finding("packet-ids", "the row states no T014b marks")
+        self.edit_table("| no capture |", "| no capture (T014b marks: V 2) |")
+        self.assert_finding("packet-ids", "the row states T014b marks")
+        self.edit_table("T014b marks: V 2", "T014b marks: V 1")
+        self.assertEqual(self.findings(), [])
+
+    def test_mark_phrases_are_read_per_tag(self):
+        self.edit_table("(T004 marks: G 2, open 1)", "(T003 marks: none; T004 marks: G 2, open 1)")
+        self.assertEqual(self.findings(), [])
+        self.edit_table("T004 marks: G 2, open 1", "T004 marks: G 1, open 1")
+        self.assert_finding("packet-ids", "the row states T004 marks")
+
+    def test_marks_none_with_marks_in_the_pattern_fails(self):
+        self.edit_table("T004 marks: G 2, open 1", "T004 marks: none (no fields)")
+        self.assert_finding("packet-ids", "the row states T004 marks")
+
+    def test_marks_that_cannot_be_read_fail(self):
+        self.edit_table("T004 marks: G 2, open 1", "T004 marks: most")
+        self.assert_finding("packet-ids", "the row states T004 marks None")
+
+    def test_empty_report_column_fails(self):
+        self.edit_table("| T003 §1 |", "|  |")
+        self.assert_finding("packet-ids", "names no report")
+
+    def test_unknown_report_label_fails(self):
+        self.edit_table("| T003 §1 |", "| T999 §1 |")
+        self.assert_finding("packet-ids", "not in the table of report labels")
+
+    def test_missing_label_table_fails(self):
+        self.edit_table("| `P11b` | `specs/005-x/research/P11b-c.md` | the second |\n", "")
+        self.edit_table("| `008 T004` | `specs/008-x/research/T004-d.md` | the third |\n", "")
+        self.edit_table("| `T003`, `T004` | `specs/006-x/research/T003-a.md`, `specs/006-x/research/T004-b.md` | the first |\n", "")
+        self.assert_finding("packet-ids", "table of report labels is missing")
+
+    def test_report_is_compared_with_the_evidence_line(self):
+        pattern = "packets/patterns/03040008/C2S_B_REQ-pattern.cpp"
+        self.write(pattern, "// packet-id: 14.4.1\n// Evidence: specs/008-x/research/T004-d.md § 14.4.1.\n")
+        self.assertEqual(self.findings(), [])
+        self.write(pattern, "// packet-id: 14.4.1\n// Evidence: specs/006-x/research/T004-b.md\n")
+        self.assert_finding("packet-ids", "the pattern's Evidence says")
+
+    def test_misnamed_pattern_file_fails(self):
+        self.write("packets/patterns/03040008/S2C_Z_RES_pattern.cpp", "// packet-id: 1.2.3\n")
+        self.assert_finding("packet-ids", "S2C_Z_RES_pattern.cpp: a pattern file is named")
+
+    def test_table_under_a_renamed_heading_fails(self):
+        self.edit_table("## The table", "## Table")
+        self.assert_finding("packet-ids", "a pattern with no row")
 
     def test_broken_row_fails(self):
         self.edit_table("| 14.4.1 | `C2S_B_REQ`", "| 14.4.1 | C2S_B_REQ")
@@ -448,6 +642,16 @@ class DocsCheckTest(unittest.TestCase):
             self.assertEqual(docs_check.main(["--root", str(self.root), "--packet-counts"]), 1)
             self.assertEqual(docs_check.main(["--root", str(self.root), "--packet-counts", "--write"]), 0)
             self.assertEqual(docs_check.main(["--root", str(self.root), "--packet-counts"]), 0)
+
+    def test_write_exits_1_when_a_difference_was_not_written(self):
+        self.write_json()
+        self.edit_table("2/2 fit (", "(")
+        with contextlib.redirect_stdout(io.StringIO()) as out:
+            self.assertEqual(docs_check.main(["--root", str(self.root), "--packet-counts", "--write"]), 1)
+        self.assertIn("0 written, 1 not", out.getvalue())
+        self.edit_table("| no capture |", "| not a count |\n| broken |\n| no capture |")
+        with contextlib.redirect_stdout(io.StringIO()):
+            self.assertEqual(docs_check.main(["--root", str(self.root), "--packet-counts", "--write"]), 1)
 
     # The contract and the code
 

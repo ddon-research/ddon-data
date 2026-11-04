@@ -5,15 +5,23 @@
 The rules are docs/reference/documentation-style.md; the how-to is docs/how-to/write-documentation.md.
 Checks (the name in brackets is what a finding prints):
 
-  (a) [link]     a relative link resolves to a file in the git index or an untracked file under docs/,
-                 compared case-sensitively: with core.ignorecase a filesystem check cannot see a case mismatch
+  (a) [link]     a relative link resolves to a file in the git index or an untracked file under docs/, compared
+                 case-sensitively (with core.ignorecase a filesystem check cannot see a case mismatch), and that file
+                 is on disk. Only http, https and mailto are external. HTML href and src, undefined reference links and
+                 adoc link:, xref:, image:, include: and <<...>> count as links. readme.adoc must exist and link
+                 docs/index.md
   (b) [anchor]   a link's anchor resolves to a heading of the target
-  (c) [index]    every page is linked from docs/index.md, exactly once
-  (d) [path]     a code span that starts with a known top directory names a path that exists
-  (e) [wording]  outside fences and code spans: no task id, package label, wave name or dating word
+  (c) [index]    every page is linked from docs/index.md, exactly once; a Markdown or adoc file under docs/ is `.md`
+  (d) [path]     in a code span, every word that starts with a known top directory (`./` and `../` too) names a path in
+                 this case that exists, a trailing slash a directory; an absolute spelling of the repository is refused.
+                 In a fence, the first word of each line
+  (e) [wording]  outside fences and code spans, across line breaks, in image alt and HTML text and all of readme.adoc:
+                 no task id, package label, wave name or dating word
   (f) [opening]  a paragraph comes right after the title
   (g) [tutorial] the tutorial's inputs match their SHA-256 and its jq line matches the committed JSON
-  (h) [packet-ids] docs/reference/packet-ids.md has one row per packet pattern; id, name and marks equal the pattern's
+  (h) [packet-ids] docs/reference/packet-ids.md has one row per packet pattern; id, name and every tag's marks equal the
+                 pattern's; the Report column names a report label, the one of the pattern's `// Evidence:` where it has
+                 one; a pattern file is named `<name>-pattern.cpp`
 
 It reads the git index (paths only), the pages, the three tutorial inputs and the packet patterns: nothing else under
 client/ or packets/.
@@ -24,7 +32,7 @@ the table or the JSON changed; `--write` corrects the rows and the recount date,
 
   python -X utf8 tools/docs_check.py --packet-counts [--write]
 
-Its exit status: 0 no difference (or written), 1 differences, 3 not run (rg or the JSON tree missing).
+Its exit status: 0 no difference (or all written), 1 differences left, 3 not run (rg or the JSON tree missing).
 """
 
 import argparse
@@ -38,6 +46,7 @@ import shutil
 import subprocess
 import sys
 from collections import Counter
+from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
 
@@ -48,6 +57,12 @@ except ImportError:
 
 REPO = Path(__file__).resolve().parent.parent
 TOP_DIRECTORIES = ("client", "packets", "research", "binaries", "patches", "tools", "specs", "docs")
+EXTERNAL_SCHEMES = ("http", "https", "mailto")
+README = "readme.adoc"
+INDEX = "docs/index.md"
+ABSOLUTE_REPOSITORY = re.compile(r"^(?:[a-zA-Z]:[\\/]|/[a-zA-Z]/|/mnt/[a-zA-Z]/)ddon-data[\\/]")
+# Page extensions the docs tree must not hold under another spelling; `.md` itself is the one that is checked.
+PAGE_EXTENSION = re.compile(r"\.(?:md|markdown|mdown|mkd|mkdn|mdwn|mdtext|adoc|asciidoc)$", re.IGNORECASE)
 
 # The directory READMEs held to the page rules. A package that shortens a README adds it here.
 SHORT_READMES = (
@@ -73,14 +88,18 @@ SHORT_READMES = (
 OTHER_WORK = ("research/knowledge-graph",)
 
 # x86 R8 and R9 go in code spans, like every other exact name (the contract says so).
-LABELS = re.compile(r"\b(?:T\d{3}[a-z]?|TC\d+|R\d[a-z]?|P\d{1,2}[a-z]?)\b|\b[Ww]aves?[ -]\d+\b|\b[Bb]atch(?:es)? B\d\b")
+# Lower case only for the T ids: `r2` is radare2 and `p1` a parameter, while `t009` can only be the id.
+LABELS = re.compile(r"\b(?:[Tt]\d{3}[a-z]?|TC\d+|R\d[a-z]?|P\d{1,2}[a-z]?)\b|\b[Ww]aves?[\s-]\d+\b|\b[Bb]atch(?:es)?\s+B\d\b")
 # The list documentation-style.md prints under "Terms"; a test keeps the two equal.
 DATING_WORDS = ("currently", "now", "nowadays", "today", "recently", "new", "newly", "old", "existing", "yet",
                 "no longer", "so far", "at present")
-DATING = re.compile(r"\b(?:" + "|".join(DATING_WORDS) + r")\b", re.IGNORECASE)
+DATING = re.compile(r"\b(?:" + "|".join(w.replace(" ", r"\s+") for w in DATING_WORDS) + r")\b", re.IGNORECASE)
+UNDEFINED_REFERENCE = re.compile(r"(?<![\w\]])\[[^\]\n]+\]\[[^\]\n]*\]")
 URL_IN_TEXT = re.compile(r"https?://\S+")
 
-ADOC_LINK = re.compile(r"\b(?:link|xref):([^\s\[]+)\[")
+ADOC_LINK = re.compile(r"\b(?:link|xref|image|include)::?([^\s\[]+)\[")
+ADOC_XREF = re.compile(r"<<([^>,\n]+)(?:,[^>\n]*)?>>")
+ADOC_ID = re.compile(r"\[\[([^\]\n]+)\]\]|\[#([^\]\n,]+)")
 ADOC_SPAN = re.compile(r"`([^`\n]+)`")
 ADOC_HEADING = re.compile(r"^={1,6} +(.+?) *$", re.MULTILINE)
 ADOC_FENCE = re.compile(r"^(----|```)[^\n]*\n.*?^\1[ \t]*$", re.MULTILINE | re.DOTALL)
@@ -113,13 +132,18 @@ PACKET_IDS = "docs/reference/packet-ids.md"
 PATTERNS = "packets/patterns/03040008"
 JSON_TREE = "packets/decrypted_json"
 TABLE_HEADING = "## The table"
-ROW = re.compile(r"^\| (?P<id>\d+\.\d+\.\d+) \| `(?P<name>\w+)`(?: \(was [^|]*\))? \| [^|]* \| (?P<status>.*) \|$")
+ROW = re.compile(r"^\| (?P<id>\d+\.\d+\.\d+) \| `(?P<name>\w+)`(?: \(was [^|]*\))? \| (?P<report>[^|]*) \| (?P<status>.*) \|$")
 FIT = re.compile(r"^(?:(\d+)/(\d+) fit|no capture)")
 RECOUNT = re.compile(r"^Fit counts .*$", re.MULTILINE)
 PATTERN_ID = re.compile(r"^// packet-id: (\S+)", re.MULTILINE)
 PATTERN_SELECT = re.compile(r"^// packet-select: (\S+)", re.MULTILINE)
-PATTERN_MARK = re.compile(r"\bT00[345] (V|I|G|open)\b")
-ROW_MARKS = re.compile(r"\bT00[345] marks: ([^;)]*)")
+PATTERN_EVIDENCE = re.compile(r"^// Evidence: (\S+)", re.MULTILINE)
+# Every report tag that carries marks; the patterns hold T003, T004, T005 and T014b (`T007 from T006 F2` is provenance).
+PATTERN_MARK = re.compile(r"\b(T\d{3}[a-z]?) (V|I|G|open)\b")
+ROW_MARKS = re.compile(r"\b(T\d{3}[a-z]?) marks: ([^;)]*)")
+MARK_LIST = re.compile(r"(?:V|I|G|open) \d+(?:, (?:V|I|G|open) \d+)*")
+REPORT_LABEL = re.compile(r"(?:\d{3} )?[A-Z]+\d+[a-z]*")
+LABEL_ROW = re.compile(r"^\| (`[^|]*`) \| (`[^|]*`) \|")
 JSON_ID = re.compile(r"\.(\d+)_(\d+)_(\d+)\.json$")
 
 
@@ -153,6 +177,10 @@ class Tree:
         out = subprocess.run(["git", "-C", str(self.root), "-c", "core.quotepath=off", *args], check=True,
                              capture_output=True).stdout
         return [p for p in out.decode("utf-8", "surrogateescape").split("\0") if p]
+
+    def on_disk(self, path, directory=False):
+        target = self.root / path
+        return target.is_dir() if directory else target.is_file() or target.is_dir()
 
     def case_variant(self, path):
         """The tracked file that differs from `path` only in case, or None."""
@@ -188,6 +216,27 @@ def with_duplicates(slugs):
     return out
 
 
+class HtmlScan(HTMLParser):
+    """The href and src targets and the text of a piece of HTML."""
+
+    def __init__(self):
+        super().__init__(convert_charrefs=True)
+        self.links, self.text = [], ""
+
+    def handle_starttag(self, tag, attrs):
+        self.links += [value for name, value in attrs if name in ("href", "src") and value]
+
+    def handle_data(self, data):
+        self.text += data
+
+    @classmethod
+    def of(cls, content):
+        scan = cls()
+        scan.feed(content)
+        scan.close()
+        return scan
+
+
 class Page:
     """A Markdown file parsed once."""
 
@@ -198,6 +247,7 @@ class Page:
         self.text = (Path(root) / path).read_text(encoding="utf-8")
         if Page.parser is None:
             Page.parser = MarkdownIt("commonmark").enable("table")
+            Page.parser.validateLink = lambda url: True  # `file:` must stay a link, for check_link to refuse
         self.tokens = Page.parser.parse(self.text)
 
     def inline(self):
@@ -211,12 +261,57 @@ class Page:
                     line += 1
                 yield line, child
 
+    def html(self):
+        """(line, scanned HTML) of each HTML block and inline tag."""
+        for token in self.tokens:
+            if token.type == "html_block":
+                yield (token.map[0] if token.map else 0) + 1, HtmlScan.of(token.content)
+        for line, child in self.inline():
+            if child.type == "html_inline":
+                yield line, HtmlScan.of(child.content)
+
     def links(self):
         for line, child in self.inline():
             if child.type == "link_open":
                 yield line, child.attrs.get("href", "")
             elif child.type == "image":
                 yield line, child.attrs.get("src", "")
+        for line, scan in self.html():
+            for href in scan.links:
+                yield line, href
+
+    def undefined_references(self):
+        """`[x][nope]` with no definition renders as its own text."""
+        for line, child in self.inline():
+            if child.type == "text":
+                for match in UNDEFINED_REFERENCE.finditer(child.content):
+                    yield line, match.group(0)
+
+    def prose(self):
+        """(first line, text) of each block's words: line breaks kept as newlines, so a phrase split over two lines
+        still matches, and a code span as NUL, so it joins nothing."""
+        for token in self.tokens:
+            if token.type != "inline":
+                continue
+            parts = []
+            for child in token.children or ():
+                if child.type in ("softbreak", "hardbreak"):
+                    parts.append("\n")
+                elif child.type in ("text", "image"):  # an image's content is its alt text
+                    parts.append(child.content)
+                elif child.type == "code_inline":
+                    parts.append("\0")
+            yield (token.map[0] if token.map else 0) + 1, "".join(parts)
+        for line, scan in self.html():
+            if scan.text.strip():
+                yield line, scan.text
+
+    def fence_lines(self):
+        """(line, text) of each line of a fence."""
+        for token in self.tokens:
+            if token.type == "fence":
+                for number, text in enumerate(token.content.splitlines(), (token.map[0] if token.map else 0) + 2):
+                    yield number, text
 
     def code_spans(self):
         return ((line, c.content) for line, c in self.inline() if c.type == "code_inline")
@@ -234,9 +329,11 @@ class Page:
 def split_link(page_path, href):
     """(repository path or None for a same-page link, anchor), or None for an external link."""
     parts = urlsplit(href)
-    if parts.scheme or parts.netloc:
+    if parts.scheme in EXTERNAL_SCHEMES and (parts.netloc or parts.scheme == "mailto"):
         return None
     anchor = unquote(parts.fragment)
+    if parts.scheme or parts.netloc:
+        return "/", anchor  # `file:`, `D:/`, `//host`: not relative, and not a place on the web
     if not parts.path:
         return None, anchor
     if parts.path.startswith("/"):
@@ -257,7 +354,12 @@ def check_link(root, tree, pages, path, line, href):
             hint = f" (the index has {variant}: case differs)"
         elif target in tree.dirs:
             hint = " (a directory: link its README)"
+        elif target == "/":
+            hint = " (not relative: only http, https and mailto count as external)"
         yield Finding("link", path, line, f"{href} resolves to {target}, not in the git index{hint}")
+        return
+    if target is not None and not tree.on_disk(target):
+        yield Finding("link", path, line, f"{href} resolves to {target}, in the git index but deleted from disk")
         return
     if not anchor:
         return
@@ -282,31 +384,71 @@ def target_anchors(root, pages, target):
     return None
 
 
+def word_path(word):
+    """(repository path, wants a directory, relative spelling) that a word names, or None. The word may start `./` or
+    `../`; its top directory counts in any case, so that `Tools/x` is a finding and not skipped."""
+    word = word.strip("\"'(").rstrip(",.;:)\"'")
+    core = re.sub(r"^(?:\.\.?/)+", "", word)
+    if "/" not in core or core.split("/", 1)[0].lower() not in TOP_DIRECTORIES:
+        return None
+    if any(c in word for c in "*?[]{}<>$…|\\=") or "..." in word:
+        return None
+    core = re.sub(r":\d+(-\d+)?$", "", core).split("#")[0]
+    return posixpath.normpath(core), core.endswith("/"), word if word != core else None
+
+
+def span_targets(span):
+    return [found for found in map(word_path, span.split()) if found]
+
+
 def span_path(span):
-    """The repository path a code span names, or None. The first word counts: `tools/check.sh --all`."""
-    words = span.strip().split()
-    if not words:
-        return None
-    word = words[0].rstrip(",.;")
-    if "/" not in word or word.split("/", 1)[0] not in TOP_DIRECTORIES:
-        return None
-    if any(c in word for c in "*?[]{}<>$…|\\") or "..." in word:
-        return None
-    return re.sub(r":\d+(-\d+)?$", "", word).split("#")[0].rstrip("/")
+    """The first repository path a code span names, or None."""
+    targets = span_targets(span)
+    return targets[0][0] if targets else None
+
+
+def path_exists(tree, target, directory):
+    if directory:
+        return (target in tree.dirs and tree.on_disk(target, directory=True)) or (
+            tree.exists_local(target) and tree.on_disk(target, directory=True))
+    return ((target in tree.files or target in tree.dirs) and tree.on_disk(target)) or tree.exists_local(target)
+
+
+def check_path_word(tree, path, line, text, found):
+    target, directory, relative = found
+    if path_exists(tree, target, directory):
+        return
+    if relative and path_exists(tree, posixpath.normpath(posixpath.join(posixpath.dirname(path), relative)), directory):
+        return
+    kind = "a directory" if directory else "a path"
+    yield Finding("path", path, line, f"`{text}`: {target} is not {kind} in the git index and on disk")
 
 
 def check_span(tree, path, line, span):
-    target = span_path(span)
-    if target and target not in tree.files and target not in tree.dirs and not tree.exists_local(target):
-        yield Finding("path", path, line, f"`{span}`: {target} is not in the git index")
+    for word in span.split():
+        if ABSOLUTE_REPOSITORY.match(word):
+            yield Finding("path", path, line, f"`{span}`: an absolute path of the repository; write {word} from its root")
+    for found in span_targets(span):
+        yield from check_path_word(tree, path, line, span, found)
+
+
+def check_fence(tree, path, line, text):
+    """The first word of a fence's line: a command, or a listed path. Later words may be output or arguments."""
+    words = text.split()
+    found = word_path(words[0]) if words else None
+    if found:
+        yield from check_path_word(tree, path, line, text.strip()[:80], found)
 
 
 def check_wording(path, line, text):
+    """`line` is the first line of `text`, whose newlines count."""
     text = URL_IN_TEXT.sub("", text)
+    def at(match):
+        return line + text.count("\n", 0, match.start())
     for match in LABELS.finditer(text):
-        yield Finding("wording", path, line, f"process label {match.group(0)!r}: state the fact, or cite the file in a code span")
+        yield Finding("wording", path, at(match), f"process label {match.group(0)!r}: state the fact, or cite the file in a code span")
     for match in DATING.finditer(text):
-        yield Finding("wording", path, line, f"dating word {match.group(0)!r}: give a date or cut it")
+        yield Finding("wording", path, at(match), f"dating word {' '.join(match.group(0).split())!r}: give a date or cut it")
 
 
 def check_opening(page):
@@ -318,7 +460,7 @@ def check_opening(page):
         yield Finding("opening", page.path, line, "no paragraph right after the title (who it is for, what they get, what they need)")
 
 
-def check_index(root, tree, pages, docs_pages, index="docs/index.md"):
+def check_index(root, tree, pages, docs_pages, index=INDEX):
     if index not in tree.files or index not in pages:
         yield Finding("index", index, 1, "docs/index.md does not exist")
         return
@@ -369,11 +511,52 @@ def packet_rows(text):
 
 
 def row_marks(status):
-    """The counts a row states, or None when it states no marks."""
-    match = ROW_MARKS.search(status)
-    if not match:
-        return None
-    return {m.group(1): int(m.group(2)) for m in re.finditer(r"\b(V|I|G|open) (\d+)\b", match.group(1))}
+    """{tag: {mark: count}} the row states, or None for a tag whose phrase cannot be read. An absent tag states nothing."""
+    stated = {}
+    for tag, words in ROW_MARKS.findall(status):
+        words = words.strip()
+        if words.startswith("none"):
+            stated[tag] = {}
+        elif MARK_LIST.fullmatch(words):
+            stated[tag] = {m.group(1): int(m.group(2)) for m in re.finditer(r"\b(V|I|G|open) (\d+)\b", words)}
+        else:
+            stated[tag] = None
+    return stated
+
+
+def pattern_marks(text):
+    counted = {}
+    for tag, mark in PATTERN_MARK.findall(text):
+        counted.setdefault(tag, Counter())[mark] += 1
+    return {tag: dict(marks) for tag, marks in counted.items()}
+
+
+def report_labels(text):
+    """{label: {report paths}} from the table of labels above the packet table."""
+    reports = {}
+    for line in text.split("\n"):
+        if line == TABLE_HEADING:
+            break
+        row = LABEL_ROW.match(line)
+        if row:
+            labels, paths = re.findall(r"`([^`]+)`", row.group(1)), re.findall(r"`([^`]+)`", row.group(2))
+            for at, label in enumerate(labels):
+                reports.setdefault(label, set()).update(paths if len(paths) != len(labels) else [paths[at]])
+    return reports
+
+
+def check_report(reports, name, number, report, text):
+    labels = REPORT_LABEL.findall(report)
+    if not labels:
+        yield Finding("packet-ids", PACKET_IDS, number, f"{name}: the Report column names no report")
+        return
+    named = set().union(*(reports.get(label, set()) for label in labels))
+    evidence = PATTERN_EVIDENCE.search(text)
+    if not named:
+        yield Finding("packet-ids", PACKET_IDS, number, f"{name}: {report.strip()!r} is not in the table of report labels")
+    elif evidence and evidence.group(1).rstrip(".,;") not in named:
+        yield Finding("packet-ids", PACKET_IDS, number,
+                      f"{name}: the Report column says {report.strip()!r}, the pattern's Evidence says {evidence.group(1)}")
 
 
 def check_packet_ids(root):
@@ -383,8 +566,18 @@ def check_packet_ids(root):
         yield Finding("packet-ids", PACKET_IDS, 1, "the page does not exist")
         return
     seen = set()
-    patterns = {p.name[:-len("-pattern.cpp")]: p for p in (root / PATTERNS).glob("*-pattern.cpp")}
-    for number, line in packet_rows(page.read_text(encoding="utf-8")):
+    patterns = {}
+    for path in sorted((root / PATTERNS).glob("*.cpp")):
+        if path.name.endswith("-pattern.cpp"):
+            patterns[path.name[:-len("-pattern.cpp")]] = path
+        else:
+            yield Finding("packet-ids", PACKET_IDS, 1, f"{PATTERNS}/{path.name}: a pattern file is named <name>-pattern.cpp")
+    text = page.read_text(encoding="utf-8")
+    reports = report_labels(text)
+    rows = list(packet_rows(text))
+    if rows and not reports:
+        yield Finding("packet-ids", PACKET_IDS, 1, "the table of report labels is missing")
+    for number, line in rows:
         row = ROW.match(line)
         if not row:
             yield Finding("packet-ids", PACKET_IDS, number, f"not a table row: {line[:80]}")
@@ -397,17 +590,19 @@ def check_packet_ids(root):
         if name not in patterns:
             yield Finding("packet-ids", PACKET_IDS, number, f"{name}: no {PATTERNS}/{name}-pattern.cpp")
             continue
-        text = patterns[name].read_text(encoding="utf-8")
-        declared = PATTERN_ID.search(text)
+        source = patterns[name].read_text(encoding="utf-8")
+        declared = PATTERN_ID.search(source)
         if not declared or declared.group(1) != row["id"]:
             yield Finding("packet-ids", PACKET_IDS, number,
                           f"{name}: the row says {row['id']}, the pattern's packet-id says {declared and declared.group(1)}")
-        counted = Counter(PATTERN_MARK.findall(text))
-        stated = row_marks(row["status"])
-        if stated is None and counted:
-            yield Finding("packet-ids", PACKET_IDS, number, f"{name}: the row states no marks, the pattern has {dict(counted)}")
-        elif stated is not None and stated != dict(counted):
-            yield Finding("packet-ids", PACKET_IDS, number, f"{name}: the row states marks {stated}, the pattern has {dict(counted)}")
+        if reports:
+            yield from check_report(reports, name, number, row["report"], source)
+        counted, stated = pattern_marks(source), row_marks(row["status"])
+        for tag in sorted(set(counted) | set(stated)):
+            if tag not in stated:
+                yield Finding("packet-ids", PACKET_IDS, number, f"{name}: the row states no {tag} marks, the pattern has {counted[tag]}")
+            elif stated[tag] != counted.get(tag, {}):
+                yield Finding("packet-ids", PACKET_IDS, number, f"{name}: the row states {tag} marks {stated[tag]}, the pattern has {counted.get(tag, {})}")
     for name in sorted(set(patterns) - seen):
         yield Finding("packet-ids", PACKET_IDS, 1, f"{name}: a pattern with no row")
 
@@ -428,8 +623,10 @@ def fits_by_path(root):
     return tree
 
 
-def packet_counts(root, write=False):
-    """(rows, differences). With `write`, the rows and the recount line take the JSON's counts."""
+def packet_counts(root, write=False, unwritten=None):
+    """(rows, differences). With `write`, the rows and the recount line take the JSON's counts; a difference that has no
+    count to replace goes in `unwritten`."""
+    unwritten = [] if unwritten is None else unwritten
     root = Path(root)
     page = root / PACKET_IDS
     text = page.read_text(encoding="utf-8")
@@ -440,6 +637,7 @@ def packet_counts(root, write=False):
         row = ROW.match(line)
         if not row:
             differences.append(f"{PACKET_IDS}:{number}: not a table row")
+            unwritten.append(differences[-1])
             continue
         rows += 1
         pattern = root / PATTERNS / f"{row['name']}-pattern.cpp"
@@ -455,6 +653,8 @@ def packet_counts(root, write=False):
             differences.append(f"{PACKET_IDS}:{number}: {row['id']} {row['name']}: table {stated}, JSON {wanted}")
             if write and stated:
                 lines[number - 1] = line.replace(f"| {stated}", f"| {wanted}", 1)
+            else:
+                unwritten.append(differences[-1])
     if write:
         out = RECOUNT.sub(f"Fit counts recounted on {datetime.date.today().isoformat()} with `tools/docs_check.py --packet-counts`.",
                           "\n".join(lines), count=1)
@@ -470,20 +670,40 @@ def run_packet_counts(root, write):
     if not (root / JSON_TREE).is_dir() or not (root / PACKET_IDS).is_file():
         print(f"docs_check --packet-counts: not run ({JSON_TREE} or {PACKET_IDS} missing)")
         return 3
-    rows, differences = packet_counts(root, write)
+    unwritten = []
+    rows, differences = packet_counts(root, write, unwritten)
     for difference in differences:
         print(difference)
-    print(f"docs_check --packet-counts: {rows} rows, {len(differences)} differences" + (" (written)" if write else ""))
-    return 1 if differences and not write else 0
+    written = f" ({len(differences) - len(unwritten)} written, {len(unwritten)} not)" if write else ""
+    print(f"docs_check --packet-counts: {rows} rows, {len(differences)} differences{written}")
+    return 1 if unwritten else 0
 
 
 def check_adoc(root, tree, pages, path):
-    text = ADOC_FENCE.sub(lambda m: "\n" * m.group(0).count("\n"), (Path(root) / path).read_text(encoding="utf-8"))
+    raw = (Path(root) / path).read_text(encoding="utf-8")
+    text = ADOC_FENCE.sub(lambda m: "\n" * m.group(0).count("\n"), raw)
+    ids = {a or b for a, b in ADOC_ID.findall(text)}
+    ids |= {"_" + re.sub(r"\W+", "_", title.strip().lower()).strip("_") for title in ADOC_HEADING.findall(text)}
+    links_index = False
     for number, line in enumerate(text.splitlines(), 1):
         for href in ADOC_LINK.findall(line):
+            if "{" in href:
+                continue  # an attribute: its value is not here
+            split = split_link(path, href)
+            links_index = links_index or (split is not None and split[0] == INDEX)
             yield from check_link(root, tree, pages, path, number, href)
+        for target in ADOC_XREF.findall(line):
+            if "#" in target or "/" in target or "." in target:
+                yield from check_link(root, tree, pages, path, number, target)
+            elif target not in ids:
+                yield Finding("anchor", path, number, f"<<{target}>>: no such id in {path}")
         for span in ADOC_SPAN.findall(line):
             yield from check_span(tree, path, number, span)
+    if path == README:
+        if not links_index:
+            yield Finding("link", path, 1, f"{README} does not link {INDEX}")
+        words = ADOC_LINK.sub("[", ADOC_XREF.sub("", ADOC_SPAN.sub("\0", text)))
+        yield from check_wording(path, 1, words)
 
 
 def table_row_lines(page):
@@ -500,6 +720,11 @@ def run(root=REPO, short_readmes=SHORT_READMES, tutorial=TUTORIAL,
     tree = Tree(root)
     findings = []
     docs_pages = {f for f in tree.files if f.startswith("docs/") and f.endswith(".md") and (root / f).is_file()}
+    for path in sorted(f for f in tree.files if f.lower().startswith("docs/")):
+        if not path.startswith("docs/") or (PAGE_EXTENSION.search(path) and not path.endswith(".md")):
+            findings.append(Finding("index", path, 1, "a page under docs/ is spelled docs/<...>.md, in this case"))
+        if not (root / path).is_file():
+            findings.append(Finding("link", path, 1, "in the git index but deleted from disk"))
     checked = sorted(docs_pages | set(short_readmes))
     pages = {}
     counts = Counter(pages=0, links=0, paths=0)
@@ -514,18 +739,23 @@ def run(root=REPO, short_readmes=SHORT_READMES, tutorial=TUTORIAL,
             counts["links"] += 1
             findings.extend(check_link(root, tree, pages, path, line, href))
         for line, span in page.code_spans():
-            counts["paths"] += 1 if span_path(span) else 0
+            counts["paths"] += len(span_targets(span))
             findings.extend(check_span(tree, path, line, span))
+        for line, text in page.undefined_references():
+            findings.append(Finding("link", path, line, f"{text}: no such reference is defined"))
+        for line, text in page.fence_lines():
+            findings.extend(check_fence(tree, path, line, text))
         rows = table_row_lines(page)
-        for line, child in page.inline():
-            if child.type == "text" and line not in rows:
-                findings.extend(check_wording(path, line, child.content))
+        for line, text in page.prose():
+            findings.extend(f for f in check_wording(path, line, text) if f.line not in rows)
     findings.extend(check_index(root, tree, pages, docs_pages))
     findings.extend(check_tutorial(root, tutorial))
     findings.extend(check_packet_ids(root))
     for path in adoc:
         if (root / path).is_file():
             findings.extend(check_adoc(root, tree, pages, path))
+        else:
+            findings.append(Finding("link", path, 1, "it does not exist"))
     return findings, counts
 
 

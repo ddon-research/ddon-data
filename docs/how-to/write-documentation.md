@@ -27,14 +27,14 @@ A finding reads `<path>:<line>: [<check>] <message>`.
 
 | Check | It means | Fix |
 | --- | --- | --- |
-| `link` | the target is not in the git index with this exact spelling; `case differs` means the disk hides the mismatch | correct the spelling; `git add` a file outside `docs/` before linking it; link a directory's README, not the directory |
+| `link` | the target is not in the git index with this exact spelling, or not on disk; `case differs` means the disk hides the mismatch; only `http`, `https` and `mailto` count as external; a `[x][y]` with no definition; `readme.adoc` missing, or not linking `docs/index.md` | correct the spelling; `git add` a file outside `docs/` before linking it; link a directory's README, not the directory; write links relative |
 | `anchor` | the target has no heading with that slug | use GitHub's spelling: lower case, punctuation dropped, spaces as hyphens |
-| `index` | the page is missing from `docs/index.md`, or listed twice | list it once |
-| `path` | a code span names a path that does not exist | correct it, or write a glob or a `<placeholder>` when it is a shape, not a path |
-| `wording` | a task id, package label or dating word in prose | state the fact without it; give a date; put an exact name in a code span |
+| `index` | the page is missing from `docs/index.md`, or listed twice; a Markdown or adoc file under `docs/` with an extension other than `.md` | list it once; rename it |
+| `path` | a word of a code span, or the first word of a fence's line, starts with a top directory (also `./`, `../`) and names no path in this case; a trailing slash names no directory; an absolute spelling of this repository | correct it, write it from the root, write a glob or a `<placeholder>` when it is a shape, or prefix the other repository's name |
+| `wording` | a task id, package label or dating word in prose, also split over a line break, in image alt or HTML text, or in `readme.adoc` | state the fact without it; give a date; put an exact name in a code span |
 | `opening` | no paragraph right after the title | write it |
 | `tutorial` | a pinned input, its hash or the expected `jq` line changed | see below |
-| `packet-ids` | a row of [Packet ids](../reference/packet-ids.md) disagrees with its pattern, or a pattern has no row | correct the row by script, not the whole table with an editor; the pattern is the authority |
+| `packet-ids` | a row of [Packet ids](../reference/packet-ids.md) disagrees with its pattern (id, the marks of any tag, the report of its `// Evidence:` line), its Report column is empty or unknown, a pattern has no row, or a pattern file is not `<name>-pattern.cpp` | correct the row by script, not the whole table with an editor; the pattern is the authority |
 
 ## Correct the packet fit counts
 
@@ -44,7 +44,7 @@ The fit counts in [Packet ids](../reference/packet-ids.md) come from the JSON tr
 python -X utf8 tools/docs_check.py --packet-counts --write
 ```
 
-Without `--write` it only lists the differences, and the exit status is 1 when there are any. The gate's `packet-counts` section runs that form.
+Without `--write` it only lists the differences, and the exit status is 1 when there are any. With `--write` the exit status is 1 when a difference could not be written, a row with no count to replace. The gate's `packet-counts` section runs the form without `--write`.
 
 ## Change a tutorial input
 
