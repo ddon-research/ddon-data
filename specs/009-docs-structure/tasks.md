@@ -29,7 +29,14 @@ Coordinator: main session. One subagent at a time. Target structure and rules: `
 6. Sam, 2026-11-04: packet work moves from `research/` to top-level `packets/`, including plbatch and the Wireshark
    dissectors (overrides decision 4 for `research/wireshark`). Checked: 0 dirty files in those trees, no sibling repository
    and no JSON names their paths. The build stays in the pattern path (`packets/patterns/03040008/`). `research/rng-race/`
-   stays: ddon-hook's `tools/rng/` reads it by path.
+   stays: ddon-hook's `tools/rng/` reads it by path (Sam confirmed: "Leave it in research").
+7. Sam, 2026-11-04, a required page for T004: "annotated packages are based on server CLI/knowledge while JSON is based
+   on raw understanding and inference of the binaries. So the annotated stuff will have figured things out during
+   runtime more but might also still have some erroneous orders/sizes that need to still be checked." So
+   `explanation/` states the two decodings and how to weigh them: `packets/decrypted_annotated/` (Arrowgene CLI and server
+   structures: meaning tested against a running client, sizes and order unproven) against `packets/decrypted_json/`
+   (patterns from the client binaries: layout from code, meaning often inferred, marks `V`/`I`/`G`). What to do when
+   they disagree; linked from the `packets/` README, the repository layout, the glossary and write-a-pattern.
 
 ## Running
 
