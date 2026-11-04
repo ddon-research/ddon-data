@@ -186,6 +186,19 @@ def check_sd(command):
     return None
 
 
+def native_path(path):
+    """`/d/x` (Git Bash) as `D:/x`, the directory the shell means; Windows Python reads it as `\\d\\x`."""
+    match = re.fullmatch(r"/([a-zA-Z])(/.*)?", path)
+    return f"{match[1].upper()}:{match[2] or '/'}" if os.name == "nt" and match else path
+
+
+def entered(words, cwd):
+    """The directory after this command: `cd <dir>` moves the rest of the line; `$VAR` and `cd -` stay unknown."""
+    if len(words) == 2 and name_of(words[0]) == "cd" and "$" not in words[1] and words[1] != "-":
+        return str(Path(cwd) / native_path(words[1]))
+    return cwd
+
+
 def git_parts(words, cwd):
     settings, directory, i = [], cwd, 1
     while i < len(words) and words[i].startswith("-"):
@@ -194,7 +207,7 @@ def git_parts(words, cwd):
             if option == "-c":
                 settings.append(words[i + 1].replace(" ", "").lower())
             if option == "-C":
-                directory = str(Path(directory) / words[i + 1])
+                directory = str(Path(directory) / native_path(words[i + 1]))
             i += 2
         else:
             i += 1
@@ -321,6 +334,7 @@ def added_paths(line, cwd):
     added = []
     for stages in line:
         for words in stages:
+            cwd = entered(words, cwd)
             if words and name_of(words[0]) == "git":
                 _, directory, sub, arguments = git_parts(words, cwd)
                 if sub == "add":
@@ -538,6 +552,7 @@ def verdict(data):
         if reason:
             return reason
         for words in stages:
+            cwd = entered(words, cwd)
             if words and name_of(words[0]) == "git":
                 reason = check_git(words, cwd, added)
                 if reason:

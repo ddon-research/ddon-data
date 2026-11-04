@@ -189,6 +189,27 @@ class GuardBashTest(unittest.TestCase):
             with self.subTest(command=command):
                 self.assertIsNone(guard_bash.verdict(data(command, agent=f"x{index}", call=f"a{index}")))
 
+    def test_push_checks_the_branch_of_the_repository_it_runs_in(self):
+        def branch_of(directory):
+            return "main" if Path(directory).name == "sibling" else "rng-monitor"
+        with mock.patch.object(guard_bash, "current_branch", side_effect=branch_of):
+            for index, command in enumerate(("cd /d/sibling && git push origin main",
+                                             "cd /d/sibling; git push origin main",
+                                             "git -C /d/sibling push origin main",
+                                             "cd /d/other && git -C /d/sibling push origin main",
+                                             "git push origin rng-monitor")):
+                with self.subTest(command=command):
+                    self.assertIsNone(guard_bash.verdict(data(command, agent=f"s{index}", call=f"s{index}")))
+            for index, command in enumerate(("git push origin main",
+                                             "cd /d/other && git push origin main",
+                                             "cd /d/sibling && git push origin rng-monitor",
+                                             "cd /d/sibling && git push --force origin main",
+                                             "cd /d/sibling && git push origin :main",
+                                             'cd "$S" && git push origin main',
+                                             "cd - && git push origin main")):
+                with self.subTest(command=command):
+                    self.assertIsNotNone(guard_bash.verdict(data(command, agent=f"t{index}", call=f"t{index}")))
+
     def test_git_add_directory(self):
         with tempfile.TemporaryDirectory() as root:
             (Path(root) / "specs" / "011").mkdir(parents=True)
