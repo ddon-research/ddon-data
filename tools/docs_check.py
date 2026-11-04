@@ -58,6 +58,11 @@ SHORT_READMES = (
     "packets/patterns/03040008/README.md",
     "packets/plbatch/README.md",
     "packets/wireshark/README.md",
+    "patches/README.md",
+    "research/03040008/protections/README.md",
+    "research/pharos/README.md",
+    "research/rng-race/README.md",
+    "research/textures/README.md",
 )
 
 # Untracked trees of other work a code span may name while they are not committed; on disk, exact case. Never links.
@@ -484,7 +489,8 @@ def table_row_lines(page):
     return {number for number, _line in packet_rows(page.text)}
 
 
-def run(root=REPO, short_readmes=SHORT_READMES, tutorial=TUTORIAL, adoc=("readme.adoc",)):
+def run(root=REPO, short_readmes=SHORT_READMES, tutorial=TUTORIAL,
+        adoc=("readme.adoc", "binaries/PS4_02020005/elf-dumps/README.adoc")):
     """(findings, summary counts). `adoc` and the READMEs that do not exist are findings, not skips."""
     root = Path(root)
     tree = Tree(root)

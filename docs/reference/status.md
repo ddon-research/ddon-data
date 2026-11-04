@@ -76,6 +76,29 @@ Output of the runs of 2026-11-03. `match.py` and `transfer.py --wave2` were reru
 | `packet` locals named and retyped; refused at the apply | 23; 1 | 2026-11-03 | `dumps/logs/apply-w2e.log` |
 | Reviewer's sample of pairs and types, wrong on PC | 70, 0 | 2026-11-03 | `specs/007-pc-handler-annotation/research/T008-adversarial.md` |
 
+## Client patches
+
+The `.r2` and `.json` files of `patches/`, against the hash tables of [Client patches](client-patches.md).
+
+| What | Result | Date | How to recount |
+| --- | --- | --- | --- |
+| `.r2` files tracked; on disk | 12; 13 | 2026-11-04 | `git ls-files 'patches/*.r2' \| wc -l`, `ls patches/*.r2 \| wc -l` |
+| Tracked `.r2` files in UTF-16LE with a BOM | 10 | 2026-11-04 | `research/03040008/protections/R3-patches.md` §7, recounted on the first two bytes |
+| `.json` hashes equal to the table rows' Starting and Target hashes | 15 rows of 15 with a `.r2` | 2026-11-04 | `files[].sha256` of each `.json` |
+| Each tracked `.r2` replayed in memory on its stated parent, hashed | 12 of 12 reach the target | 2026-10-17 | `research/03040008/protections/R3-patches.md` |
+| A UTF-16 `.r2` run by `radare2 -qnw -i` (6.1.0), on a blank scratch file of the executable's size | 0 bytes written, `Invalid command` | 2026-11-04 | `2022_01_21_ddo_dump_fix_mutex_e.r2` |
+| The same file after `iconv -f UTF-16 -t UTF-8`; `rootofallthings_chat_edit.r2` as it is | 1 byte written each | 2026-11-04 | the same |
+| `radiff2 -r`, `radiff2 -j`, `rahash2 -a sha256` and the replay of [Add a client patch layer](../how-to/add-a-client-patch-layer.md), on two 16-byte scratch files | the replay equals the modified file | 2026-11-04 | the same commands |
+
+## ELF dump set, PS4_02020005
+
+| What | Result | Date | How to recount |
+| --- | --- | --- | --- |
+| Dumps committed, as stored | 43, 116 MiB: the script's 41 (79 MiB at its run) and the two the reconstructor writes | 2026-11-04 | `jq 'select(.storage=="txt" or .storage=="zst")' binaries/PS4_02020005/elf-dumps/manifest.jsonl` |
+| Local-only dumps, compressed | 2, 1.15 GiB | at the same run | `dust -d 0 binaries/PS4_02020005/elf-dumps/local` |
+| `./generate-elf-dumps.sh --dry-run` | tools and input OK | 2026-11-04 | |
+| `./generate-elf-dumps.sh --verify` | all published files match the manifest | 2026-11-04 | |
+
 ## Not run
 
 | Check | State | Date |
@@ -87,4 +110,9 @@ Output of the runs of 2026-11-03. `match.py` and `transfer.py --wave2` were reru
 | The `ValueOld` check of 13.23.16 | not run | 2026-11-03 |
 | Coverage of client 02030004 with `research/scripts/find-unsupported-extensions.sh` | not run | 2026-11-04 |
 | The IDA steps of [Transfer annotations from PS4 to PC](../how-to/transfer-annotations-ps4-to-pc.md) since their runs of 2026-11-03: `repair_functions.py`, `extract_ida.py`, `apply_transfer.py`; and the read-only batch example of [Query an IDA database read-only](../how-to/query-ida-read-only.md) | not run | 2026-11-04 |
+| Full `generate-elf-dumps.sh` and `--skip-local`; the reconstructor's `inline-dump` and `export.sh` | not run: read against the sources | 2026-11-04 |
+| Any `.r2` applied with radare2 to a client executable, for [Apply a client patch](../how-to/apply-a-client-patch.md) | not run | 2026-11-04 |
+| The steps of [Triage a client crash](../how-to/triage-a-client-crash.md) | not run: no client here; the commands are checked against ddon-hook's `run_cycles.py` where it has them | 2026-11-04 |
+| [Run Pharos](../how-to/run-pharos.md) | not run: `run.sh --help` only; `docker-compose` is on `PATH`; its times are estimates | 2026-11-04 |
+| [Convert textures](../how-to/convert-textures.md) | not run: both scripts' `--help` only; ARCtool not checked, `magick`, `texconv.exe` and `texdiag.exe` are on `PATH` | 2026-11-04 |
 | The whole-type `transfer.py` on the committed dumps: it refuses them with exit status 2, as designed, so `manifest/transfer/` could not be compared | not run | 2026-11-04 |

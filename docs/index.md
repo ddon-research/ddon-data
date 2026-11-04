@@ -23,6 +23,12 @@ The map of this repository's documentation, for peers who know x86, ELF and DWAR
 - [Query an IDA database read-only](how-to/query-ida-read-only.md): make a private copy, read it, delete it.
 - [Write to an IDA database](how-to/write-to-an-ida-database.md): run a write as a headless batch, check the save, keep the undo.
 - [Transfer annotations from PS4 to PC](how-to/transfer-annotations-ps4-to-pc.md): repair, extract, match, transfer, apply, verify, undo.
+- [Apply a client patch](how-to/apply-a-client-patch.md): apply one `.r2` layer to a copy and check its hash.
+- [Add a client patch layer](how-to/add-a-client-patch-layer.md): record a layer with its hash chain.
+- [Triage a client crash](how-to/triage-a-client-crash.md): capture, classify and record a crash; what to try when a hook writes `.text`.
+- [Regenerate the ELF dumps](how-to/regenerate-elf-dumps.md): rebuild or verify the static dumps of the PS4 ELF.
+- [Run Pharos](how-to/run-pharos.md): run OOAnalyzer on a large executable in Docker.
+- [Convert textures](how-to/convert-textures.md): extract a client's textures and convert them to PNG.
 
 ## Reference: look something up
 
@@ -40,6 +46,9 @@ The map of this repository's documentation, for peers who know x86, ELF and DWAR
 - [plbatch CLI](reference/plbatch-cli.md): flags, output lines and exit codes of the batch engine.
 - [Arrowgene CLI patches](reference/arrowgene-cli-patches.md): what the patched CLI changes, and its build identity.
 - [IDA transfer tools](reference/ida-transfer-tools.md): the transfer's scripts, flags, extractor records, manifest columns, rules and published results.
+- [Client patches](reference/client-patches.md): the hash chain, lineage, file offsets and `.r2` encoding of the PC executables.
+- [Protection inventory](reference/protection-inventory.md): the mechanisms in the PC dumps, their sites and their state per executable.
+- [ELF dumps](reference/elf-dumps.md): provenance, storage, verification and two file formats of the PS4 dump set.
 
 ## Explanation: understand why
 
@@ -49,6 +58,9 @@ The map of this repository's documentation, for peers who know x86, ELF and DWAR
 - [Two packet decodings](explanation/two-packet-decodings.md): the annotated dumps against the JSON, and who decides what.
 - [plbatch design](explanation/plbatch-design.md): why a batch driver, why its pin, what it costs per file.
 - [IDA transfer method](explanation/ida-transfer-method.md): why pairs are proved by code shape, what each gate prevents, what the results mean.
+- [Client lineage and protections](explanation/client-lineage-and-protections.md): what the PC executables are, what the layers do, why a code patch crashes the client.
+- [RNG race](explanation/rng-race.md): why captures from long-running clients do not decrypt, and what is open.
+- [Structure of the PS4 ELF](explanation/ps4-elf.md): what is unusual about `DDOORBIS.elf` and what its dumps show.
 
 ## Other work
 

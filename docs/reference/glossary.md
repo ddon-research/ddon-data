@@ -7,7 +7,11 @@ The terms that more than one page uses, for a reader who knows x86, ELF and DWAR
 | Term | Meaning |
 | --- | --- |
 | build | A client version number: `03040008` (PC, Season 3), `02030004` (PC, Season 2), `01010004` (PC, Season 1), `PS4_02020005` (PS4, with debug symbols). Every client fact names one. |
-| DUMP_FIX, `f1c9` | The patched PC executable of build 03040008 that `research/03040008/protections/README.md` analyses. `f1c9` is the start of its SHA-256; that README and `patches/README.md` name client executables by such prefixes. |
+| DUMP_FIX, `f1c9` | The patched PC executable of build 03040008 that `research/03040008/protections/README.md` analyses. `f1c9` is the start of its SHA-256; [Client patches](client-patches.md) lists client executables with their hashes, and pages name them by such prefixes. |
+| `f2a8` | The installed PC 03040008 `DDO.exe`, a Windows 7 re-dump's line with none of `f1c9`'s layers. |
+| layer | One recorded binary diff between two client executables, a `.r2` script under `patches/` with a starting and a target hash. |
+| SecureEngine | Themida's runtime image, kept live in the PC 03040008 dumps as a second `.text`. Its integrity checks are what a code patch trips. |
+| tear | A permanent change of the state of the client's shared random generator to a state on another orbit, seen as a break of its sequence: [RNG race](../explanation/rng-race.md). |
 | recompilation | C++ generated for the PS4 02020005 client, unfinished and believed accurate where it has a body. It sits in the sibling repository `D:\ddon-data-s2`, directory `recompilation/`, and its packet bodies under `recompilation/src/DD_ONLINE/prog/Protocol/`. |
 
 ## Packets
