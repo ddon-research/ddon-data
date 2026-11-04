@@ -1,0 +1,358 @@
+file	heading	lines	type	target	notes
+readme.adoc	DDON Data	1-10	explanation	keep	short root readme: what this is
+readme.adoc	About	11-30	explanation	keep	shorten; season repos and purpose stay
+readme.adoc	Repository layout	31-99	reference	docs/reference/repository-layout.md	root keeps a brief layout; drop the plan/ row (absent at top level)
+readme.adoc	Data flow	100-116	explanation	docs/explanation/evidence-model.md	data-flow diagram; root keeps a short copy; downstream list goes to docs/reference/repository-layout.md
+readme.adoc	Toolchain	117-129	reference	docs/reference/tools-and-shell.md	
+readme.adoc	Typical workflows	130-131	how-to	docs/how-to/extract-client-resources.md	empty parent heading
+readme.adoc	Client resource extraction	132-138	how-to	docs/how-to/extract-client-resources.md	also in AGENTS.md Workflows
+readme.adoc	Resource format research	139-149	how-to	docs/how-to/decode-a-resource-format.md	names research/README.adoc (index name is readme.adoc)
+readme.adoc	Packet capture to decrypted streams	150-168	how-to	docs/how-to/decrypt-a-capture.md	tshark heuristics, expected plaintext, 15k depth, 40 s
+readme.adoc	Working with AI agents	169-175	reference	keep	one line pointing at AGENTS.md
+readme.adoc	Credits	176-179	explanation	keep	
+AGENTS.md	DDON Data agent guide	1-11	reference	keep	agent guide stays canonical for agents
+AGENTS.md	Facts	12-54	reference	docs/reference/repository-layout.md	table and inputs move; AGENTS.md keeps a pointer plus the never-move list; plan/ row stale; line 44 reader claims to correct
+AGENTS.md	Evidence rules	55-68	explanation	docs/explanation/evidence-model.md	keep the rules in AGENTS.md as binding one-liners and link
+AGENTS.md	Preservation and git hygiene	69-84	reference	keep	agent rules; a human summary may sit in docs/reference/repository-layout.md
+AGENTS.md	Shell tools	85-114	reference	keep	agent rules; pages do not repeat them; toolchain summary in docs/reference/tools-and-shell.md
+AGENTS.md	Workflows	115-147	how-to	keep	shorten to links: extract-client-resources, decode-a-resource-format, decrypt-a-capture, apply-a-client-patch, query-ida-read-only, regenerate-elf-dumps; facts move there; line 126 names research/README.adoc; IDA bullet does not name pc-accepted
+AGENTS.md	Conventions	148-166	reference	docs/reference/conventions.md	Libraries first and Clone rules stay in AGENTS.md; naming rows move
+AGENTS.md	Agents and coordination	167-182	reference	keep	agent process, not for peers
+AGENTS.md	Planning with Spec Kit	183-208	how-to	keep	agent process
+AGENTS.md	Subprojects	209-219	reference	keep	subproject gates
+CLAUDE.md	Claude Code notes for ddon-data	1-4	reference	keep	
+CLAUDE.md	Resume	5-15	status	keep	line 7 says no active feature (spec 009 is open); line 12 names plan/*.md, absent
+CLAUDE.md	Tools	16-33	reference	keep	IDA part summarized on docs/how-to/query-ida-read-only.md; add pc-accepted
+CLAUDE.md	Bash tool traps	34-42	reference	keep	agent traps
+CLAUDE.md	Learnings	43-52	reference	keep	second entry links research/03040008/ida-transfer/README.md for recipes: repoint to docs/how-to/write-to-an-ida-database.md
+.specify/memory/constitution.md	DDON Data Constitution	1-6	explanation	keep	Spec Kit governance file; docs/explanation/evidence-model.md cites it
+.specify/memory/constitution.md	Core Principles	7-8	explanation	keep	
+.specify/memory/constitution.md	I. Source-Derived Facts Are Immutable	9-15	explanation	keep	
+.specify/memory/constitution.md	II. Evidence Authority Follows the Fact Type	16-23	explanation	keep	
+.specify/memory/constitution.md	III. Builds and Producers Are Explicit	24-29	explanation	keep	
+.specify/memory/constitution.md	IV. Reproducible, Streaming, Preserving	30-37	explanation	keep	
+.specify/memory/constitution.md	V. Honest Verification	38-42	explanation	keep	
+.specify/memory/constitution.md	Repository Constraints	43-50	reference	keep	line 47: stable paths
+.specify/memory/constitution.md	Development Workflow	51-57	how-to	keep	
+.specify/memory/constitution.md	Governance	58-64	reference	keep	
+research/readme.adoc	Dragon's Dogma Online Resource Decoding Workflow	1-11	how-to	keep	replace by a short research/README: what the tree holds; the opening line is garbled (PS4 debug symbo automation)
+research/readme.adoc	Prerequisites	12-13	how-to	docs/how-to/decode-a-resource-format.md	
+research/readme.adoc	Required Tools	14-19	how-to	docs/how-to/decode-a-resource-format.md	Ghidra listed as required; AGENTS.md prefers IDA MCP: the page leads with IDA
+research/readme.adoc	Required Data	20-25	how-to	docs/how-to/decode-a-resource-format.md	
+research/readme.adoc	Automation Workflow	26-27	how-to	docs/how-to/decode-a-resource-format.md	
+research/readme.adoc	Step 1: Resource Identification	28-48	how-to	docs/how-to/choose-a-resource-target.md	grep commands; bare path ddon-extractor/...
+research/readme.adoc	Step 2: Symbol Extraction	49-77	how-to	docs/how-to/decode-a-resource-format.md	archived Ghidra route; keep as the alternative, IDA first
+research/readme.adoc	Step 3: Pattern Generation	78-114	reference	docs/how-to/decode-a-resource-format.md	conversion rules: a table in the page
+research/readme.adoc	Step 4: Validation and Cross-Season Testing	115-142	how-to	docs/how-to/decode-a-resource-format.md	relative to research/ as cwd
+research/readme.adoc	Step 5: Season 3 Adaptation (Manual Process)	143-167	how-to	docs/how-to/decode-a-resource-format.md	
+research/readme.adoc	Common Error Patterns	168-187	reference	docs/how-to/decode-a-resource-format.md	failure table: array limit, version mismatch, early stop
+research/readme.adoc	Directory Structure	188-199	reference	docs/reference/repository-layout.md	names README.adoc; stale tree
+research/readme.adoc	LLM Integration Points	200-215	explanation	keep	LLM selling points, no fact a reader acts on: propose cutting; recorded here because no spec holds it
+research/readme.adoc	Reference Files	216-222	reference	docs/how-to/decode-a-resource-format.md	links
+research/readme.adoc	Quick Reference	223-245	reference	docs/how-to/decode-a-resource-format.md	command summary; duplicates the steps
+research/readme.adoc	Identifying Next Potential Targets	246-247	how-to	docs/how-to/choose-a-resource-target.md	
+research/readme.adoc	Extension Coverage Analysis	248-272	how-to	docs/how-to/choose-a-resource-target.md	script writes only a temp dir it removes
+research/readme.adoc	Current Coverage Analysis Results	273-292	status	docs/how-to/choose-a-resource-target.md	03040008 re-run 2026-11-04: 186 supported, 145 not, 56% (matches); needs a dated example; 02030004 not re-run
+research/readme.adoc	Target Selection Criteria	293-306	how-to	docs/how-to/choose-a-resource-target.md	
+research/03040008/packets/README.md	Packet patterns, client 03040008	1-7	reference	keep	short directory README: what, producer, links; lines 4-6 are spec history
+research/03040008/packets/README.md	How the patterns are built	8-139	reference	docs/reference/packet-pattern-format.md	parent; split in [sub] rows
+research/03040008/packets/README.md	How to export	140-170	how-to	docs/how-to/export-packets-to-json.md	options to docs/reference/imhex-export-cli.md
+research/03040008/packets/README.md	Evidence rules	171-182	explanation	docs/explanation/evidence-model.md	also docs/explanation/packet-decoding-method.md; the 36 older-pattern note stays as a limit
+research/03040008/packets/README.md	Patterns	183-845	reference	docs/reference/packet-ids.md	parent; split in [sub] rows
+research/03040008/packets/README.md	Open items	846-1215	reference	docs/reference/packet-open-questions.md	parent; 61 bullets as [sub] rows
+research/03040008/ida-transfer/README.md	ddon-ida-transfer (spec 007)	1-6	reference	keep	short directory README: scripts, gates, links
+research/03040008/ida-transfer/README.md	Read path and write path	7-30	how-to	docs/how-to/write-to-an-ida-database.md	read path to docs/how-to/query-ida-read-only.md; lesson kept: a killed worker's writes are lost; T004d story cut
+research/03040008/ida-transfer/README.md	Function repair (`repair_functions.py`, script version 2)	31-68	how-to	docs/how-to/transfer-annotations-ps4-to-pc.md	flags and refusals to docs/reference/ida-transfer-tools.md
+research/03040008/ida-transfer/README.md	Version 3 (T005c): constant arguments, codecs, externs, call-target roots	69-102	reference	docs/reference/ida-transfer-tools.md	versioned section: merge into the current extractor schema; version history stays in 007 tasks
+research/03040008/ida-transfer/README.md	Version 4 (T005f): object-relative accesses, requester roots, codec-path depth	103-145	reference	docs/reference/ida-transfer-tools.md	as above
+research/03040008/ida-transfer/README.md	Version 5 (T005h): memory operands from `op_t`, not from operand text	146-162	reference	docs/reference/ida-transfer-tools.md	as above; the rule (op_t, never operand text) on docs/explanation/ida-transfer-method.md
+research/03040008/ida-transfer/README.md	Version 6 (T013a): argument values per call site; the `extract/` package	163-193	reference	docs/reference/ida-transfer-tools.md	as above; extract/ package layout
+research/03040008/ida-transfer/README.md	Matcher (`match.py`, `matcher/`, T005)	194-222	explanation	docs/explanation/ida-transfer-method.md	gates and tiers; counts to spec-history (007 tasks)
+research/03040008/ida-transfer/README.md	Role anchors (T005e, `matcher/codecs.py`, `matcher/roles.py`)	223-302	explanation	docs/explanation/ida-transfer-method.md	role anchors; run counts to spec-history (007 T005e)
+research/03040008/ida-transfer/README.md	Transfer rules (`transfer.py`, `transfer/`, T006 wave 1)	303-357	reference	docs/reference/ida-transfer-tools.md	manifest columns; rule reasons to docs/explanation/ida-transfer-method.md
+research/03040008/ida-transfer/README.md	Layout rules (rule 3; one test each in `tests/test_transfer.py`)	358-428	reference	docs/reference/ida-transfer-tools.md	layout rules with test names
+research/03040008/ida-transfer/README.md	Wave 2: member links, partial types, locals (`transfer.py --wave2`, T013c)	429-475	explanation	docs/explanation/ida-transfer-method.md	wave 2 links; commands to docs/how-to/transfer-annotations-ps4-to-pc.md; published database name to docs/reference/inputs-and-builds.md
+research/03040008/ida-transfer/README.md	Apply script (`apply_transfer.py`, T007, script version 2)	476-577	how-to	docs/how-to/transfer-annotations-ps4-to-pc.md	apply, undo log, verify; run counts spec-history (007 Close)
+research/03040008/protections/README.md	PC client protections, patch layers and crash triage (03040008)	1-14	reference	keep	path must stay (ddon-hook AGENTS.md:57, docs 08, 09, 14, 15); short index plus a section map
+research/03040008/protections/README.md	1. What the client is	15-29	explanation	docs/explanation/client-lineage-and-protections.md	ddon-hook docs 09:206 cites §1: leave a §1 pointer
+research/03040008/protections/README.md	Lineage (R3 §1)	30-44	reference	docs/reference/client-patches.md	lineage diagram; also on the explanation page
+research/03040008/protections/README.md	2. Protection inventory	45-66	reference	docs/reference/protection-inventory.md	mechanism table; f1c9 addresses, PC 03040008
+research/03040008/protections/README.md	What Bunie's DLLs add (R3 §4)	67-76	explanation	docs/explanation/client-lineage-and-protections.md	
+research/03040008/protections/README.md	3. The T026 crash: where the evidence points	77-95	history	spec-history	T026 story: specs/003 and ddon-hook spec 009. Lesson (delayed integrity reaction) to docs/explanation/client-lineage-and-protections.md
+research/03040008/protections/README.md	4. What to do on top	96-123	how-to	docs/how-to/triage-a-client-crash.md	ordered steps with stop rules; step 3's layer exists untracked: patches/2026_10_17_ddo_dump_fix_4.r2
+research/03040008/protections/README.md	5. Crash-triage protocol	124-152	how-to	docs/how-to/triage-a-client-crash.md	ddon-hook docs 14 and run_cycles.py:614 cite §5: leave a §5 pointer
+research/03040008/protections/README.md	6. Corrections to earlier records	153-165	history	spec-history	specs/003 R3 §7; the patches/README.md corrections are already applied (rows f1c9, v7, 100FPS): cut
+research/03040008/protections/R1-online.md	R1 Online: DDO PC client protections and how hookers cope	1-26	explanation	keep	evidence report, stays; cited as R1 §n by the README; external-references.jsonl has 14 rows naming it
+research/03040008/protections/R1-online.md	1. Themida / WinLicense protections	27-32	explanation	keep	
+research/03040008/protections/R1-online.md	Protection options (packer-level, no SDK source required)	33-55	explanation	keep	
+research/03040008/protections/R1-online.md	Anti-debug techniques Themida is known to exercise	56-71	explanation	keep	
+research/03040008/protections/R1-online.md	Integrity / anti-tamper — the part that matters for T026	72-93	explanation	keep	
+research/03040008/protections/R1-online.md	What survives in an unpacked / "dump fix" dump	94-107	explanation	keep	
+research/03040008/protections/R1-online.md	2. Windows specifics, Win7 vs Win10/11	108-135	explanation	keep	
+research/03040008/protections/R1-online.md	3. Hooking libraries	136-137	explanation	keep	
+research/03040008/protections/R1-online.md	SafetyHook — `D:/GitHub/cursey/safetyhook` @ `f44cc07`	138-172	explanation	keep	
+research/03040008/protections/R1-online.md	MinHook — `D:/GitHub/TsudaKageyu/minhook` @ `8af6b4a`	173-185	explanation	keep	
+research/03040008/protections/R1-online.md	Microsoft Detours — `D:/GitHub/microsoft/Detours` @ `1dbd4ea` (version 0x4c0c1 ≈ 4.0.1)	186-197	explanation	keep	
+research/03040008/protections/R1-online.md	PolyHook2 — `D:/GitHub/stevemk14ebr/PolyHook_2_0` @ `49a95d4`	198-206	explanation	keep	
+research/03040008/protections/R1-online.md	Others worth naming	207-219	explanation	keep	
+research/03040008/protections/R1-online.md	4. Anti-anti-debug tools	220-221	explanation	keep	
+research/03040008/protections/R1-online.md	ScyllaHide — `D:/GitHub/x64dbg/ScyllaHide` @ `baa5c8e`	222-237	explanation	keep	
+research/03040008/protections/R1-online.md	TitanHide — `D:/GitHub/mrexodia/TitanHide` @ `14aee05`	238-244	explanation	keep	
+research/03040008/protections/R1-online.md	HyperHide — `D:/GitHub/Air14/HyperHide` @ `cbbf364`	245-250	explanation	keep	
+research/03040008/protections/R1-online.md	Scylla (dumping)	251-263	explanation	keep	
+research/03040008/protections/R1-online.md	5. Crash triage on Windows for this target	264-297	how-to	keep	
+research/03040008/protections/R1-online.md	6. DDON community work	298-326	explanation	keep	
+research/03040008/protections/R1-online.md	7. Ranked hypotheses for the T026 crash	327-383	explanation	keep	
+research/03040008/protections/R2-static.md	R2 Static inventory: protections in the PC executables	1-19	reference	keep	evidence report, stays; cited as R2 §n
+research/03040008/protections/R2-static.md	1. Per-executable table	20-73	reference	keep	per-exe table feeds docs/reference/protection-inventory.md
+research/03040008/protections/R2-static.md	2. Protector identity and what survives the dump	74-102	explanation	keep	
+research/03040008/protections/R2-static.md	3. Debugger checks	103-121	reference	keep	
+research/03040008/protections/R2-static.md	4. Timing checks	122-136	reference	keep	
+research/03040008/protections/R2-static.md	5. Integrity / anti-tamper / CRC	137-169	reference	keep	
+research/03040008/protections/R2-static.md	6. Exception handling and crash-dump suppression	170-192	reference	keep	
+research/03040008/protections/R2-static.md	7. Memory-protection changes, threads, watchdog	193-213	reference	keep	
+research/03040008/protections/R2-static.md	8. `nrand` specifics	214-248	reference	keep	
+research/03040008/protections/R2-static.md	9. T026 candidates (ranked by static evidence)	249-283	history	keep	T026 ranking
+research/03040008/protections/R2-static.md	10. Checks not run / caveats	284-295	status	keep	not-run list
+research/03040008/protections/R2-static.md	11. External references	296-300	reference	keep	
+research/03040008/protections/R3-patches.md	R3 Patch inventory: every layer from vanilla to Bunie v7	1-37	reference	keep	evidence report, stays; cited as R3 §n
+research/03040008/protections/R3-patches.md	1. Lineage	38-85	reference	keep	feeds the lineage on docs/reference/client-patches.md
+research/03040008/protections/R3-patches.md	2. Per-layer sites	86-87	reference	keep	
+research/03040008/protections/R3-patches.md	2.1 FIX2 (nothilvien 2021-05-01), 0a7c → ef9d: 579 runs, 1,792 bytes	88-101	reference	keep	
+research/03040008/protections/R3-patches.md	2.2 FIX_3 (nothilvien 2022-01-03), ef9d → e50d: 126 runs, 258 bytes	102-111	reference	keep	
+research/03040008/protections/R3-patches.md	2.3 MUTEX_E / MUTEX_F (2022-01-21), e50d → 526b / c3db: 1 byte each	112-117	reference	keep	
+research/03040008/protections/R3-patches.md	2.4 Mutex (2022-01-21), e50d → 9c95: 3 runs, 35 bytes	118-125	reference	keep	
+research/03040008/protections/R3-patches.md	2.5 FIX / DUMP_FIX (2022-01-29), f1c9: 2 bytes on top of FIX_3	126-137	reference	keep	
+research/03040008/protections/R3-patches.md	2.6 Win7 dump (filmmachine_, 2025-08-25), ef9d → 1c8c: 75 runs, 9,085 bytes	138-150	reference	keep	
+research/03040008/protections/R3-patches.md	2.7 Chat and 4GB layers	151-157	reference	keep	
+research/03040008/protections/R3-patches.md	2.8 Bunie 3-in-1 (= 100FPSPatch) and 5-in-1, from f1c9	158-168	reference	keep	
+research/03040008/protections/R3-patches.md	2.9 Buns_DDOPerfPatch v1/v2/v3 exe (ac83), from f1c9: 17 runs, 77 bytes	169-183	reference	keep	
+research/03040008/protections/R3-patches.md	2.10 Bunie PerfPatch v7 exe (0306), from ac83: 8 runs, 98 bytes	184-198	reference	keep	
+research/03040008/protections/R3-patches.md	3. Which layers carry the CRC stubs ("Added after R2")	199-217	reference	keep	
+research/03040008/protections/R3-patches.md	4. Bunie's injected DLLs: hook libraries and the Nt* "Themida compatibility" hooks	218-251	reference	keep	
+research/03040008/protections/R3-patches.md	5. What cannot be diffed	252-267	explanation	keep	
+research/03040008/protections/R3-patches.md	6. Protections no layer touches: crash-trap candidates	268-288	reference	keep	feeds docs/reference/protection-inventory.md
+research/03040008/protections/R3-patches.md	7. Discrepancies	289-328	history	keep	discrepancies at spec 003
+research/03040008/protections/R3-patches.md	8. Checks not run / caveats	329-342	status	keep	
+research/03040008/protections/R3-patches.md	9. External references	343-349	reference	keep	
+patches/README.md	DDO Client Binary Mod Documentation	1-9	reference	keep	short README; history prose to docs/explanation/client-lineage-and-protections.md
+patches/README.md	Table of Contents	10-21	reference	keep	manual TOC: cut
+patches/README.md	How to Apply Patches	22-52	how-to	docs/how-to/apply-a-client-patch.md	radiff2 generation to docs/how-to/add-a-client-patch-layer.md
+patches/README.md	Caveats of layered patching	53-64	explanation	docs/how-to/apply-a-client-patch.md	order and base hash rule; UTF-16 note to docs/reference/client-patches.md; '10 of the 12' ignores the untracked 2026_10_17 layer (other work)
+patches/README.md	Vanilla Client Hashes	65-75	reference	docs/reference/client-patches.md	hashes
+patches/README.md	Modded Client Hashes	76-77	reference	docs/reference/client-patches.md	
+patches/README.md	2020–2022	78-92	reference	docs/reference/client-patches.md	
+patches/README.md	2025	93-104	reference	docs/reference/client-patches.md	
+patches/README.md	2026	105-119	reference	docs/reference/client-patches.md	
+research/03040008/flags/README.md	Client Flag and Quest Investigation	1-6	explanation	keep	other work: census only, no move; the README stays whole
+research/03040008/flags/README.md	Business Logic	7-8	explanation	keep	
+research/03040008/flags/README.md	Investigation Model	9-20	explanation	keep	
+research/03040008/flags/README.md	Quest-Type Rules	21-32	reference	keep	
+research/03040008/flags/README.md	Query Modes	33-41	reference	keep	
+research/03040008/flags/README.md	Evidence and Derivation	42-56	explanation	keep	
+research/03040008/flags/README.md	Technical Setup	57-58	how-to	keep	
+research/03040008/flags/README.md	Inputs and Outputs	59-65	reference	keep	
+research/03040008/flags/README.md	Project Layout	66-92	reference	keep	
+research/03040008/flags/README.md	Prerequisites	93-101	reference	keep	
+research/03040008/flags/README.md	Environment Setup	102-118	how-to	keep	
+research/03040008/flags/README.md	Common Commands	119-152	how-to	keep	
+research/03040008/flags/README.md	Optional `mypyc` Build	153-169	how-to	keep	
+research/03040008/flags/README.md	Generated Files	170-193	reference	keep	
+research/03040008/flags/README.md	Developer Documentation	194-195	explanation	keep	
+research/03040008/flags/README.md	Runtime Architecture	196-215	explanation	keep	
+research/03040008/flags/README.md	Data Flow	216-229	explanation	keep	
+research/03040008/flags/README.md	Report Structure	230-237	reference	keep	
+research/03040008/flags/README.md	Validation Workflow	238-263	how-to	keep	
+research/03040008/flags/TODO.md	TODO	1-10	status	keep	other work: census only, no move; the README stays whole
+binaries/PS4_02020005/elf-dumps/README.adoc	DDOORBIS.elf (PS4 build 02020005): static dump set	1-11	reference	keep	reconstructor AGENTS.md:8 and docs/reference/prerequisites.md:119 read it for the dump per use: file and §7 stay
+binaries/PS4_02020005/elf-dumps/README.adoc	1. Input	12-24	reference	keep	input identity; docs/reference/elf-dumps.md links here
+binaries/PS4_02020005/elf-dumps/README.adoc	2. Production	25-26	how-to	docs/how-to/regenerate-elf-dumps.md	
+binaries/PS4_02020005/elf-dumps/README.adoc	Tools	27-37	reference	docs/how-to/regenerate-elf-dumps.md	tool versions
+binaries/PS4_02020005/elf-dumps/README.adoc	Procedure	38-49	how-to	docs/how-to/regenerate-elf-dumps.md	
+binaries/PS4_02020005/elf-dumps/README.adoc	Provenance	50-64	reference	docs/reference/elf-dumps.md	provenance fields
+binaries/PS4_02020005/elf-dumps/README.adoc	Storage	65-74	reference	docs/reference/elf-dumps.md	committed vs local
+binaries/PS4_02020005/elf-dumps/README.adoc	3. Contents	75-130	reference	keep	table of categories: the lookup the outside reader wants
+binaries/PS4_02020005/elf-dumps/README.adoc	4. Structure of the binary	131-132	explanation	docs/explanation/ps4-elf.md	parent
+binaries/PS4_02020005/elf-dumps/README.adoc	Program headers and sections	133-150	explanation	docs/explanation/ps4-elf.md	build PS4_02020005
+binaries/PS4_02020005/elf-dumps/README.adoc	Dynamic linking	151-166	explanation	docs/explanation/ps4-elf.md	
+binaries/PS4_02020005/elf-dumps/README.adoc	Symbols	167-177	explanation	docs/explanation/ps4-elf.md	
+binaries/PS4_02020005/elf-dumps/README.adoc	Relocations and pointer data	178-194	explanation	docs/explanation/ps4-elf.md	
+binaries/PS4_02020005/elf-dumps/README.adoc	Strings	195-205	explanation	docs/explanation/ps4-elf.md	
+binaries/PS4_02020005/elf-dumps/README.adoc	Stack sizes	206-214	explanation	docs/explanation/ps4-elf.md	
+binaries/PS4_02020005/elf-dumps/README.adoc	Unwind data	215-220	explanation	docs/explanation/ps4-elf.md	
+binaries/PS4_02020005/elf-dumps/README.adoc	DWARF	221-245	explanation	docs/explanation/ps4-elf.md	
+binaries/PS4_02020005/elf-dumps/README.adoc	Inline chains	246-257	explanation	docs/explanation/ps4-elf.md	
+binaries/PS4_02020005/elf-dumps/README.adoc	IDA's jump tables and no-return functions	258-268	explanation	docs/explanation/ps4-elf.md	
+binaries/PS4_02020005/elf-dumps/README.adoc	Code	269-275	explanation	docs/explanation/ps4-elf.md	
+binaries/PS4_02020005/elf-dumps/README.adoc	5. Notes on other tools	276-287	explanation	keep	AGENTS.md:144 cites § 5: tool preferences; link from docs/reference/elf-dumps.md
+binaries/PS4_02020005/elf-dumps/README.adoc	6. Verification	288-299	reference	docs/reference/elf-dumps.md	verification results at the dump date
+binaries/PS4_02020005/elf-dumps/README.adoc	7. Use and regeneration	300-339	how-to	keep	§7 Use stays (outside reader); regeneration commands by link
+research/imhex/plbatch/README.md	plbatch	1-8	reference	keep	short README
+research/imhex/plbatch/README.md	Why	9-15	explanation	docs/explanation/plbatch-design.md	
+research/imhex/plbatch/README.md	Build	16-47	how-to	docs/how-to/build-plbatch.md	pin rationale to docs/explanation/plbatch-design.md
+research/imhex/plbatch/README.md	Use	48-78	reference	docs/reference/plbatch-cli.md	
+research/imhex/plbatch/README.md	Verification (2026-11-01, client 03040008 packets, at the earlier pin `fb6ea061`)	79-93	history	docs/explanation/plbatch-design.md	one dated measurement backs the claim; the rest stays in specs/005 P7 and 006 T001d
+research/imhex/plbatch/README.md	Cost per file	94-101	explanation	docs/explanation/plbatch-design.md	
+research/pharos/README.md	Pharos OOAnalyzer - Running Large Binary Analysis	1-2	how-to	keep	short README
+research/pharos/README.md	Overview	3-6	explanation	docs/how-to/run-pharos.md	
+research/pharos/README.md	Analysis Steps	7-15	how-to	docs/how-to/run-pharos.md	
+research/pharos/README.md	Run Command	16-21	how-to	docs/how-to/run-pharos.md	
+research/pharos/README.md	Expected Runtime (to be verified)	22-31	status	docs/how-to/run-pharos.md	heading says to be verified: state as unmeasured
+research/pharos/README.md	Output Files	32-46	reference	docs/how-to/run-pharos.md	
+research/pharos/README.md	Common Issues	47-48	how-to	docs/how-to/run-pharos.md	
+research/pharos/README.md	Out of Memory (OOM)	49-52	how-to	docs/how-to/run-pharos.md	
+research/pharos/README.md	Timeout Errors	53-58	how-to	docs/how-to/run-pharos.md	
+research/pharos/README.md	Missing new()/delete() Methods	59-65	how-to	docs/how-to/run-pharos.md	
+research/pharos/README.md	Recovery from Failures	66-73	how-to	docs/how-to/run-pharos.md	
+research/pharos/README.md	Documentation References	74-79	reference	docs/how-to/run-pharos.md	
+research/rng-race/README.md	Camellia keys from long-running clients (RNG race)	1-8	explanation	keep	short README; path stays (ddon-hook tools/rng reads the directory)
+research/rng-race/README.md	Current understanding (2026-10-17)	9-24	explanation	docs/explanation/rng-race.md	dated 2026-10-17; ddon-hook specs/013 went further: reconcile before writing the page (not read here)
+research/rng-race/README.md	Resume here (2026-10-17 15:35)	25-39	status	spec-history	resume point of 2026-10-17; ddon-hook specs 009, 010, 013 record it; deployment facts stale
+research/rng-race/README.md	Video of the captured sessions	40-48	reference	docs/reference/inputs-and-builds.md	longplay videos
+research/rng-race/README.md	Files	49-69	reference	keep	Files table; single_race.log and *.exe ignored locally
+research/rng-race/NOTES.md	Long-session stream decryption: RNG race investigation (2026-10-16)	1-7	history	keep	lab notes: evidence, stays
+research/rng-race/NOTES.md	Facts (PC 03040008)	8-18	history	keep	facts feed docs/explanation/rng-race.md
+research/rng-race/NOTES.md	Captures (keys-all-in-one.csv, 822 rows, 125 keys)	19-27	history	keep	
+research/rng-race/NOTES.md	Tests	28-50	history	keep	
+research/rng-race/NOTES.md	Reading (PS4 02020005 DWARF/export, reconstructor output)	51-63	history	keep	facts feed docs/explanation/rng-race.md
+research/rng-race/NOTES.md	Cost model	64-70	history	keep	
+research/rng-race/NOTES.md	Next steps (need Sam)	71-79	history	keep	
+research/rng-race/NOTES.md	2026-10-17: RSA side and monitoring plan	80-101	history	keep	
+research/rng-race/IDEAS.md	Idea ledger: decrypting captures from long-running clients	1-7	status	keep	idea ledger: evidence, stays
+research/rng-race/IDEAS.md	Hypotheses about the cause	8-18	status	keep	
+research/rng-race/IDEAS.md	Search strategies	19-32	status	keep	
+research/rng-race/IDEAS.md	The RSA side	33-39	status	keep	
+research/rng-race/IDEAS.md	Measuring the race (ddon-hook)	40-48	status	keep	
+research/textures/how-to-extract-images.adoc	(preamble, no heading)	1-4	how-to	docs/how-to/convert-textures.md	adoc attributes only
+research/textures/how-to-extract-images.adoc	How to extract images from the DDON client files	5-8	how-to	docs/how-to/convert-textures.md	
+research/textures/how-to-extract-images.adoc	Prerequisites	9-17	how-to	docs/how-to/convert-textures.md	
+research/textures/how-to-extract-images.adoc	Steps	18-40	how-to	docs/how-to/convert-textures.md	scripts stay in research/textures
+research/textures/texture-research.md	(preamble, no heading)	1-25	reference	keep	scratch note: grep commands and FORMAT_ lists; no heading
+research/rLandInfo-example.adoc	rLandInfo Resource Decoding - Practical Example	1-11	how-to	docs/how-to/decode-a-resource-format.md	worked example section or companion page; needs clients and Ghidra, so not a tutorial
+research/rLandInfo-example.adoc	Resource Overview	12-20	reference	docs/how-to/decode-a-resource-format.md	
+research/rLandInfo-example.adoc	Step 1: Symbol Extraction	21-54	how-to	docs/how-to/decode-a-resource-format.md	
+research/rLandInfo-example.adoc	Step 2: Season 2 Pattern Development	55-97	how-to	docs/how-to/decode-a-resource-format.md	
+research/rLandInfo-example.adoc	Step 3: Season 2 Validation	98-150	how-to	docs/how-to/decode-a-resource-format.md	
+research/rLandInfo-example.adoc	Step 4: Cross-Season Testing	151-169	how-to	docs/how-to/decode-a-resource-format.md	
+research/rLandInfo-example.adoc	Step 5: Season 3 Investigation Process	170-197	how-to	docs/how-to/decode-a-resource-format.md	
+research/rLandInfo-example.adoc	Lessons Learned	198-212	explanation	docs/how-to/decode-a-resource-format.md	lessons
+research/rLandInfo-example.adoc	File Locations	213-225	reference	keep	tree of paths: propose cutting, no fact beyond the steps
+research/wikis-and-resources.adoc	(preamble, no heading)	1-4	reference	docs/reference/community-resources.md	external links, not checked
+research/wikis-and-resources.adoc	Wikis and other resources	5-8	reference	docs/reference/community-resources.md	
+research/wikis-and-resources.adoc	Original links	9-19	reference	docs/reference/community-resources.md	
+research/wikis-and-resources.adoc	Wikis	20-21	reference	docs/reference/community-resources.md	
+research/wikis-and-resources.adoc	JP	22-37	reference	docs/reference/community-resources.md	
+research/wikis-and-resources.adoc	EN	38-47	reference	docs/reference/community-resources.md	
+research/wikis-and-resources.adoc	Google Docs	48-56	reference	docs/reference/community-resources.md	
+research/wikis-and-resources.adoc	Playthroughs	57-67	reference	docs/reference/community-resources.md	
+research/wikis-and-resources.adoc	Specific videos	68-74	reference	docs/reference/community-resources.md	
+research/wikis-and-resources.adoc	Crafting	75-93	reference	docs/reference/community-resources.md	
+research/wikis-and-resources.adoc	Event Codes / Treasure Lots	94-106	reference	docs/reference/community-resources.md	
+research/wikis-and-resources.adoc	BBM	107-110	reference	docs/reference/community-resources.md	
+research/wikis-and-resources.adoc	BBM Death Marathon:	111-119	reference	docs/reference/community-resources.md	
+research/wikis-and-resources.adoc	High Scepter Maze 1 Normal Treasure Map 1	120-132	reference	docs/reference/community-resources.md	
+research/wikis-and-resources.adoc	High Scepter Maze 1 Normal Treasure Map 2	133-139	reference	docs/reference/community-resources.md	
+research/wikis-and-resources.adoc	High Scepter Maze 1 Boss Treasure:	140-145	reference	docs/reference/community-resources.md	
+research/wikis-and-resources.adoc	Mandragoras	146-150	reference	docs/reference/community-resources.md	
+research/wikis-and-resources.adoc	EMs	151-158	reference	docs/reference/community-resources.md	
+research/wikis-and-resources.adoc	Repositories	159-160	reference	docs/reference/community-resources.md	
+research/wikis-and-resources.adoc	Item & monster placing	161-163	reference	docs/reference/community-resources.md	
+research/wikis-and-resources.adoc	Launchers	164-167	reference	docs/reference/community-resources.md	
+research/wikis-and-resources.adoc	Server	168-170	reference	docs/reference/community-resources.md	
+research/wikis-and-resources.adoc	Client and packet reverse engineering	171-175	reference	docs/reference/community-resources.md	
+research/wikis-and-resources.adoc	Packet key bruteforcing	176-179	reference	docs/reference/community-resources.md	
+research/wikis-and-resources.adoc	Translation	180-183	reference	docs/reference/community-resources.md	
+research/wikis-and-resources.adoc	Backing up old wikis	184-253	reference	docs/reference/community-resources.md	
+research/claude-vision-tokens.md	Image input and token economy in Claude Code and Claude Desktop (R1)	1-12	explanation	keep	survey report; path stays (ddon-hook docs 11:113, 13:91; external-references.jsonl has 10 rows naming it); ddon-hook-specific
+research/claude-vision-tokens.md	1. The Vision API's accounting	13-79	explanation	keep	
+research/claude-vision-tokens.md	2. Claude Code specifics	80-172	explanation	keep	
+research/claude-vision-tokens.md	3. What ddon-hook does today	173-212	explanation	keep	
+research/claude-vision-tokens.md	4. Cheaper alternatives, ranked by tokens saved per decision	213-252	explanation	keep	
+research/claude-vision-tokens.md	5. Recommendations for ddon-hook	253-341	explanation	keep	
+research/claude-vision-tokens.md	Sources used	342-347	explanation	keep	
+research/external-references.md	External references	1-16	reference	keep	path stays (ddon-hook AGENTS.md:84-85; AGENTS.md:158); docs/index.md links it
+research/external-references.md	Reports	17-22	reference	keep	report index lists 2 topics; the jsonl report values also name specs/005, ida-transfer and ddon-hook specs: extend
+research/03040008/quest-flag-data-source-mapping.adoc	(preamble, no heading)	1-50	reference	docs/reference/quest-flag-sources.md	no adoc heading; rough notes on where each flag command lives in client 03040008
+packets/README-decrypt-annotate-streams.adoc	Parallel CLI Runner README	1-7	reference	keep	title stale (Parallel CLI Runner); becomes a short packets/README with links; AGENTS.md:131 and 3 scripts point here
+packets/README-decrypt-annotate-streams.adoc	Purpose	8-12	how-to	docs/how-to/reannotate-streams.md	
+packets/README-decrypt-annotate-streams.adoc	Requirements	13-21	reference	docs/how-to/reannotate-streams.md	
+packets/README-decrypt-annotate-streams.adoc	Configuration	22-35	reference	docs/how-to/reannotate-streams.md	
+packets/README-decrypt-annotate-streams.adoc	Usage	36-48	how-to	docs/how-to/reannotate-streams.md	names ./run-parallel-packet.sh: absent; the script is decrypt-annotate-streams.sh (dirty, not edited)
+packets/README-decrypt-annotate-streams.adoc	Concurrency tuning	49-55	how-to	docs/how-to/reannotate-streams.md	
+packets/README-decrypt-annotate-streams.adoc	Required Arrowgene CLI patches	56-186	how-to	docs/how-to/patch-the-arrowgene-cli.md	patch table to docs/reference/arrowgene-cli-patches.md; reasons (Error stop, default key, first-packet recovery, frame collisions) to docs/explanation/wire-protocol.md; the 13,724-raw recovery story to spec-history (006 TC3)
+packets/README-decrypt-annotate-streams.adoc	Splitting large dumps	187-200	how-to	docs/how-to/reannotate-streams.md	
+packets/README-decrypt-annotate-streams.adoc	Exporting raw packets	201-247	how-to	docs/how-to/reannotate-streams.md	decrypt-export-streams.sh; JSON coverage facts to docs/reference/packet-pattern-format.md
+packets/README-decrypt-annotate-streams.adoc	Exporting packet structures with ImHex	248-316	how-to	docs/how-to/export-packets-to-json.md	selection and options to docs/reference/imhex-export-cli.md
+packets/README-decrypt-annotate-streams.adoc	Packet statistics	317-328	how-to	docs/how-to/refresh-packet-statistics.md	output files listed
+research/03040008/packets/README.md	[sub] Include table	13-49	reference	docs/reference/packet-includes.md	35 rows; 36 include files on disk (CharacterData.hexpat has no row); the since-T notes are history: keep the content, cut the since
+research/03040008/packets/README.md	[sub] Structure comment and marks	51-56	reference	docs/reference/packet-marks.md	V and I, the server-name rule; why to docs/explanation/evidence-model.md
+research/03040008/packets/README.md	[sub] Naming unknown fields by inference	58-84	how-to	docs/how-to/name-an-unknown-field.md	bases list; mark format to docs/reference/packet-marks.md; T014c application count to spec-history (006 tasks)
+research/03040008/packets/README.md	[sub] Header comment	86-103	reference	docs/reference/packet-pattern-format.md	packet-id, packet-select, packet-size; reason history to spec-history (005 R2 F2, 006 T002c)
+research/03040008/packets/README.md	[sub] JSON conventions	105-114	reference	docs/reference/packet-pattern-format.md	root key, list and string shape, NaN rule, 65 nonfinite files
+research/03040008/packets/README.md	[sub] RES error guard	116-123	explanation	docs/explanation/wire-protocol.md	rule also on docs/reference/packet-pattern-format.md; 18.0.2 exception
+research/03040008/packets/README.md	[sub] Exported checks	125-132	reference	docs/reference/packet-pattern-format.md	sourceOk, paddingSize, fits, msgFits; 63.11.16 exception
+research/03040008/packets/README.md	[sub] What a fit proves	134-138	explanation	docs/explanation/packet-decoding-method.md	the fit rule
+research/03040008/packets/README.md	[sub] Patterns: status meaning and report key	185-234	reference	docs/reference/packet-ids.md	legend: id-to-report-path key; the dated recount prose reduces to one date; G mark text to docs/reference/packet-marks.md
+research/03040008/packets/README.md	[sub] Patterns: how value bases are counted	235-246	explanation	docs/explanation/packet-decoding-method.md	rule to docs/reference/packet-marks.md; density formula; item and stage density facts
+research/03040008/packets/README.md	[sub] Patterns: the per-id table	248-844	reference	docs/reference/packet-ids.md	595 rows move intact; see the report for generated columns; 31 n/m counts stale
+research/03040008/packets/README.md	[sub] Open item: Code-backed renames (spec 006 TC2):	848-857	history	spec-history	the named T..b or TC report and 006 tasks hold it; rename map: the (was ...) notes on docs/reference/packet-ids.md
+research/03040008/packets/README.md	[sub] Open item: 0.10.16 lobby member:	858-859	reference	docs/reference/packet-open-questions.md	re-check against spec 008 T007 names when moving; cite report sections through the id-to-report key
+research/03040008/packets/README.md	[sub] Open item: Game setting names without code backing (T003 §11, §20):	860-866	reference	docs/reference/packet-open-questions.md	re-check against spec 008 T007 names when moving; cite report sections through the id-to-report key
+research/03040008/packets/README.md	[sub] Open item: Game-server RES error branch untested:	867-869	reference	docs/reference/packet-open-questions.md	re-check against spec 008 T007 names when moving; cite report sections through the id-to-report key
+research/03040008/packets/README.md	[sub] Open item: 1.1.16 login reader not decoded:	870-872	reference	docs/reference/packet-open-questions.md	re-check against spec 008 T007 names when moving; cite report sections through the id-to-report key
+research/03040008/packets/README.md	[sub] Open item: Login RES error branch untested:	873-875	reference	docs/reference/packet-open-questions.md	re-check against spec 008 T007 names when moving; cite report sections through the id-to-report key
+research/03040008/packets/README.md	[sub] Open item: Login names without code backing (T002 §17):	876-879	reference	docs/reference/packet-open-questions.md	re-check against spec 008 T007 names when moving; cite report sections through the id-to-report key
+research/03040008/packets/README.md	[sub] Open item: Unnamed 35.12.16 and 13.44-13.47.16:	880-884	reference	docs/reference/packet-open-questions.md	re-check against spec 008 T007 names when moving; cite report sections through the id-to-report key
+research/03040008/packets/README.md	[sub] Open item: 13.46/13.47 `unk_u32`:	885-886	reference	docs/reference/packet-open-questions.md	re-check against spec 008 T007 names when moving; cite report sections through the id-to-report key
+research/03040008/packets/README.md	[sub] Open item: Context variants without captures:	887-889	reference	docs/reference/packet-open-questions.md	re-check against spec 008 T007 names when moving; cite report sections through the id-to-report key
+research/03040008/packets/README.md	[sub] Open item: Season 3 nNetMsg names (T001c §6):	890-894	reference	docs/reference/packet-open-questions.md	re-check against spec 008 T007 names when moving; cite report sections through the id-to-report key
+research/03040008/packets/README.md	[sub] Open item: Season 3 field names:	895-898	reference	docs/reference/packet-open-questions.md	re-check against spec 008 T007 names when moving; cite report sections through the id-to-report key
+research/03040008/packets/README.md	[sub] Open item: Season 3-exclusive, not patterned (T004):	899-903	history	spec-history	stale: every id listed has a pattern since spec 008; 006 research/season3-exclusive.tsv and the 006 batch reports keep the PC VAs
+research/03040008/packets/README.md	[sub] Open item: Season 3-exclusive, not patterned (T005):	904-909	history	spec-history	stale: every id listed has a pattern since spec 008; 006 research/season3-exclusive.tsv and the 006 batch reports keep the PC VAs
+research/03040008/packets/README.md	[sub] Open item: Group 11 unresolved, not patterned (T005):	910-912	history	spec-history	stale: every id listed has a pattern since spec 008; 006 research/season3-exclusive.tsv and the 006 batch reports keep the PC VAs
+research/03040008/packets/README.md	[sub] Open item: Group 11 names without code backing (T005 §46):	913-924	reference	docs/reference/packet-open-questions.md	re-check against spec 008 T007 names when moving; cite report sections through the id-to-report key
+research/03040008/packets/README.md	[sub] Open item: `CDataTimeGainQuestList` bool order (R2b):	925-927	reference	docs/reference/packet-open-questions.md	re-check against spec 008 T007 names when moving; cite report sections through the id-to-report key
+research/03040008/packets/README.md	[sub] Open item: Group 11 code-only (T005 §43, §46):	928-931	reference	docs/reference/packet-open-questions.md	re-check against spec 008 T007 names when moving; cite report sections through the id-to-report key
+research/03040008/packets/README.md	[sub] Open item: Shared quest types moved (T005b):	932-935	history	spec-history	the named T..b or TC report and 006 tasks hold it; rename map: the (was ...) notes on docs/reference/packet-ids.md
+research/03040008/packets/README.md	[sub] Open item: Season 3-exclusive, not patterned (T006):	936-940	history	spec-history	stale: every id listed has a pattern since spec 008; 006 research/season3-exclusive.tsv and the 006 batch reports keep the PC VAs
+research/03040008/packets/README.md	[sub] Open item: Groups 3, 12, 23, 33 names without code backing (T006 §8):	941-947	reference	docs/reference/packet-open-questions.md	re-check against spec 008 T007 names when moving; cite report sections through the id-to-report key
+research/03040008/packets/README.md	[sub] Open item: Groups 3, 12, 23, 33 code-only (T006 §5, §8):	948-954	reference	docs/reference/packet-open-questions.md	re-check against spec 008 T007 names when moving; cite report sections through the id-to-report key
+research/03040008/packets/README.md	[sub] Open item: No existing pattern changed (T006b):	955-957	reference	docs/reference/packet-open-questions.md	re-check against spec 008 T007 names when moving; cite report sections through the id-to-report key
+research/03040008/packets/README.md	[sub] Open item: Group 13 widths that fit either way (T004 §19):	958-962	reference	docs/reference/packet-open-questions.md	re-check against spec 008 T007 names when moving; cite report sections through the id-to-report key
+research/03040008/packets/README.md	[sub] Open item: Group 13 lists never non-empty in captures (T004 §19, §22):	963-965	reference	docs/reference/packet-open-questions.md	re-check against spec 008 T007 names when moving; cite report sections through the id-to-report key
+research/03040008/packets/README.md	[sub] Open item: Group 13 names without code backing (T004 §22):	966-974	reference	docs/reference/packet-open-questions.md	re-check against spec 008 T007 names when moving; cite report sections through the id-to-report key
+research/03040008/packets/README.md	[sub] Open item: Groups 8, 53, 58 names without code backing (T007 §8):	975-981	reference	docs/reference/packet-open-questions.md	re-check against spec 008 T007 names when moving; cite report sections through the id-to-report key
+research/03040008/packets/README.md	[sub] Open item: Groups 8, 53, 58 code-only (T007 §5, §8):	982-988	reference	docs/reference/packet-open-questions.md	re-check against spec 008 T007 names when moving; cite report sections through the id-to-report key
+research/03040008/packets/README.md	[sub] Open item: 53.9.16 message index:	989-990	reference	docs/reference/packet-open-questions.md	re-check against spec 008 T007 names when moving; cite report sections through the id-to-report key
+research/03040008/packets/README.md	[sub] Open item: Pawn types added, no existing pattern changed (T007b):	991-996	history	spec-history	the named T..b or TC report and 006 tasks hold it; rename map: the (was ...) notes on docs/reference/packet-ids.md
+research/03040008/packets/README.md	[sub] Open item: 14.10.16 name:	997-1000	history	spec-history	the named T..b or TC report and 006 tasks hold it; rename map: the (was ...) notes on docs/reference/packet-ids.md
+research/03040008/packets/README.md	[sub] Open item: Season 3-exclusive, not patterned (T008):	1001-1008	history	spec-history	stale: every id listed has a pattern since spec 008; 006 research/season3-exclusive.tsv and the 006 batch reports keep the PC VAs
+research/03040008/packets/README.md	[sub] Open item: Groups 10, 14, 50 names without code backing (T008 §8):	1009-1014	reference	docs/reference/packet-open-questions.md	re-check against spec 008 T007 names when moving; cite report sections through the id-to-report key
+research/03040008/packets/README.md	[sub] Open item: Groups 10, 14, 50 code-only (T008 §5, §8):	1015-1021	reference	docs/reference/packet-open-questions.md	re-check against spec 008 T007 names when moving; cite report sections through the id-to-report key
+research/03040008/packets/README.md	[sub] Open item: Item and warp types added, no existing pattern changed (T008b):	1022-1026	history	spec-history	the named T..b or TC report and 006 tasks hold it; rename map: the (was ...) notes on docs/reference/packet-ids.md
+research/03040008/packets/README.md	[sub] Open item: Season 3-exclusive and unmatched, not patterned (T009):	1027-1033	history	spec-history	stale: every id listed has a pattern since spec 008; 006 research/season3-exclusive.tsv and the 006 batch reports keep the PC VAs
+research/03040008/packets/README.md	[sub] Open item: Groups 2, 37, 45 names without code backing (T009 §24):	1034-1050	reference	docs/reference/packet-open-questions.md	re-check against spec 008 T007 names when moving; cite report sections through the id-to-report key
+research/03040008/packets/README.md	[sub] Open item: 2.29.16/2.30.16 identity (T009 §11):	1051-1052	reference	docs/reference/packet-open-questions.md	re-check against spec 008 T007 names when moving; cite report sections through the id-to-report key
+research/03040008/packets/README.md	[sub] Open item: Groups 2, 37, 45 code-only (T009 §24):	1053-1057	reference	docs/reference/packet-open-questions.md	re-check against spec 008 T007 names when moving; cite report sections through the id-to-report key
+research/03040008/packets/README.md	[sub] Open item: CDataCharacterListElement users already Season 3 (T009b):	1058-1064	history	spec-history	the named T..b or TC report and 006 tasks hold it; rename map: the (was ...) notes on docs/reference/packet-ids.md
+research/03040008/packets/README.md	[sub] Open item: Season 3-exclusive, not patterned (T010):	1065-1071	history	spec-history	stale: every id listed has a pattern since spec 008; 006 research/season3-exclusive.tsv and the 006 batch reports keep the PC VAs
+research/03040008/packets/README.md	[sub] Open item: Groups 28, 31 names without code backing (T010 §27):	1072-1079	reference	docs/reference/packet-open-questions.md	re-check against spec 008 T007 names when moving; cite report sections through the id-to-report key
+research/03040008/packets/README.md	[sub] Open item: Groups 28, 31 code-only (T010 §27):	1080-1087	reference	docs/reference/packet-open-questions.md	re-check against spec 008 T007 names when moving; cite report sections through the id-to-report key
+research/03040008/packets/README.md	[sub] Open item: GP and clan types added; one existing pattern changed (T010b):	1088-1096	history	spec-history	the named T..b or TC report and 006 tasks hold it; rename map: the (was ...) notes on docs/reference/packet-ids.md
+research/03040008/packets/README.md	[sub] Open item: Season 3-exclusive, not patterned (T011):	1097-1102	history	spec-history	stale: every id listed has a pattern since spec 008; 006 research/season3-exclusive.tsv and the 006 batch reports keep the PC VAs
+research/03040008/packets/README.md	[sub] Open item: Groups 5, 6, 16, 17, 26 names without code backing (T011 §20):	1103-1108	reference	docs/reference/packet-open-questions.md	re-check against spec 008 T007 names when moving; cite report sections through the id-to-report key
+research/03040008/packets/README.md	[sub] Open item: Groups 5, 6, 16, 17, 26 code-only (T011 §20):	1109-1113	reference	docs/reference/packet-open-questions.md	re-check against spec 008 T007 names when moving; cite report sections through the id-to-report key
+research/03040008/packets/README.md	[sub] Open item: Character types added (T011b):	1114-1119	history	spec-history	the named T..b or TC report and 006 tasks hold it; rename map: the (was ...) notes on docs/reference/packet-ids.md
+research/03040008/packets/README.md	[sub] Open item: StatusInfo MaxHp (T010 §23):	1120-1122	reference	docs/reference/packet-open-questions.md	re-check against spec 008 T007 names when moving; cite report sections through the id-to-report key
+research/03040008/packets/README.md	[sub] Open item: u64 OM Key in JSON:	1123-1125	reference	docs/reference/packet-open-questions.md	re-check against spec 008 T007 names when moving; cite report sections through the id-to-report key
+research/03040008/packets/README.md	[sub] Open item: Season 3-exclusive, not patterned (T012):	1126-1130	history	spec-history	stale: every id listed has a pattern since spec 008; 006 research/season3-exclusive.tsv and the 006 batch reports keep the PC VAs
+research/03040008/packets/README.md	[sub] Open item: Group 29 unresolved, not patterned (T012):	1131-1134	history	spec-history	stale: every id listed has a pattern since spec 008; 006 research/season3-exclusive.tsv and the 006 batch reports keep the PC VAs
+research/03040008/packets/README.md	[sub] Open item: Groups 19, 20, 25, 27, 29, 39, 43 names without code backing (T012 §21):	1135-1142	reference	docs/reference/packet-open-questions.md	re-check against spec 008 T007 names when moving; cite report sections through the id-to-report key
+research/03040008/packets/README.md	[sub] Open item: Groups 19, 20, 25, 27, 29, 39, 43 code-only (T012 §21):	1143-1149	reference	docs/reference/packet-open-questions.md	re-check against spec 008 T007 names when moving; cite report sections through the id-to-report key
+research/03040008/packets/README.md	[sub] Open item: Types added (T012b):	1150-1158	history	spec-history	the named T..b or TC report and 006 tasks hold it; rename map: the (was ...) notes on docs/reference/packet-ids.md
+research/03040008/packets/README.md	[sub] Open item: Season 3-exclusive or without PS4 counterpart, not patterned (T013):	1159-1166	history	spec-history	stale: every id listed has a pattern since spec 008; 006 research/season3-exclusive.tsv and the 006 batch reports keep the PC VAs
+research/03040008/packets/README.md	[sub] Open item: 15.0.16/15.1.16 and 34.6.16 identity (T013 §7, §12):	1167-1171	reference	docs/reference/packet-open-questions.md	re-check against spec 008 T007 names when moving; cite report sections through the id-to-report key
+research/03040008/packets/README.md	[sub] Open item: Groups 30, 34, 41, 51, 54 names without code backing (T013 §18):	1172-1181	reference	docs/reference/packet-open-questions.md	re-check against spec 008 T007 names when moving; cite report sections through the id-to-report key
+research/03040008/packets/README.md	[sub] Open item: Groups 30, 34, 41, 51, 54 code-only (T013 §18):	1182-1188	reference	docs/reference/packet-open-questions.md	re-check against spec 008 T007 names when moving; cite report sections through the id-to-report key
+research/03040008/packets/README.md	[sub] Open item: Craft, entry-board and dispel types added; no existing pattern changed (T013b):	1189-1195	history	spec-history	the named T..b or TC report and 006 tasks hold it; rename map: the (was ...) notes on docs/reference/packet-ids.md
+research/03040008/packets/README.md	[sub] Open item: Naming sweep (TC1, 2026-11-02):	1196-1215	history	spec-history	the named T..b or TC report and 006 tasks hold it; rename map: the (was ...) notes on docs/reference/packet-ids.md
