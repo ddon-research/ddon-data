@@ -121,7 +121,7 @@ its threshold against the previous ledger row is a finding. Then plan the next w
 Add these as the spec's closing tasks and run them in order:
 1. `check.sh --all`.
 2. A whole-spec review, plus an adversarial review of the spec's new guards.
-3. A docs audit, then the fixes.
+3. A docs audit (pages under `docs/` the spec touched; the `editor` role), then the fixes.
 4. The full retrospective with a researcher on the outliers, the trajectories and the instructions.
 5. Learnings placed and recorded.
 6. `**Status: done**`.

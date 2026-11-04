@@ -17,39 +17,32 @@ Treat it as versioned evidence, not as source code.
 - Versions are client build numbers (`03040008`, `02030004`, `PS4_02020005`). Always name the
   build when reading, writing, or comparing data.
 
-| Path | Contents | Producer |
-| --- | --- | --- |
-| `client/03040008/` | ~173k JSON files mirroring the `nativePC/rom` tree, plus `*-resources.csv`, `*-headers.csv`, `*-extensions.txt` summaries | `D:\ddon-extractor` (Java CLI); input `D:\DDON_03040008`, translations `D:\DDON-translation\gmd.csv` |
-| `binaries/PS4_02020005/` | IDA export `DDOORBIS.elf.h` + `DDOORBIS_{1,2,3}.elf.c` (split for size) | IDA 9.3 dump of `D:\research\DDON-binaries\IDA9.3\PS4_DDON_02020005_2016_12_21\DDOORBIS.elf` |
-| `binaries/PS4_02020005/elf-dumps/` | Reference static dumps of the same `DDOORBIS.elf`, one preferred source per category (headers, SCE dynamic table, NIDs, relocations, symbols, strings, stack sizes, unwind, every DWARF section, all line tables), `manifest.jsonl` provenance, `README.adoc` status report; `local/` (gitignored) holds the multi-GB dumps; `archive/` (gitignored, local only) holds the tool comparison and the closed reconstructor handover | `elf-dumps/generate-elf-dumps.sh` (orbis-bin SDK 12, LLVM 23); spec `specs/001-ps4-static-dumps/` |
-| `binaries/ANDROID_1500/` | Decompiled Unity C# and `path_id_map.json` | `D:\research\DDON-binaries\Android` tools |
-| `packets/` | Data: `encrypted_streams/`, `decrypted_{raw,json,annotated}/`, `keys/`, packet statistics. Hand-authored: `patterns/03040008/` (ImHex patterns, `include/`), `plbatch/` (export engine), `tools/`, `tests/`, `wireshark/` (dissector, filters) | `D:\research\DDON-pcaps` toolchain: `ddon_pcap_split`, `ddon_common_key_bruteforce`, `Arrowgene.Ddon.Cli`; JSON: `packets/imhex-export.sh` |
-| `patches/` | radare2 `.r2` patch scripts + `.json` metadata for Windows `DDO.exe` builds | Hand-authored; see `docs/reference/client-patches.md` |
-| `research/03040008/` | ImHex resource patterns `r<Type>-pattern.cpp`, notes, DTI dumps; Season 1 and 2 patterns are in `ddon-data-s1` and `ddon-data-s2`, `research/<build>/` | Hand-authored |
-| `research/03040008/flags/` | `ddon-flags` Python project (quest/layout flag investigation) and `generated/` reports | This repo |
-| `research/knowledge-graph/` | `ddon-knowledge-graph` Python project (Neo4j evidence graph + MCP), own Spec Kit project | This repo |
-| `research/ida/`, `research/pharos/` | IDA helpers, Pharos OOAnalyzer (Docker) | This repo |
+- Every path with its producer and outside readers: `docs/reference/repository-layout.md`. Every
+  input (builds, game clients, disassembler databases, captures, videos):
+  `docs/reference/inputs-and-builds.md`. What to keep in mind while working:
 
-- **Disassembler databases** (inputs, never copy them here): `D:\research\DDON-binaries\` holds
-  `IDA9.3\` (packed `.i64` + `.c`/`.h` exports per build), `IDA9.5\` (live databases, see below),
-  `Ghidra11.4\` projects, and raw `PC\`, `PS4\`, `PS3\`, `PSV\`, `Android\` dumps. In the canonical
-  PS4 folder, `DDOORBIS.elf.llvmdwarfdump.zst` (1.1 GB) must be streamed, never decompressed.
-  The undocumented `*.objdump.*`/`*.readelf.*` text dumps there are superseded by
-  `binaries/PS4_02020005/elf-dumps/` (its README maps each old file to its successor).
-- **Game clients** (inputs): `D:\DDON_01010004`, `D:\DDON_02030004`, `D:\DDON_02030010`,
-  `D:\DDON_03040008`, each with `nativePC/rom`.
-- **Readers of this repo**: `D:\ddon-explorer-server` (reads `client/03040008`),
-  `D:\DDON-translation` tools (read `client/03040008/quest`), and the Arrowgene server docs.
-  Moving or renaming those paths breaks them.
+| Path | Contents | Hazard |
+| --- | --- | --- |
+| `docs/` | Human documentation by Diataxis type; contract `docs/reference/documentation-style.md` | A change to a workflow or a fact updates its page in the same package; gate section `docs` |
+| `client/03040008/` | ddon-extractor JSON mirroring `nativePC/rom`, summary CSVs | Producer output, read by outside tools; never hand-edit |
+| `binaries/PS4_02020005/`, `elf-dumps/` | IDA exports, static dumps with provenance | Producer output; the reconstructor reads `elf-dumps/` by path; `elf-dumps/archive/` is a fixed record |
+| `packets/` | Data: `encrypted_streams/`, `decrypted_{raw,json,annotated}/`, `keys/`. Hand-written: `patterns/03040008/`, `plbatch/`, `tools/`, `tests/`, `wireshark/` | Data trees are producer output; ddon-hook reads `packets/keys/` |
+| `patches/` | radare2 `.r2` scripts + `.json` metadata, hand-written | Keep the SHA-256 chain |
+| `research/03040008/` | Resource patterns `r<Type>-pattern.cpp`, notes; Season 1 and 2 patterns are in `ddon-data-s1` and `ddon-data-s2` | `protections/README.md` keeps its section numbers: ddon-hook cites them |
+| `research/rng-race/`, `research/claude-vision-tokens.md`, `research/external-references.*` | Investigations and references | ddon-hook reads them by path: do not move |
+| `research/03040008/flags/`, `research/knowledge-graph/` | Own Python projects, other work | Read their own instructions |
+
+- **Disassembler databases** never get copied here. In the canonical PS4 folder,
+  `DDOORBIS.elf.llvmdwarfdump.zst` (1.1 GB) must be streamed, never decompressed.
+- **Readers of this repo**: `D:\ddon-explorer-server` (`client/03040008`), `D:\DDON-translation`
+  tools (`client/03040008/quest`), ddon-hook and the reconstructor (above). Moving those paths breaks them.
 - **Related tools**: `C:\ddon-dwarf-reconstructor-rust` rebuilds C++ for resource classes from the
-  PS4 DWARF and reads `D:\ddon-data-s2\client\02030004` as an oracle; `D:\ddon-dwarf-reconstructor`
-  is the archived Python predecessor, still used by knowledge-graph enrichment. Server emulator:
-  `D:\GitHub\Sehkah\Arrowgene.DragonsDogmaOnline` (fork) and its `.Upstream` clone (unpatched reference); the patched CLI build is in `C:\Users\morph\Documents\GitHub\Sehkah\Arrowgene.DragonsDogmaOnline.Upstream` (uncommitted patches).
-- **Ghidra scripts** (archived): `D:\ddon-ghidra-scripts`
-  (https://github.com/ddon-research/ddon-ghidra-scripts) holds the PyGhidra headless analyzer
-  (DWARF struct export, recursive decompilation, graph export) and standalone Script Manager
-  scripts, formerly `research/ghidra/`. Prefer IDA MCP and the reconstructors for new work; the
-  knowledge graph is moving to them.
+  PS4 DWARF; `D:\ddon-dwarf-reconstructor` is its archived predecessor, still used by knowledge-graph
+  enrichment. Server emulator: `D:\GitHub\Sehkah\Arrowgene.DragonsDogmaOnline` (fork; unresolved merge in
+  progress), `.Clean` (working copy for spec 010) and `.Upstream` (reference); the patched CLI build is in
+  `C:\Users\morph\Documents\GitHub\Sehkah\Arrowgene.DragonsDogmaOnline.Upstream`, its patches saved as
+  `packets/tools/arrowgene-cli.patch`. Ghidra scripts are archived in `D:\ddon-ghidra-scripts`: prefer IDA MCP
+  and the reconstructors.
 
 ## Evidence rules
 
@@ -113,38 +106,26 @@ POSIX equivalent.
 
 ## Workflows
 
-Human documentation (how-tos, reference, explanation): `docs/index.md`. When a workflow's page exists, it holds the steps.
+Steps live on the pages (`docs/index.md`); read the page before running a workflow. Hazards agents hit:
 
-- **Client extraction**: run ddon-extractor against `D:\DDON_<build>` with `gmd.csv`
-  (`ddon-extractor resource -p true -o -m -f json -u -x D:\DDON_03040008 D:\DDON-translation\gmd.csv .` unpacks, the same without `-u -x` extracts, into `output/` under the working directory; steps: `docs/how-to/extract-client-resources.md`;
-  see `D:\ddon-extractor\README.md`), then replace `client/<build>/`. Review the change with
-  `git diff --stat` per resource type before committing.
-- **Resource format research**: identify the extension (`research/scripts/find-unsupported-extensions.sh`),
-  get the class layout from DWARF and its `load`/`save` methods (IDA MCP, or the archived
-  `D:/ddon-ghidra-scripts/headless-scripts/run_ghidra_analysis.sh dwarf|function <name> DDOORBIS.elf`),
-  write `research/03040008/r<Type>-pattern.cpp`, validate with
-  `imhex --pl format --pattern <pattern> --input <file>` (`research/scripts/validate_pattern.sh`), and
-  cross-check against the extractor JSON. Steps: `docs/how-to/decode-a-resource-format.md`, `docs/how-to/choose-a-resource-target.md`.
-- **Packets**: `packets/keys/decrypt-pcapng-streams-all-in-one.sh <capture.pcapng|dir> [out]`
-  needs `tshark`, `Arrowgene.Ddon.Cli`, and `ddon_common_key_bruteforce`. Key search uses expected
-  plaintext `0100000234000000` (login) and `2C00000234000000` (game-select/game), bounded to
-  about 15k depth and 40 s per stream. Steps and options: `docs/how-to/decrypt-a-capture.md`,
-  `docs/how-to/reannotate-streams.md`, `docs/how-to/export-packets-to-json.md`. Exports need the locally patched
-  Arrowgene CLI (`docs/how-to/patch-the-arrowgene-cli.md`; error responses stop after `Error`); split dumps over
-  50 MiB with `packets/split-annotated.sh` and decode structures with `packets/imhex-export.sh`.
-- **Patches**: apply with `radare2 -qnw -i <patch>.r2 <target>.exe` (UTF-16 `.r2` files need `iconv -f UTF-16 -t UTF-8` first; radare2 6.1.0 writes nothing otherwise); keep the SHA-256 chain in
-  each `.json` correct. Steps: `docs/how-to/apply-a-client-patch.md`, `docs/how-to/add-a-client-patch-layer.md`; hashes: `docs/reference/client-patches.md`.
-- **IDA**: the live IDA 9.5 databases are
-  `D:\research\DDON-binaries\IDA9.5\PC_DDON_03040008\2022_01_29_DDO_DUMP_FIX.exe.i64` and
-  `D:\research\DDON-binaries\IDA9.5\PS4_DDON_02020005_2016_12_21\DDOORBIS.elf.i64`. Query them
-  read-only unless asked to annotate; never overwrite them from a headless copy. Steps: `docs/how-to/query-ida-read-only.md`, `docs/how-to/write-to-an-ida-database.md`, `docs/how-to/transfer-annotations-ps4-to-pc.md`.
-- **PS4 ELF dumps**: steps in `docs/how-to/regenerate-elf-dumps.md`; `binaries/PS4_02020005/elf-dumps/generate-elf-dumps.sh` (`--dry-run`,
-  `--skip-local`, `--only <id-glob>`, `--verify`, `--exec <tool> ...`). It reads only a
-  hash-verified copy of the ELF in `.staging/` and never writes to the IDA9.3 folder. For SCE
-  structures trust `orbis-bin`, for DWARF and symbols LLVM, for address → line with inlining
-  `orbis-addr2line -i`; never GNU binutils for symbol values (`elf-dumps/README.adoc` § 5).
-  `elf-dumps/archive/` (gitignored, local only) is a fixed record (comparison, handover); do not regenerate or extend it.
-  The Orbis SDK help texts are "SIE CONFIDENTIAL": keep them in `local/`, never commit them.
+- **Client extraction** (`docs/how-to/extract-client-resources.md`): review per resource type with
+  `git diff --stat` before committing.
+- **Resource formats** (`docs/how-to/decode-a-resource-format.md`, `choose-a-resource-target.md`): IDA MCP
+  first; validate with `research/scripts/validate_pattern.sh`; cross-check against the extractor JSON.
+- **Packets** (`docs/how-to/write-a-packet-pattern.md`, `decrypt-a-capture.md`, `reannotate-streams.md`,
+  `export-packets-to-json.md`, `verify-a-regeneration.md`): the PC code decides layouts; after an include
+  changes, re-export every pattern that includes it; decrypted exports need the patched CLI
+  (`patch-the-arrowgene-cli.md`). `docs/explanation/two-packet-decodings.md` says how to weigh the annotated
+  dumps against the JSON.
+- **Patches** (`docs/how-to/apply-a-client-patch.md`, `add-a-client-patch-layer.md`): UTF-16 `.r2` files need
+  `iconv -f UTF-16 -t UTF-8` first; radare2 6.1.0 writes nothing otherwise. Keep the SHA-256 chain correct.
+- **IDA** (`docs/how-to/query-ida-read-only.md`, `write-to-an-ida-database.md`,
+  `transfer-annotations-ps4-to-pc.md`): query read-only unless asked to annotate; never overwrite the live
+  databases from a headless copy.
+- **PS4 ELF dumps** (`docs/how-to/regenerate-elf-dumps.md`): for SCE structures trust `orbis-bin`, for DWARF and
+  symbols LLVM, for address -> line with inlining `orbis-addr2line -i`; never GNU binutils for symbol values.
+  `elf-dumps/archive/` is a fixed record: do not regenerate or extend it. The Orbis SDK help texts are
+  "SIE CONFIDENTIAL": keep them in `local/`, never commit them.
 
 ## Conventions
 

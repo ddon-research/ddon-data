@@ -1,6 +1,7 @@
 # 009 Documentation and file structure (Diataxis)
 
-**Status: open** (opened 2026-11-04; follows specs 005-008, whose doc points stayed open)
+**Status: done** (opened and closed 2026-11-04; follows specs 005-008, whose doc points stayed open; results and Sam's
+decisions that changed the rules below: `tasks.md`)
 
 ## Goal
 

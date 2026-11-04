@@ -53,9 +53,35 @@ Coordinator: main session. One subagent at a time. Target structure and rules: `
   Copies: `.i64` deleted; `.id0`/`.id1` under both `ddon-data-t009c/` are held by this session's IDA workers: delete at the close.
 - [x] T010 Editor pass (49e15dd4b9 .. 23168c8a59; `research/reviews/T010-editor.md`): every page group edited, no fact
   changed; 5 doubted facts, 2 facts without a page, 6 contract proposals. Gate: docs (75 pages, 0 findings).
-- [ ] T010b Settle what the editor doubted; `ps4-elf.md` lookup lists to a reference page (`implementer`,
-  `briefs/T010b-editor-facts.md`).
-- [ ] T011 `AGENTS.md` / `CLAUDE.md` shortened, close: `check.sh --all`, retro, merge and push.
+- [x] T010b Editor's doubts settled (a6ff00e507): `0x888000`-`0x88E000` was a guessed code region, dropped; addresses
+  checked in `pc-handlers` only, stated (`pc`, `pc-accepted` not run; same input inferred); seeding per ddon-hook 013; FIX_4's
+  three runs named; `01020003` link to the PS4 export inferred; T009c's traps on their pages; `ps4-elf-structure.md` split out.
+- [x] T011 `AGENTS.md` shortened to rules and hazards (220 -> about 200 lines; layout and steps now on pages), close.
+
+## Close (2026-11-04)
+
+- Result: `docs/` holds 76 pages by Diataxis type, reached from a short `readme.adoc` through `docs/index.md`, under a written
+  contract (`docs/reference/documentation-style.md`). Directory READMEs are short. Paths outside readers cite stayed, with their
+  section numbers.
+- Moves: packet work to `packets/` (`patterns/03040008/`, `tools/`, `tests/`, `plbatch/`, `wireshark/`); Season 1 and 2 patterns to
+  their repositories (88f5fc8e, 8a0a74c73; pushed, blob hashes identical); loose files to `research/scripts/`, `research/prompts/`,
+  `research/03040008/notes/`. `packets/tools/arrowgene-cli.patch` preserves patches that existed in one clone only.
+- Corrections the rewrite found in the old records: radare2 6.1.0 writes nothing from UTF-16 `.r2` scripts; 26 PEB reads, all
+  `PEB.Ldr`, not 23 of `BeingDebugged`; 31 packet fit counts too low; old crash ranking superseded; extractor's third argument; rLandInfo magic.
+- Review: adversarial sample (40 claims, 30 lost-fact checks, gate and guards): 19 findings, all closed; IDA sample 42 claims, 40 hold, 1
+  fixed, 1 stated as not run. Packet table 595/595.
+- Guards tightened: `guard_bash` (push follows only literal `cd` chains and `git -C`; data trees resolved through `cd`), `guard_paths` (every path
+  spelling). Each new condition proven by removal, 0 survivors. Known gaps stated on `gate-and-hooks.md`.
+- Gate: `bash tools/check.sh --all` at a6ff00e507: hooks (65 + 14), shell (23), flags (41), export (9), idacopy (22), xfer (473), mcp, docs (76
+  pages, 616 links, 463 spans, 0 findings, 91 tests), packet-counts (595, 0 differences) passed; kg failed (`test_production_size_budgets`: `bundle_io.py`
+  853 lines) in the untracked `research/knowledge-graph/` tree of other work, which no 009 commit touches; imhex not run (not on PATH); shellcheck not run (missing).
+- Not run: the decrypt, annotate and export-stream scripts, `dotnet build`, `plbatch/build.sh` (its cached CMake path is stale: inferred, README says so), IDA in `pc` and
+  `pc-accepted`, external URLs of `community-resources.md`, repair, extract and apply of the transfer.
+- Open, not ours: DDOn-Tools' credit URLs name files absent from `research/02030004/`; `flags/TODO.md:10` names the absent `plan/` (other work).
+- Retro (`retro.py --since 2026-11-04T06:17 --label 009`): top ten rows $58, 5 h wall. Findings: (1) page packages over about 8 pages reach the 300k limit, as T004, T005,
+  T007 did: brief at most 8 written pages or 15 moved; (2) the review role cannot open IDA: brief database claims to `evidence-researcher-ida` from the
+  start; (3) `editor`'s guard allows `specs/*/research/reviews/*`: briefs name that path; (4) ida-mcp workers outlive their agent and hold copies: a
+  reviewer's brief says the coordinator stops named workers by PID once their database path is confirmed.
 
 ## Decisions (coordinator, 2026-11-04, from T001 § 12)
 
@@ -90,5 +116,4 @@ Coordinator: main session. One subagent at a time. Target structure and rules: `
 
 ## Running
 
-- T010b (implementer, brief `briefs/T010b-editor-facts.md`), started 2026-11-04. Next: `AGENTS.md` shortened, close. Then
-  spec 010.
+- (none). Spec closed 2026-11-04. Spec 010 follows.
