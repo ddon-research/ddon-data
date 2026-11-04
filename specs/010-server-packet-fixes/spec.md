@@ -1,6 +1,6 @@
 # 010 Server packet handling: find the errors, patch them, draft the pull request
 
-**Status: done** (opened and closed 2026-11-04, after spec 009; output draft [PR 8](https://github.com/Sehkah/Arrowgene.DragonsDogmaOnline/pull/8) on the fork; Sam's rulings on upstream and on merging the reports to the public `main` are open: `tasks.md` T007f)
+**Status: done** (opened and closed 2026-11-04, after spec 009; output draft [PR 8](https://github.com/Sehkah/Arrowgene.DragonsDogmaOnline/pull/8) on the fork; upstream on hold by Sam: `tasks.md` T007f)
 
 ## Goal
 

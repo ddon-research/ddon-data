@@ -5,8 +5,8 @@
 ## Resume
 
 - Root Spec Kit project: no feature is active. `specs/010-server-packet-fixes/` is closed, its output draft
-  [PR 8](https://github.com/Sehkah/Arrowgene.DragonsDogmaOnline/pull/8) on the fork. **Its branch `claude/project-thread-7tqspy` stays off the public `main` until Sam rules**: its reports
-  hold reproduction detail (`specs/010-server-packet-fixes/tasks.md`, T007f). `specs/001-ps4-static-dumps/` (PS4 ELF
+  [PR 8](https://github.com/Sehkah/Arrowgene.DragonsDogmaOnline/pull/8) on the fork; upstream on hold by Sam
+  (`specs/010-server-packet-fixes/tasks.md`, T007f). `specs/001-ps4-static-dumps/` (PS4 ELF
   static dumps) is closed; its output is `binaries/PS4_02020005/elf-dumps/`, with the comparison material in
   the gitignored `elf-dumps/archive/`.
 - Knowledge graph: `research/knowledge-graph/specs/001-pre-extraction-knowledge-graph/` is active;

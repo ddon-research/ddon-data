@@ -35,7 +35,7 @@ Coordinator: main session. One subagent at a time. Goal, error classes, method a
 - [x] T007c Review fixes and F04 (`research/T007c-review-fixes.md`; 4343286d3c; clone head `bc3dc199`, 30 of 30 signed): **F04 ruled in**: the lane thread and timers share one encryption scratch on one client, and T003 settled the counter only. A private lock over the count and the encryption, no wire change. With no lock the new test fails 10 of 10 runs, nearly every frame wrong; lock on the count only removed, its own test fails 10 of 10; lock in place 0 of 15. Debug and Release 0 errors, 520 warnings, 180/180. Differential, replay and live smoke predate this commit: the body says so. Pushed; PR 8's body updated and read back (equal bar a trailing newline).
 - [x] T007d Retrospective (`research/retro-010.md`, ledger row `010`): $76 list, 12 agents, coordinator 13%; failed 1.27%, refused 2.81% (baseline 2.8%), 0 budget overruns. Findings in Close. **No researcher**: departs from orchestration section 10 step 4, as 009 did, since no metric is past its threshold and no agent past budget; the findings are on process and came from the reviews.
 - [x] T007e Close: `CLAUDE.md` Resume and 2 learnings, `AGENTS.md`'s `.Clean` line, `**Status: done**`. Stray `0x889ce0` in the root (656 bytes of disassembly, 12:16 today, a mistaken redirect of this spec's) deleted.
-- [x] T007f Asked Sam (2026-11-04): upstream PR: **"Hold for now"**. Nothing goes to `sebastian-heinz/Arrowgene.DragonsDogmaOnline` until Sam says so. PR 8 stays a draft on the fork. This branch stays off `main` by the ruling below, until upstream has the fixes or Sam rules otherwise.
+- [x] T007f Asked Sam (2026-11-04): upstream PR: **"Hold for now"**. Nothing goes to `sebastian-heinz/Arrowgene.DragonsDogmaOnline` until Sam says so. PR 8 stays a draft on the fork. Merging spec 010 to the public `main`: Sam, 2026-11-04: "Merge spec 10 to main on ddon-data, that's fine", which settles the ruling in Close.
 
 ## Ruling on the patch set (coordinator, 2026-11-04, from T003)
 
@@ -45,12 +45,12 @@ Coordinator: main session. One subagent at a time. Goal, error classes, method a
 
 ## Running
 
-- (none). Spec closed 2026-11-04. Upstream on hold by Sam (T007f). This repository's branch is unpushed and `main` is at `78466dfe8e`, so spec 010's records and its docs pages are on this branch only.
+- (none). Spec closed 2026-11-04. Upstream on hold by Sam (T007f).
 
 ## Close (2026-11-04)
 
 - Result: [PR 8](https://github.com/Sehkah/Arrowgene.DragonsDogmaOnline/pull/8), draft on the fork, base `develop`: 30 signed commits, 98 files, +2,881/-185, 45 production files (+474/-184). Nothing on upstream. Impact: `research/impact.md` in full, the PR body in short form.
-- Ruling: spec 010's records stay off the public `main` until Sam rules. The standing "merge and push finished work" rule gives way here: `impact.md` and the T00x reports hold reproduction detail and say what is reachable before login, and the same text would reach the public repository before upstream has the fixes. The docs pages wait with them; `docs/reference/packet-handler-tables.md` § What ends a served connection is safe on its own.
+- Published with Sam's approval: `impact.md` and the T00x reports hold reproduction detail and say what is reachable before login, and they reached the public `main` before upstream has the fixes (T007f).
 - Public: the two tests of T007b finding 2 and the fixes themselves show the shape of the bad inputs to a reader who compares with `develop`. Pushed anyway: Sam asked for the PR and a test belongs with its fix. Prose gives no recipe.
 - Findings (retrospective): (1) tests that modelled the client, not a capture, passed a check refusing every real client: T005 caught it, T005a cost $6.20. (2) The public standard reached the PR body only; commit messages needed two rewrites in T006a ($2.32). (3) Limits stated in T005b were lost when summarised, by the PR body and by the coordinator's own message: the whole-spec review ($2.76) caught them. (4) F04 fell through because T003's "harmless (counter)" read as the whole row, and the Ruling was made from T003's verdicts rather than T001's list. (1), (2), (4) are in `CLAUDE.md` Learnings; metric: review findings on these classes.
 - Not run: `dotnet` differential, replay and live smoke at `bc3dc199` (they ran at `b8be1e19` and before; the last commit changes no single-threaded byte, by a pinned test). Not reached live: where the client shows the quest time, the once flag, earning category 6 in play, the catch-up flood, a one-element category 6 notice with no menu open. CI on PR 8 was pending at close.
