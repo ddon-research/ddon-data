@@ -47,11 +47,12 @@ Coordinator: main session. One subagent at a time. Target structure and rules: `
    they disagree; linked from the `packets/` README, the repository layout, the glossary and write-a-pattern.
 8. Sam, 2026-11-04: "move all resource class related patterns to their respective season 1 / season 2 repositories".
    Overrides the spec's rule keeping `research/02030004/`. Copied by the coordinator (blob hashes identical, 9 and 52
-   files), committed on each sibling's local `main`, **not pushed** (the push guard refused; waiting for Sam):
-   `ddon-data-s1` 88f5fc8e `research/01020003/`, `ddon-data-s2` 8a0a74c73 `research/02030004/`.
+   files) and pushed to each sibling's `main` after Sam chose "Fix guard, then push" (a2dc9a527a: the push guard now
+   follows `cd` and Git Bash paths): `ddon-data-s1` 88f5fc8e `research/01020003/`, `ddon-data-s2` 8a0a74c73
+   `research/02030004/`.
    Plain copies citing 715f8f2305, as s1's first commit did; the history stays here. Reader check: no live reader;
    DDOn-Tools' two credit URLs already name files absent from that folder (report, not ours). Season 3 patterns stay.
-   Removal here is package T004b, after T004 lands and both pushes are confirmed on GitHub: `git rm` both folders, constitution line 47, `AGENTS.md` lines 28,
+   Removal here is package T004b, after T004 lands (pushes confirmed): `git rm` both folders, constitution line 47, `AGENTS.md` lines 28,
    43, `readme.adoc`, `research/README.adoc`, pages naming the sibling repositories' paths.
 
 ## Running
