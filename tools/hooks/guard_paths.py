@@ -6,13 +6,15 @@
                                          allow only these patterns, inside the repository
 
 Paths are matched relative to the checkout that holds them with `fnmatch`, where `*` also crosses
-folders. ddon-data has no worktrees (role agents share the main checkout); the worktree branch of
+folders. Every spelling of a path is normalized first (`relative`), and `--deny-owned` ignores case, as
+the filesystem does. ddon-data has no worktrees (role agents share the main checkout); the worktree branch of
 `relative` is kept so the script matches its ddon-hook original.
 Exit 2 refuses and tells the agent to put the proposed text in its report instead.
 """
 
 import fnmatch
 import posixpath
+import re
 import sys
 from pathlib import Path
 
@@ -49,21 +51,40 @@ EVIDENCE = (
 )
 
 
+def spelled(path):
+    """`path` as the drive path Windows opens: the extended-length prefix stripped, `/d/` and `/mnt/d/` as `D:/`, each
+    part without the trailing dots and spaces or the `::$DATA` stream Windows ignores."""
+    path = path.replace("\\", "/")
+    path = re.sub(r"^//[?.]/", "", path)
+    path = re.sub(r"^(?:/mnt)?/([a-zA-Z])(?=/|$)", lambda m: f"{m[1].upper()}:", path)
+    head, *rest = path.split("/")
+    rest = [part if part in (".", "..") else part.split(":", 1)[0].rstrip(". ") for part in rest]
+    return "/".join([head, *rest])
+
+
 def relative(path, cwd):
-    """`path` relative to its checkout's root, or None when it lies outside every candidate root."""
-    path = posixpath.normpath(path.replace("\\", "/"))  # `..` must not walk a data path past the patterns
+    """`path` relative to its checkout's root, or None when it lies outside every candidate root. A relative path
+    is joined to `cwd` (the repository when no cwd came), and `..` is resolved: it must not walk past the patterns."""
+    path, base = spelled(path), spelled(cwd or str(hooklib.REPO))
+    if not re.match(r"[a-zA-Z]:/|/", path):
+        path = f"{base}/{path}"
+    path = posixpath.normpath(path)
     lowered = path.lower()
     marker = "/.claude/worktrees/"
     at = lowered.find(marker)
     if at >= 0:
         end = path.find("/", at + len(marker))
         return path[end + 1:] if end >= 0 else ""
-    roots = [str(hooklib.REPO).replace("\\", "/"), (cwd or "").replace("\\", "/")]
-    for root in roots:
-        root = root.rstrip("/")
+    for root in (spelled(str(hooklib.REPO)), base):
+        root = posixpath.normpath(root).rstrip("/")
         if root and lowered.startswith(root.lower() + "/"):
             return path[len(root) + 1:]
     return None
+
+
+def matches(rel, patterns):
+    """The filesystem ignores case, so a refusal does too: `CLIENT/x` is `client/x`."""
+    return any(fnmatch.fnmatchcase(rel.lower(), p.lower()) for p in patterns)
 
 
 def verdict(data, mode, patterns):
@@ -73,14 +94,15 @@ def verdict(data, mode, patterns):
         return None
     rel = relative(path, data.get("cwd"))
     if mode == "--deny-owned":
-        if rel is not None and any(fnmatch.fnmatchcase(rel, p) for p in OWNED):
+        if rel is not None and matches(rel, OWNED):
             return (f"{rel} belongs to the coordinator. Put the text you would change in your final report "
                     f"(\"proposed text\") instead.")
-        if rel is not None and any(fnmatch.fnmatchcase(rel, p) for p in EVIDENCE):
+        if rel is not None and matches(rel, EVIDENCE):
             return (f"{rel} is producer output: regenerate it with its producer (AGENTS.md \"Facts\") or report "
                     f"the change instead of editing it by hand.")
         return None
-    if rel is None:
+    # An allow list stays exact: only a drive path in the patterns' own case passes, as before this normalization.
+    if rel is None or not re.match(r"[a-zA-Z]:[\\/]", path):
         return f"{path} is outside the repository; your role writes only {', '.join(patterns)}."
     if any(fnmatch.fnmatchcase(rel, p) for p in patterns):
         return None
