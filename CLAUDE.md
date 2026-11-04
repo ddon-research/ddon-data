@@ -23,7 +23,7 @@
 - IDA: the `ida` server (headless ida-mcp, registered at local scope with
   `claude mcp add -s local ida -- uv run --no-dev --project <ida-mcp plugin cache dir> ida-mcp stdio --agent=claude`)
   and the role `evidence-researcher-ida`, which starts its own copy of it. The worker saves what
-  it opens, so open only a private copy: `bash research/ida/private-copy.sh <pc|ps4> <name>`
+  it opens, so open only a private copy: `bash research/ida/private-copy.sh <pc|pc-accepted|pc-handlers|ps4> <name>`
   prints its path (beside the original, in `ddon-data-<name>/`); the hook `guard_ida` refuses any
   other path and `save_database` is denied. Query read-only. Prefer MCP over the raw
   `binaries/PS4_02020005/*.elf.c` exports and over the `ida-domain-scripting` skill.
@@ -49,4 +49,4 @@ Keep at most 15 entries. Replace stale entries; do not append history.
 - IDA database writes run only as headless batch jobs (`idat -A -L<log> -S"<script>" <copy>.i64`, the
   script ending in `qexit(0)`; read-only scripts set `DBFL_KILL` first). ida-mcp workers cannot be closed
   here (`save_database`/`close_database` denied); a killed worker's writes are lost, because the next
-  open restores the packed base (007 T004d). Recipes: `research/03040008/ida-transfer/README.md`.
+  open restores the packed base (007 T004d). Recipes: `docs/how-to/write-to-an-ida-database.md`.

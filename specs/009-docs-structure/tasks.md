@@ -26,12 +26,16 @@ Coordinator: main session. One subagent at a time. Target structure and rules: `
   checked against bytes); `packets/tools/arrowgene-cli.patch` saved, `git apply --check` passes on the clean clone; 170
   JSON byte-identical after the comment edits. Unchecked, stated on the pages: 651 `WritePacket` keys, build from patch,
   counter behaviour (approximate). `ag_vs_pc` recount: 81 same, 3 differ, 31 empty. Gate: hooks, shell, export, mcp, docs.
-- [ ] T006 IDA and transfer pages (`implementer`, `briefs/T006-ida-transfer.md`): `ida-transfer/README.md` split, query
-  and write how-tos, transfer method; `private-copy.sh pc-handlers` for the annotated database.
-- [ ] T007 The rest: protections, patches, ELF dumps, Pharos, textures, rng-race, `research/README.adoc`,
-  `rLandInfo-example`, wikis; repository layout, inputs, tools, conventions, gate and hooks; root `readme.adoc`.
-- [ ] T008 Review: accuracy sample, a reader's walk, adversarial check of the new gate.
-- [ ] T009 Editor pass, `AGENTS.md` / `CLAUDE.md` shortened, close: `check.sh --all`, retro, merge and push.
+- [x] T006 IDA and transfer pages (7814428fa9, 198a0a51a8): query and write how-tos, transfer how-to, tools reference,
+  method explanation; `ida-transfer/README.md` short; `private-copy.sh pc-handlers`. Matcher and wave-2 transfer re-run into
+  scratch: identical to the manifest. Not run: repair, extract, apply. Holdout tests role pairs only (page says so). Gate:
+  hooks, shell, idacopy (22), mcp, docs (44 pages, 0 findings); xfer by hand: 473 passed, ruff clean.
+- [ ] T007 Client pages (`implementer`, `briefs/T007-client-pages.md`): patches, protections, ELF dumps, Pharos, textures,
+  rng-race; cited sections stay.
+- [ ] T008 Repository pages: `research/README.adoc`, `rLandInfo-example`, wikis; extract and decode how-tos; repository
+  layout, inputs, tools, conventions, gate and hooks; root `readme.adoc`.
+- [ ] T009 Review: accuracy sample, a reader's walk, adversarial check of the new gate.
+- [ ] T010 Editor pass, `AGENTS.md` / `CLAUDE.md` shortened, close: `check.sh --all`, retro, merge and push.
 
 ## Decisions (coordinator, 2026-11-04, from T001 § 12)
 
@@ -66,6 +70,5 @@ Coordinator: main session. One subagent at a time. Target structure and rules: `
 
 ## Running
 
-- T006 (implementer, brief `briefs/T006-ida-transfer.md`), started 2026-11-04. Next: land, brief T007. `readme.adoc`
-  line 115 still credits DDOn-Tools as a path reader: fix in T007. `include/Packet.hexpat` calls padding "non-zero
-  bytes" but it can be zero or repeat earlier data (comment fix, T007 or the editor's report).
+- T007 (implementer, brief `briefs/T007-client-pages.md`), started 2026-11-04. Next: land, brief T008. `readme.adoc`
+  line 115 still credits DDOn-Tools as a path reader: fix in T008. Then spec 010 follows the close.

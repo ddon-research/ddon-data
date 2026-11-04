@@ -30,7 +30,7 @@ Investigate the bounded PC/PS4 question your brief names, within its time box. A
 
 - **Open a private copy, never the original.** The ida-mcp worker saves what it opens, and the
   user's `.i64` files may be open in the IDA GUI. Make a copy with
-  `bash research/ida/private-copy.sh <pc|ps4> <name>` (a name of your own) and pass the printed
+  `bash research/ida/private-copy.sh <pc|pc-accepted|pc-handlers|ps4> <name>` (a name of your own) and pass the printed
   path to `open_database`. Never open any other path.
 - Call `list_databases` first and reuse a database already open at your copy's path; pass its
   `instance_id` on every `execute_python`.

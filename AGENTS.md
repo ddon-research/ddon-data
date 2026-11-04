@@ -137,7 +137,7 @@ Human documentation (how-tos, reference, explanation): `docs/index.md`. When a w
 - **IDA**: the live IDA 9.5 databases are
   `D:\research\DDON-binaries\IDA9.5\PC_DDON_03040008\2022_01_29_DDO_DUMP_FIX.exe.i64` and
   `D:\research\DDON-binaries\IDA9.5\PS4_DDON_02020005_2016_12_21\DDOORBIS.elf.i64`. Query them
-  read-only unless asked to annotate; never overwrite them from a headless copy.
+  read-only unless asked to annotate; never overwrite them from a headless copy. Steps: `docs/how-to/query-ida-read-only.md`, `docs/how-to/write-to-an-ida-database.md`, `docs/how-to/transfer-annotations-ps4-to-pc.md`.
 - **PS4 ELF dumps**: `binaries/PS4_02020005/elf-dumps/generate-elf-dumps.sh` (`--dry-run`,
   `--skip-local`, `--only <id-glob>`, `--verify`, `--exec <tool> ...`). It reads only a
   hash-verified copy of the ELF in `.staging/` and never writes to the IDA9.3 folder. For SCE
