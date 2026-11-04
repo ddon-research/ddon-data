@@ -35,7 +35,7 @@ Coordinator: main session. One subagent at a time. Goal, error classes, method a
 - [x] T007c Review fixes and F04 (`research/T007c-review-fixes.md`; 4343286d3c; clone head `bc3dc199`, 30 of 30 signed): **F04 ruled in**: the lane thread and timers share one encryption scratch on one client, and T003 settled the counter only. A private lock over the count and the encryption, no wire change. With no lock the new test fails 10 of 10 runs, nearly every frame wrong; lock on the count only removed, its own test fails 10 of 10; lock in place 0 of 15. Debug and Release 0 errors, 520 warnings, 180/180. Differential, replay and live smoke predate this commit: the body says so. Pushed; PR 8's body updated and read back (equal bar a trailing newline).
 - [x] T007d Retrospective (`research/retro-010.md`, ledger row `010`): $76 list, 12 agents, coordinator 13%; failed 1.27%, refused 2.81% (baseline 2.8%), 0 budget overruns. Findings in Close. **No researcher**: departs from orchestration section 10 step 4, as 009 did, since no metric is past its threshold and no agent past budget; the findings are on process and came from the reviews.
 - [x] T007e Close: `CLAUDE.md` Resume and 2 learnings, `AGENTS.md`'s `.Clean` line, `**Status: done**`. Stray `0x889ce0` in the root (656 bytes of disassembly, 12:16 today, a mistaken redirect of this spec's) deleted.
-- [ ] T007f Ask Sam: upstream and how to disclose (including the two tests of T007b finding 2); merging spec 010's reports to the public `main`. Until then this branch stays off `main`, by ruling below.
+- [x] T007f Asked Sam (2026-11-04): upstream PR: **"Hold for now"**. Nothing goes to `sebastian-heinz/Arrowgene.DragonsDogmaOnline` until Sam says so. PR 8 stays a draft on the fork. This branch stays off `main` by the ruling below, until upstream has the fixes or Sam rules otherwise.
 
 ## Ruling on the patch set (coordinator, 2026-11-04, from T003)
 
@@ -45,7 +45,7 @@ Coordinator: main session. One subagent at a time. Goal, error classes, method a
 
 ## Running
 
-- (none). Spec closed 2026-11-04. Open for Sam: T007f. This repository's branch is unpushed and `main` is at `78466dfe8e`, so spec 010's records and its docs pages are on this branch only.
+- (none). Spec closed 2026-11-04. Upstream on hold by Sam (T007f). This repository's branch is unpushed and `main` is at `78466dfe8e`, so spec 010's records and its docs pages are on this branch only.
 
 ## Close (2026-11-04)
 
