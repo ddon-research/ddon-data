@@ -1,6 +1,6 @@
 # 010 Server packet handling: find the errors, patch them, draft the pull request
 
-**Status: prepared** (opened 2026-11-04; starts when spec 009 closes: one subagent at a time)
+**Status: open** (opened 2026-11-04, after spec 009 closed)
 
 ## Goal
 

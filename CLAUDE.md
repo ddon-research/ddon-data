@@ -4,7 +4,7 @@
 
 ## Resume
 
-- Root Spec Kit project: `specs/010-server-packet-fixes/` is next (prepared). `specs/001-ps4-static-dumps/` (PS4 ELF static dumps)
+- Root Spec Kit project: `specs/010-server-packet-fixes/` is active. `specs/001-ps4-static-dumps/` (PS4 ELF static dumps)
   is closed; its output is `binaries/PS4_02020005/elf-dumps/`, with the comparison material in
   the gitignored `elf-dumps/archive/`.
 - Knowledge graph: `research/knowledge-graph/specs/001-pre-extraction-knowledge-graph/` is active;

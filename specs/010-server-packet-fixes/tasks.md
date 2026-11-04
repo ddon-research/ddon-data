@@ -15,4 +15,5 @@ Coordinator: main session. One subagent at a time. Goal, error classes, method a
 
 ## Running
 
-- (none). Starts when spec 009 closes. Next: brief T001.
+- T001 (repository-researcher, brief `briefs/T001-baseline-inventory.md`), started 2026-11-04. Next: read its report, brief
+  T002 (differential harness).
