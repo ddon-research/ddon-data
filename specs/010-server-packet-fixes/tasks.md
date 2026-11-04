@@ -30,11 +30,12 @@ Coordinator: main session. One subagent at a time. Goal, error classes, method a
 - [x] T006 Impact outline and PR body (`research/impact.md`, `pr-body.md`, `T006-commit-messages.md`; 6a9e2fe6e6): body clean, all 29 subjects found, no token, key, IP, path or task id. CLI patch applies, 16 of 16 hunks, 4 become dead code by reading; patched CLI on 3 streams: same packets and order, 16 of 1,053 `StructDump` lines change; full re-annotate not run. Found: five commit messages and a test comment state what the body leaves out, `f8683307` is wrong at the head, 18 lines carry task ids.
 - [x] T006a Make the branch fit to publish (`research/T006a-branch-wording.md`; 0c4f582231, 47fe810aab): clone head `64c676b9`, 29 of 29 signed, subjects identical, tree differs from `b8be1e19` in 6 files, 9 lines each side, comments only; Debug and Release 0 errors, 520 warnings, 177/177. Ruled by the coordinator: the client stack buffer note also goes, as a server diff needs the limit only. Local `backup/before-wording` at `b8be1e19` is never pushed.
 - [x] T006b Pushed `fix/packet-handling` to the fork; draft [PR 8](https://github.com/Sehkah/Arrowgene.DragonsDogmaOnline/pull/8), base `develop` (fork `develop` = `e2411fe8f9`), 29 commits, 97 files, +2,688/-174, mergeable, bound in the app; none on upstream. `impact.md`'s hashes remapped by subject to the pushed ones.
-- [ ] T007a `check.sh --all`.
-- [ ] T007b Whole-spec review and audit of the docs the spec touched (`reviewer`, `briefs/T007b-whole-spec.md`), then fixes. No guard or check was added by this spec, so no guard review.
-- [ ] T007c Retrospective (`retro.py`, one `repository-researcher` on the outliers), learnings.
-- [ ] T007d Close section, `**Status: done**`, `CLAUDE.md` Resume, `AGENTS.md`'s `.Clean` line; scratch cleaned.
-- [ ] T007e Ask Sam: upstream and how to disclose; merging spec 010's reports to the public `main`.
+- [x] T007a `check.sh --all` at `33d042ca59`: hooks (65 + 14), shell (7 scripts; shellcheck not run: missing), flags (41), export (9), idacopy (22), xfer (473), mcp, docs (76 pages, 619 links, 466 spans, 0 findings, 91 tests), packet-counts (595, 0 differences) passed; imhex not run (not on PATH). kg failed on `test_production_size_budgets` (`bundle_io.py` 853 lines and 5 more) in the untracked, other-owned `research/knowledge-graph/`: 0 commits of this spec touch it, and the same failure is on the records of 006-009. The server's own gates are T005a's and T006a's: Debug and Release, 177/177.
+- [x] T007b Whole-spec review and audit of the docs the spec touched (`research/T007b-review.md`): code holds on 7 rows read, numbers agree, every Ruling row accounted for. 18 findings, each ruled there: PR text stronger than T005b in places (the banner was seen once, on a two-element pushed notice), `impact.md` stale after T006a, F04 on no list. No guard or check was added by this spec, so no guard review. The body stays the short form of the outline and `impact.md` the full one (ruling on finding 17).
+- [ ] T007c Review fixes and F04 (`implementer`, `briefs/T007c-review-fixes.md`); then the coordinator pushes the new commit and updates PR 8's body. **F04 ruled in**: the lane thread and timers share one encryption scratch on one client; a private lock, no wire change. T003 settled the counter only.
+- [ ] T007d Retrospective (`retro.py`, one `repository-researcher` on the outliers), learnings.
+- [ ] T007e Close section, `**Status: done**`, `CLAUDE.md` Resume, `AGENTS.md`'s `.Clean` line; scratch cleaned.
+- [ ] T007f Ask Sam: upstream and how to disclose (including the two tests of T007b finding 2); merging spec 010's reports to the public `main`.
 
 ## Ruling on the patch set (coordinator, 2026-11-04, from T003)
 
@@ -44,4 +45,4 @@ Coordinator: main session. One subagent at a time. Goal, error classes, method a
 
 ## Running
 
-- T007b (reviewer, brief `briefs/T007b-whole-spec.md`), started 2026-11-04; `check.sh --all` running beside it. This repository's branch is unpushed and `main` is at `78466dfe8e`. Next: land, T007c, T007d; then **ask Sam before merging spec 010 to ddon-data `main`, since its reports hold pre-login reproduction detail and that repository is public, and before anything goes upstream.**
+- T007c (implementer, brief `briefs/T007c-review-fixes.md`), started 2026-11-04. This repository's branch is unpushed and `main` is at `78466dfe8e`. Next: land, push the new commit, `gh pr edit 8` with the new body, T007d, T007e; then **ask Sam before merging spec 010 to ddon-data `main`, since its reports hold pre-login reproduction detail and that repository is public, and before anything goes upstream.**
