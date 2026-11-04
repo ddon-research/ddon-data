@@ -9,7 +9,7 @@
 #   tools/check.sh --quick         hooks and shell syntax only (no project test suites)
 #
 # Sections: hooks, shell, flags, kg, xfer (research/03040008/ida-transfer), idacopy (research/ida/tests/private-copy.sh), export (research/03040008/packets/tests/imhex-export-select.sh,
-# when packets/imhex-export.sh or research/03040008/packets/ changed), mcp, imhex.
+# when packets/imhex-export.sh or research/03040008/packets/ changed), mcp, docs (tools/docs_check.py; its tests when it changed), imhex.
 #
 # Changed files: `git diff --name-only <base>` plus untracked files, limited to the small trees
 # (never client/ or packets/ data). Full logs go to .agent-ledger/check-logs/<check>.log.
@@ -20,7 +20,7 @@ ROOT=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)
 LOGS="$ROOT/.agent-ledger/check-logs"
 FLAGS_DIR=research/03040008/flags
 KG_DIR=research/knowledge-graph
-SMALL_TREES=(tools research specs plan patches .claude .specify AGENTS.md CLAUDE.md readme.adoc
+SMALL_TREES=(tools research specs docs patches .claude .specify AGENTS.md CLAUDE.md readme.adoc
              'packets/*.sh' 'packets/keys/*.sh' 'binaries/PS4_02020005/elf-dumps/*.sh')
 quick=0 all=0 since=""
 
@@ -207,6 +207,31 @@ elif [ -n "$mcp_missing" ]; then
     record mcp failed "missing: $mcp_missing"
 else
     record mcp passed "$mcp_count role-file MCP project paths exist"
+fi
+
+# 5b. Documentation: links with git's case, anchors, the index, code-span paths, wording, the opening, the tutorial's
+#     inputs. It runs on every change, since a move anywhere can break a link; its own tests only when it changed.
+DOCS_LIB=markdown-it-py==4.2.0
+docs_python() { uv run --offline --no-project --quiet --with "$DOCS_LIB" python -X utf8 "$@"; }
+if [ "$quick" -eq 1 ]; then
+    record docs "not run (--quick)"
+elif ! command -v uv >/dev/null; then
+    record docs "not run (uv missing)"
+elif ! docs_python -c 'import markdown_it' >"$LOGS/docs.log" 2>&1; then
+    record docs "not run (uv cannot resolve $DOCS_LIB offline: see $LOGS/docs.log)"
+else
+    if touches '^tools/(test_)?docs_check\.py$'; then
+        docs_tests="tests run"
+        docs_gate() { docs_python -m unittest discover -s tools -p test_docs_check.py && docs_python tools/docs_check.py; }
+    else
+        docs_tests="tests not run (no change to tools/docs_check.py)"
+        docs_gate() { docs_python tools/docs_check.py; }
+    fi
+    if run_logged docs docs_gate; then
+        record docs passed "$(rg -o 'docs_check: .*' "$LOGS/docs.log" | sed 's/^docs_check: //'); $(rg -o 'Ran [0-9]+ tests?' "$LOGS/docs.log" || echo "$docs_tests") ($(seconds docs) s)"
+    else
+        record docs failed "see $LOGS/docs.log"
+    fi
 fi
 
 # 6. ImHex patterns: validation needs the ImHex CLI, which is not on PATH (AGENTS.md).
