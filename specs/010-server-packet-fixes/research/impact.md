@@ -1,6 +1,6 @@
 # 010 T006: impact of `fix/packet-handling`, client PC 03040008
 
-For Sam. Server clone `D:/GitHub/Sehkah/Arrowgene.DragonsDogmaOnline.Clean`, branch `fix/packet-handling`, head `b8be1e19`, 29 signed commits on `develop` `e2411fe8f9`, unpushed. `git diff --stat`: 97 files, 2,688 insertions, 174 deletions: 45 files of production code (452 insertions, 173 deletions), 52 of tests and fixtures in `Arrowgene.Ddon.Test` (2,236 insertions, 1 deletion). Date 2026-11-04.
+For Sam. Server clone `D:/GitHub/Sehkah/Arrowgene.DragonsDogmaOnline.Clean`, branch `fix/packet-handling`, head `64c676b9`, 29 signed commits on `develop` `e2411fe8f9`, pushed to the fork as draft [PR 8](https://github.com/Sehkah/Arrowgene.DragonsDogmaOnline/pull/8). Hashes below are the pushed ones (T006a rewrote messages and comments; subjects are unchanged). `git diff --stat`: 97 files, 2,688 insertions, 174 deletions: 45 files of production code (452 insertions, 173 deletions), 52 of tests and fixtures in `Arrowgene.Ddon.Test` (2,236 insertions, 1 deletion). Date 2026-11-04.
 
 **This file holds reproduction detail and says what is reachable before login. It stays out of the pull request, and this repository is public: decide before merging spec 010 to `main`** (`tasks.md`). `pr-body.md` is the public text.
 
@@ -21,14 +21,14 @@ Evidence levels used below: **read** in client code (T003, `V`), **captures** (1
 
 Grouped by commit, in branch order. Row labels are those of `T001-candidates.tsv` and T003.
 
-### `2ec9f649` Allow a client and a handler to be built without a socket.
+### `30e6ba71` Allow a client and a handler to be built without a socket.
 
 - **Packets:** none. **Symptom:** no test could build a client (`ClientHandle` is a sealed struct).
 - **After:** protected constructors, virtual `SendRaw` and `Close`, `server?.Database`. **Who:** none.
 - **Risk:** low; a subclass may now override `SendRaw`/`Close`. Needed by every recording-client test, so it cannot be dropped alone.
 - **Verified:** whole suite. **Not run:** nothing specific.
 
-### `8b4a056f` Send one response when a request handler reports an error. (F06)
+### `ab34e8ea` Send one response when a request handler reports an error. (F06)
 
 - **Packets:** every RES whose handler throws `ResponseErrorException`; 329 throw sites (T001).
 - **Symptom on `develop`:** 2 RES. The client has no pending check (`0x844be0`, `0x878860`), so its handler runs twice. An ordinary error shows one dialog, since the queue drops the duplicate (`0x13ef380`). Where the client set the once flag (`0xc77fd8` for 8.6.1, table in T003), the second RES shows the dialog it meant to hide.
@@ -37,7 +37,7 @@ Grouped by commit, in branch order. Row labels are those of `T001-candidates.tsv
 - **Verified:** tests; live on 0.7.2 and 8.8.2: `develop` 2, branch 1, one dialog each, and the session continues after 0.7.2. `develop` also gave 2 on 16.0.2 and 18.0.2.
 - **Not run:** the once-flag path, the one user-visible gain. It stays **read only**: Pawns and Pawn Order were greyed on that database, so no site was reached.
 
-### `099c2a66` Answer a request when its response can not be written. (F07, F08)
+### `751b6ad4` Answer a request when its response can not be written. (F07, F08)
 
 - **Packets:** any RES on a not-implemented path (only `QuestStateManager.cs:1637` throws it), a serializer failure, a frame over the limit.
 - **Symptom:** no RES, so a 45 s timer (`I` for the unit), dialog 33001 and a disconnect, no retry (`0x8855a0`).
@@ -45,7 +45,7 @@ Grouped by commit, in branch order. Row labels are those of `T001-candidates.tsv
 - **Risk:** low. A handler that sends its own RES and then throws still gets a second one: not surveyed.
 - **Verified:** tests; T005 read `TcpServer.Send(null)`, so the queue test is sound. **Not run:** live.
 
-### `2edc799f` Answer every request on a handler that had no request base. (D06)
+### `e210142c` Answer every request on a handler that had no request base. (D06)
 
 - **Packets:** 11.x quest leader progress, `CreateCharacter` on login 5.x. 5 other handlers pinned unchanged.
 - **Symptom:** an exception before the RES meant the same 33001 disconnect. A failed `CreateCharacter` sent Result 1, went on writing rows for a character that does not exist, then sent Result 0.
@@ -53,7 +53,7 @@ Grouped by commit, in branch order. Row labels are those of `T001-candidates.tsv
 - **Risk:** **saved data**: this is the one commit that writes fewer rows on a failure path. The Result 1 branch has **no test** (needs a whole asset repository): read only.
 - **Verified:** tests on the other paths. **Not run:** Result 1 branch, live.
 
-### `ef78efed` Register the serializers for CDataOcdImmuneLv and CDataSwitchStorage. (D01, R01, D02, F10)
+### `c75ac712` Register the serializers for CDataOcdImmuneLv and CDataSwitchStorage. (D01, R01, D02, F10)
 
 - **Packets:** 35.9.16 `C2S_CONTEXT_SET_CONTEXT_NTC` and what nests the list; 10.13.16 `S2C_SWITCH_STORAGE_NTC`.
 - **Symptom:** a list of these wrote a count and no elements and read no bytes. A non-zero count misaligned the rest of the packet. **35.9.16 with immune count `0xFFFFFFFF` at body +178 looped `List.Add(null)` on the default single lane, with no login needed: out of memory at 512 MiB in 675 ms** (T002, child process).
@@ -62,7 +62,7 @@ Grouped by commit, in branch order. Row labels are those of `T001-candidates.tsv
 - **Verified:** tests, differential, **live**: 1 frame then 200 in 23 ms, no stall, the real client stayed answered, a new login's challenge took 86 ms.
 - **Not run:** `develop` live, on purpose. Open: see R01 under "Open risks".
 
-### `1808826b` Close a connection whose stream can not be followed, and keep split frames. (F01, R02, R03)
+### `2e283e93` Close a connection whose stream can not be followed, and keep split frames. (F01, R02, R03)
 
 - **Packets:** all, at the frame level.
 - **Symptom:** F01: a TCP split inside a length prefix after a frame over 16 bytes rewound into ciphertext and desynchronised the session; a split right after the prefix of a 16-byte frame lost the prefix. **R02, no login needed:** a length not a multiple of 16 threw an exception the kick path did not expect; no close, the factory stuck, the buffer grew. R03: a length under 16 or a bad source byte logged and read ciphertext as a frame start.
@@ -71,7 +71,7 @@ Grouped by commit, in branch order. Row labels are those of `T001-candidates.tsv
 - **Verified:** tests (split at every offset, both servers); T005 replay of 125 streams, 116,523 C2S packets, 0 closes; 130,521 packets at random and 1-byte splits, 0 mismatches; **live** R02 and R03 on login and game: orderly FIN, real client unaffected.
 - **Not run:** F01 on a live socket. `_buffer` resets only on a frame boundary, so a session whose reads always end mid-frame keeps growing it: noticed, not measured.
 
-### `e90e78a6` Bound the lengths a client supplies and the frames a server sends. (R04, R06, R07, F03)
+### `b48dca89` Bound the lengths a client supplies and the frames a server sends. (R04, R06, R07, F03)
 
 - **Packets:** 3.3.16 `C2S_LOBBY_LOBBY_DATA_MSG_REQ`, 6.23.16 `C2S_PARTY_SEND_BINARY_MSG_ALL_NTC`, 6.25.16 `C2S_PARTY_SEND_BINARY_MSG_NTC`; 1.0.2, 44.0.2; any frame near the limit.
 - **Symptom:** R04: a length of -1 threw, `0x7FFFFFFF` threw `OutOfMemoryException`, one past the end returned short and was relayed. The lobby half of R04 and R06 (a password size over 64 from the client) need no login. R07: with `LogIncomingPacketStructure` on, logging a malformed packet threw into the networking library. F03: a body of 65511 to 65524 threw after using a counter; over that, `SendRaw(null)`.
@@ -79,7 +79,7 @@ Grouped by commit, in branch order. Row labels are those of `T001-candidates.tsv
 - **Risk:** R04 rests on **captures only**: writers not read. 3.3.16 66,275, 6.23.16 8, 6.25.16 34,607 read with no throw.
 - **Verified:** tests, replay. **Not run:** live; PC writers of those three.
 
-### `1e96e574` Key packet ids by group, id and sub, and stop sharing a SHA1 instance. (F11, F12)
+### `df93c60d` Key packet ids by group, id and sub, and stop sharing a SHA1 instance. (F11, F12)
 
 - **Packets:** the id tables; the certificate hash in 1.1.16 and 44.1.16.
 - **Symptom:** F11: id tables keyed by a per-process seeded `HashCode.Combine`; a collision among 1,778 game ids would stop a start, or an unknown id resolve wrongly, about 3.7e-4 per start (`I`). F12: a shared `SHA1`, not thread safe; the client checks the hash and disconnects on a mismatch (`0x886b5b`-`0x886b6a`). At the default 1 lane it cannot occur.
@@ -87,7 +87,7 @@ Grouped by commit, in branch order. Row labels are those of `T001-candidates.tsv
 - **Risk:** very low. F12's test fails on `develop` at its reflection check: **no wrong hash was ever observed.**
 - **Verified:** tests; certificate hash accepted live. **Not run:** the concurrent loop on `develop`.
 
-### `f8683307` Close the session after a failed challenge. (R05; carries the fix of T005 F1)
+### `64db1373` Close the session after a failed challenge. (R05; carries the fix of T005 F1)
 
 - **Packets:** 1.0.1, 1.0.2, 44.0.1, 44.0.2.
 - **Symptom:** **no login needed:** a failed RSA decrypt threw inside `SetCamelliaKey(null)`, so the error branch could not run: a `FAIL` RES under the fixed key, the connection open, and the session went on under that key, reaching every handler that needs no character (T001).
@@ -96,11 +96,11 @@ Grouped by commit, in branch order. Row labels are those of `T001-candidates.tsv
 - **Verified:** tests, a real socket test, **live**: 3 of 3 on each port, 96-byte RES then orderly FIN; a key of 48 stays open.
 - **Not run:** nothing specific.
 
-### `a54eede1`, `07197aa4`, `a98b8b85`, `9532dcca`, `71a686f3`, `71a0b1ea`, `b8be1e19`: tests only
+### `89148f72`, `8b8385c9`, `c8870ac3`, `7d84bbef`, `66bb114e`, `9e11b91e`, `64c676b9`: tests only
 
-`TestBase` could kill the Debug test host on a late log line; a capture helper; a warning in Release; a test that compared the wrong bytes; 48-byte challenge tests with a socket; dead seam tests; one fixture. `71a686f3` adds the constant `Challenge.ClientCommonKeySize` to production, unused by a server. **Who:** none. `a54eede1` should stay: without it the suite is flaky.
+`TestBase` could kill the Debug test host on a late log line; a capture helper; a warning in Release; a test that compared the wrong bytes; 48-byte challenge tests with a socket; dead seam tests; one fixture. `66bb114e` adds the constant `Challenge.ClientCommonKeySize` to production, unused by a server. **Who:** none. `89148f72` should stay: without it the suite is flaky.
 
-### `714c4bca` Send the category with each completed achievement. (W02)
+### `909b92a6` Send the category with each completed achievement. (W02)
 
 - **Packets:** 27.8.16 `S2C_ACHIEVEMENT_ACHIEVEMENT_COMPLETE_NTC`.
 - **Symptom:** the client reads {u32, u8} (`0x758720`); the u8 fell on padding, read 0, so the branch for category 6 (`0x7c2f80`) never ran.
@@ -109,7 +109,7 @@ Grouped by commit, in branch order. Row labels are those of `T001-candidates.tsv
 - **Verified:** tests, **live** by a pushed notice: with 6 a banner (once, on the two-element notice; the menu was open for the one-element one), with 0 a chat line only.
 - **Not run:** earning one in play; the catch-up flood.
 
-### `c1685467` Send the quest play time where the client reads it, in whole milliseconds. (W16, N1)
+### `fc793694` Send the quest play time where the client reads it, in whole milliseconds. (W16, N1)
 
 - **Packets:** 11.45.16 `S2C_QUEST_PLAY_END_NTC`.
 - **Symptom:** time in the 4th u32, which nothing reads; the 7th read 0, formatted empty (`0xbd4b56`, `0x4cf380`). And `.Milliseconds`, the 0-999 part.
@@ -118,7 +118,7 @@ Grouped by commit, in branch order. Row labels are those of `T001-candidates.tsv
 - **Verified:** capture holds 1,045,461 there; tests; **live** only that the frame reads safely at 1,045,461, 6,000,000 and 4,294,967,295.
 - **Not run: W16 was not seen live.** No quest was finished, nothing appeared in the 4 s watched. `0x4cf380` has one direct call site, `0x4d0285`, which looks like a timed notice on a countdown and not a result screen (`I`). The screen and the over-99-minute format are unconfirmed.
 
-### `da7322d6` Cap an MtString at what the client can read, and write null as empty. (F09)
+### `dae73ac2` Cap an MtString at what the client can read, and write null as empty. (F09)
 
 - **Packets:** every S2C with an MtString.
 - **Symptom:** `0x8bc5b0` fails above 0x800, which ends the recipient's session. **After login, chat, mail and pawn comment text is relayed with no cap, so one player could disconnect another**, once per read for stored text (`T004a`). A null threw.
@@ -126,7 +126,7 @@ Grouped by commit, in branch order. Row labels are those of `T001-candidates.tsv
 - **Risk:** low. Whether the unmodified client can send that much was not read.
 - **Verified:** tests, differential. **Not run:** live; storage of mail bodies not traced.
 
-### `f536cb16` Write the login response flag as the bool the client reads. (W01, N2)
+### `f9e2bae9` Write the login response flag as the bool the client reads. (W01, N2)
 
 - **Packets:** 0.1.2 `S2C_CONNECTION_LOGIN_RES`.
 - **Symptom:** u16 for a bool: the token read as length 0, and every login works only because `0x7ce490` uses neither. Setting the flag true on the u16 would have asked for 256 bytes and disconnected.
@@ -134,51 +134,51 @@ Grouped by commit, in branch order. Row labels are those of `T001-candidates.tsv
 - **Risk:** every game login passes here. The flag stays false where captures have 1 on 42 of 42, as nothing says what true means.
 - **Verified:** capture, **live** login.
 
-### `24c8a412` Send the count of error messages still to come. (W03)
+### `14ba8537` Send the count of error messages still to come. (W03)
 
 - **Packets:** 3.0.16 `L2C_GET_ERROR_MESSAGE_LIST_NTC`.
 - **Symptom:** no trailing u32; padding or a failed read, both ignored (`0x887070` returns 1). **After:** the count, 4 bytes more per frame; the client only reserves capacity. **Who:** all players; same behaviour.
 - **Risk:** every login passes here. **Verified:** captures (410 of 410), tests, **live** login. The handler test uses synthetic messages.
 
-### `ff6b6275` Write the last field of the game session key response as a u16. (W04)
+### `2db00761` Write the last field of the game session key response as a u16. (W04)
 
 - **Packets:** 2.1.2 `L2C_GET_GAME_SESSION_KEY_RES`.
 - **Symptom:** u32 where the client reads u16 and ignores it. **After:** 2 bytes fewer. **Who:** all players; same behaviour. `Unknown` changes C# type; no other user. **Verified:** 42 of 42 captures, **live** login.
 
-### `770cb07f` Read and write the 62-byte password block of the challenge as the client does. (W10, W11)
+### `31c84a39` Read and write the 62-byte password block of the challenge as the client does. (W10, W11)
 
 - **Packets:** 1.0.1, 44.0.1, 1.0.2, 44.0.2.
 - **Symptom:** the login reader stopped at the first 0, the game reader at the size, both writers sent 64. Harmless by luck: a real block has its size.
 - **After:** u8[62] each way; only `PasswordEncSize` bytes decrypted. 2 bytes shorter; frame stays 96. **Who:** all players; same behaviour.
 - **Risk:** **every connection passes here.** Annotated dumps now print the whole block, including 46 stale client bytes. **Verified:** 125 of 125 frames of 336, 96 on the response, block identical; tests; **live** login.
 
-### `7d9665e6` Give the third list of a craft progress the element the client reads. (W12)
+### `0aedc8bb` Give the third list of a craft progress the element the client reads. (W12)
 
 - **Packets:** 30.0.2 `S2C_CRAFT_GET_CRAFT_PROGRESS_LIST_RES`.
 - **Symptom:** {u32, MtString} where the client reads u32 (`0x75e8e0`); the list is always sent empty. **After:** nothing on the wire. **Who:** none. **Risk:** a property changes C# type; one writer. **Verified:** test with a synthetic element; no capture holds one.
 
-### `4a31b435` Write the level of a soul ordeal buff reward. (62.33.2)
+### `5e2fa4c9` Write the level of a soul ordeal buff reward. (62.33.2)
 
 - **Packets:** 62.33.2 `S2C_SEASON_DUNGEON_GET_SOUL_ORDEAL_REWARD_LIST_RES`.
 - **Symptom:** `BuffId` twice where the official server sends a level; no consumer reads it (`0x781fb0`'s 5 callers). **After:** `Level`; no client effect. **Who:** none. **Verified:** 21 of 21 re-encode. **Not run:** live.
 
-### `d9ff145d` Move the clan notice flag from the response to the request. (31.17)
+### `f2dace3c` Move the clan notice flag from the response to the request. (31.17)
 
 - **Packets:** 31.17.1, 31.17.2 `C2S`/`S2C_CLAN_CLAN_SETTING_UPDATE`.
 - **Symptom:** an excess byte in the RES, unread; the request's bool not read. **After:** 1 byte fewer; read and unused, since storing it is a feature. **Who:** all players; same behaviour. **Risk:** see strict readers below. **Verified:** captures, **live** login.
 
-### `5a3ce5f6` Read the fields the client writes at the end of five notices and requests. (W08, W09, W14, 11.60.16)
+### `059cb593` Read the fields the client writes at the end of five notices and requests. (W08, W09, W14, 11.60.16)
 
 - **Packets:** 14.11.16, 0.1.1, 0.5.1, 50.1.1, 11.60.16.
 - **Symptom:** the server stopped early; handlers do not use the fields. **After:** the whole packet read; annotated dumps and the CLI see it. **Who:** none on a PC 03040008 client.
 - **Risk: strict readers.** A client that sends less than this build writes (another build, a modified client, a PS3 or PS4 `PlatformType`) now gets `EndOfStreamException` on 0.1.1, 0.5.1, 14.11.16, 50.1.1, 11.60.16 or 31.17.1 where it passed. 0.1.1 is every login. Names `StartPointId`, `IsReturnSession` are inferred.
 - **Verified:** 42, 41, 57, 59, 7, 42 captured reads with no throw; **live** 0.1.1, 0.5.1. **Not run:** any other client build.
 
-### `5b4e891f` Keep what two response readers read. (W17, 11.4.2)
+### `b9883379` Keep what two response readers read. (W17, 11.4.2)
 
 - **Packets:** 13.16.2, 11.4.2. **Symptom:** lists read and dropped, so the CLI re-encoded empty ones. **After:** kept. **Who:** none: the server never reads these at run time. **Verified:** re-encode 1 and 20.
 
-### `84d1db41` Stop reading a response at its Error, as the client does. (F05)
+### `54139fae` Stop reading a response at its Error, as the client does. (F05)
 
 - **Packets:** every RES read with `Error != 0`; captured on 13.3.2, 18.0.2, 19.1.2, 19.2.2.
 - **Symptom:** `ReadServerResponse` read a u16 and then fields past the frame: `EndOfStreamException` on all 63 captures. Server structures write Result as u32 and the client stops. **After:** a private `ResponseEndsAtError` caught in `ReadPacket`; `Result` stays 0. **Who:** none: the server does not read a RES at run time.
@@ -248,7 +248,7 @@ Also open and outside the patch: N3 (6 table ids with no PC record: none is sent
 - **Every live run used executable f2a8, not f1c9.** The addresses here were read in the dump f1c9 (`2022_01_29_DDO_DUMP_FIX.exe`); the runs used the installed `C:\DDON\DDO.exe` f2a80229, title `03.04.007 : 3040008`, the build players have. So what they show is on the players' build, and no run was on the dump.
 - **W16 not seen live**, see its commit.
 - **Once-flag path not reached**, see F06. **So the suppressed dialog, the user-visible gain of F06, is read only.**
-- **Strict readers**, see `5a3ce5f6`: only PC 03040008 was tried.
+- **Strict readers**, see `059cb593`: only PC 03040008 was tried.
 - **The migrated database.** Every login on both branches logged `no such column: ddon_pawn.craft_exp` on a copy migrated from 54 to 68. Not from the patch, and not investigated; it may be why Pawns was greyed.
 - **The branch's own text.** Commit messages and one test comment carry reproduction detail a push would publish: `T006-commit-messages.md`, with proposed bodies.
 
@@ -258,11 +258,11 @@ Each commit tested with `git show --format= --binary <c> | git apply -R --check`
 
 | Result | Commits |
 | --- | --- |
-| Suite passes (11) | `2edc799f` 172, `ef78efed` 172, `714c4bca` 174, `da7322d6` 168, `f536cb16` 175, `ff6b6275` 176, `7d9665e6` 175, `4a31b435` 176, `5a3ce5f6` 172, `5b4e891f` 175, `84d1db41` 171 |
-| Builds, tests of later commits fail (4) | `099c2a66` 4 of 170 (`A_body_over_the_u16_length_is_not_sent`); `1e96e574` 1 of 172 (`A_session_key_too_short_is_a_failed_login_challenge`, not looked into: perhaps the shared `SHA1` under parallel tests, `I`, which would be the wrong hash never yet observed); `770cb07f` 3 of 171 (from `71a686f3`); `d9ff145d` 1 of 175 (`A_response_without_an_error_reads_on`) |
-| Reverse-apply conflicts (8) | `2ec9f649`, `8b4a056f`, `1808826b`, `e90e78a6`, `f8683307`, `c1685467`, `24c8a412`, `a54eede1` |
+| Suite passes (11) | `e210142c` 172, `c75ac712` 172, `909b92a6` 174, `dae73ac2` 168, `f9e2bae9` 175, `2db00761` 176, `0aedc8bb` 175, `5e2fa4c9` 176, `059cb593` 172, `b9883379` 175, `54139fae` 171 |
+| Builds, tests of later commits fail (4) | `751b6ad4` 4 of 170 (`A_body_over_the_u16_length_is_not_sent`); `df93c60d` 1 of 172 (`A_session_key_too_short_is_a_failed_login_challenge`, not looked into: perhaps the shared `SHA1` under parallel tests, `I`, which would be the wrong hash never yet observed); `31c84a39` 3 of 171 (from `66bb114e`); `f2dace3c` 1 of 175 (`A_response_without_an_error_reads_on`) |
+| Reverse-apply conflicts (8) | `30e6ba71`, `ab34e8ea`, `2e283e93`, `b48dca89`, `64db1373`, `fc793694`, `14ba8537`, `89148f72` |
 
-Test-only commits were not dropped and built. A passing suite does not say a drop is wise: dropping `ef78efed` removes its own guard with the fix. To drop one: `git revert <sha>`, `dotnet build`, `dotnet test`.
+Test-only commits were not dropped and built. A passing suite does not say a drop is wise: dropping `c75ac712` removes its own guard with the fix. To drop one: `git revert <sha>`, `dotnet build`, `dotnet test`.
 
 ## Not run
 
