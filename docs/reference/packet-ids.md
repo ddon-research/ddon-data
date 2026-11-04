@@ -48,14 +48,14 @@ The Report column of the table, and the labels in code spans on the other packet
 
 ## The table
 
-Fit counts not recounted: run `tools/docs_check.py --packet-counts --write`.
+Fit counts recounted on 2026-11-04 with `tools/docs_check.py --packet-counts`.
 
 | Id | Pattern | Report | Status |
 | --- | --- | --- | --- |
 | 0.0.1 | `C2L_PING_REQ` | T002 §1 | 75/75 fit |
 | 0.0.1 | `C2S_CONNECTION_PING_REQ` | T003 §2 | 2134/2134 fit |
 | 0.0.2 | `L2C_PING_RES` | T002 §1 | 75/75 fit |
-| 0.0.2 | `S2C_CONNECTION_PING_RES` | T003 §2 | 2133/2133 fit |
+| 0.0.2 | `S2C_CONNECTION_PING_RES` | T003 §2 | 2134/2134 fit |
 | 0.1.1 | `C2L_LOGIN_REQ` | P11b §2 | 42/42 fit |
 | 0.1.1 | `C2S_CONNECTION_LOGIN_REQ` | T003 §3 | 42/42 fit |
 | 0.1.2 | `L2C_LOGIN_RES` | P11b §3 | 42/42 fit |
@@ -127,11 +127,11 @@ Fit counts not recounted: run `tools/docs_check.py --packet-counts --write`.
 | 3.0.16 | `L2C_GET_ERROR_MESSAGE_LIST_NTC` | T002 §9 | 410/410 fit |
 | 3.1.1 | `C2S_LOBBY_LOBBY_LEAVE_REQ` | T006 §2.2 | 41/41 fit (no body) |
 | 3.1.2 | `S2C_LOBBY_LOBBY_LEAVE_RES` | T006 §2.2 | 41/41 fit, slack 15 |
-| 3.2.1 | `C2S_LOBBY_LOBBY_CHAT_MSG_REQ` | T006 §2.3 | 328/328 fit |
-| 3.2.2 | `S2C_LOBBY_LOBBY_CHAT_MSG_RES` | T006 §2.3 | 382/382 fit, slack 15 |
-| 3.2.16 | `S2C_LOBBY_LOBBY_CHAT_MSG_NTC` | T006 §2.4 | 463/463 fit |
-| 3.3.16 | `C2S_LOBBY_LOBBY_DATA_MSG_REQ` | P1 §1.1 | 59881/59881 fit |
-| 3.4.16 | `S2C_LOBBY_LOBBY_DATA_MSG_NTC` | P1 §1.1 | 21000/21000 fit |
+| 3.2.1 | `C2S_LOBBY_LOBBY_CHAT_MSG_REQ` | T006 §2.3 | 395/395 fit |
+| 3.2.2 | `S2C_LOBBY_LOBBY_CHAT_MSG_RES` | T006 §2.3 | 395/395 fit, slack 15 |
+| 3.2.16 | `S2C_LOBBY_LOBBY_CHAT_MSG_NTC` | T006 §2.4 | 489/489 fit |
+| 3.3.16 | `C2S_LOBBY_LOBBY_DATA_MSG_REQ` | P1 §1.1 | 66275/66275 fit |
+| 3.4.16 | `S2C_LOBBY_LOBBY_DATA_MSG_NTC` | P1 §1.1 | 21143/21143 fit |
 | 4.0.1 | `C2L_GP_COURSE_GET_INFO_REQ` | T002 §10 | 41/41 fit |
 | 4.0.2 | `L2C_GP_COURSE_GET_INFO_RES` | T002 §10 | 41/41 fit |
 | 5.0.1 | `C2L_GET_CHARACTER_LIST_REQ` | T002 §11 | 42/42 fit |
@@ -154,7 +154,7 @@ Fit counts not recounted: run `tools/docs_check.py --packet-counts --write`.
 | 6.18.16 | `S2C_PARTY_PARTY_INVITE_ACCEPT_NTC` | T011 §9 | 1/1 fit (code name V by code shape and capture flow; the PS4 framing fits too) |
 | 6.23.16 | `C2S_PARTY_SEND_BINARY_MSG_ALL_NTC` | P1 §1.1 | 8/8 fit |
 | 6.24.16 | `S2C_PARTY_RECV_BINARY_MSG_ALL_NTC` | P1 §1.1 | no capture |
-| 6.25.16 | `C2S_PARTY_SEND_BINARY_MSG_NTC` | P1 §1.1 | 29176/29176 fit |
+| 6.25.16 | `C2S_PARTY_SEND_BINARY_MSG_NTC` | P1 §1.1 | 34607/34607 fit |
 | 6.26.16 | `S2C_PARTY_RECV_BINARY_MSG_NTC` | P1 §1.1 | no capture |
 | 8.2.1 | `C2S_PAWN_GET_MYPAWN_LIST_REQ` | T007 §2.1 | 119/119 fit (no body) |
 | 8.2.2 | `S2C_PAWN_GET_MYPAWN_LIST_RES` | T007 §2.1 | 119/119 fit (Season 3: three u32 per pawn, V; the PS4 element fails 119/119) |
@@ -164,7 +164,7 @@ Fit counts not recounted: run `tools/docs_check.py --packet-counts --write`.
 | 8.8.2 | `S2C_PAWN_GET_RENTED_PAWN_LIST_RES` | T007 §2.3 | 54/54 fit |
 | 8.9.1 | `C2S_PAWN_GET_RENTED_PAWN_DATA_REQ` | T007 §2.2 | 2/2 fit |
 | 8.9.2 | `S2C_PAWN_GET_RENTED_PAWN_DATA_RES` | T007 §2.2 | 2/2 fit (Season 3 `CDataPawnInfo`; the PS4 body fails 2/2) |
-| 8.12.1 | `C2S_PAWN_JOIN_PARTY_MYPAWN_REQ` | T007 §2.4 | 7/7 fit |
+| 8.12.1 | `C2S_PAWN_JOIN_PARTY_MYPAWN_REQ` | T007 §2.4 | 9/9 fit |
 | 8.12.2 | `S2C_PAWN_JOIN_PARTY_MYPAWN_RES` | T007 §2.4 | 9/9 fit, slack 15 |
 | 8.20.1 | `C2S_PAWN_GET_LOST_PAWN_LIST_REQ` | T007 §2.5 | 20/20 fit (no body) |
 | 8.20.2 | `S2C_PAWN_GET_LOST_PAWN_LIST_RES` | T007 §2.5 | 20/20 fit (list never non-empty) |
@@ -269,7 +269,7 @@ Fit counts not recounted: run `tools/docs_check.py --packet-counts --write`.
 | 11.89.16 | `S2C_QUEST_JOIN_LOBBY_QUEST_INFO_NTC` | P11a §1 | 41/41 fit |
 | 11.90.16 | `S2C_QUEST_PROGRESS_WORK_SAVE_NTC` | T005 §33 | 11/11 fit |
 | 11.91.16 | `S2C_QUEST_QUEST_COMPLETE_NTC` | T005 §34 | 4/4 fit, slack 12 |
-| 11.95.16 | `S2C_QUEST_FORT_DEFENSE_NTC` (was `S2C_QUEST_11_95_16_NTC`) | T005 §35 | 48/48 fit (code name FORT_DEFENSE_NOTICE, V by notice class) |
+| 11.95.16 | `S2C_QUEST_FORT_DEFENSE_NTC` (was `S2C_QUEST_11_95_16_NTC`) | T005 §35 | 96/96 fit (code name FORT_DEFENSE_NOTICE, V by notice class) |
 | 11.101.16 | `S2C_QUEST_TIME_GAIN_QUEST_PLAY_START_NTC` | T005 §36 | 1/1 fit |
 | 11.103.16 | `S2C_QUEST_PLAY_STOP_TIMER_NTC` (was `S2C_QUEST_11_103_16_NTC`) | T005 §37 | 1/1 fit (code name PLAY_STOP_TIMER_NOTICE, V by notice class; no body) |
 | 11.117.16 | `S2C_QUEST_REWARD_BOX_LIST_NUM_NTC` (was `S2C_QUEST_11_117_16_NTC`) | T005 §38 | 47/47 fit (code name REWARD_BOX_LIST_NUM_NOTICE, V by behaviour; the PS4 u8-only body fits too) |
@@ -288,14 +288,14 @@ Fit counts not recounted: run `tools/docs_check.py --packet-counts --write`.
 | 12.5.1 | `C2S_STAGE_UNISON_AREA_CHANGE_BEGIN_RECRUITMENT_REQ` | 008 T005 | 3/3 fit (list writer V (008 T002), EntryFeeList empty; cstr as MtString wire; T005 marks: I 1, G 3) |
 | 12.5.2 | `S2C_STAGE_UNISON_AREA_CHANGE_BEGIN_RECRUITMENT_RES` | 008 T005 | 3/3 fit (T005 marks: none (no fields)) |
 | 12.9.16 | `S2C_STAGE_DUNGEON_START_NTC` | 008 T005 | 3/3 fit (EntryCostList empty; T005 marks: I 1, G 4, open 4) |
-| 13.0.1 | `C2S_INSTANCE_GET_ENEMY_SET_LIST_REQ` | T004 §2 | 563/563 fit |
-| 13.0.2 | `S2C_INSTANCE_GET_ENEMY_SET_LIST_RES` | T004 §2 | 667/667 fit (NamedParamList never non-empty) |
-| 13.1.16 | `C2S_INSTANCE_ENEMY_GROUP_ENTRY_NTC` | T004 §3 | 202/202 fit, slack 14 (PS4 ENEMY_GROUP_ENTRY_NOTICE, V by behaviour) |
-| 13.2.16 | `C2S_INSTANCE_ENEMY_GROUP_LEAVE_NTC` | T004 §3 | 184/184 fit, slack 14 (PS4 ENEMY_GROUP_LEAVE_NOTICE, V by behaviour) |
-| 13.3.1 | `C2S_INSTANCE_ENEMY_KILL_REQ` | T004 §4 | 391/391 fit, slack 12 |
-| 13.3.2 | `S2C_INSTANCE_ENEMY_KILL_RES` | P11b §15 | 412/412 fit |
-| 13.5.1 | `C2S_INSTANCE_GET_ITEM_SET_LIST_REQ` | T004 §5 | 118/118 fit, slack 14 |
-| 13.5.2 | `S2C_INSTANCE_GET_ITEM_SET_LIST_RES` | T004 §5 | 258/258 fit |
+| 13.0.1 | `C2S_INSTANCE_GET_ENEMY_SET_LIST_REQ` | T004 §2 | 685/685 fit |
+| 13.0.2 | `S2C_INSTANCE_GET_ENEMY_SET_LIST_RES` | T004 §2 | 685/685 fit (NamedParamList never non-empty) |
+| 13.1.16 | `C2S_INSTANCE_ENEMY_GROUP_ENTRY_NTC` | T004 §3 | 222/222 fit, slack 14 (PS4 ENEMY_GROUP_ENTRY_NOTICE, V by behaviour) |
+| 13.2.16 | `C2S_INSTANCE_ENEMY_GROUP_LEAVE_NTC` | T004 §3 | 191/191 fit, slack 14 (PS4 ENEMY_GROUP_LEAVE_NOTICE, V by behaviour) |
+| 13.3.1 | `C2S_INSTANCE_ENEMY_KILL_REQ` | T004 §4 | 414/414 fit, slack 12 |
+| 13.3.2 | `S2C_INSTANCE_ENEMY_KILL_RES` | P11b §15 | 414/414 fit |
+| 13.5.1 | `C2S_INSTANCE_GET_ITEM_SET_LIST_REQ` | T004 §5 | 299/299 fit, slack 14 |
+| 13.5.2 | `S2C_INSTANCE_GET_ITEM_SET_LIST_RES` | T004 §5 | 299/299 fit |
 | 13.6.1 | `C2S_INSTANCE_GET_GATHERING_ITEM_LIST_REQ` | T004 §6 | 155/155 fit |
 | 13.6.2 | `S2C_INSTANCE_GET_GATHERING_ITEM_LIST_RES` | T004 §6 | 155/155 fit (restriction list never non-empty) |
 | 13.8.1 | `C2S_INSTANCE_GET_GATHERING_ITEM_REQ` | T004 §7 | 51/51 fit |
@@ -308,23 +308,23 @@ Fit counts not recounted: run `tools/docs_check.py --packet-counts --write`.
 | 13.16.2 | `S2C_INSTANCE_TREASURE_POINT_GET_CATEGORY_LIST_RES` | 008 T005 | 1/1 fit (T005 marks: I 2, G 2) |
 | 13.17.1 | `C2S_INSTANCE_TREASURE_POINT_GET_LIST_REQ` | 008 T005 | 1/1 fit (T005 marks: G 1) |
 | 13.17.2 | `S2C_INSTANCE_TREASURE_POINT_GET_LIST_RES` | 008 T005 | 1/1 fit (T005 marks: I 2, G 2, open 1) |
-| 13.20.1 | `C2S_INSTANCE_SET_OM_INSTANT_KEY_VALUE_REQ` | T004 §11 | 542/542 fit |
-| 13.20.2 | `S2C_INSTANCE_SET_OM_INSTANT_KEY_VALUE_RES` | T004 §11 | 559/559 fit |
-| 13.20.16 | `S2C_INSTANCE_SET_OM_INSTANT_KEY_VALUE_NTC` | T004 §11 | 571/571 fit (PS4 SET_OM_INSTANT_KEY_VALUE_NOTICE, V by behaviour) |
+| 13.20.1 | `C2S_INSTANCE_SET_OM_INSTANT_KEY_VALUE_REQ` | T004 §11 | 574/574 fit |
+| 13.20.2 | `S2C_INSTANCE_SET_OM_INSTANT_KEY_VALUE_RES` | T004 §11 | 574/574 fit |
+| 13.20.16 | `S2C_INSTANCE_SET_OM_INSTANT_KEY_VALUE_NTC` | T004 §11 | 574/574 fit (PS4 SET_OM_INSTANT_KEY_VALUE_NOTICE, V by behaviour) |
 | 13.22.1 | `C2S_INSTANCE_GET_OM_INSTANT_KEY_VALUE_ALL_REQ` | T004 §12 | 150/150 fit (no body) |
 | 13.22.2 | `S2C_INSTANCE_GET_OM_INSTANT_KEY_VALUE_ALL_RES` | T004 §12 | 150/150 fit |
-| 13.23.1 | `C2S_INSTANCE_EXCHANGE_OM_INSTANT_KEY_VALUE_REQ` | T004 §13 | 44/44 fit |
+| 13.23.1 | `C2S_INSTANCE_EXCHANGE_OM_INSTANT_KEY_VALUE_REQ` | T004 §13 | 46/46 fit |
 | 13.23.2 | `S2C_INSTANCE_EXCHANGE_OM_INSTANT_KEY_VALUE_RES` | T004 §13 | 46/46 fit |
 | 13.23.16 | `S2C_INSTANCE_EXCHANGE_OM_INSTANT_KEY_VALUE_NTC` | 008 T005 | 46/46 fit (T005 marks: I 3) |
 | 13.31.16 | `S2C_INSTANCE_ENEMY_GROUP_DESTROY_NTC` | T004 §14 | 81/81 fit, slack 13 (V by behaviour) |
-| 13.32.16 | `S2C_INSTANCE_ENEMY_GROUP_RESET_NTC` | T004 §15 | 130/130 fit, slack 14 (PS4 ENEMY_GROUP_RESET_NOTICE, V by behaviour) |
-| 13.39.16 | `S2C_INSTANCE_POP_DROP_ITEM_NTC` | T004 §16 | 74/74 fit |
+| 13.32.16 | `S2C_INSTANCE_ENEMY_GROUP_RESET_NTC` | T004 §15 | 146/146 fit, slack 14 (PS4 ENEMY_GROUP_RESET_NOTICE, V by behaviour) |
+| 13.39.16 | `S2C_INSTANCE_POP_DROP_ITEM_NTC` | T004 §16 | 75/75 fit |
 | 13.40.16 | `S2C_INSTANCE_ENEMY_REPOP_NTC` | T004 §17 | 41/41 fit |
 | 13.42.16 | `S2C_INSTANCE_AREA_RESET_NTC` | T004 §18 | 120/120 fit (no body; V by behaviour) |
-| 13.44.16 | `C2S_INSTANCE_CHARACTER_START_BAD_STATUS_NTC` | P4 §4, T001c §3 | 19/19 fit |
-| 13.45.16 | `C2S_INSTANCE_CHARACTER_END_BAD_STATUS_NTC` | P4 §4, T001c §3 | 19/19 fit |
+| 13.44.16 | `C2S_INSTANCE_CHARACTER_START_BAD_STATUS_NTC` | P4 §4, T001c §3 | 23/23 fit |
+| 13.45.16 | `C2S_INSTANCE_CHARACTER_END_BAD_STATUS_NTC` | P4 §4, T001c §3 | 23/23 fit |
 | 13.46.16 | `C2S_INSTANCE_ENEMY_BAD_STATUS_START_NTC` | P4 §4, T001c §3 | 31/31 fit |
-| 13.47.16 | `C2S_INSTANCE_ENEMY_BAD_STATUS_END_NTC` | P4 §4, T001c §3 | 30/30 fit |
+| 13.47.16 | `C2S_INSTANCE_ENEMY_BAD_STATUS_END_NTC` | P4 §4, T001c §3 | 31/31 fit |
 | 14.1.1 | `C2S_WARP_GET_RELEASE_WARP_POINT_LIST_REQ` | T008 §2.1 | 41/41 fit (no body) |
 | 14.1.2 | `S2C_WARP_GET_RELEASE_WARP_POINT_LIST_RES` | T008 §2.1 | 41/41 fit |
 | 14.2.1 | `C2S_WARP_GET_WARP_POINT_LIST_REQ` | T008 §2.2 | 178/178 fit |
@@ -489,14 +489,14 @@ Fit counts not recounted: run `tools/docs_check.py --packet-counts --write`.
 | 35.0.16 | `S2C_CONTEXT_GET_LOBBY_PLAYER_CONTEXT_NTC` | P4 §2.3 | 264/264 fit |
 | 35.3.16 | `S2C_CONTEXT_GET_PARTY_MYPAWN_CONTEXT_NTC` | P4 §2.2 | 9/9 fit |
 | 35.5.16 | `C2S_CONTEXT_35_5_16_NTC` | P4 §2.3 | 2/2 fit |
-| 35.7.1 | `C2S_CONTEXT_GET_SET_CONTEXT_REQ` | P4 §2.3 | 223/223 fit |
-| 35.7.2 | `S2C_CONTEXT_GET_SET_CONTEXT_RES` | P4 §2.3 | 608/608 fit |
+| 35.7.1 | `C2S_CONTEXT_GET_SET_CONTEXT_REQ` | P4 §2.3 | 783/783 fit |
+| 35.7.2 | `S2C_CONTEXT_GET_SET_CONTEXT_RES` | P4 §2.3 | 783/783 fit |
 | 35.8.16 | `C2S_CONTEXT_SET_CONTEXT_BASE_NTC` | P4 §2.3 | no capture |
 | 35.9.16 | `C2S_CONTEXT_SET_CONTEXT_NTC` | P4 §2.3 | 763/763 fit |
-| 35.11.16 | `S2C_CONTEXT_SET_CONTEXT_BASE_NTC` | P4 §2.3 | 526/526 fit |
+| 35.11.16 | `S2C_CONTEXT_SET_CONTEXT_BASE_NTC` | P4 §2.3 | 758/758 fit |
 | 35.12.16 | `S2C_CONTEXT_35_12_16_NTC` | P4 §2.3, T001c §1 | no capture (synthetic: one file built from T001c §1's field table, every value read back; a truncated copy fails) |
-| 35.13.16 | `S2C_CONTEXT_SET_CONTEXT_NTC` | P4 §2.3 | 24/24 fit |
-| 35.14.16 | `S2C_CONTEXT_MASTER_CHANGE_NTC` | P4 §2.3 | 948/948 fit |
+| 35.13.16 | `S2C_CONTEXT_SET_CONTEXT_NTC` | P4 §2.3 | 25/25 fit |
+| 35.14.16 | `S2C_CONTEXT_MASTER_CHANGE_NTC` | P4 §2.3 | 996/996 fit |
 | 35.15.16 | `S2C_CONTEXT_MASTER_INFO_NTC` | P4 §2.3 | 43/43 fit |
 | 37.0.1 | `C2S_MAIL_MAIL_GET_LIST_HEAD_REQ` | T009 §13 | 42/42 fit (no body) |
 | 37.0.2 | `S2C_MAIL_MAIL_GET_LIST_HEAD_RES` | T009 §13 | 42/42 fit |
