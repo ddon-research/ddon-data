@@ -21,7 +21,8 @@ the prompt. Each refusal names the replacement:
 
 ddon-data additions (AGENTS.md "Preservation and git hygiene"; ported from ddon-hook 4c625de):
 - `git worktree add` (the repository is too large for worktrees; agents share the main checkout);
-- unbounded output over the large trees (`client/`, `packets/`): `git diff`/`git log -p` without a
+- unbounded output over the large trees (`client/`, `packets/`, except the small hand-authored subtrees
+  of SMALL_SUBTREES): `git diff`/`git log -p` without a
   summary flag and with no pathspec or one in a large tree, `ls -R`/`tree`/`fd`/`rg --files`/
   `git ls-files` there without a depth or count bound, and `rg` content searches there without
   `-c`/`-l`/`-m`/`-q`;
@@ -33,6 +34,7 @@ The parsing is best effort (shlex over the command line, heredoc bodies dropped)
 
 import hashlib
 import os
+import posixpath
 import re
 import shlex
 import subprocess
@@ -388,22 +390,25 @@ def check_push(directory, arguments):
 
 
 LARGE_TREES = ("client", "packets")
+# Hand-authored folders inside packets/, beside the data they produce (009 T003): everyday work, not bulk.
+SMALL_SUBTREES = ("packets/patterns", "packets/tools", "packets/tests", "packets/plbatch", "packets/wireshark")
 SUMMARY_FLAGS = {"--stat", "--shortstat", "--numstat", "--name-only", "--name-status", "--quiet", "--exit-code",
                  "--check", "--dirstat", "--summary", "--compact-summary", "--raw"}
 COUNTERS = {"wc", "dust"}
 
 
 def in_large_tree(word):
-    """True for a path argument inside client/ or packets/ (also as `./client/...` or an absolute path)."""
-    path = word.replace("\\", "/").lower()
+    """True for a path argument inside client/ or packets/ (also as `./client/...` or an absolute path),
+    outside SMALL_SUBTREES. Normalized first: `packets/patterns/../decrypted_json` is the data tree."""
+    path = posixpath.normpath(word.replace("\\", "/").lower())
     repo = str(hooklib.REPO).replace("\\", "/").lower().rstrip("/")  # d:/ddon-data
     for root in (repo, "/" + repo.replace(":", "", 1), "/mnt/" + repo.replace(":", "", 1)):
         if path.startswith(root + "/"):
             path = path[len(root) + 1:]
             break
-    while path.startswith("./"):
-        path = path[2:]
     if not any(path == t or path.startswith(t + "/") for t in LARGE_TREES):
+        return False
+    if any(path == t or path.startswith(t + "/") for t in SMALL_SUBTREES):
         return False
     return not (hooklib.REPO / path).is_file()  # one file (a script in packets/) is fine
 

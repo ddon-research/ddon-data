@@ -8,8 +8,8 @@
 #   tools/check.sh --all           run every project's gate, changed or not
 #   tools/check.sh --quick         hooks and shell syntax only (no project test suites)
 #
-# Sections: hooks, shell, flags, kg, xfer (research/03040008/ida-transfer), idacopy (research/ida/tests/private-copy.sh), export (research/03040008/packets/tests/imhex-export-select.sh,
-# when packets/imhex-export.sh or research/03040008/packets/ changed), mcp, docs (tools/docs_check.py; its tests when it changed), imhex.
+# Sections: hooks, shell, flags, kg, xfer (research/03040008/ida-transfer), idacopy (research/ida/tests/private-copy.sh), export (packets/tests/imhex-export-select.sh,
+# when packets/imhex-export.sh, packets/patterns/, packets/tools/ or packets/tests/ changed), mcp, docs (tools/docs_check.py; its tests when it changed), imhex.
 #
 # Changed files: `git diff --name-only <base>` plus untracked files, limited to the small trees
 # (never client/ or packets/ data). Full logs go to .agent-ledger/check-logs/<check>.log.
@@ -21,7 +21,8 @@ LOGS="$ROOT/.agent-ledger/check-logs"
 FLAGS_DIR=research/03040008/flags
 KG_DIR=research/knowledge-graph
 SMALL_TREES=(tools research specs docs patches .claude .specify AGENTS.md CLAUDE.md readme.adoc
-             'packets/*.sh' 'packets/keys/*.sh' 'binaries/PS4_02020005/elf-dumps/*.sh')
+             'packets/*.sh' 'packets/keys/*.sh' packets/patterns packets/tools packets/tests packets/plbatch packets/wireshark
+             'binaries/PS4_02020005/elf-dumps/*.sh')
 quick=0 all=0 since=""
 
 while [ $# -gt 0 ]; do
@@ -149,11 +150,11 @@ else
 fi
 
 # 4b. Packet export selection tests (stubbed plbatch, synthetic raw files; spec 005 P13, spec 006 TC1).
-EXPORT_TEST=research/03040008/packets/tests/imhex-export-select.sh
+EXPORT_TEST=packets/tests/imhex-export-select.sh
 if [ "$quick" -eq 1 ]; then
     record export "not run (--quick)"
-elif ! touches "^(packets/imhex-export\.sh|research/03040008/packets/)"; then
-    record export "not run (no change to packets/imhex-export.sh or research/03040008/packets/)"
+elif ! touches "^(packets/imhex-export\.sh|packets/(patterns|tools|tests)/)"; then
+    record export "not run (no change to packets/imhex-export.sh, packets/patterns/, packets/tools/ or packets/tests/)"
 else
     if run_logged export bash "$EXPORT_TEST"; then
         record export passed "$(rg -c '^pass: ' "$LOGS/export.log") checks of $EXPORT_TEST ($(seconds export) s)"

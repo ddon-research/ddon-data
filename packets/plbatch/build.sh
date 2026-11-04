@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # Build plbatch against PatternLanguage master 300d7388 (UTF-8 JSON strings), with MSYS2 mingw64.
 #
-# Usage: research/imhex/plbatch/build.sh
-# Output: research/imhex/plbatch/build/bin/plbatch.exe (the build/ folder is gitignored).
+# Usage: packets/plbatch/build.sh
+# Output: packets/plbatch/build/bin/plbatch.exe (the build/ folder is gitignored).
 #
 # Environment overrides:
 #   MINGW_BIN  MSYS2 mingw64 bin dir (default /c/msys64/mingw64/bin). Never Strawberry's g++/cmake.

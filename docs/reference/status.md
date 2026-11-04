@@ -8,8 +8,8 @@ The dated counts of this repository, for a reader who wants to know how far the 
 
 | What | Count | Date | How to recount |
 | --- | --- | --- | --- |
-| Packet patterns | 595 | 2026-11-04 | `ls research/03040008/packets/*-pattern.cpp \| wc -l` |
-| Shared includes | 36 | 2026-11-04 | `ls research/03040008/packets/include \| wc -l` |
+| Packet patterns | 595 | 2026-11-04 | `ls packets/patterns/03040008/*-pattern.cpp \| wc -l` |
+| Shared includes | 36 | 2026-11-04 | `ls packets/patterns/03040008/include \| wc -l` |
 | Raw packet files | 160,615 | 2026-11-04 | `fd -t f . packets/decrypted_raw \| wc -l` |
 | JSON exports | 160,615 | 2026-11-04 | `fd -t f . packets/decrypted_json \| wc -l` |
 | JSON exports with `"fits": true` | 160,615 | 2026-11-04 | `rg -l -F '"fits": true' packets/decrypted_json \| wc -l` |

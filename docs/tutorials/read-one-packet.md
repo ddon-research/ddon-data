@@ -8,7 +8,7 @@ The inputs are fixed:
 | --- | --- |
 | `packets/decrypted_raw/stream3-party-experiments-marked.pcapng_tcp-stream-47/12863_S2C_WARP_WARP_RES_2019-07-08T10_35_53.3199119-07_00.14_3_2` | `4a693d40ba70f74a7b2af3b43ee028e96a5cb9f298abb533d5ba1dd27ac8759f` |
 | `packets/decrypted_json/stream3-party-experiments-marked.pcapng_tcp-stream-47/12863_S2C_WARP_WARP_RES_2019-07-08T10_35_53.3199119-07_00.14_3_2.json` | `d93d890bc91a8c758d322f28b344fbd84044b979d0cebfd0ca3ce76786c79b1b` |
-| `research/03040008/packets/S2C_WARP_WARP_RES-pattern.cpp` | `0e8e3f859a7d1b2988054ed97be3c83cdc597850ab0856a124cc37a68b63c044` |
+| `packets/patterns/03040008/S2C_WARP_WARP_RES-pattern.cpp` | `0e8e3f859a7d1b2988054ed97be3c83cdc597850ab0856a124cc37a68b63c044` |
 
 ## Step 1: Dump the raw packet
 
@@ -28,7 +28,7 @@ xxd "$R"
 
 ## Step 2: Read the header
 
-Every multi-byte value is big-endian. The header is the first 9 bytes, and `research/03040008/packets/include/Packet.hexpat` declares it as `CPacket`.
+Every multi-byte value is big-endian. The header is the first 9 bytes, and `packets/patterns/03040008/include/Packet.hexpat` declares it as `CPacket`.
 
 | Offset | Bytes | Field | Value |
 | --- | --- | --- | --- |
@@ -45,7 +45,7 @@ Group, id and sub are the packet's [id](../reference/glossary.md#packets), 14.3.
 The pattern states the body's layout.
 
 ```sh
-sed -n '1,30p' research/03040008/packets/S2C_WARP_WARP_RES-pattern.cpp
+sed -n '1,30p' packets/patterns/03040008/S2C_WARP_WARP_RES-pattern.cpp
 ```
 
 The lines to look at are these:

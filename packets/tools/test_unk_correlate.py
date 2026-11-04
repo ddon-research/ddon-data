@@ -1,6 +1,6 @@
 """Tests of unk_correlate.py on a synthetic pattern and JSON tree (stdlib unittest).
 
-Run: python -X utf8 -I -m unittest discover -s research/03040008/packets/tools -p "test_*.py" -v
+Run: python -X utf8 -I -m unittest discover -s packets/tools -p "test_*.py" -v
 """
 
 from __future__ import annotations

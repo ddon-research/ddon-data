@@ -45,7 +45,7 @@ A failed section prints the end of its log to stderr. The full logs are `.agent-
 | `shell` | always | `bash -n` of the changed scripts, and `shellcheck` when installed |
 | `flags` | `research/03040008/flags/` sources changed | that project's unit tests |
 | `kg` | `research/knowledge-graph/` sources changed | pytest, ruff and mypy |
-| `export` | `packets/imhex-export.sh` or `research/03040008/packets/` changed | `research/03040008/packets/tests/imhex-export-select.sh` |
+| `export` | `packets/imhex-export.sh`, `packets/patterns/`, `packets/tools/` or `packets/tests/` changed | `packets/tests/imhex-export-select.sh` |
 | `idacopy` | `research/ida/private-copy.sh` or its tests changed | `research/ida/tests/private-copy.sh` |
 | `xfer` | `research/03040008/ida-transfer/` sources changed | pytest and ruff |
 | `mcp` | always | every `--project` path in `.claude/agents/` exists |

@@ -16,11 +16,13 @@ never forks per file.
 ## Build
 
 ```sh
-bash research/imhex/plbatch/build.sh
+bash packets/plbatch/build.sh
 ```
 
+- `build/obj` records the absolute path of this folder in `CMakeCache.txt`: after moving the folder,
+  delete `build/obj` before running `build.sh` (`build/bin/plbatch.exe` keeps working without it).
 - Fetches PatternLanguage at **`300d7388475dd7ffd04239dfc889b72fe08bae18`** (master, 2026-09-13)
-  with its submodules into `research/imhex/plbatch/build/pl-src` (gitignored). Never build in the
+  with its submodules into `packets/plbatch/build/pl-src` (gitignored). Never build in the
   reference clone `D:/GitHub/WerWolv/PatternLanguage`.
 - Why this pin (spec 006 T001d, 2026-11-01): ImHex 1.38.1's PatternLanguage (`fb6ea061`, tag
   `ImHex-v1.38.1`) wrote every string byte outside `[A-Za-z0-9-_.~]` as `%XX`
@@ -42,7 +44,7 @@ bash research/imhex/plbatch/build.sh
 - Compiles with MSYS2 **mingw64** by full path (`/c/msys64/mingw64/bin`: gcc 16.2.0, cmake 4.4.4,
   ninja 1.13.2, lld), never the Strawberry `g++`/`cmake` on `PATH`. Override with `MINGW_BIN`.
   Missing tools: `pacman -S mingw-w64-x86_64-{gcc,cmake,ninja,lld}`.
-- Output `research/imhex/plbatch/build/bin/plbatch.exe`, statically linked (imports only
+- Output `packets/plbatch/build/bin/plbatch.exe`, statically linked (imports only
   `KERNEL32.dll` and `msvcrt.dll`), so it runs from any shell without DLLs beside it.
 
 ## Use
@@ -65,10 +67,10 @@ plbatch --pattern P [-I DIR]... --in-root IN --out-root OUT [--force] [--time] [
 - stdout: `ok   rel`, `ok-nan rel`, `ok-null rel`, `skip rel` (JSON exists, no `--force`),
   `badjson rel (see <err>)` or `FAIL rel (see <err>)`, one line per file. Exit 0 when nothing
   failed, 1 when a file failed or was badjson, 2 on a usage error.
-- Tests: `bash research/imhex/plbatch/test.sh` (synthetic inputs: ok, ok-nan, ok-null, stale JSON
+- Tests: `bash packets/plbatch/test.sh` (synthetic inputs: ok, ok-nan, ok-null, stale JSON
   removed on failure, skip, a UTF-8 string with a quote and an invalid byte).
 - `-I`: pass the ImHex std library (`<imhex>/includes`, which `imhex --pl` adds by itself) and the
-  pattern includes (`research/03040008/packets/include`).
+  pattern includes (`packets/patterns/03040008/include`).
 - `--time`: also parse each pattern once more on its own and print parse, execute and format
   totals to stderr (it doubles the parse work: measurement only).
 
@@ -79,7 +81,7 @@ paths, `setDataSource` over the file in memory, `executeString(pattern, patternP
 ## Verification (2026-11-01, client 03040008 packets, at the earlier pin `fb6ea061`)
 
 `imhex.exe` 1.38.1 (portable NoGPU) `--pl format` against plbatch, same patterns, `-I
-research/03040008/packets/include` (plbatch also `-I <imhex>/includes`), byte comparison of every
+packets/patterns/03040008/include` (plbatch also `-I <imhex>/includes`), byte comparison of every
 output: 3,028 files (1,000 each of `C2S_PARTY_SEND_BINARY_MSG_NTC`, `S2C_LOBBY_LOBBY_DATA_MSG_NTC`,
 `C2S_LOBBY_LOBBY_DATA_MSG_REQ`, every 1,000th-ish file of the sorted `packets/decrypted_raw` list;
 all 8 `C2S_PARTY_SEND_BINARY_MSG_ALL_NTC`; P7's 20 samples): 3,028 identical, 0 differing, 0

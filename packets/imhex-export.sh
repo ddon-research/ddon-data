@@ -15,7 +15,7 @@
 #                                 (e.g. S2C_GROUP_CHAT_GROUP_CHAT_GET_MEMBER_LIST_RES)
 #                  The id forms ignore the packet name, which an outdated or "Unknown" name
 #                  in the raw file would otherwise hide.
-#   pattern-name   pattern in ../research/03040008/packets/<name>-pattern.cpp
+#   pattern-name   pattern in patterns/03040008/<name>-pattern.cpp
 #                  (e.g. S2C_GROUP_CHAT_GROUP_CHAT_GET_MEMBER_LIST_RES)
 #   jobs           parallel worker processes (default: nproc with plbatch, nproc/2 with ImHex)
 #   --force        re-export packets whose JSON already exists
@@ -32,19 +32,19 @@
 # invalid bare nan/inf with --json-nonfinite=keep), "badjson" files whose output was invalid for another reason (failures).
 # The ImHex path does not validate its output.
 #
-# Engine: plbatch (research/imhex/plbatch, PatternLanguage master 300d7388: UTF-8 JSON strings, where
+# Engine: plbatch (packets/plbatch, PatternLanguage master 300d7388: UTF-8 JSON strings, where
 # ImHex 1.38.1's `imhex --pl format` writes %XX) when built, one long-lived process per shard;
 # otherwise one `imhex --pl format` process per packet.
 #
 # Environment overrides:
-#   PLBATCH      plbatch executable (default: ../research/imhex/plbatch/build/bin/plbatch.exe if
+#   PLBATCH      plbatch executable (default: plbatch/build/bin/plbatch.exe if
 #                built); PLBATCH=none forces the ImHex path
 #   IMHEX        ImHex executable (default: imhex on PATH, then the portable install below); with
 #                plbatch, its includes/ folder supplies the std library
 #   IMHEX_INCLUDES  std library folder for plbatch (default: <dir of IMHEX>/includes)
 #   RAW_DIR      input root  (default: decrypted_raw)
 #   JSON_DIR     output root (default: decrypted_json)
-#   PATTERN_DIR  pattern dir (default: ../research/03040008/packets); its include/ folder, when
+#   PATTERN_DIR  pattern dir (default: patterns/03040008); its include/ folder, when
 #                present, is passed with -I, so patterns can share
 #                `#include "nNetMsg.hexpat"` and the like
 #
@@ -102,7 +102,7 @@ require cat dirname grep mkdir mktemp mv rm tee xargs
 cd "$(dirname "${BASH_SOURCE[0]}")"
 RAW_DIR=${RAW_DIR:-decrypted_raw}
 JSON_DIR=${JSON_DIR:-decrypted_json}
-PATTERN_DIR=${PATTERN_DIR:-../research/03040008/packets}
+PATTERN_DIR=${PATTERN_DIR:-patterns/03040008}
 PATTERN="$PATTERN_DIR/$PATTERN_NAME-pattern.cpp"
 
 [[ -d "$RAW_DIR" ]] || die "input directory '$RAW_DIR' not found"
@@ -123,13 +123,13 @@ if [[ -z ${IMHEX:-} ]]; then
   fi
 fi
 
-if [[ -z ${PLBATCH:-} && -x ../research/imhex/plbatch/build/bin/plbatch.exe ]]; then
-  PLBATCH=../research/imhex/plbatch/build/bin/plbatch.exe
+if [[ -z ${PLBATCH:-} && -x plbatch/build/bin/plbatch.exe ]]; then
+  PLBATCH=plbatch/build/bin/plbatch.exe
 fi
 [[ ${PLBATCH:-} != none ]] || PLBATCH=
 
 if [[ -n "${PLBATCH:-}" ]]; then
-  [[ -x "$PLBATCH" ]] || die "plbatch not found or not executable: '$PLBATCH' (build: research/imhex/plbatch/build.sh, or PLBATCH=none)"
+  [[ -x "$PLBATCH" ]] || die "plbatch not found or not executable: '$PLBATCH' (build: packets/plbatch/build.sh, or PLBATCH=none)"
   # The std library (std.mem, std.io, ...) that `imhex --pl` adds by itself.
   STD_DIR=${IMHEX_INCLUDES:-$(dirname "$IMHEX")/includes}
   [[ -d "$STD_DIR" ]] || die "ImHex std library not found: '$STD_DIR' (set IMHEX_INCLUDES or IMHEX)"

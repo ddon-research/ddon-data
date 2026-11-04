@@ -16,10 +16,10 @@ The terms that more than one page uses, for a reader who knows x86, ELF and DWAR
 | --- | --- |
 | packet id | The three numbers `group.id.sub` of a packet's header, for example 14.3.2, also written `(g,id,sub)`. A raw file's name ends in them, as `14_3_2`. On PS4 02020005 packets use other numbers: PS4 numbers never name PC packets. |
 | raw file | One decrypted packet under `packets/decrypted_raw/`: 9-byte header, body, cipher padding. |
-| pattern | An ImHex pattern that decodes a packet or a resource file. `research/03040008/packets/<packet name>-pattern.cpp` holds one per packet of client 03040008. |
+| pattern | An ImHex pattern that decodes a packet or a resource file. `packets/patterns/03040008/<packet name>-pattern.cpp` holds one per packet of client 03040008. |
 | fit | The flag `fits` a pattern exports: the decode ends within the last 15 bytes of the file, and reading past the end fails the decode. A fit is weak evidence: it does not prove field widths when the slack exceeds a field. |
 | slack | The bytes left after a decode, exported as `paddingSize`. In a raw file they are cipher block padding. |
-| nNetMsg | The RPC payload (`cNetMsg*` messages) carried by the lobby and party binary packets, decoded by `research/03040008/packets/include/nNetMsg.hexpat`. |
+| nNetMsg | The RPC payload (`cNetMsg*` messages) carried by the lobby and party binary packets, decoded by `packets/patterns/03040008/include/nNetMsg.hexpat`. |
 | CData | The prefix of the shared wire structures (`CDataCommonU32`), as PS4 02020005 DWARF names them. |
 
 ## Evidence marks

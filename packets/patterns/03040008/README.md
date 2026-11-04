@@ -153,7 +153,7 @@ The filter selects raw files three ways:
 `@` refuses an id that login-server (`C2L_`/`L2C_`) and game-server (`C2S_`/`S2C_`) files share,
 unless the pattern names its packet with `// packet-select:` (test: `tests/imhex-export-select.sh`).
 
-The engine is plbatch (`research/imhex/plbatch`, built with its `build.sh`): PatternLanguage master
+The engine is plbatch (`packets/plbatch`, built with its `build.sh`): PatternLanguage master
 `300d7388` (UTF-8 strings), one process per shard. Without plbatch, the script runs one
 `imhex --pl format` per packet; ImHex 1.38.1 still percent-encodes strings, so its JSON differs
 from the committed export wherever a string holds a byte outside `[A-Za-z0-9-_.~]`. The summary line counts:
@@ -847,7 +847,7 @@ count the marks after T007.
 
 - **Code-backed renames (spec 006 TC2):** the patched CLI names eight ids from code instead of
   Arrowgene's placeholder or contradicted names; raws, patterns and JSON carry the new names
-  (`../../../packets/README-decrypt-annotate-streams.adoc` § arrowgene-patches): 0.10.16
+  (`../../README-decrypt-annotate-streams.adoc` § arrowgene-patches): 0.10.16
   `S2C_CONNECTION_0_10_16_NTC` -> `S2C_CONNECTION_SESSION_STATUS_NTC` (T003 §9), 11.60.16
   `C2S_QUEST_11_60_16_NTC` -> `C2S_QUEST_PRT_READY_SET_RETURN_SESSION_NTC` (T005 §25), 11.83.16 ->
   `S2C_QUEST_SET_QUEST_UNRELEASED_AREA_NTC` (§31), 11.95.16 -> `S2C_QUEST_FORT_DEFENSE_NTC` (§35),

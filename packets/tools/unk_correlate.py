@@ -10,7 +10,7 @@ Inputs are bounded: the patterns name the packets; each session directory of the
 scanned once and only files of patterned packets are read.
 
 Usage (from the repository root):
-    python -X utf8 -I research/03040008/packets/tools/unk_correlate.py \
+    python -X utf8 -I packets/tools/unk_correlate.py \
         --tsv specs/006-packet-pattern-coverage/research/T014a-value-correlation.tsv \
         --md specs/006-packet-pattern-coverage/research/T014a-value-correlation.md
 
@@ -569,7 +569,7 @@ def write_md(rows: list[Row], nodata, info: dict, path: Path) -> None:
       "`I (value: n/m match <field> in <packet>)` material at best and needs the coincidence check "
       "the spec asks for (constants, 0/1 and small enums need more evidence).")
     a("")
-    a("Produced by `research/03040008/packets/tools/unk_correlate.py` (stdlib only); one row per "
+    a("Produced by `packets/tools/unk_correlate.py` (stdlib only); one row per "
       "unknown (packet, key path) in `T014a-value-correlation.tsv`.")
     a("")
     a("## Inputs and run")
@@ -724,7 +724,7 @@ def run(pattern_dir: Path, json_dir: Path, group: str):
 
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
-    ap.add_argument("--patterns", type=Path, default=Path("research/03040008/packets"))
+    ap.add_argument("--patterns", type=Path, default=Path("packets/patterns/03040008"))
     ap.add_argument("--json", type=Path, default=Path("packets/decrypted_json"))
     ap.add_argument("--group", choices=("capture", "stream"), default="capture",
                     help="session unit: one capture file (all its TCP streams) or one TCP stream")
@@ -736,7 +736,7 @@ def main(argv: list[str] | None = None) -> int:
     elapsed = time.monotonic() - t0
     write_tsv(rows, nodata, args.tsv)
     info = {
-        "build": "client 03040008 (PC), patterns in `research/03040008/packets/`",
+        "build": "client 03040008 (PC), patterns in `packets/patterns/03040008/`",
         "patterns (packets)": len(ps.packets),
         "struct definitions parsed": sum(len(v) for v in ps.structs.values()),
         "stream directories scanned": c.streams,

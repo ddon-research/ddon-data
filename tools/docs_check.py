@@ -76,7 +76,7 @@ TUTORIAL = Tutorial(
     inputs=(
         (f"packets/decrypted_raw/{_WARP}", "4a693d40ba70f74a7b2af3b43ee028e96a5cb9f298abb533d5ba1dd27ac8759f"),
         (f"packets/decrypted_json/{_WARP}.json", "d93d890bc91a8c758d322f28b344fbd84044b979d0cebfd0ca3ce76786c79b1b"),
-        ("research/03040008/packets/S2C_WARP_WARP_RES-pattern.cpp",
+        ("packets/patterns/03040008/S2C_WARP_WARP_RES-pattern.cpp",
          "0e8e3f859a7d1b2988054ed97be3c83cdc597850ab0856a124cc37a68b63c044"),
     ),
     json_path=f"packets/decrypted_json/{_WARP}.json",

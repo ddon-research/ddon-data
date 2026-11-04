@@ -3,7 +3,7 @@
 # raw files in a temp dir. A stub stands in for plbatch and reports "ok" for every file it is
 # given, so the export log lists exactly the selected files; no pattern is compiled.
 #
-# Usage: research/03040008/packets/tests/imhex-export-select.sh
+# Usage: packets/tests/imhex-export-select.sh
 # Checks:
 #   1. `@` on an id shared by login-server and game-server files, without `// packet-select:`,
 #      refuses (exit 2) and names the fix
@@ -21,7 +21,7 @@ die() { echo "ERROR: $*" >&2; exit 2; }
 for cmd in mktemp rm mkdir printf chmod dirname head grep; do command -v "$cmd" >/dev/null 2>&1 || die "$cmd not found"; done
 
 here=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
-script=$(cd "$here/../../../../packets" && pwd)/imhex-export.sh
+script=$(cd "$here/.." && pwd)/imhex-export.sh
 [[ -f $script ]] || die "export script not found: $script"
 
 work=$(mktemp -d)

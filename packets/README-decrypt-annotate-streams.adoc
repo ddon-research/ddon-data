@@ -180,7 +180,7 @@ unchanged. Build of 2026-11-02 (net10.0, Debug): `Arrowgene.Ddon.Cli.dll` sha256
 `5d2455d51b2e1f0a0d482ab25d4743671885f23f8aabbefc2e51c377aad5ca6b` unchanged.
 
 A packet that fails to parse is a structure bug, not a capture problem: write an ImHex pattern in
-`../research/03040008/packets/`, check it against the client's `nPacket::Read_*` routine, then fix
+`patterns/03040008/`, check it against the client's `nPacket::Read_*` routine, then fix
 the C# structure.
 
 [[splitting]]
@@ -248,11 +248,11 @@ when one of its packets was exported with a pattern (125 of 125 streams have one
 == Exporting packet structures with ImHex
 
 The patterns, their includes, JSON conventions, evidence rules, per-type fit counts and open items
-are described in `../research/03040008/packets/README.md`.
+are described in `patterns/03040008/README.md`.
 
 `./imhex-export.sh [--force] [--json-nonfinite=keep|null] <packet-filter> <pattern-name> [jobs]`
 decodes the per-packet files in `decrypted_raw/<stream>/` with
-`../research/03040008/packets/<pattern-name>-pattern.cpp` and writes
+`patterns/03040008/<pattern-name>-pattern.cpp` and writes
 `decrypted_json/<stream>/<packet-file>.json`. Set `IMHEX` if ImHex is not on `PATH`; output paths
 must stay under 260 characters for the Windows ImHex build. `./imhex-export.sh` without arguments
 prints the options and every environment override.
@@ -273,7 +273,7 @@ printed (`--json-nonfinite=keep`, byte-identical to ImHex; `jq` rejects them). O
   name holds `_<name>_` (the login patterns `C2L_LOGIN_REQ`/`L2C_LOGIN_RES` share 0.1.1/0.1.2 with
   the game server's `CONNECTION_LOGIN`). `@` refuses an id that login-server (`C2L_`/`L2C_`) and
   game-server (`C2S_`/`S2C_`) files share when the pattern has no such line, since a shorter layout
-  would still fit (spec 005 R2 F2; test: `research/03040008/packets/tests/imhex-export-select.sh`);
+  would still fit (spec 005 R2 F2; test: `packets/tests/imhex-export-select.sh`);
 * `<group>.<id>.<sub>` (`35.5.16`): files whose name ends in `.35_5_16`;
 * anything else: a substring of the file names, as before (files only: a matching directory name
   selects nothing).
@@ -297,9 +297,9 @@ as `\u00XX`. There is no percent encoding since spec 006 T001d; the export befor
 
 Two engines, same JSON byte for byte except for that string encoding:
 
-* *plbatch* (default when built): `bash ../research/imhex/plbatch/build.sh` builds
-  `../research/imhex/plbatch/build/bin/plbatch.exe`, PatternLanguage master `300d7388` (UTF-8
-  strings; ImHex 1.38.1 embeds `fb6ea061`), with MSYS2 mingw64 (see `research/imhex/plbatch/README.md`). The script
+* *plbatch* (default when built): `bash plbatch/build.sh` builds
+  `plbatch/build/bin/plbatch.exe`, PatternLanguage master `300d7388` (UTF-8
+  strings; ImHex 1.38.1 embeds `fb6ea061`), with MSYS2 mingw64 (see `packets/plbatch/README.md`). The script
   deals the file list into `jobs` shards (default `nproc`) and runs one plbatch process per shard;
   no process is started per packet. It takes the std library from `<imhex dir>/includes`
   (`IMHEX_INCLUDES` overrides). Set `PLBATCH` to another build, or `PLBATCH=none` for ImHex.

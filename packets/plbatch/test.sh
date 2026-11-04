@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # Focused tests of plbatch's output checks (spec 005 P10, R1 F1/F2), on synthetic inputs in a temp dir.
 #
-# Usage: research/imhex/plbatch/test.sh [plbatch.exe]
-#   default binary: research/imhex/plbatch/build/bin/plbatch.exe (build.sh)
+# Usage: packets/plbatch/test.sh [plbatch.exe]
+#   default binary: packets/plbatch/build/bin/plbatch.exe (build.sh)
 # Checks:
 #   1. a finite f32 writes valid JSON and reports "ok"
 #   2. a NaN f32 reports "ok-nan" and keeps the formatter text (bare nan) by default
