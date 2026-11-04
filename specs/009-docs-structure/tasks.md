@@ -30,10 +30,13 @@ Coordinator: main session. One subagent at a time. Target structure and rules: `
   method explanation; `ida-transfer/README.md` short; `private-copy.sh pc-handlers`. Matcher and wave-2 transfer re-run into
   scratch: identical to the manifest. Not run: repair, extract, apply. Holdout tests role pairs only (page says so). Gate:
   hooks, shell, idacopy (22), mcp, docs (44 pages, 0 findings); xfer by hand: 473 passed, ruff clean.
-- [ ] T007 Client pages (`implementer`, `briefs/T007-client-pages.md`): patches, protections, ELF dumps, Pharos, textures,
-  rng-race; cited sections stay.
-- [ ] T008 Repository pages: `research/README.adoc`, `rLandInfo-example`, wikis; extract and decode how-tos; repository
-  layout, inputs, tools, conventions, gate and hooks; root `readme.adoc`.
+- [x] T007 Client pages (d956348da6, cd59ee87b5): 12 pages (patches, protections, ELF dumps, Pharos, textures, rng-race);
+  `protections/README.md` keeps sections 1, 5, 6; ELF README keeps § 3, § 7, `--verify` OK. Found: radare2 6.1.0 writes 0 bytes
+  from the 10 UTF-16 `.r2` scripts (how-to adds `iconv`); the 23 PEB reads read `PEB.Ldr`, not `BeingDebugged`; the old crash
+  ranking superseded by ddon-hook spec 009; rng-race page follows ddon-hook 013. Gate: hooks, shell, export, xfer (473),
+  mcp, docs (61 pages, 0 findings).
+- [ ] T008 Repository pages (`implementer`, `briefs/T008-repository-pages.md`): resource how-tos; repository layout, inputs,
+  tools, conventions, gate and hooks; short root `readme.adoc`; the index.
 - [ ] T009 Review: accuracy sample, a reader's walk, adversarial check of the new gate.
 - [ ] T010 Editor pass, `AGENTS.md` / `CLAUDE.md` shortened, close: `check.sh --all`, retro, merge and push.
 
@@ -70,5 +73,5 @@ Coordinator: main session. One subagent at a time. Target structure and rules: `
 
 ## Running
 
-- T007 (implementer, brief `briefs/T007-client-pages.md`), started 2026-11-04. Next: land, brief T008. `readme.adoc`
-  line 115 still credits DDOn-Tools as a path reader: fix in T008. Then spec 010 follows the close.
+- T008 (implementer, brief `briefs/T008-repository-pages.md`), started 2026-11-04. Next: land, then T009 review. Then
+  spec 010 follows the close.

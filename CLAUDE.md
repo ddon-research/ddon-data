@@ -10,7 +10,7 @@
 - Knowledge graph: `research/knowledge-graph/specs/001-pre-extraction-knowledge-graph/` is active;
   `research/knowledge-graph/specs/STATUS.md` is the dashboard.
 - Flag investigation: `research/03040008/flags/TODO.md`.
-- PC client protections, patch lineage and crash triage: `research/03040008/protections/README.md`
+- PC client protections, patch lineage and crash triage: `docs/explanation/client-lineage-and-protections.md`, `docs/how-to/triage-a-client-crash.md`; `research/03040008/protections/README.md` keeps the cited section numbers
   (spec `specs/003-client-protections/`, done); outside references: `research/external-references.md`.
 
 ## Tools

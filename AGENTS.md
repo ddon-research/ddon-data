@@ -24,7 +24,7 @@ Treat it as versioned evidence, not as source code.
 | `binaries/PS4_02020005/elf-dumps/` | Reference static dumps of the same `DDOORBIS.elf`, one preferred source per category (headers, SCE dynamic table, NIDs, relocations, symbols, strings, stack sizes, unwind, every DWARF section, all line tables), `manifest.jsonl` provenance, `README.adoc` status report; `local/` (gitignored) holds the multi-GB dumps; `archive/` (gitignored, local only) holds the tool comparison and the closed reconstructor handover | `elf-dumps/generate-elf-dumps.sh` (orbis-bin SDK 12, LLVM 23); spec `specs/001-ps4-static-dumps/` |
 | `binaries/ANDROID_1500/` | Decompiled Unity C# and `path_id_map.json` | `D:\research\DDON-binaries\Android` tools |
 | `packets/` | Data: `encrypted_streams/`, `decrypted_{raw,json,annotated}/`, `keys/`, packet statistics. Hand-authored: `patterns/03040008/` (ImHex patterns, `include/`), `plbatch/` (export engine), `tools/`, `tests/`, `wireshark/` (dissector, filters) | `D:\research\DDON-pcaps` toolchain: `ddon_pcap_split`, `ddon_common_key_bruteforce`, `Arrowgene.Ddon.Cli`; JSON: `packets/imhex-export.sh` |
-| `patches/` | radare2 `.r2` patch scripts + `.json` metadata for Windows `DDO.exe` builds | Hand-authored; see `patches/README.md` |
+| `patches/` | radare2 `.r2` patch scripts + `.json` metadata for Windows `DDO.exe` builds | Hand-authored; see `docs/reference/client-patches.md` |
 | `research/03040008/` | ImHex resource patterns `r<Type>-pattern.cpp`, notes, DTI dumps; Season 1 and 2 patterns are in `ddon-data-s1` and `ddon-data-s2`, `research/<build>/` | Hand-authored |
 | `research/03040008/flags/` | `ddon-flags` Python project (quest/layout flag investigation) and `generated/` reports | This repo |
 | `research/knowledge-graph/` | `ddon-knowledge-graph` Python project (Neo4j evidence graph + MCP), own Spec Kit project | This repo |
@@ -132,13 +132,13 @@ Human documentation (how-tos, reference, explanation): `docs/index.md`. When a w
   `docs/how-to/reannotate-streams.md`, `docs/how-to/export-packets-to-json.md`. Exports need the locally patched
   Arrowgene CLI (`docs/how-to/patch-the-arrowgene-cli.md`; error responses stop after `Error`); split dumps over
   50 MiB with `packets/split-annotated.sh` and decode structures with `packets/imhex-export.sh`.
-- **Patches**: apply with `radare2 -qnw -i <patch>.r2 <target>.exe`; keep the SHA-256 chain in
-  each `.json` correct (`patches/README.md`).
+- **Patches**: apply with `radare2 -qnw -i <patch>.r2 <target>.exe` (UTF-16 `.r2` files need `iconv -f UTF-16 -t UTF-8` first; radare2 6.1.0 writes nothing otherwise); keep the SHA-256 chain in
+  each `.json` correct. Steps: `docs/how-to/apply-a-client-patch.md`, `docs/how-to/add-a-client-patch-layer.md`; hashes: `docs/reference/client-patches.md`.
 - **IDA**: the live IDA 9.5 databases are
   `D:\research\DDON-binaries\IDA9.5\PC_DDON_03040008\2022_01_29_DDO_DUMP_FIX.exe.i64` and
   `D:\research\DDON-binaries\IDA9.5\PS4_DDON_02020005_2016_12_21\DDOORBIS.elf.i64`. Query them
   read-only unless asked to annotate; never overwrite them from a headless copy. Steps: `docs/how-to/query-ida-read-only.md`, `docs/how-to/write-to-an-ida-database.md`, `docs/how-to/transfer-annotations-ps4-to-pc.md`.
-- **PS4 ELF dumps**: `binaries/PS4_02020005/elf-dumps/generate-elf-dumps.sh` (`--dry-run`,
+- **PS4 ELF dumps**: steps in `docs/how-to/regenerate-elf-dumps.md`; `binaries/PS4_02020005/elf-dumps/generate-elf-dumps.sh` (`--dry-run`,
   `--skip-local`, `--only <id-glob>`, `--verify`, `--exec <tool> ...`). It reads only a
   hash-verified copy of the ELF in `.staging/` and never writes to the IDA9.3 folder. For SCE
   structures trust `orbis-bin`, for DWARF and symbols LLVM, for address → line with inlining
