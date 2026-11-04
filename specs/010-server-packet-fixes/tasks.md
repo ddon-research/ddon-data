@@ -13,8 +13,11 @@ Coordinator: main session. One subagent at a time. Goal, error classes, method a
   W14, W17. Failing proofs: D01 (2), R01 (OOM at 512 MiB in 675 ms), F06 (2 frames, needs a real seam). Same-width names and order: no signal by construction.
 - [x] T003 PC evidence (`research/T003-pc-evidence.md`): error F06, W02, W16 (+ N1), W21, D06; harmless 15 (incl. 62.33.2, W01); not an error W06, W15, W22, D08,
   T05; not settled F09 (scan), W05. General rule: an S2C key with no client record or a read past the frame end ends the session (3001); padding rescues short layouts.
-- [ ] T004a Patch part 1: network path, dispatch, robustness (`implementer`, `briefs/T004a-framework-patch.md`).
-- [ ] T004b Patch part 2: wire layouts (ruling below).
+- [x] T004a Patch part 1 (`research/T004a-patch.md`; clone `fix/packet-handling` at `c423c48b`, 9 signed commits, unpushed): 125/125 in Debug and Release, 520
+  warnings, 52 new tests fail on develop (21 pass there, explained); differential: nothing that agreed now differs. Newly closes a connection on a bad frame length, bad
+  source byte, a factory exception, a failed challenge. F09: relayed text has no cap: fixed in part 2. N3: none of the 6 ids is sent. Limits: F08's queue half, `CreateCharacter`
+  Result 1 untested; F12 fails only at its reflection check.
+- [ ] T004b Patch part 2: wire layouts and F09 cap (`implementer`, `briefs/T004b-layout-patch.md`).
 - [ ] T005 Adversarial review: which fix would break a working client? (`adversarial-reviewer`), then fixes.
 - [ ] T005b Live smoke on `C:\ddon-automation`: patched server, real client, a game login (W01 touches every one), one error path, one quest end (W16).
 - [ ] T006 Impact outline and PR body (`research/impact.md`); push the branch, open the draft PR on the fork.
@@ -28,6 +31,6 @@ Coordinator: main session. One subagent at a time. Goal, error classes, method a
 
 ## Running
 
-- T004a (implementer, brief `briefs/T004a-framework-patch.md`), started 2026-11-04. Next: land, brief T004b. To carry: `docs/reference/status.md` says `ag_vs_pc` 3 differ, T001 says 2 (34.0.1 was
+- T004b (implementer, brief `briefs/T004b-layout-patch.md`), started 2026-11-04. Next: land, T005 adversarial review, T005b live smoke, T006 impact and draft PR. To carry: `docs/reference/status.md` says `ag_vs_pc` 3 differ, T001 says 2 (34.0.1 was
   corrected, TSV not regenerated); `docs/explanation/two-packet-decodings.md`'s 19.28.2 example hangs on T003's read of PC consumers of
   `+8`, `+0xc`: fix both pages when settled. R01/R02 are pre-login: ask Sam how to disclose before anything goes upstream.
