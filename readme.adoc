@@ -1,166 +1,74 @@
 = DDON Data
-:toc:
-:toc-placement!:
 
-Reverse-engineering data for Dragon's Dogma Online (DDON): extracted client resources,
-disassembler exports, decrypted network traffic, client patches, and the research tooling built on
-top of them.
-
-toc::[]
-
-== About
-
-This repository collects the *output* of several DDON research tools so the results can be
-versioned, compared across client builds, and cross-referenced. It covers:
-
-* Client resources of the Season 3 PC client (build `03040008`), extracted to JSON.
-* Disassembler exports of the PS4 client (build `02020005`), whose DWARF debug symbols are the main
-  source of truth for class layouts, enums, and serialization order.
-* Captured, decrypted, and annotated network traffic.
-* Binary patches for Windows client executables.
-* Research notes, ImHex patterns, and analysis projects (quest flags, knowledge graph, Ghidra/IDA
-  automation).
-
-Earlier seasons live in separate repositories:
-https://github.com/ddon-research/ddon-data-s1[ddon-data-s1] (Season 1) and
-https://github.com/ddon-research/ddon-data-s2[ddon-data-s2] (Season 2, including WIP DWARF-based
-recompilation output).
+Reverse-engineering data for Dragon's Dogma Online (DDON): extracted client resources, disassembler
+exports, decrypted network traffic, client patches and the research built on them. It holds the
+Season 3 PC client (build `03040008`) and the PS4 export (build `PS4_02020005`), versioned so results
+can be compared across builds and cross-referenced.
 
 All data is provided for research, interoperability, and educational purposes.
 
-== Repository layout
+== Start here
 
-[cols="1,3,2"]
+New to the repository? link:docs/tutorials/read-one-packet.md[Read one packet by hand]: decode one
+committed packet with `xxd` and match its JSON. Then link:docs/index.md[the documentation map] lists
+every page, by type:
+
+[cols="1,3"]
 |===
-|Path |Contents |Produced by
+|Type |First stop
 
-|`client/03040008/`
-|JSON exports of the client resource tree (`nativePC/rom`), plus summaries: `*-resources.csv`,
-`*-resources-exclusive.csv`, `*-headers.csv`, `*-extensions.txt`, `*-layout-npc-location.csv`.
-`client/` also holds benchmark-client statistics.
-|https://github.com/ddon-research/ddon-extractor[ddon-extractor]
+|Tutorial: learn by doing
+|link:docs/tutorials/read-one-packet.md[Read one packet by hand]
 
-|`binaries/PS4_02020005/`
-|IDA export of the PS4 `DDOORBIS.elf`: `DDOORBIS.elf.h` (types) and `DDOORBIS_{1,2,3}.elf.c`
-(decompiled code, split for size).
-|IDA Pro
+|How-to: reach a goal
+|link:docs/how-to/decode-a-resource-format.md[Decode a resource format]
 
-|`binaries/PS4_02020005/elf-dumps/`
-|Static dumps of `DDOORBIS.elf` with provenance: program headers with SCE types, the full dynamic
-table, NIDs, relocations, symbols, strings, stack sizes, unwind data, every DWARF section and all
-line tables, each from the most accurate tool. Its `README.adoc` is a status report on the binary
-and the set.
-|Orbis SDK 12 `orbis-bin`, LLVM 23 (`generate-elf-dumps.sh`)
+|Reference: look something up
+|link:docs/reference/repository-layout.md[Repository layout]
 
-|`binaries/ANDROID_1500/`
-|Decompiled Unity C# scripts and the asset path map of the Android companion app.
-|AssetRipper / ILSpy
+|Explanation: understand why
+|link:docs/explanation/evidence-model.md[Evidence model]
+|===
+
+== Top-level directories
+
+[cols="1,3"]
+|===
+|Path |Holds
+
+|`client/`
+|client resources of build `03040008` as JSON, and their summaries
+
+|`binaries/`
+|IDA exports and static dumps of the PS4 ELF; the Android companion app's C#
 
 |`packets/`
-|`encrypted_streams/` (cleaned TCP streams), `decrypted_raw/`, `decrypted_json/`,
-`decrypted_annotated/`, `keys/` (brute-forced session keys and the automation script), packet
-statistics, and helper scripts. Also `patterns/03040008/` (ImHex patterns per packet, hand-authored),
-`plbatch/` (the export engine), `tools/`, `tests/` and `wireshark/` (dissector drafts and filters).
-|tshark, `ddon_common_key_bruteforce`, `Arrowgene.Ddon.Cli`
+|captured traffic, decrypted and decoded; the patterns and engine that decode it
 
 |`patches/`
-|radare2 patch scripts (`.r2`) with JSON metadata for Windows `DDO.exe` builds: protection removal
-and quality-of-life fixes. See `patches/README.md`.
-|Hand-authored
+|radare2 patch scripts for Windows `DDO.exe` builds
 
-|`research/03040008/`
-|ImHex resource patterns (`r<Type>-pattern.cpp`), DTI dumps, and notes. Season 1 and 2 patterns are in ddon-data-s1 and ddon-data-s2
-(client 03040008).
-|Hand-authored
-
-|`research/03040008/flags/`
-|`ddon-flags`: a Python 3.14 project that infers quest and layout flag usage from the extracted
-client data, with generated per-quest reports.
-|This repository
-
-|`research/knowledge-graph/`
-|`ddon-knowledge-graph`: a provenance-bound evidence graph (Neo4j, MCP server) that fuses DWARF,
-IDA, Ghidra, reconstructor, and resource observations. Planned with Spec Kit in its own `specs/`.
-|This repository
-
-|`research/ida/`, `research/pharos/`
-|IDA helpers, Pharos OOAnalyzer setup. The Ghidra/PyGhidra scripts moved to
-link:https://github.com/ddon-research/ddon-ghidra-scripts[ddon-ghidra-scripts].
-|This repository
-
-|`research/` (other)
-|Texture research, community spreadsheets
-(`external/`), extension and header survey scripts.
-|Hand-authored
+|`research/`
+|resource patterns, notes and research projects
 
 |`docs/`
-|The documentation, by what you want to do: start at `docs/index.md`.
-|Hand-authored
+|the documentation
+
+|`tools/`
+|the local gate and hooks
+
+|`specs/`
+|the planned features, with their evidence reports
 |===
 
-== Data flow
+Coding agents start at `AGENTS.md`.
 
-[source]
-----
-game clients (D:\DDON_<build>\nativePC\rom) ──ddon-extractor──▶ client/<build>/
-PS4 DDOORBIS.elf (DWARF) ──IDA / Ghidra──▶ binaries/PS4_<build>/, research/ patterns
-PS4 DDOORBIS.elf ──orbis-bin, LLVM (generate-elf-dumps.sh)──▶ binaries/PS4_02020005/elf-dumps/
-packet captures (.pcapng) ──split, key bruteforce, Arrowgene CLI──▶ packets/
-client/ + binaries/ + reconstructor output ──▶ research/knowledge-graph, research/03040008/flags
-----
+== Season repositories
 
-Downstream tools read this repository: the DDON explorer server (`client/03040008`), the
-https://github.com/Sapphiratelaemara/DDON-translation[DDON-translation] tools (quest messages),
-the https://github.com/sebastian-heinz/Arrowgene.DragonsDogmaOnline[Arrowgene server emulator]
-documentation, and https://github.com/alborrajo/DDOn-Tools[DDOn-Tools] patterns. Keep those paths
-stable.
-
-== Toolchain
-
-* Disassembly: IDA Pro 9.5 (with the IDA MCP server and IDA Assist) and Ghidra 11.4 with PyGhidra
-  (scripts in link:https://github.com/ddon-research/ddon-ghidra-scripts[ddon-ghidra-scripts], archived).
-* Resource extraction: https://github.com/ddon-research/ddon-extractor[ddon-extractor].
-* Pattern inspection: ImHex (CLI `imhex --pl format`).
-* Packet analysis: Wireshark and `tshark`;
-  https://github.com/ddon-research/ddon_common_key_bruteforce[ddon_common_key_bruteforce]
-  (fork of https://github.com/Andoryuuta/ddon_common_key_bruteforce[the original]);
-  `Arrowgene.Ddon.Cli` from the Arrowgene server emulator.
-* Patching: radare2.
-* Scripting: bash (Git Bash or WSL), `jq`, `rg`, and `uv`-managed Python 3.14 projects.
-
-== Typical workflows
-
-=== Client resource extraction
-
-. Run ddon-extractor against the client installation, for example
-  `ddon-extractor resource -p true -o -m -f json -u -x D:\DDON_03040008 D:\DDON-translation\gmd.csv <out>`.
-. Replace `client/<build>/` with the output and regenerate the summary CSV/TXT files.
-. Review the change per resource type (`git diff --stat -- client/<build>`) before committing.
-
-=== Resource format research
-
-. Find extensions the extractor does not support yet: `research/scripts/find-unsupported-extensions.sh`.
-. Recover the class layout and its `load`/`save` methods from the PS4 debug symbols, through IDA
-  or the archived link:https://github.com/ddon-research/ddon-ghidra-scripts[ddon-ghidra-scripts]
-  (`headless-scripts/run_ghidra_analysis.sh dwarf|function <name> DDOORBIS.elf`).
-. Write an ImHex pattern in `research/03040008/r<Type>-pattern.cpp` and validate it against real
-  files with `imhex --pl format --pattern <pattern> --input <file>`.
-. Cross-check the result against the extractor JSON. `research/README.adoc` describes the
-  LLM-assisted variant of this loop.
-
-=== Packet capture to decrypted streams
-
-`packets/keys/decrypt-pcapng-streams-all-in-one.sh <capture.pcapng|folder> [output_dir]` finds each
-stream's session key and decrypts it: link:docs/how-to/decrypt-a-capture.md[Decrypt a capture].
-link:docs/how-to/reannotate-streams.md[Re-annotate streams] reprocesses streams whose keys are known,
-and `packets/README.md` maps the rest of that directory.
-
-== Working with AI agents
-
-`AGENTS.md` is the canonical guide for coding agents (paths, evidence rules, shell conventions,
-workflows); `CLAUDE.md` imports it for Claude Code. Feature work is planned with
-https://github.com/github/spec-kit[GitHub Spec Kit]: repository-wide features in `specs/`, the
-knowledge graph in `research/knowledge-graph/specs/`.
+Earlier seasons, their resource patterns among them, are separate:
+https://github.com/ddon-research/ddon-data-s1[ddon-data-s1] (Season 1) and
+https://github.com/ddon-research/ddon-data-s2[ddon-data-s2] (Season 2, including WIP DWARF-based
+recompilation output).
 
 == Credits
 

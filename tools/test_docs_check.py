@@ -7,6 +7,7 @@ check fails its test.
 
 import contextlib
 import hashlib
+import inspect
 import io
 import json
 import os
@@ -250,6 +251,17 @@ class DocsCheckTest(unittest.TestCase):
 
     def test_case_mismatch_in_code_span_fails(self):
         self.assert_page_finding("See `research/README.adoc`.", "path", "research/README.adoc")
+
+    def test_season_pattern_path_as_if_local_fails(self):
+        for span in ("research/02030004/rLandInfo-pattern.cpp", "research/01020003/"):
+            self.assert_page_finding(f"See `{span}`.", "path", span.rstrip("/"))
+
+    def test_season_pattern_path_naming_its_repository_passes(self):
+        for span in ("ddon-data-s2/research/02030004/rLandInfo-pattern.cpp", "ddon-data-s1/research/01020003/"):
+            self.assertIsNone(docs_check.span_path(span), span)
+
+    def test_readme_adoc_is_checked_by_default(self):
+        self.assertIn("readme.adoc", inspect.signature(docs_check.run).parameters["adoc"].default)
 
     def test_globs_placeholders_and_commands_are_skipped(self):
         self.assertEqual(self.findings(), [])

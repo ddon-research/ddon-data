@@ -26,6 +26,4 @@ Lab tools and notes on why captures from long-running clients do not decrypt, cl
 gcc -O3 -march=native -fopenmp -I/d/research/ddon_common_key_bruteforce/src deepscan.c /d/research/ddon_common_key_bruteforce/src/camellia.c -o deepscan.exe
 ```
 
-## Video of the captured sessions
-
-`D:\ddon-longplay\ddon longplay\` holds about 88 screen recordings that match the pcaps (`NNN - Dragon's Dogma Online N [id].mkv` plus `.info.json`; 182 GiB, up to 15 GiB and 3.5 h per file). They show what happened in game around a capture time, such as a login or a key burst. The only clock is the Windows 7 taskbar clock, accurate to the minute. Never copy or decode a whole file: read `.info.json` with `jq`, and take single frames with `ffmpeg -ss <t> -i <mkv> -frames:v 1 <png>`.
+The videos of the captured sessions are on [Inputs and builds](../../docs/reference/inputs-and-builds.md#longplay-videos).

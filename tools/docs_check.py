@@ -51,9 +51,13 @@ TOP_DIRECTORIES = ("client", "packets", "research", "binaries", "patches", "tool
 
 # The directory READMEs held to the page rules. A package that shortens a README adds it here.
 SHORT_READMES = (
+    "research/README.md",
     "research/scripts/README.md",
     "research/prompts/README.md",
+    "research/03040008/dumps/README.md",
     "research/03040008/notes/README.md",
+    "research/03040008/xfs/README.md",
+    "tools/README.md",
     "packets/README.md",
     "packets/patterns/03040008/README.md",
     "packets/plbatch/README.md",

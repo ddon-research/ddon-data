@@ -1,6 +1,6 @@
 # plbatch design
 
-Why the packet export of client 03040008 runs through a batch driver of its own and not `imhex --pl format`, why that driver pins a PatternLanguage commit different from ImHex's, and what it leaves on the table. For anyone changing the export or doubting its output. The flags are in the [plbatch CLI](../reference/plbatch-cli.md) reference; the measurements are on [Status](../reference/status.md#export-engine-measured-2026-11-01). The background report is `specs/005-netmsg-patterns/research/P7-imhex-as-library.md`.
+Why the packet export of client 03040008 runs through a batch driver of its own and not `imhex --pl format`, why that driver pins a PatternLanguage commit different from ImHex's, and what it leaves on the table. For anyone changing the export or doubting its output. The flags are in the [plbatch CLI](../reference/plbatch-cli.md) reference; the measurements are on [Status](../reference/status.md#export-engine). The background report is `specs/005-netmsg-patterns/research/P7-imhex-as-library.md`.
 
 ## Why a batch driver
 

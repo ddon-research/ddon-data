@@ -8,4 +8,3 @@ This directory holds hand-written working notes on quests and content release of
 | `q50204000-black-sword-investigation.txt` | quest q50204000: links and findings |
 | `release-contents-research.txt` | `cEndContentsManager` and quest unlock notes |
 | `release-elements.txt` | `RELEASE_CONTENT_*` keys and messages, a JSON excerpt |
-| `quest-flag-data-source-mapping.adoc` | a rough map from flag command to client file |

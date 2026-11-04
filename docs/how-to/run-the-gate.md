@@ -53,4 +53,4 @@ A failed section prints the end of its log to stderr. The full logs are `.agent-
 | `packet-counts` | `docs/reference/packet-ids.md` or `packets/decrypted_json/` changed, except `--quick` | `tools/docs_check.py --packet-counts`: each row's fit count against the JSON tree, in seconds |
 | `imhex` | a resource pattern changed | always `not run`: the validation is `research/scripts/validate_pattern.sh`, per pattern |
 
-To fix a `docs` finding, see [Write documentation](write-documentation.md).
+To fix a `docs` finding, see [Write documentation](write-documentation.md). The exact conditions of each section, and what each hook refuses, are on [Gate and hooks](../reference/gate-and-hooks.md).

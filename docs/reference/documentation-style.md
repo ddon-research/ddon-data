@@ -78,6 +78,7 @@ Status carries a dated blockquote as its second paragraph, with the date of the 
 - Pages have no site build, and GitHub renders them. A Markdown link may point at any repository file; the gate checks it against the git index, with its exact case, so it does not 404 on GitHub. A link names a file: to send a reader to a directory, link its README.
 - An anchor names a heading of the target, spelled as GitHub spells it.
 - A repository path in a code span that starts with `client/`, `packets/`, `research/`, `binaries/`, `patches/`, `tools/`, `specs/` or `docs/` exists in the index, or is a gitignored local path or a tree of uncommitted other work on disk. Globs and `<placeholders>` are not checked.
+- A path in a sibling repository starts with that repository's name: `ddon-data-s2/research/02030004/`, `ddon-data-s1/research/01020003/`. Written without that first part, it fails the check as a path that does not exist here.
 - Closed specs are records: a page may cite one, and a spec's own paths are never corrected after a move.
 - External sites are absolute URLs. Local machine paths appear only where `AGENTS.md` states them (the inputs, the databases, the sibling repositories).
 

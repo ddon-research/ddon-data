@@ -1,6 +1,6 @@
 # DDON data documentation
 
-The map of this repository's documentation, for peers who know x86, ELF and DWARF but not this project: every page, by what you want to do. Start with the tutorial if the repository is unfamiliar; `readme.adoc` gives the overview. `AGENTS.md` is the canonical guide for coding agents.
+The map of this repository's documentation, for peers who know x86, ELF and DWARF but not this project: every page, by what you want to do. Start with the tutorial if the repository is unfamiliar; [`readme.adoc`](../readme.adoc) gives the overview. [`AGENTS.md`](../AGENTS.md) is the canonical guide for coding agents.
 
 ## Tutorials: learn by doing
 
@@ -8,8 +8,15 @@ The map of this repository's documentation, for peers who know x86, ELF and DWAR
 
 ## How-to: reach a goal
 
-- [Run the gate](how-to/run-the-gate.md): run `tools/check.sh` and read its lines.
-- [Write documentation](how-to/write-documentation.md): change a page and pass its check.
+### Resources
+
+- [Choose a resource target](how-to/choose-a-resource-target.md): list the extensions the extractor lacks and pick one.
+- [Decode a resource format](how-to/decode-a-resource-format.md): from a class to a validated ImHex pattern, with rLandInfo as the example.
+- [Extract client resources](how-to/extract-client-resources.md): re-extract `client/<build>/` and review the change.
+- [Convert textures](how-to/convert-textures.md): extract a client's textures and convert them to PNG.
+
+### Packets
+
 - [Decrypt a capture](how-to/decrypt-a-capture.md): turn a pcapng into session keys and decrypted streams.
 - [Re-annotate streams](how-to/reannotate-streams.md): re-run the CLI over known streams, split the dumps, export the raw packets.
 - [Patch the Arrowgene CLI](how-to/patch-the-arrowgene-cli.md): build the patched CLI those exports need.
@@ -20,21 +27,41 @@ The map of this repository's documentation, for peers who know x86, ELF and DWAR
 - [Verify a regeneration](how-to/verify-a-regeneration.md): check a re-export of many files by a prediction and a stratified sample.
 - [Build plbatch](how-to/build-plbatch.md): build the batch engine of the export.
 - [Inspect captures in Wireshark](how-to/inspect-captures-in-wireshark.md): load the postdissector and the display filters.
+
+### IDA and binaries
+
 - [Query an IDA database read-only](how-to/query-ida-read-only.md): make a private copy, read it, delete it.
 - [Write to an IDA database](how-to/write-to-an-ida-database.md): run a write as a headless batch, check the save, keep the undo.
 - [Transfer annotations from PS4 to PC](how-to/transfer-annotations-ps4-to-pc.md): repair, extract, match, transfer, apply, verify, undo.
+- [Regenerate the ELF dumps](how-to/regenerate-elf-dumps.md): rebuild or verify the static dumps of the PS4 ELF.
+- [Run Pharos](how-to/run-pharos.md): run OOAnalyzer on a large executable in Docker.
+
+### Client executables
+
 - [Apply a client patch](how-to/apply-a-client-patch.md): apply one `.r2` layer to a copy and check its hash.
 - [Add a client patch layer](how-to/add-a-client-patch-layer.md): record a layer with its hash chain.
 - [Triage a client crash](how-to/triage-a-client-crash.md): capture, classify and record a crash; what to try when a hook writes `.text`.
-- [Regenerate the ELF dumps](how-to/regenerate-elf-dumps.md): rebuild or verify the static dumps of the PS4 ELF.
-- [Run Pharos](how-to/run-pharos.md): run OOAnalyzer on a large executable in Docker.
-- [Convert textures](how-to/convert-textures.md): extract a client's textures and convert them to PNG.
+
+### This repository
+
+- [Run the gate](how-to/run-the-gate.md): run `tools/check.sh` and read its lines.
+- [Write documentation](how-to/write-documentation.md): change a page and pass its check.
 
 ## Reference: look something up
 
-- [Documentation writing contract](reference/documentation-style.md): the rules every page follows.
-- [Glossary](reference/glossary.md): the terms pages share, the evidence marks among them.
+### The repository
+
+- [Repository layout](reference/repository-layout.md): every top path, what it holds, who produces it and who reads it from outside.
+- [Inputs and builds](reference/inputs-and-builds.md): builds, clients, IDA databases, the PS4 ELF, captures and videos.
 - [Status](reference/status.md): the dated counts, and what was not run.
+- [Glossary](reference/glossary.md): the terms pages share, the evidence marks among them.
+- [Conventions](reference/conventions.md): naming and file formats.
+- [Tools and shell](reference/tools-and-shell.md): the tools a human needs, with versions, and the shell's rules in brief.
+- [Gate and hooks](reference/gate-and-hooks.md): each section of the gate and what each hook refuses.
+- [Documentation writing contract](reference/documentation-style.md): the rules every page follows.
+
+### Packets
+
 - [Packet wire format](reference/packet-wire-format.md): framing, cipher, header, RES header, lists, strings and padding.
 - [Packet handler tables](reference/packet-handler-tables.md): where the PC client keeps handlers, senders and names.
 - [Packet ids](reference/packet-ids.md): every packet pattern of client 03040008, its report and its fit.
@@ -45,10 +72,18 @@ The map of this repository's documentation, for peers who know x86, ELF and DWAR
 - [imhex-export CLI](reference/imhex-export-cli.md): options, filter forms, environment and summary line of the export.
 - [plbatch CLI](reference/plbatch-cli.md): flags, output lines and exit codes of the batch engine.
 - [Arrowgene CLI patches](reference/arrowgene-cli-patches.md): what the patched CLI changes, and its build identity.
+
+### Binaries and client
+
 - [IDA transfer tools](reference/ida-transfer-tools.md): the transfer's scripts, flags, extractor records, manifest columns, rules and published results.
 - [Client patches](reference/client-patches.md): the hash chain, lineage, file offsets and `.r2` encoding of the PC executables.
 - [Protection inventory](reference/protection-inventory.md): the mechanisms in the PC dumps, their sites and their state per executable.
 - [ELF dumps](reference/elf-dumps.md): provenance, storage, verification and two file formats of the PS4 dump set.
+
+### Game knowledge
+
+- [Quest flag sources](reference/quest-flag-sources.md): where each flag command of a quest lives in client 03040008.
+- [Community resources](reference/community-resources.md): archived pages, wikis, spreadsheets, videos, repositories and wiki backups.
 
 ## Explanation: understand why
 
@@ -64,7 +99,8 @@ The map of this repository's documentation, for peers who know x86, ELF and DWAR
 
 ## Other work
 
-These projects keep their own documents:
+These keep their own documents:
 
 - [`ddon-flags`](../research/03040008/flags/README.md): the quest and layout flag investigation.
 - `ddon-knowledge-graph`, in `research/knowledge-graph/README.md`: the provenance-bound evidence graph.
+- [External references](../research/external-references.md): the outside repositories and documents the research relies on.
