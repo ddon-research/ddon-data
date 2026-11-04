@@ -61,7 +61,7 @@ class GuardPathsTest(unittest.TestCase):
             cased = tail.upper() if tail[0] != "s" else tail.replace("tasks", "TASKS")
             for path in (f"{REPO}/{tail}", f"{lower}/{tail}", f"{REPO}/{cased}", f"/{drive}{bare}/{tail}",
                          f"/mnt/{drive}{bare}/{tail}", tail, f"./{tail}", f"//?/{REPO}/{tail}",
-                         "\\?\\" + f"{REPO}/{tail}".replace("/", "\\"), f"docs/../{tail}", f"{REPO}/{tail}.",
+                         EXTENDED + f"{REPO}/{tail}".replace("/", "\\"), f"docs/../{tail}", f"{REPO}/{tail}.",
                          f"{REPO}/{tail} ", f"{REPO}/{tail}::$DATA", f"{REPO}//{tail}"):
                 with self.subTest(path=path):
                     self.assertIsNotNone(guard_paths.verdict(edit(path, REPO), "--deny-owned", []))
@@ -77,7 +77,7 @@ class GuardPathsTest(unittest.TestCase):
         tail = "packets/patterns/03040008/x-pattern.cpp"
         for path in (f"{REPO}/{tail}", f"{lower}/{tail}", f"{REPO}/{tail.upper()}", f"/{drive}{bare}/{tail}",
                      f"/mnt/{drive}{bare}/{tail}", tail, f"./{tail}", f"//?/{REPO}/{tail}",
-                     "\\?\\" + f"{REPO}/{tail}".replace("/", "\\"), f"{REPO}/packets/decrypted_json/../patterns/x.md"):
+                     EXTENDED + f"{REPO}/{tail}".replace("/", "\\"), f"{REPO}/packets/decrypted_json/../patterns/x.md"):
             with self.subTest(path=path):
                 self.assertIsNone(guard_paths.verdict(edit(path, REPO), "--deny-owned", []))
         self.assertIsNone(guard_paths.verdict(edit("patterns/x.md", f"{REPO}/packets"), "--deny-owned", []))

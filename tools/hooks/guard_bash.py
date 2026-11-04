@@ -15,7 +15,9 @@ the prompt. Each refusal names the replacement:
   -z --stdin` instead (T020);
 - a `git commit` without `-- <paths>` (or with `-i`) while the index holds staged paths the same
   command line does not `git add`: other sessions' staged work would ride along (T017);
-- forced or deleting pushes, and pushes of any branch other than the current one;
+- forced or deleting pushes, pushes of any branch other than the current one, and a push naming a
+  branch after a directory change that leaves the branch unknown (only a plain `cd <literal>` in an
+  unbroken `&&` chain at the top level is followed, and `git -C <literal>`);
 - polling: a `while`/`until` loop around `sleep`, or a wait-and-look command (sleep, date, process
   lists, `tail`) again within 60 s from the same agent: use `run_in_background` and end the turn.
 
@@ -23,15 +25,17 @@ ddon-data additions (AGENTS.md "Preservation and git hygiene"; ported from ddon-
 - `git worktree add` (the repository is too large for worktrees; agents share the main checkout);
 - unbounded output over the large trees (`client/`, `packets/`, except the small hand-authored subtrees
   of SMALL_SUBTREES): `git diff`/`git log -p` without a
-  summary flag and with no pathspec or one in a large tree, `ls -R`/`tree`/`fd`/`rg --files`/
-  `git ls-files` there without a depth or count bound, and `rg` content searches there without
-  `-c`/`-l`/`-m`/`-q`;
+  summary flag and with no pathspec or one in a large tree, `git show` of a path there without a
+  summary flag, `ls -R`/`tree`/`fd`/`rg --files`/`git ls-files` there without a depth or count bound,
+  and `rg`/`git grep` content searches there without `-c`/`-l`/`-m`/`-q`. Each argument is resolved
+  against the tracked `cd` and `git -C` first; a tool given no path searches its directory;
 - bulk reverts: `git checkout -- <dir|.>`, `git restore <dir|.>`, `git rm -r`: list exact paths and
   ask the user first.
 
 The parsing is best effort (shlex over the command line, heredoc bodies dropped). Exit 2 refuses.
 """
 
+import collections
 import hashlib
 import os
 import posixpath
@@ -55,6 +59,9 @@ PAGERS = {"head", "tail"}
 WAITS = {"sleep", "start-sleep", "wait", "wait-process", "wait-job", "wait-event"}
 PROBES = WAITS | {"date", "get-date", "uptime", "tasklist", "ps", "get-process", "tail"}
 LOOPS = {"while", "until"}
+SHELL_WORDS = {"if", "then", "elif", "else", "do", "while", "until", "!", "{"}
+ENTERS = {"cd", "chdir", "pushd", "set-location", "sl", "push-location"}
+MOVERS = ENTERS | {"popd", "pop-location"}
 COMMIT_VALUED = set("mFCct")
 MAX_FOLDERS = 5
 
@@ -102,10 +109,15 @@ def tokens(command):
         return re.sub(r"([;&|()]+)", r" \1 ", text).split()
 
 
-def pipelines(command):
-    """The command line as a list of pipelines, each a list of stages (word lists)."""
-    out, pipeline, stage = [], [], []
-    for token in tokens(command):
+def chains(command):
+    """The command line as (stages, separator before, separator after, subshell depth), one per pipeline, with the
+    stages' words as written. `2>&1` and `&>f` are redirections, not background separators."""
+    out, pipeline, stage, before, depth = [], [], [], None, 0
+    words = tokens(command)
+    for index, token in enumerate(words):
+        following = words[index + 1] if index + 1 < len(words) else ""
+        if token == "&" and ((stage and re.fullmatch(r"\d*>>?", stage[-1])) or following.startswith(">")):
+            continue
         if token in PIPES:
             pipeline.append(stage)
             stage = []
@@ -113,15 +125,22 @@ def pipelines(command):
             if stage:
                 pipeline.append(stage)
             if pipeline:
-                out.append(pipeline)
+                out.append((pipeline, before, token, depth))
             pipeline, stage = [], []
+            before = token
+            depth += token.count("(") - token.count(")")
         else:
             stage.append(token)
     if stage:
         pipeline.append(stage)
     if pipeline:
-        out.append(pipeline)
-    return [[unwrapped(s) for s in p] for p in out]
+        out.append((pipeline, before, None, depth))
+    return out
+
+
+def pipelines(command):
+    """The command line as a list of pipelines, each a list of stages (word lists)."""
+    return [[unwrapped(s) for s in chain[0]] for chain in chains(command)]
 
 
 def name_of(word):
@@ -130,11 +149,11 @@ def name_of(word):
 
 
 def unwrapped(words):
-    """`words` without leading `VAR=x` assignments and wrappers (`timeout 60 grep ...` -> grep)."""
+    """`words` without leading `VAR=x` assignments, shell keywords and wrappers (`timeout 60 grep ...` -> grep)."""
     i = 0
     while i < len(words):
         word = words[i]
-        if "=" in word and word.split("=", 1)[0].isidentifier():
+        if word in SHELL_WORDS or ("=" in word and word.split("=", 1)[0].isidentifier()):
             i += 1
             continue
         if name_of(word) in WRAPPERS:
@@ -192,14 +211,62 @@ def native_path(path):
     return f"{match[1].upper()}:{match[2] or '/'}" if os.name == "nt" and match else path
 
 
+def is_literal(word):
+    """True for a directory the guard can name: no expansion the shell would do first."""
+    return not re.search(r"[$`~*?\[]", word)
+
+
+def joined(base, word):
+    """`word` under `base`, or None when it depends on what the shell expands or on an unknown base."""
+    if not is_literal(word):
+        return None
+    target = native_path(word)
+    if re.match(r"[a-zA-Z]:[\\/]", target) or target.startswith(("/", "\\")):
+        return str(Path(target))
+    return str(Path(base) / target) if base else None
+
+
 def entered(words, cwd):
-    """The directory after this command: `cd <dir>` moves the rest of the line; `$VAR` and `cd -` stay unknown."""
-    if len(words) == 2 and name_of(words[0]) == "cd" and "$" not in words[1] and words[1] != "-":
-        return str(Path(cwd) / native_path(words[1]))
-    return cwd
+    """Best guess of the directory after this command, for the checks of paths: any `cd`, `pushd` naming one literal
+    directory moves the rest of the line, whatever its flags; `$VAR` and `cd -` stay put."""
+    if not words or name_of(words[0]) not in ENTERS:
+        return cwd
+    targets = [w for w in words[1:] if not w.startswith("-") and not re.match(r"\d*[<>]", w)]
+    moved = joined(cwd, targets[0]) if len(targets) == 1 else None
+    return moved or cwd
+
+
+Stage = collections.namedtuple("Stage", "words known guess bases")
+
+
+def located(command, cwd):
+    """Pipelines of Stages. `known` is the directory the stage certainly runs in, None when unknown: it follows only a
+    plain `cd <literal>` in an unbroken `&&` chain at the top level. `guess` follows every `cd`. `bases` are the
+    directories to resolve a path against: `known`, or else `guess` and the start."""
+    known, guess, followed, out = cwd, cwd, False, []
+    for stages, before, after, depth in chains(command):
+        row = []
+        for raw in stages:
+            bases = [known] if known else list(dict.fromkeys((guess, cwd)))
+            row.append(Stage(unwrapped(raw), known, guess, bases))
+        out.append(row)
+        for raw in stages:
+            words = unwrapped(raw)
+            if not words or name_of(words[0]) not in MOVERS:
+                continue
+            plain = (len(stages) == 1 and depth == 0 and after in ("&&", None) and "|" not in (before or "")
+                     and raw == words and len(words) == 2 and name_of(words[0]) == "cd"
+                     and not words[1].startswith("-"))
+            known = joined(known, words[1]) if plain else None
+            followed = followed or plain
+            guess = entered(words, guess)
+        if followed and after not in ("&&", None):
+            known = None  # a `cd` before this may have failed: the rest runs in either directory
+    return out
 
 
 def git_parts(words, cwd):
+    """(settings, directory, subcommand, arguments). The directory is None when no plain path gives it."""
     settings, directory, i = [], cwd, 1
     while i < len(words) and words[i].startswith("-"):
         option = words[i]
@@ -207,9 +274,13 @@ def git_parts(words, cwd):
             if option == "-c":
                 settings.append(words[i + 1].replace(" ", "").lower())
             if option == "-C":
-                directory = str(Path(directory) / native_path(words[i + 1]))
+                directory = joined(directory, words[i + 1])
+            if option in ("--git-dir", "--work-tree"):
+                directory = None
             i += 2
         else:
+            if option.startswith(("--git-dir=", "--work-tree=")):
+                directory = None
             i += 1
     if i >= len(words):
         return settings, directory, None, []
@@ -340,14 +411,19 @@ def added_paths(line, cwd):
                 if sub == "add":
                     after = after_dashdash(arguments)
                     named = after if after is not None else [w for w in arguments if not w.startswith("-")]
-                    added += [(directory, path) for path in named]
+                    added += [(directory or cwd, path) for path in named]
     return added
 
 
-def check_git(words, cwd, added=()):
+SAME = object()
+
+
+def check_git(words, cwd, added=(), known=SAME):
+    """`cwd` is the best guess of the directory; `known` the certain one for a push, None when unknown."""
     settings, directory, sub, arguments = git_parts(words, cwd)
     if sub is None:
         return None
+    directory = directory or cwd
     unsigned = {"commit.gpgsign=false", "commit.gpgsign=0", "commit.gpgsign=no"}
     if sub in ("commit", "merge", "rebase", "cherry-pick", "revert", "am", "pull", "tag", "commit-tree"):
         if "--no-gpg-sign" in arguments or unsigned & set(settings) or "--no-verify" in arguments:
@@ -367,7 +443,7 @@ def check_git(words, cwd, added=()):
     if sub == "add":
         return check_add(directory, arguments)
     if sub == "push":
-        return check_push(directory, arguments)
+        return check_push(git_parts(words, cwd if known is SAME else known)[1], arguments)
     return None
 
 
@@ -387,7 +463,7 @@ def check_push(directory, arguments):
         elif not word.startswith("-"):
             positional.append(word)
     refspecs = positional[1:]
-    branch = current_branch(directory)
+    branch = current_branch(directory) if directory else None
     for spec in refspecs:
         if spec.startswith(("+", ":")):
             return f"Refspec `{spec}` forces or deletes a remote ref."
@@ -395,8 +471,12 @@ def check_push(directory, arguments):
         destination = destination or source
         if destination.startswith("refs/tags/") or source.startswith("refs/tags/"):
             continue
+        if source == "HEAD" and destination == "HEAD":
+            continue
         if branch is None:
-            return None
+            return (f"Which branch this push runs on is unknown, so `{spec}` cannot be checked: a directory change "
+                    "precedes it that is not a plain `cd <dir> &&`, or the directory is no repository. Run it from the "
+                    "repository: a separate `git push ...` there, `cd <dir> && git push ...` or `git -C <dir> push ...`.")
         ok = {branch, f"refs/heads/{branch}", "HEAD"}
         if source not in ok or destination not in ok:
             return f"Push only the current branch (`{branch}`): `{spec}` names another. Ask the user for anything else."
@@ -411,15 +491,24 @@ SUMMARY_FLAGS = {"--stat", "--shortstat", "--numstat", "--name-only", "--name-st
 COUNTERS = {"wc", "dust"}
 
 
-def in_large_tree(word):
+def in_large_tree(word, cwd=None):
     """True for a path argument inside client/ or packets/ (also as `./client/...` or an absolute path),
-    outside SMALL_SUBTREES. Normalized first: `packets/patterns/../decrypted_json` is the data tree."""
-    path = posixpath.normpath(word.replace("\\", "/").lower())
+    outside SMALL_SUBTREES. A relative path is taken from `cwd`, or from the repository when `cwd` is relative, absent
+    or outside it. Normalized first: `packets/patterns/../decrypted_json` is the data tree."""
+    literal = word.replace("\\", "/").lower()
+    path = literal
+    base = (cwd or "").replace("\\", "/").lower()
+    if base and not re.match(r"[a-z]:/|/", literal):
+        path = f"{base}/{literal}"
+    path = posixpath.normpath(path)
     repo = str(hooklib.REPO).replace("\\", "/").lower().rstrip("/")  # d:/ddon-data
     for root in (repo, "/" + repo.replace(":", "", 1), "/mnt/" + repo.replace(":", "", 1)):
         if path.startswith(root + "/"):
             path = path[len(root) + 1:]
             break
+    else:
+        if re.match(r"[a-z]:/|/", path):  # another checkout, as `cd /d/ddon-data-s1 && rg x client`
+            path = posixpath.normpath(literal)
     if not any(path == t or path.startswith(t + "/") for t in LARGE_TREES):
         return False
     if any(path == t or path.startswith(t + "/") for t in SMALL_SUBTREES):
@@ -438,36 +527,100 @@ def bounded_by_next(stages, index):
     return name == "rg" and any(w in ("-c", "--count", "-l", "-q", "--quiet") or w.startswith("-m") for w in following)
 
 
-def check_large_output(stages):
-    for index, words in enumerate(stages):
+RG_VALUED = {"-g", "--glob", "--iglob", "-t", "--type", "-T", "--type-not", "-A", "-B", "-C", "-m", "--max-count", "-d",
+             "--max-depth", "-j", "--threads", "-r", "--replace", "--sort", "--sortr", "-M", "--max-columns", "-E",
+             "--encoding", "--engine"}
+RG_PATTERN = {"-e", "--regexp", "-f", "--file"}
+FD_VALUED = {"-e", "--extension", "-t", "--type", "-E", "--exclude", "-d", "--max-depth", "--min-depth", "--exact-depth",
+             "-x", "--exec", "-X", "--exec-batch", "-S", "--size", "-j", "--threads", "--changed-within",
+             "--changed-before", "-o", "--owner"}
+GIT_LOG_VALUED = set("nSGLOU")
+GIT_GREP_VALUED = set("eABCOfm")
+FD_PATH_FLAGS = ("--search-path", "--base-directory")
+
+
+def path_words(name, args):
+    """The paths this `rg`, `fd`, `tree` or `ls` is given; with none it searches its directory. A search's first
+    word is its pattern, not a path."""
+    valued = RG_VALUED | RG_PATTERN if name == "rg" else FD_VALUED if name == "fd" else set()
+    positional, i = [], 0
+    while i < len(args):
+        word = args[i]
+        if word in valued:
+            i += 1
+        elif not word.startswith("-"):
+            positional.append(word)
+        i += 1
+    if name == "fd":
+        flags = [w.split("=", 1)[1] for w in args if w.startswith(tuple(f"{f}=" for f in FD_PATH_FLAGS))]
+        spaced = [args[at + 1] for at, w in enumerate(args[:-1]) if w in FD_PATH_FLAGS]
+        return [*positional[1:], *flags, *spaced]
+    if name == "rg" and not any(w in RG_PATTERN or w.startswith(("--regexp=", "--file=", "-e")) or w == "--files" for w in args):
+        return positional[1:]
+    return positional
+
+
+def check_git_output(words, stage, stages, index):
+    """The refusal for a `git` command that would print a data tree, or None."""
+    _, _, sub, rest = git_parts(words, ".")
+    if sub == "worktree" and rest[:1] == ["add"]:
+        return ("No worktrees in ddon-data (Sam, 2026-10-17: hundreds of thousands of files). Work in the "
+                "main checkout on files no other agent owns; worktrees are fine in small repos such as ddon-hook.")
+    bases = [git_parts(words, base)[1] or base for base in stage.bases]
+    big = lambda word: any(in_large_tree(word, base) for base in bases)  # noqa: E731
+    here = any(in_large_tree(".", base) for base in bases)
+    after = after_dashdash(rest)
+    positional = [w for w in rest if not w.startswith("-")]
+    bounded = bounded_by_next(stages, index)
+    summary = SUMMARY_FLAGS & {w.split("=", 1)[0] for w in rest}
+    if sub in ("diff", "log"):
+        letters = short_flags(rest, GIT_LOG_VALUED)
+        patch = sub == "diff" or any(w.startswith("--patch") for w in rest) or {"p", "u", "U"} & set(letters)
+        if patch and not summary and not bounded:
+            paths = after or []
+            if not paths or any(big(p) or p in (".", ":/") for p in paths):
+                return (f"`git {sub}` without a pathspec or over client/ or packets/ can print hundreds of thousands "
+                        f"of lines: use `git {sub} --stat -- <subdir>` or name the exact files after `--`.")
+    if sub == "show" and not summary and not bounded and "s" not in short_flags(rest, GIT_LOG_VALUED) and "--no-patch" not in rest:
+        if any(big(p) for p in (after if after is not None else positional)):
+            return "`git show` over client/ or packets/ can print hundreds of thousands of lines: use `git show --stat <rev> -- <subdir>` or name the exact files."
+    if sub == "grep" and not bounded:
+        letters = short_flags(rest, GIT_GREP_VALUED)
+        bound = {"c", "l", "L", "q", "m"} & set(letters) or {w.split("=", 1)[0] for w in rest} & {
+            "--count", "--files-with-matches", "--name-only", "--files-without-match", "--quiet", "--max-count"}
+        pattern_given = any(w == "-e" or w.startswith("-e") for w in rest if not w.startswith("--"))
+        paths = after if after is not None else positional[0 if pattern_given else 1:]
+        if not bound and (any(big(p) for p in paths) or (not paths and here)):
+            return "`git grep` over client/ or packets/ needs a bound: `-c`, `-l`, `-m N`, or `| wc -l`."
+    if sub == "ls-files" and not bounded:
+        paths = after if after is not None else positional
+        if any(big(p) for p in paths) or (not paths and here):
+            return "`git ls-files` over client/ or packets/ is unbounded: pipe it to `wc -l`, or use `fd -d 2`."
+    if sub in ("checkout", "restore", "rm"):
+        return check_bulk_revert(sub, rest, bases)
+    return None
+
+
+def check_large_output(located_stages):
+    stages = [stage.words for stage in located_stages]
+    for index, stage in enumerate(located_stages):
+        words = stage.words
         if not words:
             continue
         name, args = name_of(words[0]), words[1:]
-        large = [w for w in args if not w.startswith("-") and in_large_tree(w)]
-        if name == "git" and args:
-            _, _, sub, rest = git_parts(words, ".")
-            if sub == "worktree" and rest[:1] == ["add"]:
-                return ("No worktrees in ddon-data (Sam, 2026-10-17: hundreds of thousands of files). Work in the "
-                        "main checkout on files no other agent owns; worktrees are fine in small repos such as ddon-hook.")
-            if sub in ("diff", "log") and (sub == "diff" or {"-p", "--patch", "-u"} & set(rest)):
-                if SUMMARY_FLAGS & {w.split("=", 1)[0] for w in rest} or bounded_by_next(stages, index):
-                    continue
-                paths = rest[rest.index("--") + 1:] if "--" in rest else []
-                if not paths or any(in_large_tree(p) or p in (".", ":/") for p in paths):
-                    return (f"`git {sub}` without a pathspec or over client/ or packets/ can print hundreds of thousands "
-                            f"of lines: use `git {sub} --stat -- <subdir>` or name the exact files after `--`.")
-            if sub == "ls-files" and large and not bounded_by_next(stages, index):
-                return "`git ls-files` over client/ or packets/ is unbounded: pipe it to `wc -l`, or use `fd -d 2`."
-            if sub in ("checkout", "restore", "rm"):
-                reason = check_bulk_revert(sub, rest)
-                if reason:
-                    return reason
+        if name == "git":
+            reason = check_git_output(words, stage, stages, index) if args else None
+            if reason:
+                return reason
             continue
-        if not large:
+        if name not in ("ls", "fd", "tree", "rg"):
+            continue
+        paths = path_words(name, args) or ["."]
+        if not any(in_large_tree(path, base) for path in paths for base in stage.bases):
             continue
         depth = any(w in ("-d", "--max-depth", "-L", "--level") or w.startswith(("--max-depth=", "-d", "-L"))
                     for w in args)
-        if name == "ls" and any(w.startswith("-") and not w.startswith("--") and "R" in w for w in args):
+        if name == "ls" and ("--recursive" in args or any(w.startswith("-") and not w.startswith("--") and "R" in w for w in args)):
             if not bounded_by_next(stages, index):
                 return "`ls -R` over client/ or packets/ is unbounded: use `fd -d 2 . <dir>` or `dust -d 1 <dir>`."
         if name in ("fd", "tree") and not depth and not bounded_by_next(stages, index):
@@ -482,7 +635,7 @@ def check_large_output(stages):
     return None
 
 
-def check_bulk_revert(sub, rest):
+def check_bulk_revert(sub, rest, bases=(".",)):
     """A refusal for `git checkout --`, `git restore` or `git rm -r` over a directory, `.` or a glob."""
     if sub == "checkout" and "--" not in rest and "." not in rest:
         return None  # a branch switch
@@ -492,7 +645,7 @@ def check_bulk_revert(sub, rest):
         return None  # unstaging leaves the files alone
     paths = rest[rest.index("--") + 1:] if "--" in rest else [w for w in rest if not w.startswith("-")]
     bulk = [p for p in paths if p in (".", ":/", "*") or p.endswith("/") or any(c in p for c in "*?[")
-            or in_large_tree(p) or os.path.isdir(p)]
+            or any(in_large_tree(p, base) or os.path.isdir(os.path.join(base, p)) for base in bases)]
     if sub == "rm" or bulk or not paths:
         return (f"`git {sub}` over {', '.join(bulk) or 'a directory'} reverts or deletes many files in a checkout that "
                 f"holds other work (AGENTS.md): list the exact paths and ask the user first.")
@@ -545,19 +698,19 @@ def verdict(data):
         return None
     shell = "powershell" if data.get("tool_name") == "PowerShell" else "bash"
     cwd = data.get("cwd") or "."
-    line = pipelines(command)
-    added = added_paths(line, cwd)
-    for stages in line:
-        reason = check_tools(stages, shell) or check_large_output(stages)
+    line = located(command, cwd)
+    plain = [[stage.words for stage in row] for row in line]
+    added = added_paths(plain, cwd)
+    for row, stages in zip(line, plain):
+        reason = check_tools(stages, shell) or check_large_output(row)
         if reason:
             return reason
-        for words in stages:
-            cwd = entered(words, cwd)
-            if words and name_of(words[0]) == "git":
-                reason = check_git(words, cwd, added)
+        for stage in row:
+            if stage.words and name_of(stage.words[0]) == "git":
+                reason = check_git(stage.words, stage.guess, added, stage.known)
                 if reason:
                     return reason
-    return check_sd(command) or check_polling(data, command, line)
+    return check_sd(command) or check_polling(data, command, plain)
 
 
 def main():

@@ -89,6 +89,42 @@ REFUSED = [
     "rg -n x packets/patterns/../../client/03040008",
     "git checkout -- packets/patterns/",
     "git restore packets/patterns/",
+    # 009 T009b: arguments resolved against the tracked cd and git -C, more tools and spellings
+    "cd packets && rg foo decrypted_json",
+    "cd packets; rg foo .",
+    "cd client && rg foo",
+    "cd client && fd .",
+    "cd client && fd",
+    "cd client && ls -R",
+    "cd client && git ls-files",
+    "cd packets && fd . decrypted_json",
+    "cd packets/patterns && rg foo ../decrypted_json",
+    "cd packets/patterns && git diff -- ../decrypted_json",
+    "cd packets && git diff -- decrypted_json",
+    "cd packets && git restore decrypted_json",
+    "git -C packets diff -- decrypted_json",
+    "git -C packets ls-files decrypted_json",
+    "git -C client ls-files",
+    "git -C packets show HEAD -- decrypted_json",
+    "(cd packets && rg foo decrypted_json)",
+    "cd -- packets && rg foo decrypted_json",
+    "pushd packets && rg foo decrypted_json",
+    "fd --search-path=packets/decrypted_json",
+    "fd --search-path packets/decrypted_json",
+    "fd . --base-directory=client",
+    "ls --recursive packets/decrypted_json",
+    "git log -up -- client",
+    "git log -pu -- packets/decrypted_json",
+    "git log -U3 -- client",
+    "git log --patch-with-stat -- client",
+    "git show HEAD -- packets/decrypted_json",
+    "git show HEAD packets/decrypted_json",
+    "git grep foo packets/decrypted_json",
+    "git grep foo -- client",
+    "git grep -n -e foo client/03040008",
+    "cd packets && git grep foo",
+    "if true; then git push --force; fi",
+    "if true; then grep x f; fi",
 ]
 
 ALLOWED = [
@@ -154,6 +190,38 @@ ALLOWED = [
     "git checkout -- research/03040008/flags/README.md",
     "git restore --staged research/x.py",
     "git rm research/old.txt",
+    # 009 T009b: the bounded forms under the new resolution, and a cwd that makes the name another path
+    "cd packets && rg -c foo decrypted_json",
+    "cd packets && rg -l foo decrypted_json",
+    "cd packets && rg -m 5 foo decrypted_json",
+    "cd packets && rg foo decrypted_json | wc -l",
+    "cd packets && git diff --stat -- decrypted_json",
+    "cd client && fd -d 2",
+    "cd client && ls",
+    "fd -d 2 --search-path=packets/decrypted_json",
+    "fd --base-directory=packets/patterns",
+    "cd packets/patterns && rg foo",
+    "cd packets/patterns && fd .",
+    "cd packets && rg foo patterns",
+    "cd packets && git diff -- patterns",
+    "git -C packets/patterns ls-files",
+    "ls --recursive packets/tools",
+    "git log -p -- docs/index.md",
+    "git log -S foo -- client",
+    "git log --oneline -- client",
+    "git show --stat HEAD -- client",
+    "git show -s HEAD -- client",
+    "git show HEAD -- docs/index.md",
+    "git show HEAD:docs/index.md",
+    "git grep -c foo client",
+    "git grep -l foo -- packets/decrypted_json",
+    "git grep -m 5 foo client",
+    "git grep foo client | wc -l",
+    "git grep foo packets/patterns",
+    "cd packets/tools && git grep foo",
+    "cd research && rg foo client",
+    "git status 2>&1 | wc -l",
+    "cd tools && git status 2>&1 && git add x.py",
 ]
 
 
@@ -194,7 +262,6 @@ class GuardBashTest(unittest.TestCase):
             return "main" if Path(directory).name == "sibling" else "rng-monitor"
         with mock.patch.object(guard_bash, "current_branch", side_effect=branch_of):
             for index, command in enumerate(("cd /d/sibling && git push origin main",
-                                             "cd /d/sibling; git push origin main",
                                              "git -C /d/sibling push origin main",
                                              "cd /d/other && git -C /d/sibling push origin main",
                                              "git push origin rng-monitor")):
@@ -206,9 +273,95 @@ class GuardBashTest(unittest.TestCase):
                                              "cd /d/sibling && git push --force origin main",
                                              "cd /d/sibling && git push origin :main",
                                              'cd "$S" && git push origin main',
-                                             "cd - && git push origin main")):
+                                             "cd - && git push origin main",
+                                             # 009 T009b: was allowed; a failed `cd` leaves the push in the start
+                                             "cd /d/sibling; git push origin main",
+                                             "cd /d/sibling\ngit push origin main",
+                                             "(cd /d/sibling); git push origin main",
+                                             "(cd /d/sibling && git push origin main)",
+                                             "cd /d/sibling | true; git push origin main",
+                                             "true | cd /d/sibling; git push origin main",
+                                             "cd /d/sibling || git push origin main",
+                                             "true || cd /d/sibling && git push origin main",
+                                             "cd /d/sibling && true; git push origin main",
+                                             "cd /d/sibling && true || git push origin main",
+                                             "pushd /d/sibling && git push origin main",
+                                             "cd -- /d/sibling && git push origin main",
+                                             "cd -P /d/sibling && git push origin main",
+                                             "cd ~/sibling && git push origin main",
+                                             "cd /d/sibling 2>/dev/null && git push origin main",
+                                             "if cd /d/sibling; then git push origin main; fi",
+                                             "D=$(cd /d/sibling && pwd); git push origin main",
+                                             "git --git-dir=/d/sibling/.git push origin main",
+                                             "git --git-dir /d/sibling/.git push origin main",
+                                             "git -C $S push origin main",
+                                             "(cd /d/sibling); git push origin rng-monitor")):
                 with self.subTest(command=command):
                     self.assertIsNotNone(guard_bash.verdict(data(command, agent=f"t{index}", call=f"t{index}")))
+
+    def test_unknown_branch_keeps_the_forms_that_name_none(self):
+        # A bare `git push` and HEAD need no branch; tags are no branch.
+        for index, command in enumerate(("cd $S && git push", "cd $S && git push origin", "cd $S && git push origin HEAD",
+                                         "(cd /d/x); git push -u origin HEAD", "cd $S && git push origin refs/tags/v1",
+                                         "cd $S && git push origin --tags")):
+            with self.subTest(command=command):
+                self.assertIsNone(guard_bash.verdict(data(command, agent=f"u{index}", call=f"u{index}")))
+        for index, command in enumerate(("cd $S && git push origin rng-monitor", "cd $S && git push origin HEAD:main")):
+            with self.subTest(command=command):
+                self.assertIn("run it from the", guard_bash.verdict(data(command, agent=f"v{index}", call=f"v{index}")).lower())
+
+    def test_known_chains_are_followed(self):
+        def branch_of(directory):
+            return "main" if Path(directory).name == "sibling" else "rng-monitor"
+        with mock.patch.object(guard_bash, "current_branch", side_effect=branch_of):
+            for index, command in enumerate(("cd /d/sibling && git push origin main 2>&1 | tail -2",
+                                             "cd /d/other && cd /d/sibling && git push origin main",
+                                             "cd /d/sibling && git status 2>&1 && git push origin main",
+                                             "cd /d/sibling && git status &>/dev/null && git push origin main",
+                                             "cd /d/other; cd /d/sibling && git push origin main",
+                                             "(cd /d/other); cd /d/sibling && git push origin main",
+                                             "cd /d && cd sibling && git push origin main",
+                                             "cd /d/other; git -C /d/sibling push origin main",
+                                             "git status; git push origin rng-monitor")):
+                with self.subTest(command=command):
+                    self.assertIsNone(guard_bash.verdict(data(command, agent=f"k{index}", call=f"k{index}")))
+
+    def test_push_with_real_repositories(self):
+        # The canary's two repositories: the shell starts in alpha, B is on beta.
+        root = Path(self.tmp.name) / "A"
+        other = root / "B"
+        other.mkdir(parents=True)
+        for repo, branch in ((root, "alpha"), (other, "beta")):
+            subprocess.run(["git", "-C", str(repo), "init", "-q", "-b", branch], check=True)
+            subprocess.run(["git", "-C", str(repo), "-c", "user.name=x", "-c", "user.email=x@x", "-c", "commit.gpgsign=false",
+                            "commit", "-q", "--allow-empty", "-m", "x"], check=True)
+        self.branch.stop()
+        self.addCleanup(self.branch.start)
+
+        def check(command):
+            return guard_bash.verdict({**data(command, call=command), "cwd": str(root)})
+
+        for command in ("git push origin alpha", "cd B && git push origin beta", f"cd {other.as_posix()} && git push origin beta",
+                        "git -C B push origin beta", "cd B/../B && git push origin beta", "cd ./B/ && git -C . push origin beta"):
+            with self.subTest(command=command):
+                self.assertIsNone(check(command))
+        for command in ("git push origin beta", "cd B && git push origin alpha", "git -C B push origin alpha",
+                        "(cd B); git push origin beta", "(cd B); git push origin alpha", "cd B/missing && git push origin beta",
+                        "cd B/missing; git push origin beta", "git -C missing push origin main", "pushd B && git push origin alpha",
+                        f"git --git-dir={other.as_posix()}/.git push origin alpha", "D=B; cd $D && git push origin alpha"):
+            with self.subTest(command=command):
+                self.assertIsNotNone(check(command))
+
+    def test_data_paths_resolve_against_the_real_cwd(self):
+        repo = str(guard_bash.hooklib.REPO).replace("\\", "/")
+        def check(command, cwd):
+            return guard_bash.verdict({**data(command, call=command + cwd), "cwd": cwd})
+        self.assertIsNotNone(check("rg foo decrypted_json", f"{repo}/packets"))
+        self.assertIsNotNone(check("rg foo", f"{repo}/client"))
+        self.assertIsNotNone(check("rg foo ../client", f"{repo}/research"))
+        self.assertIsNone(check("rg foo", f"{repo}/packets/patterns"))
+        self.assertIsNone(check("rg foo client", f"{repo}/research"), "research/client is no data tree")
+        self.assertIsNotNone(check("rg foo client/x", "D:/ddon-data-s1"), "the sibling checkout keeps the old reading")
 
     def test_git_add_directory(self):
         with tempfile.TemporaryDirectory() as root:
