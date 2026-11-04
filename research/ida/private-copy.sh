@@ -1,16 +1,18 @@
 #!/usr/bin/env bash
 # Make an agent's private copy of a DDON IDA 9.5 database for the headless ida-mcp server.
 #
-# Usage: bash research/ida/private-copy.sh <pc|pc-accepted|ps4> <name>
+# Usage: bash research/ida/private-copy.sh <pc|pc-accepted|pc-handlers|ps4> <name>
 #   pc           PC 03040008   D:/research/DDON-binaries/IDA9.5/PC_DDON_03040008/2022_01_29_DDO_DUMP_FIX.exe.i64
 #   pc-accepted  PC 03040008   ddon-hook's accepted database: `accepted_PC.path` of
 #                D:/research/DDON-binaries/IDA9.5/PC_DDON_03040008/CURRENT-RECOVERY.json, refused
 #                unless it lies inside PC_DDON_03040008/ and its sha256 equals `accepted_PC.sha256`
+#   pc-handlers  PC 03040008   the annotated database: PC_DDON_03040008/spec007-packet-handlers-20261103-wave2/
+#                2022_01_29_DDO_DUMP_FIX.exe.i64
 #   ps4          PS4 02020005  D:/research/DDON-binaries/IDA9.5/PS4_DDON_02020005_2016_12_21/DDOORBIS.elf.i64
 #   name letters, digits, '_' and '-' (at most 64); the copy goes to
 #        <database folder>/ddon-data-<name>/<database file>, beside the original as ddon-hook's
-#        feature copies are (never inside this repository). For pc-accepted the database folder is
-#        PC_DDON_03040008/ itself, not the feature folder that holds the accepted database.
+#        feature copies are (never inside this repository). For pc-accepted and pc-handlers the
+#        database folder is PC_DDON_03040008/ itself, not the folder that holds the database.
 #
 # The ida-mcp worker saves what it opens (on close, on shutdown, after execute_python), so it must
 # never open the user's .i64, which may be open in the IDA GUI. The original is only read: hashed
@@ -19,7 +21,8 @@
 #
 # Test only: DDON_RECOVERY_JSON names another CURRENT-RECOVERY.json (research/ida/tests/private-copy.sh).
 # The accepted path must then lie inside that file's folder, and the copy goes there; the guard_ida
-# hook still allows opening only copies under the real IDA9.5 folders.
+# hook still allows opening only copies under the real IDA9.5 folders. DDON_PC_FOLDER likewise names
+# another PC_DDON_03040008 folder for pc-handlers.
 set -o errexit -o nounset -o pipefail
 
 die() { echo "ERROR: $*" >&2; exit 2; }
@@ -34,13 +37,18 @@ posix_path() {
   printf '%s' "$p"
 }
 
-[[ $# -eq 2 ]] || die "usage: $0 <pc|pc-accepted|ps4> <name>"
+[[ $# -eq 2 ]] || die "usage: $0 <pc|pc-accepted|pc-handlers|ps4> <name>"
 want=""
+pc_folder=""
 case $1 in
   pc)  original=/d/research/DDON-binaries/IDA9.5/PC_DDON_03040008/2022_01_29_DDO_DUMP_FIX.exe.i64 ;;
   ps4) original=/d/research/DDON-binaries/IDA9.5/PS4_DDON_02020005_2016_12_21/DDOORBIS.elf.i64 ;;
   pc-accepted) ;;
-  *)   die "target must be pc, pc-accepted or ps4, got '$1'" ;;
+  pc-handlers)
+    pc_folder=$(posix_path "${DDON_PC_FOLDER:-/d/research/DDON-binaries/IDA9.5/PC_DDON_03040008}")
+    original=$pc_folder/spec007-packet-handlers-20261103-wave2/2022_01_29_DDO_DUMP_FIX.exe.i64
+    ;;
+  *)   die "target must be pc, pc-accepted, pc-handlers or ps4, got '$1'" ;;
 esac
 [[ $2 =~ ^[A-Za-z0-9][A-Za-z0-9_-]{0,63}$ ]] || die "name must be letters, digits, '_' and '-' (at most 64)"
 
@@ -66,7 +74,7 @@ if [[ $1 == pc-accepted ]]; then
   folder="$root/ddon-data-$2"
 else
   want=$(sha256sum "$original" | cut -d' ' -f1)
-  folder="$(dirname "$original")/ddon-data-$2"
+  folder="${pc_folder:-$(dirname "$original")}/ddon-data-$2"
 fi
 copy="$folder/$(basename "$original")"
 [[ ! -L $folder ]] || die "$folder is a link: refused, nothing deleted"

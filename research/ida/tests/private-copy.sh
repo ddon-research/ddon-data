@@ -12,10 +12,14 @@
 #      feature folder, and the copy's bytes equal the original's
 #   5. pc-accepted refuses to replace a copy that a worker holds open (.id0 present)
 #   6. a record without accepted_PC.sha256 is refused
+#   7. pc-handlers (DDON_PC_FOLDER, test only) copies the annotated database to
+#      <PC folder>/ddon-data-<name>/, not beside the original, leaves the original unchanged, and
+#      refuses a missing database and a bad name
+#   8. guard_ida.verdict allows the real pc-handlers copy path and refuses the real original
 set -o errexit -o nounset -o pipefail
 
 die() { echo "ERROR: $*" >&2; exit 2; }
-for cmd in mktemp rm mkdir printf jq sha256sum cmp dirname cygpath; do
+for cmd in mktemp rm mkdir printf jq sha256sum cmp dirname cygpath python stat; do
   command -v "$cmd" >/dev/null 2>&1 || die "$cmd not found"
 done
 
@@ -87,6 +91,39 @@ expect_refused "copy open in a worker" "open in a worker" pc-accepted t003
 # 6
 jq -n --arg p "$(win "$db")" '{accepted_PC: {path: $p}}' > "$root/CURRENT-RECOVERY.json"
 expect_refused "record without sha256" "no accepted_PC.sha256" pc-accepted t004
+
+# 7
+export DDON_PC_FOLDER=$work/handlers/PC_DDON_03040008
+handlers_dir=$DDON_PC_FOLDER/spec007-packet-handlers-20261103-wave2
+handlers_db=$handlers_dir/2022_01_29_DDO_DUMP_FIX.exe.i64
+mkdir -p "$DDON_PC_FOLDER"
+expect_refused "pc-handlers without its database" "database not found" pc-handlers t007
+[[ ! -e $DDON_PC_FOLDER/ddon-data-t007 ]] && pass "missing database copied nothing" || fail "missing database left a folder"
+mkdir -p "$handlers_dir"
+printf 'fake annotated i64\n' > "$handlers_db"
+expect_refused "bad name pc-handlers" "name must be" pc-handlers "../x"
+before=$(sha256sum "$handlers_db" | cut -d' ' -f1)-$(stat -c %Y "$handlers_db")
+rc=0; out=$(bash "$script" pc-handlers t007 2>"$work/err") || rc=$?
+copy=$DDON_PC_FOLDER/ddon-data-t007/2022_01_29_DDO_DUMP_FIX.exe.i64
+if [[ $rc -eq 0 && -f $copy ]] && cmp -s "$copy" "$handlers_db"; then pass "pc-handlers copy made at $out"
+else fail "pc-handlers copy: exit $rc, out '$out', err '$(<"$work/err")'"; fi
+[[ ! -e $handlers_dir/ddon-data-t007 ]] && pass "nothing beside the annotated database" || fail "copy landed beside the annotated database"
+after=$(sha256sum "$handlers_db" | cut -d' ' -f1)-$(stat -c %Y "$handlers_db")
+[[ $before == "$after" ]] && pass "annotated database unchanged" || fail "annotated database changed"
+
+# 8: path strings only; no database is read
+guard_verdict() {
+  python -X utf8 -I -c 'import sys
+sys.path.insert(0, sys.argv[1])
+import guard_ida
+print("refused" if guard_ida.verdict({"tool_input": {"path": sys.argv[2]}}) else "allowed")' \
+    "$(cygpath -m "$here/../../../tools/hooks")" "$1"
+}
+real=D:/research/DDON-binaries/IDA9.5/PC_DDON_03040008
+[[ $(guard_verdict "$real/ddon-data-t007/2022_01_29_DDO_DUMP_FIX.exe.i64") == allowed ]] \
+  && pass "guard allows the pc-handlers copy" || fail "guard refuses the pc-handlers copy"
+[[ $(guard_verdict "$real/spec007-packet-handlers-20261103-wave2/2022_01_29_DDO_DUMP_FIX.exe.i64") == refused ]] \
+  && pass "guard refuses the annotated original" || fail "guard allows the annotated original"
 
 if [[ $fails -ne 0 ]]; then echo "$fails check(s) failed"; exit 1; fi
 echo "all checks passed"
