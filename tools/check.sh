@@ -212,7 +212,7 @@ fi
 # 6. ImHex patterns: validation needs the ImHex CLI, which is not on PATH (AGENTS.md).
 if touches 'r[A-Za-z0-9]+-pattern\.cpp$'; then
     if command -v imhex >/dev/null; then
-        record imhex "not run (run research/validate_pattern.sh per pattern)"
+        record imhex "not run (run research/scripts/validate_pattern.sh per pattern)"
     else
         record imhex "not run (imhex not on PATH)"
     fi
