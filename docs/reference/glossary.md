@@ -49,5 +49,18 @@ A lead is a name or layout from the server emulator (Arrowgene). It is a candida
 
 | Term | Meaning |
 | --- | --- |
-| tier 0 | The first match rule of the PC 03040008 handler annotation: a handler-table entry whose function references exactly one `cSeed*Connection::OnPacket_*` string takes that string as its name. It needs the PC database alone. `research/03040008/ida-transfer/README.md` has the rules. |
+| tier 0 | The first match rule of the PC 03040008 handler annotation: a handler-table entry whose function references exactly one `cSeed*Connection::OnPacket_*` string takes that string as its name. It needs the PC database alone. [IDA transfer tools](ida-transfer-tools.md#tier-0-seeds-and-propagation) has the rules. |
 | private copy | A copy of an IDA database made by `research/ida/private-copy.sh`, the only form the hook `tools/hooks/guard_ida.py` lets ida-mcp open. |
+| annotated database | The PC 03040008 database that carries the transferred names, prototypes and types: target `pc-handlers` of `research/ida/private-copy.sh`. |
+| work copy | The private copy `ddon-data-007work` that the transfer writes to, from which the annotated database is published. |
+| pair | A PC 03040008 function and a PS4 02020005 function accepted as the same function by the matcher's gates. |
+| witness | An accepted pair whose call alignment proposes another pair. |
+| seed | A pair of a tier 0 handler and the one PS4 `OnPacket_` symbol of its name and class, from which the other rules start. |
+| role anchor | A rule pairing functions by their position in the code on both sides, such as a handler's packet reader. |
+| codec | A low-level packet read or write function of one width or one variable-length form. |
+| folding | MSVC merging code-identical functions, so that one PC address stands for several PS4 functions. |
+| holdout | The control that withholds a fifth of the seeds and requires that dependent pairs vanish or return with the same partner. |
+| shuffled-partner control | The control that gives each seed a wrong PS4 partner and requires that no pair is accepted. |
+| partial type | A PC type that names only the members tied to PS4 by aligned codec calls, the rest being gaps. |
+| forward declaration | A type with a name and no layout (`struct X;`), which claims nothing about its members. |
+| `DBFL_KILL` | The IDA database flag that discards the session at exit, leaving the packed `.i64` byte-identical. |

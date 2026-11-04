@@ -20,6 +20,9 @@ The map of this repository's documentation, for peers who know x86, ELF and DWAR
 - [Verify a regeneration](how-to/verify-a-regeneration.md): check a re-export of many files by a prediction and a stratified sample.
 - [Build plbatch](how-to/build-plbatch.md): build the batch engine of the export.
 - [Inspect captures in Wireshark](how-to/inspect-captures-in-wireshark.md): load the postdissector and the display filters.
+- [Query an IDA database read-only](how-to/query-ida-read-only.md): make a private copy, read it, delete it.
+- [Write to an IDA database](how-to/write-to-an-ida-database.md): run a write as a headless batch, check the save, keep the undo.
+- [Transfer annotations from PS4 to PC](how-to/transfer-annotations-ps4-to-pc.md): repair, extract, match, transfer, apply, verify, undo.
 
 ## Reference: look something up
 
@@ -36,6 +39,7 @@ The map of this repository's documentation, for peers who know x86, ELF and DWAR
 - [imhex-export CLI](reference/imhex-export-cli.md): options, filter forms, environment and summary line of the export.
 - [plbatch CLI](reference/plbatch-cli.md): flags, output lines and exit codes of the batch engine.
 - [Arrowgene CLI patches](reference/arrowgene-cli-patches.md): what the patched CLI changes, and its build identity.
+- [IDA transfer tools](reference/ida-transfer-tools.md): the transfer's scripts, flags, extractor records, manifest columns, rules and published results.
 
 ## Explanation: understand why
 
@@ -44,6 +48,7 @@ The map of this repository's documentation, for peers who know x86, ELF and DWAR
 - [Packet decoding method](explanation/packet-decoding-method.md): reader first, what a fit proves, value bases, PS4 numbers, stack arguments.
 - [Two packet decodings](explanation/two-packet-decodings.md): the annotated dumps against the JSON, and who decides what.
 - [plbatch design](explanation/plbatch-design.md): why a batch driver, why its pin, what it costs per file.
+- [IDA transfer method](explanation/ida-transfer-method.md): why pairs are proved by code shape, what each gate prevents, what the results mean.
 
 ## Other work
 

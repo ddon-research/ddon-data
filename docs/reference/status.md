@@ -53,6 +53,29 @@ Client 03040008 packets on a contended 32-CPU machine, with hyperfine 2.0.0, `-N
 | Extensions it does not support | 145 | 2026-11-04 | the same |
 | Coverage | 56% | 2026-11-04 | the same |
 
+## Annotated database, PC 03040008
+
+Output of the runs of 2026-11-03. `match.py` and `transfer.py --wave2` were rerun on 2026-11-04 into a scratch folder and gave identical files. From `research/03040008/ida-transfer/`:
+
+| What | Count | Date | How to recount |
+| --- | --- | --- | --- |
+| Handler-table callbacks | 1,040 | 2026-11-03 | `jq -r 'select(.kind=="summary").table_callbacks' dumps/pc-ida.jsonl` |
+| Function starts repaired: callbacks, call targets | 130, 118 | 2026-11-03 | `dumps/logs/repair-apply.log`, `dumps/logs/repair3-apply.log` |
+| Tier 0 handlers named, listed without a name | 669, 371 | 2026-11-04 | `rg '^tier0_' manifest/summary.tsv` |
+| Accepted pairs | 972 | 2026-11-04 | `rg -c '\taccepted$' manifest/pairs.tsv` |
+| of those by rule: seed, reader, element reader, requester, sender | 467, 69, 95, 107, 234 | 2026-11-04 | `cut -f6 manifest/pairs.tsv \| sort \| uniq -c` |
+| of those by propagation or anchored gap | 0 | 2026-11-04 | the same |
+| Wrong pairs in 5 holdout runs; withheld seeds recovered | 0; 0 | 2026-11-04 | `manifest/precision.tsv` |
+| Pairs accepted in 5 shuffled-partner runs | 0 | 2026-11-04 | `manifest/control.tsv` |
+| Names: set, corrected, labels removed | 1,077, 9, 3 | 2026-11-03 | `manifest/transfer/summary.tsv` |
+| Prototypes: set, replaced, skipped | 1,011, 54, 109 | 2026-11-03 | the same |
+| Whole types accepted, embedded, declared opaque | 90, 1, 90 | 2026-11-03 | `cut -f3 manifest/transfer/types.tsv \| sort \| uniq -c` |
+| Function comments | 1,174 | 2026-11-03 | `manifest/transfer/summary.tsv` |
+| Partial types, member links | 48, 163 | 2026-11-03 | `manifest/transfer/wave2/summary.tsv` |
+| Partial types whose size an access extended | 42 | 2026-11-03 | the same |
+| `packet` locals named and retyped; refused at the apply | 23; 1 | 2026-11-03 | `dumps/logs/apply-w2e.log` |
+| Reviewer's sample of pairs and types, wrong on PC | 70, 0 | 2026-11-03 | `specs/007-pc-handler-annotation/research/T008-adversarial.md` |
+
 ## Not run
 
 | Check | State | Date |
@@ -63,3 +86,5 @@ Client 03040008 packets on a contended 32-CPU machine, with hyperfine 2.0.0, `-N
 | Consumers of the role-only `V` marks of 28.34.2 and 11.68.16 | not run | 2026-11-03 |
 | The `ValueOld` check of 13.23.16 | not run | 2026-11-03 |
 | Coverage of client 02030004 with `research/scripts/find-unsupported-extensions.sh` | not run | 2026-11-04 |
+| The IDA steps of [Transfer annotations from PS4 to PC](../how-to/transfer-annotations-ps4-to-pc.md) since their runs of 2026-11-03: `repair_functions.py`, `extract_ida.py`, `apply_transfer.py`; and the read-only batch example of [Query an IDA database read-only](../how-to/query-ida-read-only.md) | not run | 2026-11-04 |
+| The whole-type `transfer.py` on the committed dumps: it refuses them with exit status 2, as designed, so `manifest/transfer/` could not be compared | not run | 2026-11-04 |

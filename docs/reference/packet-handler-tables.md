@@ -10,7 +10,7 @@ Every address below holds in each database of that executable.
 | --- | --- | --- |
 | `pc` | `2022_01_29_DDO_DUMP_FIX.exe.i64` | the live PC database |
 | `pc-accepted` | the path `accepted_PC.path` of `CURRENT-RECOVERY.json` gives | ddon-hook's accepted database |
-| none | `spec007-packet-handlers-20261103-wave2\2022_01_29_DDO_DUMP_FIX.exe.i64` | the annotated database: handler names, prototypes and partial types; the script has no target for it |
+| `pc-handlers` | `spec007-packet-handlers-20261103-wave2\2022_01_29_DDO_DUMP_FIX.exe.i64` | the annotated database: handler names, prototypes and partial types |
 
 Without IDA: the directory, the record keys, the login lists and the strings are static data of the executable, and `research/03040008/ida-transfer/dumps/pc-ida.jsonl` (gitignored, local) holds the game handlers as rows of kind `table`, read with `jq`. The dump's fields `callback` and `record_va` are decimal. The checks under each section below ran on the executable on 2026-11-04.
 
@@ -136,4 +136,4 @@ The login server shares ids with the game server: a raw file's name prefix (`C2L
 
 The source of a PC packet name is the handler's own diagnostic string, `cSeedGameSvConnection::OnPacket_<GROUP>_<NAME>`, in the executable's data: a handler whose code references one takes it (`V`). The executable holds 675 of them and none with `cSeedLoginSvConnection`, so login names have no such source on PC. A REQ takes the name of its RES handler by pairing, which is `I`. [The marks page](packet-marks.md) gives what else may name a packet.
 
-`research/03040008/ida-transfer/README.md` holds the match rules that carry these names onto the functions of the annotated database.
+[IDA transfer tools](ida-transfer-tools.md#matching-rules) holds the match rules that carry these names onto the functions of the annotated database.
