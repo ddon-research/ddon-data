@@ -21,9 +21,13 @@ Coordinator: main session. One subagent at a time. Target structure and rules: `
   hooks, shell, export, mcp, docs, packet-counts passed.
 - [x] T004b Season 1 and 2 patterns removed here (decision 8), after both pushes confirmed on GitHub: 61 files;
   constitution 1.0.1, `AGENTS.md`, `readme.adoc`, `research/README.adoc` updated.
-- [ ] T005 New knowledge pages (`implementer`, `briefs/T005-packet-knowledge.md`): wire format, handler tables, decoding
-  method, write-a-pattern, verify-a-regeneration, evidence model, `two-packet-decodings` (decision 7); CLI patches saved.
-- [ ] T006 IDA and transfer pages: `ida-transfer/README.md` split, query and write how-tos, transfer method.
+- [x] T005 New knowledge pages (186d5c6681): wire format, handler tables, decoding method, write-a-pattern,
+  verify-a-regeneration, evidence model, `two-packet-decodings` (decision 7; examples 14.3.2, 19.28.2, 14.11.16, 62.26.16
+  checked against bytes); `packets/tools/arrowgene-cli.patch` saved, `git apply --check` passes on the clean clone; 170
+  JSON byte-identical after the comment edits. Unchecked, stated on the pages: 651 `WritePacket` keys, build from patch,
+  counter behaviour (approximate). `ag_vs_pc` recount: 81 same, 3 differ, 31 empty. Gate: hooks, shell, export, mcp, docs.
+- [ ] T006 IDA and transfer pages (`implementer`, `briefs/T006-ida-transfer.md`): `ida-transfer/README.md` split, query
+  and write how-tos, transfer method; `private-copy.sh pc-handlers` for the annotated database.
 - [ ] T007 The rest: protections, patches, ELF dumps, Pharos, textures, rng-race, `research/README.adoc`,
   `rLandInfo-example`, wikis; repository layout, inputs, tools, conventions, gate and hooks; root `readme.adoc`.
 - [ ] T008 Review: accuracy sample, a reader's walk, adversarial check of the new gate.
@@ -62,5 +66,6 @@ Coordinator: main session. One subagent at a time. Target structure and rules: `
 
 ## Running
 
-- T005 (implementer, brief `briefs/T005-packet-knowledge.md`), started 2026-11-04. Next: land, brief T006. `readme.adoc`
-  line 115 still credits DDOn-Tools as a path reader: fix in T007.
+- T006 (implementer, brief `briefs/T006-ida-transfer.md`), started 2026-11-04. Next: land, brief T007. `readme.adoc`
+  line 115 still credits DDOn-Tools as a path reader: fix in T007. `include/Packet.hexpat` calls padding "non-zero
+  bytes" but it can be zero or repeat earlier data (comment fix, T007 or the editor's report).

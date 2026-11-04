@@ -26,7 +26,7 @@ target another.
 
 | Class | Example lead | Decided by |
 | --- | --- | --- |
-| Wire layout: a `PacketStructure`/`CData` serializer's order, width or missing field differs from the client's | spec 008 T001 `ag_vs_pc`: 6 of 87 structures differ (10.14.16, 34.0.1, 14.11.16 confirmed against code); 62.1.2 DungeonId; stamp `BonusType`/`BonusValue` (006 T014b7) | PC reader or writer in the client, then every capture fits |
+| Wire layout: a `PacketStructure`/`CData` serializer's order, width or missing field differs from the client's | spec 008 T001 `ag_vs_pc`: 3 differ of 84 compared, 31 not comparable (10.14.16, 34.0.1, 14.11.16, confirmed against code); 19.28.2 Index/SkillNo swapped in `CDataNormalSkillParam.cs` (`docs/explanation/two-packet-decodings.md`); 62.1.2 DungeonId; stamp `BonusType`/`BonusValue` (006 T014b7) | PC reader or writer in the client, then every capture fits |
 | Framework: framing, RES guard, padding, packet factory | `EntitySerializer.ReadServerResponse` reads `Result` as `u16` when `Error != 0` while servers write `u32` and the client stops reading (`docs/reference/arrowgene-cli-patches.md`, which also lists the rest of the CLI's patches) | PC reader, captures, a failing test |
 | Packet table: wrong id, source or name; a response under the wrong key | 14.10.16 is `C2S_WARP_END_NTC` (006 T008); `L2C`/`S2C` source mismatches | PC handler table and `OnPacket_` strings; never PS4 ids |
 | Dispatch: missing, duplicate or unreachable handlers; a request answered with the wrong response | registration against `PacketId.cs` | server code |
@@ -42,7 +42,7 @@ and field names (a name changes only where it misleads a reader of the wire layo
    candidate. Mind `docs/explanation/two-packet-decodings.md` (spec 009 decision 7): the annotated dumps carry the server's understanding,
    tested by play, so meaning there is strong evidence and sizes and order are what needs checking; the JSON comes from the binaries.
 2. **Evidence per candidate**: the PC 03040008 reader or writer (`evidence-researcher-ida`, annotated database through
-   `private-copy.sh pc-accepted`), the PS4 structure where Season 3 kept it, the recompilation C++ for argument order, every capture fits. A
+   `private-copy.sh pc-handlers`), the PS4 structure where Season 3 kept it, the recompilation C++ for argument order, every capture fits. A
    server layout that the PC code contradicts is an error (`V`); capture evidence alone is at most `I`, and goes in the report unpatched unless the
    coordinator rules otherwise. Both directions matter: a wrong server layout may be the one that captures from another server show.
 3. **Patch**: branch `fix/packet-handling` in the clean clone, one commit per error class or a coherent small group, following the
