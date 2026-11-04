@@ -10,4 +10,4 @@ The scripts and manifest of the annotation transfer from PS4 02020005 onto the P
 | Look up flags, records, columns and rules | [IDA transfer tools](../../../docs/reference/ida-transfer-tools.md) |
 | Understand why it works this way | [IDA transfer method](../../../docs/explanation/ida-transfer-method.md) |
 
-Gates, from this directory: `uv run pytest`, `uv run ruff check --no-fix .`. The history is in `specs/007-pc-handler-annotation/`.
+Its tests run as the `xfer` section of [the gate](../../../docs/how-to/run-the-gate.md).

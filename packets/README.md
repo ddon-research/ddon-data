@@ -1,6 +1,6 @@
 # Packets
 
-The network traffic of Dragon's Dogma Online captures, decoded for the PC client 03040008, and the tools that decode it. Its data is producer output, which is never edited by hand; its code and patterns are hand-authored.
+The network traffic of Dragon's Dogma Online captures, decoded for the PC client 03040008, and the tools that decode it. Its data is producer output, which is never edited by hand; its code and patterns are hand-written.
 
 ## Data
 
@@ -15,7 +15,7 @@ Produced by the `D:\research\DDON-pcaps` toolchain and the scripts here. Never l
 | `decrypted_json/` | one JSON file per packet, decoded with this repository's patterns checked against the PC client's code | [Export packets to JSON](../docs/how-to/export-packets-to-json.md) |
 | `decrypted-tcp-streams-unique-*-packets-count.txt`, `packets-*.txt` | packet counts and C# structure gaps | [Refresh packet statistics](../docs/how-to/refresh-packet-statistics.md) |
 
-## Hand-authored
+## Hand-written
 
 | Path | Holds | Read |
 | --- | --- | --- |
