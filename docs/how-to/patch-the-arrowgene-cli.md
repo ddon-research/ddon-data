@@ -1,6 +1,6 @@
 # Patch the Arrowgene CLI
 
-This page is for anyone who needs `Arrowgene.Ddon.Cli` to reproduce the annotated dumps and raw packets of client 03040008, or who hit a packet that does not parse. You build the patched CLI and check its hashes. You need the .NET 10 SDK. What each patch changes is in [Arrowgene CLI patches](../reference/arrowgene-cli-patches.md).
+This page is for anyone who needs `Arrowgene.Ddon.Cli` to reproduce the annotated dumps and raw files of client 03040008, or who hit a packet that does not parse. You build the patched CLI and check its hashes. You need the .NET 10 SDK. What each patch changes is in [Arrowgene CLI patches](../reference/arrowgene-cli-patches.md).
 
 An unpatched build skips the affected packets with `Unable to parse structure for resolved packet ... Skipping.` and writes `StructDump:` without a structure.
 

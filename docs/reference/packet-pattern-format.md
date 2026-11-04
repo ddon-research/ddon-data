@@ -14,15 +14,13 @@ It gives the packet id and name, the evidence (report section, PC VAs), a body s
 | --- | --- |
 | `// packet-id: <group>.<id>.<sub>` | The id that `imhex-export.sh @` selects by. |
 | `// packet-select: <name>` | Only where another server uses the same id. `@` then keeps only the files of that id whose name holds `_<name>_`. |
-| `// packet-size: <bytes>` | Only where two packets share both id and file name. `@` then keeps only files of that size. No pattern carries it; the feature and its test stay. |
+| `// packet-size: <bytes>` | Only where two packets share both id and file name. `@` then keeps only files of that size. No pattern carries it; the script supports it and has a test. |
 
 Who carries `// packet-select:`:
 
 - `C2L_LOGIN_REQ` (0.1.1) and `L2C_LOGIN_RES` (0.1.2), because the game server's `C2S_CONNECTION_LOGIN_REQ` and `S2C_CONNECTION_LOGIN_RES` use the same ids (`R2 F2`).
 - Every login pattern (`C2L_`/`L2C_`): the game server reuses the login ids 0.0.x, 0.2.x, 1.0.x, 2.0.1, 2.0.2, 3.0.x and 5.3.16 (`PacketId.cs:164-187`, lead), and naming the packet keeps a later capture of the other server out of the export.
 - The game-server patterns of the shared ids: 0.0.1-0.2.2, 1.0.1, 1.0.2 (`T003b`), and 2.0.1, 2.0.2 and 5.3.16, for which no login-server file is captured, so their selection does not change.
-
-The certificate notice shows why the size line existed. The CLI once filed the server's 304-byte certificate notice under the same `.1_0_1` name as the 336-byte `C2L_CLIENT_CHALLENGE_REQ` (`T002c §3`). The notice is `1.1.16 L2C_LOGIN_SERVER_CERT_NTC`, so the challenge pattern needs no size line.
 
 ## JSON conventions
 

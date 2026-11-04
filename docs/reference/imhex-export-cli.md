@@ -1,6 +1,6 @@
 # imhex-export CLI
 
-The options, filter forms, environment and summary line of `packets/imhex-export.sh`, which decodes raw packets of client 03040008 with a pattern and writes one JSON file per packet. For the steps, see [Export packets to JSON](../how-to/export-packets-to-json.md). Running it without arguments prints the same options from its header comment.
+The options, filter forms, environment and summary line of `packets/imhex-export.sh`, which decodes raw files of client 03040008 with a pattern and writes one JSON file per packet. For the steps, see [Export packets to JSON](../how-to/export-packets-to-json.md). Running it without arguments prints the same options from its header comment.
 
 ## Usage
 

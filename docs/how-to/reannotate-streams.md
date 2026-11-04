@@ -1,6 +1,6 @@
 # Re-annotate streams
 
-This page is for anyone who rebuilt the Arrowgene CLI, or changed a C# structure, and needs the annotated dumps or raw packets of client 03040008 to follow. You run the CLI over `packets/encrypted_streams/` with the known keys, split the large dumps and export the raw packets. You need the [patched CLI](patch-the-arrowgene-cli.md), Git Bash and `packets/keys/keys-all-in-one.csv`. To decrypt a capture from the start, see [Decrypt a capture](decrypt-a-capture.md).
+This page is for anyone who rebuilt the Arrowgene CLI, or changed a C# structure, and needs the annotated dumps or raw files of client 03040008 to follow. You run the CLI over `packets/encrypted_streams/` with the known keys, split the large dumps and export the raw files. You need the [patched CLI](patch-the-arrowgene-cli.md), Git Bash and `packets/keys/keys-all-in-one.csv`. To decrypt a capture from the start, see [Decrypt a capture](decrypt-a-capture.md).
 
 ## Annotate in parallel
 
@@ -52,7 +52,7 @@ Per-job logs live in a `mktemp -d` folder that the script removes on exit. To ke
 
 It writes `<stream>_1.yaml.annotated.txt` ... `<stream>_N.yaml.annotated.txt`, or the unsuffixed name if the dump fits, and never cuts a packet in two. It verifies with `cmp` that concatenating the pieces reproduces the input before replacing anything. `--force` replaces the stream's pieces; without it, the script refuses when pieces exist. `max_bytes` defaults to 52428800.
 
-## Export raw packets
+## Export raw files
 
 `packets/decrypt-export-streams.sh` decrypts every stream, or the ones given, and writes one file per packet to `decrypted_raw/<stream>/`, under the [names the format page lists](../reference/packet-pattern-format.md#raw-file-names):
 

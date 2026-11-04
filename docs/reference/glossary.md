@@ -10,6 +10,7 @@ The terms that more than one page uses, for a reader who knows x86, ELF and DWAR
 | DUMP_FIX, `f1c9` | The patched PC executable of build 03040008 that `research/03040008/protections/README.md` analyses. `f1c9` is the start of its SHA-256; [Client patches](client-patches.md) lists client executables with their hashes, and pages name them by such prefixes. |
 | `f2a8` | The installed PC 03040008 `DDO.exe`, a Windows 7 re-dump's line with none of `f1c9`'s layers. |
 | layer | One recorded binary diff between two client executables, a `.r2` script under `patches/` with a starting and a target hash. |
+| FIX2, FIX_3, FIX_4, FIX | Short names of the executables `DDO_DUMP_FIX2.exe`, `DDO_DUMP_FIX_3.exe`, `2026_10_17_DDO_DUMP_FIX_4.exe` and `DDO_DUMP_FIX.exe`, and of the layers that produce them: [Client patches](client-patches.md). |
 | SecureEngine | Themida's runtime image, kept live in the PC 03040008 dumps as a second `.text`. Its integrity checks are what a code patch trips. |
 | tear | A permanent change of the state of the client's shared random generator to a state on another orbit, seen as a break of its sequence: [RNG race](../explanation/rng-race.md). |
 | recompilation | C++ generated for the PS4 02020005 client, unfinished and believed accurate where it has a body. It sits in the sibling repository `D:\ddon-data-s2`, directory `recompilation/`, and its packet bodies under `recompilation/src/DD_ONLINE/prog/Protocol/`. |
@@ -18,6 +19,7 @@ The terms that more than one page uses, for a reader who knows x86, ELF and DWAR
 
 | Term | Meaning |
 | --- | --- |
+| capture | A recording of DDON traffic in a `.pcapng` file, under `D:\research\DDON-pcaps\ddpkg\`. "Pcap packet" `<n>` is a packet's number in its capture. |
 | packet id | The three numbers `group.id.sub` of a packet's header, for example 14.3.2, also written `(g,id,sub)`. A raw file's name ends in them, as `14_3_2`. On PS4 02020005 packets use other numbers: PS4 numbers never name PC packets. |
 | raw file | One decrypted packet under `packets/decrypted_raw/`: 9-byte header, body, cipher padding. |
 | pattern | An ImHex pattern that decodes a packet or a resource file. `packets/patterns/03040008/<packet name>-pattern.cpp` holds one per packet of client 03040008. |
@@ -26,6 +28,7 @@ The terms that more than one page uses, for a reader who knows x86, ELF and DWAR
 | nNetMsg | The RPC payload (`cNetMsg*` messages) carried by the lobby and party binary packets, decoded by `packets/patterns/03040008/include/nNetMsg.hexpat`. |
 | annotated dump | The Arrowgene CLI's text dump of one stream under `packets/decrypted_annotated/`, decoded with the server emulator's C# structures. [Two packet decodings](../explanation/two-packet-decodings.md) compares it with the JSON export. |
 | JSON export | One JSON file per packet under `packets/decrypted_json/`, decoded by a pattern written from the client's code. |
+| plbatch | The batch driver that runs one pattern over many raw files in one process: [plbatch design](../explanation/plbatch-design.md). |
 | fixed client key | The Camellia key compiled into the client, used for the first packet of each direction: [Cipher](packet-wire-format.md#cipher). |
 | session key | The Camellia key of a connection from its third packet on: the first 32 characters of the common key the client draws. |
 | known plaintext | The start of the challenge response, which is the same in every capture and so tests a candidate session key. |
@@ -48,6 +51,14 @@ A decoded field or layout carries one mark, in a comment of its pattern.
 | `open` | Left unknown: the field keeps its `unk_*` name, and any leads stay in the comment. |
 
 A lead is a name or layout from the server emulator (Arrowgene). It is a candidate only, since its sizes and order may be wrong.
+
+## Related projects
+
+| Term | Meaning |
+| --- | --- |
+| Arrowgene | The server emulator `Arrowgene.DragonsDogmaOnline`. Its C# structures are leads, and its `Arrowgene.Ddon.Cli` decrypts and annotates streams: [Arrowgene CLI patches](arrowgene-cli-patches.md). |
+| ddon-hook | A separate repository that hooks and runs the PC 03040008 client under automation, against a local Arrowgene server. Pages cite its specs and its accepted database. |
+| reconstructor | `C:\ddon-dwarf-reconstructor-rust`, which rebuilds C++ for resource classes from the PS4 02020005 DWARF: [Inputs and builds](inputs-and-builds.md#related-repositories-on-this-machine). |
 
 ## Disassembly and transfer
 

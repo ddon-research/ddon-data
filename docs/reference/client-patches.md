@@ -21,10 +21,6 @@ All binary diffs are `.r2` scripts with a `.json` beside them. Each row gives th
 
 ### 2020–2022
 
-* Unpacked dump
-* Disable CRC checks
-* Enable unlimited instances
-
 | Name | Date | Publisher | Starting Hash | Patch | Target Hash | Notes |
 |------|------|-----------|---------------|-------|-------------|-------|
 | DDO_DUMP_FIX2.exe | 2021-05-01 | nothilvien | `0a7c5c637aeeaa7f308df25f119b8bb16350336b57edfd93d2db3a3e7dfe5f43` | `patches/2021_05_01_ddo_dump_fix2.r2` | `ef9d18154004e814dad18758fec7e0af7fb3408caa2d5ca72c1b0e41ce221bb7` | A dump with all crc checks disabled; you still need to use full scylla hide options, but the game should not crash anymore, and you can use HW and SW breakpoints, as well as save a modified version of it (for example: hardcoded the key generation to always generate AAAA...- key |
@@ -36,9 +32,6 @@ All binary diffs are `.r2` scripts with a `.json` beside them. Each row gives th
 
 ### 2025
 
-* Increase chatbox limit from 30 characters to 127 characters
-* Enable application to use 4 GB RAM
-
 | Name | Date | Publisher | Starting Hash | Patch | Target Hash | Notes |
 |------|------|-----------|---------------|-------|-------------|-------|
 | DDO_ChatEdit.exe | 2025-05-29 | rootofallthings | `f1c974d0e529d4bb7dc5f0953d37eea6bbb023f2667f9a1d3a3b878f4919fa20` | `patches/rootofallthings_chat_edit.r2` | `31a30332010e7dd991043416102453b79db374621806a60b7c7092aec81f4041` | |
@@ -47,10 +40,6 @@ All binary diffs are `.r2` scripts with a `.json` beside them. Each row gives th
 | DDO_ChatEdit_4GB_RAM.exe | 2025-11-26 | mr.september | `f1c974d0e529d4bb7dc5f0953d37eea6bbb023f2667f9a1d3a3b878f4919fa20` | `patches/mr.september_chatedit_4gb_ram.r2` | `bf5107ef7ddf5f369d5d01267237f9a8def955b5a847c36264b9ed80230d8249` | The "4GB" write at `0x1B8` only rewrites the PE checksum: LARGEADDRESSAWARE is already set in the plain dump |
 
 ### 2026
-
-* Enable up to 100 FPS in Borderless Windowed mode
-* Reduce shout message cooldown from 10 seconds to 5 seconds
-* Reduce hidden chat cooldown from 1s to 0s
 
 | Name | Date | Publisher | Starting Hash | Patch | Target Hash | Notes |
 |------|------|-----------|---------------|-------|-------------|-------|
@@ -72,15 +61,23 @@ All binary diffs are `.r2` scripts with a `.json` beside them. Each row gives th
 
 ## Lineage
 
-An arrow reads "was built from". `f1c9` is `e50d` plus 2 bytes in content, though its `.r2` replays from the Mutex build `9c95`; `f2a8` descends from `ef9d` alone (`research/03040008/protections/R3-patches.md` §1).
+This diagram answers which executable each one was built from, by content; an arrow points from a parent to what was built from it. `f1c9` is `e50d` plus 2 bytes in content, though its `.r2` replays from the Mutex build `9c95`; `f2a8` descends from `ef9d` alone (`research/03040008/protections/R3-patches.md` §1).
 
-```text
-01dc41a9 vanilla (packed) -> 0a7c plain dump -> ef9d FIX2 -> e50d FIX_3 -> f1c9 DUMP_FIX (= FIX_3 + 2 B)
-                                                  |                          |-> ChatEdit, ChatEdit_4GB
-                                                  |                          |-> Bunie 3-in-1 (= 100FPS), 5-in-1
-                                                  |                          `-> PerfPatch v1=v2=v3 exe (ac83) -> v7 (0306)
-                                                  `-> 1c8c Win7 dump (filmmachine_, IAT rebuild) -> f2a8 installed DDO.exe
+```mermaid
+flowchart TD
+    vanilla["01dc41a9 vanilla (packed)"] --> dump["0a7c plain dump"]
+    dump --> fix2["ef9d FIX2"]
+    fix2 --> fix3["e50d FIX_3"]
+    fix3 --> f1c9["f1c9 DUMP_FIX (FIX_3 plus 2 bytes)"]
+    f1c9 --> chat["ChatEdit, ChatEdit_4GB"]
+    f1c9 --> bunie["Bunie 3-in-1 (equal to 100FPS), 5-in-1"]
+    f1c9 --> perf["PerfPatch v1, v2 and v3 exe (ac83)"]
+    perf --> v7["v7 (0306)"]
+    fix2 --> win7["1c8c Win7 dump (filmmachine_, IAT rebuild)"]
+    win7 --> f2a8["f2a8 installed DDO.exe"]
 ```
+
+The plain dump was made from the packed client with Ghidra, Scylla and others. Layers of 2020–2022 remove anti-tampering, anti-cheating and anti-debugging protections to enable research; layers from 2025 on improve quality of life.
 
 | Layer | What it changes, by the publishers' lists |
 | --- | --- |

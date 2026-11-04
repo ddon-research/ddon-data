@@ -1,6 +1,6 @@
 # Arrowgene CLI patches
 
-The local changes to `Arrowgene.Ddon.Cli` behind the annotated dumps and raw packets of client 03040008, each with the failure it removes, for a reader judging what those files can be trusted for. To build it, see [Patch the Arrowgene CLI](../how-to/patch-the-arrowgene-cli.md); for what the dumps are good for, see [Two packet decodings](../explanation/two-packet-decodings.md). A label in a code span names a report: [the key](packet-ids.md#report-labels).
+The local changes to `Arrowgene.Ddon.Cli` behind the annotated dumps and raw files of client 03040008, each with the failure it removes, for a reader judging what those files can be trusted for. To build it, see [Patch the Arrowgene CLI](../how-to/patch-the-arrowgene-cli.md); for what the dumps are good for, see [Two packet decodings](../explanation/two-packet-decodings.md). A label in a code span names a report: [the key](packet-ids.md#report-labels).
 
 ## Build identity
 
@@ -18,7 +18,7 @@ The patched build sits in the clone `C:\Users\morph\Documents\GitHub\Sehkah\Arro
 
 ## Stop reading after a non-zero Error
 
-`EntitySerializer.ReadServerResponse` reads `Result` as a `u16` whenever `Error != 0`, so the fields after it were read 2 bytes early and parsing ended in `EndOfStreamException`. The patches stop where the PC 03040008 client stops (for example `GROUP_CHAT_GET_MEMBER_LIST_RES` reader `0x809D80`); [Why the RES guard exists](../explanation/wire-protocol.md#why-the-res-guard-exists) has the reason:
+`EntitySerializer.ReadServerResponse` reads `Result` as a `u16` whenever `Error != 0`, so the fields after it are read 2 bytes early and parsing ends in `EndOfStreamException`. The patches stop where the PC 03040008 client stops (for example `GROUP_CHAT_GET_MEMBER_LIST_RES` reader `0x809D80`); [Why the RES guard exists](../explanation/wire-protocol.md#why-the-res-guard-exists) has the reason:
 
 ```csharp
 ReadServerResponse(buffer, obj);

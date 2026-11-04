@@ -23,7 +23,6 @@ The mechanisms still present in the PC 03040008 dumps and what each layer did to
 | SHA-256 helper | `sub_A0F280`, `sub_A0F3A0` | live, purpose unknown | live | `R3-patches.md` §6 |
 | Page-RWX helper (only VirtualProtect user) | `sub_13EE875` | live, benign | live | `R2-static.md` §7 |
 
-
 No PAGE_GUARD or NOACCESS tripwire was found on the `nrand` path, and no routine reads `nrand`'s
 bytes as data (`R2-static.md` §5, §7, §8). A section-wide hash is not excluded.
 

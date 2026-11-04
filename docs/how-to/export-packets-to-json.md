@@ -41,7 +41,7 @@ A failed packet leaves `<file>.json.err` beside where its JSON would be, and its
 | `failed` with `path too long` in the `.err` | an output path of 260 characters or more | use a shorter `JSON_DIR` |
 | `@` refuses the id | login-server and game-server files share it | add `// packet-select: <name>` to the pattern ([format](../reference/packet-pattern-format.md#header-comment)) |
 | `badjson` above 0 | output invalid for a reason other than NaN or Inf | read the `.err`; the file has no JSON |
-| `nonfinite` above 0 | a NaN or Inf float | expected in the 65 group-35 packets the [format page](../reference/packet-pattern-format.md#json-conventions) names; elsewhere suspect the layout |
+| `nonfinite` above 0 | a NaN or Inf float | expected in the group-35 packets the [format page](../reference/packet-pattern-format.md#json-conventions) names; elsewhere suspect the layout |
 
 ## After changing an include
 

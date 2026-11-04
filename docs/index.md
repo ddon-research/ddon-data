@@ -18,7 +18,7 @@ This map is for peers who know x86, ELF and DWARF but not this project: it lists
 ### Packets
 
 - [Decrypt a capture](how-to/decrypt-a-capture.md): turn a pcapng into session keys and decrypted streams.
-- [Re-annotate streams](how-to/reannotate-streams.md): re-run the CLI over known streams, split the dumps, export the raw packets.
+- [Re-annotate streams](how-to/reannotate-streams.md): re-run the CLI over known streams, split the dumps, export the raw files.
 - [Patch the Arrowgene CLI](how-to/patch-the-arrowgene-cli.md): build the patched CLI those exports need.
 - [Export packets to JSON](how-to/export-packets-to-json.md): run a pattern over its raw files and read the summary.
 - [Refresh packet statistics](how-to/refresh-packet-statistics.md): regenerate the packet count files.
