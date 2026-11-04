@@ -74,8 +74,7 @@ request, the 96-byte response, then a normal packet under the new key. That test
 `da7322d6`:
 
 ```text
-PC 0x8bc5b0 takes a length up to 0x800 and otherwise fails the read, which ends the session of the recipient. At
-exactly 0x800 the 0x800-byte stack buffer has no terminator before the copy at 0x8bc646, so the cap is 0x7FF.
+PC 0x8bc5b0 takes a length up to 0x800 and otherwise fails the read, so the cap stays one below that, at 0x7FF.
 Truncation stops on a UTF-8 boundary. The writer in EntitySerializer now calls the extension, so the rule sits in
 one place. Null writes length 0, as the client's writer does.
 ```
