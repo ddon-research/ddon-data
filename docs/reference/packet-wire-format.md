@@ -64,7 +64,7 @@ The 9 bytes every packet but the first of each direction starts with, declared a
 
 The body starts at 0x09. A `sourceOk` key in the JSON states whether the source byte matches the name's direction; 63.11.16 is the known exception ([Exported checks](packet-pattern-format.md#exported-checks)).
 
-The counter, as seen in two streams (stream1 tcp-stream-33 and stream3 tcp-stream-47, 749 files): a client packet and a server NTC carry a counter above 0, and a server RES carries 0. Client counters climb in capture order, with neighbours sometimes swapped. No pattern tests this: **Status:** approximate (a sample).
+The counter, as seen in two streams (stream1 tcp-stream-33 and stream3 tcp-stream-47, the 749 of their 753 files that have a header): a client packet and a server NTC carry a counter above 0, and a server RES carries 0. Client counters climb in capture order, with neighbours sometimes swapped. No pattern tests this: **Status:** approximate (a sample).
 
 ## First packet of each direction
 
@@ -151,7 +151,7 @@ The length `00 2a` at 0x15 covers 42 bytes, 0x17 to 0x40, which the JSON gives a
 
 ## Padding
 
-- The cipher works in 16-byte blocks over header plus body, so a raw file's size is a multiple of 16 and the padding is 0 to 15 bytes. Both held for all 749 files of the two streams above.
+- The cipher works in 16-byte blocks over header plus body, so a raw file's size is a multiple of 16 and the padding is 0 to 15 bytes. Both held for all 753 files of the two streams above, counted on 2026-11-04: 34 and 719, four of them headerless first packets.
 - The raw files and the frames store no body length: a reader of a file finds the end of the body only by decoding it.
 - Padding bytes are not zeroed and not constant. They can repeat earlier data, as the `3f 63` in the padding of the list example does.
 

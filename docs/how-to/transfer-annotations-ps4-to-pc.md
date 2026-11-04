@@ -146,16 +146,4 @@ Every record must read `restored`. It replays the undo records in reverse order 
 
 To go further back, or when the undo fails, restore the rollback copy ([how](write-to-an-ida-database.md#5-undo)). `repair_functions.py` has no undo mode: its `undo` records are data for a manual repair, so a repair is undone only by the rollback copy.
 
-## What was run for this page
-
-On 2026-11-04, at the commit of this page, against the committed manifest and the local dumps:
-
-| Command | Result |
-| --- | --- |
-| `uv run python match.py --help`, `transfer.py --help`, `extract_dwarf.py --help` | flags as above |
-| `uv run python match.py --out <scratch>` | exit status 0; all 8 files equal `manifest/` |
-| `uv run python transfer.py --wave2 --out <scratch>` | exit status 0; the 7 `.tsv` files compared equal `manifest/transfer/wave2/` |
-| `uv run python transfer.py --no-holdout --out <scratch>` | exit status 2: the message quoted in step 4, as designed for these dumps |
-| `parse_batch_args` of `apply_transfer.py` and `repair_functions.py`, called on the argument lists above | parsed into the modes above; `--verify` without `--apply-log`, `--apply-log` without `--verify`, and `--apply --verify` refused |
-
-**Status:** not run for this page: `extract_ida.py`, `extract_dwarf.py`, `manifest.py`, `repair_functions.py` and `apply_transfer.py` in any mode, since they would rewrite the dumps or need a database. Their commands are those of `specs/007-pc-handler-annotation/research/T004f-repair-batch.md`, `T005g-extract-v4.md` and `W2-T013e-reapply.md` there.
+What was run for this page, and what was not: [Status](../reference/status.md#transfer-commands-of-the-how-to).

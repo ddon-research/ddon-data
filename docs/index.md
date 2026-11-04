@@ -31,7 +31,7 @@ The map of this repository's documentation, for peers who know x86, ELF and DWAR
 ### IDA and binaries
 
 - [Query an IDA database read-only](how-to/query-ida-read-only.md): make a private copy, read it, delete it.
-- [Write to an IDA database](how-to/write-to-an-ida-database.md): run a write as a headless batch, check the save, keep the undo.
+- [Write to an IDA database](how-to/write-to-an-ida-database.md): annotate a database: run a write as a headless batch, check the save, keep the undo.
 - [Transfer annotations from PS4 to PC](how-to/transfer-annotations-ps4-to-pc.md): repair, extract, match, transfer, apply, verify, undo.
 - [Regenerate the ELF dumps](how-to/regenerate-elf-dumps.md): rebuild or verify the static dumps of the PS4 ELF.
 - [Run Pharos](how-to/run-pharos.md): run OOAnalyzer on a large executable in Docker.

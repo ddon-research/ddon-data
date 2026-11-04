@@ -89,6 +89,20 @@ Recount with `research/scripts/find-unsupported-extensions.sh <build>`. Client 0
 | `packet` locals named and retyped; refused at the apply | 23; 1 | 2026-11-03 | `dumps/logs/apply-w2e.log` |
 | Reviewer's sample of pairs and types, wrong on PC | 70, 0 | 2026-11-03 | `specs/007-pc-handler-annotation/research/T008-adversarial.md` |
 
+### Transfer commands of the how-to
+
+On 2026-11-04, against the committed manifest and the local dumps:
+
+| Command | Result |
+| --- | --- |
+| `uv run python match.py --help`, `transfer.py --help`, `extract_dwarf.py --help` | the flags on the how-to |
+| `uv run python match.py --out <scratch>` | exit status 0; all 8 files equal `manifest/` |
+| `uv run python transfer.py --wave2 --out <scratch>` | exit status 0; the 7 `.tsv` files compared equal `manifest/transfer/wave2/` |
+| `uv run python transfer.py --no-holdout --out <scratch>` | exit status 2: the message quoted in the how-to, step 4, as designed for these dumps |
+| `parse_batch_args` of `apply_transfer.py` and `repair_functions.py`, called on the how-to's argument lists | parsed into its modes; `--verify` without `--apply-log`, `--apply-log` without `--verify`, and `--apply --verify` refused |
+
+**Status:** not run for [Transfer annotations from PS4 to PC](../how-to/transfer-annotations-ps4-to-pc.md): `extract_ida.py`, `extract_dwarf.py`, `manifest.py`, `repair_functions.py` and `apply_transfer.py` in any mode, since they would rewrite the dumps or need a database. Their commands are those of `specs/007-pc-handler-annotation/research/T004f-repair-batch.md`, `T005g-extract-v4.md` and `W2-T013e-reapply.md` there.
+
 ## Client patches
 
 > Measured on 2026-11-04; the replay row is of 2026-10-17.

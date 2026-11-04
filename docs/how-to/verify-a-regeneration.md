@@ -36,7 +36,7 @@ The path must stay short. Output paths of 260 characters or more fail, and the l
 | Fit flags | `python -X utf8 tools/docs_check.py --packet-counts` over the committed tree, once the export is there | no differences, or those you predicted |
 | What changed, per stream | `git diff --stat -- packets/decrypted_json/<stream>` | only predicted packet names |
 
-`git diff` over all of `packets/` is refused here: name a stream.
+`git diff` over `packets/` data without a summary flag is refused here. `--stat` is allowed; naming a stream keeps its output short.
 
 ## 4. Compare a stratified sample
 
