@@ -1,6 +1,6 @@
 # IDA transfer method
 
-Why the annotations of the PC 03040008 database were carried over from PS4 02020005 the way they were, for a reverse engineer who wants to trust, extend or challenge them. It explains why function pairs are proved by code shape, what each gate prevents, what the controls show and what the method leaves out. It builds on the [evidence model](evidence-model.md). The commands are in [Transfer annotations from PS4 to PC](../how-to/transfer-annotations-ps4-to-pc.md), the rule lists in [IDA transfer tools](../reference/ida-transfer-tools.md) and the counts in [Status](../reference/status.md#annotated-database-pc-03040008).
+This page is for a reverse engineer who wants to trust, extend or challenge the annotations of the PC 03040008 database: why they were carried over from PS4 02020005 the way they were, why function [pairs](../reference/glossary.md#disassembly-and-transfer) are proved by code shape, what each gate prevents, what the controls show and what the method leaves out. Read the [evidence model](evidence-model.md) first. The commands are in [Transfer annotations from PS4 to PC](../how-to/transfer-annotations-ps4-to-pc.md), the rule lists in [IDA transfer tools](../reference/ida-transfer-tools.md) and the counts in [Status](../reference/status.md#annotated-database-pc-03040008).
 
 ## The problem
 
@@ -62,9 +62,9 @@ Both are in the run and in its exit status, not in a report: a rule change that 
 
 A type is accepted when every access of the paired PC functions lands on a member of the computed layout. The hard case is the `lea`, which has no width: it takes the address of a sub-object, the `this` or out-argument of an inner reader, so nothing checks its size. Inner member starts are dense, so a `lea` at some offset nearly always falls on one by chance.
 
-`nUserSession::CPacket_S2C_CHANGE_JOB_RES` shows it. Its PC reader's `lea`s of sub-objects landed on inner leaves of the PS4 layout, and the type looked proved. The PC class's real sub-objects sit at other offsets, since Season 3 removed fields.
+`nUserSession::CPacket_S2C_CHANGE_JOB_RES` shows it. Its PC reader's `lea`s of sub-objects land on inner leaves of the PS4 layout, so the type looks proved. The PC class's real sub-objects sit at other offsets, since Season 3 removed fields.
 
-So there are two rules. A `lea` may land only on the object's start, one of its own members or an array element start; a `lea` inside an embedded struct contradicts. And a `lea` may contradict a type but never accepts one: a type with no checked load or store stays a forward declaration. A peer might call that too strict, since a reader's `lea`s are real evidence of *some* sub-object. They are evidence of an offset, not of a type. A `lea` passed to a paired callee whose parameter type is that member's type would tie the type as well, and that rule is planned, not built.
+So there are two rules. A `lea` may land only on the object's start, one of its own members or an array element start; a `lea` inside an embedded struct contradicts. And a `lea` may contradict a type but never accepts one: a type with no checked load or store stays a forward declaration. A peer might call that too strict, since a reader's `lea`s are real evidence of *some* sub-object. They are evidence of an offset, not of a type. A `lea` passed to a paired callee whose parameter type is that member's type would tie the type as well. **Status:** planned.
 
 ## Why partial types, and why their members come from links
 

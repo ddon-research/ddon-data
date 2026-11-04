@@ -1,10 +1,10 @@
 # Wire protocol
 
-Why a DDON connection of the PC client 03040008 looks the way it does: how a connection gets its key, why the first packet of each direction is special, what nNetMsg adds on top of packets and why a RES is read behind a guard. For a reader about to judge a capture or a pattern. The bytes themselves are in [Packet wire format](../reference/packet-wire-format.md).
+This page is for a reader about to judge a capture or a pattern: why a DDON connection of the PC client 03040008 looks the way it does, how a connection gets its key, why the first packet of each direction is special, what [nNetMsg](../reference/glossary.md#packets) adds on top of packets and why a RES is read behind a [guard](../reference/glossary.md#packets). You need nothing first; the bytes are in [Packet wire format](../reference/packet-wire-format.md).
 
 ## Transport
 
-The client holds a TCP connection to a login server, then to a game server (ports 52100 and 52000 in the captures). Each connection has its own key and its own run of packets. Above TCP there is one framing, a big-endian length and a ciphertext, so one TCP segment may carry several packets and one packet may span segments. A reader of a capture therefore has to reassemble the stream, not read segments. The same message shape serves both servers, and the two reuse ids, which is why a raw file's name prefix matters as much as its id.
+The client holds a TCP connection to a login server, then to a game server (ports 52100 and 52000 in the captures). Each connection has its own key and its own run of packets. Above TCP there is one framing, a big-endian length and a ciphertext, so one TCP segment may carry several packets and one packet may span segments. A reader of a capture therefore reassembles the stream and does not read segments. The same message shape serves both servers, and the two reuse ids, which is why a raw file's name prefix matters as much as its id.
 
 ## How a connection gets its key
 
@@ -25,13 +25,13 @@ sequenceDiagram
 
 The fixed key gives no secrecy: it is compiled into the client, so anyone holding a client reads the first two packets. The likely reason for it is that the framing and cipher path stay the same from the first byte (inferred). The secrecy rests on RSA, which wraps the common key. The server's private key is not in the captures, and only the official server ever held it.
 
-The first packet has no header, and neither side needs one, since the two ends already know what it must be. The client's send path drops the header its writer built, and its receive path makes one up for the dispatcher. The rest of the client then handles the certificate notice as an ordinary packet with a handler, under an id the wire never carries. A tool that treats every packet alike goes wrong at exactly this point, which is what [the CLI patches](../reference/arrowgene-cli-patches.md) correct.
+The first packet has no header, and neither side needs one, since the two ends know what it must be. The client's send path drops the header its writer built, and its receive path makes one up for the dispatcher. The rest of the client then handles the certificate notice as an ordinary packet with a handler, under an id the wire never carries. A tool that treats every packet alike goes wrong at this point, and [the CLI patches](../reference/arrowgene-cli-patches.md) correct that.
 
 ## Why the session keys can be found at all
 
 RSA would close the captures if the common key were random. It is not: each character is drawn from the client's global pseudo-random generator, an xorshift128 seeded once from a millisecond timer. So a key is a seed and a depth, both small for a client that has just started, and a candidate can be tested because the plaintext of the challenge response is known. That is the search [Decrypt a capture](../how-to/decrypt-a-capture.md) runs.
 
-The same generator serves gameplay code on several threads without a lock. That is why the search works on the first login of a client process and fails on later ones: `research/rng-race/README.md` explains the race, and `research/rng-race/NOTES.md` holds its measurements. Nothing on this page depends on it, except that some captured streams stay undecrypted.
+The same generator serves gameplay code on several threads without a lock. So the search works on the first login of a client process and fails on later ones: [RNG race](rng-race.md) explains why. Nothing else on this page depends on the race; it means only that some captured streams stay undecrypted.
 
 ## Why the plaintext has no length
 

@@ -1,6 +1,6 @@
 # plbatch design
 
-Why the packet export of client 03040008 runs through a batch driver of its own and not `imhex --pl format`, why that driver pins a PatternLanguage commit different from ImHex's, and what it leaves on the table. For anyone changing the export or doubting its output. The flags are in the [plbatch CLI](../reference/plbatch-cli.md) reference; the measurements are on [Status](../reference/status.md#export-engine). The background report is `specs/005-netmsg-patterns/research/P7-imhex-as-library.md`.
+This page is for anyone changing the packet export or doubting its output: why the export of client 03040008 runs through a batch driver of its own and not `imhex --pl format`, why that driver pins a PatternLanguage commit different from ImHex's and what speed it gives up. You need nothing first. The flags are in the [plbatch CLI](../reference/plbatch-cli.md) reference, the measurements on [Status](../reference/status.md#export-engine) and the background in `specs/005-netmsg-patterns/research/P7-imhex-as-library.md`.
 
 ## Why a batch driver
 
@@ -31,4 +31,4 @@ The pin brings other changes since `fb6ea061` that touch evaluation or output. A
 
 ## Why it parses per file
 
-Parsing dominates the cost per file: tens of milliseconds to preprocess, parse and validate the large `nNetMsg.hexpat` and its std imports, against under a millisecond of evaluation. Parsing once and evaluating many (`parseString` once, `evaluator->evaluate(ast)` per file) would be some twenty-five times faster per process. It is not done: it uses PatternLanguage internals, and must replicate the pragma and data-source setup that `executeString` and `reset()` do. Shards give enough speed without that risk, and the per-file path stays the one ImHex itself runs.
+Parsing dominates the cost per file: tens of milliseconds to preprocess, parse and validate the large `nNetMsg.hexpat` and its std imports, against under a millisecond of evaluation. Parsing once and evaluating many (`parseString` once, `evaluator->evaluate(ast)` per file) would be some twenty-five times faster per process. plbatch does not do it: that path uses PatternLanguage internals and must replicate the pragma and data-source setup of `executeString` and `reset()`. Shards give enough speed without that risk, and the per-file path stays the one ImHex itself runs.

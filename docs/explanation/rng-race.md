@@ -4,13 +4,13 @@ Why captures from long-running PC 03040008 clients do not decrypt, and why they 
 
 ## The short answer
 
-Each connection's key comes from a generator that gameplay threads share without a lock. The first login of a client process sits a few hundred draws after a known kind of seed, so a search finds its key. After that, the generator's state breaks away by itself, permanently, onto a sequence no seed produces. Each break multiplies the search, and a gap of minutes holds more breaks than any search can pay for. No capture was recovered. **Status:** closed with a negative result on 2026-10-19 by Sam's decision, with the questions below still open.
+Each connection's key comes from a generator that gameplay threads share without a lock. The first login of a client process sits a few hundred draws after a known kind of seed, so a search finds its key. After that, the generator's state breaks away by itself, permanently, onto a sequence no seed produces. Each break multiplies the search, and a gap of minutes holds more breaks than any search can pay for. No capture was recovered. The investigation closed with a negative result on 2026-10-19, with the questions below still open.
 
 ## How a key is drawn (verified)
 
 The common key is 48 calls of `alphabet[nrand() & 63]` on the global `MtRandom::instance` (`0x21E720C`, in key generators `sub_88ADD0` and `sub_849C00`), and Camellia-256 uses the first 32 characters. What the last 16 feed is open, probably nothing. `MtRandom` is four 32-bit words with no lock member (PS4_02020005 DWARF); `nrand` (`sub_13B5E10`) is Marsaglia xorshift128 with shifts (15, 4, 21). The model reproduces all 125 recovered keys of the 822 challenge packets in `packets/keys/keys-all-in-one.csv`.
 
-Seeding is `init(seed)`, 100 mixing rounds. The static initializer uses 4357; 10 to 14 s after process start the game calls `init(0)` and then `init(seed)` twice, with `seed` the milliseconds since about process start. The notes' "seeded once from the main timer" is close: no later `init` appears in any lab run.
+Seeding is `init(seed)`, 100 mixing rounds. The static initializer uses 4357; 10 to 14 s after process start the game calls `init(0)` and then `init(seed)` twice, with `seed` the milliseconds since about process start. No later `init` appears in any lab run.
 
 The first login's key sits at a depth of about 250 after that seed, the game-select key at about 1,500 to 1,700 and the game key at 1,850 to 2,100. That is why only those three decrypt in every capture, and why a capture started mid-process has no key at all: 449 of the 697 targets have no known key earlier in their process, so nothing to start from.
 
@@ -31,7 +31,7 @@ What happens instead is a **tear** (verified as a fit, its mechanism inferred). 
 
 Lab rates are 0.008 to 0.067 tears per second, in bursts. In a run of 800 s, 22 breaks lay between the first game key and the second login key, and none between a login key and its game key or inside a key burst. So a later login sits behind many tears, while a login's game-select and game keys do not.
 
-The generator has no other writer that the database shows: all 345 references to `0x21E720C` in the `f1c9` database are `mov ecx, offset` before a call, 299 to `nrand`, 35 to the float accessor, 1 to `init`, 10 not followed. The start-up `init` calls themselves are invisible to cross references. The "about 420 call sites" of the notes is a count over a decompiler export, not tied to the database.
+The generator has no other writer that the database shows: all 345 references to `0x21E720C` in the `f1c9` database are `mov ecx, offset` before a call, 299 to `nrand`, 35 to the float accessor, 1 to `init`, 10 not followed. The start-up `init` calls themselves are invisible to cross references. A count over a decompiler export, such as the "about 420 call sites" in `research/rng-race/NOTES.md`, is not tied to the database.
 
 ## Why a search cannot pay for it
 
@@ -41,7 +41,7 @@ A key search must guess each tear's position and spread and the burst's start. F
 candidates(N, k) ≈ N^(k+1) · 2^k / (k+1)!
 ```
 
-A candidate costs one Camellia-256 key schedule and one block, and neighbouring keys share nothing. The cipher offers no shortcut, since a known plaintext gives only a yes or no per candidate. Measured on a Ryzen 9 9950X3D: 208 M candidates/s with the reference code at 32 threads, 12.5 G/s with the GPU and AVX-512 engines together, so the 185 M/s of the notes is stale.
+A candidate costs one Camellia-256 key schedule and one block, and neighbouring keys share nothing. The cipher offers no shortcut, since a known plaintext gives only a yes or no per candidate. Measured on a Ryzen 9 9950X3D: 208 M candidates/s with the reference code at 32 threads, 12.5 G/s with the GPU and AVX-512 engines together.
 
 At 12.5 G/s, k = 2 takes minutes for a gap of 40 s and 20 minutes for 80 s; k = 3 takes 24 days for 40 s and about a year for 80 s, and more for the wider tear families. Only a second login within about a minute of a known key can hold few enough tears, and 12 login targets of the 697 are that close. The searches that ran on real captures found no key:
 
@@ -58,7 +58,7 @@ The server's RSA side is closed too: 39 distinct 2048-bit moduli with e = 17 sho
 
 ## What is open
 
-Dated 2026-10-19, the close of the investigation; nothing has been run on it since.
+These are the questions at the close of the investigation, 2026-10-19; nothing has run on them since that date.
 
 - **Why the real captures fail at k ≤ 2.** Three explanations remain: more than two tears in the real gaps, a tear family the real machines produced and the lab does not, or a start state other than the clean one after the last known key. A lab replay of one real gap measured 0.45 tears per gap, with no spread above 2, but it under-sampled the in-world phase: its second key is the game-select key, while the real client has the world at its game key. A corrected pass was planned and not run.
 - **The cause of the rate.** It is about a thousand times what chance overlap of two 20 ns calls gives, and the thread that writes a tear is unknown.

@@ -1,6 +1,6 @@
 # Structure of the PS4 ELF
 
-What is unusual about `DDOORBIS.elf`, the PS4 client executable of build PS4_02020005, and what a reader of its dumps has to expect from it. It is for a reverse engineer who knows ELF and DWARF and is about to read this binary, or a tool's output on it. You need nothing first; the input's hash and the files per category are in [the dump set's README](../../binaries/PS4_02020005/elf-dumps/README.adoc), and the formats of the dumps in [ELF dumps](../reference/elf-dumps.md). The numbers describe that one fixed input, SHA-256 `4236f598acc8f15893181455ed195e39dfa4dbfda4eeda8b56fcbd82312c63c0`.
+This page is for a reverse engineer who knows ELF and DWARF and is about to read `DDOORBIS.elf`, the PS4 client executable of build PS4_02020005, or a tool's output on it: what is unusual about the file and what to expect from its dumps. You need nothing first; the input's hash and the files per category are in [the dump set's README](../../binaries/PS4_02020005/elf-dumps/README.adoc), and the formats of the dumps in [ELF dumps](../reference/elf-dumps.md). The numbers describe that one fixed input, SHA-256 `4236f598acc8f15893181455ed195e39dfa4dbfda4eeda8b56fcbd82312c63c0`.
 
 ## Program headers and sections
 
@@ -30,9 +30,7 @@ The remaining six are two loadable segments, `PT_DYNAMIC`, the interpreter, TLS 
 - The SCE dynamic symbol table has 650 entries (`DT_SCE_SYMTABSZ` 15,600 / 24). 648 are imports
   named by NID, such as `Gl6w5i0JokY#0O#o`. `orbis-bin --dump-dynsym -v` resolves the library and module
   of all 648 and the function name of 543. The other 105 stay `<Unknown NID: ...>`
-  (`rg -c '<Unknown NID' symbols/dynsym.orbis-bin.txt`), and no relocation references them. The
-  comparison in `archive/` says "resolves all 648", which overstates this (the reconstructor's
-  inventory, 2026-10-17).
+  (`rg -c '<Unknown NID' symbols/dynsym.orbis-bin.txt`), and no relocation references them.
 
 ## Symbols
 
@@ -113,14 +111,12 @@ The remaining six are two loadable segments, `PT_DYNAMIC`, the interpreter, TLS 
   not see the overlap across units.
 - **DIE tree**: the dump has 463,660,524 lines.
 
-
 ## Code
 
 - The disassembly covers 116,279 functions and 6,920,426 instructions in the executable sections,
   with demangled names and source-line annotations.
 - Calls to imports go through the PLT stubs, and the disassembly labels them with the stub names,
   such as `</PL_init_env>`.
-
 
 ## Why inlined chains come from one address per run
 

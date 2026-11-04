@@ -1,6 +1,6 @@
 # Packet decoding method
 
-Why the packet patterns of client 03040008 are built from the client's readers and only tested on captures, what the fit check can and cannot say, and how a value in a capture may support a name. For anyone reading a pattern's marks or writing one. The steps are in [Write a packet pattern](../how-to/write-a-packet-pattern.md), the rules in [Packet evidence marks](../reference/packet-marks.md), and the wider reasoning in [Evidence model](evidence-model.md).
+This page is for anyone reading a [pattern](../reference/glossary.md#packets)'s [marks](../reference/glossary.md#evidence-marks) or writing one: why the packet patterns of client 03040008 are built from the client's readers and only tested on captures, what the [fit](../reference/glossary.md#packets) check can and cannot say, and how a value in a capture may support a name. Read [Evidence model](evidence-model.md) first for the wider reasoning. The steps are in [Write a packet pattern](../how-to/write-a-packet-pattern.md) and the rules in [Packet evidence marks](../reference/packet-marks.md).
 
 ## Reader first
 
@@ -23,7 +23,7 @@ So a fit shows that a layout is not too long and not more than a block too short
 
 A failed fit is strong: some layout claim is false for that capture. That asymmetry decides how the check is used. It is a filter that catches errors, run on every export, and it never raises a mark. A full tree with every packet fitting says that no decode overran its file and no more.
 
-The nNetMsg patterns can do better, because their `len` states the end exactly. There a wrong width usually breaks the walk, and that is why the width changes between PS4 02020005 and PC showed up so clearly in that layer.
+The nNetMsg patterns can do better, because their `len` states the end exactly. There a wrong width usually breaks the walk, so the width changes between PS4 02020005 and PC show clearly in that layer.
 
 ## Value bases
 
@@ -45,7 +45,7 @@ So a pairing goes through code: the PC's own diagnostic string in the handler, o
 
 On 32-bit x86 the writers take many values through the stack, and a decompiler rebuilds those arguments by tracking the stack pointer. That reconstruction can attribute or order them wrongly, and the pseudocode then reads with full confidence. For a packet writer, the order of arguments is the order of fields, so the error lands directly in a layout.
 
-Two things check it. The disassembly's pushes are the program, so widths and order are read there and not from the pseudocode. And the [recompilation](../reference/glossary.md#builds-and-clients), C++ generated for the PS4 02020005 client, states `ReadPacket` and `WritePacket` bodies with the right order where it has them. It has gaps, and it is PS4, so Season 3 changes still come from the PC reader. When it and IDA disagree the question goes back to the code, never to a guess.
+Two things check it. The disassembly's pushes are the program, so widths and order are read there and not from the pseudocode. The [recompilation](../reference/glossary.md#builds-and-clients) states `ReadPacket` and `WritePacket` bodies with the right order where it has them. It has gaps, and it is PS4, so Season 3 changes still come from the PC reader. When it and IDA disagree the question goes back to the code, never to a guess.
 
 ## Why every includer is re-exported
 
