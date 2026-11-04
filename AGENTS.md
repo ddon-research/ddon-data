@@ -116,7 +116,7 @@ POSIX equivalent.
 Human documentation (how-tos, reference, explanation): `docs/index.md`. When a workflow's page exists, it holds the steps.
 
 - **Client extraction**: run ddon-extractor against `D:\DDON_<build>` with `gmd.csv`
-  (`ddon-extractor resource -p true -o -m -f json -u -x D:\DDON_03040008 D:\DDON-translation\gmd.csv <out>`;
+  (`ddon-extractor resource -p true -o -m -f json -u -x D:\DDON_03040008 D:\DDON-translation\gmd.csv .` unpacks, the same without `-u -x` extracts, into `output/` under the working directory; steps: `docs/how-to/extract-client-resources.md`;
   see `D:\ddon-extractor\README.md`), then replace `client/<build>/`. Review the change with
   `git diff --stat` per resource type before committing.
 - **Resource format research**: identify the extension (`research/scripts/find-unsupported-extensions.sh`),
@@ -124,7 +124,7 @@ Human documentation (how-tos, reference, explanation): `docs/index.md`. When a w
   `D:/ddon-ghidra-scripts/headless-scripts/run_ghidra_analysis.sh dwarf|function <name> DDOORBIS.elf`),
   write `research/03040008/r<Type>-pattern.cpp`, validate with
   `imhex --pl format --pattern <pattern> --input <file>` (`research/scripts/validate_pattern.sh`), and
-  cross-check against the extractor JSON. See `research/README.adoc`.
+  cross-check against the extractor JSON. Steps: `docs/how-to/decode-a-resource-format.md`, `docs/how-to/choose-a-resource-target.md`.
 - **Packets**: `packets/keys/decrypt-pcapng-streams-all-in-one.sh <capture.pcapng|dir> [out]`
   needs `tshark`, `Arrowgene.Ddon.Cli`, and `ddon_common_key_bruteforce`. Key search uses expected
   plaintext `0100000234000000` (login) and `2C00000234000000` (game-select/game), bounded to

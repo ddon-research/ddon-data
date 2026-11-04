@@ -177,7 +177,7 @@ A spec closes only after all of these, in order; each is a task in its `tasks.md
 2. A whole-spec `reviewer` (45 min) on the spec's changes against its `spec.md`, and an
    `adversarial-reviewer` on every guard or check the spec added.
 3. Documentation: a read-only audit of the docs the spec touched (`readme.adoc`, the READMEs of the
-   changed directories, `research/README.adoc`, the knowledge-graph `STATUS.md`, `AGENTS.md`,
+   changed directories, `docs/` pages on the subject, the knowledge-graph `STATUS.md`, `AGENTS.md`,
    `CLAUDE.md`), then the fixes.
 4. The full retrospective (section 8) over the spec's window, with one `repository-researcher`
    (60 min) on the report's ranked outliers, the subagent trajectories (bounded `jq` over the

@@ -35,9 +35,13 @@ Coordinator: main session. One subagent at a time. Target structure and rules: `
   from the 10 UTF-16 `.r2` scripts (how-to adds `iconv`); the 23 PEB reads read `PEB.Ldr`, not `BeingDebugged`; the old crash
   ranking superseded by ddon-hook spec 009; rng-race page follows ddon-hook 013. Gate: hooks, shell, export, xfer (473),
   mcp, docs (61 pages, 0 findings).
-- [ ] T008 Repository pages (`implementer`, `briefs/T008-repository-pages.md`): resource how-tos; repository layout, inputs,
-  tools, conventions, gate and hooks; short root `readme.adoc`; the index.
-- [ ] T009 Review: accuracy sample, a reader's walk, adversarial check of the new gate.
+- [x] T008 Repository pages (f1db706e14): 10 pages (resource how-tos, layout, inputs, tools, conventions, gate and hooks,
+  community resources, quest flag sources); `research/README.md`, `tools/README.md`; short root `readme.adoc`; index regrouped;
+  `research/README.adoc`, `rLandInfo-example`, `wikis-and-resources` and the quest-flag note deleted after their facts
+  landed. Corrected: extractor's third argument, rLandInfo magic `0x49414C`. Gate: hooks, shell, mcp, docs (75 pages, 579
+  links, 0 findings); ImHex not run (not on PATH).
+- [ ] T009 Review (`adversarial-reviewer`, `briefs/T009-review.md`): accuracy sample, lost facts, live readers, the gate,
+  a reader's walk.
 - [ ] T010 Editor pass, `AGENTS.md` / `CLAUDE.md` shortened, close: `check.sh --all`, retro, merge and push.
 
 ## Decisions (coordinator, 2026-11-04, from T001 § 12)
@@ -73,5 +77,5 @@ Coordinator: main session. One subagent at a time. Target structure and rules: `
 
 ## Running
 
-- T008 (implementer, brief `briefs/T008-repository-pages.md`), started 2026-11-04. Next: land, then T009 review. Then
-  spec 010 follows the close.
+- T009 (adversarial-reviewer, brief `briefs/T009-review.md`), started 2026-11-04. Next: file its report, fixes, editor,
+  `AGENTS.md` shortened, close. Then spec 010.
