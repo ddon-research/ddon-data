@@ -211,6 +211,7 @@ ALLOWED = [
     "git log --oneline -- client",
     "git show --stat HEAD -- client",
     "git show -s HEAD -- client",
+    "git show --no-patch HEAD -- client",
     "git show HEAD -- docs/index.md",
     "git show HEAD:docs/index.md",
     "git grep -c foo client",
@@ -295,9 +296,20 @@ class GuardBashTest(unittest.TestCase):
                                              "git --git-dir=/d/sibling/.git push origin main",
                                              "git --git-dir /d/sibling/.git push origin main",
                                              "git -C $S push origin main",
-                                             "(cd /d/sibling); git push origin rng-monitor")):
+                                             "(cd /d/sibling); git push origin rng-monitor",
+                                             "cd /d/sibling | true && git push origin main",
+                                             "true | cd /d/sibling && git push origin main",
+                                             "if true; then cd /d/sibling && git push origin main; fi",
+                                             "timeout 5 cd /d/sibling && git push origin main",
+                                             "git --git-dir=/d/sibling/.git push origin rng-monitor",
+                                             "git --git-dir /d/sibling/.git push origin rng-monitor",
+                                             "git --work-tree=/d/sibling push origin rng-monitor")):
                 with self.subTest(command=command):
                     self.assertIsNotNone(guard_bash.verdict(data(command, agent=f"t{index}", call=f"t{index}")))
+
+    def test_cd_back_is_unknown_not_a_directory_named_dash(self):
+        reason = guard_bash.verdict(data("cd - && git push origin rng-monitor", agent="d", call="d"))
+        self.assertIn("unknown", reason)
 
     def test_unknown_branch_keeps_the_forms_that_name_none(self):
         # A bare `git push` and HEAD need no branch; tags are no branch.

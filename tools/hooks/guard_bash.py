@@ -254,7 +254,7 @@ def located(command, cwd):
             words = unwrapped(raw)
             if not words or name_of(words[0]) not in MOVERS:
                 continue
-            plain = (len(stages) == 1 and depth == 0 and after in ("&&", None) and "|" not in (before or "")
+            plain = (len(stages) == 1 and depth == 0 and "|" not in (before or "")
                      and raw == words and len(words) == 2 and name_of(words[0]) == "cd"
                      and not words[1].startswith("-"))
             known = joined(known, words[1]) if plain else None
