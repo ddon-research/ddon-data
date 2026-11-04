@@ -97,7 +97,7 @@ scripts="$LOGS/shell-files.txt"
 rg '\.sh$' "$changed" >"$scripts" || true
 count=$(wc -l <"$scripts" | tr -d ' ')
 if [ "$count" -eq 0 ]; then
-    record shell passed "0 scripts changed since $(git rev-parse --short "$base")"
+    record shell "not run (no script changed)"
 else
     syntax() { while IFS= read -r f; do bash -n "$f" || return 1; done <"$scripts"; }
     if run_logged shell syntax; then
@@ -157,7 +157,12 @@ elif ! touches "^(packets/imhex-export\.sh|packets/(patterns|tools|tests)/)"; th
     record export "not run (no change to packets/imhex-export.sh, packets/patterns/, packets/tools/ or packets/tests/)"
 else
     if run_logged export bash "$EXPORT_TEST"; then
-        record export passed "$(rg -c '^pass: ' "$LOGS/export.log") checks of $EXPORT_TEST ($(seconds export) s)"
+        export_checks=$(rg -c '^pass: ' "$LOGS/export.log" || echo 0)
+        if [ "$export_checks" -eq 0 ]; then
+            record export "not run ($EXPORT_TEST exited 0 with no check)"
+        else
+            record export passed "$export_checks checks of $EXPORT_TEST ($(seconds export) s)"
+        fi
     else
         record export failed "see $LOGS/export.log"
     fi
@@ -173,7 +178,12 @@ elif ! command -v jq >/dev/null 2>&1 || ! command -v cygpath >/dev/null 2>&1; th
     record idacopy "not run (jq or cygpath missing)"
 else
     if run_logged idacopy bash "$IDACOPY_TEST"; then
-        record idacopy passed "$(rg -c '^pass: ' "$LOGS/idacopy.log") checks of $IDACOPY_TEST ($(seconds idacopy) s)"
+        idacopy_checks=$(rg -c '^pass: ' "$LOGS/idacopy.log" || echo 0)
+        if [ "$idacopy_checks" -eq 0 ]; then
+            record idacopy "not run ($IDACOPY_TEST exited 0 with no check)"
+        else
+            record idacopy passed "$idacopy_checks checks of $IDACOPY_TEST ($(seconds idacopy) s)"
+        fi
     else
         record idacopy failed "see $LOGS/idacopy.log"
     fi
