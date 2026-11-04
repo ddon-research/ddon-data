@@ -14,10 +14,15 @@ Coordinator: main session. One subagent at a time. Target structure and rules: `
   `tools/`, `tests/`, `plbatch/` (with its build tree), `wireshark/`; guard narrowed to the data trees. 595 = 595
   patterns; 6 ids / 676 JSON re-exported byte-identical; plbatch test passes from its home; `git log --follow` crosses the
   move. Gate `check.sh --since cfa36beb405`: hooks, shell, export, mcp, docs passed.
-- [ ] T004 Packet docs restructured (`implementer`, `briefs/T004-packet-restructure.md`): patterns README and annotate
-  adoc split into pages, plbatch and Wireshark pages, `packet-ids.md` with its gate check, 31 counts corrected.
-- [ ] T005 New knowledge pages: wire format, handler tables, decoding method, write-a-pattern, verify-a-regeneration,
-  evidence model, `two-packet-decodings` (decision 7).
+- [x] T004 Packet docs restructured (4a4a1540f4, f8e757a267, 631a5b18e4): 17 pages, short READMEs, adoc deleted;
+  `packet-ids.md` checked against the patterns; `--packet-counts` 595 rows, 0 differences after 31 counts corrected;
+  spot-check 728 ids/addresses, 0 misses; `guard_paths` normalizes dot segments. Not run, read against the scripts: the
+  decrypt, annotate and export-stream scripts, `dotnet build`, `plbatch/build.sh`. Gate `check.sh --since 715f8f2305d`:
+  hooks, shell, export, mcp, docs, packet-counts passed.
+- [x] T004b Season 1 and 2 patterns removed here (decision 8), after both pushes confirmed on GitHub: 61 files;
+  constitution 1.0.1, `AGENTS.md`, `readme.adoc`, `research/README.adoc` updated.
+- [ ] T005 New knowledge pages (`implementer`, `briefs/T005-packet-knowledge.md`): wire format, handler tables, decoding
+  method, write-a-pattern, verify-a-regeneration, evidence model, `two-packet-decodings` (decision 7); CLI patches saved.
 - [ ] T006 IDA and transfer pages: `ida-transfer/README.md` split, query and write how-tos, transfer method.
 - [ ] T007 The rest: protections, patches, ELF dumps, Pharos, textures, rng-race, `research/README.adoc`,
   `rLandInfo-example`, wikis; repository layout, inputs, tools, conventions, gate and hooks; root `readme.adoc`.
@@ -57,5 +62,5 @@ Coordinator: main session. One subagent at a time. Target structure and rules: `
 
 ## Running
 
-- T004 (implementer, brief `briefs/T004-packet-restructure.md`), started 2026-11-04. Next: land, apply its `AGENTS.md`
-  lines, brief T005.
+- T005 (implementer, brief `briefs/T005-packet-knowledge.md`), started 2026-11-04. Next: land, brief T006. `readme.adoc`
+  line 115 still credits DDOn-Tools as a path reader: fix in T007.

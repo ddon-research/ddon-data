@@ -68,9 +68,9 @@ statistics, and helper scripts. Also `patterns/03040008/` (ImHex patterns per pa
 and quality-of-life fixes. See `patches/README.md`.
 |Hand-authored
 
-|`research/<build>/`
-|ImHex patterns (`r<Type>-pattern.cpp`), packet patterns, DTI dumps, and notes per client build
-(`01020003`, `02030004`, `03040008`).
+|`research/03040008/`
+|ImHex resource patterns (`r<Type>-pattern.cpp`), DTI dumps, and notes. Season 1 and 2 patterns are in ddon-data-s1 and ddon-data-s2
+(client 03040008).
 |Hand-authored
 
 |`research/03040008/flags/`
@@ -143,7 +143,7 @@ stable.
 . Recover the class layout and its `load`/`save` methods from the PS4 debug symbols, through IDA
   or the archived link:https://github.com/ddon-research/ddon-ghidra-scripts[ddon-ghidra-scripts]
   (`headless-scripts/run_ghidra_analysis.sh dwarf|function <name> DDOORBIS.elf`).
-. Write an ImHex pattern in `research/<build>/r<Type>-pattern.cpp` and validate it against real
+. Write an ImHex pattern in `research/03040008/r<Type>-pattern.cpp` and validate it against real
   files with `imhex --pl format --pattern <pattern> --input <file>`.
 . Cross-check the result against the extractor JSON. `research/README.adoc` describes the
   LLM-assisted variant of this loop.

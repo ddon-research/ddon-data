@@ -25,7 +25,7 @@ Treat it as versioned evidence, not as source code.
 | `binaries/ANDROID_1500/` | Decompiled Unity C# and `path_id_map.json` | `D:\research\DDON-binaries\Android` tools |
 | `packets/` | Data: `encrypted_streams/`, `decrypted_{raw,json,annotated}/`, `keys/`, packet statistics. Hand-authored: `patterns/03040008/` (ImHex patterns, `include/`), `plbatch/` (export engine), `tools/`, `tests/`, `wireshark/` (dissector, filters) | `D:\research\DDON-pcaps` toolchain: `ddon_pcap_split`, `ddon_common_key_bruteforce`, `Arrowgene.Ddon.Cli`; JSON: `packets/imhex-export.sh` |
 | `patches/` | radare2 `.r2` patch scripts + `.json` metadata for Windows `DDO.exe` builds | Hand-authored; see `patches/README.md` |
-| `research/<build>/` | ImHex patterns `r<Type>-pattern.cpp`, notes, DTI dumps | Hand-authored |
+| `research/03040008/` | ImHex resource patterns `r<Type>-pattern.cpp`, notes, DTI dumps; Season 1 and 2 patterns are in `ddon-data-s1` and `ddon-data-s2`, `research/<build>/` | Hand-authored |
 | `research/03040008/flags/` | `ddon-flags` Python project (quest/layout flag investigation) and `generated/` reports | This repo |
 | `research/knowledge-graph/` | `ddon-knowledge-graph` Python project (Neo4j evidence graph + MCP), own Spec Kit project | This repo |
 | `research/ida/`, `research/pharos/` | IDA helpers, Pharos OOAnalyzer (Docker) | This repo |
@@ -39,12 +39,12 @@ Treat it as versioned evidence, not as source code.
 - **Game clients** (inputs): `D:\DDON_01010004`, `D:\DDON_02030004`, `D:\DDON_02030010`,
   `D:\DDON_03040008`, each with `nativePC/rom`.
 - **Readers of this repo**: `D:\ddon-explorer-server` (reads `client/03040008`),
-  `D:\DDON-translation` tools (read `client/03040008/quest`), the Arrowgene server docs, and
-  DDOn-Tools hex patterns (read `research/02030004/`). Moving or renaming those paths breaks them.
+  `D:\DDON-translation` tools (read `client/03040008/quest`), and the Arrowgene server docs.
+  Moving or renaming those paths breaks them.
 - **Related tools**: `C:\ddon-dwarf-reconstructor-rust` rebuilds C++ for resource classes from the
   PS4 DWARF and reads `D:\ddon-data-s2\client\02030004` as an oracle; `D:\ddon-dwarf-reconstructor`
   is the archived Python predecessor, still used by knowledge-graph enrichment. Server emulator:
-  `D:\GitHub\Sehkah\Arrowgene.DragonsDogmaOnline` (fork) and its `.Upstream` clone.
+  `D:\GitHub\Sehkah\Arrowgene.DragonsDogmaOnline` (fork) and its `.Upstream` clone (unpatched reference); the patched CLI build is in `C:\Users\morph\Documents\GitHub\Sehkah\Arrowgene.DragonsDogmaOnline.Upstream` (uncommitted patches).
 - **Ghidra scripts** (archived): `D:\ddon-ghidra-scripts`
   (https://github.com/ddon-research/ddon-ghidra-scripts) holds the PyGhidra headless analyzer
   (DWARF struct export, recursive decompilation, graph export) and standalone Script Manager
@@ -113,6 +113,8 @@ POSIX equivalent.
 
 ## Workflows
 
+Human documentation (how-tos, reference, explanation): `docs/index.md`. When a workflow's page exists, it holds the steps.
+
 - **Client extraction**: run ddon-extractor against `D:\DDON_<build>` with `gmd.csv`
   (`ddon-extractor resource -p true -o -m -f json -u -x D:\DDON_03040008 D:\DDON-translation\gmd.csv <out>`;
   see `D:\ddon-extractor\README.md`), then replace `client/<build>/`. Review the change with
@@ -120,15 +122,15 @@ POSIX equivalent.
 - **Resource format research**: identify the extension (`research/scripts/find-unsupported-extensions.sh`),
   get the class layout from DWARF and its `load`/`save` methods (IDA MCP, or the archived
   `D:/ddon-ghidra-scripts/headless-scripts/run_ghidra_analysis.sh dwarf|function <name> DDOORBIS.elf`),
-  write `research/<build>/r<Type>-pattern.cpp`, validate with
+  write `research/03040008/r<Type>-pattern.cpp`, validate with
   `imhex --pl format --pattern <pattern> --input <file>` (`research/scripts/validate_pattern.sh`), and
   cross-check against the extractor JSON. See `research/README.adoc`.
 - **Packets**: `packets/keys/decrypt-pcapng-streams-all-in-one.sh <capture.pcapng|dir> [out]`
   needs `tshark`, `Arrowgene.Ddon.Cli`, and `ddon_common_key_bruteforce`. Key search uses expected
   plaintext `0100000234000000` (login) and `2C00000234000000` (game-select/game), bounded to
-  about 15k depth and 40 s per stream. `packets/decrypt-annotate-streams.sh` re-annotates streams
-  in parallel (`packets/README-decrypt-annotate-streams.adoc`). Exports need the locally patched
-  Arrowgene CLI described in that README (error responses stop after `Error`); split dumps over
+  about 15k depth and 40 s per stream. Steps and options: `docs/how-to/decrypt-a-capture.md`,
+  `docs/how-to/reannotate-streams.md`, `docs/how-to/export-packets-to-json.md`. Exports need the locally patched
+  Arrowgene CLI (`docs/how-to/patch-the-arrowgene-cli.md`; error responses stop after `Error`); split dumps over
   50 MiB with `packets/split-annotated.sh` and decode structures with `packets/imhex-export.sh`.
 - **Patches**: apply with `radare2 -qnw -i <patch>.r2 <target>.exe`; keep the SHA-256 chain in
   each `.json` correct (`patches/README.md`).

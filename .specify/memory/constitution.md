@@ -44,7 +44,7 @@ input and output identity, and counts. Measure before optimizing; optimize measu
 
 - The repository aggregates output from external tools (see `AGENTS.md`); features that change a
   producer belong in that producer's repository, with only the refreshed output landing here.
-- Paths read by downstream consumers (`client/03040008/`, `research/02030004/`) stay stable; a
+- Paths read by downstream consumers (`client/03040008/`) stay stable; a
   feature that moves them documents the migration.
 - Automation is POSIX shell or a `uv`-managed Python project on CPython 3.14.
 
@@ -61,4 +61,4 @@ This constitution governs root-level features. Amendments are made through `/spe
 bump the version (MAJOR for removed or redefined principles, MINOR for additions, PATCH for
 wording), and record the date. `AGENTS.md` must stay consistent with it.
 
-**Version**: 1.0.0 | **Ratified**: 2026-10-11 | **Last Amended**: 2026-10-11
+**Version**: 1.0.1 | **Ratified**: 2026-10-11 | **Last Amended**: 2026-11-04
