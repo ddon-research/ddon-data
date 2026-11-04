@@ -11,7 +11,7 @@
 #       "NAME group.id.sub" for packet types the CLI has no C# structure for (no StructDump line)
 #   packets-structure-parse-failures.txt
 #       "(group.id.sub) NAME,count" for packets whose C# structure failed to parse
-#       (StructDump line without a JSON structure; see README-decrypt-annotate-streams.adoc)
+#       (StructDump line without a JSON structure; see docs/how-to/patch-the-arrowgene-cli.md)
 #   decrypted-tcp-streams-unique-*-packets.txt   only with -k
 #
 # Usage:

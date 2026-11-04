@@ -1,0 +1,21 @@
+
+## Cut facts
+
+History and stale facts on no page, with where they stay. The adoc and the README stay readable in Git at the base commit.
+
+| Fact | Why cut | Stays in |
+| --- | --- | --- |
+| `0x758810`, `0x7ff650`, `0x81dc90`: 27.10.x list reader, RES reader, REQ writer | "not patterned" bullet, stale | 006 `T012-achievement-equip-skill.md`, 008 `T005-batches-B3-B7-B6.md` |
+| `0x76abe0`: `CDataSwitchStorage` reader | history bullet (T008b) | 006 `T008-warp-item.md` |
+| `0x76c5f0`, `0x7e0b70`: 24.6.16 element reader and handler | "not patterned" bullet, stale | 006 `T011-party-profile-friend.md`, 008 `T003-batches-B5-B2.md` |
+| `d75b26ef7fcce075205e3a830e660781622687420dafad21447355dd4c6a32b1`: `Arrowgene.Ddon.Cli.dll` of the fixed-key build, 2026-11-01 | a superseded build | the adoc at the base commit only |
+| `d311f08d2278e65dc6fdb1e02797899a2bbcd180d12ded268e51bb5446da03d0`: `Arrowgene.Ddon.Cli.dll` of the relabel and rename builds, 2026-11-01 and 2026-11-02 | a superseded build | the adoc at the base commit only |
+| Export comparisons: 146,891 files byte-identical, 125 renamed certificate notices, 244 renamed files by id, 13,724 recovered packets in 41 streams (13,492 in stream85 tcp-stream-11; 3.3.16 6,394, 6.25.16 5,431, 35.7.1 560), 13,633 of 13,633 fit | a run's counts, history | 006 `tasks.md` (TC2, TC3), the adoc at the base commit |
+| The 2024-05-13 export: 51 ids renamed (1,958 files), millisecond timestamps, 43 `1.0.1` files without the header | history of the raw tree; the resulting format is on `packet-pattern-format.md` | the adoc at the base commit |
+| `T014c applied the 478 TSV rows (251 struct.field pairs)` | a run's count | 006 `tasks.md` |
+| 91 packets with no pattern at the raw export (62.26.16: 74, 27.10.1: 14, 27.10.2: 2, 63.10.16: 1) | stale: all have patterns | 008 `tasks.md` |
+| `T003`, `T004`, `T005` batch prose: "counts after their first export" per group | the recount replaces them; groups stay in the key | 006 and 008 `tasks.md` |
+| P3's export of 110,065 nNetMsg packets at about 6 packets/s | a run's count; `plbatch-design.md` keeps the order of magnitude | 005 `tasks.md` |
+| Server misplacement, lead only: Arrowgene's `CDataNormalSkillParam` swaps SkillNo and Index, and its 27.8.16 element lacks the u8 | history bullet (T012b) | 006 `T012-achievement-equip-skill.md` § 20 |
+| Include changes and their `cmp` results (T005b, T007b, T008b, T009b, T010b, T011b, T012b, T013b), the naming sweep's key and type renames (TC1) | history bullets | 006 `tasks.md`; the include facts themselves are on `packet-includes.md` |
+| 3,028-file comparison by way of the adoc, plbatch then at `fb6ea061` | moved, not cut | `docs/reference/status.md` |

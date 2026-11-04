@@ -34,6 +34,17 @@ A finding reads `<path>:<line>: [<check>] <message>`.
 | `wording` | a task id, package label or dating word in prose | state the fact without it; give a date; put an exact name in a code span |
 | `opening` | no paragraph right after the title | write it |
 | `tutorial` | a pinned input, its hash or the expected `jq` line changed | see below |
+| `packet-ids` | a row of [Packet ids](../reference/packet-ids.md) disagrees with its pattern, or a pattern has no row | correct the row by script, not the whole table with an editor; the pattern is the authority |
+
+## Correct the packet fit counts
+
+The fit counts in [Packet ids](../reference/packet-ids.md) come from the JSON tree. After a re-export, this rewrites the differing rows and the date beside the table, and touches nothing else:
+
+```sh
+python -X utf8 tools/docs_check.py --packet-counts --write
+```
+
+Without `--write` it only lists the differences, and the exit status is 1 when there are any. The gate's `packet-counts` section runs that form.
 
 ## Change a tutorial input
 

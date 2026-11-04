@@ -96,7 +96,7 @@ Status carries a dated blockquote as its second paragraph, with the date of the 
 
 ## Validation
 
-`tools/docs_check.py` runs in the `docs` section of `tools/check.sh`: [Run the gate](../how-to/run-the-gate.md) reads its line, and [Write documentation](../how-to/write-documentation.md) lists its findings. The checks it makes are links and their case, anchors, the index, code-span paths, the mechanical wording rules above, the opening paragraph and the tutorial's pinned inputs.
+`tools/docs_check.py` runs in the `docs` section of `tools/check.sh`: [Run the gate](../how-to/run-the-gate.md) reads its line, and [Write documentation](../how-to/write-documentation.md) lists its findings. The checks it makes are links and their case, anchors, the index, code-span paths, the mechanical wording rules above, the opening paragraph, the tutorial's pinned inputs and the rows of [Packet ids](packet-ids.md) against the patterns. The wording rules skip those rows: they are data that moved intact, and their report labels resolve through the key above them.
 
 The tutorial's inputs and expected output are machine-checked: changing `docs/tutorials/read-one-packet.md` or its inputs means changing the `TUTORIAL` constant in `tools/docs_check.py` with it.
 

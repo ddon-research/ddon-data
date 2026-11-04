@@ -9,7 +9,7 @@
 #   tools/check.sh --quick         hooks and shell syntax only (no project test suites)
 #
 # Sections: hooks, shell, flags, kg, xfer (research/03040008/ida-transfer), idacopy (research/ida/tests/private-copy.sh), export (packets/tests/imhex-export-select.sh,
-# when packets/imhex-export.sh, packets/patterns/, packets/tools/ or packets/tests/ changed), mcp, docs (tools/docs_check.py; its tests when it changed), imhex.
+# when packets/imhex-export.sh, packets/patterns/, packets/tools/ or packets/tests/ changed), mcp, docs (tools/docs_check.py; its tests when it changed), packet-counts (tools/docs_check.py --packet-counts, when the id table or the JSON changed), imhex.
 #
 # Changed files: `git diff --name-only <base>` plus untracked files, limited to the small trees
 # (never client/ or packets/ data). Full logs go to .agent-ledger/check-logs/<check>.log.
@@ -232,6 +232,28 @@ else
         record docs passed "$(rg -o 'docs_check: .*' "$LOGS/docs.log" | sed 's/^docs_check: //'); $(rg -o 'Ran [0-9]+ tests?' "$LOGS/docs.log" || echo "$docs_tests") ($(seconds docs) s)"
     else
         record docs failed "see $LOGS/docs.log"
+    fi
+fi
+
+# 5c. The fit counts of the packet id table against the JSON tree: seconds, so only when either changed.
+PACKET_TABLE=docs/reference/packet-ids.md
+json_changed() {
+    if [ -n "$since" ]; then ! git diff --quiet "$base" HEAD -- packets/decrypted_json
+    else ! git diff --quiet "$base" -- packets/decrypted_json; fi
+}
+if [ "$quick" -eq 1 ]; then
+    record packet-counts "not run (--quick)"
+elif ! touches "^$PACKET_TABLE\$" && ! json_changed; then
+    record packet-counts "not run (no change to $PACKET_TABLE or packets/decrypted_json)"
+elif [ -z "$python_bin" ]; then
+    record packet-counts "not run (python missing)"
+else
+    if run_logged packet-counts "$python_bin" -X utf8 -I tools/docs_check.py --packet-counts; then
+        record packet-counts passed "$(rg -o 'packet-counts: .*' "$LOGS/packet-counts.log" | sed 's/^packet-counts: //') ($(seconds packet-counts) s)"
+    elif rg -q 'not run' "$LOGS/packet-counts.log"; then
+        record packet-counts "not run ($(rg -o 'not run \((.*)\)' -r '$1' "$LOGS/packet-counts.log"))"
+    else
+        record packet-counts failed "see $LOGS/packet-counts.log"
     fi
 fi
 

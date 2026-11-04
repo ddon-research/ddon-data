@@ -93,9 +93,9 @@ link:https://github.com/ddon-research/ddon-ghidra-scripts[ddon-ghidra-scripts].
 (`external/`), extension and header survey scripts.
 |Hand-authored
 
-|`plan/`
-|Plans for the quest flag investigation.
-|Historical
+|`docs/`
+|The documentation, by what you want to do: start at `docs/index.md`.
+|Hand-authored
 |===
 
 == Data flow
@@ -150,22 +150,10 @@ stable.
 
 === Packet capture to decrypted streams
 
-`packets/keys/decrypt-pcapng-streams-all-in-one.sh <capture.pcapng|folder> [output_dir]`
-automates the pipeline. It needs `tshark` on `PATH` and `Arrowgene.Ddon.Cli` and
-`ddon_common_key_bruteforce` in the working directory.
-
-. Detect the first packet of each login, game-select, and game TCP stream with `tshark` filters
-  (size and window heuristics plus the `0x0060` marker) and take the first 32 bytes after the size
-  field.
-. Brute-force the session's common key against the expected plaintext (`0100000234000000` for
-  login, `2C00000234000000` for game-select and game), bounded to about 15k depth and 40 s.
-. Export the stream as YAML (`tshark -z follow,tcp,yaml`) and decrypt it with
-  `Arrowgene.Ddon.Cli packet <yaml> <key>`.
-. Log each stream's key with time and depth metadata to `*-keys.csv` (or `keys-all-in-one.csv`
-  for a folder).
-
-The filters are empirical; review ambiguous streams manually. `packets/decrypt-annotate-streams.sh`
-re-annotates existing streams in parallel (see `packets/README-decrypt-annotate-streams.adoc`).
+`packets/keys/decrypt-pcapng-streams-all-in-one.sh <capture.pcapng|folder> [output_dir]` finds each
+stream's session key and decrypts it: link:docs/how-to/decrypt-a-capture.md[Decrypt a capture].
+link:docs/how-to/reannotate-streams.md[Re-annotate streams] reprocesses streams whose keys are known,
+and `packets/README.md` maps the rest of that directory.
 
 == Working with AI agents
 

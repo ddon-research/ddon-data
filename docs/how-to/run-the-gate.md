@@ -50,6 +50,7 @@ A failed section prints the end of its log to stderr. The full logs are `.agent-
 | `xfer` | `research/03040008/ida-transfer/` sources changed | pytest and ruff |
 | `mcp` | always | every `--project` path in `.claude/agents/` exists |
 | `docs` | always, except `--quick` | `tools/test_docs_check.py`, then `tools/docs_check.py` over the pages; a move anywhere can break a link |
+| `packet-counts` | `docs/reference/packet-ids.md` or `packets/decrypted_json/` changed, except `--quick` | `tools/docs_check.py --packet-counts`: each row's fit count against the JSON tree, in seconds |
 | `imhex` | a resource pattern changed | always `not run`: the validation is `research/scripts/validate_pattern.sh`, per pattern |
 
 To fix a `docs` finding, see [Write documentation](write-documentation.md).

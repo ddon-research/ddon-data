@@ -13,17 +13,28 @@ Checks (the name in brackets is what a finding prints):
   (e) [wording]  outside fences and code spans: no task id, package label, wave name or dating word
   (f) [opening]  a paragraph comes right after the title
   (g) [tutorial] the tutorial's inputs match their SHA-256 and its jq line matches the committed JSON
+  (h) [packet-ids] docs/reference/packet-ids.md has one row per packet pattern; id, name and marks equal the pattern's
 
-It reads the git index (paths only), the pages and the three tutorial inputs: no other file under client/ or packets/.
+It reads the git index (paths only), the pages, the three tutorial inputs and the packet patterns: nothing else under
+client/ or packets/.
 Exit status: 0 no finding, 1 findings, 3 not run (markdown-it-py missing).
+
+A separate mode compares the table's `n/m fit` with the JSON tree, which takes seconds, so the gate runs it only when
+the table or the JSON changed; `--write` corrects the rows and the recount date, and nothing else:
+
+  python -X utf8 tools/docs_check.py --packet-counts [--write]
+
+Its exit status: 0 no difference (or written), 1 differences, 3 not run (rg or the JSON tree missing).
 """
 
 import argparse
 import dataclasses
+import datetime
 import hashlib
 import json
 import posixpath
 import re
+import shutil
 import subprocess
 import sys
 from collections import Counter
@@ -43,6 +54,10 @@ SHORT_READMES = (
     "research/scripts/README.md",
     "research/prompts/README.md",
     "research/03040008/notes/README.md",
+    "packets/README.md",
+    "packets/patterns/03040008/README.md",
+    "packets/plbatch/README.md",
+    "packets/wireshark/README.md",
 )
 
 # Untracked trees of other work a code span may name while they are not committed; on disk, exact case. Never links.
@@ -83,6 +98,20 @@ TUTORIAL = Tutorial(
     jq_line='{"packet":{"group":14,"id":3,"subId":2,"source":52,"packetcounter":0,"sourceOk":true,"Error":0,'
             '"Result":0,"WarpPointID":66,"Rim":39109,"paddingSize":7,"fits":true}}',
 )
+
+
+PACKET_IDS = "docs/reference/packet-ids.md"
+PATTERNS = "packets/patterns/03040008"
+JSON_TREE = "packets/decrypted_json"
+TABLE_HEADING = "## The table"
+ROW = re.compile(r"^\| (?P<id>\d+\.\d+\.\d+) \| `(?P<name>\w+)`(?: \(was [^|]*\))? \| [^|]* \| (?P<status>.*) \|$")
+FIT = re.compile(r"^(?:(\d+)/(\d+) fit|no capture)")
+RECOUNT = re.compile(r"^Fit counts .*$", re.MULTILINE)
+PATTERN_ID = re.compile(r"^// packet-id: (\S+)", re.MULTILINE)
+PATTERN_SELECT = re.compile(r"^// packet-select: (\S+)", re.MULTILINE)
+PATTERN_MARK = re.compile(r"\bT00[345] (V|I|G|open)\b")
+ROW_MARKS = re.compile(r"\bT00[345] marks: ([^;)]*)")
+JSON_ID = re.compile(r"\.(\d+)_(\d+)_(\d+)\.json$")
 
 
 @dataclasses.dataclass(frozen=True)
@@ -321,6 +350,124 @@ def check_tutorial(root, tutorial):
             yield Finding("tutorial", tutorial.page, 1, f"{tutorial.json_path}: jq -c prints {printed}")
 
 
+def packet_rows(text):
+    """(line number, line) of the table under TABLE_HEADING: data rows only."""
+    lines = text.split("\n")
+    start = lines.index(TABLE_HEADING) if TABLE_HEADING in lines else len(lines)
+    for number, line in enumerate(lines[start:], start + 1):
+        if line.startswith("|") and not line.startswith(("| Id |", "| ---")):
+            yield number, line
+
+
+def row_marks(status):
+    """The counts a row states, or None when it states no marks."""
+    match = ROW_MARKS.search(status)
+    if not match:
+        return None
+    return {m.group(1): int(m.group(2)) for m in re.finditer(r"\b(V|I|G|open) (\d+)\b", match.group(1))}
+
+
+def check_packet_ids(root):
+    root = Path(root)
+    page = root / PACKET_IDS
+    if not page.is_file():
+        yield Finding("packet-ids", PACKET_IDS, 1, "the page does not exist")
+        return
+    seen = set()
+    patterns = {p.name[:-len("-pattern.cpp")]: p for p in (root / PATTERNS).glob("*-pattern.cpp")}
+    for number, line in packet_rows(page.read_text(encoding="utf-8")):
+        row = ROW.match(line)
+        if not row:
+            yield Finding("packet-ids", PACKET_IDS, number, f"not a table row: {line[:80]}")
+            continue
+        name = row["name"]
+        if name in seen:
+            yield Finding("packet-ids", PACKET_IDS, number, f"{name} has a second row")
+            continue
+        seen.add(name)
+        if name not in patterns:
+            yield Finding("packet-ids", PACKET_IDS, number, f"{name}: no {PATTERNS}/{name}-pattern.cpp")
+            continue
+        text = patterns[name].read_text(encoding="utf-8")
+        declared = PATTERN_ID.search(text)
+        if not declared or declared.group(1) != row["id"]:
+            yield Finding("packet-ids", PACKET_IDS, number,
+                          f"{name}: the row says {row['id']}, the pattern's packet-id says {declared and declared.group(1)}")
+        counted = Counter(PATTERN_MARK.findall(text))
+        stated = row_marks(row["status"])
+        if stated is None and counted:
+            yield Finding("packet-ids", PACKET_IDS, number, f"{name}: the row states no marks, the pattern has {dict(counted)}")
+        elif stated is not None and stated != dict(counted):
+            yield Finding("packet-ids", PACKET_IDS, number, f"{name}: the row states marks {stated}, the pattern has {dict(counted)}")
+    for name in sorted(set(patterns) - seen):
+        yield Finding("packet-ids", PACKET_IDS, 1, f"{name}: a pattern with no row")
+
+
+def fits_by_path(root):
+    """{packet id: [(file name, fits)]} of the JSON tree, through rg: it reads each file once, in parallel."""
+    def listing(*args):
+        run = subprocess.run(["rg", *args, JSON_TREE, "-g", "*.json"], cwd=root, capture_output=True, encoding="utf-8")
+        if run.returncode not in (0, 1):
+            raise OSError(run.stderr.strip())
+        return [line.replace("\\", "/") for line in run.stdout.splitlines()]
+    fitting = set(listing("-l", "-F", '"fits": true'))
+    tree = {}
+    for path in listing("--files"):
+        match = JSON_ID.search(path)
+        if match:
+            tree.setdefault(".".join(match.groups()), []).append((path.rpartition("/")[2], path in fitting))
+    return tree
+
+
+def packet_counts(root, write=False):
+    """(rows, differences). With `write`, the rows and the recount line take the JSON's counts."""
+    root = Path(root)
+    page = root / PACKET_IDS
+    text = page.read_text(encoding="utf-8")
+    tree = fits_by_path(root)
+    lines = text.split("\n")
+    rows, differences = 0, []
+    for number, line in packet_rows(text):
+        row = ROW.match(line)
+        if not row:
+            differences.append(f"{PACKET_IDS}:{number}: not a table row")
+            continue
+        rows += 1
+        pattern = root / PATTERNS / f"{row['name']}-pattern.cpp"
+        select = PATTERN_SELECT.search(pattern.read_text(encoding="utf-8")) if pattern.is_file() else None
+        files = tree.get(row["id"], ())
+        if select:
+            files = [f for f in files if f"_{select.group(1)}_" in f[0]]
+        total, fit = len(files), sum(1 for f in files if f[1])
+        wanted = f"{fit}/{total} fit" if total else "no capture"
+        fit_match = FIT.match(row["status"])
+        stated = fit_match.group(0) if fit_match else None
+        if stated != wanted:
+            differences.append(f"{PACKET_IDS}:{number}: {row['id']} {row['name']}: table {stated}, JSON {wanted}")
+            if write and stated:
+                lines[number - 1] = line.replace(f"| {stated}", f"| {wanted}", 1)
+    if write:
+        out = RECOUNT.sub(f"Fit counts recounted on {datetime.date.today().isoformat()} with `tools/docs_check.py --packet-counts`.",
+                          "\n".join(lines), count=1)
+        page.write_bytes(out.encode("utf-8"))
+    return rows, differences
+
+
+def run_packet_counts(root, write):
+    root = Path(root)
+    if shutil.which("rg") is None:
+        print("docs_check --packet-counts: not run (rg is not on PATH)")
+        return 3
+    if not (root / JSON_TREE).is_dir() or not (root / PACKET_IDS).is_file():
+        print(f"docs_check --packet-counts: not run ({JSON_TREE} or {PACKET_IDS} missing)")
+        return 3
+    rows, differences = packet_counts(root, write)
+    for difference in differences:
+        print(difference)
+    print(f"docs_check --packet-counts: {rows} rows, {len(differences)} differences" + (" (written)" if write else ""))
+    return 1 if differences and not write else 0
+
+
 def check_adoc(root, tree, pages, path):
     text = ADOC_FENCE.sub(lambda m: "\n" * m.group(0).count("\n"), (Path(root) / path).read_text(encoding="utf-8"))
     for number, line in enumerate(text.splitlines(), 1):
@@ -328,6 +475,13 @@ def check_adoc(root, tree, pages, path):
             yield from check_link(root, tree, pages, path, number, href)
         for span in ADOC_SPAN.findall(line):
             yield from check_span(tree, path, number, span)
+
+
+def table_row_lines(page):
+    """The lines of the packet id table: its rows move intact, so their report labels and notes are data, not prose."""
+    if page.path != PACKET_IDS:
+        return set()
+    return {number for number, _line in packet_rows(page.text)}
 
 
 def run(root=REPO, short_readmes=SHORT_READMES, tutorial=TUTORIAL, adoc=("readme.adoc",)):
@@ -352,11 +506,13 @@ def run(root=REPO, short_readmes=SHORT_READMES, tutorial=TUTORIAL, adoc=("readme
         for line, span in page.code_spans():
             counts["paths"] += 1 if span_path(span) else 0
             findings.extend(check_span(tree, path, line, span))
+        rows = table_row_lines(page)
         for line, child in page.inline():
-            if child.type == "text":
+            if child.type == "text" and line not in rows:
                 findings.extend(check_wording(path, line, child.content))
     findings.extend(check_index(root, tree, pages, docs_pages))
     findings.extend(check_tutorial(root, tutorial))
+    findings.extend(check_packet_ids(root))
     for path in adoc:
         if (root / path).is_file():
             findings.extend(check_adoc(root, tree, pages, path))
@@ -366,7 +522,13 @@ def run(root=REPO, short_readmes=SHORT_READMES, tutorial=TUTORIAL, adoc=("readme
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--root", default=str(REPO))
+    parser.add_argument("--packet-counts", action="store_true", help="compare the n/m fit of the packet id table with the JSON tree")
+    parser.add_argument("--write", action="store_true", help="with --packet-counts: correct the rows and the recount date")
     args = parser.parse_args(argv)
+    if args.write and not args.packet_counts:
+        parser.error("--write needs --packet-counts")
+    if args.packet_counts:
+        return run_packet_counts(args.root, args.write)
     if MarkdownIt is None:
         print("docs_check: not run (markdown-it-py is not installed; run it through uv as the module docstring says)")
         return 3

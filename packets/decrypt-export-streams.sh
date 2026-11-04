@@ -12,10 +12,10 @@
 # The CLI writes <yaml>.annotated.txt beside its input, so each YAML is copied into a
 # temporary folder first: encrypted_streams/ is never written to. Streams run one at a time,
 # because parallel CLI instances share one log file and crash on it
-# (README-decrypt-annotate-streams.adoc).
+# (docs/how-to/reannotate-streams.md).
 #
 # Environment overrides:
-#   CLI_PATH   Arrowgene.Ddon.Cli.exe (default: the patched Upstream build, see the README)
+#   CLI_PATH   Arrowgene.Ddon.Cli.exe (default: the patched Upstream build, docs/how-to/patch-the-arrowgene-cli.md)
 #   KEYS_FILE  default keys/keys-all-in-one.csv
 #   STREAM_DIR default encrypted_streams
 #   OUT_DIR    default decrypted_raw

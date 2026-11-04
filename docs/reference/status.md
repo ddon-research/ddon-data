@@ -13,11 +13,27 @@ The dated counts of this repository, for a reader who wants to know how far the 
 | Raw packet files | 160,615 | 2026-11-04 | `fd -t f . packets/decrypted_raw \| wc -l` |
 | JSON exports | 160,615 | 2026-11-04 | `fd -t f . packets/decrypted_json \| wc -l` |
 | JSON exports with `"fits": true` | 160,615 | 2026-11-04 | `rg -l -F '"fits": true' packets/decrypted_json \| wc -l` |
+| Captured streams with a JSON folder | 125 | 2026-11-04 | `fd -d 1 -t d . packets/decrypted_json \| wc -l` |
 | Fit of the 115 ids decoded last against their PC layouts, of 4,887 captures | 4,885 | 2026-11-03 | `specs/008-remaining-packets/tasks.md` |
 
 The 2 captures outside that fit are of 29.23.16, whose PC handler returns without reading its body. A fit of every export says that no decode overruns its file; it does not prove widths ([fit](glossary.md#packets)).
 
 **Status:** open. Decoded without settled meaning at 2026-11-03: 29.23.16 (no reader), 11.88.16 and 11.118.16 (layout decoded, meaning unknown), and the `G` names whose consumers were not traced.
+
+## Export engine, measured 2026-11-01
+
+Client 03040008 packets on a contended 32-CPU machine, with hyperfine 2.0.0, `-N`. plbatch was at PatternLanguage `fb6ea061` for these runs, the pin ImHex 1.38.1 embeds, so both engines ran one parser.
+
+| What | Result |
+| --- | --- |
+| Byte comparison of `imhex.exe` 1.38.1 (portable NoGPU) `--pl format` with plbatch, same patterns, over 3,028 files: 1,000 each of `C2S_PARTY_SEND_BINARY_MSG_NTC`, `S2C_LOBBY_LOBBY_DATA_MSG_NTC` and `C2S_LOBBY_LOBBY_DATA_MSG_REQ`, all 8 `C2S_PARTY_SEND_BINARY_MSG_ALL_NTC`, 20 samples of `specs/005-netmsg-patterns/research/P7-imhex-as-library.md` | 3,028 identical, 0 differing, 0 failures on either side |
+| plbatch over 100 `S2C_LOBBY_LOBBY_DATA_MSG_NTC` packets | 2.837 s ± 0.111, 5 runs: about 35 packets/s per process |
+| `imhex.exe --pl format` over one packet | 534.0 ms ± 317.0, 15 runs: about 1.9 packets/s per process, before any shell overhead |
+| `--time`, 1,000 packets per nNetMsg type: parse of the roughly 1,000-line `nNetMsg.hexpat` and its std imports | about 24-25 ms per file |
+| The same: evaluation | about 0.5-0.7 ms per file |
+| The same: JSON | about 0.05 ms per file |
+| One process, per-file parsing as built | about 40 files/s |
+| Parsing once and evaluating many, not built, estimated | roughly 1,000 files/s per process |
 
 ## Resource extensions, client 03040008
 
@@ -31,6 +47,7 @@ The 2 captures outside that fit are of 29.23.16, whose PC handler returns withou
 
 | Check | State | Date |
 | --- | --- | --- |
+| The steps of the how-tos that rewrite tracked data: [Decrypt a capture](../how-to/decrypt-a-capture.md), [Re-annotate streams](../how-to/reannotate-streams.md) (annotate, raw export), [Refresh packet statistics](../how-to/refresh-packet-statistics.md), [Patch the Arrowgene CLI](../how-to/patch-the-arrowgene-cli.md) (build) | not run: their commands are read against the scripts | 2026-11-04 |
 | ImHex validation of the packet patterns | not run: ImHex is not on `PATH`, and plbatch is the parser of the export | 2026-11-03 |
 | Consumers of the role-only `V` marks of 28.34.2 and 11.68.16 | not run | 2026-11-03 |
 | The `ValueOld` check of 13.23.16 | not run | 2026-11-03 |

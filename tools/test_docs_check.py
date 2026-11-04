@@ -49,7 +49,40 @@ Every page, by type.
 
 - [A tutorial](tutorials/one.md)
 - [A how-to](how-to/two.md)
+- [Packet ids](reference/packet-ids.md)
 """
+
+PACKET_IDS = """# Packet ids
+
+Every pattern.
+
+## The table
+
+Fit counts not recounted.
+
+| Id | Pattern | Report | Status |
+| --- | --- | --- | --- |
+| 14.3.2 | `S2C_A_RES` | T003 §1 | 2/2 fit (T004 marks: G 2, open 1) |
+| 14.4.1 | `C2S_B_REQ` (was `C2S_OLD_REQ`) | 008 T004 | no capture |
+| 0.1.1 | `C2L_C_REQ` | P11b | 1/1 fit (now new; T005 marks: none (no fields)) |
+"""
+
+PATTERN_A = """// packet-id: 14.3.2
+// T004 G (lead): x
+// T004 G (context): y
+    u32 unk; // T004 open (empty)
+"""
+PATTERN_B = "// packet-id: 14.4.1\n"
+PATTERN_C = "// packet-id: 0.1.1\n// packet-select: C2L_C_REQ\n"
+
+
+def json_files():
+    return {
+        "packets/decrypted_json/s1/1_S2C_A_RES_t.14_3_2.json": '{"packet":{"fits": true}}',
+        "packets/decrypted_json/s2/1_S2C_A_RES_t.14_3_2.json": '{"packet":{"fits": true}}',
+        "packets/decrypted_json/s1/2_C2L_C_REQ_t.0_1_1.json": '{"packet":{"fits": true}}',
+        "packets/decrypted_json/s1/3_C2S_D_REQ_t.0_1_1.json": '{"packet":{"fits": true}}',
+    }
 
 HOW_TO = """# A how-to
 
@@ -90,6 +123,10 @@ class DocsCheckTest(unittest.TestCase):
         probe.write("docs/index.md", INDEX)
         probe.write("docs/tutorials/one.md", TUTORIAL_PAGE)
         probe.write("docs/how-to/two.md", HOW_TO)
+        probe.write("docs/reference/packet-ids.md", PACKET_IDS)
+        probe.write("packets/patterns/03040008/S2C_A_RES-pattern.cpp", PATTERN_A)
+        probe.write("packets/patterns/03040008/C2S_B_REQ-pattern.cpp", PATTERN_B)
+        probe.write("packets/patterns/03040008/C2L_C_REQ-pattern.cpp", PATTERN_C)
         probe.write("research/notes/README.md", "# Notes\n\nWhat this directory holds.\n")
         probe.write("research/Readme.adoc", "= Title\n\n== A section\n")
         probe.write("tools/run.sh", "#!/bin/sh\n")
@@ -301,6 +338,104 @@ class DocsCheckTest(unittest.TestCase):
         self.write("docs/index.md", "# Map\n\nEvery page.\n\n- [A how-to](how-to/two.md)\n")
         self.write("docs/how-to/two.md", "# A how-to\n\nFor peers.\n")
         self.assert_finding("tutorial", "does not exist")
+
+    # (h) packet ids
+
+    def edit_table(self, old, new):
+        page = self.root / docs_check.PACKET_IDS
+        text = page.read_text(encoding="utf-8")
+        self.assertIn(old, text)
+        page.write_text(text.replace(old, new), encoding="utf-8", newline="\n")
+
+    def test_pattern_without_a_row_fails(self):
+        self.write("packets/patterns/03040008/S2C_E_NTC-pattern.cpp", "// packet-id: 1.2.16\n")
+        self.assert_finding("packet-ids", "S2C_E_NTC: a pattern with no row")
+
+    def test_row_without_a_pattern_fails(self):
+        (self.root / "packets/patterns/03040008/C2S_B_REQ-pattern.cpp").unlink()
+        self.assert_finding("packet-ids", "C2S_B_REQ: no packets/patterns")
+
+    def test_second_row_fails(self):
+        self.edit_table("| 14.4.1 |", "| 14.3.2 | `S2C_A_RES` | T003 | no capture |\n| 14.4.1 |")
+        self.assert_finding("packet-ids", "S2C_A_RES has a second row")
+
+    def test_id_that_differs_from_the_pattern_fails(self):
+        self.edit_table("| 14.4.1 |", "| 14.4.2 |")
+        self.assert_finding("packet-ids", "the row says 14.4.2")
+
+    def test_marks_that_differ_from_the_pattern_fail(self):
+        self.edit_table("G 2, open 1", "G 1, open 1")
+        self.assert_finding("packet-ids", "the row states marks")
+
+    def test_marks_the_row_does_not_state_fail(self):
+        self.write("packets/patterns/03040008/C2S_B_REQ-pattern.cpp", "// packet-id: 14.4.1\n// T003 V: read\n")
+        self.assert_finding("packet-ids", "the row states no marks")
+
+    def test_broken_row_fails(self):
+        self.edit_table("| 14.4.1 | `C2S_B_REQ`", "| 14.4.1 | C2S_B_REQ")
+        self.assert_finding("packet-ids", "not a table row")
+
+    def test_missing_page_fails(self):
+        (self.root / docs_check.PACKET_IDS).unlink()
+        self.write("docs/index.md", INDEX.replace("- [Packet ids](reference/packet-ids.md)\n", ""))
+        self.assert_finding("packet-ids", "does not exist")
+
+    def test_wording_rules_skip_the_rows_only(self):
+        self.assertEqual(self.findings(), [])
+        self.edit_table("Fit counts not recounted.", "Fit counts not recounted, now T003.")
+        found = self.findings()
+        self.assertEqual(len([f for f in found if "[wording]" in f]), 2, found)
+
+    # (h) packet counts
+
+    def write_json(self):
+        for path, text in json_files().items():
+            self.write(path, text)
+
+    def test_counts_equal_pass(self):
+        self.write_json()
+        self.assertEqual(docs_check.packet_counts(self.root), (3, []))
+
+    def test_count_that_differs_fails_and_write_corrects_it(self):
+        self.write_json()
+        self.edit_table("2/2 fit", "1/1 fit")
+        rows, differences = docs_check.packet_counts(self.root)
+        self.assertEqual(rows, 3)
+        self.assertEqual(len(differences), 1)
+        self.assertIn("table 1/1 fit, JSON 2/2 fit", differences[0])
+        docs_check.packet_counts(self.root, write=True)
+        text = (self.root / docs_check.PACKET_IDS).read_text(encoding="utf-8")
+        self.assertIn("| 2/2 fit (T004 marks: G 2, open 1) |", text)
+        self.assertRegex(text, r"Fit counts recounted on \d{4}-\d\d-\d\d")
+        self.assertEqual(docs_check.packet_counts(self.root), (3, []))
+
+    def test_file_without_fits_true_counts_against_the_row(self):
+        self.write_json()
+        self.write("packets/decrypted_json/s2/1_S2C_A_RES_t.14_3_2.json", '{"packet":{"fits": false}}')
+        self.assertIn("JSON 1/2 fit", docs_check.packet_counts(self.root)[1][0])
+
+    def test_select_keeps_the_other_servers_file_out(self):
+        self.write_json()
+        (self.root / "packets/patterns/03040008/C2L_C_REQ-pattern.cpp").write_text("// packet-id: 0.1.1\n", encoding="utf-8")
+        self.assertIn("JSON 2/2 fit", docs_check.packet_counts(self.root)[1][0])
+
+    def test_capture_of_a_no_capture_row_fails(self):
+        self.write_json()
+        self.write("packets/decrypted_json/s1/4_C2S_B_REQ_t.14_4_1.json", '{"packet":{"fits": true}}')
+        self.assertIn("table no capture, JSON 1/1 fit", docs_check.packet_counts(self.root)[1][0])
+
+    def test_counts_mode_reports_not_run_without_the_tree(self):
+        with contextlib.redirect_stdout(io.StringIO()) as out:
+            self.assertEqual(docs_check.main(["--root", str(self.root), "--packet-counts"]), 3)
+        self.assertIn("not run", out.getvalue())
+
+    def test_counts_mode_exits_1_on_a_difference(self):
+        self.write_json()
+        self.edit_table("2/2 fit", "1/1 fit")
+        with contextlib.redirect_stdout(io.StringIO()):
+            self.assertEqual(docs_check.main(["--root", str(self.root), "--packet-counts"]), 1)
+            self.assertEqual(docs_check.main(["--root", str(self.root), "--packet-counts", "--write"]), 0)
+            self.assertEqual(docs_check.main(["--root", str(self.root), "--packet-counts"]), 0)
 
     # The contract and the code
 

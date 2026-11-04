@@ -20,6 +20,9 @@ The terms that more than one page uses, for a reader who knows x86, ELF and DWAR
 | fit | The flag `fits` a pattern exports: the decode ends within the last 15 bytes of the file, and reading past the end fails the decode. A fit is weak evidence: it does not prove field widths when the slack exceeds a field. |
 | slack | The bytes left after a decode, exported as `paddingSize`. In a raw file they are cipher block padding. |
 | nNetMsg | The RPC payload (`cNetMsg*` messages) carried by the lobby and party binary packets, decoded by `packets/patterns/03040008/include/nNetMsg.hexpat`. |
+| annotated dump | The Arrowgene CLI's text dump of one stream under `packets/decrypted_annotated/`, decoded with the server emulator's C# structures. |
+| stream | One TCP stream of a capture, stored as YAML under `packets/encrypted_streams/`. Its folder names under `packets/decrypted_raw/` and `packets/decrypted_json/` end in `tcp-stream-<n>`. |
+| report label | A short name such as `T003` or `P11a` for an evidence report under `specs/`, written in a code span. [Packet ids](packet-ids.md#report-labels) holds the key. |
 | CData | The prefix of the shared wire structures (`CDataCommonU32`), as PS4 02020005 DWARF names them. |
 
 ## Evidence marks
