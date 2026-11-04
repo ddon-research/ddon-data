@@ -37,7 +37,7 @@ The server's test is whether the client accepts its packets. That test finds wro
 
 ## When they disagree
 
-- **Size and order: the PC code decides.** A server layout the PC reader or writer contradicts is a server error: it is reported and does not change the pattern.
+- **Size and order: the PC code decides.** A server layout the PC reader or writer contradicts is a server error: it is reported and does not change the pattern. Two fields of one width are a server error only when a consumer shows a value landing where the client cannot use it. A reader gives offsets, and a name from another build contradicts no byte.
 - **Meaning: a server name tested by play is a strong lead.** It may raise a field's name to `G (lead)`, or, with a stated basis from code, values or hints, to `I (<basis>; lead agrees)`. A contradiction between the server's name and the code's is recorded in the pattern's comment.
 
 A peer might ask for one merged decoding. It would have to choose per field, and that choice is exactly what the marks record; keeping both forms lets a later reader see what each said. Rates of agreement over a batch of ids are on [Status](../reference/status.md#the-two-packet-decodings), with the measurement behind them.
@@ -69,6 +69,8 @@ packets/decrypted_json/stream31-loginfail-marked.pcapng_tcp-stream-13/10274_S2C_
 ```
 
 The server's `CDataNormalSkillParam.cs` reads Index before SkillNo. PC list reader `0x76f820` fills a `0x14`-byte object: a vtable, a u8 at `+4`, and the three u32 at `+8`, `+0xc` and `+0x10`. PS4 reader `0x19f1cc0` stores them at `+0xc`, `+0x10` and `+0x14`, and the PS4 02020005 DWARF members and the recompilation's `Skill.h` name those SkillNo, Index and PreSkillNo in that order (`specs/006-packet-pattern-coverage/research/T012-achievement-equip-skill.md` § 20). The code decides, and the pattern's `include/Skill.hexpat` says so with the server's order as a lead. A [fit](../reference/glossary.md#packets) cannot settle this: the two orders read the same bytes. The annotated side still gives `SpiritLancer` for the job, which the JSON leaves as 10.
+
+Here "the code decides" settles the names, and it leaves the wire alone. In PC 03040008 the handler `0x7fae10` passes each element to `0x4889e0`, which takes the u32 at `+8`, rejects `0xFF` and anything of `0xB` or more, subtracts 1 and uses the result as a slot in a per-job array. So `+8` is the 1-based slot the client indexes with, and the server sends that value there, under the name Index. The PS4 name `m_unSkillNo` belongs to the same field, so the disagreement is over what to call it. **The bytes are right: swapping the two u32 in the server would hand the client a skill id as a slot.** That consumer does not touch `+0xc`, and other users of the type were not searched, so the name of `+0xc` stays open.
 
 Sizes differ the same way. 14.11.16 `C2S_WARP_14_11_16_NTC`, pcap packet 10361 of the same stream, has a server structure with no field, so the annotated dump shows `StructDump: {"Structure": {}}` over the bytes `00 00 00 01`. PC writer `0x840080` writes a u32, and the JSON has `"StartPointId":1`, whose name is marked `G` in the pattern.
 

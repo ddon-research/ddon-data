@@ -156,6 +156,7 @@ The length `00 2a` at 0x15 covers 42 bytes, 0x17 to 0x40, which the JSON gives a
 - The cipher works in 16-byte blocks over header plus body, so a raw file's size is a multiple of 16 and the padding is 0 to 15 bytes. Both held for all 753 files of the two streams above, counted on 2026-11-04: 34 and 719, four of them headerless first packets.
 - The raw files and the frames store no body length: a reader of a file finds the end of the body only by decoding it.
 - Padding bytes are not zeroed and not constant. They can repeat earlier data, as the `3f 63` in the padding of the list example does.
+- The PC 03040008 reader's limit is the frame end, padding included, and nothing measures the padding (`0x9d6f2e`-`0x9d6f53`, `V`). A server layout shorter than the reader takes padding bytes as fields; a read past the frame end [ends the session](packet-handler-tables.md#what-ends-a-served-connection). So a padding of 0 on a block boundary leaves a short layout no spare byte, and the server's own padding of 1 to 16 bytes always leaves one.
 
 ## nNetMsg payloads
 

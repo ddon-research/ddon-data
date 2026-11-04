@@ -26,13 +26,15 @@ The 2 captures outside that fit are of 29.23.16, whose PC handler returns withou
 
 > Measured on 2026-11-03 against the server fork `88d82caf07`; recounted on 2026-11-04.
 
-How often the server's structures agree with the PC 03040008 layouts, over the 115 ids decoded last. Source: columns `ag_vs_pc` and `ag_*` of `specs/008-remaining-packets/research/T001-triage.tsv`. What the numbers mean: [Two packet decodings](../explanation/two-packet-decodings.md). The other ids of the table were not measured this way.
+How often the server's structures agree with the PC 03040008 layouts, over the 115 ids decoded last. Source: columns `ag_vs_pc` and `ag_*` of `specs/008-remaining-packets/research/T001-triage.tsv`, with one correction. What the numbers mean: [Two packet decodings](../explanation/two-packet-decodings.md). The other ids of the table were not measured this way.
 
 | `ag_vs_pc` | Ids |
 | --- | --- |
-| same | 81 |
-| differs | 3: 14.11.16, 10.14.16, 34.0.1 |
+| same | 82 |
+| differs | 2 of the 84 compared: 14.11.16, 10.14.16 |
 | empty: the comparison's parser did not know a statement of the structure | 31 |
+
+The TSV still marks 34.0.1 as differing, and was not regenerated. Its PC shape was corrected afterwards to a u32 count plus a u64 per element (`specs/008-remaining-packets/research/T005-batches-B3-B7-B6.md`), which is the server's list of `CDataCommonU64`, so this table counts it as same.
 
 ## Export engine
 

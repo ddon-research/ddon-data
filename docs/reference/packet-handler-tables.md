@@ -124,6 +124,28 @@ The login server shares ids with the game server: a raw file's name prefix (`C2L
 
 In `pc-handlers`, 9 of the 20 addresses have no IDA function: `0x886650`, `0x886750`, `0x886b00`, `0x886d00`, `0x886e00`, `0x886ec0`, `0x887130`, `0x8874b0`, `0x8875b0`. `0x886b00` shows `dd` data, and decoded without creating anything it is code: `sub esp,56Ch; push esi; push edi; mov edi,ecx`. `0x886820` and `0x886fd0` lie inside functions that start at `0x88681f` and `0x886fcd`. So disassemble at the address, or create the function in your private copy. This is a coverage gap of the database, not evidence against the table.
 
+## What ends a served connection
+
+What the PC 03040008 client does with a server packet it cannot take, for anyone changing a server layout or adding a server packet. Marks as in the [glossary](glossary.md#evidence-marks): all `V` on the game connection, read in code; on the login connection the dispatch `0x88aab0` and vtable `+0x50`, `+0x18` were not read, so the rule there is `I`, from login handlers of the same shape. Source: `specs/010-server-packet-fixes/research/T003-pc-evidence.md`.
+
+| Step | VA | What happens |
+| --- | --- | --- |
+| 1 | `0x9d6d20`, limit set at `0x9d6f2e`-`0x9d6f53` | decrypts a frame and builds a `CPacket` whose reader limit is the frame end, padding included; calls vtable `+0x44` |
+| 2 | `0x844be0` | looks up group, id and sub and calls the handler. A group of `0x4A` or more, or a key with no record, returns 0 |
+| 3 | `0x8bc480`, `0x8bc4d0`, `0x8bc6e0`, `0x8bc750` | `nPacket::Read_*` check bounds and return 0 without moving: no fault and no stale bytes. Readers pass the 0 up, and most handlers return it (`0x7ff580`, `0x7cd0e0`) |
+| 4 | `0x9d6f78`, `0x9d7048`, `0x9d79de`-`0x9d79ec` | a 0 from vtable `+0x44` makes `0x9d6d20` return `0xBB9` (3001); its caller calls vtable `+0x50` with the code and vtable `+0x18` with 7 |
+| 5 | `0x877990`, `0x87c490` | game `+0x50`: for 3000 and 3001, mode 12 and every pending request turned into an error with code 3008. That state 7 ends the session is `I`: `0x85c8e0` has no function and was not read |
+
+So an S2C key the client has no record for, or a read past the frame end in an ordinary handler, ends the session with error 3001. 3.0.16 is the exception seen: its handler `0x887070` always returns 1.
+
+| Also ending a session | VA | Condition |
+| --- | --- | --- |
+| A string | `0x8bc5b0` | an `MtString` length above `0x800` fails the read, and step 3 follows. At exactly `0x800` the stack buffer has no terminator before its copy (`I`) |
+| A certificate | `0x886b5b`-`0x886b6a`, `0x886bf7` | the hash of the login certificate does not match. The game handler 44.1.16 was not read: `I` that it is the same |
+| A request with no response | `0x8855a0`, `0x85c860` | after the timer passes `fps * 45.0` the client pings; on the next tick with the slot still over, every pending slot goes to status 4 with code 3008, then dialog 33001. No retry. That the unit is seconds is `I` |
+
+A layout that is too short survives only on padding: see [Padding](packet-wire-format.md#padding).
+
 ## Senders
 
 `nUserSession::CPacket::WritePacket` is `0x8bcbb0`, called as `WritePacket(p, group, id, sub, -1)` with the id in pushed immediates. A C2S packet's writer is the call site with its key.

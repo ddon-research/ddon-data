@@ -82,5 +82,6 @@ ffmpeg -ss <t> -i <mkv> -frames:v 1 <png>
 | `C:\ddon-dwarf-reconstructor-rust` | rebuilds C++ for resource classes from the PS4 DWARF; reads `D:\ddon-data-s2\client\02030004` as an oracle |
 | `D:\ddon-dwarf-reconstructor` | its archived Python predecessor, still used by knowledge-graph enrichment |
 | `D:\GitHub\Sehkah\Arrowgene.DragonsDogmaOnline` | the server emulator's fork; `.Upstream` is its unpatched clone |
+| `D:\GitHub\Sehkah\Arrowgene.DragonsDogmaOnline.Clean` | a clean clone of the fork made on 2026-11-04 at `develop` `e2411fe8f9`, equal to upstream on that date: the working copy for server packet fixes, which may be built and tested. Branch `fix/packet-handling` holds the fixes, at `b8be1e19` on 2026-11-04. The local scratch branch `harness/differential`, not pushed and not available elsewhere, runs the server's serializers over `packets/decrypted_raw/` |
 | `C:\Users\morph\Documents\GitHub\Sehkah\Arrowgene.DragonsDogmaOnline.Upstream` | the patched CLI build, with uncommitted patches |
 | `D:\ddon-ghidra-scripts` | the archived PyGhidra analyzer and Script Manager scripts |
