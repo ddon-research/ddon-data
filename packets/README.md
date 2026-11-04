@@ -4,7 +4,7 @@ The network traffic of Dragon's Dogma Online captures, decoded for the PC client
 
 ## Data
 
-Produced by the `D:\research\DDON-pcaps` toolchain and the scripts here. Never list or diff it unbounded: it holds hundreds of thousands of files.
+Produced by the `D:\research\DDON-pcaps` toolchain and the scripts here. Never list or diff it unbounded: it holds hundreds of thousands of files. The annotated dumps and the JSON are two decodings of the same captures: [what each is good for](../docs/explanation/two-packet-decodings.md).
 
 | Path | Holds | Producer |
 | --- | --- | --- |
@@ -21,7 +21,7 @@ Produced by the `D:\research\DDON-pcaps` toolchain and the scripts here. Never l
 | --- | --- | --- |
 | `patterns/03040008/` | ImHex patterns and shared includes | [its README](patterns/03040008/README.md) |
 | `plbatch/` | the export engine | [its README](plbatch/README.md) |
-| `tools/` | `unk_correlate.py`, value correlation of unknown fields | [Name an unknown field](../docs/how-to/name-an-unknown-field.md) |
+| `tools/` | `unk_correlate.py`, value correlation of unknown fields; `arrowgene-cli.patch`, the patches of the CLI | [Name an unknown field](../docs/how-to/name-an-unknown-field.md), [Patch the Arrowgene CLI](../docs/how-to/patch-the-arrowgene-cli.md) |
 | `tests/` | the export selection tests, part of [the gate](../docs/how-to/run-the-gate.md) | |
 | `wireshark/` | a postdissector and display filters | [its README](wireshark/README.md) |
 | the `*.sh` files here | the scripts the pages above call | |

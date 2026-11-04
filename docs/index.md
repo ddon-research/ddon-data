@@ -15,7 +15,9 @@ The map of this repository's documentation, for peers who know x86, ELF and DWAR
 - [Patch the Arrowgene CLI](how-to/patch-the-arrowgene-cli.md): build the patched CLI those exports need.
 - [Export packets to JSON](how-to/export-packets-to-json.md): run a pattern over its raw files and read the summary.
 - [Refresh packet statistics](how-to/refresh-packet-statistics.md): regenerate the packet count files.
+- [Write a packet pattern](how-to/write-a-packet-pattern.md): go from a packet id to a pattern, its marks, a re-export and a fit count.
 - [Name an unknown field](how-to/name-an-unknown-field.md): give an `unk_*` field a name with a stated basis.
+- [Verify a regeneration](how-to/verify-a-regeneration.md): check a re-export of many files by a prediction and a stratified sample.
 - [Build plbatch](how-to/build-plbatch.md): build the batch engine of the export.
 - [Inspect captures in Wireshark](how-to/inspect-captures-in-wireshark.md): load the postdissector and the display filters.
 
@@ -24,6 +26,8 @@ The map of this repository's documentation, for peers who know x86, ELF and DWAR
 - [Documentation writing contract](reference/documentation-style.md): the rules every page follows.
 - [Glossary](reference/glossary.md): the terms pages share, the evidence marks among them.
 - [Status](reference/status.md): the dated counts, and what was not run.
+- [Packet wire format](reference/packet-wire-format.md): framing, cipher, header, RES header, lists, strings and padding.
+- [Packet handler tables](reference/packet-handler-tables.md): where the PC client keeps handlers, senders and names.
 - [Packet ids](reference/packet-ids.md): every packet pattern of client 03040008, its report and its fit.
 - [Packet pattern includes](reference/packet-includes.md): the shared pattern files and their users.
 - [Packet evidence marks](reference/packet-marks.md): the marks, their comment forms and the value-basis rules.
@@ -35,6 +39,10 @@ The map of this repository's documentation, for peers who know x86, ELF and DWAR
 
 ## Explanation: understand why
 
+- [Evidence model](explanation/evidence-model.md): why authority goes by fact type and the PC decides Season 3 layouts.
+- [Wire protocol](explanation/wire-protocol.md): transport, keys, framing, nNetMsg and why the RES guard exists.
+- [Packet decoding method](explanation/packet-decoding-method.md): reader first, what a fit proves, value bases, PS4 numbers, stack arguments.
+- [Two packet decodings](explanation/two-packet-decodings.md): the annotated dumps against the JSON, and who decides what.
 - [plbatch design](explanation/plbatch-design.md): why a batch driver, why its pin, what it costs per file.
 
 ## Other work

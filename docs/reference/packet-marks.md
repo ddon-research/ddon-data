@@ -35,7 +35,7 @@ The `T014b` marks are the verdicts of `specs/006-packet-pattern-coverage/researc
 
 ## Value bases
 
-The rule for a mark that rests on values seen in captures. `specs/008-remaining-packets/research/t007/` holds the counts and the rewrite that applied it (`marks.py`, `marks-before.tsv`, `mark-changes.tsv`); `specs/008-remaining-packets/research/T006-adversarial.md` holds the review behind it.
+The rule for a mark that rests on values seen in captures; [Value bases](../explanation/packet-decoding-method.md#value-bases) gives the reasons. `specs/008-remaining-packets/research/t007/` holds the counts and the rewrite that applied it (`marks.py`, `marks-before.tsv`, `mark-changes.tsv`); `specs/008-remaining-packets/research/T006-adversarial.md` holds the review behind it.
 
 - **Distinct counts.** A value basis, `I (value, <n> distinct: ...)`, counts distinct values, not captures. Repeated captures of one value are one observation, and a headline like "294/294" may be one list repeated in every capture; the comment says so.
 - **The chance rule.** Where the basis is "the value is an item id" (`base/etc/itemlist.ipa.json`) or a stage id (`base/scr/stage_list.slt.json`), it also gives the chance that every distinct value would be such an id by luck: the table's density over the observed range to the power of the distinct count (`chance 0.21`). The item table fills 0.83 of 1..25768 and 0.92-1.00 of the ranges the captures use.
@@ -43,6 +43,8 @@ The rule for a mark that rests on values seen in captures. `specs/008-remaining-
 - **When it keeps `I`.** A mark keeps `I` when an independent structural basis comes first (`same structure`, `same reader`, `width parallel`), or when a stage id also matches the stage name the packet carries.
 
 ## Evidence rules of the patterns
+
+[Evidence model](../explanation/evidence-model.md) gives the reasons.
 
 - PC code comes first: the PC 03040008 reader (S2C) or writer (C2S) decides the layout. Captures confirm a layout; they do not prove it.
 - PS4 02020005 is matched to PC by code (handler and reader structure, strings), never by packet number: PS4 packet numbers do not identify PC packets.

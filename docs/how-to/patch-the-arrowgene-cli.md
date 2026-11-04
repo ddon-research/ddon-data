@@ -4,33 +4,33 @@ This page is for anyone who needs `Arrowgene.Ddon.Cli` to reproduce the annotate
 
 An unpatched build skips the affected packets with `Unable to parse structure for resolved packet ... Skipping.` and writes `StructDump:` without a structure.
 
-## Find the clone
+## Get the patched source
 
-The patches exist only as uncommitted changes in one clone, on branch `develop` at base `e2411fe8`:
-
-```text
-C:\Users\morph\Documents\GitHub\Sehkah\Arrowgene.DragonsDogmaOnline.Upstream
-```
-
-The clone `D:\GitHub\Sehkah\Arrowgene.DragonsDogmaOnline.Upstream` sits at the same base without the patches or a build, so do not build there. To see the patches:
+The patches are committed here as `packets/tools/arrowgene-cli.patch`, against base `e2411fe8` of the server repository. In a clean clone at that commit, with `<repo>` this repository:
 
 ```sh
-git -C /c/Users/morph/Documents/GitHub/Sehkah/Arrowgene.DragonsDogmaOnline.Upstream diff -- Arrowgene.Ddon.Cli Arrowgene.Ddon.Shared
+git checkout e2411fe8
+git apply --check <repo>/packets/tools/arrowgene-cli.patch
+git apply <repo>/packets/tools/arrowgene-cli.patch
 ```
+
+The `--check` line prints nothing on success. A failure means the clone is not clean or not at that commit.
+
+On this machine the patched tree and its build also sit in `C:\Users\morph\Documents\GitHub\Sehkah\Arrowgene.DragonsDogmaOnline.Upstream`, as uncommitted changes. The clone `D:\GitHub\Sehkah\Arrowgene.DragonsDogmaOnline.Upstream` is at the same base without them, so do not build there unpatched.
 
 ## Build it
 
-1. From the clone's root:
+1. From the patched clone's root:
 
    ```sh
    dotnet build Arrowgene.Ddon.Cli/Arrowgene.Ddon.Cli.csproj -c Debug
    ```
 
-2. Compare the output in `Arrowgene.Ddon.Cli/bin/Debug/net10.0/` with the [recorded hashes](../reference/arrowgene-cli-patches.md#build-identity), using `sha256sum`. A different hash is a different build: a re-export with it needs a comparison against the committed raw files.
+2. Compare the output in `Arrowgene.Ddon.Cli/bin/Debug/net10.0/` with the [recorded hashes](../reference/arrowgene-cli-patches.md#build-identity), using `sha256sum`. A different hash is a different build, which a build from another path may well give: a re-export with it needs a comparison against the committed raw files ([Verify a regeneration](verify-a-regeneration.md)).
 
 3. The scripts `packets/decrypt-annotate-streams.sh` and `packets/decrypt-export-streams.sh` take that path by default. Set `CLI_PATH` for another build.
 
-**Status:** not run: the build command was not run for this page. The hashes of the build on disk were checked on 2026-11-04 and match.
+**Status:** `git apply --check` passed on 2026-11-04 on a clean checkout of `e2411fe8`. Not run: the apply itself and the build command. The hashes of the build on disk were checked on 2026-11-04 and match.
 
 ## When a packet fails to parse
 

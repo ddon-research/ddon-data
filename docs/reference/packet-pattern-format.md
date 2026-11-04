@@ -38,7 +38,7 @@ The certificate notice shows why the size line existed. The CLI once filed the s
 
 The PC reads `s32 Error`, and reads Result and the body only when Error is 0 (`P11a` G1). PS4 reads a u16 Error; the captures back the PC's s32 (`R2`). Every RES pattern writes the guard inline, `s32 Error; if (Error == 0) { s32 Result; ... }`, so every RES JSON holds `packet.Error` and, on success, `packet.Result` (`R2 F3`). There is no `ResHeader` struct.
 
-There is one exception. On 18.0.2 the server writes Result and an empty list after a non-zero Error, although the client stops reading after Error. The pattern decodes those 8 bytes as `unk_serverResult` and `unk_serverListCount`, and only when more than 15 bytes remain.
+[Why the RES guard exists](../explanation/wire-protocol.md#why-the-res-guard-exists) gives the reason. There is one exception. On 18.0.2 the server writes Result and an empty list after a non-zero Error, although the client stops reading after Error. The pattern decodes those 8 bytes as `unk_serverResult` and `unk_serverListCount`, and only when more than 15 bytes remain.
 
 ## Exported checks
 
@@ -49,7 +49,7 @@ There is one exception. On 18.0.2 the server writes Result and an empty list aft
 | `fits` | `paddingSize <= 15`. The raw files store no body length and are padded to 16-byte blocks, so a decode fits when it ends inside the cipher padding. Reading past the end fails the decode. The nNetMsg patterns export it after the packet's last field. |
 | `msgFits` | nNetMsg patterns only: the message ended exactly at its `len` field. |
 
-A fit proves that the decode did not overrun the packet and left less than one cipher block. It does not prove field widths or field order.
+A fit proves that the decode did not overrun the packet and left less than one cipher block. It does not prove field widths or field order ([why](../explanation/packet-decoding-method.md#what-a-fit-proves)).
 
 - When the slack is larger than a field, a body that is that field shorter or longer fits as well: a 16-byte packet fits any body of 0-7 bytes.
 - Two same-width fields in swapped order fit identically (`R1 F3`, `R2 F1`).

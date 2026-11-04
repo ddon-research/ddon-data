@@ -8,7 +8,7 @@ The terms that more than one page uses, for a reader who knows x86, ELF and DWAR
 | --- | --- |
 | build | A client version number: `03040008` (PC, Season 3), `02030004` (PC, Season 2), `01010004` (PC, Season 1), `PS4_02020005` (PS4, with debug symbols). Every client fact names one. |
 | DUMP_FIX, `f1c9` | The patched PC executable of build 03040008 that `research/03040008/protections/README.md` analyses. `f1c9` is the start of its SHA-256; that README and `patches/README.md` name client executables by such prefixes. |
-| recompilation | The C++ of client 02030004 in the sibling repository `D:\ddon-data-s2`, directory `recompilation/`. |
+| recompilation | C++ generated for the PS4 02020005 client, unfinished and believed accurate where it has a body. It sits in the sibling repository `D:\ddon-data-s2`, directory `recompilation/`, and its packet bodies under `recompilation/src/DD_ONLINE/prog/Protocol/`. |
 
 ## Packets
 
@@ -20,7 +20,14 @@ The terms that more than one page uses, for a reader who knows x86, ELF and DWAR
 | fit | The flag `fits` a pattern exports: the decode ends within the last 15 bytes of the file, and reading past the end fails the decode. A fit is weak evidence: it does not prove field widths when the slack exceeds a field. |
 | slack | The bytes left after a decode, exported as `paddingSize`. In a raw file they are cipher block padding. |
 | nNetMsg | The RPC payload (`cNetMsg*` messages) carried by the lobby and party binary packets, decoded by `packets/patterns/03040008/include/nNetMsg.hexpat`. |
-| annotated dump | The Arrowgene CLI's text dump of one stream under `packets/decrypted_annotated/`, decoded with the server emulator's C# structures. |
+| annotated dump | The Arrowgene CLI's text dump of one stream under `packets/decrypted_annotated/`, decoded with the server emulator's C# structures. [Two packet decodings](../explanation/two-packet-decodings.md) compares it with the JSON export. |
+| JSON export | One JSON file per packet under `packets/decrypted_json/`, decoded by a pattern written from the client's code. |
+| fixed client key | The Camellia key compiled into the client, used for the first packet of each direction: [Cipher](packet-wire-format.md#cipher). |
+| session key | The Camellia key of a connection from its third packet on: the first 32 characters of the common key the client draws. |
+| known plaintext | The start of the challenge response, which is the same in every capture and so tests a candidate session key. |
+| RES guard | The form `s32 Error; if (Error == 0) { s32 Result; ... }` every RES pattern writes, following the client's readers. |
+| handler directory | The table at PC 03040008 `0x1bc0110` from a group to its handler records: [Packet handler tables](packet-handler-tables.md). |
+| value basis | A mark's reason that rests on values seen in captures, with its distinct count and chance: [Value bases](packet-marks.md#value-bases). |
 | stream | One TCP stream of a capture, stored as YAML under `packets/encrypted_streams/`. Its folder names under `packets/decrypted_raw/` and `packets/decrypted_json/` end in `tcp-stream-<n>`. |
 | report label | A short name such as `T003` or `P11a` for an evidence report under `specs/`, written in a code span. [Packet ids](packet-ids.md#report-labels) holds the key. |
 | CData | The prefix of the shared wire structures (`CDataCommonU32`), as PS4 02020005 DWARF names them. |

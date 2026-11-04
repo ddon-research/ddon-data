@@ -1,0 +1,248 @@
+diff --git a/Arrowgene.Ddon.Cli/Command/PacketCommand.cs b/Arrowgene.Ddon.Cli/Command/PacketCommand.cs
+index e8d35e69..9dee006a 100644
+--- a/Arrowgene.Ddon.Cli/Command/PacketCommand.cs
++++ b/Arrowgene.Ddon.Cli/Command/PacketCommand.cs
+@@ -68,8 +68,11 @@ namespace Arrowgene.Ddon.Cli.Command
+ 
+             PacketFactory serverFactory = new PacketFactory(packetIdResolver);
+             PacketFactory clientFactory = new PacketFactory(packetIdResolver);
+-            serverFactory.SetCamelliaKey(camelliaKeyBytes);
+-            clientFactory.SetCamelliaKey(camelliaKeyBytes);
++            // ddon-data patch (spec 006 T002d): the first packet of each direction is encrypted with
++            // the client's fixed key, which the PacketFactory constructor sets; switch each factory to
++            // the session key only after its first packet (research/T002c-challenge-decrypt.md).
++            bool serverKeyed = false;
++            bool clientKeyed = false;
+ 
+             foreach (PcapPacket pcapPacket in pcapPackets)
+             {
+@@ -78,20 +81,57 @@ namespace Arrowgene.Ddon.Cli.Command
+                     if (pcapPacket.Source == PacketSource.Client)
+                     {
+                         pcapPacket.ResolvedPackets = clientFactory.Read(pcapPacket.Data);
++                        if (!clientKeyed && pcapPacket.ResolvedPackets.Count > 0)
++                        {
++                            clientFactory.SetCamelliaKey(camelliaKeyBytes);
++                            clientKeyed = true;
++                        }
+                     }
+                     else if (pcapPacket.Source == PacketSource.Server)
+                     {
+                         pcapPacket.ResolvedPackets = serverFactory.Read(pcapPacket.Data);
++                        if (!serverKeyed && pcapPacket.ResolvedPackets.Count > 0)
++                        {
++                            // ddon-data patch (spec 006 T002e): the server's first packet is its
++                            // certificate notice; the client synthesises the header 44.1.16 (game) /
++                            // 1.1.16 (login) for it (PC receive 0x9d6d20, research/T003 section 1).
++                            // PacketFactory labels it as the client challenge; relabel it.
++                            IPacket first = pcapPacket.ResolvedPackets[0];
++                            PacketId certId = packetServerType == PacketServerType.Game
++                                ? PacketId.S2C_CERT_GAME_SERVER_CERT_NTC
++                                : PacketId.L2C_LOGIN_SERVER_CERT_NTC;
++                            pcapPacket.ResolvedPackets[0] = new Arrowgene.Ddon.Shared.Network.Packet(
++                                certId, first.Data, PacketSource.Server, 0);
++                            serverFactory.SetCamelliaKey(camelliaKeyBytes);
++                            serverKeyed = true;
++                        }
+                     }
+ 
+                     if (!string.IsNullOrEmpty(outputFolder))
+                     {
+                         DirectoryInfo directoryInfo = Directory.CreateDirectory(outputFolder);
++                        // ddon-data patch (spec 006 TC3): packets of one id in one frame shared a file
++                        // name and each overwrote the one before, so only the frame's last packet
++                        // survived. The last keeps that name; earlier ones get _<n> (1-based position
++                        // among the frame's packets of that name) before the .<g>_<id>_<sub> extension.
++                        Dictionary<string, int> nameTotal = new Dictionary<string, int>();
+                         foreach (IPacket resolvedPacket in pcapPacket.ResolvedPackets)
+                         {
+-                            string fileName = Path.Combine(directoryInfo.FullName,
+-                                $"{pcapPacket.Packet}_{resolvedPacket.Id.Name}_{pcapPacket.TimeStamp.Replace(':', '_')}.{resolvedPacket.Id.GroupId}_{resolvedPacket.Id.HandlerId}_{resolvedPacket.Id.HandlerSubId}");
+-                            File.WriteAllBytes(fileName, resolvedPacket.GetHeaderBytes().Concat(resolvedPacket.Data).ToArray());
++                            string name = RawStem(pcapPacket, resolvedPacket) + "." + RawExtension(resolvedPacket);
++                            nameTotal[name] = nameTotal.GetValueOrDefault(name, 0) + 1;
++                        }
++
++                        Dictionary<string, int> nameSeen = new Dictionary<string, int>();
++                        foreach (IPacket resolvedPacket in pcapPacket.ResolvedPackets)
++                        {
++                            string stem = RawStem(pcapPacket, resolvedPacket);
++                            string extension = RawExtension(resolvedPacket);
++                            string name = stem + "." + extension;
++                            int seen = nameSeen.GetValueOrDefault(name, 0) + 1;
++                            nameSeen[name] = seen;
++                            string suffix = seen < nameTotal[name] ? $"_{seen}" : "";
++                            string fileName = Path.Combine(directoryInfo.FullName, $"{stem}{suffix}.{extension}");
++                            File.WriteAllBytes(fileName, HeaderBytes(resolvedPacket).Concat(resolvedPacket.Data).ToArray());
+                         }
+                     }
+                 }
+@@ -104,6 +144,31 @@ namespace Arrowgene.Ddon.Cli.Command
+             return pcapPackets;
+         }
+ 
++        // ddon-data patch (spec 006 TC3): the two parts of a raw file name,
++        // <pcap no>_<name>_<timestamp> and <group>_<id>_<sub>.
++        private static string RawStem(PcapPacket pcapPacket, IPacket packet)
++        {
++            return $"{pcapPacket.Packet}_{packet.Id.Name}_{pcapPacket.TimeStamp.Replace(':', '_')}";
++        }
++
++        private static string RawExtension(IPacket packet)
++        {
++            return $"{packet.Id.GroupId}_{packet.Id.HandlerId}_{packet.Id.HandlerSubId}";
++        }
++
++        // ddon-data patch (spec 006 T002e): like the client challenge, the server's certificate
++        // notice carries no header on the wire, so its raw file stays header-less.
++        private static byte[] HeaderBytes(IPacket packet)
++        {
++            if (packet.Id == PacketId.S2C_CERT_GAME_SERVER_CERT_NTC
++                || packet.Id == PacketId.L2C_LOGIN_SERVER_CERT_NTC)
++            {
++                return new byte[0];
++            }
++
++            return packet.GetHeaderBytes();
++        }
++
+         public string GetAnnotatedPacketDump(List<PcapPacket> decryptedPcapPackets, PacketCommandOptions packetCommandOptions)
+         {
+             HashSet<string> packetIncludeFilterSet = new HashSet<string>(packetCommandOptions.PacketIncludeFilter.ToLowerInvariant().Split(','));
+@@ -140,6 +205,10 @@ namespace Arrowgene.Ddon.Cli.Command
+                                     $"Unable to parse structure for resolved packet {resolvedPacket.Id} within pcap {pcapPacket.Packet}. Skipping.", e));
+                             }
+                         }
++                        else
++                        {
++                            Logger.Debug($"No structure for packet: {resolvedPacket.Id.Name} {resolvedPacket.Id}");
++                        }
+ 
+                         if (packetCommandOptions.AddByteDump)
+                         {
+@@ -147,7 +216,7 @@ namespace Arrowgene.Ddon.Cli.Command
+                             if (packetCommandOptions.AddByteDumpHeader)
+                             {
+                                 byteDump += string.Join(packetCommandOptions.ByteDumpSeparator,
+-                                    resolvedPacket.GetHeaderBytes().Select(dataByte => $"{packetCommandOptions.ByteDumpPrefix}{dataByte:X2}"));
++                                    HeaderBytes(resolvedPacket).Select(dataByte => $"{packetCommandOptions.ByteDumpPrefix}{dataByte:X2}"));
+                                 byteDump += packetCommandOptions.ByteDumpSeparator;
+                             }
+ 
+diff --git a/Arrowgene.Ddon.Shared/Entity/PacketStructure/S2CGroupChatGetMemberListRes.cs b/Arrowgene.Ddon.Shared/Entity/PacketStructure/S2CGroupChatGetMemberListRes.cs
+index 8f02e0df..2fd86089 100644
+--- a/Arrowgene.Ddon.Shared/Entity/PacketStructure/S2CGroupChatGetMemberListRes.cs
++++ b/Arrowgene.Ddon.Shared/Entity/PacketStructure/S2CGroupChatGetMemberListRes.cs
+@@ -23,6 +23,7 @@ namespace Arrowgene.Ddon.Shared.Entity.PacketStructure
+             {
+                 S2CGroupChatGetMemberListRes obj = new S2CGroupChatGetMemberListRes();
+                 ReadServerResponse(buffer, obj);
++                if (obj.Error != 0) return obj;
+                 obj.GroupMemberList = ReadEntityList<CDataCharacterListElement>(buffer);
+ 
+                 return obj;
+diff --git a/Arrowgene.Ddon.Shared/Entity/PacketStructure/S2CInstanceEnemyKillRes.cs b/Arrowgene.Ddon.Shared/Entity/PacketStructure/S2CInstanceEnemyKillRes.cs
+index 3aad695b..55b4dd3e 100644
+--- a/Arrowgene.Ddon.Shared/Entity/PacketStructure/S2CInstanceEnemyKillRes.cs
++++ b/Arrowgene.Ddon.Shared/Entity/PacketStructure/S2CInstanceEnemyKillRes.cs
+@@ -32,6 +32,7 @@ namespace Arrowgene.Ddon.Shared.Entity.PacketStructure
+                 S2CInstanceEnemyKillRes obj = new S2CInstanceEnemyKillRes();
+ 
+                 ReadServerResponse(buffer, obj);
++                if (obj.Error != 0) return obj;
+                 obj.EnemyId = (EnemyId)ReadUInt32(buffer);
+                 obj.KillNum = ReadUInt32(buffer);
+                 return obj;
+diff --git a/Arrowgene.Ddon.Shared/Entity/PacketStructure/S2CSkillGetAcquirableAbilityListRes.cs b/Arrowgene.Ddon.Shared/Entity/PacketStructure/S2CSkillGetAcquirableAbilityListRes.cs
+index 0e835356..ccaf2d1a 100644
+--- a/Arrowgene.Ddon.Shared/Entity/PacketStructure/S2CSkillGetAcquirableAbilityListRes.cs
++++ b/Arrowgene.Ddon.Shared/Entity/PacketStructure/S2CSkillGetAcquirableAbilityListRes.cs
+@@ -28,6 +28,7 @@ namespace Arrowgene.Ddon.Shared.Entity.PacketStructure
+             {
+                 S2CSkillGetAcquirableAbilityListRes obj = new S2CSkillGetAcquirableAbilityListRes();
+                 ReadServerResponse(buffer, obj);
++                if (obj.Error != 0) return obj;
+                 obj.AbilityParamList = ReadEntityList<CDataAbilityParam>(buffer);
+                 return obj;
+             }
+diff --git a/Arrowgene.Ddon.Shared/Entity/PacketStructure/S2CSkillGetAcquirableSkillListRes.cs b/Arrowgene.Ddon.Shared/Entity/PacketStructure/S2CSkillGetAcquirableSkillListRes.cs
+index d28a7307..1bd6552c 100644
+--- a/Arrowgene.Ddon.Shared/Entity/PacketStructure/S2CSkillGetAcquirableSkillListRes.cs
++++ b/Arrowgene.Ddon.Shared/Entity/PacketStructure/S2CSkillGetAcquirableSkillListRes.cs
+@@ -28,6 +28,7 @@ namespace Arrowgene.Ddon.Shared.Entity.PacketStructure
+             {
+                 S2CSkillGetAcquirableSkillListRes obj = new S2CSkillGetAcquirableSkillListRes();
+                 ReadServerResponse(buffer, obj);
++                if (obj.Error != 0) return obj;
+                 obj.SkillParamList = ReadEntityList<CDataSkillParam>(buffer);
+                 return obj;
+             }
+diff --git a/Arrowgene.Ddon.Shared/Network/PacketId.cs b/Arrowgene.Ddon.Shared/Network/PacketId.cs
+index 719b2e26..eaad3bb7 100644
+--- a/Arrowgene.Ddon.Shared/Network/PacketId.cs
++++ b/Arrowgene.Ddon.Shared/Network/PacketId.cs
+@@ -255,7 +255,7 @@ namespace Arrowgene.Ddon.Shared.Network
+         public static readonly PacketId C2S_CONNECTION_RESERVE_SERVER_REQ = new PacketId(0, 7, 1, "C2S_CONNECTION_RESERVE_SERVER_REQ", ServerType.Game, PacketSource.Client);
+         public static readonly PacketId S2C_CONNECTION_RESERVE_SERVER_RES = new PacketId(0, 7, 2, "S2C_CONNECTION_RESERVE_SERVER_RES", ServerType.Game, PacketSource.Server); // 他サーバーのロビーの部屋予約に
+         public static readonly PacketId S2C_CONNECTION_CRITICAL_ERROR_NTC = new PacketId(0, 9, 16, "S2C_CONNECTION_CRITICAL_ERROR_NTC", ServerType.Game, PacketSource.Server, "S2C_CONNECTION_0_9_16_NTC");
+-        public static readonly PacketId S2C_CONNECTION_0_10_16_NTC = new PacketId(0, 10, 16, "S2C_CONNECTION_0_10_16_NTC", ServerType.Game, PacketSource.Server); // S2C_SESSION_STATUS_NTC?
++        public static readonly PacketId S2C_CONNECTION_0_10_16_NTC = new PacketId(0, 10, 16, "S2C_CONNECTION_SESSION_STATUS_NTC", ServerType.Game, PacketSource.Server, "S2C_CONNECTION_0_10_16_NTC"); // ddon-data spec 006 TC2: code-backed name // S2C_SESSION_STATUS_NTC?
+         public static readonly PacketId S2C_CONNECTION_KICK_NTC = new PacketId(0, 11, 16, "S2C_CONNECTION_KICK_NTC", ServerType.Game, PacketSource.Server, "S2C_CONNECTION_0_11_16_NTC");
+         public static readonly PacketId S2C_CONNECTION_ERROR_NTC = new PacketId(0, 12, 16, "S2C_CONNECTION_ERROR_NTC", ServerType.Game, PacketSource.Server, "S2C_CONNECTION_0_12_16_NTC");
+ 
+@@ -712,7 +712,7 @@ namespace Arrowgene.Ddon.Shared.Network
+         public static readonly PacketId C2S_QUEST_SEND_LEADER_WAIT_ORDER_QUEST_LIST_REQ = new PacketId(11, 59, 1, "C2S_QUEST_SEND_LEADER_WAIT_ORDER_QUEST_LIST_REQ", ServerType.Game, PacketSource.Client);
+         public static readonly PacketId S2C_QUEST_SEND_LEADER_WAIT_ORDER_QUEST_LIST_RES = new PacketId(11, 59, 2, "S2C_QUEST_SEND_LEADER_WAIT_ORDER_QUEST_LIST_RES", ServerType.Game, PacketSource.Server); // リーダの受注待ちクエスト送信に
+         public static readonly PacketId S2C_QUEST_SEND_LEADER_WAIT_ORDER_QUEST_LIST_NTC = new PacketId(11, 59, 16, "S2C_QUEST_SEND_LEADER_WAIT_ORDER_QUEST_LIST_NTC", ServerType.Game, PacketSource.Server, "S2C_QUEST_11_59_16_NTC");
+-        public static readonly PacketId C2S_QUEST_11_60_16_NTC = new PacketId(11, 60, 16, "C2S_QUEST_11_60_16_NTC", ServerType.Game, PacketSource.Server); // Happens when clicking on quest glowing light (solo?)
++        public static readonly PacketId C2S_QUEST_11_60_16_NTC = new PacketId(11, 60, 16, "C2S_QUEST_PRT_READY_SET_RETURN_SESSION_NTC", ServerType.Game, PacketSource.Server, "C2S_QUEST_11_60_16_NTC"); // ddon-data spec 006 TC2: code-backed name // Happens when clicking on quest glowing light (solo?)
+         public static readonly PacketId C2S_QUEST_QUEST_LOG_INFO_REQ = new PacketId(11, 61, 1, "C2S_QUEST_QUEST_LOG_INFO_REQ", ServerType.Game, PacketSource.Client);
+         public static readonly PacketId S2C_QUEST_QUEST_LOG_INFO_RES = new PacketId(11, 61, 2, "S2C_QUEST_QUEST_LOG_INFO_RES", ServerType.Game, PacketSource.Server); // クエストログ通知に
+         public static readonly PacketId C2S_QUEST_GET_REWARD_BOX_LIST_REQ = new PacketId(11, 62, 1, "C2S_QUEST_GET_REWARD_BOX_LIST_REQ", ServerType.Game, PacketSource.Client);
+@@ -755,7 +755,7 @@ namespace Arrowgene.Ddon.Shared.Network
+         public static readonly PacketId S2C_QUEST_DEBUG_ENEMY_SET_PRESET_FIX_RES = new PacketId(11, 80, 2, "S2C_QUEST_DEBUG_ENEMY_SET_PRESET_FIX_RES", ServerType.Game, PacketSource.Server); // (デバッグ用)敵セットプリセット固定に
+         public static readonly PacketId S2C_QUEST_11_81_16_NTC = new PacketId(11, 81, 16, "S2C_QUEST_11_81_16_NTC", ServerType.Game, PacketSource.Server); // Doesn't seem to have a handler?
+         public static readonly PacketId S2C_QUEST_11_82_16_NTC = new PacketId(11, 82, 16, "S2C_QUEST_11_82_16_NTC", ServerType.Game, PacketSource.Server);
+-        public static readonly PacketId S2C_QUEST_11_83_16_NTC = new PacketId(11, 83, 16, "S2C_QUEST_11_83_16_NTC", ServerType.Game, PacketSource.Server);
++        public static readonly PacketId S2C_QUEST_11_83_16_NTC = new PacketId(11, 83, 16, "S2C_QUEST_SET_QUEST_UNRELEASED_AREA_NTC", ServerType.Game, PacketSource.Server, "S2C_QUEST_11_83_16_NTC"); // ddon-data spec 006 TC2: code-backed name
+         public static readonly PacketId S2C_QUEST_11_84_16_NTC = new PacketId(11, 84, 16, "S2C_QUEST_11_84_16_NTC", ServerType.Game, PacketSource.Server);
+         public static readonly PacketId S2C_QUEST_11_85_16_NTC = new PacketId(11, 85, 16, "S2C_QUEST_11_85_16_NTC", ServerType.Game, PacketSource.Server); // S2C_QUEST_ENABLE_NOTICE?
+         public static readonly PacketId S2C_QUEST_11_86_16_NTC = new PacketId(11, 86, 16, "S2C_QUEST_11_86_16_NTC", ServerType.Game, PacketSource.Server); // S2C_CYCLE_CONTENTS_ENABLE_NOTICE?
+@@ -767,7 +767,7 @@ namespace Arrowgene.Ddon.Shared.Network
+         public static readonly PacketId S2C_QUEST_11_92_16_NTC = new PacketId(11, 92, 16, "S2C_QUEST_11_92_16_NTC", ServerType.Game, PacketSource.Server); // Mission Started
+         public static readonly PacketId S2C_QUEST_11_93_16_NTC = new PacketId(11, 93, 16, "S2C_QUEST_11_93_16_NTC", ServerType.Game, PacketSource.Server); // Mission completed
+         public static readonly PacketId S2C_QUEST_11_94_16_NTC = new PacketId(11, 94, 16, "S2C_QUEST_11_94_16_NTC", ServerType.Game, PacketSource.Server); // Mission All completed
+-        public static readonly PacketId S2C_QUEST_11_95_16_NTC = new PacketId(11, 95, 16, "S2C_QUEST_11_95_16_NTC", ServerType.Game, PacketSource.Server);
++        public static readonly PacketId S2C_QUEST_11_95_16_NTC = new PacketId(11, 95, 16, "S2C_QUEST_FORT_DEFENSE_NTC", ServerType.Game, PacketSource.Server, "S2C_QUEST_11_95_16_NTC"); // ddon-data spec 006 TC2: code-backed name
+         public static readonly PacketId S2C_QUEST_11_96_16_NTC = new PacketId(11, 96, 16, "S2C_QUEST_11_96_16_NTC", ServerType.Game, PacketSource.Server);
+         public static readonly PacketId S2C_QUEST_11_97_16_NTC = new PacketId(11, 97, 16, "S2C_QUEST_11_97_16_NTC", ServerType.Game, PacketSource.Server);
+         public static readonly PacketId S2C_QUEST_11_98_16_NTC = new PacketId(11, 98, 16, "S2C_QUEST_11_98_16_NTC", ServerType.Game, PacketSource.Server);
+@@ -775,7 +775,7 @@ namespace Arrowgene.Ddon.Shared.Network
+         public static readonly PacketId S2C_QUEST_11_100_16_NTC = new PacketId(11, 100, 16, "S2C_QUEST_11_100_16_NTC", ServerType.Game, PacketSource.Server);
+         public static readonly PacketId S2C_QUEST_TIME_GAIN_QUEST_PLAY_START_NTC = new PacketId(11, 101, 16, "S2C_QUEST_TIME_GAIN_QUEST_PLAY_START_NTC", ServerType.Game, PacketSource.Server, "S2C_QUEST_11_101_16_NTC"); // <syslog_quest_progress_failed>
+         public static readonly PacketId S2C_QUEST_PLAY_ADD_TIMER_NTC = new PacketId(11, 102, 16, "S2C_QUEST_PLAY_ADD_TIMER_NTC", ServerType.Game, PacketSource.Server, "S2C_QUEST_11_102_16_NTC"); // Remaining time extended by x seconds (S2C_PLAY_ADD_TIMER_NOTICE?)
+-        public static readonly PacketId S2C_QUEST_11_103_16_NTC = new PacketId(11, 103, 16, "S2C_QUEST_11_103_16_NTC", ServerType.Game, PacketSource.Server);
++        public static readonly PacketId S2C_QUEST_11_103_16_NTC = new PacketId(11, 103, 16, "S2C_QUEST_PLAY_STOP_TIMER_NTC", ServerType.Game, PacketSource.Server, "S2C_QUEST_11_103_16_NTC"); // ddon-data spec 006 TC2: code-backed name
+         public static readonly PacketId S2C_QUEST_11_104_16_NTC = new PacketId(11, 104, 16, "S2C_QUEST_11_104_16_NTC", ServerType.Game, PacketSource.Server);
+         public static readonly PacketId S2C_QUEST_PLAY_TIMEUP_NTC = new PacketId(11, 105, 16, "S2C_QUEST_PLAY_TIMEUP_NTC", ServerType.Game, PacketSource.Server, "S2C_QUEST_11_105_16_NTC"); // Time is up (S2C_PLAY_TIMEUP_NOTICE)
+         public static readonly PacketId S2C_QUEST_11_106_16_NTC = new PacketId(11, 106, 16, "S2C_QUEST_11_106_16_NTC", ServerType.Game, PacketSource.Server); // <syslog_wm_statement_gauge_0_defeat>
+@@ -789,7 +789,7 @@ namespace Arrowgene.Ddon.Shared.Network
+         public static readonly PacketId S2C_QUEST_RAID_BOSS_PLAY_START_NTC = new PacketId(11, 114, 16, "S2C_QUEST_RAID_BOSS_PLAY_START_NTC", ServerType.Game, PacketSource.Server, "S2C_QUEST_11_114_16_NTC"); // <syslog_quest_progress_failed> (CPacket_S2C_RAID_BOSS_PLAY_START_NOTICE)
+         public static readonly PacketId S2C_QUEST_11_115_16_NTC = new PacketId(11, 115, 16, "S2C_QUEST_11_115_16_NTC", ServerType.Game, PacketSource.Server);
+         public static readonly PacketId S2C_QUEST_11_116_16_NTC = new PacketId(11, 116, 16, "S2C_QUEST_11_116_16_NTC", ServerType.Game, PacketSource.Server);
+-        public static readonly PacketId S2C_QUEST_11_117_16_NTC = new PacketId(11, 117, 16, "S2C_QUEST_11_117_16_NTC", ServerType.Game, PacketSource.Server);
++        public static readonly PacketId S2C_QUEST_11_117_16_NTC = new PacketId(11, 117, 16, "S2C_QUEST_REWARD_BOX_LIST_NUM_NTC", ServerType.Game, PacketSource.Server, "S2C_QUEST_11_117_16_NTC"); // ddon-data spec 006 TC2: code-backed name
+         public static readonly PacketId S2C_QUEST_11_118_16_NTC = new PacketId(11, 118, 16, "S2C_QUEST_11_118_16_NTC", ServerType.Game, PacketSource.Server);
+         public static readonly PacketId S2C_QUEST_11_119_16_NTC = new PacketId(11, 119, 16, "S2C_QUEST_11_119_16_NTC", ServerType.Game, PacketSource.Server);
+         public static readonly PacketId S2C_QUEST_PARTY_QUEST_PROGRESS_NTC = new PacketId(11, 120, 16, "S2C_QUEST_PARTY_QUEST_PROGRESS_NTC", ServerType.Game, PacketSource.Server, "S2C_QUEST_11_120_16_NTC");
+@@ -930,8 +930,8 @@ namespace Arrowgene.Ddon.Shared.Network
+         public static readonly PacketId S2C_WARP_GET_AREA_WARP_POINT_LIST_RES = new PacketId(14, 8, 2, "S2C_WARP_GET_AREA_WARP_POINT_LIST_RES", ServerType.Game, PacketSource.Server); // エリア指定ワープ情報取得に
+         public static readonly PacketId C2S_WARP_AREA_WARP_REQ = new PacketId(14, 9, 1, "C2S_WARP_AREA_WARP_REQ", ServerType.Game, PacketSource.Client);
+         public static readonly PacketId S2C_WARP_AREA_WARP_RES = new PacketId(14, 9, 2, "S2C_WARP_AREA_WARP_RES", ServerType.Game, PacketSource.Server); // 現在のエリアからのワープリクエストに
+-        public static readonly PacketId C2S_WARP_WARP_START_NTC = new PacketId(14, 10, 16, "C2S_WARP_WARP_START_NTC", ServerType.Game, PacketSource.Client);
+-        public static readonly PacketId C2S_WARP_WARP_END_NTC = new PacketId(14, 11, 16, "C2S_WARP_WARP_END_NTC", ServerType.Game, PacketSource.Client);
++        public static readonly PacketId C2S_WARP_WARP_START_NTC = new PacketId(14, 10, 16, "C2S_WARP_WARP_END_NTC", ServerType.Game, PacketSource.Client, "C2S_WARP_WARP_START_NTC"); // ddon-data spec 006 TC2: code-backed name
++        public static readonly PacketId C2S_WARP_WARP_END_NTC = new PacketId(14, 11, 16, "C2S_WARP_14_11_16_NTC", ServerType.Game, PacketSource.Client, "C2S_WARP_WARP_END_NTC"); // ddon-data spec 006 TC2: code-backed name
+         public static readonly PacketId C2S_WARP_GET_RETURN_LOCATION_REQ = new PacketId(14, 12, 1, "C2S_WARP_GET_RETURN_LOCATION_REQ", ServerType.Game, PacketSource.Client);
+         public static readonly PacketId S2C_WARP_GET_RETURN_LOCATION_RES = new PacketId(14, 12, 2, "S2C_WARP_GET_RETURN_LOCATION_RES", ServerType.Game, PacketSource.Server); // 復帰位置の取得に
+         public static readonly PacketId S2C_WARP_LEADER_WARP_NTC = new PacketId(14, 13, 16, "S2C_WARP_LEADER_WARP_NTC", ServerType.Game, PacketSource.Server, "S2C_WARP_14_13_16_NTC");

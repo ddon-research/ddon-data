@@ -20,6 +20,16 @@ The 2 captures outside that fit are of 29.23.16, whose PC handler returns withou
 
 **Status:** open. Decoded without settled meaning at 2026-11-03: 29.23.16 (no reader), 11.88.16 and 11.118.16 (layout decoded, meaning unknown), and the `G` names whose consumers were not traced.
 
+## The two packet decodings
+
+How often the server's structures agree with the PC 03040008 layouts, over the 115 ids decoded last, measured on 2026-11-03 against the server fork `88d82caf07`. Source: columns `ag_vs_pc` and `ag_*` of `specs/008-remaining-packets/research/T001-triage.tsv`, recounted on 2026-11-04. What the numbers mean: [Two packet decodings](../explanation/two-packet-decodings.md). The other ids of the table were not measured this way.
+
+| `ag_vs_pc` | Ids |
+| --- | --- |
+| same | 81 |
+| differs | 3: 14.11.16, 10.14.16, 34.0.1 |
+| empty: the comparison's parser did not know a statement of the structure | 31 |
+
 ## Export engine, measured 2026-11-01
 
 Client 03040008 packets on a contended 32-CPU machine, with hyperfine 2.0.0, `-N`. plbatch was at PatternLanguage `fb6ea061` for these runs, the pin ImHex 1.38.1 embeds, so both engines ran one parser.
@@ -48,6 +58,7 @@ Client 03040008 packets on a contended 32-CPU machine, with hyperfine 2.0.0, `-N
 | Check | State | Date |
 | --- | --- | --- |
 | The steps of the how-tos that rewrite tracked data: [Decrypt a capture](../how-to/decrypt-a-capture.md), [Re-annotate streams](../how-to/reannotate-streams.md) (annotate, raw export), [Refresh packet statistics](../how-to/refresh-packet-statistics.md), [Patch the Arrowgene CLI](../how-to/patch-the-arrowgene-cli.md) (build) | not run: their commands are read against the scripts | 2026-11-04 |
+| Applying `packets/tools/arrowgene-cli.patch` and building from it; `git apply --check` on a clean `e2411fe8` passed | not run | 2026-11-04 |
 | ImHex validation of the packet patterns | not run: ImHex is not on `PATH`, and plbatch is the parser of the export | 2026-11-03 |
 | Consumers of the role-only `V` marks of 28.34.2 and 11.68.16 | not run | 2026-11-03 |
 | The `ValueOld` check of 13.23.16 | not run | 2026-11-03 |

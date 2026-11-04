@@ -13,7 +13,7 @@
 // The CLI writes it without the 9-byte header (Packet.cs GetHeaderBytes() is empty for this id),
 // and on the wire the body starts at byte 0 (CommonKeySrcSize = 0x30 in 42/42, T002c 3, 4).
 // The pattern therefore reads the body at offset 0 and does not use CPacket or `sourceOk`.
-// Raws re-decrypted with the fixed key in T002d (patched CLI, packets README arrowgene-patches).
+// Raws re-decrypted with the fixed key in T002d (patched CLI, docs/reference/arrowgene-cli-patches.md).
 // The server's first packet (its certificate notice, 304 bytes) shared this file name and id until
 // T002e, which files it as 1.1.16 L2C_LOGIN_SERVER_CERT_NTC (L2C_LOGIN_SERVER_CERT_NTC-pattern.cpp);
 // every `.1_0_1` file of this name is now the client's 336-byte challenge, so no size selector.

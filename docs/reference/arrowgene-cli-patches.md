@@ -1,10 +1,12 @@
 # Arrowgene CLI patches
 
-The local changes to `Arrowgene.Ddon.Cli` behind the annotated dumps and raw packets of client 03040008, each with the failure it removes, for a reader judging what those files can be trusted for. To build it, see [Patch the Arrowgene CLI](../how-to/patch-the-arrowgene-cli.md). A label in a code span names a report: [the key](packet-ids.md#report-labels).
+The local changes to `Arrowgene.Ddon.Cli` behind the annotated dumps and raw packets of client 03040008, each with the failure it removes, for a reader judging what those files can be trusted for. To build it, see [Patch the Arrowgene CLI](../how-to/patch-the-arrowgene-cli.md); for what the dumps are good for, see [Two packet decodings](../explanation/two-packet-decodings.md). A label in a code span names a report: [the key](packet-ids.md#report-labels).
 
 ## Build identity
 
 The patched build sits in the clone `C:\Users\morph\Documents\GitHub\Sehkah\Arrowgene.DragonsDogmaOnline.Upstream` (branch `develop`, base `e2411fe8`, patches uncommitted), net10.0, Debug, built 2026-11-02. The hashes below match that clone's files on 2026-11-04. The other clone, under `D:\GitHub\Sehkah\`, holds no build.
+
+`packets/tools/arrowgene-cli.patch` holds the patches of `Arrowgene.Ddon.Cli` and `Arrowgene.Ddon.Shared`, as `git diff` gave them on 2026-11-04. That clone also carries two uncommitted changes outside those projects, left out of the file because no decode depends on them: `Arrowgene.Ddon.Database/Files/Database/Script/migration_pawn_rental.sql` and `Arrowgene.Ddon.Server/Settings/ChatCommandSettings.cs`.
 
 | File | SHA-256 |
 | --- | --- |
@@ -16,7 +18,7 @@ The patched build sits in the clone `C:\Users\morph\Documents\GitHub\Sehkah\Arro
 
 ## Stop reading after a non-zero Error
 
-`EntitySerializer.ReadServerResponse` reads `Result` as a `u16` whenever `Error != 0`, but servers keep writing the full response (`Error` and `Result` as `u32`, then the payload). Every field after `Result` is then read 2 bytes early: an empty list's count becomes a huge number, and parsing runs into the packet's block padding (`EndOfStreamException`). The Season 3 client does not read past a non-zero `Error` (for example `GROUP_CHAT_GET_MEMBER_LIST_RES` reader `0x809D80` in the PC 03040008 client), so the patches stop the same way:
+`EntitySerializer.ReadServerResponse` reads `Result` as a `u16` whenever `Error != 0`, so the fields after it were read 2 bytes early and parsing ended in `EndOfStreamException`. The patches stop where the PC 03040008 client stops (for example `GROUP_CHAT_GET_MEMBER_LIST_RES` reader `0x809D80`); [Why the RES guard exists](../explanation/wire-protocol.md#why-the-res-guard-exists) has the reason:
 
 ```csharp
 ReadServerResponse(buffer, obj);
@@ -43,9 +45,9 @@ All in `Arrowgene.Ddon.Cli/Command/PacketCommand.cs`; the last three in `Decrypt
 | Certificate notice relabel (`T003 §1, §15`) | the server's first packet carries the client challenge's name | labels the server factory's first resolved packet `S2C_CERT_GAME_SERVER_CERT_NTC` 44.1.16 (game) or `L2C_LOGIN_SERVER_CERT_NTC` 1.1.16 (login), source `Server`, counter 0 |
 | One file per packet of a frame | the raw file name does not tell apart several packets of one id in one TCP frame, so each overwrites the one before | counts each name per frame first; the last packet keeps the unsuffixed name and each earlier one gets `_<n>`, its 1-based position among the frame's packets of that name, before the extension. Helpers `RawStem` and `RawExtension` build the two parts. The annotated dump code is unchanged |
 
-The first packet of each direction is the server's RSA public key, and the client's `C2L_CLIENT_CHALLENGE_REQ` 1.0.1 or, on the game server, `C2S_CERT_CLIENT_CHALLENGE_REQ` 44.0.1. It is Camellia-256-CBC encrypted with the client's fixed key `f23e98HafJdSoaj80QBjhh23oajgklSa` and IV `$cbM6WP)aX=%J^zA`, which the `PacketFactory` constructor sets. The switch is safe for these captures because every first packet arrives in its own TCP segment (250/250, `T002c §3`).
+The first packet of each direction and its key are in [Packet wire format](packet-wire-format.md#first-packet-of-each-direction). The `PacketFactory` constructor sets the fixed key. The switch is safe for these captures because every first packet arrives in its own TCP segment (250/250, `T002c §3`).
 
-The relabel follows the client's receive path (`0x9d6d20`), which dispatches the certificate notice under a synthesised header. Both ids are in the CLI's `PacketId.cs` (lines 1737 and 162). A helper `HeaderBytes` in `PacketCommand` keeps these two raw files header-less, as the client challenge is; `Packet.GetHeaderBytes()` itself is unchanged. The annotated dumps label them `Server #000000 (44.1.16) S2C_CERT_GAME_SERVER_CERT_NTC`, and do not try the client challenge structure on them.
+The relabel follows the client's receive path (`0x9d6d20`), which dispatches the certificate notice under a synthesized header. Both ids are in the CLI's `PacketId.cs` (lines 1737 and 162). A helper `HeaderBytes` in `PacketCommand` keeps these two raw files header-less, as the client challenge is; `Packet.GetHeaderBytes()` itself is unchanged. The annotated dumps label them `Server #000000 (44.1.16) S2C_CERT_GAME_SERVER_CERT_NTC`, and do not try the client challenge structure on them.
 
 ## Names from code, in `PacketId.cs`
 

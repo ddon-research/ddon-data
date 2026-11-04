@@ -4,8 +4,8 @@
 // Source: specs/006-packet-pattern-coverage/research/T013-small-groups.md sections 1, 6, 8 and 16
 // (T013b). Names are PS4 02020005 DWARF members (m_/type prefix dropped, V) unless marked (I) or
 // `unk_*`; the PS4 recompilation PacketData/EntryBoard.h declares the same members. Users: 34.1.1,
-// 34.1.2, 34.2.1, 34.2.2, 34.14.16. The Season 3-exclusive 34.0.x list element is not here (34.0.x
-// is not patterned, see the README open items).
+// 34.1.2, 34.2.1, 34.2.2, 34.14.16. The Season 3-exclusive 34.0.x list element is not here (34.0.x has its
+// own patterns, see docs/reference/packet-ids.md).
 // Every multi-byte value is big-endian: include this file after `#pragma endian big`.
 
 #pragma once

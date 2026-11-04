@@ -7,7 +7,7 @@
 // header group 0x2c, id 1, sub 0x10 (game vtable +0x60/+0x68) (V); handler 0x7c7250, reader
 // 0x801a80 (V). Arrowgene PacketId.cs:1737; PS4 S2C_GAME_SERVER_CERT_NOTICE
 // (OnPacket 0x330310, ReadPacket 0x19defe0).
-// NO HEADER: the wire carries none, and the patched CLI (packets README arrowgene-patches, T002e)
+// NO HEADER: the wire carries none, and the patched CLI (docs/reference/arrowgene-cli-patches.md, T002e)
 // writes the raw without one. The body starts at offset 0; PC reads no u16 error (V, T003 15).
 // Body: u8 OpenModulo[256], u8 OpenExpo[16], u32 OpenHash[5] (292 B) + 12 bytes of cipher padding
 // (304 B); the client reads only the 292 bytes (T003 1).

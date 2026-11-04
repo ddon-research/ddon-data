@@ -106,4 +106,4 @@ A decode [fits](../reference/glossary.md#packets) when it ends within the last 1
 - A pattern's JSON is that walk, written down, and you can check it with `xxd`.
 - The layout of 14.3.2 stands because PC reader `0x81dc00` of client 03040008 reads it, as the pattern's header says. The 44 fits only fail to contradict it.
 
-Next: the [glossary](../reference/glossary.md) names the terms used here, and the pattern's first comment lines cite the evidence report behind it.
+Next: the [glossary](../reference/glossary.md) names the terms used here, and the pattern's first comment lines cite the evidence report behind it. [Two packet decodings](../explanation/two-packet-decodings.md) sets this JSON beside the server CLI's reading of the same packet, and [Write a packet pattern](../how-to/write-a-packet-pattern.md) goes from an id to a pattern of your own.

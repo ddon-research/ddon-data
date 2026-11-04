@@ -8,7 +8,7 @@
 // handler table; its reader is not decoded, T003 section 20). Arrowgene PacketId.cs:162; PS4
 // OnPacket_L2C_LOGIN_SERVER_CERT_NOTICE 0x37ceb0. The body is the game notice's (include/Cert.hexpat:
 // the game reader 0x801a80 is V; for login the layout rests on the capture SHA-1 check, T002c 4, I).
-// NO HEADER: the wire carries none, and the patched CLI (packets README arrowgene-patches, T002e)
+// NO HEADER: the wire carries none, and the patched CLI (docs/reference/arrowgene-cli-patches.md, T002e)
 // writes the raw without one. The body starts at offset 0; PC reads no u16 error (V, T003 15).
 // Body: u8 OpenModulo[256], u8 OpenExpo[16], u32 OpenHash[5] (292 B) + 12 bytes of cipher padding
 // (304 B); the client reads only the 292 bytes (T003 1).
