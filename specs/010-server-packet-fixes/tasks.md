@@ -27,7 +27,9 @@ Coordinator: main session. One subagent at a time. Goal, error classes, method a
   as on `develop`: a RES is lost to a reset if the client is still sending at a close (0/20 on loopback; 125/125 captures send nothing between). R03, R04 rest on captures only.
 - [x] T005b Live smoke (`research/T005b-live-smoke.md`, evidence `C:\ddon-automation\t005b-evidence\`): real client logs in (same 40 ids in order as `develop`), plays, moves worlds; F06 1 RES and 1 dialog vs 2 RES on `develop`;
   category 6 banner shown; R05, R02, R03 close only the bad connection; R01 no stall, sender stays open; no 3001 or 33001. Not reached: quest-end time (W16), once flag, category 6 catch-up flood. All runs used f2a8, not f1c9. Client restored. No patch defect.
-- [ ] T006 Impact outline and PR body (`implementer`, `briefs/T006-impact-pr.md`); then the coordinator pushes the branch to the fork and opens the draft PR there.
+- [x] T006 Impact outline and PR body (`research/impact.md`, `pr-body.md`, `T006-commit-messages.md`; 6a9e2fe6e6): body clean, all 29 subjects found, no token, key, IP, path or task id. CLI patch applies, 16 of 16 hunks, 4 become dead code by reading; patched CLI on 3 streams: same packets and order, 16 of 1,053 `StructDump` lines change; full re-annotate not run. Found: five commit messages and a test comment state what the body leaves out, `f8683307` is wrong at the head, 18 lines carry task ids.
+- [ ] T006a Make the branch fit to publish (`implementer`, `briefs/T006a-branch-wording.md`): rewrite the messages and comments, no code change.
+- [ ] T006b Coordinator: push `fix/packet-handling` to the fork, open the draft PR there.
 - [ ] T007 Close; ask Sam about upstream and disclosure of the pre-login rows; docs follow-ups.
 
 ## Ruling on the patch set (coordinator, 2026-11-04, from T003)
@@ -38,6 +40,6 @@ Coordinator: main session. One subagent at a time. Goal, error classes, method a
 
 ## Running
 
-- T006 (implementer, brief `briefs/T006-impact-pr.md`), started 2026-11-04. Next: land; coordinator: `git push origin fix/packet-handling` from the clone, `gh pr create --draft --repo Sehkah/Arrowgene.DragonsDogmaOnline --base develop --head fix/packet-handling` with `research/pr-body.md`; close; **ask Sam before merging spec 010 to ddon-data `main`, since its reports hold pre-login reproduction detail and that repository is public, and before anything goes upstream.** To carry (now in T006's brief): `docs/reference/status.md` says `ag_vs_pc` 3 differ, T001 says 2 (34.0.1 was
+- T006a (implementer, brief `briefs/T006a-branch-wording.md`), started 2026-11-04. Nothing of 010 is on a remote yet: this repository's branch is unpushed and `main` is at `78466dfe8e`. Next: land; coordinator: `git push origin fix/packet-handling` from the clone, `gh pr create --draft --repo Sehkah/Arrowgene.DragonsDogmaOnline --base develop --head fix/packet-handling` with `research/pr-body.md`; close; **ask Sam before merging spec 010 to ddon-data `main`, since its reports hold pre-login reproduction detail and that repository is public, and before anything goes upstream.** To carry (now in T006's brief): `docs/reference/status.md` says `ag_vs_pc` 3 differ, T001 says 2 (34.0.1 was
   corrected, TSV not regenerated); `docs/explanation/two-packet-decodings.md`'s 19.28.2 example hangs on T003's read of PC consumers of
   `+8`, `+0xc`: fix both pages when settled. R01/R02 are pre-login: ask Sam how to disclose before anything goes upstream.
