@@ -5,7 +5,11 @@ Coordinator: main session. One subagent at a time. Target structure and rules: `
 - [x] T001 Census (`research/T001-census.md`, `T001-sections.tsv`, `T001-files.tsv`): 28 living docs, 6,228 lines, 285
   heading rows; 58 pages proposed; 121 file rows (27 move); tutorial proven on committed input (14.3.2); four more
   outside readers; 31 of the packet table's 587 fit counts stale.
-- [ ] T002 Skeleton, writing contract, gate, tutorial, safe moves (`implementer`, `briefs/T002-foundation.md`).
+- [x] T002 Skeleton, writing contract, gate, tutorial, safe moves (5d3b3df8cd, de59764b4e, da9815ac68): 7 pages;
+  `tools/docs_check.py` + `docs` gate section (links case-sensitive against git, anchors, reachability, code-span paths,
+  wording, tutorial pins; 39 tests, 13/13 condition removals caught); `research/scripts/`, `research/prompts/`,
+  `research/03040008/notes/`; `research/README.adoc` case fixed; `editor` role installed by the coordinator. Gate
+  `check.sh --since 7d50e1feb86`: hooks, shell, mcp, docs passed.
 - [ ] T003 Move the packet work to `packets/` (`implementer`, `briefs/T003-packet-tree.md`): patterns to
   `packets/patterns/03040008/`, `tools/`, `tests/`, `plbatch/`, `wireshark/`; guard narrowed to the data trees.
 - [ ] T004 Packet and evidence pages: packets README split, Arrowgene/annotate adoc, wire format, handler tables, marks,
@@ -40,5 +44,5 @@ Coordinator: main session. One subagent at a time. Target structure and rules: `
 
 ## Running
 
-- T002 (implementer, brief `briefs/T002-foundation.md`), started 2026-11-04. Next: land, apply its `AGENTS.md` lines,
-  spawn T003 (brief written), then brief T004.
+- T003 (implementer, brief `briefs/T003-packet-tree.md`), started 2026-11-04. Also updates the tutorial's `TUTORIAL`
+  constant and `status.md`'s `ls` counts. Next: land, apply its `AGENTS.md` lines, brief T004.

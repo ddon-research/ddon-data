@@ -29,7 +29,6 @@ Treat it as versioned evidence, not as source code.
 | `research/03040008/flags/` | `ddon-flags` Python project (quest/layout flag investigation) and `generated/` reports | This repo |
 | `research/knowledge-graph/` | `ddon-knowledge-graph` Python project (Neo4j evidence graph + MCP), own Spec Kit project | This repo |
 | `research/ida/`, `research/pharos/` | IDA helpers, Pharos OOAnalyzer (Docker) | This repo |
-| `plan/` | Older flag-investigation plans | Historical |
 
 - **Disassembler databases** (inputs, never copy them here): `D:\research\DDON-binaries\` holds
   `IDA9.3\` (packed `.i64` + `.c`/`.h` exports per build), `IDA9.5\` (live databases, see below),
@@ -118,11 +117,11 @@ POSIX equivalent.
   (`ddon-extractor resource -p true -o -m -f json -u -x D:\DDON_03040008 D:\DDON-translation\gmd.csv <out>`;
   see `D:\ddon-extractor\README.md`), then replace `client/<build>/`. Review the change with
   `git diff --stat` per resource type before committing.
-- **Resource format research**: identify the extension (`research/find-unsupported-extensions.sh`),
+- **Resource format research**: identify the extension (`research/scripts/find-unsupported-extensions.sh`),
   get the class layout from DWARF and its `load`/`save` methods (IDA MCP, or the archived
   `D:/ddon-ghidra-scripts/headless-scripts/run_ghidra_analysis.sh dwarf|function <name> DDOORBIS.elf`),
   write `research/<build>/r<Type>-pattern.cpp`, validate with
-  `imhex --pl format --pattern <pattern> --input <file>` (`research/validate_pattern.sh`), and
+  `imhex --pl format --pattern <pattern> --input <file>` (`research/scripts/validate_pattern.sh`), and
   cross-check against the extractor JSON. See `research/README.adoc`.
 - **Packets**: `packets/keys/decrypt-pcapng-streams-all-in-one.sh <capture.pcapng|dir> [out]`
   needs `tshark`, `Arrowgene.Ddon.Cli`, and `ddon_common_key_bruteforce`. Key search uses expected
@@ -168,7 +167,7 @@ POSIX equivalent.
 
 - The main session is the coordinator: protocol `specs/orchestration.md`, checklist the
   `coordinate` skill. Role agents in `.claude/agents/` (`implementer`, `adversarial-reviewer`,
-  `reviewer`, `repository-researcher`, `evidence-researcher`, `evidence-researcher-ida`) do one
+  `reviewer`, `repository-researcher`, `evidence-researcher`, `evidence-researcher-ida`, `editor`) do one
   bounded job each from a brief; the `-ida` role runs headless ida-mcp on a private database copy.
 - **No worktrees here** (hundreds of thousands of files): every agent works in this checkout, so
   at most one subagent of any role runs at a time (Sam, 2026-10-17; ddon-hook's coordinator too). Subagents run

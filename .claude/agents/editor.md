@@ -12,7 +12,7 @@ hooks:
     - matcher: "Edit|Write|NotebookEdit"
       hooks:
         - type: command
-          command: "python -X utf8 -I D:/ddon-data/tools/hooks/guard_paths.py --allow 'docs/*' 'readme.adoc' 'packets/README.md' 'patches/README.md' 'research/README.md' 'research/scripts/README.md' 'research/prompts/README.md' 'research/textures/README.md' 'research/pharos/README.md' 'research/rng-race/README.md' 'research/03040008/*/README.md' 'specs/*/research/reviews/*'"
+          command: "python -X utf8 -I D:/ddon-data/tools/hooks/guard_paths.py --allow 'docs/*' 'readme.adoc' 'packets/README.md' 'packets/*/README.md' 'packets/patterns/*/README.md' 'patches/README.md' 'research/README.md' 'research/scripts/README.md' 'research/prompts/README.md' 'research/textures/README.md' 'research/pharos/README.md' 'research/rng-race/README.md' 'research/03040008/*/README.md' 'specs/*/research/reviews/*'"
   Stop:
     - hooks:
         - type: command
