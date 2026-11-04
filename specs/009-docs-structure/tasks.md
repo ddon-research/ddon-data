@@ -51,7 +51,10 @@ Coordinator: main session. One subagent at a time. Target structure and rules: `
 - [x] T009c IDA claims (`research/T009c-ida-claims.md`): 42 claims, 40 hold, 1 wrong (login writers' range; fixed by the
   coordinator), 1 not settled (`query-ida-read-only.md:14`: facts in all three PC databases, only `pc-handlers` opened).
   Copies: `.i64` deleted; `.id0`/`.id1` under both `ddon-data-t009c/` are held by this session's IDA workers: delete at the close.
-- [ ] T010 Editor pass (`editor`, `briefs/T010-editor.md`).
+- [x] T010 Editor pass (49e15dd4b9 .. 23168c8a59; `research/reviews/T010-editor.md`): every page group edited, no fact
+  changed; 5 doubted facts, 2 facts without a page, 6 contract proposals. Gate: docs (75 pages, 0 findings).
+- [ ] T010b Settle what the editor doubted; `ps4-elf.md` lookup lists to a reference page (`implementer`,
+  `briefs/T010b-editor-facts.md`).
 - [ ] T011 `AGENTS.md` / `CLAUDE.md` shortened, close: `check.sh --all`, retro, merge and push.
 
 ## Decisions (coordinator, 2026-11-04, from T001 § 12)
@@ -87,4 +90,5 @@ Coordinator: main session. One subagent at a time. Target structure and rules: `
 
 ## Running
 
-- T010 (editor, brief `briefs/T010-editor.md`), started 2026-11-04. Next: `AGENTS.md` shortened, close. Then spec 010.
+- T010b (implementer, brief `briefs/T010b-editor-facts.md`), started 2026-11-04. Next: `AGENTS.md` shortened, close. Then
+  spec 010.
